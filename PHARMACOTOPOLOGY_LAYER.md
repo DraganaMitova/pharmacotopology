@@ -77,7 +77,10 @@ mechanism vector; the full resulting topology state is still written for review.
 Each result also carries an evidence readiness label, evidence weight,
 uncertainty radius, and score interval.
 The rendered dashboard includes a per-vector calibration readiness table so the
-evidence posture is inspectable beside the ranking.
+evidence posture, primary source slots, blockers, and model uncertainty
+intervals are inspectable beside the ranking.
+The dashboard also includes a synthetic profile comparison view that applies
+the same mechanism vectors to every built-in profile.
 
 The layer therefore can distinguish:
 

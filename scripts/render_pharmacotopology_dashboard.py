@@ -2,9 +2,22 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from html import escape
 from pathlib import Path
 from typing import Any, Mapping, Sequence
+
+REPO_ROOT = Path(__file__).resolve().parents[1]
+SRC_ROOT = REPO_ROOT / "src"
+if str(SRC_ROOT) not in sys.path:
+    sys.path.insert(0, str(SRC_ROOT))
+
+from pharmacotopology.layer import (  # noqa: E402
+    DEFAULT_MECHANISM_VECTORS,
+    DEFAULT_NORMAL_BOUNDED_PROFILE,
+    DEFAULT_TOPOLOGY_PROFILES,
+    build_pharmacotopology_review,
+)
 
 
 DEFAULT_INPUT_PATH = Path("first_contact_clean_pharmacotopology_layer_run/memory.jsonl")
@@ -302,6 +315,16 @@ def _calibration_vector_table(review: Mapping[str, Any]) -> str:
         net_interval = result.get("net_topology_health_interval", {})
         pathology_interval = result.get("pathology_reduction_interval", {})
         collapse_interval = result.get("collapse_cost_interval", {})
+        primary_sources = result.get("primary_evidence_sources", ())
+        evidence_refs = result.get("evidence_refs", ())
+        calibration_blockers = result.get("calibration_blockers", ())
+        source_label = "; ".join(primary_sources) if primary_sources else "none_attached"
+        refs_label = "; ".join(evidence_refs) if evidence_refs else "none_attached"
+        blockers_label = (
+            "; ".join(calibration_blockers)
+            if calibration_blockers
+            else "none_attached"
+        )
         rows.append(
             "<tr>"
             f"<th>{escape(mechanism_id)}</th>"
@@ -309,6 +332,10 @@ def _calibration_vector_table(review: Mapping[str, Any]) -> str:
             f"<td>{escape(_fmt(item.get('evidence_weight', 0.0)))}</td>"
             f"<td>{escape(_fmt(item.get('uncertainty_radius', 0.0)))}</td>"
             f"<td>{escape(str(item.get('evidence_readiness_label', 'unknown')))}</td>"
+            f"<td>{escape(source_label)}</td>"
+            f"<td>{escape(refs_label)}</td>"
+            f"<td>{escape(blockers_label)}</td>"
+            f"<td>{escape(str(result.get('confidence_interval_kind', 'unknown')))}</td>"
             f"<td>{escape(_fmt(pathology_interval.get('lower', 0.0)))} to "
             f"{escape(_fmt(pathology_interval.get('upper', 0.0)))}</td>"
             f"<td>{escape(_fmt(collapse_interval.get('lower', 0.0)))} to "
@@ -332,9 +359,61 @@ def _calibration_vector_table(review: Mapping[str, Any]) -> str:
               <th>evidence_weight</th>
               <th>uncertainty_radius</th>
               <th>readiness</th>
+              <th>primary evidence sources</th>
+              <th>evidence refs</th>
+              <th>calibration blockers</th>
+              <th>interval kind</th>
               <th>pathology interval</th>
               <th>collapse interval</th>
               <th>net interval</th>
+            </tr>
+          </thead>
+          <tbody>{''.join(rows)}</tbody>
+        </table>
+      </div>
+    </section>
+    """
+
+
+def _profile_comparison() -> str:
+    rows = []
+    for profile_key, profile in DEFAULT_TOPOLOGY_PROFILES.items():
+        comparison_review = build_pharmacotopology_review(
+            source=profile,
+            target=DEFAULT_NORMAL_BOUNDED_PROFILE,
+            mechanisms=DEFAULT_MECHANISM_VECTORS,
+        )
+        top = comparison_review["Φ.ranking"][0]
+        net_interval = top.get("net_topology_health_interval", {})
+        rows.append(
+            "<tr>"
+            f"<th>{escape(profile_key)}</th>"
+            f"<td>{escape(str(profile.profile_id))}</td>"
+            f"<td>{escape(str(top['mechanism_id']))}</td>"
+            f"<td>{escape(str(top['fit_label']))}</td>"
+            f"<td>{escape(_fmt(top['net_topology_health_score']))}</td>"
+            f"<td>{escape(_fmt(net_interval.get('lower', 0.0)))} to "
+            f"{escape(_fmt(net_interval.get('upper', 0.0)))}</td>"
+            f"<td>{int(comparison_review['Φ.review']['destabilizing_mechanism_count'])}</td>"
+            "</tr>"
+        )
+    return f"""
+    <section>
+      <div class="section-heading">
+        <h2>Synthetic Profile Comparison</h2>
+        <p>Same mechanism set, different synthetic pressure maps. This is a ranking robustness view, not a clinical comparison.</p>
+      </div>
+      <div class="table-scroll">
+        <table class="profile-comparison">
+          <thead>
+            <tr>
+              <th>profile key</th>
+              <th>profile_id</th>
+              <th>top mechanism</th>
+              <th>top fit label</th>
+              <th>top net score</th>
+              <th>top net interval</th>
+              <th>destabilizing count</th>
             </tr>
           </thead>
           <tbody>{''.join(rows)}</tbody>
@@ -626,6 +705,7 @@ def render_dashboard_html(packet: Mapping[str, Any]) -> str:
     {_ranking_chart(review)}
     {_calibration_readiness(review)}
     {_calibration_vector_table(review)}
+    {_profile_comparison()}
     {_heatmap(review)}
     {_before_after(review)}
     {_safety_footer()}

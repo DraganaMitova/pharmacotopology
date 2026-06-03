@@ -101,6 +101,17 @@ def _ranking_rows(review: Mapping[str, Any]) -> list[dict[str, Any]]:
                 "evidence_weight": item["evidence_weight"],
                 "uncertainty_radius": item["uncertainty_radius"],
                 "evidence_readiness_label": item["evidence_readiness_label"],
+                "primary_evidence_sources": _join(
+                    result.get("primary_evidence_sources", ())
+                ),
+                "evidence_refs": _join(result.get("evidence_refs", ())),
+                "calibration_blockers": _join(
+                    result.get("calibration_blockers", ())
+                ),
+                "confidence_interval_kind": result.get(
+                    "confidence_interval_kind",
+                    "model_uncertainty_interval",
+                ),
                 "improved_dimensions": _join(result["improved_dimensions"]),
                 "worsened_dimensions": _join(result["worsened_dimensions"]),
             }

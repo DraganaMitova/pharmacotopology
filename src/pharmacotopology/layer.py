@@ -84,7 +84,13 @@ class MechanismVector:
     evidence_stage: str = "hypothesis_only"
     evidence_weight: float = 0.0
     uncertainty_radius: float = 0.35
+    primary_evidence_sources: tuple[str, ...] = ()
     evidence_refs: tuple[str, ...] = ()
+    calibration_blockers: tuple[str, ...] = (
+        "no_primary_evidence_source_attached",
+        "no_empirical_delta_interval",
+    )
+    confidence_interval_kind: str = "model_uncertainty_interval"
     assumption_notes: tuple[str, ...] = ()
 
 
@@ -96,7 +102,10 @@ class PerturbationResult:
     evidence_stage: str
     evidence_weight: float
     uncertainty_radius: float
+    primary_evidence_sources: tuple[str, ...]
     evidence_refs: tuple[str, ...]
+    calibration_blockers: tuple[str, ...]
+    confidence_interval_kind: str
     assumption_notes: tuple[str, ...]
     resulting_state: dict[str, float]
     topology_delta: dict[str, float]
@@ -644,7 +653,10 @@ def apply_mechanism_vector(
         evidence_stage=vector.evidence_stage,
         evidence_weight=evidence_weight,
         uncertainty_radius=uncertainty_radius,
+        primary_evidence_sources=vector.primary_evidence_sources,
         evidence_refs=vector.evidence_refs,
+        calibration_blockers=vector.calibration_blockers,
+        confidence_interval_kind=vector.confidence_interval_kind,
         assumption_notes=vector.assumption_notes,
         resulting_state=resulting_state,
         topology_delta=topology_delta,

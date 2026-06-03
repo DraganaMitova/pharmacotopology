@@ -104,6 +104,7 @@ scripts/run_sensitivity_analysis.py
 scripts/validate_field_trace.py
 scripts/measure_field_trace.py
 tests/                               pytest coverage for ranking and safety
+docs/ADDING_PROFILES.md              small guide for adding synthetic profiles
 PHARMACOTOPOLOGY_LAYER.md             longer design note
 LICENSE                              MIT license
 ```
@@ -159,6 +160,8 @@ mixed_state_like
 They are for hypothesis comparison only. They are not diagnoses, patient
 models, or medication targets.
 
+To add another bounded synthetic profile, see [docs/ADDING_PROFILES.md](docs/ADDING_PROFILES.md).
+
 ## Export CSV
 
 Export machine-readable rankings and per-dimension deltas:
@@ -188,6 +191,10 @@ evidence_stage
 evidence_weight
 uncertainty_radius
 evidence_readiness_label
+primary evidence sources
+evidence refs
+calibration blockers
+interval kind
 pathology_reduction interval
 collapse_cost interval
 net_topology_health interval
@@ -196,6 +203,11 @@ net_topology_health interval
 The current default vectors remain `uncalibrated_hypothesis`, which is the
 honest starting point. The table is meant to show exactly where evidence would
 attach later.
+
+The dashboard also includes a synthetic profile comparison table that runs the
+same mechanism set against every built-in profile and reports top mechanism,
+fit label, net interval, and destabilizing count. It is a ranking robustness
+view, not a clinical comparison.
 
 ## Sensitivity Analysis
 

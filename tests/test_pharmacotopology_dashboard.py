@@ -41,8 +41,12 @@ def test_pharmacotopology_dashboard_contains_required_labels(tmp_path: Path) -> 
     assert "net_topology_health_score" in html
     assert "Calibration Readiness" in html
     assert "Per-Vector Calibration Table" in html
+    assert "Synthetic Profile Comparison" in html
     assert "uncalibrated_hypothesis_workbench" in html
     assert "uncertainty_radius" in html
+    assert "primary evidence sources" in html
+    assert "model_uncertainty_interval" in html
+    assert "mixed_state_like" in html
 
 
 def test_pharmacotopology_dashboard_avoids_prescribing_language(
