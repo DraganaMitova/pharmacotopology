@@ -189,7 +189,18 @@ largest remaining non-correct cohort is not a reopened gate-order bug; it is
 rows where the structure-derived class and external label disagree enough to
 require manual review.
 
+The next layer is `orthogonal_fold_axis_truth_adjudication`. It splits the
+single fold class into secondary-structure, architecture, order, and
+environment axes. That makes lossy benchmark rows visible: architecture is not
+secondary structure, membrane regime is not fold class, disorder is not simply
+absence of alpha/beta, and fragment evidence is not global fold truth. On the
+locked 50-row set it detects `structure_label_disagreement_count = 17`,
+`orthogonal_axis_disagreement_count = 10`,
+`true_same_axis_conflict_count = 10`, and
+`high_confidence_wrong_count_after_axis_scoring = 0`.
+
 See [docs/PROTEIN_FOLDING_TEST_BOUNDARY.md](docs/PROTEIN_FOLDING_TEST_BOUNDARY.md).
+See [docs/FOLD_AXIS_TRUTH_BOUNDARY.md](docs/FOLD_AXIS_TRUTH_BOUNDARY.md).
 
 External benchmark rows can be loaded separately:
 
@@ -293,12 +304,14 @@ scripts/run_order_aware_folding_topology_benchmark.py
 scripts/run_motif_alignment_benchmark.py
 scripts/run_hierarchical_gate_benchmark.py
 scripts/run_regime_analysis_benchmark.py
+scripts/run_fold_axis_adjudication_benchmark.py
 scripts/validate_field_trace.py
 scripts/measure_field_trace.py
 tests/                               pytest coverage for ranking and safety
 docs/ADDING_PROFILES.md              small guide for adding synthetic profiles
 docs/PROTEIN_CENTERED_REFRAME.md     protein-centered mechanism note
 docs/PROTEIN_FOLDING_TEST_BOUNDARY.md folding benchmark boundary note
+docs/FOLD_AXIS_TRUTH_BOUNDARY.md     orthogonal fold-axis truth boundary
 PHARMACOTOPOLOGY_LAYER.md             longer design note
 LICENSE                              MIT license
 ```
@@ -517,6 +530,36 @@ structure_label_disagreement_count = 17
 possible_bad_rows_count = 8
 dominant_failure_cohort = abstained_on_structure_label_disagreement
 hierarchical_high_confidence_wrong_prevented_by_regime_routing = 6
+claim_allowed = false
+folding_problem_solved = false
+```
+
+Run the orthogonal fold-axis truth adjudication layer:
+
+```bash
+python3 scripts/run_fold_axis_adjudication_benchmark.py
+```
+
+It writes:
+
+```text
+real_folding_50_axis_adjudication_report.json
+real_folding_50_axis_rows.csv
+real_folding_50_axis_conflicts.csv
+real_folding_50_axis_manual_review.csv
+real_folding_50_axis_confusion_matrices.csv
+real_folding_50_axis_dashboard.html
+```
+
+The checked-in axis adjudication report currently says:
+
+```text
+single_class_taxonomy_collapse_detected = true
+structure_label_disagreement_count = 17
+orthogonal_axis_disagreement_count = 10
+true_same_axis_conflict_count = 10
+axis_unscorable_count = 144
+high_confidence_wrong_count_after_axis_scoring = 0
 claim_allowed = false
 folding_problem_solved = false
 ```

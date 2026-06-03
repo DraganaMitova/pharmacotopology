@@ -640,6 +640,48 @@ cohort says the largest remaining non-correct family is structure/label
 disagreement requiring manual review, while the old targeted failure modes
 remain closed.
 
+## Orthogonal Fold-Axis Truth Adjudication
+
+The next layer is:
+
+```text
+orthogonal_fold_axis_truth_adjudication
+```
+
+It splits the collapsed single fold class into four axes:
+
+```text
+secondary_structure_axis
+architecture_axis
+order_axis
+environment_axis
+```
+
+This layer does not retune the regime router and does not make a new
+prediction. It adjudicates the existing sequence-only outputs against
+structure/label truth axes after prediction. See
+`docs/FOLD_AXIS_TRUTH_BOUNDARY.md` for the full boundary.
+
+Run it with:
+
+```bash
+python3 scripts/run_fold_axis_adjudication_benchmark.py
+```
+
+The current checked-in axis report says:
+
+```text
+single_class_taxonomy_collapse_detected = true
+structure_label_disagreement_count = 17
+orthogonal_axis_disagreement_count = 10
+true_same_axis_conflict_count = 10
+structure_label_same_axis_conflict_count = 7
+axis_unscorable_count = 144
+high_confidence_wrong_count_after_axis_scoring = 0
+claim_allowed = false
+folding_problem_solved = false
+```
+
 The 500-file is a target shell, not a completed benchmark. It records the
 intended proof ladder and current lock blockers until real rows exist.
 
@@ -770,6 +812,12 @@ real_folding_50_failure_cohorts.csv
 real_folding_50_high_confidence_wrong.csv
 real_folding_50_abstention_analysis.csv
 real_folding_50_regime_dashboard.html
+real_folding_50_axis_adjudication_report.json
+real_folding_50_axis_rows.csv
+real_folding_50_axis_conflicts.csv
+real_folding_50_axis_manual_review.csv
+real_folding_50_axis_confusion_matrices.csv
+real_folding_50_axis_dashboard.html
 ```
 
 When a benchmark file is loaded, the JSON report also includes:
