@@ -306,6 +306,7 @@ scripts/run_hierarchical_gate_benchmark.py
 scripts/run_regime_analysis_benchmark.py
 scripts/run_fold_axis_adjudication_benchmark.py
 scripts/run_fold_axis_profile_benchmark.py
+scripts/run_architecture_axis_benchmark.py
 scripts/validate_field_trace.py
 scripts/measure_field_trace.py
 tests/                               pytest coverage for ranking and safety
@@ -314,6 +315,7 @@ docs/PROTEIN_CENTERED_REFRAME.md     protein-centered mechanism note
 docs/PROTEIN_FOLDING_TEST_BOUNDARY.md folding benchmark boundary note
 docs/FOLD_AXIS_TRUTH_BOUNDARY.md     orthogonal fold-axis truth boundary
 docs/FOLD_AXIS_PROFILE_BOUNDARY.md   axis-safe partial profile boundary
+docs/FOLD_ARCHITECTURE_AXIS_BOUNDARY.md architecture-axis evidence boundary
 PHARMACOTOPOLOGY_LAYER.md             longer design note
 LICENSE                              MIT license
 ```
@@ -607,6 +609,44 @@ axis_profile_same_axis_conflict_count = 0
 high_confidence_wrong_count_after_axis_scoring = 0
 global_fold_class_claim_allowed = false
 axis_profile_claim_allowed = true
+folding_problem_solved = false
+```
+
+Run the architecture-axis evidence adjudication layer:
+
+```bash
+python3 scripts/run_architecture_axis_benchmark.py
+```
+
+It writes:
+
+```text
+real_folding_50_architecture_axis_report.json
+real_folding_50_architecture_axis_rows.csv
+real_folding_50_architecture_axis_conflicts.csv
+real_folding_50_architecture_axis_abstentions.csv
+real_folding_50_architecture_axis_dashboard.html
+real_folding_50_architecture_axis_certificate.json
+```
+
+The checked-in architecture-axis report currently says:
+
+```text
+previous_profile_architecture_axis_coverage = 0.14
+architecture_axis_coverage = 0.32
+architecture_axis_claim_allowed_count = 16
+architecture_axis_abstained_count = 34
+architecture_axis_same_axis_conflict_count = 0
+architecture_axis_safe_claim_count = 16
+fragment_scope_detected_count = 7
+compact_single_domain_claim_count = 6
+multidomain_claim_count = 3
+repeat_like_claim_count = 0
+architecture_claim_without_secondary_leakage_count = 0
+architecture_claim_without_label_leakage_count = 0
+global_fold_class_claim_allowed = false
+axis_profile_claim_allowed = true
+claim_allowed = false
 folding_problem_solved = false
 ```
 

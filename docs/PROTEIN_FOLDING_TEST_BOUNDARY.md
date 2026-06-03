@@ -739,6 +739,51 @@ This is safe coverage recovery, not accuracy chasing. It lets the benchmark say
 that a row is ordered, membrane-like, fragment-scoped, or weakly secondary-axis
 supported without turning an abstention into a global fold class.
 
+## Architecture-Axis Evidence Adjudication
+
+The next architecture-specific layer is:
+
+```text
+architecture_axis_evidence_adjudication
+```
+
+It creates a sequence-only architecture evidence packet per row and then scores
+that packet against architecture truth only after prediction. It separates
+architecture from secondary structure, disorder, membrane topology, and
+length-only inference. See `docs/FOLD_ARCHITECTURE_AXIS_BOUNDARY.md` for the
+full boundary.
+
+Run it with:
+
+```bash
+python3 scripts/run_architecture_axis_benchmark.py
+```
+
+The current checked-in architecture-axis report says:
+
+```text
+previous_profile_architecture_axis_coverage = 0.14
+architecture_axis_coverage = 0.32
+architecture_axis_claim_allowed_count = 16
+architecture_axis_abstained_count = 34
+architecture_axis_same_axis_conflict_count = 0
+architecture_axis_safe_claim_count = 16
+fragment_scope_detected_count = 7
+compact_single_domain_claim_count = 6
+multidomain_claim_count = 3
+repeat_like_claim_count = 0
+architecture_claim_without_secondary_leakage_count = 0
+architecture_claim_without_label_leakage_count = 0
+global_fold_class_claim_allowed = false
+axis_profile_claim_allowed = true
+claim_allowed = false
+folding_problem_solved = false
+```
+
+This batch improves architecture coverage while preserving the same safety
+closure: no global fold class recovery, no secondary-structure leakage, no
+label leakage, and no architecture same-axis conflicts.
+
 The 500-file is a target shell, not a completed benchmark. It records the
 intended proof ladder and current lock blockers until real rows exist.
 
@@ -881,6 +926,12 @@ real_folding_50_axis_profile_abstentions.csv
 real_folding_50_axis_profile_recovery_candidates.csv
 real_folding_50_axis_profile_dashboard.html
 real_folding_50_axis_profile_certificate.json
+real_folding_50_architecture_axis_report.json
+real_folding_50_architecture_axis_rows.csv
+real_folding_50_architecture_axis_conflicts.csv
+real_folding_50_architecture_axis_abstentions.csv
+real_folding_50_architecture_axis_dashboard.html
+real_folding_50_architecture_axis_certificate.json
 ```
 
 When a benchmark file is loaded, the JSON report also includes:

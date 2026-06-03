@@ -165,6 +165,6 @@ GOOD:
                  -> global_class_claim_allowed = false
 ```
 
-The next evidence target is the architecture axis. Until that exists, compact
-single-domain, multidomain, repeat-like, and segmentation-sensitive claims
-remain intentionally sparse.
+The next evidence target became `docs/FOLD_ARCHITECTURE_AXIS_BOUNDARY.md`,
+which adds a separate sequence-only architecture evidence packet while keeping
+global fold-class claims refused.

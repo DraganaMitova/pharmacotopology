@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Architecture Axis Evidence Adjudication</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f6f7f2;
+      color: #1f2523;
+    }
+    header {
+      padding: 32px;
+      background: #22302d;
+      color: #f6f7f2;
+    }
+    main {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    h1, h2 {
+      margin: 0 0 12px;
+      letter-spacing: 0;
+    }
+    section {
+      margin: 24px 0;
+    }
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .metric {
+      background: #ffffff;
+      border: 1px solid #d5ddd5;
+      border-radius: 6px;
+      padding: 14px;
+    }
+    .metric span {
+      display: block;
+      color: #58635e;
+      font-size: 12px;
+      overflow-wrap: anywhere;
+    }
+    .metric strong {
+      display: block;
+      margin-top: 8px;
+      font-size: 24px;
+    }
+    .rule-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 12px;
+    }
+    .rule {
+      background: #fff;
+      border: 1px solid #d5ddd5;
+      border-radius: 6px;
+      padding: 14px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      border: 1px solid #d5ddd5;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    th, td {
+      padding: 9px 10px;
+      border-bottom: 1px solid #e8eee8;
+      text-align: left;
+      font-size: 13px;
+      vertical-align: top;
+      overflow-wrap: anywhere;
+    }
+    th {
+      background: #e8eee8;
+      color: #34423d;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Architecture Axis Evidence Adjudication</h1>
+    <p>Sequence-side architecture claims are scored after prediction, separate from secondary structure and global fold class.</p>
+    <div class="metrics"><div class="metric"><span>architecture_axis_coverage</span><strong>0.32</strong></div><div class="metric"><span>previous_profile_architecture_axis_coverage</span><strong>0.14</strong></div><div class="metric"><span>architecture_axis_claim_allowed_count</span><strong>16</strong></div><div class="metric"><span>architecture_axis_same_axis_conflict_count</span><strong>0</strong></div><div class="metric"><span>fragment_scope_detected_count</span><strong>7</strong></div><div class="metric"><span>compact_single_domain_claim_count</span><strong>6</strong></div><div class="metric"><span>multidomain_claim_count</span><strong>3</strong></div><div class="metric"><span>repeat_like_claim_count</span><strong>0</strong></div><div class="metric"><span>claim_allowed</span><strong>False</strong></div><div class="metric"><span>folding_problem_solved</span><strong>False</strong></div></div>
+  </header>
+  <main>
+    <section>
+      <h2>Boundary Rules</h2>
+      <div class="rule-grid">
+        <div class="rule"><strong>Architecture Is Not Secondary Structure</strong><br>Alpha, beta, and mixed labels are not used as architecture evidence.</div>
+        <div class="rule"><strong>Length Is Not Enough</strong><br>Long sequences need boundary evidence and must not be repeat, membrane, or disorder explanations.</div>
+        <div class="rule"><strong>Fragments Stay Scoped</strong><br>Short solved chains are treated as fragment scope, not global fold truth.</div>
+        <div class="rule"><strong>No Global Class Recovery</strong><br>The collapsed fold class remains refused.</div>
+      </div>
+    </section>
+    <section><h2>Claim Distribution</h2><table><thead><tr><th>key</th><th>value</th></tr></thead><tbody><tr><td>compact_single_domain</td><td>6</td></tr><tr><td>multidomain_or_segmented</td><td>3</td></tr><tr><td>repeat_like</td><td>0</td></tr><tr><td>fragment_scope</td><td>7</td></tr><tr><td>unknown</td><td>0</td></tr></tbody></table></section>
+    <section><h2>Architecture Axis Claims</h2><table><thead><tr><th>row_id</th><th>length_band</th><th>regime</th><th>axis</th><th>confidence</th><th>decision reason</th></tr></thead><tbody><tr><td>pdb_1MBN_A_myoglobin</td><td>medium_140_259</td><td>compact_single_domain</td><td>compact_single_domain</td><td>0.533659</td><td>small-to-medium compact evidence has low segmentation, repeat, membrane, and disorder pressure</td></tr><tr><td>pdb_1FLP_A_hemoglobin_i</td><td>medium_140_259</td><td>compact_single_domain</td><td>compact_single_domain</td><td>0.521173</td><td>small-to-medium compact evidence has low segmentation, repeat, membrane, and disorder pressure</td></tr><tr><td>pdb_1R69_A_lambda_repressor_ntd</td><td>short_fragment_under_70</td><td>small_peptide_or_fragment</td><td>fragment_scope</td><td>0.890863</td><td>short sequence scope is treated as fragment context</td></tr><tr><td>pdb_2MHR_A_myohemerythrin</td><td>small_70_139</td><td>compact_single_domain</td><td>compact_single_domain</td><td>0.609265</td><td>small-to-medium compact evidence has low segmentation, repeat, membrane, and disorder pressure</td></tr><tr><td>pdb_1ROP_A_rop_protein</td><td>short_fragment_under_70</td><td>small_peptide_or_fragment</td><td>fragment_scope</td><td>1.0</td><td>short sequence scope is treated as fragment context</td></tr><tr><td>pdb_1GAB_A_albumin_binding_domain</td><td>short_fragment_under_70</td><td>small_peptide_or_fragment</td><td>fragment_scope</td><td>1.0</td><td>short sequence scope is treated as fragment context</td></tr><tr><td>pdb_1CSP_A_cold_shock_protein</td><td>short_fragment_under_70</td><td>small_peptide_or_fragment</td><td>fragment_scope</td><td>1.0</td><td>short sequence scope is treated as fragment context</td></tr><tr><td>pdb_1SHG_A_src_sh3_domain</td><td>short_fragment_under_70</td><td>small_peptide_or_fragment</td><td>fragment_scope</td><td>1.0</td><td>short sequence scope is treated as fragment context</td></tr><tr><td>pdb_1TIT_A_titin_i27</td><td>small_70_139</td><td>compact_single_domain</td><td>compact_single_domain</td><td>0.525356</td><td>small-to-medium compact evidence has low segmentation, repeat, membrane, and disorder pressure</td></tr><tr><td>pdb_2PTL_A_protein_l_domain</td><td>small_70_139</td><td>compact_single_domain</td><td>compact_single_domain</td><td>0.508726</td><td>small-to-medium compact evidence has low segmentation, repeat, membrane, and disorder pressure</td></tr><tr><td>pdb_1IGD_A_immunoglobulin_domain</td><td>short_fragment_under_70</td><td>small_peptide_or_fragment</td><td>fragment_scope</td><td>1.0</td><td>short sequence scope is treated as fragment context</td></tr><tr><td>pdb_1PGA_A_protein_g_b1</td><td>short_fragment_under_70</td><td>small_peptide_or_fragment</td><td>fragment_scope</td><td>1.0</td><td>short sequence scope is treated as fragment context</td></tr><tr><td>pdb_2TRX_A_thioredoxin</td><td>small_70_139</td><td>compact_single_domain</td><td>compact_single_domain</td><td>0.561243</td><td>small-to-medium compact evidence has low segmentation, repeat, membrane, and disorder pressure</td></tr><tr><td>pdb_1IGT_B_igg2a_heavy_chain</td><td>very_large_420_plus</td><td>multidomain_modular</td><td>multidomain_or_segmented</td><td>0.589315</td><td>large modular evidence has boundary pressure and is not better explained as repeat, membrane, or disorder segmentation</td></tr><tr><td>pdb_1GTR_A_glutaminyl_trna_synthetase</td><td>very_large_420_plus</td><td>multidomain_modular</td><td>multidomain_or_segmented</td><td>0.644641</td><td>large modular evidence has boundary pressure and is not better explained as repeat, membrane, or disorder segmentation</td></tr><tr><td>pdb_1E4M_M_myrosinase</td><td>very_large_420_plus</td><td>multidomain_modular</td><td>multidomain_or_segmented</td><td>0.587122</td><td>large modular evidence has boundary pressure and is not better explained as repeat, membrane, or disorder segmentation</td></tr></tbody></table></section>
+  </main>
+</body>
+</html>

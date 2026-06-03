@@ -1,0 +1,24 @@
+{
+  "architecture_axis_claim_allowed_count": 16,
+  "architecture_axis_coverage": 0.32,
+  "architecture_axis_same_axis_conflict_count": 0,
+  "architecture_axis_signature_kind": "sequence_only_architecture_axis_evidence_packet",
+  "architecture_claim_without_label_leakage_count": 0,
+  "architecture_claim_without_secondary_leakage_count": 0,
+  "axis_profile_claim_allowed": true,
+  "benchmark_kind": "architecture_axis_evidence_adjudication",
+  "certificate_kind": "architecture_axis_evidence_safety_certificate",
+  "folding_problem_solved": false,
+  "global_fold_class_claim_allowed": false,
+  "output_artifacts": [
+    "real_folding_50_architecture_axis_report.json",
+    "real_folding_50_architecture_axis_rows.csv",
+    "real_folding_50_architecture_axis_conflicts.csv",
+    "real_folding_50_architecture_axis_abstentions.csv",
+    "real_folding_50_architecture_axis_dashboard.html",
+    "real_folding_50_architecture_axis_certificate.json"
+  ],
+  "raw_sequences_exported": false,
+  "source_benchmark_file": "data/folding_benchmarks_real_50.locked.json",
+  "structure_evidence_file": "data/folding_benchmarks_real_50_structure_evidence.json"
+}
