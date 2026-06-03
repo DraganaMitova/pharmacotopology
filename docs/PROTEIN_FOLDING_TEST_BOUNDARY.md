@@ -238,8 +238,69 @@ The most important metric is:
 sequence_order_sensitivity_score
 ```
 
-The current value is `0.0`, meaning the recipe does not yet respond to sequence
-order changes. That is the point of the test.
+The structure benchmark value is `0.0`, meaning the original recipe did not yet
+respond to sequence order changes. That is the point of the test.
+
+## Order-Aware Recipe Layer
+
+The next layer is:
+
+```text
+order_aware_folding_topology_benchmark
+```
+
+It still receives sequence only. It does not receive CATH labels, PDB classes,
+DisProt labels, structure-derived signatures, or reference fold classes during
+prediction.
+
+It extracts:
+
+```text
+hydrophobic cluster topology
+charge pattern topology
+proline/glycine breaker distribution
+cysteine spacing / bridge potential
+windowed local structure pressure
+segment boundary contrast
+long-range closure potential
+predicted contact-prior graph
+```
+
+Run it with:
+
+```bash
+python3 scripts/run_order_aware_folding_topology_benchmark.py
+```
+
+It writes:
+
+```text
+real_folding_10_order_aware_report.json
+real_folding_10_order_aware_rows.csv
+real_folding_10_contact_prior.csv
+real_folding_10_control_separation.csv
+real_folding_10_order_aware_dashboard.html
+```
+
+The current checked-in order-aware report says:
+
+```text
+sequence_order_sensitivity_score = 0.278079
+real_vs_shuffled_separation_mean = 0.278079
+contact_prior_signal_seen = true
+recipe_order_blind = false
+composition_only_warning = false
+prediction_vs_structure_accuracy = 0.2
+prediction_vs_label_accuracy = 0.1
+revision_required = true
+claim_allowed = false
+folding_problem_solved = false
+```
+
+This means the recipe now reacts to sequence order and contact-prior topology,
+but it still has not earned a folding claim. Scaling beyond the 10-row slice
+should wait until the order-aware signal remains stable and the
+prediction-vs-structure behavior improves without threshold tuning.
 
 The 500-file is a target shell, not a completed benchmark. It records the
 intended proof ladder and current lock blockers until real rows exist.
@@ -343,6 +404,11 @@ real_folding_10_structure_rows.csv
 real_folding_10_structure_dashboard.html
 real_folding_10_order_controls.csv
 real_folding_10_falsification_report.json
+real_folding_10_order_aware_report.json
+real_folding_10_order_aware_rows.csv
+real_folding_10_contact_prior.csv
+real_folding_10_control_separation.csv
+real_folding_10_order_aware_dashboard.html
 ```
 
 When a benchmark file is loaded, the JSON report also includes:

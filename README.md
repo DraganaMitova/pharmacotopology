@@ -114,8 +114,20 @@ structure_vs_label_agreement
 It also runs internal sequence-order controls without writing generated control
 sequences: composition shuffle, reversal, local-window shuffle,
 hydrophobic-cluster destruction, and charge-pattern scrambling. The current
-`sequence_order_sensitivity_score` is `0.0`, which is the honest warning: the
-current recipe is still reading composition more than sequence order.
+structure-derived control pass has `sequence_order_sensitivity_score = 0.0`,
+which is the honest warning: the original recipe was still reading composition
+more than sequence order.
+
+The next checked-in layer is `order_aware_folding_topology_benchmark`. It adds
+sequence-position features: hydrophobic cluster topology, charge pattern
+topology, proline/glycine breaker distribution, cysteine spacing, windowed
+local structure pressure, segment boundary contrast, long-range closure
+potential, and a predicted contact-prior graph. On the same 10 locked rows it
+now reports `sequence_order_sensitivity_score = 0.278079`,
+`real_vs_shuffled_separation_mean = 0.278079`,
+`contact_prior_signal_seen = true`, `recipe_order_blind = false`, and
+`composition_only_warning = false`. The prediction accuracy is still weak, so
+`revision_required = true` and `folding_problem_solved = false`.
 
 See [docs/PROTEIN_FOLDING_TEST_BOUNDARY.md](docs/PROTEIN_FOLDING_TEST_BOUNDARY.md).
 
@@ -215,6 +227,7 @@ scripts/run_folding_topology_benchmark.py
 scripts/render_folding_benchmark_dashboard.py
 scripts/extract_structure_topology_signatures.py
 scripts/run_structure_folding_topology_benchmark.py
+scripts/run_order_aware_folding_topology_benchmark.py
 scripts/validate_field_trace.py
 scripts/measure_field_trace.py
 tests/                               pytest coverage for ranking and safety
@@ -304,6 +317,27 @@ prediction_vs_label_accuracy = 0.4
 structure_vs_label_agreement_rate = 0.9
 sequence_order_sensitivity_score = 0.0
 revision_required = true
+folding_problem_solved = false
+```
+
+Run the order-aware recipe and its contact-prior/control-separation package:
+
+```bash
+python3 scripts/run_order_aware_folding_topology_benchmark.py
+```
+
+The checked-in order-aware report currently says:
+
+```text
+sequence_order_sensitivity_score = 0.278079
+real_vs_shuffled_separation_mean = 0.278079
+contact_prior_signal_seen = true
+recipe_order_blind = false
+composition_only_warning = false
+prediction_vs_structure_accuracy = 0.2
+prediction_vs_label_accuracy = 0.1
+revision_required = true
+claim_allowed = false
 folding_problem_solved = false
 ```
 
@@ -561,6 +595,11 @@ real_folding_10_structure_rows.csv
 real_folding_10_structure_dashboard.html
 real_folding_10_order_controls.csv
 real_folding_10_falsification_report.json
+real_folding_10_order_aware_report.json
+real_folding_10_order_aware_rows.csv
+real_folding_10_contact_prior.csv
+real_folding_10_control_separation.csv
+real_folding_10_order_aware_dashboard.html
 field_validation.json
 field_metrics.json
 ```

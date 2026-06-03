@@ -76,6 +76,11 @@ PHARMACOTOPOLOGY_GENERATED_FILES: tuple[str, ...] = (
     "real_folding_10_structure_dashboard.html",
     "real_folding_10_order_controls.csv",
     "real_folding_10_falsification_report.json",
+    "real_folding_10_order_aware_report.json",
+    "real_folding_10_order_aware_rows.csv",
+    "real_folding_10_contact_prior.csv",
+    "real_folding_10_control_separation.csv",
+    "real_folding_10_order_aware_dashboard.html",
     "field_validation.json",
     "field_metrics.json",
 )
