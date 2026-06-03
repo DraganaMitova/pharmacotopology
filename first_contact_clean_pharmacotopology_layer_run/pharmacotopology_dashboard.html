@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>KNOT Φ.review Pharmacotopology Dashboard</title>
+  <style>
+    :root {
+      --ink: #202124;
+      --muted: #5f6368;
+      --line: #d9dce1;
+      --panel: #ffffff;
+      --page: #f7f8fa;
+      --reduce: #287878;
+      --reduce-bg: #dcefed;
+      --worsen: #a85648;
+      --worsen-bg: #f5e4df;
+      --neutral: #70757a;
+      --neutral-bg: #eceff3;
+      --pathology: #5a6d9f;
+      --collapse: #9d6b45;
+      --net: #3f7d5c;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--page);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.45;
+    }
+    main { width: min(1180px, calc(100vw - 32px)); margin: 0 auto 48px; }
+    .hero {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 24px;
+      padding: 32px 0 24px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 28px;
+    }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { font-size: 30px; line-height: 1.15; margin-bottom: 8px; }
+    h2 { font-size: 20px; margin-bottom: 4px; }
+    h3 { font-size: 15px; margin-bottom: 4px; }
+    section { margin: 28px 0; }
+    .kicker, .layer-line, .section-heading p, .fit-label, .score-row em {
+      color: var(--muted);
+    }
+    .kicker {
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 0;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+    .safety-badge {
+      flex: 0 0 auto;
+      border: 1px solid var(--worsen);
+      background: #fff8f5;
+      color: #6f2f24;
+      padding: 10px 12px;
+      font-weight: 800;
+      font-size: 13px;
+    }
+    .topology-grid, .ranking-list, .comparison-list {
+      display: grid;
+      gap: 10px;
+    }
+    .topology-row, .ranking-card, .comparison-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+    }
+    .topology-row {
+      display: grid;
+      grid-template-columns: minmax(210px, 1fr) 260px;
+      align-items: center;
+      gap: 16px;
+      padding: 10px 12px;
+    }
+    .ranking-card { padding: 12px; }
+    .score-row {
+      display: grid;
+      grid-template-columns: minmax(260px, 1fr) 260px;
+      gap: 16px;
+      align-items: center;
+      padding: 5px 0;
+    }
+    .score-row span { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; }
+    .score-row em { display: block; font-family: inherit; font-style: normal; font-size: 12px; }
+    .bar-track { fill: #e4e7eb; }
+    .bar-fill { fill: #52616f; }
+    .zero-line { stroke: #6f747b; stroke-width: 1; }
+    .score-pathology { fill: var(--pathology); }
+    .score-collapse { fill: var(--collapse); }
+    .score-net { fill: var(--net); }
+    svg text { fill: var(--ink); font-size: 12px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .table-scroll { overflow-x: auto; border: 1px solid var(--line); background: var(--panel); }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th, td {
+      border-bottom: 1px solid var(--line);
+      border-right: 1px solid var(--line);
+      padding: 8px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: #f1f3f5; font-weight: 700; }
+    td.reduce, td.worsen, td.neutral { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .reduce { background: var(--reduce-bg); color: #175b5b; }
+    .worsen { background: var(--worsen-bg); color: #78392f; }
+    .neutral { background: var(--neutral-bg); color: #4d5156; }
+    .heatmap th:first-child { position: sticky; left: 0; z-index: 1; }
+    .comparison-card { padding: 0; overflow: hidden; }
+    .comparison-card summary {
+      cursor: pointer;
+      padding: 12px;
+      font-weight: 700;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+    .comparison-card table { border-top: 1px solid var(--line); }
+    .safety-footer {
+      margin: 36px 0 0;
+      padding: 18px;
+      border: 1px solid var(--line);
+      background: #fff;
+      font-weight: 700;
+    }
+    .safety-footer p { margin: 4px 0; }
+    @media (max-width: 760px) {
+      main { width: min(100vw - 20px, 1180px); }
+      .hero { display: block; }
+      .safety-badge { display: inline-block; margin-top: 14px; }
+      .topology-row, .score-row { grid-template-columns: 1fr; }
+    }
+    </style>
+</head>
+<body>
+  <main>
+    
+    <header class="hero">
+      <div>
+        <p class="kicker">KNOT topology simulation</p>
+        <h1>KNOT Φ.review Pharmacotopology Dashboard</h1>
+        <p class="layer-line">Layer: χ.clean.pharmacotopology_layer · Schema: κ.clean.pharmacotopology_layer.1</p>
+      </div>
+      <div class="safety-badge">SIMULATION ONLY &mdash; NOT MEDICAL ADVICE</div>
+    </header>
+    
+    
+    <section>
+      <div class="section-heading">
+        <h2>Topology State Map</h2>
+        <p>Baseline pressure profile. Collapse cost starts at zero until a perturbation is applied.</p>
+      </div>
+      <div class="topology-grid">
+        <div class="topology-row"><span>salience_amplification</span><svg class="topology-bar" viewBox="0 0 260 18" role="img" aria-label="topology value 0.910"><rect class="bar-track" x="0" y="4" width="220" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="200.2" height="10" rx="2" /><text x="232" y="13">0.910</text></svg></div><div class="topology-row"><span>recurrence_overbinding</span><svg class="topology-bar" viewBox="0 0 260 18" role="img" aria-label="topology value 0.860"><rect class="bar-track" x="0" y="4" width="220" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="189.2" height="10" rx="2" /><text x="232" y="13">0.860</text></svg></div><div class="topology-row"><span>symbolic_closure_pressure</span><svg class="topology-bar" viewBox="0 0 260 18" role="img" aria-label="topology value 0.800"><rect class="bar-track" x="0" y="4" width="220" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="176.0" height="10" rx="2" /><text x="232" y="13">0.800</text></svg></div><div class="topology-row"><span>threat_propagation</span><svg class="topology-bar" viewBox="0 0 260 18" role="img" aria-label="topology value 0.760"><rect class="bar-track" x="0" y="4" width="220" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="167.2" height="10" rx="2" /><text x="232" y="13">0.760</text></svg></div><div class="topology-row"><span>falsification_weakness</span><svg class="topology-bar" viewBox="0 0 260 18" role="img" aria-label="topology value 0.720"><rect class="bar-track" x="0" y="4" width="220" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="158.4" height="10" rx="2" /><text x="232" y="13">0.720</text></svg></div><div class="topology-row"><span>boundary_instability</span><svg class="topology-bar" viewBox="0 0 260 18" role="img" aria-label="topology value 0.680"><rect class="bar-track" x="0" y="4" width="220" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="149.6" height="10" rx="2" /><text x="232" y="13">0.680</text></svg></div><div class="topology-row"><span>agency_confusion</span><svg class="topology-bar" viewBox="0 0 260 18" role="img" aria-label="topology value 0.700"><rect class="bar-track" x="0" y="4" width="220" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="154.0" height="10" rx="2" /><text x="232" y="13">0.700</text></svg></div><div class="topology-row"><span>sensory_intrusion</span><svg class="topology-bar" viewBox="0 0 260 18" role="img" aria-label="topology value 0.740"><rect class="bar-track" x="0" y="4" width="220" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="162.8" height="10" rx="2" /><text x="232" y="13">0.740</text></svg></div><div class="topology-row"><span>cognitive_fragmentation</span><svg class="topology-bar" viewBox="0 0 260 18" role="img" aria-label="topology value 0.660"><rect class="bar-track" x="0" y="4" width="220" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="145.2" height="10" rx="2" /><text x="232" y="13">0.660</text></svg></div><div class="topology-row"><span>negative_shutdown</span><svg class="topology-bar" viewBox="0 0 260 18" role="img" aria-label="topology value 0.580"><rect class="bar-track" x="0" y="4" width="220" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="127.6" height="10" rx="2" /><text x="232" y="13">0.580</text></svg></div><div class="topology-row"><span>sleep_instability</span><svg class="topology-bar" viewBox="0 0 260 18" role="img" aria-label="topology value 0.640"><rect class="bar-track" x="0" y="4" width="220" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="140.8" height="10" rx="2" /><text x="232" y="13">0.640</text></svg></div><div class="topology-row"><span>collapse_cost</span><svg class="topology-bar" viewBox="0 0 260 18" role="img" aria-label="topology value 0.000"><rect class="bar-track" x="0" y="4" width="220" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="0.0" height="10" rx="2" /><text x="232" y="13">0.000</text></svg></div>
+      </div>
+    </section>
+    
+    
+    <section>
+      <div class="section-heading">
+        <h2>Mechanism Ranking Chart</h2>
+        <p>Ranking compares topology perturbation scores. Collapse cost stays visible beside every reduction score.</p>
+      </div>
+      <div class="ranking-list">
+        <article class="ranking-card"><h3>#1 nmda_support_like</h3><p class="fit-label">balanced_normalization_candidate</p><div class="score-row"><span>pathology_reduction_score <em>topology distance change, not cure</em></span><svg class="score-bar signed" viewBox="0 0 260 18" role="img" aria-label="score 0.379"><rect class="bar-track" x="10" y="4" width="200" height="10" rx="2" /><line class="zero-line" x1="110" y1="2" x2="110" y2="16" /><rect class="score-pathology" x="110.00" y="4" width="37.86" height="10" rx="2" /><text x="224" y="13">0.379</text></svg></div><div class="score-row"><span>collapse_cost_score</span><svg class="score-bar" viewBox="0 0 260 18" role="img" aria-label="score 0.050"><rect class="bar-track" x="10" y="4" width="200" height="10" rx="2" /><rect class="score-collapse" x="10" y="4" width="10.00" height="10" rx="2" /><text x="224" y="13">0.050</text></svg></div><div class="score-row"><span>net_topology_health_score</span><svg class="score-bar signed" viewBox="0 0 260 18" role="img" aria-label="score 0.351"><rect class="bar-track" x="10" y="4" width="200" height="10" rx="2" /><line class="zero-line" x1="110" y1="2" x2="110" y2="16" /><rect class="score-net" x="110.00" y="4" width="35.11" height="10" rx="2" /><text x="224" y="13">0.351</text></svg></div></article><article class="ranking-card"><h3>#2 5ht2a_antagonist_like</h3><p class="fit-label">balanced_normalization_candidate</p><div class="score-row"><span>pathology_reduction_score <em>topology distance change, not cure</em></span><svg class="score-bar signed" viewBox="0 0 260 18" role="img" aria-label="score 0.412"><rect class="bar-track" x="10" y="4" width="200" height="10" rx="2" /><line class="zero-line" x1="110" y1="2" x2="110" y2="16" /><rect class="score-pathology" x="110.00" y="4" width="41.18" height="10" rx="2" /><text x="224" y="13">0.412</text></svg></div><div class="score-row"><span>collapse_cost_score</span><svg class="score-bar" viewBox="0 0 260 18" role="img" aria-label="score 0.120"><rect class="bar-track" x="10" y="4" width="200" height="10" rx="2" /><rect class="score-collapse" x="10" y="4" width="24.00" height="10" rx="2" /><text x="224" y="13">0.120</text></svg></div><div class="score-row"><span>net_topology_health_score</span><svg class="score-bar signed" viewBox="0 0 260 18" role="img" aria-label="score 0.346"><rect class="bar-track" x="10" y="4" width="200" height="10" rx="2" /><line class="zero-line" x1="110" y1="2" x2="110" y2="16" /><rect class="score-net" x="110.00" y="4" width="34.58" height="10" rx="2" /><text x="224" y="13">0.346</text></svg></div></article><article class="ranking-card"><h3>#3 muscarinic_modulation_like</h3><p class="fit-label">weak_partial_correction</p><div class="score-row"><span>pathology_reduction_score <em>topology distance change, not cure</em></span><svg class="score-bar signed" viewBox="0 0 260 18" role="img" aria-label="score 0.279"><rect class="bar-track" x="10" y="4" width="200" height="10" rx="2" /><line class="zero-line" x1="110" y1="2" x2="110" y2="16" /><rect class="score-pathology" x="110.00" y="4" width="27.86" height="10" rx="2" /><text x="224" y="13">0.279</text></svg></div><div class="score-row"><span>collapse_cost_score</span><svg class="score-bar" viewBox="0 0 260 18" role="img" aria-label="score 0.100"><rect class="bar-track" x="10" y="4" width="200" height="10" rx="2" /><rect class="score-collapse" x="10" y="4" width="20.00" height="10" rx="2" /><text x="224" y="13">0.100</text></svg></div><div class="score-row"><span>net_topology_health_score</span><svg class="score-bar signed" viewBox="0 0 260 18" role="img" aria-label="score 0.224"><rect class="bar-track" x="10" y="4" width="200" height="10" rx="2" /><line class="zero-line" x1="110" y1="2" x2="110" y2="16" /><rect class="score-net" x="110.00" y="4" width="22.36" height="10" rx="2" /><text x="224" y="13">0.224</text></svg></div></article><article class="ranking-card"><h3>#4 adrenergic_dampening_like</h3><p class="fit-label">weak_partial_correction</p><div class="score-row"><span>pathology_reduction_score <em>topology distance change, not cure</em></span><svg class="score-bar signed" viewBox="0 0 260 18" role="img" aria-label="score 0.198"><rect class="bar-track" x="10" y="4" width="200" height="10" rx="2" /><line class="zero-line" x1="110" y1="2" x2="110" y2="16" /><rect class="score-pathology" x="110.00" y="4" width="19.79" height="10" rx="2" /><text x="224" y="13">0.198</text></svg></div><div class="score-row"><span>collapse_cost_score</span><svg class="score-bar" viewBox="0 0 260 18" role="img" aria-label="score 0.125"><rect class="bar-track" x="10" y="4" width="200" height="10" rx="2" /><rect class="score-collapse" x="10" y="4" width="25.00" height="10" rx="2" /><text x="224" y="13">0.125</text></svg></div><div class="score-row"><span>net_topology_health_score</span><svg class="score-bar signed" viewBox="0 0 260 18" role="img" aria-label="score 0.129"><rect class="bar-track" x="10" y="4" width="200" height="10" rx="2" /><line class="zero-line" x1="110" y1="2" x2="110" y2="16" /><rect class="score-net" x="110.00" y="4" width="12.91" height="10" rx="2" /><text x="224" y="13">0.129</text></svg></div></article><article class="ranking-card"><h3>#5 d2_partial_agonist_like</h3><p class="fit-label">weak_partial_correction</p><div class="score-row"><span>pathology_reduction_score <em>topology distance change, not cure</em></span><svg class="score-bar signed" viewBox="0 0 260 18" role="img" aria-label="score 0.186"><rect class="bar-track" x="10" y="4" width="200" height="10" rx="2" /><line class="zero-line" x1="110" y1="2" x2="110" y2="16" /><rect class="score-pathology" x="110.00" y="4" width="18.63" height="10" rx="2" /><text x="224" y="13">0.186</text></svg></div><div class="score-row"><span>collapse_cost_score</span><svg class="score-bar" viewBox="0 0 260 18" role="img" aria-label="score 0.140"><rect class="bar-track" x="10" y="4" width="200" height="10" rx="2" /><rect class="score-collapse" x="10" y="4" width="28.00" height="10" rx="2" /><text x="224" y="13">0.140</text></svg></div><div class="score-row"><span>net_topology_health_score</span><svg class="score-bar signed" viewBox="0 0 260 18" role="img" aria-label="score 0.109"><rect class="bar-track" x="10" y="4" width="200" height="10" rx="2" /><line class="zero-line" x1="110" y1="2" x2="110" y2="16" /><rect class="score-net" x="110.00" y="4" width="10.93" height="10" rx="2" /><text x="224" y="13">0.109</text></svg></div></article><article class="ranking-card"><h3>#6 d2_antagonist_like</h3><p class="fit-label">weak_partial_correction</p><div class="score-row"><span>pathology_reduction_score <em>topology distance change, not cure</em></span><svg class="score-bar signed" viewBox="0 0 260 18" role="img" aria-label="score 0.265"><rect class="bar-track" x="10" y="4" width="200" height="10" rx="2" /><line class="zero-line" x1="110" y1="2" x2="110" y2="16" /><rect class="score-pathology" x="110.00" y="4" width="26.48" height="10" rx="2" /><text x="224" y="13">0.265</text></svg></div><div class="score-row"><span>collapse_cost_score</span><svg class="score-bar" viewBox="0 0 260 18" role="img" aria-label="score 0.370"><rect class="bar-track" x="10" y="4" width="200" height="10" rx="2" /><rect class="score-collapse" x="10" y="4" width="74.00" height="10" rx="2" /><text x="224" y="13">0.370</text></svg></div><div class="score-row"><span>net_topology_health_score</span><svg class="score-bar signed" viewBox="0 0 260 18" role="img" aria-label="score 0.061"><rect class="bar-track" x="10" y="4" width="200" height="10" rx="2" /><line class="zero-line" x1="110" y1="2" x2="110" y2="16" /><rect class="score-net" x="110.00" y="4" width="6.13" height="10" rx="2" /><text x="224" y="13">0.061</text></svg></div></article><article class="ranking-card"><h3>#7 gaba_stabilizing_like</h3><p class="fit-label">weak_partial_correction</p><div class="score-row"><span>pathology_reduction_score <em>topology distance change, not cure</em></span><svg class="score-bar signed" viewBox="0 0 260 18" role="img" aria-label="score 0.155"><rect class="bar-track" x="10" y="4" width="200" height="10" rx="2" /><line class="zero-line" x1="110" y1="2" x2="110" y2="16" /><rect class="score-pathology" x="110.00" y="4" width="15.54" height="10" rx="2" /><text x="224" y="13">0.155</text></svg></div><div class="score-row"><span>collapse_cost_score</span><svg class="score-bar" viewBox="0 0 260 18" role="img" aria-label="score 0.204"><rect class="bar-track" x="10" y="4" width="200" height="10" rx="2" /><rect class="score-collapse" x="10" y="4" width="40.90" height="10" rx="2" /><text x="224" y="13">0.204</text></svg></div><div class="score-row"><span>net_topology_health_score</span><svg class="score-bar signed" viewBox="0 0 260 18" role="img" aria-label="score 0.043"><rect class="bar-track" x="10" y="4" width="200" height="10" rx="2" /><line class="zero-line" x1="110" y1="2" x2="110" y2="16" /><rect class="score-net" x="110.00" y="4" width="4.29" height="10" rx="2" /><text x="224" y="13">0.043</text></svg></div></article><article class="ranking-card"><h3>#8 histamine_sedation_load_like</h3><p class="fit-label">weak_or_unclear_correction</p><div class="score-row"><span>pathology_reduction_score <em>topology distance change, not cure</em></span><svg class="score-bar signed" viewBox="0 0 260 18" role="img" aria-label="score 0.026"><rect class="bar-track" x="10" y="4" width="200" height="10" rx="2" /><line class="zero-line" x1="110" y1="2" x2="110" y2="16" /><rect class="score-pathology" x="110.00" y="4" width="2.62" height="10" rx="2" /><text x="224" y="13">0.026</text></svg></div><div class="score-row"><span>collapse_cost_score</span><svg class="score-bar" viewBox="0 0 260 18" role="img" aria-label="score 0.542"><rect class="bar-track" x="10" y="4" width="200" height="10" rx="2" /><rect class="score-collapse" x="10" y="4" width="108.40" height="10" rx="2" /><text x="224" y="13">0.542</text></svg></div><div class="score-row"><span>net_topology_health_score</span><svg class="score-bar signed" viewBox="0 0 260 18" role="img" aria-label="score -0.272"><rect class="bar-track" x="10" y="4" width="200" height="10" rx="2" /><line class="zero-line" x1="110" y1="2" x2="110" y2="16" /><rect class="score-net" x="82.81" y="4" width="27.19" height="10" rx="2" /><text x="224" y="13">-0.272</text></svg></div></article><article class="ranking-card"><h3>#9 glutamate_amplification_stressor_like</h3><p class="fit-label">destabilizing</p><div class="score-row"><span>pathology_reduction_score <em>topology distance change, not cure</em></span><svg class="score-bar signed" viewBox="0 0 260 18" role="img" aria-label="score -0.331"><rect class="bar-track" x="10" y="4" width="200" height="10" rx="2" /><line class="zero-line" x1="110" y1="2" x2="110" y2="16" /><rect class="score-pathology" x="76.91" y="4" width="33.09" height="10" rx="2" /><text x="224" y="13">-0.331</text></svg></div><div class="score-row"><span>collapse_cost_score</span><svg class="score-bar" viewBox="0 0 260 18" role="img" aria-label="score 0.080"><rect class="bar-track" x="10" y="4" width="200" height="10" rx="2" /><rect class="score-collapse" x="10" y="4" width="16.00" height="10" rx="2" /><text x="224" y="13">0.080</text></svg></div><div class="score-row"><span>net_topology_health_score</span><svg class="score-bar signed" viewBox="0 0 260 18" role="img" aria-label="score -0.375"><rect class="bar-track" x="10" y="4" width="200" height="10" rx="2" /><line class="zero-line" x1="110" y1="2" x2="110" y2="16" /><rect class="score-net" x="72.51" y="4" width="37.49" height="10" rx="2" /><text x="224" y="13">-0.375</text></svg></div></article><article class="ranking-card"><h3>#10 anticholinergic_burden_like</h3><p class="fit-label">destabilizing</p><div class="score-row"><span>pathology_reduction_score <em>topology distance change, not cure</em></span><svg class="score-bar signed" viewBox="0 0 260 18" role="img" aria-label="score -0.337"><rect class="bar-track" x="10" y="4" width="200" height="10" rx="2" /><line class="zero-line" x1="110" y1="2" x2="110" y2="16" /><rect class="score-pathology" x="76.28" y="4" width="33.72" height="10" rx="2" /><text x="224" y="13">-0.337</text></svg></div><div class="score-row"><span>collapse_cost_score</span><svg class="score-bar" viewBox="0 0 260 18" role="img" aria-label="score 0.530"><rect class="bar-track" x="10" y="4" width="200" height="10" rx="2" /><rect class="score-collapse" x="10" y="4" width="106.00" height="10" rx="2" /><text x="224" y="13">0.530</text></svg></div><div class="score-row"><span>net_topology_health_score</span><svg class="score-bar signed" viewBox="0 0 260 18" role="img" aria-label="score -0.629"><rect class="bar-track" x="10" y="4" width="200" height="10" rx="2" /><line class="zero-line" x1="110" y1="2" x2="110" y2="16" /><rect class="score-net" x="47.13" y="4" width="62.87" height="10" rx="2" /><text x="224" y="13">-0.629</text></svg></div></article>
+      </div>
+    </section>
+    
+    
+    <section>
+      <div class="section-heading">
+        <h2>Mechanism Heatmap</h2>
+        <p>Cell labels show perturbation direction: reduce, worsen, or neutral.</p>
+      </div>
+      <div class="table-scroll">
+        <table class="heatmap">
+          <thead><tr><th>mechanism_id</th><th>salience_amplification</th><th>recurrence_overbinding</th><th>symbolic_closure_pressure</th><th>threat_propagation</th><th>falsification_weakness</th><th>boundary_instability</th><th>agency_confusion</th><th>sensory_intrusion</th><th>cognitive_fragmentation</th><th>negative_shutdown</th><th>sleep_instability</th><th>collapse_cost</th></tr></thead>
+          <tbody><tr><th>nmda_support_like</th><td class="neutral"><span>neutral 0.000</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="reduce"><span>reduce -0.180</span></td><td class="reduce"><span>reduce -0.150</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="reduce"><span>reduce -0.200</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="worsen"><span>worsen +0.050</span></td></tr><tr><th>5ht2a_antagonist_like</th><td class="neutral"><span>neutral 0.000</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="reduce"><span>reduce -0.200</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="reduce"><span>reduce -0.250</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="reduce"><span>reduce -0.180</span></td><td class="worsen"><span>worsen +0.120</span></td></tr><tr><th>muscarinic_modulation_like</th><td class="reduce"><span>reduce -0.180</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="reduce"><span>reduce -0.160</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="reduce"><span>reduce -0.140</span></td><td class="reduce"><span>reduce -0.080</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="worsen"><span>worsen +0.100</span></td></tr><tr><th>adrenergic_dampening_like</th><td class="reduce"><span>reduce -0.080</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="reduce"><span>reduce -0.220</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="worsen"><span>worsen +0.050</span></td><td class="reduce"><span>reduce -0.120</span></td><td class="worsen"><span>worsen +0.100</span></td></tr><tr><th>d2_partial_agonist_like</th><td class="reduce"><span>reduce -0.200</span></td><td class="reduce"><span>reduce -0.140</span></td><td class="reduce"><span>reduce -0.080</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="worsen"><span>worsen +0.040</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="worsen"><span>worsen +0.120</span></td></tr><tr><th>d2_antagonist_like</th><td class="reduce"><span>reduce -0.350</span></td><td class="reduce"><span>reduce -0.220</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="reduce"><span>reduce -0.180</span></td><td class="reduce"><span>reduce -0.100</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="worsen"><span>worsen +0.180</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="worsen"><span>worsen +0.280</span></td></tr><tr><th>gaba_stabilizing_like</th><td class="neutral"><span>neutral 0.000</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="reduce"><span>reduce -0.200</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="reduce"><span>reduce -0.100</span></td><td class="worsen"><span>worsen +0.070</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="worsen"><span>worsen +0.180</span></td></tr><tr><th>histamine_sedation_load_like</th><td class="reduce"><span>reduce -0.050</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="reduce"><span>reduce -0.080</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="worsen"><span>worsen +0.120</span></td><td class="worsen"><span>worsen +0.200</span></td><td class="reduce"><span>reduce -0.250</span></td><td class="worsen"><span>worsen +0.400</span></td></tr><tr><th>glutamate_amplification_stressor_like</th><td class="worsen"><span>worsen +0.210</span></td><td class="worsen"><span>worsen +0.190</span></td><td class="worsen"><span>worsen +0.180</span></td><td class="worsen"><span>worsen +0.200</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="worsen"><span>worsen +0.140</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="worsen"><span>worsen +0.080</span></td></tr><tr><th>anticholinergic_burden_like</th><td class="neutral"><span>neutral 0.000</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="worsen"><span>worsen +0.080</span></td><td class="worsen"><span>worsen +0.080</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="worsen"><span>worsen +0.240</span></td><td class="worsen"><span>worsen +0.180</span></td><td class="neutral"><span>neutral 0.000</span></td><td class="worsen"><span>worsen +0.340</span></td></tr></tbody>
+        </table>
+      </div>
+    </section>
+    
+    
+    <section>
+      <div class="section-heading">
+        <h2>Before/After Comparison</h2>
+        <p>Did this perturbation restore bounded review, or did it just suppress/collapse the system?</p>
+      </div>
+      <div class="comparison-list">
+        
+            <details class="comparison-card">
+              <summary>nmda_support_like</summary>
+              <table>
+                <thead>
+                  <tr>
+                    <th>dimension</th>
+                    <th>baseline topology value</th>
+                    <th>resulting topology value</th>
+                    <th>delta</th>
+                  </tr>
+                </thead>
+                <tbody><tr><th>salience_amplification</th><td>0.910</td><td>0.910</td><td class="neutral">neutral 0.000</td></tr><tr><th>recurrence_overbinding</th><td>0.860</td><td>0.860</td><td class="neutral">neutral 0.000</td></tr><tr><th>symbolic_closure_pressure</th><td>0.800</td><td>0.800</td><td class="neutral">neutral 0.000</td></tr><tr><th>threat_propagation</th><td>0.760</td><td>0.760</td><td class="neutral">neutral 0.000</td></tr><tr><th>falsification_weakness</th><td>0.720</td><td>0.540</td><td class="reduce">reduce -0.180</td></tr><tr><th>boundary_instability</th><td>0.680</td><td>0.530</td><td class="reduce">reduce -0.150</td></tr><tr><th>agency_confusion</th><td>0.700</td><td>0.700</td><td class="neutral">neutral 0.000</td></tr><tr><th>sensory_intrusion</th><td>0.740</td><td>0.740</td><td class="neutral">neutral 0.000</td></tr><tr><th>cognitive_fragmentation</th><td>0.660</td><td>0.460</td><td class="reduce">reduce -0.200</td></tr><tr><th>negative_shutdown</th><td>0.580</td><td>0.580</td><td class="neutral">neutral 0.000</td></tr><tr><th>sleep_instability</th><td>0.640</td><td>0.640</td><td class="neutral">neutral 0.000</td></tr><tr><th>collapse_cost</th><td>0.000</td><td>0.050</td><td class="worsen">worsen +0.050</td></tr></tbody>
+              </table>
+            </details>
+            
+            <details class="comparison-card">
+              <summary>5ht2a_antagonist_like</summary>
+              <table>
+                <thead>
+                  <tr>
+                    <th>dimension</th>
+                    <th>baseline topology value</th>
+                    <th>resulting topology value</th>
+                    <th>delta</th>
+                  </tr>
+                </thead>
+                <tbody><tr><th>salience_amplification</th><td>0.910</td><td>0.910</td><td class="neutral">neutral 0.000</td></tr><tr><th>recurrence_overbinding</th><td>0.860</td><td>0.860</td><td class="neutral">neutral 0.000</td></tr><tr><th>symbolic_closure_pressure</th><td>0.800</td><td>0.600</td><td class="reduce">reduce -0.200</td></tr><tr><th>threat_propagation</th><td>0.760</td><td>0.760</td><td class="neutral">neutral 0.000</td></tr><tr><th>falsification_weakness</th><td>0.720</td><td>0.720</td><td class="neutral">neutral 0.000</td></tr><tr><th>boundary_instability</th><td>0.680</td><td>0.680</td><td class="neutral">neutral 0.000</td></tr><tr><th>agency_confusion</th><td>0.700</td><td>0.700</td><td class="neutral">neutral 0.000</td></tr><tr><th>sensory_intrusion</th><td>0.740</td><td>0.490</td><td class="reduce">reduce -0.250</td></tr><tr><th>cognitive_fragmentation</th><td>0.660</td><td>0.660</td><td class="neutral">neutral 0.000</td></tr><tr><th>negative_shutdown</th><td>0.580</td><td>0.580</td><td class="neutral">neutral 0.000</td></tr><tr><th>sleep_instability</th><td>0.640</td><td>0.460</td><td class="reduce">reduce -0.180</td></tr><tr><th>collapse_cost</th><td>0.000</td><td>0.120</td><td class="worsen">worsen +0.120</td></tr></tbody>
+              </table>
+            </details>
+            
+            <details class="comparison-card">
+              <summary>muscarinic_modulation_like</summary>
+              <table>
+                <thead>
+                  <tr>
+                    <th>dimension</th>
+                    <th>baseline topology value</th>
+                    <th>resulting topology value</th>
+                    <th>delta</th>
+                  </tr>
+                </thead>
+                <tbody><tr><th>salience_amplification</th><td>0.910</td><td>0.730</td><td class="reduce">reduce -0.180</td></tr><tr><th>recurrence_overbinding</th><td>0.860</td><td>0.860</td><td class="neutral">neutral 0.000</td></tr><tr><th>symbolic_closure_pressure</th><td>0.800</td><td>0.800</td><td class="neutral">neutral 0.000</td></tr><tr><th>threat_propagation</th><td>0.760</td><td>0.760</td><td class="neutral">neutral 0.000</td></tr><tr><th>falsification_weakness</th><td>0.720</td><td>0.720</td><td class="neutral">neutral 0.000</td></tr><tr><th>boundary_instability</th><td>0.680</td><td>0.520</td><td class="reduce">reduce -0.160</td></tr><tr><th>agency_confusion</th><td>0.700</td><td>0.700</td><td class="neutral">neutral 0.000</td></tr><tr><th>sensory_intrusion</th><td>0.740</td><td>0.600</td><td class="reduce">reduce -0.140</td></tr><tr><th>cognitive_fragmentation</th><td>0.660</td><td>0.580</td><td class="reduce">reduce -0.080</td></tr><tr><th>negative_shutdown</th><td>0.580</td><td>0.580</td><td class="neutral">neutral 0.000</td></tr><tr><th>sleep_instability</th><td>0.640</td><td>0.640</td><td class="neutral">neutral 0.000</td></tr><tr><th>collapse_cost</th><td>0.000</td><td>0.100</td><td class="worsen">worsen +0.100</td></tr></tbody>
+              </table>
+            </details>
+            
+            <details class="comparison-card">
+              <summary>adrenergic_dampening_like</summary>
+              <table>
+                <thead>
+                  <tr>
+                    <th>dimension</th>
+                    <th>baseline topology value</th>
+                    <th>resulting topology value</th>
+                    <th>delta</th>
+                  </tr>
+                </thead>
+                <tbody><tr><th>salience_amplification</th><td>0.910</td><td>0.830</td><td class="reduce">reduce -0.080</td></tr><tr><th>recurrence_overbinding</th><td>0.860</td><td>0.860</td><td class="neutral">neutral 0.000</td></tr><tr><th>symbolic_closure_pressure</th><td>0.800</td><td>0.800</td><td class="neutral">neutral 0.000</td></tr><tr><th>threat_propagation</th><td>0.760</td><td>0.540</td><td class="reduce">reduce -0.220</td></tr><tr><th>falsification_weakness</th><td>0.720</td><td>0.720</td><td class="neutral">neutral 0.000</td></tr><tr><th>boundary_instability</th><td>0.680</td><td>0.680</td><td class="neutral">neutral 0.000</td></tr><tr><th>agency_confusion</th><td>0.700</td><td>0.700</td><td class="neutral">neutral 0.000</td></tr><tr><th>sensory_intrusion</th><td>0.740</td><td>0.740</td><td class="neutral">neutral 0.000</td></tr><tr><th>cognitive_fragmentation</th><td>0.660</td><td>0.660</td><td class="neutral">neutral 0.000</td></tr><tr><th>negative_shutdown</th><td>0.580</td><td>0.630</td><td class="worsen">worsen +0.050</td></tr><tr><th>sleep_instability</th><td>0.640</td><td>0.520</td><td class="reduce">reduce -0.120</td></tr><tr><th>collapse_cost</th><td>0.000</td><td>0.125</td><td class="worsen">worsen +0.125</td></tr></tbody>
+              </table>
+            </details>
+            
+            <details class="comparison-card">
+              <summary>d2_partial_agonist_like</summary>
+              <table>
+                <thead>
+                  <tr>
+                    <th>dimension</th>
+                    <th>baseline topology value</th>
+                    <th>resulting topology value</th>
+                    <th>delta</th>
+                  </tr>
+                </thead>
+                <tbody><tr><th>salience_amplification</th><td>0.910</td><td>0.710</td><td class="reduce">reduce -0.200</td></tr><tr><th>recurrence_overbinding</th><td>0.860</td><td>0.720</td><td class="reduce">reduce -0.140</td></tr><tr><th>symbolic_closure_pressure</th><td>0.800</td><td>0.720</td><td class="reduce">reduce -0.080</td></tr><tr><th>threat_propagation</th><td>0.760</td><td>0.760</td><td class="neutral">neutral 0.000</td></tr><tr><th>falsification_weakness</th><td>0.720</td><td>0.720</td><td class="neutral">neutral 0.000</td></tr><tr><th>boundary_instability</th><td>0.680</td><td>0.680</td><td class="neutral">neutral 0.000</td></tr><tr><th>agency_confusion</th><td>0.700</td><td>0.700</td><td class="neutral">neutral 0.000</td></tr><tr><th>sensory_intrusion</th><td>0.740</td><td>0.740</td><td class="neutral">neutral 0.000</td></tr><tr><th>cognitive_fragmentation</th><td>0.660</td><td>0.660</td><td class="neutral">neutral 0.000</td></tr><tr><th>negative_shutdown</th><td>0.580</td><td>0.620</td><td class="worsen">worsen +0.040</td></tr><tr><th>sleep_instability</th><td>0.640</td><td>0.640</td><td class="neutral">neutral 0.000</td></tr><tr><th>collapse_cost</th><td>0.000</td><td>0.140</td><td class="worsen">worsen +0.140</td></tr></tbody>
+              </table>
+            </details>
+            
+            <details class="comparison-card">
+              <summary>d2_antagonist_like</summary>
+              <table>
+                <thead>
+                  <tr>
+                    <th>dimension</th>
+                    <th>baseline topology value</th>
+                    <th>resulting topology value</th>
+                    <th>delta</th>
+                  </tr>
+                </thead>
+                <tbody><tr><th>salience_amplification</th><td>0.910</td><td>0.560</td><td class="reduce">reduce -0.350</td></tr><tr><th>recurrence_overbinding</th><td>0.860</td><td>0.640</td><td class="reduce">reduce -0.220</td></tr><tr><th>symbolic_closure_pressure</th><td>0.800</td><td>0.800</td><td class="neutral">neutral 0.000</td></tr><tr><th>threat_propagation</th><td>0.760</td><td>0.580</td><td class="reduce">reduce -0.180</td></tr><tr><th>falsification_weakness</th><td>0.720</td><td>0.620</td><td class="reduce">reduce -0.100</td></tr><tr><th>boundary_instability</th><td>0.680</td><td>0.680</td><td class="neutral">neutral 0.000</td></tr><tr><th>agency_confusion</th><td>0.700</td><td>0.700</td><td class="neutral">neutral 0.000</td></tr><tr><th>sensory_intrusion</th><td>0.740</td><td>0.740</td><td class="neutral">neutral 0.000</td></tr><tr><th>cognitive_fragmentation</th><td>0.660</td><td>0.660</td><td class="neutral">neutral 0.000</td></tr><tr><th>negative_shutdown</th><td>0.580</td><td>0.760</td><td class="worsen">worsen +0.180</td></tr><tr><th>sleep_instability</th><td>0.640</td><td>0.640</td><td class="neutral">neutral 0.000</td></tr><tr><th>collapse_cost</th><td>0.000</td><td>0.370</td><td class="worsen">worsen +0.370</td></tr></tbody>
+              </table>
+            </details>
+            
+            <details class="comparison-card">
+              <summary>gaba_stabilizing_like</summary>
+              <table>
+                <thead>
+                  <tr>
+                    <th>dimension</th>
+                    <th>baseline topology value</th>
+                    <th>resulting topology value</th>
+                    <th>delta</th>
+                  </tr>
+                </thead>
+                <tbody><tr><th>salience_amplification</th><td>0.910</td><td>0.910</td><td class="neutral">neutral 0.000</td></tr><tr><th>recurrence_overbinding</th><td>0.860</td><td>0.860</td><td class="neutral">neutral 0.000</td></tr><tr><th>symbolic_closure_pressure</th><td>0.800</td><td>0.800</td><td class="neutral">neutral 0.000</td></tr><tr><th>threat_propagation</th><td>0.760</td><td>0.560</td><td class="reduce">reduce -0.200</td></tr><tr><th>falsification_weakness</th><td>0.720</td><td>0.720</td><td class="neutral">neutral 0.000</td></tr><tr><th>boundary_instability</th><td>0.680</td><td>0.680</td><td class="neutral">neutral 0.000</td></tr><tr><th>agency_confusion</th><td>0.700</td><td>0.700</td><td class="neutral">neutral 0.000</td></tr><tr><th>sensory_intrusion</th><td>0.740</td><td>0.640</td><td class="reduce">reduce -0.100</td></tr><tr><th>cognitive_fragmentation</th><td>0.660</td><td>0.730</td><td class="worsen">worsen +0.070</td></tr><tr><th>negative_shutdown</th><td>0.580</td><td>0.580</td><td class="neutral">neutral 0.000</td></tr><tr><th>sleep_instability</th><td>0.640</td><td>0.640</td><td class="neutral">neutral 0.000</td></tr><tr><th>collapse_cost</th><td>0.000</td><td>0.204</td><td class="worsen">worsen +0.204</td></tr></tbody>
+              </table>
+            </details>
+            
+            <details class="comparison-card">
+              <summary>histamine_sedation_load_like</summary>
+              <table>
+                <thead>
+                  <tr>
+                    <th>dimension</th>
+                    <th>baseline topology value</th>
+                    <th>resulting topology value</th>
+                    <th>delta</th>
+                  </tr>
+                </thead>
+                <tbody><tr><th>salience_amplification</th><td>0.910</td><td>0.860</td><td class="reduce">reduce -0.050</td></tr><tr><th>recurrence_overbinding</th><td>0.860</td><td>0.860</td><td class="neutral">neutral 0.000</td></tr><tr><th>symbolic_closure_pressure</th><td>0.800</td><td>0.800</td><td class="neutral">neutral 0.000</td></tr><tr><th>threat_propagation</th><td>0.760</td><td>0.680</td><td class="reduce">reduce -0.080</td></tr><tr><th>falsification_weakness</th><td>0.720</td><td>0.720</td><td class="neutral">neutral 0.000</td></tr><tr><th>boundary_instability</th><td>0.680</td><td>0.680</td><td class="neutral">neutral 0.000</td></tr><tr><th>agency_confusion</th><td>0.700</td><td>0.700</td><td class="neutral">neutral 0.000</td></tr><tr><th>sensory_intrusion</th><td>0.740</td><td>0.740</td><td class="neutral">neutral 0.000</td></tr><tr><th>cognitive_fragmentation</th><td>0.660</td><td>0.780</td><td class="worsen">worsen +0.120</td></tr><tr><th>negative_shutdown</th><td>0.580</td><td>0.780</td><td class="worsen">worsen +0.200</td></tr><tr><th>sleep_instability</th><td>0.640</td><td>0.390</td><td class="reduce">reduce -0.250</td></tr><tr><th>collapse_cost</th><td>0.000</td><td>0.542</td><td class="worsen">worsen +0.542</td></tr></tbody>
+              </table>
+            </details>
+            
+            <details class="comparison-card">
+              <summary>glutamate_amplification_stressor_like</summary>
+              <table>
+                <thead>
+                  <tr>
+                    <th>dimension</th>
+                    <th>baseline topology value</th>
+                    <th>resulting topology value</th>
+                    <th>delta</th>
+                  </tr>
+                </thead>
+                <tbody><tr><th>salience_amplification</th><td>0.910</td><td>1.120</td><td class="worsen">worsen +0.210</td></tr><tr><th>recurrence_overbinding</th><td>0.860</td><td>1.050</td><td class="worsen">worsen +0.190</td></tr><tr><th>symbolic_closure_pressure</th><td>0.800</td><td>0.980</td><td class="worsen">worsen +0.180</td></tr><tr><th>threat_propagation</th><td>0.760</td><td>0.960</td><td class="worsen">worsen +0.200</td></tr><tr><th>falsification_weakness</th><td>0.720</td><td>0.720</td><td class="neutral">neutral 0.000</td></tr><tr><th>boundary_instability</th><td>0.680</td><td>0.680</td><td class="neutral">neutral 0.000</td></tr><tr><th>agency_confusion</th><td>0.700</td><td>0.700</td><td class="neutral">neutral 0.000</td></tr><tr><th>sensory_intrusion</th><td>0.740</td><td>0.880</td><td class="worsen">worsen +0.140</td></tr><tr><th>cognitive_fragmentation</th><td>0.660</td><td>0.660</td><td class="neutral">neutral 0.000</td></tr><tr><th>negative_shutdown</th><td>0.580</td><td>0.580</td><td class="neutral">neutral 0.000</td></tr><tr><th>sleep_instability</th><td>0.640</td><td>0.640</td><td class="neutral">neutral 0.000</td></tr><tr><th>collapse_cost</th><td>0.000</td><td>0.080</td><td class="worsen">worsen +0.080</td></tr></tbody>
+              </table>
+            </details>
+            
+            <details class="comparison-card">
+              <summary>anticholinergic_burden_like</summary>
+              <table>
+                <thead>
+                  <tr>
+                    <th>dimension</th>
+                    <th>baseline topology value</th>
+                    <th>resulting topology value</th>
+                    <th>delta</th>
+                  </tr>
+                </thead>
+                <tbody><tr><th>salience_amplification</th><td>0.910</td><td>0.910</td><td class="neutral">neutral 0.000</td></tr><tr><th>recurrence_overbinding</th><td>0.860</td><td>0.860</td><td class="neutral">neutral 0.000</td></tr><tr><th>symbolic_closure_pressure</th><td>0.800</td><td>0.800</td><td class="neutral">neutral 0.000</td></tr><tr><th>threat_propagation</th><td>0.760</td><td>0.760</td><td class="neutral">neutral 0.000</td></tr><tr><th>falsification_weakness</th><td>0.720</td><td>0.720</td><td class="neutral">neutral 0.000</td></tr><tr><th>boundary_instability</th><td>0.680</td><td>0.760</td><td class="worsen">worsen +0.080</td></tr><tr><th>agency_confusion</th><td>0.700</td><td>0.780</td><td class="worsen">worsen +0.080</td></tr><tr><th>sensory_intrusion</th><td>0.740</td><td>0.740</td><td class="neutral">neutral 0.000</td></tr><tr><th>cognitive_fragmentation</th><td>0.660</td><td>0.900</td><td class="worsen">worsen +0.240</td></tr><tr><th>negative_shutdown</th><td>0.580</td><td>0.760</td><td class="worsen">worsen +0.180</td></tr><tr><th>sleep_instability</th><td>0.640</td><td>0.640</td><td class="neutral">neutral 0.000</td></tr><tr><th>collapse_cost</th><td>0.000</td><td>0.530</td><td class="worsen">worsen +0.530</td></tr></tbody>
+              </table>
+            </details>
+            
+      </div>
+    </section>
+    
+    
+    <footer class="safety-footer">
+      <p>Φ.review does not recommend medication.</p>
+      <p>Φ.review does not infer treatment.</p>
+      <p>Φ.review only simulates bounded topology perturbations.</p>
+      <p>Clinical claims are denied unless externally validated.</p>
+    </footer>
+    
+  </main>
+</body>
+</html>

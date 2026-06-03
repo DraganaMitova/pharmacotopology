@@ -1,4 +1,6 @@
 __pycache__/
 *.py[cod]
 .pytest_cache/
-first_contact_clean_pharmacotopology_layer_run/
+first_contact_clean_pharmacotopology_layer_run/*
+!first_contact_clean_pharmacotopology_layer_run/
+!first_contact_clean_pharmacotopology_layer_run/pharmacotopology_dashboard.html
