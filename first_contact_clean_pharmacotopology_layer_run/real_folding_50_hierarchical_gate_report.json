@@ -1,8 +1,8 @@
 {
-  "abstained_prediction_count": 23,
-  "abstention_delta_from_10": 19,
+  "abstained_prediction_count": 25,
+  "abstention_delta_from_10": 21,
   "abstention_rate_by_class": {
-    "alpha_beta_mixed": 0.692308,
+    "alpha_beta_mixed": 0.846154,
     "alpha_rich": 0.4,
     "beta_rich": 0.615385,
     "disordered_flexible": 0.1,
@@ -31,10 +31,10 @@
   "compactness_gate_accuracy": 0.82,
   "confusion_matrix": {
     "alpha_beta_mixed": {
-      "alpha_rich": 2,
+      "alpha_rich": 0,
       "beta_rich": 0,
       "disordered_flexible": 0,
-      "insufficient_topology_evidence": 9,
+      "insufficient_topology_evidence": 11,
       "multidomain_boundary": 2
     },
     "alpha_rich": {
@@ -68,7 +68,7 @@
   },
   "disorder_gate_accuracy": 0.9,
   "drug_design_created": false,
-  "evidence_conflict_mean": 0.556656,
+  "evidence_conflict_mean": 0.577352,
   "external_rows": 50,
   "failure_modes_preserved_or_new": {
     "false_beta_from_disorder_count": {
@@ -101,8 +101,8 @@
   "flexible_segmentation_false_multidomain_count": 0,
   "folding_problem_solved": false,
   "folding_solution_claim_created": false,
-  "forced_prediction_accuracy": 0.62963,
-  "forced_prediction_count": 27,
+  "forced_prediction_accuracy": 0.68,
+  "forced_prediction_count": 25,
   "gate_path_distribution_by_true_class": {
     "alpha_beta_mixed": {
       "disorder_gate:foldable_candidate": 13
@@ -1635,7 +1635,7 @@
       "uncertainty_radius": 0.7872
     },
     {
-      "abstained": false,
+      "abstained": true,
       "alpha_evidence_requires_periodicity": true,
       "alpha_periodicity_evidence": 0.483871,
       "alpha_structure_score": 0.483875,
@@ -1645,20 +1645,20 @@
       "beta_structure_score": 0.429347,
       "breaker_turn_evidence": 0.34902,
       "charge_frustration_evidence": 0.180626,
-      "claim_strength": "weak",
+      "claim_strength": "abstained",
       "compact_core_evidence": 0.600914,
       "compactness_gate_score": 0.596517,
-      "confidence": 0.558874,
+      "confidence": 0.0,
       "disorder_gate_score": 0.064359,
       "disorder_run_evidence": 0.03125,
       "domain_boundary_evidence": 0.411941,
-      "evidence_conflict_score": 0.324676,
+      "evidence_conflict_score": 0.86,
       "flexible_segmentation_warning": false,
       "folding_problem_solved": false,
       "folding_solution_claim_created": false,
-      "forced_prediction": true,
-      "gate_decision_reason": "alpha interpretation requires local alpha pressure, periodic support, compact core, and limited disorder pressure",
-      "gate_path": "disorder_gate:foldable_candidate | compactness_gate:compact_or_borderline_supported | segmentation_gate:not_folded_multidomain | secondary_structure_gate:alpha_periodic_compact | confidence_gate:forced_low_claim_strength",
+      "forced_prediction": false,
+      "gate_decision_reason": "alpha-rich evidence was not forced because beta pressure, pairing support, and mixed secondary-structure score remain too close to the alpha score",
+      "gate_path": "disorder_gate:foldable_candidate | compactness_gate:compact_or_borderline_supported | segmentation_gate:not_folded_multidomain | secondary_structure_gate:abstained_alpha_mixed_ambiguity | confidence_gate:abstained",
       "hierarchical_gate_signature_kind": "motif_evidence_hierarchical_gate_interpretation",
       "hierarchy_changed_raw_prediction": true,
       "hierarchy_prediction_used": true,
@@ -1667,7 +1667,7 @@
       "hierarchy_prevented_false_multidomain": false,
       "high_confidence_wrong": false,
       "label_fold_class": "alpha_beta_mixed",
-      "likely_failure_reason": "hierarchical_gate_prediction_structure_mismatch",
+      "likely_failure_reason": "alpha-rich evidence was not forced because beta pressure, pairing support, and mixed secondary-structure score remain too close to the alpha score",
       "local_alpha_pressure_evidence": 0.604503,
       "local_beta_pressure_evidence": 0.509592,
       "local_disorder_pressure_evidence": 0.249481,
@@ -1676,7 +1676,7 @@
       "mixed_structure_score": 0.458362,
       "motif_conflict_score": 0.980834,
       "motif_predicted_fold_class": "insufficient_topology_evidence",
-      "predicted_fold_class": "alpha_rich",
+      "predicted_fold_class": "insufficient_topology_evidence",
       "prediction_label_class_match": false,
       "prediction_structure_class_match": false,
       "prediction_vs_label_score": 0.874621,
@@ -1688,7 +1688,7 @@
       "sequence_length": 128,
       "structure_fold_class": "alpha_beta_mixed",
       "topology_evidence_vector_kind": "order_aware_motif_evidence_vector",
-      "uncertainty_radius": 0.348832
+      "uncertainty_radius": 0.7872
     },
     {
       "abstained": true,
@@ -1859,7 +1859,7 @@
       "uncertainty_radius": 0.7872
     },
     {
-      "abstained": false,
+      "abstained": true,
       "alpha_evidence_requires_periodicity": true,
       "alpha_periodicity_evidence": 0.448718,
       "alpha_structure_score": 0.440642,
@@ -1869,20 +1869,20 @@
       "beta_structure_score": 0.393912,
       "breaker_turn_evidence": 0.301732,
       "charge_frustration_evidence": 0.164941,
-      "claim_strength": "weak",
+      "claim_strength": "abstained",
       "compact_core_evidence": 0.543659,
       "compactness_gate_score": 0.523478,
-      "confidence": 0.499135,
+      "confidence": 0.0,
       "disorder_gate_score": 0.101347,
       "disorder_run_evidence": 0.05618,
       "domain_boundary_evidence": 0.267627,
-      "evidence_conflict_score": 0.360519,
+      "evidence_conflict_score": 0.86,
       "flexible_segmentation_warning": false,
       "folding_problem_solved": false,
       "folding_solution_claim_created": false,
-      "forced_prediction": true,
-      "gate_decision_reason": "alpha interpretation requires local alpha pressure, periodic support, compact core, and limited disorder pressure",
-      "gate_path": "disorder_gate:foldable_candidate | compactness_gate:compact_or_borderline_supported | segmentation_gate:not_folded_multidomain | secondary_structure_gate:alpha_periodic_compact | confidence_gate:forced_low_claim_strength",
+      "forced_prediction": false,
+      "gate_decision_reason": "alpha-rich evidence was not forced because beta pressure, pairing support, and mixed secondary-structure score remain too close to the alpha score",
+      "gate_path": "disorder_gate:foldable_candidate | compactness_gate:compact_or_borderline_supported | segmentation_gate:not_folded_multidomain | secondary_structure_gate:abstained_alpha_mixed_ambiguity | confidence_gate:abstained",
       "hierarchical_gate_signature_kind": "motif_evidence_hierarchical_gate_interpretation",
       "hierarchy_changed_raw_prediction": true,
       "hierarchy_prediction_used": true,
@@ -1891,7 +1891,7 @@
       "hierarchy_prevented_false_multidomain": false,
       "high_confidence_wrong": false,
       "label_fold_class": "alpha_beta_mixed",
-      "likely_failure_reason": "hierarchical_gate_prediction_structure_mismatch",
+      "likely_failure_reason": "alpha-rich evidence was not forced because beta pressure, pairing support, and mixed secondary-structure score remain too close to the alpha score",
       "local_alpha_pressure_evidence": 0.578647,
       "local_beta_pressure_evidence": 0.539224,
       "local_disorder_pressure_evidence": 0.305249,
@@ -1900,7 +1900,7 @@
       "mixed_structure_score": 0.430578,
       "motif_conflict_score": 0.913282,
       "motif_predicted_fold_class": "insufficient_topology_evidence",
-      "predicted_fold_class": "alpha_rich",
+      "predicted_fold_class": "insufficient_topology_evidence",
       "prediction_label_class_match": false,
       "prediction_structure_class_match": false,
       "prediction_vs_label_score": 0.920935,
@@ -1912,7 +1912,7 @@
       "sequence_length": 89,
       "structure_fold_class": "alpha_beta_mixed",
       "topology_evidence_vector_kind": "order_aware_motif_evidence_vector",
-      "uncertainty_radius": 0.36747
+      "uncertainty_radius": 0.7872
     },
     {
       "abstained": false,

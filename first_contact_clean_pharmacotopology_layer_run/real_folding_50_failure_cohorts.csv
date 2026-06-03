@@ -26,7 +26,9 @@ abstained_unresolved,compact_single_domain,insufficient_topology_evidence,beta_r
 abstained_unresolved,compact_single_domain,insufficient_topology_evidence,beta_rich,beta_rich,small_70_139,mid,low,low,mid,mid,coordinate_contact_graph,1,0,1,0,0,0,0,0,pdb_2PTL_A_protein_l_domain,0.0
 abstained_unresolved,compact_single_domain,insufficient_topology_evidence,alpha_beta_mixed,alpha_beta_mixed,medium_140_259,mid,low,mid,mid,mid,coordinate_contact_graph,1,0,1,0,0,0,0,0,pdb_4AKE_A_adenylate_kinase,0.0
 abstained_unresolved,compact_single_domain,insufficient_topology_evidence,alpha_beta_mixed,alpha_beta_mixed,small_70_139,mid,low,low,mid,high,coordinate_contact_graph,1,0,1,0,0,0,0,0,pdb_2TRX_A_thioredoxin,0.0
+abstained_unresolved,compact_single_domain,insufficient_topology_evidence,alpha_beta_mixed,alpha_beta_mixed,small_70_139,mid,low,mid,mid,mid,coordinate_contact_graph,1,0,1,0,0,0,0,0,pdb_1BTA_A_barstar,0.0
 abstained_unresolved,compact_single_domain,insufficient_topology_evidence,multidomain_boundary,multidomain_boundary,medium_140_259,mid,low,mid,mid,low,coordinate_contact_graph,1,0,1,0,0,0,0,0,pdb_1CLL_A_calmodulin,0.0
+abstained_unresolved,intrinsically_disordered,insufficient_topology_evidence,beta_rich,beta_rich,medium_140_259,low,mid,low,mid,mid,coordinate_contact_graph,1,0,1,0,0,0,0,0,pdb_1BFG_A_basic_fgf,0.0
 abstained_unresolved,intrinsically_disordered,insufficient_topology_evidence,disordered_flexible,disordered_flexible,large_260_419,mid,low,mid,low,low,curated_disorder_reference,1,0,1,0,0,0,0,0,disprot_P10451_osteopontin,0.0
 abstained_unresolved,intrinsically_disordered,insufficient_topology_evidence,disordered_flexible,disordered_flexible,medium_140_259,mid,low,mid,low,low,curated_disorder_reference,1,0,1,0,0,0,0,0,disprot_P16949_stathmin,0.0
 correct_forced,compact_single_domain,alpha_rich,alpha_rich,alpha_rich,small_70_139,high,low,mid,mid,mid,coordinate_contact_graph,1,1,0,1,0,0,0,0,pdb_256B_A_cytochrome_b562,1.0
@@ -39,5 +41,3 @@ regime_prevented_high_confidence_wrong,membrane_like,insufficient_topology_evide
 regime_prevented_high_confidence_wrong,multidomain_modular,insufficient_topology_evidence,alpha_beta_mixed,multidomain_boundary,very_large_420_plus,mid,low,mid,low,high,sparse_long_range_contact_graph,1,0,1,0,0,1,1,1,pdb_1GTR_A_glutaminyl_trna_synthetase,0.0
 regime_prevented_high_confidence_wrong,small_peptide_or_fragment,insufficient_topology_evidence,multidomain_boundary,alpha_rich,fragment_lt70,high,low,mid,high,low,short_coordinate_fragment,1,0,1,0,0,1,1,1,pdb_1ROP_A_rop_protein,0.0
 regime_prevented_high_confidence_wrong,small_peptide_or_fragment,insufficient_topology_evidence,alpha_beta_mixed,beta_rich,fragment_lt70,mid,low,mid,high,mid,short_coordinate_fragment,1,0,1,0,0,1,1,1,pdb_1IGD_A_immunoglobulin_domain,0.0
-wrong_forced_low_confidence,compact_single_domain,alpha_rich,alpha_beta_mixed,alpha_beta_mixed,small_70_139,mid,low,mid,mid,mid,coordinate_contact_graph,1,1,0,0,0,0,0,0,pdb_1BTA_A_barstar,0.0
-wrong_forced_low_confidence,intrinsically_disordered,disordered_flexible,beta_rich,beta_rich,medium_140_259,low,mid,low,mid,mid,coordinate_contact_graph,1,1,0,0,0,0,0,0,pdb_1BFG_A_basic_fgf,0.0

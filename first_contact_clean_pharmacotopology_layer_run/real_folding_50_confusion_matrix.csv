@@ -1,5 +1,5 @@
 structure_fold_class,alpha_rich,beta_rich,disordered_flexible,insufficient_topology_evidence,multidomain_boundary
-alpha_beta_mixed,2,0,0,9,2
+alpha_beta_mixed,0,0,0,11,2
 alpha_rich,5,0,0,4,1
 beta_rich,0,2,3,8,0
 disordered_flexible,1,0,8,1,0

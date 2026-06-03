@@ -13,14 +13,12 @@ environment_axis,membrane_like,unknown,1,0,0,1
 environment_axis,soluble_like,unknown,46,0,0,46
 environment_axis,unknown,unknown,2,0,0,2
 order_axis,disordered_flexible,disordered_flexible,8,8,0,0
-order_axis,disordered_flexible,ordered,1,0,1,0
 order_axis,mixed_or_uncertain,disordered_flexible,2,0,0,2
-order_axis,mixed_or_uncertain,ordered,32,0,0,32
-order_axis,ordered,ordered,7,7,0,0
-secondary_structure_axis,alpha_rich,alpha_beta_mixed,1,0,1,0
+order_axis,mixed_or_uncertain,ordered,34,0,0,34
+order_axis,ordered,ordered,6,6,0,0
 secondary_structure_axis,alpha_rich,alpha_rich,4,4,0,0
 secondary_structure_axis,beta_rich,beta_rich,2,2,0,0
-secondary_structure_axis,weak_or_unknown,alpha_beta_mixed,12,0,0,12
+secondary_structure_axis,weak_or_unknown,alpha_beta_mixed,13,0,0,13
 secondary_structure_axis,weak_or_unknown,alpha_rich,8,0,0,8
 secondary_structure_axis,weak_or_unknown,beta_rich,12,0,0,12
 secondary_structure_axis,weak_or_unknown,weak_or_unknown,11,0,0,11

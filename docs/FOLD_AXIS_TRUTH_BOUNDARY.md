@@ -97,10 +97,19 @@ benchmark_size = 50
 single_class_taxonomy_collapse_detected = true
 structure_label_disagreement_count = 17
 orthogonal_axis_disagreement_count = 10
-true_same_axis_conflict_count = 10
+true_same_axis_conflict_count = 8
 structure_label_same_axis_conflict_count = 7
-axis_unscorable_count = 144
+forced_same_axis_conflict_count = 0
+forced_order_axis_conflict_count = 0
+forced_secondary_axis_conflict_count = 0
+abstained_axis_conflict_count = 8
+regime_axis_conflict_count = 8
+folded_domain_mimic_abstained_count = 1
+secondary_axis_ambiguity_abstained_count = 2
+coverage_loss_from_safety_guards = 3
+axis_unscorable_count = 147
 high_confidence_wrong_count_after_axis_scoring = 0
+artifact_reproducible = true
 claim_allowed = false
 folding_problem_solved = false
 ```
@@ -127,19 +136,22 @@ The rhodopsin-style case is now interpreted as taxonomy collapse:
 membrane_like + alpha_rich + multidomain/segmental
 ```
 
-The two current forced low-confidence model errors remain visible as
-same-axis conflicts:
+The two previously forced low-confidence model errors are now abstentions, not
+new confident classifications:
 
 ```text
 pdb_1BFG_A_basic_fgf
-predicted order axis: disordered_flexible
+guard: folded_domain_mimic_disorder_conflict
+predicted fold class: insufficient_topology_evidence
 truth order axis: ordered
 
 pdb_1BTA_A_barstar
-predicted secondary axis: alpha_rich
+guard: secondary_structure_gate:abstained_alpha_mixed_ambiguity
+predicted fold class: insufficient_topology_evidence
 truth secondary axis: alpha_beta_mixed
 ```
 
-The next modeling work should target those errors directly: folded beta
+The next modeling work should target those areas directly, but only after
+evidence improves enough to classify rather than merely abstain: folded beta
 proteins that mimic disorder from sequence-only features, and weak
 alpha-vs-mixed secondary-axis separation.

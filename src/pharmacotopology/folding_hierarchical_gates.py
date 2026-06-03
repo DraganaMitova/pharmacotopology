@@ -296,7 +296,24 @@ def predict_hierarchical_gate(
             and scores.compactness_gate_score >= 0.47
             and evidence.local_disorder_pressure_evidence < 0.42
         )
-        if alpha_periodic:
+        alpha_mixed_ambiguous = (
+            alpha_periodic
+            and evidence.local_beta_pressure_evidence >= 0.50
+            and scores.beta_pairing_support_score >= 0.42
+            and scores.beta_structure_score >= 0.37
+            and scores.alpha_structure_score - scores.mixed_structure_score <= 0.03
+            and evidence.local_disorder_pressure_evidence >= 0.24
+        )
+        if alpha_mixed_ambiguous:
+            candidate = ABSTAINED_CLASS
+            confidence = 0.0
+            gate_path.append("secondary_structure_gate:abstained_alpha_mixed_ambiguity")
+            reason = (
+                "alpha-rich evidence was not forced because beta pressure, "
+                "pairing support, and mixed secondary-structure score remain "
+                "too close to the alpha score"
+            )
+        elif alpha_periodic:
             candidate = "alpha_rich"
             confidence = _rounded(
                 0.42

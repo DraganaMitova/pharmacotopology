@@ -14,6 +14,7 @@ from pharmacotopology.folding_regime_analysis import (  # noqa: E402
     build_regime_analysis_report,
     detect_protein_regime,
     load_hierarchical_gate_inputs,
+    regime_analysis_rows,
 )
 
 
@@ -133,8 +134,8 @@ def test_regime_analysis_report_records_required_diagnostic_fields() -> None:
     assert report["benchmark_size"] == 50
     assert report["prediction_vs_structure_accuracy"] == 0.28
     assert report["prediction_vs_label_accuracy"] == 0.28
-    assert report["forced_prediction_count"] == 16
-    assert report["abstained_prediction_count"] == 34
+    assert report["forced_prediction_count"] == 14
+    assert report["abstained_prediction_count"] == 36
     assert report["high_confidence_wrong_count"] == 0
     assert report["regime_detection_used"] is True
     assert report["regime_accuracy"] == 0.74
@@ -146,16 +147,15 @@ def test_regime_analysis_report_records_required_diagnostic_fields() -> None:
     assert report["hierarchical_high_confidence_wrong_count_before_regime_routing"] == 6
     assert report["hierarchical_high_confidence_wrong_prevented_by_regime_routing"] == 6
     assert report["dominant_failure_cohort"]["failure_cohort"] == (
-        "abstained_on_structure_label_disagreement"
+        "abstained_unresolved"
     )
     assert report["dominant_failure_cohort"]["count"] == 12
     assert report["failure_cohort_distribution"] == {
         "abstained_on_regime_risk": 6,
         "abstained_on_structure_label_disagreement": 12,
-        "abstained_unresolved": 10,
+        "abstained_unresolved": 12,
         "correct_forced": 14,
         "regime_prevented_high_confidence_wrong": 6,
-        "wrong_forced_low_confidence": 2,
     }
     assert report["old_failure_modes_still_closed"] == {
         "false_beta_from_disorder_count": {"count": 0, "status": "closed"},
@@ -171,6 +171,26 @@ def test_regime_analysis_report_records_required_diagnostic_fields() -> None:
     assert report["revision_required"] is True
     assert report["claim_allowed"] is False
     assert report["folding_problem_solved"] is False
+
+
+def test_regime_guard_abstains_folded_domain_mimic_disorder_case() -> None:
+    references, evidence = load_hierarchical_gate_inputs(
+        BENCHMARK_50,
+        STRUCTURE_EVIDENCE_50,
+    )
+    rows = {
+        row["protein_id"]: row
+        for row in regime_analysis_rows(references, evidence)
+    }
+    basic_fgf = rows["pdb_1BFG_A_basic_fgf"]
+
+    assert basic_fgf["protein_regime"] == "intrinsically_disordered"
+    assert basic_fgf["predicted_fold_class"] == "insufficient_topology_evidence"
+    assert basic_fgf["forced_prediction"] is False
+    assert basic_fgf["abstained"] is True
+    assert "abstained_folded_domain_mimic_disorder_conflict" in basic_fgf[
+        "gate_path"
+    ]
 
 
 def test_tracked_regime_outputs_have_expected_surfaces() -> None:
@@ -200,6 +220,6 @@ def test_tracked_regime_outputs_have_expected_surfaces() -> None:
     assert any(row["protein_regime"] == "intrinsically_disordered" for row in rows)
     assert cohort_rows[0]["failure_cohort"]
     assert len(high_confidence_wrong_rows) == 0
-    assert len(abstention_rows) == 34
+    assert len(abstention_rows) == 36
     assert "Failure Cohort Heatmap" in dashboard
     assert "Old Failure Counters Stayed Closed" in dashboard

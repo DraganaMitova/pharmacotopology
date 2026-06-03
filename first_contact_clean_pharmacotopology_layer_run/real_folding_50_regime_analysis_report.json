@@ -1,9 +1,9 @@
 {
-  "abstained_prediction_count": 34,
+  "abstained_prediction_count": 36,
   "abstention_by_regime": {
     "ambiguous_regime": 1.0,
-    "compact_single_domain": 0.65,
-    "intrinsically_disordered": 0.357143,
+    "compact_single_domain": 0.7,
+    "intrinsically_disordered": 0.428571,
     "membrane_like": 1.0,
     "multidomain_modular": 1.0,
     "small_peptide_or_fragment": 1.0
@@ -24,45 +24,45 @@
   "clinical_use_allowed": false,
   "dominant_failure_cohort": {
     "count": 12,
-    "example_proteins": "pdb_1CYO_A_cytochrome_c2;pdb_1CUN_A_alpha_spectrin_repeat;pdb_1GFL_A_green_fluorescent_protein;pdb_1UBQ_A_ubiquitin;pdb_2CI2_I_chymotrypsin_inhibitor_2;pdb_1B57_A_fructose_bisphosphate_aldolase",
-    "failure_cohort": "abstained_on_structure_label_disagreement",
+    "example_proteins": "pdb_2MHR_A_myohemerythrin;pdb_1TIT_A_titin_i27;pdb_2PTL_A_protein_l_domain;pdb_1BFG_A_basic_fgf;pdb_1TIM_A_triosephosphate_isomerase;pdb_4AKE_A_adenylate_kinase",
+    "failure_cohort": "abstained_unresolved",
     "interpretation": "largest non-correct cohort after sequence-only regime routing",
-    "manual_review_count": 12,
+    "manual_review_count": 0,
     "regime_distribution": {
-      "compact_single_domain": 5,
-      "intrinsically_disordered": 3,
-      "multidomain_modular": 4
+      "compact_single_domain": 9,
+      "intrinsically_disordered": 3
     }
   },
   "drug_design_created": false,
   "failure_cohort_distribution": {
     "abstained_on_regime_risk": 6,
     "abstained_on_structure_label_disagreement": 12,
-    "abstained_unresolved": 10,
+    "abstained_unresolved": 12,
     "correct_forced": 14,
-    "regime_prevented_high_confidence_wrong": 6,
-    "wrong_forced_low_confidence": 2
+    "regime_prevented_high_confidence_wrong": 6
   },
   "folding_problem_solved": false,
   "folding_solution_claim_created": false,
-  "forced_prediction_accuracy": 0.875,
-  "forced_prediction_count": 16,
+  "forced_prediction_accuracy": 1.0,
+  "forced_prediction_count": 14,
   "gate_path_by_regime": {
     "ambiguous_regime": {
       "regime_router:abstained_ambiguous_regime": 2
     },
     "compact_single_domain": {
       "regime_router:abstained_compact_domain_conflict": 2,
-      "regime_router:accepted_compact_single_domain": 7,
-      "regime_router:kept_hierarchy_abstention": 11
+      "regime_router:accepted_compact_single_domain": 6,
+      "regime_router:kept_hierarchy_abstention": 12
     },
     "intrinsically_disordered": {
       "regime_router:abstained_disorder_fold_conflict": 1,
-      "regime_router:accepted_disorder_gate": 9,
+      "regime_router:abstained_folded_domain_mimic_disorder_conflict": 1,
+      "regime_router:accepted_disorder_gate": 8,
       "regime_router:kept_hierarchy_abstention": 4
     },
     "membrane_like": {
-      "regime_router:abstained_membrane_like": 2
+      "regime_router:abstained_membrane_like": 1,
+      "regime_router:kept_hierarchy_abstention": 1
     },
     "multidomain_modular": {
       "regime_router:abstained_long_modular_ambiguity": 1,
@@ -1141,21 +1141,21 @@
       "uncertainty_radius": 0.595111
     },
     {
-      "abstained": false,
+      "abstained": true,
       "ambiguous_reference": false,
-      "claim_strength": "weak",
+      "claim_strength": "abstained",
       "coiled_coil_or_fibrous_pressure": 0.243329,
       "compact_single_domain_pressure": 0.409783,
       "compactness_bucket": "low",
-      "confidence": 0.571186,
+      "confidence": 0.0,
       "contact_density_bucket": "mid",
       "disorder_bucket": "mid",
-      "failure_cohort": "wrong_forced_low_confidence",
+      "failure_cohort": "abstained_unresolved",
       "folding_problem_solved": false,
       "folding_solution_claim_created": false,
-      "forced_prediction": true,
-      "gate_decision_reason": "disorder pressure and breaker/turn evidence are prioritized over secondary-structure interpretation because compact closure is weak; sequence regime agrees with disorder/flexibility routing",
-      "gate_path": "disorder_gate:disordered_or_flexible | compactness_gate:not_compact_enough_for_folded_domain | segmentation_gate:flexible_segmentation_not_multidomain | secondary_structure_gate:skipped_by_disorder_gate | confidence_gate:forced_low_claim_strength | regime_router:accepted_disorder_gate",
+      "forced_prediction": false,
+      "gate_decision_reason": "folded-domain mimic disorder conflict: high disorder pressure is present, but the sequence also has high complexity, aromatic enrichment, compact-core closure, long-range closure, and low true disorder-run evidence",
+      "gate_path": "disorder_gate:disordered_or_flexible | compactness_gate:not_compact_enough_for_folded_domain | segmentation_gate:flexible_segmentation_not_multidomain | secondary_structure_gate:skipped_by_disorder_gate | confidence_gate:forced_low_claim_strength | regime_router:abstained_folded_domain_mimic_disorder_conflict",
       "hierarchical_abstained": false,
       "hierarchical_confidence": 0.571186,
       "hierarchical_gate_path": "disorder_gate:disordered_or_flexible | compactness_gate:not_compact_enough_for_folded_domain | segmentation_gate:flexible_segmentation_not_multidomain | secondary_structure_gate:skipped_by_disorder_gate | confidence_gate:forced_low_claim_strength",
@@ -1174,7 +1174,7 @@
       "membrane_pressure": 1.0,
       "multidomain_modular_pressure": 0.199379,
       "possible_bad_row": false,
-      "predicted_fold_class": "disordered_flexible",
+      "predicted_fold_class": "insufficient_topology_evidence",
       "prediction_label_class_match": false,
       "prediction_structure_class_match": false,
       "prediction_vs_label_score": 0.851125,
@@ -1188,7 +1188,7 @@
       "regime_confidence": 0.745028,
       "regime_detection_used": true,
       "regime_reason": "local disorder, breaker, and disorder-run evidence dominate compact closure",
-      "regime_router_changed_prediction": false,
+      "regime_router_changed_prediction": true,
       "regime_specific_warning": "",
       "repeat_pressure": 0.175219,
       "segmentation_bucket": "low",
@@ -1198,7 +1198,7 @@
       "structure_label_disagreement": false,
       "structure_source_quality": "coordinate_contact_graph",
       "topology_evidence_vector_kind": "order_aware_motif_evidence_vector",
-      "uncertainty_radius": 0.34499
+      "uncertainty_radius": 0.605497
     },
     {
       "abstained": true,
@@ -1634,13 +1634,13 @@
       "folding_problem_solved": false,
       "folding_solution_claim_created": false,
       "forced_prediction": false,
-      "gate_decision_reason": "hydrophobic enrichment and cluster topology resemble a membrane-like regime; regime router abstained before accepting a broad fold-class claim",
-      "gate_path": "disorder_gate:foldable_candidate | compactness_gate:compact_or_borderline_supported | segmentation_gate:not_folded_multidomain | secondary_structure_gate:alpha_periodic_compact | confidence_gate:forced_low_claim_strength | regime_router:abstained_membrane_like",
-      "hierarchical_abstained": false,
-      "hierarchical_confidence": 0.558874,
-      "hierarchical_gate_path": "disorder_gate:foldable_candidate | compactness_gate:compact_or_borderline_supported | segmentation_gate:not_folded_multidomain | secondary_structure_gate:alpha_periodic_compact | confidence_gate:forced_low_claim_strength",
+      "gate_decision_reason": "alpha-rich evidence was not forced because beta pressure, pairing support, and mixed secondary-structure score remain too close to the alpha score; regime router kept abstention for membrane_like",
+      "gate_path": "disorder_gate:foldable_candidate | compactness_gate:compact_or_borderline_supported | segmentation_gate:not_folded_multidomain | secondary_structure_gate:abstained_alpha_mixed_ambiguity | confidence_gate:abstained | regime_router:kept_hierarchy_abstention",
+      "hierarchical_abstained": true,
+      "hierarchical_confidence": 0.0,
+      "hierarchical_gate_path": "disorder_gate:foldable_candidate | compactness_gate:compact_or_borderline_supported | segmentation_gate:not_folded_multidomain | secondary_structure_gate:abstained_alpha_mixed_ambiguity | confidence_gate:abstained",
       "hierarchical_high_confidence_wrong": false,
-      "hierarchical_predicted_fold_class": "alpha_rich",
+      "hierarchical_predicted_fold_class": "insufficient_topology_evidence",
       "high_confidence_wrong": false,
       "hydrophobic_fraction": 0.484375,
       "hydrophobic_run_fraction": 0.039062,
@@ -1668,7 +1668,7 @@
       "regime_confidence": 0.9,
       "regime_detection_used": true,
       "regime_reason": "hydrophobic enrichment and cluster topology resemble a membrane-like regime",
-      "regime_router_changed_prediction": true,
+      "regime_router_changed_prediction": false,
       "regime_specific_warning": "",
       "repeat_pressure": 0.25781,
       "segmentation_bucket": "mid",
@@ -1678,7 +1678,7 @@
       "structure_label_disagreement": false,
       "structure_source_quality": "coordinate_contact_graph",
       "topology_evidence_vector_kind": "order_aware_motif_evidence_vector",
-      "uncertainty_radius": 0.59
+      "uncertainty_radius": 0.7872
     },
     {
       "abstained": true,
@@ -1861,26 +1861,26 @@
       "uncertainty_radius": 0.7872
     },
     {
-      "abstained": false,
+      "abstained": true,
       "ambiguous_reference": false,
-      "claim_strength": "weak",
+      "claim_strength": "abstained",
       "coiled_coil_or_fibrous_pressure": 0.335554,
       "compact_single_domain_pressure": 0.550384,
       "compactness_bucket": "mid",
-      "confidence": 0.499135,
+      "confidence": 0.0,
       "contact_density_bucket": "mid",
       "disorder_bucket": "low",
-      "failure_cohort": "wrong_forced_low_confidence",
+      "failure_cohort": "abstained_unresolved",
       "folding_problem_solved": false,
       "folding_solution_claim_created": false,
-      "forced_prediction": true,
-      "gate_decision_reason": "alpha interpretation requires local alpha pressure, periodic support, compact core, and limited disorder pressure; compact-single-domain regime accepts secondary-structure gate output",
-      "gate_path": "disorder_gate:foldable_candidate | compactness_gate:compact_or_borderline_supported | segmentation_gate:not_folded_multidomain | secondary_structure_gate:alpha_periodic_compact | confidence_gate:forced_low_claim_strength | regime_router:accepted_compact_single_domain",
-      "hierarchical_abstained": false,
-      "hierarchical_confidence": 0.499135,
-      "hierarchical_gate_path": "disorder_gate:foldable_candidate | compactness_gate:compact_or_borderline_supported | segmentation_gate:not_folded_multidomain | secondary_structure_gate:alpha_periodic_compact | confidence_gate:forced_low_claim_strength",
+      "forced_prediction": false,
+      "gate_decision_reason": "alpha-rich evidence was not forced because beta pressure, pairing support, and mixed secondary-structure score remain too close to the alpha score; regime router kept abstention for compact_single_domain",
+      "gate_path": "disorder_gate:foldable_candidate | compactness_gate:compact_or_borderline_supported | segmentation_gate:not_folded_multidomain | secondary_structure_gate:abstained_alpha_mixed_ambiguity | confidence_gate:abstained | regime_router:kept_hierarchy_abstention",
+      "hierarchical_abstained": true,
+      "hierarchical_confidence": 0.0,
+      "hierarchical_gate_path": "disorder_gate:foldable_candidate | compactness_gate:compact_or_borderline_supported | segmentation_gate:not_folded_multidomain | secondary_structure_gate:abstained_alpha_mixed_ambiguity | confidence_gate:abstained",
       "hierarchical_high_confidence_wrong": false,
-      "hierarchical_predicted_fold_class": "alpha_rich",
+      "hierarchical_predicted_fold_class": "insufficient_topology_evidence",
       "high_confidence_wrong": false,
       "hydrophobic_fraction": 0.438202,
       "hydrophobic_run_fraction": 0.033708,
@@ -1894,7 +1894,7 @@
       "membrane_pressure": 1.0,
       "multidomain_modular_pressure": 0.196354,
       "possible_bad_row": false,
-      "predicted_fold_class": "alpha_rich",
+      "predicted_fold_class": "insufficient_topology_evidence",
       "prediction_label_class_match": false,
       "prediction_structure_class_match": false,
       "prediction_vs_label_score": 0.920935,
@@ -1918,7 +1918,7 @@
       "structure_label_disagreement": false,
       "structure_source_quality": "coordinate_contact_graph",
       "topology_evidence_vector_kind": "order_aware_motif_evidence_vector",
-      "uncertainty_radius": 0.36747
+      "uncertainty_radius": 0.7872
     },
     {
       "abstained": true,

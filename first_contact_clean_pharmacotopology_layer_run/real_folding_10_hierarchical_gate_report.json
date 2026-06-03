@@ -1,14 +1,101 @@
 {
   "abstained_prediction_count": 4,
+  "abstention_delta_from_10": 0,
+  "abstention_rate_by_class": {
+    "alpha_beta_mixed": 1.0,
+    "alpha_rich": 0.0,
+    "beta_rich": 0.5,
+    "disordered_flexible": 0.0,
+    "multidomain_boundary": 0.0
+  },
+  "accuracy_by_class": {
+    "alpha_beta_mixed": 0.0,
+    "alpha_rich": 1.0,
+    "beta_rich": 0.5,
+    "disordered_flexible": 1.0,
+    "multidomain_boundary": 1.0
+  },
+  "accuracy_delta_from_10": 0.0,
   "benchmark_kind": "hierarchical_folding_decision_gate_benchmark",
   "benchmark_size": 10,
   "boundary_statement": "This layer interprets the sequence-only motif evidence through staged disorder, compactness, segmentation, secondary-structure, and confidence gates. Reference labels and structure classes are used only after prediction for scoring and failure diagnosis.",
   "claim_allowed": false,
+  "class_distribution": {
+    "alpha_beta_mixed": 3,
+    "alpha_rich": 2,
+    "beta_rich": 2,
+    "disordered_flexible": 2,
+    "multidomain_boundary": 1
+  },
   "clinical_use_allowed": false,
   "compactness_gate_accuracy": 1.0,
+  "confusion_matrix": {
+    "alpha_beta_mixed": {
+      "alpha_rich": 0,
+      "beta_rich": 0,
+      "disordered_flexible": 0,
+      "insufficient_topology_evidence": 3,
+      "multidomain_boundary": 0
+    },
+    "alpha_rich": {
+      "alpha_rich": 2,
+      "beta_rich": 0,
+      "disordered_flexible": 0,
+      "insufficient_topology_evidence": 0,
+      "multidomain_boundary": 0
+    },
+    "beta_rich": {
+      "alpha_rich": 0,
+      "beta_rich": 1,
+      "disordered_flexible": 0,
+      "insufficient_topology_evidence": 1,
+      "multidomain_boundary": 0
+    },
+    "disordered_flexible": {
+      "alpha_rich": 0,
+      "beta_rich": 0,
+      "disordered_flexible": 2,
+      "insufficient_topology_evidence": 0,
+      "multidomain_boundary": 0
+    },
+    "multidomain_boundary": {
+      "alpha_rich": 0,
+      "beta_rich": 0,
+      "disordered_flexible": 0,
+      "insufficient_topology_evidence": 0,
+      "multidomain_boundary": 1
+    }
+  },
   "disorder_gate_accuracy": 1.0,
   "drug_design_created": false,
   "evidence_conflict_mean": 0.549305,
+  "external_rows": 10,
+  "failure_modes_preserved_or_new": {
+    "false_beta_from_disorder_count": {
+      "baseline": 0,
+      "current": 0,
+      "delta": 0,
+      "status": "preserved_zero"
+    },
+    "false_mixed_from_alpha_count": {
+      "baseline": 0,
+      "current": 0,
+      "delta": 0,
+      "status": "preserved_zero"
+    },
+    "flexible_segmentation_false_multidomain_count": {
+      "baseline": 0,
+      "current": 0,
+      "delta": 0,
+      "status": "preserved_zero"
+    },
+    "high_confidence_wrong_count": {
+      "baseline": 0,
+      "current": 0,
+      "delta": 0,
+      "status": "preserved_zero"
+    }
+  },
   "false_beta_from_disorder_count": 0,
   "false_mixed_from_alpha_count": 0,
   "flexible_segmentation_false_multidomain_count": 0,
@@ -16,18 +103,88 @@
   "folding_solution_claim_created": false,
   "forced_prediction_accuracy": 1.0,
   "forced_prediction_count": 6,
+  "gate_path_distribution_by_true_class": {
+    "alpha_beta_mixed": {
+      "disorder_gate:foldable_candidate": 3
+    },
+    "alpha_rich": {
+      "disorder_gate:foldable_candidate": 2
+    },
+    "beta_rich": {
+      "disorder_gate:foldable_candidate": 2
+    },
+    "disordered_flexible": {
+      "disorder_gate:disordered_or_flexible": 2
+    },
+    "multidomain_boundary": {
+      "disorder_gate:foldable_candidate": 1
+    }
+  },
   "hierarchical_gate_signature_kind": "motif_evidence_hierarchical_gate_interpretation",
   "hierarchy_changed_raw_prediction_count": 9,
   "hierarchy_prevented_false_beta_count": 1,
   "hierarchy_prevented_false_mixed_count": 2,
   "hierarchy_prevented_false_multidomain_count": 2,
+  "high_confidence_wrong_cases": [],
   "high_confidence_wrong_count": 0,
+  "high_confidence_wrong_delta_from_10": 0,
+  "lock_certificate": {
+    "benchmark_kind": "real_external_folding_topology_benchmark",
+    "benchmark_size": 10,
+    "benchmark_sources": [
+      "RCSB_PDB",
+      "CATH",
+      "DisProt"
+    ],
+    "clinical_use_allowed": false,
+    "dataset_hash": "sha256:9ffc68fb0e5437fdbf3030db637566352d5387ae5f6a0a57128dedc9af7c4ccc",
+    "drug_design_created": false,
+    "folding_problem_solved": false,
+    "folding_solution_claim_created": false,
+    "lock_blockers": [],
+    "locked_after_generation": true,
+    "molecule_generated": false,
+    "no_retuning_flag": true,
+    "protein_sequence_design_created": false,
+    "recipe_commit_hash": "uncommitted-real-10",
+    "source_manifest_hash": "sha256:dd6b287b424ed0119168ad52b9333ba8cf145744047a59d3b14e8cc088efef25",
+    "stratification_counts": {
+      "alpha_beta_mixed": 2,
+      "disordered_or_flexible": 2,
+      "mostly_alpha_or_compact": 2,
+      "mostly_beta_or_long_range": 2,
+      "multidomain_or_boundary_sensitive": 2
+    },
+    "stratification_targets": {
+      "alpha_beta_mixed": 2,
+      "disordered_or_flexible": 2,
+      "mostly_alpha_or_compact": 2,
+      "mostly_beta_or_long_range": 2,
+      "multidomain_or_boundary_sensitive": 2
+    },
+    "target_benchmark_size": 10
+  },
+  "locked_after_generation": true,
   "molecule_generated": false,
   "motif_conflict_mean": 0.895054,
+  "no_retuning_flag": true,
+  "per_class_stability_status": {
+    "alpha_beta_mixed": "mostly_abstained",
+    "alpha_rich": "stable_enough_for_review",
+    "beta_rich": "stable_enough_for_review",
+    "disordered_flexible": "stable_enough_for_review",
+    "multidomain_boundary": "stable_enough_for_review"
+  },
   "prediction_vs_label_accuracy": 0.6,
   "prediction_vs_structure_accuracy": 0.6,
   "predictor_input_boundary": "sequence_only_no_labels_no_structure_answers",
   "protein_sequence_design_created": false,
+  "result_compared_to_10_row_benchmark": {
+    "baseline_benchmark_size": 10,
+    "baseline_report": "first_contact_clean_pharmacotopology_layer_run/real_folding_10_hierarchical_gate_report.json",
+    "current_benchmark_size": 10,
+    "recipe_frozen_before_50_row_run": true
+  },
   "revision_required": true,
   "rows": [
     {
@@ -596,6 +753,15 @@
   "source_benchmark_file": "data/folding_benchmarks_real_10.locked.json",
   "source_label_benchmark_kind": "real_external_label_benchmark_v0",
   "source_motif_alignment_benchmark_kind": "motif_to_structure_alignment_benchmark",
+  "stability_status": "stable_on_50_row_stress_test",
+  "stability_test_of_commit": "",
+  "structure_class_distribution": {
+    "alpha_beta_mixed": 3,
+    "alpha_rich": 2,
+    "beta_rich": 2,
+    "disordered_flexible": 2,
+    "multidomain_boundary": 1
+  },
   "structure_evidence_file": "data/folding_benchmarks_real_10_structure_evidence.json",
   "topology_evidence_vector_kind": "order_aware_motif_evidence_vector",
   "truth_channels_used_only_after_prediction": true

@@ -410,6 +410,27 @@ def _abstained_routed_prediction(
     )
 
 
+def _folded_domain_mimic_disorder_conflict(
+    sequence: str,
+    *,
+    hierarchy: HierarchicalGatePrediction,
+    regime: ProteinRegimePrediction,
+) -> bool:
+    features = sequence_features(sequence)
+    evidence = hierarchy.motif_evidence
+    return (
+        80 <= hierarchy.sequence_length <= 180
+        and float(features["sequence_complexity"]) >= 0.90
+        and float(features["aromatic_fraction"]) >= 0.08
+        and float(features["hydrophobic_fraction"]) >= 0.34
+        and regime.compact_single_domain_pressure >= 0.38
+        and evidence.compact_core_evidence >= 0.38
+        and evidence.long_range_closure_evidence >= 0.34
+        and evidence.disorder_run_evidence <= 0.07
+        and evidence.local_disorder_pressure_evidence >= 0.50
+    )
+
+
 def predict_regime_routed_gate(
     sequence: str,
     *,
@@ -452,6 +473,25 @@ def predict_regime_routed_gate(
 
     if regime.protein_regime == "intrinsically_disordered":
         if hierarchy.predicted_fold_class == "disordered_flexible":
+            if _folded_domain_mimic_disorder_conflict(
+                sequence,
+                hierarchy=hierarchy,
+                regime=regime,
+            ):
+                return _abstained_routed_prediction(
+                    hierarchy=hierarchy,
+                    regime=regime,
+                    reason=(
+                        "folded-domain mimic disorder conflict: high disorder "
+                        "pressure is present, but the sequence also has high "
+                        "complexity, aromatic enrichment, compact-core closure, "
+                        "long-range closure, and low true disorder-run evidence"
+                    ),
+                    gate_tag=(
+                        "regime_router:"
+                        "abstained_folded_domain_mimic_disorder_conflict"
+                    ),
+                )
             return RegimeRoutedPrediction(
                 protein_id=protein_id,
                 sequence_length=hierarchy.sequence_length,

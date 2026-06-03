@@ -618,8 +618,8 @@ The current checked-in regime report says:
 benchmark_size = 50
 prediction_vs_structure_accuracy = 0.28
 prediction_vs_label_accuracy = 0.28
-forced_prediction_count = 16
-abstained_prediction_count = 34
+forced_prediction_count = 14
+abstained_prediction_count = 36
 high_confidence_wrong_count = 0
 regime_accuracy = 0.74
 regime_confidence_mean = 0.738114
@@ -674,10 +674,17 @@ The current checked-in axis report says:
 single_class_taxonomy_collapse_detected = true
 structure_label_disagreement_count = 17
 orthogonal_axis_disagreement_count = 10
-true_same_axis_conflict_count = 10
+true_same_axis_conflict_count = 8
 structure_label_same_axis_conflict_count = 7
-axis_unscorable_count = 144
+forced_same_axis_conflict_count = 0
+forced_order_axis_conflict_count = 0
+forced_secondary_axis_conflict_count = 0
+folded_domain_mimic_abstained_count = 1
+secondary_axis_ambiguity_abstained_count = 2
+coverage_loss_from_safety_guards = 3
+axis_unscorable_count = 147
 high_confidence_wrong_count_after_axis_scoring = 0
+artifact_reproducible = true
 claim_allowed = false
 folding_problem_solved = false
 ```

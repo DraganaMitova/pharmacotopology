@@ -4,7 +4,7 @@ import csv
 import json
 from collections import Counter, defaultdict
 from pathlib import Path
-from typing import Iterable, Mapping, Sequence
+from typing import Iterable, Mapping, Optional, Sequence
 
 from pharmacotopology.folding_hierarchical_gates import load_hierarchical_gate_inputs
 from pharmacotopology.folding_regime_analysis import (
@@ -402,6 +402,8 @@ def axis_adjudication_rows(
             "confidence": regime_row["confidence"],
             "forced_prediction": regime_row["forced_prediction"],
             "abstained": regime_row["abstained"],
+            "gate_path": regime_row["gate_path"],
+            "gate_decision_reason": regime_row["gate_decision_reason"],
             "single_class_label_structure_disagreement": structure_label_disagreement,
             "orthogonal_axis_disagreement": orthogonal_axis_disagreement,
             "structure_label_same_axis_conflict": bool(
@@ -454,6 +456,8 @@ def axis_conflict_rows(rows: Sequence[Mapping[str, object]]) -> list[dict[str, o
         "true_same_axis_conflict",
         "same_axis_conflict_axes",
         "axis_conflict_axes",
+        "forced_prediction",
+        "abstained",
         "taxonomy_collapse_reason",
         "manual_review_reasons",
     )
@@ -574,6 +578,38 @@ def _taxonomy_note_counts(rows: Sequence[Mapping[str, object]]) -> dict[str, int
     }
 
 
+def _axis_conflict_count(
+    rows: Sequence[Mapping[str, object]],
+    *,
+    axis_name: Optional[str] = None,
+    forced: Optional[bool] = None,
+    abstained: Optional[bool] = None,
+) -> int:
+    count = 0
+    for row in rows:
+        conflict_axes = {
+            axis for axis in str(row["axis_conflict_axes"]).split(";") if axis
+        }
+        if axis_name is not None and axis_name not in conflict_axes:
+            continue
+        if axis_name is None and not conflict_axes:
+            continue
+        if forced is not None and bool(row["forced_prediction"]) is not forced:
+            continue
+        if abstained is not None and bool(row["abstained"]) is not abstained:
+            continue
+        count += 1
+    return count
+
+
+def _guard_abstention_count(rows: Sequence[Mapping[str, object]], marker: str) -> int:
+    return sum(
+        1
+        for row in rows
+        if bool(row["abstained"]) and marker in str(row["gate_path"])
+    )
+
+
 def build_axis_adjudication_report(
     references: Sequence[FoldingReferenceExample],
     evidence_rows: Sequence[StructureEvidenceRow],
@@ -598,6 +634,14 @@ def build_axis_adjudication_report(
         row for row in rows if bool(row["high_confidence_wrong_after_axis_scoring"])
     ]
     axis_unscorable_count = sum(int(row["axis_unscorable_count"]) for row in rows)
+    folded_domain_mimic_abstained_count = _guard_abstention_count(
+        rows,
+        "abstained_folded_domain_mimic_disorder_conflict",
+    )
+    secondary_axis_ambiguity_abstained_count = _guard_abstention_count(
+        rows,
+        "secondary_structure_gate:abstained_alpha_mixed_ambiguity",
+    )
     return {
         "benchmark_kind": FOLD_AXIS_ADJUDICATION_BENCHMARK_KIND,
         "source_regime_analysis_benchmark_kind": REGIME_ANALYSIS_BENCHMARK_KIND,
@@ -625,6 +669,39 @@ def build_axis_adjudication_report(
         "high_confidence_wrong_count_after_axis_scoring": len(
             high_confidence_wrong_after_axis
         ),
+        "forced_same_axis_conflict_count": _axis_conflict_count(
+            rows,
+            forced=True,
+        ),
+        "forced_order_axis_conflict_count": _axis_conflict_count(
+            rows,
+            axis_name="order_axis",
+            forced=True,
+        ),
+        "forced_secondary_axis_conflict_count": _axis_conflict_count(
+            rows,
+            axis_name="secondary_structure_axis",
+            forced=True,
+        ),
+        "abstained_axis_conflict_count": _axis_conflict_count(
+            rows,
+            abstained=True,
+        ),
+        "regime_axis_conflict_count": (
+            _axis_conflict_count(rows, axis_name="architecture_axis")
+            + _axis_conflict_count(rows, axis_name="environment_axis")
+        ),
+        "folded_domain_mimic_abstained_count": (
+            folded_domain_mimic_abstained_count
+        ),
+        "secondary_axis_ambiguity_abstained_count": (
+            secondary_axis_ambiguity_abstained_count
+        ),
+        "coverage_loss_from_safety_guards": (
+            folded_domain_mimic_abstained_count
+            + secondary_axis_ambiguity_abstained_count
+        ),
+        "artifact_reproducible": True,
         "forced_prediction_count": sum(
             1 for row in rows if bool(row["forced_prediction"])
         ),
@@ -721,6 +798,7 @@ def _metric_cards(report: Mapping[str, object]) -> str:
         "structure_label_disagreement_count",
         "orthogonal_axis_disagreement_count",
         "true_same_axis_conflict_count",
+        "forced_same_axis_conflict_count",
         "axis_unscorable_count",
         "high_confidence_wrong_count_after_axis_scoring",
         "claim_allowed",

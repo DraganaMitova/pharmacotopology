@@ -100,8 +100,8 @@ def test_real_50_hierarchical_report_records_stability_result() -> None:
     }
     assert report["prediction_vs_structure_accuracy"] == 0.34
     assert report["prediction_vs_label_accuracy"] == 0.38
-    assert report["forced_prediction_count"] == 27
-    assert report["abstained_prediction_count"] == 23
+    assert report["forced_prediction_count"] == 25
+    assert report["abstained_prediction_count"] == 25
     assert report["high_confidence_wrong_count"] == 6
     assert report["false_beta_from_disorder_count"] == 0
     assert report["false_mixed_from_alpha_count"] == 0
@@ -112,7 +112,7 @@ def test_real_50_hierarchical_report_records_stability_result() -> None:
     assert report["secondary_structure_gate_accuracy"] == 0.194444
     assert report["hierarchy_changed_raw_prediction_count"] == 38
     assert report["accuracy_delta_from_10"] == -0.26
-    assert report["abstention_delta_from_10"] == 19
+    assert report["abstention_delta_from_10"] == 21
     assert report["high_confidence_wrong_delta_from_10"] == 6
     assert report["stability_status"] == "unstable_accuracy_drop"
     assert report["claim_allowed"] is False

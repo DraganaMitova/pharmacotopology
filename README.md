@@ -173,8 +173,8 @@ On the locked 50-row set it reports:
 ```text
 prediction_vs_structure_accuracy = 0.28
 prediction_vs_label_accuracy = 0.28
-forced_prediction_count = 16
-abstained_prediction_count = 34
+forced_prediction_count = 14
+abstained_prediction_count = 36
 high_confidence_wrong_count = 0
 regime_accuracy = 0.74
 hierarchical_high_confidence_wrong_prevented_by_regime_routing = 6
@@ -196,8 +196,8 @@ secondary structure, membrane regime is not fold class, disorder is not simply
 absence of alpha/beta, and fragment evidence is not global fold truth. On the
 locked 50-row set it detects `structure_label_disagreement_count = 17`,
 `orthogonal_axis_disagreement_count = 10`,
-`true_same_axis_conflict_count = 10`, and
-`high_confidence_wrong_count_after_axis_scoring = 0`.
+`true_same_axis_conflict_count = 8`, and
+`forced_same_axis_conflict_count = 0`.
 
 See [docs/PROTEIN_FOLDING_TEST_BOUNDARY.md](docs/PROTEIN_FOLDING_TEST_BOUNDARY.md).
 See [docs/FOLD_AXIS_TRUTH_BOUNDARY.md](docs/FOLD_AXIS_TRUTH_BOUNDARY.md).
@@ -522,8 +522,8 @@ The checked-in regime analysis report currently says:
 ```text
 prediction_vs_structure_accuracy = 0.28
 prediction_vs_label_accuracy = 0.28
-forced_prediction_count = 16
-abstained_prediction_count = 34
+forced_prediction_count = 14
+abstained_prediction_count = 36
 high_confidence_wrong_count = 0
 regime_accuracy = 0.74
 structure_label_disagreement_count = 17
@@ -557,9 +557,16 @@ The checked-in axis adjudication report currently says:
 single_class_taxonomy_collapse_detected = true
 structure_label_disagreement_count = 17
 orthogonal_axis_disagreement_count = 10
-true_same_axis_conflict_count = 10
-axis_unscorable_count = 144
+true_same_axis_conflict_count = 8
+forced_same_axis_conflict_count = 0
+forced_order_axis_conflict_count = 0
+forced_secondary_axis_conflict_count = 0
+folded_domain_mimic_abstained_count = 1
+secondary_axis_ambiguity_abstained_count = 2
+coverage_loss_from_safety_guards = 3
+axis_unscorable_count = 147
 high_confidence_wrong_count_after_axis_scoring = 0
+artifact_reproducible = true
 claim_allowed = false
 folding_problem_solved = false
 ```
