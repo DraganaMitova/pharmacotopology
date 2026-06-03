@@ -129,6 +129,17 @@ now reports `sequence_order_sensitivity_score = 0.278079`,
 `composition_only_warning = false`. The prediction accuracy is still weak, so
 `revision_required = true` and `folding_problem_solved = false`.
 
+The current follow-up layer is `motif_to_structure_alignment_benchmark`. It
+makes the topology evidence vector the first output, then only afterwards maps
+that evidence to a broad class for failure diagnosis. It exposes alpha
+periodicity, beta alternation, compact-core, disorder-run, domain-boundary,
+long-range-closure, breaker/turn, and charge-frustration signals. On the same
+10 locked rows it reports `forced_prediction_count = 2`,
+`abstained_prediction_count = 8`, and `high_confidence_wrong_count = 0`. This
+is not better folding accuracy yet. It is a more useful failure surface: the
+model now shows when motif evidence is conflicted enough that it should
+abstain instead of making a confident class claim.
+
 See [docs/PROTEIN_FOLDING_TEST_BOUNDARY.md](docs/PROTEIN_FOLDING_TEST_BOUNDARY.md).
 
 External benchmark rows can be loaded separately:
@@ -336,6 +347,31 @@ recipe_order_blind = false
 composition_only_warning = false
 prediction_vs_structure_accuracy = 0.2
 prediction_vs_label_accuracy = 0.1
+revision_required = true
+claim_allowed = false
+folding_problem_solved = false
+```
+
+Run the motif-to-structure alignment layer and failure diagnosis package:
+
+```bash
+python3 scripts/run_motif_alignment_benchmark.py
+```
+
+The checked-in motif alignment report currently says:
+
+```text
+prediction_vs_structure_accuracy = 0.1
+prediction_vs_label_accuracy = 0.1
+sequence_order_sensitivity_score = 0.278079
+real_vs_shuffled_separation_mean = 0.278079
+contact_prior_signal_seen = true
+motif_signal_seen = true
+evidence_conflict_mean = 0.895054
+uncertainty_gating_used = true
+forced_prediction_count = 2
+abstained_prediction_count = 8
+high_confidence_wrong_count = 0
 revision_required = true
 claim_allowed = false
 folding_problem_solved = false
@@ -600,6 +636,11 @@ real_folding_10_order_aware_rows.csv
 real_folding_10_contact_prior.csv
 real_folding_10_control_separation.csv
 real_folding_10_order_aware_dashboard.html
+real_folding_10_motif_alignment_report.json
+real_folding_10_motif_alignment_rows.csv
+real_folding_10_failure_diagnosis.csv
+real_folding_10_evidence_conflicts.csv
+real_folding_10_motif_alignment_dashboard.html
 field_validation.json
 field_metrics.json
 ```

@@ -280,6 +280,11 @@ real_folding_10_order_aware_rows.csv
 real_folding_10_contact_prior.csv
 real_folding_10_control_separation.csv
 real_folding_10_order_aware_dashboard.html
+real_folding_10_motif_alignment_report.json
+real_folding_10_motif_alignment_rows.csv
+real_folding_10_failure_diagnosis.csv
+real_folding_10_evidence_conflicts.csv
+real_folding_10_motif_alignment_dashboard.html
 ```
 
 The current checked-in order-aware report says:
@@ -301,6 +306,76 @@ This means the recipe now reacts to sequence order and contact-prior topology,
 but it still has not earned a folding claim. Scaling beyond the 10-row slice
 should wait until the order-aware signal remains stable and the
 prediction-vs-structure behavior improves without threshold tuning.
+
+## Motif-to-Structure Alignment Layer
+
+The next diagnostic layer is:
+
+```text
+motif_to_structure_alignment_benchmark
+```
+
+It still receives sequence only during prediction. It does not receive CATH
+labels, DisProt labels, PDB classes, structure-derived signatures, or reference
+fold classes until after the motif evidence vector has already been produced.
+
+It makes the topology evidence vector the first output:
+
+```text
+alpha periodicity
+beta alternation
+compact core
+disorder run
+domain boundary
+long-range closure
+breaker / turn
+charge frustration
+```
+
+Only after that evidence vector exists does the layer map it to a provisional
+broad class, compare it against structure/label channels, and emit per-protein
+failure diagnosis. The practical output is not higher accuracy yet; it is a
+clearer explanation of why the current recipe fails.
+
+Run it with:
+
+```bash
+python3 scripts/run_motif_alignment_benchmark.py
+```
+
+It writes:
+
+```text
+real_folding_10_motif_alignment_report.json
+real_folding_10_motif_alignment_rows.csv
+real_folding_10_failure_diagnosis.csv
+real_folding_10_evidence_conflicts.csv
+real_folding_10_motif_alignment_dashboard.html
+```
+
+The current checked-in motif alignment report says:
+
+```text
+prediction_vs_structure_accuracy = 0.1
+prediction_vs_label_accuracy = 0.1
+sequence_order_sensitivity_score = 0.278079
+real_vs_shuffled_separation_mean = 0.278079
+contact_prior_signal_seen = true
+motif_signal_seen = true
+evidence_conflict_mean = 0.895054
+uncertainty_gating_used = true
+forced_prediction_count = 2
+abstained_prediction_count = 8
+high_confidence_wrong_count = 0
+revision_required = true
+claim_allowed = false
+folding_problem_solved = false
+```
+
+This means the layer has become more cautious rather than more accurate. That
+is intentional for this revision. A high-conflict motif vector now usually
+abstains, and high-confidence wrong predictions are gated to zero on this
+locked 10-row slice.
 
 The 500-file is a target shell, not a completed benchmark. It records the
 intended proof ladder and current lock blockers until real rows exist.
