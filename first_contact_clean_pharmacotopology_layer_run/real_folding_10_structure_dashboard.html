@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Structure-Derived Folding Topology Benchmark</title>
+<style>
+body { margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #17211c; background: #fff; }
+header { padding: 28px clamp(18px, 4vw, 54px); background: #eef5f2; border-bottom: 1px solid #cad6d0; }
+main { padding: 24px clamp(18px, 4vw, 54px) 52px; }
+h1 { margin: 0 0 10px; font-size: clamp(28px, 4vw, 44px); letter-spacing: 0; }
+h2 { font-size: 22px; letter-spacing: 0; }
+p { max-width: 980px; line-height: 1.55; }
+.warning { display: inline-block; padding: 8px 10px; border: 1px solid #9b3d2e; color: #9b3d2e; background: #fff8f6; font-weight: 700; }
+.metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; margin-top: 18px; }
+.metric { border: 1px solid #cad6d0; background: #f7faf8; padding: 12px; min-height: 82px; }
+.metric span { display: block; color: #5d6762; font-size: 13px; }
+.metric strong { display: block; margin-top: 8px; font-size: 22px; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th, td { border: 1px solid #cad6d0; padding: 8px; text-align: left; vertical-align: top; }
+th { background: #eef5f2; }
+code { background: #f0f3f1; padding: 1px 4px; }
+</style>
+</head>
+<body>
+<header>
+  <p class="warning">NOT A FOLDING SOLUTION / INTERNAL FALSIFICATION REVIEW</p>
+  <h1>Structure-Derived Folding Topology Benchmark</h1>
+  <p>This dashboard separates sequence-derived prediction, coordinate-derived
+  topology evidence, and external label agreement. It keeps the first 10-row
+  result as a contradiction/revision signal rather than a terminal claim.</p>
+  <div class="metrics"><div class="metric"><span>Rows</span><strong>10</strong></div><div class="metric"><span>Coordinate Rows</span><strong>8</strong></div><div class="metric"><span>Pred vs Structure</span><strong>0.3</strong></div><div class="metric"><span>Pred vs Label</span><strong>0.4</strong></div><div class="metric"><span>Order Sensitivity</span><strong>0.0</strong></div><div class="metric"><span>Claim Allowed</span><strong>False</strong></div></div>
+</header>
+<main>
+  <section>
+    <h2>Falsification Summary</h2>
+    <p><code>composition_only_warning</code>: True</p>
+    <p><code>rho_revision_needed</code>: True</p>
+    <p><code>omega_terminal_claim_allowed</code>: False</p>
+  </section>
+  <section>
+    <h2>Prediction vs Structure Rows</h2>
+    <table>
+      <thead><tr><th>protein_id</th><th>evidence</th><th>predicted</th><th>structure</th><th>label</th><th>score</th><th>failure</th></tr></thead>
+      <tbody><tr><td>pdb_1MBN_A_myoglobin</td><td>coordinate_contact_graph</td><td>multidomain_boundary</td><td>alpha_rich</td><td>alpha_rich</td><td>0.778511</td><td>prediction_structure_class_mismatch</td></tr><tr><td>pdb_2LZM_A_t4_lysozyme</td><td>coordinate_contact_graph</td><td>multidomain_boundary</td><td>alpha_rich</td><td>alpha_rich</td><td>0.704717</td><td>prediction_structure_class_mismatch</td></tr><tr><td>pdb_1TEN_A_tenascin_fn3</td><td>coordinate_contact_graph</td><td>alpha_beta_mixed</td><td>beta_rich</td><td>beta_rich</td><td>0.650938</td><td>prediction_structure_class_mismatch</td></tr><tr><td>pdb_1CSP_A_cold_shock_protein</td><td>coordinate_contact_graph</td><td>alpha_beta_mixed</td><td>beta_rich</td><td>beta_rich</td><td>0.564113</td><td>prediction_structure_class_mismatch</td></tr><tr><td>pdb_1TIM_A_triosephosphate_isomerase</td><td>coordinate_contact_graph</td><td>multidomain_boundary</td><td>alpha_beta_mixed</td><td>alpha_beta_mixed</td><td>0.730734</td><td>prediction_structure_class_mismatch</td></tr><tr><td>pdb_1PGA_A_protein_g_b1</td><td>coordinate_contact_graph</td><td>alpha_beta_mixed</td><td>alpha_beta_mixed</td><td>alpha_beta_mixed</td><td>0.599379</td><td>low_prediction_structure_similarity</td></tr><tr><td>pdb_4AKE_A_adenylate_kinase</td><td>coordinate_contact_graph</td><td>multidomain_boundary</td><td>alpha_beta_mixed</td><td>multidomain_boundary</td><td>0.714417</td><td>prediction_structure_class_mismatch</td></tr><tr><td>pdb_1CLL_A_calmodulin</td><td>coordinate_contact_graph</td><td>multidomain_boundary</td><td>multidomain_boundary</td><td>multidomain_boundary</td><td>0.732053</td><td></td></tr><tr><td>disprot_DP00070_alpha_synuclein</td><td>disorder_reference</td><td>alpha_beta_mixed</td><td>disordered_flexible</td><td>disordered_flexible</td><td>0.613594</td><td>prediction_structure_class_mismatch</td></tr><tr><td>disprot_DP03552_fetal_tau</td><td>disorder_reference</td><td>disordered_flexible</td><td>disordered_flexible</td><td>disordered_flexible</td><td>0.615282</td><td>low_prediction_structure_similarity</td></tr></tbody>
+    </table>
+  </section>
+</main>
+</body>
+</html>

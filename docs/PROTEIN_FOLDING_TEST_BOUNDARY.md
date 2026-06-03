@@ -125,6 +125,122 @@ accuracy = 0.4
 folding_problem_solved = false
 ```
 
+That result is frozen as:
+
+```text
+real_external_label_benchmark_v0
+```
+
+It is real in the sense that the rows contain real sequences and external
+accessions. It is still label/prototype-based in the topology-reference channel:
+
+```text
+sequence -> predicted topology
+external label -> locked broad-class prototype
+compare
+```
+
+It is not yet a structure-derived folding test.
+
+## Structure-Derived Topology Benchmark
+
+The next benchmark channel is:
+
+```text
+structure_derived_topology_benchmark
+```
+
+It keeps three evidence channels separate:
+
+```text
+A. sequence-derived prediction
+B. structure-derived topology evidence
+C. external human/database label
+```
+
+The report therefore shows:
+
+```text
+prediction_vs_structure_score
+prediction_vs_label_score
+structure_vs_label_agreement
+```
+
+For folded PDB rows, the structure evidence is extracted from local PDB
+coordinate files using a C-alpha contact graph plus HELIX/SHEET/B-factor
+signals. For DisProt rows, the evidence channel is explicitly
+`disorder_reference`, not coordinates.
+
+The compact checked-in evidence file is:
+
+```text
+data/folding_benchmarks_real_10_structure_evidence.json
+```
+
+It records:
+
+```text
+8 coordinate_contact_graph rows
+2 disorder_reference rows
+folding_problem_solved = false
+```
+
+To rebuild that evidence file from local PDB files:
+
+```bash
+python3 scripts/extract_structure_topology_signatures.py \
+  --benchmark-file data/folding_benchmarks_real_10.locked.json \
+  --pdb-dir /path/to/pdb_files \
+  --output data/folding_benchmarks_real_10_structure_evidence.json
+```
+
+To run the structure benchmark:
+
+```bash
+python3 scripts/run_structure_folding_topology_benchmark.py
+```
+
+The current checked-in structure report says:
+
+```text
+prediction_vs_structure_accuracy = 0.3
+prediction_vs_label_accuracy = 0.4
+structure_vs_label_agreement_rate = 0.9
+sequence_order_sensitivity_score = 0.0
+composition_only_warning = true
+revision_required = true
+claim_allowed = false
+folding_problem_solved = false
+```
+
+That is a useful contradiction/revision signal, not a model success claim.
+
+## Sequence-Order Controls
+
+The structure benchmark also runs internal perturbation controls:
+
+```text
+real sequence
+composition-preserving shuffled sequence
+reversed sequence
+local-window shuffled sequence
+hydrophobic-cluster destroyed sequence
+charge-pattern scrambled sequence
+```
+
+Generated control sequences are not written to the output files. The output
+records only control type, whether composition was preserved, predicted class
+change, and signature delta.
+
+The most important metric is:
+
+```text
+sequence_order_sensitivity_score
+```
+
+The current value is `0.0`, meaning the recipe does not yet respond to sequence
+order changes. That is the point of the test.
+
 The 500-file is a target shell, not a completed benchmark. It records the
 intended proof ladder and current lock blockers until real rows exist.
 
@@ -217,6 +333,16 @@ External benchmark runs also write sidecar files beside the report:
 *_certificate.json
 *_failures.csv
 *_confusion_matrix.csv
+```
+
+Structure-derived benchmark runs write:
+
+```text
+real_folding_10_structure_report.json
+real_folding_10_structure_rows.csv
+real_folding_10_structure_dashboard.html
+real_folding_10_order_controls.csv
+real_folding_10_falsification_report.json
 ```
 
 When a benchmark file is loaded, the JSON report also includes:

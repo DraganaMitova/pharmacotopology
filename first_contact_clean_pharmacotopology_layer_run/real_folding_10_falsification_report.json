@@ -1,0 +1,21 @@
+{
+  "benchmark_kind": "knot_style_folding_falsification_summary",
+  "chi_contradiction_seen": true,
+  "claim_allowed": false,
+  "composition_only_warning": true,
+  "contradiction_against_stability_seen": true,
+  "controls_with_no_signature_change": 50,
+  "delta_comparison": true,
+  "folding_problem_solved": false,
+  "folding_solution_claim_created": false,
+  "lambda_local_signal": true,
+  "omega_terminal_claim_allowed": false,
+  "order_controls_reviewed": 50,
+  "recommended_revision": "Add sequence-order, local-window, and contact-aware terms before treating broad fold-class matches as stability evidence.",
+  "revision_candidate_created": true,
+  "rho_revision_needed": true,
+  "sequence_order_sensitivity_score": 0.0,
+  "sigma_stability": false,
+  "source_benchmark_kind": "structure_derived_topology_benchmark",
+  "tau_transfer_falsification": false
+}

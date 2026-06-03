@@ -92,6 +92,31 @@ On the current model, this slice reports 4 fold-class matches and 6 mismatches
 (`accuracy = 0.4`). That is useful because the failures are visible, not because
 the model is strong.
 
+That first slice is frozen as `real_external_label_benchmark_v0`: it compares a
+sequence-derived prediction against broad external labels and locked
+label-derived prototype signatures. The next layer is separate and more
+important: `structure_derived_topology_benchmark`.
+
+```text
+sequence -> predicted topology
+PDB coordinates / DisProt disorder evidence -> extracted topology evidence
+external label -> label agreement channel
+```
+
+The structure-derived layer keeps three truth channels apart:
+
+```text
+prediction_vs_structure_score
+prediction_vs_label_score
+structure_vs_label_agreement
+```
+
+It also runs internal sequence-order controls without writing generated control
+sequences: composition shuffle, reversal, local-window shuffle,
+hydrophobic-cluster destruction, and charge-pattern scrambling. The current
+`sequence_order_sensitivity_score` is `0.0`, which is the honest warning: the
+current recipe is still reading composition more than sequence order.
+
 See [docs/PROTEIN_FOLDING_TEST_BOUNDARY.md](docs/PROTEIN_FOLDING_TEST_BOUNDARY.md).
 
 External benchmark rows can be loaded separately:
@@ -177,6 +202,7 @@ infrastructure without pretending to be useful as medicine.
 src/pharmacotopology/                 core simulator and boundary model
 data/folding_benchmarks_real.example.json
 data/folding_benchmarks_real_10.locked.json
+data/folding_benchmarks_real_10_structure_evidence.json
 data/folding_benchmarks_real_500.locked.json
 scripts/run_clean_pharmacotopology_layer.py
 scripts/render_pharmacotopology_dashboard.py
@@ -187,6 +213,8 @@ scripts/explore_sensitivity.py
 scripts/build_real_folding_benchmark_500.py
 scripts/run_folding_topology_benchmark.py
 scripts/render_folding_benchmark_dashboard.py
+scripts/extract_structure_topology_signatures.py
+scripts/run_structure_folding_topology_benchmark.py
 scripts/validate_field_trace.py
 scripts/measure_field_trace.py
 tests/                               pytest coverage for ranking and safety
@@ -250,6 +278,33 @@ That run also writes:
 real_folding_10_certificate.json
 real_folding_10_failures.csv
 real_folding_10_confusion_matrix.csv
+```
+
+Run the structure-derived topology benchmark and order controls:
+
+```bash
+python3 scripts/run_structure_folding_topology_benchmark.py
+```
+
+If you want to rebuild the compact structure evidence file from local PDB
+coordinate files, place files such as `1MBN.pdb` and `2LZM.pdb` in a directory
+and run:
+
+```bash
+python3 scripts/extract_structure_topology_signatures.py --pdb-dir /path/to/pdb_files
+```
+
+The checked-in structure benchmark report currently says:
+
+```text
+coordinate rows = 8
+disorder-reference rows = 2
+prediction_vs_structure_accuracy = 0.3
+prediction_vs_label_accuracy = 0.4
+structure_vs_label_agreement_rate = 0.9
+sequence_order_sensitivity_score = 0.0
+revision_required = true
+folding_problem_solved = false
 ```
 
 Build the 500-protein locked benchmark target shell:
@@ -501,6 +556,11 @@ real_folding_10_dashboard.html
 real_folding_10_certificate.json
 real_folding_10_failures.csv
 real_folding_10_confusion_matrix.csv
+real_folding_10_structure_report.json
+real_folding_10_structure_rows.csv
+real_folding_10_structure_dashboard.html
+real_folding_10_order_controls.csv
+real_folding_10_falsification_report.json
 field_validation.json
 field_metrics.json
 ```
