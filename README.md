@@ -1,7 +1,8 @@
 # Pharmacotopology
 
-A small, visual-only research simulator for exploring how hypothesis-level
-mechanism vectors might perturb an abstract topology profile.
+A bounded hypothesis workbench and visual-only research simulator for exploring
+how hypothesis-level mechanism vectors might perturb an abstract topology
+profile.
 
 This repository is public because the idea is easier to examine when the model,
 assumptions, generated artifacts, and safety boundaries are visible. It is not
@@ -35,6 +36,11 @@ narrow modeling question:
 Did this perturbation move the simulated topology closer to bounded review,
 and at what modeled collapse cost?
 ```
+
+The practical use is not clinical decision support. It is structured hypothesis
+work: make assumptions explicit, compare them under the same scoring rules, add
+evidence weights when evidence exists, and keep uncertainty visible until a
+claim can be externally calibrated.
 
 ## What This Is Not
 
@@ -81,6 +87,11 @@ The numbers are hypotheses, not truth. Future calibration would need external
 evidence such as trial outcomes, receptor binding data, side-effect profiles,
 symptom scales, relapse data, cognition data, and discontinuation rates. Until
 then, this remains a bounded perturbation model.
+
+The repository now exposes that gap directly through calibration readiness
+metadata: evidence weight, uncertainty radius, score intervals, blockers, and
+next calibration steps. That makes the project useful as research
+infrastructure without pretending to be useful as medicine.
 
 ## Repository Shape
 
@@ -152,6 +163,9 @@ The run report also asserts:
 ```text
 simulation_only = true
 hypothesis_numbers_only = true
+calibration_status = uncalibrated_hypothesis_workbench
+practical_use = bounded_hypothesis_comparison_and_falsification
+clinical_use_allowed = false
 clinical_advice_created = false
 medication_recommendation_created = false
 real_patient_inference_created = false
@@ -173,14 +187,15 @@ memory.jsonl
 audit.jsonl
 session_records.jsonl
 clean_pharmacotopology_layer_report.json
+calibration_readiness_report.json
 pharmacotopology_dashboard.html
 field_validation.json
 field_metrics.json
 ```
 
 The JSON files are meant to make the review trace auditable. The dashboard is
-meant to make the topology ranking easier to inspect without changing the
-safety boundary.
+meant to make the topology ranking, evidence readiness, and uncertainty
+intervals easier to inspect without changing the safety boundary.
 
 ## Safety Footer
 
@@ -193,8 +208,10 @@ Clinical claims are denied unless externally validated.
 
 ## Status
 
-This is an early research prototype. The most valuable contributions right now
-are careful critique of the modeling assumptions, clearer validation boundaries,
+This is an early research prototype with a practical non-clinical target:
+bounded hypothesis comparison and falsification. The most valuable
+contributions right now are careful critique of the modeling assumptions,
+evidence-source mapping, calibration datasets, clearer validation boundaries,
 and better ways to explain what the scores do and do not mean.
 
 ## License

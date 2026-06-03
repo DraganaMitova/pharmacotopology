@@ -66,6 +66,7 @@ def run_dir_texts(run_dir: Path) -> Dict[str, str]:
         "ambient_voice_session_certificate.json",
         "clean_production_ambient_memory_runtime_report.json",
         "clean_pharmacotopology_layer_report.json",
+        "calibration_readiness_report.json",
         "memory_store.jsonl",
         "topology_index.json",
         "memory_geometry_index.json",

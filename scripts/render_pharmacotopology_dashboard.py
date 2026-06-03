@@ -190,17 +190,41 @@ def _topology_state_map(review: Mapping[str, Any]) -> str:
 
 
 def _ranking_chart(review: Mapping[str, Any]) -> str:
+    results = _result_lookup(review)
     rows = []
     for item in _ranking(review):
-        mechanism_id = escape(str(item["mechanism_id"]))
+        mechanism_key = str(item["mechanism_id"])
+        mechanism_id = escape(mechanism_key)
+        result = results.get(mechanism_key, {})
         pathology = float(item["pathology_reduction_score"])
         collapse = float(item["collapse_cost_score"])
         net = float(item["net_topology_health_score"])
+        evidence_weight = float(
+            item.get("evidence_weight", result.get("evidence_weight", 0.0))
+        )
+        uncertainty_radius = float(
+            item.get("uncertainty_radius", result.get("uncertainty_radius", 0.0))
+        )
+        evidence_label = escape(
+            str(
+                item.get(
+                    "evidence_readiness_label",
+                    result.get("evidence_readiness_label", "unknown"),
+                )
+            )
+        )
+        net_interval = result.get("net_topology_health_interval", {})
+        net_lower = float(net_interval.get("lower", net))
+        net_upper = float(net_interval.get("upper", net))
         fit_label = escape(str(item.get("fit_label", "")))
         rows.append(
             "<article class=\"ranking-card\">"
             f"<h3>#{int(item['rank'])} {mechanism_id}</h3>"
             f"<p class=\"fit-label\">{fit_label}</p>"
+            f"<p class=\"evidence-line\">{evidence_label} · "
+            f"evidence_weight {_fmt(evidence_weight)} · "
+            f"uncertainty_radius {_fmt(uncertainty_radius)} · "
+            f"net interval {_fmt(net_lower)} to {_fmt(net_upper)}</p>"
             "<div class=\"score-row\"><span>pathology_reduction_score <em>topology distance change, not cure</em></span>"
             f"{_score_bar_svg(pathology, signed=True, css_class='score-pathology')}</div>"
             "<div class=\"score-row\"><span>collapse_cost_score</span>"
@@ -217,6 +241,53 @@ def _ranking_chart(review: Mapping[str, Any]) -> str:
       </div>
       <div class="ranking-list">
         {''.join(rows)}
+      </div>
+    </section>
+    """
+
+
+def _calibration_readiness(review: Mapping[str, Any]) -> str:
+    calibration = review.get("Φ.calibration_readiness", {})
+    status = escape(str(calibration.get("calibration_status", "unknown")))
+    practical_use = escape(str(calibration.get("practical_use", "unknown")))
+    clinical_allowed = str(calibration.get("clinical_use_allowed", False)).lower()
+    evidence_count = int(calibration.get("evidence_backed_vectors", 0))
+    vector_count = int(calibration.get("mechanism_vectors_reviewed", 0))
+    mean_weight = float(calibration.get("mean_evidence_weight", 0.0))
+    mean_uncertainty = float(calibration.get("mean_uncertainty_radius", 0.0))
+    blockers = [
+        str(item) for item in calibration.get("blockers", []) if isinstance(item, str)
+    ]
+    next_steps = [
+        str(item)
+        for item in calibration.get("next_steps", [])
+        if isinstance(item, str)
+    ]
+    blocker_items = "".join(f"<li>{escape(item)}</li>" for item in blockers)
+    next_step_items = "".join(f"<li>{escape(item)}</li>" for item in next_steps)
+    return f"""
+    <section>
+      <div class="section-heading">
+        <h2>Calibration Readiness</h2>
+        <p>Practical status for bounded hypothesis comparison. Clinical use remains closed.</p>
+      </div>
+      <div class="readiness-grid">
+        <div class="readiness-panel">
+          <h3>{status}</h3>
+          <p>practical_use: {practical_use}</p>
+          <p>clinical_use_allowed: {escape(clinical_allowed)}</p>
+          <p>evidence_backed_vectors: {evidence_count} / {vector_count}</p>
+          <p>mean_evidence_weight: {_fmt(mean_weight)}</p>
+          <p>mean_uncertainty_radius: {_fmt(mean_uncertainty)}</p>
+        </div>
+        <div class="readiness-panel">
+          <h3>Blockers</h3>
+          <ul>{blocker_items}</ul>
+        </div>
+        <div class="readiness-panel">
+          <h3>Next Calibration Steps</h3>
+          <ul>{next_step_items}</ul>
+        </div>
       </div>
     </section>
     """
@@ -366,7 +437,7 @@ def _stylesheet() -> str:
     h2 { font-size: 20px; margin-bottom: 4px; }
     h3 { font-size: 15px; margin-bottom: 4px; }
     section { margin: 28px 0; }
-    .kicker, .layer-line, .section-heading p, .fit-label, .score-row em {
+    .kicker, .layer-line, .section-heading p, .fit-label, .evidence-line, .score-row em {
       color: var(--muted);
     }
     .kicker {
@@ -402,6 +473,11 @@ def _stylesheet() -> str:
       padding: 10px 12px;
     }
     .ranking-card { padding: 12px; }
+    .evidence-line {
+      margin-bottom: 10px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 12px;
+    }
     .score-row {
       display: grid;
       grid-template-columns: minmax(260px, 1fr) 260px;
@@ -434,6 +510,29 @@ def _stylesheet() -> str:
     .neutral { background: var(--neutral-bg); color: #4d5156; }
     .heatmap th:first-child { position: sticky; left: 0; z-index: 1; }
     .comparison-card { padding: 0; overflow: hidden; }
+    .readiness-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .readiness-panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 12px;
+    }
+    .readiness-panel p {
+      margin-bottom: 6px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 12px;
+    }
+    .readiness-panel ul {
+      margin: 0;
+      padding-left: 18px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 12px;
+    }
+    .readiness-panel li { margin-bottom: 6px; }
     .comparison-card summary {
       cursor: pointer;
       padding: 12px;
@@ -454,6 +553,7 @@ def _stylesheet() -> str:
       .hero { display: block; }
       .safety-badge { display: inline-block; margin-top: 14px; }
       .topology-row, .score-row { grid-template-columns: 1fr; }
+      .readiness-grid { grid-template-columns: 1fr; }
     }
     """
 
@@ -473,6 +573,7 @@ def render_dashboard_html(packet: Mapping[str, Any]) -> str:
     {_html_header(packet)}
     {_topology_state_map(review)}
     {_ranking_chart(review)}
+    {_calibration_readiness(review)}
     {_heatmap(review)}
     {_before_after(review)}
     {_safety_footer()}

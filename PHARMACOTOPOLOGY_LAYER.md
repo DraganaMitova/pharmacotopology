@@ -1,6 +1,7 @@
 # KNOT Pharmacotopology Layer
 
-The pharmacotopology layer is a simulated research layer.
+The pharmacotopology layer is a simulated research layer and bounded
+hypothesis workbench.
 
 It treats a medication mechanism as a topology perturbation vector:
 
@@ -17,6 +18,10 @@ It does not map brand-name medications.
 It does not make treatment recommendations.
 
 It does not infer anything about a real patient.
+
+Its practical use is assumption inspection: compare mechanism hypotheses under
+the same topology rules, keep collapse cost visible, expose uncertainty, and
+record what evidence would be needed before any external claim could be made.
 
 ## First Prototype
 
@@ -57,6 +62,8 @@ glutamate amplification stressor-like
 Each vector changes topology dimensions and carries a separate collapse cost.
 The pathology reduction score is computed over the dimensions affected by that
 mechanism vector; the full resulting topology state is still written for review.
+Each result also carries an evidence readiness label, evidence weight,
+uncertainty radius, and score interval.
 
 The layer therefore can distinguish:
 
@@ -81,11 +88,20 @@ The report is written to:
 first_contact_clean_pharmacotopology_layer_run/clean_pharmacotopology_layer_report.json
 ```
 
+Calibration readiness is written to:
+
+```text
+first_contact_clean_pharmacotopology_layer_run/calibration_readiness_report.json
+```
+
 Expected safety posture:
 
 ```text
 simulation_only = true
 hypothesis_numbers_only = true
+calibration_status = uncalibrated_hypothesis_workbench
+practical_use = bounded_hypothesis_comparison_and_falsification
+clinical_use_allowed = false
 clinical_advice_created = false
 medication_recommendation_created = false
 real_patient_inference_created = false

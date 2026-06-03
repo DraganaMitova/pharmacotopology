@@ -48,10 +48,19 @@ PHARMACOTOPOLOGY_GENERATED_FILES: tuple[str, ...] = (
     "audit.jsonl",
     "session_records.jsonl",
     "clean_pharmacotopology_layer_report.json",
+    "calibration_readiness_report.json",
     "pharmacotopology_dashboard.html",
     "field_validation.json",
     "field_metrics.json",
 )
+
+EVIDENCE_STAGE_WEIGHTS: dict[str, float] = {
+    "hypothesis_only": 0.0,
+    "mechanism_proxy": 0.25,
+    "external_dataset_proxy": 0.50,
+    "externally_calibrated": 0.75,
+    "replicated_external": 0.90,
+}
 
 
 @dataclass(frozen=True)
@@ -69,6 +78,10 @@ class MechanismVector:
     deltas: dict[str, float]
     collapse_cost: float
     evidence_stage: str = "hypothesis_only"
+    evidence_weight: float = 0.0
+    uncertainty_radius: float = 0.35
+    evidence_refs: tuple[str, ...] = ()
+    assumption_notes: tuple[str, ...] = ()
 
 
 @dataclass(frozen=True)
@@ -77,15 +90,38 @@ class PerturbationResult:
     mechanism_family: str
     receptor_profile: tuple[str, ...]
     evidence_stage: str
+    evidence_weight: float
+    uncertainty_radius: float
+    evidence_refs: tuple[str, ...]
+    assumption_notes: tuple[str, ...]
     resulting_state: dict[str, float]
     topology_delta: dict[str, float]
     scored_dimensions: tuple[str, ...]
     improved_dimensions: tuple[str, ...]
     worsened_dimensions: tuple[str, ...]
     pathology_reduction_score: float
+    pathology_reduction_interval: dict[str, float]
     collapse_cost_score: float
+    collapse_cost_interval: dict[str, float]
     net_topology_health_score: float
+    net_topology_health_interval: dict[str, float]
     fit_label: str
+    evidence_readiness_label: str
+
+
+@dataclass(frozen=True)
+class CalibrationReadinessReport:
+    calibration_status: str
+    practical_use: str
+    mechanism_vectors_reviewed: int
+    evidence_backed_vectors: int
+    uncalibrated_vectors: int
+    mean_evidence_weight: float
+    mean_uncertainty_radius: float
+    clinical_use_allowed: bool
+    external_validation_required: bool
+    blockers: tuple[str, ...]
+    next_steps: tuple[str, ...]
 
 
 @dataclass(frozen=True)
@@ -94,6 +130,13 @@ class CleanPharmacotopologyLayerReport:
     pharmacotopology_review_valid: bool
     simulation_only: bool
     hypothesis_numbers_only: bool
+    calibration_status: str
+    practical_use: str
+    evidence_backed_vectors: int
+    uncalibrated_vectors: int
+    mean_evidence_weight: float
+    mean_uncertainty_radius: float
+    clinical_use_allowed: bool
     mechanism_vectors_reviewed: int
     topology_dimensions_reviewed: int
     top_mechanism_id: str
@@ -309,6 +352,13 @@ def _collapse_cost_score(
     vector: MechanismVector,
     topology_delta: Mapping[str, float],
 ) -> float:
+    return _collapse_cost_score_from_base(vector.collapse_cost, topology_delta)
+
+
+def _collapse_cost_score_from_base(
+    collapse_cost: float,
+    topology_delta: Mapping[str, float],
+) -> float:
     penalty = (
         max(float(topology_delta.get("negative_shutdown", 0.0)), 0.0) * 0.50
         + max(float(topology_delta.get("cognitive_fragmentation", 0.0)), 0.0)
@@ -316,7 +366,117 @@ def _collapse_cost_score(
         + max(float(topology_delta.get("boundary_instability", 0.0)), 0.0)
         * 0.20
     )
-    return _rounded(_clamp(vector.collapse_cost + penalty, 0.0, 1.0))
+    return _rounded(_clamp(collapse_cost + penalty, 0.0, 1.0))
+
+
+def _interval(values: Sequence[float]) -> dict[str, float]:
+    return {
+        "lower": _rounded(min(values)),
+        "upper": _rounded(max(values)),
+    }
+
+
+def _effective_evidence_weight(vector: MechanismVector) -> float:
+    stage_weight = EVIDENCE_STAGE_WEIGHTS.get(vector.evidence_stage, 0.0)
+    return _rounded(_clamp(max(vector.evidence_weight, stage_weight), 0.0, 1.0))
+
+
+def _effective_uncertainty_radius(vector: MechanismVector) -> float:
+    evidence_weight = _effective_evidence_weight(vector)
+    return _rounded(
+        _clamp(vector.uncertainty_radius * (1.0 - evidence_weight), 0.0, 1.0)
+    )
+
+
+def _evidence_readiness_label(evidence_weight: float) -> str:
+    if evidence_weight <= 0.0:
+        return "uncalibrated_hypothesis"
+    if evidence_weight < 0.40:
+        return "mechanism_proxy_only"
+    if evidence_weight < 0.75:
+        return "partially_calibrated"
+    return "externally_calibrated_research"
+
+
+def _score_scaled_vector(
+    source: TopologyProfile,
+    target: TopologyProfile,
+    vector: MechanismVector,
+    *,
+    delta_scale: float,
+    collapse_scale: float,
+) -> tuple[
+    dict[str, float],
+    dict[str, float],
+    tuple[str, ...],
+    tuple[str, ...],
+    tuple[str, ...],
+    float,
+    float,
+    float,
+]:
+    scored_dimensions = tuple(
+        dimension
+        for dimension in PATHOLOGY_DIMENSIONS
+        if abs(float(vector.deltas.get(dimension, 0.0))) > 0.0
+    ) or PATHOLOGY_DIMENSIONS
+    baseline_distance = _dimension_distance(
+        source.dimensions,
+        target.dimensions,
+        scored_dimensions,
+    )
+    resulting_state: dict[str, float] = {}
+    topology_delta: dict[str, float] = {}
+
+    for dimension in PATHOLOGY_DIMENSIONS:
+        original = float(source.dimensions[dimension])
+        shifted = _clamp(
+            original + (float(vector.deltas.get(dimension, 0.0)) * delta_scale),
+            TOPOLOGY_PRESSURE_MIN,
+            TOPOLOGY_PRESSURE_MAX,
+        )
+        resulting_state[dimension] = _rounded(shifted)
+        topology_delta[dimension] = _rounded(shifted - original)
+
+    resulting_distance = _dimension_distance(
+        resulting_state,
+        target.dimensions,
+        scored_dimensions,
+    )
+    pathology_reduction_score = _rounded(
+        _clamp((baseline_distance - resulting_distance) / baseline_distance, -1.0, 1.0)
+    )
+    collapse_cost_score = _collapse_cost_score_from_base(
+        vector.collapse_cost * collapse_scale,
+        topology_delta,
+    )
+    net_topology_health_score = _rounded(
+        _clamp(pathology_reduction_score - (collapse_cost_score * 0.55), -1.0, 1.0)
+    )
+
+    improved_dimensions = tuple(
+        dimension
+        for dimension in PATHOLOGY_DIMENSIONS
+        if abs(resulting_state[dimension] - target.dimensions[dimension])
+        < abs(source.dimensions[dimension] - target.dimensions[dimension])
+    )
+    worsened_dimensions = tuple(
+        dimension
+        for dimension in PATHOLOGY_DIMENSIONS
+        if abs(resulting_state[dimension] - target.dimensions[dimension])
+        > abs(source.dimensions[dimension] - target.dimensions[dimension])
+    )
+
+    return (
+        resulting_state,
+        topology_delta,
+        scored_dimensions,
+        improved_dimensions,
+        worsened_dimensions,
+        pathology_reduction_score,
+        collapse_cost_score,
+        net_topology_health_score,
+    )
 
 
 def classify_fit(pathology_reduction_score: float, collapse_cost_score: float) -> str:
@@ -336,53 +496,39 @@ def apply_mechanism_vector(
     target: TopologyProfile,
     vector: MechanismVector,
 ) -> PerturbationResult:
-    scored_dimensions = tuple(
-        dimension
-        for dimension in PATHOLOGY_DIMENSIONS
-        if abs(float(vector.deltas.get(dimension, 0.0))) > 0.0
-    ) or PATHOLOGY_DIMENSIONS
-    baseline_distance = _dimension_distance(
-        source.dimensions,
-        target.dimensions,
-        scored_dimensions,
-    )
-    resulting_state: dict[str, float] = {}
-    topology_delta: dict[str, float] = {}
-
-    for dimension in PATHOLOGY_DIMENSIONS:
-        original = float(source.dimensions[dimension])
-        shifted = _clamp(
-            original + float(vector.deltas.get(dimension, 0.0)),
-            TOPOLOGY_PRESSURE_MIN,
-            TOPOLOGY_PRESSURE_MAX,
-        )
-        resulting_state[dimension] = _rounded(shifted)
-        topology_delta[dimension] = _rounded(shifted - original)
-
-    resulting_distance = _dimension_distance(
+    (
         resulting_state,
-        target.dimensions,
+        topology_delta,
         scored_dimensions,
-    )
-    pathology_reduction_score = _rounded(
-        _clamp((baseline_distance - resulting_distance) / baseline_distance, -1.0, 1.0)
-    )
-    collapse_cost_score = _collapse_cost_score(vector, topology_delta)
-    net_topology_health_score = _rounded(
-        _clamp(pathology_reduction_score - (collapse_cost_score * 0.55), -1.0, 1.0)
+        improved_dimensions,
+        worsened_dimensions,
+        pathology_reduction_score,
+        collapse_cost_score,
+        net_topology_health_score,
+    ) = _score_scaled_vector(
+        source,
+        target,
+        vector,
+        delta_scale=1.0,
+        collapse_scale=1.0,
     )
 
-    improved_dimensions = tuple(
-        dimension
-        for dimension in PATHOLOGY_DIMENSIONS
-        if abs(resulting_state[dimension] - target.dimensions[dimension])
-        < abs(source.dimensions[dimension] - target.dimensions[dimension])
+    evidence_weight = _effective_evidence_weight(vector)
+    uncertainty_radius = _effective_uncertainty_radius(vector)
+    uncertainty_scales = (
+        max(0.0, 1.0 - uncertainty_radius),
+        1.0,
+        1.0 + uncertainty_radius,
     )
-    worsened_dimensions = tuple(
-        dimension
-        for dimension in PATHOLOGY_DIMENSIONS
-        if abs(resulting_state[dimension] - target.dimensions[dimension])
-        > abs(source.dimensions[dimension] - target.dimensions[dimension])
+    interval_scores = tuple(
+        _score_scaled_vector(
+            source,
+            target,
+            vector,
+            delta_scale=scale,
+            collapse_scale=scale,
+        )
+        for scale in uncertainty_scales
     )
 
     return PerturbationResult(
@@ -390,15 +536,27 @@ def apply_mechanism_vector(
         mechanism_family=vector.mechanism_family,
         receptor_profile=vector.receptor_profile,
         evidence_stage=vector.evidence_stage,
+        evidence_weight=evidence_weight,
+        uncertainty_radius=uncertainty_radius,
+        evidence_refs=vector.evidence_refs,
+        assumption_notes=vector.assumption_notes,
         resulting_state=resulting_state,
         topology_delta=topology_delta,
         scored_dimensions=scored_dimensions,
         improved_dimensions=improved_dimensions,
         worsened_dimensions=worsened_dimensions,
         pathology_reduction_score=pathology_reduction_score,
+        pathology_reduction_interval=_interval(
+            tuple(score[5] for score in interval_scores)
+        ),
         collapse_cost_score=collapse_cost_score,
+        collapse_cost_interval=_interval(tuple(score[6] for score in interval_scores)),
         net_topology_health_score=net_topology_health_score,
+        net_topology_health_interval=_interval(
+            tuple(score[7] for score in interval_scores)
+        ),
         fit_label=classify_fit(pathology_reduction_score, collapse_cost_score),
+        evidence_readiness_label=_evidence_readiness_label(evidence_weight),
     )
 
 
@@ -419,6 +577,60 @@ def rank_perturbation_results(
     )
 
 
+def build_calibration_readiness_report(
+    results: Sequence[PerturbationResult],
+) -> CalibrationReadinessReport:
+    vector_count = len(results)
+    evidence_backed_vectors = sum(
+        1 for result in results if result.evidence_weight > 0.0 and result.evidence_refs
+    )
+    uncalibrated_vectors = sum(
+        1
+        for result in results
+        if result.evidence_readiness_label == "uncalibrated_hypothesis"
+    )
+    mean_evidence_weight = _rounded(
+        sum(result.evidence_weight for result in results) / vector_count
+        if vector_count
+        else 0.0
+    )
+    mean_uncertainty_radius = _rounded(
+        sum(result.uncertainty_radius for result in results) / vector_count
+        if vector_count
+        else 0.0
+    )
+    if evidence_backed_vectors == 0:
+        calibration_status = "uncalibrated_hypothesis_workbench"
+    elif evidence_backed_vectors < vector_count:
+        calibration_status = "partially_evidence_backed_workbench"
+    else:
+        calibration_status = "evidence_backed_research_workbench"
+
+    return CalibrationReadinessReport(
+        calibration_status=calibration_status,
+        practical_use="bounded_hypothesis_comparison_and_falsification",
+        mechanism_vectors_reviewed=vector_count,
+        evidence_backed_vectors=evidence_backed_vectors,
+        uncalibrated_vectors=uncalibrated_vectors,
+        mean_evidence_weight=mean_evidence_weight,
+        mean_uncertainty_radius=mean_uncertainty_radius,
+        clinical_use_allowed=False,
+        external_validation_required=True,
+        blockers=(
+            "no_external_calibration_dataset",
+            "no_empirical_delta_estimates",
+            "no_patient_specific_inference_allowed",
+            "no_brand_name_or_treatment_mapping",
+        ),
+        next_steps=(
+            "attach_source_references_to_each_mechanism_vector",
+            "replace_point_deltas_with_evidence_derived_ranges",
+            "compare_rankings_against_external_non_patient_datasets",
+            "track_assumption_changes_across_calibration_runs",
+        ),
+    )
+
+
 def build_pharmacotopology_review(
     *,
     source: TopologyProfile = DEFAULT_SCHIZOPHRENIA_LIKE_PROFILE,
@@ -429,6 +641,7 @@ def build_pharmacotopology_review(
         tuple(apply_mechanism_vector(source, target, vector) for vector in mechanisms)
     )
     top_result = results[0]
+    calibration_readiness = build_calibration_readiness_report(results)
 
     return {
         "Φ.kind": "Φ.clean.pharmacotopology_layer.v0",
@@ -441,6 +654,12 @@ def build_pharmacotopology_review(
             "brand_name_mapping_created": False,
             "dimension_direction": "lower_pressure_is_closer_to_bounded_review",
         },
+        "Φ.practical_use": {
+            "research_use_label": "bounded_hypothesis_workbench",
+            "allowed_use": "compare_and_falsify_mechanism_assumptions",
+            "clinical_use_allowed": False,
+            "requires_external_calibration_for_claims": True,
+        },
         "Φ.source_profile": asdict(source),
         "Φ.target_profile": asdict(target),
         "Φ.mechanism_vectors": [asdict(vector) for vector in mechanisms],
@@ -452,6 +671,10 @@ def build_pharmacotopology_review(
                 "pathology_reduction_score": result.pathology_reduction_score,
                 "collapse_cost_score": result.collapse_cost_score,
                 "net_topology_health_score": result.net_topology_health_score,
+                "net_topology_health_interval": result.net_topology_health_interval,
+                "evidence_weight": result.evidence_weight,
+                "uncertainty_radius": result.uncertainty_radius,
+                "evidence_readiness_label": result.evidence_readiness_label,
                 "fit_label": result.fit_label,
             }
             for index, result in enumerate(results, start=1)
@@ -471,6 +694,7 @@ def build_pharmacotopology_review(
                 1 for result in results if result.fit_label == "destabilizing"
             ),
         },
+        "Φ.calibration_readiness": asdict(calibration_readiness),
         "Φ.calibration": {
             "stage": "hypothesis_only",
             "future_sources": [
@@ -536,6 +760,7 @@ def report_from_review(
     claim = review["Φ.claim"]
     neg = review["Φ.neg"]
     ranking = review["Φ.ranking"]
+    calibration = review["Φ.calibration_readiness"]
     top = ranking[0] if ranking else {}
 
     return CleanPharmacotopologyLayerReport(
@@ -543,6 +768,13 @@ def report_from_review(
         pharmacotopology_review_valid=bool(review_flags["valid"]),
         simulation_only=bool(review["Φ.scope"]["simulation_only"]),
         hypothesis_numbers_only=bool(review["Φ.scope"]["hypothesis_numbers_only"]),
+        calibration_status=str(calibration["calibration_status"]),
+        practical_use=str(calibration["practical_use"]),
+        evidence_backed_vectors=int(calibration["evidence_backed_vectors"]),
+        uncalibrated_vectors=int(calibration["uncalibrated_vectors"]),
+        mean_evidence_weight=float(calibration["mean_evidence_weight"]),
+        mean_uncertainty_radius=float(calibration["mean_uncertainty_radius"]),
+        clinical_use_allowed=bool(calibration["clinical_use_allowed"]),
         mechanism_vectors_reviewed=int(review_flags["mechanism_vectors_reviewed"]),
         topology_dimensions_reviewed=int(review_flags["topology_dimensions_reviewed"]),
         top_mechanism_id=str(review_flags["top_mechanism_id"]),
@@ -574,6 +806,13 @@ def refusal_report() -> CleanPharmacotopologyLayerReport:
         pharmacotopology_review_valid=False,
         simulation_only=True,
         hypothesis_numbers_only=True,
+        calibration_status="refused",
+        practical_use="none",
+        evidence_backed_vectors=0,
+        uncalibrated_vectors=0,
+        mean_evidence_weight=0.0,
+        mean_uncertainty_radius=0.0,
+        clinical_use_allowed=False,
         mechanism_vectors_reviewed=0,
         topology_dimensions_reviewed=0,
         top_mechanism_id="",
@@ -602,6 +841,24 @@ def write_report(
     path = run_dir / "clean_pharmacotopology_layer_report.json"
     path.write_text(
         json.dumps(asdict(report), ensure_ascii=False, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    return path
+
+
+def write_calibration_readiness_report(
+    run_dir: Path,
+    review: dict[str, Any],
+) -> Path:
+    path = run_dir / "calibration_readiness_report.json"
+    path.write_text(
+        json.dumps(
+            review["Φ.calibration_readiness"],
+            ensure_ascii=False,
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n",
         encoding="utf-8",
     )
     return path
@@ -668,5 +925,9 @@ def run_clean_pharmacotopology_layer(
     packet = build_pharmacotopology_packet(atom.field_packet())
     append_packet(run_dir, packet)
     report = report_from_review(packet[FieldKey.PHARMACOTOPOLOGY_REVIEW])
+    write_calibration_readiness_report(
+        run_dir,
+        packet[FieldKey.PHARMACOTOPOLOGY_REVIEW],
+    )
     write_report(run_dir, report)
     return report

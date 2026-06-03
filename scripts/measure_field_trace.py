@@ -316,6 +316,7 @@ def field_projection_paths(run_dir: Path) -> List[Path]:
         run_dir / "ambient_voice_session_certificate.json",
         run_dir / "clean_production_ambient_memory_runtime_report.json",
         run_dir / "clean_pharmacotopology_layer_report.json",
+        run_dir / "calibration_readiness_report.json",
         run_dir / "memory_store.jsonl",
         run_dir / "topology_index.json",
         run_dir / "memory_geometry_index.json",

@@ -57,6 +57,30 @@ def test_pharmacotopology_review_denies_clinical_claims() -> None:
     assert review["Φ.doctrine"]["ranking_is_prescribing_guidance"] is False
 
 
+def test_pharmacotopology_review_exposes_calibration_readiness() -> None:
+    review = build_pharmacotopology_review()
+    calibration = review["Φ.calibration_readiness"]
+    top_result = review["Φ.results"][0]
+
+    assert review["Φ.practical_use"]["research_use_label"] == (
+        "bounded_hypothesis_workbench"
+    )
+    assert review["Φ.practical_use"]["clinical_use_allowed"] is False
+    assert calibration["practical_use"] == (
+        "bounded_hypothesis_comparison_and_falsification"
+    )
+    assert calibration["clinical_use_allowed"] is False
+    assert calibration["external_validation_required"] is True
+    assert calibration["calibration_status"] == "uncalibrated_hypothesis_workbench"
+    assert top_result["evidence_readiness_label"] == "uncalibrated_hypothesis"
+    assert top_result["net_topology_health_interval"]["lower"] <= (
+        top_result["net_topology_health_score"]
+    )
+    assert top_result["net_topology_health_interval"]["upper"] >= (
+        top_result["net_topology_health_score"]
+    )
+
+
 def test_clean_pharmacotopology_run_writes_bounded_artifacts(tmp_path: Path) -> None:
     report = run_clean_pharmacotopology_layer(tmp_path)
 
@@ -67,6 +91,15 @@ def test_clean_pharmacotopology_run_writes_bounded_artifacts(tmp_path: Path) -> 
     assert report.medication_recommendation_created is False
     assert report.voice_opened is False
     assert report.stop_integrity == 1.0
+    assert report.calibration_status == "uncalibrated_hypothesis_workbench"
+    assert report.practical_use == "bounded_hypothesis_comparison_and_falsification"
+    assert report.clinical_use_allowed is False
+
+    calibration_report = json.loads(
+        (tmp_path / "calibration_readiness_report.json").read_text(encoding="utf-8")
+    )
+    assert calibration_report["clinical_use_allowed"] is False
+    assert calibration_report["external_validation_required"] is True
 
     rows = [
         json.loads(line)
