@@ -5,8 +5,10 @@ signals can perturb an explicit topology model, with safety boundaries kept in
 the artifacts instead of left as footnotes.
 
 This project has not solved protein folding. It has built a safe axis-level
-falsification stack. The current external-safe result has zero unsafe axis
-claims, but coverage is reduced. Global fold-class claims remain locked.
+falsification stack and now includes a visual contact-map workbench for seeing
+where coarse folding-mechanism hypotheses work, fail, or overclose. The current
+external-safe result has zero unsafe axis claims, but coverage is reduced.
+Global fold-class claims remain locked.
 
 ## Current Status
 
@@ -15,6 +17,7 @@ Pharmacotopology now has two related surfaces:
 ```text
 mechanism topology workbench
 protein/folding axis falsification stack
+visual folding mechanism workbench
 ```
 
 The mechanism workbench is a hypothesis simulator. It compares abstract
@@ -31,12 +34,20 @@ order_axis
 environment_axis
 ```
 
+The visual folding mechanism workbench is a locked 12-row contact-map
+visualization layer. It renders native contact targets, sequence-only predicted
+contact candidates, overlays, coarse trajectories, closure curves, and failure
+cohorts. It is interesting because the failures are visible instead of hidden
+inside one score.
+
 Current honest state:
 
 ```text
 internal 50-row safety benchmark = closed as a development safety milestone
 external 100-row unsafe axis claims = closed after quarantine
 axis_profile_coverage after repair = 0.55
+visual mechanism rows rendered = 12/12
+visual mechanism visible partial successes = 5
 global_fold_class_claim_allowed = false
 folding_problem_solved = false
 ```
@@ -52,6 +63,7 @@ axis-profile recovery
 architecture-axis adjudication
 external holdout
 external-safe axis repair
+visual contact-map mechanism workbench
 ```
 
 Canonical commands:
@@ -62,6 +74,7 @@ python3 scripts/run_fold_axis_profile_benchmark.py
 python3 scripts/run_architecture_axis_benchmark.py
 python3 scripts/run_external_fold_family_holdout_benchmark.py
 python3 scripts/run_external_axis_repair_benchmark.py
+python3 scripts/run_visual_folding_mechanism_benchmark.py
 ```
 
 The active generated folding artifacts are:
@@ -72,6 +85,8 @@ real_folding_50_axis_profile_*
 real_folding_50_architecture_axis_*
 external_fold_family_100_*
 external_axis_repair_*
+visual_mechanism_12_*
+visuals/*/*
 ```
 
 Older 10-row and pre-axis 50-row artifacts are preserved under:
@@ -122,6 +137,23 @@ external_safety_repair_successful = true
 That coverage loss is intentional. The repair chooses abstention over unsafe
 axis claims.
 
+Visual mechanism 12-row workbench:
+
+```text
+visual_artifacts_generated_for_rows = 12
+contact_map_f1_computed_count = 12
+visible_partial_success_count = 5
+visible_failure_count = 7
+mean_contact_map_f1 = 0.104031
+native_truth_used_before_prediction = false
+raw_sequence_exposed = false
+global_folding_claim_allowed = false
+folding_problem_solved = false
+```
+
+This does not make the model stronger by assertion. It makes the mechanism
+more inspectable.
+
 ## Safety Boundaries
 
 This repository does not:
@@ -160,6 +192,7 @@ docs/FOLD_AXIS_PROFILE_BOUNDARY.md    axis-safe profile boundary
 docs/FOLD_ARCHITECTURE_AXIS_BOUNDARY.md architecture-axis boundary
 docs/EXTERNAL_FOLD_FAMILY_HOLDOUT_BOUNDARY.md external holdout boundary
 docs/EXTERNAL_AXIS_REPAIR_BOUNDARY.md external-safe repair boundary
+docs/VISUAL_FOLDING_MECHANISM_BOUNDARY.md visual mechanism boundary
 tests/                               pytest coverage for safety and reproducibility
 ```
 
@@ -185,6 +218,7 @@ python3 scripts/run_fold_axis_profile_benchmark.py
 python3 scripts/run_architecture_axis_benchmark.py
 python3 scripts/run_external_fold_family_holdout_benchmark.py
 python3 scripts/run_external_axis_repair_benchmark.py
+python3 scripts/run_visual_folding_mechanism_benchmark.py
 ```
 
 Run verification:
@@ -213,6 +247,7 @@ Start here:
 docs/CURRENT_PROJECT_STATUS.md
 docs/PROTEIN_FOLDING_TEST_BOUNDARY.md
 docs/EXTERNAL_AXIS_REPAIR_BOUNDARY.md
+docs/VISUAL_FOLDING_MECHANISM_BOUNDARY.md
 docs/PROTEIN_CENTERED_REFRAME.md
 ```
 
@@ -222,8 +257,9 @@ The short version:
 Safety milestone: yes.
 Internal 50-row development benchmark: closed as a safety benchmark.
 External unsafe axis claims: closed after quarantine.
+Visual mechanism workbench: contact-map evidence is visible for 12 locked rows.
 Protein folding: not solved.
-Next correct work: improve evidence quality only after the canonical surface stays clean.
+Next correct work: improve visual/mechanism evidence quality without unlocking global claims.
 ```
 
 ## License

@@ -1,0 +1,25 @@
+{
+  "benchmark_kind": "visual_folding_mechanism_benchmark_v1",
+  "benchmark_size": 12,
+  "certificate_kind": "visual_folding_mechanism_safety_certificate",
+  "claim_allowed": false,
+  "contact_map_f1_computed_count": 12,
+  "failures_visualized": true,
+  "folding_problem_solved": false,
+  "global_folding_claim_allowed": false,
+  "holdout_split": "visual_mechanism_12",
+  "native_truth_used_before_prediction": false,
+  "output_artifacts": [
+    "visual_mechanism_12_report.json",
+    "visual_mechanism_12_rows.csv",
+    "visual_mechanism_12_contact_metrics.csv",
+    "visual_mechanism_12_failure_cohorts.csv",
+    "visual_mechanism_12_dashboard.html",
+    "visual_mechanism_12_certificate.json"
+  ],
+  "raw_sequence_exposed": false,
+  "visible_failure_count": 7,
+  "visible_partial_success_count": 5,
+  "visual_artifacts_generated_for_rows": 12,
+  "visual_mechanism_signature_kind": "coarse_contact_visual_mechanism_workbench"
+}

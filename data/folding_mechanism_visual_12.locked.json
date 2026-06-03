@@ -1,0 +1,1804 @@
+{
+  "benchmark_kind": "visual_folding_mechanism_benchmark_v1",
+  "benchmark_size": 12,
+  "distribution": {
+    "alpha_beta_mixed_small": 3,
+    "alpha_rich_small": 3,
+    "architecture_stress_control": 1,
+    "beta_rich_small": 3,
+    "disordered_flexible_control": 1,
+    "membrane_like_control": 1
+  },
+  "folding_problem_solved": false,
+  "global_folding_claim_allowed": false,
+  "holdout_split": "visual_mechanism_12",
+  "locked_after_generation": true,
+  "native_truth_used_before_prediction": false,
+  "raw_sequences_in_locked_data_only": true,
+  "references": [
+    {
+      "length": 63,
+      "mechanism_expected_difficulty": "easy_alpha_local_closure",
+      "native_contact_map_hash": "sha256:d1fddd06344312fb724707904ba09251a6c9f1606c00b41a1a3a2186f372aacf",
+      "native_contact_pairs": [
+        [
+          1,
+          5
+        ],
+        [
+          3,
+          7
+        ],
+        [
+          5,
+          9
+        ],
+        [
+          6,
+          26
+        ],
+        [
+          7,
+          11
+        ],
+        [
+          9,
+          13
+        ],
+        [
+          11,
+          15
+        ],
+        [
+          13,
+          17
+        ],
+        [
+          19,
+          23
+        ],
+        [
+          21,
+          25
+        ],
+        [
+          23,
+          27
+        ],
+        [
+          24,
+          44
+        ],
+        [
+          25,
+          29
+        ],
+        [
+          27,
+          31
+        ],
+        [
+          29,
+          33
+        ],
+        [
+          31,
+          35
+        ],
+        [
+          33,
+          37
+        ],
+        [
+          35,
+          39
+        ],
+        [
+          37,
+          41
+        ],
+        [
+          39,
+          43
+        ],
+        [
+          41,
+          45
+        ],
+        [
+          43,
+          47
+        ],
+        [
+          45,
+          49
+        ],
+        [
+          47,
+          51
+        ],
+        [
+          49,
+          53
+        ],
+        [
+          51,
+          55
+        ],
+        [
+          53,
+          57
+        ],
+        [
+          55,
+          59
+        ],
+        [
+          57,
+          61
+        ]
+      ],
+      "native_scope": "locked_coarse_native_contact_target_from_existing_reference_row",
+      "row_id": "visual_001_alpha_rop",
+      "sequence": "MTKQEKTALNMARFIRSQTLTLLEKLNELDADEQADICESLHDHADELYRSCLARFGDDGENL",
+      "sequence_sha256": "b999d6315c7a7034af5f3cc095c13b30ba58e106d10c8a7810f3b026c2f45295",
+      "source_id": "1ROP:A",
+      "source_kind": "RCSB_PDB+CATH",
+      "truth_axes": {
+        "architecture_axis": "compact_single_domain",
+        "environment_axis": "soluble_like",
+        "order_axis": "ordered",
+        "secondary_structure_axis": "alpha_rich"
+      }
+    },
+    {
+      "length": 53,
+      "mechanism_expected_difficulty": "easy_alpha_local_closure",
+      "native_contact_map_hash": "sha256:07d496037ba24aad4b0d936a3ada7d58b9970d5cc62caeb5407f965ba443a6a0",
+      "native_contact_pairs": [
+        [
+          3,
+          7
+        ],
+        [
+          6,
+          26
+        ],
+        [
+          7,
+          11
+        ],
+        [
+          11,
+          15
+        ],
+        [
+          13,
+          17
+        ],
+        [
+          15,
+          19
+        ],
+        [
+          17,
+          21
+        ],
+        [
+          19,
+          23
+        ],
+        [
+          21,
+          25
+        ],
+        [
+          24,
+          44
+        ],
+        [
+          27,
+          31
+        ],
+        [
+          31,
+          35
+        ],
+        [
+          35,
+          39
+        ],
+        [
+          39,
+          43
+        ],
+        [
+          41,
+          45
+        ],
+        [
+          43,
+          47
+        ],
+        [
+          45,
+          49
+        ],
+        [
+          47,
+          51
+        ]
+      ],
+      "native_scope": "locked_coarse_native_contact_target_from_existing_reference_row",
+      "row_id": "visual_002_alpha_gab",
+      "sequence": "TIDQWLLKNAKEDAIAELKKAGITSDFYFNAINKAKTVEEVNALKNEILKAHA",
+      "sequence_sha256": "58b27bba91b6c20555d6e297316cbc249ade9bd651589ca41c1a663eb33367b9",
+      "source_id": "1GAB:A",
+      "source_kind": "RCSB_PDB+CATH",
+      "truth_axes": {
+        "architecture_axis": "compact_single_domain",
+        "environment_axis": "soluble_like",
+        "order_axis": "ordered",
+        "secondary_structure_axis": "alpha_rich"
+      }
+    },
+    {
+      "length": 93,
+      "mechanism_expected_difficulty": "moderate_alpha_core_closure",
+      "native_contact_map_hash": "sha256:b42d6d9486c162b2af622340c51136fdb4dce4e4efd968b1eaf9ea60b9dcd61d",
+      "native_contact_pairs": [
+        [
+          1,
+          5
+        ],
+        [
+          3,
+          7
+        ],
+        [
+          5,
+          9
+        ],
+        [
+          6,
+          26
+        ],
+        [
+          7,
+          11
+        ],
+        [
+          9,
+          13
+        ],
+        [
+          11,
+          15
+        ],
+        [
+          13,
+          17
+        ],
+        [
+          15,
+          19
+        ],
+        [
+          19,
+          23
+        ],
+        [
+          21,
+          25
+        ],
+        [
+          23,
+          27
+        ],
+        [
+          24,
+          44
+        ],
+        [
+          25,
+          29
+        ],
+        [
+          33,
+          37
+        ],
+        [
+          35,
+          39
+        ],
+        [
+          37,
+          41
+        ],
+        [
+          39,
+          43
+        ],
+        [
+          42,
+          62
+        ],
+        [
+          43,
+          47
+        ],
+        [
+          45,
+          49
+        ],
+        [
+          47,
+          51
+        ],
+        [
+          49,
+          53
+        ],
+        [
+          55,
+          59
+        ],
+        [
+          59,
+          63
+        ],
+        [
+          60,
+          80
+        ],
+        [
+          63,
+          67
+        ],
+        [
+          65,
+          69
+        ],
+        [
+          67,
+          71
+        ],
+        [
+          69,
+          73
+        ],
+        [
+          75,
+          79
+        ],
+        [
+          79,
+          83
+        ],
+        [
+          85,
+          89
+        ]
+      ],
+      "native_scope": "locked_coarse_native_contact_target_from_existing_reference_row",
+      "row_id": "visual_003_alpha_cytochrome",
+      "sequence": "SKAVKYYTLEEIQKHNNSKSTWLILHYKVYDLTKFLEEHPGGEEVLREQAGGDATENFEDVGHSTDARELSKTFIIGELHPDDRSKITKPSES",
+      "sequence_sha256": "e40990e89b2603d26cf7caec7fcae798ee26d05b4eecd0e4f3222ef405072adb",
+      "source_id": "1CYO:A",
+      "source_kind": "RCSB_PDB+CATH",
+      "truth_axes": {
+        "architecture_axis": "compact_single_domain",
+        "environment_axis": "soluble_like",
+        "order_axis": "ordered",
+        "secondary_structure_axis": "alpha_rich"
+      }
+    },
+    {
+      "length": 67,
+      "mechanism_expected_difficulty": "hard_beta_long_range_contacts",
+      "native_contact_map_hash": "sha256:b60725e197914374069fe7b833327d84bf528a770a28f99819cbef4f5045867f",
+      "native_contact_pairs": [
+        [
+          4,
+          21
+        ],
+        [
+          5,
+          20
+        ],
+        [
+          5,
+          31
+        ],
+        [
+          6,
+          19
+        ],
+        [
+          7,
+          18
+        ],
+        [
+          8,
+          17
+        ],
+        [
+          9,
+          16
+        ],
+        [
+          16,
+          34
+        ],
+        [
+          17,
+          33
+        ],
+        [
+          18,
+          32
+        ],
+        [
+          19,
+          31
+        ],
+        [
+          20,
+          30
+        ],
+        [
+          20,
+          46
+        ],
+        [
+          21,
+          29
+        ],
+        [
+          29,
+          47
+        ],
+        [
+          30,
+          46
+        ],
+        [
+          31,
+          45
+        ],
+        [
+          32,
+          44
+        ],
+        [
+          33,
+          43
+        ],
+        [
+          34,
+          42
+        ],
+        [
+          35,
+          61
+        ],
+        [
+          42,
+          60
+        ],
+        [
+          43,
+          59
+        ],
+        [
+          44,
+          58
+        ],
+        [
+          45,
+          57
+        ],
+        [
+          46,
+          56
+        ],
+        [
+          47,
+          55
+        ]
+      ],
+      "native_scope": "locked_coarse_native_contact_target_from_existing_reference_row",
+      "row_id": "visual_004_beta_csp",
+      "sequence": "MLEGKVKWFNSEKGFGFIEVEGQDDVFVHFSAIQGEGFKTLEEGQAVSFEIVEGNRGPQAANVTKEA",
+      "sequence_sha256": "27d80e68627641f5e24efced906e06a7d8309055a4ec509a9ff9f2cb621b27c7",
+      "source_id": "1CSP:A",
+      "source_kind": "RCSB_PDB+CATH",
+      "truth_axes": {
+        "architecture_axis": "compact_single_domain",
+        "environment_axis": "soluble_like",
+        "order_axis": "ordered",
+        "secondary_structure_axis": "beta_rich"
+      }
+    },
+    {
+      "length": 62,
+      "mechanism_expected_difficulty": "hard_beta_long_range_contacts",
+      "native_contact_map_hash": "sha256:ec742432595ed56ea114ef30a72d173f33601cdb2b5ce15b17e091bc047ab4fd",
+      "native_contact_pairs": [
+        [
+          4,
+          21
+        ],
+        [
+          5,
+          20
+        ],
+        [
+          5,
+          31
+        ],
+        [
+          6,
+          19
+        ],
+        [
+          7,
+          18
+        ],
+        [
+          8,
+          17
+        ],
+        [
+          9,
+          16
+        ],
+        [
+          16,
+          34
+        ],
+        [
+          17,
+          33
+        ],
+        [
+          18,
+          32
+        ],
+        [
+          19,
+          31
+        ],
+        [
+          20,
+          30
+        ],
+        [
+          20,
+          46
+        ],
+        [
+          21,
+          29
+        ],
+        [
+          29,
+          47
+        ],
+        [
+          30,
+          46
+        ],
+        [
+          31,
+          45
+        ],
+        [
+          32,
+          44
+        ],
+        [
+          33,
+          43
+        ],
+        [
+          34,
+          42
+        ],
+        [
+          42,
+          60
+        ],
+        [
+          43,
+          59
+        ],
+        [
+          44,
+          58
+        ],
+        [
+          45,
+          57
+        ],
+        [
+          46,
+          56
+        ],
+        [
+          47,
+          55
+        ]
+      ],
+      "native_scope": "locked_coarse_native_contact_target_from_existing_reference_row",
+      "row_id": "visual_005_beta_sh3",
+      "sequence": "MDETGKELVLALYDYQEKSPREVTMKKGDILTLLNSTNKDWWKVEVNDRQGFVPAAYVKKLD",
+      "sequence_sha256": "5d8a306662618fc3b38486c8b63692e453fb408483b388d76981999833fb079e",
+      "source_id": "1SHG:A",
+      "source_kind": "RCSB_PDB+CATH",
+      "truth_axes": {
+        "architecture_axis": "compact_single_domain",
+        "environment_axis": "soluble_like",
+        "order_axis": "ordered",
+        "secondary_structure_axis": "beta_rich"
+      }
+    },
+    {
+      "length": 78,
+      "mechanism_expected_difficulty": "hard_beta_long_range_contacts",
+      "native_contact_map_hash": "sha256:b60725e197914374069fe7b833327d84bf528a770a28f99819cbef4f5045867f",
+      "native_contact_pairs": [
+        [
+          4,
+          21
+        ],
+        [
+          5,
+          20
+        ],
+        [
+          5,
+          31
+        ],
+        [
+          6,
+          19
+        ],
+        [
+          7,
+          18
+        ],
+        [
+          8,
+          17
+        ],
+        [
+          9,
+          16
+        ],
+        [
+          16,
+          34
+        ],
+        [
+          17,
+          33
+        ],
+        [
+          18,
+          32
+        ],
+        [
+          19,
+          31
+        ],
+        [
+          20,
+          30
+        ],
+        [
+          20,
+          46
+        ],
+        [
+          21,
+          29
+        ],
+        [
+          29,
+          47
+        ],
+        [
+          30,
+          46
+        ],
+        [
+          31,
+          45
+        ],
+        [
+          32,
+          44
+        ],
+        [
+          33,
+          43
+        ],
+        [
+          34,
+          42
+        ],
+        [
+          35,
+          61
+        ],
+        [
+          42,
+          60
+        ],
+        [
+          43,
+          59
+        ],
+        [
+          44,
+          58
+        ],
+        [
+          45,
+          57
+        ],
+        [
+          46,
+          56
+        ],
+        [
+          47,
+          55
+        ]
+      ],
+      "native_scope": "locked_coarse_native_contact_target_from_existing_reference_row",
+      "row_id": "visual_006_beta_protein_l",
+      "sequence": "ENKEETPETPETDSEEEVTIKANLIFANGSTQTAEFKGTFEKATSEAYAYADTLKKDNGEYTVDVADKGYTLNIKFAG",
+      "sequence_sha256": "19b85ae2edd17e23e14c521171ce0108afd7c04d34a2a0c02e6d68f61b3d6d1d",
+      "source_id": "2PTL:A",
+      "source_kind": "RCSB_PDB+CATH",
+      "truth_axes": {
+        "architecture_axis": "compact_single_domain",
+        "environment_axis": "soluble_like",
+        "order_axis": "ordered",
+        "secondary_structure_axis": "beta_rich"
+      }
+    },
+    {
+      "length": 56,
+      "mechanism_expected_difficulty": "moderate_mixed_local_and_long_range",
+      "native_contact_map_hash": "sha256:d0b5c496277bec38e00a683124b291d7af2bdc06d47e9d55e9c7dfddf43ae365",
+      "native_contact_pairs": [
+        [
+          2,
+          6
+        ],
+        [
+          5,
+          9
+        ],
+        [
+          8,
+          12
+        ],
+        [
+          8,
+          36
+        ],
+        [
+          11,
+          15
+        ],
+        [
+          14,
+          18
+        ],
+        [
+          17,
+          21
+        ],
+        [
+          18,
+          36
+        ],
+        [
+          19,
+          35
+        ],
+        [
+          20,
+          24
+        ],
+        [
+          20,
+          34
+        ],
+        [
+          21,
+          33
+        ],
+        [
+          22,
+          32
+        ],
+        [
+          23,
+          27
+        ],
+        [
+          26,
+          30
+        ],
+        [
+          32,
+          50
+        ],
+        [
+          33,
+          49
+        ],
+        [
+          34,
+          48
+        ],
+        [
+          35,
+          47
+        ],
+        [
+          36,
+          46
+        ]
+      ],
+      "native_scope": "locked_coarse_native_contact_target_from_existing_reference_row",
+      "row_id": "visual_007_mixed_protein_g",
+      "sequence": "MTYKLILNGKTLKGETTTEAVDAATAEKVFKQYANDNGVDGEWTYDDATKTFTVTE",
+      "sequence_sha256": "7e859d82171047700fd3e9632f7a47eab4a39baedc8c3316d2fc62d3ce2260bb",
+      "source_id": "1PGA:A",
+      "source_kind": "RCSB_PDB+CATH",
+      "truth_axes": {
+        "architecture_axis": "compact_single_domain",
+        "environment_axis": "soluble_like",
+        "order_axis": "ordered",
+        "secondary_structure_axis": "alpha_beta_mixed"
+      }
+    },
+    {
+      "length": 76,
+      "mechanism_expected_difficulty": "moderate_mixed_local_and_long_range",
+      "native_contact_map_hash": "sha256:5f695da39f9990bcd6f57fbc2d6c070b33bc03b1645171e1b285e8cfa2aa592a",
+      "native_contact_pairs": [
+        [
+          2,
+          6
+        ],
+        [
+          5,
+          9
+        ],
+        [
+          8,
+          12
+        ],
+        [
+          8,
+          36
+        ],
+        [
+          11,
+          15
+        ],
+        [
+          14,
+          18
+        ],
+        [
+          17,
+          21
+        ],
+        [
+          20,
+          24
+        ],
+        [
+          23,
+          27
+        ],
+        [
+          25,
+          43
+        ],
+        [
+          26,
+          30
+        ],
+        [
+          26,
+          42
+        ],
+        [
+          27,
+          41
+        ],
+        [
+          28,
+          40
+        ],
+        [
+          29,
+          33
+        ],
+        [
+          29,
+          39
+        ],
+        [
+          30,
+          58
+        ],
+        [
+          32,
+          36
+        ],
+        [
+          35,
+          39
+        ],
+        [
+          39,
+          57
+        ],
+        [
+          40,
+          56
+        ],
+        [
+          41,
+          55
+        ],
+        [
+          42,
+          54
+        ],
+        [
+          43,
+          53
+        ]
+      ],
+      "native_scope": "locked_coarse_native_contact_target_from_existing_reference_row",
+      "row_id": "visual_008_mixed_ubiquitin",
+      "sequence": "MQIFVKTLTGKTITLEVEPSDTIENVKAKIQDKEGIPPDQQRLIFAGKQLEDGRTLSDYNIQKESTLHLVLRLRGG",
+      "sequence_sha256": "233b4b0b8c4616095bc3249f9375fc345d32af7deaef07117d0383c51d6f19aa",
+      "source_id": "1UBQ:A",
+      "source_kind": "RCSB_PDB+CATH",
+      "truth_axes": {
+        "architecture_axis": "compact_single_domain",
+        "environment_axis": "soluble_like",
+        "order_axis": "ordered",
+        "secondary_structure_axis": "alpha_beta_mixed"
+      }
+    },
+    {
+      "length": 83,
+      "mechanism_expected_difficulty": "moderate_mixed_local_and_long_range",
+      "native_contact_map_hash": "sha256:6a591f4c71bc9f1a21899a6e01126fde8d4b5489439bf5f345e22016da9e2c30",
+      "native_contact_pairs": [
+        [
+          2,
+          6
+        ],
+        [
+          5,
+          9
+        ],
+        [
+          8,
+          12
+        ],
+        [
+          8,
+          36
+        ],
+        [
+          11,
+          15
+        ],
+        [
+          14,
+          18
+        ],
+        [
+          17,
+          21
+        ],
+        [
+          20,
+          24
+        ],
+        [
+          23,
+          27
+        ],
+        [
+          26,
+          30
+        ],
+        [
+          27,
+          45
+        ],
+        [
+          28,
+          44
+        ],
+        [
+          29,
+          33
+        ],
+        [
+          29,
+          43
+        ],
+        [
+          30,
+          42
+        ],
+        [
+          30,
+          58
+        ],
+        [
+          31,
+          41
+        ],
+        [
+          32,
+          36
+        ],
+        [
+          35,
+          39
+        ],
+        [
+          38,
+          42
+        ],
+        [
+          41,
+          59
+        ],
+        [
+          42,
+          58
+        ],
+        [
+          43,
+          57
+        ],
+        [
+          44,
+          56
+        ],
+        [
+          45,
+          55
+        ],
+        [
+          52,
+          80
+        ]
+      ],
+      "native_scope": "locked_coarse_native_contact_target_from_existing_reference_row",
+      "row_id": "visual_009_mixed_ci2",
+      "sequence": "SSVEKKPEGVNTGAGDRHNLKTEWPELVGKSVEEAKKVILQDKPEAQIIVLPVGTIVTMEYRIDRVRLFVDKLDNIAEVPRVG",
+      "sequence_sha256": "82c0685d86e8f5d4828086021e3cb0d9de5360d7b4c1ee9a4f32ae7424a58cda",
+      "source_id": "2CI2:I",
+      "source_kind": "RCSB_PDB+CATH",
+      "truth_axes": {
+        "architecture_axis": "compact_single_domain",
+        "environment_axis": "soluble_like",
+        "order_axis": "ordered",
+        "secondary_structure_axis": "alpha_beta_mixed"
+      }
+    },
+    {
+      "length": 82,
+      "mechanism_expected_difficulty": "hard_disorder_control",
+      "native_contact_map_hash": "sha256:2e84eee31c079732d56192d6ec10007e947d12f8bf942b8e80dd929eba195526",
+      "native_contact_pairs": [
+        [
+          8,
+          15
+        ],
+        [
+          32,
+          39
+        ],
+        [
+          56,
+          63
+        ]
+      ],
+      "native_scope": "locked_coarse_native_contact_target_from_existing_reference_row",
+      "row_id": "visual_010_disorder_nupr1",
+      "sequence": "MATFPPATSAPQQPPGPEDEDSSLDESDLYSLAHSYLGGGGRKGRTKREAAANTNRPSPGGHERKLVTKLQNSERKKRGARR",
+      "sequence_sha256": "af386bb2b7dab1193f4e5b2c6bc4c660a743cbac0583d8d18ccab3ffcd8433f3",
+      "source_id": "O60356",
+      "source_kind": "DisProt+UniProt",
+      "truth_axes": {
+        "architecture_axis": "unknown",
+        "environment_axis": "soluble_like",
+        "order_axis": "disordered_flexible",
+        "secondary_structure_axis": "weak_or_unknown"
+      }
+    },
+    {
+      "length": 348,
+      "mechanism_expected_difficulty": "hard_membrane_control",
+      "native_contact_map_hash": "sha256:6ab45429bf68c8e37a53ec542470f7821c3b2ab517dd1dc5a6b4e34788924e34",
+      "native_contact_pairs": [
+        [
+          1,
+          5
+        ],
+        [
+          5,
+          9
+        ],
+        [
+          6,
+          26
+        ],
+        [
+          12,
+          16
+        ],
+        [
+          12,
+          36
+        ],
+        [
+          17,
+          21
+        ],
+        [
+          21,
+          25
+        ],
+        [
+          22,
+          26
+        ],
+        [
+          24,
+          44
+        ],
+        [
+          25,
+          29
+        ],
+        [
+          27,
+          31
+        ],
+        [
+          29,
+          33
+        ],
+        [
+          33,
+          37
+        ],
+        [
+          37,
+          41
+        ],
+        [
+          41,
+          45
+        ],
+        [
+          42,
+          62
+        ],
+        [
+          45,
+          49
+        ],
+        [
+          49,
+          53
+        ],
+        [
+          50,
+          54
+        ],
+        [
+          50,
+          74
+        ],
+        [
+          53,
+          57
+        ],
+        [
+          55,
+          59
+        ],
+        [
+          57,
+          61
+        ],
+        [
+          60,
+          64
+        ],
+        [
+          60,
+          80
+        ],
+        [
+          61,
+          65
+        ],
+        [
+          65,
+          69
+        ],
+        [
+          69,
+          73
+        ],
+        [
+          73,
+          77
+        ],
+        [
+          77,
+          81
+        ],
+        [
+          78,
+          98
+        ],
+        [
+          88,
+          92
+        ],
+        [
+          88,
+          112
+        ],
+        [
+          93,
+          97
+        ],
+        [
+          96,
+          116
+        ],
+        [
+          98,
+          102
+        ],
+        [
+          103,
+          107
+        ],
+        [
+          109,
+          113
+        ],
+        [
+          113,
+          117
+        ],
+        [
+          114,
+          134
+        ],
+        [
+          117,
+          121
+        ],
+        [
+          121,
+          125
+        ],
+        [
+          125,
+          129
+        ],
+        [
+          126,
+          130
+        ],
+        [
+          126,
+          150
+        ],
+        [
+          131,
+          135
+        ],
+        [
+          132,
+          152
+        ],
+        [
+          136,
+          140
+        ],
+        [
+          137,
+          141
+        ],
+        [
+          141,
+          145
+        ],
+        [
+          149,
+          153
+        ],
+        [
+          150,
+          170
+        ],
+        [
+          153,
+          157
+        ],
+        [
+          161,
+          165
+        ],
+        [
+          164,
+          168
+        ],
+        [
+          164,
+          188
+        ],
+        [
+          165,
+          169
+        ],
+        [
+          168,
+          188
+        ],
+        [
+          169,
+          173
+        ],
+        [
+          173,
+          177
+        ],
+        [
+          174,
+          178
+        ],
+        [
+          177,
+          181
+        ],
+        [
+          179,
+          183
+        ],
+        [
+          181,
+          185
+        ],
+        [
+          186,
+          206
+        ],
+        [
+          193,
+          197
+        ],
+        [
+          197,
+          201
+        ],
+        [
+          201,
+          205
+        ],
+        [
+          202,
+          206
+        ],
+        [
+          202,
+          226
+        ],
+        [
+          204,
+          224
+        ],
+        [
+          207,
+          211
+        ],
+        [
+          212,
+          216
+        ],
+        [
+          217,
+          221
+        ],
+        [
+          221,
+          225
+        ],
+        [
+          222,
+          242
+        ],
+        [
+          225,
+          229
+        ],
+        [
+          229,
+          233
+        ],
+        [
+          233,
+          237
+        ],
+        [
+          237,
+          241
+        ],
+        [
+          240,
+          244
+        ],
+        [
+          240,
+          260
+        ],
+        [
+          240,
+          264
+        ],
+        [
+          241,
+          245
+        ],
+        [
+          245,
+          249
+        ],
+        [
+          249,
+          253
+        ],
+        [
+          250,
+          254
+        ],
+        [
+          253,
+          257
+        ],
+        [
+          255,
+          259
+        ],
+        [
+          257,
+          261
+        ],
+        [
+          258,
+          278
+        ],
+        [
+          265,
+          269
+        ],
+        [
+          269,
+          273
+        ],
+        [
+          276,
+          296
+        ],
+        [
+          278,
+          282
+        ],
+        [
+          278,
+          302
+        ],
+        [
+          283,
+          287
+        ],
+        [
+          288,
+          292
+        ],
+        [
+          293,
+          297
+        ],
+        [
+          294,
+          314
+        ],
+        [
+          305,
+          309
+        ],
+        [
+          309,
+          313
+        ],
+        [
+          312,
+          332
+        ],
+        [
+          313,
+          317
+        ],
+        [
+          316,
+          320
+        ],
+        [
+          316,
+          340
+        ],
+        [
+          317,
+          321
+        ],
+        [
+          321,
+          325
+        ],
+        [
+          325,
+          329
+        ],
+        [
+          326,
+          330
+        ],
+        [
+          329,
+          333
+        ],
+        [
+          331,
+          335
+        ],
+        [
+          333,
+          337
+        ],
+        [
+          337,
+          341
+        ],
+        [
+          341,
+          345
+        ]
+      ],
+      "native_scope": "locked_coarse_native_contact_target_from_existing_reference_row",
+      "row_id": "visual_011_membrane_rhodopsin",
+      "sequence": "MNGTEGPNFYVPFSNKTGVVRSPFEAPQYYLAEPWQFSMLAAYMFLLIMLGFPINFLTLYVTVQHKKLRTPLNYILLNLAVADLFMVFGGFTTTLYTSLHGYFVFGPTGCNLEGFFATLGGEIALWSLVVLAIERYVVVCKPMSNFRFGENHAIMGVAFTWVMALACAAPPLVGWSRYIPEGMQCSCGIDYYTPHEETNNESFVIYMFVVHFIIPLIVIFFCYGQLVFTVKEAAAQQQESATTQKAEKEVTRMVIIMVIAFLICWLPYAGVAFYIFTHQGSDFGPIFMTIPAFFAKTSAVYNPVIYIMMNKQFRNCMVTTLCCGKNPLGDDEASTTVSKTETSQVAPA",
+      "sequence_sha256": "20e8fc797c8f2615a0ce29e265bc6a5e5adc929a1f25bbfa5c52fdbfd8ea9536",
+      "source_id": "1F88:A",
+      "source_kind": "RCSB_PDB+CATH",
+      "truth_axes": {
+        "architecture_axis": "unknown",
+        "environment_axis": "membrane_like",
+        "order_axis": "ordered",
+        "secondary_structure_axis": "alpha_rich"
+      }
+    },
+    {
+      "length": 148,
+      "mechanism_expected_difficulty": "hard_architecture_boundary_control",
+      "native_contact_map_hash": "sha256:11c79216a2f360748952feeb15bfac806cafd27bbf180c12c566ba9d81450b3a",
+      "native_contact_pairs": [
+        [
+          1,
+          5
+        ],
+        [
+          5,
+          9
+        ],
+        [
+          6,
+          26
+        ],
+        [
+          9,
+          13
+        ],
+        [
+          13,
+          17
+        ],
+        [
+          15,
+          19
+        ],
+        [
+          17,
+          21
+        ],
+        [
+          21,
+          25
+        ],
+        [
+          24,
+          44
+        ],
+        [
+          25,
+          29
+        ],
+        [
+          33,
+          37
+        ],
+        [
+          35,
+          39
+        ],
+        [
+          37,
+          41
+        ],
+        [
+          41,
+          45
+        ],
+        [
+          42,
+          62
+        ],
+        [
+          45,
+          49
+        ],
+        [
+          49,
+          53
+        ],
+        [
+          53,
+          57
+        ],
+        [
+          54,
+          94
+        ],
+        [
+          55,
+          59
+        ],
+        [
+          57,
+          61
+        ],
+        [
+          60,
+          80
+        ],
+        [
+          62,
+          86
+        ],
+        [
+          65,
+          69
+        ],
+        [
+          69,
+          73
+        ],
+        [
+          70,
+          78
+        ],
+        [
+          73,
+          77
+        ],
+        [
+          77,
+          81
+        ],
+        [
+          78,
+          98
+        ],
+        [
+          79,
+          83
+        ],
+        [
+          89,
+          93
+        ],
+        [
+          96,
+          116
+        ],
+        [
+          99,
+          103
+        ],
+        [
+          101,
+          105
+        ],
+        [
+          105,
+          109
+        ],
+        [
+          109,
+          113
+        ],
+        [
+          114,
+          134
+        ],
+        [
+          119,
+          123
+        ],
+        [
+          129,
+          133
+        ],
+        [
+          139,
+          143
+        ],
+        [
+          141,
+          145
+        ]
+      ],
+      "native_scope": "locked_coarse_native_contact_target_from_existing_reference_row",
+      "row_id": "visual_012_arch_calmodulin",
+      "sequence": "ADQLTEEQIAEFKEAFSLFDKDGDGTITTKELGTVMRSLGQNPTEAELQDMINEVDADGNGTIDFPEFLTMMARKMKDTDSEEEIREAFRVFDKDGNGYISAAELRHVMTNLGEKLTDEEVDEMIREADIDGDGQVNYEEFVQMMTAK",
+      "sequence_sha256": "787e521525941a7d26a5d483ac12f3df74ff3d38c70b225272c4815777f80763",
+      "source_id": "1CLL:A",
+      "source_kind": "RCSB_PDB+CATH",
+      "truth_axes": {
+        "architecture_axis": "multidomain_or_segmented",
+        "environment_axis": "soluble_like",
+        "order_axis": "ordered",
+        "secondary_structure_axis": "alpha_rich"
+      }
+    }
+  ]
+}

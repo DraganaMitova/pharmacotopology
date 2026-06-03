@@ -93,6 +93,12 @@ PHARMACOTOPOLOGY_GENERATED_FILES: tuple[str, ...] = (
     "external_axis_repair_family_summary.csv",
     "external_axis_repair_dashboard.html",
     "external_axis_repair_certificate.json",
+    "visual_mechanism_12_report.json",
+    "visual_mechanism_12_rows.csv",
+    "visual_mechanism_12_contact_metrics.csv",
+    "visual_mechanism_12_failure_cohorts.csv",
+    "visual_mechanism_12_dashboard.html",
+    "visual_mechanism_12_certificate.json",
     "field_validation.json",
     "field_metrics.json",
 )

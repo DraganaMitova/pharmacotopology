@@ -1,0 +1,13 @@
+row_id,source_id,sequence_hash,native_contact_count,predicted_contact_count,true_positive_contacts,false_positive_contacts,false_negative_contacts,native_contact_recall,native_contact_precision,contact_map_f1,long_range_contact_recall,short_range_contact_recall,false_contact_rate,visible_partial_success,failure_cohort
+visual_001_alpha_rop,1ROP:A,b999d6315c7a7034af5f3cc095c13b30ba58e106d10c8a7810f3b026c2f45295,29,31,8,23,21,0.275862,0.258065,0.266667,1.0,0.296296,0.741935,True,visible_partial_success
+visual_002_alpha_gab,1GAB:A,58b27bba91b6c20555d6e297316cbc249ade9bd651589ca41c1a663eb33367b9,18,26,8,18,10,0.444444,0.307692,0.363636,1.0,0.5,0.692308,True,visible_partial_success
+visual_003_alpha_cytochrome,1CYO:A,e40990e89b2603d26cf7caec7fcae798ee26d05b4eecd0e4f3222ef405072adb,33,46,5,41,28,0.151515,0.108696,0.126582,1.0,0.172414,0.891304,True,visible_partial_success
+visual_004_beta_csp,1CSP:A,27d80e68627641f5e24efced906e06a7d8309055a4ec509a9ff9f2cb621b27c7,27,33,1,32,26,0.037037,0.030303,0.033333,0.0,0.0,0.969697,False,beta_long_range_pairing_failure
+visual_005_beta_sh3,1SHG:A,5d8a306662618fc3b38486c8b63692e453fb408483b388d76981999833fb079e,26,31,0,31,26,0.0,0.0,0.0,0.0,0.0,1.0,False,beta_long_range_pairing_failure
+visual_006_beta_protein_l,2PTL:A,19b85ae2edd17e23e14c521171ce0108afd7c04d34a2a0c02e6d68f61b3d6d1d,27,39,0,39,27,0.0,0.0,0.0,0.0,0.0,1.0,False,beta_long_range_pairing_failure
+visual_007_mixed_protein_g,1PGA:A,7e859d82171047700fd3e9632f7a47eab4a39baedc8c3316d2fc62d3ce2260bb,20,28,2,26,18,0.1,0.071429,0.083333,0.0,0.153846,0.928571,False,false_contact_overprediction
+visual_008_mixed_ubiquitin,1UBQ:A,233b4b0b8c4616095bc3249f9375fc345d32af7deaef07117d0383c51d6f19aa,24,38,3,35,21,0.125,0.078947,0.096774,0.0,0.1875,0.921053,False,false_contact_overprediction
+visual_009_mixed_ci2,2CI2:I,82c0685d86e8f5d4828086021e3cb0d9de5360d7b4c1ee9a4f32ae7424a58cda,26,41,4,37,22,0.153846,0.097561,0.119403,0.0,0.235294,0.902439,True,visible_partial_success
+visual_010_disorder_nupr1,O60356,af386bb2b7dab1193f4e5b2c6bc4c660a743cbac0583d8d18ccab3ffcd8433f3,3,41,0,41,3,0.0,0.0,0.0,1.0,0.0,1.0,False,disorder_control_overclosure_failure
+visual_011_membrane_rhodopsin,1F88:A,20e8fc797c8f2615a0ce29e265bc6a5e5adc929a1f25bbfa5c52fdbfd8ea9536,115,90,2,88,113,0.017391,0.022222,0.019512,0.0,0.022727,0.977778,False,membrane_contact_topology_failure
+visual_012_arch_calmodulin,1CLL:A,787e521525941a7d26a5d483ac12f3df74ff3d38c70b225272c4815777f80763,41,74,8,66,33,0.195122,0.108108,0.13913,0.0,0.25,0.891892,True,visible_partial_success

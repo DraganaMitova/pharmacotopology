@@ -1,17 +1,17 @@
 # Current Project Status
 
-This is the current truth of the repository after the external-safe axis repair
-milestone.
+This is the current truth of the repository after the visual folding mechanism
+workbench milestone.
 
 ## Latest Safety Baseline
 
 ```text
-latest recorded safety commit = a2cbc19 Add external-safe axis conflict quarantine
-current cleanup target = Prune legacy benchmark surface and publish canonical folding stack
+latest recorded safety commit = 19dbe65 Prune legacy benchmark surface and publish canonical folding stack
+current target = Add visual folding mechanism workbench
 ```
 
-The cleanup target does not add biology logic. It republishes the current
-canonical surface and archives legacy benchmark artifacts.
+The current target does not unlock fold-class claims. It adds a small visual
+contact-map workbench so mechanism evidence and failure modes can be inspected.
 
 ## Internal 50-Row Status
 
@@ -58,6 +58,26 @@ external_safety_repair_successful = true
 
 Coverage loss is the intended cost of the repair.
 
+## Visual 12-Row Mechanism Status
+
+The visual workbench is a locked contact-map mechanism layer:
+
+```text
+visual_artifacts_generated_for_rows = 12
+contact_map_f1_computed_count = 12
+visible_partial_success_count = 5
+visible_failure_count = 7
+mean_contact_map_f1 = 0.104031
+native_truth_used_before_prediction = false
+raw_sequence_exposed = false
+global_folding_claim_allowed = false
+folding_problem_solved = false
+```
+
+The visual workbench does not claim atomistic folding. It shows coarse native
+contact targets, sequence-only contact candidates, overlays, closure curves,
+coarse trajectories, and failure cohorts.
+
 ## Canonical Active Stack
 
 ```text
@@ -67,6 +87,7 @@ axis-profile recovery
 architecture-axis adjudication
 external holdout
 external-safe axis repair
+visual contact-map mechanism workbench
 ```
 
 Canonical runners:
@@ -77,6 +98,7 @@ scripts/run_fold_axis_profile_benchmark.py
 scripts/run_architecture_axis_benchmark.py
 scripts/run_external_fold_family_holdout_benchmark.py
 scripts/run_external_axis_repair_benchmark.py
+scripts/run_visual_folding_mechanism_benchmark.py
 ```
 
 Active artifacts:
@@ -87,6 +109,8 @@ real_folding_50_axis_profile_*
 real_folding_50_architecture_axis_*
 external_fold_family_100_*
 external_axis_repair_*
+visual_mechanism_12_*
+visuals/*/*
 ```
 
 Archived legacy artifacts:
@@ -103,11 +127,12 @@ global fold-class coverage is still locked
 axis profile coverage is partial
 secondary-structure evidence is still thin on the external holdout
 architecture evidence is conservative after repair
+visual contact prediction is coarse and low-F1
 legacy feature modules still contain useful low-level primitives
 ```
 
-The current state is useful as a safe falsification and abstention stack, not
-as a predictive folding system.
+The current state is useful as a safe falsification, abstention, and visual
+mechanism-inspection stack, not as a predictive folding system.
 
 ## Next Allowed Research Target
 
@@ -116,17 +141,17 @@ Do not add more broad biology claims before the canonical surface stays clean.
 The next research target can be:
 
 ```text
-external secondary-structure evidence calibration
+visual contact mechanism calibration
 ```
 
 Allowed shape:
 
 ```text
-improve evidence packets
+improve contact evidence packets
 preserve truth-after-prediction scoring
 keep global fold-class claims locked
 track coverage cost
-record uncertainty and abstention reasons
+record uncertainty, failure cohorts, and visible contact-map drift
 ```
 
 Forbidden shape:
