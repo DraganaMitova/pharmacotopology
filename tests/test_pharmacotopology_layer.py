@@ -102,6 +102,17 @@ def test_pharmacotopology_review_exposes_calibration_readiness() -> None:
     )
 
 
+def test_pharmacotopology_review_exposes_protein_mechanism_layer() -> None:
+    review = build_pharmacotopology_review()
+    top_result = review["Φ.results"][0]
+
+    assert top_result["abstract_compound_class"].startswith("abstract_")
+    assert top_result["protein_family"]
+    assert top_result["protein_mechanism_class"]
+    assert top_result["protein_state_shift"]
+    assert top_result["pathway_network_perturbation"]
+
+
 def test_clean_pharmacotopology_run_writes_bounded_artifacts(tmp_path: Path) -> None:
     report = run_clean_pharmacotopology_layer(tmp_path)
 

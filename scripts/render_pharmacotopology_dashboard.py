@@ -328,6 +328,11 @@ def _calibration_vector_table(review: Mapping[str, Any]) -> str:
         rows.append(
             "<tr>"
             f"<th>{escape(mechanism_id)}</th>"
+            f"<td>{escape(str(result.get('abstract_compound_class', 'unknown')))}</td>"
+            f"<td>{escape(str(result.get('protein_family', 'unknown')))}</td>"
+            f"<td>{escape(str(result.get('protein_mechanism_class', 'unknown')))}</td>"
+            f"<td>{escape(str(result.get('protein_state_shift', 'unknown')))}</td>"
+            f"<td>{escape(str(result.get('pathway_network_perturbation', 'unknown')))}</td>"
             f"<td>{escape(str(result.get('evidence_stage', 'unknown')))}</td>"
             f"<td>{escape(_fmt(item.get('evidence_weight', 0.0)))}</td>"
             f"<td>{escape(_fmt(item.get('uncertainty_radius', 0.0)))}</td>"
@@ -355,6 +360,11 @@ def _calibration_vector_table(review: Mapping[str, Any]) -> str:
           <thead>
             <tr>
               <th>mechanism_id</th>
+              <th>abstract compound class</th>
+              <th>protein family</th>
+              <th>protein mechanism class</th>
+              <th>protein state shift</th>
+              <th>pathway/network perturbation</th>
               <th>evidence_stage</th>
               <th>evidence_weight</th>
               <th>uncertainty_radius</th>

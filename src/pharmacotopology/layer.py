@@ -82,6 +82,11 @@ class MechanismVector:
     mechanism_id: str
     mechanism_family: str
     receptor_profile: tuple[str, ...]
+    abstract_compound_class: str
+    protein_family: str
+    protein_mechanism_class: str
+    protein_state_shift: str
+    pathway_network_perturbation: str
     deltas: dict[str, float]
     collapse_cost: float
     evidence_stage: str = "hypothesis_only"
@@ -102,6 +107,11 @@ class PerturbationResult:
     mechanism_id: str
     mechanism_family: str
     receptor_profile: tuple[str, ...]
+    abstract_compound_class: str
+    protein_family: str
+    protein_mechanism_class: str
+    protein_state_shift: str
+    pathway_network_perturbation: str
     evidence_stage: str
     evidence_weight: float
     uncertainty_radius: float
@@ -322,6 +332,11 @@ DEFAULT_MECHANISM_VECTORS: tuple[MechanismVector, ...] = (
         mechanism_id="d2_antagonist_like",
         mechanism_family="dopamine_salience_dampening",
         receptor_profile=("D2 antagonism",),
+        abstract_compound_class="abstract_dopamine_d2_dampener",
+        protein_family="dopamine_receptor_gpcr_family",
+        protein_mechanism_class="receptor_state_dampening",
+        protein_state_shift="reduced_d2_like_signaling_tone",
+        pathway_network_perturbation="dopamine_salience_network_dampening",
         deltas={
             "salience_amplification": -0.35,
             "recurrence_overbinding": -0.22,
@@ -335,6 +350,11 @@ DEFAULT_MECHANISM_VECTORS: tuple[MechanismVector, ...] = (
         mechanism_id="d2_partial_agonist_like",
         mechanism_family="dopamine_salience_modulation",
         receptor_profile=("D2 partial agonism",),
+        abstract_compound_class="abstract_dopamine_d2_modulator",
+        protein_family="dopamine_receptor_gpcr_family",
+        protein_mechanism_class="receptor_state_modulation",
+        protein_state_shift="stabilized_d2_like_signaling_tone",
+        pathway_network_perturbation="dopamine_salience_network_modulation",
         deltas={
             "salience_amplification": -0.20,
             "recurrence_overbinding": -0.14,
@@ -347,6 +367,11 @@ DEFAULT_MECHANISM_VECTORS: tuple[MechanismVector, ...] = (
         mechanism_id="5ht2a_antagonist_like",
         mechanism_family="serotonin_sensory_closure_modulation",
         receptor_profile=("5-HT2A antagonism",),
+        abstract_compound_class="abstract_serotonin_5ht2a_dampener",
+        protein_family="serotonin_receptor_gpcr_family",
+        protein_mechanism_class="receptor_state_dampening",
+        protein_state_shift="reduced_5ht2a_like_signaling_tone",
+        pathway_network_perturbation="serotonin_sensory_closure_modulation",
         deltas={
             "sensory_intrusion": -0.25,
             "symbolic_closure_pressure": -0.20,
@@ -358,6 +383,11 @@ DEFAULT_MECHANISM_VECTORS: tuple[MechanismVector, ...] = (
         mechanism_id="nmda_support_like",
         mechanism_family="glutamate_falsification_support",
         receptor_profile=("NMDA support",),
+        abstract_compound_class="abstract_nmda_support_modulator",
+        protein_family="glutamate_receptor_ion_channel_family",
+        protein_mechanism_class="channel_support_modulation",
+        protein_state_shift="supported_nmda_like_gating_function",
+        pathway_network_perturbation="glutamate_falsification_network_support",
         deltas={
             "cognitive_fragmentation": -0.20,
             "falsification_weakness": -0.18,
@@ -369,6 +399,11 @@ DEFAULT_MECHANISM_VECTORS: tuple[MechanismVector, ...] = (
         mechanism_id="gaba_stabilizing_like",
         mechanism_family="inhibition_threat_dampening",
         receptor_profile=("GABA modulation",),
+        abstract_compound_class="abstract_gaba_stabilizing_modulator",
+        protein_family="gaba_receptor_inhibitory_channel_family",
+        protein_mechanism_class="inhibitory_channel_modulation",
+        protein_state_shift="increased_gaba_like_inhibitory_stability",
+        pathway_network_perturbation="inhibition_threat_network_dampening",
         deltas={
             "threat_propagation": -0.20,
             "sensory_intrusion": -0.10,
@@ -380,6 +415,11 @@ DEFAULT_MECHANISM_VECTORS: tuple[MechanismVector, ...] = (
         mechanism_id="muscarinic_modulation_like",
         mechanism_family="cholinergic_boundary_review",
         receptor_profile=("muscarinic modulation",),
+        abstract_compound_class="abstract_muscarinic_modulator",
+        protein_family="muscarinic_acetylcholine_receptor_gpcr_family",
+        protein_mechanism_class="receptor_state_modulation",
+        protein_state_shift="modulated_muscarinic_like_boundary_signaling",
+        pathway_network_perturbation="cholinergic_boundary_review_modulation",
         deltas={
             "salience_amplification": -0.18,
             "sensory_intrusion": -0.14,
@@ -392,6 +432,11 @@ DEFAULT_MECHANISM_VECTORS: tuple[MechanismVector, ...] = (
         mechanism_id="adrenergic_dampening_like",
         mechanism_family="arousal_threat_dampening",
         receptor_profile=("adrenergic dampening",),
+        abstract_compound_class="abstract_adrenergic_dampener",
+        protein_family="adrenergic_receptor_gpcr_family",
+        protein_mechanism_class="arousal_receptor_dampening",
+        protein_state_shift="reduced_adrenergic_like_arousal_tone",
+        pathway_network_perturbation="arousal_threat_network_dampening",
         deltas={
             "threat_propagation": -0.22,
             "sleep_instability": -0.12,
@@ -404,6 +449,11 @@ DEFAULT_MECHANISM_VECTORS: tuple[MechanismVector, ...] = (
         mechanism_id="histamine_sedation_load_like",
         mechanism_family="sedation_heavy_arousal_reduction",
         receptor_profile=("histamine blockade", "sedation load"),
+        abstract_compound_class="abstract_histamine_sedation_load",
+        protein_family="histamine_receptor_gpcr_family",
+        protein_mechanism_class="wakefulness_receptor_dampening",
+        protein_state_shift="reduced_histamine_like_wakefulness_tone",
+        pathway_network_perturbation="sedation_heavy_arousal_reduction",
         deltas={
             "sleep_instability": -0.25,
             "threat_propagation": -0.08,
@@ -417,6 +467,11 @@ DEFAULT_MECHANISM_VECTORS: tuple[MechanismVector, ...] = (
         mechanism_id="anticholinergic_burden_like",
         mechanism_family="collapse_cost_control",
         receptor_profile=("anticholinergic burden",),
+        abstract_compound_class="abstract_anticholinergic_burden",
+        protein_family="acetylcholine_receptor_family",
+        protein_mechanism_class="cognitive_burden_receptor_dampening",
+        protein_state_shift="reduced_cholinergic_like_support_tone",
+        pathway_network_perturbation="cognitive_boundary_collapse_cost_increase",
         deltas={
             "cognitive_fragmentation": 0.24,
             "boundary_instability": 0.08,
@@ -429,6 +484,11 @@ DEFAULT_MECHANISM_VECTORS: tuple[MechanismVector, ...] = (
         mechanism_id="glutamate_amplification_stressor_like",
         mechanism_family="destabilizing_control",
         receptor_profile=("excitatory amplification", "stress load"),
+        abstract_compound_class="abstract_excitatory_amplification_stressor",
+        protein_family="glutamate_receptor_signaling_family",
+        protein_mechanism_class="excitatory_state_amplification",
+        protein_state_shift="increased_glutamate_like_excitatory_pressure",
+        pathway_network_perturbation="salience_threat_recurrence_amplification",
         deltas={
             "salience_amplification": 0.21,
             "recurrence_overbinding": 0.19,
@@ -653,6 +713,11 @@ def apply_mechanism_vector(
         mechanism_id=vector.mechanism_id,
         mechanism_family=vector.mechanism_family,
         receptor_profile=vector.receptor_profile,
+        abstract_compound_class=vector.abstract_compound_class,
+        protein_family=vector.protein_family,
+        protein_mechanism_class=vector.protein_mechanism_class,
+        protein_state_shift=vector.protein_state_shift,
+        pathway_network_perturbation=vector.pathway_network_perturbation,
         evidence_stage=vector.evidence_stage,
         evidence_weight=evidence_weight,
         uncertainty_radius=uncertainty_radius,

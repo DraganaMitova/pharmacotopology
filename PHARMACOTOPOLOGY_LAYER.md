@@ -3,7 +3,7 @@
 The pharmacotopology layer is a simulated research layer and bounded
 hypothesis workbench.
 
-It treats a medication mechanism as a topology perturbation vector:
+It treats a protein-centered mechanism as a topology perturbation vector:
 
 ```text
 mechanism vector
@@ -13,11 +13,25 @@ mechanism vector
 -> net topology health score
 ```
 
+The explicit reframe is:
+
+```text
+abstract_compound_class
+-> protein_family
+-> protein_state_shift
+-> pathway/network perturbation
+-> topology_delta
+-> collapse_cost
+-> evidence_readiness
+```
+
 It does not map brand-name medications.
 
 It does not make treatment recommendations.
 
 It does not infer anything about a real patient.
+
+It does not propose molecules, optimize compounds, or make drug-design claims.
 
 Its practical use is assumption inspection: compare mechanism hypotheses under
 the same topology rules, keep collapse cost visible, expose uncertainty, and
@@ -77,8 +91,8 @@ mechanism vector; the full resulting topology state is still written for review.
 Each result also carries an evidence readiness label, evidence weight,
 uncertainty radius, and score interval.
 The rendered dashboard includes a per-vector calibration readiness table so the
-evidence posture, primary source slots, blockers, and model uncertainty
-intervals are inspectable beside the ranking.
+protein mechanism labels, evidence posture, primary source slots, blockers, and
+model uncertainty intervals are inspectable beside the ranking.
 The dashboard also includes a synthetic profile comparison view that applies
 the same mechanism vectors to every built-in profile.
 

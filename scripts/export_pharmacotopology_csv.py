@@ -81,6 +81,13 @@ def _ranking_rows(review: Mapping[str, Any]) -> list[dict[str, Any]]:
                 "rank": int(item["rank"]),
                 "mechanism_id": mechanism_id,
                 "mechanism_family": result["mechanism_family"],
+                "abstract_compound_class": result["abstract_compound_class"],
+                "protein_family": result["protein_family"],
+                "protein_mechanism_class": result["protein_mechanism_class"],
+                "protein_state_shift": result["protein_state_shift"],
+                "pathway_network_perturbation": result[
+                    "pathway_network_perturbation"
+                ],
                 "fit_label": item["fit_label"],
                 "pathology_reduction_score": item["pathology_reduction_score"],
                 "pathology_reduction_lower": _interval_value(

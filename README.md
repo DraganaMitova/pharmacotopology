@@ -42,6 +42,26 @@ work: make assumptions explicit, compare them under the same scoring rules, add
 evidence weights when evidence exists, and keep uncertainty visible until a
 claim can be externally calibrated.
 
+## Protein-Centered Reframe
+
+The project is moving from compound-first pharmacology toward protein-centered
+mechanism topology. Chemical compounds are treated only as abstract perturbation
+sources. The modeled chain is:
+
+```text
+abstract_compound_class
+-> protein_family
+-> protein_state_shift
+-> pathway/network perturbation
+-> topology_delta
+-> collapse_cost
+-> evidence_readiness
+```
+
+This is still not a drug-design tool. It does not propose molecules, optimize
+compounds, recommend treatments, infer patient state, or make clinical claims.
+See [docs/PROTEIN_CENTERED_REFRAME.md](docs/PROTEIN_CENTERED_REFRAME.md).
+
 ## What This Is Not
 
 This project intentionally refuses clinical interpretation:
@@ -107,6 +127,7 @@ scripts/validate_field_trace.py
 scripts/measure_field_trace.py
 tests/                               pytest coverage for ranking and safety
 docs/ADDING_PROFILES.md              small guide for adding synthetic profiles
+docs/PROTEIN_CENTERED_REFRAME.md     protein-centered mechanism note
 PHARMACOTOPOLOGY_LAYER.md             longer design note
 LICENSE                              MIT license
 ```
@@ -201,6 +222,11 @@ The dashboard includes a per-vector calibration table with:
 
 ```text
 mechanism_id
+abstract compound class
+protein family
+protein mechanism class
+protein state shift
+pathway/network perturbation
 evidence_stage
 evidence_weight
 uncertainty_radius
