@@ -25,24 +25,23 @@ BENCHMARK_FILE = ROOT / "data" / "folding_benchmarks_real_10.locked.json"
 STRUCTURE_EVIDENCE_FILE = (
     ROOT / "data" / "folding_benchmarks_real_10_structure_evidence.json"
 )
+LEGACY_ARTIFACT_DIR = (
+    ROOT / "first_contact_clean_pharmacotopology_layer_run" / "archived_legacy"
+)
 MOTIF_REPORT = (
-    ROOT
-    / "first_contact_clean_pharmacotopology_layer_run"
+    LEGACY_ARTIFACT_DIR
     / "real_folding_10_motif_alignment_report.json"
 )
 MOTIF_ROWS = (
-    ROOT
-    / "first_contact_clean_pharmacotopology_layer_run"
+    LEGACY_ARTIFACT_DIR
     / "real_folding_10_motif_alignment_rows.csv"
 )
 FAILURE_DIAGNOSIS = (
-    ROOT
-    / "first_contact_clean_pharmacotopology_layer_run"
+    LEGACY_ARTIFACT_DIR
     / "real_folding_10_failure_diagnosis.csv"
 )
 EVIDENCE_CONFLICTS = (
-    ROOT
-    / "first_contact_clean_pharmacotopology_layer_run"
+    LEGACY_ARTIFACT_DIR
     / "real_folding_10_evidence_conflicts.csv"
 )
 

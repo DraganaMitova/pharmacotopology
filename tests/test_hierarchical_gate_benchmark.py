@@ -28,24 +28,23 @@ BENCHMARK_FILE = ROOT / "data" / "folding_benchmarks_real_10.locked.json"
 STRUCTURE_EVIDENCE_FILE = (
     ROOT / "data" / "folding_benchmarks_real_10_structure_evidence.json"
 )
+LEGACY_ARTIFACT_DIR = (
+    ROOT / "first_contact_clean_pharmacotopology_layer_run" / "archived_legacy"
+)
 GATE_REPORT = (
-    ROOT
-    / "first_contact_clean_pharmacotopology_layer_run"
+    LEGACY_ARTIFACT_DIR
     / "real_folding_10_hierarchical_gate_report.json"
 )
 GATE_ROWS = (
-    ROOT
-    / "first_contact_clean_pharmacotopology_layer_run"
+    LEGACY_ARTIFACT_DIR
     / "real_folding_10_hierarchical_gate_rows.csv"
 )
 GATE_PATHS = (
-    ROOT
-    / "first_contact_clean_pharmacotopology_layer_run"
+    LEGACY_ARTIFACT_DIR
     / "real_folding_10_gate_paths.csv"
 )
 GATE_FAILURES = (
-    ROOT
-    / "first_contact_clean_pharmacotopology_layer_run"
+    LEGACY_ARTIFACT_DIR
     / "real_folding_10_gate_failures.csv"
 )
 

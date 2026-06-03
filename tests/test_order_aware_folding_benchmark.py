@@ -27,19 +27,19 @@ BENCHMARK_FILE = ROOT / "data" / "folding_benchmarks_real_10.locked.json"
 STRUCTURE_EVIDENCE_FILE = (
     ROOT / "data" / "folding_benchmarks_real_10_structure_evidence.json"
 )
+LEGACY_ARTIFACT_DIR = (
+    ROOT / "first_contact_clean_pharmacotopology_layer_run" / "archived_legacy"
+)
 ORDER_AWARE_REPORT = (
-    ROOT
-    / "first_contact_clean_pharmacotopology_layer_run"
+    LEGACY_ARTIFACT_DIR
     / "real_folding_10_order_aware_report.json"
 )
 CONTROL_SEPARATION = (
-    ROOT
-    / "first_contact_clean_pharmacotopology_layer_run"
+    LEGACY_ARTIFACT_DIR
     / "real_folding_10_control_separation.csv"
 )
 CONTACT_PRIOR = (
-    ROOT
-    / "first_contact_clean_pharmacotopology_layer_run"
+    LEGACY_ARTIFACT_DIR
     / "real_folding_10_contact_prior.csv"
 )
 

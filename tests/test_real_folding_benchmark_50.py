@@ -23,34 +23,31 @@ BENCHMARK_50 = ROOT / "data" / "folding_benchmarks_real_50.locked.json"
 STRUCTURE_EVIDENCE_50 = (
     ROOT / "data" / "folding_benchmarks_real_50_structure_evidence.json"
 )
+LEGACY_ARTIFACT_DIR = (
+    ROOT / "first_contact_clean_pharmacotopology_layer_run" / "archived_legacy"
+)
 REPORT_50 = (
-    ROOT
-    / "first_contact_clean_pharmacotopology_layer_run"
+    LEGACY_ARTIFACT_DIR
     / "real_folding_50_hierarchical_gate_report.json"
 )
 ROWS_50 = (
-    ROOT
-    / "first_contact_clean_pharmacotopology_layer_run"
+    LEGACY_ARTIFACT_DIR
     / "real_folding_50_hierarchical_gate_rows.csv"
 )
 PATHS_50 = (
-    ROOT
-    / "first_contact_clean_pharmacotopology_layer_run"
+    LEGACY_ARTIFACT_DIR
     / "real_folding_50_gate_paths.csv"
 )
 FAILURES_50 = (
-    ROOT
-    / "first_contact_clean_pharmacotopology_layer_run"
+    LEGACY_ARTIFACT_DIR
     / "real_folding_50_gate_failures.csv"
 )
 CERTIFICATE_50 = (
-    ROOT
-    / "first_contact_clean_pharmacotopology_layer_run"
+    LEGACY_ARTIFACT_DIR
     / "real_folding_50_certificate.json"
 )
 CONFUSION_50 = (
-    ROOT
-    / "first_contact_clean_pharmacotopology_layer_run"
+    LEGACY_ARTIFACT_DIR
     / "real_folding_50_confusion_matrix.csv"
 )
 

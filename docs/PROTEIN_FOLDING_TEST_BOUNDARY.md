@@ -1,5 +1,9 @@
 # Protein Folding Test Boundary
 
+For the active stack and current metrics, start with
+`docs/CURRENT_PROJECT_STATUS.md`. This file preserves the longer boundary and
+development history behind that current stack.
+
 This branch adds a small protein-folding hypothesis lab to the project. The
 goal is not to solve folding. The goal is to create a safe benchmark shell
 where topology signatures can be compared against folding-relevant reference
