@@ -37,6 +37,27 @@ Its practical use is assumption inspection: compare mechanism hypotheses under
 the same topology rules, keep collapse cost visible, expose uncertainty, and
 record what evidence would be needed before any external claim could be made.
 
+## Protein Folding Hypothesis Lab
+
+The protein-centered direction also supports a separate folding benchmark
+shell:
+
+```text
+protein sequence
+-> predicted topology signature
+-> reference topology signature
+-> contact-map proxy similarity
+-> fold-class match
+-> uncertainty radius
+-> evidence readiness
+```
+
+This is not a protein-folding solver. The default rows are placeholder
+reference summaries, so the expected readiness label is `benchmark_shell_only`
+until real external structure benchmarks are attached.
+
+See `docs/PROTEIN_FOLDING_TEST_BOUNDARY.md`.
+
 ## First Prototype
 
 The first admitted profile is a schizophrenia-like topology profile, represented
@@ -114,6 +135,7 @@ python3 scripts/render_profile_comparison_dashboard.py
 python3 scripts/export_pharmacotopology_csv.py
 python3 scripts/run_sensitivity_analysis.py --profile anxiety_like --dimensions threat_propagation,sleep_instability
 python3 scripts/explore_sensitivity.py --profile schizophrenia_like --mechanism nmda_support_like --vary collapse_cost 0.05:0.25
+python3 scripts/run_folding_topology_benchmark.py
 python3 scripts/validate_field_trace.py first_contact_clean_pharmacotopology_layer_run
 python3 scripts/measure_field_trace.py first_contact_clean_pharmacotopology_layer_run
 ```
@@ -144,6 +166,13 @@ first_contact_clean_pharmacotopology_layer_run/sensitivity_analysis_report.json
 first_contact_clean_pharmacotopology_layer_run/sensitivity_rankings.csv
 first_contact_clean_pharmacotopology_layer_run/sensitivity_explorer_report.json
 first_contact_clean_pharmacotopology_layer_run/sensitivity_explorer_samples.csv
+```
+
+The folding benchmark shell is written to:
+
+```text
+first_contact_clean_pharmacotopology_layer_run/folding_topology_benchmark_report.json
+first_contact_clean_pharmacotopology_layer_run/folding_topology_benchmark.csv
 ```
 
 The multi-profile dashboard is written to:

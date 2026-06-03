@@ -74,6 +74,8 @@ def run_dir_texts(run_dir: Path) -> Dict[str, str]:
         "multi_profile_dashboard.html",
         "sensitivity_explorer_report.json",
         "sensitivity_explorer_samples.csv",
+        "folding_topology_benchmark_report.json",
+        "folding_topology_benchmark.csv",
         "memory_store.jsonl",
         "topology_index.json",
         "memory_geometry_index.json",

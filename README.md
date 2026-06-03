@@ -62,6 +62,27 @@ This is still not a drug-design tool. It does not propose molecules, optimize
 compounds, recommend treatments, infer patient state, or make clinical claims.
 See [docs/PROTEIN_CENTERED_REFRAME.md](docs/PROTEIN_CENTERED_REFRAME.md).
 
+## Protein Folding Hypothesis Lab
+
+The protein-centered layer now has a small folding benchmark shell. It asks
+whether abstract topology signatures extracted from protein sequences can be
+compared against folding-relevant reference summaries:
+
+```text
+protein sequence
+-> predicted topology signature
+-> reference topology signature
+-> contact-map proxy similarity
+-> fold-class match
+-> uncertainty radius
+-> evidence readiness
+```
+
+The default references are placeholders. They exercise the schema, metrics, and
+safety boundary; they do not validate any folding claim. The useful next step is
+to replace those placeholders with externally derived contact-map and fold-class
+rows. See [docs/PROTEIN_FOLDING_TEST_BOUNDARY.md](docs/PROTEIN_FOLDING_TEST_BOUNDARY.md).
+
 ## What This Is Not
 
 This project intentionally refuses clinical interpretation:
@@ -123,11 +144,13 @@ scripts/render_profile_comparison_dashboard.py
 scripts/export_pharmacotopology_csv.py
 scripts/run_sensitivity_analysis.py
 scripts/explore_sensitivity.py
+scripts/run_folding_topology_benchmark.py
 scripts/validate_field_trace.py
 scripts/measure_field_trace.py
 tests/                               pytest coverage for ranking and safety
 docs/ADDING_PROFILES.md              small guide for adding synthetic profiles
 docs/PROTEIN_CENTERED_REFRAME.md     protein-centered mechanism note
+docs/PROTEIN_FOLDING_TEST_BOUNDARY.md folding benchmark boundary note
 PHARMACOTOPOLOGY_LAYER.md             longer design note
 LICENSE                              MIT license
 ```
@@ -158,6 +181,12 @@ Render the multi-profile dashboard:
 
 ```bash
 python3 scripts/render_profile_comparison_dashboard.py
+```
+
+Run the protein folding topology benchmark shell:
+
+```bash
+python3 scripts/run_folding_topology_benchmark.py
 ```
 
 Default artifacts are written to:
@@ -382,6 +411,8 @@ pharmacotopology_dashboard.html
 multi_profile_dashboard.html
 sensitivity_explorer_report.json
 sensitivity_explorer_samples.csv
+folding_topology_benchmark_report.json
+folding_topology_benchmark.csv
 field_validation.json
 field_metrics.json
 ```
