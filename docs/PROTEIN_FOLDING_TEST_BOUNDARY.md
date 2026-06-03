@@ -51,6 +51,36 @@ resources such as contact maps, fold-class annotations, structure ensembles, or
 curated folding benchmark sets. Those sources are intentionally not bundled in
 this dependency-free prototype.
 
+## External Benchmark Adapter
+
+The benchmark runner can load externally derived rows:
+
+```bash
+python3 scripts/run_folding_topology_benchmark.py --benchmark-file data/folding_benchmarks_real.json --require-external
+```
+
+The adapter validates that:
+
+```text
+the file contains reference rows
+the sequence uses supported amino-acid symbols
+the reference source looks external, such as pdb:, afdb:, casp:, cath:, scop:, disprot:, or external:
+placeholder/example/template source labels are rejected when --require-external is used
+all topology signature dimensions are present
+all topology signature values are inside 0..1
+no drug-design or clinical-use boundary is opened
+```
+
+The repo includes:
+
+```text
+data/folding_benchmarks_real.example.json
+```
+
+That file is a schema template, not evidence. Copy it to
+`data/folding_benchmarks_real.json` and replace the row with externally derived
+structure summaries before using `--require-external`.
+
 ## Output Fields
 
 Each benchmark comparison writes:
@@ -71,6 +101,15 @@ failure_reason
 The default `failure_reason` is expected to say that an external structure
 benchmark is not attached. That is a useful failure: it prevents placeholder
 numbers from being mistaken for evidence.
+
+When a benchmark file is loaded, the JSON report also includes:
+
+```text
+reference_dataset_validation
+```
+
+This records how many rows were loaded, how many had external reference-source
+labels, whether external rows were required, and any violations or warnings.
 
 ## Boundary
 

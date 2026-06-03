@@ -1,0 +1,35 @@
+{
+  "dataset_kind": "external_folding_reference_template",
+  "boundary": {
+    "clinical_use_allowed": false,
+    "drug_design_created": false,
+    "molecule_generated": false,
+    "protein_sequence_design_created": false,
+    "folding_solution_claim_created": false
+  },
+  "notes": [
+    "Copy this file to data/folding_benchmarks_real.json before adding external rows.",
+    "Do not fill reference_topology_signature by intuition. Derive it from external structure evidence such as contact maps, fold-class annotations, curated structure summaries, or benchmark datasets.",
+    "Rows with placeholder, example, template, or replace_me in reference_structure_source are rejected when --require-external is used."
+  ],
+  "references": [
+    {
+      "protein_id": "replace_with_real_protein_id",
+      "sequence": "MALWMRLLPLLALLALWGPDPA",
+      "reference_structure_source": "pdb:REPLACE_ME",
+      "reference_fold_class": "compact_folded",
+      "reference_topology_signature": {
+        "sequence_complexity": 0.0,
+        "secondary_structure_balance": 0.0,
+        "contact_map_closure": 0.0,
+        "hydrophobic_core_closure": 0.0,
+        "loop_disorder_pressure": 0.0,
+        "domain_boundary_stability": 0.0,
+        "long_range_contact_order": 0.0,
+        "conformational_flexibility": 0.0,
+        "knot_or_entanglement_signature": 0.0,
+        "uncertainty_radius": 0.0
+      }
+    }
+  ]
+}

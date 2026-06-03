@@ -13,6 +13,10 @@ if str(SRC_ROOT) not in sys.path:
     sys.path.insert(0, str(SRC_ROOT))
 
 from pharmacotopology.folding_metrics import summarize_benchmark  # noqa: E402
+from pharmacotopology.folding_reference_loader import (  # noqa: E402
+    FoldingReferenceDatasetValidation,
+    load_folding_reference_dataset,
+)
 from pharmacotopology.folding_topology import (  # noqa: E402
     FoldingTopologyComparison,
     comparison_to_dict,
@@ -67,12 +71,18 @@ def write_folding_benchmark_outputs(
     comparisons: Sequence[FoldingTopologyComparison],
     report_path: Path = DEFAULT_REPORT_PATH,
     csv_path: Path = DEFAULT_CSV_PATH,
+    reference_dataset_validation: FoldingReferenceDatasetValidation | None = None,
 ) -> tuple[Path, Path]:
     report_path.parent.mkdir(parents=True, exist_ok=True)
     csv_path.parent.mkdir(parents=True, exist_ok=True)
+    report = summarize_benchmark(comparisons)
+    if reference_dataset_validation is not None:
+        report["reference_dataset_validation"] = (
+            reference_dataset_validation.to_dict()
+        )
     report_path.write_text(
         json.dumps(
-            summarize_benchmark(comparisons),
+            report,
             ensure_ascii=False,
             indent=2,
             sort_keys=True,
@@ -110,13 +120,46 @@ def main() -> None:
         default=str(DEFAULT_CSV_PATH),
         help="Path for the benchmark CSV rows.",
     )
+    parser.add_argument(
+        "--benchmark-file",
+        default="",
+        help=(
+            "Optional JSON file with externally derived folding reference rows. "
+            "When omitted, bundled placeholder references are used."
+        ),
+    )
+    parser.add_argument(
+        "--require-external",
+        action="store_true",
+        help="Reject benchmark files with placeholder/example reference sources.",
+    )
     args = parser.parse_args()
 
-    comparisons = run_folding_topology_benchmark()
+    validation = None
+    references = None
+    if args.benchmark_file:
+        try:
+            dataset = load_folding_reference_dataset(
+                Path(args.benchmark_file),
+                require_external=args.require_external,
+            )
+        except ValueError as exc:
+            parser.error(str(exc))
+        references = dataset.references
+        validation = dataset.validation
+    elif args.require_external:
+        parser.error("--require-external requires --benchmark-file")
+
+    comparisons = (
+        run_folding_topology_benchmark(references)
+        if references is not None
+        else run_folding_topology_benchmark()
+    )
     report_path, csv_path = write_folding_benchmark_outputs(
         comparisons,
         Path(args.report_output),
         Path(args.csv_output),
+        reference_dataset_validation=validation,
     )
     print(report_path)
     print(csv_path)

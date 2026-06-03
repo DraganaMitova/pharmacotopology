@@ -32,6 +32,13 @@ CONTACT_PROXY_DIMENSIONS: tuple[str, ...] = (
     "knot_or_entanglement_signature",
 )
 
+PLACEHOLDER_REFERENCE_SOURCE_MARKERS: tuple[str, ...] = (
+    "placeholder",
+    "example",
+    "replace_me",
+    "template",
+)
+
 
 @dataclass(frozen=True)
 class FoldingTopologySignature:
@@ -358,13 +365,18 @@ def evidence_readiness_label(
     fold_class_match: bool,
     uncertainty_radius: float,
 ) -> str:
-    if "placeholder" in reference_structure_source:
+    if reference_source_is_placeholder(reference_structure_source):
         return "benchmark_shell_only"
     if contact_map_similarity >= 0.78 and fold_class_match and uncertainty_radius <= 0.35:
         return "external_benchmark_alignment_candidate"
     if contact_map_similarity >= 0.62:
         return "external_benchmark_review_needed"
     return "benchmark_mismatch_review"
+
+
+def reference_source_is_placeholder(source: str) -> bool:
+    normalized = source.strip().lower()
+    return any(marker in normalized for marker in PLACEHOLDER_REFERENCE_SOURCE_MARKERS)
 
 
 def compare_to_reference(reference: FoldingReferenceExample) -> FoldingTopologyComparison:

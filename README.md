@@ -83,6 +83,16 @@ safety boundary; they do not validate any folding claim. The useful next step is
 to replace those placeholders with externally derived contact-map and fold-class
 rows. See [docs/PROTEIN_FOLDING_TEST_BOUNDARY.md](docs/PROTEIN_FOLDING_TEST_BOUNDARY.md).
 
+External benchmark rows can be loaded separately:
+
+```bash
+python3 scripts/run_folding_topology_benchmark.py --benchmark-file data/folding_benchmarks_real.json --require-external
+```
+
+The repository includes `data/folding_benchmarks_real.example.json` as a schema
+template only. It is not evidence, and `--require-external` rejects placeholder
+or template source labels.
+
 ## What This Is Not
 
 This project intentionally refuses clinical interpretation:
@@ -138,6 +148,7 @@ infrastructure without pretending to be useful as medicine.
 
 ```text
 src/pharmacotopology/                 core simulator and boundary model
+data/folding_benchmarks_real.example.json
 scripts/run_clean_pharmacotopology_layer.py
 scripts/render_pharmacotopology_dashboard.py
 scripts/render_profile_comparison_dashboard.py
@@ -187,6 +198,12 @@ Run the protein folding topology benchmark shell:
 
 ```bash
 python3 scripts/run_folding_topology_benchmark.py
+```
+
+Run it against an externally derived benchmark file:
+
+```bash
+python3 scripts/run_folding_topology_benchmark.py --benchmark-file data/folding_benchmarks_real.json --require-external
 ```
 
 Default artifacts are written to:

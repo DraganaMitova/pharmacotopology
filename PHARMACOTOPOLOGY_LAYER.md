@@ -56,6 +56,15 @@ This is not a protein-folding solver. The default rows are placeholder
 reference summaries, so the expected readiness label is `benchmark_shell_only`
 until real external structure benchmarks are attached.
 
+External benchmark rows can be loaded with:
+
+```bash
+python3 scripts/run_folding_topology_benchmark.py --benchmark-file data/folding_benchmarks_real.json --require-external
+```
+
+The example file at `data/folding_benchmarks_real.example.json` is only a schema
+template. It is intentionally not treated as evidence.
+
 See `docs/PROTEIN_FOLDING_TEST_BOUNDARY.md`.
 
 ## First Prototype
@@ -136,6 +145,7 @@ python3 scripts/export_pharmacotopology_csv.py
 python3 scripts/run_sensitivity_analysis.py --profile anxiety_like --dimensions threat_propagation,sleep_instability
 python3 scripts/explore_sensitivity.py --profile schizophrenia_like --mechanism nmda_support_like --vary collapse_cost 0.05:0.25
 python3 scripts/run_folding_topology_benchmark.py
+python3 scripts/run_folding_topology_benchmark.py --benchmark-file data/folding_benchmarks_real.json --require-external
 python3 scripts/validate_field_trace.py first_contact_clean_pharmacotopology_layer_run
 python3 scripts/measure_field_trace.py first_contact_clean_pharmacotopology_layer_run
 ```
