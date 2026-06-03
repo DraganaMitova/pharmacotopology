@@ -72,6 +72,7 @@ def write_folding_benchmark_outputs(
     report_path: Path = DEFAULT_REPORT_PATH,
     csv_path: Path = DEFAULT_CSV_PATH,
     reference_dataset_validation: FoldingReferenceDatasetValidation | None = None,
+    reference_dataset_metadata: Mapping[str, object] | None = None,
 ) -> tuple[Path, Path]:
     report_path.parent.mkdir(parents=True, exist_ok=True)
     csv_path.parent.mkdir(parents=True, exist_ok=True)
@@ -80,6 +81,26 @@ def write_folding_benchmark_outputs(
         report["reference_dataset_validation"] = (
             reference_dataset_validation.to_dict()
         )
+        if (
+            reference_dataset_validation.valid
+            and reference_dataset_validation.references_loaded > 0
+            and reference_dataset_validation.placeholder_reference_count == 0
+        ):
+            report["benchmark_kind"] = "real_external_folding_topology_benchmark"
+            report["practical_use"] = "external_folding_topology_alignment_review"
+            report["external_validation_required"] = False
+    if reference_dataset_metadata:
+        for key in (
+            "benchmark_sources",
+            "target_benchmark_size",
+            "locked_after_generation",
+            "no_retuning_flag",
+            "lock_certificate",
+            "stratification_targets",
+            "stratification_counts",
+        ):
+            if key in reference_dataset_metadata:
+                report[key] = reference_dataset_metadata[key]
     report_path.write_text(
         json.dumps(
             report,
@@ -137,6 +158,7 @@ def main() -> None:
 
     validation = None
     references = None
+    metadata = None
     if args.benchmark_file:
         try:
             dataset = load_folding_reference_dataset(
@@ -147,6 +169,7 @@ def main() -> None:
             parser.error(str(exc))
         references = dataset.references
         validation = dataset.validation
+        metadata = dataset.metadata
     elif args.require_external:
         parser.error("--require-external requires --benchmark-file")
 
@@ -160,6 +183,7 @@ def main() -> None:
         Path(args.report_output),
         Path(args.csv_output),
         reference_dataset_validation=validation,
+        reference_dataset_metadata=metadata,
     )
     print(report_path)
     print(csv_path)

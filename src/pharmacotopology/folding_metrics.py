@@ -67,12 +67,21 @@ def summarize_benchmark(
         for comparison in comparisons
         if comparison.failure_reason
     ]
+    perfect_matches = [
+        comparison
+        for comparison in comparisons
+        if comparison.fold_class_match and comparison.contact_map_similarity >= 0.95
+    ]
     return {
         "benchmark_kind": "protein_folding_topology_hypothesis_benchmark",
+        "benchmark_size": len(comparisons),
         "practical_use": "folding_topology_benchmark_shell",
         "simulation_only": True,
         "hypothesis_numbers_only": True,
         "external_validation_required": True,
+        "locked_after_generation": False,
+        "no_retuning_flag": False,
+        "benchmark_sources": [],
         "clinical_use_allowed": False,
         "drug_design_created": False,
         "molecule_generated": False,
@@ -81,6 +90,10 @@ def summarize_benchmark(
         "folding_problem_solved": False,
         "comparisons_reviewed": len(comparisons),
         "failure_count": len(failures),
+        "perfect_matches": len(perfect_matches),
+        "mismatches": len(comparisons) - sum(
+            1 for comparison in comparisons if comparison.fold_class_match
+        ),
         "mean_contact_map_similarity": mean_contact_map_similarity(comparisons),
         "fold_class_match_rate": fold_class_match_rate(comparisons),
         "mean_uncertainty_radius": mean_uncertainty_radius(comparisons),

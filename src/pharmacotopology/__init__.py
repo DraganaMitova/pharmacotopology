@@ -1,10 +1,19 @@
 from __future__ import annotations
 
 from pharmacotopology.folding_metrics import summarize_benchmark
+from pharmacotopology.folding_real_sources import (
+    REAL_FOLDING_BENCHMARK_SOURCES,
+    STRATIFIED_500_TARGETS,
+    validate_source_catalog,
+)
 from pharmacotopology.folding_reference_loader import (
     load_folding_reference_dataset,
     reference_source_is_external,
     validate_folding_references,
+)
+from pharmacotopology.folding_structure_features import (
+    build_lock_certificate,
+    build_locked_benchmark_payload,
 )
 from pharmacotopology.folding_topology import (
     DEFAULT_FOLDING_BENCHMARKS,
@@ -38,6 +47,10 @@ __all__ = [
     "DEFAULT_TOPOLOGY_PROFILES",
     "DEFAULT_FOLDING_BENCHMARKS",
     "FOLDING_TOPOLOGY_DIMENSIONS",
+    "REAL_FOLDING_BENCHMARK_SOURCES",
+    "STRATIFIED_500_TARGETS",
+    "build_lock_certificate",
+    "build_locked_benchmark_payload",
     "build_calibration_readiness_report",
     "build_pharmacotopology_review",
     "get_topology_profile",
@@ -48,4 +61,5 @@ __all__ = [
     "run_clean_pharmacotopology_layer",
     "summarize_benchmark",
     "validate_folding_references",
+    "validate_source_catalog",
 ]

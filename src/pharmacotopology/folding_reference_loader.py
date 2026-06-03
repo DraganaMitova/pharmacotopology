@@ -61,6 +61,7 @@ class FoldingReferenceDatasetValidation:
 class FoldingReferenceDataset:
     references: tuple[FoldingReferenceExample, ...]
     validation: FoldingReferenceDatasetValidation
+    metadata: dict[str, Any]
 
 
 def reference_source_is_external(source: str) -> bool:
@@ -183,7 +184,11 @@ def load_folding_reference_dataset(
     *,
     require_external: bool = False,
 ) -> FoldingReferenceDataset:
-    references = load_folding_references(path)
+    data = _load_json(path)
+    references = tuple(
+        _reference_from_row(row, index)
+        for index, row in enumerate(_json_rows(data), start=1)
+    )
     validation = validate_folding_references(
         references,
         dataset_path=path,
@@ -192,4 +197,10 @@ def load_folding_reference_dataset(
     if not validation.valid:
         joined = "; ".join(validation.violations)
         raise ValueError(f"Invalid folding benchmark dataset: {joined}")
-    return FoldingReferenceDataset(references=references, validation=validation)
+    metadata = dict(data) if isinstance(data, Mapping) else {}
+    metadata.pop("references", None)
+    return FoldingReferenceDataset(
+        references=references,
+        validation=validation,
+        metadata=metadata,
+    )

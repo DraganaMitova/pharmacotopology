@@ -93,6 +93,22 @@ The repository includes `data/folding_benchmarks_real.example.json` as a schema
 template only. It is not evidence, and `--require-external` rejects placeholder
 or template source labels.
 
+There is also a 500-protein locked-benchmark target shell at
+`data/folding_benchmarks_real_500.locked.json`. It starts empty on purpose. It
+records the intended stratification and lock blockers without pretending that
+real rows have been collected.
+
+```text
+100 mostly-alpha / compact
+100 mostly-beta / long-range-contact
+100 alpha-beta mixed
+100 multidomain / boundary-sensitive
+100 disordered or flexible
+```
+
+The proof standard remains: same recipe, same code, locked external rows,
+visible failures, then blind repeatability.
+
 ## What This Is Not
 
 This project intentionally refuses clinical interpretation:
@@ -149,13 +165,16 @@ infrastructure without pretending to be useful as medicine.
 ```text
 src/pharmacotopology/                 core simulator and boundary model
 data/folding_benchmarks_real.example.json
+data/folding_benchmarks_real_500.locked.json
 scripts/run_clean_pharmacotopology_layer.py
 scripts/render_pharmacotopology_dashboard.py
 scripts/render_profile_comparison_dashboard.py
 scripts/export_pharmacotopology_csv.py
 scripts/run_sensitivity_analysis.py
 scripts/explore_sensitivity.py
+scripts/build_real_folding_benchmark_500.py
 scripts/run_folding_topology_benchmark.py
+scripts/render_folding_benchmark_dashboard.py
 scripts/validate_field_trace.py
 scripts/measure_field_trace.py
 tests/                               pytest coverage for ranking and safety
@@ -204,6 +223,19 @@ Run it against an externally derived benchmark file:
 
 ```bash
 python3 scripts/run_folding_topology_benchmark.py --benchmark-file data/folding_benchmarks_real.json --require-external
+```
+
+Build the 500-protein locked benchmark target shell:
+
+```bash
+python3 scripts/build_real_folding_benchmark_500.py --size 500 --output data/folding_benchmarks_real_500.locked.json --lock
+```
+
+After externally sourced rows are attached, run and render the proof dashboard:
+
+```bash
+python3 scripts/run_folding_topology_benchmark.py --benchmark-file data/folding_benchmarks_real_500.locked.json --require-external --report-output first_contact_clean_pharmacotopology_layer_run/real_folding_500_report.json --csv-output first_contact_clean_pharmacotopology_layer_run/real_folding_500_rows.csv
+python3 scripts/render_folding_benchmark_dashboard.py --report first_contact_clean_pharmacotopology_layer_run/real_folding_500_report.json --csv first_contact_clean_pharmacotopology_layer_run/real_folding_500_rows.csv --output first_contact_clean_pharmacotopology_layer_run/real_folding_500_dashboard.html
 ```
 
 Default artifacts are written to:
@@ -411,7 +443,7 @@ autonomous_loop_created = false
 
 ## Output Artifacts
 
-A default run creates a small set of local artifacts:
+The local tools can create a small set of auditable artifacts:
 
 ```text
 input_stream.jsonl
@@ -430,6 +462,9 @@ sensitivity_explorer_report.json
 sensitivity_explorer_samples.csv
 folding_topology_benchmark_report.json
 folding_topology_benchmark.csv
+real_folding_500_report.json
+real_folding_500_rows.csv
+real_folding_500_dashboard.html
 field_validation.json
 field_metrics.json
 ```

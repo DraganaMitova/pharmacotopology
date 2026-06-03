@@ -65,6 +65,21 @@ python3 scripts/run_folding_topology_benchmark.py --benchmark-file data/folding_
 The example file at `data/folding_benchmarks_real.example.json` is only a schema
 template. It is intentionally not treated as evidence.
 
+The 500-protein benchmark target is tracked at:
+
+```text
+data/folding_benchmarks_real_500.locked.json
+```
+
+It starts as an empty target shell with lock blockers. Real external rows must
+be attached before `--require-external` benchmark runs can pass.
+
+The proof dashboard is rendered with:
+
+```bash
+python3 scripts/render_folding_benchmark_dashboard.py --report first_contact_clean_pharmacotopology_layer_run/real_folding_500_report.json --csv first_contact_clean_pharmacotopology_layer_run/real_folding_500_rows.csv --output first_contact_clean_pharmacotopology_layer_run/real_folding_500_dashboard.html
+```
+
 See `docs/PROTEIN_FOLDING_TEST_BOUNDARY.md`.
 
 ## First Prototype
@@ -144,8 +159,10 @@ python3 scripts/render_profile_comparison_dashboard.py
 python3 scripts/export_pharmacotopology_csv.py
 python3 scripts/run_sensitivity_analysis.py --profile anxiety_like --dimensions threat_propagation,sleep_instability
 python3 scripts/explore_sensitivity.py --profile schizophrenia_like --mechanism nmda_support_like --vary collapse_cost 0.05:0.25
+python3 scripts/build_real_folding_benchmark_500.py --size 500 --output data/folding_benchmarks_real_500.locked.json --lock
 python3 scripts/run_folding_topology_benchmark.py
 python3 scripts/run_folding_topology_benchmark.py --benchmark-file data/folding_benchmarks_real.json --require-external
+python3 scripts/render_folding_benchmark_dashboard.py --report first_contact_clean_pharmacotopology_layer_run/real_folding_500_report.json --csv first_contact_clean_pharmacotopology_layer_run/real_folding_500_rows.csv --output first_contact_clean_pharmacotopology_layer_run/real_folding_500_dashboard.html
 python3 scripts/validate_field_trace.py first_contact_clean_pharmacotopology_layer_run
 python3 scripts/measure_field_trace.py first_contact_clean_pharmacotopology_layer_run
 ```
@@ -183,6 +200,14 @@ The folding benchmark shell is written to:
 ```text
 first_contact_clean_pharmacotopology_layer_run/folding_topology_benchmark_report.json
 first_contact_clean_pharmacotopology_layer_run/folding_topology_benchmark.csv
+```
+
+The real 500-protein benchmark review, once external rows exist, is written to:
+
+```text
+first_contact_clean_pharmacotopology_layer_run/real_folding_500_report.json
+first_contact_clean_pharmacotopology_layer_run/real_folding_500_rows.csv
+first_contact_clean_pharmacotopology_layer_run/real_folding_500_dashboard.html
 ```
 
 The multi-profile dashboard is written to:

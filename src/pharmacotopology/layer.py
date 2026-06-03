@@ -59,6 +59,9 @@ PHARMACOTOPOLOGY_GENERATED_FILES: tuple[str, ...] = (
     "sensitivity_explorer_samples.csv",
     "folding_topology_benchmark_report.json",
     "folding_topology_benchmark.csv",
+    "real_folding_500_report.json",
+    "real_folding_500_rows.csv",
+    "real_folding_500_dashboard.html",
     "field_validation.json",
     "field_metrics.json",
 )

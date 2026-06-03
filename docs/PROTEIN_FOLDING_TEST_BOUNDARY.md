@@ -75,11 +75,51 @@ The repo includes:
 
 ```text
 data/folding_benchmarks_real.example.json
+data/folding_benchmarks_real_500.locked.json
 ```
 
 That file is a schema template, not evidence. Copy it to
 `data/folding_benchmarks_real.json` and replace the row with externally derived
 structure summaries before using `--require-external`.
+
+The 500-file is a target shell, not a completed benchmark. It records the
+intended proof ladder and current lock blockers until real rows exist.
+
+```bash
+python3 scripts/build_real_folding_benchmark_500.py \
+  --size 500 \
+  --output data/folding_benchmarks_real_500.locked.json \
+  --lock
+```
+
+The intended stratification is:
+
+```text
+100 mostly-alpha / compact domains
+100 mostly-beta / long-range-contact domains
+100 alpha-beta mixed domains
+100 multidomain / boundary-sensitive proteins
+100 disordered or flexible proteins
+```
+
+When the rows are real and locked, the benchmark can be run with:
+
+```bash
+python3 scripts/run_folding_topology_benchmark.py \
+  --benchmark-file data/folding_benchmarks_real_500.locked.json \
+  --require-external \
+  --report-output first_contact_clean_pharmacotopology_layer_run/real_folding_500_report.json \
+  --csv-output first_contact_clean_pharmacotopology_layer_run/real_folding_500_rows.csv
+```
+
+And visualized with:
+
+```bash
+python3 scripts/render_folding_benchmark_dashboard.py \
+  --report first_contact_clean_pharmacotopology_layer_run/real_folding_500_report.json \
+  --csv first_contact_clean_pharmacotopology_layer_run/real_folding_500_rows.csv \
+  --output first_contact_clean_pharmacotopology_layer_run/real_folding_500_dashboard.html
+```
 
 ## Output Fields
 
@@ -110,6 +150,20 @@ reference_dataset_validation
 
 This records how many rows were loaded, how many had external reference-source
 labels, whether external rows were required, and any violations or warnings.
+
+The dashboard makes the following proof surfaces visible:
+
+```text
+confusion matrix
+similarity distribution
+per-class accuracy
+worst mismatch table
+radar overlay
+locked benchmark certificate
+dataset hash
+commit hash
+lock blockers
+```
 
 ## Boundary
 

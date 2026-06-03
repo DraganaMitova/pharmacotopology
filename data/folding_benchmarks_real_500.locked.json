@@ -1,0 +1,91 @@
+{
+  "benchmark_kind": "real_external_folding_topology_benchmark",
+  "benchmark_size": 0,
+  "benchmark_sources": [
+    "RCSB_PDB",
+    "CATH",
+    "SCOPe",
+    "DisProt",
+    "CASP",
+    "AlphaFold_DB"
+  ],
+  "boundary": {
+    "clinical_use_allowed": false,
+    "drug_design_created": false,
+    "folding_problem_solved": false,
+    "folding_solution_claim_created": false,
+    "molecule_generated": false,
+    "protein_sequence_design_created": false
+  },
+  "builder_note": "No input file was supplied, so this output is a target shell. It is not evidence and will not pass --require-external benchmark runs.",
+  "external_validation_required": true,
+  "folding_problem_solved": false,
+  "folding_solution_claim_created": false,
+  "input_benchmark_file": "",
+  "lock_certificate": {
+    "benchmark_kind": "real_external_folding_topology_benchmark",
+    "benchmark_size": 0,
+    "benchmark_sources": [
+      "RCSB_PDB",
+      "CATH",
+      "SCOPe",
+      "DisProt",
+      "CASP",
+      "AlphaFold_DB"
+    ],
+    "clinical_use_allowed": false,
+    "dataset_hash": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "drug_design_created": false,
+    "folding_problem_solved": false,
+    "folding_solution_claim_created": false,
+    "lock_blockers": [
+      "no_external_reference_rows_loaded",
+      "benchmark_size_mismatch",
+      "mostly_alpha_or_compact_deficit:100",
+      "mostly_beta_or_long_range_deficit:100",
+      "alpha_beta_mixed_deficit:100",
+      "multidomain_or_boundary_sensitive_deficit:100",
+      "disordered_or_flexible_deficit:100"
+    ],
+    "locked_after_generation": false,
+    "molecule_generated": false,
+    "no_retuning_flag": false,
+    "protein_sequence_design_created": false,
+    "recipe_commit_hash": "uncommitted",
+    "source_manifest_hash": "sha256:dd6b287b424ed0119168ad52b9333ba8cf145744047a59d3b14e8cc088efef25",
+    "stratification_counts": {
+      "alpha_beta_mixed": 0,
+      "disordered_or_flexible": 0,
+      "mostly_alpha_or_compact": 0,
+      "mostly_beta_or_long_range": 0,
+      "multidomain_or_boundary_sensitive": 0
+    },
+    "stratification_targets": {
+      "alpha_beta_mixed": 100,
+      "disordered_or_flexible": 100,
+      "mostly_alpha_or_compact": 100,
+      "mostly_beta_or_long_range": 100,
+      "multidomain_or_boundary_sensitive": 100
+    },
+    "target_benchmark_size": 500
+  },
+  "locked_after_generation": false,
+  "no_retuning_flag": false,
+  "references": [],
+  "status": "empty_locked_dataset_shell_no_external_rows_attached",
+  "stratification_counts": {
+    "alpha_beta_mixed": 0,
+    "disordered_or_flexible": 0,
+    "mostly_alpha_or_compact": 0,
+    "mostly_beta_or_long_range": 0,
+    "multidomain_or_boundary_sensitive": 0
+  },
+  "stratification_targets": {
+    "alpha_beta_mixed": 100,
+    "disordered_or_flexible": 100,
+    "mostly_alpha_or_compact": 100,
+    "mostly_beta_or_long_range": 100,
+    "multidomain_or_boundary_sensitive": 100
+  },
+  "target_benchmark_size": 500
+}
