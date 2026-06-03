@@ -517,8 +517,8 @@ benchmark_size = 50
 external_rows = 50
 prediction_vs_structure_accuracy = 0.34
 prediction_vs_label_accuracy = 0.38
-forced_prediction_count = 27
-abstained_prediction_count = 23
+forced_prediction_count = 25
+abstained_prediction_count = 25
 high_confidence_wrong_count = 6
 false_beta_from_disorder_count = 0
 false_mixed_from_alpha_count = 0
@@ -528,7 +528,7 @@ compactness_gate_accuracy = 0.82
 segmentation_gate_accuracy = 0.9
 secondary_structure_gate_accuracy = 0.194444
 accuracy_delta_from_10 = -0.26
-abstention_delta_from_10 = 19
+abstention_delta_from_10 = 21
 high_confidence_wrong_delta_from_10 = 6
 stability_status = unstable_accuracy_drop
 claim_allowed = false
@@ -628,7 +628,7 @@ ambiguous_reference_count = 22
 possible_bad_rows_count = 8
 hierarchical_high_confidence_wrong_count_before_regime_routing = 6
 hierarchical_high_confidence_wrong_prevented_by_regime_routing = 6
-dominant_failure_cohort = abstained_on_structure_label_disagreement
+dominant_failure_cohort = abstained_unresolved
 old failure counters = closed
 revision_required = true
 claim_allowed = false
@@ -636,9 +636,9 @@ folding_problem_solved = false
 ```
 
 This is not an accuracy improvement. It is a clearer failure map. The dominant
-cohort says the largest remaining non-correct family is structure/label
-disagreement requiring manual review, while the old targeted failure modes
-remain closed.
+cohort says the largest remaining non-correct family is unresolved abstention
+requiring better axis evidence, while the old targeted failure modes remain
+closed.
 
 ## Orthogonal Fold-Axis Truth Adjudication
 
@@ -688,6 +688,56 @@ artifact_reproducible = true
 claim_allowed = false
 folding_problem_solved = false
 ```
+
+## Axis-Safe Profile Coverage Recovery
+
+The next layer is:
+
+```text
+fold_axis_profile_coverage_recovery
+```
+
+It does not recover global fold-class coverage. It emits a partial profile:
+
+```text
+secondary_structure_axis
+architecture_axis
+order_axis
+environment_axis
+```
+
+Each axis can be known or unknown independently. See
+`docs/FOLD_AXIS_PROFILE_BOUNDARY.md` for the full boundary.
+
+Run it with:
+
+```bash
+python3 scripts/run_fold_axis_profile_benchmark.py
+```
+
+The current checked-in axis profile report says:
+
+```text
+collapsed_class_coverage = 0.28
+axis_profile_coverage = 0.86
+secondary_axis_coverage = 0.16
+architecture_axis_coverage = 0.14
+order_axis_coverage = 0.84
+environment_axis_coverage = 0.04
+safe_axis_recovered_count = 39
+unsafe_class_recovery_count = 0
+guard_override_count = 0
+forced_same_axis_conflict_count = 0
+axis_profile_same_axis_conflict_count = 0
+high_confidence_wrong_count_after_axis_scoring = 0
+global_fold_class_claim_allowed = false
+axis_profile_claim_allowed = true
+folding_problem_solved = false
+```
+
+This is safe coverage recovery, not accuracy chasing. It lets the benchmark say
+that a row is ordered, membrane-like, fragment-scoped, or weakly secondary-axis
+supported without turning an abstention into a global fold class.
 
 The 500-file is a target shell, not a completed benchmark. It records the
 intended proof ladder and current lock blockers until real rows exist.
@@ -825,6 +875,12 @@ real_folding_50_axis_conflicts.csv
 real_folding_50_axis_manual_review.csv
 real_folding_50_axis_confusion_matrices.csv
 real_folding_50_axis_dashboard.html
+real_folding_50_axis_profile_report.json
+real_folding_50_axis_profile_rows.csv
+real_folding_50_axis_profile_abstentions.csv
+real_folding_50_axis_profile_recovery_candidates.csv
+real_folding_50_axis_profile_dashboard.html
+real_folding_50_axis_profile_certificate.json
 ```
 
 When a benchmark file is loaded, the JSON report also includes:

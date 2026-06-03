@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Fold Axis Profile Coverage Recovery</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f7f4ee;
+      color: #202326;
+    }
+    header {
+      padding: 32px;
+      background: #24322f;
+      color: #f8f4ec;
+    }
+    main {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    h1, h2 {
+      margin: 0 0 12px;
+      letter-spacing: 0;
+    }
+    section {
+      margin: 24px 0;
+    }
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin: 20px 0 0;
+    }
+    .metric {
+      background: #ffffff;
+      border: 1px solid #d8d1c5;
+      border-radius: 6px;
+      padding: 14px;
+    }
+    .metric span {
+      display: block;
+      color: #5f665f;
+      font-size: 12px;
+      overflow-wrap: anywhere;
+    }
+    .metric strong {
+      display: block;
+      margin-top: 8px;
+      font-size: 24px;
+    }
+    .rule-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+    .rule {
+      background: #fff;
+      border: 1px solid #d8d1c5;
+      border-radius: 6px;
+      padding: 14px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      border: 1px solid #d8d1c5;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    th, td {
+      padding: 9px 10px;
+      border-bottom: 1px solid #ebe5da;
+      text-align: left;
+      font-size: 13px;
+      vertical-align: top;
+      overflow-wrap: anywhere;
+    }
+    th {
+      background: #eee7dc;
+      color: #39423d;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Fold Axis Profile Coverage Recovery</h1>
+    <p>Partial axis claims are allowed only where existing sequence-only gates support them. Global fold-class recovery remains refused.</p>
+    <div class="metrics"><div class="metric"><span>collapsed_class_coverage</span><strong>0.28</strong></div><div class="metric"><span>axis_profile_coverage</span><strong>0.86</strong></div><div class="metric"><span>safe_axis_recovered_count</span><strong>39</strong></div><div class="metric"><span>unsafe_class_recovery_count</span><strong>0</strong></div><div class="metric"><span>guard_override_count</span><strong>0</strong></div><div class="metric"><span>axis_profile_same_axis_conflict_count</span><strong>0</strong></div><div class="metric"><span>high_confidence_wrong_count_after_axis_scoring</span><strong>0</strong></div><div class="metric"><span>axis_profile_claim_allowed</span><strong>True</strong></div><div class="metric"><span>global_fold_class_claim_allowed</span><strong>False</strong></div><div class="metric"><span>folding_problem_solved</span><strong>False</strong></div></div>
+  </header>
+  <main>
+    <section>
+      <h2>Safety Rules</h2>
+      <div class="rule-grid">
+        <div class="rule"><strong>No Collapsed Class Recovery</strong><br>Abstained rows stay globally unknown.</div>
+        <div class="rule"><strong>I Know This Axis</strong><br>Specific secondary, order, scope, or membrane evidence can populate one axis.</div>
+        <div class="rule"><strong>I Do Not Know That Axis</strong><br>Architecture stays mostly unknown until its own evidence layer exists.</div>
+        <div class="rule"><strong>No Guard Overrides</strong><br>Safety abstention guards are not turned back into class predictions.</div>
+      </div>
+    </section>
+    <section><h2>Axis Coverage</h2><table><thead><tr><th>key</th><th>value</th></tr></thead><tbody><tr><td>secondary_axis_coverage</td><td>0.16</td></tr><tr><td>architecture_axis_coverage</td><td>0.14</td></tr><tr><td>order_axis_coverage</td><td>0.84</td></tr><tr><td>environment_axis_coverage</td><td>0.04</td></tr></tbody></table></section>
+    <section><h2>Axis Accuracy</h2><table><thead><tr><th>key</th><th>value</th></tr></thead><tbody><tr><td>secondary_structure_axis</td><td>accuracy: 1.0, scorable_count: 8, claimed_count: 8, unscorable_count: 42</td></tr><tr><td>architecture_axis</td><td>accuracy: 1.0, scorable_count: 7, claimed_count: 7, unscorable_count: 43</td></tr><tr><td>order_axis</td><td>accuracy: 1.0, scorable_count: 42, claimed_count: 42, unscorable_count: 8</td></tr><tr><td>environment_axis</td><td>accuracy: 1.0, scorable_count: 1, claimed_count: 2, unscorable_count: 49</td></tr></tbody></table></section>
+    <section><h2>Recovery Distribution</h2><table><thead><tr><th>key</th><th>value</th></tr></thead><tbody><tr><td>secondary_structure_axis</td><td>2</td></tr><tr><td>architecture_axis</td><td>7</td></tr><tr><td>order_axis</td><td>28</td></tr><tr><td>environment_axis</td><td>2</td></tr></tbody></table></section>
+    <section><h2>Axis-Safe Recovery Candidates</h2><table><thead><tr><th>protein_id</th><th>regime</th><th>secondary</th><th>architecture</th><th>order</th><th>environment</th><th>recovered axes</th></tr></thead><tbody><tr><td>pdb_1R69_A_lambda_repressor_ntd</td><td>small_peptide_or_fragment</td><td>weak_or_unknown</td><td>fragment_scope</td><td>mixed_or_uncertain</td><td>unknown</td><td>architecture_axis</td></tr><tr><td>pdb_2MHR_A_myohemerythrin</td><td>compact_single_domain</td><td>weak_or_unknown</td><td>unknown</td><td>ordered</td><td>unknown</td><td>order_axis</td></tr><tr><td>pdb_1CYO_A_cytochrome_c2</td><td>compact_single_domain</td><td>weak_or_unknown</td><td>unknown</td><td>ordered</td><td>unknown</td><td>order_axis</td></tr><tr><td>pdb_1ROP_A_rop_protein</td><td>small_peptide_or_fragment</td><td>alpha_rich</td><td>fragment_scope</td><td>ordered</td><td>unknown</td><td>secondary_structure_axis;architecture_axis;order_axis</td></tr><tr><td>pdb_1GAB_A_albumin_binding_domain</td><td>small_peptide_or_fragment</td><td>alpha_rich</td><td>fragment_scope</td><td>ordered</td><td>unknown</td><td>secondary_structure_axis;architecture_axis;order_axis</td></tr><tr><td>pdb_1CUN_A_alpha_spectrin_repeat</td><td>compact_single_domain</td><td>weak_or_unknown</td><td>unknown</td><td>ordered</td><td>unknown</td><td>order_axis</td></tr><tr><td>pdb_1CSP_A_cold_shock_protein</td><td>small_peptide_or_fragment</td><td>weak_or_unknown</td><td>fragment_scope</td><td>ordered</td><td>unknown</td><td>architecture_axis;order_axis</td></tr><tr><td>pdb_1SHG_A_src_sh3_domain</td><td>small_peptide_or_fragment</td><td>weak_or_unknown</td><td>fragment_scope</td><td>ordered</td><td>unknown</td><td>architecture_axis;order_axis</td></tr><tr><td>pdb_1TIT_A_titin_i27</td><td>compact_single_domain</td><td>weak_or_unknown</td><td>unknown</td><td>ordered</td><td>unknown</td><td>order_axis</td></tr><tr><td>pdb_2PTL_A_protein_l_domain</td><td>compact_single_domain</td><td>weak_or_unknown</td><td>unknown</td><td>ordered</td><td>unknown</td><td>order_axis</td></tr><tr><td>pdb_1IGD_A_immunoglobulin_domain</td><td>small_peptide_or_fragment</td><td>weak_or_unknown</td><td>fragment_scope</td><td>ordered</td><td>unknown</td><td>architecture_axis;order_axis</td></tr><tr><td>pdb_1BFG_A_basic_fgf</td><td>intrinsically_disordered</td><td>weak_or_unknown</td><td>unknown</td><td>ordered</td><td>unknown</td><td>order_axis</td></tr><tr><td>pdb_1GFL_A_green_fluorescent_protein</td><td>compact_single_domain</td><td>weak_or_unknown</td><td>unknown</td><td>ordered</td><td>unknown</td><td>order_axis</td></tr><tr><td>pdb_1TIM_A_triosephosphate_isomerase</td><td>compact_single_domain</td><td>weak_or_unknown</td><td>unknown</td><td>ordered</td><td>unknown</td><td>order_axis</td></tr><tr><td>pdb_1PGA_A_protein_g_b1</td><td>small_peptide_or_fragment</td><td>weak_or_unknown</td><td>fragment_scope</td><td>ordered</td><td>unknown</td><td>architecture_axis;order_axis</td></tr><tr><td>pdb_4AKE_A_adenylate_kinase</td><td>compact_single_domain</td><td>weak_or_unknown</td><td>unknown</td><td>ordered</td><td>unknown</td><td>order_axis</td></tr><tr><td>pdb_2TRX_A_thioredoxin</td><td>compact_single_domain</td><td>weak_or_unknown</td><td>unknown</td><td>ordered</td><td>unknown</td><td>order_axis</td></tr><tr><td>pdb_3CHY_A_chey_response_regulator</td><td>membrane_like</td><td>weak_or_unknown</td><td>unknown</td><td>ordered</td><td>membrane_like</td><td>order_axis;environment_axis</td></tr><tr><td>pdb_2RN2_A_ribonuclease_a</td><td>compact_single_domain</td><td>weak_or_unknown</td><td>unknown</td><td>ordered</td><td>unknown</td><td>order_axis</td></tr><tr><td>pdb_1BTA_A_barstar</td><td>compact_single_domain</td><td>weak_or_unknown</td><td>unknown</td><td>ordered</td><td>unknown</td><td>order_axis</td></tr></tbody></table></section>
+  </main>
+</body>
+</html>

@@ -154,7 +154,7 @@ It is still not a folding solution.
 The hierarchy is now frozen against a 50-row stability benchmark at
 `data/folding_benchmarks_real_50.locked.json`. That run is intentionally
 harsher: `prediction_vs_structure_accuracy = 0.34`,
-`abstained_prediction_count = 23`, and `high_confidence_wrong_count = 6`, so
+`abstained_prediction_count = 25`, and `high_confidence_wrong_count = 6`, so
 `stability_status = unstable_accuracy_drop`. The useful part is that the
 targeted failure counters remain closed (`false_beta_from_disorder_count = 0`,
 `false_mixed_from_alpha_count = 0`,
@@ -178,16 +178,16 @@ abstained_prediction_count = 36
 high_confidence_wrong_count = 0
 regime_accuracy = 0.74
 hierarchical_high_confidence_wrong_prevented_by_regime_routing = 6
-dominant_failure_cohort = abstained_on_structure_label_disagreement
+dominant_failure_cohort = abstained_unresolved
 old failure counters = closed
 claim_allowed = false
 folding_problem_solved = false
 ```
 
 This is a diagnosis layer, not an accuracy win. The main finding is that the
-largest remaining non-correct cohort is not a reopened gate-order bug; it is
-rows where the structure-derived class and external label disagree enough to
-require manual review.
+largest remaining non-correct cohort is not a reopened gate-order bug; it is a
+set of unresolved abstentions that need better axis evidence before any broader
+claim is safe.
 
 The next layer is `orthogonal_fold_axis_truth_adjudication`. It splits the
 single fold class into secondary-structure, architecture, order, and
@@ -305,6 +305,7 @@ scripts/run_motif_alignment_benchmark.py
 scripts/run_hierarchical_gate_benchmark.py
 scripts/run_regime_analysis_benchmark.py
 scripts/run_fold_axis_adjudication_benchmark.py
+scripts/run_fold_axis_profile_benchmark.py
 scripts/validate_field_trace.py
 scripts/measure_field_trace.py
 tests/                               pytest coverage for ranking and safety
@@ -312,6 +313,7 @@ docs/ADDING_PROFILES.md              small guide for adding synthetic profiles
 docs/PROTEIN_CENTERED_REFRAME.md     protein-centered mechanism note
 docs/PROTEIN_FOLDING_TEST_BOUNDARY.md folding benchmark boundary note
 docs/FOLD_AXIS_TRUTH_BOUNDARY.md     orthogonal fold-axis truth boundary
+docs/FOLD_AXIS_PROFILE_BOUNDARY.md   axis-safe partial profile boundary
 PHARMACOTOPOLOGY_LAYER.md             longer design note
 LICENSE                              MIT license
 ```
@@ -486,14 +488,14 @@ external_rows = 50
 class_distribution = 10 per broad class
 prediction_vs_structure_accuracy = 0.34
 prediction_vs_label_accuracy = 0.38
-forced_prediction_count = 27
-abstained_prediction_count = 23
+forced_prediction_count = 25
+abstained_prediction_count = 25
 high_confidence_wrong_count = 6
 false_beta_from_disorder_count = 0
 false_mixed_from_alpha_count = 0
 flexible_segmentation_false_multidomain_count = 0
 accuracy_delta_from_10 = -0.26
-abstention_delta_from_10 = 19
+abstention_delta_from_10 = 21
 high_confidence_wrong_delta_from_10 = 6
 stability_status = unstable_accuracy_drop
 claim_allowed = false
@@ -528,7 +530,7 @@ high_confidence_wrong_count = 0
 regime_accuracy = 0.74
 structure_label_disagreement_count = 17
 possible_bad_rows_count = 8
-dominant_failure_cohort = abstained_on_structure_label_disagreement
+dominant_failure_cohort = abstained_unresolved
 hierarchical_high_confidence_wrong_prevented_by_regime_routing = 6
 claim_allowed = false
 folding_problem_solved = false
@@ -568,6 +570,43 @@ axis_unscorable_count = 147
 high_confidence_wrong_count_after_axis_scoring = 0
 artifact_reproducible = true
 claim_allowed = false
+folding_problem_solved = false
+```
+
+Run the axis-safe partial profile coverage layer:
+
+```bash
+python3 scripts/run_fold_axis_profile_benchmark.py
+```
+
+It writes:
+
+```text
+real_folding_50_axis_profile_report.json
+real_folding_50_axis_profile_rows.csv
+real_folding_50_axis_profile_abstentions.csv
+real_folding_50_axis_profile_recovery_candidates.csv
+real_folding_50_axis_profile_dashboard.html
+real_folding_50_axis_profile_certificate.json
+```
+
+The checked-in axis profile report currently says:
+
+```text
+collapsed_class_coverage = 0.28
+axis_profile_coverage = 0.86
+secondary_axis_coverage = 0.16
+architecture_axis_coverage = 0.14
+order_axis_coverage = 0.84
+environment_axis_coverage = 0.04
+safe_axis_recovered_count = 39
+unsafe_class_recovery_count = 0
+guard_override_count = 0
+forced_same_axis_conflict_count = 0
+axis_profile_same_axis_conflict_count = 0
+high_confidence_wrong_count_after_axis_scoring = 0
+global_fold_class_claim_allowed = false
+axis_profile_claim_allowed = true
 folding_problem_solved = false
 ```
 

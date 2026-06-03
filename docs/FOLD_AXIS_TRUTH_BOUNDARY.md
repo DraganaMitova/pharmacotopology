@@ -155,3 +155,7 @@ The next modeling work should target those areas directly, but only after
 evidence improves enough to classify rather than merely abstain: folded beta
 proteins that mimic disorder from sequence-only features, and weak
 alpha-vs-mixed secondary-axis separation.
+
+The immediate coverage-recovery layer after this boundary is
+`docs/FOLD_AXIS_PROFILE_BOUNDARY.md`. It keeps global fold class claims refused
+while emitting only safe partial axis profiles.

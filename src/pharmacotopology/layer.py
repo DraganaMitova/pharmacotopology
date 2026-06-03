@@ -110,6 +110,12 @@ PHARMACOTOPOLOGY_GENERATED_FILES: tuple[str, ...] = (
     "real_folding_50_axis_manual_review.csv",
     "real_folding_50_axis_confusion_matrices.csv",
     "real_folding_50_axis_dashboard.html",
+    "real_folding_50_axis_profile_report.json",
+    "real_folding_50_axis_profile_rows.csv",
+    "real_folding_50_axis_profile_abstentions.csv",
+    "real_folding_50_axis_profile_recovery_candidates.csv",
+    "real_folding_50_axis_profile_dashboard.html",
+    "real_folding_50_axis_profile_certificate.json",
     "field_validation.json",
     "field_metrics.json",
 )
