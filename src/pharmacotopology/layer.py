@@ -245,6 +245,27 @@ DEFAULT_ANXIETY_LIKE_PROFILE = TopologyProfile(
     },
 )
 
+DEFAULT_MIXED_STATE_LIKE_PROFILE = TopologyProfile(
+    profile_id="mixed_state_like_topology_profile",
+    description=(
+        "Synthetic simultaneous activation-and-shutdown pressure profile only; "
+        "not a diagnosis, patient model, or medication target."
+    ),
+    dimensions={
+        "salience_amplification": 0.82,
+        "recurrence_overbinding": 0.78,
+        "symbolic_closure_pressure": 0.70,
+        "threat_propagation": 0.82,
+        "falsification_weakness": 0.60,
+        "boundary_instability": 0.76,
+        "agency_confusion": 0.64,
+        "sensory_intrusion": 0.58,
+        "cognitive_fragmentation": 0.68,
+        "negative_shutdown": 0.72,
+        "sleep_instability": 0.88,
+    },
+)
+
 DEFAULT_NORMAL_BOUNDED_PROFILE = TopologyProfile(
     profile_id="normal_bounded_topology_profile",
     description=(
@@ -271,6 +292,7 @@ DEFAULT_TOPOLOGY_PROFILES: dict[str, TopologyProfile] = {
     "depression_like": DEFAULT_DEPRESSION_LIKE_PROFILE,
     "mania_like": DEFAULT_MANIA_LIKE_PROFILE,
     "anxiety_like": DEFAULT_ANXIETY_LIKE_PROFILE,
+    "mixed_state_like": DEFAULT_MIXED_STATE_LIKE_PROFILE,
 }
 
 

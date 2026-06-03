@@ -53,6 +53,7 @@ def test_topology_profile_catalog_exposes_synthetic_profiles() -> None:
         "depression_like",
         "mania_like",
         "anxiety_like",
+        "mixed_state_like",
     }
 
     for profile in DEFAULT_TOPOLOGY_PROFILES.values():

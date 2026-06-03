@@ -48,6 +48,7 @@ Additional synthetic source profiles are available for bounded comparison:
 depression-like topology profile
 mania-like topology profile
 anxiety-like topology profile
+mixed-state-like topology profile
 ```
 
 All profiles are synthetic pressure maps. They are not diagnoses, patient
@@ -75,6 +76,8 @@ The pathology reduction score is computed over the dimensions affected by that
 mechanism vector; the full resulting topology state is still written for review.
 Each result also carries an evidence readiness label, evidence weight,
 uncertainty radius, and score interval.
+The rendered dashboard includes a per-vector calibration readiness table so the
+evidence posture is inspectable beside the ranking.
 
 The layer therefore can distinguish:
 

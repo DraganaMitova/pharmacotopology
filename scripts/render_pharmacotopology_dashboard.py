@@ -293,6 +293,57 @@ def _calibration_readiness(review: Mapping[str, Any]) -> str:
     """
 
 
+def _calibration_vector_table(review: Mapping[str, Any]) -> str:
+    results = _result_lookup(review)
+    rows = []
+    for item in _ranking(review):
+        mechanism_id = str(item["mechanism_id"])
+        result = results.get(mechanism_id, {})
+        net_interval = result.get("net_topology_health_interval", {})
+        pathology_interval = result.get("pathology_reduction_interval", {})
+        collapse_interval = result.get("collapse_cost_interval", {})
+        rows.append(
+            "<tr>"
+            f"<th>{escape(mechanism_id)}</th>"
+            f"<td>{escape(str(result.get('evidence_stage', 'unknown')))}</td>"
+            f"<td>{escape(_fmt(item.get('evidence_weight', 0.0)))}</td>"
+            f"<td>{escape(_fmt(item.get('uncertainty_radius', 0.0)))}</td>"
+            f"<td>{escape(str(item.get('evidence_readiness_label', 'unknown')))}</td>"
+            f"<td>{escape(_fmt(pathology_interval.get('lower', 0.0)))} to "
+            f"{escape(_fmt(pathology_interval.get('upper', 0.0)))}</td>"
+            f"<td>{escape(_fmt(collapse_interval.get('lower', 0.0)))} to "
+            f"{escape(_fmt(collapse_interval.get('upper', 0.0)))}</td>"
+            f"<td>{escape(_fmt(net_interval.get('lower', 0.0)))} to "
+            f"{escape(_fmt(net_interval.get('upper', 0.0)))}</td>"
+            "</tr>"
+        )
+    return f"""
+    <section>
+      <div class="section-heading">
+        <h2>Per-Vector Calibration Table</h2>
+        <p>Evidence posture and uncertainty interval for every mechanism vector.</p>
+      </div>
+      <div class="table-scroll">
+        <table class="readiness-table">
+          <thead>
+            <tr>
+              <th>mechanism_id</th>
+              <th>evidence_stage</th>
+              <th>evidence_weight</th>
+              <th>uncertainty_radius</th>
+              <th>readiness</th>
+              <th>pathology interval</th>
+              <th>collapse interval</th>
+              <th>net interval</th>
+            </tr>
+          </thead>
+          <tbody>{''.join(rows)}</tbody>
+        </table>
+      </div>
+    </section>
+    """
+
+
 def _heatmap(review: Mapping[str, Any]) -> str:
     mechanisms = _mechanism_lookup(review)
     header_cells = "".join(f"<th>{escape(dimension)}</th>" for dimension in TOPOLOGY_DIMENSIONS)
@@ -574,6 +625,7 @@ def render_dashboard_html(packet: Mapping[str, Any]) -> str:
     {_topology_state_map(review)}
     {_ranking_chart(review)}
     {_calibration_readiness(review)}
+    {_calibration_vector_table(review)}
     {_heatmap(review)}
     {_before_after(review)}
     {_safety_footer()}

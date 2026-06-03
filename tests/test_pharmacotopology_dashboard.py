@@ -40,6 +40,7 @@ def test_pharmacotopology_dashboard_contains_required_labels(tmp_path: Path) -> 
     assert "collapse_cost_score" in html
     assert "net_topology_health_score" in html
     assert "Calibration Readiness" in html
+    assert "Per-Vector Calibration Table" in html
     assert "uncalibrated_hypothesis_workbench" in html
     assert "uncertainty_radius" in html
 

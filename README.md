@@ -153,6 +153,7 @@ schizophrenia_like
 depression_like
 mania_like
 anxiety_like
+mixed_state_like
 ```
 
 They are for hypothesis comparison only. They are not diagnoses, patient
@@ -177,6 +178,25 @@ The ranking CSV includes score intervals, evidence weight, uncertainty radius,
 and evidence readiness labels. The delta CSV includes every topology dimension
 plus collapse cost.
 
+## Calibration Readiness Table
+
+The dashboard includes a per-vector calibration table with:
+
+```text
+mechanism_id
+evidence_stage
+evidence_weight
+uncertainty_radius
+evidence_readiness_label
+pathology_reduction interval
+collapse_cost interval
+net_topology_health interval
+```
+
+The current default vectors remain `uncalibrated_hypothesis`, which is the
+honest starting point. The table is meant to show exactly where evidence would
+attach later.
+
 ## Sensitivity Analysis
 
 Run a local pressure sweep to see whether rankings are stable when source
@@ -200,6 +220,13 @@ first_contact_clean_pharmacotopology_layer_run/sensitivity_rankings.csv
 ```
 
 This is a robustness review, not a clinical interpretation.
+
+## Interactive Wrapper
+
+A small Streamlit or Gradio wrapper would be a natural later layer for local
+exploration: profile selection, pressure sliders, ranking preview, CSV export,
+and the same safety warnings. It is intentionally not included in the core
+package yet, so the current project remains dependency-free and easy to audit.
 
 ## Validate
 
