@@ -1,0 +1,5 @@
+metric,before,after,delta
+axis_profile_same_axis_conflict_count,22,0,-22
+architecture_axis_same_axis_conflict_count,14,0,-14
+unsafe_axis_claim_count,36,0,-36
+high_confidence_wrong_count_after_axis_scoring,17,0,-17

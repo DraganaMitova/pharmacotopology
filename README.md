@@ -289,6 +289,7 @@ data/folding_benchmarks_real_10_structure_evidence.json
 data/folding_benchmarks_real_50.locked.json
 data/folding_benchmarks_real_50_structure_evidence.json
 data/folding_benchmarks_real_500.locked.json
+data/folding_benchmarks_external_fold_family_100.locked.json
 scripts/run_clean_pharmacotopology_layer.py
 scripts/render_pharmacotopology_dashboard.py
 scripts/render_profile_comparison_dashboard.py
@@ -308,6 +309,7 @@ scripts/run_fold_axis_adjudication_benchmark.py
 scripts/run_fold_axis_profile_benchmark.py
 scripts/run_architecture_axis_benchmark.py
 scripts/run_external_fold_family_holdout_benchmark.py
+scripts/run_external_axis_repair_benchmark.py
 scripts/validate_field_trace.py
 scripts/measure_field_trace.py
 tests/                               pytest coverage for ranking and safety
@@ -318,6 +320,7 @@ docs/FOLD_AXIS_TRUTH_BOUNDARY.md     orthogonal fold-axis truth boundary
 docs/FOLD_AXIS_PROFILE_BOUNDARY.md   axis-safe partial profile boundary
 docs/FOLD_ARCHITECTURE_AXIS_BOUNDARY.md architecture-axis evidence boundary
 docs/EXTERNAL_FOLD_FAMILY_HOLDOUT_BOUNDARY.md external holdout boundary
+docs/EXTERNAL_AXIS_REPAIR_BOUNDARY.md external-safe axis repair boundary
 PHARMACOTOPOLOGY_LAYER.md             longer design note
 LICENSE                              MIT license
 ```
@@ -702,6 +705,53 @@ folding_problem_solved = false
 This is a falsification result, not a regression fix. The current stack was run
 without threshold tuning on non-overlapping fold-family rows, and the failure
 cohorts now define the next repair target.
+
+Run the external-safe axis repair benchmark:
+
+```bash
+python3 scripts/run_external_axis_repair_benchmark.py
+```
+
+It writes:
+
+```text
+external_axis_repair_report.json
+external_axis_repair_rows.csv
+external_axis_repair_conflict_delta.csv
+external_axis_repair_abstention_delta.csv
+external_axis_repair_quarantine_rows.csv
+external_axis_repair_family_summary.csv
+external_axis_repair_dashboard.html
+external_axis_repair_certificate.json
+```
+
+The checked-in repair report currently says:
+
+```text
+pre_repair_axis_profile_coverage = 0.78
+post_repair_axis_profile_coverage = 0.55
+pre_repair_axis_profile_same_axis_conflict_count = 22
+post_repair_axis_profile_same_axis_conflict_count = 0
+pre_repair_architecture_axis_same_axis_conflict_count = 14
+post_repair_architecture_axis_same_axis_conflict_count = 0
+pre_repair_unsafe_axis_claim_count = 36
+post_repair_unsafe_axis_claim_count = 0
+pre_repair_high_confidence_wrong_count_after_axis_scoring = 17
+post_repair_high_confidence_wrong_count_after_axis_scoring = 0
+order_axis_folded_mimic_quarantined_count = 22
+repeat_compact_ambiguity_quarantined_count = 14
+coverage_loss_from_external_safety = 0.23
+external_safety_repair_successful = true
+global_fold_class_claim_allowed = false
+claim_allowed = false
+folding_problem_solved = false
+```
+
+This is a safety repair, not an accuracy claim. It refuses weak
+`disordered_flexible -> order_axis` projection and refuses `repeat_like`
+architecture when the signal is mostly hydrophobic periodicity without enough
+recurrence support. The repair lowers coverage by abstention instead of forcing
+new labels.
 
 Build the 500-protein locked benchmark target shell:
 

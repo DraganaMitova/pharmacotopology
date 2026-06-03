@@ -1,0 +1,4 @@
+metric,before,after,delta
+axis_profile_coverage,0.78,0.55,-0.23
+architecture_axis_coverage,0.17,0.03,-0.14
+coverage_loss_from_external_safety,0,0.23,0.23

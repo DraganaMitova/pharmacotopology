@@ -833,6 +833,64 @@ folding_problem_solved = false
 This result shows partial generalization and real holdout failures. The next
 repair batch should be selected from `external_fold_family_100_failure_cohorts.csv`.
 
+## External-Safe Axis Conflict Quarantine
+
+The first external repair batch is intentionally a safety calibration batch,
+not an accuracy batch:
+
+```bash
+python3 scripts/run_external_axis_repair_benchmark.py
+```
+
+It writes:
+
+```text
+real_folding_50_axis_* artifacts regenerated for reproducibility
+real_folding_50_axis_profile_* artifacts regenerated for reproducibility
+external_axis_repair_report.json
+external_axis_repair_rows.csv
+external_axis_repair_conflict_delta.csv
+external_axis_repair_abstention_delta.csv
+external_axis_repair_quarantine_rows.csv
+external_axis_repair_family_summary.csv
+external_axis_repair_dashboard.html
+external_axis_repair_certificate.json
+```
+
+Current result:
+
+```text
+pre_repair_axis_profile_coverage = 0.78
+post_repair_axis_profile_coverage = 0.55
+pre_repair_axis_profile_same_axis_conflict_count = 22
+post_repair_axis_profile_same_axis_conflict_count = 0
+pre_repair_architecture_axis_same_axis_conflict_count = 14
+post_repair_architecture_axis_same_axis_conflict_count = 0
+pre_repair_unsafe_axis_claim_count = 36
+post_repair_unsafe_axis_claim_count = 0
+pre_repair_high_confidence_wrong_count_after_axis_scoring = 17
+post_repair_high_confidence_wrong_count_after_axis_scoring = 0
+order_axis_folded_mimic_quarantined_count = 22
+repeat_compact_ambiguity_quarantined_count = 14
+coverage_loss_from_external_safety = 0.23
+external_safety_repair_successful = true
+legacy_axis_artifacts_reproducible = true
+legacy_axis_profile_artifacts_reproducible = true
+global_fold_class_claim_allowed = false
+claim_allowed = false
+folding_problem_solved = false
+```
+
+The repair closes unsafe external axis overclaims by abstention:
+
+```text
+weak disordered_flexible order projection -> mixed_or_uncertain
+weak repeat-like hydrophobic periodicity -> unknown architecture
+```
+
+It does not convert the affected rows into better-looking labels and does not
+recover collapsed-class coverage.
+
 The 500-file is a target shell, not a completed benchmark. It records the
 intended proof ladder and current lock blockers until real rows exist.
 

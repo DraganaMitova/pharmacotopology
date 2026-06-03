@@ -153,6 +153,17 @@ large_chain_multidomain_under_claimed
 
 Those are cohorts, not fixes. This commit does not repair them.
 
+The next layer, documented in `docs/EXTERNAL_AXIS_REPAIR_BOUNDARY.md`, repairs
+the two unsafe overclaim classes by abstention:
+
+```text
+disordered_flexible order-axis projection -> quarantine unless disorder evidence is strong
+repeat_like architecture projection -> quarantine unless recurrence evidence is strong
+```
+
+The holdout artifacts remain useful as the before picture. The repair artifacts
+record the after picture.
+
 ## Boundary
 
 This layer does not:

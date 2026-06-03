@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>External Holdout Safety Repair</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f6f7f2;
+      color: #1f2523;
+    }
+    header {
+      padding: 32px;
+      background: #24302c;
+      color: #f6f7f2;
+    }
+    main {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    h1, h2 {
+      margin: 0 0 12px;
+      letter-spacing: 0;
+    }
+    section {
+      margin: 24px 0;
+    }
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .metric {
+      background: #ffffff;
+      border: 1px solid #d5ddd5;
+      border-radius: 6px;
+      padding: 14px;
+      color: #1f2523;
+    }
+    .metric span {
+      display: block;
+      color: #58635e;
+      font-size: 12px;
+      overflow-wrap: anywhere;
+    }
+    .metric strong {
+      display: block;
+      margin-top: 8px;
+      font-size: 22px;
+    }
+    .rule-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 12px;
+    }
+    .rule {
+      background: #fff;
+      border: 1px solid #d5ddd5;
+      border-radius: 6px;
+      padding: 14px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      border: 1px solid #d5ddd5;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    th, td {
+      padding: 9px 10px;
+      border-bottom: 1px solid #e8eee8;
+      text-align: left;
+      font-size: 13px;
+      vertical-align: top;
+      overflow-wrap: anywhere;
+    }
+    th {
+      background: #e8eee8;
+      color: #34423d;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>External Holdout Safety Repair</h1>
+    <p>Coverage was too optimistic; this repair closes unsafe axis claims by abstention rather than label forcing.</p>
+    <div class="metrics"><div class="metric"><span>pre_repair_axis_profile_coverage</span><strong>0.78</strong></div><div class="metric"><span>post_repair_axis_profile_coverage</span><strong>0.55</strong></div><div class="metric"><span>pre_repair_axis_profile_same_axis_conflict_count</span><strong>22</strong></div><div class="metric"><span>post_repair_axis_profile_same_axis_conflict_count</span><strong>0</strong></div><div class="metric"><span>pre_repair_architecture_axis_same_axis_conflict_count</span><strong>14</strong></div><div class="metric"><span>post_repair_architecture_axis_same_axis_conflict_count</span><strong>0</strong></div><div class="metric"><span>post_repair_unsafe_axis_claim_count</span><strong>0</strong></div><div class="metric"><span>post_repair_high_confidence_wrong_count_after_axis_scoring</span><strong>0</strong></div><div class="metric"><span>order_axis_folded_mimic_quarantined_count</span><strong>22</strong></div><div class="metric"><span>repeat_compact_ambiguity_quarantined_count</span><strong>14</strong></div><div class="metric"><span>claim_allowed</span><strong>False</strong></div><div class="metric"><span>folding_problem_solved</span><strong>False</strong></div></div>
+  </header>
+  <main>
+    <section>
+      <h2>Repair Rules</h2>
+      <div class="rule-grid">
+        <div class="rule"><strong>Coverage Was Too Optimistic</strong><br>The baseline holdout exposed unsafe axis claims.</div>
+        <div class="rule"><strong>Disorder Claim Requires Strong Disorder Evidence</strong><br>Disordered class is not automatically an order-axis claim.</div>
+        <div class="rule"><strong>Folded Beta/Mixed Mimics Are Quarantined</strong><br>Suspicious disorder claims become unknown, not ordered.</div>
+        <div class="rule"><strong>Repeat-Like Requires Recurrence</strong><br>Repeat claims require more than periodic hydrophobic clusters.</div>
+        <div class="rule"><strong>Hydrophobic Periodicity Alone Is Not Architecture</strong><br>Compact closure plus weak recurrence blocks repeat-like claims.</div>
+        <div class="rule"><strong>Safety Improved By Abstention</strong><br>Coverage may drop; that is the point of this batch.</div>
+        <div class="rule"><strong>Global Fold Class Still Locked</strong><br>No global class recovery or folding-solved claim is created.</div>
+      </div>
+    </section>
+    <section><h2>Conflict Delta</h2><table><thead><tr><th>key</th><th>value</th></tr></thead><tbody><tr><td>pre_repair_axis_profile_same_axis_conflict_count</td><td>22</td></tr><tr><td>post_repair_axis_profile_same_axis_conflict_count</td><td>0</td></tr><tr><td>pre_repair_architecture_axis_same_axis_conflict_count</td><td>14</td></tr><tr><td>post_repair_architecture_axis_same_axis_conflict_count</td><td>0</td></tr><tr><td>pre_repair_unsafe_axis_claim_count</td><td>36</td></tr><tr><td>post_repair_unsafe_axis_claim_count</td><td>0</td></tr></tbody></table></section>
+    <section><h2>Abstention Cost</h2><table><thead><tr><th>key</th><th>value</th></tr></thead><tbody><tr><td>pre_repair_axis_profile_coverage</td><td>0.78</td></tr><tr><td>post_repair_axis_profile_coverage</td><td>0.55</td></tr><tr><td>pre_repair_architecture_axis_coverage</td><td>0.17</td></tr><tr><td>post_repair_architecture_axis_coverage</td><td>0.03</td></tr><tr><td>coverage_loss_from_external_safety</td><td>0.23</td></tr></tbody></table></section>
+    <section><h2>Safety Improved By Abstention</h2><table><thead><tr><th>row_id</th><th>family group</th><th>pre order</th><th>post order</th><th>pre architecture</th><th>post architecture</th><th>order reason</th><th>architecture reason</th></tr></thead><tbody><tr><td>holdout_003_alpha_rich_soluble_01</td><td>alpha_rich_soluble</td><td>ordered</td><td>ordered</td><td>repeat_like</td><td>unknown</td><td>source did not force a fold class for order-axis projection</td><td>repeat_compact_single_domain_ambiguity_quarantine</td></tr><tr><td>holdout_005_alpha_rich_soluble_01</td><td>alpha_rich_soluble</td><td>ordered</td><td>ordered</td><td>repeat_like</td><td>unknown</td><td>source did not force a fold class for order-axis projection</td><td>repeat_compact_single_domain_ambiguity_quarantine</td></tr><tr><td>holdout_008_alpha_rich_soluble_02</td><td>alpha_rich_soluble</td><td>ordered</td><td>ordered</td><td>repeat_like</td><td>unknown</td><td>source did not force a fold class for order-axis projection</td><td>repeat_compact_single_domain_ambiguity_quarantine</td></tr><tr><td>holdout_009_alpha_rich_soluble_02</td><td>alpha_rich_soluble</td><td>ordered</td><td>ordered</td><td>repeat_like</td><td>unknown</td><td>source did not force a fold class for order-axis projection</td><td>repeat_compact_single_domain_ambiguity_quarantine</td></tr><tr><td>holdout_010_alpha_rich_soluble_02</td><td>alpha_rich_soluble</td><td>ordered</td><td>ordered</td><td>repeat_like</td><td>unknown</td><td>source did not force a fold class for order-axis projection</td><td>repeat_compact_single_domain_ambiguity_quarantine</td></tr><tr><td>holdout_012_alpha_rich_soluble_03</td><td>alpha_rich_soluble</td><td>ordered</td><td>ordered</td><td>repeat_like</td><td>unknown</td><td>source did not force a fold class for order-axis projection</td><td>repeat_compact_single_domain_ambiguity_quarantine</td></tr><tr><td>holdout_013_alpha_rich_soluble_03</td><td>alpha_rich_soluble</td><td>ordered</td><td>ordered</td><td>repeat_like</td><td>unknown</td><td>source did not force a fold class for order-axis projection</td><td>repeat_compact_single_domain_ambiguity_quarantine</td></tr><tr><td>holdout_014_alpha_rich_soluble_03</td><td>alpha_rich_soluble</td><td>ordered</td><td>ordered</td><td>repeat_like</td><td>unknown</td><td>source did not force a fold class for order-axis projection</td><td>repeat_compact_single_domain_ambiguity_quarantine</td></tr><tr><td>holdout_015_alpha_rich_soluble_03</td><td>alpha_rich_soluble</td><td>ordered</td><td>ordered</td><td>repeat_like</td><td>unknown</td><td>source did not force a fold class for order-axis projection</td><td>repeat_compact_single_domain_ambiguity_quarantine</td></tr><tr><td>holdout_017_alpha_rich_soluble_04</td><td>alpha_rich_soluble</td><td>ordered</td><td>ordered</td><td>repeat_like</td><td>unknown</td><td>source did not force a fold class for order-axis projection</td><td>repeat_compact_single_domain_ambiguity_quarantine</td></tr><tr><td>holdout_018_alpha_rich_soluble_04</td><td>alpha_rich_soluble</td><td>ordered</td><td>ordered</td><td>repeat_like</td><td>unknown</td><td>source did not force a fold class for order-axis projection</td><td>repeat_compact_single_domain_ambiguity_quarantine</td></tr><tr><td>holdout_020_alpha_rich_soluble_04</td><td>alpha_rich_soluble</td><td>ordered</td><td>ordered</td><td>repeat_like</td><td>unknown</td><td>source did not force a fold class for order-axis projection</td><td>repeat_compact_single_domain_ambiguity_quarantine</td></tr><tr><td>holdout_023_beta_rich_01</td><td>beta_rich</td><td>disordered_flexible</td><td>mixed_or_uncertain</td><td>unknown</td><td>unknown</td><td>external_order_axis_folded_mimic_quarantine</td><td>repeat/segmentation signals are mixed</td></tr><tr><td>holdout_025_beta_rich_01</td><td>beta_rich</td><td>disordered_flexible</td><td>mixed_or_uncertain</td><td>unknown</td><td>unknown</td><td>external_order_axis_folded_mimic_quarantine</td><td>repeat/segmentation signals are mixed</td></tr><tr><td>holdout_028_beta_rich_02</td><td>beta_rich</td><td>disordered_flexible</td><td>mixed_or_uncertain</td><td>unknown</td><td>unknown</td><td>external_order_axis_folded_mimic_quarantine</td><td>repeat/segmentation signals are mixed</td></tr><tr><td>holdout_029_beta_rich_02</td><td>beta_rich</td><td>ordered</td><td>ordered</td><td>repeat_like</td><td>unknown</td><td>source did not force a fold class for order-axis projection</td><td>repeat_compact_single_domain_ambiguity_quarantine</td></tr><tr><td>holdout_030_beta_rich_02</td><td>beta_rich</td><td>disordered_flexible</td><td>mixed_or_uncertain</td><td>unknown</td><td>unknown</td><td>external_order_axis_folded_mimic_quarantine</td><td>repeat/segmentation signals are mixed</td></tr><tr><td>holdout_033_beta_rich_03</td><td>beta_rich</td><td>disordered_flexible</td><td>mixed_or_uncertain</td><td>unknown</td><td>unknown</td><td>external_order_axis_folded_mimic_quarantine</td><td>repeat/segmentation signals are mixed</td></tr><tr><td>holdout_034_beta_rich_03</td><td>beta_rich</td><td>mixed_or_uncertain</td><td>mixed_or_uncertain</td><td>repeat_like</td><td>unknown</td><td>source did not force a fold class for order-axis projection</td><td>repeat_compact_single_domain_ambiguity_quarantine</td></tr><tr><td>holdout_035_beta_rich_03</td><td>beta_rich</td><td>disordered_flexible</td><td>mixed_or_uncertain</td><td>unknown</td><td>unknown</td><td>external_order_axis_folded_mimic_quarantine</td><td>repeat/segmentation signals are mixed</td></tr><tr><td>holdout_040_beta_rich_04</td><td>beta_rich</td><td>disordered_flexible</td><td>mixed_or_uncertain</td><td>unknown</td><td>unknown</td><td>external_order_axis_folded_mimic_quarantine</td><td>repeat/segmentation signals are mixed</td></tr><tr><td>holdout_041_alpha_beta_mixed_01</td><td>alpha_beta_mixed</td><td>disordered_flexible</td><td>mixed_or_uncertain</td><td>unknown</td><td>unknown</td><td>external_order_axis_folded_mimic_quarantine</td><td>repeat/segmentation signals are mixed</td></tr><tr><td>holdout_042_alpha_beta_mixed_01</td><td>alpha_beta_mixed</td><td>disordered_flexible</td><td>mixed_or_uncertain</td><td>unknown</td><td>unknown</td><td>external_order_axis_folded_mimic_quarantine</td><td>repeat/segmentation signals are mixed</td></tr><tr><td>holdout_043_alpha_beta_mixed_01</td><td>alpha_beta_mixed</td><td>disordered_flexible</td><td>mixed_or_uncertain</td><td>unknown</td><td>unknown</td><td>external_order_axis_folded_mimic_quarantine</td><td>repeat/segmentation signals are mixed</td></tr><tr><td>holdout_044_alpha_beta_mixed_01</td><td>alpha_beta_mixed</td><td>disordered_flexible</td><td>mixed_or_uncertain</td><td>unknown</td><td>unknown</td><td>external_order_axis_folded_mimic_quarantine</td><td>repeat/segmentation signals are mixed</td></tr><tr><td>holdout_046_alpha_beta_mixed_02</td><td>alpha_beta_mixed</td><td>disordered_flexible</td><td>mixed_or_uncertain</td><td>unknown</td><td>unknown</td><td>external_order_axis_folded_mimic_quarantine</td><td>repeat/segmentation signals are mixed</td></tr><tr><td>holdout_047_alpha_beta_mixed_02</td><td>alpha_beta_mixed</td><td>disordered_flexible</td><td>mixed_or_uncertain</td><td>unknown</td><td>unknown</td><td>external_order_axis_folded_mimic_quarantine</td><td>repeat/segmentation signals are mixed</td></tr><tr><td>holdout_049_alpha_beta_mixed_02</td><td>alpha_beta_mixed</td><td>disordered_flexible</td><td>mixed_or_uncertain</td><td>unknown</td><td>unknown</td><td>external_order_axis_folded_mimic_quarantine</td><td>repeat/segmentation signals are mixed</td></tr><tr><td>holdout_051_alpha_beta_mixed_03</td><td>alpha_beta_mixed</td><td>disordered_flexible</td><td>mixed_or_uncertain</td><td>unknown</td><td>unknown</td><td>external_order_axis_folded_mimic_quarantine</td><td>repeat/segmentation signals are mixed</td></tr><tr><td>holdout_054_alpha_beta_mixed_03</td><td>alpha_beta_mixed</td><td>disordered_flexible</td><td>mixed_or_uncertain</td><td>unknown</td><td>unknown</td><td>external_order_axis_folded_mimic_quarantine</td><td>repeat/segmentation signals are mixed</td></tr><tr><td>holdout_056_alpha_beta_mixed_04</td><td>alpha_beta_mixed</td><td>disordered_flexible</td><td>mixed_or_uncertain</td><td>unknown</td><td>unknown</td><td>external_order_axis_folded_mimic_quarantine</td><td>repeat/segmentation signals are mixed</td></tr><tr><td>holdout_057_alpha_beta_mixed_04</td><td>alpha_beta_mixed</td><td>disordered_flexible</td><td>mixed_or_uncertain</td><td>unknown</td><td>unknown</td><td>external_order_axis_folded_mimic_quarantine</td><td>repeat/segmentation signals are mixed</td></tr></tbody></table></section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,30 @@
+{
+  "architecture_axis_claim_allowed": true,
+  "axis_profile_claim_allowed": true,
+  "certificate_kind": "external_axis_repair_safety_certificate",
+  "claim_allowed": false,
+  "external_axis_repair_complete": true,
+  "folding_problem_solved": false,
+  "global_fold_class_claim_allowed": false,
+  "guard_override_count": 0,
+  "legacy_axis_artifacts_reproducible": true,
+  "legacy_axis_profile_artifacts_reproducible": true,
+  "order_axis_folded_mimic_quarantine_active": true,
+  "output_artifacts": [
+    "external_axis_repair_report.json",
+    "external_axis_repair_rows.csv",
+    "external_axis_repair_conflict_delta.csv",
+    "external_axis_repair_abstention_delta.csv",
+    "external_axis_repair_quarantine_rows.csv",
+    "external_axis_repair_family_summary.csv",
+    "external_axis_repair_dashboard.html",
+    "external_axis_repair_certificate.json"
+  ],
+  "post_repair_architecture_axis_same_axis_conflict_count": 0,
+  "post_repair_axis_profile_same_axis_conflict_count": 0,
+  "post_repair_high_confidence_wrong_count_after_axis_scoring": 0,
+  "post_repair_unsafe_axis_claim_count": 0,
+  "raw_sequences_exported": false,
+  "repeat_compact_ambiguity_quarantine_active": true,
+  "unsafe_class_recovery_count": 0
+}

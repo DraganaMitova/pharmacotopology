@@ -64,6 +64,12 @@ class ArchitectureEvidencePacket:
     composition_regime_contrast: float
     linker_separator_pressure: float
     compact_repeat_support: float
+    repeat_window_count: int
+    repeat_recurrence_support: float
+    repeat_unit_consistency: float
+    repeat_vs_compact_margin: float
+    hydrophobic_periodicity_only_risk: float
+    repeat_compact_single_domain_ambiguity_guard: bool = False
     architecture_secondary_leakage_used: bool = False
     architecture_label_leakage_used: bool = False
 
@@ -142,6 +148,65 @@ def _window_profiles(sequence: str, window_size: int = 36) -> tuple[dict[str, fl
     return tuple(profiles)
 
 
+def _repeat_window_count(sequence: str) -> int:
+    profiles = _window_profiles(sequence, window_size=24)
+    return sum(
+        1
+        for profile in profiles
+        if profile["hydrophobic"] >= 0.34
+        and profile["breaker"] <= 0.18
+        and profile["disorder"] <= 0.46
+    )
+
+
+def _repeat_unit_consistency(sequence: str) -> float:
+    profiles = _window_profiles(sequence, window_size=24)
+    if len(profiles) < 3:
+        return 0.0
+    hydrophobic_values = [profile["hydrophobic"] for profile in profiles]
+    mean_hydrophobic = sum(hydrophobic_values) / len(hydrophobic_values)
+    mean_abs_deviation = sum(
+        abs(value - mean_hydrophobic) for value in hydrophobic_values
+    ) / len(hydrophobic_values)
+    return _rounded(1.0 - mean_abs_deviation / 0.28)
+
+
+def _repeat_recurrence_support(
+    sequence: str,
+    *,
+    hydrophobic_periodicity: float,
+    composition_contrast: float,
+    linker_pressure: float,
+) -> float:
+    repeat_windows = _repeat_window_count(sequence)
+    unit_consistency = _repeat_unit_consistency(sequence)
+    multi_window_support = _clamp((repeat_windows - 2) / 4)
+    return _rounded(
+        multi_window_support * 0.36
+        + unit_consistency * 0.28
+        + hydrophobic_periodicity * 0.22
+        + composition_contrast * 0.10
+        - linker_pressure * 0.18
+    )
+
+
+def _hydrophobic_periodicity_only_risk(
+    *,
+    hydrophobic_periodicity: float,
+    repeat_recurrence_support: float,
+    composition_contrast: float,
+    linker_pressure: float,
+    long_range_closure_evidence: float,
+) -> float:
+    return _rounded(
+        hydrophobic_periodicity * 0.42
+        + max(0.12 - composition_contrast, 0.0) * 2.30
+        + max(0.46 - repeat_recurrence_support, 0.0) * 0.46
+        + long_range_closure_evidence * 0.10
+        - linker_pressure * 0.22
+    )
+
+
 def _composition_regime_contrast(sequence: str) -> float:
     profiles = _window_profiles(sequence)
     if len(profiles) < 2:
@@ -179,6 +244,7 @@ def architecture_evidence_packet_from_sequence(
     sequence: str,
     *,
     protein_id: str = "sequence",
+    external_safe_quarantine: bool = False,
 ) -> ArchitectureEvidencePacket:
     normalized = normalize_sequence(sequence)
     length = len(normalized)
@@ -196,9 +262,18 @@ def architecture_evidence_packet_from_sequence(
     hydrophobic_run = _max_run_fraction(normalized, HYDROPHOBIC_AMINO_ACIDS)
     composition_contrast = _composition_regime_contrast(normalized)
     linker_pressure = _linker_separator_pressure(normalized)
+    hydrophobic_periodicity = float(order_features["hydrophobic_cluster_periodicity"])
+    repeat_window_count = _repeat_window_count(normalized)
+    repeat_unit_consistency = _repeat_unit_consistency(normalized)
+    repeat_recurrence_support = _repeat_recurrence_support(
+        normalized,
+        hydrophobic_periodicity=hydrophobic_periodicity,
+        composition_contrast=composition_contrast,
+        linker_pressure=linker_pressure,
+    )
     compact_repeat_support = _rounded(
         regime.repeat_pressure * 0.44
-        + float(order_features["hydrophobic_cluster_periodicity"]) * 0.30
+        + hydrophobic_periodicity * 0.30
         + float(order_features["contact_prior_density"]) * 0.18
         - regime.intrinsically_disordered_pressure * 0.20
     )
@@ -212,7 +287,7 @@ def architecture_evidence_packet_from_sequence(
     )
     repeat_pressure = _rounded(
         regime.repeat_pressure * 0.58
-        + float(order_features["hydrophobic_cluster_periodicity"]) * 0.24
+        + hydrophobic_periodicity * 0.24
         + compact_repeat_support * 0.20
         - linker_pressure * 0.12
     )
@@ -263,6 +338,24 @@ def architecture_evidence_packet_from_sequence(
         fragment_scope_pressure,
         multidomain_pressure,
         repeat_pressure,
+    )
+    repeat_vs_compact_margin = round(repeat_pressure - compact_domain_pressure, 6)
+    hydrophobic_periodicity_only_risk = _hydrophobic_periodicity_only_risk(
+        hydrophobic_periodicity=hydrophobic_periodicity,
+        repeat_recurrence_support=repeat_recurrence_support,
+        composition_contrast=composition_contrast,
+        linker_pressure=linker_pressure,
+        long_range_closure_evidence=evidence.long_range_closure_evidence,
+    )
+    repeat_compact_guard = (
+        external_safe_quarantine
+        and 75 <= length <= 190
+        and repeat_pressure >= 0.60
+        and repeat_vs_compact_margin <= 0.34
+        and evidence.long_range_closure_evidence >= 0.34
+        and composition_contrast <= 0.075
+        and hydrophobic_periodicity_only_risk >= 0.40
+        and repeat_recurrence_support < 0.70
     )
 
     if length < 70 and fragment_scope_pressure >= 0.70:
@@ -323,17 +416,25 @@ def architecture_evidence_packet_from_sequence(
         and disorder_segmentation_pressure <= 0.40
         and membrane_segmentation_pressure <= 0.36
     ):
-        prediction = "repeat_like"
-        confidence = _rounded(
-            repeat_pressure * 0.80
-            + compact_repeat_support * 0.14
-            + (1.0 - disorder_segmentation_pressure) * 0.06
-        )
-        claim_allowed = True
-        abstention_reason = ""
-        decision_reason = (
-            "repeat evidence is stable and not better explained as disorder"
-        )
+        if repeat_compact_guard:
+            abstention_reason = "repeat_compact_single_domain_ambiguity_quarantine"
+            decision_reason = (
+                "repeat-like architecture was not claimed because the signal is "
+                "mostly hydrophobic periodicity with compact-domain closure and "
+                "weak recurrence support"
+            )
+        else:
+            prediction = "repeat_like"
+            confidence = _rounded(
+                repeat_pressure * 0.80
+                + compact_repeat_support * 0.14
+                + (1.0 - disorder_segmentation_pressure) * 0.06
+            )
+            claim_allowed = True
+            abstention_reason = ""
+            decision_reason = (
+                "repeat evidence is stable and not better explained as disorder"
+            )
     elif length < 75:
         abstention_reason = "short sequence did not clear fragment-scope confidence"
         decision_reason = abstention_reason
@@ -383,6 +484,12 @@ def architecture_evidence_packet_from_sequence(
         composition_regime_contrast=composition_contrast,
         linker_separator_pressure=linker_pressure,
         compact_repeat_support=compact_repeat_support,
+        repeat_window_count=repeat_window_count,
+        repeat_recurrence_support=repeat_recurrence_support,
+        repeat_unit_consistency=repeat_unit_consistency,
+        repeat_vs_compact_margin=repeat_vs_compact_margin,
+        hydrophobic_periodicity_only_risk=hydrophobic_periodicity_only_risk,
+        repeat_compact_single_domain_ambiguity_guard=repeat_compact_guard,
     )
 
 
@@ -454,6 +561,10 @@ def architecture_axis_conflict_rows(
         "length_band",
         "segmentation_pressure",
         "repeat_pressure",
+        "repeat_recurrence_support",
+        "repeat_unit_consistency",
+        "repeat_vs_compact_margin",
+        "hydrophobic_periodicity_only_risk",
         "compact_domain_pressure",
         "multidomain_pressure",
         "membrane_segmentation_pressure",
@@ -478,6 +589,10 @@ def architecture_axis_abstention_rows(
         "evidence_strength",
         "segmentation_pressure",
         "repeat_pressure",
+        "repeat_recurrence_support",
+        "repeat_unit_consistency",
+        "repeat_vs_compact_margin",
+        "hydrophobic_periodicity_only_risk",
         "compact_domain_pressure",
         "fragment_scope_pressure",
         "multidomain_pressure",

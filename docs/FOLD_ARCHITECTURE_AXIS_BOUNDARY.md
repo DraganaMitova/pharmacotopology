@@ -67,6 +67,15 @@ or disorder segmentation.
 `repeat_like` is allowed only for strong stable repeat evidence. In the current
 50-row run, no row clears that threshold.
 
+The external-safe repair layer adds an opt-in repeat-vs-compact quarantine for
+the external holdout. It refuses `repeat_like` when small/medium compact-domain
+closure, weak composition contrast, weak recurrence support, and
+hydrophobic-periodicity-only risk explain the signal better than repeat
+architecture.
+
+That guard is documented in `docs/EXTERNAL_AXIS_REPAIR_BOUNDARY.md` and is used
+by `scripts/run_external_axis_repair_benchmark.py`.
+
 ## Forbidden Moves
 
 ```text
