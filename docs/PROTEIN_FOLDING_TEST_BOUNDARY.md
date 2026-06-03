@@ -540,6 +540,106 @@ but the hierarchy did not remain stable under the 50-row structure-derived
 stress test. The next revision should be based on the 50-row failure
 distribution.
 
+## Protein Regime Routing And Failure Cohorts
+
+The next diagnostic layer is:
+
+```text
+protein_regime_routing_failure_cohort_analysis
+```
+
+This layer does not retune the hierarchy thresholds. It adds a sequence-only
+router before accepting the hierarchy output. The router sees only derived
+features from the amino-acid sequence:
+
+```text
+sequence complexity
+hydrophobic fraction and hydrophobic run pressure
+disorder-promoting composition
+breaker / turn pressure
+charge blockiness
+alpha / beta / disorder motif pressure
+domain-boundary and long-range-closure motif pressure
+repeat and periodicity pressure
+```
+
+It does not use:
+
+```text
+external labels
+PDB coordinates
+CATH / SCOP classes
+DisProt truth labels
+structure-derived fold classes
+reference topology signatures
+```
+
+The predicted protein regimes are:
+
+```text
+compact_single_domain
+multidomain_modular
+intrinsically_disordered
+repeat_like
+coiled_coil_or_fibrous
+membrane_like
+low_complexity_region_rich
+small_peptide_or_fragment
+ambiguous_regime
+```
+
+The point is leakage-safe routing. If a sequence looks membrane-like,
+repeat-like, fibrous/coiled, too short, or ambiguous, the current broad
+fold-class gates are not trusted to force a class. The model abstains and
+records the reason. Structure evidence and labels are used only afterwards to
+score whether that abstention prevented a bad claim or simply exposed a
+manual-review row.
+
+Run it with:
+
+```bash
+python3 scripts/run_regime_analysis_benchmark.py
+```
+
+It writes:
+
+```text
+real_folding_50_regime_analysis_report.json
+real_folding_50_regime_rows.csv
+real_folding_50_failure_cohorts.csv
+real_folding_50_high_confidence_wrong.csv
+real_folding_50_abstention_analysis.csv
+real_folding_50_regime_dashboard.html
+```
+
+The current checked-in regime report says:
+
+```text
+benchmark_size = 50
+prediction_vs_structure_accuracy = 0.28
+prediction_vs_label_accuracy = 0.28
+forced_prediction_count = 16
+abstained_prediction_count = 34
+high_confidence_wrong_count = 0
+regime_accuracy = 0.74
+regime_confidence_mean = 0.738114
+structure_label_disagreement_count = 17
+ambiguous_reference_count = 22
+possible_bad_rows_count = 8
+hierarchical_high_confidence_wrong_count_before_regime_routing = 6
+hierarchical_high_confidence_wrong_prevented_by_regime_routing = 6
+dominant_failure_cohort = abstained_on_structure_label_disagreement
+old failure counters = closed
+revision_required = true
+claim_allowed = false
+folding_problem_solved = false
+```
+
+This is not an accuracy improvement. It is a clearer failure map. The dominant
+cohort says the largest remaining non-correct family is structure/label
+disagreement requiring manual review, while the old targeted failure modes
+remain closed.
+
 The 500-file is a target shell, not a completed benchmark. It records the
 intended proof ladder and current lock blockers until real rows exist.
 
@@ -657,6 +757,19 @@ real_folding_10_hierarchical_gate_rows.csv
 real_folding_10_gate_paths.csv
 real_folding_10_gate_failures.csv
 real_folding_10_hierarchical_gate_dashboard.html
+real_folding_50_hierarchical_gate_report.json
+real_folding_50_hierarchical_gate_rows.csv
+real_folding_50_gate_paths.csv
+real_folding_50_gate_failures.csv
+real_folding_50_hierarchical_gate_dashboard.html
+real_folding_50_certificate.json
+real_folding_50_confusion_matrix.csv
+real_folding_50_regime_analysis_report.json
+real_folding_50_regime_rows.csv
+real_folding_50_failure_cohorts.csv
+real_folding_50_high_confidence_wrong.csv
+real_folding_50_abstention_analysis.csv
+real_folding_50_regime_dashboard.html
 ```
 
 When a benchmark file is loaded, the JSON report also includes:

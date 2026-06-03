@@ -161,6 +161,34 @@ targeted failure counters remain closed (`false_beta_from_disorder_count = 0`,
 `flexible_segmentation_false_multidomain_count = 0`). The next revision should
 come from this 50-row failure distribution, not from retuning the 10-row set.
 
+That follow-up layer is now `protein_regime_routing_failure_cohort_analysis`.
+It does not tune the hierarchy. It detects a sequence-only protein regime
+first, such as compact single domain, multidomain modular, intrinsically
+disordered, membrane-like, small fragment, repeat-like, fibrous/coiled, or
+ambiguous. The router can then abstain before accepting a broad fold-class
+claim when the regime needs a gate the current hierarchy does not have.
+
+On the locked 50-row set it reports:
+
+```text
+prediction_vs_structure_accuracy = 0.28
+prediction_vs_label_accuracy = 0.28
+forced_prediction_count = 16
+abstained_prediction_count = 34
+high_confidence_wrong_count = 0
+regime_accuracy = 0.74
+hierarchical_high_confidence_wrong_prevented_by_regime_routing = 6
+dominant_failure_cohort = abstained_on_structure_label_disagreement
+old failure counters = closed
+claim_allowed = false
+folding_problem_solved = false
+```
+
+This is a diagnosis layer, not an accuracy win. The main finding is that the
+largest remaining non-correct cohort is not a reopened gate-order bug; it is
+rows where the structure-derived class and external label disagree enough to
+require manual review.
+
 See [docs/PROTEIN_FOLDING_TEST_BOUNDARY.md](docs/PROTEIN_FOLDING_TEST_BOUNDARY.md).
 
 External benchmark rows can be loaded separately:
@@ -264,6 +292,7 @@ scripts/run_structure_folding_topology_benchmark.py
 scripts/run_order_aware_folding_topology_benchmark.py
 scripts/run_motif_alignment_benchmark.py
 scripts/run_hierarchical_gate_benchmark.py
+scripts/run_regime_analysis_benchmark.py
 scripts/validate_field_trace.py
 scripts/measure_field_trace.py
 tests/                               pytest coverage for ranking and safety
@@ -454,6 +483,40 @@ accuracy_delta_from_10 = -0.26
 abstention_delta_from_10 = 19
 high_confidence_wrong_delta_from_10 = 6
 stability_status = unstable_accuracy_drop
+claim_allowed = false
+folding_problem_solved = false
+```
+
+Run the sequence-only protein-regime routing and failure cohort analysis:
+
+```bash
+python3 scripts/run_regime_analysis_benchmark.py
+```
+
+It writes:
+
+```text
+real_folding_50_regime_analysis_report.json
+real_folding_50_regime_rows.csv
+real_folding_50_failure_cohorts.csv
+real_folding_50_high_confidence_wrong.csv
+real_folding_50_abstention_analysis.csv
+real_folding_50_regime_dashboard.html
+```
+
+The checked-in regime analysis report currently says:
+
+```text
+prediction_vs_structure_accuracy = 0.28
+prediction_vs_label_accuracy = 0.28
+forced_prediction_count = 16
+abstained_prediction_count = 34
+high_confidence_wrong_count = 0
+regime_accuracy = 0.74
+structure_label_disagreement_count = 17
+possible_bad_rows_count = 8
+dominant_failure_cohort = abstained_on_structure_label_disagreement
+hierarchical_high_confidence_wrong_prevented_by_regime_routing = 6
 claim_allowed = false
 folding_problem_solved = false
 ```
