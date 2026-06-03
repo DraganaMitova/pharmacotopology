@@ -32,6 +32,27 @@ CONTACT_PROXY_DIMENSIONS: tuple[str, ...] = (
     "knot_or_entanglement_signature",
 )
 
+BROAD_FOLD_CLASSES: tuple[str, ...] = (
+    "alpha_rich",
+    "beta_rich",
+    "alpha_beta_mixed",
+    "multidomain_boundary",
+    "disordered_flexible",
+)
+
+INTERNAL_TO_BROAD_FOLD_CLASS: dict[str, str] = {
+    "compact_folded": "alpha_rich",
+    "long_range_contact_rich": "beta_rich",
+    "flexible_or_disordered": "disordered_flexible",
+    "boundary_sensitive": "multidomain_boundary",
+    "entanglement_rich": "multidomain_boundary",
+    "mixed_uncertain": "alpha_beta_mixed",
+}
+
+KNOWN_FOLD_CLASSES: tuple[str, ...] = BROAD_FOLD_CLASSES + tuple(
+    INTERNAL_TO_BROAD_FOLD_CLASS
+)
+
 PLACEHOLDER_REFERENCE_SOURCE_MARKERS: tuple[str, ...] = (
     "placeholder",
     "example",
@@ -61,15 +82,27 @@ class FoldingReferenceExample:
     reference_structure_source: str
     reference_fold_class: str
     reference_topology_signature: FoldingTopologySignature
+    source_database: str = ""
+    source_accession: str = ""
+    sequence_length: int = 0
+    reference_label_source: str = ""
+    is_external_reference: bool = False
+    curation_notes: tuple[str, ...] = ()
+    reference_topology_signature_kind: str = "class_prototype"
 
 
 @dataclass(frozen=True)
 class FoldingTopologyComparison:
     protein_id: str
     sequence_length: int
+    source_database: str
+    source_accession: str
     reference_structure_source: str
+    reference_label_source: str
     predicted_topology_signature: FoldingTopologySignature
     reference_topology_signature: FoldingTopologySignature
+    predicted_internal_fold_class: str
+    reference_source_fold_class: str
     predicted_fold_class: str
     reference_fold_class: str
     contact_map_similarity: float
@@ -77,6 +110,9 @@ class FoldingTopologyComparison:
     uncertainty_radius: float
     evidence_readiness: str
     failure_reason: str
+    is_external_reference: bool = False
+    curation_notes: tuple[str, ...] = ()
+    reference_topology_signature_kind: str = "class_prototype"
     clinical_use_allowed: bool = False
     drug_design_created: bool = False
     molecule_generated: bool = False
@@ -345,6 +381,38 @@ def classify_fold_topology(signature: FoldingTopologySignature) -> str:
     return "mixed_uncertain"
 
 
+def normalize_fold_class(fold_class: str) -> str:
+    if fold_class in BROAD_FOLD_CLASSES:
+        return fold_class
+    return INTERNAL_TO_BROAD_FOLD_CLASS.get(fold_class, "alpha_beta_mixed")
+
+
+def classify_broad_fold_topology(signature: FoldingTopologySignature) -> str:
+    values = signature_to_dict(signature)
+    if (
+        values["loop_disorder_pressure"] >= 0.56
+        and values["conformational_flexibility"] >= 0.50
+    ):
+        return "disordered_flexible"
+    if (
+        values["domain_boundary_stability"] <= 0.48
+        or values["knot_or_entanglement_signature"] >= 0.34
+    ):
+        return "multidomain_boundary"
+    if (
+        values["long_range_contact_order"] >= 0.52
+        and values["hydrophobic_core_closure"] < 0.56
+    ):
+        return "beta_rich"
+    if (
+        values["contact_map_closure"] >= 0.50
+        and values["hydrophobic_core_closure"] >= 0.45
+        and values["conformational_flexibility"] < 0.45
+    ):
+        return "alpha_rich"
+    return "alpha_beta_mixed"
+
+
 def contact_map_proxy_similarity(
     predicted: FoldingTopologySignature,
     reference: FoldingTopologySignature,
@@ -367,11 +435,7 @@ def evidence_readiness_label(
 ) -> str:
     if reference_source_is_placeholder(reference_structure_source):
         return "benchmark_shell_only"
-    if contact_map_similarity >= 0.78 and fold_class_match and uncertainty_radius <= 0.35:
-        return "external_benchmark_alignment_candidate"
-    if contact_map_similarity >= 0.62:
-        return "external_benchmark_review_needed"
-    return "benchmark_mismatch_review"
+    return "external_benchmark_attached"
 
 
 def reference_source_is_placeholder(source: str) -> bool:
@@ -382,12 +446,14 @@ def reference_source_is_placeholder(source: str) -> bool:
 def compare_to_reference(reference: FoldingReferenceExample) -> FoldingTopologyComparison:
     normalized = normalize_sequence(reference.sequence)
     predicted = predict_topology_signature(normalized)
-    predicted_class = classify_fold_topology(predicted)
+    predicted_internal_class = classify_fold_topology(predicted)
+    predicted_class = classify_broad_fold_topology(predicted)
+    reference_class = normalize_fold_class(reference.reference_fold_class)
     contact_similarity = contact_map_proxy_similarity(
         predicted,
         reference.reference_topology_signature,
     )
-    fold_class_match = predicted_class == reference.reference_fold_class
+    fold_class_match = predicted_class == reference_class
     uncertainty = _rounded(
         max(
             predicted.uncertainty_radius,
@@ -405,20 +471,30 @@ def compare_to_reference(reference: FoldingReferenceExample) -> FoldingTopologyC
         failure_reason = "external_structure_benchmark_not_attached"
     elif not fold_class_match:
         failure_reason = "fold_class_proxy_mismatch"
+    elif contact_similarity < 0.70:
+        failure_reason = "low_topology_similarity"
 
     return FoldingTopologyComparison(
         protein_id=reference.protein_id,
         sequence_length=len(normalized),
+        source_database=reference.source_database,
+        source_accession=reference.source_accession,
         reference_structure_source=reference.reference_structure_source,
+        reference_label_source=reference.reference_label_source,
         predicted_topology_signature=predicted,
         reference_topology_signature=reference.reference_topology_signature,
+        predicted_internal_fold_class=predicted_internal_class,
+        reference_source_fold_class=reference.reference_fold_class,
         predicted_fold_class=predicted_class,
-        reference_fold_class=reference.reference_fold_class,
+        reference_fold_class=reference_class,
         contact_map_similarity=contact_similarity,
         fold_class_match=fold_class_match,
         uncertainty_radius=uncertainty,
         evidence_readiness=readiness,
         failure_reason=failure_reason,
+        is_external_reference=reference.is_external_reference,
+        curation_notes=reference.curation_notes,
+        reference_topology_signature_kind=reference.reference_topology_signature_kind,
     )
 
 
@@ -457,4 +533,15 @@ def reference_from_mapping(data: Mapping[str, object]) -> FoldingReferenceExampl
         reference_structure_source=str(data["reference_structure_source"]),
         reference_fold_class=str(data["reference_fold_class"]),
         reference_topology_signature=signature,
+        source_database=str(data.get("source_database", "")),
+        source_accession=str(data.get("source_accession", "")),
+        sequence_length=int(data.get("sequence_length", 0) or 0),
+        reference_label_source=str(data.get("reference_label_source", "")),
+        is_external_reference=bool(data.get("is_external_reference", False)),
+        curation_notes=tuple(
+            str(note) for note in data.get("curation_notes", ()) or ()
+        ),
+        reference_topology_signature_kind=str(
+            data.get("reference_topology_signature_kind", "class_prototype")
+        ),
     )

@@ -31,8 +31,15 @@ def _external_reference_row() -> dict[str, object]:
     return {
         "protein_id": "unit_test_external_alpha",
         "sequence": reference.sequence,
+        "source_database": "RCSB_PDB+CATH",
+        "source_accession": "UNITTEST_ALPHA",
         "reference_structure_source": "pdb:UNITTEST_ALPHA",
+        "reference_label_source": "cath:unit_test_alpha",
         "reference_fold_class": reference.reference_fold_class,
+        "is_external_reference": True,
+        "curation_notes": [
+            "Unit-test fixture for the external benchmark row schema.",
+        ],
         "reference_topology_signature": {
             "sequence_complexity": 0.61,
             "secondary_structure_balance": 0.74,

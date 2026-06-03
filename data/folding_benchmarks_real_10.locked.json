@@ -1,0 +1,367 @@
+{
+  "benchmark_kind": "real_external_folding_topology_benchmark",
+  "benchmark_size": 10,
+  "benchmark_sources": [
+    "RCSB_PDB",
+    "CATH",
+    "DisProt"
+  ],
+  "boundary": {
+    "clinical_use_allowed": false,
+    "drug_design_created": false,
+    "folding_problem_solved": false,
+    "folding_solution_claim_created": false,
+    "molecule_generated": false,
+    "protein_sequence_design_created": false
+  },
+  "external_validation_required": false,
+  "folding_problem_solved": false,
+  "folding_solution_claim_created": false,
+  "input_benchmark_file": "data/folding_benchmarks_real_10.locked.json",
+  "lock_certificate": {
+    "benchmark_kind": "real_external_folding_topology_benchmark",
+    "benchmark_size": 10,
+    "benchmark_sources": [
+      "RCSB_PDB",
+      "CATH",
+      "DisProt"
+    ],
+    "clinical_use_allowed": false,
+    "dataset_hash": "sha256:9ffc68fb0e5437fdbf3030db637566352d5387ae5f6a0a57128dedc9af7c4ccc",
+    "drug_design_created": false,
+    "folding_problem_solved": false,
+    "folding_solution_claim_created": false,
+    "lock_blockers": [],
+    "locked_after_generation": true,
+    "molecule_generated": false,
+    "no_retuning_flag": true,
+    "protein_sequence_design_created": false,
+    "recipe_commit_hash": "uncommitted-real-10",
+    "source_manifest_hash": "sha256:dd6b287b424ed0119168ad52b9333ba8cf145744047a59d3b14e8cc088efef25",
+    "stratification_counts": {
+      "alpha_beta_mixed": 2,
+      "disordered_or_flexible": 2,
+      "mostly_alpha_or_compact": 2,
+      "mostly_beta_or_long_range": 2,
+      "multidomain_or_boundary_sensitive": 2
+    },
+    "stratification_targets": {
+      "alpha_beta_mixed": 2,
+      "disordered_or_flexible": 2,
+      "mostly_alpha_or_compact": 2,
+      "mostly_beta_or_long_range": 2,
+      "multidomain_or_boundary_sensitive": 2
+    },
+    "target_benchmark_size": 10
+  },
+  "locked_after_generation": true,
+  "no_retuning_flag": true,
+  "references": [
+    {
+      "curation_notes": [
+        "sequence fetched from RCSB PDB FASTA entry 1MBN chain A",
+        "broad label curated from CATH/PDB globin-like all-alpha domain context",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "pdb_1MBN_A_myoglobin",
+      "reference_fold_class": "alpha_rich",
+      "reference_label_source": "cath:1mbnA00",
+      "reference_structure_source": "pdb:1MBN:A",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.3,
+        "contact_map_closure": 0.68,
+        "domain_boundary_stability": 0.78,
+        "hydrophobic_core_closure": 0.62,
+        "knot_or_entanglement_signature": 0.12,
+        "long_range_contact_order": 0.44,
+        "loop_disorder_pressure": 0.22,
+        "secondary_structure_balance": 0.75,
+        "sequence_complexity": 0.7,
+        "uncertainty_radius": 0.28
+      },
+      "reference_topology_signature_kind": "locked_broad_class_prototype_from_external_label",
+      "sequence": "VLSEGEWQLVLHVWAKVEADVAGHGQDILIRLFKSHPETLEKFDRFKHLKTEAEMKASEDLKKHGVTVLTALGAILKKKGHHEAELKPLAQSHATKHKIPIKYLEFISEAIIHVLHSRHPGDFGADAQGAMNKALELFRKDIAAKYKELGYQG",
+      "sequence_length": 153,
+      "source_accession": "1MBN:A",
+      "source_database": "RCSB_PDB+CATH"
+    },
+    {
+      "curation_notes": [
+        "sequence fetched from RCSB PDB FASTA entry 2LZM chain A",
+        "broad label curated from CATH/PDB lysozyme all-alpha domain context",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "pdb_2LZM_A_t4_lysozyme",
+      "reference_fold_class": "alpha_rich",
+      "reference_label_source": "cath:2lzmA00",
+      "reference_structure_source": "pdb:2LZM:A",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.3,
+        "contact_map_closure": 0.68,
+        "domain_boundary_stability": 0.78,
+        "hydrophobic_core_closure": 0.62,
+        "knot_or_entanglement_signature": 0.12,
+        "long_range_contact_order": 0.44,
+        "loop_disorder_pressure": 0.22,
+        "secondary_structure_balance": 0.75,
+        "sequence_complexity": 0.7,
+        "uncertainty_radius": 0.28
+      },
+      "reference_topology_signature_kind": "locked_broad_class_prototype_from_external_label",
+      "sequence": "MNIFEMLRIDEGLRLKIYKDTEGYYTIGIGHLLTKSPSLNAAKSELDKAIGRNCNGVITKDEAEKLFNQDVDAAVRGILRNAKLKPVYDSLDAVRRCALINMVFQMGETGVAGFTNSLRMLQQKRWDEAAVNLAKSRWYNQTPNRAKRVITTFRTGTWDAYKNL",
+      "sequence_length": 164,
+      "source_accession": "2LZM:A",
+      "source_database": "RCSB_PDB+CATH"
+    },
+    {
+      "curation_notes": [
+        "sequence fetched from RCSB PDB FASTA entry 1TEN chain A",
+        "broad label curated from CATH/PDB fibronectin type III beta-sandwich context",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "pdb_1TEN_A_tenascin_fn3",
+      "reference_fold_class": "beta_rich",
+      "reference_label_source": "cath:1tenA00",
+      "reference_structure_source": "pdb:1TEN:A",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.35,
+        "contact_map_closure": 0.6,
+        "domain_boundary_stability": 0.62,
+        "hydrophobic_core_closure": 0.42,
+        "knot_or_entanglement_signature": 0.25,
+        "long_range_contact_order": 0.62,
+        "loop_disorder_pressure": 0.28,
+        "secondary_structure_balance": 0.65,
+        "sequence_complexity": 0.62,
+        "uncertainty_radius": 0.3
+      },
+      "reference_topology_signature_kind": "locked_broad_class_prototype_from_external_label",
+      "sequence": "RLDAPSQIEVKDVTDTTALITWFKPLAEIDGIELTYGIKDVPGDRTTIDLTEDENQYSIGNLKPDTEYEVSLISRRGDMSSNPAKETFTT",
+      "sequence_length": 90,
+      "source_accession": "1TEN:A",
+      "source_database": "RCSB_PDB+CATH"
+    },
+    {
+      "curation_notes": [
+        "sequence fetched from RCSB PDB FASTA entry 1CSP chain A",
+        "broad label curated from CATH/PDB cold-shock OB-fold beta-barrel context",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "pdb_1CSP_A_cold_shock_protein",
+      "reference_fold_class": "beta_rich",
+      "reference_label_source": "cath:1cspA00",
+      "reference_structure_source": "pdb:1CSP:A",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.35,
+        "contact_map_closure": 0.6,
+        "domain_boundary_stability": 0.62,
+        "hydrophobic_core_closure": 0.42,
+        "knot_or_entanglement_signature": 0.25,
+        "long_range_contact_order": 0.62,
+        "loop_disorder_pressure": 0.28,
+        "secondary_structure_balance": 0.65,
+        "sequence_complexity": 0.62,
+        "uncertainty_radius": 0.3
+      },
+      "reference_topology_signature_kind": "locked_broad_class_prototype_from_external_label",
+      "sequence": "MLEGKVKWFNSEKGFGFIEVEGQDDVFVHFSAIQGEGFKTLEEGQAVSFEIVEGNRGPQAANVTKEA",
+      "sequence_length": 67,
+      "source_accession": "1CSP:A",
+      "source_database": "RCSB_PDB+CATH"
+    },
+    {
+      "curation_notes": [
+        "sequence fetched from RCSB PDB FASTA entry 1TIM chain A",
+        "broad label curated from CATH/PDB TIM-barrel alpha-beta context",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "pdb_1TIM_A_triosephosphate_isomerase",
+      "reference_fold_class": "alpha_beta_mixed",
+      "reference_label_source": "cath:1timA00",
+      "reference_structure_source": "pdb:1TIM:A",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.4,
+        "contact_map_closure": 0.55,
+        "domain_boundary_stability": 0.58,
+        "hydrophobic_core_closure": 0.48,
+        "knot_or_entanglement_signature": 0.18,
+        "long_range_contact_order": 0.45,
+        "loop_disorder_pressure": 0.34,
+        "secondary_structure_balance": 0.6,
+        "sequence_complexity": 0.65,
+        "uncertainty_radius": 0.34
+      },
+      "reference_topology_signature_kind": "locked_broad_class_prototype_from_external_label",
+      "sequence": "APRKFFVGGNWKMNGKRKSLGELIHTLDGAKLSADTEVVCGAPSIYLDFARQKLDAKIGVAAQNCYKVPKGAFTGEISPAMIKDIGAAWVILGHSERRHVFGESDELIGQKVAHALAEGLGVIACIGEKLDEREAGITEKVVFQETKAIADNVKDWSKVVLAYEPVWAIGTGKTATPQQAQEVHEKLRGWLKTHVSDAVAVQSRIIYGGSVTGGNCKELASQHDVDGFLVGGASLKPEFVDIINAKH",
+      "sequence_length": 247,
+      "source_accession": "1TIM:A",
+      "source_database": "RCSB_PDB+CATH"
+    },
+    {
+      "curation_notes": [
+        "sequence fetched from RCSB PDB FASTA entry 1PGA chain A",
+        "broad label curated from CATH/PDB protein G B1 alpha-beta domain context",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "pdb_1PGA_A_protein_g_b1",
+      "reference_fold_class": "alpha_beta_mixed",
+      "reference_label_source": "cath:1pgaA00",
+      "reference_structure_source": "pdb:1PGA:A",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.4,
+        "contact_map_closure": 0.55,
+        "domain_boundary_stability": 0.58,
+        "hydrophobic_core_closure": 0.48,
+        "knot_or_entanglement_signature": 0.18,
+        "long_range_contact_order": 0.45,
+        "loop_disorder_pressure": 0.34,
+        "secondary_structure_balance": 0.6,
+        "sequence_complexity": 0.65,
+        "uncertainty_radius": 0.34
+      },
+      "reference_topology_signature_kind": "locked_broad_class_prototype_from_external_label",
+      "sequence": "MTYKLILNGKTLKGETTTEAVDAATAEKVFKQYANDNGVDGEWTYDDATKTFTVTE",
+      "sequence_length": 56,
+      "source_accession": "1PGA:A",
+      "source_database": "RCSB_PDB+CATH"
+    },
+    {
+      "curation_notes": [
+        "sequence fetched from RCSB PDB FASTA entry 4AKE chain A",
+        "broad label curated from PDB/CATH adenylate kinase CORE/LID/NMP boundary-motion context",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "pdb_4AKE_A_adenylate_kinase",
+      "reference_fold_class": "multidomain_boundary",
+      "reference_label_source": "cath:4akeA00",
+      "reference_structure_source": "pdb:4AKE:A",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.48,
+        "contact_map_closure": 0.52,
+        "domain_boundary_stability": 0.4,
+        "hydrophobic_core_closure": 0.5,
+        "knot_or_entanglement_signature": 0.22,
+        "long_range_contact_order": 0.5,
+        "loop_disorder_pressure": 0.42,
+        "secondary_structure_balance": 0.55,
+        "sequence_complexity": 0.7,
+        "uncertainty_radius": 0.42
+      },
+      "reference_topology_signature_kind": "locked_broad_class_prototype_from_external_label",
+      "sequence": "MRIILLGAPGAGKGTQAQFIMEKYGIPQISTGDMLRAAVKSGSELGKQAKDIMDAGKLVTDELVIALVKERIAQEDCRNGFLLDGFPRTIPQADAMKEAGINVDYVLEFDVPDELIVDRIVGRRVHAPSGRVYHVKFNPPKVEGKDDVTGEELTTRKDDQEETVRKRLVEYHQMTAPLIGYYSKEAEAGNTKYAKVDGTKPVAEVRADLEKILG",
+      "sequence_length": 214,
+      "source_accession": "4AKE:A",
+      "source_database": "RCSB_PDB+CATH"
+    },
+    {
+      "curation_notes": [
+        "sequence fetched from RCSB PDB FASTA entry 1CLL chain A",
+        "broad label curated from PDB/CATH two-lobed EF-hand calmodulin domain-boundary context",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "pdb_1CLL_A_calmodulin",
+      "reference_fold_class": "multidomain_boundary",
+      "reference_label_source": "cath:1cllA00",
+      "reference_structure_source": "pdb:1CLL:A",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.48,
+        "contact_map_closure": 0.52,
+        "domain_boundary_stability": 0.4,
+        "hydrophobic_core_closure": 0.5,
+        "knot_or_entanglement_signature": 0.22,
+        "long_range_contact_order": 0.5,
+        "loop_disorder_pressure": 0.42,
+        "secondary_structure_balance": 0.55,
+        "sequence_complexity": 0.7,
+        "uncertainty_radius": 0.42
+      },
+      "reference_topology_signature_kind": "locked_broad_class_prototype_from_external_label",
+      "sequence": "ADQLTEEQIAEFKEAFSLFDKDGDGTITTKELGTVMRSLGQNPTEAELQDMINEVDADGNGTIDFPEFLTMMARKMKDTDSEEEIREAFRVFDKDGNGYISAAELRHVMTNLGEKLTDEEVDEMIREADIDGDGQVNYEEFVQMMTAK",
+      "sequence_length": 148,
+      "source_accession": "1CLL:A",
+      "source_database": "RCSB_PDB+CATH"
+    },
+    {
+      "curation_notes": [
+        "sequence fetched from DisProt API entry DP00070",
+        "DisProt reports alpha-synuclein as experimentally supported 100 percent disorder content",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "disprot_DP00070_alpha_synuclein",
+      "reference_fold_class": "disordered_flexible",
+      "reference_label_source": "disprot:DP00070",
+      "reference_structure_source": "disprot:DP00070",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.85,
+        "contact_map_closure": 0.2,
+        "domain_boundary_stability": 0.3,
+        "hydrophobic_core_closure": 0.12,
+        "knot_or_entanglement_signature": 0.04,
+        "long_range_contact_order": 0.16,
+        "loop_disorder_pressure": 0.82,
+        "secondary_structure_balance": 0.38,
+        "sequence_complexity": 0.55,
+        "uncertainty_radius": 0.65
+      },
+      "reference_topology_signature_kind": "locked_broad_class_prototype_from_external_label",
+      "sequence": "MDVFMKGLSKAKEGVVAAAEKTKQGVAEAAGKTKEGVLYVGSKTKEGVVHGVATVAEKTKEQVTNVGGAVVTGVTAVAQKTVEGAGSIAAATGFVKKDQLGKNEEGAPQEGILEDMPVDPDNEAYEMPSEEGYQDYEPEA",
+      "sequence_length": 140,
+      "source_accession": "DP00070",
+      "source_database": "DisProt"
+    },
+    {
+      "curation_notes": [
+        "sequence fetched from DisProt API entry DP03552",
+        "DisProt reports fetal tau as experimentally supported 100 percent disorder content",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "disprot_DP03552_fetal_tau",
+      "reference_fold_class": "disordered_flexible",
+      "reference_label_source": "disprot:DP03552",
+      "reference_structure_source": "disprot:DP03552",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.85,
+        "contact_map_closure": 0.2,
+        "domain_boundary_stability": 0.3,
+        "hydrophobic_core_closure": 0.12,
+        "knot_or_entanglement_signature": 0.04,
+        "long_range_contact_order": 0.16,
+        "loop_disorder_pressure": 0.82,
+        "secondary_structure_balance": 0.38,
+        "sequence_complexity": 0.55,
+        "uncertainty_radius": 0.65
+      },
+      "reference_topology_signature_kind": "locked_broad_class_prototype_from_external_label",
+      "sequence": "MAEPRQEFEVMEDHAGTYGLGDRKDQGGYTMHQDQEGDTDAGLKAEEAGIGDTPSLEDEAAGHVTQARMVSKSKDGTGSDDKKAKGADGKTKIATPRGAAPPGQKGQANATRIPAKTPPAPKTPPSSGEPPKSGDRSGYSSPGSPGTPGSRSRTPSLPTPPTREPKKVAVVRTPPKSPSSAKSRLQTAPVPMPDLKNVKSKIGSTENLKHQPGGGKVQIVYKPVDLSKVTSKCGSLGNIHHKPGGGQVEVKSEKLDFKDRVQSKIGSLDNITHVPGGGNKKIETHKLTFRENAKAKTDHGAEIVYKSPVVSGDTSPRHLSNVSSTGSIDMVDSPQLATLADEVSASLAKQGL",
+      "sequence_length": 352,
+      "source_accession": "DP03552",
+      "source_database": "DisProt"
+    }
+  ],
+  "status": "locked_external_benchmark",
+  "stratification_counts": {
+    "alpha_beta_mixed": 2,
+    "disordered_or_flexible": 2,
+    "mostly_alpha_or_compact": 2,
+    "mostly_beta_or_long_range": 2,
+    "multidomain_or_boundary_sensitive": 2
+  },
+  "stratification_targets": {
+    "alpha_beta_mixed": 2,
+    "disordered_or_flexible": 2,
+    "mostly_alpha_or_compact": 2,
+    "mostly_beta_or_long_range": 2,
+    "multidomain_or_boundary_sensitive": 2
+  },
+  "target_benchmark_size": 10
+}

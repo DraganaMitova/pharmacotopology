@@ -79,9 +79,20 @@ protein sequence
 ```
 
 The default references are placeholders. They exercise the schema, metrics, and
-safety boundary; they do not validate any folding claim. The useful next step is
-to replace those placeholders with externally derived contact-map and fold-class
-rows. See [docs/PROTEIN_FOLDING_TEST_BOUNDARY.md](docs/PROTEIN_FOLDING_TEST_BOUNDARY.md).
+safety boundary; they do not validate any folding claim.
+
+The repository now also includes a first locked 10-row external benchmark slice
+at `data/folding_benchmarks_real_10.locked.json`. It contains real protein
+sequences and external reference accessions from RCSB PDB/CATH-style labels and
+DisProt. It is deliberately small: two alpha-rich rows, two beta-rich rows, two
+alpha-beta mixed rows, two multidomain or boundary-sensitive rows, and two
+disordered/flexible rows. The predictor receives only the sequence; source
+labels and topology-reference prototypes are used after prediction for scoring.
+On the current model, this slice reports 4 fold-class matches and 6 mismatches
+(`accuracy = 0.4`). That is useful because the failures are visible, not because
+the model is strong.
+
+See [docs/PROTEIN_FOLDING_TEST_BOUNDARY.md](docs/PROTEIN_FOLDING_TEST_BOUNDARY.md).
 
 External benchmark rows can be loaded separately:
 
@@ -165,6 +176,7 @@ infrastructure without pretending to be useful as medicine.
 ```text
 src/pharmacotopology/                 core simulator and boundary model
 data/folding_benchmarks_real.example.json
+data/folding_benchmarks_real_10.locked.json
 data/folding_benchmarks_real_500.locked.json
 scripts/run_clean_pharmacotopology_layer.py
 scripts/render_pharmacotopology_dashboard.py
@@ -223,6 +235,21 @@ Run it against an externally derived benchmark file:
 
 ```bash
 python3 scripts/run_folding_topology_benchmark.py --benchmark-file data/folding_benchmarks_real.json --require-external
+```
+
+Run the first locked 10-row external benchmark slice and render its dashboard:
+
+```bash
+python3 scripts/run_folding_topology_benchmark.py --benchmark-file data/folding_benchmarks_real_10.locked.json --require-external --report-output first_contact_clean_pharmacotopology_layer_run/real_folding_10_report.json --csv-output first_contact_clean_pharmacotopology_layer_run/real_folding_10_rows.csv
+python3 scripts/render_folding_benchmark_dashboard.py --report first_contact_clean_pharmacotopology_layer_run/real_folding_10_report.json --csv first_contact_clean_pharmacotopology_layer_run/real_folding_10_rows.csv --output first_contact_clean_pharmacotopology_layer_run/real_folding_10_dashboard.html
+```
+
+That run also writes:
+
+```text
+real_folding_10_certificate.json
+real_folding_10_failures.csv
+real_folding_10_confusion_matrix.csv
 ```
 
 Build the 500-protein locked benchmark target shell:
@@ -465,6 +492,15 @@ folding_topology_benchmark.csv
 real_folding_500_report.json
 real_folding_500_rows.csv
 real_folding_500_dashboard.html
+real_folding_500_certificate.json
+real_folding_500_failures.csv
+real_folding_500_confusion_matrix.csv
+real_folding_10_report.json
+real_folding_10_rows.csv
+real_folding_10_dashboard.html
+real_folding_10_certificate.json
+real_folding_10_failures.csv
+real_folding_10_confusion_matrix.csv
 field_validation.json
 field_metrics.json
 ```

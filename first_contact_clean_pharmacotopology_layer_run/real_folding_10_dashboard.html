@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Folding Benchmark Dashboard</title>
+<style>
+:root {
+  color-scheme: light;
+  --ink: #18201d;
+  --muted: #5d6762;
+  --line: #cad6d0;
+  --panel: #f7faf8;
+  --accent: #0d766e;
+  --warn: #9b3d2e;
+  --blue: #285f9f;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--ink);
+  background: #ffffff;
+}
+header {
+  padding: 28px clamp(18px, 4vw, 54px);
+  border-bottom: 1px solid var(--line);
+  background: #eef5f2;
+}
+h1 { margin: 0 0 8px; font-size: clamp(28px, 4vw, 48px); letter-spacing: 0; }
+h2 { margin: 0 0 16px; font-size: 22px; letter-spacing: 0; }
+h3 { margin: 18px 0 8px; font-size: 16px; letter-spacing: 0; }
+p { max-width: 980px; line-height: 1.55; }
+main { padding: 24px clamp(18px, 4vw, 54px) 54px; }
+section { margin: 0 0 34px; }
+.warning {
+  display: inline-block;
+  padding: 8px 10px;
+  border: 1px solid var(--warn);
+  color: var(--warn);
+  font-weight: 700;
+  background: #fff8f6;
+}
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 10px;
+  margin-top: 18px;
+}
+.metric {
+  border: 1px solid var(--line);
+  background: var(--panel);
+  padding: 12px;
+  min-height: 82px;
+}
+.metric span { display: block; color: var(--muted); font-size: 13px; }
+.metric strong { display: block; margin-top: 8px; font-size: 22px; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+th, td {
+  border: 1px solid var(--line);
+  padding: 8px;
+  text-align: left;
+  vertical-align: top;
+}
+th { background: #eef5f2; }
+.bar-row {
+  display: grid;
+  grid-template-columns: minmax(150px, 260px) 1fr 70px;
+  gap: 10px;
+  align-items: center;
+  margin: 10px 0;
+}
+.bar-track { height: 16px; border: 1px solid var(--line); background: #fff; }
+.bar { height: 100%; background: var(--blue); }
+.bar.accent { background: var(--accent); }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 26px;
+}
+.radar-wrap { display: grid; grid-template-columns: 360px 1fr; gap: 20px; align-items: center; }
+svg { max-width: 100%; }
+svg circle, svg line { stroke: var(--line); fill: none; }
+svg text { font-size: 8px; fill: var(--muted); text-anchor: middle; }
+polygon.reference { fill: rgba(13, 118, 110, 0.20); stroke: var(--accent); stroke-width: 2; }
+polygon.predicted { fill: rgba(40, 95, 159, 0.20); stroke: var(--blue); stroke-width: 2; }
+.swatch { display: inline-block; width: 12px; height: 12px; margin: 0 4px 0 10px; vertical-align: -1px; }
+.swatch.ref { background: var(--accent); }
+.swatch.pred { background: var(--blue); }
+.certificate {
+  display: grid;
+  grid-template-columns: minmax(160px, 260px) 1fr;
+  border: 1px solid var(--line);
+}
+.certificate dt, .certificate dd { margin: 0; padding: 8px; border-bottom: 1px solid var(--line); }
+.certificate dt { background: #eef5f2; font-weight: 700; }
+.empty { color: var(--muted); font-style: italic; }
+.blockers { margin-top: 0; }
+@media (max-width: 760px) {
+  .radar-wrap { grid-template-columns: 1fr; }
+  .bar-row { grid-template-columns: 1fr; }
+  .certificate { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<header>
+  <p class="warning">NOT A FOLDING SOLUTION / NOT A DRUG-DESIGN TOOL</p>
+  <h1>Folding Benchmark Dashboard</h1>
+  <p>This page visualizes external-alignment evidence and failures. It does not
+  claim that protein folding has been solved, and it should become more useful
+  as real external rows replace placeholder shells.</p>
+  <div class="metrics"><div class="metric"><span>Benchmark size</span><strong>10</strong></div>
+<div class="metric"><span>External rows</span><strong>10</strong></div>
+<div class="metric"><span>Accuracy</span><strong>0.4</strong></div>
+<div class="metric"><span>Fold match rate</span><strong>0.4</strong></div>
+<div class="metric"><span>Mean similarity</span><strong>0.825681</strong></div>
+<div class="metric"><span>Perfect matches</span><strong>0</strong></div>
+<div class="metric"><span>Mismatches</span><strong>6</strong></div>
+<div class="metric"><span>Locked</span><strong>True</strong></div></div>
+</header>
+<main>
+  <section>
+    <h2>Locked Benchmark Certificate</h2>
+    <dl class="certificate"><dt>report</dt><dd>first_contact_clean_pharmacotopology_layer_run/real_folding_10_report.json</dd><dt>csv</dt><dd>first_contact_clean_pharmacotopology_layer_run/real_folding_10_rows.csv</dd><dt>dataset hash</dt><dd>sha256:9ffc68fb0e5437fdbf3030db637566352d5387ae5f6a0a57128dedc9af7c4ccc</dd><dt>commit hash</dt><dd>uncommitted-real-10</dd><dt>locked_after_generation</dt><dd>True</dd><dt>no_retuning_flag</dt><dd>True</dd><dt>external rows</dt><dd>10</dd></dl><h3>Lock Blockers</h3><ul class="blockers"><li>none recorded</li></ul>
+  </section>
+  <section>
+    <h2>Confusion Matrix</h2>
+    <table><thead><tr><th>Actual \ Predicted</th><th>alpha_beta_mixed</th><th>disordered_flexible</th><th>multidomain_boundary</th></tr></thead><tbody><tr><th>alpha_beta_mixed</th><td>1</td><td>0</td><td>1</td></tr><tr><th>alpha_rich</th><td>0</td><td>0</td><td>2</td></tr><tr><th>beta_rich</th><td>2</td><td>0</td><td>0</td></tr><tr><th>disordered_flexible</th><td>1</td><td>1</td><td>0</td></tr><tr><th>multidomain_boundary</th><td>0</td><td>0</td><td>2</td></tr></tbody></table>
+  </section>
+  <section class="grid">
+    <div>
+      <h2>Similarity Distribution</h2>
+      <div class="bar-row"><span>0.00-0.49</span><div class="bar-track"><div class="bar" style="width:0.0%"></div></div><strong>0</strong></div><div class="bar-row"><span>0.50-0.69</span><div class="bar-track"><div class="bar" style="width:20.0%"></div></div><strong>2</strong></div><div class="bar-row"><span>0.70-0.84</span><div class="bar-track"><div class="bar" style="width:40.0%"></div></div><strong>4</strong></div><div class="bar-row"><span>0.85-0.94</span><div class="bar-track"><div class="bar" style="width:40.0%"></div></div><strong>4</strong></div><div class="bar-row"><span>0.95-1.00</span><div class="bar-track"><div class="bar" style="width:0.0%"></div></div><strong>0</strong></div>
+    </div>
+    <div>
+      <h2>Per-Class Accuracy</h2>
+      <div class="bar-row"><span>alpha_beta_mixed</span><div class="bar-track"><div class="bar accent" style="width:50.0%"></div></div><strong>0.500</strong></div><div class="bar-row"><span>alpha_rich</span><div class="bar-track"><div class="bar accent" style="width:0.0%"></div></div><strong>0.000</strong></div><div class="bar-row"><span>beta_rich</span><div class="bar-track"><div class="bar accent" style="width:0.0%"></div></div><strong>0.000</strong></div><div class="bar-row"><span>disordered_flexible</span><div class="bar-track"><div class="bar accent" style="width:50.0%"></div></div><strong>0.500</strong></div><div class="bar-row"><span>multidomain_boundary</span><div class="bar-track"><div class="bar accent" style="width:100.0%"></div></div><strong>1.000</strong></div>
+    </div>
+  </section>
+  <section>
+    <h2>Failure Table</h2>
+    <table><thead><tr><th>protein_id</th><th>actual</th><th>predicted</th><th>similarity</th><th>failure_reason</th></tr></thead><tbody><tr><td>disprot_DP00070_alpha_synuclein</td><td>disordered_flexible</td><td>alpha_beta_mixed</td><td>0.688594</td><td>fold_class_proxy_mismatch</td></tr><tr><td>pdb_1TIM_A_triosephosphate_isomerase</td><td>alpha_beta_mixed</td><td>multidomain_boundary</td><td>0.782804</td><td>fold_class_proxy_mismatch</td></tr><tr><td>pdb_1CSP_A_cold_shock_protein</td><td>beta_rich</td><td>alpha_beta_mixed</td><td>0.834836</td><td>fold_class_proxy_mismatch</td></tr><tr><td>pdb_2LZM_A_t4_lysozyme</td><td>alpha_rich</td><td>multidomain_boundary</td><td>0.84612</td><td>fold_class_proxy_mismatch</td></tr><tr><td>pdb_1MBN_A_myoglobin</td><td>alpha_rich</td><td>multidomain_boundary</td><td>0.852349</td><td>fold_class_proxy_mismatch</td></tr><tr><td>pdb_1TEN_A_tenascin_fn3</td><td>beta_rich</td><td>alpha_beta_mixed</td><td>0.866421</td><td>fold_class_proxy_mismatch</td></tr><tr><td>disprot_DP03552_fetal_tau</td><td>disordered_flexible</td><td>disordered_flexible</td><td>0.690282</td><td>low_topology_similarity</td></tr><tr><td>pdb_4AKE_A_adenylate_kinase</td><td>multidomain_boundary</td><td>multidomain_boundary</td><td>0.838989</td><td></td></tr><tr><td>pdb_1PGA_A_protein_g_b1</td><td>alpha_beta_mixed</td><td>alpha_beta_mixed</td><td>0.916197</td><td></td></tr><tr><td>pdb_1CLL_A_calmodulin</td><td>multidomain_boundary</td><td>multidomain_boundary</td><td>0.940215</td><td></td></tr></tbody></table>
+  </section>
+  <section>
+    <h2>Radar Overlay</h2>
+    <div class="radar-wrap"><svg viewBox="0 0 340 340" role="img" aria-label="Radar overlay"><circle cx="170" cy="170" r="120"></circle><circle cx="170" cy="170" r="80"></circle><circle cx="170" cy="170" r="40"></circle><line x1="170.0" y1="170.0" x2="170.000" y2="50.000" /><text x="170.000" y="24.000">sequence complexity</text><line x1="170.0" y1="170.0" x2="240.534" y2="72.918" /><text x="255.817" y="51.884">secondary structure balance</text><line x1="170.0" y1="170.0" x2="284.127" y2="132.918" /><text x="308.854" y="124.884">contact map closure</text><line x1="170.0" y1="170.0" x2="284.127" y2="207.082" /><text x="308.854" y="215.116">hydrophobic core closure</text><line x1="170.0" y1="170.0" x2="240.534" y2="267.082" /><text x="255.817" y="288.116">loop disorder pressure</text><line x1="170.0" y1="170.0" x2="170.000" y2="290.000" /><text x="170.000" y="316.000">domain boundary stability</text><line x1="170.0" y1="170.0" x2="99.466" y2="267.082" /><text x="84.183" y="288.116">long range contact order</text><line x1="170.0" y1="170.0" x2="55.873" y2="207.082" /><text x="31.146" y="215.116">conformational flexibility</text><line x1="170.0" y1="170.0" x2="55.873" y2="132.918" /><text x="31.146" y="124.884">knot or entanglement signature</text><line x1="170.0" y1="170.0" x2="99.466" y2="72.918" /><text x="84.183" y="51.884">uncertainty radius</text><polygon class="reference" points="170.000,104.000 196.803,133.109 192.825,162.584 183.695,174.450 227.838,249.607 170.000,206.000 158.715,185.533 72.992,201.520 165.435,168.517 124.153,106.897"></polygon><polygon class="predicted" points="170.000,68.586 228.946,88.867 226.729,151.568 221.910,186.867 206.754,220.588 170.000,245.574 136.255,216.446 112.138,188.800 131.734,157.567 140.968,130.041"></polygon></svg><div><p><strong>disprot_DP00070_alpha_synuclein</strong></p><p class="legend"><span class="swatch ref"></span>reference <span class="swatch pred"></span>predicted</p><p>Largest signature delta: secondary_structure_balance = 0.455714</p></div></div>
+  </section>
+  <section>
+    <h2>Benchmark Source Notes</h2>
+    <p>Sources: RCSB_PDB, CATH, DisProt</p>
+    <p>Fold-class strata: alpha_beta_mixed -&gt; alpha_beta_mixed, alpha_rich -&gt; mostly_alpha_or_compact, beta_rich -&gt; mostly_beta_or_long_range, boundary_sensitive -&gt; multidomain_or_boundary_sensitive, compact_folded -&gt; mostly_alpha_or_compact, disordered_flexible -&gt; disordered_or_flexible, entanglement_rich -&gt; multidomain_or_boundary_sensitive, flexible_or_disordered -&gt; disordered_or_flexible, long_range_contact_rich -&gt; mostly_beta_or_long_range, mixed_uncertain -&gt; alpha_beta_mixed, multidomain_boundary -&gt; multidomain_or_boundary_sensitive</p>
+  </section>
+</main>
+</body>
+</html>

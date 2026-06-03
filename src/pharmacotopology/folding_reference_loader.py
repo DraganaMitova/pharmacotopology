@@ -8,7 +8,9 @@ from typing import Any, Mapping, Sequence
 from pharmacotopology.folding_topology import (
     FOLDING_TOPOLOGY_DIMENSIONS,
     FoldingReferenceExample,
-    classify_fold_topology,
+    KNOWN_FOLD_CLASSES,
+    classify_broad_fold_topology,
+    normalize_fold_class,
     normalize_sequence,
     reference_source_is_placeholder,
     reference_from_mapping,
@@ -26,16 +28,6 @@ EXTERNAL_REFERENCE_SOURCE_PREFIXES: tuple[str, ...] = (
     "disprot:",
     "external:",
 )
-
-KNOWN_FOLD_CLASSES: tuple[str, ...] = (
-    "compact_folded",
-    "long_range_contact_rich",
-    "flexible_or_disordered",
-    "boundary_sensitive",
-    "entanglement_rich",
-    "mixed_uncertain",
-)
-
 
 @dataclass(frozen=True)
 class FoldingReferenceDatasetValidation:
@@ -140,6 +132,21 @@ def validate_folding_references(
                 violations.append(
                     f"row[{index}].reference_structure_source_not_external"
                 )
+        if require_external and not reference.is_external_reference:
+            violations.append(f"row[{index}].is_external_reference_not_true")
+        if require_external and not reference.source_database:
+            violations.append(f"row[{index}].source_database_empty")
+        if require_external and not reference.source_accession:
+            violations.append(f"row[{index}].source_accession_empty")
+        if require_external and not reference.reference_label_source:
+            violations.append(f"row[{index}].reference_label_source_empty")
+
+        normalized_sequence = normalize_sequence(reference.sequence)
+        if (
+            reference.sequence_length
+            and reference.sequence_length != len(normalized_sequence)
+        ):
+            violations.append(f"row[{index}].sequence_length_mismatch")
 
         if reference.reference_fold_class not in KNOWN_FOLD_CLASSES:
             available = ",".join(KNOWN_FOLD_CLASSES)
@@ -156,10 +163,15 @@ def validate_folding_references(
                     f"row[{index}].{dimension}_outside_unit_interval"
                 )
 
-        reference_class_from_signature = classify_fold_topology(
-            reference.reference_topology_signature
+        signature_kind = reference.reference_topology_signature_kind.lower()
+        reference_class_from_signature = normalize_fold_class(
+            classify_broad_fold_topology(reference.reference_topology_signature)
         )
-        if reference_class_from_signature != reference.reference_fold_class:
+        if (
+            "prototype" not in signature_kind
+            and reference_class_from_signature
+            != normalize_fold_class(reference.reference_fold_class)
+        ):
             warnings.append(
                 f"row[{index}].reference_fold_class_signature_mismatch"
             )

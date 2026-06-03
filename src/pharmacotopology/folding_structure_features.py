@@ -11,7 +11,6 @@ from pharmacotopology.folding_real_sources import (
     STRATIFIED_500_TARGETS,
     FoldingBenchmarkSource,
     source_catalog_to_dict,
-    source_ids,
 )
 from pharmacotopology.folding_topology import (
     FOLDING_TOPOLOGY_DIMENSIONS,
@@ -23,6 +22,11 @@ from pharmacotopology.folding_topology import (
 
 
 FOLD_CLASS_TO_STRATUM: dict[str, str] = {
+    "alpha_rich": "mostly_alpha_or_compact",
+    "beta_rich": "mostly_beta_or_long_range",
+    "alpha_beta_mixed": "alpha_beta_mixed",
+    "multidomain_boundary": "multidomain_or_boundary_sensitive",
+    "disordered_flexible": "disordered_or_flexible",
     "compact_folded": "mostly_alpha_or_compact",
     "long_range_contact_rich": "mostly_beta_or_long_range",
     "mixed_uncertain": "alpha_beta_mixed",
@@ -68,12 +72,21 @@ def sha256_json(data: object) -> str:
 def reference_to_dict(reference: FoldingReferenceExample) -> dict[str, object]:
     return {
         "protein_id": reference.protein_id,
+        "source_database": reference.source_database,
+        "source_accession": reference.source_accession,
         "sequence": reference.sequence,
+        "sequence_length": reference.sequence_length or len(reference.sequence),
         "reference_structure_source": reference.reference_structure_source,
+        "reference_label_source": reference.reference_label_source,
         "reference_fold_class": reference.reference_fold_class,
+        "reference_topology_signature_kind": (
+            reference.reference_topology_signature_kind
+        ),
         "reference_topology_signature": signature_to_dict(
             reference.reference_topology_signature
         ),
+        "is_external_reference": reference.is_external_reference,
+        "curation_notes": list(reference.curation_notes),
     }
 
 
@@ -81,6 +94,33 @@ def references_to_dicts(
     references: Sequence[FoldingReferenceExample],
 ) -> list[dict[str, object]]:
     return [reference_to_dict(reference) for reference in references]
+
+
+def benchmark_source_ids_from_references(
+    references: Sequence[FoldingReferenceExample],
+    sources: Sequence[FoldingBenchmarkSource] = REAL_FOLDING_BENCHMARK_SOURCES,
+) -> tuple[str, ...]:
+    used: list[str] = []
+    for source in sources:
+        source_id = source.source_id.lower()
+        for reference in references:
+            source_database = reference.source_database.lower()
+            source_fields = (
+                reference.reference_structure_source.lower(),
+                reference.reference_label_source.lower(),
+                reference.source_accession.lower(),
+            )
+            if source_id in source_database:
+                used.append(source.source_id)
+                break
+            if any(
+                field.startswith(prefix)
+                for field in source_fields
+                for prefix in source.accepted_prefixes
+            ):
+                used.append(source.source_id)
+                break
+    return tuple(dict.fromkeys(used))
 
 
 def fold_class_counts_from_references(
@@ -119,6 +159,18 @@ def stratification_deficits(
     return {
         key: max(int(target) - int(counts.get(key, 0)), 0)
         for key, target in targets.items()
+    }
+
+
+def stratification_targets_for_size(target_size: int) -> dict[str, int]:
+    if target_size <= 0:
+        raise ValueError("target_size must be positive")
+    strata = tuple(STRATIFIED_500_TARGETS)
+    base = target_size // len(strata)
+    remainder = target_size % len(strata)
+    return {
+        stratum: base + (1 if index < remainder else 0)
+        for index, stratum in enumerate(strata)
     }
 
 
@@ -210,6 +262,7 @@ def lock_blockers(
     *,
     target_size: int,
     lock_requested: bool,
+    stratification_targets: Mapping[str, int] | None = None,
 ) -> tuple[str, ...]:
     blockers: list[str] = []
     if not lock_requested:
@@ -218,8 +271,9 @@ def lock_blockers(
         blockers.append("no_external_reference_rows_loaded")
     if len(references) != target_size:
         blockers.append("benchmark_size_mismatch")
+    targets = stratification_targets or stratification_targets_for_size(target_size)
     counts = stratification_counts(references)
-    deficits = stratification_deficits(counts)
+    deficits = stratification_deficits(counts, targets)
     for stratum, deficit in deficits.items():
         if deficit:
             blockers.append(f"{stratum}_deficit:{deficit}")
@@ -233,13 +287,16 @@ def build_lock_certificate(
     lock_requested: bool,
     recipe_commit_hash: str = "",
     sources: Sequence[FoldingBenchmarkSource] = REAL_FOLDING_BENCHMARK_SOURCES,
+    stratification_targets: Mapping[str, int] | None = None,
 ) -> FoldingBenchmarkLockCertificate:
     reference_rows = references_to_dicts(references)
     source_manifest = source_catalog_to_dict(sources)
+    targets = dict(stratification_targets or stratification_targets_for_size(target_size))
     blockers = lock_blockers(
         references,
         target_size=target_size,
         lock_requested=lock_requested,
+        stratification_targets=targets,
     )
     locked = lock_requested and not blockers
     return FoldingBenchmarkLockCertificate(
@@ -251,8 +308,8 @@ def build_lock_certificate(
         dataset_hash=sha256_json(reference_rows),
         recipe_commit_hash=recipe_commit_hash,
         source_manifest_hash=sha256_json(source_manifest),
-        benchmark_sources=source_ids(sources),
-        stratification_targets=dict(STRATIFIED_500_TARGETS),
+        benchmark_sources=benchmark_source_ids_from_references(references, sources),
+        stratification_targets=targets,
         stratification_counts=stratification_counts(references),
         lock_blockers=blockers,
     )
@@ -265,6 +322,7 @@ def build_locked_benchmark_payload(
     lock_requested: bool,
     recipe_commit_hash: str = "",
     sources: Sequence[FoldingBenchmarkSource] = REAL_FOLDING_BENCHMARK_SOURCES,
+    stratification_targets: Mapping[str, int] | None = None,
 ) -> dict[str, Any]:
     certificate = build_lock_certificate(
         references,
@@ -272,6 +330,7 @@ def build_locked_benchmark_payload(
         lock_requested=lock_requested,
         recipe_commit_hash=recipe_commit_hash,
         sources=sources,
+        stratification_targets=stratification_targets,
     )
     return {
         "benchmark_kind": "real_external_folding_topology_benchmark",

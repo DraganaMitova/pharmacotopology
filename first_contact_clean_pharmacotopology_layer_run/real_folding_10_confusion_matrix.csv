@@ -1,0 +1,6 @@
+reference_fold_class,alpha_beta_mixed,disordered_flexible,multidomain_boundary
+alpha_beta_mixed,1,0,1
+alpha_rich,0,0,2
+beta_rich,2,0,0
+disordered_flexible,1,1,0
+multidomain_boundary,0,0,2

@@ -31,6 +31,20 @@ def fold_class_match_rate(comparisons: Sequence[FoldingTopologyComparison]) -> f
     )
 
 
+def match_count(comparisons: Sequence[FoldingTopologyComparison]) -> int:
+    return sum(1 for comparison in comparisons if comparison.fold_class_match)
+
+
+def mismatch_count(comparisons: Sequence[FoldingTopologyComparison]) -> int:
+    return len(comparisons) - match_count(comparisons)
+
+
+def external_reference_count(
+    comparisons: Sequence[FoldingTopologyComparison],
+) -> int:
+    return sum(1 for comparison in comparisons if comparison.is_external_reference)
+
+
 def mean_uncertainty_radius(
     comparisons: Sequence[FoldingTopologyComparison],
 ) -> float:
@@ -51,6 +65,35 @@ def evidence_readiness_summary(
             Counter(comparison.evidence_readiness for comparison in comparisons).items()
         )
     )
+
+
+def confusion_matrix(
+    comparisons: Sequence[FoldingTopologyComparison],
+) -> dict[str, dict[str, int]]:
+    matrix: dict[str, dict[str, int]] = {}
+    for comparison in comparisons:
+        matrix.setdefault(comparison.reference_fold_class, {})
+        predicted = comparison.predicted_fold_class
+        matrix[comparison.reference_fold_class][predicted] = (
+            matrix[comparison.reference_fold_class].get(predicted, 0) + 1
+        )
+    return {actual: dict(sorted(predicted.items())) for actual, predicted in sorted(matrix.items())}
+
+
+def per_class_accuracy(
+    comparisons: Sequence[FoldingTopologyComparison],
+) -> dict[str, float]:
+    totals: dict[str, int] = {}
+    matches: dict[str, int] = {}
+    for comparison in comparisons:
+        actual = comparison.reference_fold_class
+        totals[actual] = totals.get(actual, 0) + 1
+        if comparison.fold_class_match:
+            matches[actual] = matches.get(actual, 0) + 1
+    return {
+        actual: round(matches.get(actual, 0) / total, 6)
+        for actual, total in sorted(totals.items())
+    }
 
 
 def benchmark_rows(
@@ -89,13 +132,17 @@ def summarize_benchmark(
         "folding_solution_claim_created": False,
         "folding_problem_solved": False,
         "comparisons_reviewed": len(comparisons),
+        "external_rows": external_reference_count(comparisons),
         "failure_count": len(failures),
         "perfect_matches": len(perfect_matches),
-        "mismatches": len(comparisons) - sum(
-            1 for comparison in comparisons if comparison.fold_class_match
-        ),
+        "match_count": match_count(comparisons),
+        "mismatch_count": mismatch_count(comparisons),
+        "mismatches": mismatch_count(comparisons),
+        "accuracy": fold_class_match_rate(comparisons),
         "mean_contact_map_similarity": mean_contact_map_similarity(comparisons),
         "fold_class_match_rate": fold_class_match_rate(comparisons),
+        "per_class_accuracy": per_class_accuracy(comparisons),
+        "confusion_matrix": confusion_matrix(comparisons),
         "mean_uncertainty_radius": mean_uncertainty_radius(comparisons),
         "evidence_readiness_summary": evidence_readiness_summary(comparisons),
         "boundary_statement": (

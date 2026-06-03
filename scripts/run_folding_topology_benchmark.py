@@ -12,7 +12,10 @@ SRC_ROOT = REPO_ROOT / "src"
 if str(SRC_ROOT) not in sys.path:
     sys.path.insert(0, str(SRC_ROOT))
 
-from pharmacotopology.folding_metrics import summarize_benchmark  # noqa: E402
+from pharmacotopology.folding_metrics import (  # noqa: E402
+    confusion_matrix,
+    summarize_benchmark,
+)
 from pharmacotopology.folding_reference_loader import (  # noqa: E402
     FoldingReferenceDatasetValidation,
     load_folding_reference_dataset,
@@ -48,13 +51,20 @@ def _csv_rows(
             {
                 "protein_id": row["protein_id"],
                 "sequence_length": row["sequence_length"],
+                "source_database": row["source_database"],
+                "source_accession": row["source_accession"],
                 "reference_structure_source": row["reference_structure_source"],
+                "reference_label_source": row["reference_label_source"],
                 "predicted_topology_signature": _signature_json(
                     row["predicted_topology_signature"]
                 ),
                 "reference_topology_signature": _signature_json(
                     row["reference_topology_signature"]
                 ),
+                "predicted_internal_fold_class": row[
+                    "predicted_internal_fold_class"
+                ],
+                "reference_source_fold_class": row["reference_source_fold_class"],
                 "predicted_fold_class": row["predicted_fold_class"],
                 "reference_fold_class": row["reference_fold_class"],
                 "contact_map_similarity": row["contact_map_similarity"],
@@ -62,6 +72,13 @@ def _csv_rows(
                 "uncertainty_radius": row["uncertainty_radius"],
                 "evidence_readiness": row["evidence_readiness"],
                 "failure_reason": row["failure_reason"],
+                "is_external_reference": row["is_external_reference"],
+                "reference_topology_signature_kind": row[
+                    "reference_topology_signature_kind"
+                ],
+                "curation_notes": ";".join(
+                    str(note) for note in row.get("curation_notes", ())
+                ),
             }
         )
     return rows
@@ -124,6 +141,111 @@ def write_folding_benchmark_outputs(
     return report_path, csv_path
 
 
+def _derived_output_path(report_path: Path, suffix: str) -> Path:
+    name = report_path.name
+    if name.endswith("_report.json"):
+        return report_path.with_name(name.replace("_report.json", suffix))
+    return report_path.with_name(report_path.stem + suffix)
+
+
+def write_certificate_output(
+    report: Mapping[str, object],
+    output_path: Path,
+) -> Path:
+    payload = {
+        "benchmark_kind": report.get("benchmark_kind"),
+        "benchmark_size": report.get("benchmark_size"),
+        "external_rows": report.get("external_rows"),
+        "locked_after_generation": report.get("locked_after_generation"),
+        "no_retuning_flag": report.get("no_retuning_flag"),
+        "folding_solution_claim_created": report.get(
+            "folding_solution_claim_created",
+            False,
+        ),
+        "folding_problem_solved": report.get("folding_problem_solved", False),
+        "lock_certificate": report.get("lock_certificate", {}),
+        "reference_dataset_validation": report.get(
+            "reference_dataset_validation",
+            {},
+        ),
+    }
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    output_path.write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    return output_path
+
+
+def write_failures_output(
+    comparisons: Sequence[FoldingTopologyComparison],
+    output_path: Path,
+) -> Path:
+    rows = [
+        {
+            "protein_id": comparison.protein_id,
+            "source_database": comparison.source_database,
+            "source_accession": comparison.source_accession,
+            "reference_fold_class": comparison.reference_fold_class,
+            "predicted_fold_class": comparison.predicted_fold_class,
+            "predicted_internal_fold_class": comparison.predicted_internal_fold_class,
+            "contact_map_similarity": comparison.contact_map_similarity,
+            "uncertainty_radius": comparison.uncertainty_radius,
+            "failure_reason": comparison.failure_reason,
+        }
+        for comparison in comparisons
+        if comparison.failure_reason or not comparison.fold_class_match
+    ]
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    with output_path.open("w", encoding="utf-8", newline="") as file:
+        fieldnames = [
+            "protein_id",
+            "source_database",
+            "source_accession",
+            "reference_fold_class",
+            "predicted_fold_class",
+            "predicted_internal_fold_class",
+            "contact_map_similarity",
+            "uncertainty_radius",
+            "failure_reason",
+        ]
+        writer = csv.DictWriter(file, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(rows)
+    return output_path
+
+
+def write_confusion_matrix_output(
+    comparisons: Sequence[FoldingTopologyComparison],
+    output_path: Path,
+) -> Path:
+    matrix = confusion_matrix(comparisons)
+    predicted_classes = sorted(
+        {
+            predicted
+            for predictions in matrix.values()
+            for predicted in predictions
+        }
+    )
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    with output_path.open("w", encoding="utf-8", newline="") as file:
+        writer = csv.DictWriter(
+            file,
+            fieldnames=["reference_fold_class"] + predicted_classes,
+        )
+        writer.writeheader()
+        for actual, predictions in matrix.items():
+            row = {"reference_fold_class": actual}
+            row.update(
+                {
+                    predicted: predictions.get(predicted, 0)
+                    for predicted in predicted_classes
+                }
+            )
+            writer.writerow(row)
+    return output_path
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(
         description=(
@@ -140,6 +262,21 @@ def main() -> None:
         "--csv-output",
         default=str(DEFAULT_CSV_PATH),
         help="Path for the benchmark CSV rows.",
+    )
+    parser.add_argument(
+        "--certificate-output",
+        default="",
+        help="Optional certificate JSON path. Defaults beside the report.",
+    )
+    parser.add_argument(
+        "--failures-output",
+        default="",
+        help="Optional failures CSV path. Defaults beside the report.",
+    )
+    parser.add_argument(
+        "--confusion-output",
+        default="",
+        help="Optional confusion-matrix CSV path. Defaults beside the report.",
     )
     parser.add_argument(
         "--benchmark-file",
@@ -185,8 +322,30 @@ def main() -> None:
         reference_dataset_validation=validation,
         reference_dataset_metadata=metadata,
     )
+    report = json.loads(report_path.read_text(encoding="utf-8"))
+    certificate_path = (
+        Path(args.certificate_output)
+        if args.certificate_output
+        else _derived_output_path(report_path, "_certificate.json")
+    )
+    failures_path = (
+        Path(args.failures_output)
+        if args.failures_output
+        else _derived_output_path(report_path, "_failures.csv")
+    )
+    confusion_path = (
+        Path(args.confusion_output)
+        if args.confusion_output
+        else _derived_output_path(report_path, "_confusion_matrix.csv")
+    )
+    write_certificate_output(report, certificate_path)
+    write_failures_output(comparisons, failures_path)
+    write_confusion_matrix_output(comparisons, confusion_path)
     print(report_path)
     print(csv_path)
+    print(certificate_path)
+    print(failures_path)
+    print(confusion_path)
 
 
 if __name__ == "__main__":

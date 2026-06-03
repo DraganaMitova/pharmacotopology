@@ -105,7 +105,15 @@ def _worst_rows(
 
 def _metric_cards(report: Mapping[str, Any]) -> str:
     metrics = [
-        ("Benchmark size", report.get("benchmark_size", report.get("comparisons_reviewed", 0))),
+        (
+            "Benchmark size",
+            report.get("benchmark_size", report.get("comparisons_reviewed", 0)),
+        ),
+        ("External rows", report.get("external_rows", 0)),
+        (
+            "Accuracy",
+            report.get("accuracy", report.get("fold_class_match_rate", 0.0)),
+        ),
         ("Fold match rate", report.get("fold_class_match_rate", 0.0)),
         ("Mean similarity", report.get("mean_contact_map_similarity", 0.0)),
         ("Perfect matches", report.get("perfect_matches", 0)),

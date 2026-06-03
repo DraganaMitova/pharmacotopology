@@ -1,0 +1,60 @@
+{
+  "benchmark_kind": "real_external_folding_topology_benchmark",
+  "benchmark_size": 10,
+  "external_rows": 10,
+  "folding_problem_solved": false,
+  "folding_solution_claim_created": false,
+  "lock_certificate": {
+    "benchmark_kind": "real_external_folding_topology_benchmark",
+    "benchmark_size": 10,
+    "benchmark_sources": [
+      "RCSB_PDB",
+      "CATH",
+      "DisProt"
+    ],
+    "clinical_use_allowed": false,
+    "dataset_hash": "sha256:9ffc68fb0e5437fdbf3030db637566352d5387ae5f6a0a57128dedc9af7c4ccc",
+    "drug_design_created": false,
+    "folding_problem_solved": false,
+    "folding_solution_claim_created": false,
+    "lock_blockers": [],
+    "locked_after_generation": true,
+    "molecule_generated": false,
+    "no_retuning_flag": true,
+    "protein_sequence_design_created": false,
+    "recipe_commit_hash": "uncommitted-real-10",
+    "source_manifest_hash": "sha256:dd6b287b424ed0119168ad52b9333ba8cf145744047a59d3b14e8cc088efef25",
+    "stratification_counts": {
+      "alpha_beta_mixed": 2,
+      "disordered_or_flexible": 2,
+      "mostly_alpha_or_compact": 2,
+      "mostly_beta_or_long_range": 2,
+      "multidomain_or_boundary_sensitive": 2
+    },
+    "stratification_targets": {
+      "alpha_beta_mixed": 2,
+      "disordered_or_flexible": 2,
+      "mostly_alpha_or_compact": 2,
+      "mostly_beta_or_long_range": 2,
+      "multidomain_or_boundary_sensitive": 2
+    },
+    "target_benchmark_size": 10
+  },
+  "locked_after_generation": true,
+  "no_retuning_flag": true,
+  "reference_dataset_validation": {
+    "clinical_use_allowed": false,
+    "dataset_path": "data/folding_benchmarks_real_10.locked.json",
+    "drug_design_created": false,
+    "external_reference_count": 10,
+    "folding_solution_claim_created": false,
+    "molecule_generated": false,
+    "placeholder_reference_count": 0,
+    "protein_sequence_design_created": false,
+    "references_loaded": 10,
+    "require_external": true,
+    "valid": true,
+    "violations": [],
+    "warnings": []
+  }
+}
