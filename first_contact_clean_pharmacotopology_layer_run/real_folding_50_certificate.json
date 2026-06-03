@@ -1,0 +1,61 @@
+{
+  "benchmark_kind": "hierarchical_folding_decision_gate_benchmark",
+  "benchmark_size": 50,
+  "claim_allowed": false,
+  "class_distribution": {
+    "alpha_beta_mixed": 10,
+    "alpha_rich": 10,
+    "beta_rich": 10,
+    "disordered_flexible": 10,
+    "multidomain_boundary": 10
+  },
+  "external_rows": 50,
+  "folding_problem_solved": false,
+  "high_confidence_wrong_count": 6,
+  "lock_certificate": {
+    "benchmark_kind": "real_external_folding_topology_benchmark",
+    "benchmark_size": 50,
+    "benchmark_sources": [
+      "RCSB_PDB",
+      "CATH",
+      "DisProt"
+    ],
+    "clinical_use_allowed": false,
+    "dataset_hash": "sha256:0befbfb10d8b87c5fd666f96948421b31efb1b674c436c350c183eb20a494de5",
+    "drug_design_created": false,
+    "folding_problem_solved": false,
+    "folding_solution_claim_created": false,
+    "lock_blockers": [],
+    "locked_after_generation": true,
+    "molecule_generated": false,
+    "no_retuning_flag": true,
+    "protein_sequence_design_created": false,
+    "recipe_commit_hash": "17dc6e2",
+    "source_manifest_hash": "sha256:dd6b287b424ed0119168ad52b9333ba8cf145744047a59d3b14e8cc088efef25",
+    "stratification_counts": {
+      "alpha_beta_mixed": 10,
+      "disordered_or_flexible": 10,
+      "mostly_alpha_or_compact": 10,
+      "mostly_beta_or_long_range": 10,
+      "multidomain_or_boundary_sensitive": 10
+    },
+    "stratification_targets": {
+      "alpha_beta_mixed": 10,
+      "disordered_or_flexible": 10,
+      "mostly_alpha_or_compact": 10,
+      "mostly_beta_or_long_range": 10,
+      "multidomain_or_boundary_sensitive": 10
+    },
+    "target_benchmark_size": 50
+  },
+  "locked_after_generation": true,
+  "no_retuning_flag": true,
+  "prediction_vs_structure_accuracy": 0.34,
+  "result_compared_to_10_row_benchmark": {
+    "baseline_benchmark_size": 10,
+    "baseline_report": "first_contact_clean_pharmacotopology_layer_run/real_folding_10_hierarchical_gate_report.json",
+    "current_benchmark_size": 50,
+    "recipe_frozen_before_50_row_run": true
+  },
+  "stability_status": "unstable_accuracy_drop"
+}

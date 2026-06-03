@@ -151,6 +151,16 @@ same 10 locked rows it reports `prediction_vs_structure_accuracy = 0.6`,
 zero: disorder-as-beta, alpha-as-mixed, and flexible-segmentation-as-multidomain.
 It is still not a folding solution.
 
+The hierarchy is now frozen against a 50-row stability benchmark at
+`data/folding_benchmarks_real_50.locked.json`. That run is intentionally
+harsher: `prediction_vs_structure_accuracy = 0.34`,
+`abstained_prediction_count = 23`, and `high_confidence_wrong_count = 6`, so
+`stability_status = unstable_accuracy_drop`. The useful part is that the
+targeted failure counters remain closed (`false_beta_from_disorder_count = 0`,
+`false_mixed_from_alpha_count = 0`,
+`flexible_segmentation_false_multidomain_count = 0`). The next revision should
+come from this 50-row failure distribution, not from retuning the 10-row set.
+
 See [docs/PROTEIN_FOLDING_TEST_BOUNDARY.md](docs/PROTEIN_FOLDING_TEST_BOUNDARY.md).
 
 External benchmark rows can be loaded separately:
@@ -237,6 +247,8 @@ src/pharmacotopology/                 core simulator and boundary model
 data/folding_benchmarks_real.example.json
 data/folding_benchmarks_real_10.locked.json
 data/folding_benchmarks_real_10_structure_evidence.json
+data/folding_benchmarks_real_50.locked.json
+data/folding_benchmarks_real_50_structure_evidence.json
 data/folding_benchmarks_real_500.locked.json
 scripts/run_clean_pharmacotopology_layer.py
 scripts/render_pharmacotopology_dashboard.py
@@ -414,6 +426,34 @@ false_beta_from_disorder_count = 0
 false_mixed_from_alpha_count = 0
 hierarchy_changed_raw_prediction_count = 9
 revision_required = true
+claim_allowed = false
+folding_problem_solved = false
+```
+
+Run the frozen hierarchy against the locked 50-row stability benchmark:
+
+```bash
+python3 scripts/run_hierarchical_gate_benchmark.py --benchmark-file data/folding_benchmarks_real_50.locked.json --structure-evidence-file data/folding_benchmarks_real_50_structure_evidence.json --report-output first_contact_clean_pharmacotopology_layer_run/real_folding_50_hierarchical_gate_report.json --rows-output first_contact_clean_pharmacotopology_layer_run/real_folding_50_hierarchical_gate_rows.csv --gate-paths-output first_contact_clean_pharmacotopology_layer_run/real_folding_50_gate_paths.csv --gate-failures-output first_contact_clean_pharmacotopology_layer_run/real_folding_50_gate_failures.csv --dashboard-output first_contact_clean_pharmacotopology_layer_run/real_folding_50_hierarchical_gate_dashboard.html --certificate-output first_contact_clean_pharmacotopology_layer_run/real_folding_50_certificate.json --confusion-output first_contact_clean_pharmacotopology_layer_run/real_folding_50_confusion_matrix.csv
+```
+
+The checked-in 50-row stability report currently says:
+
+```text
+benchmark_size = 50
+external_rows = 50
+class_distribution = 10 per broad class
+prediction_vs_structure_accuracy = 0.34
+prediction_vs_label_accuracy = 0.38
+forced_prediction_count = 27
+abstained_prediction_count = 23
+high_confidence_wrong_count = 6
+false_beta_from_disorder_count = 0
+false_mixed_from_alpha_count = 0
+flexible_segmentation_false_multidomain_count = 0
+accuracy_delta_from_10 = -0.26
+abstention_delta_from_10 = 19
+high_confidence_wrong_delta_from_10 = 6
+stability_status = unstable_accuracy_drop
 claim_allowed = false
 folding_problem_solved = false
 ```
@@ -687,6 +727,13 @@ real_folding_10_hierarchical_gate_rows.csv
 real_folding_10_gate_paths.csv
 real_folding_10_gate_failures.csv
 real_folding_10_hierarchical_gate_dashboard.html
+real_folding_50_hierarchical_gate_report.json
+real_folding_50_hierarchical_gate_rows.csv
+real_folding_50_gate_paths.csv
+real_folding_50_gate_failures.csv
+real_folding_50_hierarchical_gate_dashboard.html
+real_folding_50_certificate.json
+real_folding_50_confusion_matrix.csv
 field_validation.json
 field_metrics.json
 ```

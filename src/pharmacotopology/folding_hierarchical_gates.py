@@ -840,6 +840,8 @@ def _metric_cards(report: Mapping[str, object]) -> str:
         "forced_prediction_count",
         "abstained_prediction_count",
         "high_confidence_wrong_count",
+        "accuracy_delta_from_10",
+        "stability_status",
         "false_beta_from_disorder_count",
         "false_mixed_from_alpha_count",
         "flexible_segmentation_false_multidomain_count",
@@ -849,6 +851,95 @@ def _metric_cards(report: Mapping[str, object]) -> str:
         f"<span>{_escape(label)}</span><strong>{_escape(report.get(label))}</strong>"
         "</div>"
         for label in labels
+    )
+
+
+def _mapping_table(title: str, mapping: object) -> str:
+    if not isinstance(mapping, Mapping) or not mapping:
+        return ""
+    rows = []
+    for key, value in mapping.items():
+        if isinstance(value, Mapping):
+            nested = ", ".join(
+                f"{_escape(nested_key)}: {_escape(nested_value)}"
+                for nested_key, nested_value in value.items()
+            )
+            rendered_value = nested
+        else:
+            rendered_value = _escape(value)
+        rows.append(
+            "<tr>"
+            f"<td>{_escape(key)}</td>"
+            f"<td>{rendered_value}</td>"
+            "</tr>"
+        )
+    return (
+        f"<section><h2>{_escape(title)}</h2>"
+        "<table><thead><tr><th>key</th><th>value</th></tr></thead><tbody>"
+        + "".join(rows)
+        + "</tbody></table></section>"
+    )
+
+
+def _confusion_matrix_table(report: Mapping[str, object]) -> str:
+    matrix = report.get("confusion_matrix")
+    if not isinstance(matrix, Mapping) or not matrix:
+        return ""
+    predicted = sorted(
+        {
+            str(predicted_class)
+            for row in matrix.values()
+            if isinstance(row, Mapping)
+            for predicted_class in row
+        }
+    )
+    header = "".join(f"<th>{_escape(label)}</th>" for label in predicted)
+    body = []
+    for actual, row in matrix.items():
+        if not isinstance(row, Mapping):
+            continue
+        cells = "".join(
+            f"<td>{_escape(row.get(predicted_class, 0))}</td>"
+            for predicted_class in predicted
+        )
+        body.append(f"<tr><td>{_escape(actual)}</td>{cells}</tr>")
+    return (
+        "<section><h2>Confusion Matrix</h2>"
+        "<table><thead><tr><th>structure</th>"
+        + header
+        + "</tr></thead><tbody>"
+        + "".join(body)
+        + "</tbody></table></section>"
+    )
+
+
+def _high_confidence_wrong_table(report: Mapping[str, object]) -> str:
+    cases = report.get("high_confidence_wrong_cases")
+    if not isinstance(cases, Sequence) or not cases:
+        return (
+            "<section><h2>High-Confidence Wrong Cases</h2>"
+            "<p>No high-confidence wrong cases recorded.</p></section>"
+        )
+    body = []
+    for case in cases:
+        if not isinstance(case, Mapping):
+            continue
+        body.append(
+            "<tr>"
+            f"<td>{_escape(case.get('protein_id', ''))}</td>"
+            f"<td>{_escape(case.get('predicted_fold_class', ''))}</td>"
+            f"<td>{_escape(case.get('structure_fold_class', ''))}</td>"
+            f"<td>{_escape(case.get('confidence', ''))}</td>"
+            f"<td>{_escape(case.get('gate_path', ''))}</td>"
+            "</tr>"
+        )
+    return (
+        "<section><h2>High-Confidence Wrong Cases</h2>"
+        "<table><thead><tr><th>protein</th><th>predicted</th>"
+        "<th>structure</th><th>confidence</th><th>gate path</th>"
+        "</tr></thead><tbody>"
+        + "".join(body)
+        + "</tbody></table></section>"
     )
 
 
@@ -946,6 +1037,13 @@ th {{ background: #f1f5ee; }}
   <div class="metrics">{_metric_cards(report)}</div>
 </header>
 <main>
+  {_mapping_table("10 vs 50 Stability", report.get("result_compared_to_10_row_benchmark"))}
+  {_mapping_table("Accuracy By Class", report.get("accuracy_by_class"))}
+  {_mapping_table("Abstention Rate By Class", report.get("abstention_rate_by_class"))}
+  {_mapping_table("Gate Path Distribution By True Class", report.get("gate_path_distribution_by_true_class"))}
+  {_mapping_table("Per-Class Stability Status", report.get("per_class_stability_status"))}
+  {_confusion_matrix_table(report)}
+  {_high_confidence_wrong_table(report)}
   <section>
     <h2>Gate Paths</h2>
     {_gate_table(rows)}

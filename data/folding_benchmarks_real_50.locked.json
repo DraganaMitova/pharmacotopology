@@ -1,0 +1,1537 @@
+{
+  "benchmark_kind": "real_external_folding_topology_benchmark",
+  "benchmark_size": 50,
+  "benchmark_sources": [
+    "RCSB_PDB",
+    "CATH",
+    "DisProt"
+  ],
+  "boundary": {
+    "clinical_use_allowed": false,
+    "drug_design_created": false,
+    "folding_problem_solved": false,
+    "folding_solution_claim_created": false,
+    "molecule_generated": false,
+    "protein_sequence_design_created": false
+  },
+  "class_distribution": {
+    "alpha_beta_mixed": 10,
+    "alpha_rich": 10,
+    "beta_rich": 10,
+    "disordered_flexible": 10,
+    "multidomain_boundary": 10
+  },
+  "external_rows": 50,
+  "external_validation_required": false,
+  "folding_problem_solved": false,
+  "folding_solution_claim_created": false,
+  "input_benchmark_file": "generated_from_public_rcsb_uniprot_fasta_specs",
+  "lock_certificate": {
+    "benchmark_kind": "real_external_folding_topology_benchmark",
+    "benchmark_size": 50,
+    "benchmark_sources": [
+      "RCSB_PDB",
+      "CATH",
+      "DisProt"
+    ],
+    "clinical_use_allowed": false,
+    "dataset_hash": "sha256:0befbfb10d8b87c5fd666f96948421b31efb1b674c436c350c183eb20a494de5",
+    "drug_design_created": false,
+    "folding_problem_solved": false,
+    "folding_solution_claim_created": false,
+    "lock_blockers": [],
+    "locked_after_generation": true,
+    "molecule_generated": false,
+    "no_retuning_flag": true,
+    "protein_sequence_design_created": false,
+    "recipe_commit_hash": "17dc6e2",
+    "source_manifest_hash": "sha256:dd6b287b424ed0119168ad52b9333ba8cf145744047a59d3b14e8cc088efef25",
+    "stratification_counts": {
+      "alpha_beta_mixed": 10,
+      "disordered_or_flexible": 10,
+      "mostly_alpha_or_compact": 10,
+      "mostly_beta_or_long_range": 10,
+      "multidomain_or_boundary_sensitive": 10
+    },
+    "stratification_targets": {
+      "alpha_beta_mixed": 10,
+      "disordered_or_flexible": 10,
+      "mostly_alpha_or_compact": 10,
+      "mostly_beta_or_long_range": 10,
+      "multidomain_or_boundary_sensitive": 10
+    },
+    "target_benchmark_size": 50
+  },
+  "locked_after_generation": true,
+  "no_recipe_retuning_before_run": true,
+  "no_retuning_flag": true,
+  "references": [
+    {
+      "curation_notes": [
+        "sequence fetched from RCSB PDB FASTA entry 1MBN display chain A",
+        "coordinate evidence fetched from RCSB PDB entry 1MBN chain A",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "pdb_1MBN_A_myoglobin",
+      "reference_fold_class": "alpha_rich",
+      "reference_label_source": "cath:1mbnA00",
+      "reference_structure_source": "pdb:1MBN:A",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.3,
+        "contact_map_closure": 0.68,
+        "domain_boundary_stability": 0.78,
+        "hydrophobic_core_closure": 0.62,
+        "knot_or_entanglement_signature": 0.12,
+        "long_range_contact_order": 0.44,
+        "loop_disorder_pressure": 0.22,
+        "secondary_structure_balance": 0.75,
+        "sequence_complexity": 0.7,
+        "uncertainty_radius": 0.28
+      },
+      "reference_topology_signature_kind": "locked_50_broad_class_prototype_from_external_label",
+      "sequence": "VLSEGEWQLVLHVWAKVEADVAGHGQDILIRLFKSHPETLEKFDRFKHLKTEAEMKASEDLKKHGVTVLTALGAILKKKGHHEAELKPLAQSHATKHKIPIKYLEFISEAIIHVLHSRHPGDFGADAQGAMNKALELFRKDIAAKYKELGYQG",
+      "sequence_length": 153,
+      "source_accession": "1MBN:A",
+      "source_database": "RCSB_PDB+CATH"
+    },
+    {
+      "curation_notes": [
+        "sequence fetched from RCSB PDB FASTA entry 2LZM display chain A",
+        "coordinate evidence fetched from RCSB PDB entry 2LZM chain A",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "pdb_2LZM_A_t4_lysozyme",
+      "reference_fold_class": "alpha_rich",
+      "reference_label_source": "cath:2lzmA00",
+      "reference_structure_source": "pdb:2LZM:A",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.3,
+        "contact_map_closure": 0.68,
+        "domain_boundary_stability": 0.78,
+        "hydrophobic_core_closure": 0.62,
+        "knot_or_entanglement_signature": 0.12,
+        "long_range_contact_order": 0.44,
+        "loop_disorder_pressure": 0.22,
+        "secondary_structure_balance": 0.75,
+        "sequence_complexity": 0.7,
+        "uncertainty_radius": 0.28
+      },
+      "reference_topology_signature_kind": "locked_50_broad_class_prototype_from_external_label",
+      "sequence": "MNIFEMLRIDEGLRLKIYKDTEGYYTIGIGHLLTKSPSLNAAKSELDKAIGRNCNGVITKDEAEKLFNQDVDAAVRGILRNAKLKPVYDSLDAVRRCALINMVFQMGETGVAGFTNSLRMLQQKRWDEAAVNLAKSRWYNQTPNRAKRVITTFRTGTWDAYKNL",
+      "sequence_length": 164,
+      "source_accession": "2LZM:A",
+      "source_database": "RCSB_PDB+CATH"
+    },
+    {
+      "curation_notes": [
+        "sequence fetched from RCSB PDB FASTA entry 1FLP display chain A",
+        "coordinate evidence fetched from RCSB PDB entry 1FLP chain A",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "pdb_1FLP_A_hemoglobin_i",
+      "reference_fold_class": "alpha_rich",
+      "reference_label_source": "cath:1flpA00",
+      "reference_structure_source": "pdb:1FLP:A",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.3,
+        "contact_map_closure": 0.68,
+        "domain_boundary_stability": 0.78,
+        "hydrophobic_core_closure": 0.62,
+        "knot_or_entanglement_signature": 0.12,
+        "long_range_contact_order": 0.44,
+        "loop_disorder_pressure": 0.22,
+        "secondary_structure_balance": 0.75,
+        "sequence_complexity": 0.7,
+        "uncertainty_radius": 0.28
+      },
+      "reference_topology_signature_kind": "locked_50_broad_class_prototype_from_external_label",
+      "sequence": "SLEAAQKSNVTSSWAKASAAWGTAGPEFFMALFDAHDDVFAKFSGLFSGAAKGTVKNTPEMAAQAQSFKGLVSNWVDNLDNAGALEGQCKTFAANHKARGISAGQLEAAFKVLSGFMKSYGGDEGAWTAVAGALMGEIEPDM",
+      "sequence_length": 142,
+      "source_accession": "1FLP:A",
+      "source_database": "RCSB_PDB+CATH"
+    },
+    {
+      "curation_notes": [
+        "sequence fetched from RCSB PDB FASTA entry 1R69 display chain A",
+        "coordinate evidence fetched from RCSB PDB entry 1R69 chain A",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "pdb_1R69_A_lambda_repressor_ntd",
+      "reference_fold_class": "alpha_rich",
+      "reference_label_source": "cath:1r69A00",
+      "reference_structure_source": "pdb:1R69:A",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.3,
+        "contact_map_closure": 0.68,
+        "domain_boundary_stability": 0.78,
+        "hydrophobic_core_closure": 0.62,
+        "knot_or_entanglement_signature": 0.12,
+        "long_range_contact_order": 0.44,
+        "loop_disorder_pressure": 0.22,
+        "secondary_structure_balance": 0.75,
+        "sequence_complexity": 0.7,
+        "uncertainty_radius": 0.28
+      },
+      "reference_topology_signature_kind": "locked_50_broad_class_prototype_from_external_label",
+      "sequence": "SISSRVKSKRIQLGLNQAELAQKVGTTQQSIEQLENGKTKRPRFLPELASALGVSVDWLLNGTSDSNVR",
+      "sequence_length": 69,
+      "source_accession": "1R69:A",
+      "source_database": "RCSB_PDB+CATH"
+    },
+    {
+      "curation_notes": [
+        "sequence fetched from RCSB PDB FASTA entry 2MHR display chain A",
+        "coordinate evidence fetched from RCSB PDB entry 2MHR chain A",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "pdb_2MHR_A_myohemerythrin",
+      "reference_fold_class": "alpha_rich",
+      "reference_label_source": "cath:2mhrA00",
+      "reference_structure_source": "pdb:2MHR:A",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.3,
+        "contact_map_closure": 0.68,
+        "domain_boundary_stability": 0.78,
+        "hydrophobic_core_closure": 0.62,
+        "knot_or_entanglement_signature": 0.12,
+        "long_range_contact_order": 0.44,
+        "loop_disorder_pressure": 0.22,
+        "secondary_structure_balance": 0.75,
+        "sequence_complexity": 0.7,
+        "uncertainty_radius": 0.28
+      },
+      "reference_topology_signature_kind": "locked_50_broad_class_prototype_from_external_label",
+      "sequence": "GWEIPEPYVWDESFRVFYEQLDEEHKKIFKGIFDCIRDNSAPNLATLVKVTTNHFTHEEAMMDAAKYSEVVPHKKMHKDFLEKIGGLSAPVDAKNVDYCKEWLVNHIKGTDFKYKGKL",
+      "sequence_length": 118,
+      "source_accession": "2MHR:A",
+      "source_database": "RCSB_PDB+CATH"
+    },
+    {
+      "curation_notes": [
+        "sequence fetched from RCSB PDB FASTA entry 1CYO display chain A",
+        "coordinate evidence fetched from RCSB PDB entry 1CYO chain A",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "pdb_1CYO_A_cytochrome_c2",
+      "reference_fold_class": "alpha_rich",
+      "reference_label_source": "cath:1cyoA00",
+      "reference_structure_source": "pdb:1CYO:A",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.3,
+        "contact_map_closure": 0.68,
+        "domain_boundary_stability": 0.78,
+        "hydrophobic_core_closure": 0.62,
+        "knot_or_entanglement_signature": 0.12,
+        "long_range_contact_order": 0.44,
+        "loop_disorder_pressure": 0.22,
+        "secondary_structure_balance": 0.75,
+        "sequence_complexity": 0.7,
+        "uncertainty_radius": 0.28
+      },
+      "reference_topology_signature_kind": "locked_50_broad_class_prototype_from_external_label",
+      "sequence": "SKAVKYYTLEEIQKHNNSKSTWLILHYKVYDLTKFLEEHPGGEEVLREQAGGDATENFEDVGHSTDARELSKTFIIGELHPDDRSKITKPSES",
+      "sequence_length": 93,
+      "source_accession": "1CYO:A",
+      "source_database": "RCSB_PDB+CATH"
+    },
+    {
+      "curation_notes": [
+        "sequence fetched from RCSB PDB FASTA entry 1ROP display chain A",
+        "coordinate evidence fetched from RCSB PDB entry 1ROP chain A",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "pdb_1ROP_A_rop_protein",
+      "reference_fold_class": "alpha_rich",
+      "reference_label_source": "cath:1ropA00",
+      "reference_structure_source": "pdb:1ROP:A",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.3,
+        "contact_map_closure": 0.68,
+        "domain_boundary_stability": 0.78,
+        "hydrophobic_core_closure": 0.62,
+        "knot_or_entanglement_signature": 0.12,
+        "long_range_contact_order": 0.44,
+        "loop_disorder_pressure": 0.22,
+        "secondary_structure_balance": 0.75,
+        "sequence_complexity": 0.7,
+        "uncertainty_radius": 0.28
+      },
+      "reference_topology_signature_kind": "locked_50_broad_class_prototype_from_external_label",
+      "sequence": "MTKQEKTALNMARFIRSQTLTLLEKLNELDADEQADICESLHDHADELYRSCLARFGDDGENL",
+      "sequence_length": 63,
+      "source_accession": "1ROP:A",
+      "source_database": "RCSB_PDB+CATH"
+    },
+    {
+      "curation_notes": [
+        "sequence fetched from RCSB PDB FASTA entry 1GAB display chain A",
+        "coordinate evidence fetched from RCSB PDB entry 1GAB chain A",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "pdb_1GAB_A_albumin_binding_domain",
+      "reference_fold_class": "alpha_rich",
+      "reference_label_source": "cath:1gabA00",
+      "reference_structure_source": "pdb:1GAB:A",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.3,
+        "contact_map_closure": 0.68,
+        "domain_boundary_stability": 0.78,
+        "hydrophobic_core_closure": 0.62,
+        "knot_or_entanglement_signature": 0.12,
+        "long_range_contact_order": 0.44,
+        "loop_disorder_pressure": 0.22,
+        "secondary_structure_balance": 0.75,
+        "sequence_complexity": 0.7,
+        "uncertainty_radius": 0.28
+      },
+      "reference_topology_signature_kind": "locked_50_broad_class_prototype_from_external_label",
+      "sequence": "TIDQWLLKNAKEDAIAELKKAGITSDFYFNAINKAKTVEEVNALKNEILKAHA",
+      "sequence_length": 53,
+      "source_accession": "1GAB:A",
+      "source_database": "RCSB_PDB+CATH"
+    },
+    {
+      "curation_notes": [
+        "sequence fetched from RCSB PDB FASTA entry 256B display chain A",
+        "coordinate evidence fetched from RCSB PDB entry 256B chain A",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "pdb_256B_A_cytochrome_b562",
+      "reference_fold_class": "alpha_rich",
+      "reference_label_source": "cath:256bA00",
+      "reference_structure_source": "pdb:256B:A",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.3,
+        "contact_map_closure": 0.68,
+        "domain_boundary_stability": 0.78,
+        "hydrophobic_core_closure": 0.62,
+        "knot_or_entanglement_signature": 0.12,
+        "long_range_contact_order": 0.44,
+        "loop_disorder_pressure": 0.22,
+        "secondary_structure_balance": 0.75,
+        "sequence_complexity": 0.7,
+        "uncertainty_radius": 0.28
+      },
+      "reference_topology_signature_kind": "locked_50_broad_class_prototype_from_external_label",
+      "sequence": "ADLEDNMETLNDNLKVIEKADNAAQVKDALTKMRAAALDAQKATPPKLEDKSPDSPEMKDFRHGFDILVGQIDDALKLANEGKVKEAQAAAEQLKTTRNAYHQKYR",
+      "sequence_length": 106,
+      "source_accession": "256B:A",
+      "source_database": "RCSB_PDB+CATH"
+    },
+    {
+      "curation_notes": [
+        "sequence fetched from RCSB PDB FASTA entry 1CUN display chain A",
+        "coordinate evidence fetched from RCSB PDB entry 1CUN chain A",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "pdb_1CUN_A_alpha_spectrin_repeat",
+      "reference_fold_class": "alpha_rich",
+      "reference_label_source": "cath:1cunA00",
+      "reference_structure_source": "pdb:1CUN:A",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.3,
+        "contact_map_closure": 0.68,
+        "domain_boundary_stability": 0.78,
+        "hydrophobic_core_closure": 0.62,
+        "knot_or_entanglement_signature": 0.12,
+        "long_range_contact_order": 0.44,
+        "loop_disorder_pressure": 0.22,
+        "secondary_structure_balance": 0.75,
+        "sequence_complexity": 0.7,
+        "uncertainty_radius": 0.28
+      },
+      "reference_topology_signature_kind": "locked_50_broad_class_prototype_from_external_label",
+      "sequence": "MVHQFFRDMDDEESWIKEKKLLVSSEDYGRDLTGVQNLRKKHKRLEAELAAHEPAIQSVLDTGKKLSDDNTIGKEEIQQRLAQFVDHWKELKQLAAARGQRLEESLEYQQFVANVEEEEAWINEKMTLVASEDYGDTLAAIQGLLKKHEAFETDFTVHKDRVNDVCANGEDLIKKNNHHVENITAKMKGLKGKVSDLEKAAAQRKAKLDENSA",
+      "sequence_length": 213,
+      "source_accession": "1CUN:A",
+      "source_database": "RCSB_PDB+CATH"
+    },
+    {
+      "curation_notes": [
+        "sequence fetched from RCSB PDB FASTA entry 1TEN display chain A",
+        "coordinate evidence fetched from RCSB PDB entry 1TEN chain A",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "pdb_1TEN_A_tenascin_fn3",
+      "reference_fold_class": "beta_rich",
+      "reference_label_source": "cath:1tenA00",
+      "reference_structure_source": "pdb:1TEN:A",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.35,
+        "contact_map_closure": 0.6,
+        "domain_boundary_stability": 0.62,
+        "hydrophobic_core_closure": 0.42,
+        "knot_or_entanglement_signature": 0.25,
+        "long_range_contact_order": 0.62,
+        "loop_disorder_pressure": 0.28,
+        "secondary_structure_balance": 0.65,
+        "sequence_complexity": 0.62,
+        "uncertainty_radius": 0.3
+      },
+      "reference_topology_signature_kind": "locked_50_broad_class_prototype_from_external_label",
+      "sequence": "RLDAPSQIEVKDVTDTTALITWFKPLAEIDGIELTYGIKDVPGDRTTIDLTEDENQYSIGNLKPDTEYEVSLISRRGDMSSNPAKETFTT",
+      "sequence_length": 90,
+      "source_accession": "1TEN:A",
+      "source_database": "RCSB_PDB+CATH"
+    },
+    {
+      "curation_notes": [
+        "sequence fetched from RCSB PDB FASTA entry 1CSP display chain A",
+        "coordinate evidence fetched from RCSB PDB entry 1CSP chain A",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "pdb_1CSP_A_cold_shock_protein",
+      "reference_fold_class": "beta_rich",
+      "reference_label_source": "cath:1cspA00",
+      "reference_structure_source": "pdb:1CSP:A",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.35,
+        "contact_map_closure": 0.6,
+        "domain_boundary_stability": 0.62,
+        "hydrophobic_core_closure": 0.42,
+        "knot_or_entanglement_signature": 0.25,
+        "long_range_contact_order": 0.62,
+        "loop_disorder_pressure": 0.28,
+        "secondary_structure_balance": 0.65,
+        "sequence_complexity": 0.62,
+        "uncertainty_radius": 0.3
+      },
+      "reference_topology_signature_kind": "locked_50_broad_class_prototype_from_external_label",
+      "sequence": "MLEGKVKWFNSEKGFGFIEVEGQDDVFVHFSAIQGEGFKTLEEGQAVSFEIVEGNRGPQAANVTKEA",
+      "sequence_length": 67,
+      "source_accession": "1CSP:A",
+      "source_database": "RCSB_PDB+CATH"
+    },
+    {
+      "curation_notes": [
+        "sequence fetched from RCSB PDB FASTA entry 1SHG display chain A",
+        "coordinate evidence fetched from RCSB PDB entry 1SHG chain A",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "pdb_1SHG_A_src_sh3_domain",
+      "reference_fold_class": "beta_rich",
+      "reference_label_source": "cath:1shgA00",
+      "reference_structure_source": "pdb:1SHG:A",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.35,
+        "contact_map_closure": 0.6,
+        "domain_boundary_stability": 0.62,
+        "hydrophobic_core_closure": 0.42,
+        "knot_or_entanglement_signature": 0.25,
+        "long_range_contact_order": 0.62,
+        "loop_disorder_pressure": 0.28,
+        "secondary_structure_balance": 0.65,
+        "sequence_complexity": 0.62,
+        "uncertainty_radius": 0.3
+      },
+      "reference_topology_signature_kind": "locked_50_broad_class_prototype_from_external_label",
+      "sequence": "MDETGKELVLALYDYQEKSPREVTMKKGDILTLLNSTNKDWWKVEVNDRQGFVPAAYVKKLD",
+      "sequence_length": 62,
+      "source_accession": "1SHG:A",
+      "source_database": "RCSB_PDB+CATH"
+    },
+    {
+      "curation_notes": [
+        "sequence fetched from RCSB PDB FASTA entry 1TIT display chain A",
+        "coordinate evidence fetched from RCSB PDB entry 1TIT chain A",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "pdb_1TIT_A_titin_i27",
+      "reference_fold_class": "beta_rich",
+      "reference_label_source": "cath:1titA00",
+      "reference_structure_source": "pdb:1TIT:A",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.35,
+        "contact_map_closure": 0.6,
+        "domain_boundary_stability": 0.62,
+        "hydrophobic_core_closure": 0.42,
+        "knot_or_entanglement_signature": 0.25,
+        "long_range_contact_order": 0.62,
+        "loop_disorder_pressure": 0.28,
+        "secondary_structure_balance": 0.65,
+        "sequence_complexity": 0.62,
+        "uncertainty_radius": 0.3
+      },
+      "reference_topology_signature_kind": "locked_50_broad_class_prototype_from_external_label",
+      "sequence": "MHHHHHHSSLIEVEKPLYGVEVFVGETAHFEIELSEPDVHGQWKLKGQPLTASPDCEIIEDGKKHILILHNCQLGMTGEVSFQAANAKSAANLKVKEL",
+      "sequence_length": 98,
+      "source_accession": "1TIT:A",
+      "source_database": "RCSB_PDB+CATH"
+    },
+    {
+      "curation_notes": [
+        "sequence fetched from RCSB PDB FASTA entry 2PTL display chain A",
+        "coordinate evidence fetched from RCSB PDB entry 2PTL chain A",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "pdb_2PTL_A_protein_l_domain",
+      "reference_fold_class": "beta_rich",
+      "reference_label_source": "cath:2ptlA00",
+      "reference_structure_source": "pdb:2PTL:A",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.35,
+        "contact_map_closure": 0.6,
+        "domain_boundary_stability": 0.62,
+        "hydrophobic_core_closure": 0.42,
+        "knot_or_entanglement_signature": 0.25,
+        "long_range_contact_order": 0.62,
+        "loop_disorder_pressure": 0.28,
+        "secondary_structure_balance": 0.65,
+        "sequence_complexity": 0.62,
+        "uncertainty_radius": 0.3
+      },
+      "reference_topology_signature_kind": "locked_50_broad_class_prototype_from_external_label",
+      "sequence": "ENKEETPETPETDSEEEVTIKANLIFANGSTQTAEFKGTFEKATSEAYAYADTLKKDNGEYTVDVADKGYTLNIKFAG",
+      "sequence_length": 78,
+      "source_accession": "2PTL:A",
+      "source_database": "RCSB_PDB+CATH"
+    },
+    {
+      "curation_notes": [
+        "sequence fetched from RCSB PDB FASTA entry 1FNA display chain A",
+        "coordinate evidence fetched from RCSB PDB entry 1FNA chain A",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "pdb_1FNA_A_fibronectin_type_iii",
+      "reference_fold_class": "beta_rich",
+      "reference_label_source": "cath:1fnaA00",
+      "reference_structure_source": "pdb:1FNA:A",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.35,
+        "contact_map_closure": 0.6,
+        "domain_boundary_stability": 0.62,
+        "hydrophobic_core_closure": 0.42,
+        "knot_or_entanglement_signature": 0.25,
+        "long_range_contact_order": 0.62,
+        "loop_disorder_pressure": 0.28,
+        "secondary_structure_balance": 0.65,
+        "sequence_complexity": 0.62,
+        "uncertainty_radius": 0.3
+      },
+      "reference_topology_signature_kind": "locked_50_broad_class_prototype_from_external_label",
+      "sequence": "RDLEVVAATPTSLLISWDAPAVTVRYYRITYGETGGNSPVQEFTVPGSKSTATISGLKPGVDYTITVYAVTGRGDSPASSKPISINYRTEI",
+      "sequence_length": 91,
+      "source_accession": "1FNA:A",
+      "source_database": "RCSB_PDB+CATH"
+    },
+    {
+      "curation_notes": [
+        "sequence fetched from RCSB PDB FASTA entry 1IGD display chain A",
+        "coordinate evidence fetched from RCSB PDB entry 1IGD chain A",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "pdb_1IGD_A_immunoglobulin_domain",
+      "reference_fold_class": "beta_rich",
+      "reference_label_source": "cath:1igdA00",
+      "reference_structure_source": "pdb:1IGD:A",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.35,
+        "contact_map_closure": 0.6,
+        "domain_boundary_stability": 0.62,
+        "hydrophobic_core_closure": 0.42,
+        "knot_or_entanglement_signature": 0.25,
+        "long_range_contact_order": 0.62,
+        "loop_disorder_pressure": 0.28,
+        "secondary_structure_balance": 0.65,
+        "sequence_complexity": 0.62,
+        "uncertainty_radius": 0.3
+      },
+      "reference_topology_signature_kind": "locked_50_broad_class_prototype_from_external_label",
+      "sequence": "MTPAVTTYKLVINGKTLKGETTTKAVDAETAEKAFKQYANDNGVDGVWTYDDATKTFTVTE",
+      "sequence_length": 61,
+      "source_accession": "1IGD:A",
+      "source_database": "RCSB_PDB+CATH"
+    },
+    {
+      "curation_notes": [
+        "sequence fetched from RCSB PDB FASTA entry 1BFG display chain A",
+        "coordinate evidence fetched from RCSB PDB entry 1BFG chain A",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "pdb_1BFG_A_basic_fgf",
+      "reference_fold_class": "beta_rich",
+      "reference_label_source": "cath:1bfgA00",
+      "reference_structure_source": "pdb:1BFG:A",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.35,
+        "contact_map_closure": 0.6,
+        "domain_boundary_stability": 0.62,
+        "hydrophobic_core_closure": 0.42,
+        "knot_or_entanglement_signature": 0.25,
+        "long_range_contact_order": 0.62,
+        "loop_disorder_pressure": 0.28,
+        "secondary_structure_balance": 0.65,
+        "sequence_complexity": 0.62,
+        "uncertainty_radius": 0.3
+      },
+      "reference_topology_signature_kind": "locked_50_broad_class_prototype_from_external_label",
+      "sequence": "PALPEDGGSGAFPPGHFKDPKRLYCKNGGFFLRIHPDGRVDGVREKSDPHIKLQLQAEERGVVSIKGVSANRYLAMKEDGRLLASKSVTDECFFFERLESNNYNTYRSRKYTSWYVALKRTGQYKLGSKTGPGQKAILFLPMSAKS",
+      "sequence_length": 146,
+      "source_accession": "1BFG:A",
+      "source_database": "RCSB_PDB+CATH"
+    },
+    {
+      "curation_notes": [
+        "sequence fetched from RCSB PDB FASTA entry 1GFL display chain A",
+        "coordinate evidence fetched from RCSB PDB entry 1GFL chain A",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "pdb_1GFL_A_green_fluorescent_protein",
+      "reference_fold_class": "beta_rich",
+      "reference_label_source": "cath:1gflA00",
+      "reference_structure_source": "pdb:1GFL:A",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.35,
+        "contact_map_closure": 0.6,
+        "domain_boundary_stability": 0.62,
+        "hydrophobic_core_closure": 0.42,
+        "knot_or_entanglement_signature": 0.25,
+        "long_range_contact_order": 0.62,
+        "loop_disorder_pressure": 0.28,
+        "secondary_structure_balance": 0.65,
+        "sequence_complexity": 0.62,
+        "uncertainty_radius": 0.3
+      },
+      "reference_topology_signature_kind": "locked_50_broad_class_prototype_from_external_label",
+      "sequence": "ASKGEELFTGVVPILVELDGDVNGHKFSVSGEGEGDATYGKLTLKFICTTGKLPVPWPTLVTTFSYGVQCFSRYPDHMKRHDFFKSAMPEGYVQERTIFFKDDGNYKTRAEVKFEGDTLVNRIELKGIDFKEDGNILGHKLEYNYNSHNVYIMADKQKNGIKVNFKIRHNIEDGSVQLADHYQQNTPIGDGPVLLPDNHYLSTQSALSKDPNEKRDHMVLLEFVTAAGITHGMDELYK",
+      "sequence_length": 238,
+      "source_accession": "1GFL:A",
+      "source_database": "RCSB_PDB+CATH"
+    },
+    {
+      "curation_notes": [
+        "sequence fetched from RCSB PDB FASTA entry 1KSR display chain A",
+        "coordinate evidence fetched from RCSB PDB entry 1KSR chain A",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "pdb_1KSR_A_kunitz_serine_protease_inhibitor",
+      "reference_fold_class": "beta_rich",
+      "reference_label_source": "cath:1ksrA00",
+      "reference_structure_source": "pdb:1KSR:A",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.35,
+        "contact_map_closure": 0.6,
+        "domain_boundary_stability": 0.62,
+        "hydrophobic_core_closure": 0.42,
+        "knot_or_entanglement_signature": 0.25,
+        "long_range_contact_order": 0.62,
+        "loop_disorder_pressure": 0.28,
+        "secondary_structure_balance": 0.65,
+        "sequence_complexity": 0.62,
+        "uncertainty_radius": 0.3
+      },
+      "reference_topology_signature_kind": "locked_50_broad_class_prototype_from_external_label",
+      "sequence": "ADPEKSYAEGPGLDGGECFQPSKFKIHAVDPDGVHRTDGGDGFVVTIEGPAPVDPVMVDNGDGTYDVEFEPKEAGDYVINLTLDGDNVNGFPKTVTVKPA",
+      "sequence_length": 100,
+      "source_accession": "1KSR:A",
+      "source_database": "RCSB_PDB+CATH"
+    },
+    {
+      "curation_notes": [
+        "sequence fetched from RCSB PDB FASTA entry 1TIM display chain A",
+        "coordinate evidence fetched from RCSB PDB entry 1TIM chain A",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "pdb_1TIM_A_triosephosphate_isomerase",
+      "reference_fold_class": "alpha_beta_mixed",
+      "reference_label_source": "cath:1timA00",
+      "reference_structure_source": "pdb:1TIM:A",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.4,
+        "contact_map_closure": 0.55,
+        "domain_boundary_stability": 0.58,
+        "hydrophobic_core_closure": 0.48,
+        "knot_or_entanglement_signature": 0.18,
+        "long_range_contact_order": 0.45,
+        "loop_disorder_pressure": 0.34,
+        "secondary_structure_balance": 0.6,
+        "sequence_complexity": 0.65,
+        "uncertainty_radius": 0.34
+      },
+      "reference_topology_signature_kind": "locked_50_broad_class_prototype_from_external_label",
+      "sequence": "APRKFFVGGNWKMNGKRKSLGELIHTLDGAKLSADTEVVCGAPSIYLDFARQKLDAKIGVAAQNCYKVPKGAFTGEISPAMIKDIGAAWVILGHSERRHVFGESDELIGQKVAHALAEGLGVIACIGEKLDEREAGITEKVVFQETKAIADNVKDWSKVVLAYEPVWAIGTGKTATPQQAQEVHEKLRGWLKTHVSDAVAVQSRIIYGGSVTGGNCKELASQHDVDGFLVGGASLKPEFVDIINAKH",
+      "sequence_length": 247,
+      "source_accession": "1TIM:A",
+      "source_database": "RCSB_PDB+CATH"
+    },
+    {
+      "curation_notes": [
+        "sequence fetched from RCSB PDB FASTA entry 1PGA display chain A",
+        "coordinate evidence fetched from RCSB PDB entry 1PGA chain A",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "pdb_1PGA_A_protein_g_b1",
+      "reference_fold_class": "alpha_beta_mixed",
+      "reference_label_source": "cath:1pgaA00",
+      "reference_structure_source": "pdb:1PGA:A",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.4,
+        "contact_map_closure": 0.55,
+        "domain_boundary_stability": 0.58,
+        "hydrophobic_core_closure": 0.48,
+        "knot_or_entanglement_signature": 0.18,
+        "long_range_contact_order": 0.45,
+        "loop_disorder_pressure": 0.34,
+        "secondary_structure_balance": 0.6,
+        "sequence_complexity": 0.65,
+        "uncertainty_radius": 0.34
+      },
+      "reference_topology_signature_kind": "locked_50_broad_class_prototype_from_external_label",
+      "sequence": "MTYKLILNGKTLKGETTTEAVDAATAEKVFKQYANDNGVDGEWTYDDATKTFTVTE",
+      "sequence_length": 56,
+      "source_accession": "1PGA:A",
+      "source_database": "RCSB_PDB+CATH"
+    },
+    {
+      "curation_notes": [
+        "sequence fetched from RCSB PDB FASTA entry 4AKE display chain A",
+        "coordinate evidence fetched from RCSB PDB entry 4AKE chain A",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "pdb_4AKE_A_adenylate_kinase",
+      "reference_fold_class": "alpha_beta_mixed",
+      "reference_label_source": "cath:4akeA00",
+      "reference_structure_source": "pdb:4AKE:A",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.4,
+        "contact_map_closure": 0.55,
+        "domain_boundary_stability": 0.58,
+        "hydrophobic_core_closure": 0.48,
+        "knot_or_entanglement_signature": 0.18,
+        "long_range_contact_order": 0.45,
+        "loop_disorder_pressure": 0.34,
+        "secondary_structure_balance": 0.6,
+        "sequence_complexity": 0.65,
+        "uncertainty_radius": 0.34
+      },
+      "reference_topology_signature_kind": "locked_50_broad_class_prototype_from_external_label",
+      "sequence": "MRIILLGAPGAGKGTQAQFIMEKYGIPQISTGDMLRAAVKSGSELGKQAKDIMDAGKLVTDELVIALVKERIAQEDCRNGFLLDGFPRTIPQADAMKEAGINVDYVLEFDVPDELIVDRIVGRRVHAPSGRVYHVKFNPPKVEGKDDVTGEELTTRKDDQEETVRKRLVEYHQMTAPLIGYYSKEAEAGNTKYAKVDGTKPVAEVRADLEKILG",
+      "sequence_length": 214,
+      "source_accession": "4AKE:A",
+      "source_database": "RCSB_PDB+CATH"
+    },
+    {
+      "curation_notes": [
+        "sequence fetched from RCSB PDB FASTA entry 1UBQ display chain A",
+        "coordinate evidence fetched from RCSB PDB entry 1UBQ chain A",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "pdb_1UBQ_A_ubiquitin",
+      "reference_fold_class": "alpha_beta_mixed",
+      "reference_label_source": "cath:1ubqA00",
+      "reference_structure_source": "pdb:1UBQ:A",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.4,
+        "contact_map_closure": 0.55,
+        "domain_boundary_stability": 0.58,
+        "hydrophobic_core_closure": 0.48,
+        "knot_or_entanglement_signature": 0.18,
+        "long_range_contact_order": 0.45,
+        "loop_disorder_pressure": 0.34,
+        "secondary_structure_balance": 0.6,
+        "sequence_complexity": 0.65,
+        "uncertainty_radius": 0.34
+      },
+      "reference_topology_signature_kind": "locked_50_broad_class_prototype_from_external_label",
+      "sequence": "MQIFVKTLTGKTITLEVEPSDTIENVKAKIQDKEGIPPDQQRLIFAGKQLEDGRTLSDYNIQKESTLHLVLRLRGG",
+      "sequence_length": 76,
+      "source_accession": "1UBQ:A",
+      "source_database": "RCSB_PDB+CATH"
+    },
+    {
+      "curation_notes": [
+        "sequence fetched from RCSB PDB FASTA entry 2TRX display chain A",
+        "coordinate evidence fetched from RCSB PDB entry 2TRX chain A",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "pdb_2TRX_A_thioredoxin",
+      "reference_fold_class": "alpha_beta_mixed",
+      "reference_label_source": "cath:2trxA00",
+      "reference_structure_source": "pdb:2TRX:A",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.4,
+        "contact_map_closure": 0.55,
+        "domain_boundary_stability": 0.58,
+        "hydrophobic_core_closure": 0.48,
+        "knot_or_entanglement_signature": 0.18,
+        "long_range_contact_order": 0.45,
+        "loop_disorder_pressure": 0.34,
+        "secondary_structure_balance": 0.6,
+        "sequence_complexity": 0.65,
+        "uncertainty_radius": 0.34
+      },
+      "reference_topology_signature_kind": "locked_50_broad_class_prototype_from_external_label",
+      "sequence": "SDKIIHLTDDSFDTDVLKADGAILVDFWAEWCGPCKMIAPILDEIADEYQGKLTVAKLNIDQNPGTAPKYGIRGIPTLLLFKNGEVAATKVGALSKGQLKEFLDANLA",
+      "sequence_length": 108,
+      "source_accession": "2TRX:A",
+      "source_database": "RCSB_PDB+CATH"
+    },
+    {
+      "curation_notes": [
+        "sequence fetched from RCSB PDB FASTA entry 3CHY display chain A",
+        "coordinate evidence fetched from RCSB PDB entry 3CHY chain A",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "pdb_3CHY_A_chey_response_regulator",
+      "reference_fold_class": "alpha_beta_mixed",
+      "reference_label_source": "cath:3chyA00",
+      "reference_structure_source": "pdb:3CHY:A",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.4,
+        "contact_map_closure": 0.55,
+        "domain_boundary_stability": 0.58,
+        "hydrophobic_core_closure": 0.48,
+        "knot_or_entanglement_signature": 0.18,
+        "long_range_contact_order": 0.45,
+        "loop_disorder_pressure": 0.34,
+        "secondary_structure_balance": 0.6,
+        "sequence_complexity": 0.65,
+        "uncertainty_radius": 0.34
+      },
+      "reference_topology_signature_kind": "locked_50_broad_class_prototype_from_external_label",
+      "sequence": "ADKELKFLVVDDFSTMRRIVRNLLKELGFNNVEEAEDGVDALNKLQAGGYGFVISDWNMPNMDGLELLKTIRADGAMSALPVLMVTAEAKKENIIAAAQAGASGYVVKPFTAATLEEKLNKIFEKLGM",
+      "sequence_length": 128,
+      "source_accession": "3CHY:A",
+      "source_database": "RCSB_PDB+CATH"
+    },
+    {
+      "curation_notes": [
+        "sequence fetched from RCSB PDB FASTA entry 2CI2 display chain A",
+        "coordinate evidence fetched from RCSB PDB entry 2CI2 chain I",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "pdb_2CI2_I_chymotrypsin_inhibitor_2",
+      "reference_fold_class": "alpha_beta_mixed",
+      "reference_label_source": "cath:2ci2A00",
+      "reference_structure_source": "pdb:2CI2:I",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.4,
+        "contact_map_closure": 0.55,
+        "domain_boundary_stability": 0.58,
+        "hydrophobic_core_closure": 0.48,
+        "knot_or_entanglement_signature": 0.18,
+        "long_range_contact_order": 0.45,
+        "loop_disorder_pressure": 0.34,
+        "secondary_structure_balance": 0.6,
+        "sequence_complexity": 0.65,
+        "uncertainty_radius": 0.34
+      },
+      "reference_topology_signature_kind": "locked_50_broad_class_prototype_from_external_label",
+      "sequence": "SSVEKKPEGVNTGAGDRHNLKTEWPELVGKSVEEAKKVILQDKPEAQIIVLPVGTIVTMEYRIDRVRLFVDKLDNIAEVPRVG",
+      "sequence_length": 83,
+      "source_accession": "2CI2:I",
+      "source_database": "RCSB_PDB+CATH"
+    },
+    {
+      "curation_notes": [
+        "sequence fetched from RCSB PDB FASTA entry 1FKB display chain A",
+        "coordinate evidence fetched from RCSB PDB entry 1FKB chain A",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "pdb_1FKB_A_fk506_binding_protein",
+      "reference_fold_class": "alpha_beta_mixed",
+      "reference_label_source": "cath:1fkbA00",
+      "reference_structure_source": "pdb:1FKB:A",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.4,
+        "contact_map_closure": 0.55,
+        "domain_boundary_stability": 0.58,
+        "hydrophobic_core_closure": 0.48,
+        "knot_or_entanglement_signature": 0.18,
+        "long_range_contact_order": 0.45,
+        "loop_disorder_pressure": 0.34,
+        "secondary_structure_balance": 0.6,
+        "sequence_complexity": 0.65,
+        "uncertainty_radius": 0.34
+      },
+      "reference_topology_signature_kind": "locked_50_broad_class_prototype_from_external_label",
+      "sequence": "GVQVETISPGDGRTFPKRGQTCVVHYTGMLEDGKKFDSSRDRNKPFKFMLGKQEVIRGWEEGVAQMSVGQRAKLTISPDYAYGATGHPGIIPPHATLVFDVELLKLE",
+      "sequence_length": 107,
+      "source_accession": "1FKB:A",
+      "source_database": "RCSB_PDB+CATH"
+    },
+    {
+      "curation_notes": [
+        "sequence fetched from RCSB PDB FASTA entry 2RN2 display chain A",
+        "coordinate evidence fetched from RCSB PDB entry 2RN2 chain A",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "pdb_2RN2_A_ribonuclease_a",
+      "reference_fold_class": "alpha_beta_mixed",
+      "reference_label_source": "cath:2rn2A00",
+      "reference_structure_source": "pdb:2RN2:A",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.4,
+        "contact_map_closure": 0.55,
+        "domain_boundary_stability": 0.58,
+        "hydrophobic_core_closure": 0.48,
+        "knot_or_entanglement_signature": 0.18,
+        "long_range_contact_order": 0.45,
+        "loop_disorder_pressure": 0.34,
+        "secondary_structure_balance": 0.6,
+        "sequence_complexity": 0.65,
+        "uncertainty_radius": 0.34
+      },
+      "reference_topology_signature_kind": "locked_50_broad_class_prototype_from_external_label",
+      "sequence": "MLKQVEIFTDGSCLGNPGPGGYGAILRYRGREKTFSAGYTRTTNNRMELMAAIVALEALKEHCEVILSTDSQYVRQGITQWIHNWKKRGWKTADKKPVKNVDLWQRLDAALGQHQIKWEWVKGHAGHPENERCDELARAAAMNPTLEDTGYQVEV",
+      "sequence_length": 155,
+      "source_accession": "2RN2:A",
+      "source_database": "RCSB_PDB+CATH"
+    },
+    {
+      "curation_notes": [
+        "sequence fetched from RCSB PDB FASTA entry 1BTA display chain A",
+        "coordinate evidence fetched from RCSB PDB entry 1BTA chain A",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "pdb_1BTA_A_barstar",
+      "reference_fold_class": "alpha_beta_mixed",
+      "reference_label_source": "cath:1btaA00",
+      "reference_structure_source": "pdb:1BTA:A",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.4,
+        "contact_map_closure": 0.55,
+        "domain_boundary_stability": 0.58,
+        "hydrophobic_core_closure": 0.48,
+        "knot_or_entanglement_signature": 0.18,
+        "long_range_contact_order": 0.45,
+        "loop_disorder_pressure": 0.34,
+        "secondary_structure_balance": 0.6,
+        "sequence_complexity": 0.65,
+        "uncertainty_radius": 0.34
+      },
+      "reference_topology_signature_kind": "locked_50_broad_class_prototype_from_external_label",
+      "sequence": "KKAVINGEQIRSISDLHQTLKKELALPEYYGENLDALWDCLTGWVEYPLVLEWRQFEQSKQLTENGAESVLQVFREAKAEGCDITIILS",
+      "sequence_length": 89,
+      "source_accession": "1BTA:A",
+      "source_database": "RCSB_PDB+CATH"
+    },
+    {
+      "curation_notes": [
+        "sequence fetched from RCSB PDB FASTA entry 1CLL display chain A",
+        "coordinate evidence fetched from RCSB PDB entry 1CLL chain A",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "pdb_1CLL_A_calmodulin",
+      "reference_fold_class": "multidomain_boundary",
+      "reference_label_source": "cath:1cllA00",
+      "reference_structure_source": "pdb:1CLL:A",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.48,
+        "contact_map_closure": 0.52,
+        "domain_boundary_stability": 0.4,
+        "hydrophobic_core_closure": 0.5,
+        "knot_or_entanglement_signature": 0.22,
+        "long_range_contact_order": 0.5,
+        "loop_disorder_pressure": 0.42,
+        "secondary_structure_balance": 0.55,
+        "sequence_complexity": 0.7,
+        "uncertainty_radius": 0.42
+      },
+      "reference_topology_signature_kind": "locked_50_broad_class_prototype_from_external_label",
+      "sequence": "ADQLTEEQIAEFKEAFSLFDKDGDGTITTKELGTVMRSLGQNPTEAELQDMINEVDADGNGTIDFPEFLTMMARKMKDTDSEEEIREAFRVFDKDGNGYISAAELRHVMTNLGEKLTDEEVDEMIREADIDGDGQVNYEEFVQMMTAK",
+      "sequence_length": 148,
+      "source_accession": "1CLL:A",
+      "source_database": "RCSB_PDB+CATH"
+    },
+    {
+      "curation_notes": [
+        "sequence fetched from RCSB PDB FASTA entry 1B57 display chain A",
+        "coordinate evidence fetched from RCSB PDB entry 1B57 chain A",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "pdb_1B57_A_fructose_bisphosphate_aldolase",
+      "reference_fold_class": "multidomain_boundary",
+      "reference_label_source": "cath:1b57A00",
+      "reference_structure_source": "pdb:1B57:A",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.48,
+        "contact_map_closure": 0.52,
+        "domain_boundary_stability": 0.4,
+        "hydrophobic_core_closure": 0.5,
+        "knot_or_entanglement_signature": 0.22,
+        "long_range_contact_order": 0.5,
+        "loop_disorder_pressure": 0.42,
+        "secondary_structure_balance": 0.55,
+        "sequence_complexity": 0.7,
+        "uncertainty_radius": 0.42
+      },
+      "reference_topology_signature_kind": "locked_50_broad_class_prototype_from_external_label",
+      "sequence": "SKIFDFVKPGVITGDDVQKVFQVAKENNFALPAVNCVGTDSINAVLETAAKVKAPVIVQFSNGGASFIAGKGVKSDVPQGAAILGAISGAHHVHQMAEHYGVPVILHTDHCAKKLLPWIDGLLDAGEKHFAATGKPLFSSHMIDLSEESLQENIEICSKYLERMSKIGMTLEIELGCTGGEEDGVDNSHMDASALYTQPEDVDYAYTELSKISPRFTIAASFGNVHGVYKPGNVVLTPTILRDSQEYVSKKHNLPHNSLNFVFHGGSGSTAQEIKDSVSYGVVKMNIDTDTQWATWEGVLNYYKANEAYLQGQLGNPKGEDQPNKKYYDPRVWLRAGQTSMIARLEKAFQELNAIDVL",
+      "sequence_length": 358,
+      "source_accession": "1B57:A",
+      "source_database": "RCSB_PDB+CATH"
+    },
+    {
+      "curation_notes": [
+        "sequence fetched from RCSB PDB FASTA entry 1AON display chain A",
+        "coordinate evidence fetched from RCSB PDB entry 1AON chain A",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "pdb_1AON_A_groel",
+      "reference_fold_class": "multidomain_boundary",
+      "reference_label_source": "cath:1aonA00",
+      "reference_structure_source": "pdb:1AON:A",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.48,
+        "contact_map_closure": 0.52,
+        "domain_boundary_stability": 0.4,
+        "hydrophobic_core_closure": 0.5,
+        "knot_or_entanglement_signature": 0.22,
+        "long_range_contact_order": 0.5,
+        "loop_disorder_pressure": 0.42,
+        "secondary_structure_balance": 0.55,
+        "sequence_complexity": 0.7,
+        "uncertainty_radius": 0.42
+      },
+      "reference_topology_signature_kind": "locked_50_broad_class_prototype_from_external_label",
+      "sequence": "AAKDVKFGNDARVKMLRGVNVLADAVKVTLGPKGRNVVLDKSFGAPTITKDGVSVAREIELEDKFENMGAQMVKEVASKANDAAGDGTTTATVLAQAIITEGLKAVAAGMNPMDLKRGIDKAVTAAVEELKALSVPCSDSKAIAQVGTISANSDETVGKLIAEAMDKVGKEGVITVEDGTGLQDELDVVEGMQFDRGYLSPYFINKPETGAVELESPFILLADKKISNIREMLPVLEAVAKAGKPLLIIAEDVEGEALATLVVNTMRGIVKVAAVKAPGFGDRRKAMLQDIATLTGGTVISEEIGMELEKATLEDLGQAKRVVINKDTTTIIDGVGEEAAIQGRVAQIRQQIEEATSDYDREKLQERVAKLAGGVAVIKVGAATEVEMKEKKARVEDALHATRAAVEEGVVAGGGVALIRVASKLADLRGQNEDQNVGIKVALRAMEAPLRQIVLNCGEEPSVVANTVKGGDGNYGYNAATEEYGNMIDMGILDPTKVTRSALQYAASVAGLMITTECMVTDLPKNDAADLGAAGGMGGMGGMGGMM",
+      "sequence_length": 547,
+      "source_accession": "1AON:A",
+      "source_database": "RCSB_PDB+CATH"
+    },
+    {
+      "curation_notes": [
+        "sequence fetched from RCSB PDB FASTA entry 1IGT display chain B",
+        "coordinate evidence fetched from RCSB PDB entry 1IGT chain B",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "pdb_1IGT_B_igg2a_heavy_chain",
+      "reference_fold_class": "multidomain_boundary",
+      "reference_label_source": "cath:1igtB00",
+      "reference_structure_source": "pdb:1IGT:B",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.48,
+        "contact_map_closure": 0.52,
+        "domain_boundary_stability": 0.4,
+        "hydrophobic_core_closure": 0.5,
+        "knot_or_entanglement_signature": 0.22,
+        "long_range_contact_order": 0.5,
+        "loop_disorder_pressure": 0.42,
+        "secondary_structure_balance": 0.55,
+        "sequence_complexity": 0.7,
+        "uncertainty_radius": 0.42
+      },
+      "reference_topology_signature_kind": "locked_50_broad_class_prototype_from_external_label",
+      "sequence": "EVKLQESGGGLVQPGGSLKLSCATSGFTFSDYYMYWVRQTPEKRLEWVAYISNGGGSTYYPDTVKGRFTISRDNAKNTLYLQMSRLKSEDTAMYYCARHGGYYAMDYWGQGTTVTVSSAKTTAPSVYPLAPVCGDTTGSSVTLGCLVKGYFPEPVTLTWNSGSLSSGVHTFPAVLQSDLYTLSSSVTVTSSTWPSQSITCNVAHPASSTKVDKKIEPRGPTIKPCPPCKCPAPNLLGGPSVFIFPPKIKDVLMISLSPIVTCVVVDVSEDDPDVQISWFVNNVEVHTAQTQTHREDYNSTLRVVSALPIQHQDWMSGKEFKCKVNNKDLPAPIERTISKPKGSVRAPQVYVLPPPEEEMTKKQVTLTCMVTDFMPEDIYVEWTNNGKTELNYKNTEPVLDSDGSYFMYSKLRVEKKNWVERNSYSCSVVHEGLHNHHTTKSFSR",
+      "sequence_length": 444,
+      "source_accession": "1IGT:B",
+      "source_database": "RCSB_PDB+CATH"
+    },
+    {
+      "curation_notes": [
+        "sequence fetched from RCSB PDB FASTA entry 1GTR display chain B",
+        "coordinate evidence fetched from RCSB PDB entry 1GTR chain A",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "pdb_1GTR_A_glutaminyl_trna_synthetase",
+      "reference_fold_class": "multidomain_boundary",
+      "reference_label_source": "cath:1gtrB00",
+      "reference_structure_source": "pdb:1GTR:A",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.48,
+        "contact_map_closure": 0.52,
+        "domain_boundary_stability": 0.4,
+        "hydrophobic_core_closure": 0.5,
+        "knot_or_entanglement_signature": 0.22,
+        "long_range_contact_order": 0.5,
+        "loop_disorder_pressure": 0.42,
+        "secondary_structure_balance": 0.55,
+        "sequence_complexity": 0.7,
+        "uncertainty_radius": 0.42
+      },
+      "reference_topology_signature_kind": "locked_50_broad_class_prototype_from_external_label",
+      "sequence": "SEAEARPTNFIRQIIDEDLASGKHTTVHTRFPPEPNGYLHIGHAKSICLNFGIAQDYKGQCNLRFDDTNPVKEDIEYVESIKNDVEWLGFHWSGNVRYSSDYFDQLHAYAIELINKGLAYVDELTPEQIREYRGTLTQPGKNSPYRDRSVEENLALFEKMRAGGFEEGKACLRAKIDMASPFIVMRDPVLYRIKFAEHHQTGNKWCIYPMYDFTHCISDALEGITHSLCTLEFQDNRRLYDWVLDNITIPVHPRQYEFSRLNLEYTVMSKRKLNLLVTDKHVEGWDDPRMPTISGLRRRGYTAASIREFCKRIGVTKQDNTIEMASLESCIREDLNENAPRAMAVIDPVKLVIENYQGEGEMVTMPNHPNKPEMGSRQVPFSGEIWIDRADFREEANKQYKRLVLGKEVRLRNAYVIKAERVEKDAEGNITTIFCTYDADTLSKDPADGRKVKGVIHWVSAAHALPVEIRLYDRLFSVPNPGAADDFLSVINPESLVIKQGFAEPSLKDAVAGKAFQFEREGYFCLDSRHSTAEKPVFNRTVGLRDTWAKVGE",
+      "sequence_length": 553,
+      "source_accession": "1GTR:A",
+      "source_database": "RCSB_PDB+CATH"
+    },
+    {
+      "curation_notes": [
+        "sequence fetched from RCSB PDB FASTA entry 1E4M display chain A",
+        "coordinate evidence fetched from RCSB PDB entry 1E4M chain M",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "pdb_1E4M_M_myrosinase",
+      "reference_fold_class": "multidomain_boundary",
+      "reference_label_source": "cath:1e4mA00",
+      "reference_structure_source": "pdb:1E4M:M",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.48,
+        "contact_map_closure": 0.52,
+        "domain_boundary_stability": 0.4,
+        "hydrophobic_core_closure": 0.5,
+        "knot_or_entanglement_signature": 0.22,
+        "long_range_contact_order": 0.5,
+        "loop_disorder_pressure": 0.42,
+        "secondary_structure_balance": 0.55,
+        "sequence_complexity": 0.7,
+        "uncertainty_radius": 0.42
+      },
+      "reference_topology_signature_kind": "locked_50_broad_class_prototype_from_external_label",
+      "sequence": "DEEITCQENLPFTCGNTDALNSSSFSSDFIFGVASSAYQIEGTIGRGLNIWDGFTHRYPNKSGPDHGNGDTTCDSFSYWQKDIDVLDELNATGYRFSIAWSRIIPRGKRSRGVNEKGIDYYHGLISGLIKKGITPFVTLFHWDLPQTLQDEYEGFLDPQIIDDFKDYADLCFEEFGDSVKYWLTINQLYSVPTRGYGSALDAPGRCSPTVDPSCYAGNSSTEPYIVAHHQLLAHAKVVDLYRKNYTHQGGKIGPTMITRWFLPYNDTDRHSIAATERMKEFFLGWFMGPLTNGTYPQIMIDTVGERLPSFSPEESNLVKGSYDFLGLNYYFTQYAQPSPNPVNSTNHTAMMDAGAKLTYINASGHYIGPLFEKDKADSTDNIYYYPKGIYSVMDYFKNKYYNPLIYVTENGISTPGDENRNQSMLDYTRIDYLCSHLCFLNKVIKEKDVNVKGYLAWALGDNYEFNKGFTVRFGLSYIDWNNVTDRDLKKSGQWYQSFISP",
+      "sequence_length": 501,
+      "source_accession": "1E4M:M",
+      "source_database": "RCSB_PDB+CATH"
+    },
+    {
+      "curation_notes": [
+        "sequence fetched from RCSB PDB FASTA entry 1F88 display chain A",
+        "coordinate evidence fetched from RCSB PDB entry 1F88 chain A",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "pdb_1F88_A_rhodopsin",
+      "reference_fold_class": "multidomain_boundary",
+      "reference_label_source": "cath:1f88A00",
+      "reference_structure_source": "pdb:1F88:A",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.48,
+        "contact_map_closure": 0.52,
+        "domain_boundary_stability": 0.4,
+        "hydrophobic_core_closure": 0.5,
+        "knot_or_entanglement_signature": 0.22,
+        "long_range_contact_order": 0.5,
+        "loop_disorder_pressure": 0.42,
+        "secondary_structure_balance": 0.55,
+        "sequence_complexity": 0.7,
+        "uncertainty_radius": 0.42
+      },
+      "reference_topology_signature_kind": "locked_50_broad_class_prototype_from_external_label",
+      "sequence": "MNGTEGPNFYVPFSNKTGVVRSPFEAPQYYLAEPWQFSMLAAYMFLLIMLGFPINFLTLYVTVQHKKLRTPLNYILLNLAVADLFMVFGGFTTTLYTSLHGYFVFGPTGCNLEGFFATLGGEIALWSLVVLAIERYVVVCKPMSNFRFGENHAIMGVAFTWVMALACAAPPLVGWSRYIPEGMQCSCGIDYYTPHEETNNESFVIYMFVVHFIIPLIVIFFCYGQLVFTVKEAAAQQQESATTQKAEKEVTRMVIIMVIAFLICWLPYAGVAFYIFTHQGSDFGPIFMTIPAFFAKTSAVYNPVIYIMMNKQFRNCMVTTLCCGKNPLGDDEASTTVSKTETSQVAPA",
+      "sequence_length": 348,
+      "source_accession": "1F88:A",
+      "source_database": "RCSB_PDB+CATH"
+    },
+    {
+      "curation_notes": [
+        "sequence fetched from RCSB PDB FASTA entry 1GSA display chain A",
+        "coordinate evidence fetched from RCSB PDB entry 1GSA chain A",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "pdb_1GSA_A_glutathione_synthetase",
+      "reference_fold_class": "multidomain_boundary",
+      "reference_label_source": "cath:1gsaA00",
+      "reference_structure_source": "pdb:1GSA:A",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.48,
+        "contact_map_closure": 0.52,
+        "domain_boundary_stability": 0.4,
+        "hydrophobic_core_closure": 0.5,
+        "knot_or_entanglement_signature": 0.22,
+        "long_range_contact_order": 0.5,
+        "loop_disorder_pressure": 0.42,
+        "secondary_structure_balance": 0.55,
+        "sequence_complexity": 0.7,
+        "uncertainty_radius": 0.42
+      },
+      "reference_topology_signature_kind": "locked_50_broad_class_prototype_from_external_label",
+      "sequence": "MIKLGIVMDPIANINIKKDSSFAMLLEAQRRGYELHYMEMGDLYLINGEARAHTRTLNVKQNYEEWFSFVGEQDLPLADLDVILMRKDPPFDTEFIYATYILERAEEKGTLIVNKPQSLRDCNEKLFTAWFSDLTPETLVTRNKAQLKAFWEKHSDIILKPLDGMGGASIFRVKEGDPNLGVIAETLTEHGTRYCMAQNYLPAIKDGDKRVLVVDGEPVPYCLARIPQGGETRGNLAAGGRGEPRPLTESDWKIARQIGPTLKEKGLIFVGLDIIGDRLTEINVTSPTCIREIEAEFPVSITGMLMDAIEARLQQQ",
+      "sequence_length": 316,
+      "source_accession": "1GSA:A",
+      "source_database": "RCSB_PDB+CATH"
+    },
+    {
+      "curation_notes": [
+        "sequence fetched from RCSB PDB FASTA entry 1TUP display chain C",
+        "coordinate evidence fetched from RCSB PDB entry 1TUP chain A",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "pdb_1TUP_A_p53_core_dna_complex",
+      "reference_fold_class": "multidomain_boundary",
+      "reference_label_source": "cath:1tupC00",
+      "reference_structure_source": "pdb:1TUP:A",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.48,
+        "contact_map_closure": 0.52,
+        "domain_boundary_stability": 0.4,
+        "hydrophobic_core_closure": 0.5,
+        "knot_or_entanglement_signature": 0.22,
+        "long_range_contact_order": 0.5,
+        "loop_disorder_pressure": 0.42,
+        "secondary_structure_balance": 0.55,
+        "sequence_complexity": 0.7,
+        "uncertainty_radius": 0.42
+      },
+      "reference_topology_signature_kind": "locked_50_broad_class_prototype_from_external_label",
+      "sequence": "SSSVPSQKTYQGSYGFRLGFLHSGTAKSVTCTYSPALNKMFCQLAKTCPVQLWVDSTPPPGTRVRAMAIYKQSQHMTEVVRRCPHHERCSDSDGLAPPQHLIRVEGNLRVEYLDDRNTFRHSVVVPYEPPEVGSDCTTIHYNYMCNSSCMGGMNRRPILTIITLEDSSGNLLGRNSFEVRVCACPGRDRRTEEENLRKKGEPHHELPPGSTKRALPNNT",
+      "sequence_length": 219,
+      "source_accession": "1TUP:A",
+      "source_database": "RCSB_PDB+CATH"
+    },
+    {
+      "curation_notes": [
+        "sequence fetched from RCSB PDB FASTA entry 1LFG display chain A",
+        "coordinate evidence fetched from RCSB PDB entry 1LFG chain A",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "pdb_1LFG_A_lactoferrin",
+      "reference_fold_class": "multidomain_boundary",
+      "reference_label_source": "cath:1lfgA00",
+      "reference_structure_source": "pdb:1LFG:A",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.48,
+        "contact_map_closure": 0.52,
+        "domain_boundary_stability": 0.4,
+        "hydrophobic_core_closure": 0.5,
+        "knot_or_entanglement_signature": 0.22,
+        "long_range_contact_order": 0.5,
+        "loop_disorder_pressure": 0.42,
+        "secondary_structure_balance": 0.55,
+        "sequence_complexity": 0.7,
+        "uncertainty_radius": 0.42
+      },
+      "reference_topology_signature_kind": "locked_50_broad_class_prototype_from_external_label",
+      "sequence": "GRRRSVQWCAVSNPEATKCFQWQRNMRKVRGPPVSCIKRDSPIQCIQAIAENRADAVTLDGGFIYEAGLAPYKLRPVAAEVYGTERQPRTHYYAVAVVKKGGSFQLNELQGLKSCHTGLRRTAGWNVPIGTLRPFLNWTGPPEPIEAAVARFFSASCVPGADKGQFPNLCRLCAGTGENKCAFSSQEPYFSYSGAFKCLKDGAGDVAFIRESTVFEDLSDEAERDEYELLCPDNTRKPVDKFKDCHLARVPSHAVVARSVNGKEDAIWNLLRQAQEKFGKDKSPKFQLFGSPSGQKDLLFKDSAIGFSRVPPRIDSGLYLGSGYFTAIQNLRKSEEEVAARRARVVWCAVGEQELRKCNQWSGLSEGSVTCSSASTTEDCIALVLKGEADAMSLDGGYVYTAGKCGLVPVLAENYKSAQSSDPDPNCVDRPVEGYLAVAVVRRSDTSLTWNSVKGKKSCHTAVDRTAGWNIPMGLLFNQTGSCKFDEYFSQSCAPGSDPASNLCALCIGDEEGENKCVPNSNERYYGYTGAFRCLAENAGDVAFVKDVTVLQNTDGNNNEAWAKDLKLADFALLCLDGKRKPVTEARSCHLAMAPNHAVVSRMDKVERLKQVLLHQQAKFGRNGSDCPDKFCLFQSETKNLLFNDNTECLARLHGKTTYEKYLGPQYVAGITNLKKCSTSPLLEACEFLRK",
+      "sequence_length": 691,
+      "source_accession": "1LFG:A",
+      "source_database": "RCSB_PDB+CATH"
+    },
+    {
+      "curation_notes": [
+        "sequence fetched from UniProt FASTA accession P37840",
+        "disorder row uses DisProt-style reference source and no folded-coordinate evidence",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "disprot_P37840_alpha_synuclein",
+      "reference_fold_class": "disordered_flexible",
+      "reference_label_source": "disprot:DP00070",
+      "reference_structure_source": "disprot:DP00070",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.85,
+        "contact_map_closure": 0.2,
+        "domain_boundary_stability": 0.3,
+        "hydrophobic_core_closure": 0.12,
+        "knot_or_entanglement_signature": 0.04,
+        "long_range_contact_order": 0.16,
+        "loop_disorder_pressure": 0.82,
+        "secondary_structure_balance": 0.38,
+        "sequence_complexity": 0.55,
+        "uncertainty_radius": 0.65
+      },
+      "reference_topology_signature_kind": "locked_50_disorder_class_prototype_from_external_label",
+      "sequence": "MDVFMKGLSKAKEGVVAAAEKTKQGVAEAAGKTKEGVLYVGSKTKEGVVHGVATVAEKTKEQVTNVGGAVVTGVTAVAQKTVEGAGSIAAATGFVKKDQLGKNEEGAPQEGILEDMPVDPDNEAYEMPSEEGYQDYEPEA",
+      "sequence_length": 140,
+      "source_accession": "P37840",
+      "source_database": "DisProt+UniProt"
+    },
+    {
+      "curation_notes": [
+        "sequence fetched from UniProt FASTA accession P10636",
+        "disorder row uses DisProt-style reference source and no folded-coordinate evidence",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "disprot_P10636_tau",
+      "reference_fold_class": "disordered_flexible",
+      "reference_label_source": "disprot:DP03552",
+      "reference_structure_source": "disprot:DP03552",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.85,
+        "contact_map_closure": 0.2,
+        "domain_boundary_stability": 0.3,
+        "hydrophobic_core_closure": 0.12,
+        "knot_or_entanglement_signature": 0.04,
+        "long_range_contact_order": 0.16,
+        "loop_disorder_pressure": 0.82,
+        "secondary_structure_balance": 0.38,
+        "sequence_complexity": 0.55,
+        "uncertainty_radius": 0.65
+      },
+      "reference_topology_signature_kind": "locked_50_disorder_class_prototype_from_external_label",
+      "sequence": "MAEPRQEFEVMEDHAGTYGLGDRKDQGGYTMHQDQEGDTDAGLKESPLQTPTEDGSEEPGSETSDAKSTPTAEDVTAPLVDEGAPGKQAAAQPHTEIPEGTTAEEAGIGDTPSLEDEAAGHVTQEPESGKVVQEGFLREPGPPGLSHQLMSGMPGAPLLPEGPREATRQPSGTGPEDTEGGRHAPELLKHQLLGDLHQEGPPLKGAGGKERPGSKEEVDEDRDVDESSPQDSPPSKASPAQDGRPPQTAAREATSIPGFPAEGAIPLPVDFLSKVSTEIPASEPDGPSVGRAKGQDAPLEFTFHVEITPNVQKEQAHSEEHLGRAAFPGAPGEGPEARGPSLGEDTKEADLPEPSEKQPAAAPRGKPVSRVPQLKARMVSKSKDGTGSDDKKAKTSTRSSAKTLKNRPCLSPKHPTPGSSDPLIQPSSPAVCPEPPSSPKYVSSVTSRTGSSGAKEMKLKGADGKTKIATPRGAAPPGQKGQANATRIPAKTPPAPKTPPSSGEPPKSGDRSGYSSPGSPGTPGSRSRTPSLPTPPTREPKKVAVVRTPPKSPSSAKSRLQTAPVPMPDLKNVKSKIGSTENLKHQPGGGKVQIINKKLDLSNVQSKCGSKDNIKHVPGGGSVQIVYKPVDLSKVTSKCGSLGNIHHKPGGGQVEVKSEKLDFKDRVQSKIGSLDNITHVPGGGNKKIETHKLTFRENAKAKTDHGAEIVYKSPVVSGDTSPRHLSNVSSTGSIDMVDSPQLATLADEVSASLAKQGL",
+      "sequence_length": 758,
+      "source_accession": "P10636",
+      "source_database": "DisProt+UniProt"
+    },
+    {
+      "curation_notes": [
+        "sequence fetched from UniProt FASTA accession P04637",
+        "disorder row uses DisProt-style reference source and no folded-coordinate evidence",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "disprot_P04637_p53_full_length",
+      "reference_fold_class": "disordered_flexible",
+      "reference_label_source": "disprot:uniprot:P04637",
+      "reference_structure_source": "disprot:uniprot:P04637",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.85,
+        "contact_map_closure": 0.2,
+        "domain_boundary_stability": 0.3,
+        "hydrophobic_core_closure": 0.12,
+        "knot_or_entanglement_signature": 0.04,
+        "long_range_contact_order": 0.16,
+        "loop_disorder_pressure": 0.82,
+        "secondary_structure_balance": 0.38,
+        "sequence_complexity": 0.55,
+        "uncertainty_radius": 0.65
+      },
+      "reference_topology_signature_kind": "locked_50_disorder_class_prototype_from_external_label",
+      "sequence": "MEEPQSDPSVEPPLSQETFSDLWKLLPENNVLSPLPSQAMDDLMLSPDDIEQWFTEDPGPDEAPRMPEAAPPVAPAPAAPTPAAPAPAPSWPLSSSVPSQKTYQGSYGFRLGFLHSGTAKSVTCTYSPALNKMFCQLAKTCPVQLWVDSTPPPGTRVRAMAIYKQSQHMTEVVRRCPHHERCSDSDGLAPPQHLIRVEGNLRVEYLDDRNTFRHSVVVPYEPPEVGSDCTTIHYNYMCNSSCMGGMNRRPILTIITLEDSSGNLLGRNSFEVRVCACPGRDRRTEEENLRKKGEPHHELPPGSTKRALPNNTSSSPQPKKKPLDGEYFTLQIRGRERFEMFRELNEALELKDAQAGKEPGGSRAHSSHLKSKKGQSTSRHKKLMFKTEGPDSD",
+      "sequence_length": 393,
+      "source_accession": "P04637",
+      "source_database": "DisProt+UniProt"
+    },
+    {
+      "curation_notes": [
+        "sequence fetched from UniProt FASTA accession P46527",
+        "disorder row uses DisProt-style reference source and no folded-coordinate evidence",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "disprot_P46527_cdkn1b_p27",
+      "reference_fold_class": "disordered_flexible",
+      "reference_label_source": "disprot:uniprot:P46527",
+      "reference_structure_source": "disprot:uniprot:P46527",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.85,
+        "contact_map_closure": 0.2,
+        "domain_boundary_stability": 0.3,
+        "hydrophobic_core_closure": 0.12,
+        "knot_or_entanglement_signature": 0.04,
+        "long_range_contact_order": 0.16,
+        "loop_disorder_pressure": 0.82,
+        "secondary_structure_balance": 0.38,
+        "sequence_complexity": 0.55,
+        "uncertainty_radius": 0.65
+      },
+      "reference_topology_signature_kind": "locked_50_disorder_class_prototype_from_external_label",
+      "sequence": "MSNVRVSNGSPSLERMDARQAEHPKPSACRNLFGPVDHEELTRDLEKHCRDMEEASQRKWNFDFQNHKPLEGKYEWQEVEKGSLPEFYYRPPRPPKGACKVPAQESQDVSGSRPAAPLIGAPANSEDTHLVDPKTDPSDSQTGLAEQCAGIRKRPATDDSSTQNKRANRTEENVSDGSPNAGSVEQTPKKPGLRRRQT",
+      "sequence_length": 198,
+      "source_accession": "P46527",
+      "source_database": "DisProt+UniProt"
+    },
+    {
+      "curation_notes": [
+        "sequence fetched from UniProt FASTA accession P38634",
+        "disorder row uses DisProt-style reference source and no folded-coordinate evidence",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "disprot_P38634_sic1",
+      "reference_fold_class": "disordered_flexible",
+      "reference_label_source": "disprot:uniprot:P38634",
+      "reference_structure_source": "disprot:uniprot:P38634",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.85,
+        "contact_map_closure": 0.2,
+        "domain_boundary_stability": 0.3,
+        "hydrophobic_core_closure": 0.12,
+        "knot_or_entanglement_signature": 0.04,
+        "long_range_contact_order": 0.16,
+        "loop_disorder_pressure": 0.82,
+        "secondary_structure_balance": 0.38,
+        "sequence_complexity": 0.55,
+        "uncertainty_radius": 0.65
+      },
+      "reference_topology_signature_kind": "locked_50_disorder_class_prototype_from_external_label",
+      "sequence": "MTPSTPPRSRGTRYLAQPSGNTSSSALMQGQKTPQKPSQNLVPVTPSTTKSFKNAPLLAPPNSNMGMTSPFNGLTSPQRSPFPKSSVKRTLFQFESHDNGTVREEQEPLGRVNRILFPTQQNVDIDAAEEEEEGEVLLPPSRPTSARQLHLSLERDEFDQTHRKKIIKDVPGTPSDKVITFELAKNWNNNSPKNDARSQESEDEEDIIINPVRVGKNPFASDELVTQEIRNERKRAMLRENPDIEDVITYVNKKGEVVEKRRLTDEEKRRFKPKALFQSRDQEH",
+      "sequence_length": 284,
+      "source_accession": "P38634",
+      "source_database": "DisProt+UniProt"
+    },
+    {
+      "curation_notes": [
+        "sequence fetched from UniProt FASTA accession O60356",
+        "disorder row uses DisProt-style reference source and no folded-coordinate evidence",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "disprot_O60356_nupr1",
+      "reference_fold_class": "disordered_flexible",
+      "reference_label_source": "disprot:uniprot:O60356",
+      "reference_structure_source": "disprot:uniprot:O60356",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.85,
+        "contact_map_closure": 0.2,
+        "domain_boundary_stability": 0.3,
+        "hydrophobic_core_closure": 0.12,
+        "knot_or_entanglement_signature": 0.04,
+        "long_range_contact_order": 0.16,
+        "loop_disorder_pressure": 0.82,
+        "secondary_structure_balance": 0.38,
+        "sequence_complexity": 0.55,
+        "uncertainty_radius": 0.65
+      },
+      "reference_topology_signature_kind": "locked_50_disorder_class_prototype_from_external_label",
+      "sequence": "MATFPPATSAPQQPPGPEDEDSSLDESDLYSLAHSYLGGGGRKGRTKREAAANTNRPSPGGHERKLVTKLQNSERKKRGARR",
+      "sequence_length": 82,
+      "source_accession": "O60356",
+      "source_database": "DisProt+UniProt"
+    },
+    {
+      "curation_notes": [
+        "sequence fetched from UniProt FASTA accession P10451",
+        "disorder row uses DisProt-style reference source and no folded-coordinate evidence",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "disprot_P10451_osteopontin",
+      "reference_fold_class": "disordered_flexible",
+      "reference_label_source": "disprot:uniprot:P10451",
+      "reference_structure_source": "disprot:uniprot:P10451",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.85,
+        "contact_map_closure": 0.2,
+        "domain_boundary_stability": 0.3,
+        "hydrophobic_core_closure": 0.12,
+        "knot_or_entanglement_signature": 0.04,
+        "long_range_contact_order": 0.16,
+        "loop_disorder_pressure": 0.82,
+        "secondary_structure_balance": 0.38,
+        "sequence_complexity": 0.55,
+        "uncertainty_radius": 0.65
+      },
+      "reference_topology_signature_kind": "locked_50_disorder_class_prototype_from_external_label",
+      "sequence": "MRIAVICFCLLGITCAIPVKQADSGSSEEKQLYNKYPDAVATWLNPDPSQKQNLLAPQNAVSSEETNDFKQETLPSKSNESHDHMDDMDDEDDDDHVDSQDSIDSNDSDDVDDTDDSHQSDESHHSDESDELVTDFPTDLPATEVFTPVVPTVDTYDGRGDSVVYGLRSKSKKFRRPDIQYPDATDEDITSHMESEELNGAYKAIPVAQDLNAPSDWDSRGKDSYETSQLDDQSAETHSHKQSRLYKRKANDESNEHSDVIDSQELSKVSREFHSHEFHSHEDMLVVDPKSKEEDKHLKFRISHELDSASSEVN",
+      "sequence_length": 314,
+      "source_accession": "P10451",
+      "source_database": "DisProt+UniProt"
+    },
+    {
+      "curation_notes": [
+        "sequence fetched from UniProt FASTA accession Q13541",
+        "disorder row uses DisProt-style reference source and no folded-coordinate evidence",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "disprot_Q13541_eif4ebp1",
+      "reference_fold_class": "disordered_flexible",
+      "reference_label_source": "disprot:uniprot:Q13541",
+      "reference_structure_source": "disprot:uniprot:Q13541",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.85,
+        "contact_map_closure": 0.2,
+        "domain_boundary_stability": 0.3,
+        "hydrophobic_core_closure": 0.12,
+        "knot_or_entanglement_signature": 0.04,
+        "long_range_contact_order": 0.16,
+        "loop_disorder_pressure": 0.82,
+        "secondary_structure_balance": 0.38,
+        "sequence_complexity": 0.55,
+        "uncertainty_radius": 0.65
+      },
+      "reference_topology_signature_kind": "locked_50_disorder_class_prototype_from_external_label",
+      "sequence": "MSGGSSCSQTPSRAIPATRRVVLGDGVQLPPGDYSTTPGGTLFSTTPGGTRIIYDRKFLMECRNSPVTKTPPRDLPTIPGVTSPSSDEPPMEASQSHLRNSPEDKRAGGEESQFEMDI",
+      "sequence_length": 118,
+      "source_accession": "Q13541",
+      "source_database": "DisProt+UniProt"
+    },
+    {
+      "curation_notes": [
+        "sequence fetched from UniProt FASTA accession P16949",
+        "disorder row uses DisProt-style reference source and no folded-coordinate evidence",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "disprot_P16949_stathmin",
+      "reference_fold_class": "disordered_flexible",
+      "reference_label_source": "disprot:uniprot:P16949",
+      "reference_structure_source": "disprot:uniprot:P16949",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.85,
+        "contact_map_closure": 0.2,
+        "domain_boundary_stability": 0.3,
+        "hydrophobic_core_closure": 0.12,
+        "knot_or_entanglement_signature": 0.04,
+        "long_range_contact_order": 0.16,
+        "loop_disorder_pressure": 0.82,
+        "secondary_structure_balance": 0.38,
+        "sequence_complexity": 0.55,
+        "uncertainty_radius": 0.65
+      },
+      "reference_topology_signature_kind": "locked_50_disorder_class_prototype_from_external_label",
+      "sequence": "MASSDIQVKELEKRASGQAFELILSPRSKESVPEFPLSPPKKKDLSLEEIQKKLEAAEERRKSHEAEVLKQLAEKREHEKEVLQKAIEENNNFSKMAEEKLTHKMEANKENREAQMAAKLERLREKDKHIEEVRKNKESKDPADETEAD",
+      "sequence_length": 149,
+      "source_accession": "P16949",
+      "source_database": "DisProt+UniProt"
+    },
+    {
+      "curation_notes": [
+        "sequence fetched from UniProt FASTA accession P17096",
+        "disorder row uses DisProt-style reference source and no folded-coordinate evidence",
+        "reference signature is a locked broad-class prototype, not predictor input"
+      ],
+      "is_external_reference": true,
+      "protein_id": "disprot_P17096_hmga1",
+      "reference_fold_class": "disordered_flexible",
+      "reference_label_source": "disprot:uniprot:P17096",
+      "reference_structure_source": "disprot:uniprot:P17096",
+      "reference_topology_signature": {
+        "conformational_flexibility": 0.85,
+        "contact_map_closure": 0.2,
+        "domain_boundary_stability": 0.3,
+        "hydrophobic_core_closure": 0.12,
+        "knot_or_entanglement_signature": 0.04,
+        "long_range_contact_order": 0.16,
+        "loop_disorder_pressure": 0.82,
+        "secondary_structure_balance": 0.38,
+        "sequence_complexity": 0.55,
+        "uncertainty_radius": 0.65
+      },
+      "reference_topology_signature_kind": "locked_50_disorder_class_prototype_from_external_label",
+      "sequence": "MSESSSKSSQPLASKQEKDGTEKRGRGRPRKQPPVSPGTALVGSQKEPSEVPTPKRPRGRPKGSKNKGAAKTRKTTTTPGRKPRGRPKKLEKEEEEGISQESSEEEQ",
+      "sequence_length": 107,
+      "source_accession": "P17096",
+      "source_database": "DisProt+UniProt"
+    }
+  ],
+  "stability_test_of_commit": "17dc6e2",
+  "status": "locked_external_50_row_stability_benchmark",
+  "stratification_counts": {
+    "alpha_beta_mixed": 10,
+    "disordered_or_flexible": 10,
+    "mostly_alpha_or_compact": 10,
+    "mostly_beta_or_long_range": 10,
+    "multidomain_or_boundary_sensitive": 10
+  },
+  "stratification_targets": {
+    "alpha_beta_mixed": 10,
+    "disordered_or_flexible": 10,
+    "mostly_alpha_or_compact": 10,
+    "mostly_beta_or_long_range": 10,
+    "multidomain_or_boundary_sensitive": 10
+  },
+  "target_benchmark_size": 50
+}
