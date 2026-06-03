@@ -54,6 +54,9 @@ PHARMACOTOPOLOGY_GENERATED_FILES: tuple[str, ...] = (
     "sensitivity_analysis_report.json",
     "sensitivity_rankings.csv",
     "pharmacotopology_dashboard.html",
+    "multi_profile_dashboard.html",
+    "sensitivity_explorer_report.json",
+    "sensitivity_explorer_samples.csv",
     "field_validation.json",
     "field_metrics.json",
 )

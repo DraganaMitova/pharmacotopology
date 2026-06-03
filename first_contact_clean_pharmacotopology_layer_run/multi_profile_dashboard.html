@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>KNOT Pharmacotopology Multi-Profile Dashboard</title>
+  <style>
+    :root {
+      --ink: #202124;
+      --muted: #5f6368;
+      --line: #d9dce1;
+      --panel: #ffffff;
+      --page: #f7f8fa;
+      --strong: #cfe9dd;
+      --positive: #e2f0ea;
+      --negative: #f5e4df;
+      --neutral: #eceff3;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--page);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.45;
+    }
+    main { width: min(1240px, calc(100vw - 32px)); margin: 0 auto 48px; }
+    .hero {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 24px;
+      padding: 32px 0 24px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 28px;
+    }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { font-size: 30px; line-height: 1.15; margin-bottom: 8px; }
+    h2 { font-size: 20px; margin-bottom: 4px; }
+    h3 { font-size: 15px; margin-bottom: 6px; }
+    section { margin: 28px 0; }
+    .kicker, .layer-line, .section-heading p, .profile-card p {
+      color: var(--muted);
+    }
+    .kicker {
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 0;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+    .safety-badge {
+      flex: 0 0 auto;
+      border: 1px solid #a85648;
+      background: #fff8f5;
+      color: #6f2f24;
+      padding: 10px 12px;
+      font-weight: 800;
+      font-size: 13px;
+    }
+    .profile-grid, .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .profile-card, .summary-grid article {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 12px;
+    }
+    .profile-row {
+      display: grid;
+      grid-template-columns: minmax(190px, 1fr) 190px;
+      gap: 10px;
+      align-items: center;
+      padding: 4px 0;
+      font-size: 13px;
+    }
+    .bar-track { fill: #e4e7eb; }
+    .bar-fill { fill: #52616f; }
+    svg text { fill: var(--ink); font-size: 12px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .table-scroll { overflow-x: auto; border: 1px solid var(--line); background: var(--panel); }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th, td {
+      border-bottom: 1px solid var(--line);
+      border-right: 1px solid var(--line);
+      padding: 8px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: #f1f3f5; font-weight: 700; }
+    th span { color: var(--muted); font-weight: 500; }
+    td.strong { background: var(--strong); color: #245c45; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+    td.positive { background: var(--positive); color: #2f604c; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+    td.negative { background: var(--negative); color: #78392f; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+    td.neutral { background: var(--neutral); color: #4d5156; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .summary-grid ul { margin: 0; padding-left: 18px; }
+    .summary-grid li { margin-bottom: 8px; }
+    footer {
+      margin: 36px 0 0;
+      padding: 18px;
+      border: 1px solid var(--line);
+      background: #fff;
+      font-weight: 700;
+    }
+    footer p { margin: 4px 0; }
+    @media (max-width: 880px) {
+      main { width: min(100vw - 20px, 1240px); }
+      .hero { display: block; }
+      .safety-badge { display: inline-block; margin-top: 14px; }
+      .profile-grid, .summary-grid { grid-template-columns: 1fr; }
+      .profile-row { grid-template-columns: 1fr; }
+    }
+    </style>
+</head>
+<body>
+  <main>
+    <header class="hero">
+      <div>
+        <p class="kicker">KNOT topology simulation</p>
+        <h1>Multi-Profile Pharmacotopology Dashboard</h1>
+        <p class="layer-line">Same mechanism vectors across synthetic topology profiles</p>
+      </div>
+      <div class="safety-badge">SIMULATION ONLY &mdash; NOT MEDICAL ADVICE</div>
+    </header>
+    
+    <section>
+      <div class="section-heading">
+        <h2>Baseline Topology Maps</h2>
+        <p>Synthetic pressure maps only. They are not diagnoses, patient models, or medication targets.</p>
+      </div>
+      <div class="profile-grid"><article class="profile-card"><h3>schizophrenia_like</h3><p>Simulated unstable topology profile only; not a diagnosis, patient model, or medication target.</p><div class="profile-rows"><div class="profile-row"><span>salience_amplification</span><svg class="bar" viewBox="0 0 190 18" role="img" aria-label="pressure 0.910"><rect class="bar-track" x="0" y="4" width="150" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="136.5" height="10" rx="2" /><text x="160" y="13">0.910</text></svg></div><div class="profile-row"><span>recurrence_overbinding</span><svg class="bar" viewBox="0 0 190 18" role="img" aria-label="pressure 0.860"><rect class="bar-track" x="0" y="4" width="150" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="129.0" height="10" rx="2" /><text x="160" y="13">0.860</text></svg></div><div class="profile-row"><span>symbolic_closure_pressure</span><svg class="bar" viewBox="0 0 190 18" role="img" aria-label="pressure 0.800"><rect class="bar-track" x="0" y="4" width="150" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="120.0" height="10" rx="2" /><text x="160" y="13">0.800</text></svg></div><div class="profile-row"><span>threat_propagation</span><svg class="bar" viewBox="0 0 190 18" role="img" aria-label="pressure 0.760"><rect class="bar-track" x="0" y="4" width="150" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="114.0" height="10" rx="2" /><text x="160" y="13">0.760</text></svg></div><div class="profile-row"><span>falsification_weakness</span><svg class="bar" viewBox="0 0 190 18" role="img" aria-label="pressure 0.720"><rect class="bar-track" x="0" y="4" width="150" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="108.0" height="10" rx="2" /><text x="160" y="13">0.720</text></svg></div><div class="profile-row"><span>boundary_instability</span><svg class="bar" viewBox="0 0 190 18" role="img" aria-label="pressure 0.680"><rect class="bar-track" x="0" y="4" width="150" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="102.0" height="10" rx="2" /><text x="160" y="13">0.680</text></svg></div><div class="profile-row"><span>agency_confusion</span><svg class="bar" viewBox="0 0 190 18" role="img" aria-label="pressure 0.700"><rect class="bar-track" x="0" y="4" width="150" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="105.0" height="10" rx="2" /><text x="160" y="13">0.700</text></svg></div><div class="profile-row"><span>sensory_intrusion</span><svg class="bar" viewBox="0 0 190 18" role="img" aria-label="pressure 0.740"><rect class="bar-track" x="0" y="4" width="150" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="111.0" height="10" rx="2" /><text x="160" y="13">0.740</text></svg></div><div class="profile-row"><span>cognitive_fragmentation</span><svg class="bar" viewBox="0 0 190 18" role="img" aria-label="pressure 0.660"><rect class="bar-track" x="0" y="4" width="150" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="99.0" height="10" rx="2" /><text x="160" y="13">0.660</text></svg></div><div class="profile-row"><span>negative_shutdown</span><svg class="bar" viewBox="0 0 190 18" role="img" aria-label="pressure 0.580"><rect class="bar-track" x="0" y="4" width="150" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="87.0" height="10" rx="2" /><text x="160" y="13">0.580</text></svg></div><div class="profile-row"><span>sleep_instability</span><svg class="bar" viewBox="0 0 190 18" role="img" aria-label="pressure 0.640"><rect class="bar-track" x="0" y="4" width="150" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="96.0" height="10" rx="2" /><text x="160" y="13">0.640</text></svg></div></div></article><article class="profile-card"><h3>depression_like</h3><p>Synthetic low-agency shutdown pressure profile only; not a diagnosis, patient model, or medication target.</p><div class="profile-rows"><div class="profile-row"><span>salience_amplification</span><svg class="bar" viewBox="0 0 190 18" role="img" aria-label="pressure 0.420"><rect class="bar-track" x="0" y="4" width="150" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="63.0" height="10" rx="2" /><text x="160" y="13">0.420</text></svg></div><div class="profile-row"><span>recurrence_overbinding</span><svg class="bar" viewBox="0 0 190 18" role="img" aria-label="pressure 0.640"><rect class="bar-track" x="0" y="4" width="150" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="96.0" height="10" rx="2" /><text x="160" y="13">0.640</text></svg></div><div class="profile-row"><span>symbolic_closure_pressure</span><svg class="bar" viewBox="0 0 190 18" role="img" aria-label="pressure 0.540"><rect class="bar-track" x="0" y="4" width="150" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="81.0" height="10" rx="2" /><text x="160" y="13">0.540</text></svg></div><div class="profile-row"><span>threat_propagation</span><svg class="bar" viewBox="0 0 190 18" role="img" aria-label="pressure 0.500"><rect class="bar-track" x="0" y="4" width="150" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="75.0" height="10" rx="2" /><text x="160" y="13">0.500</text></svg></div><div class="profile-row"><span>falsification_weakness</span><svg class="bar" viewBox="0 0 190 18" role="img" aria-label="pressure 0.480"><rect class="bar-track" x="0" y="4" width="150" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="72.0" height="10" rx="2" /><text x="160" y="13">0.480</text></svg></div><div class="profile-row"><span>boundary_instability</span><svg class="bar" viewBox="0 0 190 18" role="img" aria-label="pressure 0.380"><rect class="bar-track" x="0" y="4" width="150" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="57.0" height="10" rx="2" /><text x="160" y="13">0.380</text></svg></div><div class="profile-row"><span>agency_confusion</span><svg class="bar" viewBox="0 0 190 18" role="img" aria-label="pressure 0.460"><rect class="bar-track" x="0" y="4" width="150" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="69.0" height="10" rx="2" /><text x="160" y="13">0.460</text></svg></div><div class="profile-row"><span>sensory_intrusion</span><svg class="bar" viewBox="0 0 190 18" role="img" aria-label="pressure 0.340"><rect class="bar-track" x="0" y="4" width="150" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="51.0" height="10" rx="2" /><text x="160" y="13">0.340</text></svg></div><div class="profile-row"><span>cognitive_fragmentation</span><svg class="bar" viewBox="0 0 190 18" role="img" aria-label="pressure 0.580"><rect class="bar-track" x="0" y="4" width="150" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="87.0" height="10" rx="2" /><text x="160" y="13">0.580</text></svg></div><div class="profile-row"><span>negative_shutdown</span><svg class="bar" viewBox="0 0 190 18" role="img" aria-label="pressure 0.880"><rect class="bar-track" x="0" y="4" width="150" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="132.0" height="10" rx="2" /><text x="160" y="13">0.880</text></svg></div><div class="profile-row"><span>sleep_instability</span><svg class="bar" viewBox="0 0 190 18" role="img" aria-label="pressure 0.720"><rect class="bar-track" x="0" y="4" width="150" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="108.0" height="10" rx="2" /><text x="160" y="13">0.720</text></svg></div></div></article><article class="profile-card"><h3>mania_like</h3><p>Synthetic high-salience activation pressure profile only; not a diagnosis, patient model, or medication target.</p><div class="profile-rows"><div class="profile-row"><span>salience_amplification</span><svg class="bar" viewBox="0 0 190 18" role="img" aria-label="pressure 0.920"><rect class="bar-track" x="0" y="4" width="150" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="138.0" height="10" rx="2" /><text x="160" y="13">0.920</text></svg></div><div class="profile-row"><span>recurrence_overbinding</span><svg class="bar" viewBox="0 0 190 18" role="img" aria-label="pressure 0.740"><rect class="bar-track" x="0" y="4" width="150" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="111.0" height="10" rx="2" /><text x="160" y="13">0.740</text></svg></div><div class="profile-row"><span>symbolic_closure_pressure</span><svg class="bar" viewBox="0 0 190 18" role="img" aria-label="pressure 0.660"><rect class="bar-track" x="0" y="4" width="150" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="99.0" height="10" rx="2" /><text x="160" y="13">0.660</text></svg></div><div class="profile-row"><span>threat_propagation</span><svg class="bar" viewBox="0 0 190 18" role="img" aria-label="pressure 0.520"><rect class="bar-track" x="0" y="4" width="150" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="78.0" height="10" rx="2" /><text x="160" y="13">0.520</text></svg></div><div class="profile-row"><span>falsification_weakness</span><svg class="bar" viewBox="0 0 190 18" role="img" aria-label="pressure 0.620"><rect class="bar-track" x="0" y="4" width="150" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="93.0" height="10" rx="2" /><text x="160" y="13">0.620</text></svg></div><div class="profile-row"><span>boundary_instability</span><svg class="bar" viewBox="0 0 190 18" role="img" aria-label="pressure 0.700"><rect class="bar-track" x="0" y="4" width="150" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="105.0" height="10" rx="2" /><text x="160" y="13">0.700</text></svg></div><div class="profile-row"><span>agency_confusion</span><svg class="bar" viewBox="0 0 190 18" role="img" aria-label="pressure 0.680"><rect class="bar-track" x="0" y="4" width="150" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="102.0" height="10" rx="2" /><text x="160" y="13">0.680</text></svg></div><div class="profile-row"><span>sensory_intrusion</span><svg class="bar" viewBox="0 0 190 18" role="img" aria-label="pressure 0.560"><rect class="bar-track" x="0" y="4" width="150" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="84.0" height="10" rx="2" /><text x="160" y="13">0.560</text></svg></div><div class="profile-row"><span>cognitive_fragmentation</span><svg class="bar" viewBox="0 0 190 18" role="img" aria-label="pressure 0.600"><rect class="bar-track" x="0" y="4" width="150" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="90.0" height="10" rx="2" /><text x="160" y="13">0.600</text></svg></div><div class="profile-row"><span>negative_shutdown</span><svg class="bar" viewBox="0 0 190 18" role="img" aria-label="pressure 0.280"><rect class="bar-track" x="0" y="4" width="150" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="42.0" height="10" rx="2" /><text x="160" y="13">0.280</text></svg></div><div class="profile-row"><span>sleep_instability</span><svg class="bar" viewBox="0 0 190 18" role="img" aria-label="pressure 0.900"><rect class="bar-track" x="0" y="4" width="150" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="135.0" height="10" rx="2" /><text x="160" y="13">0.900</text></svg></div></div></article><article class="profile-card"><h3>anxiety_like</h3><p>Synthetic threat-propagation pressure profile only; not a diagnosis, patient model, or medication target.</p><div class="profile-rows"><div class="profile-row"><span>salience_amplification</span><svg class="bar" viewBox="0 0 190 18" role="img" aria-label="pressure 0.620"><rect class="bar-track" x="0" y="4" width="150" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="93.0" height="10" rx="2" /><text x="160" y="13">0.620</text></svg></div><div class="profile-row"><span>recurrence_overbinding</span><svg class="bar" viewBox="0 0 190 18" role="img" aria-label="pressure 0.660"><rect class="bar-track" x="0" y="4" width="150" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="99.0" height="10" rx="2" /><text x="160" y="13">0.660</text></svg></div><div class="profile-row"><span>symbolic_closure_pressure</span><svg class="bar" viewBox="0 0 190 18" role="img" aria-label="pressure 0.580"><rect class="bar-track" x="0" y="4" width="150" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="87.0" height="10" rx="2" /><text x="160" y="13">0.580</text></svg></div><div class="profile-row"><span>threat_propagation</span><svg class="bar" viewBox="0 0 190 18" role="img" aria-label="pressure 0.900"><rect class="bar-track" x="0" y="4" width="150" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="135.0" height="10" rx="2" /><text x="160" y="13">0.900</text></svg></div><div class="profile-row"><span>falsification_weakness</span><svg class="bar" viewBox="0 0 190 18" role="img" aria-label="pressure 0.540"><rect class="bar-track" x="0" y="4" width="150" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="81.0" height="10" rx="2" /><text x="160" y="13">0.540</text></svg></div><div class="profile-row"><span>boundary_instability</span><svg class="bar" viewBox="0 0 190 18" role="img" aria-label="pressure 0.600"><rect class="bar-track" x="0" y="4" width="150" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="90.0" height="10" rx="2" /><text x="160" y="13">0.600</text></svg></div><div class="profile-row"><span>agency_confusion</span><svg class="bar" viewBox="0 0 190 18" role="img" aria-label="pressure 0.420"><rect class="bar-track" x="0" y="4" width="150" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="63.0" height="10" rx="2" /><text x="160" y="13">0.420</text></svg></div><div class="profile-row"><span>sensory_intrusion</span><svg class="bar" viewBox="0 0 190 18" role="img" aria-label="pressure 0.680"><rect class="bar-track" x="0" y="4" width="150" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="102.0" height="10" rx="2" /><text x="160" y="13">0.680</text></svg></div><div class="profile-row"><span>cognitive_fragmentation</span><svg class="bar" viewBox="0 0 190 18" role="img" aria-label="pressure 0.500"><rect class="bar-track" x="0" y="4" width="150" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="75.0" height="10" rx="2" /><text x="160" y="13">0.500</text></svg></div><div class="profile-row"><span>negative_shutdown</span><svg class="bar" viewBox="0 0 190 18" role="img" aria-label="pressure 0.460"><rect class="bar-track" x="0" y="4" width="150" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="69.0" height="10" rx="2" /><text x="160" y="13">0.460</text></svg></div><div class="profile-row"><span>sleep_instability</span><svg class="bar" viewBox="0 0 190 18" role="img" aria-label="pressure 0.780"><rect class="bar-track" x="0" y="4" width="150" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="117.0" height="10" rx="2" /><text x="160" y="13">0.780</text></svg></div></div></article><article class="profile-card"><h3>mixed_state_like</h3><p>Synthetic simultaneous activation-and-shutdown pressure profile only; not a diagnosis, patient model, or medication target.</p><div class="profile-rows"><div class="profile-row"><span>salience_amplification</span><svg class="bar" viewBox="0 0 190 18" role="img" aria-label="pressure 0.820"><rect class="bar-track" x="0" y="4" width="150" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="123.0" height="10" rx="2" /><text x="160" y="13">0.820</text></svg></div><div class="profile-row"><span>recurrence_overbinding</span><svg class="bar" viewBox="0 0 190 18" role="img" aria-label="pressure 0.780"><rect class="bar-track" x="0" y="4" width="150" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="117.0" height="10" rx="2" /><text x="160" y="13">0.780</text></svg></div><div class="profile-row"><span>symbolic_closure_pressure</span><svg class="bar" viewBox="0 0 190 18" role="img" aria-label="pressure 0.700"><rect class="bar-track" x="0" y="4" width="150" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="105.0" height="10" rx="2" /><text x="160" y="13">0.700</text></svg></div><div class="profile-row"><span>threat_propagation</span><svg class="bar" viewBox="0 0 190 18" role="img" aria-label="pressure 0.820"><rect class="bar-track" x="0" y="4" width="150" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="123.0" height="10" rx="2" /><text x="160" y="13">0.820</text></svg></div><div class="profile-row"><span>falsification_weakness</span><svg class="bar" viewBox="0 0 190 18" role="img" aria-label="pressure 0.600"><rect class="bar-track" x="0" y="4" width="150" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="90.0" height="10" rx="2" /><text x="160" y="13">0.600</text></svg></div><div class="profile-row"><span>boundary_instability</span><svg class="bar" viewBox="0 0 190 18" role="img" aria-label="pressure 0.760"><rect class="bar-track" x="0" y="4" width="150" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="114.0" height="10" rx="2" /><text x="160" y="13">0.760</text></svg></div><div class="profile-row"><span>agency_confusion</span><svg class="bar" viewBox="0 0 190 18" role="img" aria-label="pressure 0.640"><rect class="bar-track" x="0" y="4" width="150" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="96.0" height="10" rx="2" /><text x="160" y="13">0.640</text></svg></div><div class="profile-row"><span>sensory_intrusion</span><svg class="bar" viewBox="0 0 190 18" role="img" aria-label="pressure 0.580"><rect class="bar-track" x="0" y="4" width="150" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="87.0" height="10" rx="2" /><text x="160" y="13">0.580</text></svg></div><div class="profile-row"><span>cognitive_fragmentation</span><svg class="bar" viewBox="0 0 190 18" role="img" aria-label="pressure 0.680"><rect class="bar-track" x="0" y="4" width="150" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="102.0" height="10" rx="2" /><text x="160" y="13">0.680</text></svg></div><div class="profile-row"><span>negative_shutdown</span><svg class="bar" viewBox="0 0 190 18" role="img" aria-label="pressure 0.720"><rect class="bar-track" x="0" y="4" width="150" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="108.0" height="10" rx="2" /><text x="160" y="13">0.720</text></svg></div><div class="profile-row"><span>sleep_instability</span><svg class="bar" viewBox="0 0 190 18" role="img" aria-label="pressure 0.880"><rect class="bar-track" x="0" y="4" width="150" height="10" rx="2" /><rect class="bar-fill" x="0" y="4" width="132.0" height="10" rx="2" /><text x="160" y="13">0.880</text></svg></div></div></article></div>
+    </section>
+    
+    
+    <section>
+      <div class="section-heading">
+        <h2>Combined Ranking Table</h2>
+        <p>Each cell shows rank and net topology health score for the same mechanism under each synthetic profile.</p>
+      </div>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>mechanism_id</th><th>schizophrenia_like<br><span>rank / net</span></th><th>depression_like<br><span>rank / net</span></th><th>mania_like<br><span>rank / net</span></th><th>anxiety_like<br><span>rank / net</span></th><th>mixed_state_like<br><span>rank / net</span></th></tr></thead>
+          <tbody><tr><th>d2_antagonist_like</th><td class="positive">#6 / 0.061</td><td class="negative">#7 / -0.099</td><td class="positive">#5 / 0.173</td><td class="positive">#6 / 0.100</td><td class="positive">#6 / 0.071</td></tr><tr><th>d2_partial_agonist_like</th><td class="positive">#5 / 0.109</td><td class="positive">#6 / 0.054</td><td class="positive">#4 / 0.178</td><td class="positive">#4 / 0.237</td><td class="positive">#4 / 0.122</td></tr><tr><th>5ht2a_antagonist_like</th><td class="strong">#2 / 0.346</td><td class="strong">#3 / 0.366</td><td class="strong">#2 / 0.363</td><td class="strong">#2 / 0.387</td><td class="strong">#2 / 0.351</td></tr><tr><th>nmda_support_like</th><td class="strong">#1 / 0.351</td><td class="strong">#1 / 0.652</td><td class="strong">#1 / 0.393</td><td class="strong">#1 / 0.513</td><td class="strong">#1 / 0.357</td></tr><tr><th>gaba_stabilizing_like</th><td class="positive">#7 / 0.043</td><td class="positive">#4 / 0.198</td><td class="positive">#7 / 0.118</td><td class="positive">#7 / 0.052</td><td class="positive">#7 / 0.052</td></tr><tr><th>muscarinic_modulation_like</th><td class="positive">#3 / 0.224</td><td class="strong">#2 / 0.486</td><td class="strong">#3 / 0.256</td><td class="strong">#3 / 0.339</td><td class="positive">#3 / 0.246</td></tr><tr><th>adrenergic_dampening_like</th><td class="positive">#4 / 0.129</td><td class="positive">#5 / 0.178</td><td class="positive">#6 / 0.163</td><td class="positive">#5 / 0.144</td><td class="positive">#5 / 0.098</td></tr><tr><th>histamine_sedation_load_like</th><td class="negative">#8 / -0.272</td><td class="negative">#8 / -0.265</td><td class="negative">#8 / -0.267</td><td class="negative">#8 / -0.268</td><td class="negative">#8 / -0.276</td></tr><tr><th>anticholinergic_burden_like</th><td class="negative">#10 / -0.629</td><td class="negative">#9 / -0.706</td><td class="negative">#10 / -0.718</td><td class="negative">#10 / -0.829</td><td class="negative">#10 / -0.597</td></tr><tr><th>glutamate_amplification_stressor_like</th><td class="negative">#9 / -0.375</td><td class="negative">#10 / -0.844</td><td class="negative">#9 / -0.480</td><td class="negative">#9 / -0.472</td><td class="negative">#9 / -0.426</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+    
+    
+    <section>
+      <div class="section-heading">
+        <h2>Mechanism/Profile Heatmap</h2>
+        <p>Net score by mechanism and synthetic profile. Positive cells are modeling signals only.</p>
+      </div>
+      <div class="table-scroll">
+        <table class="heatmap">
+          <thead><tr><th>mechanism_id</th><th>schizophrenia_like</th><th>depression_like</th><th>mania_like</th><th>anxiety_like</th><th>mixed_state_like</th></tr></thead>
+          <tbody><tr><th>d2_antagonist_like</th><td class="positive"><span>0.061</span></td><td class="negative"><span>-0.099</span></td><td class="positive"><span>0.173</span></td><td class="positive"><span>0.100</span></td><td class="positive"><span>0.071</span></td></tr><tr><th>d2_partial_agonist_like</th><td class="positive"><span>0.109</span></td><td class="positive"><span>0.054</span></td><td class="positive"><span>0.178</span></td><td class="positive"><span>0.237</span></td><td class="positive"><span>0.122</span></td></tr><tr><th>5ht2a_antagonist_like</th><td class="strong"><span>0.346</span></td><td class="strong"><span>0.366</span></td><td class="strong"><span>0.363</span></td><td class="strong"><span>0.387</span></td><td class="strong"><span>0.351</span></td></tr><tr><th>nmda_support_like</th><td class="strong"><span>0.351</span></td><td class="strong"><span>0.652</span></td><td class="strong"><span>0.393</span></td><td class="strong"><span>0.513</span></td><td class="strong"><span>0.357</span></td></tr><tr><th>gaba_stabilizing_like</th><td class="positive"><span>0.043</span></td><td class="positive"><span>0.198</span></td><td class="positive"><span>0.118</span></td><td class="positive"><span>0.052</span></td><td class="positive"><span>0.052</span></td></tr><tr><th>muscarinic_modulation_like</th><td class="positive"><span>0.224</span></td><td class="strong"><span>0.486</span></td><td class="strong"><span>0.256</span></td><td class="strong"><span>0.339</span></td><td class="positive"><span>0.246</span></td></tr><tr><th>adrenergic_dampening_like</th><td class="positive"><span>0.129</span></td><td class="positive"><span>0.178</span></td><td class="positive"><span>0.163</span></td><td class="positive"><span>0.144</span></td><td class="positive"><span>0.098</span></td></tr><tr><th>histamine_sedation_load_like</th><td class="negative"><span>-0.272</span></td><td class="negative"><span>-0.265</span></td><td class="negative"><span>-0.267</span></td><td class="negative"><span>-0.268</span></td><td class="negative"><span>-0.276</span></td></tr><tr><th>anticholinergic_burden_like</th><td class="negative"><span>-0.629</span></td><td class="negative"><span>-0.706</span></td><td class="negative"><span>-0.718</span></td><td class="negative"><span>-0.829</span></td><td class="negative"><span>-0.597</span></td></tr><tr><th>glutamate_amplification_stressor_like</th><td class="negative"><span>-0.375</span></td><td class="negative"><span>-0.844</span></td><td class="negative"><span>-0.480</span></td><td class="negative"><span>-0.472</span></td><td class="negative"><span>-0.426</span></td></tr></tbody>
+        </table>
+      </div>
+    </section>
+    
+    
+    <section>
+      <div class="section-heading">
+        <h2>Cross-Profile Summary</h2>
+        <p>Broadly stabilizing means consistently positive under this synthetic model. Profile-specific means rank or score changes sharply.</p>
+      </div>
+      <div class="summary-grid">
+        <article>
+          <h3>Consistently Positive</h3>
+          <ul><li><strong>nmda_support_like</strong> mean 0.453, range 0.301, rank range 0, top profiles schizophrenia_like, depression_like, mania_like, anxiety_like, mixed_state_like</li><li><strong>5ht2a_antagonist_like</strong> mean 0.362, range 0.041, rank range 1, top profiles schizophrenia_like, depression_like, mania_like, anxiety_like, mixed_state_like</li><li><strong>muscarinic_modulation_like</strong> mean 0.310, range 0.262, rank range 1, top profiles schizophrenia_like, depression_like, mania_like, anxiety_like, mixed_state_like</li><li><strong>adrenergic_dampening_like</strong> mean 0.142, range 0.080, rank range 2, top profiles none</li><li><strong>d2_partial_agonist_like</strong> mean 0.140, range 0.183, rank range 2, top profiles none</li></ul>
+        </article>
+        <article>
+          <h3>Highly Profile-Specific</h3>
+          <ul><li><strong>gaba_stabilizing_like</strong> mean 0.092, range 0.155, rank range 3, top profiles none</li><li><strong>d2_antagonist_like</strong> mean 0.061, range 0.271, rank range 2, top profiles none</li><li><strong>d2_partial_agonist_like</strong> mean 0.140, range 0.183, rank range 2, top profiles none</li><li><strong>adrenergic_dampening_like</strong> mean 0.142, range 0.080, rank range 2, top profiles none</li><li><strong>glutamate_amplification_stressor_like</strong> mean -0.519, range 0.469, rank range 1, top profiles none</li></ul>
+        </article>
+      </div>
+    </section>
+    
+    <footer>
+      <p>Φ.review does not recommend medication.</p>
+      <p>Φ.review does not infer treatment.</p>
+      <p>Profile comparison is synthetic ranking review, not clinical comparison.</p>
+      <p>Clinical claims are denied unless externally validated.</p>
+    </footer>
+  </main>
+</body>
+</html>

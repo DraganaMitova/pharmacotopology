@@ -99,8 +99,10 @@ infrastructure without pretending to be useful as medicine.
 src/pharmacotopology/                 core simulator and boundary model
 scripts/run_clean_pharmacotopology_layer.py
 scripts/render_pharmacotopology_dashboard.py
+scripts/render_profile_comparison_dashboard.py
 scripts/export_pharmacotopology_csv.py
 scripts/run_sensitivity_analysis.py
+scripts/explore_sensitivity.py
 scripts/validate_field_trace.py
 scripts/measure_field_trace.py
 tests/                               pytest coverage for ranking and safety
@@ -131,6 +133,12 @@ Render the static dashboard:
 python3 scripts/render_pharmacotopology_dashboard.py
 ```
 
+Render the multi-profile dashboard:
+
+```bash
+python3 scripts/render_profile_comparison_dashboard.py
+```
+
 Default artifacts are written to:
 
 ```text
@@ -141,6 +149,12 @@ The dashboard is generated at:
 
 ```text
 first_contact_clean_pharmacotopology_layer_run/pharmacotopology_dashboard.html
+```
+
+The multi-profile dashboard is generated at:
+
+```text
+first_contact_clean_pharmacotopology_layer_run/multi_profile_dashboard.html
 ```
 
 It is plain HTML/CSS/SVG and does not require a web server or external packages.
@@ -209,6 +223,23 @@ same mechanism set against every built-in profile and reports top mechanism,
 fit label, net interval, and destabilizing count. It is a ranking robustness
 view, not a clinical comparison.
 
+## Multi-Profile Dashboard
+
+Render a dedicated cross-profile dashboard:
+
+```bash
+python3 scripts/render_profile_comparison_dashboard.py
+```
+
+It includes:
+
+```text
+baseline topology maps for every built-in profile
+combined ranking table with rank / net score per profile
+mechanism/profile net-score heatmap
+consistently positive vs highly profile-specific summary
+```
+
 ## Sensitivity Analysis
 
 Run a local pressure sweep to see whether rankings are stable when source
@@ -232,6 +263,30 @@ first_contact_clean_pharmacotopology_layer_run/sensitivity_rankings.csv
 ```
 
 This is a robustness review, not a clinical interpretation.
+
+## Sensitivity Explorer
+
+Explore a mechanism assumption with deterministic Monte Carlo perturbations:
+
+```bash
+python3 scripts/explore_sensitivity.py --profile schizophrenia_like --mechanism nmda_support_like --vary collapse_cost 0.05:0.25
+```
+
+You can also vary a delta dimension:
+
+```bash
+python3 scripts/explore_sensitivity.py --mechanism nmda_support_like --vary delta:cognitive_fragmentation -0.30:-0.05
+```
+
+Default explorer outputs:
+
+```text
+first_contact_clean_pharmacotopology_layer_run/sensitivity_explorer_report.json
+first_contact_clean_pharmacotopology_layer_run/sensitivity_explorer_samples.csv
+```
+
+The explorer reports a net-score distribution for the selected mechanism and a
+robustness score for every mechanism under sampled perturbations.
 
 ## Interactive Wrapper
 
@@ -298,6 +353,9 @@ pharmacotopology_deltas.csv
 sensitivity_analysis_report.json
 sensitivity_rankings.csv
 pharmacotopology_dashboard.html
+multi_profile_dashboard.html
+sensitivity_explorer_report.json
+sensitivity_explorer_samples.csv
 field_validation.json
 field_metrics.json
 ```

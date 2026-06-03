@@ -96,8 +96,10 @@ destabilizing perturbation
 ```bash
 python3 scripts/run_clean_pharmacotopology_layer.py
 python3 scripts/run_clean_pharmacotopology_layer.py --profile anxiety_like
+python3 scripts/render_profile_comparison_dashboard.py
 python3 scripts/export_pharmacotopology_csv.py
 python3 scripts/run_sensitivity_analysis.py --profile anxiety_like --dimensions threat_propagation,sleep_instability
+python3 scripts/explore_sensitivity.py --profile schizophrenia_like --mechanism nmda_support_like --vary collapse_cost 0.05:0.25
 python3 scripts/validate_field_trace.py first_contact_clean_pharmacotopology_layer_run
 python3 scripts/measure_field_trace.py first_contact_clean_pharmacotopology_layer_run
 ```
@@ -126,6 +128,14 @@ Sensitivity analysis is written to:
 ```text
 first_contact_clean_pharmacotopology_layer_run/sensitivity_analysis_report.json
 first_contact_clean_pharmacotopology_layer_run/sensitivity_rankings.csv
+first_contact_clean_pharmacotopology_layer_run/sensitivity_explorer_report.json
+first_contact_clean_pharmacotopology_layer_run/sensitivity_explorer_samples.csv
+```
+
+The multi-profile dashboard is written to:
+
+```text
+first_contact_clean_pharmacotopology_layer_run/multi_profile_dashboard.html
 ```
 
 Expected safety posture:
