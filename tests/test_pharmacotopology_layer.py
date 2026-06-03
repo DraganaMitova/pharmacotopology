@@ -12,8 +12,11 @@ from pharmacotopology.layer import (
     DEFAULT_MECHANISM_VECTORS,
     DEFAULT_NORMAL_BOUNDED_PROFILE,
     DEFAULT_SCHIZOPHRENIA_LIKE_PROFILE,
+    DEFAULT_TOPOLOGY_PROFILES,
+    PATHOLOGY_DIMENSIONS,
     apply_mechanism_vector,
     build_pharmacotopology_review,
+    get_topology_profile,
     rank_perturbation_results,
     run_clean_pharmacotopology_layer,
 )
@@ -42,6 +45,23 @@ def test_pharmacotopology_ranking_separates_helpful_and_destabilizing() -> None:
     assert destabilizing.fit_label == "destabilizing"
     assert destabilizing.pathology_reduction_score < 0.0
     assert top.net_topology_health_score > destabilizing.net_topology_health_score
+
+
+def test_topology_profile_catalog_exposes_synthetic_profiles() -> None:
+    assert set(DEFAULT_TOPOLOGY_PROFILES) == {
+        "schizophrenia_like",
+        "depression_like",
+        "mania_like",
+        "anxiety_like",
+    }
+
+    for profile in DEFAULT_TOPOLOGY_PROFILES.values():
+        assert tuple(profile.dimensions) == PATHOLOGY_DIMENSIONS
+        assert "not a diagnosis" in profile.description
+
+    assert get_topology_profile("mania_like").profile_id == (
+        "mania_like_topology_profile"
+    )
 
 
 def test_pharmacotopology_review_denies_clinical_claims() -> None:
@@ -112,3 +132,23 @@ def test_clean_pharmacotopology_run_writes_bounded_artifacts(tmp_path: Path) -> 
     assert packet[FieldKey.PHARMACOTOPOLOGY_REVIEW]["Φ.scope"][
         "clinical_advice_created"
     ] is False
+
+
+def test_clean_pharmacotopology_run_accepts_synthetic_profile(
+    tmp_path: Path,
+) -> None:
+    run_clean_pharmacotopology_layer(
+        tmp_path,
+        source=get_topology_profile("anxiety_like"),
+    )
+
+    rows = [
+        json.loads(line)
+        for line in (tmp_path / "memory.jsonl").read_text(encoding="utf-8").splitlines()
+        if line.strip()
+    ]
+    packet = json.loads(rows[0]["content"])
+    review = packet[FieldKey.PHARMACOTOPOLOGY_REVIEW]
+
+    assert review["Φ.source_profile"]["profile_id"] == "anxiety_like_topology_profile"
+    assert review["Φ.claim"]["real_patient_inference_created"] is False

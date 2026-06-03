@@ -42,6 +42,17 @@ negative shutdown
 sleep instability
 ```
 
+Additional synthetic source profiles are available for bounded comparison:
+
+```text
+depression-like topology profile
+mania-like topology profile
+anxiety-like topology profile
+```
+
+All profiles are synthetic pressure maps. They are not diagnoses, patient
+models, or medication targets.
+
 Lower pressure means closer to bounded pattern review.
 
 The first mechanism vectors are hypothesis-only receptor/mechanism classes:
@@ -78,6 +89,9 @@ destabilizing perturbation
 
 ```bash
 python3 scripts/run_clean_pharmacotopology_layer.py
+python3 scripts/run_clean_pharmacotopology_layer.py --profile anxiety_like
+python3 scripts/export_pharmacotopology_csv.py
+python3 scripts/run_sensitivity_analysis.py --profile anxiety_like --dimensions threat_propagation,sleep_instability
 python3 scripts/validate_field_trace.py first_contact_clean_pharmacotopology_layer_run
 python3 scripts/measure_field_trace.py first_contact_clean_pharmacotopology_layer_run
 ```
@@ -92,6 +106,20 @@ Calibration readiness is written to:
 
 ```text
 first_contact_clean_pharmacotopology_layer_run/calibration_readiness_report.json
+```
+
+CSV exports are written to:
+
+```text
+first_contact_clean_pharmacotopology_layer_run/pharmacotopology_rankings.csv
+first_contact_clean_pharmacotopology_layer_run/pharmacotopology_deltas.csv
+```
+
+Sensitivity analysis is written to:
+
+```text
+first_contact_clean_pharmacotopology_layer_run/sensitivity_analysis_report.json
+first_contact_clean_pharmacotopology_layer_run/sensitivity_rankings.csv
 ```
 
 Expected safety posture:

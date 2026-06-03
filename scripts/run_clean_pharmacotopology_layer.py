@@ -13,6 +13,8 @@ if str(SRC_ROOT) not in sys.path:
 
 from pharmacotopology.layer import (  # noqa: E402
     DEFAULT_PHARMACOTOPOLOGY_SURFACE,
+    DEFAULT_TOPOLOGY_PROFILES,
+    get_topology_profile,
     run_clean_pharmacotopology_layer,
 )
 
@@ -31,11 +33,18 @@ def main() -> None:
         default=DEFAULT_PHARMACOTOPOLOGY_SURFACE,
         help="Quarantined operator surface for the simulation request.",
     )
+    parser.add_argument(
+        "--profile",
+        choices=sorted(DEFAULT_TOPOLOGY_PROFILES),
+        default="schizophrenia_like",
+        help="Synthetic topology profile to use as the source pressure map.",
+    )
     args = parser.parse_args()
 
     report = run_clean_pharmacotopology_layer(
         Path(args.run_dir),
         surface=args.surface,
+        source=get_topology_profile(args.profile),
     )
     print(json.dumps(asdict(report), ensure_ascii=False, indent=2, sort_keys=True))
 

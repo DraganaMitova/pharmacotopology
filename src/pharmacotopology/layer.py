@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 from dataclasses import asdict, dataclass
 from pathlib import Path
-from typing import Any, Mapping, Sequence
+from typing import Any, Mapping, Optional, Sequence
 
 from pharmacotopology.field_alphabet import (
     FIELD_CLOSED_CHANNELS,
@@ -49,6 +49,10 @@ PHARMACOTOPOLOGY_GENERATED_FILES: tuple[str, ...] = (
     "session_records.jsonl",
     "clean_pharmacotopology_layer_report.json",
     "calibration_readiness_report.json",
+    "pharmacotopology_rankings.csv",
+    "pharmacotopology_deltas.csv",
+    "sensitivity_analysis_report.json",
+    "sensitivity_rankings.csv",
     "pharmacotopology_dashboard.html",
     "field_validation.json",
     "field_metrics.json",
@@ -178,6 +182,69 @@ DEFAULT_SCHIZOPHRENIA_LIKE_PROFILE = TopologyProfile(
     },
 )
 
+DEFAULT_DEPRESSION_LIKE_PROFILE = TopologyProfile(
+    profile_id="depression_like_topology_profile",
+    description=(
+        "Synthetic low-agency shutdown pressure profile only; not a diagnosis, "
+        "patient model, or medication target."
+    ),
+    dimensions={
+        "salience_amplification": 0.42,
+        "recurrence_overbinding": 0.64,
+        "symbolic_closure_pressure": 0.54,
+        "threat_propagation": 0.50,
+        "falsification_weakness": 0.48,
+        "boundary_instability": 0.38,
+        "agency_confusion": 0.46,
+        "sensory_intrusion": 0.34,
+        "cognitive_fragmentation": 0.58,
+        "negative_shutdown": 0.88,
+        "sleep_instability": 0.72,
+    },
+)
+
+DEFAULT_MANIA_LIKE_PROFILE = TopologyProfile(
+    profile_id="mania_like_topology_profile",
+    description=(
+        "Synthetic high-salience activation pressure profile only; not a diagnosis, "
+        "patient model, or medication target."
+    ),
+    dimensions={
+        "salience_amplification": 0.92,
+        "recurrence_overbinding": 0.74,
+        "symbolic_closure_pressure": 0.66,
+        "threat_propagation": 0.52,
+        "falsification_weakness": 0.62,
+        "boundary_instability": 0.70,
+        "agency_confusion": 0.68,
+        "sensory_intrusion": 0.56,
+        "cognitive_fragmentation": 0.60,
+        "negative_shutdown": 0.28,
+        "sleep_instability": 0.90,
+    },
+)
+
+DEFAULT_ANXIETY_LIKE_PROFILE = TopologyProfile(
+    profile_id="anxiety_like_topology_profile",
+    description=(
+        "Synthetic threat-propagation pressure profile only; not a diagnosis, "
+        "patient model, or medication target."
+    ),
+    dimensions={
+        "salience_amplification": 0.62,
+        "recurrence_overbinding": 0.66,
+        "symbolic_closure_pressure": 0.58,
+        "threat_propagation": 0.90,
+        "falsification_weakness": 0.54,
+        "boundary_instability": 0.60,
+        "agency_confusion": 0.42,
+        "sensory_intrusion": 0.68,
+        "cognitive_fragmentation": 0.50,
+        "negative_shutdown": 0.46,
+        "sleep_instability": 0.78,
+    },
+)
+
 DEFAULT_NORMAL_BOUNDED_PROFILE = TopologyProfile(
     profile_id="normal_bounded_topology_profile",
     description=(
@@ -198,6 +265,23 @@ DEFAULT_NORMAL_BOUNDED_PROFILE = TopologyProfile(
         "sleep_instability": 0.20,
     },
 )
+
+DEFAULT_TOPOLOGY_PROFILES: dict[str, TopologyProfile] = {
+    "schizophrenia_like": DEFAULT_SCHIZOPHRENIA_LIKE_PROFILE,
+    "depression_like": DEFAULT_DEPRESSION_LIKE_PROFILE,
+    "mania_like": DEFAULT_MANIA_LIKE_PROFILE,
+    "anxiety_like": DEFAULT_ANXIETY_LIKE_PROFILE,
+}
+
+
+def get_topology_profile(profile_key: str) -> TopologyProfile:
+    try:
+        return DEFAULT_TOPOLOGY_PROFILES[profile_key]
+    except KeyError as exc:
+        available = ", ".join(sorted(DEFAULT_TOPOLOGY_PROFILES))
+        raise ValueError(
+            f"Unknown topology profile {profile_key!r}. Available: {available}"
+        ) from exc
 
 DEFAULT_MECHANISM_VECTORS: tuple[MechanismVector, ...] = (
     MechanismVector(
@@ -735,7 +819,11 @@ def build_pharmacotopology_review(
     }
 
 
-def build_pharmacotopology_packet(input_atom: dict[str, object]) -> dict[str, Any]:
+def build_pharmacotopology_packet(
+    input_atom: dict[str, object],
+    *,
+    review: Optional[dict[str, Any]] = None,
+) -> dict[str, Any]:
     return {
         FieldKey.SCHEMA: "κ.clean.pharmacotopology_layer.1",
         FieldKey.CYCLE: 1,
@@ -747,7 +835,7 @@ def build_pharmacotopology_packet(input_atom: dict[str, object]) -> dict[str, An
         FieldKey.MEMORY: "μ.clean.pharmacotopology_layer.Φ.τ1.ρ0",
         FieldKey.BOUNDARY: list(FIELD_CLOSED_CHANNELS),
         FieldKey.RESPONSE: FieldResponse.READOUT,
-        FieldKey.PHARMACOTOPOLOGY_REVIEW: build_pharmacotopology_review(),
+        FieldKey.PHARMACOTOPOLOGY_REVIEW: review or build_pharmacotopology_review(),
         FieldKey.NEXT: "ν.claim_boundary",
         FieldKey.STOP: "ω.clean",
     }
@@ -895,6 +983,9 @@ def append_packet(run_dir: Path, packet: dict[str, Any]) -> None:
 def run_clean_pharmacotopology_layer(
     run_dir: Path,
     surface: str = DEFAULT_PHARMACOTOPOLOGY_SURFACE,
+    source: TopologyProfile = DEFAULT_SCHIZOPHRENIA_LIKE_PROFILE,
+    target: TopologyProfile = DEFAULT_NORMAL_BOUNDED_PROFILE,
+    mechanisms: Sequence[MechanismVector] = DEFAULT_MECHANISM_VECTORS,
 ) -> CleanPharmacotopologyLayerReport:
     reset_pharmacotopology_run_dir(run_dir)
     quarantine = InputQuarantine(run_dir / "input_stream.jsonl")
@@ -922,7 +1013,12 @@ def run_clean_pharmacotopology_layer(
         write_report(run_dir, report)
         return report
 
-    packet = build_pharmacotopology_packet(atom.field_packet())
+    review = build_pharmacotopology_review(
+        source=source,
+        target=target,
+        mechanisms=mechanisms,
+    )
+    packet = build_pharmacotopology_packet(atom.field_packet(), review=review)
     append_packet(run_dir, packet)
     report = report_from_review(packet[FieldKey.PHARMACOTOPOLOGY_REVIEW])
     write_calibration_readiness_report(

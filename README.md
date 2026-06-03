@@ -99,10 +99,13 @@ infrastructure without pretending to be useful as medicine.
 src/pharmacotopology/                 core simulator and boundary model
 scripts/run_clean_pharmacotopology_layer.py
 scripts/render_pharmacotopology_dashboard.py
+scripts/export_pharmacotopology_csv.py
+scripts/run_sensitivity_analysis.py
 scripts/validate_field_trace.py
 scripts/measure_field_trace.py
 tests/                               pytest coverage for ranking and safety
 PHARMACOTOPOLOGY_LAYER.md             longer design note
+LICENSE                              MIT license
 ```
 
 The package has no runtime dependencies and targets Python 3.9+.
@@ -113,6 +116,12 @@ Generate a clean run:
 
 ```bash
 python3 scripts/run_clean_pharmacotopology_layer.py
+```
+
+Run against another synthetic topology profile:
+
+```bash
+python3 scripts/run_clean_pharmacotopology_layer.py --profile anxiety_like
 ```
 
 Render the static dashboard:
@@ -134,6 +143,63 @@ first_contact_clean_pharmacotopology_layer_run/pharmacotopology_dashboard.html
 ```
 
 It is plain HTML/CSS/SVG and does not require a web server or external packages.
+
+## Profiles
+
+The built-in source profiles are synthetic pressure maps:
+
+```text
+schizophrenia_like
+depression_like
+mania_like
+anxiety_like
+```
+
+They are for hypothesis comparison only. They are not diagnoses, patient
+models, or medication targets.
+
+## Export CSV
+
+Export machine-readable rankings and per-dimension deltas:
+
+```bash
+python3 scripts/export_pharmacotopology_csv.py
+```
+
+Default CSV outputs:
+
+```text
+first_contact_clean_pharmacotopology_layer_run/pharmacotopology_rankings.csv
+first_contact_clean_pharmacotopology_layer_run/pharmacotopology_deltas.csv
+```
+
+The ranking CSV includes score intervals, evidence weight, uncertainty radius,
+and evidence readiness labels. The delta CSV includes every topology dimension
+plus collapse cost.
+
+## Sensitivity Analysis
+
+Run a local pressure sweep to see whether rankings are stable when source
+profile pressures move up or down:
+
+```bash
+python3 scripts/run_sensitivity_analysis.py
+```
+
+Sweep a smaller set of dimensions:
+
+```bash
+python3 scripts/run_sensitivity_analysis.py --profile anxiety_like --dimensions threat_propagation,sleep_instability
+```
+
+Default sensitivity outputs:
+
+```text
+first_contact_clean_pharmacotopology_layer_run/sensitivity_analysis_report.json
+first_contact_clean_pharmacotopology_layer_run/sensitivity_rankings.csv
+```
+
+This is a robustness review, not a clinical interpretation.
 
 ## Validate
 
@@ -188,6 +254,10 @@ audit.jsonl
 session_records.jsonl
 clean_pharmacotopology_layer_report.json
 calibration_readiness_report.json
+pharmacotopology_rankings.csv
+pharmacotopology_deltas.csv
+sensitivity_analysis_report.json
+sensitivity_rankings.csv
 pharmacotopology_dashboard.html
 field_validation.json
 field_metrics.json
@@ -216,5 +286,4 @@ and better ways to explain what the scores do and do not mean.
 
 ## License
 
-No license file is included yet. Until one is added, treat reuse rights as not
-granted by default.
+MIT. See [LICENSE](LICENSE).
