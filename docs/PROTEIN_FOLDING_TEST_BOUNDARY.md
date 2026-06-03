@@ -280,11 +280,6 @@ real_folding_10_order_aware_rows.csv
 real_folding_10_contact_prior.csv
 real_folding_10_control_separation.csv
 real_folding_10_order_aware_dashboard.html
-real_folding_10_motif_alignment_report.json
-real_folding_10_motif_alignment_rows.csv
-real_folding_10_failure_diagnosis.csv
-real_folding_10_evidence_conflicts.csv
-real_folding_10_motif_alignment_dashboard.html
 ```
 
 The current checked-in order-aware report says:
@@ -376,6 +371,80 @@ This means the layer has become more cautious rather than more accurate. That
 is intentional for this revision. A high-conflict motif vector now usually
 abstains, and high-confidence wrong predictions are gated to zero on this
 locked 10-row slice.
+
+## Hierarchical Folding Decision Gates
+
+The next diagnostic layer is:
+
+```text
+hierarchical_folding_decision_gate_benchmark
+```
+
+It still receives sequence only during prediction. It uses the same motif
+evidence vector, but it no longer asks for a fold class first. It routes the
+evidence through staged gates:
+
+```text
+Gate 1: disorder / flexibility
+Gate 2: compactness / closure
+Gate 3: domain segmentation
+Gate 4: secondary structure
+Gate 5: confidence / abstention
+```
+
+The important boundary distinction is:
+
+```text
+segmented but compact
+segmented and disordered
+```
+
+Domain-boundary evidence is treated as folded multidomain only when compact
+core and long-range closure are also present. If disorder pressure is high and
+compact closure is weak, segmentation is interpreted as flexible/disordered
+regional structure instead.
+
+Run it with:
+
+```bash
+python3 scripts/run_hierarchical_gate_benchmark.py
+```
+
+It writes:
+
+```text
+real_folding_10_hierarchical_gate_report.json
+real_folding_10_hierarchical_gate_rows.csv
+real_folding_10_gate_paths.csv
+real_folding_10_gate_failures.csv
+real_folding_10_hierarchical_gate_dashboard.html
+```
+
+The current checked-in hierarchical gate report says:
+
+```text
+prediction_vs_structure_accuracy = 0.6
+prediction_vs_label_accuracy = 0.6
+forced_prediction_count = 6
+abstained_prediction_count = 4
+high_confidence_wrong_count = 0
+evidence_conflict_mean = 0.549305
+disorder_gate_accuracy = 1.0
+compactness_gate_accuracy = 1.0
+segmentation_gate_accuracy = 1.0
+secondary_structure_gate_accuracy = 0.428571
+flexible_segmentation_false_multidomain_count = 0
+false_beta_from_disorder_count = 0
+false_mixed_from_alpha_count = 0
+hierarchy_changed_raw_prediction_count = 9
+revision_required = true
+claim_allowed = false
+folding_problem_solved = false
+```
+
+This is still not a folding solution. It is a better routing layer: it reduces
+specific gate-order failures while preserving abstention when secondary
+structure evidence is not stable enough.
 
 The 500-file is a target shell, not a completed benchmark. It records the
 intended proof ladder and current lock blockers until real rows exist.
@@ -484,6 +553,16 @@ real_folding_10_order_aware_rows.csv
 real_folding_10_contact_prior.csv
 real_folding_10_control_separation.csv
 real_folding_10_order_aware_dashboard.html
+real_folding_10_motif_alignment_report.json
+real_folding_10_motif_alignment_rows.csv
+real_folding_10_failure_diagnosis.csv
+real_folding_10_evidence_conflicts.csv
+real_folding_10_motif_alignment_dashboard.html
+real_folding_10_hierarchical_gate_report.json
+real_folding_10_hierarchical_gate_rows.csv
+real_folding_10_gate_paths.csv
+real_folding_10_gate_failures.csv
+real_folding_10_hierarchical_gate_dashboard.html
 ```
 
 When a benchmark file is loaded, the JSON report also includes:

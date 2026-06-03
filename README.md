@@ -140,6 +140,17 @@ is not better folding accuracy yet. It is a more useful failure surface: the
 model now shows when motif evidence is conflicted enough that it should
 abstain instead of making a confident class claim.
 
+The next layer is `hierarchical_folding_decision_gate_benchmark`. It routes the
+same sequence-only motif evidence through explicit gates: disorder/flexibility,
+compactness/closure, domain segmentation, secondary structure, and confidence.
+This separates flexible segmentation from folded multidomain evidence and
+requires beta evidence to include pairing support, not only alternation. On the
+same 10 locked rows it reports `prediction_vs_structure_accuracy = 0.6`,
+`forced_prediction_count = 6`, `abstained_prediction_count = 4`,
+`high_confidence_wrong_count = 0`, and all three targeted failure counters at
+zero: disorder-as-beta, alpha-as-mixed, and flexible-segmentation-as-multidomain.
+It is still not a folding solution.
+
 See [docs/PROTEIN_FOLDING_TEST_BOUNDARY.md](docs/PROTEIN_FOLDING_TEST_BOUNDARY.md).
 
 External benchmark rows can be loaded separately:
@@ -239,6 +250,8 @@ scripts/render_folding_benchmark_dashboard.py
 scripts/extract_structure_topology_signatures.py
 scripts/run_structure_folding_topology_benchmark.py
 scripts/run_order_aware_folding_topology_benchmark.py
+scripts/run_motif_alignment_benchmark.py
+scripts/run_hierarchical_gate_benchmark.py
 scripts/validate_field_trace.py
 scripts/measure_field_trace.py
 tests/                               pytest coverage for ranking and safety
@@ -372,6 +385,34 @@ uncertainty_gating_used = true
 forced_prediction_count = 2
 abstained_prediction_count = 8
 high_confidence_wrong_count = 0
+revision_required = true
+claim_allowed = false
+folding_problem_solved = false
+```
+
+Run the hierarchical folding decision gates:
+
+```bash
+python3 scripts/run_hierarchical_gate_benchmark.py
+```
+
+The checked-in hierarchical gate report currently says:
+
+```text
+prediction_vs_structure_accuracy = 0.6
+prediction_vs_label_accuracy = 0.6
+forced_prediction_count = 6
+abstained_prediction_count = 4
+high_confidence_wrong_count = 0
+evidence_conflict_mean = 0.549305
+disorder_gate_accuracy = 1.0
+compactness_gate_accuracy = 1.0
+segmentation_gate_accuracy = 1.0
+secondary_structure_gate_accuracy = 0.428571
+flexible_segmentation_false_multidomain_count = 0
+false_beta_from_disorder_count = 0
+false_mixed_from_alpha_count = 0
+hierarchy_changed_raw_prediction_count = 9
 revision_required = true
 claim_allowed = false
 folding_problem_solved = false
@@ -641,6 +682,11 @@ real_folding_10_motif_alignment_rows.csv
 real_folding_10_failure_diagnosis.csv
 real_folding_10_evidence_conflicts.csv
 real_folding_10_motif_alignment_dashboard.html
+real_folding_10_hierarchical_gate_report.json
+real_folding_10_hierarchical_gate_rows.csv
+real_folding_10_gate_paths.csv
+real_folding_10_gate_failures.csv
+real_folding_10_hierarchical_gate_dashboard.html
 field_validation.json
 field_metrics.json
 ```
