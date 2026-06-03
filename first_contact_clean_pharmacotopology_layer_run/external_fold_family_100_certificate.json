@@ -1,0 +1,30 @@
+{
+  "architecture_axis_claim_allowed": false,
+  "axis_profile_claim_allowed": true,
+  "certificate_kind": "external_fold_family_holdout_safety_certificate",
+  "claim_allowed": false,
+  "development_overlap_count": 0,
+  "development_sequence_overlap_count": 0,
+  "external_fold_family_holdout_complete": true,
+  "folding_problem_solved": false,
+  "global_fold_class_claim_allowed": false,
+  "guard_overrides": 0,
+  "holdout_lock_valid": true,
+  "holdout_non_overlap_valid": true,
+  "holdout_row_count": 100,
+  "output_artifacts": [
+    "external_fold_family_100_report.json",
+    "external_fold_family_100_rows.csv",
+    "external_fold_family_100_family_summary.csv",
+    "external_fold_family_100_axis_conflicts.csv",
+    "external_fold_family_100_abstentions.csv",
+    "external_fold_family_100_failure_cohorts.csv",
+    "external_fold_family_100_dashboard.html",
+    "external_fold_family_100_certificate.json"
+  ],
+  "prediction_logic_changed_in_this_batch": false,
+  "raw_sequences_exported": false,
+  "thresholds_changed_in_this_batch": false,
+  "unsafe_axis_claim_count": 36,
+  "unsafe_class_recovery_count": 0
+}

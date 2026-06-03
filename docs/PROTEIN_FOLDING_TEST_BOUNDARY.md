@@ -784,6 +784,55 @@ This batch improves architecture coverage while preserving the same safety
 closure: no global fold class recovery, no secondary-structure leakage, no
 label leakage, and no architecture same-axis conflicts.
 
+## External Fold-Family Holdout
+
+The next layer is:
+
+```text
+external_fold_family_holdout_benchmark
+```
+
+This is a falsification layer, not a repair layer. It runs the current safe
+axis stack without tuning against a locked 100-row non-overlapping holdout. See
+`docs/EXTERNAL_FOLD_FAMILY_HOLDOUT_BOUNDARY.md` for the full boundary.
+
+Run it with:
+
+```bash
+python3 scripts/run_external_fold_family_holdout_benchmark.py
+```
+
+The current checked-in holdout report says:
+
+```text
+holdout_row_count = 100
+holdout_unique_sequence_count = 100
+holdout_unique_family_count = 23
+development_overlap_count = 0
+development_sequence_overlap_count = 0
+holdout_lock_valid = true
+holdout_non_overlap_valid = true
+
+axis_profile_coverage = 0.78
+architecture_axis_coverage = 0.17
+axis_profile_same_axis_conflict_count = 22
+architecture_axis_same_axis_conflict_count = 14
+forced_same_axis_conflict_count = 22
+high_confidence_wrong_count_after_axis_scoring = 17
+unsafe_axis_claim_count = 36
+unsafe_class_recovery_count = 0
+guard_override_count = 0
+family_generalization_status = conflicts_detected
+global_fold_class_claim_allowed = false
+axis_profile_claim_allowed = true
+architecture_axis_claim_allowed = false
+claim_allowed = false
+folding_problem_solved = false
+```
+
+This result shows partial generalization and real holdout failures. The next
+repair batch should be selected from `external_fold_family_100_failure_cohorts.csv`.
+
 The 500-file is a target shell, not a completed benchmark. It records the
 intended proof ladder and current lock blockers until real rows exist.
 
@@ -932,6 +981,14 @@ real_folding_50_architecture_axis_conflicts.csv
 real_folding_50_architecture_axis_abstentions.csv
 real_folding_50_architecture_axis_dashboard.html
 real_folding_50_architecture_axis_certificate.json
+external_fold_family_100_report.json
+external_fold_family_100_rows.csv
+external_fold_family_100_family_summary.csv
+external_fold_family_100_axis_conflicts.csv
+external_fold_family_100_abstentions.csv
+external_fold_family_100_failure_cohorts.csv
+external_fold_family_100_dashboard.html
+external_fold_family_100_certificate.json
 ```
 
 When a benchmark file is loaded, the JSON report also includes:

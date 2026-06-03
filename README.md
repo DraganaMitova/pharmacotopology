@@ -307,6 +307,7 @@ scripts/run_regime_analysis_benchmark.py
 scripts/run_fold_axis_adjudication_benchmark.py
 scripts/run_fold_axis_profile_benchmark.py
 scripts/run_architecture_axis_benchmark.py
+scripts/run_external_fold_family_holdout_benchmark.py
 scripts/validate_field_trace.py
 scripts/measure_field_trace.py
 tests/                               pytest coverage for ranking and safety
@@ -316,6 +317,7 @@ docs/PROTEIN_FOLDING_TEST_BOUNDARY.md folding benchmark boundary note
 docs/FOLD_AXIS_TRUTH_BOUNDARY.md     orthogonal fold-axis truth boundary
 docs/FOLD_AXIS_PROFILE_BOUNDARY.md   axis-safe partial profile boundary
 docs/FOLD_ARCHITECTURE_AXIS_BOUNDARY.md architecture-axis evidence boundary
+docs/EXTERNAL_FOLD_FAMILY_HOLDOUT_BOUNDARY.md external holdout boundary
 PHARMACOTOPOLOGY_LAYER.md             longer design note
 LICENSE                              MIT license
 ```
@@ -649,6 +651,57 @@ axis_profile_claim_allowed = true
 claim_allowed = false
 folding_problem_solved = false
 ```
+
+Run the external fold-family holdout falsification benchmark:
+
+```bash
+python3 scripts/run_external_fold_family_holdout_benchmark.py
+```
+
+It writes:
+
+```text
+external_fold_family_100_report.json
+external_fold_family_100_rows.csv
+external_fold_family_100_family_summary.csv
+external_fold_family_100_axis_conflicts.csv
+external_fold_family_100_abstentions.csv
+external_fold_family_100_failure_cohorts.csv
+external_fold_family_100_dashboard.html
+external_fold_family_100_certificate.json
+```
+
+The checked-in holdout report currently says:
+
+```text
+holdout_row_count = 100
+holdout_unique_sequence_count = 100
+holdout_unique_family_count = 23
+development_overlap_count = 0
+development_sequence_overlap_count = 0
+holdout_lock_valid = true
+holdout_non_overlap_valid = true
+
+axis_profile_coverage = 0.78
+architecture_axis_coverage = 0.17
+axis_profile_same_axis_conflict_count = 22
+architecture_axis_same_axis_conflict_count = 14
+forced_same_axis_conflict_count = 22
+high_confidence_wrong_count_after_axis_scoring = 17
+unsafe_axis_claim_count = 36
+unsafe_class_recovery_count = 0
+guard_override_count = 0
+family_generalization_status = conflicts_detected
+global_fold_class_claim_allowed = false
+axis_profile_claim_allowed = true
+architecture_axis_claim_allowed = false
+claim_allowed = false
+folding_problem_solved = false
+```
+
+This is a falsification result, not a regression fix. The current stack was run
+without threshold tuning on non-overlapping fold-family rows, and the failure
+cohorts now define the next repair target.
 
 Build the 500-protein locked benchmark target shell:
 

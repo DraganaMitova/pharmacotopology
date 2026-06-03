@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>External Fold-Family Holdout</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f6f7f2;
+      color: #1f2523;
+    }
+    header {
+      padding: 32px;
+      background: #21312d;
+      color: #f6f7f2;
+    }
+    main {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    h1, h2 {
+      margin: 0 0 12px;
+      letter-spacing: 0;
+    }
+    section {
+      margin: 24px 0;
+    }
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .metric {
+      background: #ffffff;
+      border: 1px solid #d5ddd5;
+      border-radius: 6px;
+      padding: 14px;
+    }
+    .metric span {
+      display: block;
+      color: #58635e;
+      font-size: 12px;
+      overflow-wrap: anywhere;
+    }
+    .metric strong {
+      display: block;
+      margin-top: 8px;
+      font-size: 22px;
+    }
+    .rule-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 12px;
+    }
+    .rule {
+      background: #fff;
+      border: 1px solid #d5ddd5;
+      border-radius: 6px;
+      padding: 14px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      border: 1px solid #d5ddd5;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    th, td {
+      padding: 9px 10px;
+      border-bottom: 1px solid #e8eee8;
+      text-align: left;
+      font-size: 13px;
+      vertical-align: top;
+      overflow-wrap: anywhere;
+    }
+    th {
+      background: #e8eee8;
+      color: #34423d;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>External Holdout, Not Development Benchmark</h1>
+    <p>No threshold tuning in this batch. The current safe axis stack is evaluated as-is on non-overlapping fold-family rows.</p>
+    <div class="metrics"><div class="metric"><span>holdout_row_count</span><strong>100</strong></div><div class="metric"><span>holdout_non_overlap_valid</span><strong>True</strong></div><div class="metric"><span>axis_profile_coverage</span><strong>0.78</strong></div><div class="metric"><span>architecture_axis_coverage</span><strong>0.17</strong></div><div class="metric"><span>axis_profile_same_axis_conflict_count</span><strong>22</strong></div><div class="metric"><span>architecture_axis_same_axis_conflict_count</span><strong>14</strong></div><div class="metric"><span>high_confidence_wrong_count_after_axis_scoring</span><strong>17</strong></div><div class="metric"><span>unsafe_class_recovery_count</span><strong>0</strong></div><div class="metric"><span>family_generalization_status</span><strong>conflicts_detected</strong></div><div class="metric"><span>claim_allowed</span><strong>False</strong></div></div>
+  </header>
+  <main>
+    <section>
+      <h2>Safety Sections</h2>
+      <div class="rule-grid">
+        <div class="rule"><strong>No Threshold Tuning In This Batch</strong><br>Prediction logic is called unchanged.</div>
+        <div class="rule"><strong>Family Non-Overlap Check</strong><br>Row IDs, source IDs, and sequence hashes are checked against the development 50.</div>
+        <div class="rule"><strong>Axis Profile Generalization</strong><br>Partial axis claims are scored by truth axis after prediction.</div>
+        <div class="rule"><strong>Architecture Axis Generalization</strong><br>Architecture packets are evaluated without rule repair.</div>
+        <div class="rule"><strong>Abstention Is Allowed</strong><br>Coverage drops are valid falsification signals.</div>
+        <div class="rule"><strong>Unsafe Class Recovery Remains Forbidden</strong><br>Global fold class stays locked.</div>
+        <div class="rule"><strong>Global Fold Class Still Locked</strong><br>claim_allowed remains false.</div>
+        <div class="rule"><strong>Next Repair Candidates</strong><br>Use cohorts below; do not infer fixes from this dashboard alone.</div>
+      </div>
+    </section>
+    <section><h2>Family Non-Overlap Check</h2><table><thead><tr><th>key</th><th>value</th></tr></thead><tbody><tr><td>development_overlap_count</td><td>0</td></tr><tr><td>development_sequence_overlap_count</td><td>0</td></tr><tr><td>development_family_overlap_count</td><td>0</td></tr><tr><td>holdout_non_overlap_valid</td><td>True</td></tr></tbody></table></section>
+    <section><h2>Axis Coverage</h2><table><thead><tr><th>key</th><th>value</th></tr></thead><tbody><tr><td>collapsed_class_coverage</td><td>0.37</td></tr><tr><td>axis_profile_coverage</td><td>0.78</td></tr><tr><td>secondary_axis_coverage</td><td>0.05</td></tr><tr><td>architecture_axis_coverage</td><td>0.17</td></tr><tr><td>order_axis_coverage</td><td>0.76</td></tr><tr><td>environment_axis_coverage</td><td>0.17</td></tr></tbody></table></section>
+    <section><h2>Dominant Failure Cohorts</h2><table><thead><tr><th>cohort</th><th>family group</th><th>rows</th><th>conflicts</th><th>abstention reason</th><th>examples</th></tr></thead><tbody><tr><td>safe_axis_claimed</td><td>membrane_like</td><td>12</td><td>0</td><td>membrane segmentation can reflect helices rather than global domains</td><td>holdout_062_membrane_like_01;holdout_063_membrane_like_01;holdout_064_membrane_like_01;holdout_065_membrane_like_01;holdout_067_membrane_like_02;holdout_068_membrane_like_02</td></tr><tr><td>beta_rich_low_complexity_confusion</td><td>beta_rich</td><td>11</td><td>0</td><td>repeat/segmentation signals are mixed</td><td>holdout_021_beta_rich_01;holdout_022_beta_rich_01;holdout_024_beta_rich_01;holdout_026_beta_rich_02;holdout_027_beta_rich_02;holdout_031_beta_rich_03</td></tr><tr><td>order_axis_conflict</td><td>beta_rich</td><td>7</td><td>7</td><td>repeat/segmentation signals are mixed</td><td>holdout_023_beta_rich_01;holdout_025_beta_rich_01;holdout_028_beta_rich_02;holdout_030_beta_rich_02;holdout_033_beta_rich_03;holdout_035_beta_rich_03</td></tr><tr><td>order_axis_conflict</td><td>alpha_beta_mixed</td><td>7</td><td>7</td><td>repeat/segmentation signals are mixed</td><td>holdout_041_alpha_beta_mixed_01;holdout_042_alpha_beta_mixed_01;holdout_046_alpha_beta_mixed_02;holdout_047_alpha_beta_mixed_02;holdout_051_alpha_beta_mixed_03;holdout_056_alpha_beta_mixed_04</td></tr><tr><td>alpha_beta_boundary_ambiguity</td><td>alpha_beta_mixed</td><td>6</td><td>0</td><td>repeat/segmentation signals are mixed</td><td>holdout_045_alpha_beta_mixed_01;holdout_048_alpha_beta_mixed_02;holdout_050_alpha_beta_mixed_02;holdout_053_alpha_beta_mixed_03;holdout_055_alpha_beta_mixed_03;holdout_058_alpha_beta_mixed_04</td></tr><tr><td>architecture_axis_conflict</td><td>alpha_rich_soluble</td><td>6</td><td>6</td><td></td><td>holdout_003_alpha_rich_soluble_01;holdout_008_alpha_rich_soluble_02;holdout_012_alpha_rich_soluble_03;holdout_013_alpha_rich_soluble_03;holdout_017_alpha_rich_soluble_04;holdout_018_alpha_rich_soluble_04</td></tr><tr><td>architecture_axis_conflict</td><td>alpha_rich_soluble</td><td>6</td><td>6</td><td></td><td>holdout_005_alpha_rich_soluble_01;holdout_009_alpha_rich_soluble_02;holdout_010_alpha_rich_soluble_02;holdout_014_alpha_rich_soluble_03;holdout_015_alpha_rich_soluble_03;holdout_020_alpha_rich_soluble_04</td></tr><tr><td>order_axis_conflict</td><td>alpha_beta_mixed</td><td>6</td><td>6</td><td>repeat/segmentation signals are mixed</td><td>holdout_043_alpha_beta_mixed_01;holdout_044_alpha_beta_mixed_01;holdout_049_alpha_beta_mixed_02;holdout_054_alpha_beta_mixed_03;holdout_059_alpha_beta_mixed_04;holdout_060_alpha_beta_mixed_04</td></tr><tr><td>safe_axis_claimed</td><td>disordered_or_mixed_order</td><td>6</td><td>0</td><td>repeat/segmentation signals are mixed</td><td>holdout_078_disordered_or_mixed_order_01;holdout_079_disordered_or_mixed_order_01;holdout_083_disordered_or_mixed_order_02;holdout_084_disordered_or_mixed_order_02;holdout_088_disordered_or_mixed_order_03;holdout_089_disordered_or_mixed_order_03</td></tr><tr><td>safe_axis_claimed</td><td>alpha_rich_soluble</td><td>5</td><td>0</td><td>repeat/segmentation signals are mixed</td><td>holdout_001_alpha_rich_soluble_01;holdout_002_alpha_rich_soluble_01;holdout_006_alpha_rich_soluble_02;holdout_007_alpha_rich_soluble_02;holdout_011_alpha_rich_soluble_03</td></tr><tr><td>safe_axis_claimed</td><td>disordered_or_mixed_order</td><td>4</td><td>0</td><td>disorder-like segmentation pressure is too high</td><td>holdout_076_disordered_or_mixed_order_01;holdout_077_disordered_or_mixed_order_01;holdout_081_disordered_or_mixed_order_02;holdout_082_disordered_or_mixed_order_02</td></tr><tr><td>safe_axis_claimed</td><td>membrane_like</td><td>3</td><td>0</td><td>membrane segmentation can reflect helices rather than global domains</td><td>holdout_061_membrane_like_01;holdout_066_membrane_like_02;holdout_071_membrane_like_03</td></tr></tbody></table></section>
+  </main>
+</body>
+</html>
