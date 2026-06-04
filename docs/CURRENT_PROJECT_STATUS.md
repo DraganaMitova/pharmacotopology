@@ -1,17 +1,17 @@
 # Current Project Status
 
-This is the current truth of the repository after the visual folding mechanism
-workbench milestone.
+This is the current truth of the repository after the contact-topology repair
+and native-gap analysis milestone.
 
 ## Latest Safety Baseline
 
 ```text
-latest recorded safety commit = 19dbe65 Prune legacy benchmark surface and publish canonical folding stack
-current target = Add visual folding mechanism workbench
+latest recorded safety commit = 019378b Add visual folding mechanism workbench
+current target = Add contact-topology repair and native-gap analysis
 ```
 
-The current target does not unlock fold-class claims. It adds a small visual
-contact-map workbench so mechanism evidence and failure modes can be inspected.
+The current target does not unlock fold-class claims. It explains visible
+contact failures after prediction and tests sequence-only contact repairs.
 
 ## Internal 50-Row Status
 
@@ -78,6 +78,40 @@ The visual workbench does not claim atomistic folding. It shows coarse native
 contact targets, sequence-only contact candidates, overlays, closure curves,
 coarse trajectories, and failure cohorts.
 
+## Contact-Repair 12-Row Status
+
+The repair workbench adds native-gap analysis after prediction and sequence-only
+long-range/beta-pairing repairs:
+
+```text
+baseline_visible_partial_success_count = 5
+visible_partial_success_count = 8
+baseline_visible_failure_count = 7
+visible_failure_count = 4
+baseline_mean_contact_map_f1 = 0.104031
+repaired_mean_contact_map_f1 = 0.263729
+long_range_contact_recall_delta = 0.472223
+beta_pairing_contact_recall_delta = 0.6541
+premature_compaction_count = 5
+visual_failure_cohort_count = 4
+native_truth_used_before_prediction = false
+native_truth_used_before_repair = false
+raw_sequence_exposed = false
+global_folding_claim_allowed = false
+folding_problem_solved = false
+```
+
+Remaining repaired failure mechanisms:
+
+```text
+bad_beta_pairing = 1
+disorder_over_collapse = 1
+membrane_mis_topology = 1
+premature_compaction = 1
+```
+
+This is a contact-topology repair milestone, not a solved folding milestone.
+
 ## Canonical Active Stack
 
 ```text
@@ -88,6 +122,7 @@ architecture-axis adjudication
 external holdout
 external-safe axis repair
 visual contact-map mechanism workbench
+contact-topology repair and native-gap analysis
 ```
 
 Canonical runners:
@@ -99,6 +134,7 @@ scripts/run_architecture_axis_benchmark.py
 scripts/run_external_fold_family_holdout_benchmark.py
 scripts/run_external_axis_repair_benchmark.py
 scripts/run_visual_folding_mechanism_benchmark.py
+scripts/run_contact_topology_repair_benchmark.py
 ```
 
 Active artifacts:
@@ -111,6 +147,8 @@ external_fold_family_100_*
 external_axis_repair_*
 visual_mechanism_12_*
 visuals/*/*
+contact_topology_repair_12_*
+contact_repair_visuals/*/*
 ```
 
 Archived legacy artifacts:
@@ -128,11 +166,14 @@ axis profile coverage is partial
 secondary-structure evidence is still thin on the external holdout
 architecture evidence is conservative after repair
 visual contact prediction is coarse and low-F1
+contact repair is benchmark-local and still coarse
+disorder, membrane, and mixed beta/compaction failures remain visible
 legacy feature modules still contain useful low-level primitives
 ```
 
-The current state is useful as a safe falsification, abstention, and visual
-mechanism-inspection stack, not as a predictive folding system.
+The current state is useful as a safe falsification, abstention, visual
+mechanism-inspection, and contact-repair stack, not as a predictive folding
+system.
 
 ## Next Allowed Research Target
 
@@ -152,6 +193,7 @@ preserve truth-after-prediction scoring
 keep global fold-class claims locked
 track coverage cost
 record uncertainty, failure cohorts, and visible contact-map drift
+reduce premature compaction without hiding disorder/membrane failures
 ```
 
 Forbidden shape:

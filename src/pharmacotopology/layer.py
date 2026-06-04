@@ -99,6 +99,12 @@ PHARMACOTOPOLOGY_GENERATED_FILES: tuple[str, ...] = (
     "visual_mechanism_12_failure_cohorts.csv",
     "visual_mechanism_12_dashboard.html",
     "visual_mechanism_12_certificate.json",
+    "contact_topology_repair_12_report.json",
+    "contact_topology_repair_12_rows.csv",
+    "contact_topology_repair_12_gap_analysis.csv",
+    "contact_topology_repair_12_failure_cohorts.csv",
+    "contact_topology_repair_12_dashboard.html",
+    "contact_topology_repair_12_certificate.json",
     "field_validation.json",
     "field_metrics.json",
 )

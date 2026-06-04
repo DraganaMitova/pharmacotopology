@@ -5,10 +5,11 @@ signals can perturb an explicit topology model, with safety boundaries kept in
 the artifacts instead of left as footnotes.
 
 This project has not solved protein folding. It has built a safe axis-level
-falsification stack and now includes a visual contact-map workbench for seeing
-where coarse folding-mechanism hypotheses work, fail, or overclose. The current
-external-safe result has zero unsafe axis claims, but coverage is reduced.
-Global fold-class claims remain locked.
+falsification stack, a visual contact-map workbench, and a first sequence-only
+contact-repair pass for seeing where coarse folding-mechanism hypotheses work,
+fail, overclose, or miss long-range topology. The current external-safe result
+has zero unsafe axis claims, but coverage is reduced. Global fold-class claims
+remain locked.
 
 ## Current Status
 
@@ -18,6 +19,7 @@ Pharmacotopology now has two related surfaces:
 mechanism topology workbench
 protein/folding axis falsification stack
 visual folding mechanism workbench
+contact-topology repair workbench
 ```
 
 The mechanism workbench is a hypothesis simulator. It compares abstract
@@ -40,6 +42,11 @@ contact candidates, overlays, coarse trajectories, closure curves, and failure
 cohorts. It is interesting because the failures are visible instead of hidden
 inside one score.
 
+The contact-topology repair workbench explains the visual failures with
+native-gap clusters after prediction, then tests sequence-only long-range and
+beta-pairing repairs. It improves the locked visual benchmark without unlocking
+global fold claims.
+
 Current honest state:
 
 ```text
@@ -48,6 +55,8 @@ external 100-row unsafe axis claims = closed after quarantine
 axis_profile_coverage after repair = 0.55
 visual mechanism rows rendered = 12/12
 visual mechanism visible partial successes = 5
+contact repair visible partial successes = 8
+contact repair visible failures = 4
 global_fold_class_claim_allowed = false
 folding_problem_solved = false
 ```
@@ -64,6 +73,7 @@ architecture-axis adjudication
 external holdout
 external-safe axis repair
 visual contact-map mechanism workbench
+contact-topology repair and native-gap analysis
 ```
 
 Canonical commands:
@@ -75,6 +85,7 @@ python3 scripts/run_architecture_axis_benchmark.py
 python3 scripts/run_external_fold_family_holdout_benchmark.py
 python3 scripts/run_external_axis_repair_benchmark.py
 python3 scripts/run_visual_folding_mechanism_benchmark.py
+python3 scripts/run_contact_topology_repair_benchmark.py
 ```
 
 The active generated folding artifacts are:
@@ -87,6 +98,8 @@ external_fold_family_100_*
 external_axis_repair_*
 visual_mechanism_12_*
 visuals/*/*
+contact_topology_repair_12_*
+contact_repair_visuals/*/*
 ```
 
 Older 10-row and pre-axis 50-row artifacts are preserved under:
@@ -154,6 +167,25 @@ folding_problem_solved = false
 This does not make the model stronger by assertion. It makes the mechanism
 more inspectable.
 
+Contact-topology repair 12-row workbench:
+
+```text
+baseline_visible_partial_success_count = 5
+visible_partial_success_count = 8
+visible_failure_count = 4
+repaired_mean_contact_map_f1 = 0.263729
+long_range_contact_recall_delta = 0.472223
+beta_pairing_contact_recall_delta = 0.6541
+native_truth_used_before_prediction = false
+native_truth_used_before_repair = false
+raw_sequence_exposed = false
+global_folding_claim_allowed = false
+folding_problem_solved = false
+```
+
+This repair is still coarse. It explains and improves contact topology on the
+locked visual benchmark; it does not infer a real folded structure.
+
 ## Safety Boundaries
 
 This repository does not:
@@ -193,6 +225,7 @@ docs/FOLD_ARCHITECTURE_AXIS_BOUNDARY.md architecture-axis boundary
 docs/EXTERNAL_FOLD_FAMILY_HOLDOUT_BOUNDARY.md external holdout boundary
 docs/EXTERNAL_AXIS_REPAIR_BOUNDARY.md external-safe repair boundary
 docs/VISUAL_FOLDING_MECHANISM_BOUNDARY.md visual mechanism boundary
+docs/VISUAL_CONTACT_REPAIR_BOUNDARY.md contact repair boundary
 tests/                               pytest coverage for safety and reproducibility
 ```
 
@@ -219,6 +252,7 @@ python3 scripts/run_architecture_axis_benchmark.py
 python3 scripts/run_external_fold_family_holdout_benchmark.py
 python3 scripts/run_external_axis_repair_benchmark.py
 python3 scripts/run_visual_folding_mechanism_benchmark.py
+python3 scripts/run_contact_topology_repair_benchmark.py
 ```
 
 Run verification:
@@ -248,6 +282,7 @@ docs/CURRENT_PROJECT_STATUS.md
 docs/PROTEIN_FOLDING_TEST_BOUNDARY.md
 docs/EXTERNAL_AXIS_REPAIR_BOUNDARY.md
 docs/VISUAL_FOLDING_MECHANISM_BOUNDARY.md
+docs/VISUAL_CONTACT_REPAIR_BOUNDARY.md
 docs/PROTEIN_CENTERED_REFRAME.md
 ```
 
@@ -258,6 +293,7 @@ Safety milestone: yes.
 Internal 50-row development benchmark: closed as a safety benchmark.
 External unsafe axis claims: closed after quarantine.
 Visual mechanism workbench: contact-map evidence is visible for 12 locked rows.
+Contact repair workbench: visible partial successes improved from 5 to 8.
 Protein folding: not solved.
 Next correct work: improve visual/mechanism evidence quality without unlocking global claims.
 ```

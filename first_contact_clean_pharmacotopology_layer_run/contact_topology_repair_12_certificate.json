@@ -1,0 +1,26 @@
+{
+  "baseline_visible_partial_success_count": 5,
+  "benchmark_kind": "contact_topology_repair_benchmark_v1",
+  "benchmark_size": 12,
+  "beta_pairing_contact_recall_delta": 0.6541,
+  "certificate_kind": "contact_topology_repair_safety_certificate",
+  "claim_allowed": false,
+  "contact_map_f1_computed_count": 12,
+  "folding_problem_solved": false,
+  "global_folding_claim_allowed": false,
+  "long_range_contact_recall_delta": 0.472223,
+  "native_truth_used_before_prediction": false,
+  "native_truth_used_before_repair": false,
+  "output_artifacts": [
+    "contact_topology_repair_12_report.json",
+    "contact_topology_repair_12_rows.csv",
+    "contact_topology_repair_12_gap_analysis.csv",
+    "contact_topology_repair_12_failure_cohorts.csv",
+    "contact_topology_repair_12_dashboard.html",
+    "contact_topology_repair_12_certificate.json"
+  ],
+  "raw_sequence_exposed": false,
+  "visible_failure_count": 4,
+  "visible_partial_success_count": 8,
+  "visual_artifacts_generated_for_rows": 12
+}
