@@ -154,6 +154,12 @@ PHARMACOTOPOLOGY_GENERATED_FILES: tuple[str, ...] = (
     "physical_closure_state_metrics.csv",
     "physical_closure_state_dashboard.html",
     "physical_closure_state_certificate.json",
+    "active_physical_selection_report.json",
+    "active_physical_selection_selectors.csv",
+    "active_physical_selection_selected_events.csv",
+    "active_physical_selection_ablation.csv",
+    "active_physical_selection_dashboard.html",
+    "active_physical_selection_certificate.json",
     "field_validation.json",
     "field_metrics.json",
 )

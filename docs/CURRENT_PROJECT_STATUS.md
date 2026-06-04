@@ -1,19 +1,19 @@
 # Current Project Status
 
-This is the current truth of the repository after the physical closure-state
-evaluator milestone.
+This is the current truth of the repository after the active physical
+selection and term-ablation milestone.
 
 ## Latest Safety Baseline
 
 ```text
 latest recorded safety commit = e8cc5eb Audit visual mechanism claims and freeze toy-contact benchmark
-current target = Add physical closure-state evaluator
+current target = Add active physical selection and term ablation
 ```
 
-The current target instantiates graph-selected closures as coarse sequence-only
-physical states. It finds physical-score enrichment over matched decoys, but
-rejects the physical-state law because false nuclei and contact precision still
-fail.
+The current target makes coarse physical-state terms active in selection. It
+finds that physical reranking improves decoy enrichment and long-range recall,
+but viability gates over-prune long-range closure. No selector passes all
+survival gates, so the active physical selector law is rejected.
 
 ## Internal 50-Row Status
 
@@ -412,6 +412,59 @@ difference does not translate into enough native-contact precision. The missing
 variable is likely deeper than this coarse state proxy.
 ```
 
+## Active Physical Selection Status
+
+The active selector compares four sequence-only selection surfaces, then
+attaches native labels only after selection:
+
+```text
+graph selector only
+graph + active physical rerank
+graph + physical viability gate
+graph + physical viability gate + future-frustration gate
+native_truth_used_before_active_selection = false
+native_label_attached_after_active_selection = true
+```
+
+What improved:
+
+```text
+graph_only_false_nucleus_rate = 0.609375
+physical_rerank_false_nucleus_rate = 0.559375
+physical_gate_false_nucleus_rate = 0.316338
+future_frustration_false_nucleus_rate = 0.309455
+
+graph_only_cluster_precision = 0.043311
+physical_rerank_cluster_precision = 0.050488
+physical_gate_cluster_precision = 0.069038
+future_frustration_cluster_precision = 0.071567
+
+graph_only_long_range_recall = 0.372496
+physical_rerank_long_range_recall = 0.405008
+physical_rerank_real_vs_decoy_enrichment_ratio = 1.585882
+```
+
+What still fails:
+
+```text
+physical_gate_long_range_recall = 0.088436
+future_frustration_long_range_recall = 0.070742
+best_physical_term = burial_gain
+worst_physical_term = future_frustration
+physical_terms_with_positive_ablation_effect = burial_gain
+active_physical_selection_survives = false
+mechanism_discovery_claim_allowed = false
+folding_problem_solved = false
+```
+
+Interpretation:
+
+```text
+Physical reranking is informative, but active viability gates trade away too
+much long-range recovery. The current physical selector is rejected. This is not
+a folding mechanism discovery.
+```
+
 ## Canonical Active Stack
 
 ```text
@@ -430,6 +483,7 @@ folding-nucleus closure search
 competitive nucleus selection
 nucleus graph selectivity and decoy falsification
 physical closure-state evaluator
+active physical selection and term ablation
 ```
 
 Canonical runners:
@@ -449,6 +503,7 @@ scripts/run_folding_nucleus_closure_search.py
 scripts/run_competitive_nucleus_selection.py
 scripts/run_nucleus_graph_selectivity_benchmark.py
 scripts/run_physical_closure_state_benchmark.py
+scripts/run_active_physical_selection_benchmark.py
 ```
 
 Active artifacts:
@@ -471,6 +526,7 @@ folding_nucleus_closure_*
 competitive_nucleus_selection_*
 nucleus_graph_selectivity_*
 physical_closure_state_*
+active_physical_selection_*
 ```
 
 Archived legacy artifacts:
@@ -501,6 +557,7 @@ cooperative closure recovers long-range native regions but overgenerates traps
 competitive nucleus selection reduces events but does not pass false-rate gates
 nucleus graph selectivity fails against matched decoys
 physical closure-state score enrichment does not pass native/contact gates
+active physical selection rerank helps but gates over-prune long-range recall
 legacy feature modules still contain useful low-level primitives
 ```
 

@@ -14,6 +14,8 @@ threshold search is followed by a cooperative folding-nucleus closure search.
 That nucleus search recovers long-range native regions better than pair-level
 thresholds, but it overgenerates false nuclei. Global fold-class and
 mechanism-discovery claims remain locked.
+The active physical selection layer now reranks and gates nuclei with coarse
+physical-state terms, then rejects the selector law after ablation.
 
 ## Current Status
 
@@ -30,6 +32,7 @@ contact-law threshold falsification
 folding-nucleus closure search
 competitive nucleus selection
 nucleus graph selectivity and decoy falsification
+active physical selection and term ablation
 ```
 
 The mechanism workbench is a hypothesis simulator. It compares abstract
@@ -92,6 +95,12 @@ as coarse sequence-only physical states. Physical scores beat matched decoys by
 score, but false nuclei and contact precision still fail, so the physical-state
 law is rejected too.
 
+The active physical selection layer moves those coarse physical terms from
+audit into selection. Physical reranking improves decoy enrichment and
+long-range recall, while viability gates reduce false nuclei and improve
+precision. No selector passes all survival gates, and ablation says only
+burial gain clearly helps under the current proxy.
+
 Current honest state:
 
 ```text
@@ -136,6 +145,19 @@ physical_false_nucleus_rate = 0.609375
 physical_contact_cluster_precision = 0.043311
 physical_long_range_contact_recall = 0.372496
 physical_state_law_survives = false
+physical_rerank_false_nucleus_rate = 0.559375
+physical_rerank_cluster_precision = 0.050488
+physical_rerank_long_range_recall = 0.405008
+physical_rerank_real_vs_decoy_enrichment_ratio = 1.585882
+physical_gate_false_nucleus_rate = 0.316338
+physical_gate_cluster_precision = 0.069038
+physical_gate_long_range_recall = 0.088436
+future_frustration_false_nucleus_rate = 0.309455
+future_frustration_cluster_precision = 0.071567
+future_frustration_long_range_recall = 0.070742
+best_physical_term = burial_gain
+worst_physical_term = future_frustration
+active_physical_selection_survives = false
 mechanism_discovery_claim_allowed = false
 global_fold_class_claim_allowed = false
 folding_problem_solved = false
@@ -161,6 +183,7 @@ folding-nucleus closure search
 competitive nucleus selection
 nucleus graph selectivity and decoy falsification
 physical closure-state evaluator
+active physical selection and term ablation
 ```
 
 Canonical commands:
@@ -180,6 +203,7 @@ python3 scripts/run_folding_nucleus_closure_search.py
 python3 scripts/run_competitive_nucleus_selection.py
 python3 scripts/run_nucleus_graph_selectivity_benchmark.py
 python3 scripts/run_physical_closure_state_benchmark.py
+python3 scripts/run_active_physical_selection_benchmark.py
 ```
 
 The active generated folding artifacts are:
@@ -202,6 +226,7 @@ folding_nucleus_closure_*
 competitive_nucleus_selection_*
 nucleus_graph_selectivity_*
 physical_closure_state_*
+active_physical_selection_*
 ```
 
 Older 10-row and pre-axis 50-row artifacts are preserved under:
@@ -458,6 +483,34 @@ against decoys, but that difference is not enough to improve native-contact
 truth. The missing variable is probably still deeper: orientation, side-chain
 packing, solvent exposure, or kinetic order.
 
+Active physical selection and term ablation:
+
+```text
+graph_only_false_nucleus_rate = 0.609375
+physical_rerank_false_nucleus_rate = 0.559375
+physical_gate_false_nucleus_rate = 0.316338
+future_frustration_false_nucleus_rate = 0.309455
+graph_only_cluster_precision = 0.043311
+physical_rerank_cluster_precision = 0.050488
+physical_gate_cluster_precision = 0.069038
+future_frustration_cluster_precision = 0.071567
+graph_only_long_range_recall = 0.372496
+physical_rerank_long_range_recall = 0.405008
+physical_gate_long_range_recall = 0.088436
+future_frustration_long_range_recall = 0.070742
+physical_rerank_real_vs_decoy_enrichment_ratio = 1.585882
+best_physical_term = burial_gain
+worst_physical_term = future_frustration
+physical_terms_with_positive_ablation_effect = burial_gain
+active_physical_selection_survives = false
+mechanism_discovery_claim_allowed = false
+folding_problem_solved = false
+```
+
+This is an active-selector rejection, not a failed project. Reranking improves
+some signals, but the gates trade away too much long-range recall. The current
+physical proxy is informative, not sufficient.
+
 ## Safety Boundaries
 
 This repository does not:
@@ -502,6 +555,7 @@ docs/VISUAL_MECHANISM_AUDIT.md visual claim audit
 docs/COMPETITIVE_NUCLEUS_SELECTION_BOUNDARY.md competitive nucleus boundary
 docs/NUCLEUS_GRAPH_SELECTIVITY_BOUNDARY.md nucleus graph selectivity boundary
 docs/PHYSICAL_CLOSURE_STATE_BOUNDARY.md physical closure-state boundary
+docs/ACTIVE_PHYSICAL_SELECTION_BOUNDARY.md active physical selection boundary
 tests/                               pytest coverage for safety and reproducibility
 ```
 
@@ -536,6 +590,7 @@ python3 scripts/run_folding_nucleus_closure_search.py
 python3 scripts/run_competitive_nucleus_selection.py
 python3 scripts/run_nucleus_graph_selectivity_benchmark.py
 python3 scripts/run_physical_closure_state_benchmark.py
+python3 scripts/run_active_physical_selection_benchmark.py
 ```
 
 Run verification:
@@ -570,6 +625,7 @@ docs/VISUAL_MECHANISM_AUDIT.md
 docs/COMPETITIVE_NUCLEUS_SELECTION_BOUNDARY.md
 docs/NUCLEUS_GRAPH_SELECTIVITY_BOUNDARY.md
 docs/PHYSICAL_CLOSURE_STATE_BOUNDARY.md
+docs/ACTIVE_PHYSICAL_SELECTION_BOUNDARY.md
 docs/PROTEIN_CENTERED_REFRAME.md
 ```
 
@@ -585,6 +641,7 @@ Visual mechanism audit: toy benchmark and overfit risk are explicitly reported.
 Competitive nucleus selection: event flooding is reduced, but false closures keep the law unclaimed.
 Nucleus graph selectivity: selected graph cores fail against matched decoys.
 Physical closure-state evaluator: physical score enrichment appears, but native/contact gates fail.
+Active physical selection: rerank helps, gates over-prune, selector law rejected.
 Protein folding: not solved.
 Next correct work: improve visual/mechanism evidence quality without unlocking global claims.
 ```

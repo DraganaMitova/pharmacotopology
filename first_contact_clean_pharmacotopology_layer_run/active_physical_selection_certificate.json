@@ -1,0 +1,24 @@
+{
+  "active_physical_selection_survives": false,
+  "best_physical_term": "burial_gain",
+  "certificate_kind": "active_physical_selection_certificate",
+  "claim_allowed": false,
+  "folding_problem_solved": false,
+  "global_folding_claim_allowed": false,
+  "mechanism_discovery_claim_allowed": false,
+  "native_truth_used_before_active_selection": false,
+  "output_artifacts": [
+    "active_physical_selection_report.json",
+    "active_physical_selection_selectors.csv",
+    "active_physical_selection_selected_events.csv",
+    "active_physical_selection_ablation.csv",
+    "active_physical_selection_dashboard.html",
+    "active_physical_selection_certificate.json"
+  ],
+  "physical_rerank_cluster_precision": 0.050488,
+  "physical_rerank_false_nucleus_rate": 0.559375,
+  "physical_rerank_long_range_recall": 0.405008,
+  "physical_rerank_real_vs_decoy_enrichment_ratio": 1.585882,
+  "report_kind": "active_physical_selection_benchmark_v1",
+  "worst_physical_term": "future_frustration"
+}

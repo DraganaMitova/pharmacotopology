@@ -1,0 +1,7 @@
+ablation_name,false_nucleus_rate,contact_cluster_precision,long_range_contact_recall,real_vs_decoy_physical_enrichment_ratio,composite_selection_score,delta_vs_full_selector,term_interpretation
+without_loop_strain,0.553125,0.052002,0.46458,1.515304,1.478761,-0.003242,term_effect_negligible
+without_steric_clash,0.546875,0.052734,0.452562,1.571444,1.529865,0.047862,term_adds_noise_in_current_proxy
+without_burial_gain,0.58125,0.044922,0.323008,1.399124,1.185804,-0.296199,term_supports_selection
+without_unsatisfied_polar_penalty,0.55,0.051123,0.395153,1.5886,1.484876,0.002873,term_effect_negligible
+without_future_frustration,0.553125,0.051221,0.462623,1.603678,1.564397,0.082394,term_adds_noise_in_current_proxy
+without_decoy_margin,0.55,0.050342,0.453047,1.585904,1.539293,0.05729,term_adds_noise_in_current_proxy
