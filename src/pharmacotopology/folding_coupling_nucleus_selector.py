@@ -75,6 +75,8 @@ TRACE_LOOP_MARGIN_GATE_MIN = 0.0
 TRACE_LOOP_MARGIN_GATE_BLOCKED_FUTURE_MAX = 0.16
 TRACE_LOOP_TOP_RANK_FRACTION = 0.30
 TRACE_LOOP_TOP_RANK_MIN_NEW_PAIRS = 2
+TRACE_LOOP_CORE_TOP_RANK_FRACTION = 0.10
+TRACE_LOOP_EXPANSION_TOP_RANK_FRACTION = 0.30
 
 SURVIVAL_FALSE_RATE_MAX = 0.25
 SURVIVAL_CLUSTER_PRECISION_MIN = 0.08
@@ -274,6 +276,8 @@ def select_coupling_events(
             top_confidence_fraction=TRACE_LOOP_TOP_RANK_FRACTION,
             min_new_top_confidence_pairs=TRACE_LOOP_TOP_RANK_MIN_NEW_PAIRS,
         )
+    if selector_name == "coupling_trace_loop_core_expanded":
+        return select_coupling_trace_loop_core_expanded_events(context)
 
     selected: list[NucleusClosureEvent] = []
     competitive_by_row = _events_by_row(context.competitive_events)
@@ -394,6 +398,54 @@ def select_coupling_trace_loop_events(
             uncovered -= set(chosen.candidate_region_pairs())
         selected.extend(row_selected)
     return tuple(selected)
+
+
+def _compatible_merge_by_row(
+    context: CouplingNucleusContext,
+    *,
+    core_events: Sequence[NucleusClosureEvent],
+    expansion_events: Sequence[NucleusClosureEvent],
+) -> tuple[NucleusClosureEvent, ...]:
+    core_by_row = _events_by_row(core_events)
+    expansion_by_row = _events_by_row(expansion_events)
+    merged: list[NucleusClosureEvent] = []
+    for row in context.rows:
+        row_selected = list(core_by_row.get(row.row_id, ()))
+        selected_ids = {event.event_id for event in row_selected}
+        for event in expansion_by_row.get(row.row_id, ()):
+            if len(row_selected) >= SELECTED_EVENTS_PER_ROW:
+                break
+            if event.event_id in selected_ids:
+                continue
+            if any(
+                not compatible_future_event(selected_event, event)
+                for selected_event in row_selected
+            ):
+                continue
+            row_selected.append(event)
+            selected_ids.add(event.event_id)
+        merged.extend(row_selected)
+    return tuple(merged)
+
+
+def select_coupling_trace_loop_core_expanded_events(
+    context: CouplingNucleusContext,
+) -> tuple[NucleusClosureEvent, ...]:
+    core_events = select_coupling_trace_loop_events(
+        context,
+        top_confidence_fraction=TRACE_LOOP_CORE_TOP_RANK_FRACTION,
+        min_new_top_confidence_pairs=TRACE_LOOP_TOP_RANK_MIN_NEW_PAIRS,
+    )
+    expansion_events = select_coupling_trace_loop_events(
+        context,
+        top_confidence_fraction=TRACE_LOOP_EXPANSION_TOP_RANK_FRACTION,
+        min_new_top_confidence_pairs=TRACE_LOOP_TOP_RANK_MIN_NEW_PAIRS,
+    )
+    return _compatible_merge_by_row(
+        context,
+        core_events=core_events,
+        expansion_events=expansion_events,
+    )
 
 
 def selector_metrics(

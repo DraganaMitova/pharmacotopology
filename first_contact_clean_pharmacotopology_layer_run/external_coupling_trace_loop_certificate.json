@@ -2,6 +2,8 @@
   "batch_id": "EXTERNAL_EVOLUTIONARY_COUPLING_TRACE_LOOP_V0",
   "certificate_kind": "external_evolutionary_coupling_trace_loop_certificate_v0",
   "claim_allowed": false,
+  "external_core_expanded_beats_matched_controls": true,
+  "external_core_expanded_claim_allowed": false,
   "external_couplings_available_rows": 8,
   "external_margin_gated_beats_matched_controls": true,
   "external_margin_gated_claim_allowed": false,
