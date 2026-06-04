@@ -201,6 +201,9 @@ def _certificate(report: Mapping[str, object]) -> dict[str, object]:
         "external_core_expanded_beats_matched_controls": report[
             "external_core_expanded_beats_matched_controls"
         ],
+        "external_cluster_gated_core_expanded_beats_matched_controls": report[
+            "external_cluster_gated_core_expanded_beats_matched_controls"
+        ],
         "external_margin_gated_claim_allowed": report[
             "external_margin_gated_claim_allowed"
         ],
@@ -209,6 +212,9 @@ def _certificate(report: Mapping[str, object]) -> dict[str, object]:
         ],
         "external_core_expanded_claim_allowed": report[
             "external_core_expanded_claim_allowed"
+        ],
+        "external_cluster_gated_core_expanded_claim_allowed": report[
+            "external_cluster_gated_core_expanded_claim_allowed"
         ],
         "claim_allowed": report["claim_allowed"],
         "mechanism_discovery_claim_allowed": report[
@@ -227,11 +233,13 @@ def _build_report(
     external_margin_gated: TraceLoopRun,
     external_top_rank_gated: TraceLoopRun,
     external_core_expanded: TraceLoopRun,
+    external_cluster_gated_core_expanded: TraceLoopRun,
     physical_baseline: TraceLoopRun,
     matched_controls: Sequence[TraceLoopRun],
     margin_gated_controls: Sequence[TraceLoopRun],
     top_rank_gated_controls: Sequence[TraceLoopRun],
     core_expanded_controls: Sequence[TraceLoopRun],
+    cluster_gated_core_expanded_controls: Sequence[TraceLoopRun],
     oracle_positive_control: TraceLoopRun,
     source_benchmark_file: Path,
     external_coupling_file: Path,
@@ -410,6 +418,55 @@ def _build_report(
             for value in core_expanded_control_precisions
         )
     )
+    cluster_gated_control_false_rates = [
+        run.metric.false_nucleus_rate
+        for run in cluster_gated_core_expanded_controls
+    ]
+    cluster_gated_control_precisions = [
+        run.metric.contact_cluster_precision
+        for run in cluster_gated_core_expanded_controls
+    ]
+    cluster_gated_control_enrichments = [
+        run.metric.real_vs_decoy_coupling_enrichment_ratio
+        for run in cluster_gated_core_expanded_controls
+    ]
+    max_cluster_gated_control_enrichment = (
+        max(cluster_gated_control_enrichments)
+        if cluster_gated_control_enrichments
+        else 0.0
+    )
+    cluster_gated_selected_event_count = (
+        external_cluster_gated_core_expanded.metric.selected_event_count
+    )
+    cluster_gated_vs_control_enrichment_ratio: Optional[float] = (
+        _rounded(
+            external_cluster_gated_core_expanded.metric.real_vs_decoy_coupling_enrichment_ratio
+            / max_cluster_gated_control_enrichment
+        )
+        if cluster_gated_selected_event_count > 0
+        and max_cluster_gated_control_enrichment
+        else None
+    )
+    cluster_gated_beats_physical = (
+        cluster_gated_selected_event_count > 0
+        and external_cluster_gated_core_expanded.metric.false_nucleus_rate
+        < physical_baseline.metric.false_nucleus_rate
+        and external_cluster_gated_core_expanded.metric.contact_cluster_precision
+        > physical_baseline.metric.contact_cluster_precision
+    )
+    cluster_gated_beats_matched_controls = (
+        bool(cluster_gated_core_expanded_controls)
+        and cluster_gated_selected_event_count > 0
+        and all(
+            external_cluster_gated_core_expanded.metric.false_nucleus_rate < value
+            for value in cluster_gated_control_false_rates
+        )
+        and all(
+            external_cluster_gated_core_expanded.metric.contact_cluster_precision
+            > value
+            for value in cluster_gated_control_precisions
+        )
+    )
     oracle_recall_floor = _rounded(
         0.50 * oracle_positive_control.metric.long_range_contact_recall
     )
@@ -429,6 +486,11 @@ def _build_report(
     core_expanded_meets_oracle_recall_floor = (
         core_expanded_selected_event_count > 0
         and external_core_expanded.metric.long_range_contact_recall
+        >= oracle_recall_floor
+    )
+    cluster_gated_meets_oracle_recall_floor = (
+        cluster_gated_selected_event_count > 0
+        and external_cluster_gated_core_expanded.metric.long_range_contact_recall
         >= oracle_recall_floor
     )
     claim_mode_failures = coupling_claim_mode_validation_failures(
@@ -595,6 +657,37 @@ def _build_report(
             core_expanded_meets_oracle_recall_floor
         ),
         "external_core_expanded_claim_allowed": False,
+        "external_cluster_gated_core_expanded_selected_event_count": (
+            cluster_gated_selected_event_count
+        ),
+        "external_cluster_gated_core_expanded_false_nucleus_rate": (
+            external_cluster_gated_core_expanded.metric.false_nucleus_rate
+            if cluster_gated_selected_event_count
+            else None
+        ),
+        "external_cluster_gated_core_expanded_cluster_precision": (
+            external_cluster_gated_core_expanded.metric.contact_cluster_precision
+            if cluster_gated_selected_event_count
+            else None
+        ),
+        "external_cluster_gated_core_expanded_long_range_recall": (
+            external_cluster_gated_core_expanded.metric.long_range_contact_recall
+            if cluster_gated_selected_event_count
+            else None
+        ),
+        "external_cluster_gated_core_expanded_vs_control_enrichment_ratio": (
+            cluster_gated_vs_control_enrichment_ratio
+        ),
+        "external_cluster_gated_core_expanded_beats_physical": (
+            cluster_gated_beats_physical
+        ),
+        "external_cluster_gated_core_expanded_beats_matched_controls": (
+            cluster_gated_beats_matched_controls
+        ),
+        "external_cluster_gated_core_expanded_meets_oracle_recall_floor": (
+            cluster_gated_meets_oracle_recall_floor
+        ),
+        "external_cluster_gated_core_expanded_claim_allowed": False,
         "matched_negative_controls_present": bool(matched_controls),
         "external_claim_mode_validation_failures": claim_mode_failures,
         "coordinate_truth_used_to_build_constraints": (
@@ -653,6 +746,11 @@ def render_external_coupling_trace_loop_dashboard(
         "external_core_expanded_long_range_recall",
         "external_core_expanded_vs_control_enrichment_ratio",
         "external_core_expanded_beats_matched_controls",
+        "external_cluster_gated_core_expanded_false_nucleus_rate",
+        "external_cluster_gated_core_expanded_cluster_precision",
+        "external_cluster_gated_core_expanded_long_range_recall",
+        "external_cluster_gated_core_expanded_vs_control_enrichment_ratio",
+        "external_cluster_gated_core_expanded_beats_matched_controls",
         "mechanism_discovery_claim_allowed",
         "folding_problem_solved",
     )
@@ -749,6 +847,13 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
         selection_mode="coupling_trace_loop_core_expanded",
         control_kind="external_real_core_expanded",
     )
+    external_cluster_gated_core_expanded = _run_trace_loop_selector_from_context(
+        context=external_context,
+        dataset=import_result.dataset,
+        selector_name="external_cluster_gated_core_expanded",
+        selection_mode="coupling_trace_loop_cluster_gated_core_expanded",
+        control_kind="external_real_cluster_gated_core_expanded",
+    )
     physical_baseline = _run_trace_loop_selector_from_context(
         context=external_context,
         dataset=import_result.dataset,
@@ -809,6 +914,16 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
         )
         for name, control in controls.items()
     )
+    cluster_gated_core_expanded_control_runs = tuple(
+        _run_trace_loop_selector_from_context(
+            context=control_contexts[name],
+            dataset=control.dataset,
+            selector_name=f"external_cluster_gated_core_expanded_{name}",
+            selection_mode="coupling_trace_loop_cluster_gated_core_expanded",
+            control_kind=control.control_kind,
+        )
+        for name, control in controls.items()
+    )
     oracle_context = build_coupling_nucleus_context(
         rows=rows,
         coupling_dataset=oracle_dataset,
@@ -825,11 +940,13 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
         external_margin_gated,
         external_top_rank_gated,
         external_core_expanded,
+        external_cluster_gated_core_expanded,
         physical_baseline,
         *matched_control_runs,
         *margin_gated_control_runs,
         *top_rank_gated_control_runs,
         *core_expanded_control_runs,
+        *cluster_gated_core_expanded_control_runs,
         oracle_positive_control,
     )
     report = _build_report(
@@ -839,11 +956,15 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
         external_margin_gated=external_margin_gated,
         external_top_rank_gated=external_top_rank_gated,
         external_core_expanded=external_core_expanded,
+        external_cluster_gated_core_expanded=external_cluster_gated_core_expanded,
         physical_baseline=physical_baseline,
         matched_controls=matched_control_runs,
         margin_gated_controls=margin_gated_control_runs,
         top_rank_gated_controls=top_rank_gated_control_runs,
         core_expanded_controls=core_expanded_control_runs,
+        cluster_gated_core_expanded_controls=(
+            cluster_gated_core_expanded_control_runs
+        ),
         oracle_positive_control=oracle_positive_control,
         source_benchmark_file=benchmark_file,
         external_coupling_file=external_coupling_file,

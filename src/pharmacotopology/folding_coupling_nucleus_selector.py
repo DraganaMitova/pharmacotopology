@@ -77,6 +77,7 @@ TRACE_LOOP_TOP_RANK_FRACTION = 0.30
 TRACE_LOOP_TOP_RANK_MIN_NEW_PAIRS = 2
 TRACE_LOOP_CORE_TOP_RANK_FRACTION = 0.10
 TRACE_LOOP_EXPANSION_TOP_RANK_FRACTION = 0.30
+TRACE_LOOP_CLUSTER_GATE_MIN = 0.32
 
 SURVIVAL_FALSE_RATE_MAX = 0.25
 SURVIVAL_CLUSTER_PRECISION_MIN = 0.08
@@ -278,6 +279,11 @@ def select_coupling_events(
         )
     if selector_name == "coupling_trace_loop_core_expanded":
         return select_coupling_trace_loop_core_expanded_events(context)
+    if selector_name == "coupling_trace_loop_cluster_gated_core_expanded":
+        return select_coupling_trace_loop_core_expanded_events(
+            context,
+            min_contact_cluster_gain=TRACE_LOOP_CLUSTER_GATE_MIN,
+        )
 
     selected: list[NucleusClosureEvent] = []
     competitive_by_row = _events_by_row(context.competitive_events)
@@ -405,17 +411,29 @@ def _compatible_merge_by_row(
     *,
     core_events: Sequence[NucleusClosureEvent],
     expansion_events: Sequence[NucleusClosureEvent],
+    min_contact_cluster_gain: float | None = None,
 ) -> tuple[NucleusClosureEvent, ...]:
     core_by_row = _events_by_row(core_events)
     expansion_by_row = _events_by_row(expansion_events)
     merged: list[NucleusClosureEvent] = []
     for row in context.rows:
         row_selected = list(core_by_row.get(row.row_id, ()))
+        if min_contact_cluster_gain is not None:
+            row_selected = [
+                event
+                for event in row_selected
+                if event.contact_cluster_gain >= min_contact_cluster_gain
+            ]
         selected_ids = {event.event_id for event in row_selected}
         for event in expansion_by_row.get(row.row_id, ()):
             if len(row_selected) >= SELECTED_EVENTS_PER_ROW:
                 break
             if event.event_id in selected_ids:
+                continue
+            if (
+                min_contact_cluster_gain is not None
+                and event.contact_cluster_gain < min_contact_cluster_gain
+            ):
                 continue
             if any(
                 not compatible_future_event(selected_event, event)
@@ -430,6 +448,8 @@ def _compatible_merge_by_row(
 
 def select_coupling_trace_loop_core_expanded_events(
     context: CouplingNucleusContext,
+    *,
+    min_contact_cluster_gain: float | None = None,
 ) -> tuple[NucleusClosureEvent, ...]:
     core_events = select_coupling_trace_loop_events(
         context,
@@ -445,6 +465,7 @@ def select_coupling_trace_loop_core_expanded_events(
         context,
         core_events=core_events,
         expansion_events=expansion_events,
+        min_contact_cluster_gain=min_contact_cluster_gain,
     )
 
 

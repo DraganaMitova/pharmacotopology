@@ -3,6 +3,7 @@ external_real,86,0.390272,0.082689,0.275503,0.390154,1.465694,0.872093,0.451814,
 external_margin_gated,69,0.320991,0.088524,0.280851,0.341757,1.533615,1.0,0.465698,False,False,False,False
 external_top_rank_gated,28,0.066667,0.145931,0.226317,0.253886,1.718849,0.964286,0.57654,False,False,False,False
 external_core_expanded,27,0.025,0.159277,0.235337,0.228515,1.724188,0.962963,0.5684,False,False,False,False
+external_cluster_gated_core_expanded,24,0.0,0.167578,0.231865,0.212418,1.690631,0.958333,0.573548,False,False,False,False
 physical_no_coupling_baseline,320,0.559375,0.050488,0.405008,0.370687,0.870607,0.4375,0.377654,False,False,False,False
 external_shuffled_same_row_same_separation,116,0.478604,0.059121,0.249062,0.326896,1.173828,0.724138,0.38153,False,False,False,False
 external_confidence_permuted,83,0.430252,0.083765,0.268503,0.381122,1.469718,0.855422,0.440426,False,False,False,False
@@ -24,4 +25,9 @@ external_core_expanded_external_confidence_permuted,29,0.05,0.145313,0.215529,0.
 external_core_expanded_external_cross_row_swapped,18,0.333333,0.04541,0.009497,0.13711,1.473626,0.944444,0.499413,False,False,False,False
 external_core_expanded_external_random_long_range_same_count,29,0.447917,0.055599,0.13573,0.209765,1.314325,0.827586,0.51946,False,False,False,False
 external_core_expanded_external_low_confidence_tail,27,0.072917,0.152995,0.196621,0.218352,1.237673,0.925926,0.375266,False,False,False,False
+external_cluster_gated_core_expanded_external_shuffled_same_row_same_separation,29,0.366667,0.067057,0.123645,0.132796,1.355246,0.827586,0.429574,False,False,False,False
+external_cluster_gated_core_expanded_external_confidence_permuted,26,0.025,0.154069,0.185133,0.201148,1.807732,1.0,0.540878,False,False,False,False
+external_cluster_gated_core_expanded_external_cross_row_swapped,14,0.302083,0.07666,0.000648,0.112271,1.526322,0.928571,0.543276,False,False,False,False
+external_cluster_gated_core_expanded_external_random_long_range_same_count,27,0.472917,0.055208,0.134624,0.19236,1.295888,0.814815,0.516897,False,False,False,False
+external_cluster_gated_core_expanded_external_low_confidence_tail,25,0.072917,0.15651,0.193148,0.209199,1.226378,0.92,0.381376,False,False,False,False
 oracle_coordinate_positive_control,54,0.0,0.164128,0.397896,0.466536,1.693887,0.888889,0.633603,True,True,True,False

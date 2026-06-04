@@ -322,15 +322,17 @@ def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> Non
     assert "external_margin_gated_beats_matched_controls" in report
     assert "external_top_rank_gated_beats_matched_controls" in report
     assert "external_core_expanded_beats_matched_controls" in report
+    assert "external_cluster_gated_core_expanded_beats_matched_controls" in report
     assert report["external_margin_gated_claim_allowed"] is False
     assert report["external_top_rank_gated_claim_allowed"] is False
     assert report["external_core_expanded_claim_allowed"] is False
+    assert report["external_cluster_gated_core_expanded_claim_allowed"] is False
     assert report["mechanism_discovery_claim_allowed"] is False
     assert report["folding_problem_solved"] is False
     assert report["claim_allowed"] is False
     assert certificate["claim_allowed"] is False
-    assert len(selectors) == 26
-    assert len(controls) == 26
+    assert len(selectors) == 32
+    assert len(controls) == 32
     assert len(row_status) == 8
     assert "External Evolutionary Coupling Trace Loop V0" in dashboard
 
