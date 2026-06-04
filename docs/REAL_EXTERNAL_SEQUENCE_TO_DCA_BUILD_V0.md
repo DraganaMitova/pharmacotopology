@@ -88,6 +88,13 @@ external_real_vs_control_enrichment_ratio = 0.997262
 external_real_beats_physical = true
 external_real_beats_matched_controls = false
 external_real_meets_oracle_recall_floor = true
+external_margin_gated_false_nucleus_rate = 0.320991
+external_margin_gated_cluster_precision = 0.088524
+external_margin_gated_long_range_recall = 0.280851
+external_margin_gated_vs_control_enrichment_ratio = 0.99413
+external_margin_gated_beats_physical = true
+external_margin_gated_beats_matched_controls = true
+external_margin_gated_meets_oracle_recall_floor = true
 claim_allowed = false
 ```
 
@@ -97,7 +104,13 @@ The HMMER-assisted focus-plmc channel moves in the right direction versus
 physical reranking on false nuclei, cluster precision, and long-range recall.
 Adding `1PGA:A` pushes long-range recall above the 50 percent oracle recall
 floor, but it also raises the false nucleus rate and still fails matched
-controls. It is not enough.
+controls under the original trace-loop selector.
+
+The margin-gated trace loop is the first real external selector in this series
+to beat physical reranking and every matched negative control on false-rate and
+cluster precision while staying above the oracle recall floor. It is still not
+a folding result: its enrichment ratio versus the strongest matched control is
+0.99413, below the locked 1.25 claim gate.
 
 What is still missing:
 

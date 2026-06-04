@@ -649,6 +649,7 @@ external focus-plmc trace-loop V0 now has real Pfam/InterPro sequence-family dat
 external focus-plmc trace-loop beats physical rerank on false-rate/precision/recall
 external HMMER/plmc rescue covers protein G B1 without coordinate/native truth
 external focus-plmc trace-loop now clears the oracle recall floor but still fails matched controls
+external margin-gated trace-loop beats matched controls on false-rate/precision but fails enrichment
 legacy feature modules still contain useful low-level primitives
 ```
 

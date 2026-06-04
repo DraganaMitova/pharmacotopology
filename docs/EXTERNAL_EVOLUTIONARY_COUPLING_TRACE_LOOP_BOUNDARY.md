@@ -234,6 +234,13 @@ external_real_vs_control_enrichment_ratio = 0.997262
 external_real_beats_physical = true
 external_real_beats_matched_controls = false
 external_real_meets_oracle_recall_floor = true
+external_margin_gated_false_nucleus_rate = 0.320991
+external_margin_gated_cluster_precision = 0.088524
+external_margin_gated_long_range_recall = 0.280851
+external_margin_gated_vs_control_enrichment_ratio = 0.99413
+external_margin_gated_beats_physical = true
+external_margin_gated_beats_matched_controls = true
+external_margin_gated_meets_oracle_recall_floor = true
 claim_allowed = false
 ```
 
@@ -242,7 +249,8 @@ Interpretation:
 ```text
 real external sequence-family couplings are no longer empty
 focus-plmc improves over physical rerank
-matched controls are still too close
+margin-gated trace-loop beats matched controls on false-rate and precision
+confidence/enrichment controls are still too close
 1PGA is now covered by a sequence-only HMMER jackhmmer/PF01378 rescue route
 claims remain locked
 ```

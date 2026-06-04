@@ -3,6 +3,8 @@
   "certificate_kind": "external_evolutionary_coupling_trace_loop_certificate_v0",
   "claim_allowed": false,
   "external_couplings_available_rows": 8,
+  "external_margin_gated_beats_matched_controls": true,
+  "external_margin_gated_claim_allowed": false,
   "external_probe_passed": false,
   "external_real_beats_matched_controls": false,
   "external_real_beats_physical": true,

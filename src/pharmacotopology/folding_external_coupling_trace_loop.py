@@ -56,6 +56,7 @@ MATCHED_CONTROL_NAMES = (
     "external_random_long_range_same_count",
     "external_low_confidence_tail",
 )
+NEGATIVE_CONTROL_KIND = "external_coupling_negative_controls_v0"
 
 
 @dataclass(frozen=True)
@@ -112,7 +113,10 @@ def _controls_from_runs(runs: Sequence[TraceLoopRun]) -> list[dict[str, object]]
         row["control_name"] = run.selector_name
         row["control_kind"] = run.control_kind
         row["constraint_count"] = run.constraint_count
-        row["negative_control"] = run.selector_name in MATCHED_CONTROL_NAMES
+        row["negative_control"] = (
+            run.selector_name in MATCHED_CONTROL_NAMES
+            or run.control_kind == NEGATIVE_CONTROL_KIND
+        )
         rows.append(row)
     return rows
 
@@ -170,6 +174,12 @@ def _certificate(report: Mapping[str, object]) -> dict[str, object]:
         "external_real_beats_matched_controls": report[
             "external_real_beats_matched_controls"
         ],
+        "external_margin_gated_beats_matched_controls": report[
+            "external_margin_gated_beats_matched_controls"
+        ],
+        "external_margin_gated_claim_allowed": report[
+            "external_margin_gated_claim_allowed"
+        ],
         "claim_allowed": report["claim_allowed"],
         "mechanism_discovery_claim_allowed": report[
             "mechanism_discovery_claim_allowed"
@@ -184,8 +194,10 @@ def _build_report(
     rows: Sequence[RealCoordinateVisualRow],
     import_result: ExternalCouplingImportResult,
     external_real: TraceLoopRun,
+    external_margin_gated: TraceLoopRun,
     physical_baseline: TraceLoopRun,
     matched_controls: Sequence[TraceLoopRun],
+    margin_gated_controls: Sequence[TraceLoopRun],
     oracle_positive_control: TraceLoopRun,
     source_benchmark_file: Path,
     external_coupling_file: Path,
@@ -236,12 +248,57 @@ def _build_report(
             for value in control_precisions
         )
     )
+    margin_control_false_rates = [
+        run.metric.false_nucleus_rate for run in margin_gated_controls
+    ]
+    margin_control_precisions = [
+        run.metric.contact_cluster_precision for run in margin_gated_controls
+    ]
+    margin_control_enrichments = [
+        run.metric.real_vs_decoy_coupling_enrichment_ratio
+        for run in margin_gated_controls
+    ]
+    max_margin_control_enrichment = (
+        max(margin_control_enrichments) if margin_control_enrichments else 0.0
+    )
+    margin_selected_event_count = external_margin_gated.metric.selected_event_count
+    margin_vs_control_enrichment_ratio: Optional[float] = (
+        _rounded(
+            external_margin_gated.metric.real_vs_decoy_coupling_enrichment_ratio
+            / max_margin_control_enrichment
+        )
+        if margin_selected_event_count > 0 and max_margin_control_enrichment
+        else None
+    )
+    margin_beats_physical = (
+        margin_selected_event_count > 0
+        and external_margin_gated.metric.false_nucleus_rate
+        < physical_baseline.metric.false_nucleus_rate
+        and external_margin_gated.metric.contact_cluster_precision
+        > physical_baseline.metric.contact_cluster_precision
+    )
+    margin_beats_matched_controls = (
+        bool(margin_gated_controls)
+        and margin_selected_event_count > 0
+        and all(
+            external_margin_gated.metric.false_nucleus_rate < value
+            for value in margin_control_false_rates
+        )
+        and all(
+            external_margin_gated.metric.contact_cluster_precision > value
+            for value in margin_control_precisions
+        )
+    )
     oracle_recall_floor = _rounded(
         0.50 * oracle_positive_control.metric.long_range_contact_recall
     )
     external_real_meets_oracle_recall_floor = (
         external_selected_event_count > 0
         and external_real.metric.long_range_contact_recall >= oracle_recall_floor
+    )
+    margin_meets_oracle_recall_floor = (
+        margin_selected_event_count > 0
+        and external_margin_gated.metric.long_range_contact_recall >= oracle_recall_floor
     )
     claim_mode_failures = coupling_claim_mode_validation_failures(
         import_result.dataset
@@ -322,6 +379,33 @@ def _build_report(
         "external_real_meets_oracle_recall_floor": (
             external_real_meets_oracle_recall_floor
         ),
+        "external_margin_gated_selected_event_count": margin_selected_event_count,
+        "external_margin_gated_false_nucleus_rate": (
+            external_margin_gated.metric.false_nucleus_rate
+            if margin_selected_event_count
+            else None
+        ),
+        "external_margin_gated_cluster_precision": (
+            external_margin_gated.metric.contact_cluster_precision
+            if margin_selected_event_count
+            else None
+        ),
+        "external_margin_gated_long_range_recall": (
+            external_margin_gated.metric.long_range_contact_recall
+            if margin_selected_event_count
+            else None
+        ),
+        "external_margin_gated_vs_control_enrichment_ratio": (
+            margin_vs_control_enrichment_ratio
+        ),
+        "external_margin_gated_beats_physical": margin_beats_physical,
+        "external_margin_gated_beats_matched_controls": (
+            margin_beats_matched_controls
+        ),
+        "external_margin_gated_meets_oracle_recall_floor": (
+            margin_meets_oracle_recall_floor
+        ),
+        "external_margin_gated_claim_allowed": False,
         "matched_negative_controls_present": bool(matched_controls),
         "external_claim_mode_validation_failures": claim_mode_failures,
         "coordinate_truth_used_to_build_constraints": (
@@ -366,6 +450,10 @@ def render_external_coupling_trace_loop_dashboard(
         "mean_matched_control_cluster_precision",
         "external_real_beats_physical",
         "external_real_beats_matched_controls",
+        "external_margin_gated_false_nucleus_rate",
+        "external_margin_gated_cluster_precision",
+        "external_margin_gated_long_range_recall",
+        "external_margin_gated_beats_matched_controls",
         "mechanism_discovery_claim_allowed",
         "folding_problem_solved",
     )
@@ -436,6 +524,13 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
         selector_name="external_real",
         control_kind="external_real",
     )
+    external_margin_gated = _run_trace_loop_selector(
+        rows=rows,
+        dataset=import_result.dataset,
+        selector_name="external_margin_gated",
+        selection_mode="coupling_trace_loop_margin_gated",
+        control_kind="external_real_margin_gated",
+    )
     physical_baseline = _run_trace_loop_selector(
         rows=rows,
         dataset=import_result.dataset,
@@ -458,6 +553,16 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
         )
         for name, control in controls.items()
     )
+    margin_gated_control_runs = tuple(
+        _run_trace_loop_selector(
+            rows=rows,
+            dataset=control.dataset,
+            selector_name=f"external_margin_gated_{name}",
+            selection_mode="coupling_trace_loop_margin_gated",
+            control_kind=control.control_kind,
+        )
+        for name, control in controls.items()
+    )
     oracle_positive_control = _run_trace_loop_selector(
         rows=rows,
         dataset=oracle_dataset,
@@ -466,16 +571,20 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
     )
     all_runs = (
         external_real,
+        external_margin_gated,
         physical_baseline,
         *matched_control_runs,
+        *margin_gated_control_runs,
         oracle_positive_control,
     )
     report = _build_report(
         rows=rows,
         import_result=import_result,
         external_real=external_real,
+        external_margin_gated=external_margin_gated,
         physical_baseline=physical_baseline,
         matched_controls=matched_control_runs,
+        margin_gated_controls=margin_gated_control_runs,
         oracle_positive_control=oracle_positive_control,
         source_benchmark_file=benchmark_file,
         external_coupling_file=external_coupling_file,

@@ -71,6 +71,8 @@ COUPLING_DIRECT_SUPPORT_MIN = 0.22
 COUPLING_FUTURE_PRESERVATION_MIN = 0.62
 COUPLING_BLOCKED_FUTURE_MAX = 0.16
 COUPLING_DECOY_MARGIN_MIN = 0.04
+TRACE_LOOP_MARGIN_GATE_MIN = 0.0
+TRACE_LOOP_MARGIN_GATE_BLOCKED_FUTURE_MAX = 0.16
 
 SURVIVAL_FALSE_RATE_MAX = 0.25
 SURVIVAL_CLUSTER_PRECISION_MIN = 0.08
@@ -239,6 +241,12 @@ def select_coupling_events(
         )
     if selector_name == "coupling_trace_loop":
         return select_coupling_trace_loop_events(context)
+    if selector_name == "coupling_trace_loop_margin_gated":
+        return select_coupling_trace_loop_events(
+            context,
+            min_coupling_decoy_margin=TRACE_LOOP_MARGIN_GATE_MIN,
+            max_blocked_future_pressure=TRACE_LOOP_MARGIN_GATE_BLOCKED_FUTURE_MAX,
+        )
 
     selected: list[NucleusClosureEvent] = []
     competitive_by_row = _events_by_row(context.competitive_events)
@@ -276,6 +284,9 @@ def select_coupling_events(
 
 def select_coupling_trace_loop_events(
     context: CouplingNucleusContext,
+    *,
+    min_coupling_decoy_margin: float | None = None,
+    max_blocked_future_pressure: float | None = None,
 ) -> tuple[NucleusClosureEvent, ...]:
     constraints_by_row = context.coupling_dataset.constraints_by_row_id()
     competitive_by_row = _events_by_row(context.competitive_events)
@@ -301,6 +312,20 @@ def select_coupling_trace_loop_events(
                 if not newly_covered:
                     continue
                 assessment = context.assessment_by_event_id[event.event_id]
+                if (
+                    max_blocked_future_pressure is not None
+                    and assessment.blocked_future_pressure
+                    > max_blocked_future_pressure
+                ):
+                    continue
+                coupling_decoy_margin = context.coupling_decoy_margin_by_event_id[
+                    event.event_id
+                ]
+                if (
+                    min_coupling_decoy_margin is not None
+                    and coupling_decoy_margin < min_coupling_decoy_margin
+                ):
+                    continue
                 covered_confidence = sum(
                     confidence_by_pair[pair] for pair in newly_covered
                 )

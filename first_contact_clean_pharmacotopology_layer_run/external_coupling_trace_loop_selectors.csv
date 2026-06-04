@@ -1,9 +1,15 @@
 selector_name,selected_event_count,false_nucleus_rate,contact_cluster_precision,long_range_contact_recall,coupling_constraint_recall,real_vs_decoy_coupling_enrichment_ratio,real_beats_decoy_coupling_score_rate,mean_coupling_nucleus_score,survives_targets,coordinate_truth_used_to_build_constraints,native_truth_used_before_coupling_selection,raw_sequence_exposed
 external_real,86,0.390272,0.082689,0.275503,0.390154,1.465694,0.872093,0.451814,False,False,False,False
+external_margin_gated,69,0.320991,0.088524,0.280851,0.341757,1.533615,1.0,0.465698,False,False,False,False
 physical_no_coupling_baseline,320,0.559375,0.050488,0.405008,0.370687,0.870607,0.4375,0.377654,False,False,False,False
 external_shuffled_same_row_same_separation,116,0.478604,0.059121,0.249062,0.326896,1.173828,0.724138,0.38153,False,False,False,False
 external_confidence_permuted,83,0.430252,0.083765,0.268503,0.381122,1.469718,0.855422,0.440426,False,False,False,False
 external_cross_row_swapped,63,0.528003,0.051111,0.151569,0.24301,1.341578,0.873016,0.385396,False,False,False,False
 external_random_long_range_same_count,95,0.502752,0.048562,0.328838,0.362065,1.147664,0.684211,0.42749,False,False,False,False
 external_low_confidence_tail,89,0.366341,0.080892,0.322372,0.401969,1.163331,0.797753,0.358617,False,False,False,False
+external_margin_gated_external_shuffled_same_row_same_separation,85,0.554985,0.043092,0.185493,0.252927,1.30534,1.0,0.399499,False,False,False,False
+external_margin_gated_external_confidence_permuted,67,0.393378,0.085695,0.242428,0.342792,1.542671,1.0,0.456711,False,False,False,False
+external_margin_gated_external_cross_row_swapped,40,0.461932,0.048614,0.083066,0.161057,1.438611,1.0,0.394426,False,False,False,False
+external_margin_gated_external_random_long_range_same_count,72,0.549337,0.046194,0.219279,0.31592,1.304032,0.986111,0.446417,False,False,False,False
+external_margin_gated_external_low_confidence_tail,72,0.35797,0.08515,0.306641,0.349298,1.197981,1.0,0.358126,False,False,False,False
 oracle_coordinate_positive_control,54,0.0,0.164128,0.397896,0.466536,1.693887,0.888889,0.633603,True,True,True,False
