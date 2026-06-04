@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="220" viewBox="0 0 640 220" role="img" aria-label="Contact closure curve">
+  <rect width="640" height="220" fill="#f8faf7"/>
+  <text x="34" y="22" font-family="Arial, sans-serif" font-size="15" fill="#22302d">Contact closure curve</text>
+  <text x="34" y="212" font-family="Arial, sans-serif" font-size="11" fill="#58635e">closure step</text>
+  <text x="8" y="34" font-family="Arial, sans-serif" font-size="11" fill="#58635e">active contacts</text>
+  <line x1="34" y1="186" x2="606" y2="186" stroke="#9aa69f"/>
+  <line x1="34" y1="34" x2="34" y2="186" stroke="#9aa69f"/>
+  <polyline points="34.00,186.00 129.33,160.00 224.67,136.00 320.00,110.00 415.33,84.00 510.67,60.00 606.00,34.00" fill="none" stroke="#25636a" stroke-width="3"/>
+</svg>

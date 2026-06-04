@@ -6,14 +6,14 @@ the artifacts instead of left as footnotes.
 
 This project has not solved protein folding. It has built a safe axis-level
 falsification stack, a visual contact-map workbench, a first sequence-only
-contact-repair pass, and now an audit that freezes the 12-row visual benchmark
-as toy/coarse/internal. The current external-safe result has zero unsafe axis
-claims, but coverage is reduced. Global fold-class and mechanism-discovery
-claims remain locked.
+contact-repair pass, an audit that freezes the 12-row visual benchmark as
+toy/coarse/internal, and a new real-coordinate visual contact benchmark. The
+current external-safe result has zero unsafe axis claims, but coverage is
+reduced. Global fold-class and mechanism-discovery claims remain locked.
 
 ## Current Status
 
-Pharmacotopology now has two related surfaces:
+Pharmacotopology now has several related surfaces:
 
 ```text
 mechanism topology workbench
@@ -21,6 +21,7 @@ protein/folding axis falsification stack
 visual folding mechanism workbench
 contact-topology repair workbench
 visual mechanism claim audit
+real-coordinate visual contact benchmark
 ```
 
 The mechanism workbench is a hypothesis simulator. It compares abstract
@@ -53,6 +54,12 @@ visual/contact-repair benchmark is a toy internal benchmark with coarse native
 contact targets, and it reports overfit risk from hardcoded beta-registry
 patterns.
 
+The real-coordinate visual contact benchmark upgrades the proof target. It
+stores locked C-alpha coordinate traces for eight RCSB PDB chains and derives
+native contact maps from coordinate geometry at runtime. Prediction remains
+sequence-only and blind to coordinates until scoring. This is stronger than the
+toy locked-contact target, but still only a coarse C-alpha contact benchmark.
+
 Current honest state:
 
 ```text
@@ -65,6 +72,12 @@ contact repair visible partial successes = 8
 contact repair visible failures = 4
 visual_12_is_toy_benchmark = true
 contact_repair_overfit_risk_reported = true
+real_coordinate_visual_rows = 8
+real_coordinate_mean_contact_map_f1 = 0.051198
+real_coordinate_visible_partial_success_count = 3
+real_coordinate_visible_failure_count = 5
+toy_locked_contact_targets_used = false
+coarse_ca_only = true
 mechanism_discovery_claim_allowed = false
 global_fold_class_claim_allowed = false
 folding_problem_solved = false
@@ -84,6 +97,7 @@ external-safe axis repair
 visual contact-map mechanism workbench
 contact-topology repair and native-gap analysis
 visual mechanism claim audit
+real-coordinate visual contact benchmark
 ```
 
 Canonical commands:
@@ -97,6 +111,7 @@ python3 scripts/run_external_axis_repair_benchmark.py
 python3 scripts/run_visual_folding_mechanism_benchmark.py
 python3 scripts/run_contact_topology_repair_benchmark.py
 python3 scripts/run_visual_mechanism_audit.py
+python3 scripts/run_real_coordinate_visual_benchmark.py
 ```
 
 The active generated folding artifacts are:
@@ -112,6 +127,8 @@ visuals/*/*
 contact_topology_repair_12_*
 contact_repair_visuals/*/*
 visual_mechanism_audit_*
+real_coordinate_visual_8_*
+real_coordinate_visuals/*/*
 ```
 
 Older 10-row and pre-axis 50-row artifacts are preserved under:
@@ -211,6 +228,27 @@ artifact_reproducible = true
 clean_archive_required = true
 finder_zip_allowed = false
 mechanism_discovery_claim_allowed = false
+folding_problem_solved = false
+```
+
+Real-coordinate visual 8-row benchmark:
+
+```text
+real_coordinate_native_contacts_extracted = true
+toy_locked_contact_targets_used = false
+coarse_ca_only = true
+full_atomic_folding_available = false
+benchmark_size = 8
+contact_map_f1_computed_count = 8
+mean_contact_map_f1 = 0.051198
+visible_partial_success_count = 3
+visible_failure_count = 5
+native_truth_used_before_prediction = false
+coordinate_truth_used_before_prediction = false
+raw_sequence_exposed = false
+repair_heuristic_applied = false
+mechanism_discovery_claim_allowed = false
+global_folding_claim_allowed = false
 folding_problem_solved = false
 ```
 

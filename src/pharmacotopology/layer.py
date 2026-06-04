@@ -110,6 +110,12 @@ PHARMACOTOPOLOGY_GENERATED_FILES: tuple[str, ...] = (
     "visual_mechanism_audit_overfit_risks.csv",
     "visual_mechanism_audit_dashboard.html",
     "visual_mechanism_audit_certificate.json",
+    "real_coordinate_visual_8_report.json",
+    "real_coordinate_visual_8_rows.csv",
+    "real_coordinate_visual_8_contact_metrics.csv",
+    "real_coordinate_visual_8_native_contact_summary.csv",
+    "real_coordinate_visual_8_dashboard.html",
+    "real_coordinate_visual_8_certificate.json",
     "field_validation.json",
     "field_metrics.json",
 )

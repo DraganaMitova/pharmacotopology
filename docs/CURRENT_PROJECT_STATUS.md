@@ -1,17 +1,18 @@
 # Current Project Status
 
-This is the current truth of the repository after the visual mechanism audit
-and toy-benchmark freeze milestone.
+This is the current truth of the repository after the real-coordinate visual
+contact benchmark milestone.
 
 ## Latest Safety Baseline
 
 ```text
-latest recorded safety commit = ba67124 Add contact-topology repair and native-gap analysis
-current target = Audit visual mechanism claims and freeze toy-contact benchmark
+latest recorded safety commit = e8cc5eb Audit visual mechanism claims and freeze toy-contact benchmark
+current target = Add real-coordinate visual contact benchmark
 ```
 
-The current target does not add folding logic. It freezes the 12-row visual
-benchmark as toy/coarse/internal and reports contact-repair overfit risk.
+The current target does not add another repair heuristic. It upgrades the
+visual proof target from toy locked contacts to native contact maps derived
+from locked C-alpha coordinate traces.
 
 ## Internal 50-Row Status
 
@@ -138,6 +139,38 @@ The audit is intentionally conservative. It says the repair improvement is
 real on the tiny locked contact-map benchmark, but not proof of folding
 mechanism discovery.
 
+## Real-Coordinate Visual 8-Row Status
+
+The coordinate benchmark uses eight RCSB PDB chains from the locked real-10
+reference set. Native contacts are derived from locked C-alpha coordinate
+traces at runtime:
+
+```text
+real_coordinate_native_contacts_extracted = true
+toy_locked_contact_targets_used = false
+coarse_ca_only = true
+full_atomic_folding_available = false
+benchmark_size = 8
+contact_map_f1_computed_count = 8
+mean_contact_map_f1 = 0.051198
+max_contact_map_f1 = 0.089776
+mean_native_contact_precision = 0.158448
+mean_native_contact_recall = 0.030616
+visible_partial_success_count = 3
+visible_failure_count = 5
+native_truth_used_before_prediction = false
+coordinate_truth_used_before_prediction = false
+raw_sequence_exposed = false
+repair_heuristic_applied = false
+mechanism_discovery_claim_allowed = false
+global_folding_claim_allowed = false
+folding_problem_solved = false
+```
+
+This is a stricter contact-map proof target than the 12-row toy visual
+benchmark. The lower score is not a regression; it is the point of using a more
+realistic target.
+
 ## Canonical Active Stack
 
 ```text
@@ -150,6 +183,7 @@ external-safe axis repair
 visual contact-map mechanism workbench
 contact-topology repair and native-gap analysis
 visual mechanism claim audit
+real-coordinate visual contact benchmark
 ```
 
 Canonical runners:
@@ -163,6 +197,7 @@ scripts/run_external_axis_repair_benchmark.py
 scripts/run_visual_folding_mechanism_benchmark.py
 scripts/run_contact_topology_repair_benchmark.py
 scripts/run_visual_mechanism_audit.py
+scripts/run_real_coordinate_visual_benchmark.py
 ```
 
 Active artifacts:
@@ -178,6 +213,8 @@ visuals/*/*
 contact_topology_repair_12_*
 contact_repair_visuals/*/*
 visual_mechanism_audit_*
+real_coordinate_visual_8_*
+real_coordinate_visuals/*/*
 ```
 
 Archived legacy artifacts:
@@ -199,6 +236,9 @@ contact repair is benchmark-local and still coarse
 disorder, membrane, and mixed beta/compaction failures remain visible
 visual 12 is toy/coarse/internal
 beta-registry repair has explicit overfit risk
+real-coordinate visual 8 is C-alpha only
+real-coordinate mean contact-map F1 is low
+coordinate-native contacts are not atomistic folding truth
 legacy feature modules still contain useful low-level primitives
 ```
 
@@ -213,7 +253,7 @@ Do not add more broad biology claims before the canonical surface stays clean.
 The next research target can be:
 
 ```text
-visual mechanism audit preservation
+real-coordinate contact failure analysis
 ```
 
 Allowed shape:
@@ -224,9 +264,11 @@ preserve truth-after-prediction scoring
 keep global fold-class claims locked
 track coverage cost
 record uncertainty, failure cohorts, and visible contact-map drift
-reduce premature compaction without hiding disorder/membrane failures
+analyze coordinate-native missed contact cohorts
+avoid repair changes until failures are explained on the coordinate benchmark
 keep visual_12_is_toy_benchmark = true
 keep contact_repair_overfit_risk_reported = true
+keep toy_locked_contact_targets_used = false on real-coordinate surfaces
 ```
 
 Forbidden shape:

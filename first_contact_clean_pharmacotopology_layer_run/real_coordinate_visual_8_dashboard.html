@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Real Coordinate Visual Contact Benchmark</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f5f6f1;
+      color: #202623;
+    }
+    header {
+      padding: 34px;
+      background: #24302c;
+      color: #f6f7f2;
+    }
+    main {
+      max-width: 1220px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    h1, h2, h3 {
+      margin: 0 0 12px;
+      letter-spacing: 0;
+    }
+    section {
+      margin: 24px 0;
+    }
+    .metrics, .rules, .visual-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+    .metric, .rule, .visual-card {
+      background: #ffffff;
+      border: 1px solid #d4ddd6;
+      border-radius: 6px;
+      padding: 14px;
+    }
+    .metric span {
+      display: block;
+      color: #58635e;
+      font-size: 12px;
+      overflow-wrap: anywhere;
+    }
+    .metric strong {
+      display: block;
+      margin-top: 8px;
+      font-size: 20px;
+      overflow-wrap: anywhere;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #ffffff;
+      border: 1px solid #d4ddd6;
+    }
+    th, td {
+      padding: 9px 10px;
+      border-bottom: 1px solid #e3e8e3;
+      text-align: left;
+      font-size: 13px;
+      vertical-align: top;
+      overflow-wrap: anywhere;
+    }
+    .visual-card img {
+      width: 100%;
+      height: auto;
+      border: 1px solid #d4ddd6;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Real Coordinate Visual Contact Benchmark</h1>
+    <p>Sequence-only contact hypotheses are scored against C-alpha native contact maps extracted from locked RCSB coordinate traces.</p>
+  </header>
+  <main>
+    <section class="metrics"><div class="metric"><span>benchmark_size</span><strong>8</strong></div><div class="metric"><span>coordinate_backed_row_count</span><strong>8</strong></div><div class="metric"><span>real_coordinate_native_contacts_extracted</span><strong>True</strong></div><div class="metric"><span>toy_locked_contact_targets_used</span><strong>False</strong></div><div class="metric"><span>mean_contact_map_f1</span><strong>0.051198</strong></div><div class="metric"><span>visible_partial_success_count</span><strong>3</strong></div><div class="metric"><span>visible_failure_count</span><strong>5</strong></div><div class="metric"><span>repair_heuristic_applied</span><strong>False</strong></div><div class="metric"><span>mechanism_discovery_claim_allowed</span><strong>False</strong></div><div class="metric"><span>folding_problem_solved</span><strong>False</strong></div></section>
+    <section><h2>Boundary Rules</h2><div class="rules"><div class="rule"><h3>Real Coordinate Native Contacts</h3><p>Native maps are derived from locked RCSB C-alpha coordinate traces.</p></div><div class="rule"><h3>Prediction Is Blind To Coordinates</h3><p>Coordinates and native contacts are used only after sequence-only prediction.</p></div><div class="rule"><h3>C-alpha Coarse, Not Full Atomic Folding</h3><p>The benchmark scores contact topology, not atomistic pathways or dynamics.</p></div><div class="rule"><h3>No Repair Heuristic Applied</h3><p>This surface is a baseline proof-target upgrade, not another repair pass.</p></div><div class="rule"><h3>Global Folding Claim Remains Locked</h3><p>The benchmark can expose failures but cannot claim folding is solved.</p></div></div></section>
+    <section><h2>Coordinate Visual Rows</h2><table><thead><tr><th>row</th><th>source</th><th>class</th><th>native contacts</th><th>contact_map_f1</th><th>cohort</th><th>visuals</th></tr></thead><tbody><tr><td>coord_001_pdb_1MBN_A_myoglobin</td><td>1MBN:A</td><td>alpha_rich</td><td>395</td><td>0.080679</td><td>coordinate_visible_partial_success</td><td><a href="real_coordinate_visuals/coord_001_pdb_1MBN_A_myoglobin/contact_map_overlay.svg">overlay</a> | <a href="real_coordinate_visuals/coord_001_pdb_1MBN_A_myoglobin/native_coordinate_trace.svg">trace</a></td></tr><tr><td>coord_002_pdb_2LZM_A_t4_lysozyme</td><td>2LZM:A</td><td>alpha_rich</td><td>428</td><td>0.058824</td><td>coordinate_low_recall_gap</td><td><a href="real_coordinate_visuals/coord_002_pdb_2LZM_A_t4_lysozyme/contact_map_overlay.svg">overlay</a> | <a href="real_coordinate_visuals/coord_002_pdb_2LZM_A_t4_lysozyme/native_coordinate_trace.svg">trace</a></td></tr><tr><td>coord_003_pdb_1TEN_A_tenascin_fn3</td><td>1TEN:A</td><td>beta_rich</td><td>240</td><td>0.02807</td><td>coordinate_beta_long_range_gap</td><td><a href="real_coordinate_visuals/coord_003_pdb_1TEN_A_tenascin_fn3/contact_map_overlay.svg">overlay</a> | <a href="real_coordinate_visuals/coord_003_pdb_1TEN_A_tenascin_fn3/native_coordinate_trace.svg">trace</a></td></tr><tr><td>coord_004_pdb_1CSP_A_cold_shock_protein</td><td>1CSP:A</td><td>beta_rich</td><td>177</td><td>0.009524</td><td>coordinate_beta_long_range_gap</td><td><a href="real_coordinate_visuals/coord_004_pdb_1CSP_A_cold_shock_protein/contact_map_overlay.svg">overlay</a> | <a href="real_coordinate_visuals/coord_004_pdb_1CSP_A_cold_shock_protein/native_coordinate_trace.svg">trace</a></td></tr><tr><td>coord_005_pdb_1TIM_A_triosephosphate_isomerase</td><td>1TIM:A</td><td>alpha_beta_mixed</td><td>725</td><td>0.014724</td><td>coordinate_false_contact_overprediction</td><td><a href="real_coordinate_visuals/coord_005_pdb_1TIM_A_triosephosphate_isomerase/contact_map_overlay.svg">overlay</a> | <a href="real_coordinate_visuals/coord_005_pdb_1TIM_A_triosephosphate_isomerase/native_coordinate_trace.svg">trace</a></td></tr><tr><td>coord_006_pdb_1PGA_A_protein_g_b1</td><td>1PGA:A</td><td>alpha_beta_mixed</td><td>137</td><td>0.084848</td><td>coordinate_visible_partial_success</td><td><a href="real_coordinate_visuals/coord_006_pdb_1PGA_A_protein_g_b1/contact_map_overlay.svg">overlay</a> | <a href="real_coordinate_visuals/coord_006_pdb_1PGA_A_protein_g_b1/native_coordinate_trace.svg">trace</a></td></tr><tr><td>coord_007_pdb_4AKE_A_adenylate_kinase</td><td>4AKE:A</td><td>multidomain_boundary</td><td>559</td><td>0.043143</td><td>coordinate_architecture_gap</td><td><a href="real_coordinate_visuals/coord_007_pdb_4AKE_A_adenylate_kinase/contact_map_overlay.svg">overlay</a> | <a href="real_coordinate_visuals/coord_007_pdb_4AKE_A_adenylate_kinase/native_coordinate_trace.svg">trace</a></td></tr><tr><td>coord_008_pdb_1CLL_A_calmodulin</td><td>1CLL:A</td><td>multidomain_boundary</td><td>327</td><td>0.089776</td><td>coordinate_visible_partial_success</td><td><a href="real_coordinate_visuals/coord_008_pdb_1CLL_A_calmodulin/contact_map_overlay.svg">overlay</a> | <a href="real_coordinate_visuals/coord_008_pdb_1CLL_A_calmodulin/native_coordinate_trace.svg">trace</a></td></tr></tbody></table></section>
+    <section><h2>Coordinate Contact Overlays</h2><div class="visual-grid"><article class="visual-card"><h3>coord_001_pdb_1MBN_A_myoglobin</h3><img src="real_coordinate_visuals/coord_001_pdb_1MBN_A_myoglobin/contact_map_overlay.svg" alt="coordinate contact overlay for coord_001_pdb_1MBN_A_myoglobin"><p>F1: 0.080679 | coordinate_visible_partial_success</p></article><article class="visual-card"><h3>coord_002_pdb_2LZM_A_t4_lysozyme</h3><img src="real_coordinate_visuals/coord_002_pdb_2LZM_A_t4_lysozyme/contact_map_overlay.svg" alt="coordinate contact overlay for coord_002_pdb_2LZM_A_t4_lysozyme"><p>F1: 0.058824 | coordinate_low_recall_gap</p></article><article class="visual-card"><h3>coord_003_pdb_1TEN_A_tenascin_fn3</h3><img src="real_coordinate_visuals/coord_003_pdb_1TEN_A_tenascin_fn3/contact_map_overlay.svg" alt="coordinate contact overlay for coord_003_pdb_1TEN_A_tenascin_fn3"><p>F1: 0.02807 | coordinate_beta_long_range_gap</p></article><article class="visual-card"><h3>coord_004_pdb_1CSP_A_cold_shock_protein</h3><img src="real_coordinate_visuals/coord_004_pdb_1CSP_A_cold_shock_protein/contact_map_overlay.svg" alt="coordinate contact overlay for coord_004_pdb_1CSP_A_cold_shock_protein"><p>F1: 0.009524 | coordinate_beta_long_range_gap</p></article><article class="visual-card"><h3>coord_005_pdb_1TIM_A_triosephosphate_isomerase</h3><img src="real_coordinate_visuals/coord_005_pdb_1TIM_A_triosephosphate_isomerase/contact_map_overlay.svg" alt="coordinate contact overlay for coord_005_pdb_1TIM_A_triosephosphate_isomerase"><p>F1: 0.014724 | coordinate_false_contact_overprediction</p></article><article class="visual-card"><h3>coord_006_pdb_1PGA_A_protein_g_b1</h3><img src="real_coordinate_visuals/coord_006_pdb_1PGA_A_protein_g_b1/contact_map_overlay.svg" alt="coordinate contact overlay for coord_006_pdb_1PGA_A_protein_g_b1"><p>F1: 0.084848 | coordinate_visible_partial_success</p></article><article class="visual-card"><h3>coord_007_pdb_4AKE_A_adenylate_kinase</h3><img src="real_coordinate_visuals/coord_007_pdb_4AKE_A_adenylate_kinase/contact_map_overlay.svg" alt="coordinate contact overlay for coord_007_pdb_4AKE_A_adenylate_kinase"><p>F1: 0.043143 | coordinate_architecture_gap</p></article><article class="visual-card"><h3>coord_008_pdb_1CLL_A_calmodulin</h3><img src="real_coordinate_visuals/coord_008_pdb_1CLL_A_calmodulin/contact_map_overlay.svg" alt="coordinate contact overlay for coord_008_pdb_1CLL_A_calmodulin"><p>F1: 0.089776 | coordinate_visible_partial_success</p></article></div></section>
+    <section>
+      <h2>Claim Boundary</h2>
+      <p>This benchmark extracts coarse C-alpha native contact maps from locked RCSB coordinate traces, then scores sequence-only contact hypotheses after prediction. It upgrades the proof target beyond toy locked contacts, but it is still not atomistic folding, mechanism discovery, or a solved folding engine.</p>
+    </section>
+  </main>
+</body>
+</html>
