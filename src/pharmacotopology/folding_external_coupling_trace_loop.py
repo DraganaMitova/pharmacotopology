@@ -177,8 +177,14 @@ def _certificate(report: Mapping[str, object]) -> dict[str, object]:
         "external_margin_gated_beats_matched_controls": report[
             "external_margin_gated_beats_matched_controls"
         ],
+        "external_top_rank_gated_beats_matched_controls": report[
+            "external_top_rank_gated_beats_matched_controls"
+        ],
         "external_margin_gated_claim_allowed": report[
             "external_margin_gated_claim_allowed"
+        ],
+        "external_top_rank_gated_claim_allowed": report[
+            "external_top_rank_gated_claim_allowed"
         ],
         "claim_allowed": report["claim_allowed"],
         "mechanism_discovery_claim_allowed": report[
@@ -195,9 +201,11 @@ def _build_report(
     import_result: ExternalCouplingImportResult,
     external_real: TraceLoopRun,
     external_margin_gated: TraceLoopRun,
+    external_top_rank_gated: TraceLoopRun,
     physical_baseline: TraceLoopRun,
     matched_controls: Sequence[TraceLoopRun],
     margin_gated_controls: Sequence[TraceLoopRun],
+    top_rank_gated_controls: Sequence[TraceLoopRun],
     oracle_positive_control: TraceLoopRun,
     source_benchmark_file: Path,
     external_coupling_file: Path,
@@ -289,6 +297,47 @@ def _build_report(
             for value in margin_control_precisions
         )
     )
+    top_rank_control_false_rates = [
+        run.metric.false_nucleus_rate for run in top_rank_gated_controls
+    ]
+    top_rank_control_precisions = [
+        run.metric.contact_cluster_precision for run in top_rank_gated_controls
+    ]
+    top_rank_control_enrichments = [
+        run.metric.real_vs_decoy_coupling_enrichment_ratio
+        for run in top_rank_gated_controls
+    ]
+    max_top_rank_control_enrichment = (
+        max(top_rank_control_enrichments) if top_rank_control_enrichments else 0.0
+    )
+    top_rank_selected_event_count = external_top_rank_gated.metric.selected_event_count
+    top_rank_vs_control_enrichment_ratio: Optional[float] = (
+        _rounded(
+            external_top_rank_gated.metric.real_vs_decoy_coupling_enrichment_ratio
+            / max_top_rank_control_enrichment
+        )
+        if top_rank_selected_event_count > 0 and max_top_rank_control_enrichment
+        else None
+    )
+    top_rank_beats_physical = (
+        top_rank_selected_event_count > 0
+        and external_top_rank_gated.metric.false_nucleus_rate
+        < physical_baseline.metric.false_nucleus_rate
+        and external_top_rank_gated.metric.contact_cluster_precision
+        > physical_baseline.metric.contact_cluster_precision
+    )
+    top_rank_beats_matched_controls = (
+        bool(top_rank_gated_controls)
+        and top_rank_selected_event_count > 0
+        and all(
+            external_top_rank_gated.metric.false_nucleus_rate < value
+            for value in top_rank_control_false_rates
+        )
+        and all(
+            external_top_rank_gated.metric.contact_cluster_precision > value
+            for value in top_rank_control_precisions
+        )
+    )
     oracle_recall_floor = _rounded(
         0.50 * oracle_positive_control.metric.long_range_contact_recall
     )
@@ -299,6 +348,11 @@ def _build_report(
     margin_meets_oracle_recall_floor = (
         margin_selected_event_count > 0
         and external_margin_gated.metric.long_range_contact_recall >= oracle_recall_floor
+    )
+    top_rank_meets_oracle_recall_floor = (
+        top_rank_selected_event_count > 0
+        and external_top_rank_gated.metric.long_range_contact_recall
+        >= oracle_recall_floor
     )
     claim_mode_failures = coupling_claim_mode_validation_failures(
         import_result.dataset
@@ -406,6 +460,35 @@ def _build_report(
             margin_meets_oracle_recall_floor
         ),
         "external_margin_gated_claim_allowed": False,
+        "external_top_rank_gated_selected_event_count": (
+            top_rank_selected_event_count
+        ),
+        "external_top_rank_gated_false_nucleus_rate": (
+            external_top_rank_gated.metric.false_nucleus_rate
+            if top_rank_selected_event_count
+            else None
+        ),
+        "external_top_rank_gated_cluster_precision": (
+            external_top_rank_gated.metric.contact_cluster_precision
+            if top_rank_selected_event_count
+            else None
+        ),
+        "external_top_rank_gated_long_range_recall": (
+            external_top_rank_gated.metric.long_range_contact_recall
+            if top_rank_selected_event_count
+            else None
+        ),
+        "external_top_rank_gated_vs_control_enrichment_ratio": (
+            top_rank_vs_control_enrichment_ratio
+        ),
+        "external_top_rank_gated_beats_physical": top_rank_beats_physical,
+        "external_top_rank_gated_beats_matched_controls": (
+            top_rank_beats_matched_controls
+        ),
+        "external_top_rank_gated_meets_oracle_recall_floor": (
+            top_rank_meets_oracle_recall_floor
+        ),
+        "external_top_rank_gated_claim_allowed": False,
         "matched_negative_controls_present": bool(matched_controls),
         "external_claim_mode_validation_failures": claim_mode_failures,
         "coordinate_truth_used_to_build_constraints": (
@@ -454,6 +537,11 @@ def render_external_coupling_trace_loop_dashboard(
         "external_margin_gated_cluster_precision",
         "external_margin_gated_long_range_recall",
         "external_margin_gated_beats_matched_controls",
+        "external_top_rank_gated_false_nucleus_rate",
+        "external_top_rank_gated_cluster_precision",
+        "external_top_rank_gated_long_range_recall",
+        "external_top_rank_gated_vs_control_enrichment_ratio",
+        "external_top_rank_gated_beats_matched_controls",
         "mechanism_discovery_claim_allowed",
         "folding_problem_solved",
     )
@@ -531,6 +619,13 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
         selection_mode="coupling_trace_loop_margin_gated",
         control_kind="external_real_margin_gated",
     )
+    external_top_rank_gated = _run_trace_loop_selector(
+        rows=rows,
+        dataset=import_result.dataset,
+        selector_name="external_top_rank_gated",
+        selection_mode="coupling_trace_loop_top_rank_gated",
+        control_kind="external_real_top_rank_gated",
+    )
     physical_baseline = _run_trace_loop_selector(
         rows=rows,
         dataset=import_result.dataset,
@@ -563,6 +658,16 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
         )
         for name, control in controls.items()
     )
+    top_rank_gated_control_runs = tuple(
+        _run_trace_loop_selector(
+            rows=rows,
+            dataset=control.dataset,
+            selector_name=f"external_top_rank_gated_{name}",
+            selection_mode="coupling_trace_loop_top_rank_gated",
+            control_kind=control.control_kind,
+        )
+        for name, control in controls.items()
+    )
     oracle_positive_control = _run_trace_loop_selector(
         rows=rows,
         dataset=oracle_dataset,
@@ -572,9 +677,11 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
     all_runs = (
         external_real,
         external_margin_gated,
+        external_top_rank_gated,
         physical_baseline,
         *matched_control_runs,
         *margin_gated_control_runs,
+        *top_rank_gated_control_runs,
         oracle_positive_control,
     )
     report = _build_report(
@@ -582,9 +689,11 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
         import_result=import_result,
         external_real=external_real,
         external_margin_gated=external_margin_gated,
+        external_top_rank_gated=external_top_rank_gated,
         physical_baseline=physical_baseline,
         matched_controls=matched_control_runs,
         margin_gated_controls=margin_gated_control_runs,
+        top_rank_gated_controls=top_rank_gated_control_runs,
         oracle_positive_control=oracle_positive_control,
         source_benchmark_file=benchmark_file,
         external_coupling_file=external_coupling_file,

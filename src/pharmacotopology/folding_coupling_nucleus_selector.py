@@ -73,6 +73,8 @@ COUPLING_BLOCKED_FUTURE_MAX = 0.16
 COUPLING_DECOY_MARGIN_MIN = 0.04
 TRACE_LOOP_MARGIN_GATE_MIN = 0.0
 TRACE_LOOP_MARGIN_GATE_BLOCKED_FUTURE_MAX = 0.16
+TRACE_LOOP_TOP_RANK_FRACTION = 0.30
+TRACE_LOOP_TOP_RANK_MIN_NEW_PAIRS = 2
 
 SURVIVAL_FALSE_RATE_MAX = 0.25
 SURVIVAL_CLUSTER_PRECISION_MIN = 0.08
@@ -155,6 +157,24 @@ def _constraint_confidence_by_pair(
     constraints: Sequence[CouplingConstraint],
 ) -> dict[tuple[int, int], float]:
     return {constraint.pair(): constraint.confidence for constraint in constraints}
+
+
+def _top_confidence_pairs(
+    constraints: Sequence[CouplingConstraint],
+    *,
+    fraction: float,
+) -> frozenset[tuple[int, int]]:
+    ranked = sorted(
+        constraints,
+        key=lambda constraint: (
+            -constraint.confidence,
+            constraint.i,
+            constraint.j,
+            constraint.constraint_id,
+        ),
+    )
+    top_count = max(1, int(len(ranked) * fraction))
+    return frozenset(constraint.pair() for constraint in ranked[:top_count])
 
 
 def build_coupling_nucleus_context(
@@ -247,6 +267,12 @@ def select_coupling_events(
             min_coupling_decoy_margin=TRACE_LOOP_MARGIN_GATE_MIN,
             max_blocked_future_pressure=TRACE_LOOP_MARGIN_GATE_BLOCKED_FUTURE_MAX,
         )
+    if selector_name == "coupling_trace_loop_top_rank_gated":
+        return select_coupling_trace_loop_events(
+            context,
+            top_confidence_fraction=TRACE_LOOP_TOP_RANK_FRACTION,
+            min_new_top_confidence_pairs=TRACE_LOOP_TOP_RANK_MIN_NEW_PAIRS,
+        )
 
     selected: list[NucleusClosureEvent] = []
     competitive_by_row = _events_by_row(context.competitive_events)
@@ -287,6 +313,8 @@ def select_coupling_trace_loop_events(
     *,
     min_coupling_decoy_margin: float | None = None,
     max_blocked_future_pressure: float | None = None,
+    top_confidence_fraction: float | None = None,
+    min_new_top_confidence_pairs: int = 0,
 ) -> tuple[NucleusClosureEvent, ...]:
     constraints_by_row = context.coupling_dataset.constraints_by_row_id()
     competitive_by_row = _events_by_row(context.competitive_events)
@@ -294,6 +322,11 @@ def select_coupling_trace_loop_events(
     for row in context.rows:
         row_constraints = tuple(constraints_by_row.get(row.row_id, ()))
         confidence_by_pair = _constraint_confidence_by_pair(row_constraints)
+        top_confidence_pairs = (
+            _top_confidence_pairs(row_constraints, fraction=top_confidence_fraction)
+            if top_confidence_fraction is not None and row_constraints
+            else frozenset()
+        )
         uncovered = set(confidence_by_pair)
         row_selected: list[NucleusClosureEvent] = []
         row_candidates = tuple(competitive_by_row.get(row.row_id, ()))
@@ -310,6 +343,12 @@ def select_coupling_trace_loop_events(
                 event_pairs = set(event.candidate_region_pairs())
                 newly_covered = event_pairs & uncovered
                 if not newly_covered:
+                    continue
+                if (
+                    min_new_top_confidence_pairs
+                    and len(newly_covered & top_confidence_pairs)
+                    < min_new_top_confidence_pairs
+                ):
                     continue
                 assessment = context.assessment_by_event_id[event.event_id]
                 if (
