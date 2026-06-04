@@ -116,6 +116,13 @@ PHARMACOTOPOLOGY_GENERATED_FILES: tuple[str, ...] = (
     "real_coordinate_visual_8_native_contact_summary.csv",
     "real_coordinate_visual_8_dashboard.html",
     "real_coordinate_visual_8_certificate.json",
+    "contact_law_threshold_report.json",
+    "contact_law_threshold_rows.csv",
+    "contact_law_threshold_grid.csv",
+    "contact_law_threshold_holdout.csv",
+    "contact_law_threshold_failures.csv",
+    "contact_law_threshold_dashboard.html",
+    "contact_law_threshold_certificate.json",
     "field_validation.json",
     "field_metrics.json",
 )

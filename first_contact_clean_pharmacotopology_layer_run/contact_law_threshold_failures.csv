@@ -1,0 +1,5 @@
+model_id,heldout_row_id,chosen_threshold,test_f1,test_precision,test_recall,test_false_contact_rate,test_long_range_contact_recall,failure_reason,mechanism_discovery_claim_allowed
+pair_plus_entropy_score,coord_003_pdb_1TEN_A_tenascin_fn3,0.44,0.039216,0.090909,0.025,0.909091,0.0,low_test_f1,False
+pair_plus_entropy_score,coord_004_pdb_1CSP_A_cold_shock_protein,0.44,0.054054,0.133333,0.033898,0.866667,0.0,low_test_f1,False
+pair_plus_entropy_score,coord_005_pdb_1TIM_A_triosephosphate_isomerase,0.43,0.198567,0.384921,0.133793,0.615079,0.0,low_test_f1,False
+pair_plus_entropy_score,coord_006_pdb_1PGA_A_protein_g_b1,0.45,0.189944,0.404762,0.124088,0.595238,0.0,low_test_f1,False

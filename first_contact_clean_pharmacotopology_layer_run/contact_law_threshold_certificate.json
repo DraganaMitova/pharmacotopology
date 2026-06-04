@@ -1,0 +1,25 @@
+{
+  "artifact_reproducible": true,
+  "certificate_kind": "contact_law_threshold_search_certificate",
+  "claim_allowed": false,
+  "current_scalar_score_law_rejected": true,
+  "folding_problem_solved": false,
+  "global_folding_claim_allowed": false,
+  "law_generalizes": false,
+  "law_search_completed": true,
+  "mechanism_discovery_claim_allowed": false,
+  "native_truth_used_before_feature_generation": false,
+  "output_artifacts": [
+    "contact_law_threshold_report.json",
+    "contact_law_threshold_rows.csv",
+    "contact_law_threshold_grid.csv",
+    "contact_law_threshold_holdout.csv",
+    "contact_law_threshold_failures.csv",
+    "contact_law_threshold_dashboard.html",
+    "contact_law_threshold_certificate.json"
+  ],
+  "report_kind": "contact_law_threshold_search_v1",
+  "row_specific_thresholds_forbidden": true,
+  "source_benchmark_kind": "real_coordinate_visual_contact_benchmark_v1",
+  "uploaded_zip_pytest_passes": true
+}

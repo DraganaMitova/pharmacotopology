@@ -8,8 +8,10 @@ This project has not solved protein folding. It has built a safe axis-level
 falsification stack, a visual contact-map workbench, a first sequence-only
 contact-repair pass, an audit that freezes the 12-row visual benchmark as
 toy/coarse/internal, and a new real-coordinate visual contact benchmark. The
-current external-safe result has zero unsafe axis claims, but coverage is
-reduced. Global fold-class and mechanism-discovery claims remain locked.
+real-coordinate benchmark is now followed by a contact-law threshold search
+that rejects the current scalar contact heuristic as a stable law. The current
+external-safe result has zero unsafe axis claims, but coverage is reduced.
+Global fold-class and mechanism-discovery claims remain locked.
 
 ## Current Status
 
@@ -22,6 +24,7 @@ visual folding mechanism workbench
 contact-topology repair workbench
 visual mechanism claim audit
 real-coordinate visual contact benchmark
+contact-law threshold falsification
 ```
 
 The mechanism workbench is a hypothesis simulator. It compares abstract
@@ -60,6 +63,11 @@ native contact maps from coordinate geometry at runtime. Prediction remains
 sequence-only and blind to coordinates until scoring. This is stronger than the
 toy locked-contact target, but still only a coarse C-alpha contact benchmark.
 
+The contact-law threshold search tests whether one sequence-only threshold law
+survives across held-out coordinate-backed proteins. The current scalar contact
+score is rejected. A pair-plus-entropy candidate improves held-out F1, but it
+does not survive as a general law because long-range recall collapses.
+
 Current honest state:
 
 ```text
@@ -78,6 +86,10 @@ real_coordinate_visible_partial_success_count = 3
 real_coordinate_visible_failure_count = 5
 toy_locked_contact_targets_used = false
 coarse_ca_only = true
+current_scalar_score_law_rejected = true
+best_law_candidate_model = pair_plus_entropy_score
+best_law_candidate_loo_mean_test_f1 = 0.233569
+law_generalizes = false
 mechanism_discovery_claim_allowed = false
 global_fold_class_claim_allowed = false
 folding_problem_solved = false
@@ -98,6 +110,7 @@ visual contact-map mechanism workbench
 contact-topology repair and native-gap analysis
 visual mechanism claim audit
 real-coordinate visual contact benchmark
+contact-law threshold falsification
 ```
 
 Canonical commands:
@@ -112,6 +125,7 @@ python3 scripts/run_visual_folding_mechanism_benchmark.py
 python3 scripts/run_contact_topology_repair_benchmark.py
 python3 scripts/run_visual_mechanism_audit.py
 python3 scripts/run_real_coordinate_visual_benchmark.py
+python3 scripts/run_contact_law_threshold_search.py
 ```
 
 The active generated folding artifacts are:
@@ -129,6 +143,7 @@ contact_repair_visuals/*/*
 visual_mechanism_audit_*
 real_coordinate_visual_8_*
 real_coordinate_visuals/*/*
+contact_law_threshold_*
 ```
 
 Older 10-row and pre-axis 50-row artifacts are preserved under:
@@ -251,6 +266,33 @@ mechanism_discovery_claim_allowed = false
 global_folding_claim_allowed = false
 folding_problem_solved = false
 ```
+
+Contact-law threshold search:
+
+```text
+pair_feature_row_count = 94546
+threshold_grid_row_count = 505
+holdout_row_count = 32
+current_scalar_score_best_global_threshold = 0.52
+current_scalar_score_best_global_f1 = 0.150906
+current_scalar_score_best_global_micro_f1 = 0.147772
+current_scalar_score_threshold_stable = false
+current_scalar_score_law_rejected = true
+pair_only_best_f1 = 0.178009
+best_law_candidate_model = pair_plus_entropy_score
+best_law_candidate_loo_mean_test_f1 = 0.233569
+best_law_candidate_loo_threshold_std = 0.007071
+best_law_candidate_survives = false
+law_generalizes = false
+native_truth_used_before_feature_generation = false
+row_specific_thresholds_forbidden = true
+mechanism_discovery_claim_allowed = false
+folding_problem_solved = false
+```
+
+The candidate improves held-out F1 but fails the law boundary because it loses
+long-range contact recall. The correct statement is law rejected / not yet
+found, not folding solved.
 
 ## Safety Boundaries
 

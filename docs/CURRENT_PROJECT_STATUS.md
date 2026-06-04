@@ -1,18 +1,18 @@
 # Current Project Status
 
-This is the current truth of the repository after the real-coordinate visual
-contact benchmark milestone.
+This is the current truth of the repository after the contact-law threshold
+search and falsification milestone.
 
 ## Latest Safety Baseline
 
 ```text
 latest recorded safety commit = e8cc5eb Audit visual mechanism claims and freeze toy-contact benchmark
-current target = Add real-coordinate visual contact benchmark
+current target = Add contact-law threshold search and falsification
 ```
 
-The current target does not add another repair heuristic. It upgrades the
-visual proof target from toy locked contacts to native contact maps derived
-from locked C-alpha coordinate traces.
+The current target does not add another repair heuristic. It tests whether a
+sequence-only contact threshold law survives the real-coordinate visual
+benchmark.
 
 ## Internal 50-Row Status
 
@@ -171,6 +171,53 @@ This is a stricter contact-map proof target than the 12-row toy visual
 benchmark. The lower score is not a regression; it is the point of using a more
 realistic target.
 
+## Contact-Law Threshold Status
+
+The threshold search computes sequence-only pair features for every residue
+pair in the eight coordinate-backed rows, then attaches native labels only for
+scoring:
+
+```text
+pair_feature_row_count = 94546
+native_pair_label_count = 2988
+threshold_grid_row_count = 505
+holdout_row_count = 32
+native_truth_used_before_feature_generation = false
+row_specific_thresholds_forbidden = true
+```
+
+The current scalar score is rejected as a stable law:
+
+```text
+current_scalar_score_best_global_threshold = 0.52
+current_scalar_score_best_global_f1 = 0.150906
+current_scalar_score_best_global_micro_f1 = 0.147772
+current_scalar_score_threshold_std = 0.217715
+current_scalar_score_threshold_stable = false
+current_scalar_score_law_rejected = true
+```
+
+The best candidate is better, but does not survive as a law:
+
+```text
+pair_only_best_f1 = 0.178009
+best_law_candidate_model = pair_plus_entropy_score
+best_law_candidate_loo_mean_test_f1 = 0.233569
+best_law_candidate_loo_threshold_std = 0.007071
+best_law_candidate_survives = false
+law_generalizes = false
+candidate_law_failure_count = 4
+mechanism_discovery_claim_allowed = false
+folding_problem_solved = false
+```
+
+Interpretation:
+
+```text
+Pair-plus-entropy improves held-out F1 and reduces false contacts, but it loses
+long-range contact recall. The law is not discovered.
+```
+
 ## Canonical Active Stack
 
 ```text
@@ -184,6 +231,7 @@ visual contact-map mechanism workbench
 contact-topology repair and native-gap analysis
 visual mechanism claim audit
 real-coordinate visual contact benchmark
+contact-law threshold falsification
 ```
 
 Canonical runners:
@@ -198,6 +246,7 @@ scripts/run_visual_folding_mechanism_benchmark.py
 scripts/run_contact_topology_repair_benchmark.py
 scripts/run_visual_mechanism_audit.py
 scripts/run_real_coordinate_visual_benchmark.py
+scripts/run_contact_law_threshold_search.py
 ```
 
 Active artifacts:
@@ -215,6 +264,7 @@ contact_repair_visuals/*/*
 visual_mechanism_audit_*
 real_coordinate_visual_8_*
 real_coordinate_visuals/*/*
+contact_law_threshold_*
 ```
 
 Archived legacy artifacts:
@@ -239,6 +289,8 @@ beta-registry repair has explicit overfit risk
 real-coordinate visual 8 is C-alpha only
 real-coordinate mean contact-map F1 is low
 coordinate-native contacts are not atomistic folding truth
+current scalar contact score is rejected as a stable threshold law
+best threshold candidate does not generalize because long-range recall collapses
 legacy feature modules still contain useful low-level primitives
 ```
 
@@ -265,10 +317,12 @@ keep global fold-class claims locked
 track coverage cost
 record uncertainty, failure cohorts, and visible contact-map drift
 analyze coordinate-native missed contact cohorts
+explain long-range recall collapse under pair-plus-entropy scoring
 avoid repair changes until failures are explained on the coordinate benchmark
 keep visual_12_is_toy_benchmark = true
 keep contact_repair_overfit_risk_reported = true
 keep toy_locked_contact_targets_used = false on real-coordinate surfaces
+keep current_scalar_score_law_rejected = true until a stronger law survives
 ```
 
 Forbidden shape:
