@@ -1,0 +1,9 @@
+graph_id,row_id,source_accession,selected_event_count,segment_node_count,mean_graph_core_score,mean_mutual_support_count,graph_native_positive_rate_after_scoring,graph_contact_cluster_precision_after_scoring,graph_long_range_contact_recall_after_scoring,native_truth_used_before_graph_selection,raw_sequence_exposed
+coord_001_pdb_1MBN_A_myoglobin:graph_core,coord_001_pdb_1MBN_A_myoglobin,1MBN:A,40,18,0.290729,26.775,0.3,0.017188,0.237113,False,False
+coord_002_pdb_2LZM_A_t4_lysozyme:graph_core,coord_002_pdb_2LZM_A_t4_lysozyme,2LZM:A,40,23,0.327983,22.85,0.575,0.049219,0.43038,False,False
+coord_003_pdb_1TEN_A_tenascin_fn3:graph_core,coord_003_pdb_1TEN_A_tenascin_fn3,1TEN:A,40,17,0.247761,21.175,0.425,0.095703,0.513274,False,False
+coord_004_pdb_1CSP_A_cold_shock_protein:graph_core,coord_004_pdb_1CSP_A_cold_shock_protein,1CSP:A,40,14,0.224071,19.9,0.525,0.053125,0.138462,False,False
+coord_005_pdb_1TIM_A_triosephosphate_isomerase:graph_core,coord_005_pdb_1TIM_A_triosephosphate_isomerase,1TIM:A,40,17,0.507147,30.15,0.4,0.045703,0.223975,False,False
+coord_006_pdb_1PGA_A_protein_g_b1:graph_core,coord_006_pdb_1PGA_A_protein_g_b1,1PGA:A,40,12,0.160493,17.875,0.5,0.046875,0.970588,False,False
+coord_007_pdb_4AKE_A_adenylate_kinase:graph_core,coord_007_pdb_4AKE_A_adenylate_kinase,4AKE:A,40,16,0.376828,24.425,0.225,0.027344,0.160622,False,False
+coord_008_pdb_1CLL_A_calmodulin:graph_core,coord_008_pdb_1CLL_A_calmodulin,1CLL:A,40,23,0.219848,30.925,0.175,0.011328,0.305556,False,False

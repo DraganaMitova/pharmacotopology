@@ -1,19 +1,19 @@
 # Current Project Status
 
-This is the current truth of the repository after the competitive nucleus
-selection and frustration-filter milestone.
+This is the current truth of the repository after the nucleus graph selectivity
+and decoy falsification milestone.
 
 ## Latest Safety Baseline
 
 ```text
 latest recorded safety commit = e8cc5eb Audit visual mechanism claims and freeze toy-contact benchmark
-current target = Add competitive nucleus selection and frustration filter
+current target = Add nucleus graph selectivity and decoy falsification
 ```
 
-The current target filters the overgenerated segment-closure events with a
-sequence-only competition score, frustration audit, compatibility graph, and
-fixed selection budget. It tests whether the nucleus layer can reduce false
-closures without destroying long-range native-region recovery.
+The current target asks whether selected closure-graph cores beat matched
+decoys after sequence-only graph selection. It reduces selected event count but
+rejects the graph law because false nuclei remain high and matched decoys beat
+the selected graph.
 
 ## Internal 50-Row Status
 
@@ -313,6 +313,58 @@ It does not yet reject false nuclei or raise cluster precision enough to claim a
 folding mechanism.
 ```
 
+## Nucleus Graph Selectivity Status
+
+The graph-selectivity layer treats selected closure events as graph edges
+between segment nodes, then compares the selected graph core against matched
+decoys from the same protein. Native labels are attached only after graph
+selection and decoy matching:
+
+```text
+pre_graph_selected_event_count = 686
+post_graph_selected_event_count = 320
+native_truth_used_before_graph_selection = false
+native_truth_used_before_decoy_matching = false
+native_label_attached_after_graph_selection = true
+finder_zip_allowed = false
+```
+
+What improved:
+
+```text
+post_graph_selected_event_target_met = true
+post_long_range_contact_recall_target_met = true
+pre_long_range_contact_recall = 0.588907
+post_long_range_contact_recall = 0.372496
+```
+
+What failed:
+
+```text
+pre_false_nucleus_rate = 0.594592
+post_false_nucleus_rate = 0.609375
+pre_contact_cluster_precision = 0.044608
+post_contact_cluster_precision = 0.043311
+rank_enrichment_at_25 = 0.959248
+decoy_native_overlap_rate = 0.484375
+real_native_positive_rate = 0.390625
+real_vs_decoy_enrichment_ratio = 0.806452
+post_false_nucleus_rate_target_met = false
+post_contact_cluster_precision_target_met = false
+decoy_enrichment_target_met = false
+nucleus_graph_law_survives = false
+mechanism_discovery_claim_allowed = false
+folding_problem_solved = false
+```
+
+Interpretation:
+
+```text
+The selected graph core is not enriched over matched decoys. This is a useful
+negative result: graph scoring reduced count but did not discover the missing
+selector law.
+```
+
 ## Canonical Active Stack
 
 ```text
@@ -329,6 +381,7 @@ real-coordinate visual contact benchmark
 contact-law threshold falsification
 folding-nucleus closure search
 competitive nucleus selection
+nucleus graph selectivity and decoy falsification
 ```
 
 Canonical runners:
@@ -346,6 +399,7 @@ scripts/run_real_coordinate_visual_benchmark.py
 scripts/run_contact_law_threshold_search.py
 scripts/run_folding_nucleus_closure_search.py
 scripts/run_competitive_nucleus_selection.py
+scripts/run_nucleus_graph_selectivity_benchmark.py
 ```
 
 Active artifacts:
@@ -366,6 +420,7 @@ real_coordinate_visuals/*/*
 contact_law_threshold_*
 folding_nucleus_closure_*
 competitive_nucleus_selection_*
+nucleus_graph_selectivity_*
 ```
 
 Archived legacy artifacts:
@@ -394,6 +449,7 @@ current scalar contact score is rejected as a stable threshold law
 best threshold candidate does not generalize because long-range recall collapses
 cooperative closure recovers long-range native regions but overgenerates traps
 competitive nucleus selection reduces events but does not pass false-rate gates
+nucleus graph selectivity fails against matched decoys
 legacy feature modules still contain useful low-level primitives
 ```
 
@@ -410,6 +466,7 @@ The next research target can be:
 ```text
 false-nucleus rejection
 cluster-precision improvement
+decoy-beating graph selectivity
 ```
 
 Allowed shape:
@@ -430,6 +487,7 @@ keep toy_locked_contact_targets_used = false on real-coordinate surfaces
 keep current_scalar_score_law_rejected = true until a stronger law survives
 keep nucleus_law_survives = false until false_nucleus_rate is under control
 keep nucleus_competition_law_survives = false until false-rate and precision gates pass
+keep nucleus_graph_law_survives = false until matched decoys are beaten
 ```
 
 Forbidden shape:

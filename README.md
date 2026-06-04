@@ -29,6 +29,7 @@ real-coordinate visual contact benchmark
 contact-law threshold falsification
 folding-nucleus closure search
 competitive nucleus selection
+nucleus graph selectivity and decoy falsification
 ```
 
 The mechanism workbench is a hypothesis simulator. It compares abstract
@@ -82,6 +83,10 @@ fixed sequence-only budget and frustration/geometry/overlap audit. It preserves
 some long-range recovery, but it still fails false-rate and cluster-precision
 survival gates.
 
+The nucleus graph selectivity layer asks whether selected closure-graph cores
+beat matched decoys. They do not: matched decoys currently overlap native
+contacts more often than the selected graph, so the graph law is rejected.
+
 Current honest state:
 
 ```text
@@ -114,6 +119,12 @@ competitive_long_range_recall = 0.588907
 competitive_false_nucleus_rate = 0.594592
 competitive_contact_cluster_precision = 0.044608
 competitive_nucleus_law_survives = false
+nucleus_graph_selected_events = 320
+nucleus_graph_false_nucleus_rate = 0.609375
+nucleus_graph_contact_cluster_precision = 0.043311
+nucleus_graph_long_range_recall = 0.372496
+nucleus_graph_real_vs_decoy_enrichment_ratio = 0.806452
+nucleus_graph_law_survives = false
 mechanism_discovery_claim_allowed = false
 global_fold_class_claim_allowed = false
 folding_problem_solved = false
@@ -136,6 +147,8 @@ visual mechanism claim audit
 real-coordinate visual contact benchmark
 contact-law threshold falsification
 folding-nucleus closure search
+competitive nucleus selection
+nucleus graph selectivity and decoy falsification
 ```
 
 Canonical commands:
@@ -153,6 +166,7 @@ python3 scripts/run_real_coordinate_visual_benchmark.py
 python3 scripts/run_contact_law_threshold_search.py
 python3 scripts/run_folding_nucleus_closure_search.py
 python3 scripts/run_competitive_nucleus_selection.py
+python3 scripts/run_nucleus_graph_selectivity_benchmark.py
 ```
 
 The active generated folding artifacts are:
@@ -173,6 +187,7 @@ real_coordinate_visuals/*/*
 contact_law_threshold_*
 folding_nucleus_closure_*
 competitive_nucleus_selection_*
+nucleus_graph_selectivity_*
 ```
 
 Older 10-row and pre-axis 50-row artifacts are preserved under:
@@ -372,6 +387,32 @@ The useful finding is narrower: competition can reduce closure flooding while
 keeping some long-range contact recovery. It does not yet reject false nuclei
 well enough to claim a mechanism.
 
+Nucleus graph selectivity and decoy falsification:
+
+```text
+pre_graph_selected_event_count = 686
+post_graph_selected_event_count = 320
+pre_false_nucleus_rate = 0.594592
+post_false_nucleus_rate = 0.609375
+pre_contact_cluster_precision = 0.044608
+post_contact_cluster_precision = 0.043311
+pre_long_range_contact_recall = 0.588907
+post_long_range_contact_recall = 0.372496
+rank_enrichment_at_25 = 0.959248
+decoy_native_overlap_rate = 0.484375
+real_native_positive_rate = 0.390625
+real_vs_decoy_enrichment_ratio = 0.806452
+nucleus_graph_law_survives = false
+native_truth_used_before_graph_selection = false
+native_truth_used_before_decoy_matching = false
+mechanism_discovery_claim_allowed = false
+folding_problem_solved = false
+```
+
+This is a negative but useful result. The graph selector reduces event count,
+but matched decoys beat the selected graph. The missing variable is still not
+captured.
+
 ## Safety Boundaries
 
 This repository does not:
@@ -414,6 +455,7 @@ docs/VISUAL_FOLDING_MECHANISM_BOUNDARY.md visual mechanism boundary
 docs/VISUAL_CONTACT_REPAIR_BOUNDARY.md contact repair boundary
 docs/VISUAL_MECHANISM_AUDIT.md visual claim audit
 docs/COMPETITIVE_NUCLEUS_SELECTION_BOUNDARY.md competitive nucleus boundary
+docs/NUCLEUS_GRAPH_SELECTIVITY_BOUNDARY.md nucleus graph selectivity boundary
 tests/                               pytest coverage for safety and reproducibility
 ```
 
@@ -446,6 +488,7 @@ python3 scripts/run_real_coordinate_visual_benchmark.py
 python3 scripts/run_contact_law_threshold_search.py
 python3 scripts/run_folding_nucleus_closure_search.py
 python3 scripts/run_competitive_nucleus_selection.py
+python3 scripts/run_nucleus_graph_selectivity_benchmark.py
 ```
 
 Run verification:
@@ -478,6 +521,7 @@ docs/VISUAL_FOLDING_MECHANISM_BOUNDARY.md
 docs/VISUAL_CONTACT_REPAIR_BOUNDARY.md
 docs/VISUAL_MECHANISM_AUDIT.md
 docs/COMPETITIVE_NUCLEUS_SELECTION_BOUNDARY.md
+docs/NUCLEUS_GRAPH_SELECTIVITY_BOUNDARY.md
 docs/PROTEIN_CENTERED_REFRAME.md
 ```
 
@@ -491,6 +535,7 @@ Visual mechanism workbench: contact-map evidence is visible for 12 locked rows.
 Contact repair workbench: visible partial successes improved from 5 to 8.
 Visual mechanism audit: toy benchmark and overfit risk are explicitly reported.
 Competitive nucleus selection: event flooding is reduced, but false closures keep the law unclaimed.
+Nucleus graph selectivity: selected graph cores fail against matched decoys.
 Protein folding: not solved.
 Next correct work: improve visual/mechanism evidence quality without unlocking global claims.
 ```

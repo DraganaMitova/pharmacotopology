@@ -1,0 +1,9 @@
+row_id,source_accession,pre_graph_selected_event_count,post_graph_selected_event_count,post_false_nucleus_rate,post_contact_cluster_precision,post_long_range_contact_recall,post_native_nucleus_recall,native_positive_top_rank_rate_at_25,decoy_native_overlap_rate,real_vs_decoy_enrichment_ratio,isolated_event_rejection_count,hydrophobic_only_rejection_count,unsupported_long_span_rejection_count,topology_conflict_rejection_count,trap_graph_rejection_count
+coord_001_pdb_1MBN_A_myoglobin,1MBN:A,100,40,0.7,0.017188,0.237113,0.058228,0.32,0.2,1.5,0,6,0,4,0
+coord_002_pdb_2LZM_A_t4_lysozyme,2LZM:A,100,40,0.425,0.049219,0.43038,0.158879,0.52,0.375,1.533333,1,2,0,1,0
+coord_003_pdb_1TEN_A_tenascin_fn3,1TEN:A,86,40,0.575,0.095703,0.513274,0.591667,0.4,0.725,0.586207,0,2,0,1,0
+coord_004_pdb_1CSP_A_cold_shock_protein,1CSP:A,57,40,0.475,0.053125,0.138462,0.435028,0.6,0.5,1.05,0,0,0,0,0
+coord_005_pdb_1TIM_A_triosephosphate_isomerase,1TIM:A,100,40,0.6,0.045703,0.223975,0.110345,0.4,0.525,0.761905,0,0,0,0,0
+coord_006_pdb_1PGA_A_protein_g_b1,1PGA:A,43,40,0.5,0.046875,0.970588,0.620438,0.52,1.0,0.5,0,0,0,0,0
+coord_007_pdb_4AKE_A_adenylate_kinase,4AKE:A,100,40,0.775,0.027344,0.160622,0.076923,0.12,0.125,1.8,0,0,0,2,0
+coord_008_pdb_1CLL_A_calmodulin,1CLL:A,100,40,0.825,0.011328,0.305556,0.085627,0.28,0.425,0.411765,0,9,0,2,0

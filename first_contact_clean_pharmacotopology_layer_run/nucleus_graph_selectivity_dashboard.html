@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Nucleus Graph Selectivity</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f4f6f3;
+      color: #202522;
+    }
+    header {
+      padding: 34px;
+      background: #26332f;
+      color: #f7f8f4;
+    }
+    main {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    h1, h2, h3 {
+      margin: 0 0 12px;
+      letter-spacing: 0;
+    }
+    section {
+      margin: 24px 0;
+    }
+    .metrics, .rules {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 12px;
+    }
+    .metric, .rule {
+      background: #ffffff;
+      border: 1px solid #d3ddd5;
+      border-radius: 6px;
+      padding: 14px;
+    }
+    .metric span {
+      display: block;
+      color: #5b6660;
+      font-size: 12px;
+      overflow-wrap: anywhere;
+    }
+    .metric strong {
+      display: block;
+      margin-top: 8px;
+      font-size: 20px;
+      overflow-wrap: anywhere;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #ffffff;
+      border: 1px solid #d3ddd5;
+    }
+    th, td {
+      padding: 9px 10px;
+      border-bottom: 1px solid #e2e8e3;
+      text-align: left;
+      font-size: 13px;
+      vertical-align: top;
+      overflow-wrap: anywhere;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Nucleus Graph Selectivity</h1>
+    <p>Closure events are scored as graph cores and challenged by matched decoys after sequence-only selection.</p>
+  </header>
+  <main>
+    <section class="metrics"><div class="metric"><span>pre_graph_selected_event_count</span><strong>686</strong></div><div class="metric"><span>post_graph_selected_event_count</span><strong>320</strong></div><div class="metric"><span>pre_false_nucleus_rate</span><strong>0.594592</strong></div><div class="metric"><span>post_false_nucleus_rate</span><strong>0.609375</strong></div><div class="metric"><span>pre_contact_cluster_precision</span><strong>0.044608</strong></div><div class="metric"><span>post_contact_cluster_precision</span><strong>0.043311</strong></div><div class="metric"><span>pre_long_range_contact_recall</span><strong>0.588907</strong></div><div class="metric"><span>post_long_range_contact_recall</span><strong>0.372496</strong></div><div class="metric"><span>rank_enrichment_at_25</span><strong>0.959248</strong></div><div class="metric"><span>real_vs_decoy_enrichment_ratio</span><strong>0.806452</strong></div><div class="metric"><span>nucleus_graph_law_survives</span><strong>False</strong></div><div class="metric"><span>folding_problem_solved</span><strong>False</strong></div></section>
+    <section><h2>Boundary Rules</h2><div class="rules"><div class="rule"><h3>Score Graph Cores, Not Events Alone</h3><p>Closure events are treated as edges in a segment graph before native scoring.</p></div><div class="rule"><h3>Matched Decoys Must Be Beaten</h3><p>A selected graph is not a law unless it is enriched over span- and chemistry-matched decoys.</p></div><div class="rule"><h3>False Nuclei Remain A Gate</h3><p>A smaller graph cannot claim mechanism discovery if false closures remain high.</p></div><div class="rule"><h3>Clean Archive Only</h3><p>Finder/cache zips are not accepted as reproducibility evidence.</p></div></div></section>
+    <section><h2>Survival Targets</h2><table><thead><tr><th>target</th><th>met</th><th>threshold</th></tr></thead><tbody><tr><td>post_graph_selected_event_target_met</td><td>True</td><td>350</td></tr><tr><td>post_false_nucleus_rate_target_met</td><td>False</td><td>0.45</td></tr><tr><td>post_contact_cluster_precision_target_met</td><td>False</td><td>0.08</td></tr><tr><td>post_long_range_contact_recall_target_met</td><td>True</td><td>0.35</td></tr><tr><td>decoy_enrichment_target_met</td><td>False</td><td>1.5</td></tr></tbody></table></section>
+    <section><h2>Row Metrics</h2><table><thead><tr><th>source</th><th>selected</th><th>false rate</th><th>cluster precision</th><th>long-range recall</th><th>decoy ratio</th></tr></thead><tbody><tr><td>1MBN:A</td><td>40</td><td>0.7</td><td>0.017188</td><td>0.237113</td><td>1.5</td></tr><tr><td>2LZM:A</td><td>40</td><td>0.425</td><td>0.049219</td><td>0.43038</td><td>1.533333</td></tr><tr><td>1TEN:A</td><td>40</td><td>0.575</td><td>0.095703</td><td>0.513274</td><td>0.586207</td></tr><tr><td>1CSP:A</td><td>40</td><td>0.475</td><td>0.053125</td><td>0.138462</td><td>1.05</td></tr><tr><td>1TIM:A</td><td>40</td><td>0.6</td><td>0.045703</td><td>0.223975</td><td>0.761905</td></tr><tr><td>1PGA:A</td><td>40</td><td>0.5</td><td>0.046875</td><td>0.970588</td><td>0.5</td></tr><tr><td>4AKE:A</td><td>40</td><td>0.775</td><td>0.027344</td><td>0.160622</td><td>1.8</td></tr><tr><td>1CLL:A</td><td>40</td><td>0.825</td><td>0.011328</td><td>0.305556</td><td>0.411765</td></tr></tbody></table></section>
+    <section>
+      <h2>Claim Boundary</h2>
+      <p>This layer scores small closure-graph cores and compares them with matched decoys after sequence-only selection. The current graph surface reduces event count but does not beat matched decoys or pass false-nucleus precision gates.</p>
+    </section>
+  </main>
+</body>
+</html>
