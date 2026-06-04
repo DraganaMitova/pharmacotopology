@@ -28,6 +28,7 @@ visual mechanism claim audit
 real-coordinate visual contact benchmark
 contact-law threshold falsification
 folding-nucleus closure search
+competitive nucleus selection
 ```
 
 The mechanism workbench is a hypothesis simulator. It compares abstract
@@ -76,6 +77,11 @@ instead of independent residue-pair contacts. It recovers long-range
 coordinate-native regions better than the pair-level threshold baseline, but
 the false-nucleus rate remains too high for any law claim.
 
+The competitive nucleus selection layer reduces the closure-event flood with a
+fixed sequence-only budget and frustration/geometry/overlap audit. It preserves
+some long-range recovery, but it still fails false-rate and cluster-precision
+survival gates.
+
 Current honest state:
 
 ```text
@@ -102,6 +108,12 @@ nucleus_native_recall = 0.50826
 nucleus_long_range_recall = 0.913242
 nucleus_false_rate = 0.692721
 nucleus_law_survives = false
+competitive_selected_events = 686
+competitive_event_reduction_ratio = 0.821633
+competitive_long_range_recall = 0.588907
+competitive_false_nucleus_rate = 0.594592
+competitive_contact_cluster_precision = 0.044608
+competitive_nucleus_law_survives = false
 mechanism_discovery_claim_allowed = false
 global_fold_class_claim_allowed = false
 folding_problem_solved = false
@@ -140,6 +152,7 @@ python3 scripts/run_visual_mechanism_audit.py
 python3 scripts/run_real_coordinate_visual_benchmark.py
 python3 scripts/run_contact_law_threshold_search.py
 python3 scripts/run_folding_nucleus_closure_search.py
+python3 scripts/run_competitive_nucleus_selection.py
 ```
 
 The active generated folding artifacts are:
@@ -159,6 +172,7 @@ real_coordinate_visual_8_*
 real_coordinate_visuals/*/*
 contact_law_threshold_*
 folding_nucleus_closure_*
+competitive_nucleus_selection_*
 ```
 
 Older 10-row and pre-axis 50-row artifacts are preserved under:
@@ -332,6 +346,32 @@ The useful finding is that cooperative closure is a better proof object for
 long-range native-region recovery. The blocking failure is false closure
 overgeneration.
 
+Competitive nucleus selection:
+
+```text
+pre_competition_event_count = 3846
+post_competition_selected_event_count = 686
+event_reduction_ratio = 0.821633
+pre_false_nucleus_rate = 0.692721
+post_false_nucleus_rate = 0.594592
+pre_contact_cluster_precision = 0.032261
+post_contact_cluster_precision = 0.044608
+pre_long_range_contact_recall = 0.913242
+post_long_range_contact_recall = 0.588907
+selected_event_count_target_met = true
+false_nucleus_rate_target_met = false
+contact_cluster_precision_target_met = false
+long_range_contact_recall_target_met = true
+nucleus_competition_law_survives = false
+native_truth_used_before_selection = false
+mechanism_discovery_claim_allowed = false
+folding_problem_solved = false
+```
+
+The useful finding is narrower: competition can reduce closure flooding while
+keeping some long-range contact recovery. It does not yet reject false nuclei
+well enough to claim a mechanism.
+
 ## Safety Boundaries
 
 This repository does not:
@@ -373,6 +413,7 @@ docs/EXTERNAL_AXIS_REPAIR_BOUNDARY.md external-safe repair boundary
 docs/VISUAL_FOLDING_MECHANISM_BOUNDARY.md visual mechanism boundary
 docs/VISUAL_CONTACT_REPAIR_BOUNDARY.md contact repair boundary
 docs/VISUAL_MECHANISM_AUDIT.md visual claim audit
+docs/COMPETITIVE_NUCLEUS_SELECTION_BOUNDARY.md competitive nucleus boundary
 tests/                               pytest coverage for safety and reproducibility
 ```
 
@@ -401,6 +442,10 @@ python3 scripts/run_external_axis_repair_benchmark.py
 python3 scripts/run_visual_folding_mechanism_benchmark.py
 python3 scripts/run_contact_topology_repair_benchmark.py
 python3 scripts/run_visual_mechanism_audit.py
+python3 scripts/run_real_coordinate_visual_benchmark.py
+python3 scripts/run_contact_law_threshold_search.py
+python3 scripts/run_folding_nucleus_closure_search.py
+python3 scripts/run_competitive_nucleus_selection.py
 ```
 
 Run verification:
@@ -432,6 +477,7 @@ docs/EXTERNAL_AXIS_REPAIR_BOUNDARY.md
 docs/VISUAL_FOLDING_MECHANISM_BOUNDARY.md
 docs/VISUAL_CONTACT_REPAIR_BOUNDARY.md
 docs/VISUAL_MECHANISM_AUDIT.md
+docs/COMPETITIVE_NUCLEUS_SELECTION_BOUNDARY.md
 docs/PROTEIN_CENTERED_REFRAME.md
 ```
 
@@ -444,6 +490,7 @@ External unsafe axis claims: closed after quarantine.
 Visual mechanism workbench: contact-map evidence is visible for 12 locked rows.
 Contact repair workbench: visible partial successes improved from 5 to 8.
 Visual mechanism audit: toy benchmark and overfit risk are explicitly reported.
+Competitive nucleus selection: event flooding is reduced, but false closures keep the law unclaimed.
 Protein folding: not solved.
 Next correct work: improve visual/mechanism evidence quality without unlocking global claims.
 ```

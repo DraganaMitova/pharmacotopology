@@ -1,18 +1,19 @@
 # Current Project Status
 
-This is the current truth of the repository after the folding-nucleus closure
-search milestone.
+This is the current truth of the repository after the competitive nucleus
+selection and frustration-filter milestone.
 
 ## Latest Safety Baseline
 
 ```text
 latest recorded safety commit = e8cc5eb Audit visual mechanism claims and freeze toy-contact benchmark
-current target = Add folding nucleus closure search
+current target = Add competitive nucleus selection and frustration filter
 ```
 
-The current target pivots from pair-level thresholding to cooperative
-segment-closure events. It tests whether nucleus-like closures recover
-long-range native regions better than pair-level thresholds.
+The current target filters the overgenerated segment-closure events with a
+sequence-only competition score, frustration audit, compatibility graph, and
+fixed selection budget. It tests whether the nucleus layer can reduce false
+closures without destroying long-range native-region recovery.
 
 ## Internal 50-Row Status
 
@@ -265,6 +266,53 @@ long-range native-region recovery, but the current closure score overgenerates
 false nuclei. No folding law has been found.
 ```
 
+## Competitive Nucleus Selection Status
+
+The competitive layer uses sequence-only features to rank and filter the
+accepted closure events. Native contact labels are attached only after
+selection:
+
+```text
+pre_competition_event_count = 3846
+post_competition_selected_event_count = 686
+event_reduction_ratio = 0.821633
+native_truth_used_before_selection = false
+native_label_attached_after_selection = true
+row_specific_nucleus_thresholds_forbidden = true
+```
+
+What improved:
+
+```text
+pre_long_range_contact_recall = 0.913242
+post_long_range_contact_recall = 0.588907
+selected_event_count_target_met = true
+long_range_contact_recall_target_met = true
+competition_reduces_event_flood = true
+```
+
+What still fails:
+
+```text
+pre_false_nucleus_rate = 0.692721
+post_false_nucleus_rate = 0.594592
+pre_contact_cluster_precision = 0.032261
+post_contact_cluster_precision = 0.044608
+false_nucleus_rate_target_met = false
+contact_cluster_precision_target_met = false
+nucleus_competition_law_survives = false
+mechanism_discovery_claim_allowed = false
+folding_problem_solved = false
+```
+
+Interpretation:
+
+```text
+Competition reduces the event flood and keeps some long-range contact recovery.
+It does not yet reject false nuclei or raise cluster precision enough to claim a
+folding mechanism.
+```
+
 ## Canonical Active Stack
 
 ```text
@@ -280,6 +328,7 @@ visual mechanism claim audit
 real-coordinate visual contact benchmark
 contact-law threshold falsification
 folding-nucleus closure search
+competitive nucleus selection
 ```
 
 Canonical runners:
@@ -296,6 +345,7 @@ scripts/run_visual_mechanism_audit.py
 scripts/run_real_coordinate_visual_benchmark.py
 scripts/run_contact_law_threshold_search.py
 scripts/run_folding_nucleus_closure_search.py
+scripts/run_competitive_nucleus_selection.py
 ```
 
 Active artifacts:
@@ -315,6 +365,7 @@ real_coordinate_visual_8_*
 real_coordinate_visuals/*/*
 contact_law_threshold_*
 folding_nucleus_closure_*
+competitive_nucleus_selection_*
 ```
 
 Archived legacy artifacts:
@@ -342,6 +393,7 @@ coordinate-native contacts are not atomistic folding truth
 current scalar contact score is rejected as a stable threshold law
 best threshold candidate does not generalize because long-range recall collapses
 cooperative closure recovers long-range native regions but overgenerates traps
+competitive nucleus selection reduces events but does not pass false-rate gates
 legacy feature modules still contain useful low-level primitives
 ```
 
@@ -357,6 +409,7 @@ The next research target can be:
 
 ```text
 false-nucleus rejection
+cluster-precision improvement
 ```
 
 Allowed shape:
@@ -376,6 +429,7 @@ keep contact_repair_overfit_risk_reported = true
 keep toy_locked_contact_targets_used = false on real-coordinate surfaces
 keep current_scalar_score_law_rejected = true until a stronger law survives
 keep nucleus_law_survives = false until false_nucleus_rate is under control
+keep nucleus_competition_law_survives = false until false-rate and precision gates pass
 ```
 
 Forbidden shape:

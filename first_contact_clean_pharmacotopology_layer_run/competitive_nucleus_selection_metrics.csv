@@ -1,0 +1,9 @@
+row_id,source_accession,pre_competition_event_count,post_competition_selected_event_count,event_reduction_ratio,post_false_nucleus_rate,post_contact_cluster_precision,post_native_nucleus_recall,post_long_range_contact_recall,frustration_rejection_count,geometry_rejection_count,competition_rejection_count,overlap_rejection_count,trap_rejection_count,long_range_target_met,false_rate_target_met,precision_target_met
+coord_001_pdb_1MBN_A_myoglobin,1MBN:A,491,100,0.796334,0.75,0.0175,0.136709,0.43299,0,2,0,371,18,False,False,False
+coord_002_pdb_2LZM_A_t4_lysozyme,2LZM:A,630,100,0.84127,0.52,0.037656,0.257009,0.56962,3,3,5,516,3,True,False,False
+coord_003_pdb_1TEN_A_tenascin_fn3,1TEN:A,96,86,0.104167,0.593023,0.074673,0.7,0.690265,0,0,0,10,0,True,False,False
+coord_004_pdb_1CSP_A_cold_shock_protein,1CSP:A,58,57,0.017241,0.438596,0.072368,0.734463,0.953846,0,0,0,0,1,True,True,False
+coord_005_pdb_1TIM_A_triosephosphate_isomerase,1TIM:A,1365,100,0.92674,0.56,0.068281,0.264828,0.485804,1,40,285,937,2,True,False,False
+coord_006_pdb_1PGA_A_protein_g_b1,1PGA:A,43,43,0.0,0.465116,0.053416,0.627737,1.0,0,0,0,0,0,True,False,False
+coord_007_pdb_4AKE_A_adenylate_kinase,4AKE:A,829,100,0.879373,0.73,0.018437,0.116279,0.217617,0,16,19,682,12,False,False,False
+coord_008_pdb_1CLL_A_calmodulin,1CLL:A,334,100,0.700599,0.7,0.014531,0.159021,0.361111,0,1,0,227,6,False,False,False

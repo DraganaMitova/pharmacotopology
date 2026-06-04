@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Competitive Nucleus Selection</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f4f6f3;
+      color: #202522;
+    }
+    header {
+      padding: 34px;
+      background: #26332f;
+      color: #f7f8f4;
+    }
+    main {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    h1, h2, h3 {
+      margin: 0 0 12px;
+      letter-spacing: 0;
+    }
+    section {
+      margin: 24px 0;
+    }
+    .metrics, .rules {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 12px;
+    }
+    .metric, .rule {
+      background: #ffffff;
+      border: 1px solid #d3ddd5;
+      border-radius: 6px;
+      padding: 14px;
+    }
+    .metric span {
+      display: block;
+      color: #5b6660;
+      font-size: 12px;
+      overflow-wrap: anywhere;
+    }
+    .metric strong {
+      display: block;
+      margin-top: 8px;
+      font-size: 20px;
+      overflow-wrap: anywhere;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #ffffff;
+      border: 1px solid #d3ddd5;
+    }
+    th, td {
+      padding: 9px 10px;
+      border-bottom: 1px solid #e2e8e3;
+      text-align: left;
+      font-size: 13px;
+      vertical-align: top;
+      overflow-wrap: anywhere;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Competitive Nucleus Selection</h1>
+    <p>Sequence-only closure candidates are ranked, filtered, and scored against native coordinates only after selection.</p>
+  </header>
+  <main>
+    <section class="metrics"><div class="metric"><span>pre_competition_event_count</span><strong>3846</strong></div><div class="metric"><span>post_competition_selected_event_count</span><strong>686</strong></div><div class="metric"><span>event_reduction_ratio</span><strong>0.821633</strong></div><div class="metric"><span>pre_false_nucleus_rate</span><strong>0.692721</strong></div><div class="metric"><span>post_false_nucleus_rate</span><strong>0.594592</strong></div><div class="metric"><span>pre_contact_cluster_precision</span><strong>0.032261</strong></div><div class="metric"><span>post_contact_cluster_precision</span><strong>0.044608</strong></div><div class="metric"><span>pre_long_range_contact_recall</span><strong>0.913242</strong></div><div class="metric"><span>post_long_range_contact_recall</span><strong>0.588907</strong></div><div class="metric"><span>nucleus_competition_law_survives</span><strong>False</strong></div><div class="metric"><span>mechanism_discovery_claim_allowed</span><strong>False</strong></div><div class="metric"><span>folding_problem_solved</span><strong>False</strong></div></section>
+    <section><h2>Boundary Rules</h2><div class="rules"><div class="rule"><h3>Competition Filters Event Floods</h3><p>The selector applies a fixed budget and ranks sequence-only closure events before native scoring.</p></div><div class="rule"><h3>Frustration Is A Real Rejection Surface</h3><p>Geometry, trap, overlap, and competition rejections are counted instead of hidden.</p></div><div class="rule"><h3>False Nucleus Rate Remains A Survival Gate</h3><p>Lower event count alone cannot claim a folding mechanism.</p></div><div class="rule"><h3>No Mechanism Discovery Claim</h3><p>Native labels are attached only after selection for audit metrics.</p></div></div></section>
+    <section><h2>Survival Targets</h2><table><thead><tr><th>target</th><th>met</th><th>threshold</th></tr></thead><tbody><tr><td>selected_event_count_target_met</td><td>True</td><td>800</td></tr><tr><td>false_nucleus_rate_target_met</td><td>False</td><td>0.45</td></tr><tr><td>contact_cluster_precision_target_met</td><td>False</td><td>0.08</td></tr><tr><td>long_range_contact_recall_target_met</td><td>True</td><td>0.45</td></tr></tbody></table></section>
+    <section><h2>Row Metrics</h2><table><thead><tr><th>source</th><th>selected</th><th>false rate</th><th>cluster precision</th><th>long-range recall</th><th>reduction</th></tr></thead><tbody><tr><td>1MBN:A</td><td>100</td><td>0.75</td><td>0.0175</td><td>0.43299</td><td>0.796334</td></tr><tr><td>2LZM:A</td><td>100</td><td>0.52</td><td>0.037656</td><td>0.56962</td><td>0.84127</td></tr><tr><td>1TEN:A</td><td>86</td><td>0.593023</td><td>0.074673</td><td>0.690265</td><td>0.104167</td></tr><tr><td>1CSP:A</td><td>57</td><td>0.438596</td><td>0.072368</td><td>0.953846</td><td>0.017241</td></tr><tr><td>1TIM:A</td><td>100</td><td>0.56</td><td>0.068281</td><td>0.485804</td><td>0.92674</td></tr><tr><td>1PGA:A</td><td>43</td><td>0.465116</td><td>0.053416</td><td>1.0</td><td>0.0</td></tr><tr><td>4AKE:A</td><td>100</td><td>0.73</td><td>0.018437</td><td>0.217617</td><td>0.879373</td></tr><tr><td>1CLL:A</td><td>100</td><td>0.7</td><td>0.014531</td><td>0.361111</td><td>0.700599</td></tr></tbody></table></section>
+    <section>
+      <h2>Claim Boundary</h2>
+      <p>Competitive nucleus selection reduces the closure-event flood and audits geometry, overlap, frustration, and trap pressure. This batch does not discover a folding law: false closures and cluster precision remain explicit survival gates.</p>
+    </section>
+  </main>
+</body>
+</html>

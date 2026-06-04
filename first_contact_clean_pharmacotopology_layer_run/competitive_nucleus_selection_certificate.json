@@ -1,0 +1,30 @@
+{
+  "certificate_kind": "competitive_nucleus_selection_certificate",
+  "claim_allowed": false,
+  "event_reduction_ratio": 0.821633,
+  "folding_problem_solved": false,
+  "global_folding_claim_allowed": false,
+  "mechanism_discovery_claim_allowed": false,
+  "native_truth_used_before_event_generation": false,
+  "native_truth_used_before_selection": false,
+  "nucleus_competition_law_survives": false,
+  "output_artifacts": [
+    "competitive_nucleus_selection_report.json",
+    "competitive_nucleus_selection_selected_events.csv",
+    "competitive_nucleus_selection_rejections.csv",
+    "competitive_nucleus_selection_compatibility.csv",
+    "competitive_nucleus_selection_trajectory.csv",
+    "competitive_nucleus_selection_metrics.csv",
+    "competitive_nucleus_selection_dashboard.html",
+    "competitive_nucleus_selection_certificate.json"
+  ],
+  "post_competition_selected_event_count": 686,
+  "post_contact_cluster_precision": 0.044608,
+  "post_false_nucleus_rate": 0.594592,
+  "post_long_range_contact_recall": 0.588907,
+  "pre_competition_event_count": 3846,
+  "pre_contact_cluster_precision": 0.032261,
+  "pre_false_nucleus_rate": 0.692721,
+  "pre_long_range_contact_recall": 0.913242,
+  "report_kind": "competitive_nucleus_selection_v1"
+}
