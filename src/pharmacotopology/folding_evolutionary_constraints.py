@@ -32,6 +32,8 @@ class CouplingConstraint:
     constraint_class: str
     source_kind: str
     coordinate_truth_used_to_build_constraint: bool
+    native_truth_used_before_coupling_selection: bool = False
+    structure_model_used: bool = False
     raw_sequence_exposed: bool = False
 
     def pair(self) -> tuple[int, int]:
@@ -53,6 +55,54 @@ class CouplingDataset:
     external_evolutionary_couplings_used: bool
     raw_sequence_exposed: bool
     constraints: tuple[CouplingConstraint, ...]
+    structure_model_used_before_coupling_selection: bool = False
+
+    @property
+    def per_constraint_coordinate_truth_used(self) -> bool:
+        return any(
+            constraint.coordinate_truth_used_to_build_constraint
+            for constraint in self.constraints
+        )
+
+    @property
+    def coordinate_truth_tainted(self) -> bool:
+        return (
+            self.coordinate_truth_used_to_build_constraints
+            or self.per_constraint_coordinate_truth_used
+        )
+
+    @property
+    def per_constraint_native_truth_used(self) -> bool:
+        return any(
+            constraint.native_truth_used_before_coupling_selection
+            for constraint in self.constraints
+        )
+
+    @property
+    def native_truth_tainted(self) -> bool:
+        return (
+            self.native_truth_used_before_coupling_selection
+            or self.per_constraint_native_truth_used
+        )
+
+    @property
+    def per_constraint_structure_model_used(self) -> bool:
+        return any(constraint.structure_model_used for constraint in self.constraints)
+
+    @property
+    def structure_model_tainted(self) -> bool:
+        return (
+            self.structure_model_used_before_coupling_selection
+            or self.per_constraint_structure_model_used
+        )
+
+    @property
+    def oracle_constraint_control(self) -> bool:
+        return (
+            self.coordinate_truth_tainted
+            or self.native_truth_tainted
+            or self.structure_model_tainted
+        )
 
     def constraints_by_row_id(self) -> dict[str, tuple[CouplingConstraint, ...]]:
         grouped: dict[str, list[CouplingConstraint]] = {}
@@ -132,7 +182,11 @@ def _constraint_from_raw(
         coordinate_truth_used_to_build_constraint=bool(
             raw.get("coordinate_truth_used_to_build_constraint", False)
         ),
-        raw_sequence_exposed=False,
+        native_truth_used_before_coupling_selection=bool(
+            raw.get("native_truth_used_before_coupling_selection", False)
+        ),
+        structure_model_used=bool(raw.get("structure_model_used", False)),
+        raw_sequence_exposed=bool(raw.get("raw_sequence_exposed", False)),
     )
 
 
@@ -166,6 +220,10 @@ def load_coupling_dataset(path: Path) -> CouplingDataset:
         ),
         raw_sequence_exposed=bool(parsed.get("raw_sequence_exposed", False)),
         constraints=constraints,
+        structure_model_used_before_coupling_selection=bool(
+            parsed.get("structure_model_used_before_coupling_selection", False)
+            or parsed.get("structure_model_used", False)
+        ),
     )
 
 
@@ -182,6 +240,16 @@ def validate_coupling_dataset(
     if dataset.raw_sequence_exposed:
         raise ValueError("coupling dataset must not expose raw sequence text")
     for constraint in dataset.constraints:
+        if constraint.raw_sequence_exposed:
+            raise ValueError(
+                f"coupling constraint must not expose raw sequence text: "
+                f"{constraint.constraint_id}"
+            )
+        if constraint.structure_model_used:
+            raise ValueError(
+                f"coupling constraint must not use structure models before "
+                f"selection: {constraint.constraint_id}"
+            )
         row = row_by_id.get(constraint.row_id)
         if row is None:
             raise ValueError(f"constraint row not in benchmark: {constraint.row_id}")
@@ -356,10 +424,10 @@ def assess_coupling_closures(
                 row_events=tuple(events_by_row.get(event.row_id, ())),
                 row_events_by_pair=events_by_row_pair.get(event.row_id, {}),
                 coordinate_truth_used_to_build_constraints=(
-                    dataset.coordinate_truth_used_to_build_constraints
+                    dataset.coordinate_truth_tainted
                 ),
                 native_truth_used_before_coupling_selection=(
-                    dataset.native_truth_used_before_coupling_selection
+                    dataset.native_truth_tainted
                 ),
             )
         )

@@ -1,16 +1,21 @@
 import csv
+from dataclasses import replace
 import json
 from pathlib import Path
 import sys
+
+import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "src"
 if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
+from pharmacotopology.artifact_io import stable_float_text  # noqa: E402
 from pharmacotopology.folding_coupling_nucleus_selector import (  # noqa: E402
     COUPLING_NUCLEUS_SELECTOR_CERTIFICATE_KIND,
     COUPLING_NUCLEUS_SELECTOR_REPORT_KIND,
+    EXTERNAL_EVOLUTIONARY_COUPLING_TRACE_LOOP_BATCH_KIND,
     ROOT_OUTPUT_NAMES,
     build_coupling_nucleus_context,
     build_coupling_nucleus_selector_report,
@@ -24,6 +29,7 @@ from pharmacotopology.folding_coupling_nucleus_selector import (  # noqa: E402
 from pharmacotopology.folding_evolutionary_constraints import (  # noqa: E402
     EVOLUTIONARY_COUPLING_LAYER_KIND,
     load_coupling_dataset,
+    validate_coupling_dataset,
 )
 from pharmacotopology.folding_real_coordinate_visual_benchmark import (  # noqa: E402
     load_real_coordinate_visual_rows,
@@ -140,10 +146,23 @@ def test_coupling_nucleus_selector_finds_oracle_control_boundary() -> None:
     assert report["coupling_rerank_real_vs_decoy_enrichment_ratio"] == 1.931956
     assert report["coupling_trace_loop_real_vs_decoy_enrichment_ratio"] == 1.693887
     assert report["coupling_selector_targets_met"] is True
+    assert (
+        report["external_batch_kind"]
+        == EXTERNAL_EVOLUTIONARY_COUPLING_TRACE_LOOP_BATCH_KIND
+    )
     assert report["external_evolutionary_couplings_used"] is False
+    assert report["per_constraint_coordinate_truth_used"] is True
     assert report["coordinate_truth_used_to_build_constraints"] is True
     assert report["native_truth_used_before_coupling_selection"] is True
     assert report["oracle_constraint_control"] is True
+    assert report["claim_mode_validation_passed"] is False
+    assert set(report["claim_mode_validation_failures"]) == {
+        "external_evolutionary_couplings_used=false",
+        "coupling_source_kind=coordinate_oracle_surrogate_for_missing_evolutionary_channel_v1",
+        "coordinate_truth_used_to_build_constraints=true",
+        "native_truth_used_before_coupling_selection=true",
+        "oracle_constraint_control=true",
+    }
     assert report["mechanism_discovery_claim_allowed"] is False
     assert report["folding_problem_solved"] is False
     assert report["claim_allowed"] is False
@@ -172,6 +191,8 @@ def test_checked_in_coupling_nucleus_outputs_have_expected_surfaces() -> None:
     assert len(decoys) == 320
     assert certificate["coupling_selector_targets_met"] is True
     assert certificate["oracle_constraint_control"] is True
+    assert certificate["per_constraint_coordinate_truth_used"] is True
+    assert certificate["claim_mode_validation_passed"] is False
     assert certificate["external_evolutionary_couplings_used"] is False
     assert certificate["mechanism_discovery_claim_allowed"] is False
     assert certificate["folding_problem_solved"] is False
@@ -265,3 +286,61 @@ def test_coupling_nucleus_runner_and_helpers_keep_safe_shapes(tmp_path) -> None:
     )
     assert all(row["raw_sequence_exposed"] is False for row in selected_rows)
     assert all(row["raw_sequence_exposed"] is False for row in decoys)
+
+
+def test_stable_csv_float_text_keeps_locked_artifact_style() -> None:
+    assert stable_float_text(1.0) == "1.0"
+    assert stable_float_text(0.6200000000000001) == "0.62"
+    assert stable_float_text(0.32633599999999996) == "0.326336"
+    assert stable_float_text(-0.0000001) == "0.0"
+
+
+def test_per_constraint_coordinate_truth_taints_claim_mode() -> None:
+    _, couplings, context, selections, _, _, _, _ = _generated()
+    external_labeled_oracle = replace(
+        couplings,
+        coordinate_truth_used_to_build_constraints=False,
+        native_truth_used_before_coupling_selection=False,
+        external_evolutionary_couplings_used=True,
+        coupling_source_kind="external_msa_dca_couplings_v1",
+    )
+    tainted_context = replace(context, coupling_dataset=external_labeled_oracle)
+    selector_rows = tuple(
+        selector_metrics(
+            tainted_context,
+            selector_name=name,
+            selected_events=events,
+        )
+        for name, events in selections.items()
+    )
+    report = build_coupling_nucleus_selector_report(
+        context=tainted_context,
+        selector_rows=selector_rows,
+        source_benchmark_file=REL_BENCHMARK_8,
+        coupling_file=REL_COUPLINGS,
+    )
+
+    assert external_labeled_oracle.per_constraint_coordinate_truth_used is True
+    assert external_labeled_oracle.coordinate_truth_tainted is True
+    assert report["external_evolutionary_couplings_used"] is True
+    assert report["per_constraint_coordinate_truth_used"] is True
+    assert report["coordinate_truth_used_to_build_constraints"] is True
+    assert report["oracle_constraint_control"] is True
+    assert report["claim_mode_validation_passed"] is False
+    assert "coordinate_truth_used_to_build_constraints=true" in report[
+        "claim_mode_validation_failures"
+    ]
+    assert report["claim_allowed"] is False
+    assert all(
+        row.coordinate_truth_used_to_build_constraints is True
+        for row in selector_rows
+    )
+
+
+def test_constraint_raw_sequence_exposure_is_rejected() -> None:
+    rows, couplings, *_ = _generated()
+    unsafe_constraint = replace(couplings.constraints[0], raw_sequence_exposed=True)
+    unsafe_dataset = replace(couplings, constraints=(unsafe_constraint,))
+
+    with pytest.raises(ValueError, match="must not expose raw sequence text"):
+        validate_coupling_dataset(rows=rows, dataset=unsafe_dataset)

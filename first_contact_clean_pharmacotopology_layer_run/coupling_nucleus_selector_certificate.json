@@ -1,6 +1,14 @@
 {
   "certificate_kind": "coupling_preserved_nucleus_selector_certificate",
   "claim_allowed": false,
+  "claim_mode_validation_failures": [
+    "external_evolutionary_couplings_used=false",
+    "coupling_source_kind=coordinate_oracle_surrogate_for_missing_evolutionary_channel_v1",
+    "coordinate_truth_used_to_build_constraints=true",
+    "native_truth_used_before_coupling_selection=true",
+    "oracle_constraint_control=true"
+  ],
+  "claim_mode_validation_passed": false,
   "coordinate_truth_used_to_build_constraints": true,
   "coupling_rerank_cluster_precision": 0.072461,
   "coupling_rerank_false_nucleus_rate": 0.34375,
@@ -27,5 +35,6 @@
     "coupling_nucleus_selector_dashboard.html",
     "coupling_nucleus_selector_certificate.json"
   ],
+  "per_constraint_coordinate_truth_used": true,
   "report_kind": "coupling_preserved_nucleus_selector_benchmark_v1"
 }

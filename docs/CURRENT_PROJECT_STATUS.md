@@ -482,9 +482,11 @@ The checked-in coupling file is an oracle-control layer:
 ```text
 coupling_constraint_count = 745
 external_evolutionary_couplings_used = false
+per_constraint_coordinate_truth_used = true
 coordinate_truth_used_to_build_constraints = true
 native_truth_used_before_coupling_selection = true
 oracle_constraint_control = true
+claim_mode_validation_passed = false
 ```
 
 What improved:
@@ -522,7 +524,9 @@ Interpretation:
 The missing selector channel is real enough to test: native-selective
 constraints plus a trace-building loop remove fake nuclei in the oracle
 control. The next hard test is replacing the oracle coupling file with
-external evolutionary couplings and rerunning the same benchmark.
+external evolutionary couplings and rerunning:
+
+EXTERNAL_EVOLUTIONARY_COUPLING_TRACE_LOOP_V0
 ```
 
 ## Canonical Active Stack
@@ -566,6 +570,8 @@ scripts/run_nucleus_graph_selectivity_benchmark.py
 scripts/run_physical_closure_state_benchmark.py
 scripts/run_active_physical_selection_benchmark.py
 scripts/run_evolutionary_coupling_nucleus_benchmark.py
+scripts/build_external_evolutionary_coupling_trace_loop_v0.py
+scripts/run_external_evolutionary_coupling_trace_loop_benchmark.py
 ```
 
 Active artifacts:
@@ -590,6 +596,7 @@ nucleus_graph_selectivity_*
 physical_closure_state_*
 active_physical_selection_*
 coupling_nucleus_selector_*
+external_coupling_trace_loop_*
 ```
 
 Archived legacy artifacts:
@@ -622,6 +629,7 @@ nucleus graph selectivity fails against matched decoys
 physical closure-state score enrichment does not pass native/contact gates
 active physical selection rerank helps but gates over-prune long-range recall
 coupling trace loop is oracle-control until external couplings replace coordinate-derived constraints
+external trace-loop V0 requires a supplied provenance-locked MSA/DCA coupling file
 legacy feature modules still contain useful low-level primitives
 ```
 
@@ -664,6 +672,7 @@ keep nucleus_competition_law_survives = false until false-rate and precision gat
 keep nucleus_graph_law_survives = false until matched decoys are beaten
 keep physical_state_law_survives = false until physical enrichment improves native/contact gates
 keep coupling oracle_constraint_control = true from creating mechanism claims
+keep external trace-loop V0 claim_allowed = false on the 8-row probe
 ```
 
 Forbidden shape:

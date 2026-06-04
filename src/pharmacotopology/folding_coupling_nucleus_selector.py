@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import csv
 import json
 from collections import defaultdict
 from dataclasses import asdict, dataclass
@@ -8,6 +7,7 @@ from pathlib import Path
 from statistics import mean
 from typing import Mapping, Sequence
 
+from pharmacotopology.artifact_io import write_csv_rows
 from pharmacotopology.folding_coupling_decoy_falsification import (
     COUPLING_DECOY_FALSIFICATION_KIND,
     coupling_decoy_comparisons,
@@ -23,6 +23,10 @@ from pharmacotopology.folding_evolutionary_constraints import (
     assess_coupling_closures,
     compatible_future_event,
     load_coupling_dataset,
+)
+from pharmacotopology.folding_external_coupling_sources import (
+    ACCEPTED_EXTERNAL_COUPLING_SOURCE_KINDS,
+    EXTERNAL_EVOLUTIONARY_COUPLING_TRACE_LOOP_BATCH_ID,
 )
 from pharmacotopology.folding_nucleus_closure_search import (
     FOLDING_NUCLEUS_CLOSURE_EVENT_KIND,
@@ -58,6 +62,9 @@ COUPLING_NUCLEUS_SELECTOR_CERTIFICATE_KIND = (
 COUPLING_NUCLEUS_SELECTOR_SCORE_KIND = (
     "coupling_future_physical_decoy_margin_score_v1"
 )
+EXTERNAL_EVOLUTIONARY_COUPLING_TRACE_LOOP_BATCH_KIND = (
+    EXTERNAL_EVOLUTIONARY_COUPLING_TRACE_LOOP_BATCH_ID
+)
 
 SELECTED_EVENTS_PER_ROW = 40
 COUPLING_DIRECT_SUPPORT_MIN = 0.22
@@ -79,6 +86,7 @@ ROOT_OUTPUT_NAMES = (
     "coupling_nucleus_selector_dashboard.html",
     "coupling_nucleus_selector_certificate.json",
 )
+EXTERNAL_EVOLUTIONARY_COUPLING_SOURCE_KINDS = ACCEPTED_EXTERNAL_COUPLING_SOURCE_KINDS
 
 
 @dataclass(frozen=True)
@@ -402,7 +410,7 @@ def selector_metrics(
         ),
         survives_targets=survives,
         coordinate_truth_used_to_build_constraints=(
-            context.coupling_dataset.coordinate_truth_used_to_build_constraints
+            context.coupling_dataset.coordinate_truth_tainted
         ),
         native_truth_used_before_coupling_selection=(
             context.coupling_dataset.native_truth_used_before_coupling_selection
@@ -462,7 +470,7 @@ def selected_event_rows(
                         event.native_contact_count_after_scoring
                     ),
                     "coordinate_truth_used_to_build_constraints": (
-                        context.coupling_dataset.coordinate_truth_used_to_build_constraints
+                        context.coupling_dataset.coordinate_truth_tainted
                     ),
                     "native_truth_used_before_coupling_selection": (
                         context.coupling_dataset.native_truth_used_before_coupling_selection
@@ -490,6 +498,25 @@ def decoy_rows(
     ]
 
 
+def coupling_claim_mode_validation_failures(
+    dataset: CouplingDataset,
+) -> tuple[str, ...]:
+    failures: list[str] = []
+    if not dataset.external_evolutionary_couplings_used:
+        failures.append("external_evolutionary_couplings_used=false")
+    if dataset.coupling_source_kind not in EXTERNAL_EVOLUTIONARY_COUPLING_SOURCE_KINDS:
+        failures.append(f"coupling_source_kind={dataset.coupling_source_kind}")
+    if dataset.coordinate_truth_tainted:
+        failures.append("coordinate_truth_used_to_build_constraints=true")
+    if dataset.native_truth_tainted:
+        failures.append("native_truth_used_before_coupling_selection=true")
+    if dataset.structure_model_tainted:
+        failures.append("structure_model_used=true")
+    if dataset.oracle_constraint_control:
+        failures.append("oracle_constraint_control=true")
+    return tuple(failures)
+
+
 def build_coupling_nucleus_selector_report(
     *,
     context: CouplingNucleusContext,
@@ -499,18 +526,18 @@ def build_coupling_nucleus_selector_report(
 ) -> dict[str, object]:
     selector_lookup = {row.selector_name: row for row in selector_rows}
     coupling_target_survives = any(row.survives_targets for row in selector_rows)
-    claim_allowed = (
-        coupling_target_survives
-        and context.coupling_dataset.external_evolutionary_couplings_used
-        and not context.coupling_dataset.native_truth_used_before_coupling_selection
-        and not context.coupling_dataset.coordinate_truth_used_to_build_constraints
+    claim_mode_failures = coupling_claim_mode_validation_failures(
+        context.coupling_dataset
     )
+    claim_mode_validation_passed = not claim_mode_failures
+    claim_allowed = coupling_target_survives and claim_mode_validation_passed
     return {
         "report_kind": COUPLING_NUCLEUS_SELECTOR_REPORT_KIND,
         "source_benchmark_kind": REAL_COORDINATE_VISUAL_BENCHMARK_KIND,
         "source_benchmark_file": str(source_benchmark_file),
         "coupling_layer_kind": EVOLUTIONARY_COUPLING_LAYER_KIND,
         "coupling_file": str(coupling_file),
+        "external_batch_kind": EXTERNAL_EVOLUTIONARY_COUPLING_TRACE_LOOP_BATCH_KIND,
         "source_event_kind": FOLDING_NUCLEUS_CLOSURE_EVENT_KIND,
         "physical_state_kind": PHYSICAL_CLOSURE_STATE_KIND,
         "active_physical_selection_score_kind": ACTIVE_PHYSICAL_SELECTION_SCORE_KIND,
@@ -602,16 +629,19 @@ def build_coupling_nucleus_selector_report(
         "external_evolutionary_couplings_used": (
             context.coupling_dataset.external_evolutionary_couplings_used
         ),
+        "coupling_source_kind": context.coupling_dataset.coupling_source_kind,
+        "per_constraint_coordinate_truth_used": (
+            context.coupling_dataset.per_constraint_coordinate_truth_used
+        ),
         "coordinate_truth_used_to_build_constraints": (
-            context.coupling_dataset.coordinate_truth_used_to_build_constraints
+            context.coupling_dataset.coordinate_truth_tainted
         ),
         "native_truth_used_before_coupling_selection": (
             context.coupling_dataset.native_truth_used_before_coupling_selection
         ),
-        "oracle_constraint_control": (
-            context.coupling_dataset.coordinate_truth_used_to_build_constraints
-            or context.coupling_dataset.native_truth_used_before_coupling_selection
-        ),
+        "oracle_constraint_control": context.coupling_dataset.oracle_constraint_control,
+        "claim_mode_validation_passed": claim_mode_validation_passed,
+        "claim_mode_validation_failures": claim_mode_failures,
         "mechanism_discovery_claim_allowed": claim_allowed,
         "mechanism_discovery_claim_created": False,
         "global_folding_claim_allowed": claim_allowed,
@@ -679,7 +709,14 @@ def build_coupling_nucleus_selector_certificate(
         "native_truth_used_before_coupling_selection": report[
             "native_truth_used_before_coupling_selection"
         ],
+        "per_constraint_coordinate_truth_used": report[
+            "per_constraint_coordinate_truth_used"
+        ],
         "oracle_constraint_control": report["oracle_constraint_control"],
+        "claim_mode_validation_passed": report["claim_mode_validation_passed"],
+        "claim_mode_validation_failures": tuple(
+            report["claim_mode_validation_failures"]  # type: ignore[index]
+        ),
         "mechanism_discovery_claim_allowed": report[
             "mechanism_discovery_claim_allowed"
         ],
@@ -710,10 +747,10 @@ def write_coupling_nucleus_selector_outputs(
         json.dumps(report, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
         encoding="utf-8",
     )
-    _write_csv_rows([row.to_dict() for row in selector_rows], selectors_path)
-    _write_csv_rows(selected_rows, selected_events_path)
-    _write_csv_rows([row.to_dict() for row in assessments], assessments_path)
-    _write_csv_rows(decoys, decoys_path)
+    write_csv_rows([row.to_dict() for row in selector_rows], selectors_path)
+    write_csv_rows(selected_rows, selected_events_path)
+    write_csv_rows([row.to_dict() for row in assessments], assessments_path)
+    write_csv_rows(decoys, decoys_path)
     dashboard_path.write_text(
         render_coupling_nucleus_selector_dashboard(report),
         encoding="utf-8",
@@ -810,19 +847,6 @@ def run_coupling_nucleus_selector_benchmark(
     )
 
 
-def _write_csv_rows(rows: Sequence[Mapping[str, object]], path: Path) -> Path:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("w", encoding="utf-8", newline="") as file:
-        if not rows:
-            return path
-        fieldnames = list(rows[0])
-        writer = csv.DictWriter(file, fieldnames=fieldnames, lineterminator="\n")
-        writer.writeheader()
-        for row in rows:
-            writer.writerow({key: row.get(key, "") for key in fieldnames})
-    return path
-
-
 def _escape(value: object) -> str:
     return (
         str(value)
@@ -846,7 +870,9 @@ def _metric_cards(report: Mapping[str, object]) -> str:
         "coupling_decoy_falsifier_false_nucleus_rate",
         "coupling_decoy_falsifier_real_vs_decoy_enrichment_ratio",
         "coupling_selector_targets_met",
+        "claim_mode_validation_passed",
         "oracle_constraint_control",
+        "per_constraint_coordinate_truth_used",
         "mechanism_discovery_claim_allowed",
         "folding_problem_solved",
     )

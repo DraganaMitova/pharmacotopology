@@ -50,9 +50,11 @@ The checked-in coupling file is an oracle-control layer:
 ```text
 coupling_source_kind = coordinate_oracle_surrogate_for_missing_evolutionary_channel_v1
 external_evolutionary_couplings_used = false
+per_constraint_coordinate_truth_used = true
 coordinate_truth_used_to_build_constraints = true
 native_truth_used_before_coupling_selection = true
 oracle_constraint_control = true
+claim_mode_validation_passed = false
 ```
 
 That is intentional. It answers:
@@ -68,7 +70,11 @@ Can the current sequence-only model infer that channel?
 ```
 
 Before any mechanism-discovery claim, replace the oracle-control file with
-external MSA/DCA couplings and rerun the exact same benchmark.
+external MSA/DCA couplings and rerun the exact same benchmark under:
+
+```text
+EXTERNAL_EVOLUTIONARY_COUPLING_TRACE_LOOP_V0
+```
 
 ## Current Result
 
@@ -122,9 +128,21 @@ For a real external-coupling run, these fields must change:
 
 ```text
 external_evolutionary_couplings_used = true
+per_constraint_coordinate_truth_used = false
 coordinate_truth_used_to_build_constraints = false
 native_truth_used_before_coupling_selection = false
 oracle_constraint_control = false
+claim_mode_validation_passed = true
 ```
+
+The top-level flags are not trusted by themselves. If even one constraint has:
+
+```text
+coordinate_truth_used_to_build_constraint = true
+```
+
+then the whole dataset is treated as oracle-tainted and claim mode remains
+locked. Claim mode also requires a recognized external MSA/DCA source kind
+instead of the coordinate-oracle surrogate source kind.
 
 Only then can the same selector be evaluated as a non-oracle folding signal.

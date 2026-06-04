@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import csv
 import json
 from collections import defaultdict
 from dataclasses import asdict, dataclass
@@ -8,6 +7,7 @@ from pathlib import Path
 from statistics import mean
 from typing import Mapping, Sequence
 
+from pharmacotopology.artifact_io import write_csv_rows
 from pharmacotopology.folding_closure_state_builder import build_physical_states
 from pharmacotopology.folding_contact_law_features import contact_law_feature_rows
 from pharmacotopology.folding_future_frustration import (
@@ -557,9 +557,9 @@ def write_active_physical_selection_outputs(
         json.dumps(report, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
         encoding="utf-8",
     )
-    _write_csv_rows([row.to_dict() for row in selector_rows], selectors_path)
-    _write_csv_rows(selected_rows, selected_events_path)
-    _write_csv_rows([row.to_dict() for row in ablations], ablation_path)
+    write_csv_rows([row.to_dict() for row in selector_rows], selectors_path)
+    write_csv_rows(selected_rows, selected_events_path)
+    write_csv_rows([row.to_dict() for row in ablations], ablation_path)
     dashboard_path.write_text(
         render_active_physical_selection_dashboard(report),
         encoding="utf-8",
@@ -631,19 +631,6 @@ def run_active_physical_selection_benchmark(
         dashboard_path=dashboard_path,
         certificate_path=certificate_path,
     )
-
-
-def _write_csv_rows(rows: Sequence[Mapping[str, object]], path: Path) -> Path:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("w", encoding="utf-8", newline="") as file:
-        if not rows:
-            return path
-        fieldnames = list(rows[0])
-        writer = csv.DictWriter(file, fieldnames=fieldnames, lineterminator="\n")
-        writer.writeheader()
-        for row in rows:
-            writer.writerow({key: row.get(key, "") for key in fieldnames})
-    return path
 
 
 def _escape(value: object) -> str:
@@ -790,4 +777,3 @@ def render_active_physical_selection_dashboard(report: Mapping[str, object]) -> 
 </body>
 </html>
 """
-
