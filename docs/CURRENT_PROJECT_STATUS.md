@@ -1,18 +1,18 @@
 # Current Project Status
 
-This is the current truth of the repository after the contact-law threshold
-search and falsification milestone.
+This is the current truth of the repository after the folding-nucleus closure
+search milestone.
 
 ## Latest Safety Baseline
 
 ```text
 latest recorded safety commit = e8cc5eb Audit visual mechanism claims and freeze toy-contact benchmark
-current target = Add contact-law threshold search and falsification
+current target = Add folding nucleus closure search
 ```
 
-The current target does not add another repair heuristic. It tests whether a
-sequence-only contact threshold law survives the real-coordinate visual
-benchmark.
+The current target pivots from pair-level thresholding to cooperative
+segment-closure events. It tests whether nucleus-like closures recover
+long-range native regions better than pair-level thresholds.
 
 ## Internal 50-Row Status
 
@@ -218,6 +218,53 @@ Pair-plus-entropy improves held-out F1 and reduces false contacts, but it loses
 long-range contact recall. The law is not discovered.
 ```
 
+## Folding-Nucleus Closure Status
+
+The nucleus search generates candidate closure events between sequence
+segments, scores those events from sequence-only features, then attaches
+coordinate-native labels after event generation:
+
+```text
+candidate_closure_event_count = 5041
+nucleus_threshold_min = 0.3
+selected_threshold = 0.3
+accepted_event_count = 3846
+native_truth_used_before_event_generation = false
+native_label_attached_after_event_generation = true
+row_specific_nucleus_thresholds_forbidden = true
+```
+
+The useful signal:
+
+```text
+native_nucleus_recall = 0.50826
+long_range_contact_recall_after_nucleus = 0.913242
+pair_level_mean_long_range_contact_recall = 0.0
+long_range_recall_delta_vs_pair_level = 0.913242
+nucleus_level_long_range_beats_pair_level = true
+cooperative_closure_supported = true
+```
+
+The blocking failure:
+
+```text
+false_nucleus_rate = 0.692721
+contact_cluster_precision = 0.032261
+trap_event_count = 3056
+candidate_law_failure_count = 6
+nucleus_law_survives = false
+mechanism_discovery_claim_allowed = false
+folding_problem_solved = false
+```
+
+Interpretation:
+
+```text
+Cooperative closure is a better object than independent pair contacts for
+long-range native-region recovery, but the current closure score overgenerates
+false nuclei. No folding law has been found.
+```
+
 ## Canonical Active Stack
 
 ```text
@@ -232,6 +279,7 @@ contact-topology repair and native-gap analysis
 visual mechanism claim audit
 real-coordinate visual contact benchmark
 contact-law threshold falsification
+folding-nucleus closure search
 ```
 
 Canonical runners:
@@ -247,6 +295,7 @@ scripts/run_contact_topology_repair_benchmark.py
 scripts/run_visual_mechanism_audit.py
 scripts/run_real_coordinate_visual_benchmark.py
 scripts/run_contact_law_threshold_search.py
+scripts/run_folding_nucleus_closure_search.py
 ```
 
 Active artifacts:
@@ -265,6 +314,7 @@ visual_mechanism_audit_*
 real_coordinate_visual_8_*
 real_coordinate_visuals/*/*
 contact_law_threshold_*
+folding_nucleus_closure_*
 ```
 
 Archived legacy artifacts:
@@ -291,6 +341,7 @@ real-coordinate mean contact-map F1 is low
 coordinate-native contacts are not atomistic folding truth
 current scalar contact score is rejected as a stable threshold law
 best threshold candidate does not generalize because long-range recall collapses
+cooperative closure recovers long-range native regions but overgenerates traps
 legacy feature modules still contain useful low-level primitives
 ```
 
@@ -305,7 +356,7 @@ Do not add more broad biology claims before the canonical surface stays clean.
 The next research target can be:
 
 ```text
-real-coordinate contact failure analysis
+false-nucleus rejection
 ```
 
 Allowed shape:
@@ -318,11 +369,13 @@ track coverage cost
 record uncertainty, failure cohorts, and visible contact-map drift
 analyze coordinate-native missed contact cohorts
 explain long-range recall collapse under pair-plus-entropy scoring
-avoid repair changes until failures are explained on the coordinate benchmark
+reduce false segment closures without destroying long-range recall
+add steric/orientation/trap filters at the event level, not pair level
 keep visual_12_is_toy_benchmark = true
 keep contact_repair_overfit_risk_reported = true
 keep toy_locked_contact_targets_used = false on real-coordinate surfaces
 keep current_scalar_score_law_rejected = true until a stronger law survives
+keep nucleus_law_survives = false until false_nucleus_rate is under control
 ```
 
 Forbidden shape:

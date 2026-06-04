@@ -10,8 +10,10 @@ contact-repair pass, an audit that freezes the 12-row visual benchmark as
 toy/coarse/internal, and a new real-coordinate visual contact benchmark. The
 real-coordinate benchmark is now followed by a contact-law threshold search
 that rejects the current scalar contact heuristic as a stable law. The current
-external-safe result has zero unsafe axis claims, but coverage is reduced.
-Global fold-class and mechanism-discovery claims remain locked.
+threshold search is followed by a cooperative folding-nucleus closure search.
+That nucleus search recovers long-range native regions better than pair-level
+thresholds, but it overgenerates false nuclei. Global fold-class and
+mechanism-discovery claims remain locked.
 
 ## Current Status
 
@@ -25,6 +27,7 @@ contact-topology repair workbench
 visual mechanism claim audit
 real-coordinate visual contact benchmark
 contact-law threshold falsification
+folding-nucleus closure search
 ```
 
 The mechanism workbench is a hypothesis simulator. It compares abstract
@@ -68,6 +71,11 @@ survives across held-out coordinate-backed proteins. The current scalar contact
 score is rejected. A pair-plus-entropy candidate improves held-out F1, but it
 does not survive as a general law because long-range recall collapses.
 
+The folding-nucleus closure search tests cooperative segment closure events
+instead of independent residue-pair contacts. It recovers long-range
+coordinate-native regions better than the pair-level threshold baseline, but
+the false-nucleus rate remains too high for any law claim.
+
 Current honest state:
 
 ```text
@@ -90,6 +98,10 @@ current_scalar_score_law_rejected = true
 best_law_candidate_model = pair_plus_entropy_score
 best_law_candidate_loo_mean_test_f1 = 0.233569
 law_generalizes = false
+nucleus_native_recall = 0.50826
+nucleus_long_range_recall = 0.913242
+nucleus_false_rate = 0.692721
+nucleus_law_survives = false
 mechanism_discovery_claim_allowed = false
 global_fold_class_claim_allowed = false
 folding_problem_solved = false
@@ -111,6 +123,7 @@ contact-topology repair and native-gap analysis
 visual mechanism claim audit
 real-coordinate visual contact benchmark
 contact-law threshold falsification
+folding-nucleus closure search
 ```
 
 Canonical commands:
@@ -126,6 +139,7 @@ python3 scripts/run_contact_topology_repair_benchmark.py
 python3 scripts/run_visual_mechanism_audit.py
 python3 scripts/run_real_coordinate_visual_benchmark.py
 python3 scripts/run_contact_law_threshold_search.py
+python3 scripts/run_folding_nucleus_closure_search.py
 ```
 
 The active generated folding artifacts are:
@@ -144,6 +158,7 @@ visual_mechanism_audit_*
 real_coordinate_visual_8_*
 real_coordinate_visuals/*/*
 contact_law_threshold_*
+folding_nucleus_closure_*
 ```
 
 Older 10-row and pre-axis 50-row artifacts are preserved under:
@@ -293,6 +308,29 @@ folding_problem_solved = false
 The candidate improves held-out F1 but fails the law boundary because it loses
 long-range contact recall. The correct statement is law rejected / not yet
 found, not folding solved.
+
+Folding-nucleus closure search:
+
+```text
+candidate_closure_event_count = 5041
+selected_threshold = 0.3
+native_nucleus_recall = 0.50826
+long_range_contact_recall_after_nucleus = 0.913242
+pair_level_mean_long_range_contact_recall = 0.0
+long_range_recall_delta_vs_pair_level = 0.913242
+false_nucleus_rate = 0.692721
+contact_cluster_precision = 0.032261
+nucleus_level_long_range_beats_pair_level = true
+nucleus_law_survives = false
+native_truth_used_before_event_generation = false
+row_specific_nucleus_thresholds_forbidden = true
+mechanism_discovery_claim_allowed = false
+folding_problem_solved = false
+```
+
+The useful finding is that cooperative closure is a better proof object for
+long-range native-region recovery. The blocking failure is false closure
+overgeneration.
 
 ## Safety Boundaries
 

@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Folding Nucleus Closure Search</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f5f6f1;
+      color: #202623;
+    }
+    header {
+      padding: 34px;
+      background: #24302c;
+      color: #f6f7f2;
+    }
+    main {
+      max-width: 1220px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    h1, h2, h3 {
+      margin: 0 0 12px;
+      letter-spacing: 0;
+    }
+    section {
+      margin: 24px 0;
+    }
+    .metrics, .rules {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+    .metric, .rule {
+      background: #ffffff;
+      border: 1px solid #d4ddd6;
+      border-radius: 6px;
+      padding: 14px;
+    }
+    .metric span {
+      display: block;
+      color: #58635e;
+      font-size: 12px;
+      overflow-wrap: anywhere;
+    }
+    .metric strong {
+      display: block;
+      margin-top: 8px;
+      font-size: 20px;
+      overflow-wrap: anywhere;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #ffffff;
+      border: 1px solid #d4ddd6;
+    }
+    th, td {
+      padding: 9px 10px;
+      border-bottom: 1px solid #e3e8e3;
+      text-align: left;
+      font-size: 13px;
+      vertical-align: top;
+      overflow-wrap: anywhere;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Folding Nucleus Closure Search</h1>
+    <p>Sequence-only segment closure events are scored against coordinate-native contact regions after event generation.</p>
+  </header>
+  <main>
+    <section class="metrics"><div class="metric"><span>candidate_closure_event_count</span><strong>5041</strong></div><div class="metric"><span>selected_threshold</span><strong>0.3</strong></div><div class="metric"><span>native_nucleus_recall</span><strong>0.50826</strong></div><div class="metric"><span>long_range_contact_recall_after_nucleus</span><strong>0.913242</strong></div><div class="metric"><span>pair_level_mean_long_range_contact_recall</span><strong>0.0</strong></div><div class="metric"><span>false_nucleus_rate</span><strong>0.692721</strong></div><div class="metric"><span>contact_cluster_precision</span><strong>0.032261</strong></div><div class="metric"><span>nucleus_law_survives</span><strong>False</strong></div><div class="metric"><span>mechanism_discovery_claim_allowed</span><strong>False</strong></div><div class="metric"><span>folding_problem_solved</span><strong>False</strong></div></section>
+    <section><h2>Boundary Rules</h2><div class="rules"><div class="rule"><h3>Closure Events, Not Pair Events</h3><p>Each candidate closes two sequence segments and is scored as a cooperative region.</p></div><div class="rule"><h3>Native Labels After Event Generation</h3><p>Coordinate-native contacts are used only after sequence-only event scoring.</p></div><div class="rule"><h3>Long-Range Recovery Is The First Target</h3><p>The benchmark asks whether segment closures recover long-range native regions better than pair thresholds.</p></div><div class="rule"><h3>No Folding Law Claim</h3><p>High false closure rates keep the nucleus law unclaimed.</p></div></div></section>
+    <section><h2>Row Metrics</h2><table><thead><tr><th>source</th><th>events</th><th>native recall</th><th>long-range recall</th><th>false rate</th><th>cluster precision</th></tr></thead><tbody><tr><td>1MBN:A</td><td>491</td><td>0.301266</td><td>1.0</td><td>0.771894</td><td>0.012093</td></tr><tr><td>2LZM:A</td><td>630</td><td>0.420561</td><td>0.962025</td><td>0.793651</td><td>0.012748</td></tr><tr><td>1TEN:A</td><td>96</td><td>0.7</td><td>0.690265</td><td>0.59375</td><td>0.071615</td></tr><tr><td>1CSP:A</td><td>58</td><td>0.734463</td><td>0.953846</td><td>0.448276</td><td>0.071121</td></tr><tr><td>1TIM:A</td><td>1365</td><td>0.588966</td><td>0.952681</td><td>0.810989</td><td>0.016392</td></tr><tr><td>1PGA:A</td><td>43</td><td>0.627737</td><td>1.0</td><td>0.465116</td><td>0.053416</td></tr><tr><td>4AKE:A</td><td>829</td><td>0.423971</td><td>0.88601</td><td>0.834741</td><td>0.011912</td></tr><tr><td>1CLL:A</td><td>334</td><td>0.269113</td><td>0.861111</td><td>0.823353</td><td>0.008795</td></tr></tbody></table></section>
+    <section>
+      <h2>Claim Boundary</h2>
+      <p>This benchmark tests segment-level cooperative closure events against coordinate-native contact regions. It shows whether closure nuclei recover long-range native regions better than pair-level thresholds, but it does not discover a folding law or solve protein folding.</p>
+    </section>
+  </main>
+</body>
+</html>

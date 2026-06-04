@@ -1,0 +1,9 @@
+row_id,source_accession,selected_threshold,candidate_event_count,accepted_event_count,native_nucleus_recall,false_nucleus_rate,long_range_contact_recall_after_nucleus,pair_level_long_range_contact_recall,long_range_recall_delta_vs_pair_level,contact_cluster_precision,closure_event_stability,trap_event_count,frustration_rejection_count,trajectory_native_gain,nucleus_level_long_range_beats_pair_level
+coord_001_pdb_1MBN_A_myoglobin,1MBN:A,0.3,595,491,0.301266,0.771894,1.0,0.0,1.0,0.012093,0.382678,379,0,0.301266,True
+coord_002_pdb_2LZM_A_t4_lysozyme,2LZM:A,0.3,703,630,0.420561,0.793651,0.962025,0.0,0.962025,0.012748,0.385269,500,0,0.406542,True
+coord_003_pdb_1TEN_A_tenascin_fn3,1TEN:A,0.3,171,96,0.7,0.59375,0.690265,0.0,0.690265,0.071615,0.38483,57,0,0.7,True
+coord_004_pdb_1CSP_A_cold_shock_protein,1CSP:A,0.3,78,58,0.734463,0.448276,0.953846,0.0,0.953846,0.071121,0.407939,26,0,0.615819,True
+coord_005_pdb_1TIM_A_triosephosphate_isomerase,1TIM:A,0.3,1653,1365,0.588966,0.810989,0.952681,0.0,0.952681,0.016392,0.408057,1107,0,0.568276,True
+coord_006_pdb_1PGA_A_protein_g_b1,1PGA:A,0.3,55,43,0.627737,0.465116,1.0,0.0,1.0,0.053416,0.380356,20,0,0.627737,True
+coord_007_pdb_4AKE_A_adenylate_kinase,4AKE:A,0.3,1225,829,0.423971,0.834741,0.88601,0.0,0.88601,0.011912,0.382841,692,0,0.423971,True
+coord_008_pdb_1CLL_A_calmodulin,1CLL:A,0.3,561,334,0.269113,0.823353,0.861111,0.0,0.861111,0.008795,0.372298,275,0,0.269113,True

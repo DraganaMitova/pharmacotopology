@@ -123,6 +123,13 @@ PHARMACOTOPOLOGY_GENERATED_FILES: tuple[str, ...] = (
     "contact_law_threshold_failures.csv",
     "contact_law_threshold_dashboard.html",
     "contact_law_threshold_certificate.json",
+    "folding_nucleus_closure_report.json",
+    "folding_nucleus_closure_events.csv",
+    "folding_nucleus_closure_trajectory.csv",
+    "folding_nucleus_closure_metrics.csv",
+    "folding_nucleus_closure_failures.csv",
+    "folding_nucleus_closure_dashboard.html",
+    "folding_nucleus_closure_certificate.json",
     "field_validation.json",
     "field_metrics.json",
 )
