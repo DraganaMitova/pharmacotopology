@@ -16,6 +16,10 @@ thresholds, but it overgenerates false nuclei. Global fold-class and
 mechanism-discovery claims remain locked.
 The active physical selection layer now reranks and gates nuclei with coarse
 physical-state terms, then rejects the selector law after ablation.
+The coupling-preserved nucleus layer adds a locked coupling-constraint channel
+and an iterative trace loop. It passes selector survival gates under an
+oracle-control coupling file derived from coordinate-native contacts, so it
+identifies a missing channel without unlocking mechanism claims.
 
 ## Current Status
 
@@ -33,6 +37,7 @@ folding-nucleus closure search
 competitive nucleus selection
 nucleus graph selectivity and decoy falsification
 active physical selection and term ablation
+coupling-preserved nucleus selector
 ```
 
 The mechanism workbench is a hypothesis simulator. It compares abstract
@@ -101,6 +106,13 @@ long-range recall, while viability gates reduce false nuclei and improve
 precision. No selector passes all survival gates, and ablation says only
 burial gain clearly helps under the current proxy.
 
+The coupling-preserved nucleus selector tests the missing native-selective
+constraint channel. Coupling rerank improves false-nucleus rate, precision,
+long-range recall, and decoy enrichment. The iterative trace loop selects a
+small compatible closure path with zero false nuclei and passes survival gates.
+The checked-in coupling file is explicitly an oracle control, not external
+evolutionary evidence, so mechanism-discovery claims stay locked.
+
 Current honest state:
 
 ```text
@@ -158,6 +170,20 @@ future_frustration_long_range_recall = 0.070742
 best_physical_term = burial_gain
 worst_physical_term = future_frustration
 active_physical_selection_survives = false
+coupling_constraint_count = 745
+coupling_rerank_false_nucleus_rate = 0.34375
+coupling_rerank_cluster_precision = 0.072461
+coupling_rerank_long_range_recall = 0.565164
+coupling_rerank_real_vs_decoy_enrichment_ratio = 1.931956
+coupling_trace_loop_selected_event_count = 54
+coupling_trace_loop_false_nucleus_rate = 0.0
+coupling_trace_loop_cluster_precision = 0.164128
+coupling_trace_loop_long_range_recall = 0.397896
+coupling_trace_loop_constraint_recall = 0.466536
+coupling_trace_loop_real_vs_decoy_enrichment_ratio = 1.693887
+coupling_selector_targets_met = true
+external_evolutionary_couplings_used = false
+oracle_constraint_control = true
 mechanism_discovery_claim_allowed = false
 global_fold_class_claim_allowed = false
 folding_problem_solved = false
@@ -184,6 +210,7 @@ competitive nucleus selection
 nucleus graph selectivity and decoy falsification
 physical closure-state evaluator
 active physical selection and term ablation
+coupling-preserved nucleus selector
 ```
 
 Canonical commands:
@@ -204,6 +231,7 @@ python3 scripts/run_competitive_nucleus_selection.py
 python3 scripts/run_nucleus_graph_selectivity_benchmark.py
 python3 scripts/run_physical_closure_state_benchmark.py
 python3 scripts/run_active_physical_selection_benchmark.py
+python3 scripts/run_evolutionary_coupling_nucleus_benchmark.py
 ```
 
 The active generated folding artifacts are:
@@ -227,6 +255,7 @@ competitive_nucleus_selection_*
 nucleus_graph_selectivity_*
 physical_closure_state_*
 active_physical_selection_*
+coupling_nucleus_selector_*
 ```
 
 Older 10-row and pre-axis 50-row artifacts are preserved under:
@@ -511,6 +540,24 @@ This is an active-selector rejection, not a failed project. Reranking improves
 some signals, but the gates trade away too much long-range recall. The current
 physical proxy is informative, not sufficient.
 
+Coupling-preserved nucleus selector:
+
+```text
+coupling_source_kind = coordinate_oracle_surrogate_for_missing_evolutionary_channel_v1
+external_evolutionary_couplings_used = false
+coordinate_truth_used_to_build_constraints = true
+native_truth_used_before_coupling_selection = true
+oracle_constraint_control = true
+coupling_selector_targets_met = true
+claim_allowed = false
+```
+
+This is the first selector surface that kills fake nuclei in the checked-in
+coordinate-backed benchmark, but it does so with an oracle-control coupling
+file. The next legitimate test is to replace
+`data/folding_real_coordinate_visual_8_couplings.locked.json` with external
+MSA/DCA couplings and rerun the exact same benchmark.
+
 ## Safety Boundaries
 
 This repository does not:
@@ -556,6 +603,7 @@ docs/COMPETITIVE_NUCLEUS_SELECTION_BOUNDARY.md competitive nucleus boundary
 docs/NUCLEUS_GRAPH_SELECTIVITY_BOUNDARY.md nucleus graph selectivity boundary
 docs/PHYSICAL_CLOSURE_STATE_BOUNDARY.md physical closure-state boundary
 docs/ACTIVE_PHYSICAL_SELECTION_BOUNDARY.md active physical selection boundary
+docs/EVOLUTIONARY_COUPLING_NUCLEUS_BOUNDARY.md coupling selector boundary
 tests/                               pytest coverage for safety and reproducibility
 ```
 

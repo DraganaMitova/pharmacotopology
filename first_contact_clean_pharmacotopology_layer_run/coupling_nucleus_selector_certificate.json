@@ -1,0 +1,31 @@
+{
+  "certificate_kind": "coupling_preserved_nucleus_selector_certificate",
+  "claim_allowed": false,
+  "coordinate_truth_used_to_build_constraints": true,
+  "coupling_rerank_cluster_precision": 0.072461,
+  "coupling_rerank_false_nucleus_rate": 0.34375,
+  "coupling_rerank_long_range_recall": 0.565164,
+  "coupling_rerank_real_vs_decoy_enrichment_ratio": 1.931956,
+  "coupling_selector_targets_met": true,
+  "coupling_trace_loop_cluster_precision": 0.164128,
+  "coupling_trace_loop_constraint_recall": 0.466536,
+  "coupling_trace_loop_false_nucleus_rate": 0.0,
+  "coupling_trace_loop_long_range_recall": 0.397896,
+  "coupling_trace_loop_real_vs_decoy_enrichment_ratio": 1.693887,
+  "external_evolutionary_couplings_used": false,
+  "folding_problem_solved": false,
+  "global_folding_claim_allowed": false,
+  "mechanism_discovery_claim_allowed": false,
+  "native_truth_used_before_coupling_selection": true,
+  "oracle_constraint_control": true,
+  "output_artifacts": [
+    "coupling_nucleus_selector_report.json",
+    "coupling_nucleus_selector_selectors.csv",
+    "coupling_nucleus_selector_selected_events.csv",
+    "coupling_nucleus_selector_assessments.csv",
+    "coupling_nucleus_selector_decoys.csv",
+    "coupling_nucleus_selector_dashboard.html",
+    "coupling_nucleus_selector_certificate.json"
+  ],
+  "report_kind": "coupling_preserved_nucleus_selector_benchmark_v1"
+}

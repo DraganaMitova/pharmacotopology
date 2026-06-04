@@ -1,0 +1,7 @@
+selector_name,selected_event_count,false_nucleus_rate,contact_cluster_precision,long_range_contact_recall,coupling_constraint_recall,real_vs_decoy_coupling_enrichment_ratio,real_beats_decoy_coupling_score_rate,mean_coupling_nucleus_score,survives_targets,coordinate_truth_used_to_build_constraints,native_truth_used_before_coupling_selection,raw_sequence_exposed
+graph_only,320,0.609375,0.043311,0.372496,0.409249,1.060594,0.646875,0.415399,False,True,True,False
+physical_rerank,320,0.559375,0.050488,0.405008,0.429458,0.941861,0.490625,0.410968,False,True,True,False
+coupling_rerank,320,0.34375,0.072461,0.565164,0.589824,1.931956,0.909375,0.491162,False,True,True,False
+coupling_trace_loop,54,0.0,0.164128,0.397896,0.466536,1.693887,0.888889,0.633603,True,True,True,False
+coupling_future_gate,72,0.0,0.051253,0.309919,0.318631,2.193039,0.986111,0.608382,False,True,True,False
+coupling_decoy_falsifier,48,0.0,0.061242,0.284528,0.293612,1.906511,1.0,0.652207,False,True,True,False

@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Coupling-Preserved Nucleus Selector</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f7f8f5;
+      color: #1f2522;
+    }
+    header {
+      padding: 34px;
+      background: #20332b;
+      color: #f8fbf5;
+    }
+    main {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    h1, h2, h3 {
+      margin: 0 0 12px;
+      letter-spacing: 0;
+    }
+    section {
+      margin: 24px 0;
+    }
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 12px;
+    }
+    .metric {
+      background: #ffffff;
+      border: 1px solid #d7ded8;
+      border-radius: 6px;
+      padding: 14px;
+    }
+    .metric span {
+      display: block;
+      color: #5c6661;
+      font-size: 12px;
+      overflow-wrap: anywhere;
+    }
+    .metric strong {
+      display: block;
+      margin-top: 8px;
+      font-size: 20px;
+      overflow-wrap: anywhere;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #ffffff;
+      border: 1px solid #d7ded8;
+    }
+    th, td {
+      padding: 9px 10px;
+      border-bottom: 1px solid #e3e9e4;
+      text-align: left;
+      font-size: 13px;
+      vertical-align: top;
+      overflow-wrap: anywhere;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Coupling-Preserved Nucleus Selector</h1>
+    <p>Closure candidates are ranked by direct coupling support, future closure preservation, physical state, and matched-decoy margin.</p>
+  </header>
+  <main>
+    <section class="metrics"><div class="metric"><span>coupling_rerank_false_nucleus_rate</span><strong>0.34375</strong></div><div class="metric"><span>coupling_rerank_cluster_precision</span><strong>0.072461</strong></div><div class="metric"><span>coupling_rerank_long_range_recall</span><strong>0.565164</strong></div><div class="metric"><span>coupling_rerank_real_vs_decoy_enrichment_ratio</span><strong>1.931956</strong></div><div class="metric"><span>coupling_trace_loop_false_nucleus_rate</span><strong>0.0</strong></div><div class="metric"><span>coupling_trace_loop_long_range_recall</span><strong>0.397896</strong></div><div class="metric"><span>coupling_future_gate_false_nucleus_rate</span><strong>0.0</strong></div><div class="metric"><span>coupling_future_gate_long_range_recall</span><strong>0.309919</strong></div><div class="metric"><span>coupling_decoy_falsifier_false_nucleus_rate</span><strong>0.0</strong></div><div class="metric"><span>coupling_decoy_falsifier_real_vs_decoy_enrichment_ratio</span><strong>1.906511</strong></div><div class="metric"><span>coupling_selector_targets_met</span><strong>True</strong></div><div class="metric"><span>oracle_constraint_control</span><strong>True</strong></div><div class="metric"><span>mechanism_discovery_claim_allowed</span><strong>False</strong></div><div class="metric"><span>folding_problem_solved</span><strong>False</strong></div></section>
+    <section><h2>Selector Comparison</h2><table><thead><tr><th>selector</th><th>events</th><th>false</th><th>precision</th><th>long-range</th><th>constraint recall</th><th>decoy ratio</th><th>beats decoy</th></tr></thead><tbody><tr><td>graph_only</td><td>320</td><td>0.609375</td><td>0.043311</td><td>0.372496</td><td>0.409249</td><td>1.060594</td><td>0.646875</td></tr><tr><td>physical_rerank</td><td>320</td><td>0.559375</td><td>0.050488</td><td>0.405008</td><td>0.429458</td><td>0.941861</td><td>0.490625</td></tr><tr><td>coupling_rerank</td><td>320</td><td>0.34375</td><td>0.072461</td><td>0.565164</td><td>0.589824</td><td>1.931956</td><td>0.909375</td></tr><tr><td>coupling_trace_loop</td><td>54</td><td>0.0</td><td>0.164128</td><td>0.397896</td><td>0.466536</td><td>1.693887</td><td>0.888889</td></tr><tr><td>coupling_future_gate</td><td>72</td><td>0.0</td><td>0.051253</td><td>0.309919</td><td>0.318631</td><td>2.193039</td><td>0.986111</td></tr><tr><td>coupling_decoy_falsifier</td><td>48</td><td>0.0</td><td>0.061242</td><td>0.284528</td><td>0.293612</td><td>1.906511</td><td>1.0</td></tr></tbody></table></section>
+    <section>
+      <h2>Claim Boundary</h2>
+      <p>Coupling-supported selection tests the missing native-selective constraint channel by asking whether direct coupling support, future closure preservation, and matched-decoy coupling margins can separate plausible nuclei from fake burial. The checked-in constraint file is an oracle control unless replaced by external MSA/DCA couplings, so it cannot create a folding mechanism claim.</p>
+    </section>
+  </main>
+</body>
+</html>

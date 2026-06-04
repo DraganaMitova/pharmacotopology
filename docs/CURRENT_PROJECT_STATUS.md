@@ -1,19 +1,20 @@
 # Current Project Status
 
-This is the current truth of the repository after the active physical
-selection and term-ablation milestone.
+This is the current truth of the repository after the coupling-preserved
+nucleus selector milestone.
 
 ## Latest Safety Baseline
 
 ```text
 latest recorded safety commit = e8cc5eb Audit visual mechanism claims and freeze toy-contact benchmark
-current target = Add active physical selection and term ablation
+current target = Add coupling-preserved nucleus trace loop
 ```
 
-The current target makes coarse physical-state terms active in selection. It
-finds that physical reranking improves decoy enrichment and long-range recall,
-but viability gates over-prune long-range closure. No selector passes all
-survival gates, so the active physical selector law is rejected.
+The current target adds a locked coupling-constraint channel and an iterative
+trace loop. It shows that native-selective constraints can kill fake burial and
+pass selector survival gates, but the checked-in coupling file is an oracle
+control derived from coordinate-native contacts. Mechanism-discovery claims
+remain locked until the same benchmark passes with external MSA/DCA couplings.
 
 ## Internal 50-Row Status
 
@@ -465,6 +466,65 @@ much long-range recovery. The current physical selector is rejected. This is not
 a folding mechanism discovery.
 ```
 
+## Coupling-Preserved Nucleus Status
+
+The coupling selector tests the missing native-selective constraint channel:
+
+```text
+direct coupling support
+future closure preservation
+matched-decoy coupling margin
+iterative coupling trace loop
+```
+
+The checked-in coupling file is an oracle-control layer:
+
+```text
+coupling_constraint_count = 745
+external_evolutionary_couplings_used = false
+coordinate_truth_used_to_build_constraints = true
+native_truth_used_before_coupling_selection = true
+oracle_constraint_control = true
+```
+
+What improved:
+
+```text
+physical_rerank_false_nucleus_rate = 0.559375
+coupling_rerank_false_nucleus_rate = 0.34375
+coupling_trace_loop_false_nucleus_rate = 0.0
+
+physical_rerank_cluster_precision = 0.050488
+coupling_rerank_cluster_precision = 0.072461
+coupling_trace_loop_cluster_precision = 0.164128
+
+physical_rerank_long_range_recall = 0.405008
+coupling_rerank_long_range_recall = 0.565164
+coupling_trace_loop_long_range_recall = 0.397896
+
+coupling_trace_loop_constraint_recall = 0.466536
+coupling_trace_loop_real_vs_decoy_enrichment_ratio = 1.693887
+coupling_selector_targets_met = true
+```
+
+What remains locked:
+
+```text
+mechanism_discovery_claim_allowed = false
+global_folding_claim_allowed = false
+folding_problem_solved = false
+claim_allowed = false
+```
+
+Interpretation:
+
+```text
+The missing selector channel is real enough to test: native-selective
+constraints plus a trace-building loop remove fake nuclei in the oracle
+control. The next hard test is replacing the oracle coupling file with
+external evolutionary couplings and rerunning the same benchmark.
+```
+
 ## Canonical Active Stack
 
 ```text
@@ -484,6 +544,7 @@ competitive nucleus selection
 nucleus graph selectivity and decoy falsification
 physical closure-state evaluator
 active physical selection and term ablation
+coupling-preserved nucleus selector
 ```
 
 Canonical runners:
@@ -504,6 +565,7 @@ scripts/run_competitive_nucleus_selection.py
 scripts/run_nucleus_graph_selectivity_benchmark.py
 scripts/run_physical_closure_state_benchmark.py
 scripts/run_active_physical_selection_benchmark.py
+scripts/run_evolutionary_coupling_nucleus_benchmark.py
 ```
 
 Active artifacts:
@@ -527,6 +589,7 @@ competitive_nucleus_selection_*
 nucleus_graph_selectivity_*
 physical_closure_state_*
 active_physical_selection_*
+coupling_nucleus_selector_*
 ```
 
 Archived legacy artifacts:
@@ -558,6 +621,7 @@ competitive nucleus selection reduces events but does not pass false-rate gates
 nucleus graph selectivity fails against matched decoys
 physical closure-state score enrichment does not pass native/contact gates
 active physical selection rerank helps but gates over-prune long-range recall
+coupling trace loop is oracle-control until external couplings replace coordinate-derived constraints
 legacy feature modules still contain useful low-level primitives
 ```
 
@@ -576,6 +640,7 @@ false-nucleus rejection
 cluster-precision improvement
 decoy-beating graph selectivity
 physical state variables that improve native-contact precision
+external MSA/DCA coupling replacement for the oracle-control coupling layer
 ```
 
 Allowed shape:
@@ -598,6 +663,7 @@ keep nucleus_law_survives = false until false_nucleus_rate is under control
 keep nucleus_competition_law_survives = false until false-rate and precision gates pass
 keep nucleus_graph_law_survives = false until matched decoys are beaten
 keep physical_state_law_survives = false until physical enrichment improves native/contact gates
+keep coupling oracle_constraint_control = true from creating mechanism claims
 ```
 
 Forbidden shape:
