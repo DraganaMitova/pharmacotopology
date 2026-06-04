@@ -217,23 +217,23 @@ mechanism discovered
 ## REAL_EXTERNAL_SEQUENCE_TO_DCA_BUILD_V0 Result
 
 The first real external sequence-family run used PDBe SIFTS-derived Pfam
-mappings, InterPro Pfam full alignments, and focus-mode `plmc` built locally
-from source. It did not use coordinate contacts or native labels to build
-constraints.
+mappings, InterPro Pfam full alignments, EBI HMMER jackhmmer for the `1PGA:A`
+protein G B1 row, and focus-mode `plmc` built locally from source. It did not
+use coordinate contacts or native labels to build constraints.
 
 ```text
-external_couplings_available_rows = 7
-external_constraint_count = 1083
-external_real_false_nucleus_rate = 0.365272
+external_couplings_available_rows = 8
+external_constraint_count = 1139
+external_real_false_nucleus_rate = 0.390272
 physical_rerank_false_nucleus_rate = 0.559375
-external_real_cluster_precision = 0.074096
+external_real_cluster_precision = 0.082689
 physical_rerank_cluster_precision = 0.050488
-external_real_long_range_recall = 0.194621
+external_real_long_range_recall = 0.275503
 oracle_trace_loop_long_range_recall = 0.397896
-external_real_vs_control_enrichment_ratio = 1.004367
+external_real_vs_control_enrichment_ratio = 0.997262
 external_real_beats_physical = true
 external_real_beats_matched_controls = false
-external_real_meets_oracle_recall_floor = false
+external_real_meets_oracle_recall_floor = true
 claim_allowed = false
 ```
 
@@ -243,7 +243,7 @@ Interpretation:
 real external sequence-family couplings are no longer empty
 focus-plmc improves over physical rerank
 matched controls are still too close
-1PGA remains missing from the current Pfam path
+1PGA is now covered by a sequence-only HMMER jackhmmer/PF01378 rescue route
 claims remain locked
 ```
 

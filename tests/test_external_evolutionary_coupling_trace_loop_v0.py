@@ -39,6 +39,11 @@ from pharmacotopology.folding_real_coordinate_visual_benchmark import (  # noqa:
 
 
 BENCHMARK_8 = ROOT / "data" / "folding_real_coordinate_visual_8.locked.json"
+LOCKED_EXTERNAL_COUPLINGS = (
+    ROOT
+    / "data"
+    / "folding_real_coordinate_visual_8_external_couplings.v0.locked.json"
+)
 REL_BENCHMARK_8 = Path("data/folding_real_coordinate_visual_8.locked.json")
 REL_ORACLE_COUPLINGS = Path(
     "data/folding_real_coordinate_visual_8_couplings.locked.json"
@@ -148,6 +153,33 @@ def test_external_importer_preregisters_rows_and_quality_gates(tmp_path) -> None
         True,
         False,
     }
+
+
+def test_locked_external_hmmer_plmc_artifact_covers_all_rows_without_taint() -> None:
+    rows = load_real_coordinate_visual_rows(BENCHMARK_8)
+    result = import_external_coupling_dataset(
+        rows=rows,
+        external_coupling_file=LOCKED_EXTERNAL_COUPLINGS,
+    )
+    statuses = {status.source_accession: status for status in result.row_statuses}
+    protein_g = statuses["1PGA:A"]
+
+    assert len(result.dataset.constraints) == 1139
+    assert sum(
+        status.row_external_status == "external_couplings_available"
+        for status in result.row_statuses
+    ) == 8
+    assert protein_g.row_external_status == "external_couplings_available"
+    assert protein_g.raw_constraint_count == 56
+    assert protein_g.accepted_constraint_count == 56
+    assert protein_g.target_coverage == 0.910714
+    assert protein_g.focus_sequence_mapping_confidence == 1.0
+    assert protein_g.effective_sequence_count_over_length == 8.785714
+    assert result.dataset.external_evolutionary_couplings_used is True
+    assert result.dataset.coordinate_truth_tainted is False
+    assert result.dataset.native_truth_tainted is False
+    assert result.dataset.structure_model_tainted is False
+    assert result.dataset.oracle_constraint_control is False
 
 
 def test_external_importer_rejects_disallowed_source_kind(tmp_path) -> None:

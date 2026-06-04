@@ -647,8 +647,8 @@ physical closure-state score enrichment does not pass native/contact gates
 active physical selection rerank helps but gates over-prune long-range recall
 external focus-plmc trace-loop V0 now has real Pfam/InterPro sequence-family data
 external focus-plmc trace-loop beats physical rerank on false-rate/precision/recall
-external focus-plmc trace-loop still fails matched controls and oracle recall floor
-protein G B1 still lacks a PDBe Pfam route in the current external acquisition path
+external HMMER/plmc rescue covers protein G B1 without coordinate/native truth
+external focus-plmc trace-loop now clears the oracle recall floor but still fails matched controls
 legacy feature modules still contain useful low-level primitives
 ```
 
