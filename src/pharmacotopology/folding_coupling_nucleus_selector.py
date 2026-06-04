@@ -181,8 +181,9 @@ def build_coupling_nucleus_context(
     *,
     rows: Sequence[RealCoordinateVisualRow],
     coupling_dataset: CouplingDataset,
+    physical_context: ActivePhysicalContext | None = None,
 ) -> CouplingNucleusContext:
-    physical_context = build_active_physical_context(rows)
+    physical_context = physical_context or build_active_physical_context(rows)
     assessments = assess_coupling_closures(
         rows=rows,
         events=physical_context.competitive_events,

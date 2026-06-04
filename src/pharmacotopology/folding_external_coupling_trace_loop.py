@@ -12,6 +12,7 @@ from pharmacotopology.folding_coupling_negative_controls import (
     generate_external_coupling_negative_controls,
 )
 from pharmacotopology.folding_coupling_nucleus_selector import (
+    CouplingNucleusContext,
     CouplingSelectorMetric,
     build_coupling_nucleus_context,
     coupling_claim_mode_validation_failures,
@@ -89,6 +90,23 @@ def _run_trace_loop_selector(
         rows=rows,
         coupling_dataset=dataset,
     )
+    return _run_trace_loop_selector_from_context(
+        context=context,
+        dataset=dataset,
+        selector_name=selector_name,
+        selection_mode=selection_mode,
+        control_kind=control_kind,
+    )
+
+
+def _run_trace_loop_selector_from_context(
+    *,
+    context: CouplingNucleusContext,
+    dataset: CouplingDataset,
+    selector_name: str,
+    selection_mode: str = "coupling_trace_loop",
+    control_kind: str = "external_real",
+) -> TraceLoopRun:
     selected = select_coupling_events(context, selector_name=selection_mode)
     metric = selector_metrics(
         context,
@@ -606,28 +624,33 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
         policy=SERIOUS_EXTERNAL_COUPLING_POLICY,
     )
     oracle_dataset = load_coupling_dataset(oracle_coupling_file)
-    external_real = _run_trace_loop_selector(
+    external_context = build_coupling_nucleus_context(
         rows=rows,
+        coupling_dataset=import_result.dataset,
+    )
+    physical_context = external_context.physical_context
+    external_real = _run_trace_loop_selector_from_context(
+        context=external_context,
         dataset=import_result.dataset,
         selector_name="external_real",
         control_kind="external_real",
     )
-    external_margin_gated = _run_trace_loop_selector(
-        rows=rows,
+    external_margin_gated = _run_trace_loop_selector_from_context(
+        context=external_context,
         dataset=import_result.dataset,
         selector_name="external_margin_gated",
         selection_mode="coupling_trace_loop_margin_gated",
         control_kind="external_real_margin_gated",
     )
-    external_top_rank_gated = _run_trace_loop_selector(
-        rows=rows,
+    external_top_rank_gated = _run_trace_loop_selector_from_context(
+        context=external_context,
         dataset=import_result.dataset,
         selector_name="external_top_rank_gated",
         selection_mode="coupling_trace_loop_top_rank_gated",
         control_kind="external_real_top_rank_gated",
     )
-    physical_baseline = _run_trace_loop_selector(
-        rows=rows,
+    physical_baseline = _run_trace_loop_selector_from_context(
+        context=external_context,
         dataset=import_result.dataset,
         selector_name="physical_no_coupling_baseline",
         selection_mode="physical_rerank",
@@ -639,9 +662,17 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
             dataset=import_result.dataset,
         )
     )
-    matched_control_runs = tuple(
-        _run_trace_loop_selector(
+    control_contexts = {
+        name: build_coupling_nucleus_context(
             rows=rows,
+            coupling_dataset=control.dataset,
+            physical_context=physical_context,
+        )
+        for name, control in controls.items()
+    }
+    matched_control_runs = tuple(
+        _run_trace_loop_selector_from_context(
+            context=control_contexts[name],
             dataset=control.dataset,
             selector_name=name,
             control_kind=control.control_kind,
@@ -649,8 +680,8 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
         for name, control in controls.items()
     )
     margin_gated_control_runs = tuple(
-        _run_trace_loop_selector(
-            rows=rows,
+        _run_trace_loop_selector_from_context(
+            context=control_contexts[name],
             dataset=control.dataset,
             selector_name=f"external_margin_gated_{name}",
             selection_mode="coupling_trace_loop_margin_gated",
@@ -659,8 +690,8 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
         for name, control in controls.items()
     )
     top_rank_gated_control_runs = tuple(
-        _run_trace_loop_selector(
-            rows=rows,
+        _run_trace_loop_selector_from_context(
+            context=control_contexts[name],
             dataset=control.dataset,
             selector_name=f"external_top_rank_gated_{name}",
             selection_mode="coupling_trace_loop_top_rank_gated",
@@ -668,8 +699,13 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
         )
         for name, control in controls.items()
     )
-    oracle_positive_control = _run_trace_loop_selector(
+    oracle_context = build_coupling_nucleus_context(
         rows=rows,
+        coupling_dataset=oracle_dataset,
+        physical_context=physical_context,
+    )
+    oracle_positive_control = _run_trace_loop_selector_from_context(
+        context=oracle_context,
         dataset=oracle_dataset,
         selector_name="oracle_coordinate_positive_control",
         control_kind="oracle_coordinate_positive_control",
