@@ -1,6 +1,9 @@
 {
   "benchmark_kind": "visual_folding_mechanism_benchmark_v1",
+  "benchmark_scope": "toy_coarse_internal_contact_map_benchmark",
   "benchmark_size": 12,
+  "coarse_native_contacts_only": true,
+  "contact_repair_overfit_risk_expected": true,
   "distribution": {
     "alpha_beta_mixed_small": 3,
     "alpha_rich_small": 3,
@@ -13,8 +16,10 @@
   "global_folding_claim_allowed": false,
   "holdout_split": "visual_mechanism_12",
   "locked_after_generation": true,
+  "mechanism_discovery_claim_allowed": false,
   "native_truth_used_before_prediction": false,
   "raw_sequences_in_locked_data_only": true,
+  "visual_12_is_toy_benchmark": true,
   "references": [
     {
       "length": 63,

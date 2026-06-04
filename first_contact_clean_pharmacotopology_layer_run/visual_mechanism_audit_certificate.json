@@ -1,0 +1,23 @@
+{
+  "artifact_reproducible": true,
+  "audit_kind": "visual_mechanism_claim_audit_v1",
+  "certificate_kind": "visual_mechanism_audit_certificate",
+  "clean_archive_required": true,
+  "coarse_native_contacts_only": true,
+  "contact_repair_overfit_risk_reported": true,
+  "finder_zip_allowed": false,
+  "folding_problem_solved": false,
+  "global_folding_claim_allowed": false,
+  "mechanism_discovery_claim_allowed": false,
+  "native_truth_used_before_prediction": false,
+  "native_truth_used_before_repair": false,
+  "output_artifacts": [
+    "visual_mechanism_audit_report.json",
+    "visual_mechanism_audit_rows.csv",
+    "visual_mechanism_audit_overfit_risks.csv",
+    "visual_mechanism_audit_dashboard.html",
+    "visual_mechanism_audit_certificate.json"
+  ],
+  "raw_sequence_exposed": false,
+  "visual_12_is_toy_benchmark": true
+}

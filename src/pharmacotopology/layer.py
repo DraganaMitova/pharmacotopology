@@ -105,6 +105,11 @@ PHARMACOTOPOLOGY_GENERATED_FILES: tuple[str, ...] = (
     "contact_topology_repair_12_failure_cohorts.csv",
     "contact_topology_repair_12_dashboard.html",
     "contact_topology_repair_12_certificate.json",
+    "visual_mechanism_audit_report.json",
+    "visual_mechanism_audit_rows.csv",
+    "visual_mechanism_audit_overfit_risks.csv",
+    "visual_mechanism_audit_dashboard.html",
+    "visual_mechanism_audit_certificate.json",
     "field_validation.json",
     "field_metrics.json",
 )

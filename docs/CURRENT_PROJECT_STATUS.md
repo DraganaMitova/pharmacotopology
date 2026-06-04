@@ -1,17 +1,17 @@
 # Current Project Status
 
-This is the current truth of the repository after the contact-topology repair
-and native-gap analysis milestone.
+This is the current truth of the repository after the visual mechanism audit
+and toy-benchmark freeze milestone.
 
 ## Latest Safety Baseline
 
 ```text
-latest recorded safety commit = 019378b Add visual folding mechanism workbench
-current target = Add contact-topology repair and native-gap analysis
+latest recorded safety commit = ba67124 Add contact-topology repair and native-gap analysis
+current target = Audit visual mechanism claims and freeze toy-contact benchmark
 ```
 
-The current target does not unlock fold-class claims. It explains visible
-contact failures after prediction and tests sequence-only contact repairs.
+The current target does not add folding logic. It freezes the 12-row visual
+benchmark as toy/coarse/internal and reports contact-repair overfit risk.
 
 ## Internal 50-Row Status
 
@@ -112,6 +112,32 @@ premature_compaction = 1
 
 This is a contact-topology repair milestone, not a solved folding milestone.
 
+## Visual Mechanism Audit Status
+
+The audit compares the baseline visual workbench and repaired contact workbench:
+
+```text
+visual_12_is_toy_benchmark = true
+coarse_native_contacts_only = true
+baseline_visible_partial_success_count = 5
+repaired_visible_partial_success_count = 8
+baseline_visible_failure_count = 7
+repaired_visible_failure_count = 4
+hardcoded_beta_registry_pair_templates_detected = true
+contact_repair_overfit_risk_reported = true
+overfit_risk_row_count = 5
+beta_template_success_gain_row_count = 3
+artifact_reproducible = true
+clean_archive_required = true
+finder_zip_allowed = false
+mechanism_discovery_claim_allowed = false
+folding_problem_solved = false
+```
+
+The audit is intentionally conservative. It says the repair improvement is
+real on the tiny locked contact-map benchmark, but not proof of folding
+mechanism discovery.
+
 ## Canonical Active Stack
 
 ```text
@@ -123,6 +149,7 @@ external holdout
 external-safe axis repair
 visual contact-map mechanism workbench
 contact-topology repair and native-gap analysis
+visual mechanism claim audit
 ```
 
 Canonical runners:
@@ -135,6 +162,7 @@ scripts/run_external_fold_family_holdout_benchmark.py
 scripts/run_external_axis_repair_benchmark.py
 scripts/run_visual_folding_mechanism_benchmark.py
 scripts/run_contact_topology_repair_benchmark.py
+scripts/run_visual_mechanism_audit.py
 ```
 
 Active artifacts:
@@ -149,6 +177,7 @@ visual_mechanism_12_*
 visuals/*/*
 contact_topology_repair_12_*
 contact_repair_visuals/*/*
+visual_mechanism_audit_*
 ```
 
 Archived legacy artifacts:
@@ -168,6 +197,8 @@ architecture evidence is conservative after repair
 visual contact prediction is coarse and low-F1
 contact repair is benchmark-local and still coarse
 disorder, membrane, and mixed beta/compaction failures remain visible
+visual 12 is toy/coarse/internal
+beta-registry repair has explicit overfit risk
 legacy feature modules still contain useful low-level primitives
 ```
 
@@ -182,7 +213,7 @@ Do not add more broad biology claims before the canonical surface stays clean.
 The next research target can be:
 
 ```text
-visual contact mechanism calibration
+visual mechanism audit preservation
 ```
 
 Allowed shape:
@@ -194,6 +225,8 @@ keep global fold-class claims locked
 track coverage cost
 record uncertainty, failure cohorts, and visible contact-map drift
 reduce premature compaction without hiding disorder/membrane failures
+keep visual_12_is_toy_benchmark = true
+keep contact_repair_overfit_risk_reported = true
 ```
 
 Forbidden shape:
