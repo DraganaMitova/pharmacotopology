@@ -189,7 +189,7 @@ more than distance.
 The V0 report records:
 
 ```text
-result = insufficient_external_signal / external_channel_not_yet_supported / external_channel_supported_in_v0
+result = no_external_data_built / insufficient_external_signal / external_channel_not_yet_supported / external_channel_supported_in_v0
 external_probe_passed = true/false
 external_couplings_available_rows = N
 external_rows_rejected_low_depth = N
@@ -212,6 +212,39 @@ It is not:
 ```text
 folding solved
 mechanism discovered
+```
+
+## REAL_EXTERNAL_SEQUENCE_TO_DCA_BUILD_V0 Result
+
+The first real external sequence-family run used PDBe SIFTS-derived Pfam
+mappings, InterPro Pfam full alignments, and focus-mode `plmc` built locally
+from source. It did not use coordinate contacts or native labels to build
+constraints.
+
+```text
+external_couplings_available_rows = 7
+external_constraint_count = 1083
+external_real_false_nucleus_rate = 0.365272
+physical_rerank_false_nucleus_rate = 0.559375
+external_real_cluster_precision = 0.074096
+physical_rerank_cluster_precision = 0.050488
+external_real_long_range_recall = 0.194621
+oracle_trace_loop_long_range_recall = 0.397896
+external_real_vs_control_enrichment_ratio = 1.004367
+external_real_beats_physical = true
+external_real_beats_matched_controls = false
+external_real_meets_oracle_recall_floor = false
+claim_allowed = false
+```
+
+Interpretation:
+
+```text
+real external sequence-family couplings are no longer empty
+focus-plmc improves over physical rerank
+matched controls are still too close
+1PGA remains missing from the current Pfam path
+claims remain locked
 ```
 
 ## Biological Warning

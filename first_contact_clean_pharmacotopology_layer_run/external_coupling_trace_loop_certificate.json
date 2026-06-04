@@ -1,0 +1,24 @@
+{
+  "batch_id": "EXTERNAL_EVOLUTIONARY_COUPLING_TRACE_LOOP_V0",
+  "certificate_kind": "external_evolutionary_coupling_trace_loop_certificate_v0",
+  "claim_allowed": false,
+  "external_couplings_available_rows": 7,
+  "external_probe_passed": false,
+  "external_real_beats_matched_controls": false,
+  "external_real_beats_physical": true,
+  "external_rows_rejected_low_depth": 1,
+  "external_rows_rejected_mapping": 0,
+  "folding_problem_solved": false,
+  "mechanism_discovery_claim_allowed": false,
+  "output_artifacts": [
+    "external_coupling_trace_loop_report.json",
+    "external_coupling_trace_loop_certificate.json",
+    "external_coupling_trace_loop_selectors.csv",
+    "external_coupling_trace_loop_selected_events.csv",
+    "external_coupling_trace_loop_controls.csv",
+    "external_coupling_trace_loop_row_status.csv",
+    "external_coupling_trace_loop_dashboard.html"
+  ],
+  "report_kind": "external_evolutionary_coupling_trace_loop_benchmark_v0",
+  "result": "external_channel_not_yet_supported"
+}

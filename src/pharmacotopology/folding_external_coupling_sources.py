@@ -6,6 +6,7 @@ from dataclasses import dataclass
 EXTERNAL_EVOLUTIONARY_COUPLING_TRACE_LOOP_BATCH_ID = (
     "EXTERNAL_EVOLUTIONARY_COUPLING_TRACE_LOOP_V0"
 )
+REAL_EXTERNAL_SEQUENCE_TO_DCA_BUILD_BATCH_ID = "REAL_EXTERNAL_SEQUENCE_TO_DCA_BUILD_V0"
 
 EXTERNAL_COUPLING_TRACE_LOOP_REPORT_KIND = (
     "external_evolutionary_coupling_trace_loop_benchmark_v0"
@@ -48,6 +49,7 @@ EXTERNAL_COUPLING_ROW_STATUSES = frozenset(
 
 REAL_EXTERNAL_COUPLING_BUILD_ROW_STATUSES = frozenset(
     {
+        "not_attempted_no_acquisition_pipeline",
         "external_couplings_available",
         "external_couplings_rejected_no_sequence_mapping",
         "external_couplings_rejected_low_msa_depth",
@@ -56,6 +58,32 @@ REAL_EXTERNAL_COUPLING_BUILD_ROW_STATUSES = frozenset(
         "external_couplings_rejected_position_mapping_ambiguous",
         "external_couplings_rejected_tool_failed",
         "external_couplings_rejected_coordinate_taint",
+    }
+)
+
+REAL_EXTERNAL_SEQUENCE_TO_DCA_ROW_STATUSES = frozenset(
+    {
+        "not_attempted_no_acquisition_pipeline",
+        "mapping_resolved",
+        "mapping_failed_no_sifts_uniprot_match",
+        "msa_attempted",
+        "msa_failed_low_depth",
+        "msa_failed_low_coverage",
+        "dca_attempted",
+        "dca_failed_tool_error",
+        "dca_available",
+        "external_couplings_available",
+    }
+)
+
+REAL_EXTERNAL_SEQUENCE_TO_DCA_FAILURE_KINDS = frozenset(
+    {
+        "",
+        "tool_missing",
+        "database_missing",
+        "mapping_failed",
+        "msa_failed",
+        "dca_failed",
     }
 )
 

@@ -4,7 +4,7 @@ import json
 from dataclasses import dataclass
 from pathlib import Path
 from statistics import mean
-from typing import Mapping, Sequence
+from typing import Mapping, Optional, Sequence
 
 from pharmacotopology.artifact_io import write_csv_rows
 from pharmacotopology.folding_coupling_negative_controls import (
@@ -122,12 +122,34 @@ def classify_external_probe_result(
     available_rows: int,
     external_real_beats_physical: bool,
     external_real_beats_matched_controls: bool,
+    external_constraint_count: Optional[int] = None,
 ) -> str:
+    if external_constraint_count == 0 or available_rows == 0:
+        return "no_external_data_built"
     if available_rows < 4:
         return "insufficient_external_signal"
     if external_real_beats_physical and external_real_beats_matched_controls:
         return "external_channel_supported_in_v0"
     return "external_channel_not_yet_supported"
+
+
+def _external_probe_reason(
+    *,
+    result: str,
+    selected_event_count: int,
+    external_constraint_count: int,
+) -> str:
+    if result == "no_external_data_built":
+        return "no MSA/DCA couplings were generated"
+    if selected_event_count == 0:
+        return "external couplings produced no selected trace-loop events"
+    if result == "insufficient_external_signal":
+        return "fewer than four rows have accepted external couplings"
+    if result == "external_channel_supported_in_v0":
+        return "accepted external couplings beat physical and matched controls"
+    if external_constraint_count == 0:
+        return "no accepted external constraints reached the selector"
+    return "accepted external couplings did not beat required controls"
 
 
 def _certificate(report: Mapping[str, object]) -> dict[str, object]:
@@ -186,13 +208,14 @@ def _build_report(
         for run in matched_controls
     ]
     max_control_enrichment = max(control_enrichments) if control_enrichments else 0.0
-    external_real_vs_control_enrichment_ratio = (
+    external_selected_event_count = external_real.metric.selected_event_count
+    external_real_vs_control_enrichment_ratio: Optional[float] = (
         _rounded(
             external_real.metric.real_vs_decoy_coupling_enrichment_ratio
             / max_control_enrichment
         )
-        if max_control_enrichment
-        else 0.0
+        if external_selected_event_count > 0 and max_control_enrichment
+        else None
     )
     external_real_beats_physical = (
         external_real.metric.selected_event_count > 0
@@ -217,24 +240,36 @@ def _build_report(
         0.50 * oracle_positive_control.metric.long_range_contact_recall
     )
     external_real_meets_oracle_recall_floor = (
-        external_real.metric.long_range_contact_recall >= oracle_recall_floor
+        external_selected_event_count > 0
+        and external_real.metric.long_range_contact_recall >= oracle_recall_floor
     )
     claim_mode_failures = coupling_claim_mode_validation_failures(
         import_result.dataset
+    )
+    enrichment_ratio_meets = (
+        external_real_vs_control_enrichment_ratio is not None
+        and external_real_vs_control_enrichment_ratio > 1.25
     )
     acceptance_criteria_met = (
         available_rows >= 4
         and external_real_beats_physical
         and external_real_beats_matched_controls
         and external_real_meets_oracle_recall_floor
-        and external_real_vs_control_enrichment_ratio > 1.25
+        and enrichment_ratio_meets
         and not claim_mode_failures
     )
     result = classify_external_probe_result(
         available_rows=available_rows,
+        external_constraint_count=len(import_result.dataset.constraints),
         external_real_beats_physical=external_real_beats_physical,
         external_real_beats_matched_controls=external_real_beats_matched_controls,
     )
+    reason = _external_probe_reason(
+        result=result,
+        selected_event_count=external_selected_event_count,
+        external_constraint_count=len(import_result.dataset.constraints),
+    )
+    external_metric_defined = external_selected_event_count > 0
     return {
         "report_kind": EXTERNAL_COUPLING_TRACE_LOOP_REPORT_KIND,
         "batch_id": EXTERNAL_EVOLUTIONARY_COUPLING_TRACE_LOOP_BATCH_ID,
@@ -243,6 +278,7 @@ def _build_report(
         "oracle_positive_control_file": str(oracle_coupling_file),
         "benchmark_size": len(rows),
         "result": result,
+        "reason": reason,
         "external_probe_passed": acceptance_criteria_met,
         "external_couplings_available_rows": available_rows,
         "external_rows_rejected_low_depth": rejected_low_depth,
@@ -252,19 +288,23 @@ def _build_report(
         "usable_external_rows": available_rows,
         "external_constraint_count": len(import_result.dataset.constraints),
         "external_real_false_nucleus_rate": (
-            external_real.metric.false_nucleus_rate
+            external_real.metric.false_nucleus_rate if external_metric_defined else None
         ),
         "physical_rerank_false_nucleus_rate": (
             physical_baseline.metric.false_nucleus_rate
         ),
         "external_real_cluster_precision": (
             external_real.metric.contact_cluster_precision
+            if external_metric_defined
+            else None
         ),
         "physical_rerank_cluster_precision": (
             physical_baseline.metric.contact_cluster_precision
         ),
         "external_real_long_range_recall": (
             external_real.metric.long_range_contact_recall
+            if external_metric_defined
+            else None
         ),
         "oracle_trace_loop_long_range_recall": (
             oracle_positive_control.metric.long_range_contact_recall
@@ -314,8 +354,10 @@ def render_external_coupling_trace_loop_dashboard(
 ) -> str:
     labels = (
         "result",
+        "reason",
         "external_probe_passed",
         "external_couplings_available_rows",
+        "external_constraint_count",
         "external_rows_rejected_low_depth",
         "external_rows_rejected_mapping",
         "external_real_false_nucleus_rate",

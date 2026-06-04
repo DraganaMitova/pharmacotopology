@@ -611,6 +611,9 @@ coupling_nucleus_selector_*
 external_coupling_trace_loop_*
 external_coupling_target_manifest_v0.json
 external_coupling_build_log_v0.csv
+external_sequence_mapping_v0.csv
+external_msa_build_log_v0.csv
+external_dca_build_log_v0.csv
 ```
 
 Archived legacy artifacts:
@@ -642,8 +645,10 @@ competitive nucleus selection reduces events but does not pass false-rate gates
 nucleus graph selectivity fails against matched decoys
 physical closure-state score enrichment does not pass native/contact gates
 active physical selection rerank helps but gates over-prune long-range recall
-coupling trace loop is oracle-control until external couplings replace coordinate-derived constraints
-external trace-loop V0 requires a supplied provenance-locked MSA/DCA coupling file
+external focus-plmc trace-loop V0 now has real Pfam/InterPro sequence-family data
+external focus-plmc trace-loop beats physical rerank on false-rate/precision/recall
+external focus-plmc trace-loop still fails matched controls and oracle recall floor
+protein G B1 still lacks a PDBe Pfam route in the current external acquisition path
 legacy feature modules still contain useful low-level primitives
 ```
 
@@ -662,7 +667,7 @@ false-nucleus rejection
 cluster-precision improvement
 decoy-beating graph selectivity
 physical state variables that improve native-contact precision
-external MSA/DCA coupling replacement for the oracle-control coupling layer
+query-centered MSA/DCA coupling replacement for the oracle-control coupling layer
 ```
 
 Allowed shape:
@@ -687,6 +692,7 @@ keep nucleus_graph_law_survives = false until matched decoys are beaten
 keep physical_state_law_survives = false until physical enrichment improves native/contact gates
 keep coupling oracle_constraint_control = true from creating mechanism claims
 keep external trace-loop V0 claim_allowed = false on the 8-row probe
+keep focus-plmc external_channel_not_yet_supported until matched controls are beaten
 ```
 
 Forbidden shape:

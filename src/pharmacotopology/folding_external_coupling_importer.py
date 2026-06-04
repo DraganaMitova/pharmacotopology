@@ -327,6 +327,14 @@ def import_external_coupling_dataset(
         seen_pairs.add(pair_key)
         raw_by_row[row_id].append(raw)
 
+    top_level_external_used = bool(
+        parsed.get("external_evolutionary_couplings_used", False)
+    )
+    if top_level_external_used and not raw_constraints:
+        raise ValueError(
+            "external_evolutionary_couplings_used=true with zero external constraints"
+        )
+
     any_coordinate_taint = bool(
         parsed.get("coordinate_truth_used_to_build_constraints", False)
     )
@@ -478,6 +486,13 @@ def import_external_coupling_dataset(
             )
         )
 
+    accepted_external_couplings_used = bool(accepted_constraints)
+    if top_level_external_used and not accepted_external_couplings_used:
+        raise ValueError(
+            "external_evolutionary_couplings_used=true but no constraints passed "
+            "external quality gates"
+        )
+
     dataset = CouplingDataset(
         layer_kind=EVOLUTIONARY_COUPLING_LAYER_KIND,
         constraint_kind=COUPLING_CONSTRAINT_KIND,
@@ -486,7 +501,7 @@ def import_external_coupling_dataset(
         coupling_source_kind=coupling_source_kind,
         coordinate_truth_used_to_build_constraints=any_coordinate_taint,
         native_truth_used_before_coupling_selection=any_native_truth_taint,
-        external_evolutionary_couplings_used=True,
+        external_evolutionary_couplings_used=accepted_external_couplings_used,
         raw_sequence_exposed=False,
         constraints=tuple(accepted_constraints),
         structure_model_used_before_coupling_selection=any_structure_model_used,

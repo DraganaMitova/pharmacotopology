@@ -102,8 +102,8 @@ def _empty_build_log(rows: tuple[RealCoordinateVisualRow, ...]) -> list[dict[str
         {
             "row_id": row.row_id,
             "source_accession": row.source_accession,
-            "external_coupling_status": "external_couplings_rejected_no_sequence_mapping",
-            "rejection_reason": "no_raw_external_coupling_file_supplied",
+            "external_coupling_status": "not_attempted_no_acquisition_pipeline",
+            "rejection_reason": "no_acquisition_pipeline_configured",
             "raw_constraint_count": 0,
             "accepted_constraint_count": 0,
             "duplicate_count_dropped": 0,
@@ -239,7 +239,10 @@ def build_real_external_coupling_file_v0(
         "batch_id": EXTERNAL_EVOLUTIONARY_COUPLING_TRACE_LOOP_BATCH_ID,
         "constraint_kind": COUPLING_CONSTRAINT_KIND,
         "coupling_source_kind": coupling_source_kind,
-        "external_evolutionary_couplings_used": True,
+        "external_evolutionary_couplings_used": bool(constraints),
+        "external_coupling_build_attempted": result is not None,
+        "external_constraint_count": len(constraints),
+        "result": "external_data_built" if constraints else "no_external_data_built",
         "coordinate_truth_used_to_build_constraints": (
             False if result is None else result.dataset.coordinate_truth_tainted
         ),

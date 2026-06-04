@@ -316,11 +316,14 @@ def test_real_external_builder_can_emit_zero_usable_rows_without_fabrication(tmp
     assert paths == (output, run_manifest, build_log)
     assert payload["batch_id"] == EXTERNAL_EVOLUTIONARY_COUPLING_TRACE_LOOP_BATCH_ID
     assert payload["reject_duplicate_coupling_pairs"] is True
+    assert payload["external_evolutionary_couplings_used"] is False
+    assert payload["external_constraint_count"] == 0
+    assert payload["result"] == "no_external_data_built"
     assert payload["constraints"] == []
     assert len(manifest) == 8
     assert len(rows) == 8
     assert {row["external_coupling_status"] for row in rows} == {
-        "external_couplings_rejected_no_sequence_mapping"
+        "not_attempted_no_acquisition_pipeline"
     }
     assert all(row["duplicate_count_dropped"] == "0" for row in rows)
 
@@ -332,7 +335,7 @@ def test_external_probe_result_classification() -> None:
             external_real_beats_physical=True,
             external_real_beats_matched_controls=True,
         )
-        == "insufficient_external_signal"
+        == "no_external_data_built"
     )
     assert (
         classify_external_probe_result(
