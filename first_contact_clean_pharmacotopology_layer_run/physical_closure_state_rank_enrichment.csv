@@ -1,0 +1,3 @@
+cutoff,top_rank_state_count,top_rank_native_positive_rate,baseline_native_positive_rate,physical_state_rank_enrichment,native_truth_used_before_physical_scoring,raw_sequence_exposed
+10,10,0.4,0.390625,1.024,False,False
+25,25,0.44,0.390625,1.1264,False,False

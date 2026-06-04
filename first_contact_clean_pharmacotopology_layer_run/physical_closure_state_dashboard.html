@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Physical Closure State Evaluator</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f4f6f3;
+      color: #202522;
+    }
+    header {
+      padding: 34px;
+      background: #26332f;
+      color: #f7f8f4;
+    }
+    main {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    h1, h2, h3 {
+      margin: 0 0 12px;
+      letter-spacing: 0;
+    }
+    section {
+      margin: 24px 0;
+    }
+    .metrics, .rules {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 12px;
+    }
+    .metric, .rule {
+      background: #ffffff;
+      border: 1px solid #d3ddd5;
+      border-radius: 6px;
+      padding: 14px;
+    }
+    .metric span {
+      display: block;
+      color: #5b6660;
+      font-size: 12px;
+      overflow-wrap: anywhere;
+    }
+    .metric strong {
+      display: block;
+      margin-top: 8px;
+      font-size: 20px;
+      overflow-wrap: anywhere;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Physical Closure State Evaluator</h1>
+    <p>Closure graph candidates are instantiated as coarse physical states before native-contact scoring.</p>
+  </header>
+  <main>
+    <section class="metrics"><div class="metric"><span>candidate_state_count</span><strong>320</strong></div><div class="metric"><span>state_build_success_count</span><strong>320</strong></div><div class="metric"><span>mean_loop_strain</span><strong>0.012782</strong></div><div class="metric"><span>mean_steric_clash_score</span><strong>0.019839</strong></div><div class="metric"><span>mean_burial_gain</span><strong>0.583596</strong></div><div class="metric"><span>mean_unsatisfied_polar_penalty</span><strong>0.126116</strong></div><div class="metric"><span>mean_future_frustration_score</span><strong>0.282609</strong></div><div class="metric"><span>real_vs_decoy_physical_enrichment_ratio</span><strong>1.171535</strong></div><div class="metric"><span>physical_state_rank_enrichment_at_25</span><strong>1.1264</strong></div><div class="metric"><span>post_physical_false_nucleus_rate</span><strong>0.609375</strong></div><div class="metric"><span>post_physical_contact_cluster_precision</span><strong>0.043311</strong></div><div class="metric"><span>post_physical_long_range_contact_recall</span><strong>0.372496</strong></div><div class="metric"><span>physical_state_law_survives</span><strong>False</strong></div></section>
+    <section><h2>Boundary Rules</h2><div class="rules"><div class="rule"><h3>Instantiate Closure State</h3><p>Graph-selected closures are converted into coarse sequence-only physical states.</p></div><div class="rule"><h3>Physical Score Is Not Native Truth</h3><p>Loop strain, steric clash, burial, polar penalty, and future frustration are estimated before native scoring.</p></div><div class="rule"><h3>Matched Decoys Remain A Gate</h3><p>Physical score enrichment is insufficient if native/contact gates still fail.</p></div><div class="rule"><h3>No Folding Law Claim</h3><p>This evaluator is a coarse audit surface, not atomistic folding physics.</p></div></div></section>
+    <section>
+      <h2>Claim Boundary</h2>
+      <p>This layer instantiates graph-selected closures as coarse sequence-only physical states and compares their physical scores against matched decoys. Physical score enrichment appears, but native/contact gates still reject a folding-law claim.</p>
+    </section>
+  </main>
+</body>
+</html>

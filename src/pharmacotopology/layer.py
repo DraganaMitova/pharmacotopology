@@ -147,6 +147,13 @@ PHARMACOTOPOLOGY_GENERATED_FILES: tuple[str, ...] = (
     "nucleus_graph_selectivity_metrics.csv",
     "nucleus_graph_selectivity_dashboard.html",
     "nucleus_graph_selectivity_certificate.json",
+    "physical_closure_state_report.json",
+    "physical_closure_state_states.csv",
+    "physical_closure_state_decoys.csv",
+    "physical_closure_state_rank_enrichment.csv",
+    "physical_closure_state_metrics.csv",
+    "physical_closure_state_dashboard.html",
+    "physical_closure_state_certificate.json",
     "field_validation.json",
     "field_metrics.json",
 )

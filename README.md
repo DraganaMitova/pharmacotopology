@@ -87,6 +87,11 @@ The nucleus graph selectivity layer asks whether selected closure-graph cores
 beat matched decoys. They do not: matched decoys currently overlap native
 contacts more often than the selected graph, so the graph law is rejected.
 
+The physical closure-state evaluator instantiates those graph-selected closures
+as coarse sequence-only physical states. Physical scores beat matched decoys by
+score, but false nuclei and contact precision still fail, so the physical-state
+law is rejected too.
+
 Current honest state:
 
 ```text
@@ -125,6 +130,12 @@ nucleus_graph_contact_cluster_precision = 0.043311
 nucleus_graph_long_range_recall = 0.372496
 nucleus_graph_real_vs_decoy_enrichment_ratio = 0.806452
 nucleus_graph_law_survives = false
+physical_state_count = 320
+physical_real_vs_decoy_enrichment_ratio = 1.171535
+physical_false_nucleus_rate = 0.609375
+physical_contact_cluster_precision = 0.043311
+physical_long_range_contact_recall = 0.372496
+physical_state_law_survives = false
 mechanism_discovery_claim_allowed = false
 global_fold_class_claim_allowed = false
 folding_problem_solved = false
@@ -149,6 +160,7 @@ contact-law threshold falsification
 folding-nucleus closure search
 competitive nucleus selection
 nucleus graph selectivity and decoy falsification
+physical closure-state evaluator
 ```
 
 Canonical commands:
@@ -167,6 +179,7 @@ python3 scripts/run_contact_law_threshold_search.py
 python3 scripts/run_folding_nucleus_closure_search.py
 python3 scripts/run_competitive_nucleus_selection.py
 python3 scripts/run_nucleus_graph_selectivity_benchmark.py
+python3 scripts/run_physical_closure_state_benchmark.py
 ```
 
 The active generated folding artifacts are:
@@ -188,6 +201,7 @@ contact_law_threshold_*
 folding_nucleus_closure_*
 competitive_nucleus_selection_*
 nucleus_graph_selectivity_*
+physical_closure_state_*
 ```
 
 Older 10-row and pre-axis 50-row artifacts are preserved under:
@@ -413,6 +427,37 @@ This is a negative but useful result. The graph selector reduces event count,
 but matched decoys beat the selected graph. The missing variable is still not
 captured.
 
+Physical closure-state evaluator:
+
+```text
+candidate_state_count = 320
+state_build_success_count = 320
+state_build_failure_count = 0
+mean_loop_strain = 0.012782
+mean_steric_clash_score = 0.019839
+mean_burial_gain = 0.583596
+mean_unsatisfied_polar_penalty = 0.126116
+mean_future_frustration_score = 0.282609
+real_vs_decoy_physical_enrichment_ratio = 1.171535
+physical_state_rank_enrichment_at_25 = 1.1264
+post_physical_false_nucleus_rate = 0.609375
+post_physical_contact_cluster_precision = 0.043311
+post_physical_long_range_contact_recall = 0.372496
+physical_enrichment_target_met = true
+post_physical_false_nucleus_rate_target_met = false
+post_physical_contact_cluster_precision_target_met = false
+post_physical_long_range_contact_recall_target_met = true
+physical_state_law_survives = false
+native_truth_used_before_physical_scoring = false
+mechanism_discovery_claim_allowed = false
+folding_problem_solved = false
+```
+
+This is the first physical-state crack attempt. It sees a real score difference
+against decoys, but that difference is not enough to improve native-contact
+truth. The missing variable is probably still deeper: orientation, side-chain
+packing, solvent exposure, or kinetic order.
+
 ## Safety Boundaries
 
 This repository does not:
@@ -456,6 +501,7 @@ docs/VISUAL_CONTACT_REPAIR_BOUNDARY.md contact repair boundary
 docs/VISUAL_MECHANISM_AUDIT.md visual claim audit
 docs/COMPETITIVE_NUCLEUS_SELECTION_BOUNDARY.md competitive nucleus boundary
 docs/NUCLEUS_GRAPH_SELECTIVITY_BOUNDARY.md nucleus graph selectivity boundary
+docs/PHYSICAL_CLOSURE_STATE_BOUNDARY.md physical closure-state boundary
 tests/                               pytest coverage for safety and reproducibility
 ```
 
@@ -489,6 +535,7 @@ python3 scripts/run_contact_law_threshold_search.py
 python3 scripts/run_folding_nucleus_closure_search.py
 python3 scripts/run_competitive_nucleus_selection.py
 python3 scripts/run_nucleus_graph_selectivity_benchmark.py
+python3 scripts/run_physical_closure_state_benchmark.py
 ```
 
 Run verification:
@@ -522,6 +569,7 @@ docs/VISUAL_CONTACT_REPAIR_BOUNDARY.md
 docs/VISUAL_MECHANISM_AUDIT.md
 docs/COMPETITIVE_NUCLEUS_SELECTION_BOUNDARY.md
 docs/NUCLEUS_GRAPH_SELECTIVITY_BOUNDARY.md
+docs/PHYSICAL_CLOSURE_STATE_BOUNDARY.md
 docs/PROTEIN_CENTERED_REFRAME.md
 ```
 
@@ -536,6 +584,7 @@ Contact repair workbench: visible partial successes improved from 5 to 8.
 Visual mechanism audit: toy benchmark and overfit risk are explicitly reported.
 Competitive nucleus selection: event flooding is reduced, but false closures keep the law unclaimed.
 Nucleus graph selectivity: selected graph cores fail against matched decoys.
+Physical closure-state evaluator: physical score enrichment appears, but native/contact gates fail.
 Protein folding: not solved.
 Next correct work: improve visual/mechanism evidence quality without unlocking global claims.
 ```

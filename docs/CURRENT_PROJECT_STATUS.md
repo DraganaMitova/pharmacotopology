@@ -1,19 +1,19 @@
 # Current Project Status
 
-This is the current truth of the repository after the nucleus graph selectivity
-and decoy falsification milestone.
+This is the current truth of the repository after the physical closure-state
+evaluator milestone.
 
 ## Latest Safety Baseline
 
 ```text
 latest recorded safety commit = e8cc5eb Audit visual mechanism claims and freeze toy-contact benchmark
-current target = Add nucleus graph selectivity and decoy falsification
+current target = Add physical closure-state evaluator
 ```
 
-The current target asks whether selected closure-graph cores beat matched
-decoys after sequence-only graph selection. It reduces selected event count but
-rejects the graph law because false nuclei remain high and matched decoys beat
-the selected graph.
+The current target instantiates graph-selected closures as coarse sequence-only
+physical states. It finds physical-score enrichment over matched decoys, but
+rejects the physical-state law because false nuclei and contact precision still
+fail.
 
 ## Internal 50-Row Status
 
@@ -365,6 +365,53 @@ negative result: graph scoring reduced count but did not discover the missing
 selector law.
 ```
 
+## Physical Closure-State Status
+
+The physical-state evaluator converts graph-selected closures into coarse
+sequence-only state packets. Native labels are attached only after physical
+scoring:
+
+```text
+candidate_state_count = 320
+state_build_success_count = 320
+state_build_failure_count = 0
+native_truth_used_before_physical_scoring = false
+native_label_attached_after_physical_scoring = true
+```
+
+What improved:
+
+```text
+mean_physical_state_score = 0.41558
+mean_decoy_physical_state_score = 0.354731
+real_vs_decoy_physical_enrichment_ratio = 1.171535
+real_beats_decoy_physical_score_rate = 0.65625
+physical_state_rank_enrichment_at_25 = 1.1264
+physical_enrichment_target_met = true
+post_physical_long_range_contact_recall_target_met = true
+```
+
+What still fails:
+
+```text
+post_physical_false_nucleus_rate = 0.609375
+post_physical_contact_cluster_precision = 0.043311
+post_physical_long_range_contact_recall = 0.372496
+post_physical_false_nucleus_rate_target_met = false
+post_physical_contact_cluster_precision_target_met = false
+physical_state_law_survives = false
+mechanism_discovery_claim_allowed = false
+folding_problem_solved = false
+```
+
+Interpretation:
+
+```text
+Coarse physical scoring sees a real score difference against decoys, but the
+difference does not translate into enough native-contact precision. The missing
+variable is likely deeper than this coarse state proxy.
+```
+
 ## Canonical Active Stack
 
 ```text
@@ -382,6 +429,7 @@ contact-law threshold falsification
 folding-nucleus closure search
 competitive nucleus selection
 nucleus graph selectivity and decoy falsification
+physical closure-state evaluator
 ```
 
 Canonical runners:
@@ -400,6 +448,7 @@ scripts/run_contact_law_threshold_search.py
 scripts/run_folding_nucleus_closure_search.py
 scripts/run_competitive_nucleus_selection.py
 scripts/run_nucleus_graph_selectivity_benchmark.py
+scripts/run_physical_closure_state_benchmark.py
 ```
 
 Active artifacts:
@@ -421,6 +470,7 @@ contact_law_threshold_*
 folding_nucleus_closure_*
 competitive_nucleus_selection_*
 nucleus_graph_selectivity_*
+physical_closure_state_*
 ```
 
 Archived legacy artifacts:
@@ -450,6 +500,7 @@ best threshold candidate does not generalize because long-range recall collapses
 cooperative closure recovers long-range native regions but overgenerates traps
 competitive nucleus selection reduces events but does not pass false-rate gates
 nucleus graph selectivity fails against matched decoys
+physical closure-state score enrichment does not pass native/contact gates
 legacy feature modules still contain useful low-level primitives
 ```
 
@@ -467,6 +518,7 @@ The next research target can be:
 false-nucleus rejection
 cluster-precision improvement
 decoy-beating graph selectivity
+physical state variables that improve native-contact precision
 ```
 
 Allowed shape:
@@ -488,6 +540,7 @@ keep current_scalar_score_law_rejected = true until a stronger law survives
 keep nucleus_law_survives = false until false_nucleus_rate is under control
 keep nucleus_competition_law_survives = false until false-rate and precision gates pass
 keep nucleus_graph_law_survives = false until matched decoys are beaten
+keep physical_state_law_survives = false until physical enrichment improves native/contact gates
 ```
 
 Forbidden shape:

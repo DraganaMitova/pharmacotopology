@@ -1,0 +1,26 @@
+{
+  "candidate_state_count": 320,
+  "certificate_kind": "physical_closure_state_certificate",
+  "claim_allowed": false,
+  "folding_problem_solved": false,
+  "global_folding_claim_allowed": false,
+  "mechanism_discovery_claim_allowed": false,
+  "native_truth_used_before_physical_scoring": false,
+  "output_artifacts": [
+    "physical_closure_state_report.json",
+    "physical_closure_state_states.csv",
+    "physical_closure_state_decoys.csv",
+    "physical_closure_state_rank_enrichment.csv",
+    "physical_closure_state_metrics.csv",
+    "physical_closure_state_dashboard.html",
+    "physical_closure_state_certificate.json"
+  ],
+  "physical_state_law_survives": false,
+  "post_physical_contact_cluster_precision": 0.043311,
+  "post_physical_false_nucleus_rate": 0.609375,
+  "post_physical_long_range_contact_recall": 0.372496,
+  "real_vs_decoy_physical_enrichment_ratio": 1.171535,
+  "report_kind": "physical_closure_state_benchmark_v1",
+  "state_build_failure_count": 0,
+  "state_build_success_count": 320
+}
