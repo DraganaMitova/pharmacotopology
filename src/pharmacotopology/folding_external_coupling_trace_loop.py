@@ -117,11 +117,25 @@ def _controls_from_runs(runs: Sequence[TraceLoopRun]) -> list[dict[str, object]]
     return rows
 
 
+def classify_external_probe_result(
+    *,
+    available_rows: int,
+    external_real_beats_physical: bool,
+    external_real_beats_matched_controls: bool,
+) -> str:
+    if available_rows < 4:
+        return "insufficient_external_signal"
+    if external_real_beats_physical and external_real_beats_matched_controls:
+        return "external_channel_supported_in_v0"
+    return "external_channel_not_yet_supported"
+
+
 def _certificate(report: Mapping[str, object]) -> dict[str, object]:
     return {
         "certificate_kind": EXTERNAL_COUPLING_TRACE_LOOP_CERTIFICATE_KIND,
         "report_kind": report["report_kind"],
         "batch_id": report["batch_id"],
+        "result": report["result"],
         "external_probe_passed": report["external_probe_passed"],
         "external_couplings_available_rows": report[
             "external_couplings_available_rows"
@@ -216,6 +230,11 @@ def _build_report(
         and external_real_vs_control_enrichment_ratio > 1.25
         and not claim_mode_failures
     )
+    result = classify_external_probe_result(
+        available_rows=available_rows,
+        external_real_beats_physical=external_real_beats_physical,
+        external_real_beats_matched_controls=external_real_beats_matched_controls,
+    )
     return {
         "report_kind": EXTERNAL_COUPLING_TRACE_LOOP_REPORT_KIND,
         "batch_id": EXTERNAL_EVOLUTIONARY_COUPLING_TRACE_LOOP_BATCH_ID,
@@ -223,6 +242,7 @@ def _build_report(
         "external_coupling_file": str(external_coupling_file),
         "oracle_positive_control_file": str(oracle_coupling_file),
         "benchmark_size": len(rows),
+        "result": result,
         "external_probe_passed": acceptance_criteria_met,
         "external_couplings_available_rows": available_rows,
         "external_rows_rejected_low_depth": rejected_low_depth,
@@ -293,6 +313,7 @@ def render_external_coupling_trace_loop_dashboard(
     report: Mapping[str, object],
 ) -> str:
     labels = (
+        "result",
         "external_probe_passed",
         "external_couplings_available_rows",
         "external_rows_rejected_low_depth",

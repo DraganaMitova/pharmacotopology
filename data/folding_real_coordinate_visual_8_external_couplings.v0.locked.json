@@ -1,0 +1,26 @@
+{
+  "batch_id": "EXTERNAL_EVOLUTIONARY_COUPLING_TRACE_LOOP_V0",
+  "benchmark_row_ids_preregistered": [
+    "coord_001_pdb_1MBN_A_myoglobin",
+    "coord_002_pdb_2LZM_A_t4_lysozyme",
+    "coord_003_pdb_1TEN_A_tenascin_fn3",
+    "coord_004_pdb_1CSP_A_cold_shock_protein",
+    "coord_005_pdb_1TIM_A_triosephosphate_isomerase",
+    "coord_006_pdb_1PGA_A_protein_g_b1",
+    "coord_007_pdb_4AKE_A_adenylate_kinase",
+    "coord_008_pdb_1CLL_A_calmodulin"
+  ],
+  "constraint_kind": "safe_residue_pair_coupling_constraint_v1",
+  "constraints": [],
+  "coordinate_truth_used_to_build_constraints": false,
+  "coupling_source_kind": "external_msa_dca_plmc_v1",
+  "duplicate_count_dropped": 0,
+  "external_evolutionary_couplings_used": true,
+  "layer_kind": "locked_safe_coupling_constraint_layer_v1",
+  "native_truth_used_before_coupling_selection": false,
+  "oracle_constraint_control": false,
+  "raw_sequence_exposed": false,
+  "reject_duplicate_coupling_pairs": true,
+  "source_benchmark_file": "data/folding_real_coordinate_visual_8.locked.json",
+  "target_manifest_file": "data/external_coupling_target_manifest_v0.locked.json"
+}

@@ -31,6 +31,83 @@ V0 keeps the current 8-row coordinate benchmark frozen:
 Every row must be preregistered in the external coupling file. No row may be
 silently dropped or replaced.
 
+## Real File Build V0
+
+Before running the selector benchmark, build the external input surface:
+
+```text
+REAL_EXTERNAL_COUPLING_FILE_BUILD_V0
+```
+
+The builder script is:
+
+```text
+scripts/build_real_external_coupling_file_v0.py
+```
+
+It writes:
+
+```text
+data/folding_real_coordinate_visual_8_external_couplings.v0.locked.json
+first_contact_clean_pharmacotopology_layer_run/external_coupling_target_manifest_v0.json
+first_contact_clean_pharmacotopology_layer_run/external_coupling_build_log_v0.csv
+```
+
+The builder does not run the selector and does not fabricate couplings. If no
+raw external MSA/DCA coupling file is supplied, it emits an empty locked coupling
+file and marks all rows with honest build-log rejection reasons.
+
+The build-stage statuses are more specific than the selector-stage statuses:
+
+```text
+external_couplings_available
+external_couplings_rejected_no_sequence_mapping
+external_couplings_rejected_low_msa_depth
+external_couplings_rejected_low_coverage
+external_couplings_rejected_domain_boundary_ambiguous
+external_couplings_rejected_position_mapping_ambiguous
+external_couplings_rejected_tool_failed
+external_couplings_rejected_coordinate_taint
+```
+
+V0 rejects duplicate residue-pair couplings. A real external DCA output must
+contain unique `(row_id, i, j)` pairs:
+
+```text
+reject_duplicate_coupling_pairs = true
+duplicate_count_dropped = 0
+```
+
+V0 also requires every external constraint to carry the full provenance surface:
+
+```text
+row_id
+source_accession
+i
+j
+sequence_separation
+normalized_separation
+confidence
+raw_score
+apc_corrected_score
+rank
+rank_fraction
+source_kind
+msa_source_kind
+msa_sha256
+msa_depth
+effective_sequence_count
+effective_sequence_count_over_length
+target_coverage
+focus_sequence_mapping_confidence
+coordinate_truth_used_to_build_constraint
+native_truth_used_before_coupling_selection
+structure_model_used
+raw_sequence_exposed
+```
+
+Missing field means the file is rejected.
+
 ## Accepted Sources
 
 Only these source kinds are accepted:
@@ -112,6 +189,7 @@ more than distance.
 The V0 report records:
 
 ```text
+result = insufficient_external_signal / external_channel_not_yet_supported / external_channel_supported_in_v0
 external_probe_passed = true/false
 external_couplings_available_rows = N
 external_rows_rejected_low_depth = N

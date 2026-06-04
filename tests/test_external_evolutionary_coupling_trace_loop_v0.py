@@ -10,7 +10,13 @@ ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "src"
 if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
+SCRIPTS = ROOT / "scripts"
+if str(SCRIPTS) not in sys.path:
+    sys.path.insert(0, str(SCRIPTS))
 
+from build_real_external_coupling_file_v0 import (  # noqa: E402
+    build_real_external_coupling_file_v0,
+)
 from pharmacotopology.folding_coupling_negative_controls import (  # noqa: E402
     EXTERNAL_COUPLING_CONTROL_NAMES,
     generate_external_coupling_negative_controls,
@@ -24,6 +30,7 @@ from pharmacotopology.folding_external_coupling_sources import (  # noqa: E402
 from pharmacotopology.folding_external_coupling_trace_loop import (  # noqa: E402
     EXTERNAL_COUPLING_TRACE_LOOP_REPORT_KIND,
     ROOT_OUTPUT_NAMES,
+    classify_external_probe_result,
     run_external_evolutionary_coupling_trace_loop_benchmark,
 )
 from pharmacotopology.folding_real_coordinate_visual_benchmark import (  # noqa: E402
@@ -39,9 +46,10 @@ REL_ORACLE_COUPLINGS = Path(
 
 
 def _external_constraint(row, *, rank: int, source_kind: str) -> dict[str, object]:
-    separation = min(max(24, row.sequence_length // 3), row.sequence_length - 1)
+    separation_span = max(1, row.sequence_length - 24)
+    separation = min(24 + ((rank - 1) % separation_span), row.sequence_length - 1)
     start_count = max(1, row.sequence_length - separation)
-    i = (rank * 7) % start_count + 1
+    i = ((rank - 1) // separation_span) % start_count + 1
     j = i + separation
     return {
         "row_id": row.row_id,
@@ -156,6 +164,43 @@ def test_external_importer_rejects_disallowed_source_kind(tmp_path) -> None:
         )
 
 
+def test_external_importer_requires_provenance_fields(tmp_path) -> None:
+    rows = load_real_coordinate_visual_rows(BENCHMARK_8)
+    external_file = _write_external_fixture(tmp_path / "missing_field.json")
+    payload = json.loads(external_file.read_text(encoding="utf-8"))
+    del payload["constraints"][0]["apc_corrected_score"]
+    external_file.write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+
+    with pytest.raises(ValueError, match="missing required field"):
+        import_external_coupling_dataset(
+            rows=rows,
+            external_coupling_file=external_file,
+        )
+
+
+def test_external_importer_rejects_duplicate_pairs(tmp_path) -> None:
+    rows = load_real_coordinate_visual_rows(BENCHMARK_8)
+    external_file = _write_external_fixture(tmp_path / "duplicate.json")
+    payload = json.loads(external_file.read_text(encoding="utf-8"))
+    duplicate = dict(payload["constraints"][0])
+    duplicate["constraint_id"] = "duplicate_pair"
+    duplicate["rank"] = 999
+    payload["constraints"].append(duplicate)
+    external_file.write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+
+    with pytest.raises(ValueError, match="duplicate external coupling pair"):
+        import_external_coupling_dataset(
+            rows=rows,
+            external_coupling_file=external_file,
+        )
+
+
 def test_external_importer_marks_coordinate_taint_without_laundering(tmp_path) -> None:
     rows = load_real_coordinate_visual_rows(BENCHMARK_8)
     external_file = _write_external_fixture(
@@ -236,6 +281,10 @@ def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> Non
     assert tuple(path.name for path in paths) == ROOT_OUTPUT_NAMES
     assert report["report_kind"] == EXTERNAL_COUPLING_TRACE_LOOP_REPORT_KIND
     assert report["batch_id"] == EXTERNAL_EVOLUTIONARY_COUPLING_TRACE_LOOP_BATCH_ID
+    assert report["result"] in {
+        "external_channel_not_yet_supported",
+        "external_channel_supported_in_v0",
+    }
     assert report["external_couplings_available_rows"] == 4
     assert report["external_rows_rejected_low_depth"] == 4
     assert report["mechanism_discovery_claim_allowed"] is False
@@ -246,3 +295,58 @@ def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> Non
     assert len(controls) == 8
     assert len(row_status) == 8
     assert "External Evolutionary Coupling Trace Loop V0" in dashboard
+
+
+def test_real_external_builder_can_emit_zero_usable_rows_without_fabrication(tmp_path) -> None:
+    output = tmp_path / "folding_real_coordinate_visual_8_external_couplings.v0.locked.json"
+    run_manifest = tmp_path / "external_coupling_target_manifest_v0.json"
+    build_log = tmp_path / "external_coupling_build_log_v0.csv"
+    paths = build_real_external_coupling_file_v0(
+        benchmark_file=REL_BENCHMARK_8,
+        raw_external_coupling_file=None,
+        output=output,
+        run_manifest_output=run_manifest,
+        build_log_output=build_log,
+        target_manifest_path=Path("data/external_coupling_target_manifest_v0.locked.json"),
+    )
+    payload = json.loads(output.read_text(encoding="utf-8"))
+    manifest = json.loads(run_manifest.read_text(encoding="utf-8"))
+    rows = list(csv.DictReader(build_log.read_text(encoding="utf-8").splitlines()))
+
+    assert paths == (output, run_manifest, build_log)
+    assert payload["batch_id"] == EXTERNAL_EVOLUTIONARY_COUPLING_TRACE_LOOP_BATCH_ID
+    assert payload["reject_duplicate_coupling_pairs"] is True
+    assert payload["constraints"] == []
+    assert len(manifest) == 8
+    assert len(rows) == 8
+    assert {row["external_coupling_status"] for row in rows} == {
+        "external_couplings_rejected_no_sequence_mapping"
+    }
+    assert all(row["duplicate_count_dropped"] == "0" for row in rows)
+
+
+def test_external_probe_result_classification() -> None:
+    assert (
+        classify_external_probe_result(
+            available_rows=0,
+            external_real_beats_physical=True,
+            external_real_beats_matched_controls=True,
+        )
+        == "insufficient_external_signal"
+    )
+    assert (
+        classify_external_probe_result(
+            available_rows=4,
+            external_real_beats_physical=True,
+            external_real_beats_matched_controls=False,
+        )
+        == "external_channel_not_yet_supported"
+    )
+    assert (
+        classify_external_probe_result(
+            available_rows=4,
+            external_real_beats_physical=True,
+            external_real_beats_matched_controls=True,
+        )
+        == "external_channel_supported_in_v0"
+    )

@@ -46,6 +46,19 @@ EXTERNAL_COUPLING_ROW_STATUSES = frozenset(
     }
 )
 
+REAL_EXTERNAL_COUPLING_BUILD_ROW_STATUSES = frozenset(
+    {
+        "external_couplings_available",
+        "external_couplings_rejected_no_sequence_mapping",
+        "external_couplings_rejected_low_msa_depth",
+        "external_couplings_rejected_low_coverage",
+        "external_couplings_rejected_domain_boundary_ambiguous",
+        "external_couplings_rejected_position_mapping_ambiguous",
+        "external_couplings_rejected_tool_failed",
+        "external_couplings_rejected_coordinate_taint",
+    }
+)
+
 
 @dataclass(frozen=True)
 class ExternalCouplingQualityPolicy:

@@ -529,6 +529,17 @@ external evolutionary couplings and rerunning:
 EXTERNAL_EVOLUTIONARY_COUPLING_TRACE_LOOP_V0
 ```
 
+The current concrete blocker is:
+
+```text
+REAL_EXTERNAL_COUPLING_FILE_BUILD_V0
+```
+
+This build stage creates the provenance-locked external coupling file, target
+manifest, and build log before the selector benchmark runs. The current checked
+build artifact is allowed to contain zero usable rows because no raw MSA/DCA
+coupling file has been supplied.
+
 ## Canonical Active Stack
 
 ```text
@@ -570,6 +581,7 @@ scripts/run_nucleus_graph_selectivity_benchmark.py
 scripts/run_physical_closure_state_benchmark.py
 scripts/run_active_physical_selection_benchmark.py
 scripts/run_evolutionary_coupling_nucleus_benchmark.py
+scripts/build_real_external_coupling_file_v0.py
 scripts/build_external_evolutionary_coupling_trace_loop_v0.py
 scripts/run_external_evolutionary_coupling_trace_loop_benchmark.py
 ```
@@ -597,6 +609,8 @@ physical_closure_state_*
 active_physical_selection_*
 coupling_nucleus_selector_*
 external_coupling_trace_loop_*
+external_coupling_target_manifest_v0.json
+external_coupling_build_log_v0.csv
 ```
 
 Archived legacy artifacts:

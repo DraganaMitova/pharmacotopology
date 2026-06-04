@@ -26,6 +26,32 @@ from pharmacotopology.folding_real_coordinate_visual_benchmark import (
 
 EXTERNAL_COUPLING_IMPORT_KIND = "external_evolutionary_coupling_import_v0"
 
+REQUIRED_EXTERNAL_CONSTRAINT_FIELDS = (
+    "row_id",
+    "source_accession",
+    "i",
+    "j",
+    "sequence_separation",
+    "normalized_separation",
+    "confidence",
+    "raw_score",
+    "apc_corrected_score",
+    "rank",
+    "rank_fraction",
+    "source_kind",
+    "msa_source_kind",
+    "msa_sha256",
+    "msa_depth",
+    "effective_sequence_count",
+    "effective_sequence_count_over_length",
+    "target_coverage",
+    "focus_sequence_mapping_confidence",
+    "coordinate_truth_used_to_build_constraint",
+    "native_truth_used_before_coupling_selection",
+    "structure_model_used",
+    "raw_sequence_exposed",
+)
+
 
 @dataclass(frozen=True)
 class ExternalCouplingRowStatus:
@@ -106,14 +132,21 @@ def _constraint_id(row_id: str, i: int, j: int, rank: int) -> str:
     return f"external_{digest[:16]}"
 
 
-def _as_float(raw: Mapping[str, Any], key: str, default: float = 0.0) -> float:
-    value = raw.get(key, default)
-    return float(value)
+def _require_constraint_fields(raw: Mapping[str, Any]) -> None:
+    missing = [key for key in REQUIRED_EXTERNAL_CONSTRAINT_FIELDS if key not in raw]
+    if missing:
+        raise ValueError(
+            "external constraint missing required field(s): "
+            + ", ".join(sorted(missing))
+        )
 
 
-def _as_int(raw: Mapping[str, Any], key: str, default: int = 0) -> int:
-    value = raw.get(key, default)
-    return int(value)
+def _as_float(raw: Mapping[str, Any], key: str) -> float:
+    return float(raw[key])
+
+
+def _as_int(raw: Mapping[str, Any], key: str) -> int:
+    return int(raw[key])
 
 
 def _source_kind_failure(source_kind: str) -> Optional[str]:
@@ -260,18 +293,22 @@ def import_external_coupling_dataset(
     if preregistered != expected_row_ids:
         raise ValueError("benchmark_row_ids_preregistered must match frozen rows")
 
-    raw_constraints = parsed.get("constraints", [])
-    if not isinstance(raw_constraints, list):
+    raw_constraints_payload = parsed.get("constraints", [])
+    if not isinstance(raw_constraints_payload, list):
         raise ValueError("external coupling constraints must be a list")
+    if not all(isinstance(raw, Mapping) for raw in raw_constraints_payload):
+        raise ValueError("external coupling constraints must be JSON objects")
     raw_constraints = tuple(
-        raw for raw in raw_constraints if isinstance(raw, Mapping)
+        raw for raw in raw_constraints_payload if isinstance(raw, Mapping)
     )
 
     row_by_id = {row.row_id: row for row in rows}
     raw_by_row: dict[str, list[Mapping[str, Any]]] = {
         row.row_id: [] for row in rows
     }
+    seen_pairs: set[tuple[str, int, int]] = set()
     for raw in raw_constraints:
+        _require_constraint_fields(raw)
         row_id = str(raw.get("row_id", ""))
         row = row_by_id.get(row_id)
         if row is None:
@@ -284,6 +321,10 @@ def import_external_coupling_dataset(
             raise ValueError(source_failure)
         if bool(raw.get("raw_sequence_exposed", False)):
             raise ValueError("external constraint must not expose raw sequence text")
+        pair_key = (row_id, int(raw["i"]), int(raw["j"]))
+        if pair_key in seen_pairs:
+            raise ValueError(f"duplicate external coupling pair rejected: {pair_key}")
+        seen_pairs.add(pair_key)
         raw_by_row[row_id].append(raw)
 
     any_coordinate_taint = bool(
@@ -359,12 +400,12 @@ def import_external_coupling_dataset(
         if i < 1 or j > row.sequence_length:
             raise ValueError(f"external constraint outside row bounds: {row.row_id}")
         sequence_separation = j - i
-        if _as_int(raw, "sequence_separation", sequence_separation) != sequence_separation:
+        if _as_int(raw, "sequence_separation") != sequence_separation:
             raise ValueError(f"invalid external sequence separation: {row.row_id}")
         normalized = _score(sequence_separation / row.sequence_length)
         if abs(_as_float(raw, "normalized_separation") - normalized) > 0.000001:
             raise ValueError(f"invalid external normalized separation: {row.row_id}")
-        rank = _as_int(raw, "rank", 0)
+        rank = _as_int(raw, "rank")
         native_supported = _safe_pair_supported(row, i, j)
         status = status_by_row[row.row_id]
         audit = ExternalCouplingConstraintAudit(
@@ -385,7 +426,7 @@ def import_external_coupling_dataset(
             source_kind=str(raw.get("source_kind", coupling_source_kind)),
             msa_source_kind=str(raw.get("msa_source_kind", "")),
             msa_sha256=str(raw.get("msa_sha256", "")),
-            msa_depth=_as_int(raw, "msa_depth", 0),
+            msa_depth=_as_int(raw, "msa_depth"),
             effective_sequence_count=_score(
                 _as_float(raw, "effective_sequence_count")
             ),

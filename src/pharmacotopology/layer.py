@@ -174,6 +174,8 @@ PHARMACOTOPOLOGY_GENERATED_FILES: tuple[str, ...] = (
     "external_coupling_trace_loop_controls.csv",
     "external_coupling_trace_loop_row_status.csv",
     "external_coupling_trace_loop_dashboard.html",
+    "external_coupling_target_manifest_v0.json",
+    "external_coupling_build_log_v0.csv",
     "field_validation.json",
     "field_metrics.json",
 )
