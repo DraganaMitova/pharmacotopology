@@ -78,6 +78,14 @@ def _mean(values: Sequence[float]) -> float:
     return _rounded(mean(values)) if values else 0.0
 
 
+def _max_metric(
+    runs: Sequence[TraceLoopRun],
+    field_name: str,
+) -> float:
+    values = [float(getattr(run.metric, field_name)) for run in runs]
+    return _rounded(max(values)) if values else 0.0
+
+
 def _run_trace_loop_selector(
     *,
     rows: Sequence[RealCoordinateVisualRow],
@@ -430,6 +438,7 @@ def _build_report(
         run.metric.real_vs_decoy_coupling_enrichment_ratio
         for run in cluster_gated_core_expanded_controls
     ]
+    cluster_metric = external_cluster_gated_core_expanded.metric
     max_cluster_gated_control_enrichment = (
         max(cluster_gated_control_enrichments)
         if cluster_gated_control_enrichments
@@ -563,6 +572,33 @@ def _build_report(
         "external_real_vs_control_enrichment_ratio": (
             external_real_vs_control_enrichment_ratio
         ),
+        "external_real_mean_selected_coupling_selectivity_score": (
+            external_real.metric.mean_selected_coupling_selectivity_score
+        ),
+        "max_matched_control_mean_selected_coupling_selectivity_score": (
+            _max_metric(
+                matched_controls,
+                "mean_selected_coupling_selectivity_score",
+            )
+        ),
+        "external_real_mean_decoy_coupling_selectivity_score": (
+            external_real.metric.mean_decoy_coupling_selectivity_score
+        ),
+        "max_matched_control_mean_decoy_coupling_selectivity_score": (
+            _max_metric(
+                matched_controls,
+                "mean_decoy_coupling_selectivity_score",
+            )
+        ),
+        "external_real_mean_coupling_decoy_selectivity_margin": (
+            external_real.metric.mean_coupling_decoy_selectivity_margin
+        ),
+        "max_matched_control_mean_coupling_decoy_selectivity_margin": (
+            _max_metric(
+                matched_controls,
+                "mean_coupling_decoy_selectivity_margin",
+            )
+        ),
         "mean_matched_control_false_nucleus_rate": _mean(control_false_rates),
         "mean_matched_control_cluster_precision": _mean(control_precisions),
         "external_real_beats_physical": external_real_beats_physical,
@@ -678,6 +714,33 @@ def _build_report(
         "external_cluster_gated_core_expanded_vs_control_enrichment_ratio": (
             cluster_gated_vs_control_enrichment_ratio
         ),
+        "external_cluster_gated_core_expanded_mean_selected_coupling_selectivity_score": (
+            cluster_metric.mean_selected_coupling_selectivity_score
+        ),
+        "external_cluster_gated_core_expanded_max_control_mean_selected_coupling_selectivity_score": (
+            _max_metric(
+                cluster_gated_core_expanded_controls,
+                "mean_selected_coupling_selectivity_score",
+            )
+        ),
+        "external_cluster_gated_core_expanded_mean_decoy_coupling_selectivity_score": (
+            cluster_metric.mean_decoy_coupling_selectivity_score
+        ),
+        "external_cluster_gated_core_expanded_max_control_mean_decoy_coupling_selectivity_score": (
+            _max_metric(
+                cluster_gated_core_expanded_controls,
+                "mean_decoy_coupling_selectivity_score",
+            )
+        ),
+        "external_cluster_gated_core_expanded_mean_coupling_decoy_selectivity_margin": (
+            cluster_metric.mean_coupling_decoy_selectivity_margin
+        ),
+        "external_cluster_gated_core_expanded_max_control_mean_coupling_decoy_selectivity_margin": (
+            _max_metric(
+                cluster_gated_core_expanded_controls,
+                "mean_coupling_decoy_selectivity_margin",
+            )
+        ),
         "external_cluster_gated_core_expanded_beats_physical": (
             cluster_gated_beats_physical
         ),
@@ -750,6 +813,12 @@ def render_external_coupling_trace_loop_dashboard(
         "external_cluster_gated_core_expanded_cluster_precision",
         "external_cluster_gated_core_expanded_long_range_recall",
         "external_cluster_gated_core_expanded_vs_control_enrichment_ratio",
+        "external_cluster_gated_core_expanded_mean_selected_coupling_selectivity_score",
+        "external_cluster_gated_core_expanded_max_control_mean_selected_coupling_selectivity_score",
+        "external_cluster_gated_core_expanded_mean_decoy_coupling_selectivity_score",
+        "external_cluster_gated_core_expanded_max_control_mean_decoy_coupling_selectivity_score",
+        "external_cluster_gated_core_expanded_mean_coupling_decoy_selectivity_margin",
+        "external_cluster_gated_core_expanded_max_control_mean_coupling_decoy_selectivity_margin",
         "external_cluster_gated_core_expanded_beats_matched_controls",
         "mechanism_discovery_claim_allowed",
         "folding_problem_solved",

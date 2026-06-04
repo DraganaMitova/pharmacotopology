@@ -128,6 +128,9 @@ class CouplingSelectorMetric:
     coupling_constraint_recall: float
     real_vs_decoy_coupling_enrichment_ratio: float
     real_beats_decoy_coupling_score_rate: float
+    mean_selected_coupling_selectivity_score: float
+    mean_decoy_coupling_selectivity_score: float
+    mean_coupling_decoy_selectivity_margin: float
     mean_coupling_nucleus_score: float
     survives_targets: bool
     coordinate_truth_used_to_build_constraints: bool
@@ -340,18 +343,23 @@ def select_coupling_trace_loop_events(
         )
         uncovered = set(confidence_by_pair)
         row_selected: list[NucleusClosureEvent] = []
+        selected_ids: set[str] = set()
+        candidate_pairs_by_event_id = {
+            event.event_id: set(event.candidate_region_pairs())
+            for event in competitive_by_row.get(row.row_id, ())
+        }
         row_candidates = tuple(competitive_by_row.get(row.row_id, ()))
         while uncovered and len(row_selected) < SELECTED_EVENTS_PER_ROW:
             scored_candidates: list[tuple[float, NucleusClosureEvent]] = []
             for event in row_candidates:
-                if event.event_id in {item.event_id for item in row_selected}:
+                if event.event_id in selected_ids:
                     continue
                 if any(
                     not compatible_future_event(selected_event, event)
                     for selected_event in row_selected
                 ):
                     continue
-                event_pairs = set(event.candidate_region_pairs())
+                event_pairs = candidate_pairs_by_event_id[event.event_id]
                 newly_covered = event_pairs & uncovered
                 if not newly_covered:
                     continue
@@ -401,7 +409,8 @@ def select_coupling_trace_loop_events(
                 ),
             )
             row_selected.append(chosen)
-            uncovered -= set(chosen.candidate_region_pairs())
+            selected_ids.add(chosen.event_id)
+            uncovered -= candidate_pairs_by_event_id[chosen.event_id]
         selected.extend(row_selected)
     return tuple(selected)
 
@@ -524,6 +533,21 @@ def selector_metrics(
     long_recall = _rounded(mean(long_recalls) if long_recalls else 0.0)
     enrichment = real_vs_decoy_coupling_enrichment_ratio(comparisons)
     beats = real_beats_decoy_coupling_score_rate(comparisons)
+    selected_scores = [
+        comparison.real_coupling_selectivity_score for comparison in comparisons
+    ]
+    decoy_scores = [
+        comparison.decoy_coupling_selectivity_score for comparison in comparisons
+    ]
+    selected_selectivity_mean = _rounded(
+        mean(selected_scores) if selected_scores else 0.0
+    )
+    decoy_selectivity_mean = _rounded(
+        mean(decoy_scores) if decoy_scores else 0.0
+    )
+    selectivity_margin_mean = _rounded(
+        selected_selectivity_mean - decoy_selectivity_mean
+    )
     survives = (
         false_rate < SURVIVAL_FALSE_RATE_MAX
         and precision > SURVIVAL_CLUSTER_PRECISION_MIN
@@ -541,6 +565,9 @@ def selector_metrics(
         ),
         real_vs_decoy_coupling_enrichment_ratio=enrichment,
         real_beats_decoy_coupling_score_rate=beats,
+        mean_selected_coupling_selectivity_score=selected_selectivity_mean,
+        mean_decoy_coupling_selectivity_score=decoy_selectivity_mean,
+        mean_coupling_decoy_selectivity_margin=selectivity_margin_mean,
         mean_coupling_nucleus_score=_rounded(
             mean([coupling_nucleus_score(event, context) for event in selected_events])
             if selected_events
