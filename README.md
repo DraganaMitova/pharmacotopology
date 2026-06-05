@@ -77,11 +77,27 @@ score_margin_expansion_repeated_independent_row_signal_seen = true
 score_margin_expansion_claim_allowed = false
 ```
 
-Those two candidates show where the next recall gain sits, but the expansion is
-kept diagnostic-only because one matched and one adversarial control still find
-one of the same-size opportunities. The row-level signal now repeats across two
-independent proteins and beats controls by one row, but it remains a narrow
-positive margin, not a solved selector.
+Those two candidates showed where the next recall gain sat. The guarded
+selector version now admits them using the same non-native score-margin gate:
+
+```text
+score_margin_expanded_selected_event_count = 26
+score_margin_expanded_added_event_count = 2
+score_margin_expanded_added_native_long_range_contacts = 38
+score_margin_expanded_added_false_event_count = 0
+score_margin_expanded_false_nucleus_rate = 0.0
+score_margin_expanded_cluster_precision = 0.179688
+score_margin_expanded_long_range_recall = 0.252423
+score_margin_expanded_long_range_recall_delta_vs_persistent = 0.020558
+score_margin_expanded_long_range_recall_margin_vs_matched_controls = 0.117799
+score_margin_expanded_long_range_recall_margin_vs_adversarial_controls = 0.174647
+score_margin_expanded_beats_matched_controls = true
+score_margin_expanded_beats_adversarial_calibrated_controls = true
+score_margin_expanded_claim_allowed = false
+```
+
+This is stronger than the frontier-only diagnostic, but it remains an 8-row
+external-coupling benchmark result, not a solved-folding claim.
 
 Claim mode remains locked. A folding-solved claim is refused unless the data and
 per-constraint provenance stay external:

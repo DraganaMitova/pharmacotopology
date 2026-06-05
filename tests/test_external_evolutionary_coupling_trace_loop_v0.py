@@ -536,6 +536,99 @@ def test_persistent_rank_consistent_gate_recovers_supported_trace_fragment(
     assert tuple(event.event_id for event in selected) == ("core", "persistent")
 
 
+def test_score_margin_expanded_selector_adds_guarded_trace_candidate(
+    monkeypatch,
+) -> None:
+    core = _event(
+        "core",
+        contact_cluster_gain=0.35,
+        segment_a_start=1,
+        segment_b_start=41,
+    )
+    expanded = _event(
+        "expanded",
+        contact_cluster_gain=0.48,
+        segment_a_start=13,
+        segment_b_start=57,
+    )
+    rejected = _event(
+        "rejected",
+        contact_cluster_gain=0.48,
+        segment_a_start=25,
+        segment_b_start=73,
+    )
+    decoy = _event(
+        "decoy",
+        contact_cluster_gain=0.48,
+        segment_a_start=37,
+        segment_b_start=89,
+    )
+    context = SimpleNamespace(
+        rows=(SimpleNamespace(row_id="row_1"),),
+        competitive_events=(core, expanded, rejected, decoy),
+        assessment_by_event_id={
+            core.event_id: _assessment(
+                core,
+                direct_support_score=0.72,
+                future_preservation_score=0.82,
+                blocked_future_pressure=0.02,
+            ),
+            expanded.event_id: _assessment(
+                expanded,
+                direct_support_score=0.30,
+                future_preservation_score=0.30,
+                blocked_future_pressure=0.02,
+            ),
+            rejected.event_id: _assessment(
+                rejected,
+                direct_support_score=0.30,
+                future_preservation_score=0.30,
+                blocked_future_pressure=0.12,
+            ),
+            decoy.event_id: _assessment(
+                decoy,
+                direct_support_score=0.20,
+                future_preservation_score=0.20,
+                blocked_future_pressure=0.02,
+            ),
+        },
+    )
+    scores = {
+        core.event_id: 0.50,
+        expanded.event_id: 0.62,
+        rejected.event_id: 0.62,
+        decoy.event_id: 0.40,
+    }
+    monkeypatch.setattr(
+        selector_module,
+        "select_coupling_trace_loop_persistent_rank_consistent_cluster_gated_events",
+        lambda *args, **kwargs: (core,),
+    )
+    monkeypatch.setattr(
+        selector_module,
+        "select_coupling_trace_loop_events",
+        lambda *args, **kwargs: (core, expanded, rejected),
+    )
+    monkeypatch.setattr(
+        selector_module,
+        "coupling_nucleus_score",
+        lambda event, _context: scores[event.event_id],
+    )
+    monkeypatch.setattr(
+        selector_module,
+        "decoy_distance",
+        lambda _event, candidate: 0.0
+        if candidate.event_id == decoy.event_id
+        else 10.0,
+    )
+
+    selected = selector_module.select_coupling_trace_loop_score_margin_expanded_events(
+        context
+    )
+
+    assert tuple(event.event_id for event in selected) == ("core", "expanded")
+
+
 def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> None:
     external_file = _write_external_fixture(tmp_path / "external.json")
     outputs = {
@@ -612,6 +705,24 @@ def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> Non
         "external_persistent_rank_consistent_cluster_gated_recovered_event_count"
         in report
     )
+    assert "external_score_margin_expanded_selected_event_count" in report
+    assert "external_score_margin_expanded_added_event_count" in report
+    assert (
+        "external_score_margin_expanded_added_native_long_range_contact_count"
+        in report
+    )
+    assert "external_score_margin_expanded_added_false_event_count" in report
+    assert "external_score_margin_expanded_long_range_recall" in report
+    assert (
+        "external_score_margin_expanded_long_range_recall_delta_vs_persistent"
+        in report
+    )
+    assert "external_score_margin_expanded_beats_matched_controls" in report
+    assert (
+        "external_score_margin_expanded_beats_adversarial_calibrated_controls"
+        in report
+    )
+    assert report["external_score_margin_expanded_claim_allowed"] is False
     assert (
         "external_persistent_rank_consistent_cluster_gated_score_margin_expansion_candidate_count"
         in report
@@ -724,8 +835,12 @@ def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> Non
             "external_persistent_rank_consistent_cluster_gated_score_margin_expansion_repeated_independent_row_beats_adversarial_controls"
         ]
     )
-    assert len(selectors) == 48
-    assert len(controls) == 48
+    assert (
+        certificate["external_score_margin_expanded_added_event_count"]
+        == report["external_score_margin_expanded_added_event_count"]
+    )
+    assert len(selectors) == 56
+    assert len(controls) == 56
     assert len(frontier) == (
         report["external_rank_consistent_cluster_gated_native_positive_frontier_count"]
         + report[
@@ -739,6 +854,11 @@ def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> Non
     )
     assert (
         "external_persistent_rank_consistent_cluster_gated_recovered_event_count"
+        in dashboard
+    )
+    assert "external_score_margin_expanded_added_event_count" in dashboard
+    assert (
+        "external_score_margin_expanded_long_range_recall_delta_vs_persistent"
         in dashboard
     )
     assert (

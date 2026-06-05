@@ -212,9 +212,10 @@ external evolutionary couplings preserve part of the anti-fake-nucleus signal un
 ```
 
 If score-margin expansion candidates repeat across independent benchmark rows,
-that is recorded as stability evidence for the next selector design. It remains
-diagnostic-only unless the expansion selector itself beats the matched,
-adversarial, and decoy controls without native-truth filtering.
+that is recorded as stability evidence for the next selector design. The guarded
+score-margin-expanded selector is only interpretable when it beats matched and
+adversarial controls without native-truth filtering, and it remains claim-locked
+even when that selector-level comparison succeeds.
 
 It is not:
 
@@ -310,6 +311,20 @@ external_persistent_rank_consistent_cluster_gated_recall_frontier_count = 23
 external_persistent_rank_consistent_cluster_gated_score_margin_expansion_candidate_count = 2
 external_persistent_rank_consistent_cluster_gated_score_margin_expansion_candidate_native_long_range_contact_count = 38
 external_persistent_rank_consistent_cluster_gated_score_margin_expansion_claim_allowed = false
+
+external_score_margin_expanded_selected_event_count = 26
+external_score_margin_expanded_added_event_count = 2
+external_score_margin_expanded_added_native_long_range_contact_count = 38
+external_score_margin_expanded_added_false_event_count = 0
+external_score_margin_expanded_false_nucleus_rate = 0.0
+external_score_margin_expanded_cluster_precision = 0.179688
+external_score_margin_expanded_long_range_recall = 0.252423
+external_score_margin_expanded_long_range_recall_delta_vs_persistent = 0.020558
+external_score_margin_expanded_long_range_recall_margin_vs_matched_controls = 0.117799
+external_score_margin_expanded_long_range_recall_margin_vs_adversarial_controls = 0.174647
+external_score_margin_expanded_beats_matched_controls = true
+external_score_margin_expanded_beats_adversarial_calibrated_controls = true
+external_score_margin_expanded_claim_allowed = false
 claim_allowed = false
 ```
 
@@ -321,8 +336,9 @@ persistence improves precision and long-range recall over the strict rank gate
 the added event weakens the decoy-enrichment margin
 raw coupling-only adversarial calibrated enrichment remains too close
 the selector's full coupling-nucleus score clears matched and adversarial enrichment controls
-the score-margin expansion frontier exposes two addable native-positive trace events
-that would add 38 long-range contacts, but expansion remains diagnostic-only
+the score-margin-expanded selector admits two addable native-positive trace events
+that add 38 long-range contacts without adding a false nucleus
+the score-margin-expanded selector beats matched and adversarial controls on precision and recall
 claims remain locked
 ```
 

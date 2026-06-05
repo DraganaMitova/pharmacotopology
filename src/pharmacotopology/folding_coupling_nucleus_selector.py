@@ -99,6 +99,12 @@ TRACE_LOOP_PERSISTENT_NEIGHBOR_BLOCKED_FUTURE_MAX = 0.16
 TRACE_LOOP_PERSISTENT_NEIGHBOR_WINDOW = 32
 TRACE_LOOP_PERSISTENT_LOCAL_NEIGHBOR_WINDOW = 16
 TRACE_LOOP_PERSISTENT_NEIGHBOR_LIMIT = 4
+TRACE_LOOP_SCORE_MARGIN_EXPANSION_SCORE_MIN = 0.44
+TRACE_LOOP_SCORE_MARGIN_EXPANSION_DECOY_MARGIN_MIN = 0.15
+TRACE_LOOP_SCORE_MARGIN_EXPANSION_CLUSTER_MIN = 0.46
+TRACE_LOOP_SCORE_MARGIN_EXPANSION_DIRECT_SUPPORT_MIN = 0.10
+TRACE_LOOP_SCORE_MARGIN_EXPANSION_FUTURE_PRESERVATION_MIN = 0.18
+TRACE_LOOP_SCORE_MARGIN_EXPANSION_BLOCKED_FUTURE_MAX = 0.08
 
 SURVIVAL_FALSE_RATE_MAX = 0.25
 SURVIVAL_CLUSTER_PRECISION_MIN = 0.08
@@ -412,6 +418,8 @@ def select_coupling_events(
         return select_coupling_trace_loop_persistent_rank_consistent_cluster_gated_events(
             context
         )
+    if selector_name == "coupling_trace_loop_score_margin_expanded":
+        return select_coupling_trace_loop_score_margin_expanded_events(context)
 
     selected: list[NucleusClosureEvent] = []
     competitive_by_row = _events_by_row(context.competitive_events)
@@ -761,6 +769,47 @@ def _passes_persistent_recovery_gate(
     )
 
 
+def _selector_score_decoy_margin(
+    event: NucleusClosureEvent,
+    context: CouplingNucleusContext,
+) -> float:
+    row_candidates = [
+        candidate
+        for candidate in context.competitive_events
+        if candidate.row_id == event.row_id and candidate.event_id != event.event_id
+    ]
+    decoy = min(
+        row_candidates,
+        key=lambda candidate: decoy_distance(event, candidate),
+        default=event,
+    )
+    return _rounded(
+        coupling_nucleus_score(event, context)
+        - coupling_nucleus_score(decoy, context)
+    )
+
+
+def _passes_score_margin_expansion_gate(
+    event: NucleusClosureEvent,
+    context: CouplingNucleusContext,
+) -> bool:
+    assessment = context.assessment_by_event_id[event.event_id]
+    return (
+        coupling_nucleus_score(event, context)
+        >= TRACE_LOOP_SCORE_MARGIN_EXPANSION_SCORE_MIN
+        and _selector_score_decoy_margin(event, context)
+        >= TRACE_LOOP_SCORE_MARGIN_EXPANSION_DECOY_MARGIN_MIN
+        and event.contact_cluster_gain
+        >= TRACE_LOOP_SCORE_MARGIN_EXPANSION_CLUSTER_MIN
+        and assessment.direct_support_score
+        >= TRACE_LOOP_SCORE_MARGIN_EXPANSION_DIRECT_SUPPORT_MIN
+        and assessment.future_preservation_score
+        >= TRACE_LOOP_SCORE_MARGIN_EXPANSION_FUTURE_PRESERVATION_MIN
+        and assessment.blocked_future_pressure
+        <= TRACE_LOOP_SCORE_MARGIN_EXPANSION_BLOCKED_FUTURE_MAX
+    )
+
+
 def select_coupling_trace_loop_rank_consistent_cluster_gated_events(
     context: CouplingNucleusContext,
 ) -> tuple[NucleusClosureEvent, ...]:
@@ -804,6 +853,50 @@ def select_coupling_trace_loop_rank_consistent_cluster_gated_events(
                 break
             if not _passes_rank_consistent_recovery_gate(event, context):
                 continue
+            if any(
+                not compatible_future_event(selected_event, event)
+                for selected_event in row_selected
+            ):
+                continue
+            row_selected.append(event)
+            selected_ids.add(event.event_id)
+        selected.extend(row_selected)
+    return tuple(selected)
+
+
+def select_coupling_trace_loop_score_margin_expanded_events(
+    context: CouplingNucleusContext,
+) -> tuple[NucleusClosureEvent, ...]:
+    persistent_events = (
+        select_coupling_trace_loop_persistent_rank_consistent_cluster_gated_events(
+            context
+        )
+    )
+    persistent_by_row = _events_by_row(persistent_events)
+    trace_by_row = _events_by_row(select_coupling_trace_loop_events(context))
+    selected: list[NucleusClosureEvent] = []
+    for row in context.rows:
+        row_selected = list(persistent_by_row.get(row.row_id, ()))
+        selected_ids = {event.event_id for event in row_selected}
+        expansion_candidates = sorted(
+            (
+                event
+                for event in trace_by_row.get(row.row_id, ())
+                if event.event_id not in selected_ids
+                and _passes_score_margin_expansion_gate(event, context)
+            ),
+            key=lambda event: (
+                -coupling_nucleus_score(event, context),
+                -_selector_score_decoy_margin(event, context),
+                -context.assessment_by_event_id[event.event_id].direct_support_score,
+                event.segment_a_start,
+                event.segment_b_start,
+                event.event_id,
+            ),
+        )
+        for event in expansion_candidates:
+            if len(row_selected) >= SELECTED_EVENTS_PER_ROW:
+                break
             if any(
                 not compatible_future_event(selected_event, event)
                 for selected_event in row_selected

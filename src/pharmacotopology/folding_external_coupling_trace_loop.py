@@ -115,6 +115,18 @@ def _max_metric(
     return _rounded(max(values)) if values else 0.0
 
 
+def _max_selected_metric(
+    runs: Sequence[TraceLoopRun],
+    field_name: str,
+) -> float:
+    values = [
+        float(getattr(run.metric, field_name))
+        for run in runs
+        if run.metric.selected_event_count > 0
+    ]
+    return _rounded(max(values)) if values else 0.0
+
+
 def _run_trace_loop_selector(
     *,
     rows: Sequence[RealCoordinateVisualRow],
@@ -678,6 +690,36 @@ def _certificate(report: Mapping[str, object]) -> dict[str, object]:
         "external_persistent_rank_consistent_cluster_gated_claim_allowed": report[
             "external_persistent_rank_consistent_cluster_gated_claim_allowed"
         ],
+        "external_score_margin_expanded_selected_event_count": report[
+            "external_score_margin_expanded_selected_event_count"
+        ],
+        "external_score_margin_expanded_added_event_count": report[
+            "external_score_margin_expanded_added_event_count"
+        ],
+        "external_score_margin_expanded_added_native_long_range_contact_count": report[
+            "external_score_margin_expanded_added_native_long_range_contact_count"
+        ],
+        "external_score_margin_expanded_added_false_event_count": report[
+            "external_score_margin_expanded_added_false_event_count"
+        ],
+        "external_score_margin_expanded_false_nucleus_rate": report[
+            "external_score_margin_expanded_false_nucleus_rate"
+        ],
+        "external_score_margin_expanded_long_range_recall": report[
+            "external_score_margin_expanded_long_range_recall"
+        ],
+        "external_score_margin_expanded_long_range_recall_delta_vs_persistent": report[
+            "external_score_margin_expanded_long_range_recall_delta_vs_persistent"
+        ],
+        "external_score_margin_expanded_beats_matched_controls": report[
+            "external_score_margin_expanded_beats_matched_controls"
+        ],
+        "external_score_margin_expanded_beats_adversarial_calibrated_controls": report[
+            "external_score_margin_expanded_beats_adversarial_calibrated_controls"
+        ],
+        "external_score_margin_expanded_claim_allowed": report[
+            "external_score_margin_expanded_claim_allowed"
+        ],
         "external_rank_consistent_cluster_gated_native_positive_frontier_count": report[
             "external_rank_consistent_cluster_gated_native_positive_frontier_count"
         ],
@@ -776,6 +818,7 @@ def _build_report(
     external_cluster_gated_core_expanded: TraceLoopRun,
     external_rank_consistent_cluster_gated: TraceLoopRun,
     external_persistent_rank_consistent_cluster_gated: TraceLoopRun,
+    external_score_margin_expanded: TraceLoopRun,
     physical_baseline: TraceLoopRun,
     matched_controls: Sequence[TraceLoopRun],
     margin_gated_controls: Sequence[TraceLoopRun],
@@ -786,6 +829,8 @@ def _build_report(
     adversarial_rank_consistent_controls: Sequence[TraceLoopRun],
     persistent_rank_consistent_controls: Sequence[TraceLoopRun],
     adversarial_persistent_rank_consistent_controls: Sequence[TraceLoopRun],
+    score_margin_expanded_controls: Sequence[TraceLoopRun],
+    adversarial_score_margin_expanded_controls: Sequence[TraceLoopRun],
     oracle_positive_control: TraceLoopRun,
     frontier_rows: Sequence[Mapping[str, object]],
     recall_frontier_rows: Sequence[Mapping[str, object]],
@@ -1458,6 +1503,71 @@ def _build_report(
         adversarial_recall_frontier_summaries,
         "false_candidate_count",
     )
+    persistent_selected_ids = {
+        event.event_id
+        for event in external_persistent_rank_consistent_cluster_gated.selected_events
+    }
+    score_margin_expanded_metric = external_score_margin_expanded.metric
+    score_margin_expanded_selected_event_count = (
+        score_margin_expanded_metric.selected_event_count
+    )
+    score_margin_expanded_added_events = tuple(
+        event
+        for event in external_score_margin_expanded.selected_events
+        if event.event_id not in persistent_selected_ids
+    )
+    score_margin_expanded_max_matched_control_precision = _max_selected_metric(
+        score_margin_expanded_controls,
+        "contact_cluster_precision",
+    )
+    score_margin_expanded_max_matched_control_long_range_recall = (
+        _max_selected_metric(
+            score_margin_expanded_controls,
+            "long_range_contact_recall",
+        )
+    )
+    score_margin_expanded_max_adversarial_precision = _max_selected_metric(
+        adversarial_score_margin_expanded_controls,
+        "contact_cluster_precision",
+    )
+    score_margin_expanded_max_adversarial_long_range_recall = _max_selected_metric(
+        adversarial_score_margin_expanded_controls,
+        "long_range_contact_recall",
+    )
+    score_margin_expanded_noninferior_false_rate_vs_matched_controls = (
+        bool(score_margin_expanded_controls)
+        and score_margin_expanded_selected_event_count > 0
+        and all(
+            run.metric.selected_event_count == 0
+            or score_margin_expanded_metric.false_nucleus_rate
+            <= run.metric.false_nucleus_rate
+            for run in score_margin_expanded_controls
+        )
+    )
+    score_margin_expanded_noninferior_false_rate_vs_adversarial_controls = (
+        bool(adversarial_score_margin_expanded_controls)
+        and score_margin_expanded_selected_event_count > 0
+        and all(
+            run.metric.selected_event_count == 0
+            or score_margin_expanded_metric.false_nucleus_rate
+            <= run.metric.false_nucleus_rate
+            for run in adversarial_score_margin_expanded_controls
+        )
+    )
+    score_margin_expanded_beats_matched_controls = (
+        score_margin_expanded_noninferior_false_rate_vs_matched_controls
+        and score_margin_expanded_metric.contact_cluster_precision
+        > score_margin_expanded_max_matched_control_precision
+        and score_margin_expanded_metric.long_range_contact_recall
+        > score_margin_expanded_max_matched_control_long_range_recall
+    )
+    score_margin_expanded_beats_adversarial_calibrated_controls = (
+        score_margin_expanded_noninferior_false_rate_vs_adversarial_controls
+        and score_margin_expanded_metric.contact_cluster_precision
+        > score_margin_expanded_max_adversarial_precision
+        and score_margin_expanded_metric.long_range_contact_recall
+        > score_margin_expanded_max_adversarial_long_range_recall
+    )
     return {
         "report_kind": EXTERNAL_COUPLING_TRACE_LOOP_REPORT_KIND,
         "batch_id": EXTERNAL_EVOLUTIONARY_COUPLING_TRACE_LOOP_BATCH_ID,
@@ -1836,6 +1946,101 @@ def _build_report(
             persistent_hard_selector_score_probe_passed
         ),
         "external_persistent_rank_consistent_cluster_gated_claim_allowed": False,
+        "external_score_margin_expanded_selected_event_count": (
+            score_margin_expanded_selected_event_count
+        ),
+        "external_score_margin_expanded_added_event_count": (
+            len(score_margin_expanded_added_events)
+        ),
+        "external_score_margin_expanded_added_native_contact_count": (
+            sum(
+                event.native_contact_count_after_scoring
+                for event in score_margin_expanded_added_events
+            )
+        ),
+        "external_score_margin_expanded_added_native_long_range_contact_count": (
+            sum(
+                event.native_long_range_contact_count_after_scoring
+                for event in score_margin_expanded_added_events
+            )
+        ),
+        "external_score_margin_expanded_added_false_event_count": (
+            sum(
+                1
+                for event in score_margin_expanded_added_events
+                if event.native_contact_count_after_scoring == 0
+            )
+        ),
+        "external_score_margin_expanded_false_nucleus_rate": (
+            score_margin_expanded_metric.false_nucleus_rate
+            if score_margin_expanded_selected_event_count
+            else None
+        ),
+        "external_score_margin_expanded_cluster_precision": (
+            score_margin_expanded_metric.contact_cluster_precision
+            if score_margin_expanded_selected_event_count
+            else None
+        ),
+        "external_score_margin_expanded_long_range_recall": (
+            score_margin_expanded_metric.long_range_contact_recall
+            if score_margin_expanded_selected_event_count
+            else None
+        ),
+        "external_score_margin_expanded_long_range_recall_delta_vs_persistent": (
+            _rounded(
+                score_margin_expanded_metric.long_range_contact_recall
+                - external_persistent_rank_consistent_cluster_gated.metric.long_range_contact_recall
+            )
+        ),
+        "external_score_margin_expanded_max_matched_control_cluster_precision": (
+            score_margin_expanded_max_matched_control_precision
+        ),
+        "external_score_margin_expanded_max_matched_control_long_range_recall": (
+            score_margin_expanded_max_matched_control_long_range_recall
+        ),
+        "external_score_margin_expanded_cluster_precision_margin_vs_matched_controls": (
+            _rounded(
+                score_margin_expanded_metric.contact_cluster_precision
+                - score_margin_expanded_max_matched_control_precision
+            )
+        ),
+        "external_score_margin_expanded_long_range_recall_margin_vs_matched_controls": (
+            _rounded(
+                score_margin_expanded_metric.long_range_contact_recall
+                - score_margin_expanded_max_matched_control_long_range_recall
+            )
+        ),
+        "external_score_margin_expanded_max_adversarial_cluster_precision": (
+            score_margin_expanded_max_adversarial_precision
+        ),
+        "external_score_margin_expanded_max_adversarial_long_range_recall": (
+            score_margin_expanded_max_adversarial_long_range_recall
+        ),
+        "external_score_margin_expanded_cluster_precision_margin_vs_adversarial_controls": (
+            _rounded(
+                score_margin_expanded_metric.contact_cluster_precision
+                - score_margin_expanded_max_adversarial_precision
+            )
+        ),
+        "external_score_margin_expanded_long_range_recall_margin_vs_adversarial_controls": (
+            _rounded(
+                score_margin_expanded_metric.long_range_contact_recall
+                - score_margin_expanded_max_adversarial_long_range_recall
+            )
+        ),
+        "external_score_margin_expanded_noninferior_false_rate_vs_matched_controls": (
+            score_margin_expanded_noninferior_false_rate_vs_matched_controls
+        ),
+        "external_score_margin_expanded_noninferior_false_rate_vs_adversarial_controls": (
+            score_margin_expanded_noninferior_false_rate_vs_adversarial_controls
+        ),
+        "external_score_margin_expanded_beats_matched_controls": (
+            score_margin_expanded_beats_matched_controls
+        ),
+        "external_score_margin_expanded_beats_adversarial_calibrated_controls": (
+            score_margin_expanded_beats_adversarial_calibrated_controls
+        ),
+        "external_score_margin_expanded_claim_allowed": False,
         "external_persistent_rank_consistent_cluster_gated_recovery_diagnostic_kind": (
             "persistent_trace_recovery_after_rank_consistent_gate_v0"
         ),
@@ -2054,6 +2259,21 @@ def render_external_coupling_trace_loop_dashboard(
         "external_persistent_rank_consistent_cluster_gated_probe_passed",
         "external_persistent_rank_consistent_cluster_gated_selector_score_probe_passed",
         "external_persistent_rank_consistent_cluster_gated_hard_selector_score_probe_passed",
+        "external_score_margin_expanded_selected_event_count",
+        "external_score_margin_expanded_added_event_count",
+        "external_score_margin_expanded_added_native_long_range_contact_count",
+        "external_score_margin_expanded_added_false_event_count",
+        "external_score_margin_expanded_false_nucleus_rate",
+        "external_score_margin_expanded_cluster_precision",
+        "external_score_margin_expanded_long_range_recall",
+        "external_score_margin_expanded_long_range_recall_delta_vs_persistent",
+        "external_score_margin_expanded_cluster_precision_margin_vs_matched_controls",
+        "external_score_margin_expanded_long_range_recall_margin_vs_matched_controls",
+        "external_score_margin_expanded_cluster_precision_margin_vs_adversarial_controls",
+        "external_score_margin_expanded_long_range_recall_margin_vs_adversarial_controls",
+        "external_score_margin_expanded_beats_matched_controls",
+        "external_score_margin_expanded_beats_adversarial_calibrated_controls",
+        "external_score_margin_expanded_claim_allowed",
         "external_persistent_rank_consistent_cluster_gated_recovered_event_count",
         "external_persistent_rank_consistent_cluster_gated_recovered_native_contact_count",
         "external_persistent_rank_consistent_cluster_gated_recovered_native_long_range_contact_count",
@@ -2205,6 +2425,13 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
             control_kind="external_real_persistent_rank_consistent_cluster_gated",
         )
     )
+    external_score_margin_expanded = _run_trace_loop_selector_from_context(
+        context=external_context,
+        dataset=import_result.dataset,
+        selector_name="external_score_margin_expanded",
+        selection_mode="coupling_trace_loop_score_margin_expanded",
+        control_kind="external_real_score_margin_expanded",
+    )
     physical_baseline = _run_trace_loop_selector_from_context(
         context=external_context,
         dataset=import_result.dataset,
@@ -2333,6 +2560,26 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
         )
         for name, control in adversarial_controls.items()
     )
+    score_margin_expanded_control_runs = tuple(
+        _run_trace_loop_selector_from_context(
+            context=control_contexts[name],
+            dataset=control.dataset,
+            selector_name=f"external_score_margin_expanded_{name}",
+            selection_mode="coupling_trace_loop_score_margin_expanded",
+            control_kind=control.control_kind,
+        )
+        for name, control in controls.items()
+    )
+    adversarial_score_margin_expanded_control_runs = tuple(
+        _run_trace_loop_selector_from_context(
+            context=adversarial_control_contexts[name],
+            dataset=control.dataset,
+            selector_name=f"external_score_margin_expanded_{name}",
+            selection_mode="coupling_trace_loop_score_margin_expanded",
+            control_kind=control.control_kind,
+        )
+        for name, control in adversarial_controls.items()
+    )
     oracle_context = build_coupling_nucleus_context(
         rows=rows,
         coupling_dataset=oracle_dataset,
@@ -2352,6 +2599,7 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
         external_cluster_gated_core_expanded,
         external_rank_consistent_cluster_gated,
         external_persistent_rank_consistent_cluster_gated,
+        external_score_margin_expanded,
         physical_baseline,
         *matched_control_runs,
         *margin_gated_control_runs,
@@ -2362,6 +2610,8 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
         *adversarial_rank_consistent_control_runs,
         *persistent_rank_consistent_cluster_gated_control_runs,
         *adversarial_persistent_rank_consistent_control_runs,
+        *score_margin_expanded_control_runs,
+        *adversarial_score_margin_expanded_control_runs,
         oracle_positive_control,
     )
     frontier_rows = rank_consistent_frontier_rows(
@@ -2421,6 +2671,7 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
         external_persistent_rank_consistent_cluster_gated=(
             external_persistent_rank_consistent_cluster_gated
         ),
+        external_score_margin_expanded=external_score_margin_expanded,
         physical_baseline=physical_baseline,
         matched_controls=matched_control_runs,
         margin_gated_controls=margin_gated_control_runs,
@@ -2440,6 +2691,10 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
         ),
         adversarial_persistent_rank_consistent_controls=(
             adversarial_persistent_rank_consistent_control_runs
+        ),
+        score_margin_expanded_controls=score_margin_expanded_control_runs,
+        adversarial_score_margin_expanded_controls=(
+            adversarial_score_margin_expanded_control_runs
         ),
         oracle_positive_control=oracle_positive_control,
         frontier_rows=frontier_rows,
