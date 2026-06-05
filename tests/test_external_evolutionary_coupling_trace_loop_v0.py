@@ -18,7 +18,9 @@ from build_real_external_coupling_file_v0 import (  # noqa: E402
     build_real_external_coupling_file_v0,
 )
 from pharmacotopology.folding_coupling_negative_controls import (  # noqa: E402
+    EXTERNAL_ADVERSARIAL_CALIBRATED_CONTROL_NAMES,
     EXTERNAL_COUPLING_CONTROL_NAMES,
+    generate_adversarial_calibrated_external_coupling_controls,
     generate_external_coupling_negative_controls,
 )
 from pharmacotopology.folding_external_coupling_importer import (  # noqa: E402
@@ -274,6 +276,30 @@ def test_negative_controls_preserve_counts_and_clear_taint(tmp_path) -> None:
         assert control.dataset.raw_sequence_exposed is False
 
 
+def test_adversarial_calibrated_controls_repair_provenance_metadata(tmp_path) -> None:
+    rows = load_real_coordinate_visual_rows(BENCHMARK_8)
+    external_file = _write_external_fixture(tmp_path / "external.json")
+    result = import_external_coupling_dataset(
+        rows=rows,
+        external_coupling_file=external_file,
+    )
+    controls = generate_adversarial_calibrated_external_coupling_controls(
+        rows=rows,
+        dataset=result.dataset,
+    )
+
+    assert set(controls) == set(EXTERNAL_ADVERSARIAL_CALIBRATED_CONTROL_NAMES)
+    for control in controls.values():
+        assert control.constraint_count == len(result.dataset.constraints)
+        assert control.dataset.coordinate_truth_tainted is False
+        assert control.dataset.native_truth_tainted is False
+        assert all(constraint.rank > 0 for constraint in control.dataset.constraints)
+        assert all(
+            constraint.apc_corrected_score == constraint.confidence
+            for constraint in control.dataset.constraints
+        )
+
+
 def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> None:
     external_file = _write_external_fixture(tmp_path / "external.json")
     outputs = {
@@ -324,7 +350,12 @@ def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> Non
     assert "external_core_expanded_beats_matched_controls" in report
     assert "external_cluster_gated_core_expanded_beats_matched_controls" in report
     assert "external_rank_consistent_cluster_gated_beats_matched_controls" in report
+    assert (
+        "external_rank_consistent_cluster_gated_beats_adversarial_calibrated_controls"
+        in report
+    )
     assert "external_rank_consistent_cluster_gated_probe_passed" in report
+    assert "hard_adversarial_calibrated_probe_passed" in report
     assert report["external_margin_gated_claim_allowed"] is False
     assert report["external_top_rank_gated_claim_allowed"] is False
     assert report["external_core_expanded_claim_allowed"] is False
@@ -334,8 +365,8 @@ def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> Non
     assert report["folding_problem_solved"] is False
     assert report["claim_allowed"] is False
     assert certificate["claim_allowed"] is False
-    assert len(selectors) == 38
-    assert len(controls) == 38
+    assert len(selectors) == 40
+    assert len(controls) == 40
     assert len(row_status) == 8
     assert "External Evolutionary Coupling Trace Loop V0" in dashboard
 

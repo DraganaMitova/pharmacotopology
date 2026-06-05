@@ -10,6 +10,7 @@
   "external_margin_gated_beats_matched_controls": true,
   "external_margin_gated_claim_allowed": false,
   "external_probe_passed": true,
+  "external_rank_consistent_cluster_gated_beats_adversarial_calibrated_controls": true,
   "external_rank_consistent_cluster_gated_beats_matched_controls": true,
   "external_rank_consistent_cluster_gated_claim_allowed": false,
   "external_real_beats_matched_controls": false,
@@ -19,6 +20,7 @@
   "external_top_rank_gated_beats_matched_controls": true,
   "external_top_rank_gated_claim_allowed": false,
   "folding_problem_solved": false,
+  "hard_adversarial_calibrated_probe_passed": true,
   "mechanism_discovery_claim_allowed": false,
   "output_artifacts": [
     "external_coupling_trace_loop_report.json",

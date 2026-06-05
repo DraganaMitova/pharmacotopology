@@ -14,6 +14,9 @@ from pharmacotopology.folding_real_coordinate_visual_benchmark import (
 
 
 COUPLING_NEGATIVE_CONTROL_KIND = "external_coupling_negative_controls_v0"
+COUPLING_ADVERSARIAL_CALIBRATED_CONTROL_KIND = (
+    "external_coupling_adversarial_calibrated_controls_v0"
+)
 
 EXTERNAL_COUPLING_CONTROL_NAMES = (
     "external_shuffled_same_row_same_separation",
@@ -21,6 +24,11 @@ EXTERNAL_COUPLING_CONTROL_NAMES = (
     "external_cross_row_swapped",
     "external_random_long_range_same_count",
     "external_low_confidence_tail",
+)
+
+EXTERNAL_ADVERSARIAL_CALIBRATED_CONTROL_NAMES = (
+    "external_calibrated_confidence_permuted",
+    "external_calibrated_cross_row_swapped",
 )
 
 
@@ -245,6 +253,68 @@ def _low_confidence_tail(dataset: CouplingDataset) -> tuple[CouplingConstraint, 
     )
 
 
+def _recalibrate_rank_and_score_metadata(
+    *,
+    rows: Sequence[RealCoordinateVisualRow],
+    constraints: Sequence[CouplingConstraint],
+) -> tuple[CouplingConstraint, ...]:
+    row_length_by_id = {row.row_id: row.sequence_length for row in rows}
+    grouped: dict[str, list[CouplingConstraint]] = {
+        row.row_id: [] for row in rows
+    }
+    for constraint in constraints:
+        grouped.setdefault(constraint.row_id, []).append(constraint)
+
+    output: list[CouplingConstraint] = []
+    for row_id, row_constraints in grouped.items():
+        if not row_constraints:
+            continue
+        ranked = sorted(
+            row_constraints,
+            key=lambda constraint: (
+                -constraint.confidence,
+                constraint.i,
+                constraint.j,
+                constraint.constraint_id,
+            ),
+        )
+        row_length = row_length_by_id[row_id]
+        for rank, constraint in enumerate(ranked, start=1):
+            output.append(
+                replace(
+                    constraint,
+                    raw_score=round(constraint.confidence, 6),
+                    apc_corrected_score=round(constraint.confidence, 6),
+                    rank=rank,
+                    rank_fraction=round(rank / row_length, 6),
+                    coordinate_truth_used_to_build_constraint=False,
+                    native_truth_used_before_coupling_selection=False,
+                    structure_model_used=False,
+                )
+            )
+    return tuple(output)
+
+
+def _adversarial_calibrated_confidence_permuted(
+    rows: Sequence[RealCoordinateVisualRow],
+    dataset: CouplingDataset,
+) -> tuple[CouplingConstraint, ...]:
+    return _recalibrate_rank_and_score_metadata(
+        rows=rows,
+        constraints=_confidence_permuted(dataset),
+    )
+
+
+def _adversarial_calibrated_cross_row_swapped(
+    rows: Sequence[RealCoordinateVisualRow],
+    dataset: CouplingDataset,
+) -> tuple[CouplingConstraint, ...]:
+    return _recalibrate_rank_and_score_metadata(
+        rows=rows,
+        constraints=_cross_row_swapped(rows, dataset),
+    )
+
+
 def generate_external_coupling_negative_controls(
     *,
     rows: Sequence[RealCoordinateVisualRow],
@@ -267,6 +337,30 @@ def generate_external_coupling_negative_controls(
         name: CouplingControlDataset(
             control_name=name,
             control_kind=COUPLING_NEGATIVE_CONTROL_KIND,
+            dataset=_with_constraints(dataset, constraints),
+            constraint_count=len(constraints),
+        )
+        for name, constraints in builders.items()
+    }
+
+
+def generate_adversarial_calibrated_external_coupling_controls(
+    *,
+    rows: Sequence[RealCoordinateVisualRow],
+    dataset: CouplingDataset,
+) -> Mapping[str, CouplingControlDataset]:
+    builders = {
+        "external_calibrated_confidence_permuted": (
+            _adversarial_calibrated_confidence_permuted(rows, dataset)
+        ),
+        "external_calibrated_cross_row_swapped": (
+            _adversarial_calibrated_cross_row_swapped(rows, dataset)
+        ),
+    }
+    return {
+        name: CouplingControlDataset(
+            control_name=name,
+            control_kind=COUPLING_ADVERSARIAL_CALIBRATED_CONTROL_KIND,
             dataset=_with_constraints(dataset, constraints),
             constraint_count=len(constraints),
         )

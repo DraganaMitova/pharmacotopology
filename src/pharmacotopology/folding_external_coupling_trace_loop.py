@@ -8,7 +8,9 @@ from typing import Mapping, Optional, Sequence
 
 from pharmacotopology.artifact_io import write_csv_rows
 from pharmacotopology.folding_coupling_negative_controls import (
+    COUPLING_ADVERSARIAL_CALIBRATED_CONTROL_KIND,
     CouplingControlDataset,
+    generate_adversarial_calibrated_external_coupling_controls,
     generate_external_coupling_negative_controls,
 )
 from pharmacotopology.folding_coupling_nucleus_selector import (
@@ -58,6 +60,10 @@ MATCHED_CONTROL_NAMES = (
     "external_low_confidence_tail",
 )
 NEGATIVE_CONTROL_KIND = "external_coupling_negative_controls_v0"
+ADVERSARIAL_CALIBRATED_CONTROL_KIND = (
+    COUPLING_ADVERSARIAL_CALIBRATED_CONTROL_KIND
+)
+ADVERSARIAL_ENRICHMENT_MIN_SELECTED_EVENTS = 4
 
 
 @dataclass(frozen=True)
@@ -142,6 +148,7 @@ def _controls_from_runs(runs: Sequence[TraceLoopRun]) -> list[dict[str, object]]
         row["negative_control"] = (
             run.selector_name in MATCHED_CONTROL_NAMES
             or run.control_kind == NEGATIVE_CONTROL_KIND
+            or run.control_kind == ADVERSARIAL_CALIBRATED_CONTROL_KIND
         )
         rows.append(row)
     return rows
@@ -215,6 +222,9 @@ def _certificate(report: Mapping[str, object]) -> dict[str, object]:
         "external_rank_consistent_cluster_gated_beats_matched_controls": report[
             "external_rank_consistent_cluster_gated_beats_matched_controls"
         ],
+        "external_rank_consistent_cluster_gated_beats_adversarial_calibrated_controls": report[
+            "external_rank_consistent_cluster_gated_beats_adversarial_calibrated_controls"
+        ],
         "external_margin_gated_claim_allowed": report[
             "external_margin_gated_claim_allowed"
         ],
@@ -229,6 +239,9 @@ def _certificate(report: Mapping[str, object]) -> dict[str, object]:
         ],
         "external_rank_consistent_cluster_gated_claim_allowed": report[
             "external_rank_consistent_cluster_gated_claim_allowed"
+        ],
+        "hard_adversarial_calibrated_probe_passed": report[
+            "hard_adversarial_calibrated_probe_passed"
         ],
         "claim_allowed": report["claim_allowed"],
         "mechanism_discovery_claim_allowed": report[
@@ -256,6 +269,7 @@ def _build_report(
     core_expanded_controls: Sequence[TraceLoopRun],
     cluster_gated_core_expanded_controls: Sequence[TraceLoopRun],
     rank_consistent_cluster_gated_controls: Sequence[TraceLoopRun],
+    adversarial_rank_consistent_controls: Sequence[TraceLoopRun],
     oracle_positive_control: TraceLoopRun,
     source_benchmark_file: Path,
     external_coupling_file: Path,
@@ -560,6 +574,48 @@ def _build_report(
         and external_rank_consistent_cluster_gated.metric.long_range_contact_recall
         >= oracle_recall_floor
     )
+    adversarial_enrichments = [
+        run.metric.real_vs_decoy_coupling_enrichment_ratio
+        for run in adversarial_rank_consistent_controls
+        if run.metric.selected_event_count >= ADVERSARIAL_ENRICHMENT_MIN_SELECTED_EVENTS
+    ]
+    max_adversarial_enrichment = (
+        max(adversarial_enrichments) if adversarial_enrichments else 0.0
+    )
+    rank_consistent_vs_adversarial_enrichment_ratio: Optional[float] = (
+        _rounded(
+            external_rank_consistent_cluster_gated.metric.real_vs_decoy_coupling_enrichment_ratio
+            / max_adversarial_enrichment
+        )
+        if rank_consistent_selected_event_count > 0 and max_adversarial_enrichment
+        else None
+    )
+    rank_consistent_beats_adversarial_calibrated_controls = (
+        bool(adversarial_rank_consistent_controls)
+        and rank_consistent_selected_event_count > 0
+        and all(
+            run.metric.selected_event_count == 0
+            or external_rank_consistent_cluster_gated.metric.false_nucleus_rate
+            < run.metric.false_nucleus_rate
+            for run in adversarial_rank_consistent_controls
+        )
+        and all(
+            run.metric.selected_event_count == 0
+            or external_rank_consistent_cluster_gated.metric.contact_cluster_precision
+            > run.metric.contact_cluster_precision
+            for run in adversarial_rank_consistent_controls
+        )
+        and all(
+            run.metric.selected_event_count == 0
+            or external_rank_consistent_cluster_gated.metric.long_range_contact_recall
+            > run.metric.long_range_contact_recall
+            for run in adversarial_rank_consistent_controls
+        )
+    )
+    adversarial_enrichment_ratio_meets = (
+        rank_consistent_vs_adversarial_enrichment_ratio is not None
+        and rank_consistent_vs_adversarial_enrichment_ratio > 1.0
+    )
     claim_mode_failures = coupling_claim_mode_validation_failures(
         import_result.dataset
     )
@@ -586,6 +642,11 @@ def _build_report(
         and rank_consistent_meets_oracle_recall_floor
         and rank_consistent_enrichment_ratio_meets
         and not claim_mode_failures
+    )
+    hard_adversarial_calibrated_probe_passed = (
+        rank_consistent_acceptance_criteria_met
+        and rank_consistent_beats_adversarial_calibrated_controls
+        and adversarial_enrichment_ratio_meets
     )
     external_probe_passed = (
         acceptance_criteria_met or rank_consistent_acceptance_criteria_met
@@ -624,6 +685,9 @@ def _build_report(
         "external_real_probe_passed": acceptance_criteria_met,
         "external_rank_consistent_cluster_gated_probe_passed": (
             rank_consistent_acceptance_criteria_met
+        ),
+        "hard_adversarial_calibrated_probe_passed": (
+            hard_adversarial_calibrated_probe_passed
         ),
         "external_couplings_available_rows": available_rows,
         "external_rows_rejected_low_depth": rejected_low_depth,
@@ -858,6 +922,12 @@ def _build_report(
         "external_rank_consistent_cluster_gated_vs_control_enrichment_ratio": (
             rank_consistent_vs_control_enrichment_ratio
         ),
+        "external_rank_consistent_cluster_gated_vs_adversarial_calibrated_enrichment_ratio": (
+            rank_consistent_vs_adversarial_enrichment_ratio
+        ),
+        "adversarial_calibrated_enrichment_min_selected_events": (
+            ADVERSARIAL_ENRICHMENT_MIN_SELECTED_EVENTS
+        ),
         "external_rank_consistent_cluster_gated_mean_selected_coupling_selectivity_score": (
             external_rank_consistent_cluster_gated.metric.mean_selected_coupling_selectivity_score
         ),
@@ -881,6 +951,9 @@ def _build_report(
         ),
         "external_rank_consistent_cluster_gated_beats_matched_controls": (
             rank_consistent_beats_matched_controls
+        ),
+        "external_rank_consistent_cluster_gated_beats_adversarial_calibrated_controls": (
+            rank_consistent_beats_adversarial_calibrated_controls
         ),
         "external_rank_consistent_cluster_gated_meets_oracle_recall_floor": (
             rank_consistent_meets_oracle_recall_floor
@@ -959,12 +1032,15 @@ def render_external_coupling_trace_loop_dashboard(
         "external_rank_consistent_cluster_gated_cluster_precision",
         "external_rank_consistent_cluster_gated_long_range_recall",
         "external_rank_consistent_cluster_gated_vs_control_enrichment_ratio",
+        "external_rank_consistent_cluster_gated_vs_adversarial_calibrated_enrichment_ratio",
         "external_rank_consistent_cluster_gated_mean_selected_coupling_selectivity_score",
         "external_rank_consistent_cluster_gated_max_control_mean_selected_coupling_selectivity_score",
         "external_rank_consistent_cluster_gated_mean_coupling_decoy_selectivity_margin",
         "external_rank_consistent_cluster_gated_max_control_mean_coupling_decoy_selectivity_margin",
         "external_rank_consistent_cluster_gated_beats_matched_controls",
+        "external_rank_consistent_cluster_gated_beats_adversarial_calibrated_controls",
         "external_rank_consistent_cluster_gated_probe_passed",
+        "hard_adversarial_calibrated_probe_passed",
         "mechanism_discovery_claim_allowed",
         "folding_problem_solved",
     )
@@ -1088,6 +1164,12 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
             dataset=import_result.dataset,
         )
     )
+    adversarial_controls: Mapping[str, CouplingControlDataset] = (
+        generate_adversarial_calibrated_external_coupling_controls(
+            rows=rows,
+            dataset=import_result.dataset,
+        )
+    )
     control_contexts = {
         name: build_coupling_nucleus_context(
             rows=rows,
@@ -1095,6 +1177,14 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
             physical_context=physical_context,
         )
         for name, control in controls.items()
+    }
+    adversarial_control_contexts = {
+        name: build_coupling_nucleus_context(
+            rows=rows,
+            coupling_dataset=control.dataset,
+            physical_context=physical_context,
+        )
+        for name, control in adversarial_controls.items()
     }
     matched_control_runs = tuple(
         _run_trace_loop_selector_from_context(
@@ -1155,6 +1245,16 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
         )
         for name, control in controls.items()
     )
+    adversarial_rank_consistent_control_runs = tuple(
+        _run_trace_loop_selector_from_context(
+            context=adversarial_control_contexts[name],
+            dataset=control.dataset,
+            selector_name=f"external_rank_consistent_cluster_gated_{name}",
+            selection_mode="coupling_trace_loop_rank_consistent_cluster_gated",
+            control_kind=control.control_kind,
+        )
+        for name, control in adversarial_controls.items()
+    )
     oracle_context = build_coupling_nucleus_context(
         rows=rows,
         coupling_dataset=oracle_dataset,
@@ -1180,6 +1280,7 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
         *core_expanded_control_runs,
         *cluster_gated_core_expanded_control_runs,
         *rank_consistent_cluster_gated_control_runs,
+        *adversarial_rank_consistent_control_runs,
         oracle_positive_control,
     )
     report = _build_report(
@@ -1203,6 +1304,9 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
         ),
         rank_consistent_cluster_gated_controls=(
             rank_consistent_cluster_gated_control_runs
+        ),
+        adversarial_rank_consistent_controls=(
+            adversarial_rank_consistent_control_runs
         ),
         oracle_positive_control=oracle_positive_control,
         source_benchmark_file=benchmark_file,

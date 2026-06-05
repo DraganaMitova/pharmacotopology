@@ -36,4 +36,6 @@ external_rank_consistent_cluster_gated_external_confidence_permuted,0,0.0,0.0,0.
 external_rank_consistent_cluster_gated_external_cross_row_swapped,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,False,False,False,False
 external_rank_consistent_cluster_gated_external_random_long_range_same_count,26,0.472917,0.055208,0.134624,0.186031,1.292849,0.807692,0.572916,0.443142,0.129774,0.51965,False,False,False,False
 external_rank_consistent_cluster_gated_external_low_confidence_tail,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,False,False,False,False
+external_rank_consistent_cluster_gated_external_calibrated_confidence_permuted,17,0.025,0.077734,0.063527,0.066099,1.704784,1.0,0.531317,0.311663,0.219654,0.523709,False,False,False,False
+external_rank_consistent_cluster_gated_external_calibrated_cross_row_swapped,1,0.125,0.0,0.0,0.007353,2.168011,1.0,0.676389,0.311986,0.364403,0.584779,False,False,False,False
 oracle_coordinate_positive_control,54,0.0,0.164128,0.397896,0.466536,1.693887,0.888889,0.722095,0.426295,0.2958,0.633603,True,True,True,False
