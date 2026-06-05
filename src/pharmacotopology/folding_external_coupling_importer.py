@@ -483,6 +483,10 @@ def import_external_coupling_dataset(
                     audit.native_truth_used_before_coupling_selection
                 ),
                 structure_model_used=audit.structure_model_used,
+                raw_score=audit.raw_score,
+                apc_corrected_score=audit.apc_corrected_score,
+                rank=audit.rank,
+                rank_fraction=audit.rank_fraction,
             )
         )
 

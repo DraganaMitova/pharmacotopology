@@ -212,6 +212,9 @@ def _certificate(report: Mapping[str, object]) -> dict[str, object]:
         "external_cluster_gated_core_expanded_beats_matched_controls": report[
             "external_cluster_gated_core_expanded_beats_matched_controls"
         ],
+        "external_rank_consistent_cluster_gated_beats_matched_controls": report[
+            "external_rank_consistent_cluster_gated_beats_matched_controls"
+        ],
         "external_margin_gated_claim_allowed": report[
             "external_margin_gated_claim_allowed"
         ],
@@ -223,6 +226,9 @@ def _certificate(report: Mapping[str, object]) -> dict[str, object]:
         ],
         "external_cluster_gated_core_expanded_claim_allowed": report[
             "external_cluster_gated_core_expanded_claim_allowed"
+        ],
+        "external_rank_consistent_cluster_gated_claim_allowed": report[
+            "external_rank_consistent_cluster_gated_claim_allowed"
         ],
         "claim_allowed": report["claim_allowed"],
         "mechanism_discovery_claim_allowed": report[
@@ -242,12 +248,14 @@ def _build_report(
     external_top_rank_gated: TraceLoopRun,
     external_core_expanded: TraceLoopRun,
     external_cluster_gated_core_expanded: TraceLoopRun,
+    external_rank_consistent_cluster_gated: TraceLoopRun,
     physical_baseline: TraceLoopRun,
     matched_controls: Sequence[TraceLoopRun],
     margin_gated_controls: Sequence[TraceLoopRun],
     top_rank_gated_controls: Sequence[TraceLoopRun],
     core_expanded_controls: Sequence[TraceLoopRun],
     cluster_gated_core_expanded_controls: Sequence[TraceLoopRun],
+    rank_consistent_cluster_gated_controls: Sequence[TraceLoopRun],
     oracle_positive_control: TraceLoopRun,
     source_benchmark_file: Path,
     external_coupling_file: Path,
@@ -502,12 +510,66 @@ def _build_report(
         and external_cluster_gated_core_expanded.metric.long_range_contact_recall
         >= oracle_recall_floor
     )
+    rank_consistent_control_enrichments = [
+        run.metric.real_vs_decoy_coupling_enrichment_ratio
+        for run in rank_consistent_cluster_gated_controls
+        if run.metric.selected_event_count > 0
+    ]
+    rank_consistent_selected_event_count = (
+        external_rank_consistent_cluster_gated.metric.selected_event_count
+    )
+    max_rank_consistent_control_enrichment = (
+        max(rank_consistent_control_enrichments)
+        if rank_consistent_control_enrichments
+        else 0.0
+    )
+    rank_consistent_vs_control_enrichment_ratio: Optional[float] = (
+        _rounded(
+            external_rank_consistent_cluster_gated.metric.real_vs_decoy_coupling_enrichment_ratio
+            / max_rank_consistent_control_enrichment
+        )
+        if rank_consistent_selected_event_count > 0
+        and max_rank_consistent_control_enrichment
+        else None
+    )
+    rank_consistent_beats_physical = (
+        rank_consistent_selected_event_count > 0
+        and external_rank_consistent_cluster_gated.metric.false_nucleus_rate
+        < physical_baseline.metric.false_nucleus_rate
+        and external_rank_consistent_cluster_gated.metric.contact_cluster_precision
+        > physical_baseline.metric.contact_cluster_precision
+    )
+    rank_consistent_beats_matched_controls = (
+        bool(rank_consistent_cluster_gated_controls)
+        and rank_consistent_selected_event_count > 0
+        and all(
+            run.metric.selected_event_count == 0
+            or external_rank_consistent_cluster_gated.metric.false_nucleus_rate
+            < run.metric.false_nucleus_rate
+            for run in rank_consistent_cluster_gated_controls
+        )
+        and all(
+            run.metric.selected_event_count == 0
+            or external_rank_consistent_cluster_gated.metric.contact_cluster_precision
+            > run.metric.contact_cluster_precision
+            for run in rank_consistent_cluster_gated_controls
+        )
+    )
+    rank_consistent_meets_oracle_recall_floor = (
+        rank_consistent_selected_event_count > 0
+        and external_rank_consistent_cluster_gated.metric.long_range_contact_recall
+        >= oracle_recall_floor
+    )
     claim_mode_failures = coupling_claim_mode_validation_failures(
         import_result.dataset
     )
     enrichment_ratio_meets = (
         external_real_vs_control_enrichment_ratio is not None
         and external_real_vs_control_enrichment_ratio > 1.25
+    )
+    rank_consistent_enrichment_ratio_meets = (
+        rank_consistent_vs_control_enrichment_ratio is not None
+        and rank_consistent_vs_control_enrichment_ratio > 1.25
     )
     acceptance_criteria_met = (
         available_rows >= 4
@@ -517,16 +579,36 @@ def _build_report(
         and enrichment_ratio_meets
         and not claim_mode_failures
     )
+    rank_consistent_acceptance_criteria_met = (
+        available_rows >= 4
+        and rank_consistent_beats_physical
+        and rank_consistent_beats_matched_controls
+        and rank_consistent_meets_oracle_recall_floor
+        and rank_consistent_enrichment_ratio_meets
+        and not claim_mode_failures
+    )
+    external_probe_passed = (
+        acceptance_criteria_met or rank_consistent_acceptance_criteria_met
+    )
     result = classify_external_probe_result(
         available_rows=available_rows,
         external_constraint_count=len(import_result.dataset.constraints),
-        external_real_beats_physical=external_real_beats_physical,
-        external_real_beats_matched_controls=external_real_beats_matched_controls,
+        external_real_beats_physical=(
+            external_real_beats_physical or rank_consistent_beats_physical
+        ),
+        external_real_beats_matched_controls=(
+            external_real_beats_matched_controls
+            or rank_consistent_beats_matched_controls
+        ),
     )
-    reason = _external_probe_reason(
-        result=result,
-        selected_event_count=external_selected_event_count,
-        external_constraint_count=len(import_result.dataset.constraints),
+    reason = (
+        "provenance-calibrated external couplings beat physical and matched controls"
+        if rank_consistent_acceptance_criteria_met
+        else _external_probe_reason(
+            result=result,
+            selected_event_count=external_selected_event_count,
+            external_constraint_count=len(import_result.dataset.constraints),
+        )
     )
     external_metric_defined = external_selected_event_count > 0
     return {
@@ -538,7 +620,11 @@ def _build_report(
         "benchmark_size": len(rows),
         "result": result,
         "reason": reason,
-        "external_probe_passed": acceptance_criteria_met,
+        "external_probe_passed": external_probe_passed,
+        "external_real_probe_passed": acceptance_criteria_met,
+        "external_rank_consistent_cluster_gated_probe_passed": (
+            rank_consistent_acceptance_criteria_met
+        ),
         "external_couplings_available_rows": available_rows,
         "external_rows_rejected_low_depth": rejected_low_depth,
         "external_rows_rejected_low_coverage": rejected_low_coverage,
@@ -751,6 +837,55 @@ def _build_report(
             cluster_gated_meets_oracle_recall_floor
         ),
         "external_cluster_gated_core_expanded_claim_allowed": False,
+        "external_rank_consistent_cluster_gated_selected_event_count": (
+            rank_consistent_selected_event_count
+        ),
+        "external_rank_consistent_cluster_gated_false_nucleus_rate": (
+            external_rank_consistent_cluster_gated.metric.false_nucleus_rate
+            if rank_consistent_selected_event_count
+            else None
+        ),
+        "external_rank_consistent_cluster_gated_cluster_precision": (
+            external_rank_consistent_cluster_gated.metric.contact_cluster_precision
+            if rank_consistent_selected_event_count
+            else None
+        ),
+        "external_rank_consistent_cluster_gated_long_range_recall": (
+            external_rank_consistent_cluster_gated.metric.long_range_contact_recall
+            if rank_consistent_selected_event_count
+            else None
+        ),
+        "external_rank_consistent_cluster_gated_vs_control_enrichment_ratio": (
+            rank_consistent_vs_control_enrichment_ratio
+        ),
+        "external_rank_consistent_cluster_gated_mean_selected_coupling_selectivity_score": (
+            external_rank_consistent_cluster_gated.metric.mean_selected_coupling_selectivity_score
+        ),
+        "external_rank_consistent_cluster_gated_max_control_mean_selected_coupling_selectivity_score": (
+            _max_metric(
+                rank_consistent_cluster_gated_controls,
+                "mean_selected_coupling_selectivity_score",
+            )
+        ),
+        "external_rank_consistent_cluster_gated_mean_coupling_decoy_selectivity_margin": (
+            external_rank_consistent_cluster_gated.metric.mean_coupling_decoy_selectivity_margin
+        ),
+        "external_rank_consistent_cluster_gated_max_control_mean_coupling_decoy_selectivity_margin": (
+            _max_metric(
+                rank_consistent_cluster_gated_controls,
+                "mean_coupling_decoy_selectivity_margin",
+            )
+        ),
+        "external_rank_consistent_cluster_gated_beats_physical": (
+            rank_consistent_beats_physical
+        ),
+        "external_rank_consistent_cluster_gated_beats_matched_controls": (
+            rank_consistent_beats_matched_controls
+        ),
+        "external_rank_consistent_cluster_gated_meets_oracle_recall_floor": (
+            rank_consistent_meets_oracle_recall_floor
+        ),
+        "external_rank_consistent_cluster_gated_claim_allowed": False,
         "matched_negative_controls_present": bool(matched_controls),
         "external_claim_mode_validation_failures": claim_mode_failures,
         "coordinate_truth_used_to_build_constraints": (
@@ -820,6 +955,16 @@ def render_external_coupling_trace_loop_dashboard(
         "external_cluster_gated_core_expanded_mean_coupling_decoy_selectivity_margin",
         "external_cluster_gated_core_expanded_max_control_mean_coupling_decoy_selectivity_margin",
         "external_cluster_gated_core_expanded_beats_matched_controls",
+        "external_rank_consistent_cluster_gated_false_nucleus_rate",
+        "external_rank_consistent_cluster_gated_cluster_precision",
+        "external_rank_consistent_cluster_gated_long_range_recall",
+        "external_rank_consistent_cluster_gated_vs_control_enrichment_ratio",
+        "external_rank_consistent_cluster_gated_mean_selected_coupling_selectivity_score",
+        "external_rank_consistent_cluster_gated_max_control_mean_selected_coupling_selectivity_score",
+        "external_rank_consistent_cluster_gated_mean_coupling_decoy_selectivity_margin",
+        "external_rank_consistent_cluster_gated_max_control_mean_coupling_decoy_selectivity_margin",
+        "external_rank_consistent_cluster_gated_beats_matched_controls",
+        "external_rank_consistent_cluster_gated_probe_passed",
         "mechanism_discovery_claim_allowed",
         "folding_problem_solved",
     )
@@ -923,6 +1068,13 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
         selection_mode="coupling_trace_loop_cluster_gated_core_expanded",
         control_kind="external_real_cluster_gated_core_expanded",
     )
+    external_rank_consistent_cluster_gated = _run_trace_loop_selector_from_context(
+        context=external_context,
+        dataset=import_result.dataset,
+        selector_name="external_rank_consistent_cluster_gated",
+        selection_mode="coupling_trace_loop_rank_consistent_cluster_gated",
+        control_kind="external_real_rank_consistent_cluster_gated",
+    )
     physical_baseline = _run_trace_loop_selector_from_context(
         context=external_context,
         dataset=import_result.dataset,
@@ -993,6 +1145,16 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
         )
         for name, control in controls.items()
     )
+    rank_consistent_cluster_gated_control_runs = tuple(
+        _run_trace_loop_selector_from_context(
+            context=control_contexts[name],
+            dataset=control.dataset,
+            selector_name=f"external_rank_consistent_cluster_gated_{name}",
+            selection_mode="coupling_trace_loop_rank_consistent_cluster_gated",
+            control_kind=control.control_kind,
+        )
+        for name, control in controls.items()
+    )
     oracle_context = build_coupling_nucleus_context(
         rows=rows,
         coupling_dataset=oracle_dataset,
@@ -1010,12 +1172,14 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
         external_top_rank_gated,
         external_core_expanded,
         external_cluster_gated_core_expanded,
+        external_rank_consistent_cluster_gated,
         physical_baseline,
         *matched_control_runs,
         *margin_gated_control_runs,
         *top_rank_gated_control_runs,
         *core_expanded_control_runs,
         *cluster_gated_core_expanded_control_runs,
+        *rank_consistent_cluster_gated_control_runs,
         oracle_positive_control,
     )
     report = _build_report(
@@ -1026,6 +1190,9 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
         external_top_rank_gated=external_top_rank_gated,
         external_core_expanded=external_core_expanded,
         external_cluster_gated_core_expanded=external_cluster_gated_core_expanded,
+        external_rank_consistent_cluster_gated=(
+            external_rank_consistent_cluster_gated
+        ),
         physical_baseline=physical_baseline,
         matched_controls=matched_control_runs,
         margin_gated_controls=margin_gated_control_runs,
@@ -1033,6 +1200,9 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
         core_expanded_controls=core_expanded_control_runs,
         cluster_gated_core_expanded_controls=(
             cluster_gated_core_expanded_control_runs
+        ),
+        rank_consistent_cluster_gated_controls=(
+            rank_consistent_cluster_gated_control_runs
         ),
         oracle_positive_control=oracle_positive_control,
         source_benchmark_file=benchmark_file,

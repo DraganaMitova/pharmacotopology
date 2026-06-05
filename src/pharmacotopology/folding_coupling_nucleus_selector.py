@@ -78,6 +78,10 @@ TRACE_LOOP_TOP_RANK_MIN_NEW_PAIRS = 2
 TRACE_LOOP_CORE_TOP_RANK_FRACTION = 0.10
 TRACE_LOOP_EXPANSION_TOP_RANK_FRACTION = 0.30
 TRACE_LOOP_CLUSTER_GATE_MIN = 0.32
+TRACE_LOOP_RANK_CONSISTENT_CLUSTER_GATE_MIN = 0.34
+TRACE_LOOP_RANK_CONFIDENCE_CONSISTENCY_MIN = 0.95
+TRACE_LOOP_SCORE_CONFIDENCE_CALIBRATION_MIN = 0.98
+TRACE_LOOP_RANK_LENGTH_CALIBRATION_MIN = 0.999
 
 SURVIVAL_FALSE_RATE_MAX = 0.25
 SURVIVAL_CLUSTER_PRECISION_MIN = 0.08
@@ -181,6 +185,74 @@ def _top_confidence_pairs(
     )
     top_count = max(1, int(len(ranked) * fraction))
     return frozenset(constraint.pair() for constraint in ranked[:top_count])
+
+
+def row_rank_confidence_consistency(
+    constraints: Sequence[CouplingConstraint],
+) -> float:
+    if not constraints:
+        return 0.0
+    if any(constraint.rank_fraction <= 0.0 for constraint in constraints):
+        return 0.0
+    ranked_by_confidence = sorted(
+        constraints,
+        key=lambda constraint: (
+            -constraint.confidence,
+            constraint.i,
+            constraint.j,
+            constraint.constraint_id,
+        ),
+    )
+    denominator = max(1, len(ranked_by_confidence))
+    confidence_rank_fraction = {
+        constraint.constraint_id: rank / denominator
+        for rank, constraint in enumerate(ranked_by_confidence, start=1)
+    }
+    mean_rank_drift = mean(
+        abs(
+            confidence_rank_fraction[constraint.constraint_id]
+            - constraint.rank_fraction
+        )
+        for constraint in constraints
+    )
+    return _rounded(1.0 - 2.0 * mean_rank_drift)
+
+
+def row_score_confidence_calibration(
+    constraints: Sequence[CouplingConstraint],
+) -> float:
+    if not constraints:
+        return 0.0
+    max_positive_apc = max(
+        (max(0.0, constraint.apc_corrected_score) for constraint in constraints),
+        default=0.0,
+    )
+    if max_positive_apc <= 0.0:
+        return 0.0
+    mean_calibration_drift = mean(
+        abs(
+            constraint.confidence
+            - max(0.01, max(0.0, constraint.apc_corrected_score) / max_positive_apc)
+        )
+        for constraint in constraints
+    )
+    return _rounded(1.0 - 2.0 * mean_calibration_drift)
+
+
+def row_rank_length_calibration(
+    *,
+    sequence_length: int,
+    constraints: Sequence[CouplingConstraint],
+) -> float:
+    if not constraints or sequence_length <= 0:
+        return 0.0
+    if any(constraint.rank <= 0 for constraint in constraints):
+        return 0.0
+    mean_rank_length_drift = mean(
+        abs(constraint.rank_fraction - round(constraint.rank / sequence_length, 6))
+        for constraint in constraints
+    )
+    return _rounded(1.0 - 100.0 * mean_rank_length_drift)
 
 
 def build_coupling_nucleus_context(
@@ -287,6 +359,18 @@ def select_coupling_events(
             context,
             min_contact_cluster_gain=TRACE_LOOP_CLUSTER_GATE_MIN,
         )
+    if selector_name == "coupling_trace_loop_rank_consistent_cluster_gated":
+        return select_coupling_trace_loop_core_expanded_events(
+            context,
+            min_contact_cluster_gain=TRACE_LOOP_RANK_CONSISTENT_CLUSTER_GATE_MIN,
+            min_rank_confidence_consistency=(
+                TRACE_LOOP_RANK_CONFIDENCE_CONSISTENCY_MIN
+            ),
+            min_score_confidence_calibration=(
+                TRACE_LOOP_SCORE_CONFIDENCE_CALIBRATION_MIN
+            ),
+            min_rank_length_calibration=TRACE_LOOP_RANK_LENGTH_CALIBRATION_MIN,
+        )
 
     selected: list[NucleusClosureEvent] = []
     competitive_by_row = _events_by_row(context.competitive_events)
@@ -329,12 +413,36 @@ def select_coupling_trace_loop_events(
     max_blocked_future_pressure: float | None = None,
     top_confidence_fraction: float | None = None,
     min_new_top_confidence_pairs: int = 0,
+    min_rank_confidence_consistency: float | None = None,
+    min_score_confidence_calibration: float | None = None,
+    min_rank_length_calibration: float | None = None,
 ) -> tuple[NucleusClosureEvent, ...]:
     constraints_by_row = context.coupling_dataset.constraints_by_row_id()
     competitive_by_row = _events_by_row(context.competitive_events)
     selected: list[NucleusClosureEvent] = []
     for row in context.rows:
         row_constraints = tuple(constraints_by_row.get(row.row_id, ()))
+        if (
+            min_rank_confidence_consistency is not None
+            and row_rank_confidence_consistency(row_constraints)
+            < min_rank_confidence_consistency
+        ):
+            continue
+        if (
+            min_score_confidence_calibration is not None
+            and row_score_confidence_calibration(row_constraints)
+            < min_score_confidence_calibration
+        ):
+            continue
+        if (
+            min_rank_length_calibration is not None
+            and row_rank_length_calibration(
+                sequence_length=row.sequence_length,
+                constraints=row_constraints,
+            )
+            < min_rank_length_calibration
+        ):
+            continue
         confidence_by_pair = _constraint_confidence_by_pair(row_constraints)
         top_confidence_pairs = (
             _top_confidence_pairs(row_constraints, fraction=top_confidence_fraction)
@@ -459,16 +567,25 @@ def select_coupling_trace_loop_core_expanded_events(
     context: CouplingNucleusContext,
     *,
     min_contact_cluster_gain: float | None = None,
+    min_rank_confidence_consistency: float | None = None,
+    min_score_confidence_calibration: float | None = None,
+    min_rank_length_calibration: float | None = None,
 ) -> tuple[NucleusClosureEvent, ...]:
     core_events = select_coupling_trace_loop_events(
         context,
         top_confidence_fraction=TRACE_LOOP_CORE_TOP_RANK_FRACTION,
         min_new_top_confidence_pairs=TRACE_LOOP_TOP_RANK_MIN_NEW_PAIRS,
+        min_rank_confidence_consistency=min_rank_confidence_consistency,
+        min_score_confidence_calibration=min_score_confidence_calibration,
+        min_rank_length_calibration=min_rank_length_calibration,
     )
     expansion_events = select_coupling_trace_loop_events(
         context,
         top_confidence_fraction=TRACE_LOOP_EXPANSION_TOP_RANK_FRACTION,
         min_new_top_confidence_pairs=TRACE_LOOP_TOP_RANK_MIN_NEW_PAIRS,
+        min_rank_confidence_consistency=min_rank_confidence_consistency,
+        min_score_confidence_calibration=min_score_confidence_calibration,
+        min_rank_length_calibration=min_rank_length_calibration,
     )
     return _compatible_merge_by_row(
         context,

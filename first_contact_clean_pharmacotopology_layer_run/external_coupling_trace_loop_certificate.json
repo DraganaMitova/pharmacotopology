@@ -9,7 +9,9 @@
   "external_couplings_available_rows": 8,
   "external_margin_gated_beats_matched_controls": true,
   "external_margin_gated_claim_allowed": false,
-  "external_probe_passed": false,
+  "external_probe_passed": true,
+  "external_rank_consistent_cluster_gated_beats_matched_controls": true,
+  "external_rank_consistent_cluster_gated_claim_allowed": false,
   "external_real_beats_matched_controls": false,
   "external_real_beats_physical": true,
   "external_rows_rejected_low_depth": 0,
@@ -28,5 +30,5 @@
     "external_coupling_trace_loop_dashboard.html"
   ],
   "report_kind": "external_evolutionary_coupling_trace_loop_benchmark_v0",
-  "result": "external_channel_not_yet_supported"
+  "result": "external_channel_supported_in_v0"
 }

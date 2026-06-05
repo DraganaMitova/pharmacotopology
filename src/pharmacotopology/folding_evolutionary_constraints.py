@@ -35,6 +35,10 @@ class CouplingConstraint:
     native_truth_used_before_coupling_selection: bool = False
     structure_model_used: bool = False
     raw_sequence_exposed: bool = False
+    raw_score: float = 0.0
+    apc_corrected_score: float = 0.0
+    rank: int = 0
+    rank_fraction: float = 0.0
 
     def pair(self) -> tuple[int, int]:
         return (self.i, self.j)
@@ -187,6 +191,10 @@ def _constraint_from_raw(
         ),
         structure_model_used=bool(raw.get("structure_model_used", False)),
         raw_sequence_exposed=bool(raw.get("raw_sequence_exposed", False)),
+        raw_score=_score(float(raw.get("raw_score", 0.0))),
+        apc_corrected_score=_score(float(raw.get("apc_corrected_score", 0.0))),
+        rank=int(raw.get("rank", 0)),
+        rank_fraction=_rounded(float(raw.get("rank_fraction", 0.0))),
     )
 
 
