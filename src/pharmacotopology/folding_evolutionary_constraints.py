@@ -3,6 +3,7 @@ from __future__ import annotations
 import hashlib
 import json
 from dataclasses import asdict, dataclass
+from functools import cached_property
 from pathlib import Path
 from typing import Any, Mapping, Sequence
 
@@ -108,7 +109,8 @@ class CouplingDataset:
             or self.structure_model_tainted
         )
 
-    def constraints_by_row_id(self) -> dict[str, tuple[CouplingConstraint, ...]]:
+    @cached_property
+    def _constraints_by_row_id(self) -> dict[str, tuple[CouplingConstraint, ...]]:
         grouped: dict[str, list[CouplingConstraint]] = {}
         for constraint in self.constraints:
             grouped.setdefault(constraint.row_id, []).append(constraint)
@@ -121,6 +123,9 @@ class CouplingDataset:
             )
             for row_id, row_constraints in grouped.items()
         }
+
+    def constraints_by_row_id(self) -> dict[str, tuple[CouplingConstraint, ...]]:
+        return self._constraints_by_row_id
 
 
 @dataclass(frozen=True)

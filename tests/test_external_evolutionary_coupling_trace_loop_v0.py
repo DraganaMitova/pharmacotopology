@@ -31,6 +31,7 @@ from pharmacotopology.folding_coupling_negative_controls import (  # noqa: E402
 from pharmacotopology import folding_coupling_nucleus_selector as selector_module  # noqa: E402
 from pharmacotopology.folding_evolutionary_constraints import (  # noqa: E402
     CouplingClosureAssessment,
+    load_coupling_dataset,
 )
 from pharmacotopology.folding_nucleus_closure_search import (  # noqa: E402
     NucleusClosureEvent,
@@ -194,6 +195,18 @@ def test_locked_external_hmmer_plmc_artifact_covers_all_rows_without_taint() -> 
     assert result.dataset.native_truth_tainted is False
     assert result.dataset.structure_model_tainted is False
     assert result.dataset.oracle_constraint_control is False
+
+
+def test_coupling_dataset_reuses_constraint_row_grouping() -> None:
+    dataset = load_coupling_dataset(LOCKED_EXTERNAL_COUPLINGS)
+
+    first = dataset.constraints_by_row_id()
+    second = dataset.constraints_by_row_id()
+
+    assert first is second
+    assert set(first) == {
+        row.row_id for row in load_real_coordinate_visual_rows(BENCHMARK_8)
+    }
 
 
 def test_query_centered_hmmer_plmc_builder_filters_local_pairs_before_top_l(
