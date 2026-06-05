@@ -96,8 +96,32 @@ score_margin_expanded_beats_adversarial_calibrated_controls = true
 score_margin_expanded_claim_allowed = false
 ```
 
-This is stronger than the frontier-only diagnostic, but it remains an 8-row
-external-coupling benchmark result, not a solved-folding claim.
+The KNOT Boundary Field Lab side project suggested one more bounded continuity
+check: treat a low-cluster trace event as admissible only when it has score
+margin, future preservation, low blocked-future pressure, and enough local
+secondary-structure compatibility to avoid an overconfident weak-shape leak.
+That selector adds a small recall gain while preserving the false-nucleus lock:
+
+```text
+boundary_continuity_expanded_selected_event_count = 28
+boundary_continuity_expanded_added_event_count = 2
+boundary_continuity_expanded_added_native_long_range_contacts = 2
+boundary_continuity_expanded_added_false_event_count = 0
+boundary_continuity_expanded_false_nucleus_rate = 0.0
+boundary_continuity_expanded_cluster_precision = 0.174316
+boundary_continuity_expanded_long_range_recall = 0.259572
+boundary_continuity_expanded_long_range_recall_delta_vs_score_margin = 0.007149
+boundary_continuity_expanded_long_range_recall_margin_vs_matched_controls = 0.124948
+boundary_continuity_expanded_long_range_recall_margin_vs_adversarial_controls = 0.119626
+boundary_continuity_expanded_beats_matched_controls = true
+boundary_continuity_expanded_beats_adversarial_calibrated_controls = true
+boundary_continuity_expanded_claim_allowed = false
+```
+
+This is a controlled recall gain, not a universal improvement: cluster
+precision drops from `0.179688` to `0.174316` because the added events are
+small native-positive contacts. It remains an 8-row external-coupling benchmark
+result, not a solved-folding claim.
 
 Claim mode remains locked. A folding-solved claim is refused unless the data and
 per-constraint provenance stay external:

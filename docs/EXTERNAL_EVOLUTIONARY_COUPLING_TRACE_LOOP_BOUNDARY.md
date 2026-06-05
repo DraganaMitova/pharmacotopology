@@ -325,6 +325,20 @@ external_score_margin_expanded_long_range_recall_margin_vs_adversarial_controls 
 external_score_margin_expanded_beats_matched_controls = true
 external_score_margin_expanded_beats_adversarial_calibrated_controls = true
 external_score_margin_expanded_claim_allowed = false
+
+external_boundary_continuity_expanded_selected_event_count = 28
+external_boundary_continuity_expanded_added_event_count = 2
+external_boundary_continuity_expanded_added_native_long_range_contact_count = 2
+external_boundary_continuity_expanded_added_false_event_count = 0
+external_boundary_continuity_expanded_false_nucleus_rate = 0.0
+external_boundary_continuity_expanded_cluster_precision = 0.174316
+external_boundary_continuity_expanded_long_range_recall = 0.259572
+external_boundary_continuity_expanded_long_range_recall_delta_vs_score_margin = 0.007149
+external_boundary_continuity_expanded_long_range_recall_margin_vs_matched_controls = 0.124948
+external_boundary_continuity_expanded_long_range_recall_margin_vs_adversarial_controls = 0.119626
+external_boundary_continuity_expanded_beats_matched_controls = true
+external_boundary_continuity_expanded_beats_adversarial_calibrated_controls = true
+external_boundary_continuity_expanded_claim_allowed = false
 claim_allowed = false
 ```
 
@@ -339,6 +353,8 @@ the selector's full coupling-nucleus score clears matched and adversarial enrich
 the score-margin-expanded selector admits two addable native-positive trace events
 that add 38 long-range contacts without adding a false nucleus
 the score-margin-expanded selector beats matched and adversarial controls on precision and recall
+the boundary-continuity selector adds two more long-range contacts without adding a false nucleus
+the boundary-continuity selector improves recall but lowers cluster precision from 0.179688 to 0.174316
 claims remain locked
 ```
 
