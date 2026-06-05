@@ -1,0 +1,9 @@
+row_id,source_accession,mapping_status,failure_kind,rejection_reason,pfam_ids,mapping_source_kind,coordinate_truth_used_to_build_constraints,native_truth_used_before_coupling_selection,structure_model_used,raw_sequence_exposed
+coord_001_pdb_1MBN_A_myoglobin,1MBN:A,mapping_resolved,,,PF00042,pdbe_sifts_pfam_mapping_api,False,False,False,False
+coord_002_pdb_2LZM_A_t4_lysozyme,2LZM:A,mapping_resolved,,,PF00959,pdbe_sifts_pfam_mapping_api,False,False,False,False
+coord_003_pdb_1TEN_A_tenascin_fn3,1TEN:A,mapping_resolved,,,PF00041,pdbe_sifts_pfam_mapping_api,False,False,False,False
+coord_004_pdb_1CSP_A_cold_shock_protein,1CSP:A,mapping_resolved,,,PF00313,pdbe_sifts_pfam_mapping_api,False,False,False,False
+coord_005_pdb_1TIM_A_triosephosphate_isomerase,1TIM:A,mapping_resolved,,,PF00121,pdbe_sifts_pfam_mapping_api,False,False,False,False
+coord_006_pdb_1PGA_A_protein_g_b1,1PGA:A,mapping_resolved,,,PF01378,ebi_hmmer_jackhmmer_uniprot_iter3_exact_core_sequence_alignment,False,False,False,False
+coord_007_pdb_4AKE_A_adenylate_kinase,4AKE:A,mapping_resolved,,,"PF00406,PF05191",pdbe_sifts_pfam_mapping_api,False,False,False,False
+coord_008_pdb_1CLL_A_calmodulin,1CLL:A,mapping_resolved,,,"PF13499,PF13499",pdbe_sifts_pfam_mapping_api,False,False,False,False
