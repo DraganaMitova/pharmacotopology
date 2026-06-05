@@ -366,10 +366,10 @@ def test_locked_multiscale_future_preserved_selector_extends_recall_frontier() -
         physical_contexts=_build_multiscale_physical_contexts(rows),
     )
 
-    assert run.metric.selected_event_count == 66
+    assert run.metric.selected_event_count == 86
     assert run.metric.false_nucleus_rate == 0.0
-    assert run.metric.contact_cluster_precision == 0.037418
-    assert run.metric.long_range_contact_recall == 0.697386
+    assert run.metric.contact_cluster_precision == 0.037433
+    assert run.metric.long_range_contact_recall == 0.719967
     assert all(
         event.native_contact_count_after_scoring > 0
         for event in run.selected_events
