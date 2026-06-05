@@ -42,7 +42,13 @@ def write_csv_rows(rows: Sequence[Mapping[str, object]], path: Path) -> Path:
     with path.open("w", encoding="utf-8", newline="") as file:
         if not rows:
             return path
-        fieldnames = list(rows[0])
+        fieldnames: list[str] = []
+        seen: set[str] = set()
+        for row in rows:
+            for key in row:
+                if key not in seen:
+                    fieldnames.append(key)
+                    seen.add(key)
         writer = csv.DictWriter(file, fieldnames=fieldnames, lineterminator="\n")
         writer.writeheader()
         for row in rows:

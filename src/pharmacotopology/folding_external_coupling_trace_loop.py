@@ -378,6 +378,12 @@ def _multiscale_selected_rows(
                 "multiscale_critical_coherence_score": (
                     _multiscale_critical_coherence_score(item)
                 ),
+                "multiscale_direct_constraint_pair_count": (
+                    len(_multiscale_direct_constraint_pairs(item))
+                ),
+                "multiscale_direct_constraint_density": (
+                    _multiscale_direct_constraint_density(item)
+                ),
             }
         )
     return tuple(rows)
@@ -470,14 +476,68 @@ def _multiscale_critical_coherence_score(
     )
 
 
-def _run_multiscale_critical_boundary_selector(
+def _multiscale_direct_constraint_pairs(
+    item: MultiScaleSelectedEvent,
+) -> frozenset[tuple[int, int]]:
+    event_pairs = set(item.event.candidate_region_pairs())
+    return frozenset(
+        constraint.pair()
+        for constraint in item.context.coupling_dataset.constraints_by_row_id().get(
+            item.event.row_id,
+            (),
+        )
+        if constraint.pair() in event_pairs
+    )
+
+
+def _multiscale_direct_constraint_density(
+    item: MultiScaleSelectedEvent,
+) -> float:
+    event_pairs = set(item.event.candidate_region_pairs())
+    confidence_sum = sum(
+        constraint.confidence
+        for constraint in item.context.coupling_dataset.constraints_by_row_id().get(
+            item.event.row_id,
+            (),
+        )
+        if constraint.pair() in event_pairs
+    )
+    return _rounded(confidence_sum / max(1, len(event_pairs)))
+
+
+def _multiscale_phase_components(
+    selected_items: Sequence[MultiScaleSelectedEvent],
+) -> list[list[MultiScaleSelectedEvent]]:
+    unseen = set(range(len(selected_items)))
+    components: list[list[MultiScaleSelectedEvent]] = []
+    while unseen:
+        seed = unseen.pop()
+        component = {seed}
+        stack = [seed]
+        while stack:
+            left_index = stack.pop()
+            for right_index in list(unseen):
+                left = selected_items[left_index].event
+                right = selected_items[right_index].event
+                if (
+                    not compatible_future_event(left, right)
+                    or not compatible_future_event(right, left)
+                ):
+                    unseen.remove(right_index)
+                    component.add(right_index)
+                    stack.append(right_index)
+        components.append(
+            [selected_items[index] for index in sorted(component)]
+        )
+    return components
+
+
+def _multiscale_critical_boundary_items(
     *,
     rows: Sequence[RealCoordinateVisualRow],
     dataset: CouplingDataset,
-    selector_name: str,
-    control_kind: str,
     physical_contexts: Mapping[int, ActivePhysicalContext],
-) -> TraceLoopRun:
+) -> list[MultiScaleSelectedEvent]:
     candidates_by_row: dict[str, list[MultiScaleSelectedEvent]] = {
         row.row_id: [] for row in rows
     }
@@ -524,6 +584,88 @@ def _run_multiscale_critical_boundary_selector(
         ]
         boundary_size = gaps.index(max(gaps)) + 1
         selected_items.extend(row_candidates[:boundary_size])
+    return selected_items
+
+
+def _run_multiscale_critical_boundary_selector(
+    *,
+    rows: Sequence[RealCoordinateVisualRow],
+    dataset: CouplingDataset,
+    selector_name: str,
+    control_kind: str,
+    physical_contexts: Mapping[int, ActivePhysicalContext],
+) -> TraceLoopRun:
+    selected_items = _multiscale_critical_boundary_items(
+        rows=rows,
+        dataset=dataset,
+        physical_contexts=physical_contexts,
+    )
+    metric = _multiscale_metric(
+        rows=rows,
+        dataset=dataset,
+        selector_name=selector_name,
+        selected_items=selected_items,
+    )
+    return TraceLoopRun(
+        selector_name=selector_name,
+        dataset=dataset,
+        metric=metric,
+        selected_events=tuple(item.event for item in selected_items),
+        selected_rows=_multiscale_selected_rows(
+            selector_name=selector_name,
+            selected_items=selected_items,
+        ),
+        constraint_count=len(dataset.constraints),
+        control_kind=control_kind,
+    )
+
+
+def _phase_align_multiscale_critical_items(
+    *,
+    rows: Sequence[RealCoordinateVisualRow],
+    selected_items: Sequence[MultiScaleSelectedEvent],
+) -> list[MultiScaleSelectedEvent]:
+    phase_aligned: list[MultiScaleSelectedEvent] = []
+    for row in rows:
+        row_items = [
+            item for item in selected_items if item.event.row_id == row.row_id
+        ]
+        for component in _multiscale_phase_components(row_items):
+            ordered = sorted(
+                component,
+                key=lambda item: (
+                    _multiscale_direct_constraint_density(item),
+                    _multiscale_critical_coherence_score(item),
+                    item.segment_length,
+                    item.event.event_id,
+                ),
+                reverse=True,
+            )
+            covered_pairs: set[tuple[int, int]] = set()
+            for item in ordered:
+                direct_pairs = set(_multiscale_direct_constraint_pairs(item))
+                if not direct_pairs or not direct_pairs <= covered_pairs:
+                    phase_aligned.append(item)
+                    covered_pairs.update(direct_pairs)
+    return phase_aligned
+
+
+def _run_multiscale_phase_aligned_critical_boundary_selector(
+    *,
+    rows: Sequence[RealCoordinateVisualRow],
+    dataset: CouplingDataset,
+    selector_name: str,
+    control_kind: str,
+    physical_contexts: Mapping[int, ActivePhysicalContext],
+) -> TraceLoopRun:
+    selected_items = _phase_align_multiscale_critical_items(
+        rows=rows,
+        selected_items=_multiscale_critical_boundary_items(
+            rows=rows,
+            dataset=dataset,
+            physical_contexts=physical_contexts,
+        ),
+    )
     metric = _multiscale_metric(
         rows=rows,
         dataset=dataset,
@@ -1630,6 +1772,54 @@ def _certificate(report: Mapping[str, object]) -> dict[str, object]:
         "external_multiscale_critical_boundary_claim_allowed": report[
             "external_multiscale_critical_boundary_claim_allowed"
         ],
+        "external_multiscale_phase_aligned_critical_boundary_kind": report[
+            "external_multiscale_phase_aligned_critical_boundary_kind"
+        ],
+        "external_multiscale_phase_aligned_critical_boundary_static_future_threshold_used": report[
+            "external_multiscale_phase_aligned_critical_boundary_static_future_threshold_used"
+        ],
+        "external_multiscale_phase_aligned_critical_boundary_static_event_cap_used": report[
+            "external_multiscale_phase_aligned_critical_boundary_static_event_cap_used"
+        ],
+        "external_multiscale_phase_aligned_critical_boundary_selected_event_count": report[
+            "external_multiscale_phase_aligned_critical_boundary_selected_event_count"
+        ],
+        "external_multiscale_phase_aligned_critical_boundary_false_event_count": report[
+            "external_multiscale_phase_aligned_critical_boundary_false_event_count"
+        ],
+        "external_multiscale_phase_aligned_critical_boundary_false_nucleus_rate": report[
+            "external_multiscale_phase_aligned_critical_boundary_false_nucleus_rate"
+        ],
+        "external_multiscale_phase_aligned_critical_boundary_cluster_precision": report[
+            "external_multiscale_phase_aligned_critical_boundary_cluster_precision"
+        ],
+        "external_multiscale_phase_aligned_critical_boundary_long_range_recall": report[
+            "external_multiscale_phase_aligned_critical_boundary_long_range_recall"
+        ],
+        "external_multiscale_phase_aligned_critical_boundary_long_range_recall_delta_vs_critical_boundary": report[
+            "external_multiscale_phase_aligned_critical_boundary_long_range_recall_delta_vs_critical_boundary"
+        ],
+        "external_multiscale_phase_aligned_critical_boundary_long_range_recall_delta_vs_tuned_multiscale": report[
+            "external_multiscale_phase_aligned_critical_boundary_long_range_recall_delta_vs_tuned_multiscale"
+        ],
+        "external_multiscale_phase_aligned_critical_boundary_false_nucleus_rate_delta_vs_critical_boundary": report[
+            "external_multiscale_phase_aligned_critical_boundary_false_nucleus_rate_delta_vs_critical_boundary"
+        ],
+        "external_multiscale_phase_aligned_critical_boundary_long_range_recall_margin_vs_matched_controls": report[
+            "external_multiscale_phase_aligned_critical_boundary_long_range_recall_margin_vs_matched_controls"
+        ],
+        "external_multiscale_phase_aligned_critical_boundary_long_range_recall_margin_vs_adversarial_controls": report[
+            "external_multiscale_phase_aligned_critical_boundary_long_range_recall_margin_vs_adversarial_controls"
+        ],
+        "external_multiscale_phase_aligned_critical_boundary_beats_matched_controls": report[
+            "external_multiscale_phase_aligned_critical_boundary_beats_matched_controls"
+        ],
+        "external_multiscale_phase_aligned_critical_boundary_beats_adversarial_calibrated_controls": report[
+            "external_multiscale_phase_aligned_critical_boundary_beats_adversarial_calibrated_controls"
+        ],
+        "external_multiscale_phase_aligned_critical_boundary_claim_allowed": report[
+            "external_multiscale_phase_aligned_critical_boundary_claim_allowed"
+        ],
         "external_terminal_bridge_replacement_frontier_count": report[
             "external_terminal_bridge_replacement_frontier_count"
         ],
@@ -1777,6 +1967,11 @@ def _build_report(
     external_multiscale_critical_boundary: TraceLoopRun,
     multiscale_critical_boundary_controls: Sequence[TraceLoopRun],
     adversarial_multiscale_critical_boundary_controls: Sequence[TraceLoopRun],
+    external_multiscale_phase_aligned_critical_boundary: TraceLoopRun,
+    multiscale_phase_aligned_critical_boundary_controls: Sequence[TraceLoopRun],
+    adversarial_multiscale_phase_aligned_critical_boundary_controls: Sequence[
+        TraceLoopRun
+    ],
     physical_baseline: TraceLoopRun,
     matched_controls: Sequence[TraceLoopRun],
     margin_gated_controls: Sequence[TraceLoopRun],
@@ -3021,6 +3216,75 @@ def _build_report(
         > multiscale_critical_boundary_max_adversarial_precision
         and multiscale_critical_boundary_metric.long_range_contact_recall
         > multiscale_critical_boundary_max_adversarial_long_range_recall
+    )
+    multiscale_phase_aligned_critical_boundary_metric = (
+        external_multiscale_phase_aligned_critical_boundary.metric
+    )
+    multiscale_phase_aligned_critical_boundary_selected_event_count = (
+        multiscale_phase_aligned_critical_boundary_metric.selected_event_count
+    )
+    multiscale_phase_aligned_critical_boundary_false_events = tuple(
+        event
+        for event in external_multiscale_phase_aligned_critical_boundary.selected_events
+        if event.native_contact_count_after_scoring == 0
+    )
+    multiscale_phase_aligned_critical_boundary_max_matched_control_precision = (
+        _max_selected_metric(
+            multiscale_phase_aligned_critical_boundary_controls,
+            "contact_cluster_precision",
+        )
+    )
+    multiscale_phase_aligned_critical_boundary_max_matched_control_long_range_recall = (
+        _max_selected_metric(
+            multiscale_phase_aligned_critical_boundary_controls,
+            "long_range_contact_recall",
+        )
+    )
+    multiscale_phase_aligned_critical_boundary_max_adversarial_precision = (
+        _max_selected_metric(
+            adversarial_multiscale_phase_aligned_critical_boundary_controls,
+            "contact_cluster_precision",
+        )
+    )
+    multiscale_phase_aligned_critical_boundary_max_adversarial_long_range_recall = (
+        _max_selected_metric(
+            adversarial_multiscale_phase_aligned_critical_boundary_controls,
+            "long_range_contact_recall",
+        )
+    )
+    multiscale_phase_aligned_critical_boundary_noninferior_false_rate_vs_matched_controls = (
+        bool(multiscale_phase_aligned_critical_boundary_controls)
+        and multiscale_phase_aligned_critical_boundary_selected_event_count > 0
+        and all(
+            run.metric.selected_event_count == 0
+            or multiscale_phase_aligned_critical_boundary_metric.false_nucleus_rate
+            <= run.metric.false_nucleus_rate
+            for run in multiscale_phase_aligned_critical_boundary_controls
+        )
+    )
+    multiscale_phase_aligned_critical_boundary_noninferior_false_rate_vs_adversarial_controls = (
+        bool(adversarial_multiscale_phase_aligned_critical_boundary_controls)
+        and multiscale_phase_aligned_critical_boundary_selected_event_count > 0
+        and all(
+            run.metric.selected_event_count == 0
+            or multiscale_phase_aligned_critical_boundary_metric.false_nucleus_rate
+            <= run.metric.false_nucleus_rate
+            for run in adversarial_multiscale_phase_aligned_critical_boundary_controls
+        )
+    )
+    multiscale_phase_aligned_critical_boundary_beats_matched_controls = (
+        multiscale_phase_aligned_critical_boundary_noninferior_false_rate_vs_matched_controls
+        and multiscale_phase_aligned_critical_boundary_metric.contact_cluster_precision
+        > multiscale_phase_aligned_critical_boundary_max_matched_control_precision
+        and multiscale_phase_aligned_critical_boundary_metric.long_range_contact_recall
+        > multiscale_phase_aligned_critical_boundary_max_matched_control_long_range_recall
+    )
+    multiscale_phase_aligned_critical_boundary_beats_adversarial_calibrated_controls = (
+        multiscale_phase_aligned_critical_boundary_noninferior_false_rate_vs_adversarial_controls
+        and multiscale_phase_aligned_critical_boundary_metric.contact_cluster_precision
+        > multiscale_phase_aligned_critical_boundary_max_adversarial_precision
+        and multiscale_phase_aligned_critical_boundary_metric.long_range_contact_recall
+        > multiscale_phase_aligned_critical_boundary_max_adversarial_long_range_recall
     )
     replacement_frontier_native_long_range_delta_sum = sum(
         int(row["replacement_native_long_range_delta_after_scoring"])
@@ -4367,6 +4631,103 @@ def _build_report(
             multiscale_critical_boundary_beats_adversarial_calibrated_controls
         ),
         "external_multiscale_critical_boundary_claim_allowed": False,
+        "external_multiscale_phase_aligned_critical_boundary_kind": (
+            "phase_family_external_density_novelty_v0"
+        ),
+        "external_multiscale_phase_aligned_critical_boundary_segment_lengths": tuple(
+            segment_length
+            for segment_length, _ in MULTISCALE_FUTURE_PRESERVED_CONFIGS
+        ),
+        "external_multiscale_phase_aligned_critical_boundary_static_future_threshold_used": False,
+        "external_multiscale_phase_aligned_critical_boundary_static_event_cap_used": False,
+        "external_multiscale_phase_aligned_critical_boundary_selected_event_count": (
+            multiscale_phase_aligned_critical_boundary_metric.selected_event_count
+        ),
+        "external_multiscale_phase_aligned_critical_boundary_false_event_count": (
+            len(multiscale_phase_aligned_critical_boundary_false_events)
+        ),
+        "external_multiscale_phase_aligned_critical_boundary_false_nucleus_rate": (
+            multiscale_phase_aligned_critical_boundary_metric.false_nucleus_rate
+            if multiscale_phase_aligned_critical_boundary_selected_event_count
+            else 0.0
+        ),
+        "external_multiscale_phase_aligned_critical_boundary_cluster_precision": (
+            multiscale_phase_aligned_critical_boundary_metric.contact_cluster_precision
+            if multiscale_phase_aligned_critical_boundary_selected_event_count
+            else 0.0
+        ),
+        "external_multiscale_phase_aligned_critical_boundary_long_range_recall": (
+            multiscale_phase_aligned_critical_boundary_metric.long_range_contact_recall
+            if multiscale_phase_aligned_critical_boundary_selected_event_count
+            else 0.0
+        ),
+        "external_multiscale_phase_aligned_critical_boundary_long_range_recall_delta_vs_critical_boundary": (
+            _rounded(
+                multiscale_phase_aligned_critical_boundary_metric.long_range_contact_recall
+                - multiscale_critical_boundary_metric.long_range_contact_recall
+            )
+        ),
+        "external_multiscale_phase_aligned_critical_boundary_long_range_recall_delta_vs_tuned_multiscale": (
+            _rounded(
+                multiscale_phase_aligned_critical_boundary_metric.long_range_contact_recall
+                - multiscale_future_preserved_metric.long_range_contact_recall
+            )
+        ),
+        "external_multiscale_phase_aligned_critical_boundary_false_nucleus_rate_delta_vs_critical_boundary": (
+            _rounded(
+                multiscale_phase_aligned_critical_boundary_metric.false_nucleus_rate
+                - multiscale_critical_boundary_metric.false_nucleus_rate
+            )
+        ),
+        "external_multiscale_phase_aligned_critical_boundary_max_matched_control_cluster_precision": (
+            multiscale_phase_aligned_critical_boundary_max_matched_control_precision
+        ),
+        "external_multiscale_phase_aligned_critical_boundary_max_matched_control_long_range_recall": (
+            multiscale_phase_aligned_critical_boundary_max_matched_control_long_range_recall
+        ),
+        "external_multiscale_phase_aligned_critical_boundary_cluster_precision_margin_vs_matched_controls": (
+            _rounded(
+                multiscale_phase_aligned_critical_boundary_metric.contact_cluster_precision
+                - multiscale_phase_aligned_critical_boundary_max_matched_control_precision
+            )
+        ),
+        "external_multiscale_phase_aligned_critical_boundary_long_range_recall_margin_vs_matched_controls": (
+            _rounded(
+                multiscale_phase_aligned_critical_boundary_metric.long_range_contact_recall
+                - multiscale_phase_aligned_critical_boundary_max_matched_control_long_range_recall
+            )
+        ),
+        "external_multiscale_phase_aligned_critical_boundary_max_adversarial_cluster_precision": (
+            multiscale_phase_aligned_critical_boundary_max_adversarial_precision
+        ),
+        "external_multiscale_phase_aligned_critical_boundary_max_adversarial_long_range_recall": (
+            multiscale_phase_aligned_critical_boundary_max_adversarial_long_range_recall
+        ),
+        "external_multiscale_phase_aligned_critical_boundary_cluster_precision_margin_vs_adversarial_controls": (
+            _rounded(
+                multiscale_phase_aligned_critical_boundary_metric.contact_cluster_precision
+                - multiscale_phase_aligned_critical_boundary_max_adversarial_precision
+            )
+        ),
+        "external_multiscale_phase_aligned_critical_boundary_long_range_recall_margin_vs_adversarial_controls": (
+            _rounded(
+                multiscale_phase_aligned_critical_boundary_metric.long_range_contact_recall
+                - multiscale_phase_aligned_critical_boundary_max_adversarial_long_range_recall
+            )
+        ),
+        "external_multiscale_phase_aligned_critical_boundary_noninferior_false_rate_vs_matched_controls": (
+            multiscale_phase_aligned_critical_boundary_noninferior_false_rate_vs_matched_controls
+        ),
+        "external_multiscale_phase_aligned_critical_boundary_noninferior_false_rate_vs_adversarial_controls": (
+            multiscale_phase_aligned_critical_boundary_noninferior_false_rate_vs_adversarial_controls
+        ),
+        "external_multiscale_phase_aligned_critical_boundary_beats_matched_controls": (
+            multiscale_phase_aligned_critical_boundary_beats_matched_controls
+        ),
+        "external_multiscale_phase_aligned_critical_boundary_beats_adversarial_calibrated_controls": (
+            multiscale_phase_aligned_critical_boundary_beats_adversarial_calibrated_controls
+        ),
+        "external_multiscale_phase_aligned_critical_boundary_claim_allowed": False,
         "external_terminal_bridge_replacement_frontier_kind": (
             "terminal_bridge_replacement_frontier_v0"
         ),
@@ -4760,6 +5121,24 @@ def render_external_coupling_trace_loop_dashboard(
         "external_multiscale_critical_boundary_beats_matched_controls",
         "external_multiscale_critical_boundary_beats_adversarial_calibrated_controls",
         "external_multiscale_critical_boundary_claim_allowed",
+        "external_multiscale_phase_aligned_critical_boundary_kind",
+        "external_multiscale_phase_aligned_critical_boundary_static_future_threshold_used",
+        "external_multiscale_phase_aligned_critical_boundary_static_event_cap_used",
+        "external_multiscale_phase_aligned_critical_boundary_selected_event_count",
+        "external_multiscale_phase_aligned_critical_boundary_false_event_count",
+        "external_multiscale_phase_aligned_critical_boundary_false_nucleus_rate",
+        "external_multiscale_phase_aligned_critical_boundary_cluster_precision",
+        "external_multiscale_phase_aligned_critical_boundary_long_range_recall",
+        "external_multiscale_phase_aligned_critical_boundary_long_range_recall_delta_vs_critical_boundary",
+        "external_multiscale_phase_aligned_critical_boundary_long_range_recall_delta_vs_tuned_multiscale",
+        "external_multiscale_phase_aligned_critical_boundary_false_nucleus_rate_delta_vs_critical_boundary",
+        "external_multiscale_phase_aligned_critical_boundary_cluster_precision_margin_vs_matched_controls",
+        "external_multiscale_phase_aligned_critical_boundary_long_range_recall_margin_vs_matched_controls",
+        "external_multiscale_phase_aligned_critical_boundary_cluster_precision_margin_vs_adversarial_controls",
+        "external_multiscale_phase_aligned_critical_boundary_long_range_recall_margin_vs_adversarial_controls",
+        "external_multiscale_phase_aligned_critical_boundary_beats_matched_controls",
+        "external_multiscale_phase_aligned_critical_boundary_beats_adversarial_calibrated_controls",
+        "external_multiscale_phase_aligned_critical_boundary_claim_allowed",
         "external_terminal_bridge_replacement_frontier_count",
         "external_terminal_bridge_replacement_frontier_native_long_range_delta_sum",
         "external_terminal_bridge_replacement_frontier_probe_selected_count",
@@ -4998,6 +5377,17 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
             dataset=import_result.dataset,
             selector_name="external_multiscale_critical_boundary",
             control_kind="external_real_multiscale_critical_boundary",
+            physical_contexts=multiscale_physical_contexts,
+        )
+    )
+    external_multiscale_phase_aligned_critical_boundary = (
+        _run_multiscale_phase_aligned_critical_boundary_selector(
+            rows=rows,
+            dataset=import_result.dataset,
+            selector_name="external_multiscale_phase_aligned_critical_boundary",
+            control_kind=(
+                "external_real_multiscale_phase_aligned_critical_boundary"
+            ),
             physical_contexts=multiscale_physical_contexts,
         )
     )
@@ -5326,6 +5716,30 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
         )
         for name, control in adversarial_controls.items()
     )
+    multiscale_phase_aligned_critical_boundary_control_runs = tuple(
+        _run_multiscale_phase_aligned_critical_boundary_selector(
+            rows=rows,
+            dataset=control.dataset,
+            selector_name=(
+                f"external_multiscale_phase_aligned_critical_boundary_{name}"
+            ),
+            control_kind=control.control_kind,
+            physical_contexts=multiscale_physical_contexts,
+        )
+        for name, control in controls.items()
+    )
+    adversarial_multiscale_phase_aligned_critical_boundary_control_runs = tuple(
+        _run_multiscale_phase_aligned_critical_boundary_selector(
+            rows=rows,
+            dataset=control.dataset,
+            selector_name=(
+                f"external_multiscale_phase_aligned_critical_boundary_{name}"
+            ),
+            control_kind=control.control_kind,
+            physical_contexts=multiscale_physical_contexts,
+        )
+        for name, control in adversarial_controls.items()
+    )
     oracle_context = build_coupling_nucleus_context(
         rows=rows,
         coupling_dataset=oracle_dataset,
@@ -5355,6 +5769,7 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
         external_macro_scale_future_preserved,
         external_multiscale_future_preserved,
         external_multiscale_critical_boundary,
+        external_multiscale_phase_aligned_critical_boundary,
         physical_baseline,
         *matched_control_runs,
         *margin_gated_control_runs,
@@ -5383,6 +5798,8 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
         *adversarial_multiscale_future_preserved_control_runs,
         *multiscale_critical_boundary_control_runs,
         *adversarial_multiscale_critical_boundary_control_runs,
+        *multiscale_phase_aligned_critical_boundary_control_runs,
+        *adversarial_multiscale_phase_aligned_critical_boundary_control_runs,
         oracle_positive_control,
     )
     frontier_rows = rank_consistent_frontier_rows(
@@ -5484,6 +5901,15 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
         ),
         adversarial_multiscale_critical_boundary_controls=(
             adversarial_multiscale_critical_boundary_control_runs
+        ),
+        external_multiscale_phase_aligned_critical_boundary=(
+            external_multiscale_phase_aligned_critical_boundary
+        ),
+        multiscale_phase_aligned_critical_boundary_controls=(
+            multiscale_phase_aligned_critical_boundary_control_runs
+        ),
+        adversarial_multiscale_phase_aligned_critical_boundary_controls=(
+            adversarial_multiscale_phase_aligned_critical_boundary_control_runs
         ),
         physical_baseline=physical_baseline,
         matched_controls=matched_control_runs,

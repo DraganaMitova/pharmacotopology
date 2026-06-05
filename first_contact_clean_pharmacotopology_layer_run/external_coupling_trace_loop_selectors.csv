@@ -16,6 +16,7 @@ external_boundary_field_replacement_probe,37,0.0,0.167806,0.350282,0.229113,1.52
 external_macro_scale_future_preserved,28,0.0,0.043505,0.564435,0.356468,1.271817,0.785714,0.758531,0.596415,0.162116,0.651883,0.50773,0.144153,1.283917,0.785714,False,False,False,False
 external_multiscale_future_preserved,114,0.0,0.03814,0.745269,0.616304,0.0,0.0,0.812691,0.0,0.812691,0.688783,0.0,0.688783,0.0,0.0,False,False,False,False
 external_multiscale_critical_boundary,114,0.026786,0.045534,0.716901,0.584397,0.0,0.0,0.821956,0.0,0.821956,0.706329,0.0,0.706329,0.0,0.0,False,False,False,False
+external_multiscale_phase_aligned_critical_boundary,74,0.0,0.046247,0.689958,0.584397,0.0,0.0,0.832904,0.0,0.832904,0.71538,0.0,0.71538,0.0,0.0,False,False,False,False
 physical_no_coupling_baseline,320,0.559375,0.050488,0.405008,0.355443,0.866021,0.43125,0.321549,0.371294,-0.049745,0.374926,0.353828,0.021098,1.059628,0.66875,False,False,False,False
 external_shuffled_same_row_same_separation,109,0.548004,0.049956,0.209909,0.319003,1.21342,0.752294,0.354881,0.292463,0.062418,0.380996,0.3273,0.053696,1.164057,0.724771,False,False,False,False
 external_confidence_permuted,90,0.426643,0.080109,0.31868,0.375153,1.381501,0.811111,0.423126,0.30628,0.116846,0.440268,0.333977,0.106291,1.318258,0.8,False,False,False,False
@@ -119,4 +120,11 @@ external_multiscale_critical_boundary_external_random_long_range_same_count,107,
 external_multiscale_critical_boundary_external_low_confidence_tail,2,0.0,0.007517,0.158088,0.152329,0.0,0.0,0.759031,0.0,0.759031,0.613847,0.0,0.613847,0.0,0.0,False,False,False,False
 external_multiscale_critical_boundary_external_calibrated_confidence_permuted,91,0.043346,0.026414,0.568065,0.499904,0.0,0.0,0.826144,0.0,0.826144,0.69999,0.0,0.69999,0.0,0.0,False,False,False,False
 external_multiscale_critical_boundary_external_calibrated_cross_row_swapped,19,0.0625,0.005132,0.159794,0.101187,0.0,0.0,0.806856,0.0,0.806856,0.632455,0.0,0.632455,0.0,0.0,False,False,False,False
+external_multiscale_phase_aligned_critical_boundary_external_shuffled_same_row_same_separation,86,0.136098,0.032749,0.602989,0.501597,0.0,0.0,0.831048,0.0,0.831048,0.711123,0.0,0.711123,0.0,0.0,False,False,False,False
+external_multiscale_phase_aligned_critical_boundary_external_confidence_permuted,2,0.0,0.01876,0.108995,0.127323,0.0,0.0,0.816205,0.0,0.816205,0.732209,0.0,0.732209,0.0,0.0,False,False,False,False
+external_multiscale_phase_aligned_critical_boundary_external_cross_row_swapped,1,0.0,0.00354,0.034794,0.02684,0.0,0.0,0.972314,0.0,0.972314,0.791335,0.0,0.791335,0.0,0.0,False,False,False,False
+external_multiscale_phase_aligned_critical_boundary_external_random_long_range_same_count,88,0.148407,0.032528,0.525644,0.634244,0.0,0.0,0.872512,0.0,0.872512,0.742131,0.0,0.742131,0.0,0.0,False,False,False,False
+external_multiscale_phase_aligned_critical_boundary_external_low_confidence_tail,2,0.0,0.007517,0.158088,0.152329,0.0,0.0,0.759031,0.0,0.759031,0.613847,0.0,0.613847,0.0,0.0,False,False,False,False
+external_multiscale_phase_aligned_critical_boundary_external_calibrated_confidence_permuted,59,0.009615,0.025759,0.518028,0.499904,0.0,0.0,0.831456,0.0,0.831456,0.713659,0.0,0.713659,0.0,0.0,False,False,False,False
+external_multiscale_phase_aligned_critical_boundary_external_calibrated_cross_row_swapped,15,0.071429,0.004982,0.159794,0.101187,0.0,0.0,0.808334,0.0,0.808334,0.626949,0.0,0.626949,0.0,0.0,False,False,False,False
 oracle_coordinate_positive_control,54,0.0,0.164128,0.397896,0.466536,1.693887,0.888889,0.722095,0.426295,0.2958,0.633603,0.381326,0.252277,1.661578,0.907407,True,True,True,False
