@@ -196,6 +196,10 @@ external_rows_rejected_low_depth = N
 external_rows_rejected_mapping = N
 external_real_beats_physical = true/false
 external_real_beats_matched_controls = true/false
+score_margin_expansion_row_count = N
+score_margin_expansion_row_count_margin_vs_matched_controls = N
+score_margin_expansion_row_count_margin_vs_adversarial_controls = N
+score_margin_expansion_repeated_independent_row_signal_seen = true/false
 mechanism_discovery_claim_allowed = false
 folding_problem_solved = false
 claim_allowed = false
@@ -206,6 +210,11 @@ The best possible V0 interpretation is:
 ```text
 external evolutionary couplings preserve part of the anti-fake-nucleus signal under matched controls
 ```
+
+If score-margin expansion candidates repeat across independent benchmark rows,
+that is recorded as stability evidence for the next selector design. It remains
+diagnostic-only unless the expansion selector itself beats the matched,
+adversarial, and decoy controls without native-truth filtering.
 
 It is not:
 
