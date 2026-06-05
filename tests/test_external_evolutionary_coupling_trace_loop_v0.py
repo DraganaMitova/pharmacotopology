@@ -601,6 +601,14 @@ def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> Non
         in report
     )
     assert (
+        "external_persistent_rank_consistent_cluster_gated_selector_score_probe_passed"
+        in report
+    )
+    assert (
+        "external_persistent_rank_consistent_cluster_gated_vs_control_nucleus_score_enrichment_ratio"
+        in report
+    )
+    assert (
         "external_persistent_rank_consistent_cluster_gated_recovered_event_count"
         in report
     )
@@ -646,6 +654,10 @@ def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> Non
     )
     assert (
         "external_persistent_rank_consistent_cluster_gated_recovered_event_count"
+        in dashboard
+    )
+    assert (
+        "external_persistent_rank_consistent_cluster_gated_selector_score_probe_passed"
         in dashboard
     )
     assert "External Evolutionary Coupling Trace Loop V0" in dashboard

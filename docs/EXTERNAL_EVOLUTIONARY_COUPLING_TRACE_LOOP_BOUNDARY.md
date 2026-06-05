@@ -289,9 +289,14 @@ external_persistent_rank_consistent_cluster_gated_cluster_precision = 0.167578
 external_persistent_rank_consistent_cluster_gated_long_range_recall = 0.231865
 external_persistent_rank_consistent_cluster_gated_vs_control_enrichment_ratio = 1.245257
 external_persistent_rank_consistent_cluster_gated_vs_adversarial_calibrated_enrichment_ratio = 0.991698
+external_persistent_rank_consistent_cluster_gated_real_vs_decoy_coupling_nucleus_enrichment_ratio = 1.591368
+external_persistent_rank_consistent_cluster_gated_vs_control_nucleus_score_enrichment_ratio = 1.262676
+external_persistent_rank_consistent_cluster_gated_vs_adversarial_calibrated_nucleus_score_enrichment_ratio = 1.049653
 external_persistent_rank_consistent_cluster_gated_recovered_event_count = 1
 external_persistent_rank_consistent_cluster_gated_recovered_native_long_range_contact_count = 21
 external_persistent_rank_consistent_cluster_gated_probe_passed = false
+external_persistent_rank_consistent_cluster_gated_selector_score_probe_passed = true
+external_persistent_rank_consistent_cluster_gated_hard_selector_score_probe_passed = true
 claim_allowed = false
 ```
 
@@ -301,7 +306,8 @@ Interpretation:
 persistence recovers a real long-range trace event without reintroducing fake nuclei
 persistence improves precision and long-range recall over the strict rank gate
 the added event weakens the decoy-enrichment margin
-adversarial calibrated enrichment remains too close
+raw coupling-only adversarial calibrated enrichment remains too close
+the selector's full coupling-nucleus score clears matched and adversarial enrichment controls
 claims remain locked
 ```
 

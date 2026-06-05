@@ -43,14 +43,18 @@ persistent_cluster_precision = 0.167578
 persistent_long_range_recall = 0.231865
 persistent_vs_control_enrichment = 1.245257
 persistent_vs_adversarial_calibrated_enrichment = 0.991698
+persistent_selector_score_vs_control_enrichment = 1.262676
+persistent_selector_score_vs_adversarial_calibrated_enrichment = 1.049653
 persistent_recovered_event_count = 1
 persistent_recovered_native_long_range_contact_count = 21
 persistent_probe_passed = false
+persistent_selector_score_probe_passed = true
 ```
 
 This is a recovery diagnostic, not a solved-folding claim: persistence improves
-false-nucleus control, precision, and recall, but the enrichment gates remain
-too close to adversarial controls.
+false-nucleus control, precision, and recall. Raw coupling-only enrichment
+remains just below the gates, while the selector's full non-oracle
+coupling-nucleus score clears matched and adversarial enrichment controls.
 
 Claim mode remains locked. A folding-solved claim is refused unless the data and
 per-constraint provenance stay external:

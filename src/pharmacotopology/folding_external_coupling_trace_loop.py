@@ -412,6 +412,12 @@ def _certificate(report: Mapping[str, object]) -> dict[str, object]:
         "external_persistent_rank_consistent_cluster_gated_beats_adversarial_calibrated_controls": report[
             "external_persistent_rank_consistent_cluster_gated_beats_adversarial_calibrated_controls"
         ],
+        "external_persistent_rank_consistent_cluster_gated_selector_score_probe_passed": report[
+            "external_persistent_rank_consistent_cluster_gated_selector_score_probe_passed"
+        ],
+        "external_persistent_rank_consistent_cluster_gated_hard_selector_score_probe_passed": report[
+            "external_persistent_rank_consistent_cluster_gated_hard_selector_score_probe_passed"
+        ],
         "external_margin_gated_claim_allowed": report[
             "external_margin_gated_claim_allowed"
         ],
@@ -827,6 +833,11 @@ def _build_report(
         for run in persistent_rank_consistent_controls
         if run.metric.selected_event_count > 0
     ]
+    persistent_control_nucleus_enrichments = [
+        run.metric.real_vs_decoy_coupling_nucleus_enrichment_ratio
+        for run in persistent_rank_consistent_controls
+        if run.metric.selected_event_count > 0
+    ]
     persistent_selected_event_count = (
         external_persistent_rank_consistent_cluster_gated.metric.selected_event_count
     )
@@ -841,6 +852,20 @@ def _build_report(
             / max_persistent_control_enrichment
         )
         if persistent_selected_event_count > 0 and max_persistent_control_enrichment
+        else None
+    )
+    max_persistent_control_nucleus_enrichment = (
+        max(persistent_control_nucleus_enrichments)
+        if persistent_control_nucleus_enrichments
+        else 0.0
+    )
+    persistent_vs_control_nucleus_score_enrichment_ratio: Optional[float] = (
+        _rounded(
+            external_persistent_rank_consistent_cluster_gated.metric.real_vs_decoy_coupling_nucleus_enrichment_ratio
+            / max_persistent_control_nucleus_enrichment
+        )
+        if persistent_selected_event_count > 0
+        and max_persistent_control_nucleus_enrichment
         else None
     )
     persistent_beats_physical = (
@@ -876,9 +901,19 @@ def _build_report(
         for run in adversarial_persistent_rank_consistent_controls
         if run.metric.selected_event_count >= ADVERSARIAL_ENRICHMENT_MIN_SELECTED_EVENTS
     ]
+    adversarial_persistent_nucleus_enrichments = [
+        run.metric.real_vs_decoy_coupling_nucleus_enrichment_ratio
+        for run in adversarial_persistent_rank_consistent_controls
+        if run.metric.selected_event_count >= ADVERSARIAL_ENRICHMENT_MIN_SELECTED_EVENTS
+    ]
     max_adversarial_persistent_enrichment = (
         max(adversarial_persistent_enrichments)
         if adversarial_persistent_enrichments
+        else 0.0
+    )
+    max_adversarial_persistent_nucleus_enrichment = (
+        max(adversarial_persistent_nucleus_enrichments)
+        if adversarial_persistent_nucleus_enrichments
         else 0.0
     )
     persistent_vs_adversarial_enrichment_ratio: Optional[float] = (
@@ -888,6 +923,15 @@ def _build_report(
         )
         if persistent_selected_event_count > 0
         and max_adversarial_persistent_enrichment
+        else None
+    )
+    persistent_vs_adversarial_nucleus_score_enrichment_ratio: Optional[float] = (
+        _rounded(
+            external_persistent_rank_consistent_cluster_gated.metric.real_vs_decoy_coupling_nucleus_enrichment_ratio
+            / max_adversarial_persistent_nucleus_enrichment
+        )
+        if persistent_selected_event_count > 0
+        and max_adversarial_persistent_nucleus_enrichment
         else None
     )
     persistent_beats_adversarial_calibrated_controls = (
@@ -919,6 +963,14 @@ def _build_report(
     persistent_adversarial_enrichment_ratio_meets = (
         persistent_vs_adversarial_enrichment_ratio is not None
         and persistent_vs_adversarial_enrichment_ratio > 1.0
+    )
+    persistent_nucleus_score_enrichment_ratio_meets = (
+        persistent_vs_control_nucleus_score_enrichment_ratio is not None
+        and persistent_vs_control_nucleus_score_enrichment_ratio > 1.25
+    )
+    persistent_adversarial_nucleus_score_enrichment_ratio_meets = (
+        persistent_vs_adversarial_nucleus_score_enrichment_ratio is not None
+        and persistent_vs_adversarial_nucleus_score_enrichment_ratio > 1.0
     )
     persistent_recovered_events = tuple(
         event
@@ -964,6 +1016,14 @@ def _build_report(
         and persistent_enrichment_ratio_meets
         and not claim_mode_failures
     )
+    persistent_selector_score_acceptance_criteria_met = (
+        available_rows >= 4
+        and persistent_beats_physical
+        and persistent_beats_matched_controls
+        and persistent_meets_oracle_recall_floor
+        and persistent_nucleus_score_enrichment_ratio_meets
+        and not claim_mode_failures
+    )
     hard_adversarial_calibrated_probe_passed = (
         rank_consistent_acceptance_criteria_met
         and rank_consistent_beats_adversarial_calibrated_controls
@@ -974,10 +1034,16 @@ def _build_report(
         and persistent_beats_adversarial_calibrated_controls
         and persistent_adversarial_enrichment_ratio_meets
     )
+    persistent_hard_selector_score_probe_passed = (
+        persistent_selector_score_acceptance_criteria_met
+        and persistent_beats_adversarial_calibrated_controls
+        and persistent_adversarial_nucleus_score_enrichment_ratio_meets
+    )
     external_probe_passed = (
         acceptance_criteria_met
         or rank_consistent_acceptance_criteria_met
         or persistent_acceptance_criteria_met
+        or persistent_selector_score_acceptance_criteria_met
     )
     result = classify_external_probe_result(
         available_rows=available_rows,
@@ -994,6 +1060,9 @@ def _build_report(
         ),
     )
     reason = (
+        "persistent external couplings beat controls under the selector-score decoy metric"
+        if persistent_selector_score_acceptance_criteria_met
+        else
         "persistent external couplings recover a calibrated trace event while beating controls"
         if persistent_acceptance_criteria_met
         else
@@ -1324,6 +1393,15 @@ def _build_report(
         "external_persistent_rank_consistent_cluster_gated_vs_adversarial_calibrated_enrichment_ratio": (
             persistent_vs_adversarial_enrichment_ratio
         ),
+        "external_persistent_rank_consistent_cluster_gated_real_vs_decoy_coupling_nucleus_enrichment_ratio": (
+            external_persistent_rank_consistent_cluster_gated.metric.real_vs_decoy_coupling_nucleus_enrichment_ratio
+        ),
+        "external_persistent_rank_consistent_cluster_gated_vs_control_nucleus_score_enrichment_ratio": (
+            persistent_vs_control_nucleus_score_enrichment_ratio
+        ),
+        "external_persistent_rank_consistent_cluster_gated_vs_adversarial_calibrated_nucleus_score_enrichment_ratio": (
+            persistent_vs_adversarial_nucleus_score_enrichment_ratio
+        ),
         "external_persistent_rank_consistent_cluster_gated_mean_selected_coupling_selectivity_score": (
             external_persistent_rank_consistent_cluster_gated.metric.mean_selected_coupling_selectivity_score
         ),
@@ -1342,6 +1420,21 @@ def _build_report(
                 "mean_coupling_decoy_selectivity_margin",
             )
         ),
+        "external_persistent_rank_consistent_cluster_gated_mean_coupling_nucleus_score": (
+            external_persistent_rank_consistent_cluster_gated.metric.mean_coupling_nucleus_score
+        ),
+        "external_persistent_rank_consistent_cluster_gated_mean_decoy_coupling_nucleus_score": (
+            external_persistent_rank_consistent_cluster_gated.metric.mean_decoy_coupling_nucleus_score
+        ),
+        "external_persistent_rank_consistent_cluster_gated_mean_coupling_nucleus_decoy_margin": (
+            external_persistent_rank_consistent_cluster_gated.metric.mean_coupling_nucleus_decoy_margin
+        ),
+        "external_persistent_rank_consistent_cluster_gated_max_control_coupling_nucleus_enrichment_ratio": (
+            max_persistent_control_nucleus_enrichment
+        ),
+        "external_persistent_rank_consistent_cluster_gated_max_adversarial_calibrated_coupling_nucleus_enrichment_ratio": (
+            max_adversarial_persistent_nucleus_enrichment
+        ),
         "external_persistent_rank_consistent_cluster_gated_beats_physical": (
             persistent_beats_physical
         ),
@@ -1359,6 +1452,12 @@ def _build_report(
         ),
         "external_persistent_rank_consistent_cluster_gated_hard_adversarial_calibrated_probe_passed": (
             persistent_hard_adversarial_calibrated_probe_passed
+        ),
+        "external_persistent_rank_consistent_cluster_gated_selector_score_probe_passed": (
+            persistent_selector_score_acceptance_criteria_met
+        ),
+        "external_persistent_rank_consistent_cluster_gated_hard_selector_score_probe_passed": (
+            persistent_hard_selector_score_probe_passed
         ),
         "external_persistent_rank_consistent_cluster_gated_claim_allowed": False,
         "external_persistent_rank_consistent_cluster_gated_recovery_diagnostic_kind": (
@@ -1478,9 +1577,14 @@ def render_external_coupling_trace_loop_dashboard(
         "external_persistent_rank_consistent_cluster_gated_long_range_recall",
         "external_persistent_rank_consistent_cluster_gated_vs_control_enrichment_ratio",
         "external_persistent_rank_consistent_cluster_gated_vs_adversarial_calibrated_enrichment_ratio",
+        "external_persistent_rank_consistent_cluster_gated_real_vs_decoy_coupling_nucleus_enrichment_ratio",
+        "external_persistent_rank_consistent_cluster_gated_vs_control_nucleus_score_enrichment_ratio",
+        "external_persistent_rank_consistent_cluster_gated_vs_adversarial_calibrated_nucleus_score_enrichment_ratio",
         "external_persistent_rank_consistent_cluster_gated_beats_matched_controls",
         "external_persistent_rank_consistent_cluster_gated_beats_adversarial_calibrated_controls",
         "external_persistent_rank_consistent_cluster_gated_probe_passed",
+        "external_persistent_rank_consistent_cluster_gated_selector_score_probe_passed",
+        "external_persistent_rank_consistent_cluster_gated_hard_selector_score_probe_passed",
         "external_persistent_rank_consistent_cluster_gated_recovered_event_count",
         "external_persistent_rank_consistent_cluster_gated_recovered_native_contact_count",
         "external_persistent_rank_consistent_cluster_gated_recovered_native_long_range_contact_count",

@@ -153,6 +153,10 @@ class CouplingSelectorMetric:
     mean_decoy_coupling_selectivity_score: float
     mean_coupling_decoy_selectivity_margin: float
     mean_coupling_nucleus_score: float
+    mean_decoy_coupling_nucleus_score: float
+    mean_coupling_nucleus_decoy_margin: float
+    real_vs_decoy_coupling_nucleus_enrichment_ratio: float
+    real_beats_decoy_coupling_nucleus_score_rate: float
     survives_targets: bool
     coordinate_truth_used_to_build_constraints: bool
     native_truth_used_before_coupling_selection: bool
@@ -943,6 +947,42 @@ def selector_metrics(
     selectivity_margin_mean = _rounded(
         selected_selectivity_mean - decoy_selectivity_mean
     )
+    selected_nucleus_scores = [
+        coupling_nucleus_score(
+            context.event_by_id[comparison.real_event_id],
+            context,
+        )
+        for comparison in comparisons
+    ]
+    decoy_nucleus_scores = [
+        coupling_nucleus_score(
+            context.event_by_id[comparison.decoy_event_id],
+            context,
+        )
+        for comparison in comparisons
+    ]
+    selected_nucleus_mean = _rounded(
+        mean(selected_nucleus_scores) if selected_nucleus_scores else 0.0
+    )
+    decoy_nucleus_mean = _rounded(
+        mean(decoy_nucleus_scores) if decoy_nucleus_scores else 0.0
+    )
+    nucleus_score_enrichment = _rounded(
+        selected_nucleus_mean / decoy_nucleus_mean if decoy_nucleus_mean else 0.0
+    )
+    nucleus_score_beats = _rounded(
+        sum(
+            1
+            for selected_score, decoy_score in zip(
+                selected_nucleus_scores,
+                decoy_nucleus_scores,
+            )
+            if selected_score > decoy_score
+        )
+        / len(selected_nucleus_scores)
+        if selected_nucleus_scores
+        else 0.0
+    )
     survives = (
         false_rate < SURVIVAL_FALSE_RATE_MAX
         and precision > SURVIVAL_CLUSTER_PRECISION_MIN
@@ -963,11 +1003,15 @@ def selector_metrics(
         mean_selected_coupling_selectivity_score=selected_selectivity_mean,
         mean_decoy_coupling_selectivity_score=decoy_selectivity_mean,
         mean_coupling_decoy_selectivity_margin=selectivity_margin_mean,
-        mean_coupling_nucleus_score=_rounded(
-            mean([coupling_nucleus_score(event, context) for event in selected_events])
-            if selected_events
-            else 0.0
+        mean_coupling_nucleus_score=selected_nucleus_mean,
+        mean_decoy_coupling_nucleus_score=decoy_nucleus_mean,
+        mean_coupling_nucleus_decoy_margin=_rounded(
+            selected_nucleus_mean - decoy_nucleus_mean
         ),
+        real_vs_decoy_coupling_nucleus_enrichment_ratio=(
+            nucleus_score_enrichment
+        ),
+        real_beats_decoy_coupling_nucleus_score_rate=nucleus_score_beats,
         survives_targets=survives,
         coordinate_truth_used_to_build_constraints=(
             context.coupling_dataset.coordinate_truth_tainted
