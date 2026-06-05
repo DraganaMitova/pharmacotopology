@@ -57,6 +57,7 @@ from pharmacotopology.folding_external_coupling_trace_loop import (  # noqa: E40
     EXTERNAL_COUPLING_TRACE_LOOP_REPORT_KIND,
     ROOT_OUTPUT_NAMES,
     _build_multiscale_physical_contexts,
+    _run_multiscale_critical_boundary_selector,
     _run_multiscale_future_preserved_selector,
     classify_external_probe_result,
     run_external_evolutionary_coupling_trace_loop_benchmark,
@@ -374,6 +375,27 @@ def test_locked_multiscale_future_preserved_selector_extends_recall_frontier() -
         event.native_contact_count_after_scoring > 0
         for event in run.selected_events
     )
+
+
+def test_locked_multiscale_critical_boundary_self_selects_without_static_cap() -> None:
+    rows = load_real_coordinate_visual_rows(BENCHMARK_8)
+    dataset = load_coupling_dataset(LOCKED_EXTERNAL_COUPLINGS)
+    run = _run_multiscale_critical_boundary_selector(
+        rows=rows,
+        dataset=dataset,
+        selector_name="external_multiscale_critical_boundary",
+        control_kind="external_real_multiscale_critical_boundary",
+        physical_contexts=_build_multiscale_physical_contexts(rows),
+    )
+
+    assert run.metric.selected_event_count == 114
+    assert run.metric.false_nucleus_rate == 0.026786
+    assert run.metric.contact_cluster_precision == 0.045534
+    assert run.metric.long_range_contact_recall == 0.716901
+    assert sum(
+        event.native_contact_count_after_scoring == 0
+        for event in run.selected_events
+    ) == 3
 
 
 def test_coupling_dataset_reuses_constraint_row_grouping() -> None:
@@ -2062,6 +2084,36 @@ def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> Non
         in report
     )
     assert report["external_multiscale_future_preserved_claim_allowed"] is False
+    assert report["external_multiscale_critical_boundary_kind"] == (
+        "largest_internal_coherence_gap_v0"
+    )
+    assert (
+        report["external_multiscale_critical_boundary_static_future_threshold_used"]
+        is False
+    )
+    assert (
+        report["external_multiscale_critical_boundary_static_event_cap_used"]
+        is False
+    )
+    assert "external_multiscale_critical_boundary_selected_event_count" in report
+    assert "external_multiscale_critical_boundary_false_event_count" in report
+    assert "external_multiscale_critical_boundary_false_nucleus_rate" in report
+    assert "external_multiscale_critical_boundary_cluster_precision" in report
+    assert "external_multiscale_critical_boundary_long_range_recall" in report
+    assert (
+        "external_multiscale_critical_boundary_long_range_recall_delta_vs_tuned_multiscale"
+        in report
+    )
+    assert (
+        "external_multiscale_critical_boundary_long_range_recall_margin_vs_matched_controls"
+        in report
+    )
+    assert "external_multiscale_critical_boundary_beats_matched_controls" in report
+    assert (
+        "external_multiscale_critical_boundary_beats_adversarial_calibrated_controls"
+        in report
+    )
+    assert report["external_multiscale_critical_boundary_claim_allowed"] is False
     assert "external_terminal_bridge_replacement_frontier_count" in report
     assert (
         "external_terminal_bridge_replacement_frontier_native_long_range_delta_sum"
@@ -2221,6 +2273,18 @@ def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> Non
         ]
     )
     assert (
+        certificate["external_multiscale_critical_boundary_long_range_recall"]
+        == report["external_multiscale_critical_boundary_long_range_recall"]
+    )
+    assert (
+        certificate[
+            "external_multiscale_critical_boundary_long_range_recall_delta_vs_tuned_multiscale"
+        ]
+        == report[
+            "external_multiscale_critical_boundary_long_range_recall_delta_vs_tuned_multiscale"
+        ]
+    )
+    assert (
         certificate["external_terminal_bridge_replacement_frontier_count"]
         == report["external_terminal_bridge_replacement_frontier_count"]
     )
@@ -2240,8 +2304,8 @@ def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> Non
             "external_terminal_bridge_replacement_frontier_external_confidence_delta_sum"
         ]
     )
-    assert len(selectors) == 113
-    assert len(controls) == 113
+    assert len(selectors) == 121
+    assert len(controls) == 121
     assert len(frontier) == (
         report["external_terminal_bridge_replacement_frontier_count"]
         +
@@ -2280,6 +2344,11 @@ def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> Non
     assert "external_multiscale_future_preserved_long_range_recall" in dashboard
     assert (
         "external_multiscale_future_preserved_long_range_recall_margin_vs_matched_controls"
+        in dashboard
+    )
+    assert "external_multiscale_critical_boundary_long_range_recall" in dashboard
+    assert (
+        "external_multiscale_critical_boundary_long_range_recall_delta_vs_tuned_multiscale"
         in dashboard
     )
     assert "external_terminal_bridge_replacement_frontier_count" in dashboard
