@@ -118,10 +118,31 @@ boundary_continuity_expanded_beats_adversarial_calibrated_controls = true
 boundary_continuity_expanded_claim_allowed = false
 ```
 
-This is a controlled recall gain, not a universal improvement: cluster
-precision drops from `0.179688` to `0.174316` because the added events are
-small native-positive contacts. It remains an 8-row external-coupling benchmark
-result, not a solved-folding claim.
+KNOT-Core's transfer/falsification and stability-accumulation doctrine then
+motivated a stricter edge-continuity probe: admit only modest-score,
+high-cluster edge candidates with direct support, preserved future signal, low
+blocked-future pressure, and enough local secondary-structure compatibility.
+
+```text
+edge_continuity_expanded_selected_event_count = 30
+edge_continuity_expanded_added_event_count = 2
+edge_continuity_expanded_added_native_long_range_contacts = 3
+edge_continuity_expanded_added_false_event_count = 0
+edge_continuity_expanded_false_nucleus_rate = 0.0
+edge_continuity_expanded_cluster_precision = 0.172363
+edge_continuity_expanded_long_range_recall = 0.269988
+edge_continuity_expanded_long_range_recall_delta_vs_boundary_continuity = 0.010416
+edge_continuity_expanded_long_range_recall_margin_vs_matched_controls = 0.135364
+edge_continuity_expanded_long_range_recall_margin_vs_adversarial_controls = 0.130042
+edge_continuity_expanded_beats_matched_controls = true
+edge_continuity_expanded_beats_adversarial_calibrated_controls = true
+edge_continuity_expanded_claim_allowed = false
+```
+
+These are controlled recall gains, not universal improvements: cluster
+precision drops from `0.179688` to `0.174316`, then to `0.172363`, because the
+added events are small native-positive contacts. This remains an 8-row
+external-coupling benchmark result, not a solved-folding claim.
 
 Claim mode remains locked. A folding-solved claim is refused unless the data and
 per-constraint provenance stay external:

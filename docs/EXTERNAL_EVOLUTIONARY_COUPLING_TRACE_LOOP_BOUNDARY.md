@@ -339,6 +339,20 @@ external_boundary_continuity_expanded_long_range_recall_margin_vs_adversarial_co
 external_boundary_continuity_expanded_beats_matched_controls = true
 external_boundary_continuity_expanded_beats_adversarial_calibrated_controls = true
 external_boundary_continuity_expanded_claim_allowed = false
+
+external_edge_continuity_expanded_selected_event_count = 30
+external_edge_continuity_expanded_added_event_count = 2
+external_edge_continuity_expanded_added_native_long_range_contact_count = 3
+external_edge_continuity_expanded_added_false_event_count = 0
+external_edge_continuity_expanded_false_nucleus_rate = 0.0
+external_edge_continuity_expanded_cluster_precision = 0.172363
+external_edge_continuity_expanded_long_range_recall = 0.269988
+external_edge_continuity_expanded_long_range_recall_delta_vs_boundary_continuity = 0.010416
+external_edge_continuity_expanded_long_range_recall_margin_vs_matched_controls = 0.135364
+external_edge_continuity_expanded_long_range_recall_margin_vs_adversarial_controls = 0.130042
+external_edge_continuity_expanded_beats_matched_controls = true
+external_edge_continuity_expanded_beats_adversarial_calibrated_controls = true
+external_edge_continuity_expanded_claim_allowed = false
 claim_allowed = false
 ```
 
@@ -355,6 +369,8 @@ that add 38 long-range contacts without adding a false nucleus
 the score-margin-expanded selector beats matched and adversarial controls on precision and recall
 the boundary-continuity selector adds two more long-range contacts without adding a false nucleus
 the boundary-continuity selector improves recall but lowers cluster precision from 0.179688 to 0.174316
+the edge-continuity selector adds three more long-range contacts without adding a false nucleus
+the edge-continuity selector improves recall again but lowers cluster precision to 0.172363
 claims remain locked
 ```
 

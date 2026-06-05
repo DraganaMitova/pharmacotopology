@@ -718,6 +718,92 @@ def test_boundary_continuity_expanded_selector_rescues_structured_low_cluster_ca
     assert tuple(event.event_id for event in selected) == ("core", "rescued")
 
 
+def test_edge_continuity_expanded_selector_rescues_modest_high_cluster_edge(
+    monkeypatch,
+) -> None:
+    core = _event(
+        "core",
+        contact_cluster_gain=0.35,
+        segment_a_start=1,
+        segment_b_start=41,
+    )
+    rescued = _event(
+        "rescued",
+        contact_cluster_gain=0.44,
+        segment_a_start=13,
+        segment_b_start=57,
+        secondary_structure_compatibility=0.60,
+    )
+    overconfident = _event(
+        "overconfident",
+        contact_cluster_gain=0.44,
+        segment_a_start=25,
+        segment_b_start=73,
+        secondary_structure_compatibility=0.60,
+    )
+    low_margin = _event(
+        "low_margin",
+        contact_cluster_gain=0.44,
+        segment_a_start=37,
+        segment_b_start=89,
+        secondary_structure_compatibility=0.60,
+    )
+    decoy = _event(
+        "decoy",
+        contact_cluster_gain=0.44,
+        segment_a_start=49,
+        segment_b_start=93,
+    )
+    context = SimpleNamespace(
+        rows=(SimpleNamespace(row_id="row_1"),),
+        competitive_events=(core, rescued, overconfident, low_margin, decoy),
+        assessment_by_event_id={
+            event.event_id: _assessment(
+                event,
+                direct_support_score=0.32,
+                future_preservation_score=0.58,
+                blocked_future_pressure=0.03,
+            )
+            for event in (core, rescued, overconfident, low_margin, decoy)
+        },
+    )
+    scores = {
+        core.event_id: 0.50,
+        rescued.event_id: 0.45,
+        overconfident.event_id: 0.62,
+        low_margin.event_id: 0.39,
+        decoy.event_id: 0.30,
+    }
+    monkeypatch.setattr(
+        selector_module,
+        "select_coupling_trace_loop_boundary_continuity_expanded_events",
+        lambda *args, **kwargs: (core,),
+    )
+    monkeypatch.setattr(
+        selector_module,
+        "select_coupling_trace_loop_events",
+        lambda *args, **kwargs: (core, rescued, overconfident, low_margin),
+    )
+    monkeypatch.setattr(
+        selector_module,
+        "coupling_nucleus_score",
+        lambda event, _context: scores[event.event_id],
+    )
+    monkeypatch.setattr(
+        selector_module,
+        "decoy_distance",
+        lambda _event, candidate: 0.0
+        if candidate.event_id == decoy.event_id
+        else 10.0,
+    )
+
+    selected = selector_module.select_coupling_trace_loop_edge_continuity_expanded_events(
+        context
+    )
+
+    assert tuple(event.event_id for event in selected) == ("core", "rescued")
+
+
 def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> None:
     external_file = _write_external_fixture(tmp_path / "external.json")
     outputs = {
@@ -830,6 +916,24 @@ def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> Non
         in report
     )
     assert report["external_boundary_continuity_expanded_claim_allowed"] is False
+    assert "external_edge_continuity_expanded_selected_event_count" in report
+    assert "external_edge_continuity_expanded_added_event_count" in report
+    assert (
+        "external_edge_continuity_expanded_added_native_long_range_contact_count"
+        in report
+    )
+    assert "external_edge_continuity_expanded_added_false_event_count" in report
+    assert "external_edge_continuity_expanded_long_range_recall" in report
+    assert (
+        "external_edge_continuity_expanded_long_range_recall_delta_vs_boundary_continuity"
+        in report
+    )
+    assert "external_edge_continuity_expanded_beats_matched_controls" in report
+    assert (
+        "external_edge_continuity_expanded_beats_adversarial_calibrated_controls"
+        in report
+    )
+    assert report["external_edge_continuity_expanded_claim_allowed"] is False
     assert (
         "external_persistent_rank_consistent_cluster_gated_score_margin_expansion_candidate_count"
         in report
@@ -950,8 +1054,12 @@ def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> Non
         certificate["external_boundary_continuity_expanded_added_event_count"]
         == report["external_boundary_continuity_expanded_added_event_count"]
     )
-    assert len(selectors) == 64
-    assert len(controls) == 64
+    assert (
+        certificate["external_edge_continuity_expanded_added_event_count"]
+        == report["external_edge_continuity_expanded_added_event_count"]
+    )
+    assert len(selectors) == 72
+    assert len(controls) == 72
     assert len(frontier) == (
         report["external_rank_consistent_cluster_gated_native_positive_frontier_count"]
         + report[
@@ -975,6 +1083,11 @@ def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> Non
     assert "external_boundary_continuity_expanded_added_event_count" in dashboard
     assert (
         "external_boundary_continuity_expanded_long_range_recall_delta_vs_score_margin"
+        in dashboard
+    )
+    assert "external_edge_continuity_expanded_added_event_count" in dashboard
+    assert (
+        "external_edge_continuity_expanded_long_range_recall_delta_vs_boundary_continuity"
         in dashboard
     )
     assert (

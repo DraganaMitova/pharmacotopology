@@ -750,6 +750,36 @@ def _certificate(report: Mapping[str, object]) -> dict[str, object]:
         "external_boundary_continuity_expanded_claim_allowed": report[
             "external_boundary_continuity_expanded_claim_allowed"
         ],
+        "external_edge_continuity_expanded_selected_event_count": report[
+            "external_edge_continuity_expanded_selected_event_count"
+        ],
+        "external_edge_continuity_expanded_added_event_count": report[
+            "external_edge_continuity_expanded_added_event_count"
+        ],
+        "external_edge_continuity_expanded_added_native_long_range_contact_count": report[
+            "external_edge_continuity_expanded_added_native_long_range_contact_count"
+        ],
+        "external_edge_continuity_expanded_added_false_event_count": report[
+            "external_edge_continuity_expanded_added_false_event_count"
+        ],
+        "external_edge_continuity_expanded_false_nucleus_rate": report[
+            "external_edge_continuity_expanded_false_nucleus_rate"
+        ],
+        "external_edge_continuity_expanded_long_range_recall": report[
+            "external_edge_continuity_expanded_long_range_recall"
+        ],
+        "external_edge_continuity_expanded_long_range_recall_delta_vs_boundary_continuity": report[
+            "external_edge_continuity_expanded_long_range_recall_delta_vs_boundary_continuity"
+        ],
+        "external_edge_continuity_expanded_beats_matched_controls": report[
+            "external_edge_continuity_expanded_beats_matched_controls"
+        ],
+        "external_edge_continuity_expanded_beats_adversarial_calibrated_controls": report[
+            "external_edge_continuity_expanded_beats_adversarial_calibrated_controls"
+        ],
+        "external_edge_continuity_expanded_claim_allowed": report[
+            "external_edge_continuity_expanded_claim_allowed"
+        ],
         "external_rank_consistent_cluster_gated_native_positive_frontier_count": report[
             "external_rank_consistent_cluster_gated_native_positive_frontier_count"
         ],
@@ -850,6 +880,7 @@ def _build_report(
     external_persistent_rank_consistent_cluster_gated: TraceLoopRun,
     external_score_margin_expanded: TraceLoopRun,
     external_boundary_continuity_expanded: TraceLoopRun,
+    external_edge_continuity_expanded: TraceLoopRun,
     physical_baseline: TraceLoopRun,
     matched_controls: Sequence[TraceLoopRun],
     margin_gated_controls: Sequence[TraceLoopRun],
@@ -864,6 +895,8 @@ def _build_report(
     adversarial_score_margin_expanded_controls: Sequence[TraceLoopRun],
     boundary_continuity_expanded_controls: Sequence[TraceLoopRun],
     adversarial_boundary_continuity_expanded_controls: Sequence[TraceLoopRun],
+    edge_continuity_expanded_controls: Sequence[TraceLoopRun],
+    adversarial_edge_continuity_expanded_controls: Sequence[TraceLoopRun],
     oracle_positive_control: TraceLoopRun,
     frontier_rows: Sequence[Mapping[str, object]],
     recall_frontier_rows: Sequence[Mapping[str, object]],
@@ -1673,6 +1706,71 @@ def _build_report(
         and boundary_continuity_expanded_metric.long_range_contact_recall
         > boundary_continuity_expanded_max_adversarial_long_range_recall
     )
+    boundary_continuity_expanded_ids = {
+        event.event_id
+        for event in external_boundary_continuity_expanded.selected_events
+    }
+    edge_continuity_expanded_metric = external_edge_continuity_expanded.metric
+    edge_continuity_expanded_selected_event_count = (
+        edge_continuity_expanded_metric.selected_event_count
+    )
+    edge_continuity_expanded_added_events = tuple(
+        event
+        for event in external_edge_continuity_expanded.selected_events
+        if event.event_id not in boundary_continuity_expanded_ids
+    )
+    edge_continuity_expanded_max_matched_control_precision = _max_selected_metric(
+        edge_continuity_expanded_controls,
+        "contact_cluster_precision",
+    )
+    edge_continuity_expanded_max_matched_control_long_range_recall = (
+        _max_selected_metric(
+            edge_continuity_expanded_controls,
+            "long_range_contact_recall",
+        )
+    )
+    edge_continuity_expanded_max_adversarial_precision = _max_selected_metric(
+        adversarial_edge_continuity_expanded_controls,
+        "contact_cluster_precision",
+    )
+    edge_continuity_expanded_max_adversarial_long_range_recall = _max_selected_metric(
+        adversarial_edge_continuity_expanded_controls,
+        "long_range_contact_recall",
+    )
+    edge_continuity_expanded_noninferior_false_rate_vs_matched_controls = (
+        bool(edge_continuity_expanded_controls)
+        and edge_continuity_expanded_selected_event_count > 0
+        and all(
+            run.metric.selected_event_count == 0
+            or edge_continuity_expanded_metric.false_nucleus_rate
+            <= run.metric.false_nucleus_rate
+            for run in edge_continuity_expanded_controls
+        )
+    )
+    edge_continuity_expanded_noninferior_false_rate_vs_adversarial_controls = (
+        bool(adversarial_edge_continuity_expanded_controls)
+        and edge_continuity_expanded_selected_event_count > 0
+        and all(
+            run.metric.selected_event_count == 0
+            or edge_continuity_expanded_metric.false_nucleus_rate
+            <= run.metric.false_nucleus_rate
+            for run in adversarial_edge_continuity_expanded_controls
+        )
+    )
+    edge_continuity_expanded_beats_matched_controls = (
+        edge_continuity_expanded_noninferior_false_rate_vs_matched_controls
+        and edge_continuity_expanded_metric.contact_cluster_precision
+        > edge_continuity_expanded_max_matched_control_precision
+        and edge_continuity_expanded_metric.long_range_contact_recall
+        > edge_continuity_expanded_max_matched_control_long_range_recall
+    )
+    edge_continuity_expanded_beats_adversarial_calibrated_controls = (
+        edge_continuity_expanded_noninferior_false_rate_vs_adversarial_controls
+        and edge_continuity_expanded_metric.contact_cluster_precision
+        > edge_continuity_expanded_max_adversarial_precision
+        and edge_continuity_expanded_metric.long_range_contact_recall
+        > edge_continuity_expanded_max_adversarial_long_range_recall
+    )
     return {
         "report_kind": EXTERNAL_COUPLING_TRACE_LOOP_REPORT_KIND,
         "batch_id": EXTERNAL_EVOLUTIONARY_COUPLING_TRACE_LOOP_BATCH_ID,
@@ -2241,6 +2339,101 @@ def _build_report(
             boundary_continuity_expanded_beats_adversarial_calibrated_controls
         ),
         "external_boundary_continuity_expanded_claim_allowed": False,
+        "external_edge_continuity_expanded_selected_event_count": (
+            edge_continuity_expanded_selected_event_count
+        ),
+        "external_edge_continuity_expanded_added_event_count": (
+            len(edge_continuity_expanded_added_events)
+        ),
+        "external_edge_continuity_expanded_added_native_contact_count": (
+            sum(
+                event.native_contact_count_after_scoring
+                for event in edge_continuity_expanded_added_events
+            )
+        ),
+        "external_edge_continuity_expanded_added_native_long_range_contact_count": (
+            sum(
+                event.native_long_range_contact_count_after_scoring
+                for event in edge_continuity_expanded_added_events
+            )
+        ),
+        "external_edge_continuity_expanded_added_false_event_count": (
+            sum(
+                1
+                for event in edge_continuity_expanded_added_events
+                if event.native_contact_count_after_scoring == 0
+            )
+        ),
+        "external_edge_continuity_expanded_false_nucleus_rate": (
+            edge_continuity_expanded_metric.false_nucleus_rate
+            if edge_continuity_expanded_selected_event_count
+            else None
+        ),
+        "external_edge_continuity_expanded_cluster_precision": (
+            edge_continuity_expanded_metric.contact_cluster_precision
+            if edge_continuity_expanded_selected_event_count
+            else None
+        ),
+        "external_edge_continuity_expanded_long_range_recall": (
+            edge_continuity_expanded_metric.long_range_contact_recall
+            if edge_continuity_expanded_selected_event_count
+            else None
+        ),
+        "external_edge_continuity_expanded_long_range_recall_delta_vs_boundary_continuity": (
+            _rounded(
+                edge_continuity_expanded_metric.long_range_contact_recall
+                - boundary_continuity_expanded_metric.long_range_contact_recall
+            )
+        ),
+        "external_edge_continuity_expanded_max_matched_control_cluster_precision": (
+            edge_continuity_expanded_max_matched_control_precision
+        ),
+        "external_edge_continuity_expanded_max_matched_control_long_range_recall": (
+            edge_continuity_expanded_max_matched_control_long_range_recall
+        ),
+        "external_edge_continuity_expanded_cluster_precision_margin_vs_matched_controls": (
+            _rounded(
+                edge_continuity_expanded_metric.contact_cluster_precision
+                - edge_continuity_expanded_max_matched_control_precision
+            )
+        ),
+        "external_edge_continuity_expanded_long_range_recall_margin_vs_matched_controls": (
+            _rounded(
+                edge_continuity_expanded_metric.long_range_contact_recall
+                - edge_continuity_expanded_max_matched_control_long_range_recall
+            )
+        ),
+        "external_edge_continuity_expanded_max_adversarial_cluster_precision": (
+            edge_continuity_expanded_max_adversarial_precision
+        ),
+        "external_edge_continuity_expanded_max_adversarial_long_range_recall": (
+            edge_continuity_expanded_max_adversarial_long_range_recall
+        ),
+        "external_edge_continuity_expanded_cluster_precision_margin_vs_adversarial_controls": (
+            _rounded(
+                edge_continuity_expanded_metric.contact_cluster_precision
+                - edge_continuity_expanded_max_adversarial_precision
+            )
+        ),
+        "external_edge_continuity_expanded_long_range_recall_margin_vs_adversarial_controls": (
+            _rounded(
+                edge_continuity_expanded_metric.long_range_contact_recall
+                - edge_continuity_expanded_max_adversarial_long_range_recall
+            )
+        ),
+        "external_edge_continuity_expanded_noninferior_false_rate_vs_matched_controls": (
+            edge_continuity_expanded_noninferior_false_rate_vs_matched_controls
+        ),
+        "external_edge_continuity_expanded_noninferior_false_rate_vs_adversarial_controls": (
+            edge_continuity_expanded_noninferior_false_rate_vs_adversarial_controls
+        ),
+        "external_edge_continuity_expanded_beats_matched_controls": (
+            edge_continuity_expanded_beats_matched_controls
+        ),
+        "external_edge_continuity_expanded_beats_adversarial_calibrated_controls": (
+            edge_continuity_expanded_beats_adversarial_calibrated_controls
+        ),
+        "external_edge_continuity_expanded_claim_allowed": False,
         "external_persistent_rank_consistent_cluster_gated_recovery_diagnostic_kind": (
             "persistent_trace_recovery_after_rank_consistent_gate_v0"
         ),
@@ -2489,6 +2682,21 @@ def render_external_coupling_trace_loop_dashboard(
         "external_boundary_continuity_expanded_beats_matched_controls",
         "external_boundary_continuity_expanded_beats_adversarial_calibrated_controls",
         "external_boundary_continuity_expanded_claim_allowed",
+        "external_edge_continuity_expanded_selected_event_count",
+        "external_edge_continuity_expanded_added_event_count",
+        "external_edge_continuity_expanded_added_native_long_range_contact_count",
+        "external_edge_continuity_expanded_added_false_event_count",
+        "external_edge_continuity_expanded_false_nucleus_rate",
+        "external_edge_continuity_expanded_cluster_precision",
+        "external_edge_continuity_expanded_long_range_recall",
+        "external_edge_continuity_expanded_long_range_recall_delta_vs_boundary_continuity",
+        "external_edge_continuity_expanded_cluster_precision_margin_vs_matched_controls",
+        "external_edge_continuity_expanded_long_range_recall_margin_vs_matched_controls",
+        "external_edge_continuity_expanded_cluster_precision_margin_vs_adversarial_controls",
+        "external_edge_continuity_expanded_long_range_recall_margin_vs_adversarial_controls",
+        "external_edge_continuity_expanded_beats_matched_controls",
+        "external_edge_continuity_expanded_beats_adversarial_calibrated_controls",
+        "external_edge_continuity_expanded_claim_allowed",
         "external_persistent_rank_consistent_cluster_gated_recovered_event_count",
         "external_persistent_rank_consistent_cluster_gated_recovered_native_contact_count",
         "external_persistent_rank_consistent_cluster_gated_recovered_native_long_range_contact_count",
@@ -2653,6 +2861,13 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
         selector_name="external_boundary_continuity_expanded",
         selection_mode="coupling_trace_loop_boundary_continuity_expanded",
         control_kind="external_real_boundary_continuity_expanded",
+    )
+    external_edge_continuity_expanded = _run_trace_loop_selector_from_context(
+        context=external_context,
+        dataset=import_result.dataset,
+        selector_name="external_edge_continuity_expanded",
+        selection_mode="coupling_trace_loop_edge_continuity_expanded",
+        control_kind="external_real_edge_continuity_expanded",
     )
     physical_baseline = _run_trace_loop_selector_from_context(
         context=external_context,
@@ -2822,6 +3037,26 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
         )
         for name, control in adversarial_controls.items()
     )
+    edge_continuity_expanded_control_runs = tuple(
+        _run_trace_loop_selector_from_context(
+            context=control_contexts[name],
+            dataset=control.dataset,
+            selector_name=f"external_edge_continuity_expanded_{name}",
+            selection_mode="coupling_trace_loop_edge_continuity_expanded",
+            control_kind=control.control_kind,
+        )
+        for name, control in controls.items()
+    )
+    adversarial_edge_continuity_expanded_control_runs = tuple(
+        _run_trace_loop_selector_from_context(
+            context=adversarial_control_contexts[name],
+            dataset=control.dataset,
+            selector_name=f"external_edge_continuity_expanded_{name}",
+            selection_mode="coupling_trace_loop_edge_continuity_expanded",
+            control_kind=control.control_kind,
+        )
+        for name, control in adversarial_controls.items()
+    )
     oracle_context = build_coupling_nucleus_context(
         rows=rows,
         coupling_dataset=oracle_dataset,
@@ -2843,6 +3078,7 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
         external_persistent_rank_consistent_cluster_gated,
         external_score_margin_expanded,
         external_boundary_continuity_expanded,
+        external_edge_continuity_expanded,
         physical_baseline,
         *matched_control_runs,
         *margin_gated_control_runs,
@@ -2857,6 +3093,8 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
         *adversarial_score_margin_expanded_control_runs,
         *boundary_continuity_expanded_control_runs,
         *adversarial_boundary_continuity_expanded_control_runs,
+        *edge_continuity_expanded_control_runs,
+        *adversarial_edge_continuity_expanded_control_runs,
         oracle_positive_control,
     )
     frontier_rows = rank_consistent_frontier_rows(
@@ -2920,6 +3158,7 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
         external_boundary_continuity_expanded=(
             external_boundary_continuity_expanded
         ),
+        external_edge_continuity_expanded=external_edge_continuity_expanded,
         physical_baseline=physical_baseline,
         matched_controls=matched_control_runs,
         margin_gated_controls=margin_gated_control_runs,
@@ -2949,6 +3188,10 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
         ),
         adversarial_boundary_continuity_expanded_controls=(
             adversarial_boundary_continuity_expanded_control_runs
+        ),
+        edge_continuity_expanded_controls=edge_continuity_expanded_control_runs,
+        adversarial_edge_continuity_expanded_controls=(
+            adversarial_edge_continuity_expanded_control_runs
         ),
         oracle_positive_control=oracle_positive_control,
         frontier_rows=frontier_rows,
