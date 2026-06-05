@@ -297,7 +297,6 @@ def persistent_recall_frontier_rows(
         event
         for event in trace_events
         if event.event_id not in selected_ids
-        and event.native_contact_count_after_scoring > 0
         and all(
             compatible_future_event(selected_event, event)
             for selected_event in selected_by_row.get(event.row_id, ())
@@ -330,6 +329,10 @@ def persistent_recall_frontier_rows(
             event=event,
             selector_score_margin=selector_score_margin,
         )
+        gate_passed = not reasons
+        native_positive = event.native_contact_count_after_scoring > 0
+        if not native_positive and not gate_passed:
+            continue
         rows.append(
             {
                 "frontier_kind": "persistent_score_margin_recall_frontier_v0",
@@ -387,7 +390,7 @@ def persistent_recall_frontier_rows(
                 "real_beats_decoy_by_coupling_nucleus_score": (
                     selector_score_margin > 0.0
                 ),
-                "score_margin_expansion_gate_passed": not reasons,
+                "score_margin_expansion_gate_passed": gate_passed,
                 "recall_frontier_rank": rank,
                 "native_truth_used_before_selection": False,
                 "native_label_attached_after_event_generation": True,
