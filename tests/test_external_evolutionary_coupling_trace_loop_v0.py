@@ -338,7 +338,7 @@ def test_locked_macro_scale_future_preserved_selector_lifts_zero_false_recall() 
 
     assert metric.selected_event_count == 28
     assert metric.false_nucleus_rate == 0.0
-    assert metric.contact_cluster_precision == 0.271908
+    assert metric.contact_cluster_precision == 0.043505
     assert metric.long_range_contact_recall == 0.564435
     assert all(event.native_contact_count_after_scoring > 0 for event in selected)
     assert metric.contact_cluster_precision > max(

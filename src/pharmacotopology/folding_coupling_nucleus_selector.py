@@ -1930,7 +1930,9 @@ def selector_metrics(
         native_hit_count = sum(
             event.native_contact_count_after_scoring for event in row_events
         )
-        possible_region_pair_count = len(row_events) * 64
+        possible_region_pair_count = sum(
+            len(event.candidate_region_pairs()) for event in row_events
+        )
         false_count = sum(
             1 for event in row_events if event.native_contact_count_after_scoring == 0
         )
