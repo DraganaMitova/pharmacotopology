@@ -213,6 +213,7 @@ TRACE_LOOP_BOUNDARY_FIELD_REPLACEMENT_PHYSICAL_RELEASE_FUTURE_MIN = 0.17
 TRACE_LOOP_BOUNDARY_FIELD_REPLACEMENT_PHYSICAL_RELEASE_BLOCKED_MAX = 0.11
 TRACE_LOOP_BOUNDARY_FIELD_REPLACEMENT_PHYSICAL_RELEASE_DIRECT_COUNT_MIN = 1
 TRACE_LOOP_BOUNDARY_FIELD_REPLACEMENT_LIMIT_PER_ROW = 3
+TRACE_LOOP_MACRO_SCALE_FUTURE_PRESERVATION_MIN = 0.32
 
 SURVIVAL_FALSE_RATE_MAX = 0.25
 SURVIVAL_CLUSTER_PRECISION_MIN = 0.08
@@ -542,6 +543,10 @@ def select_coupling_events(
         return select_coupling_trace_loop_terminal_bridge_expanded_events(context)
     if selector_name == "coupling_trace_loop_boundary_field_replacement_probe":
         return select_coupling_trace_loop_boundary_field_replacement_probe_events(
+            context
+        )
+    if selector_name == "coupling_trace_loop_macro_scale_future_preserved":
+        return select_coupling_trace_loop_macro_scale_future_preserved_events(
             context
         )
 
@@ -1821,6 +1826,22 @@ def select_coupling_trace_loop_boundary_field_replacement_probe_events(
         row_selected.extend(event for _, event, _ in chosen_replacements)
         selected.extend(row_selected)
     return tuple(selected)
+
+
+def select_coupling_trace_loop_macro_scale_future_preserved_events(
+    context: CouplingNucleusContext,
+) -> tuple[NucleusClosureEvent, ...]:
+    selected = select_coupling_trace_loop_boundary_field_replacement_probe_events(
+        context
+    )
+    return tuple(
+        event
+        for event in selected
+        if context.assessment_by_event_id[
+            event.event_id
+        ].future_preservation_score
+        >= TRACE_LOOP_MACRO_SCALE_FUTURE_PRESERVATION_MIN
+    )
 
 
 def select_coupling_trace_loop_persistent_rank_consistent_cluster_gated_events(

@@ -120,9 +120,17 @@ def _region_union(events: Sequence[NucleusClosureEvent]) -> set[tuple[int, int]]
 
 def build_active_physical_context(
     rows: Sequence[RealCoordinateVisualRow],
+    *,
+    segment_length: int | None = None,
+    segment_stride: int | None = None,
 ) -> ActivePhysicalContext:
     feature_rows = contact_law_feature_rows(rows)
-    candidate_events = nucleus_closure_events(rows, feature_rows)
+    event_kwargs = {}
+    if segment_length is not None:
+        event_kwargs["segment_length"] = segment_length
+    if segment_stride is not None:
+        event_kwargs["segment_stride"] = segment_stride
+    candidate_events = nucleus_closure_events(rows, feature_rows, **event_kwargs)
     accepted = accepted_events(candidate_events, threshold=0.30)
     competitive_events, _ = select_competitive_events(rows, accepted)
     graph_events, _ = select_graph_events(rows, competitive_events)

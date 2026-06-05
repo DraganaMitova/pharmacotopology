@@ -45,6 +45,7 @@ from pharmacotopology.folding_nucleus_decoy_falsification import (
     matched_decoys_for_selected_events,
 )
 from pharmacotopology.folding_nucleus_closure_search import NucleusClosureEvent
+from pharmacotopology.folding_physical_selection import build_active_physical_context
 from pharmacotopology.folding_external_coupling_sources import (
     EXTERNAL_COUPLING_TRACE_LOOP_CERTIFICATE_KIND,
     EXTERNAL_COUPLING_TRACE_LOOP_REPORT_KIND,
@@ -86,6 +87,8 @@ SCORE_MARGIN_EXPANSION_CLUSTER_MIN = 0.46
 SCORE_MARGIN_EXPANSION_DIRECT_SUPPORT_MIN = 0.10
 SCORE_MARGIN_EXPANSION_FUTURE_PRESERVATION_MIN = 0.18
 SCORE_MARGIN_EXPANSION_BLOCKED_FUTURE_MAX = 0.08
+MACRO_SCALE_SEGMENT_LENGTH = 20
+MACRO_SCALE_SEGMENT_STRIDE = 4
 
 
 @dataclass(frozen=True)
@@ -171,6 +174,23 @@ def _run_trace_loop_selector_from_context(
         selected_rows=tuple(rows_out),
         constraint_count=len(dataset.constraints),
         control_kind=control_kind,
+    )
+
+
+def _build_macro_scale_coupling_context(
+    *,
+    rows: Sequence[RealCoordinateVisualRow],
+    dataset: CouplingDataset,
+) -> CouplingNucleusContext:
+    macro_physical_context = build_active_physical_context(
+        rows,
+        segment_length=MACRO_SCALE_SEGMENT_LENGTH,
+        segment_stride=MACRO_SCALE_SEGMENT_STRIDE,
+    )
+    return build_coupling_nucleus_context(
+        rows=rows,
+        coupling_dataset=dataset,
+        physical_context=macro_physical_context,
     )
 
 
@@ -1137,6 +1157,30 @@ def _certificate(report: Mapping[str, object]) -> dict[str, object]:
         "external_boundary_field_replacement_probe_claim_allowed": report[
             "external_boundary_field_replacement_probe_claim_allowed"
         ],
+        "external_macro_scale_future_preserved_segment_length": report[
+            "external_macro_scale_future_preserved_segment_length"
+        ],
+        "external_macro_scale_future_preserved_segment_stride": report[
+            "external_macro_scale_future_preserved_segment_stride"
+        ],
+        "external_macro_scale_future_preserved_selected_event_count": report[
+            "external_macro_scale_future_preserved_selected_event_count"
+        ],
+        "external_macro_scale_future_preserved_false_nucleus_rate": report[
+            "external_macro_scale_future_preserved_false_nucleus_rate"
+        ],
+        "external_macro_scale_future_preserved_cluster_precision": report[
+            "external_macro_scale_future_preserved_cluster_precision"
+        ],
+        "external_macro_scale_future_preserved_long_range_recall": report[
+            "external_macro_scale_future_preserved_long_range_recall"
+        ],
+        "external_macro_scale_future_preserved_long_range_recall_delta_vs_boundary_replacement": report[
+            "external_macro_scale_future_preserved_long_range_recall_delta_vs_boundary_replacement"
+        ],
+        "external_macro_scale_future_preserved_claim_allowed": report[
+            "external_macro_scale_future_preserved_claim_allowed"
+        ],
         "external_terminal_bridge_replacement_frontier_count": report[
             "external_terminal_bridge_replacement_frontier_count"
         ],
@@ -1275,6 +1319,7 @@ def _build_report(
     external_registry_extension_expanded: TraceLoopRun,
     external_terminal_bridge_expanded: TraceLoopRun,
     external_boundary_field_replacement_probe: TraceLoopRun,
+    external_macro_scale_future_preserved: TraceLoopRun,
     physical_baseline: TraceLoopRun,
     matched_controls: Sequence[TraceLoopRun],
     margin_gated_controls: Sequence[TraceLoopRun],
@@ -2328,6 +2373,9 @@ def _build_report(
         event
         for event in external_boundary_field_replacement_probe.selected_events
         if event.event_id not in terminal_bridge_expanded_ids
+    )
+    macro_scale_future_preserved_metric = (
+        external_macro_scale_future_preserved.metric
     )
     replacement_frontier_native_long_range_delta_sum = sum(
         int(row["replacement_native_long_range_delta_after_scoring"])
@@ -3417,6 +3465,37 @@ def _build_report(
             )
         ),
         "external_boundary_field_replacement_probe_claim_allowed": False,
+        "external_macro_scale_future_preserved_segment_length": (
+            MACRO_SCALE_SEGMENT_LENGTH
+        ),
+        "external_macro_scale_future_preserved_segment_stride": (
+            MACRO_SCALE_SEGMENT_STRIDE
+        ),
+        "external_macro_scale_future_preserved_selected_event_count": (
+            macro_scale_future_preserved_metric.selected_event_count
+        ),
+        "external_macro_scale_future_preserved_false_nucleus_rate": (
+            macro_scale_future_preserved_metric.false_nucleus_rate
+            if macro_scale_future_preserved_metric.selected_event_count
+            else 0.0
+        ),
+        "external_macro_scale_future_preserved_cluster_precision": (
+            macro_scale_future_preserved_metric.contact_cluster_precision
+            if macro_scale_future_preserved_metric.selected_event_count
+            else 0.0
+        ),
+        "external_macro_scale_future_preserved_long_range_recall": (
+            macro_scale_future_preserved_metric.long_range_contact_recall
+            if macro_scale_future_preserved_metric.selected_event_count
+            else 0.0
+        ),
+        "external_macro_scale_future_preserved_long_range_recall_delta_vs_boundary_replacement": (
+            _rounded(
+                macro_scale_future_preserved_metric.long_range_contact_recall
+                - boundary_field_replacement_probe_metric.long_range_contact_recall
+            )
+        ),
+        "external_macro_scale_future_preserved_claim_allowed": False,
         "external_terminal_bridge_replacement_frontier_kind": (
             "terminal_bridge_replacement_frontier_v0"
         ),
@@ -3765,6 +3844,14 @@ def render_external_coupling_trace_loop_dashboard(
         "external_boundary_field_replacement_probe_long_range_recall",
         "external_boundary_field_replacement_probe_long_range_recall_delta_vs_terminal_bridge",
         "external_boundary_field_replacement_probe_claim_allowed",
+        "external_macro_scale_future_preserved_segment_length",
+        "external_macro_scale_future_preserved_segment_stride",
+        "external_macro_scale_future_preserved_selected_event_count",
+        "external_macro_scale_future_preserved_false_nucleus_rate",
+        "external_macro_scale_future_preserved_cluster_precision",
+        "external_macro_scale_future_preserved_long_range_recall",
+        "external_macro_scale_future_preserved_long_range_recall_delta_vs_boundary_replacement",
+        "external_macro_scale_future_preserved_claim_allowed",
         "external_terminal_bridge_replacement_frontier_count",
         "external_terminal_bridge_replacement_frontier_native_long_range_delta_sum",
         "external_terminal_bridge_replacement_frontier_probe_selected_count",
@@ -3975,6 +4062,17 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
         selector_name="external_boundary_field_replacement_probe",
         selection_mode="coupling_trace_loop_boundary_field_replacement_probe",
         control_kind="external_real_boundary_field_replacement_probe",
+    )
+    macro_external_context = _build_macro_scale_coupling_context(
+        rows=rows,
+        dataset=import_result.dataset,
+    )
+    external_macro_scale_future_preserved = _run_trace_loop_selector_from_context(
+        context=macro_external_context,
+        dataset=import_result.dataset,
+        selector_name="external_macro_scale_future_preserved",
+        selection_mode="coupling_trace_loop_macro_scale_future_preserved",
+        control_kind="external_real_macro_scale_future_preserved",
     )
     physical_baseline = _run_trace_loop_selector_from_context(
         context=external_context,
@@ -4250,6 +4348,7 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
         external_registry_extension_expanded,
         external_terminal_bridge_expanded,
         external_boundary_field_replacement_probe,
+        external_macro_scale_future_preserved,
         physical_baseline,
         *matched_control_runs,
         *margin_gated_control_runs,
@@ -4349,6 +4448,7 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
         external_boundary_field_replacement_probe=(
             external_boundary_field_replacement_probe
         ),
+        external_macro_scale_future_preserved=external_macro_scale_future_preserved,
         physical_baseline=physical_baseline,
         matched_controls=matched_control_runs,
         margin_gated_controls=margin_gated_control_runs,

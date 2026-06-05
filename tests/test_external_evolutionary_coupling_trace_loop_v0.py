@@ -44,6 +44,9 @@ from pharmacotopology.folding_evolutionary_constraints import (  # noqa: E402
 from pharmacotopology.folding_nucleus_closure_search import (  # noqa: E402
     NucleusClosureEvent,
 )
+from pharmacotopology.folding_physical_selection import (  # noqa: E402
+    build_active_physical_context,
+)
 from pharmacotopology.folding_external_coupling_importer import (  # noqa: E402
     import_external_coupling_dataset,
 )
@@ -257,6 +260,37 @@ def test_locked_boundary_field_replacement_probe_adds_zero_false_frontier() -> N
         "716dac20bd4eedb3",
     }
     assert all(event.native_contact_count_after_scoring > 0 for event in added)
+
+
+def test_locked_macro_scale_future_preserved_selector_lifts_zero_false_recall() -> None:
+    rows = load_real_coordinate_visual_rows(BENCHMARK_8)
+    dataset = load_coupling_dataset(LOCKED_EXTERNAL_COUPLINGS)
+    physical_context = build_active_physical_context(
+        rows,
+        segment_length=20,
+        segment_stride=4,
+    )
+    context = selector_module.build_coupling_nucleus_context(
+        rows=rows,
+        coupling_dataset=dataset,
+        physical_context=physical_context,
+    )
+    selected = (
+        selector_module.select_coupling_trace_loop_macro_scale_future_preserved_events(
+            context
+        )
+    )
+    metric = selector_module.selector_metrics(
+        context,
+        selector_name="macro_scale_future_preserved",
+        selected_events=selected,
+    )
+
+    assert metric.selected_event_count == 28
+    assert metric.false_nucleus_rate == 0.0
+    assert metric.contact_cluster_precision == 0.271908
+    assert metric.long_range_contact_recall == 0.564435
+    assert all(event.native_contact_count_after_scoring > 0 for event in selected)
 
 
 def test_coupling_dataset_reuses_constraint_row_grouping() -> None:
@@ -1887,6 +1921,17 @@ def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> Non
         in report
     )
     assert report["external_boundary_field_replacement_probe_claim_allowed"] is False
+    assert report["external_macro_scale_future_preserved_segment_length"] == 20
+    assert report["external_macro_scale_future_preserved_segment_stride"] == 4
+    assert "external_macro_scale_future_preserved_selected_event_count" in report
+    assert "external_macro_scale_future_preserved_false_nucleus_rate" in report
+    assert "external_macro_scale_future_preserved_cluster_precision" in report
+    assert "external_macro_scale_future_preserved_long_range_recall" in report
+    assert (
+        "external_macro_scale_future_preserved_long_range_recall_delta_vs_boundary_replacement"
+        in report
+    )
+    assert report["external_macro_scale_future_preserved_claim_allowed"] is False
     assert "external_terminal_bridge_replacement_frontier_count" in report
     assert (
         "external_terminal_bridge_replacement_frontier_native_long_range_delta_sum"
@@ -2008,6 +2053,18 @@ def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> Non
         ]
     )
     assert (
+        certificate["external_macro_scale_future_preserved_long_range_recall"]
+        == report["external_macro_scale_future_preserved_long_range_recall"]
+    )
+    assert (
+        certificate[
+            "external_macro_scale_future_preserved_long_range_recall_delta_vs_boundary_replacement"
+        ]
+        == report[
+            "external_macro_scale_future_preserved_long_range_recall_delta_vs_boundary_replacement"
+        ]
+    )
+    assert (
         certificate["external_terminal_bridge_replacement_frontier_count"]
         == report["external_terminal_bridge_replacement_frontier_count"]
     )
@@ -2027,8 +2084,8 @@ def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> Non
             "external_terminal_bridge_replacement_frontier_external_confidence_delta_sum"
         ]
     )
-    assert len(selectors) == 97
-    assert len(controls) == 97
+    assert len(selectors) == 98
+    assert len(controls) == 98
     assert len(frontier) == (
         report["external_terminal_bridge_replacement_frontier_count"]
         +
@@ -2059,6 +2116,7 @@ def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> Non
     )
     assert "external_score_margin_expanded_added_event_count" in dashboard
     assert "external_boundary_field_replacement_probe_long_range_recall" in dashboard
+    assert "external_macro_scale_future_preserved_long_range_recall" in dashboard
     assert "external_terminal_bridge_replacement_frontier_count" in dashboard
     assert (
         "external_terminal_bridge_replacement_frontier_external_count_delta_positive_count"

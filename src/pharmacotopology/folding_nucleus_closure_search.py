@@ -326,12 +326,20 @@ def nucleus_closure_events_for_row(
 def nucleus_closure_events(
     rows: Sequence[RealCoordinateVisualRow],
     feature_rows: Sequence[ContactLawFeatureRow],
+    *,
+    segment_length: int = SEGMENT_LENGTH,
+    segment_stride: int = SEGMENT_STRIDE,
 ) -> tuple[NucleusClosureEvent, ...]:
     features_by_row = feature_rows_by_row_id(feature_rows)
     output: list[NucleusClosureEvent] = []
     for row in rows:
         output.extend(
-            nucleus_closure_events_for_row(row, features_by_row[row.row_id])
+            nucleus_closure_events_for_row(
+                row,
+                features_by_row[row.row_id],
+                segment_length=segment_length,
+                segment_stride=segment_stride,
+            )
         )
     return tuple(output)
 
