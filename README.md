@@ -139,10 +139,33 @@ edge_continuity_expanded_beats_adversarial_calibrated_controls = true
 edge_continuity_expanded_claim_allowed = false
 ```
 
+The particle-simulation side branch then suggested a narrow pressure-release
+probe: high blocked-future pressure can be rescued only when the external
+couplings show dense direct support, at least one top-rank direct constraint,
+bounded score, decoy margin, cluster support, and compatible local shape.
+
+```text
+pressure_release_expanded_selected_event_count = 32
+pressure_release_expanded_added_event_count = 2
+pressure_release_expanded_added_native_long_range_contacts = 13
+pressure_release_expanded_added_false_event_count = 0
+pressure_release_expanded_false_nucleus_rate = 0.0
+pressure_release_expanded_cluster_precision = 0.169434
+pressure_release_expanded_long_range_recall = 0.287035
+pressure_release_expanded_long_range_recall_delta_vs_edge_continuity = 0.017047
+pressure_release_expanded_long_range_recall_margin_vs_matched_controls = 0.152411
+pressure_release_expanded_long_range_recall_margin_vs_adversarial_controls = 0.147089
+pressure_release_expanded_beats_matched_controls = true
+pressure_release_expanded_beats_adversarial_calibrated_controls = true
+pressure_release_expanded_claim_allowed = false
+```
+
 These are controlled recall gains, not universal improvements: cluster
 precision drops from `0.179688` to `0.174316`, then to `0.172363`, because the
-added events are small native-positive contacts. This remains an 8-row
-external-coupling benchmark result, not a solved-folding claim.
+added boundary and edge events are small native-positive contacts. The
+pressure-release rescue drops precision again to `0.169434` while raising
+long-range recall to `0.287035`. This remains an 8-row external-coupling
+benchmark result, not a solved-folding claim.
 
 Claim mode remains locked. A folding-solved claim is refused unless the data and
 per-constraint provenance stay external:

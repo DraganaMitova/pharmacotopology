@@ -121,6 +121,18 @@ TRACE_LOOP_EDGE_CONTINUITY_RESCUE_DIRECT_SUPPORT_MIN = 0.25
 TRACE_LOOP_EDGE_CONTINUITY_RESCUE_FUTURE_PRESERVATION_MIN = 0.54
 TRACE_LOOP_EDGE_CONTINUITY_RESCUE_BLOCKED_FUTURE_MAX = 0.08
 TRACE_LOOP_EDGE_CONTINUITY_RESCUE_SECONDARY_STRUCTURE_MIN = 0.58
+TRACE_LOOP_PRESSURE_RELEASE_RESCUE_SCORE_MIN = 0.42
+TRACE_LOOP_PRESSURE_RELEASE_RESCUE_SCORE_MAX = 0.46
+TRACE_LOOP_PRESSURE_RELEASE_RESCUE_DECOY_MARGIN_MIN = 0.14
+TRACE_LOOP_PRESSURE_RELEASE_RESCUE_CLUSTER_MIN = 0.38
+TRACE_LOOP_PRESSURE_RELEASE_RESCUE_DIRECT_SUPPORT_MIN = 0.40
+TRACE_LOOP_PRESSURE_RELEASE_RESCUE_FUTURE_PRESERVATION_MIN = 0.30
+TRACE_LOOP_PRESSURE_RELEASE_RESCUE_BLOCKED_FUTURE_MIN = 0.12
+TRACE_LOOP_PRESSURE_RELEASE_RESCUE_BLOCKED_FUTURE_MAX = 0.22
+TRACE_LOOP_PRESSURE_RELEASE_RESCUE_SECONDARY_STRUCTURE_MIN = 0.50
+TRACE_LOOP_PRESSURE_RELEASE_RESCUE_DIRECT_CONSTRAINT_COUNT_MIN = 3
+TRACE_LOOP_PRESSURE_RELEASE_RESCUE_DIRECT_CONFIDENCE_SUM_MIN = 1.20
+TRACE_LOOP_PRESSURE_RELEASE_RESCUE_DIRECT_TOP_RANK_COUNT_MIN = 1
 
 SURVIVAL_FALSE_RATE_MAX = 0.25
 SURVIVAL_CLUSTER_PRECISION_MIN = 0.08
@@ -442,6 +454,8 @@ def select_coupling_events(
         )
     if selector_name == "coupling_trace_loop_edge_continuity_expanded":
         return select_coupling_trace_loop_edge_continuity_expanded_events(context)
+    if selector_name == "coupling_trace_loop_pressure_release_expanded":
+        return select_coupling_trace_loop_pressure_release_expanded_events(context)
 
     selected: list[NucleusClosureEvent] = []
     competitive_by_row = _events_by_row(context.competitive_events)
@@ -879,6 +893,62 @@ def _passes_edge_continuity_rescue_gate(
     )
 
 
+def _direct_constraint_trace_evidence(
+    event: NucleusClosureEvent,
+    context: CouplingNucleusContext,
+) -> dict[str, float | int]:
+    constraints = context.coupling_dataset.constraints_by_row_id().get(
+        event.row_id,
+        (),
+    )
+    region_pairs = set(event.candidate_region_pairs())
+    direct = tuple(
+        constraint for constraint in constraints if constraint.pair() in region_pairs
+    )
+    return {
+        "direct_constraint_count": len(direct),
+        "direct_constraint_confidence_sum": _rounded(
+            sum(constraint.confidence for constraint in direct)
+        ),
+        "direct_top_10pct_rank_count": sum(
+            1 for constraint in direct if constraint.rank_fraction <= 0.10
+        ),
+    }
+
+
+def _passes_pressure_release_rescue_gate(
+    event: NucleusClosureEvent,
+    context: CouplingNucleusContext,
+) -> bool:
+    assessment = context.assessment_by_event_id[event.event_id]
+    score = coupling_nucleus_score(event, context)
+    evidence = _direct_constraint_trace_evidence(event, context)
+    return (
+        score >= TRACE_LOOP_PRESSURE_RELEASE_RESCUE_SCORE_MIN
+        and score <= TRACE_LOOP_PRESSURE_RELEASE_RESCUE_SCORE_MAX
+        and _selector_score_decoy_margin(event, context)
+        >= TRACE_LOOP_PRESSURE_RELEASE_RESCUE_DECOY_MARGIN_MIN
+        and event.contact_cluster_gain
+        >= TRACE_LOOP_PRESSURE_RELEASE_RESCUE_CLUSTER_MIN
+        and assessment.direct_support_score
+        >= TRACE_LOOP_PRESSURE_RELEASE_RESCUE_DIRECT_SUPPORT_MIN
+        and assessment.future_preservation_score
+        >= TRACE_LOOP_PRESSURE_RELEASE_RESCUE_FUTURE_PRESERVATION_MIN
+        and assessment.blocked_future_pressure
+        >= TRACE_LOOP_PRESSURE_RELEASE_RESCUE_BLOCKED_FUTURE_MIN
+        and assessment.blocked_future_pressure
+        <= TRACE_LOOP_PRESSURE_RELEASE_RESCUE_BLOCKED_FUTURE_MAX
+        and event.secondary_structure_compatibility
+        >= TRACE_LOOP_PRESSURE_RELEASE_RESCUE_SECONDARY_STRUCTURE_MIN
+        and evidence["direct_constraint_count"]
+        >= TRACE_LOOP_PRESSURE_RELEASE_RESCUE_DIRECT_CONSTRAINT_COUNT_MIN
+        and evidence["direct_constraint_confidence_sum"]
+        >= TRACE_LOOP_PRESSURE_RELEASE_RESCUE_DIRECT_CONFIDENCE_SUM_MIN
+        and evidence["direct_top_10pct_rank_count"]
+        >= TRACE_LOOP_PRESSURE_RELEASE_RESCUE_DIRECT_TOP_RANK_COUNT_MIN
+    )
+
+
 def select_coupling_trace_loop_rank_consistent_cluster_gated_events(
     context: CouplingNucleusContext,
 ) -> tuple[NucleusClosureEvent, ...]:
@@ -1045,6 +1115,50 @@ def select_coupling_trace_loop_edge_continuity_expanded_events(
                 -context.assessment_by_event_id[event.event_id].direct_support_score,
                 -event.contact_cluster_gain,
                 -event.secondary_structure_compatibility,
+                event.segment_a_start,
+                event.segment_b_start,
+                event.event_id,
+            ),
+        )
+        for event in rescue_candidates:
+            if len(row_selected) >= SELECTED_EVENTS_PER_ROW:
+                break
+            if any(
+                not compatible_future_event(selected_event, event)
+                for selected_event in row_selected
+            ):
+                continue
+            row_selected.append(event)
+            selected_ids.add(event.event_id)
+        selected.extend(row_selected)
+    return tuple(selected)
+
+
+def select_coupling_trace_loop_pressure_release_expanded_events(
+    context: CouplingNucleusContext,
+) -> tuple[NucleusClosureEvent, ...]:
+    edge_events = select_coupling_trace_loop_edge_continuity_expanded_events(context)
+    edge_by_row = _events_by_row(edge_events)
+    trace_by_row = _events_by_row(select_coupling_trace_loop_events(context))
+    selected: list[NucleusClosureEvent] = []
+    for row in context.rows:
+        row_selected = list(edge_by_row.get(row.row_id, ()))
+        selected_ids = {event.event_id for event in row_selected}
+        rescue_candidates = sorted(
+            (
+                event
+                for event in trace_by_row.get(row.row_id, ())
+                if event.event_id not in selected_ids
+                and _passes_pressure_release_rescue_gate(event, context)
+            ),
+            key=lambda event: (
+                -coupling_nucleus_score(event, context),
+                -_selector_score_decoy_margin(event, context),
+                -context.assessment_by_event_id[event.event_id].direct_support_score,
+                -_direct_constraint_trace_evidence(
+                    event,
+                    context,
+                )["direct_constraint_confidence_sum"],
                 event.segment_a_start,
                 event.segment_b_start,
                 event.event_id,

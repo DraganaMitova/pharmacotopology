@@ -804,6 +804,146 @@ def test_edge_continuity_expanded_selector_rescues_modest_high_cluster_edge(
     assert tuple(event.event_id for event in selected) == ("core", "rescued")
 
 
+def test_pressure_release_expanded_selector_rescues_dense_blocked_trace(
+    monkeypatch,
+) -> None:
+    core = _event(
+        "core",
+        contact_cluster_gain=0.35,
+        segment_a_start=1,
+        segment_b_start=41,
+    )
+    rescued = _event(
+        "rescued",
+        contact_cluster_gain=0.39,
+        segment_a_start=13,
+        segment_b_start=57,
+        secondary_structure_compatibility=0.52,
+    )
+    low_pressure = _event(
+        "low_pressure",
+        contact_cluster_gain=0.39,
+        segment_a_start=25,
+        segment_b_start=73,
+        secondary_structure_compatibility=0.52,
+    )
+    weak_density = _event(
+        "weak_density",
+        contact_cluster_gain=0.39,
+        segment_a_start=37,
+        segment_b_start=89,
+        secondary_structure_compatibility=0.52,
+    )
+    decoy = _event(
+        "decoy",
+        contact_cluster_gain=0.39,
+        segment_a_start=49,
+        segment_b_start=93,
+    )
+    context = SimpleNamespace(
+        rows=(SimpleNamespace(row_id="row_1"),),
+        competitive_events=(core, rescued, low_pressure, weak_density, decoy),
+        assessment_by_event_id={
+            core.event_id: _assessment(
+                core,
+                direct_support_score=0.42,
+                future_preservation_score=0.32,
+                blocked_future_pressure=0.16,
+            ),
+            rescued.event_id: _assessment(
+                rescued,
+                direct_support_score=0.42,
+                future_preservation_score=0.32,
+                blocked_future_pressure=0.16,
+            ),
+            low_pressure.event_id: _assessment(
+                low_pressure,
+                direct_support_score=0.42,
+                future_preservation_score=0.32,
+                blocked_future_pressure=0.07,
+            ),
+            weak_density.event_id: _assessment(
+                weak_density,
+                direct_support_score=0.42,
+                future_preservation_score=0.32,
+                blocked_future_pressure=0.16,
+            ),
+            decoy.event_id: _assessment(
+                decoy,
+                direct_support_score=0.10,
+                future_preservation_score=0.10,
+                blocked_future_pressure=0.16,
+            ),
+        },
+    )
+    scores = {
+        core.event_id: 0.50,
+        rescued.event_id: 0.44,
+        low_pressure.event_id: 0.44,
+        weak_density.event_id: 0.44,
+        decoy.event_id: 0.28,
+    }
+    direct_evidence = {
+        rescued.event_id: {
+            "direct_constraint_count": 3,
+            "direct_constraint_confidence_sum": 1.20,
+            "direct_top_10pct_rank_count": 1,
+        },
+        low_pressure.event_id: {
+            "direct_constraint_count": 3,
+            "direct_constraint_confidence_sum": 1.20,
+            "direct_top_10pct_rank_count": 1,
+        },
+        weak_density.event_id: {
+            "direct_constraint_count": 2,
+            "direct_constraint_confidence_sum": 1.19,
+            "direct_top_10pct_rank_count": 1,
+        },
+    }
+    monkeypatch.setattr(
+        selector_module,
+        "select_coupling_trace_loop_edge_continuity_expanded_events",
+        lambda *args, **kwargs: (core,),
+    )
+    monkeypatch.setattr(
+        selector_module,
+        "select_coupling_trace_loop_events",
+        lambda *args, **kwargs: (core, rescued, low_pressure, weak_density),
+    )
+    monkeypatch.setattr(
+        selector_module,
+        "coupling_nucleus_score",
+        lambda event, _context: scores[event.event_id],
+    )
+    monkeypatch.setattr(
+        selector_module,
+        "decoy_distance",
+        lambda _event, candidate: 0.0
+        if candidate.event_id == decoy.event_id
+        else 10.0,
+    )
+    monkeypatch.setattr(
+        selector_module,
+        "_direct_constraint_trace_evidence",
+        lambda event, _context: direct_evidence.get(
+            event.event_id,
+            {
+                "direct_constraint_count": 0,
+                "direct_constraint_confidence_sum": 0.0,
+                "direct_top_10pct_rank_count": 0,
+            },
+        ),
+    )
+
+    selected = (
+        selector_module.select_coupling_trace_loop_pressure_release_expanded_events(
+            context
+        )
+    )
+
+    assert tuple(event.event_id for event in selected) == ("core", "rescued")
+
+
 def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> None:
     external_file = _write_external_fixture(tmp_path / "external.json")
     outputs = {
@@ -934,6 +1074,24 @@ def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> Non
         in report
     )
     assert report["external_edge_continuity_expanded_claim_allowed"] is False
+    assert "external_pressure_release_expanded_selected_event_count" in report
+    assert "external_pressure_release_expanded_added_event_count" in report
+    assert (
+        "external_pressure_release_expanded_added_native_long_range_contact_count"
+        in report
+    )
+    assert "external_pressure_release_expanded_added_false_event_count" in report
+    assert "external_pressure_release_expanded_long_range_recall" in report
+    assert (
+        "external_pressure_release_expanded_long_range_recall_delta_vs_edge_continuity"
+        in report
+    )
+    assert "external_pressure_release_expanded_beats_matched_controls" in report
+    assert (
+        "external_pressure_release_expanded_beats_adversarial_calibrated_controls"
+        in report
+    )
+    assert report["external_pressure_release_expanded_claim_allowed"] is False
     assert (
         "external_persistent_rank_consistent_cluster_gated_score_margin_expansion_candidate_count"
         in report
@@ -1058,8 +1216,12 @@ def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> Non
         certificate["external_edge_continuity_expanded_added_event_count"]
         == report["external_edge_continuity_expanded_added_event_count"]
     )
-    assert len(selectors) == 72
-    assert len(controls) == 72
+    assert (
+        certificate["external_pressure_release_expanded_added_event_count"]
+        == report["external_pressure_release_expanded_added_event_count"]
+    )
+    assert len(selectors) == 80
+    assert len(controls) == 80
     assert len(frontier) == (
         report["external_rank_consistent_cluster_gated_native_positive_frontier_count"]
         + report[
@@ -1088,6 +1250,11 @@ def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> Non
     assert "external_edge_continuity_expanded_added_event_count" in dashboard
     assert (
         "external_edge_continuity_expanded_long_range_recall_delta_vs_boundary_continuity"
+        in dashboard
+    )
+    assert "external_pressure_release_expanded_added_event_count" in dashboard
+    assert (
+        "external_pressure_release_expanded_long_range_recall_delta_vs_edge_continuity"
         in dashboard
     )
     assert (
