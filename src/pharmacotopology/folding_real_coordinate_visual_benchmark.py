@@ -5,6 +5,7 @@ import hashlib
 import json
 from collections import Counter
 from dataclasses import asdict, dataclass
+from functools import cached_property
 from math import sqrt
 from pathlib import Path
 from typing import Any, Iterable, Mapping, Sequence
@@ -105,8 +106,12 @@ class RealCoordinateVisualRow:
     native_contact_map_hash: str
     truth_axes: dict[str, str]
 
-    def native_contact_pairs(self) -> tuple[ContactPair, ...]:
+    @cached_property
+    def _native_contact_pairs(self) -> tuple[ContactPair, ...]:
         return coordinate_native_contact_pairs(self.coordinate_points)
+
+    def native_contact_pairs(self) -> tuple[ContactPair, ...]:
+        return self._native_contact_pairs
 
     def to_safe_dict(self) -> dict[str, object]:
         return {

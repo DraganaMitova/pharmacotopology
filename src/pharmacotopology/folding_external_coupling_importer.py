@@ -157,14 +157,6 @@ def _source_kind_failure(source_kind: str) -> Optional[str]:
     return None
 
 
-def _safe_pair_supported(
-    row: RealCoordinateVisualRow,
-    i: int,
-    j: int,
-) -> bool:
-    return (i, j) in set(row.native_contact_pairs())
-
-
 def _row_status(
     *,
     row: RealCoordinateVisualRow,
@@ -399,6 +391,10 @@ def import_external_coupling_dataset(
             )
         )
 
+    native_pairs_by_row = {
+        row.row_id: set(row.native_contact_pairs())
+        for row in rows
+    }
     for raw in raw_constraints:
         row = row_by_id[str(raw["row_id"])]
         i = _as_int(raw, "i")
@@ -414,7 +410,7 @@ def import_external_coupling_dataset(
         if abs(_as_float(raw, "normalized_separation") - normalized) > 0.000001:
             raise ValueError(f"invalid external normalized separation: {row.row_id}")
         rank = _as_int(raw, "rank")
-        native_supported = _safe_pair_supported(row, i, j)
+        native_supported = (i, j) in native_pairs_by_row[row.row_id]
         status = status_by_row[row.row_id]
         audit = ExternalCouplingConstraintAudit(
             row_id=row.row_id,

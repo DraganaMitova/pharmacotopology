@@ -4,6 +4,7 @@ import csv
 import hashlib
 import json
 from dataclasses import asdict, dataclass
+from functools import cached_property
 from pathlib import Path
 from typing import Mapping, Sequence
 
@@ -79,13 +80,17 @@ class NucleusClosureEvent:
     def to_safe_dict(self) -> dict[str, object]:
         return asdict(self)
 
-    def candidate_region_pairs(self) -> tuple[tuple[int, int], ...]:
+    @cached_property
+    def _candidate_region_pairs(self) -> tuple[tuple[int, int], ...]:
         return tuple(
             (i, j)
             for i in range(self.segment_a_start, self.segment_a_end + 1)
             for j in range(self.segment_b_start, self.segment_b_end + 1)
             if j - i >= 3
         )
+
+    def candidate_region_pairs(self) -> tuple[tuple[int, int], ...]:
+        return self._candidate_region_pairs
 
 
 @dataclass(frozen=True)
