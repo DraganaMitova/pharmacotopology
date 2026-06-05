@@ -2,6 +2,7 @@ import csv
 import json
 from pathlib import Path
 import sys
+from types import SimpleNamespace
 from typing import Optional
 
 import pytest
@@ -22,6 +23,13 @@ from pharmacotopology.folding_coupling_negative_controls import (  # noqa: E402
     EXTERNAL_COUPLING_CONTROL_NAMES,
     generate_adversarial_calibrated_external_coupling_controls,
     generate_external_coupling_negative_controls,
+)
+from pharmacotopology import folding_coupling_nucleus_selector as selector_module  # noqa: E402
+from pharmacotopology.folding_evolutionary_constraints import (  # noqa: E402
+    CouplingClosureAssessment,
+)
+from pharmacotopology.folding_nucleus_closure_search import (  # noqa: E402
+    NucleusClosureEvent,
 )
 from pharmacotopology.folding_external_coupling_importer import (  # noqa: E402
     import_external_coupling_dataset,
@@ -298,6 +306,131 @@ def test_adversarial_calibrated_controls_repair_provenance_metadata(tmp_path) ->
             constraint.apc_corrected_score == constraint.confidence
             for constraint in control.dataset.constraints
         )
+
+
+def _event(
+    event_id: str,
+    *,
+    contact_cluster_gain: float,
+    segment_a_start: int,
+    segment_b_start: int,
+) -> NucleusClosureEvent:
+    return NucleusClosureEvent(
+        row_id="row_1",
+        source_accession="TEST:A",
+        sequence_hash="test",
+        sequence_length=96,
+        event_id=event_id,
+        segment_a_start=segment_a_start,
+        segment_a_end=segment_a_start + 7,
+        segment_b_start=segment_b_start,
+        segment_b_end=segment_b_start + 7,
+        sequence_span=segment_b_start - segment_a_start + 8,
+        normalized_span=0.5,
+        candidate_contact_count=64,
+        contact_cluster_gain=contact_cluster_gain,
+        secondary_structure_compatibility=0.7,
+        hydrophobic_burial_gain=0.6,
+        registry_support=0.6,
+        loop_entropy_cost=0.1,
+        geometry_violation_cost=0.0,
+        frustration_cost=0.0,
+        isolation_penalty=0.0,
+        nucleus_score=0.6,
+        closure_event_stability=0.6,
+        native_contact_count_after_scoring=0,
+        native_long_range_contact_count_after_scoring=0,
+        native_label_attached_after_event_generation=True,
+    )
+
+
+def _assessment(
+    event: NucleusClosureEvent,
+    *,
+    direct_support_score: float,
+    future_preservation_score: float,
+    blocked_future_pressure: float,
+) -> CouplingClosureAssessment:
+    return CouplingClosureAssessment(
+        row_id=event.row_id,
+        source_accession=event.source_accession,
+        event_id=event.event_id,
+        direct_coupling_count=2,
+        direct_coupling_confidence=direct_support_score,
+        direct_support_score=direct_support_score,
+        future_coupling_count=8,
+        future_preserved_count=6,
+        future_preservation_score=future_preservation_score,
+        blocked_future_count=1,
+        blocked_future_confidence=blocked_future_pressure,
+        blocked_future_pressure=blocked_future_pressure,
+        coupling_selectivity_score=direct_support_score + future_preservation_score,
+        constraint_pairs_total=10,
+        coordinate_truth_used_to_build_constraints=False,
+        native_truth_used_before_coupling_selection=False,
+    )
+
+
+def test_rank_consistent_recovery_gate_adds_supported_lower_cluster_event(
+    monkeypatch,
+) -> None:
+    core = _event(
+        "core",
+        contact_cluster_gain=0.35,
+        segment_a_start=1,
+        segment_b_start=41,
+    )
+    recovered = _event(
+        "recovered",
+        contact_cluster_gain=0.33,
+        segment_a_start=13,
+        segment_b_start=53,
+    )
+    rejected = _event(
+        "rejected",
+        contact_cluster_gain=0.33,
+        segment_a_start=25,
+        segment_b_start=65,
+    )
+    context = SimpleNamespace(
+        rows=(SimpleNamespace(row_id="row_1"),),
+        assessment_by_event_id={
+            core.event_id: _assessment(
+                core,
+                direct_support_score=0.72,
+                future_preservation_score=0.80,
+                blocked_future_pressure=0.02,
+            ),
+            recovered.event_id: _assessment(
+                recovered,
+                direct_support_score=0.70,
+                future_preservation_score=0.70,
+                blocked_future_pressure=0.04,
+            ),
+            rejected.event_id: _assessment(
+                rejected,
+                direct_support_score=0.67,
+                future_preservation_score=0.95,
+                blocked_future_pressure=0.04,
+            ),
+        },
+        coupling_decoy_margin_by_event_id={
+            core.event_id: 0.10,
+            recovered.event_id: 0.31,
+            rejected.event_id: 0.40,
+        },
+    )
+    monkeypatch.setattr(
+        selector_module,
+        "select_coupling_trace_loop_core_expanded_events",
+        lambda *args, **kwargs: (core, recovered, rejected),
+    )
+
+    selected = selector_module.select_coupling_trace_loop_rank_consistent_cluster_gated_events(
+        context
+    )
+
+    assert tuple(event.event_id for event in selected) == ("core", "recovered")
 
 
 def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> None:

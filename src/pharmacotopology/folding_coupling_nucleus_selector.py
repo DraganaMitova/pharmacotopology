@@ -79,6 +79,11 @@ TRACE_LOOP_CORE_TOP_RANK_FRACTION = 0.10
 TRACE_LOOP_EXPANSION_TOP_RANK_FRACTION = 0.30
 TRACE_LOOP_CLUSTER_GATE_MIN = 0.32
 TRACE_LOOP_RANK_CONSISTENT_CLUSTER_GATE_MIN = 0.34
+TRACE_LOOP_RANK_CONSISTENT_RECOVERY_CLUSTER_GATE_MIN = 0.32
+TRACE_LOOP_RANK_CONSISTENT_RECOVERY_DIRECT_SUPPORT_MIN = 0.68
+TRACE_LOOP_RANK_CONSISTENT_RECOVERY_FUTURE_PRESERVATION_MIN = 0.85
+TRACE_LOOP_RANK_CONSISTENT_RECOVERY_DECOY_MARGIN_MIN = 0.30
+TRACE_LOOP_RANK_CONSISTENT_RECOVERY_BLOCKED_FUTURE_MAX = 0.10
 TRACE_LOOP_RANK_CONFIDENCE_CONSISTENCY_MIN = 0.95
 TRACE_LOOP_SCORE_CONFIDENCE_CALIBRATION_MIN = 0.98
 TRACE_LOOP_RANK_LENGTH_CALIBRATION_MIN = 0.999
@@ -360,16 +365,8 @@ def select_coupling_events(
             min_contact_cluster_gain=TRACE_LOOP_CLUSTER_GATE_MIN,
         )
     if selector_name == "coupling_trace_loop_rank_consistent_cluster_gated":
-        return select_coupling_trace_loop_core_expanded_events(
-            context,
-            min_contact_cluster_gain=TRACE_LOOP_RANK_CONSISTENT_CLUSTER_GATE_MIN,
-            min_rank_confidence_consistency=(
-                TRACE_LOOP_RANK_CONFIDENCE_CONSISTENCY_MIN
-            ),
-            min_score_confidence_calibration=(
-                TRACE_LOOP_SCORE_CONFIDENCE_CALIBRATION_MIN
-            ),
-            min_rank_length_calibration=TRACE_LOOP_RANK_LENGTH_CALIBRATION_MIN,
+        return select_coupling_trace_loop_rank_consistent_cluster_gated_events(
+            context
         )
 
     selected: list[NucleusClosureEvent] = []
@@ -593,6 +590,82 @@ def select_coupling_trace_loop_core_expanded_events(
         expansion_events=expansion_events,
         min_contact_cluster_gain=min_contact_cluster_gain,
     )
+
+
+def _passes_rank_consistent_recovery_gate(
+    event: NucleusClosureEvent,
+    context: CouplingNucleusContext,
+) -> bool:
+    assessment = context.assessment_by_event_id[event.event_id]
+    coupling_decoy_margin = context.coupling_decoy_margin_by_event_id[event.event_id]
+    return (
+        event.contact_cluster_gain
+        >= TRACE_LOOP_RANK_CONSISTENT_RECOVERY_CLUSTER_GATE_MIN
+        and assessment.direct_support_score
+        >= TRACE_LOOP_RANK_CONSISTENT_RECOVERY_DIRECT_SUPPORT_MIN
+        and assessment.blocked_future_pressure
+        <= TRACE_LOOP_RANK_CONSISTENT_RECOVERY_BLOCKED_FUTURE_MAX
+        and (
+            assessment.future_preservation_score
+            >= TRACE_LOOP_RANK_CONSISTENT_RECOVERY_FUTURE_PRESERVATION_MIN
+            or coupling_decoy_margin
+            >= TRACE_LOOP_RANK_CONSISTENT_RECOVERY_DECOY_MARGIN_MIN
+        )
+    )
+
+
+def select_coupling_trace_loop_rank_consistent_cluster_gated_events(
+    context: CouplingNucleusContext,
+) -> tuple[NucleusClosureEvent, ...]:
+    recovery_candidates = select_coupling_trace_loop_core_expanded_events(
+        context,
+        min_contact_cluster_gain=TRACE_LOOP_RANK_CONSISTENT_RECOVERY_CLUSTER_GATE_MIN,
+        min_rank_confidence_consistency=TRACE_LOOP_RANK_CONFIDENCE_CONSISTENCY_MIN,
+        min_score_confidence_calibration=TRACE_LOOP_SCORE_CONFIDENCE_CALIBRATION_MIN,
+        min_rank_length_calibration=TRACE_LOOP_RANK_LENGTH_CALIBRATION_MIN,
+    )
+    high_confidence_core = tuple(
+        event
+        for event in recovery_candidates
+        if event.contact_cluster_gain >= TRACE_LOOP_RANK_CONSISTENT_CLUSTER_GATE_MIN
+    )
+    core_by_row = _events_by_row(high_confidence_core)
+    recovery_by_row = _events_by_row(recovery_candidates)
+    selected: list[NucleusClosureEvent] = []
+    for row in context.rows:
+        row_selected = list(core_by_row.get(row.row_id, ()))
+        selected_ids = {event.event_id for event in row_selected}
+        row_recovery = sorted(
+            (
+                event
+                for event in recovery_by_row.get(row.row_id, ())
+                if event.event_id not in selected_ids
+            ),
+            key=lambda event: (
+                -context.assessment_by_event_id[
+                    event.event_id
+                ].coupling_selectivity_score,
+                -context.assessment_by_event_id[event.event_id].direct_support_score,
+                -context.coupling_decoy_margin_by_event_id[event.event_id],
+                event.segment_a_start,
+                event.segment_b_start,
+                event.event_id,
+            ),
+        )
+        for event in row_recovery:
+            if len(row_selected) >= SELECTED_EVENTS_PER_ROW:
+                break
+            if not _passes_rank_consistent_recovery_gate(event, context):
+                continue
+            if any(
+                not compatible_future_event(selected_event, event)
+                for selected_event in row_selected
+            ):
+                continue
+            row_selected.append(event)
+            selected_ids.add(event.event_id)
+        selected.extend(row_selected)
+    return tuple(selected)
 
 
 def selector_metrics(
