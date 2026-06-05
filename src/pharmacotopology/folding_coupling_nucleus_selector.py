@@ -156,6 +156,29 @@ TRACE_LOOP_DIRECT_MARGIN_TAIL_RESCUE_COUPLING_MARGIN_MIN = 0.15
 TRACE_LOOP_DIRECT_MARGIN_TAIL_RESCUE_SECONDARY_STRUCTURE_MIN = 0.53
 TRACE_LOOP_DIRECT_MARGIN_TAIL_RESCUE_DIRECT_CONSTRAINT_COUNT_MIN = 4
 TRACE_LOOP_DIRECT_MARGIN_TAIL_RESCUE_DIRECT_CONFIDENCE_SUM_MIN = 0.80
+TRACE_LOOP_TERMINAL_BRIDGE_RESCUE_SCORE_MIN = 0.30
+TRACE_LOOP_TERMINAL_BRIDGE_RESCUE_SCORE_MAX = 0.34
+TRACE_LOOP_TERMINAL_BRIDGE_RESCUE_DECOY_MARGIN_MIN = -0.01
+TRACE_LOOP_TERMINAL_BRIDGE_RESCUE_CLUSTER_MIN = 0.36
+TRACE_LOOP_TERMINAL_BRIDGE_RESCUE_DIRECT_SUPPORT_MIN = 0.20
+TRACE_LOOP_TERMINAL_BRIDGE_RESCUE_FUTURE_PRESERVATION_MIN = 0.22
+TRACE_LOOP_TERMINAL_BRIDGE_RESCUE_BLOCKED_FUTURE_MAX = 0.08
+TRACE_LOOP_TERMINAL_BRIDGE_RESCUE_COUPLING_MARGIN_MIN = 0.05
+TRACE_LOOP_TERMINAL_BRIDGE_RESCUE_SECONDARY_STRUCTURE_MIN = 0.65
+TRACE_LOOP_TERMINAL_BRIDGE_RESCUE_DIRECT_CONSTRAINT_COUNT_MIN = 3
+TRACE_LOOP_TERMINAL_BRIDGE_RESCUE_DIRECT_CONFIDENCE_SUM_MIN = 0.70
+TRACE_LOOP_HIGH_PRESSURE_TAIL_RESCUE_SCORE_MIN = 0.35
+TRACE_LOOP_HIGH_PRESSURE_TAIL_RESCUE_SCORE_MAX = 0.38
+TRACE_LOOP_HIGH_PRESSURE_TAIL_RESCUE_DECOY_MARGIN_MIN = 0.05
+TRACE_LOOP_HIGH_PRESSURE_TAIL_RESCUE_CLUSTER_MIN = 0.40
+TRACE_LOOP_HIGH_PRESSURE_TAIL_RESCUE_DIRECT_SUPPORT_MIN = 0.15
+TRACE_LOOP_HIGH_PRESSURE_TAIL_RESCUE_FUTURE_PRESERVATION_MIN = 0.30
+TRACE_LOOP_HIGH_PRESSURE_TAIL_RESCUE_BLOCKED_FUTURE_MIN = 0.25
+TRACE_LOOP_HIGH_PRESSURE_TAIL_RESCUE_BLOCKED_FUTURE_MAX = 0.35
+TRACE_LOOP_HIGH_PRESSURE_TAIL_RESCUE_COUPLING_MARGIN_MIN = 0.04
+TRACE_LOOP_HIGH_PRESSURE_TAIL_RESCUE_SECONDARY_STRUCTURE_MIN = 0.53
+TRACE_LOOP_HIGH_PRESSURE_TAIL_RESCUE_DIRECT_CONSTRAINT_COUNT_MIN = 3
+TRACE_LOOP_HIGH_PRESSURE_TAIL_RESCUE_DIRECT_CONFIDENCE_SUM_MIN = 0.50
 
 SURVIVAL_FALSE_RATE_MAX = 0.25
 SURVIVAL_CLUSTER_PRECISION_MIN = 0.08
@@ -481,6 +504,8 @@ def select_coupling_events(
         return select_coupling_trace_loop_pressure_release_expanded_events(context)
     if selector_name == "coupling_trace_loop_registry_extension_expanded":
         return select_coupling_trace_loop_registry_extension_expanded_events(context)
+    if selector_name == "coupling_trace_loop_terminal_bridge_expanded":
+        return select_coupling_trace_loop_terminal_bridge_expanded_events(context)
 
     selected: list[NucleusClosureEvent] = []
     competitive_by_row = _events_by_row(context.competitive_events)
@@ -1071,6 +1096,69 @@ def _passes_direct_margin_tail_rescue_gate(
     )
 
 
+def _passes_terminal_bridge_rescue_gate(
+    event: NucleusClosureEvent,
+    context: CouplingNucleusContext,
+) -> bool:
+    assessment = context.assessment_by_event_id[event.event_id]
+    score = coupling_nucleus_score(event, context)
+    evidence = _direct_constraint_trace_evidence(event, context)
+    return (
+        score >= TRACE_LOOP_TERMINAL_BRIDGE_RESCUE_SCORE_MIN
+        and score <= TRACE_LOOP_TERMINAL_BRIDGE_RESCUE_SCORE_MAX
+        and _selector_score_decoy_margin(event, context)
+        >= TRACE_LOOP_TERMINAL_BRIDGE_RESCUE_DECOY_MARGIN_MIN
+        and event.contact_cluster_gain >= TRACE_LOOP_TERMINAL_BRIDGE_RESCUE_CLUSTER_MIN
+        and assessment.direct_support_score
+        >= TRACE_LOOP_TERMINAL_BRIDGE_RESCUE_DIRECT_SUPPORT_MIN
+        and assessment.future_preservation_score
+        >= TRACE_LOOP_TERMINAL_BRIDGE_RESCUE_FUTURE_PRESERVATION_MIN
+        and assessment.blocked_future_pressure
+        <= TRACE_LOOP_TERMINAL_BRIDGE_RESCUE_BLOCKED_FUTURE_MAX
+        and context.coupling_decoy_margin_by_event_id[event.event_id]
+        >= TRACE_LOOP_TERMINAL_BRIDGE_RESCUE_COUPLING_MARGIN_MIN
+        and event.secondary_structure_compatibility
+        >= TRACE_LOOP_TERMINAL_BRIDGE_RESCUE_SECONDARY_STRUCTURE_MIN
+        and evidence["direct_constraint_count"]
+        >= TRACE_LOOP_TERMINAL_BRIDGE_RESCUE_DIRECT_CONSTRAINT_COUNT_MIN
+        and evidence["direct_constraint_confidence_sum"]
+        >= TRACE_LOOP_TERMINAL_BRIDGE_RESCUE_DIRECT_CONFIDENCE_SUM_MIN
+    )
+
+
+def _passes_high_pressure_tail_rescue_gate(
+    event: NucleusClosureEvent,
+    context: CouplingNucleusContext,
+) -> bool:
+    assessment = context.assessment_by_event_id[event.event_id]
+    score = coupling_nucleus_score(event, context)
+    evidence = _direct_constraint_trace_evidence(event, context)
+    return (
+        score >= TRACE_LOOP_HIGH_PRESSURE_TAIL_RESCUE_SCORE_MIN
+        and score <= TRACE_LOOP_HIGH_PRESSURE_TAIL_RESCUE_SCORE_MAX
+        and _selector_score_decoy_margin(event, context)
+        >= TRACE_LOOP_HIGH_PRESSURE_TAIL_RESCUE_DECOY_MARGIN_MIN
+        and event.contact_cluster_gain
+        >= TRACE_LOOP_HIGH_PRESSURE_TAIL_RESCUE_CLUSTER_MIN
+        and assessment.direct_support_score
+        >= TRACE_LOOP_HIGH_PRESSURE_TAIL_RESCUE_DIRECT_SUPPORT_MIN
+        and assessment.future_preservation_score
+        >= TRACE_LOOP_HIGH_PRESSURE_TAIL_RESCUE_FUTURE_PRESERVATION_MIN
+        and assessment.blocked_future_pressure
+        >= TRACE_LOOP_HIGH_PRESSURE_TAIL_RESCUE_BLOCKED_FUTURE_MIN
+        and assessment.blocked_future_pressure
+        <= TRACE_LOOP_HIGH_PRESSURE_TAIL_RESCUE_BLOCKED_FUTURE_MAX
+        and context.coupling_decoy_margin_by_event_id[event.event_id]
+        >= TRACE_LOOP_HIGH_PRESSURE_TAIL_RESCUE_COUPLING_MARGIN_MIN
+        and event.secondary_structure_compatibility
+        >= TRACE_LOOP_HIGH_PRESSURE_TAIL_RESCUE_SECONDARY_STRUCTURE_MIN
+        and evidence["direct_constraint_count"]
+        >= TRACE_LOOP_HIGH_PRESSURE_TAIL_RESCUE_DIRECT_CONSTRAINT_COUNT_MIN
+        and evidence["direct_constraint_confidence_sum"]
+        >= TRACE_LOOP_HIGH_PRESSURE_TAIL_RESCUE_DIRECT_CONFIDENCE_SUM_MIN
+    )
+
+
 def select_coupling_trace_loop_rank_consistent_cluster_gated_events(
     context: CouplingNucleusContext,
 ) -> tuple[NucleusClosureEvent, ...]:
@@ -1336,6 +1424,51 @@ def select_coupling_trace_loop_registry_extension_expanded_events(
                 else 1,
                 -coupling_nucleus_score(event, context),
                 -event.contact_cluster_gain,
+                -context.assessment_by_event_id[event.event_id].direct_support_score,
+                event.segment_a_start,
+                event.segment_b_start,
+                event.event_id,
+            ),
+        )
+        for event in rescue_candidates:
+            if len(row_selected) >= SELECTED_EVENTS_PER_ROW:
+                break
+            if any(
+                not compatible_future_event(selected_event, event)
+                for selected_event in row_selected
+            ):
+                continue
+            row_selected.append(event)
+            selected_ids.add(event.event_id)
+        selected.extend(row_selected)
+    return tuple(selected)
+
+
+def select_coupling_trace_loop_terminal_bridge_expanded_events(
+    context: CouplingNucleusContext,
+) -> tuple[NucleusClosureEvent, ...]:
+    registry_events = select_coupling_trace_loop_registry_extension_expanded_events(
+        context
+    )
+    registry_by_row = _events_by_row(registry_events)
+    trace_by_row = _events_by_row(select_coupling_trace_loop_events(context))
+    selected: list[NucleusClosureEvent] = []
+    for row in context.rows:
+        row_selected = list(registry_by_row.get(row.row_id, ()))
+        selected_ids = {event.event_id for event in row_selected}
+        rescue_candidates = sorted(
+            (
+                event
+                for event in trace_by_row.get(row.row_id, ())
+                if event.event_id not in selected_ids
+                and (
+                    _passes_terminal_bridge_rescue_gate(event, context)
+                    or _passes_high_pressure_tail_rescue_gate(event, context)
+                )
+            ),
+            key=lambda event: (
+                0 if _passes_terminal_bridge_rescue_gate(event, context) else 1,
+                -coupling_nucleus_score(event, context),
                 -context.assessment_by_event_id[event.event_id].direct_support_score,
                 event.segment_a_start,
                 event.segment_b_start,

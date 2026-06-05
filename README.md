@@ -181,12 +181,33 @@ registry_extension_expanded_beats_adversarial_calibrated_controls = true
 registry_extension_expanded_claim_allowed = false
 ```
 
+The terminal-bridge selector adds the final compatible long-range leftovers
+that survive the current controls: one low-score bridge with direct external
+support and one high-pressure tail with enough future-compatible support.
+
+```text
+terminal_bridge_expanded_selected_event_count = 37
+terminal_bridge_expanded_added_event_count = 2
+terminal_bridge_expanded_added_native_long_range_contacts = 5
+terminal_bridge_expanded_added_false_event_count = 0
+terminal_bridge_expanded_false_nucleus_rate = 0.0
+terminal_bridge_expanded_cluster_precision = 0.155979
+terminal_bridge_expanded_long_range_recall = 0.296334
+terminal_bridge_expanded_long_range_recall_delta_vs_registry_extension = 0.004173
+terminal_bridge_expanded_long_range_recall_margin_vs_matched_controls = 0.16171
+terminal_bridge_expanded_long_range_recall_margin_vs_adversarial_controls = 0.156388
+terminal_bridge_expanded_beats_matched_controls = true
+terminal_bridge_expanded_beats_adversarial_calibrated_controls = true
+terminal_bridge_expanded_claim_allowed = false
+```
+
 These are controlled recall gains, not universal improvements: cluster
 precision drops from `0.179688` to `0.174316`, then to `0.172363`, because the
 added boundary and edge events are small native-positive contacts. The
 pressure-release rescue drops precision again to `0.169434` while raising
 long-range recall to `0.287035`. Registry extension raises recall to
-`0.292161`, but precision drops to `0.160862`. This remains an 8-row
+`0.292161`, but precision drops to `0.160862`. Terminal bridge raises recall
+to `0.296334`, while precision drops to `0.155979`. This remains an 8-row
 external-coupling benchmark result, not a solved-folding claim.
 
 Claim mode remains locked. A folding-solved claim is refused unless the data and

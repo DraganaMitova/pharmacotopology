@@ -381,6 +381,20 @@ external_registry_extension_expanded_long_range_recall_margin_vs_adversarial_con
 external_registry_extension_expanded_beats_matched_controls = true
 external_registry_extension_expanded_beats_adversarial_calibrated_controls = true
 external_registry_extension_expanded_claim_allowed = false
+
+external_terminal_bridge_expanded_selected_event_count = 37
+external_terminal_bridge_expanded_added_event_count = 2
+external_terminal_bridge_expanded_added_native_long_range_contact_count = 5
+external_terminal_bridge_expanded_added_false_event_count = 0
+external_terminal_bridge_expanded_false_nucleus_rate = 0.0
+external_terminal_bridge_expanded_cluster_precision = 0.155979
+external_terminal_bridge_expanded_long_range_recall = 0.296334
+external_terminal_bridge_expanded_long_range_recall_delta_vs_registry_extension = 0.004173
+external_terminal_bridge_expanded_long_range_recall_margin_vs_matched_controls = 0.16171
+external_terminal_bridge_expanded_long_range_recall_margin_vs_adversarial_controls = 0.156388
+external_terminal_bridge_expanded_beats_matched_controls = true
+external_terminal_bridge_expanded_beats_adversarial_calibrated_controls = true
+external_terminal_bridge_expanded_claim_allowed = false
 claim_allowed = false
 ```
 
@@ -403,6 +417,8 @@ the pressure-release selector adds thirteen more long-range contacts without add
 the pressure-release selector improves recall again but lowers cluster precision to 0.169434
 the registry-extension selector adds thirteen more long-range contacts without adding a false nucleus
 the registry-extension selector improves recall again but lowers cluster precision to 0.160862
+the terminal-bridge selector adds five more long-range contacts without adding a false nucleus
+the terminal-bridge selector improves recall again but lowers cluster precision to 0.155979
 claims remain locked
 ```
 

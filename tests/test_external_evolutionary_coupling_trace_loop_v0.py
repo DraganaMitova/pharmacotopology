@@ -1091,6 +1091,168 @@ def test_registry_extension_expanded_selector_rescues_residual_trace(
     )
 
 
+def test_terminal_bridge_expanded_selector_rescues_final_bridge_and_tail(
+    monkeypatch,
+) -> None:
+    anchor = _event(
+        "anchor",
+        contact_cluster_gain=0.45,
+        segment_a_start=33,
+        segment_b_start=61,
+        secondary_structure_compatibility=0.60,
+    )
+    bridge = _event(
+        "bridge",
+        contact_cluster_gain=0.37,
+        segment_a_start=61,
+        segment_b_start=89,
+        secondary_structure_compatibility=0.66,
+    )
+    tail = _event(
+        "tail",
+        contact_cluster_gain=0.42,
+        segment_a_start=25,
+        segment_b_start=69,
+        secondary_structure_compatibility=0.54,
+    )
+    weak_bridge = _event(
+        "weak_bridge",
+        contact_cluster_gain=0.37,
+        segment_a_start=89,
+        segment_b_start=117,
+        secondary_structure_compatibility=0.64,
+    )
+    weak_tail = _event(
+        "weak_tail",
+        contact_cluster_gain=0.42,
+        segment_a_start=45,
+        segment_b_start=89,
+        secondary_structure_compatibility=0.54,
+    )
+    context = SimpleNamespace(
+        rows=(SimpleNamespace(row_id="row_1"),),
+        competitive_events=(anchor, bridge, tail, weak_bridge, weak_tail),
+        assessment_by_event_id={
+            anchor.event_id: _assessment(
+                anchor,
+                direct_support_score=0.30,
+                future_preservation_score=0.32,
+                blocked_future_pressure=0.04,
+            ),
+            bridge.event_id: _assessment(
+                bridge,
+                direct_support_score=0.21,
+                future_preservation_score=0.23,
+                blocked_future_pressure=0.06,
+            ),
+            tail.event_id: _assessment(
+                tail,
+                direct_support_score=0.16,
+                future_preservation_score=0.31,
+                blocked_future_pressure=0.30,
+            ),
+            weak_bridge.event_id: _assessment(
+                weak_bridge,
+                direct_support_score=0.21,
+                future_preservation_score=0.23,
+                blocked_future_pressure=0.06,
+            ),
+            weak_tail.event_id: _assessment(
+                weak_tail,
+                direct_support_score=0.16,
+                future_preservation_score=0.31,
+                blocked_future_pressure=0.30,
+            ),
+        },
+        coupling_decoy_margin_by_event_id={
+            anchor.event_id: 0.0,
+            bridge.event_id: 0.06,
+            tail.event_id: 0.05,
+            weak_bridge.event_id: 0.06,
+            weak_tail.event_id: 0.05,
+        },
+    )
+    scores = {
+        anchor.event_id: 0.48,
+        bridge.event_id: 0.32,
+        tail.event_id: 0.36,
+        weak_bridge.event_id: 0.32,
+        weak_tail.event_id: 0.36,
+    }
+    selector_margins = {
+        bridge.event_id: -0.005,
+        tail.event_id: 0.06,
+        weak_bridge.event_id: -0.005,
+        weak_tail.event_id: 0.06,
+    }
+    direct_evidence = {
+        bridge.event_id: {
+            "direct_constraint_count": 3,
+            "direct_constraint_confidence_sum": 0.71,
+            "direct_top_10pct_rank_count": 0,
+        },
+        tail.event_id: {
+            "direct_constraint_count": 3,
+            "direct_constraint_confidence_sum": 0.51,
+            "direct_top_10pct_rank_count": 0,
+        },
+        weak_bridge.event_id: {
+            "direct_constraint_count": 3,
+            "direct_constraint_confidence_sum": 0.69,
+            "direct_top_10pct_rank_count": 0,
+        },
+        weak_tail.event_id: {
+            "direct_constraint_count": 2,
+            "direct_constraint_confidence_sum": 0.51,
+            "direct_top_10pct_rank_count": 0,
+        },
+    }
+    monkeypatch.setattr(
+        selector_module,
+        "select_coupling_trace_loop_registry_extension_expanded_events",
+        lambda *args, **kwargs: (anchor,),
+    )
+    monkeypatch.setattr(
+        selector_module,
+        "select_coupling_trace_loop_events",
+        lambda *args, **kwargs: (anchor, bridge, tail, weak_bridge, weak_tail),
+    )
+    monkeypatch.setattr(
+        selector_module,
+        "coupling_nucleus_score",
+        lambda event, _context: scores[event.event_id],
+    )
+    monkeypatch.setattr(
+        selector_module,
+        "_selector_score_decoy_margin",
+        lambda event, _context: selector_margins.get(event.event_id, 0.0),
+    )
+    monkeypatch.setattr(
+        selector_module,
+        "_direct_constraint_trace_evidence",
+        lambda event, _context: direct_evidence.get(
+            event.event_id,
+            {
+                "direct_constraint_count": 0,
+                "direct_constraint_confidence_sum": 0.0,
+                "direct_top_10pct_rank_count": 0,
+            },
+        ),
+    )
+
+    selected = (
+        selector_module.select_coupling_trace_loop_terminal_bridge_expanded_events(
+            context
+        )
+    )
+
+    assert tuple(event.event_id for event in selected) == (
+        "anchor",
+        "bridge",
+        "tail",
+    )
+
+
 def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> None:
     external_file = _write_external_fixture(tmp_path / "external.json")
     outputs = {
@@ -1257,6 +1419,24 @@ def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> Non
         in report
     )
     assert report["external_registry_extension_expanded_claim_allowed"] is False
+    assert "external_terminal_bridge_expanded_selected_event_count" in report
+    assert "external_terminal_bridge_expanded_added_event_count" in report
+    assert (
+        "external_terminal_bridge_expanded_added_native_long_range_contact_count"
+        in report
+    )
+    assert "external_terminal_bridge_expanded_added_false_event_count" in report
+    assert "external_terminal_bridge_expanded_long_range_recall" in report
+    assert (
+        "external_terminal_bridge_expanded_long_range_recall_delta_vs_registry_extension"
+        in report
+    )
+    assert "external_terminal_bridge_expanded_beats_matched_controls" in report
+    assert (
+        "external_terminal_bridge_expanded_beats_adversarial_calibrated_controls"
+        in report
+    )
+    assert report["external_terminal_bridge_expanded_claim_allowed"] is False
     assert (
         "external_persistent_rank_consistent_cluster_gated_score_margin_expansion_candidate_count"
         in report
@@ -1389,8 +1569,12 @@ def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> Non
         certificate["external_registry_extension_expanded_added_event_count"]
         == report["external_registry_extension_expanded_added_event_count"]
     )
-    assert len(selectors) == 88
-    assert len(controls) == 88
+    assert (
+        certificate["external_terminal_bridge_expanded_added_event_count"]
+        == report["external_terminal_bridge_expanded_added_event_count"]
+    )
+    assert len(selectors) == 96
+    assert len(controls) == 96
     assert len(frontier) == (
         report["external_rank_consistent_cluster_gated_native_positive_frontier_count"]
         + report[
@@ -1429,6 +1613,11 @@ def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> Non
     assert "external_registry_extension_expanded_added_event_count" in dashboard
     assert (
         "external_registry_extension_expanded_long_range_recall_delta_vs_pressure_release"
+        in dashboard
+    )
+    assert "external_terminal_bridge_expanded_added_event_count" in dashboard
+    assert (
+        "external_terminal_bridge_expanded_long_range_recall_delta_vs_registry_extension"
         in dashboard
     )
     assert (
