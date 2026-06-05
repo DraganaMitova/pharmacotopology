@@ -1506,6 +1506,22 @@ def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> Non
         report["external_rank_consistent_cluster_gated_frontier_claim_allowed"]
         is False
     )
+    assert "external_boundary_field_replacement_probe_added_event_count" in report
+    assert "external_boundary_field_replacement_probe_long_range_recall" in report
+    assert (
+        "external_boundary_field_replacement_probe_long_range_recall_delta_vs_terminal_bridge"
+        in report
+    )
+    assert report["external_boundary_field_replacement_probe_claim_allowed"] is False
+    assert "external_terminal_bridge_replacement_frontier_count" in report
+    assert (
+        "external_terminal_bridge_replacement_frontier_native_long_range_delta_sum"
+        in report
+    )
+    assert (
+        report["external_terminal_bridge_replacement_frontier_claim_allowed"]
+        is False
+    )
     assert report["external_margin_gated_claim_allowed"] is False
     assert report["external_top_rank_gated_claim_allowed"] is False
     assert report["external_core_expanded_claim_allowed"] is False
@@ -1573,9 +1589,23 @@ def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> Non
         certificate["external_terminal_bridge_expanded_added_event_count"]
         == report["external_terminal_bridge_expanded_added_event_count"]
     )
-    assert len(selectors) == 96
-    assert len(controls) == 96
+    assert (
+        certificate[
+            "external_boundary_field_replacement_probe_long_range_recall_delta_vs_terminal_bridge"
+        ]
+        == report[
+            "external_boundary_field_replacement_probe_long_range_recall_delta_vs_terminal_bridge"
+        ]
+    )
+    assert (
+        certificate["external_terminal_bridge_replacement_frontier_count"]
+        == report["external_terminal_bridge_replacement_frontier_count"]
+    )
+    assert len(selectors) == 97
+    assert len(controls) == 97
     assert len(frontier) == (
+        report["external_terminal_bridge_replacement_frontier_count"]
+        +
         report["external_rank_consistent_cluster_gated_native_positive_frontier_count"]
         + report[
             "external_persistent_rank_consistent_cluster_gated_recall_frontier_count"
@@ -1591,6 +1621,8 @@ def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> Non
         in dashboard
     )
     assert "external_score_margin_expanded_added_event_count" in dashboard
+    assert "external_boundary_field_replacement_probe_long_range_recall" in dashboard
+    assert "external_terminal_bridge_replacement_frontier_count" in dashboard
     assert (
         "external_score_margin_expanded_long_range_recall_delta_vs_persistent"
         in dashboard

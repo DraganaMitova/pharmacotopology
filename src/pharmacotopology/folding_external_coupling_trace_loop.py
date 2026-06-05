@@ -527,6 +527,205 @@ def rank_consistent_frontier_rows(
     return rows
 
 
+def _region_pair_union(
+    events: Sequence[NucleusClosureEvent],
+) -> set[tuple[int, int]]:
+    region_pairs: set[tuple[int, int]] = set()
+    for event in events:
+        region_pairs.update(event.candidate_region_pairs())
+    return region_pairs
+
+
+def terminal_bridge_replacement_frontier_rows(
+    *,
+    context: CouplingNucleusContext,
+    terminal_run: TraceLoopRun,
+    replacement_probe_run: TraceLoopRun,
+) -> list[dict[str, object]]:
+    selected_ids = {event.event_id for event in terminal_run.selected_events}
+    selected_by_row: dict[str, list[NucleusClosureEvent]] = {}
+    for event in terminal_run.selected_events:
+        selected_by_row.setdefault(event.row_id, []).append(event)
+    replacement_probe_added_ids = {
+        event.event_id
+        for event in replacement_probe_run.selected_events
+        if event.event_id not in selected_ids
+    }
+    row_by_id = {row.row_id: row for row in context.rows}
+
+    rows: list[dict[str, object]] = []
+    for event in context.competitive_events:
+        if event.event_id in selected_ids:
+            continue
+        row_selected = selected_by_row.get(event.row_id, [])
+        blockers = [
+            selected_event
+            for selected_event in row_selected
+            if not compatible_future_event(selected_event, event)
+        ]
+        if not blockers:
+            continue
+        remaining = [
+            selected_event
+            for selected_event in row_selected
+            if selected_event.event_id
+            not in {blocker.event_id for blocker in blockers}
+        ]
+        if any(
+            not compatible_future_event(selected_event, event)
+            for selected_event in remaining
+        ):
+            continue
+        row = row_by_id[event.row_id]
+        native_long = {
+            pair for pair in row.native_contact_pairs() if pair[1] - pair[0] >= 24
+        }
+        current_native_long = _region_pair_union(row_selected) & native_long
+        replacement_native_long = _region_pair_union([*remaining, event]) & native_long
+        replacement_delta = len(replacement_native_long) - len(current_native_long)
+        if replacement_delta <= 0:
+            continue
+
+        assessment = context.assessment_by_event_id[event.event_id]
+        decoy, selector_score_margin = _matched_selector_score_decoy(
+            context=context,
+            event=event,
+        )
+        decoy_assessment = context.assessment_by_event_id[decoy.event_id]
+        blockers_native_contact_count = sum(
+            blocker.native_contact_count_after_scoring for blocker in blockers
+        )
+        blockers_native_long_range_contact_count = sum(
+            blocker.native_long_range_contact_count_after_scoring
+            for blocker in blockers
+        )
+        blockers_coupling_nucleus_score = _mean(
+            [coupling_nucleus_score(blocker, context) for blocker in blockers]
+        )
+        blockers_direct_support = _mean(
+            [
+                context.assessment_by_event_id[
+                    blocker.event_id
+                ].direct_support_score
+                for blocker in blockers
+            ]
+        )
+        blockers_future_preservation = _mean(
+            [
+                context.assessment_by_event_id[
+                    blocker.event_id
+                ].future_preservation_score
+                for blocker in blockers
+            ]
+        )
+        blockers_contact_cluster_gain = _mean(
+            [blocker.contact_cluster_gain for blocker in blockers]
+        )
+        probe_selected = event.event_id in replacement_probe_added_ids
+        reasons = ["requires_replacement"]
+        if not probe_selected:
+            reasons.append("boundary_field_dense_continuity_probe_not_selected")
+        rows.append(
+            {
+                "frontier_kind": "terminal_bridge_replacement_frontier_v0",
+                "source_selector": terminal_run.selector_name,
+                "target_selector": replacement_probe_run.selector_name,
+                "row_id": event.row_id,
+                "source_accession": event.source_accession,
+                "event_id": event.event_id,
+                "segment_a_start": event.segment_a_start,
+                "segment_a_end": event.segment_a_end,
+                "segment_b_start": event.segment_b_start,
+                "segment_b_end": event.segment_b_end,
+                "native_contact_count_after_scoring": (
+                    event.native_contact_count_after_scoring
+                ),
+                "native_long_range_contact_count_after_scoring": (
+                    event.native_long_range_contact_count_after_scoring
+                ),
+                "contact_cluster_gain": event.contact_cluster_gain,
+                "coupling_selectivity_score": assessment.coupling_selectivity_score,
+                "direct_support_score": assessment.direct_support_score,
+                "future_preservation_score": assessment.future_preservation_score,
+                "blocked_future_pressure": assessment.blocked_future_pressure,
+                "coupling_decoy_margin": (
+                    context.coupling_decoy_margin_by_event_id[event.event_id]
+                ),
+                "coupling_nucleus_score": coupling_nucleus_score(event, context),
+                "selector_score_decoy_margin": selector_score_margin,
+                "exclusion_reasons": ";".join(reasons),
+                "matched_decoy_event_id": decoy.event_id,
+                "matched_decoy_native_positive_after_scoring": (
+                    decoy.native_contact_count_after_scoring > 0
+                ),
+                "matched_decoy_contact_cluster_gain": decoy.contact_cluster_gain,
+                "matched_decoy_coupling_selectivity_score": (
+                    decoy_assessment.coupling_selectivity_score
+                ),
+                "matched_decoy_direct_support_score": (
+                    decoy_assessment.direct_support_score
+                ),
+                "matched_decoy_future_preservation_score": (
+                    decoy_assessment.future_preservation_score
+                ),
+                "matched_decoy_blocked_future_pressure": (
+                    decoy_assessment.blocked_future_pressure
+                ),
+                "matched_decoy_coupling_nucleus_score": coupling_nucleus_score(
+                    decoy,
+                    context,
+                ),
+                "real_beats_decoy_by_coupling_score": (
+                    assessment.coupling_selectivity_score
+                    > decoy_assessment.coupling_selectivity_score
+                ),
+                "real_beats_decoy_by_coupling_nucleus_score": (
+                    selector_score_margin > 0.0
+                ),
+                "score_margin_expansion_gate_passed": False,
+                "recall_frontier_rank": "",
+                "native_truth_used_before_selection": False,
+                "native_label_attached_after_event_generation": True,
+                "diagnostic_claim_allowed": False,
+                "blocking_event_ids": ";".join(
+                    blocker.event_id for blocker in blockers
+                ),
+                "blocking_event_count": len(blockers),
+                "blocking_native_contact_count_after_scoring": (
+                    blockers_native_contact_count
+                ),
+                "blocking_native_long_range_contact_count_after_scoring": (
+                    blockers_native_long_range_contact_count
+                ),
+                "blocking_mean_coupling_nucleus_score": (
+                    blockers_coupling_nucleus_score
+                ),
+                "blocking_mean_direct_support_score": blockers_direct_support,
+                "blocking_mean_future_preservation_score": (
+                    blockers_future_preservation
+                ),
+                "blocking_mean_contact_cluster_gain": blockers_contact_cluster_gain,
+                "replacement_native_long_range_delta_after_scoring": (
+                    replacement_delta
+                ),
+                "replacement_probe_selected": probe_selected,
+            }
+        )
+        rows[-1].update(_direct_constraint_stats(context=context, event=event))
+
+    return sorted(
+        rows,
+        key=lambda row: (
+            -int(row["replacement_native_long_range_delta_after_scoring"]),
+            -int(row["native_long_range_contact_count_after_scoring"]),
+            str(row["row_id"]),
+            int(row["segment_a_start"]),
+            int(row["segment_b_start"]),
+            str(row["event_id"]),
+        ),
+    )
+
+
 def _controls_from_runs(runs: Sequence[TraceLoopRun]) -> list[dict[str, object]]:
     rows: list[dict[str, object]] = []
     for run in runs:
@@ -870,6 +1069,39 @@ def _certificate(report: Mapping[str, object]) -> dict[str, object]:
         "external_terminal_bridge_expanded_claim_allowed": report[
             "external_terminal_bridge_expanded_claim_allowed"
         ],
+        "external_boundary_field_replacement_probe_selected_event_count": report[
+            "external_boundary_field_replacement_probe_selected_event_count"
+        ],
+        "external_boundary_field_replacement_probe_added_event_count": report[
+            "external_boundary_field_replacement_probe_added_event_count"
+        ],
+        "external_boundary_field_replacement_probe_false_nucleus_rate": report[
+            "external_boundary_field_replacement_probe_false_nucleus_rate"
+        ],
+        "external_boundary_field_replacement_probe_long_range_recall": report[
+            "external_boundary_field_replacement_probe_long_range_recall"
+        ],
+        "external_boundary_field_replacement_probe_long_range_recall_delta_vs_terminal_bridge": report[
+            "external_boundary_field_replacement_probe_long_range_recall_delta_vs_terminal_bridge"
+        ],
+        "external_boundary_field_replacement_probe_claim_allowed": report[
+            "external_boundary_field_replacement_probe_claim_allowed"
+        ],
+        "external_terminal_bridge_replacement_frontier_count": report[
+            "external_terminal_bridge_replacement_frontier_count"
+        ],
+        "external_terminal_bridge_replacement_frontier_native_long_range_delta_sum": report[
+            "external_terminal_bridge_replacement_frontier_native_long_range_delta_sum"
+        ],
+        "external_terminal_bridge_replacement_frontier_probe_selected_count": report[
+            "external_terminal_bridge_replacement_frontier_probe_selected_count"
+        ],
+        "external_terminal_bridge_replacement_frontier_probe_selected_native_long_range_delta_sum": report[
+            "external_terminal_bridge_replacement_frontier_probe_selected_native_long_range_delta_sum"
+        ],
+        "external_terminal_bridge_replacement_frontier_claim_allowed": report[
+            "external_terminal_bridge_replacement_frontier_claim_allowed"
+        ],
         "external_rank_consistent_cluster_gated_native_positive_frontier_count": report[
             "external_rank_consistent_cluster_gated_native_positive_frontier_count"
         ],
@@ -974,6 +1206,7 @@ def _build_report(
     external_pressure_release_expanded: TraceLoopRun,
     external_registry_extension_expanded: TraceLoopRun,
     external_terminal_bridge_expanded: TraceLoopRun,
+    external_boundary_field_replacement_probe: TraceLoopRun,
     physical_baseline: TraceLoopRun,
     matched_controls: Sequence[TraceLoopRun],
     margin_gated_controls: Sequence[TraceLoopRun],
@@ -999,6 +1232,7 @@ def _build_report(
     oracle_positive_control: TraceLoopRun,
     frontier_rows: Sequence[Mapping[str, object]],
     recall_frontier_rows: Sequence[Mapping[str, object]],
+    replacement_frontier_rows: Sequence[Mapping[str, object]],
     matched_control_recall_frontier_summaries: Sequence[Mapping[str, int]],
     adversarial_recall_frontier_summaries: Sequence[Mapping[str, int]],
     source_benchmark_file: Path,
@@ -2016,6 +2250,28 @@ def _build_report(
         for event in external_terminal_bridge_expanded.selected_events
         if event.event_id not in registry_extension_expanded_ids
     )
+    terminal_bridge_expanded_ids = {
+        event.event_id for event in external_terminal_bridge_expanded.selected_events
+    }
+    boundary_field_replacement_probe_metric = (
+        external_boundary_field_replacement_probe.metric
+    )
+    boundary_field_replacement_probe_added_events = tuple(
+        event
+        for event in external_boundary_field_replacement_probe.selected_events
+        if event.event_id not in terminal_bridge_expanded_ids
+    )
+    replacement_frontier_native_long_range_delta_sum = sum(
+        int(row["replacement_native_long_range_delta_after_scoring"])
+        for row in replacement_frontier_rows
+    )
+    replacement_frontier_probe_selected_rows = [
+        row for row in replacement_frontier_rows if bool(row["replacement_probe_selected"])
+    ]
+    replacement_frontier_probe_selected_native_long_range_delta_sum = sum(
+        int(row["replacement_native_long_range_delta_after_scoring"])
+        for row in replacement_frontier_probe_selected_rows
+    )
     terminal_bridge_expanded_max_matched_control_precision = _max_selected_metric(
         terminal_bridge_expanded_controls,
         "contact_cluster_precision",
@@ -3018,6 +3274,69 @@ def _build_report(
             terminal_bridge_expanded_beats_adversarial_calibrated_controls
         ),
         "external_terminal_bridge_expanded_claim_allowed": False,
+        "external_boundary_field_replacement_probe_selected_event_count": (
+            boundary_field_replacement_probe_metric.selected_event_count
+        ),
+        "external_boundary_field_replacement_probe_added_event_count": (
+            len(boundary_field_replacement_probe_added_events)
+        ),
+        "external_boundary_field_replacement_probe_added_native_contact_count": (
+            sum(
+                event.native_contact_count_after_scoring
+                for event in boundary_field_replacement_probe_added_events
+            )
+        ),
+        "external_boundary_field_replacement_probe_added_native_long_range_contact_count": (
+            sum(
+                event.native_long_range_contact_count_after_scoring
+                for event in boundary_field_replacement_probe_added_events
+            )
+        ),
+        "external_boundary_field_replacement_probe_added_false_event_count": (
+            sum(
+                1
+                for event in boundary_field_replacement_probe_added_events
+                if event.native_contact_count_after_scoring == 0
+            )
+        ),
+        "external_boundary_field_replacement_probe_false_nucleus_rate": (
+            boundary_field_replacement_probe_metric.false_nucleus_rate
+            if boundary_field_replacement_probe_metric.selected_event_count
+            else 0.0
+        ),
+        "external_boundary_field_replacement_probe_cluster_precision": (
+            boundary_field_replacement_probe_metric.contact_cluster_precision
+            if boundary_field_replacement_probe_metric.selected_event_count
+            else 0.0
+        ),
+        "external_boundary_field_replacement_probe_long_range_recall": (
+            boundary_field_replacement_probe_metric.long_range_contact_recall
+            if boundary_field_replacement_probe_metric.selected_event_count
+            else 0.0
+        ),
+        "external_boundary_field_replacement_probe_long_range_recall_delta_vs_terminal_bridge": (
+            _rounded(
+                boundary_field_replacement_probe_metric.long_range_contact_recall
+                - terminal_bridge_expanded_metric.long_range_contact_recall
+            )
+        ),
+        "external_boundary_field_replacement_probe_claim_allowed": False,
+        "external_terminal_bridge_replacement_frontier_kind": (
+            "terminal_bridge_replacement_frontier_v0"
+        ),
+        "external_terminal_bridge_replacement_frontier_count": (
+            len(replacement_frontier_rows)
+        ),
+        "external_terminal_bridge_replacement_frontier_native_long_range_delta_sum": (
+            replacement_frontier_native_long_range_delta_sum
+        ),
+        "external_terminal_bridge_replacement_frontier_probe_selected_count": (
+            len(replacement_frontier_probe_selected_rows)
+        ),
+        "external_terminal_bridge_replacement_frontier_probe_selected_native_long_range_delta_sum": (
+            replacement_frontier_probe_selected_native_long_range_delta_sum
+        ),
+        "external_terminal_bridge_replacement_frontier_claim_allowed": False,
         "external_persistent_rank_consistent_cluster_gated_recovery_diagnostic_kind": (
             "persistent_trace_recovery_after_rank_consistent_gate_v0"
         ),
@@ -3326,6 +3645,17 @@ def render_external_coupling_trace_loop_dashboard(
         "external_terminal_bridge_expanded_beats_matched_controls",
         "external_terminal_bridge_expanded_beats_adversarial_calibrated_controls",
         "external_terminal_bridge_expanded_claim_allowed",
+        "external_boundary_field_replacement_probe_added_event_count",
+        "external_boundary_field_replacement_probe_false_nucleus_rate",
+        "external_boundary_field_replacement_probe_cluster_precision",
+        "external_boundary_field_replacement_probe_long_range_recall",
+        "external_boundary_field_replacement_probe_long_range_recall_delta_vs_terminal_bridge",
+        "external_boundary_field_replacement_probe_claim_allowed",
+        "external_terminal_bridge_replacement_frontier_count",
+        "external_terminal_bridge_replacement_frontier_native_long_range_delta_sum",
+        "external_terminal_bridge_replacement_frontier_probe_selected_count",
+        "external_terminal_bridge_replacement_frontier_probe_selected_native_long_range_delta_sum",
+        "external_terminal_bridge_replacement_frontier_claim_allowed",
         "external_persistent_rank_consistent_cluster_gated_recovered_event_count",
         "external_persistent_rank_consistent_cluster_gated_recovered_native_contact_count",
         "external_persistent_rank_consistent_cluster_gated_recovered_native_long_range_contact_count",
@@ -3518,6 +3848,13 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
         selector_name="external_terminal_bridge_expanded",
         selection_mode="coupling_trace_loop_terminal_bridge_expanded",
         control_kind="external_real_terminal_bridge_expanded",
+    )
+    external_boundary_field_replacement_probe = _run_trace_loop_selector_from_context(
+        context=external_context,
+        dataset=import_result.dataset,
+        selector_name="external_boundary_field_replacement_probe",
+        selection_mode="coupling_trace_loop_boundary_field_replacement_probe",
+        control_kind="external_real_boundary_field_replacement_probe",
     )
     physical_baseline = _run_trace_loop_selector_from_context(
         context=external_context,
@@ -3792,6 +4129,7 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
         external_pressure_release_expanded,
         external_registry_extension_expanded,
         external_terminal_bridge_expanded,
+        external_boundary_field_replacement_probe,
         physical_baseline,
         *matched_control_runs,
         *margin_gated_control_runs,
@@ -3824,6 +4162,11 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
     recall_frontier_rows = persistent_recall_frontier_rows(
         context=external_context,
         persistent_run=external_persistent_rank_consistent_cluster_gated,
+    )
+    replacement_frontier_rows = terminal_bridge_replacement_frontier_rows(
+        context=external_context,
+        terminal_run=external_terminal_bridge_expanded,
+        replacement_probe_run=external_boundary_field_replacement_probe,
     )
     persistent_control_run_by_name = {
         run.selector_name.replace(
@@ -3883,6 +4226,9 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
             external_registry_extension_expanded
         ),
         external_terminal_bridge_expanded=external_terminal_bridge_expanded,
+        external_boundary_field_replacement_probe=(
+            external_boundary_field_replacement_probe
+        ),
         physical_baseline=physical_baseline,
         matched_controls=matched_control_runs,
         margin_gated_controls=margin_gated_control_runs,
@@ -3934,6 +4280,7 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
         oracle_positive_control=oracle_positive_control,
         frontier_rows=frontier_rows,
         recall_frontier_rows=recall_frontier_rows,
+        replacement_frontier_rows=replacement_frontier_rows,
         matched_control_recall_frontier_summaries=(
             matched_control_recall_frontier_summaries
         ),
@@ -3957,7 +4304,10 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
     for run in all_runs:
         selected_rows.extend(run.selected_rows)
     write_csv_rows(selected_rows, selected_events_path)
-    write_csv_rows([*frontier_rows, *recall_frontier_rows], frontier_path)
+    write_csv_rows(
+        [*replacement_frontier_rows, *frontier_rows, *recall_frontier_rows],
+        frontier_path,
+    )
     write_csv_rows(_controls_from_runs(all_runs), controls_path)
     write_csv_rows(
         [status.to_dict() for status in import_result.row_statuses],
