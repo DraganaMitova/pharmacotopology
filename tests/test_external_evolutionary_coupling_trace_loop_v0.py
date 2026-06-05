@@ -285,12 +285,72 @@ def test_locked_macro_scale_future_preserved_selector_lifts_zero_false_recall() 
         selector_name="macro_scale_future_preserved",
         selected_events=selected,
     )
+    controls = generate_external_coupling_negative_controls(
+        rows=rows,
+        dataset=dataset,
+    )
+    adversarial_controls = generate_adversarial_calibrated_external_coupling_controls(
+        rows=rows,
+        dataset=dataset,
+    )
+    control_metrics = []
+    for name, control in controls.items():
+        control_context = selector_module.build_coupling_nucleus_context(
+            rows=rows,
+            coupling_dataset=control.dataset,
+            physical_context=physical_context,
+        )
+        control_selected = (
+            selector_module.select_coupling_trace_loop_macro_scale_future_preserved_events(
+                control_context
+            )
+        )
+        control_metrics.append(
+            selector_module.selector_metrics(
+                control_context,
+                selector_name=f"macro_control_{name}",
+                selected_events=control_selected,
+            )
+        )
+    adversarial_metrics = []
+    for name, control in adversarial_controls.items():
+        control_context = selector_module.build_coupling_nucleus_context(
+            rows=rows,
+            coupling_dataset=control.dataset,
+            physical_context=physical_context,
+        )
+        control_selected = (
+            selector_module.select_coupling_trace_loop_macro_scale_future_preserved_events(
+                control_context
+            )
+        )
+        adversarial_metrics.append(
+            selector_module.selector_metrics(
+                control_context,
+                selector_name=f"macro_adversarial_{name}",
+                selected_events=control_selected,
+            )
+        )
+    selected_control_metrics = [
+        item for item in [*control_metrics, *adversarial_metrics]
+        if item.selected_event_count
+    ]
 
     assert metric.selected_event_count == 28
     assert metric.false_nucleus_rate == 0.0
     assert metric.contact_cluster_precision == 0.271908
     assert metric.long_range_contact_recall == 0.564435
     assert all(event.native_contact_count_after_scoring > 0 for event in selected)
+    assert metric.contact_cluster_precision > max(
+        item.contact_cluster_precision for item in selected_control_metrics
+    )
+    assert metric.long_range_contact_recall > max(
+        item.long_range_contact_recall for item in selected_control_metrics
+    )
+    assert all(
+        metric.false_nucleus_rate <= item.false_nucleus_rate
+        for item in selected_control_metrics
+    )
 
 
 def test_coupling_dataset_reuses_constraint_row_grouping() -> None:
@@ -1931,6 +1991,29 @@ def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> Non
         "external_macro_scale_future_preserved_long_range_recall_delta_vs_boundary_replacement"
         in report
     )
+    assert (
+        "external_macro_scale_future_preserved_cluster_precision_margin_vs_matched_controls"
+        in report
+    )
+    assert (
+        "external_macro_scale_future_preserved_long_range_recall_margin_vs_matched_controls"
+        in report
+    )
+    assert (
+        "external_macro_scale_future_preserved_cluster_precision_margin_vs_adversarial_controls"
+        in report
+    )
+    assert (
+        "external_macro_scale_future_preserved_long_range_recall_margin_vs_adversarial_controls"
+        in report
+    )
+    assert (
+        "external_macro_scale_future_preserved_beats_matched_controls" in report
+    )
+    assert (
+        "external_macro_scale_future_preserved_beats_adversarial_calibrated_controls"
+        in report
+    )
     assert report["external_macro_scale_future_preserved_claim_allowed"] is False
     assert "external_terminal_bridge_replacement_frontier_count" in report
     assert (
@@ -2065,6 +2148,20 @@ def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> Non
         ]
     )
     assert (
+        certificate[
+            "external_macro_scale_future_preserved_long_range_recall_margin_vs_matched_controls"
+        ]
+        == report[
+            "external_macro_scale_future_preserved_long_range_recall_margin_vs_matched_controls"
+        ]
+    )
+    assert (
+        certificate[
+            "external_macro_scale_future_preserved_beats_matched_controls"
+        ]
+        == report["external_macro_scale_future_preserved_beats_matched_controls"]
+    )
+    assert (
         certificate["external_terminal_bridge_replacement_frontier_count"]
         == report["external_terminal_bridge_replacement_frontier_count"]
     )
@@ -2084,8 +2181,8 @@ def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> Non
             "external_terminal_bridge_replacement_frontier_external_confidence_delta_sum"
         ]
     )
-    assert len(selectors) == 98
-    assert len(controls) == 98
+    assert len(selectors) == 105
+    assert len(controls) == 105
     assert len(frontier) == (
         report["external_terminal_bridge_replacement_frontier_count"]
         +
@@ -2117,6 +2214,10 @@ def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> Non
     assert "external_score_margin_expanded_added_event_count" in dashboard
     assert "external_boundary_field_replacement_probe_long_range_recall" in dashboard
     assert "external_macro_scale_future_preserved_long_range_recall" in dashboard
+    assert (
+        "external_macro_scale_future_preserved_long_range_recall_margin_vs_matched_controls"
+        in dashboard
+    )
     assert "external_terminal_bridge_replacement_frontier_count" in dashboard
     assert (
         "external_terminal_bridge_replacement_frontier_external_count_delta_positive_count"
