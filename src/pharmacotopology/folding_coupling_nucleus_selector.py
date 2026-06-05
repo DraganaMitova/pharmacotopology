@@ -103,6 +103,7 @@ TRACE_LOOP_SCORE_MARGIN_EXPANSION_SCORE_MIN = 0.44
 TRACE_LOOP_SCORE_MARGIN_EXPANSION_DECOY_MARGIN_MIN = 0.15
 TRACE_LOOP_SCORE_MARGIN_EXPANSION_CLUSTER_MIN = 0.46
 TRACE_LOOP_SCORE_MARGIN_EXPANSION_DIRECT_SUPPORT_MIN = 0.10
+TRACE_LOOP_SCORE_MARGIN_EXPANSION_DIRECT_CONSTRAINT_COUNT_MIN = 2
 TRACE_LOOP_SCORE_MARGIN_EXPANSION_FUTURE_PRESERVATION_MIN = 0.18
 TRACE_LOOP_SCORE_MARGIN_EXPANSION_BLOCKED_FUTURE_MAX = 0.08
 TRACE_LOOP_BOUNDARY_CONTINUITY_RESCUE_SCORE_MIN = 0.45
@@ -898,6 +899,7 @@ def _passes_score_margin_expansion_gate(
     context: CouplingNucleusContext,
 ) -> bool:
     assessment = context.assessment_by_event_id[event.event_id]
+    evidence = _direct_constraint_trace_evidence(event, context)
     return (
         coupling_nucleus_score(event, context)
         >= TRACE_LOOP_SCORE_MARGIN_EXPANSION_SCORE_MIN
@@ -907,6 +909,8 @@ def _passes_score_margin_expansion_gate(
         >= TRACE_LOOP_SCORE_MARGIN_EXPANSION_CLUSTER_MIN
         and assessment.direct_support_score
         >= TRACE_LOOP_SCORE_MARGIN_EXPANSION_DIRECT_SUPPORT_MIN
+        and evidence["direct_constraint_count"]
+        >= TRACE_LOOP_SCORE_MARGIN_EXPANSION_DIRECT_CONSTRAINT_COUNT_MIN
         and assessment.future_preservation_score
         >= TRACE_LOOP_SCORE_MARGIN_EXPANSION_FUTURE_PRESERVATION_MIN
         and assessment.blocked_future_pressure

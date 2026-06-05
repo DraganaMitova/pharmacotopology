@@ -18,6 +18,10 @@ if str(SCRIPTS) not in sys.path:
 from build_real_external_coupling_file_v0 import (  # noqa: E402
     build_real_external_coupling_file_v0,
 )
+from build_query_centered_hmmer_plmc_couplings_v0 import (  # noqa: E402
+    DEFAULT_MINIMUM_SEQUENCE_SEPARATION,
+    build_query_centered_hmmer_plmc_couplings_v0,
+)
 from pharmacotopology.folding_coupling_negative_controls import (  # noqa: E402
     EXTERNAL_ADVERSARIAL_CALIBRATED_CONTROL_NAMES,
     EXTERNAL_COUPLING_CONTROL_NAMES,
@@ -190,6 +194,77 @@ def test_locked_external_hmmer_plmc_artifact_covers_all_rows_without_taint() -> 
     assert result.dataset.native_truth_tainted is False
     assert result.dataset.structure_model_tainted is False
     assert result.dataset.oracle_constraint_control is False
+
+
+def test_query_centered_hmmer_plmc_builder_filters_local_pairs_before_top_l(
+    tmp_path,
+) -> None:
+    row = load_real_coordinate_visual_rows(BENCHMARK_8)[0]
+    focus_fasta = tmp_path / "focus.fasta"
+    focus_fasta.write_text(f">synthetic_focus\n{row.sequence}\n", encoding="utf-8")
+    base_external = tmp_path / "base_external.json"
+    base_external.write_text(
+        json.dumps(
+            {
+                "external_evolutionary_couplings_used": True,
+                "coordinate_truth_used_to_build_constraints": False,
+                "native_truth_used_before_coupling_selection": False,
+                "oracle_constraint_control": False,
+                "constraints": [],
+            },
+            ensure_ascii=False,
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    plmc_rows: list[str] = []
+    for index in range(1, min(row.sequence_length, 20)):
+        plmc_rows.append(f"{index} A {index + 1} C 0 {1000 - index}.0")
+    long_range_count = 0
+    for i in range(1, row.sequence_length + 1):
+        for j in range(i + DEFAULT_MINIMUM_SEQUENCE_SEPARATION, row.sequence_length + 1):
+            long_range_count += 1
+            plmc_rows.append(f"{i} A {j} C 0 {100 - long_range_count * 0.01:.6f}")
+            if long_range_count >= row.sequence_length:
+                break
+        if long_range_count >= row.sequence_length:
+            break
+    plmc_couplings = tmp_path / "focus_plmc.couplings"
+    plmc_couplings.write_text("\n".join(plmc_rows) + "\n", encoding="utf-8")
+
+    output = build_query_centered_hmmer_plmc_couplings_v0(
+        benchmark_file=BENCHMARK_8,
+        base_external_coupling_file=base_external,
+        row_id=row.row_id,
+        focus_fasta_file=focus_fasta,
+        plmc_couplings_file=plmc_couplings,
+        output=tmp_path / "query_centered_external.json",
+        msa_depth=2000,
+        effective_sequence_count=2000.0,
+        hmmer_job_id="synthetic_hmmer",
+        hmmer_iteration_id="iter3",
+    )
+
+    payload = json.loads(output.read_text(encoding="utf-8"))
+    constraints = payload["constraints"]
+
+    assert len(constraints) == row.sequence_length
+    assert all(
+        constraint["sequence_separation"] >= DEFAULT_MINIMUM_SEQUENCE_SEPARATION
+        for constraint in constraints
+    )
+    assert constraints[0]["raw_score"] == 99.99
+    assert constraints[0]["minimum_sequence_separation"] == (
+        DEFAULT_MINIMUM_SEQUENCE_SEPARATION
+    )
+    assert (
+        payload[
+            f"hmmer_query_centered_{row.source_accession.replace(':', '_')}_minimum_sequence_separation"
+        ]
+        == DEFAULT_MINIMUM_SEQUENCE_SEPARATION
+    )
 
 
 def test_external_importer_rejects_disallowed_source_kind(tmp_path) -> None:
@@ -558,6 +633,12 @@ def test_score_margin_expanded_selector_adds_guarded_trace_candidate(
         segment_a_start=25,
         segment_b_start=73,
     )
+    weak_direct = _event(
+        "weak_direct",
+        contact_cluster_gain=0.48,
+        segment_a_start=31,
+        segment_b_start=81,
+    )
     decoy = _event(
         "decoy",
         contact_cluster_gain=0.48,
@@ -586,6 +667,12 @@ def test_score_margin_expanded_selector_adds_guarded_trace_candidate(
                 future_preservation_score=0.30,
                 blocked_future_pressure=0.12,
             ),
+            weak_direct.event_id: _assessment(
+                weak_direct,
+                direct_support_score=0.30,
+                future_preservation_score=0.30,
+                blocked_future_pressure=0.02,
+            ),
             decoy.event_id: _assessment(
                 decoy,
                 direct_support_score=0.20,
@@ -598,7 +685,13 @@ def test_score_margin_expanded_selector_adds_guarded_trace_candidate(
         core.event_id: 0.50,
         expanded.event_id: 0.62,
         rejected.event_id: 0.62,
+        weak_direct.event_id: 0.62,
         decoy.event_id: 0.40,
+    }
+    direct_evidence = {
+        expanded.event_id: 2,
+        rejected.event_id: 2,
+        weak_direct.event_id: 1,
     }
     monkeypatch.setattr(
         selector_module,
@@ -608,12 +701,21 @@ def test_score_margin_expanded_selector_adds_guarded_trace_candidate(
     monkeypatch.setattr(
         selector_module,
         "select_coupling_trace_loop_events",
-        lambda *args, **kwargs: (core, expanded, rejected),
+        lambda *args, **kwargs: (core, expanded, rejected, weak_direct),
     )
     monkeypatch.setattr(
         selector_module,
         "coupling_nucleus_score",
         lambda event, _context: scores[event.event_id],
+    )
+    monkeypatch.setattr(
+        selector_module,
+        "_direct_constraint_trace_evidence",
+        lambda event, _context: {
+            "direct_constraint_count": direct_evidence.get(event.event_id, 0),
+            "direct_constraint_confidence_sum": 1.0,
+            "direct_top_10pct_rank_count": 0,
+        },
     )
     monkeypatch.setattr(
         selector_module,

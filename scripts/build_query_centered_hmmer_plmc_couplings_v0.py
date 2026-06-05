@@ -23,6 +23,7 @@ DEFAULT_BENCHMARK_FILE = Path("data/folding_real_coordinate_visual_8.locked.json
 DEFAULT_BASE_EXTERNAL_COUPLING_FILE = Path(
     "data/folding_real_coordinate_visual_8_external_couplings.v0.locked.json"
 )
+DEFAULT_MINIMUM_SEQUENCE_SEPARATION = 24
 
 
 @dataclass(frozen=True)
@@ -121,6 +122,20 @@ def _rank_unique_pairs(pairs: Iterable[PlmcPair]) -> list[PlmcPair]:
     return ranked
 
 
+def _long_range_pairs(
+    pairs: Iterable[PlmcPair],
+    *,
+    minimum_sequence_separation: int,
+) -> tuple[PlmcPair, ...]:
+    if minimum_sequence_separation < 1:
+        raise ValueError("minimum_sequence_separation must be positive")
+    return tuple(
+        pair
+        for pair in pairs
+        if pair.j - pair.i >= minimum_sequence_separation
+    )
+
+
 def _constraint_rows(
     *,
     row: RealCoordinateVisualRow,
@@ -131,6 +146,7 @@ def _constraint_rows(
     focus_id: str,
     hmmer_job_id: str,
     hmmer_iteration_id: str,
+    minimum_sequence_separation: int,
 ) -> list[dict[str, object]]:
     selected = pairs[: row.sequence_length]
     max_positive_score = max((max(0.0, pair.score) for pair in selected), default=0.0)
@@ -185,6 +201,7 @@ def _constraint_rows(
                 "plmc_focus_id": focus_id,
                 "plmc_alignment_column_i": pair.alignment_column_i,
                 "plmc_alignment_column_j": pair.alignment_column_j,
+                "minimum_sequence_separation": minimum_sequence_separation,
             }
         )
     return constraints
@@ -202,6 +219,7 @@ def build_query_centered_hmmer_plmc_couplings_v0(
     effective_sequence_count: float,
     hmmer_job_id: str,
     hmmer_iteration_id: str,
+    minimum_sequence_separation: int = DEFAULT_MINIMUM_SEQUENCE_SEPARATION,
 ) -> Path:
     rows = tuple(load_real_coordinate_visual_rows(benchmark_file))
     row_by_id = {row.row_id: row for row in rows}
@@ -211,16 +229,23 @@ def build_query_centered_hmmer_plmc_couplings_v0(
         focus_alignment=focus_alignment,
         row=row,
     )
-    pairs = _rank_unique_pairs(
+    all_pairs = _rank_unique_pairs(
         _iter_plmc_pairs(
             plmc_couplings_file=plmc_couplings_file,
             column_to_position=column_to_position,
         )
     )
+    pairs = list(
+        _long_range_pairs(
+            all_pairs,
+            minimum_sequence_separation=minimum_sequence_separation,
+        )
+    )
     if len(pairs) < row.sequence_length:
         raise ValueError(
-            f"{row_id} has only {len(pairs)} unique mapped plmc pairs; "
-            f"{row.sequence_length} required"
+            f"{row_id} has only {len(pairs)} unique mapped plmc pairs with "
+            f"sequence separation >= {minimum_sequence_separation}; "
+            f"{row.sequence_length} required from {len(all_pairs)} total pairs"
         )
     constraints = _constraint_rows(
         row=row,
@@ -231,6 +256,7 @@ def build_query_centered_hmmer_plmc_couplings_v0(
         focus_id=focus_id,
         hmmer_job_id=hmmer_job_id,
         hmmer_iteration_id=hmmer_iteration_id,
+        minimum_sequence_separation=minimum_sequence_separation,
     )
     payload = json.loads(base_external_coupling_file.read_text(encoding="utf-8"))
     payload["constraints"] = [
@@ -255,6 +281,9 @@ def build_query_centered_hmmer_plmc_couplings_v0(
     payload[
         f"hmmer_query_centered_{row.source_accession.replace(':', '_')}_valid_sequence_count"
     ] = msa_depth
+    payload[
+        f"hmmer_query_centered_{row.source_accession.replace(':', '_')}_minimum_sequence_separation"
+    ] = minimum_sequence_separation
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(
         json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
@@ -283,6 +312,15 @@ def main() -> None:
     parser.add_argument("--effective-sequence-count", type=float, required=True)
     parser.add_argument("--hmmer-job-id", required=True)
     parser.add_argument("--hmmer-iteration-id", required=True)
+    parser.add_argument(
+        "--minimum-sequence-separation",
+        type=int,
+        default=DEFAULT_MINIMUM_SEQUENCE_SEPARATION,
+        help=(
+            "Minimum query residue separation accepted into the top-L PLMC "
+            "coupling list."
+        ),
+    )
     args = parser.parse_args()
     output = build_query_centered_hmmer_plmc_couplings_v0(
         benchmark_file=Path(args.benchmark_file),
@@ -295,6 +333,7 @@ def main() -> None:
         effective_sequence_count=args.effective_sequence_count,
         hmmer_job_id=args.hmmer_job_id,
         hmmer_iteration_id=args.hmmer_iteration_id,
+        minimum_sequence_separation=args.minimum_sequence_separation,
     )
     print(output)
 
