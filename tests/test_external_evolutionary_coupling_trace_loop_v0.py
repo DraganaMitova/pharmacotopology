@@ -409,7 +409,7 @@ def test_rank_consistent_recovery_gate_adds_supported_lower_cluster_event(
             ),
             rejected.event_id: _assessment(
                 rejected,
-                direct_support_score=0.67,
+                direct_support_score=0.63,
                 future_preservation_score=0.95,
                 blocked_future_pressure=0.04,
             ),
