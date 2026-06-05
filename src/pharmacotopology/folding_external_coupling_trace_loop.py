@@ -16,6 +16,11 @@ from pharmacotopology.folding_coupling_negative_controls import (
 from pharmacotopology.folding_coupling_nucleus_selector import (
     CouplingNucleusContext,
     CouplingSelectorMetric,
+    TRACE_LOOP_RANK_CONSISTENT_CLUSTER_GATE_MIN,
+    TRACE_LOOP_RANK_CONSISTENT_RECOVERY_BLOCKED_FUTURE_MAX,
+    TRACE_LOOP_RANK_CONSISTENT_RECOVERY_DECOY_MARGIN_MIN,
+    TRACE_LOOP_RANK_CONSISTENT_RECOVERY_DIRECT_SUPPORT_MIN,
+    TRACE_LOOP_RANK_CONSISTENT_RECOVERY_FUTURE_PRESERVATION_MIN,
     build_coupling_nucleus_context,
     coupling_claim_mode_validation_failures,
     select_coupling_events,
@@ -26,10 +31,17 @@ from pharmacotopology.folding_evolutionary_constraints import (
     CouplingDataset,
     load_coupling_dataset,
 )
+from pharmacotopology.folding_coupling_decoy_falsification import (
+    coupling_decoy_comparisons,
+)
 from pharmacotopology.folding_external_coupling_importer import (
     ExternalCouplingImportResult,
     import_external_coupling_dataset,
 )
+from pharmacotopology.folding_nucleus_decoy_falsification import (
+    matched_decoys_for_selected_events,
+)
+from pharmacotopology.folding_nucleus_closure_search import NucleusClosureEvent
 from pharmacotopology.folding_external_coupling_sources import (
     EXTERNAL_COUPLING_TRACE_LOOP_CERTIFICATE_KIND,
     EXTERNAL_COUPLING_TRACE_LOOP_REPORT_KIND,
@@ -47,6 +59,7 @@ ROOT_OUTPUT_NAMES = (
     "external_coupling_trace_loop_certificate.json",
     "external_coupling_trace_loop_selectors.csv",
     "external_coupling_trace_loop_selected_events.csv",
+    "external_coupling_trace_loop_frontier.csv",
     "external_coupling_trace_loop_controls.csv",
     "external_coupling_trace_loop_row_status.csv",
     "external_coupling_trace_loop_dashboard.html",
@@ -71,6 +84,7 @@ class TraceLoopRun:
     selector_name: str
     dataset: CouplingDataset
     metric: CouplingSelectorMetric
+    selected_events: tuple[NucleusClosureEvent, ...]
     selected_rows: tuple[dict[str, object], ...]
     constraint_count: int
     control_kind: str
@@ -132,10 +146,177 @@ def _run_trace_loop_selector_from_context(
         selector_name=selector_name,
         dataset=dataset,
         metric=metric,
+        selected_events=tuple(selected),
         selected_rows=tuple(rows_out),
         constraint_count=len(dataset.constraints),
         control_kind=control_kind,
     )
+
+
+def _direct_constraint_stats(
+    *,
+    context: CouplingNucleusContext,
+    event: NucleusClosureEvent,
+) -> dict[str, object]:
+    constraints = context.coupling_dataset.constraints_by_row_id().get(
+        event.row_id,
+        (),
+    )
+    region_pairs = set(event.candidate_region_pairs())
+    direct = tuple(
+        constraint for constraint in constraints if constraint.pair() in region_pairs
+    )
+    if not direct:
+        return {
+            "direct_constraint_count": 0,
+            "direct_constraint_confidence_sum": 0.0,
+            "direct_top_10pct_rank_count": 0,
+            "direct_max_confidence": 0.0,
+            "direct_mean_rank_fraction": 0.0,
+        }
+    return {
+        "direct_constraint_count": len(direct),
+        "direct_constraint_confidence_sum": _rounded(
+            sum(constraint.confidence for constraint in direct)
+        ),
+        "direct_top_10pct_rank_count": sum(
+            1 for constraint in direct if constraint.rank_fraction <= 0.10
+        ),
+        "direct_max_confidence": _rounded(
+            max(constraint.confidence for constraint in direct)
+        ),
+        "direct_mean_rank_fraction": _rounded(
+            mean(constraint.rank_fraction for constraint in direct)
+        ),
+    }
+
+
+def _frontier_exclusion_reasons(
+    *,
+    context: CouplingNucleusContext,
+    event: NucleusClosureEvent,
+) -> tuple[str, ...]:
+    assessment = context.assessment_by_event_id[event.event_id]
+    coupling_decoy_margin = context.coupling_decoy_margin_by_event_id[event.event_id]
+    reasons: list[str] = []
+    if event.contact_cluster_gain < TRACE_LOOP_RANK_CONSISTENT_CLUSTER_GATE_MIN:
+        reasons.append("below_hard_cluster_gate")
+    if (
+        assessment.direct_support_score
+        < TRACE_LOOP_RANK_CONSISTENT_RECOVERY_DIRECT_SUPPORT_MIN
+    ):
+        reasons.append("below_recovery_direct_support")
+    if (
+        assessment.blocked_future_pressure
+        > TRACE_LOOP_RANK_CONSISTENT_RECOVERY_BLOCKED_FUTURE_MAX
+    ):
+        reasons.append("above_recovery_blocked_future")
+    if (
+        assessment.future_preservation_score
+        < TRACE_LOOP_RANK_CONSISTENT_RECOVERY_FUTURE_PRESERVATION_MIN
+        and coupling_decoy_margin
+        < TRACE_LOOP_RANK_CONSISTENT_RECOVERY_DECOY_MARGIN_MIN
+    ):
+        reasons.append("below_recovery_future_or_decoy_margin")
+    return tuple(reasons)
+
+
+def rank_consistent_frontier_rows(
+    *,
+    context: CouplingNucleusContext,
+    cluster_gated_run: TraceLoopRun,
+    rank_consistent_run: TraceLoopRun,
+) -> list[dict[str, object]]:
+    selected_ids = {event.event_id for event in rank_consistent_run.selected_events}
+    frontier_events = tuple(
+        event
+        for event in cluster_gated_run.selected_events
+        if event.event_id not in selected_ids
+        and event.native_contact_count_after_scoring > 0
+    )
+    matches = matched_decoys_for_selected_events(
+        selected_events=frontier_events,
+        candidate_events=context.competitive_events,
+    )
+    comparisons = coupling_decoy_comparisons(
+        matches=matches,
+        assessments=context.assessments,
+    )
+    match_by_event_id = {match.real_event_id: match for match in matches}
+    comparison_by_event_id = {
+        comparison.real_event_id: comparison for comparison in comparisons
+    }
+
+    rows: list[dict[str, object]] = []
+    for event in sorted(
+        frontier_events,
+        key=lambda item: (
+            item.row_id,
+            item.segment_a_start,
+            item.segment_b_start,
+            item.event_id,
+        ),
+    ):
+        assessment = context.assessment_by_event_id[event.event_id]
+        coupling_decoy_margin = context.coupling_decoy_margin_by_event_id[
+            event.event_id
+        ]
+        match = match_by_event_id[event.event_id]
+        comparison = comparison_by_event_id[event.event_id]
+        decoy_assessment = context.assessment_by_event_id[match.decoy_event_id]
+        row = {
+            "frontier_kind": "rank_consistent_native_after_scoring_frontier_v0",
+            "source_selector": cluster_gated_run.selector_name,
+            "target_selector": rank_consistent_run.selector_name,
+            "row_id": event.row_id,
+            "source_accession": event.source_accession,
+            "event_id": event.event_id,
+            "segment_a_start": event.segment_a_start,
+            "segment_a_end": event.segment_a_end,
+            "segment_b_start": event.segment_b_start,
+            "segment_b_end": event.segment_b_end,
+            "native_contact_count_after_scoring": (
+                event.native_contact_count_after_scoring
+            ),
+            "native_long_range_contact_count_after_scoring": (
+                event.native_long_range_contact_count_after_scoring
+            ),
+            "contact_cluster_gain": event.contact_cluster_gain,
+            "coupling_selectivity_score": assessment.coupling_selectivity_score,
+            "direct_support_score": assessment.direct_support_score,
+            "future_preservation_score": assessment.future_preservation_score,
+            "blocked_future_pressure": assessment.blocked_future_pressure,
+            "coupling_decoy_margin": coupling_decoy_margin,
+            "exclusion_reasons": ";".join(
+                _frontier_exclusion_reasons(context=context, event=event)
+            ),
+            "matched_decoy_event_id": match.decoy_event_id,
+            "matched_decoy_native_positive_after_scoring": (
+                match.decoy_native_positive_after_scoring
+            ),
+            "matched_decoy_contact_cluster_gain": match.decoy_contact_cluster_gain,
+            "matched_decoy_coupling_selectivity_score": (
+                comparison.decoy_coupling_selectivity_score
+            ),
+            "matched_decoy_direct_support_score": (
+                decoy_assessment.direct_support_score
+            ),
+            "matched_decoy_future_preservation_score": (
+                decoy_assessment.future_preservation_score
+            ),
+            "matched_decoy_blocked_future_pressure": (
+                decoy_assessment.blocked_future_pressure
+            ),
+            "real_beats_decoy_by_coupling_score": (
+                comparison.real_beats_decoy_by_coupling_score
+            ),
+            "native_truth_used_before_selection": False,
+            "native_label_attached_after_event_generation": True,
+            "diagnostic_claim_allowed": False,
+        }
+        row.update(_direct_constraint_stats(context=context, event=event))
+        rows.append(row)
+    return rows
 
 
 def _controls_from_runs(runs: Sequence[TraceLoopRun]) -> list[dict[str, object]]:
@@ -240,6 +421,12 @@ def _certificate(report: Mapping[str, object]) -> dict[str, object]:
         "external_rank_consistent_cluster_gated_claim_allowed": report[
             "external_rank_consistent_cluster_gated_claim_allowed"
         ],
+        "external_rank_consistent_cluster_gated_native_positive_frontier_count": report[
+            "external_rank_consistent_cluster_gated_native_positive_frontier_count"
+        ],
+        "external_rank_consistent_cluster_gated_frontier_claim_allowed": report[
+            "external_rank_consistent_cluster_gated_frontier_claim_allowed"
+        ],
         "hard_adversarial_calibrated_probe_passed": report[
             "hard_adversarial_calibrated_probe_passed"
         ],
@@ -271,6 +458,7 @@ def _build_report(
     rank_consistent_cluster_gated_controls: Sequence[TraceLoopRun],
     adversarial_rank_consistent_controls: Sequence[TraceLoopRun],
     oracle_positive_control: TraceLoopRun,
+    frontier_rows: Sequence[Mapping[str, object]],
     source_benchmark_file: Path,
     external_coupling_file: Path,
     oracle_coupling_file: Path,
@@ -672,6 +860,13 @@ def _build_report(
         )
     )
     external_metric_defined = external_selected_event_count > 0
+    frontier_native_contact_count = sum(
+        int(row["native_contact_count_after_scoring"]) for row in frontier_rows
+    )
+    frontier_native_long_range_contact_count = sum(
+        int(row["native_long_range_contact_count_after_scoring"])
+        for row in frontier_rows
+    )
     return {
         "report_kind": EXTERNAL_COUPLING_TRACE_LOOP_REPORT_KIND,
         "batch_id": EXTERNAL_EVOLUTIONARY_COUPLING_TRACE_LOOP_BATCH_ID,
@@ -959,6 +1154,19 @@ def _build_report(
             rank_consistent_meets_oracle_recall_floor
         ),
         "external_rank_consistent_cluster_gated_claim_allowed": False,
+        "external_rank_consistent_cluster_gated_frontier_diagnostic_kind": (
+            "rank_consistent_native_after_scoring_frontier_v0"
+        ),
+        "external_rank_consistent_cluster_gated_native_positive_frontier_count": (
+            len(frontier_rows)
+        ),
+        "external_rank_consistent_cluster_gated_frontier_native_contact_count": (
+            frontier_native_contact_count
+        ),
+        "external_rank_consistent_cluster_gated_frontier_native_long_range_contact_count": (
+            frontier_native_long_range_contact_count
+        ),
+        "external_rank_consistent_cluster_gated_frontier_claim_allowed": False,
         "matched_negative_controls_present": bool(matched_controls),
         "external_claim_mode_validation_failures": claim_mode_failures,
         "coordinate_truth_used_to_build_constraints": (
@@ -1040,6 +1248,10 @@ def render_external_coupling_trace_loop_dashboard(
         "external_rank_consistent_cluster_gated_beats_matched_controls",
         "external_rank_consistent_cluster_gated_beats_adversarial_calibrated_controls",
         "external_rank_consistent_cluster_gated_probe_passed",
+        "external_rank_consistent_cluster_gated_native_positive_frontier_count",
+        "external_rank_consistent_cluster_gated_frontier_native_contact_count",
+        "external_rank_consistent_cluster_gated_frontier_native_long_range_contact_count",
+        "external_rank_consistent_cluster_gated_frontier_claim_allowed",
         "hard_adversarial_calibrated_probe_passed",
         "mechanism_discovery_claim_allowed",
         "folding_problem_solved",
@@ -1094,10 +1306,11 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
     certificate_path: Path,
     selectors_path: Path,
     selected_events_path: Path,
+    frontier_path: Path,
     controls_path: Path,
     row_status_path: Path,
     dashboard_path: Path,
-) -> tuple[Path, Path, Path, Path, Path, Path, Path]:
+) -> tuple[Path, Path, Path, Path, Path, Path, Path, Path]:
     rows = load_real_coordinate_visual_rows(benchmark_file)
     import_result = import_external_coupling_dataset(
         rows=rows,
@@ -1283,6 +1496,11 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
         *adversarial_rank_consistent_control_runs,
         oracle_positive_control,
     )
+    frontier_rows = rank_consistent_frontier_rows(
+        context=external_context,
+        cluster_gated_run=external_cluster_gated_core_expanded,
+        rank_consistent_run=external_rank_consistent_cluster_gated,
+    )
     report = _build_report(
         rows=rows,
         import_result=import_result,
@@ -1309,6 +1527,7 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
             adversarial_rank_consistent_control_runs
         ),
         oracle_positive_control=oracle_positive_control,
+        frontier_rows=frontier_rows,
         source_benchmark_file=benchmark_file,
         external_coupling_file=external_coupling_file,
         oracle_coupling_file=oracle_coupling_file,
@@ -1328,6 +1547,7 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
     for run in all_runs:
         selected_rows.extend(run.selected_rows)
     write_csv_rows(selected_rows, selected_events_path)
+    write_csv_rows(frontier_rows, frontier_path)
     write_csv_rows(_controls_from_runs(all_runs), controls_path)
     write_csv_rows(
         [status.to_dict() for status in import_result.row_statuses],
@@ -1342,6 +1562,7 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
         certificate_path,
         selectors_path,
         selected_events_path,
+        frontier_path,
         controls_path,
         row_status_path,
         dashboard_path,

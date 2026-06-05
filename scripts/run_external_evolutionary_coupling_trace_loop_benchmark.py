@@ -30,6 +30,9 @@ DEFAULT_SELECTORS_PATH = Path(
 DEFAULT_SELECTED_EVENTS_PATH = Path(
     "first_contact_clean_pharmacotopology_layer_run/external_coupling_trace_loop_selected_events.csv"
 )
+DEFAULT_FRONTIER_PATH = Path(
+    "first_contact_clean_pharmacotopology_layer_run/external_coupling_trace_loop_frontier.csv"
+)
 DEFAULT_CONTROLS_PATH = Path(
     "first_contact_clean_pharmacotopology_layer_run/external_coupling_trace_loop_controls.csv"
 )
@@ -61,6 +64,7 @@ def main() -> None:
         "--selected-events-output",
         default=str(DEFAULT_SELECTED_EVENTS_PATH),
     )
+    parser.add_argument("--frontier-output", default=str(DEFAULT_FRONTIER_PATH))
     parser.add_argument("--controls-output", default=str(DEFAULT_CONTROLS_PATH))
     parser.add_argument("--row-status-output", default=str(DEFAULT_ROW_STATUS_PATH))
     parser.add_argument("--dashboard-output", default=str(DEFAULT_DASHBOARD_PATH))
@@ -74,6 +78,7 @@ def main() -> None:
         certificate_path=Path(args.certificate_output),
         selectors_path=Path(args.selectors_output),
         selected_events_path=Path(args.selected_events_output),
+        frontier_path=Path(args.frontier_output),
         controls_path=Path(args.controls_output),
         row_status_path=Path(args.row_status_output),
         dashboard_path=Path(args.dashboard_output),

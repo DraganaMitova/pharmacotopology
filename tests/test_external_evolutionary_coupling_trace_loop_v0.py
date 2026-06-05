@@ -440,6 +440,7 @@ def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> Non
         "certificate": tmp_path / "external_coupling_trace_loop_certificate.json",
         "selectors": tmp_path / "external_coupling_trace_loop_selectors.csv",
         "selected": tmp_path / "external_coupling_trace_loop_selected_events.csv",
+        "frontier": tmp_path / "external_coupling_trace_loop_frontier.csv",
         "controls": tmp_path / "external_coupling_trace_loop_controls.csv",
         "row_status": tmp_path / "external_coupling_trace_loop_row_status.csv",
         "dashboard": tmp_path / "external_coupling_trace_loop_dashboard.html",
@@ -452,6 +453,7 @@ def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> Non
         certificate_path=outputs["certificate"],
         selectors_path=outputs["selectors"],
         selected_events_path=outputs["selected"],
+        frontier_path=outputs["frontier"],
         controls_path=outputs["controls"],
         row_status_path=outputs["row_status"],
         dashboard_path=outputs["dashboard"],
@@ -463,6 +465,9 @@ def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> Non
     )
     controls = list(
         csv.DictReader(outputs["controls"].read_text(encoding="utf-8").splitlines())
+    )
+    frontier = list(
+        csv.DictReader(outputs["frontier"].read_text(encoding="utf-8").splitlines())
     )
     row_status = list(
         csv.DictReader(outputs["row_status"].read_text(encoding="utf-8").splitlines())
@@ -489,6 +494,14 @@ def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> Non
     )
     assert "external_rank_consistent_cluster_gated_probe_passed" in report
     assert "hard_adversarial_calibrated_probe_passed" in report
+    assert (
+        "external_rank_consistent_cluster_gated_native_positive_frontier_count"
+        in report
+    )
+    assert (
+        report["external_rank_consistent_cluster_gated_frontier_claim_allowed"]
+        is False
+    )
     assert report["external_margin_gated_claim_allowed"] is False
     assert report["external_top_rank_gated_claim_allowed"] is False
     assert report["external_core_expanded_claim_allowed"] is False
@@ -498,9 +511,24 @@ def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> Non
     assert report["folding_problem_solved"] is False
     assert report["claim_allowed"] is False
     assert certificate["claim_allowed"] is False
+    assert (
+        certificate[
+            "external_rank_consistent_cluster_gated_native_positive_frontier_count"
+        ]
+        == report[
+            "external_rank_consistent_cluster_gated_native_positive_frontier_count"
+        ]
+    )
     assert len(selectors) == 40
     assert len(controls) == 40
+    assert len(frontier) == report[
+        "external_rank_consistent_cluster_gated_native_positive_frontier_count"
+    ]
     assert len(row_status) == 8
+    assert (
+        "external_rank_consistent_cluster_gated_native_positive_frontier_count"
+        in dashboard
+    )
     assert "External Evolutionary Coupling Trace Loop V0" in dashboard
 
 
