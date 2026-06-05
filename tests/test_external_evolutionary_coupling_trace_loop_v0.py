@@ -944,6 +944,153 @@ def test_pressure_release_expanded_selector_rescues_dense_blocked_trace(
     assert tuple(event.event_id for event in selected) == ("core", "rescued")
 
 
+def test_registry_extension_expanded_selector_rescues_residual_trace(
+    monkeypatch,
+) -> None:
+    anchor = _event(
+        "anchor",
+        contact_cluster_gain=0.50,
+        segment_a_start=17,
+        segment_b_start=81,
+        secondary_structure_compatibility=0.60,
+    )
+    registry = _event(
+        "registry",
+        contact_cluster_gain=0.49,
+        segment_a_start=33,
+        segment_b_start=81,
+        secondary_structure_compatibility=0.55,
+    )
+    tail = _event(
+        "tail",
+        contact_cluster_gain=0.43,
+        segment_a_start=81,
+        segment_b_start=129,
+        secondary_structure_compatibility=0.54,
+    )
+    weak_tail = _event(
+        "weak_tail",
+        contact_cluster_gain=0.43,
+        segment_a_start=97,
+        segment_b_start=145,
+        secondary_structure_compatibility=0.54,
+    )
+    decoy = _event(
+        "decoy",
+        contact_cluster_gain=0.49,
+        segment_a_start=129,
+        segment_b_start=153,
+    )
+    context = SimpleNamespace(
+        rows=(SimpleNamespace(row_id="row_1"),),
+        competitive_events=(anchor, registry, tail, weak_tail, decoy),
+        assessment_by_event_id={
+            anchor.event_id: _assessment(
+                anchor,
+                direct_support_score=0.30,
+                future_preservation_score=0.32,
+                blocked_future_pressure=0.04,
+            ),
+            registry.event_id: _assessment(
+                registry,
+                direct_support_score=0.12,
+                future_preservation_score=0.20,
+                blocked_future_pressure=0.07,
+            ),
+            tail.event_id: _assessment(
+                tail,
+                direct_support_score=0.27,
+                future_preservation_score=0.20,
+                blocked_future_pressure=0.05,
+            ),
+            weak_tail.event_id: _assessment(
+                weak_tail,
+                direct_support_score=0.27,
+                future_preservation_score=0.20,
+                blocked_future_pressure=0.05,
+            ),
+            decoy.event_id: _assessment(
+                decoy,
+                direct_support_score=0.10,
+                future_preservation_score=0.10,
+                blocked_future_pressure=0.05,
+            ),
+        },
+        coupling_decoy_margin_by_event_id={
+            anchor.event_id: 0.0,
+            registry.event_id: -0.02,
+            tail.event_id: 0.16,
+            weak_tail.event_id: 0.16,
+            decoy.event_id: 0.0,
+        },
+    )
+    scores = {
+        anchor.event_id: 0.52,
+        registry.event_id: 0.42,
+        tail.event_id: 0.43,
+        weak_tail.event_id: 0.43,
+        decoy.event_id: 0.30,
+    }
+    direct_evidence = {
+        tail.event_id: {
+            "direct_constraint_count": 4,
+            "direct_constraint_confidence_sum": 0.82,
+            "direct_top_10pct_rank_count": 0,
+        },
+        weak_tail.event_id: {
+            "direct_constraint_count": 3,
+            "direct_constraint_confidence_sum": 0.82,
+            "direct_top_10pct_rank_count": 0,
+        },
+    }
+    monkeypatch.setattr(
+        selector_module,
+        "select_coupling_trace_loop_pressure_release_expanded_events",
+        lambda *args, **kwargs: (anchor,),
+    )
+    monkeypatch.setattr(
+        selector_module,
+        "select_coupling_trace_loop_events",
+        lambda *args, **kwargs: (anchor, registry, tail, weak_tail),
+    )
+    monkeypatch.setattr(
+        selector_module,
+        "coupling_nucleus_score",
+        lambda event, _context: scores[event.event_id],
+    )
+    monkeypatch.setattr(
+        selector_module,
+        "decoy_distance",
+        lambda _event, candidate: 0.0
+        if candidate.event_id == decoy.event_id
+        else 10.0,
+    )
+    monkeypatch.setattr(
+        selector_module,
+        "_direct_constraint_trace_evidence",
+        lambda event, _context: direct_evidence.get(
+            event.event_id,
+            {
+                "direct_constraint_count": 0,
+                "direct_constraint_confidence_sum": 0.0,
+                "direct_top_10pct_rank_count": 0,
+            },
+        ),
+    )
+
+    selected = (
+        selector_module.select_coupling_trace_loop_registry_extension_expanded_events(
+            context
+        )
+    )
+
+    assert tuple(event.event_id for event in selected) == (
+        "anchor",
+        "registry",
+        "tail",
+    )
+
+
 def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> None:
     external_file = _write_external_fixture(tmp_path / "external.json")
     outputs = {
@@ -1092,6 +1239,24 @@ def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> Non
         in report
     )
     assert report["external_pressure_release_expanded_claim_allowed"] is False
+    assert "external_registry_extension_expanded_selected_event_count" in report
+    assert "external_registry_extension_expanded_added_event_count" in report
+    assert (
+        "external_registry_extension_expanded_added_native_long_range_contact_count"
+        in report
+    )
+    assert "external_registry_extension_expanded_added_false_event_count" in report
+    assert "external_registry_extension_expanded_long_range_recall" in report
+    assert (
+        "external_registry_extension_expanded_long_range_recall_delta_vs_pressure_release"
+        in report
+    )
+    assert "external_registry_extension_expanded_beats_matched_controls" in report
+    assert (
+        "external_registry_extension_expanded_beats_adversarial_calibrated_controls"
+        in report
+    )
+    assert report["external_registry_extension_expanded_claim_allowed"] is False
     assert (
         "external_persistent_rank_consistent_cluster_gated_score_margin_expansion_candidate_count"
         in report
@@ -1220,8 +1385,12 @@ def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> Non
         certificate["external_pressure_release_expanded_added_event_count"]
         == report["external_pressure_release_expanded_added_event_count"]
     )
-    assert len(selectors) == 80
-    assert len(controls) == 80
+    assert (
+        certificate["external_registry_extension_expanded_added_event_count"]
+        == report["external_registry_extension_expanded_added_event_count"]
+    )
+    assert len(selectors) == 88
+    assert len(controls) == 88
     assert len(frontier) == (
         report["external_rank_consistent_cluster_gated_native_positive_frontier_count"]
         + report[
@@ -1255,6 +1424,11 @@ def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> Non
     assert "external_pressure_release_expanded_added_event_count" in dashboard
     assert (
         "external_pressure_release_expanded_long_range_recall_delta_vs_edge_continuity"
+        in dashboard
+    )
+    assert "external_registry_extension_expanded_added_event_count" in dashboard
+    assert (
+        "external_registry_extension_expanded_long_range_recall_delta_vs_pressure_release"
         in dashboard
     )
     assert (

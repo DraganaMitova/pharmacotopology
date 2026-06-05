@@ -10,6 +10,7 @@ external_score_margin_expanded,26,0.0,0.179688,0.252423,0.216623,1.692433,0.9615
 external_boundary_continuity_expanded,28,0.0,0.174316,0.259572,0.232851,1.694064,0.964286,0.608313,0.359085,0.249228,0.564866,0.354565,0.210301,1.593124,0.964286,False,False,False,False
 external_edge_continuity_expanded,30,0.0,0.172363,0.269988,0.239608,1.672194,0.966667,0.593974,0.355206,0.238768,0.556409,0.352573,0.203836,1.578138,0.966667,False,False,False,False
 external_pressure_release_expanded,32,0.0,0.169434,0.287035,0.244346,1.66897,0.96875,0.583123,0.349391,0.233732,0.548875,0.346936,0.201939,1.582064,0.96875,False,False,False,False
+external_registry_extension_expanded,35,0.0,0.160862,0.292161,0.248394,1.630762,0.914286,0.561392,0.344251,0.217141,0.539635,0.35318,0.186455,1.527932,0.971429,False,False,False,False
 physical_no_coupling_baseline,320,0.559375,0.050488,0.405008,0.370687,0.870607,0.4375,0.325987,0.374436,-0.048449,0.377654,0.356737,0.020917,1.058634,0.675,False,False,False,False
 external_shuffled_same_row_same_separation,116,0.478604,0.059121,0.249062,0.326896,1.173828,0.724138,0.356484,0.303694,0.05279,0.38153,0.338847,0.042683,1.125965,0.698276,False,False,False,False
 external_confidence_permuted,83,0.430252,0.083765,0.268503,0.381122,1.469718,0.855422,0.428275,0.2914,0.136875,0.440426,0.325149,0.115277,1.354536,0.807229,False,False,False,False
@@ -78,4 +79,11 @@ external_pressure_release_expanded_external_random_long_range_same_count,26,0.47
 external_pressure_release_expanded_external_low_confidence_tail,1,0.0,0.037109,0.069853,0.037946,3.704962,1.0,0.619188,0.167124,0.452064,0.475274,0.197827,0.277447,2.402473,1.0,False,False,False,False
 external_pressure_release_expanded_external_calibrated_confidence_permuted,23,0.020833,0.131901,0.139946,0.103135,1.723123,1.0,0.523147,0.303604,0.219543,0.517842,0.324102,0.19374,1.597775,1.0,False,False,False,False
 external_pressure_release_expanded_external_calibrated_cross_row_swapped,2,0.125,0.046875,0.0,0.018547,2.019679,1.0,0.724077,0.358511,0.365566,0.588083,0.280272,0.307811,2.098258,1.0,False,False,False,False
+external_registry_extension_expanded_external_shuffled_same_row_same_separation,27,0.375,0.067057,0.12235,0.129224,1.357656,0.814815,0.464649,0.342244,0.122405,0.434371,0.344653,0.089718,1.260314,0.740741,False,False,False,False
+external_registry_extension_expanded_external_confidence_permuted,6,0.0,0.10026,0.076419,0.037036,1.780799,1.0,0.499996,0.280771,0.219225,0.501217,0.263661,0.237556,1.90099,1.0,False,False,False,False
+external_registry_extension_expanded_external_cross_row_swapped,1,0.0,0.046875,0.0,0.011194,1.905423,1.0,0.771765,0.405036,0.366729,0.591386,0.271969,0.319417,2.174461,1.0,False,False,False,False
+external_registry_extension_expanded_external_random_long_range_same_count,26,0.472917,0.055208,0.134624,0.186031,1.292849,0.807692,0.572916,0.443142,0.129774,0.51965,0.423561,0.096089,1.22686,0.807692,False,False,False,False
+external_registry_extension_expanded_external_low_confidence_tail,1,0.0,0.037109,0.069853,0.037946,3.704962,1.0,0.619188,0.167124,0.452064,0.475274,0.197827,0.277447,2.402473,1.0,False,False,False,False
+external_registry_extension_expanded_external_calibrated_confidence_permuted,23,0.020833,0.131901,0.139946,0.103135,1.723123,1.0,0.523147,0.303604,0.219543,0.517842,0.324102,0.19374,1.597775,1.0,False,False,False,False
+external_registry_extension_expanded_external_calibrated_cross_row_swapped,2,0.125,0.046875,0.0,0.018547,2.019679,1.0,0.724077,0.358511,0.365566,0.588083,0.280272,0.307811,2.098258,1.0,False,False,False,False
 oracle_coordinate_positive_control,54,0.0,0.164128,0.397896,0.466536,1.693887,0.888889,0.722095,0.426295,0.2958,0.633603,0.381326,0.252277,1.661578,0.907407,True,True,True,False

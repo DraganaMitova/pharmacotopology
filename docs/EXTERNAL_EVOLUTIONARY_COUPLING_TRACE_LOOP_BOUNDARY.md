@@ -367,6 +367,20 @@ external_pressure_release_expanded_long_range_recall_margin_vs_adversarial_contr
 external_pressure_release_expanded_beats_matched_controls = true
 external_pressure_release_expanded_beats_adversarial_calibrated_controls = true
 external_pressure_release_expanded_claim_allowed = false
+
+external_registry_extension_expanded_selected_event_count = 35
+external_registry_extension_expanded_added_event_count = 3
+external_registry_extension_expanded_added_native_long_range_contact_count = 13
+external_registry_extension_expanded_added_false_event_count = 0
+external_registry_extension_expanded_false_nucleus_rate = 0.0
+external_registry_extension_expanded_cluster_precision = 0.160862
+external_registry_extension_expanded_long_range_recall = 0.292161
+external_registry_extension_expanded_long_range_recall_delta_vs_pressure_release = 0.005126
+external_registry_extension_expanded_long_range_recall_margin_vs_matched_controls = 0.157537
+external_registry_extension_expanded_long_range_recall_margin_vs_adversarial_controls = 0.152215
+external_registry_extension_expanded_beats_matched_controls = true
+external_registry_extension_expanded_beats_adversarial_calibrated_controls = true
+external_registry_extension_expanded_claim_allowed = false
 claim_allowed = false
 ```
 
@@ -387,6 +401,8 @@ the edge-continuity selector adds three more long-range contacts without adding 
 the edge-continuity selector improves recall again but lowers cluster precision to 0.172363
 the pressure-release selector adds thirteen more long-range contacts without adding a false nucleus
 the pressure-release selector improves recall again but lowers cluster precision to 0.169434
+the registry-extension selector adds thirteen more long-range contacts without adding a false nucleus
+the registry-extension selector improves recall again but lowers cluster precision to 0.160862
 claims remain locked
 ```
 

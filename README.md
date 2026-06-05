@@ -160,12 +160,34 @@ pressure_release_expanded_beats_adversarial_calibrated_controls = true
 pressure_release_expanded_claim_allowed = false
 ```
 
+The next residual probe is a registry-extension selector. It adds trace
+candidates only when they extend an already selected strong local register, or
+when a low-future tail has positive coupling margin plus enough direct external
+constraint density.
+
+```text
+registry_extension_expanded_selected_event_count = 35
+registry_extension_expanded_added_event_count = 3
+registry_extension_expanded_added_native_long_range_contacts = 13
+registry_extension_expanded_added_false_event_count = 0
+registry_extension_expanded_false_nucleus_rate = 0.0
+registry_extension_expanded_cluster_precision = 0.160862
+registry_extension_expanded_long_range_recall = 0.292161
+registry_extension_expanded_long_range_recall_delta_vs_pressure_release = 0.005126
+registry_extension_expanded_long_range_recall_margin_vs_matched_controls = 0.157537
+registry_extension_expanded_long_range_recall_margin_vs_adversarial_controls = 0.152215
+registry_extension_expanded_beats_matched_controls = true
+registry_extension_expanded_beats_adversarial_calibrated_controls = true
+registry_extension_expanded_claim_allowed = false
+```
+
 These are controlled recall gains, not universal improvements: cluster
 precision drops from `0.179688` to `0.174316`, then to `0.172363`, because the
 added boundary and edge events are small native-positive contacts. The
 pressure-release rescue drops precision again to `0.169434` while raising
-long-range recall to `0.287035`. This remains an 8-row external-coupling
-benchmark result, not a solved-folding claim.
+long-range recall to `0.287035`. Registry extension raises recall to
+`0.292161`, but precision drops to `0.160862`. This remains an 8-row
+external-coupling benchmark result, not a solved-folding claim.
 
 Claim mode remains locked. A folding-solved claim is refused unless the data and
 per-constraint provenance stay external:
