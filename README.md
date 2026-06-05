@@ -19,7 +19,7 @@ The active question is whether an external MSA/DCA-style coupling channel can
 recover the native-selective constraint signal that the oracle positive control
 showed would remove fake nuclei.
 
-Current checked-in external run:
+Current checked-in external run, strict rank-consistent selector:
 
 ```text
 selected_event_count = 23
@@ -32,6 +32,25 @@ hard_adversarial_calibrated_probe_passed = true
 folding_problem_solved = false
 claim_allowed = false
 ```
+
+KNOT/particle-inspired persistence recovery now adds one calibrated trace event
+that the hard cluster gate excluded:
+
+```text
+persistent_selected_event_count = 24
+persistent_false_nucleus_rate = 0.0
+persistent_cluster_precision = 0.167578
+persistent_long_range_recall = 0.231865
+persistent_vs_control_enrichment = 1.245257
+persistent_vs_adversarial_calibrated_enrichment = 0.991698
+persistent_recovered_event_count = 1
+persistent_recovered_native_long_range_contact_count = 21
+persistent_probe_passed = false
+```
+
+This is a recovery diagnostic, not a solved-folding claim: persistence improves
+false-nucleus control, precision, and recall, but the enrichment gates remain
+too close to adversarial controls.
 
 Claim mode remains locked. A folding-solved claim is refused unless the data and
 per-constraint provenance stay external:

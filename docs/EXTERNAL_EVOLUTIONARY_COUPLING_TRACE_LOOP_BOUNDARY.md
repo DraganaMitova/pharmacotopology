@@ -255,6 +255,56 @@ confidence/enrichment controls are still too close
 claims remain locked
 ```
 
+## Persistent Trace Recovery Diagnostic
+
+The KNOT-Core admission rule separates evidence from claims and requires
+falsification controls before a stronger word is allowed. The local KNOT
+particle simulation similarly treats a loop as more meaningful only when it
+persists as a supported track instead of appearing as an isolated fragment.
+
+The folding analogue added here is:
+
+```text
+coupling_trace_loop_persistent_rank_consistent_cluster_gated
+```
+
+This selector keeps the rank-consistent calibrated core, then allows a
+lower-cluster recovery event only if it has nearby compatible recovery
+candidates with external-coupling support, low blocked-future pressure, and a
+minimum persistence score. Native labels are still attached only after event
+generation and scoring.
+
+Checked-in V0 result:
+
+```text
+external_rank_consistent_cluster_gated_selected_event_count = 23
+external_rank_consistent_cluster_gated_false_nucleus_rate = 0.0
+external_rank_consistent_cluster_gated_cluster_precision = 0.162044
+external_rank_consistent_cluster_gated_long_range_recall = 0.208635
+external_rank_consistent_cluster_gated_vs_control_enrichment_ratio = 1.291737
+
+external_persistent_rank_consistent_cluster_gated_selected_event_count = 24
+external_persistent_rank_consistent_cluster_gated_false_nucleus_rate = 0.0
+external_persistent_rank_consistent_cluster_gated_cluster_precision = 0.167578
+external_persistent_rank_consistent_cluster_gated_long_range_recall = 0.231865
+external_persistent_rank_consistent_cluster_gated_vs_control_enrichment_ratio = 1.245257
+external_persistent_rank_consistent_cluster_gated_vs_adversarial_calibrated_enrichment_ratio = 0.991698
+external_persistent_rank_consistent_cluster_gated_recovered_event_count = 1
+external_persistent_rank_consistent_cluster_gated_recovered_native_long_range_contact_count = 21
+external_persistent_rank_consistent_cluster_gated_probe_passed = false
+claim_allowed = false
+```
+
+Interpretation:
+
+```text
+persistence recovers a real long-range trace event without reintroducing fake nuclei
+persistence improves precision and long-range recall over the strict rank gate
+the added event weakens the decoy-enrichment margin
+adversarial calibrated enrichment remains too close
+claims remain locked
+```
+
 ## Biological Warning
 
 An external coupling unsupported by the monomer PDB contact map still counts as

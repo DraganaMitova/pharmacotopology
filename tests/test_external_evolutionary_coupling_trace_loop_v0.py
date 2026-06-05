@@ -433,6 +433,109 @@ def test_rank_consistent_recovery_gate_adds_supported_lower_cluster_event(
     assert tuple(event.event_id for event in selected) == ("core", "recovered")
 
 
+def test_persistent_rank_consistent_gate_recovers_supported_trace_fragment(
+    monkeypatch,
+) -> None:
+    core = _event(
+        "core",
+        contact_cluster_gain=0.35,
+        segment_a_start=1,
+        segment_b_start=41,
+    )
+    persistent = _event(
+        "persistent",
+        contact_cluster_gain=0.33,
+        segment_a_start=13,
+        segment_b_start=57,
+    )
+    neighbor_a = _event(
+        "neighbor_a",
+        contact_cluster_gain=0.325,
+        segment_a_start=21,
+        segment_b_start=65,
+    )
+    neighbor_b = _event(
+        "neighbor_b",
+        contact_cluster_gain=0.325,
+        segment_a_start=29,
+        segment_b_start=73,
+    )
+    isolated = _event(
+        "isolated",
+        contact_cluster_gain=0.33,
+        segment_a_start=60,
+        segment_b_start=88,
+    )
+    context = SimpleNamespace(
+        rows=(SimpleNamespace(row_id="row_1"),),
+        assessment_by_event_id={
+            core.event_id: _assessment(
+                core,
+                direct_support_score=0.72,
+                future_preservation_score=0.82,
+                blocked_future_pressure=0.02,
+            ),
+            persistent.event_id: _assessment(
+                persistent,
+                direct_support_score=0.68,
+                future_preservation_score=0.82,
+                blocked_future_pressure=0.04,
+            ),
+            neighbor_a.event_id: _assessment(
+                neighbor_a,
+                direct_support_score=0.70,
+                future_preservation_score=0.55,
+                blocked_future_pressure=0.04,
+            ),
+            neighbor_b.event_id: _assessment(
+                neighbor_b,
+                direct_support_score=0.69,
+                future_preservation_score=0.56,
+                blocked_future_pressure=0.04,
+            ),
+            isolated.event_id: _assessment(
+                isolated,
+                direct_support_score=0.68,
+                future_preservation_score=0.82,
+                blocked_future_pressure=0.04,
+            ),
+        },
+        coupling_decoy_margin_by_event_id={
+            core.event_id: 0.10,
+            persistent.event_id: -0.02,
+            neighbor_a.event_id: 0.0,
+            neighbor_b.event_id: 0.0,
+            isolated.event_id: -0.02,
+        },
+    )
+    monkeypatch.setattr(
+        selector_module,
+        "select_coupling_trace_loop_core_expanded_events",
+        lambda *args, **kwargs: (
+            core,
+            persistent,
+            neighbor_a,
+            neighbor_b,
+            isolated,
+        ),
+    )
+
+    evidence = selector_module.trace_loop_persistence_evidence(
+        persistent,
+        context,
+        (core, persistent, neighbor_a, neighbor_b, isolated),
+    )
+    selected = (
+        selector_module.select_coupling_trace_loop_persistent_rank_consistent_cluster_gated_events(
+            context
+        )
+    )
+
+    assert evidence.trace_loop_persistence_score >= 0.70
+    assert evidence.persistent_neighbor_count >= 2
+    assert tuple(event.event_id for event in selected) == ("core", "persistent")
+
+
 def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> None:
     external_file = _write_external_fixture(tmp_path / "external.json")
     outputs = {
@@ -493,6 +596,14 @@ def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> Non
         in report
     )
     assert "external_rank_consistent_cluster_gated_probe_passed" in report
+    assert (
+        "external_persistent_rank_consistent_cluster_gated_probe_passed"
+        in report
+    )
+    assert (
+        "external_persistent_rank_consistent_cluster_gated_recovered_event_count"
+        in report
+    )
     assert "hard_adversarial_calibrated_probe_passed" in report
     assert (
         "external_rank_consistent_cluster_gated_native_positive_frontier_count"
@@ -507,6 +618,10 @@ def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> Non
     assert report["external_core_expanded_claim_allowed"] is False
     assert report["external_cluster_gated_core_expanded_claim_allowed"] is False
     assert report["external_rank_consistent_cluster_gated_claim_allowed"] is False
+    assert (
+        report["external_persistent_rank_consistent_cluster_gated_claim_allowed"]
+        is False
+    )
     assert report["mechanism_discovery_claim_allowed"] is False
     assert report["folding_problem_solved"] is False
     assert report["claim_allowed"] is False
@@ -519,14 +634,18 @@ def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> Non
             "external_rank_consistent_cluster_gated_native_positive_frontier_count"
         ]
     )
-    assert len(selectors) == 40
-    assert len(controls) == 40
+    assert len(selectors) == 48
+    assert len(controls) == 48
     assert len(frontier) == report[
         "external_rank_consistent_cluster_gated_native_positive_frontier_count"
     ]
     assert len(row_status) == 8
     assert (
         "external_rank_consistent_cluster_gated_native_positive_frontier_count"
+        in dashboard
+    )
+    assert (
+        "external_persistent_rank_consistent_cluster_gated_recovered_event_count"
         in dashboard
     )
     assert "External Evolutionary Coupling Trace Loop V0" in dashboard

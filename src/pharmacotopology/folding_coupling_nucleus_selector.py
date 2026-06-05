@@ -87,6 +87,18 @@ TRACE_LOOP_RANK_CONSISTENT_RECOVERY_BLOCKED_FUTURE_MAX = 0.10
 TRACE_LOOP_RANK_CONFIDENCE_CONSISTENCY_MIN = 0.95
 TRACE_LOOP_SCORE_CONFIDENCE_CALIBRATION_MIN = 0.98
 TRACE_LOOP_RANK_LENGTH_CALIBRATION_MIN = 0.999
+TRACE_LOOP_PERSISTENT_RECOVERY_CLUSTER_GATE_MIN = 0.32
+TRACE_LOOP_PERSISTENT_RECOVERY_DIRECT_SUPPORT_MIN = 0.64
+TRACE_LOOP_PERSISTENT_RECOVERY_FUTURE_PRESERVATION_MIN = 0.78
+TRACE_LOOP_PERSISTENT_RECOVERY_BLOCKED_FUTURE_MAX = 0.10
+TRACE_LOOP_PERSISTENT_RECOVERY_SCORE_MIN = 0.70
+TRACE_LOOP_PERSISTENT_RECOVERY_NEIGHBOR_COUNT_MIN = 2
+TRACE_LOOP_PERSISTENT_NEIGHBOR_CLUSTER_MIN = 0.30
+TRACE_LOOP_PERSISTENT_NEIGHBOR_DIRECT_SUPPORT_MIN = 0.45
+TRACE_LOOP_PERSISTENT_NEIGHBOR_BLOCKED_FUTURE_MAX = 0.16
+TRACE_LOOP_PERSISTENT_NEIGHBOR_WINDOW = 32
+TRACE_LOOP_PERSISTENT_LOCAL_NEIGHBOR_WINDOW = 16
+TRACE_LOOP_PERSISTENT_NEIGHBOR_LIMIT = 4
 
 SURVIVAL_FALSE_RATE_MAX = 0.25
 SURVIVAL_CLUSTER_PRECISION_MIN = 0.08
@@ -150,6 +162,18 @@ class CouplingSelectorMetric:
         return asdict(self)
 
 
+@dataclass(frozen=True)
+class TraceLoopPersistenceEvidence:
+    trace_loop_persistence_score: float
+    persistent_neighbor_count: int
+    mean_neighbor_direct_support: float
+    mean_neighbor_future_preservation: float
+    local_neighbor_fraction: float
+
+    def to_dict(self) -> dict[str, object]:
+        return asdict(self)
+
+
 def _rounded(value: float) -> float:
     return round(value, 6)
 
@@ -190,6 +214,15 @@ def _top_confidence_pairs(
     )
     top_count = max(1, int(len(ranked) * fraction))
     return frozenset(constraint.pair() for constraint in ranked[:top_count])
+
+
+def _segment_trace_distance(
+    left: NucleusClosureEvent,
+    right: NucleusClosureEvent,
+) -> int:
+    return abs(left.segment_a_start - right.segment_a_start) + abs(
+        left.segment_b_start - right.segment_b_start
+    )
 
 
 def row_rank_confidence_consistency(
@@ -366,6 +399,13 @@ def select_coupling_events(
         )
     if selector_name == "coupling_trace_loop_rank_consistent_cluster_gated":
         return select_coupling_trace_loop_rank_consistent_cluster_gated_events(
+            context
+        )
+    if (
+        selector_name
+        == "coupling_trace_loop_persistent_rank_consistent_cluster_gated"
+    ):
+        return select_coupling_trace_loop_persistent_rank_consistent_cluster_gated_events(
             context
         )
 
@@ -614,6 +654,109 @@ def _passes_rank_consistent_recovery_gate(
     )
 
 
+def trace_loop_persistence_evidence(
+    event: NucleusClosureEvent,
+    context: CouplingNucleusContext,
+    candidate_events: Sequence[NucleusClosureEvent],
+) -> TraceLoopPersistenceEvidence:
+    neighbors: list[tuple[int, NucleusClosureEvent, CouplingClosureAssessment]] = []
+    for candidate in candidate_events:
+        if candidate.event_id == event.event_id or candidate.row_id != event.row_id:
+            continue
+        if not compatible_future_event(event, candidate):
+            continue
+        trace_distance = _segment_trace_distance(event, candidate)
+        if trace_distance > TRACE_LOOP_PERSISTENT_NEIGHBOR_WINDOW:
+            continue
+        assessment = context.assessment_by_event_id[candidate.event_id]
+        if candidate.contact_cluster_gain < TRACE_LOOP_PERSISTENT_NEIGHBOR_CLUSTER_MIN:
+            continue
+        if (
+            assessment.direct_support_score
+            < TRACE_LOOP_PERSISTENT_NEIGHBOR_DIRECT_SUPPORT_MIN
+        ):
+            continue
+        if (
+            assessment.blocked_future_pressure
+            > TRACE_LOOP_PERSISTENT_NEIGHBOR_BLOCKED_FUTURE_MAX
+        ):
+            continue
+        neighbors.append((trace_distance, candidate, assessment))
+
+    if not neighbors:
+        return TraceLoopPersistenceEvidence(
+            trace_loop_persistence_score=0.0,
+            persistent_neighbor_count=0,
+            mean_neighbor_direct_support=0.0,
+            mean_neighbor_future_preservation=0.0,
+            local_neighbor_fraction=0.0,
+        )
+
+    strongest = tuple(
+        sorted(
+            neighbors,
+            key=lambda item: (
+                item[0],
+                -item[2].direct_support_score,
+                -item[2].future_preservation_score,
+                item[1].event_id,
+            ),
+        )[:TRACE_LOOP_PERSISTENT_NEIGHBOR_LIMIT]
+    )
+    count_score = min(
+        1.0,
+        len(strongest) / TRACE_LOOP_PERSISTENT_RECOVERY_NEIGHBOR_COUNT_MIN,
+    )
+    mean_direct = mean(item[2].direct_support_score for item in strongest)
+    mean_future = mean(item[2].future_preservation_score for item in strongest)
+    local_fraction = sum(
+        1
+        for item in strongest
+        if item[0] <= TRACE_LOOP_PERSISTENT_LOCAL_NEIGHBOR_WINDOW
+    ) / len(strongest)
+    persistence_score = _rounded(
+        0.30 * count_score
+        + 0.28 * mean_direct
+        + 0.22 * mean_future
+        + 0.12 * event.closure_event_stability
+        + 0.08 * local_fraction
+    )
+    return TraceLoopPersistenceEvidence(
+        trace_loop_persistence_score=persistence_score,
+        persistent_neighbor_count=len(strongest),
+        mean_neighbor_direct_support=_rounded(mean_direct),
+        mean_neighbor_future_preservation=_rounded(mean_future),
+        local_neighbor_fraction=_rounded(local_fraction),
+    )
+
+
+def _passes_persistent_recovery_gate(
+    event: NucleusClosureEvent,
+    context: CouplingNucleusContext,
+    candidate_events: Sequence[NucleusClosureEvent],
+) -> bool:
+    assessment = context.assessment_by_event_id[event.event_id]
+    persistence = trace_loop_persistence_evidence(
+        event,
+        context,
+        candidate_events,
+    )
+    return (
+        event.contact_cluster_gain
+        >= TRACE_LOOP_PERSISTENT_RECOVERY_CLUSTER_GATE_MIN
+        and assessment.direct_support_score
+        >= TRACE_LOOP_PERSISTENT_RECOVERY_DIRECT_SUPPORT_MIN
+        and assessment.future_preservation_score
+        >= TRACE_LOOP_PERSISTENT_RECOVERY_FUTURE_PRESERVATION_MIN
+        and assessment.blocked_future_pressure
+        <= TRACE_LOOP_PERSISTENT_RECOVERY_BLOCKED_FUTURE_MAX
+        and persistence.trace_loop_persistence_score
+        >= TRACE_LOOP_PERSISTENT_RECOVERY_SCORE_MIN
+        and persistence.persistent_neighbor_count
+        >= TRACE_LOOP_PERSISTENT_RECOVERY_NEIGHBOR_COUNT_MIN
+    )
+
+
 def select_coupling_trace_loop_rank_consistent_cluster_gated_events(
     context: CouplingNucleusContext,
 ) -> tuple[NucleusClosureEvent, ...]:
@@ -656,6 +799,68 @@ def select_coupling_trace_loop_rank_consistent_cluster_gated_events(
             if len(row_selected) >= SELECTED_EVENTS_PER_ROW:
                 break
             if not _passes_rank_consistent_recovery_gate(event, context):
+                continue
+            if any(
+                not compatible_future_event(selected_event, event)
+                for selected_event in row_selected
+            ):
+                continue
+            row_selected.append(event)
+            selected_ids.add(event.event_id)
+        selected.extend(row_selected)
+    return tuple(selected)
+
+
+def select_coupling_trace_loop_persistent_rank_consistent_cluster_gated_events(
+    context: CouplingNucleusContext,
+) -> tuple[NucleusClosureEvent, ...]:
+    recovery_candidates = select_coupling_trace_loop_core_expanded_events(
+        context,
+        min_contact_cluster_gain=TRACE_LOOP_RANK_CONSISTENT_RECOVERY_CLUSTER_GATE_MIN,
+        min_rank_confidence_consistency=TRACE_LOOP_RANK_CONFIDENCE_CONSISTENCY_MIN,
+        min_score_confidence_calibration=TRACE_LOOP_SCORE_CONFIDENCE_CALIBRATION_MIN,
+        min_rank_length_calibration=TRACE_LOOP_RANK_LENGTH_CALIBRATION_MIN,
+    )
+    high_confidence_core = tuple(
+        event
+        for event in recovery_candidates
+        if event.contact_cluster_gain >= TRACE_LOOP_RANK_CONSISTENT_CLUSTER_GATE_MIN
+    )
+    core_by_row = _events_by_row(high_confidence_core)
+    recovery_by_row = _events_by_row(recovery_candidates)
+    selected: list[NucleusClosureEvent] = []
+    for row in context.rows:
+        row_selected = list(core_by_row.get(row.row_id, ()))
+        selected_ids = {event.event_id for event in row_selected}
+        row_recovery_pool = tuple(recovery_by_row.get(row.row_id, ()))
+        row_recovery = sorted(
+            (
+                event
+                for event in row_recovery_pool
+                if event.event_id not in selected_ids
+            ),
+            key=lambda event: (
+                -context.assessment_by_event_id[
+                    event.event_id
+                ].coupling_selectivity_score,
+                -context.assessment_by_event_id[event.event_id].direct_support_score,
+                -context.coupling_decoy_margin_by_event_id[event.event_id],
+                event.segment_a_start,
+                event.segment_b_start,
+                event.event_id,
+            ),
+        )
+        for event in row_recovery:
+            if len(row_selected) >= SELECTED_EVENTS_PER_ROW:
+                break
+            if not (
+                _passes_rank_consistent_recovery_gate(event, context)
+                or _passes_persistent_recovery_gate(
+                    event,
+                    context,
+                    row_recovery_pool,
+                )
+            ):
                 continue
             if any(
                 not compatible_future_event(selected_event, event)
