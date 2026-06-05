@@ -616,6 +616,26 @@ def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> Non
         "external_persistent_rank_consistent_cluster_gated_score_margin_expansion_candidate_count"
         in report
     )
+    assert (
+        "external_persistent_rank_consistent_cluster_gated_score_margin_expansion_false_candidate_count"
+        in report
+    )
+    assert (
+        "external_persistent_rank_consistent_cluster_gated_score_margin_expansion_max_matched_control_candidate_count"
+        in report
+    )
+    assert (
+        "external_persistent_rank_consistent_cluster_gated_score_margin_expansion_native_long_range_margin_vs_matched_controls"
+        in report
+    )
+    assert (
+        "external_persistent_rank_consistent_cluster_gated_score_margin_expansion_max_adversarial_candidate_count"
+        in report
+    )
+    assert (
+        "external_persistent_rank_consistent_cluster_gated_score_margin_expansion_native_long_range_margin_vs_adversarial_controls"
+        in report
+    )
     assert "hard_adversarial_calibrated_probe_passed" in report
     assert (
         "external_rank_consistent_cluster_gated_native_positive_frontier_count"
@@ -652,6 +672,14 @@ def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> Non
             "external_rank_consistent_cluster_gated_native_positive_frontier_count"
         ]
     )
+    assert (
+        certificate[
+            "external_persistent_rank_consistent_cluster_gated_score_margin_expansion_native_long_range_margin_vs_adversarial_controls"
+        ]
+        == report[
+            "external_persistent_rank_consistent_cluster_gated_score_margin_expansion_native_long_range_margin_vs_adversarial_controls"
+        ]
+    )
     assert len(selectors) == 48
     assert len(controls) == 48
     assert len(frontier) == (
@@ -671,6 +699,14 @@ def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> Non
     )
     assert (
         "external_persistent_rank_consistent_cluster_gated_score_margin_expansion_candidate_count"
+        in dashboard
+    )
+    assert (
+        "external_persistent_rank_consistent_cluster_gated_score_margin_expansion_candidate_count_margin_vs_matched_controls"
+        in dashboard
+    )
+    assert (
+        "external_persistent_rank_consistent_cluster_gated_score_margin_expansion_native_long_range_margin_vs_adversarial_controls"
         in dashboard
     )
     assert (

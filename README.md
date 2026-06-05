@@ -62,11 +62,20 @@ Current recall frontier:
 persistent_recall_frontier_count = 23
 score_margin_expansion_candidate_count = 2
 score_margin_expansion_candidate_native_long_range_contacts = 38
+score_margin_expansion_false_candidate_count = 0
+score_margin_expansion_max_matched_control_candidate_count = 1
+score_margin_expansion_max_matched_control_native_long_range_contacts = 22
+score_margin_expansion_margin_vs_matched_controls = +1 candidate, +16 native long-range contacts
+score_margin_expansion_max_adversarial_candidate_count = 1
+score_margin_expansion_max_adversarial_native_long_range_contacts = 22
+score_margin_expansion_margin_vs_adversarial_controls = +1 candidate, +16 native long-range contacts
 score_margin_expansion_claim_allowed = false
 ```
 
 Those two candidates show where the next recall gain sits, but the expansion is
-kept diagnostic-only until controls are strong enough to admit it as a selector.
+kept diagnostic-only because one matched and one adversarial control still find
+one of the same-size opportunities. The current result is a narrow positive
+margin, not a solved selector.
 
 Claim mode remains locked. A folding-solved claim is refused unless the data and
 per-constraint provenance stay external:
