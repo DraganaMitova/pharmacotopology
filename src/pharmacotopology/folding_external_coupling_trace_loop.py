@@ -552,6 +552,7 @@ def terminal_bridge_replacement_frontier_rows(
         if event.event_id not in selected_ids
     }
     row_by_id = {row.row_id: row for row in context.rows}
+    constraints_by_row = context.coupling_dataset.constraints_by_row_id()
 
     rows: list[dict[str, object]] = []
     for event in context.competitive_events:
@@ -585,6 +586,31 @@ def terminal_bridge_replacement_frontier_rows(
         replacement_delta = len(replacement_native_long) - len(current_native_long)
         if replacement_delta <= 0:
             continue
+        constraint_confidence_by_pair = {
+            constraint.pair(): constraint.confidence
+            for constraint in constraints_by_row.get(event.row_id, ())
+        }
+        external_constraint_pairs = set(constraint_confidence_by_pair)
+        current_external_constraints = (
+            _region_pair_union(row_selected) & external_constraint_pairs
+        )
+        replacement_external_constraints = (
+            _region_pair_union([*remaining, event]) & external_constraint_pairs
+        )
+        current_external_confidence = sum(
+            constraint_confidence_by_pair[pair]
+            for pair in current_external_constraints
+        )
+        replacement_external_confidence = sum(
+            constraint_confidence_by_pair[pair]
+            for pair in replacement_external_constraints
+        )
+        external_count_delta = (
+            len(replacement_external_constraints) - len(current_external_constraints)
+        )
+        external_confidence_delta = _rounded(
+            replacement_external_confidence - current_external_confidence
+        )
 
         assessment = context.assessment_by_event_id[event.event_id]
         decoy, selector_score_margin = _matched_selector_score_decoy(
@@ -707,6 +733,30 @@ def terminal_bridge_replacement_frontier_rows(
                 "blocking_mean_contact_cluster_gain": blockers_contact_cluster_gain,
                 "replacement_native_long_range_delta_after_scoring": (
                     replacement_delta
+                ),
+                "current_external_constraint_coverage_count": (
+                    len(current_external_constraints)
+                ),
+                "replacement_external_constraint_coverage_count": (
+                    len(replacement_external_constraints)
+                ),
+                "replacement_external_constraint_coverage_delta": (
+                    external_count_delta
+                ),
+                "current_external_constraint_coverage_confidence": _rounded(
+                    current_external_confidence
+                ),
+                "replacement_external_constraint_coverage_confidence": _rounded(
+                    replacement_external_confidence
+                ),
+                "replacement_external_constraint_confidence_delta": (
+                    external_confidence_delta
+                ),
+                "replacement_external_constraint_coverage_improved": (
+                    external_count_delta > 0
+                ),
+                "replacement_external_constraint_confidence_improved": (
+                    external_confidence_delta > 0.0
                 ),
                 "replacement_probe_selected": probe_selected,
             }
@@ -1098,6 +1148,24 @@ def _certificate(report: Mapping[str, object]) -> dict[str, object]:
         ],
         "external_terminal_bridge_replacement_frontier_probe_selected_native_long_range_delta_sum": report[
             "external_terminal_bridge_replacement_frontier_probe_selected_native_long_range_delta_sum"
+        ],
+        "external_terminal_bridge_replacement_frontier_external_count_delta_positive_count": report[
+            "external_terminal_bridge_replacement_frontier_external_count_delta_positive_count"
+        ],
+        "external_terminal_bridge_replacement_frontier_external_confidence_delta_positive_count": report[
+            "external_terminal_bridge_replacement_frontier_external_confidence_delta_positive_count"
+        ],
+        "external_terminal_bridge_replacement_frontier_external_count_delta_sum": report[
+            "external_terminal_bridge_replacement_frontier_external_count_delta_sum"
+        ],
+        "external_terminal_bridge_replacement_frontier_external_confidence_delta_sum": report[
+            "external_terminal_bridge_replacement_frontier_external_confidence_delta_sum"
+        ],
+        "external_terminal_bridge_replacement_frontier_native_long_range_delta_sum_with_external_count_gain": report[
+            "external_terminal_bridge_replacement_frontier_native_long_range_delta_sum_with_external_count_gain"
+        ],
+        "external_terminal_bridge_replacement_frontier_native_long_range_delta_sum_with_external_confidence_gain": report[
+            "external_terminal_bridge_replacement_frontier_native_long_range_delta_sum_with_external_confidence_gain"
         ],
         "external_terminal_bridge_replacement_frontier_claim_allowed": report[
             "external_terminal_bridge_replacement_frontier_claim_allowed"
@@ -2272,6 +2340,34 @@ def _build_report(
         int(row["replacement_native_long_range_delta_after_scoring"])
         for row in replacement_frontier_probe_selected_rows
     )
+    replacement_frontier_external_count_delta_positive_rows = [
+        row
+        for row in replacement_frontier_rows
+        if int(row["replacement_external_constraint_coverage_delta"]) > 0
+    ]
+    replacement_frontier_external_confidence_delta_positive_rows = [
+        row
+        for row in replacement_frontier_rows
+        if float(row["replacement_external_constraint_confidence_delta"]) > 0.0
+    ]
+    replacement_frontier_external_count_delta_sum = sum(
+        int(row["replacement_external_constraint_coverage_delta"])
+        for row in replacement_frontier_rows
+    )
+    replacement_frontier_external_confidence_delta_sum = _rounded(
+        sum(
+            float(row["replacement_external_constraint_confidence_delta"])
+            for row in replacement_frontier_rows
+        )
+    )
+    replacement_frontier_native_long_range_delta_sum_with_external_count_gain = sum(
+        int(row["replacement_native_long_range_delta_after_scoring"])
+        for row in replacement_frontier_external_count_delta_positive_rows
+    )
+    replacement_frontier_native_long_range_delta_sum_with_external_confidence_gain = sum(
+        int(row["replacement_native_long_range_delta_after_scoring"])
+        for row in replacement_frontier_external_confidence_delta_positive_rows
+    )
     terminal_bridge_expanded_max_matched_control_precision = _max_selected_metric(
         terminal_bridge_expanded_controls,
         "contact_cluster_precision",
@@ -3336,6 +3432,24 @@ def _build_report(
         "external_terminal_bridge_replacement_frontier_probe_selected_native_long_range_delta_sum": (
             replacement_frontier_probe_selected_native_long_range_delta_sum
         ),
+        "external_terminal_bridge_replacement_frontier_external_count_delta_positive_count": (
+            len(replacement_frontier_external_count_delta_positive_rows)
+        ),
+        "external_terminal_bridge_replacement_frontier_external_confidence_delta_positive_count": (
+            len(replacement_frontier_external_confidence_delta_positive_rows)
+        ),
+        "external_terminal_bridge_replacement_frontier_external_count_delta_sum": (
+            replacement_frontier_external_count_delta_sum
+        ),
+        "external_terminal_bridge_replacement_frontier_external_confidence_delta_sum": (
+            replacement_frontier_external_confidence_delta_sum
+        ),
+        "external_terminal_bridge_replacement_frontier_native_long_range_delta_sum_with_external_count_gain": (
+            replacement_frontier_native_long_range_delta_sum_with_external_count_gain
+        ),
+        "external_terminal_bridge_replacement_frontier_native_long_range_delta_sum_with_external_confidence_gain": (
+            replacement_frontier_native_long_range_delta_sum_with_external_confidence_gain
+        ),
         "external_terminal_bridge_replacement_frontier_claim_allowed": False,
         "external_persistent_rank_consistent_cluster_gated_recovery_diagnostic_kind": (
             "persistent_trace_recovery_after_rank_consistent_gate_v0"
@@ -3655,6 +3769,12 @@ def render_external_coupling_trace_loop_dashboard(
         "external_terminal_bridge_replacement_frontier_native_long_range_delta_sum",
         "external_terminal_bridge_replacement_frontier_probe_selected_count",
         "external_terminal_bridge_replacement_frontier_probe_selected_native_long_range_delta_sum",
+        "external_terminal_bridge_replacement_frontier_external_count_delta_positive_count",
+        "external_terminal_bridge_replacement_frontier_external_confidence_delta_positive_count",
+        "external_terminal_bridge_replacement_frontier_external_count_delta_sum",
+        "external_terminal_bridge_replacement_frontier_external_confidence_delta_sum",
+        "external_terminal_bridge_replacement_frontier_native_long_range_delta_sum_with_external_count_gain",
+        "external_terminal_bridge_replacement_frontier_native_long_range_delta_sum_with_external_confidence_gain",
         "external_terminal_bridge_replacement_frontier_claim_allowed",
         "external_persistent_rank_consistent_cluster_gated_recovered_event_count",
         "external_persistent_rank_consistent_cluster_gated_recovered_native_contact_count",
