@@ -205,6 +205,60 @@ def test_locked_external_hmmer_plmc_artifact_covers_all_rows_without_taint() -> 
     assert result.dataset.oracle_constraint_control is False
 
 
+def test_locked_boundary_field_replacement_probe_adds_zero_false_frontier() -> None:
+    rows = load_real_coordinate_visual_rows(BENCHMARK_8)
+    dataset = load_coupling_dataset(LOCKED_EXTERNAL_COUPLINGS)
+    context = selector_module.build_coupling_nucleus_context(
+        rows=rows,
+        coupling_dataset=dataset,
+    )
+    terminal = (
+        selector_module.select_coupling_trace_loop_terminal_bridge_expanded_events(
+            context
+        )
+    )
+    replacement = (
+        selector_module.select_coupling_trace_loop_boundary_field_replacement_probe_events(
+            context
+        )
+    )
+    terminal_metric = selector_module.selector_metrics(
+        context,
+        selector_name="terminal",
+        selected_events=terminal,
+    )
+    replacement_metric = selector_module.selector_metrics(
+        context,
+        selector_name="replacement",
+        selected_events=replacement,
+    )
+    terminal_ids = {event.event_id for event in terminal}
+    added = tuple(
+        event for event in replacement if event.event_id not in terminal_ids
+    )
+
+    assert (
+        replacement_metric.selected_event_count
+        == terminal_metric.selected_event_count
+    )
+    assert replacement_metric.false_nucleus_rate == 0.0
+    assert replacement_metric.contact_cluster_precision == 0.167806
+    assert replacement_metric.long_range_contact_recall == 0.350282
+    assert (
+        replacement_metric.long_range_contact_recall
+        > terminal_metric.long_range_contact_recall
+    )
+    assert {event.event_id for event in added} == {
+        "819f28bce14e526a",
+        "de7a4160201080a9",
+        "5c4251d4a0d1c221",
+        "6dc052d830b6d8f3",
+        "687f5226dff29418",
+        "716dac20bd4eedb3",
+    }
+    assert all(event.native_contact_count_after_scoring > 0 for event in added)
+
+
 def test_coupling_dataset_reuses_constraint_row_grouping() -> None:
     dataset = load_coupling_dataset(LOCKED_EXTERNAL_COUPLINGS)
 

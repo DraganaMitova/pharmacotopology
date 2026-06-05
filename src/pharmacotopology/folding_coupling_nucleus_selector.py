@@ -193,7 +193,26 @@ TRACE_LOOP_BOUNDARY_FIELD_REPLACEMENT_DIRECT_SUPPORT_DROP_MAX = 0.05
 TRACE_LOOP_BOUNDARY_FIELD_REPLACEMENT_FUTURE_PRESERVATION_DROP_MAX = 0.08
 TRACE_LOOP_BOUNDARY_FIELD_REPLACEMENT_CLUSTER_DROP_MAX = 0.04
 TRACE_LOOP_BOUNDARY_FIELD_REPLACEMENT_SECONDARY_STRUCTURE_DROP_MAX = 0.08
-TRACE_LOOP_BOUNDARY_FIELD_REPLACEMENT_LIMIT_PER_ROW = 1
+TRACE_LOOP_BOUNDARY_FIELD_REPLACEMENT_SPAN_CONTINUITY_DELTA_MAX = 8
+TRACE_LOOP_BOUNDARY_FIELD_REPLACEMENT_NORMALIZED_SPAN_MAX = 0.55
+TRACE_LOOP_BOUNDARY_FIELD_REPLACEMENT_FUTURE_DIRECT_SCORE_MIN = 0.49
+TRACE_LOOP_BOUNDARY_FIELD_REPLACEMENT_FUTURE_DIRECT_PHYSICAL_MIN = 0.10
+TRACE_LOOP_BOUNDARY_FIELD_REPLACEMENT_FUTURE_DIRECT_PHYSICAL_MAX = 0.50
+TRACE_LOOP_BOUNDARY_FIELD_REPLACEMENT_FUTURE_DIRECT_CLUSTER_MIN = 0.34
+TRACE_LOOP_BOUNDARY_FIELD_REPLACEMENT_FUTURE_DIRECT_SUPPORT_MIN = 0.40
+TRACE_LOOP_BOUNDARY_FIELD_REPLACEMENT_FUTURE_DIRECT_PRESERVATION_MIN = 0.69
+TRACE_LOOP_BOUNDARY_FIELD_REPLACEMENT_FUTURE_DIRECT_BLOCKED_MAX = 0.13
+TRACE_LOOP_BOUNDARY_FIELD_REPLACEMENT_FUTURE_DIRECT_COUNT_MIN = 3
+TRACE_LOOP_BOUNDARY_FIELD_REPLACEMENT_FUTURE_DIRECT_CONFIDENCE_MIN = 1.00
+TRACE_LOOP_BOUNDARY_FIELD_REPLACEMENT_PHYSICAL_RELEASE_SCORE_MIN = 0.40
+TRACE_LOOP_BOUNDARY_FIELD_REPLACEMENT_PHYSICAL_RELEASE_STATE_MIN = 0.65
+TRACE_LOOP_BOUNDARY_FIELD_REPLACEMENT_PHYSICAL_RELEASE_BURIAL_MIN = 0.67
+TRACE_LOOP_BOUNDARY_FIELD_REPLACEMENT_PHYSICAL_RELEASE_CLUSTER_MIN = 0.46
+TRACE_LOOP_BOUNDARY_FIELD_REPLACEMENT_PHYSICAL_RELEASE_SECONDARY_STRUCTURE_MIN = 0.56
+TRACE_LOOP_BOUNDARY_FIELD_REPLACEMENT_PHYSICAL_RELEASE_FUTURE_MIN = 0.17
+TRACE_LOOP_BOUNDARY_FIELD_REPLACEMENT_PHYSICAL_RELEASE_BLOCKED_MAX = 0.11
+TRACE_LOOP_BOUNDARY_FIELD_REPLACEMENT_PHYSICAL_RELEASE_DIRECT_COUNT_MIN = 1
+TRACE_LOOP_BOUNDARY_FIELD_REPLACEMENT_LIMIT_PER_ROW = 3
 
 SURVIVAL_FALSE_RATE_MAX = 0.25
 SURVIVAL_CLUSTER_PRECISION_MIN = 0.08
@@ -1580,6 +1599,142 @@ def _passes_boundary_field_replacement_gate(
     )
 
 
+def _boundary_field_replacement_span_delta(
+    event: NucleusClosureEvent,
+    blockers: Sequence[NucleusClosureEvent],
+) -> int:
+    return max(
+        abs(event.sequence_span - blocker.sequence_span) for blocker in blockers
+    )
+
+
+def _passes_boundary_field_future_direct_replacement_gate(
+    event: NucleusClosureEvent,
+    blockers: Sequence[NucleusClosureEvent],
+    context: CouplingNucleusContext,
+) -> bool:
+    if len(blockers) != 1:
+        return False
+    assessment = context.assessment_by_event_id[event.event_id]
+    state = context.physical_context.state_by_event_id[event.event_id]
+    evidence = _direct_constraint_trace_evidence(event, context)
+    return (
+        _boundary_field_replacement_span_delta(event, blockers)
+        <= TRACE_LOOP_BOUNDARY_FIELD_REPLACEMENT_SPAN_CONTINUITY_DELTA_MAX
+        and event.normalized_span
+        <= TRACE_LOOP_BOUNDARY_FIELD_REPLACEMENT_NORMALIZED_SPAN_MAX
+        and coupling_nucleus_score(event, context)
+        >= TRACE_LOOP_BOUNDARY_FIELD_REPLACEMENT_FUTURE_DIRECT_SCORE_MIN
+        and state.physical_state_score
+        >= TRACE_LOOP_BOUNDARY_FIELD_REPLACEMENT_FUTURE_DIRECT_PHYSICAL_MIN
+        and state.physical_state_score
+        <= TRACE_LOOP_BOUNDARY_FIELD_REPLACEMENT_FUTURE_DIRECT_PHYSICAL_MAX
+        and event.contact_cluster_gain
+        >= TRACE_LOOP_BOUNDARY_FIELD_REPLACEMENT_FUTURE_DIRECT_CLUSTER_MIN
+        and assessment.direct_support_score
+        >= TRACE_LOOP_BOUNDARY_FIELD_REPLACEMENT_FUTURE_DIRECT_SUPPORT_MIN
+        and assessment.future_preservation_score
+        >= TRACE_LOOP_BOUNDARY_FIELD_REPLACEMENT_FUTURE_DIRECT_PRESERVATION_MIN
+        and assessment.blocked_future_pressure
+        <= TRACE_LOOP_BOUNDARY_FIELD_REPLACEMENT_FUTURE_DIRECT_BLOCKED_MAX
+        and int(evidence["direct_constraint_count"])
+        >= TRACE_LOOP_BOUNDARY_FIELD_REPLACEMENT_FUTURE_DIRECT_COUNT_MIN
+        and float(evidence["direct_constraint_confidence_sum"])
+        >= TRACE_LOOP_BOUNDARY_FIELD_REPLACEMENT_FUTURE_DIRECT_CONFIDENCE_MIN
+    )
+
+
+def _passes_boundary_field_physical_release_replacement_gate(
+    event: NucleusClosureEvent,
+    blockers: Sequence[NucleusClosureEvent],
+    context: CouplingNucleusContext,
+) -> bool:
+    if len(blockers) != 1:
+        return False
+    assessment = context.assessment_by_event_id[event.event_id]
+    state = context.physical_context.state_by_event_id[event.event_id]
+    evidence = _direct_constraint_trace_evidence(event, context)
+    return (
+        _boundary_field_replacement_span_delta(event, blockers)
+        <= TRACE_LOOP_BOUNDARY_FIELD_REPLACEMENT_SPAN_CONTINUITY_DELTA_MAX
+        and coupling_nucleus_score(event, context)
+        >= TRACE_LOOP_BOUNDARY_FIELD_REPLACEMENT_PHYSICAL_RELEASE_SCORE_MIN
+        and state.physical_state_score
+        >= TRACE_LOOP_BOUNDARY_FIELD_REPLACEMENT_PHYSICAL_RELEASE_STATE_MIN
+        and state.burial_gain
+        >= TRACE_LOOP_BOUNDARY_FIELD_REPLACEMENT_PHYSICAL_RELEASE_BURIAL_MIN
+        and event.contact_cluster_gain
+        >= TRACE_LOOP_BOUNDARY_FIELD_REPLACEMENT_PHYSICAL_RELEASE_CLUSTER_MIN
+        and event.secondary_structure_compatibility
+        >= TRACE_LOOP_BOUNDARY_FIELD_REPLACEMENT_PHYSICAL_RELEASE_SECONDARY_STRUCTURE_MIN
+        and assessment.future_preservation_score
+        >= TRACE_LOOP_BOUNDARY_FIELD_REPLACEMENT_PHYSICAL_RELEASE_FUTURE_MIN
+        and assessment.blocked_future_pressure
+        <= TRACE_LOOP_BOUNDARY_FIELD_REPLACEMENT_PHYSICAL_RELEASE_BLOCKED_MAX
+        and int(evidence["direct_constraint_count"])
+        >= TRACE_LOOP_BOUNDARY_FIELD_REPLACEMENT_PHYSICAL_RELEASE_DIRECT_COUNT_MIN
+    )
+
+
+def _boundary_field_replacement_mode(
+    event: NucleusClosureEvent,
+    blockers: Sequence[NucleusClosureEvent],
+    context: CouplingNucleusContext,
+) -> str | None:
+    if _passes_boundary_field_future_direct_replacement_gate(
+        event,
+        blockers,
+        context,
+    ):
+        return "future_direct"
+    if _passes_boundary_field_physical_release_replacement_gate(
+        event,
+        blockers,
+        context,
+    ):
+        return "physical_release"
+    return None
+
+
+def _boundary_field_replacement_sort_key(
+    mode: str,
+    event: NucleusClosureEvent,
+    blockers: Sequence[NucleusClosureEvent],
+    context: CouplingNucleusContext,
+) -> tuple[object, ...]:
+    assessment = context.assessment_by_event_id[event.event_id]
+    state = context.physical_context.state_by_event_id[event.event_id]
+    evidence = _direct_constraint_trace_evidence(event, context)
+    span_delta = _boundary_field_replacement_span_delta(event, blockers)
+    if mode == "future_direct":
+        return (
+            0,
+            span_delta,
+            -float(evidence["direct_constraint_confidence_sum"]),
+            -assessment.future_preservation_score,
+            -coupling_nucleus_score(event, context),
+            event.segment_a_start,
+            event.segment_b_start,
+            event.event_id,
+        )
+    physical_integrity = (
+        state.physical_state_score
+        + state.burial_gain
+        + event.contact_cluster_gain
+        - state.unsatisfied_polar_penalty
+    )
+    return (
+        1,
+        span_delta,
+        -physical_integrity,
+        -assessment.future_preservation_score,
+        -coupling_nucleus_score(event, context),
+        event.segment_a_start,
+        event.segment_b_start,
+        event.event_id,
+    )
+
+
 def select_coupling_trace_loop_boundary_field_replacement_probe_events(
     context: CouplingNucleusContext,
 ) -> tuple[NucleusClosureEvent, ...]:
@@ -1590,92 +1745,80 @@ def select_coupling_trace_loop_boundary_field_replacement_probe_events(
     competitive_by_row = _events_by_row(context.competitive_events)
     selected: list[NucleusClosureEvent] = []
     for row in context.rows:
-        row_selected = list(terminal_by_row.get(row.row_id, ()))
-        replacement_count = 0
-        selected_ids = {event.event_id for event in row_selected}
-        replacement_candidates: list[NucleusClosureEvent] = []
+        terminal_row_selected = list(terminal_by_row.get(row.row_id, ()))
+        terminal_selected_ids = {
+            event.event_id for event in terminal_row_selected
+        }
+        replacement_candidates: list[
+            tuple[str, NucleusClosureEvent, tuple[NucleusClosureEvent, ...]]
+        ] = []
         for event in competitive_by_row.get(row.row_id, ()):
-            if event.event_id in selected_ids:
+            if event.event_id in terminal_selected_ids:
                 continue
             blockers = [
                 selected_event
-                for selected_event in row_selected
+                for selected_event in terminal_row_selected
                 if not compatible_future_event(selected_event, event)
             ]
             if not blockers:
                 continue
+            blocker_ids = {blocker.event_id for blocker in blockers}
+            if not blocker_ids <= terminal_selected_ids:
+                continue
             remaining = [
                 selected_event
-                for selected_event in row_selected
+                for selected_event in terminal_row_selected
                 if selected_event.event_id
-                not in {blocker.event_id for blocker in blockers}
+                not in blocker_ids
             ]
             if any(
                 not compatible_future_event(selected_event, event)
                 for selected_event in remaining
             ):
                 continue
-            if _passes_boundary_field_replacement_gate(
+            mode = _boundary_field_replacement_mode(
                 event,
-                blockers,
+                tuple(blockers),
                 context,
-            ):
-                replacement_candidates.append(event)
+            )
+            if mode is not None:
+                replacement_candidates.append((mode, event, tuple(blockers)))
 
+        chosen_replacements: list[
+            tuple[str, NucleusClosureEvent, tuple[NucleusClosureEvent, ...]]
+        ] = []
+        replaced_terminal_ids: set[str] = set()
         replacement_candidates = sorted(
             replacement_candidates,
-            key=lambda event: (
-                -float(
-                    _direct_constraint_trace_evidence(
-                        event,
-                        context,
-                    )["direct_constraint_confidence_sum"]
-                ),
-                -int(
-                    _direct_constraint_trace_evidence(
-                        event,
-                        context,
-                    )["direct_constraint_count"]
-                ),
-                -context.assessment_by_event_id[
-                    event.event_id
-                ].direct_support_score,
-                -context.assessment_by_event_id[
-                    event.event_id
-                ].future_preservation_score,
-                -coupling_nucleus_score(event, context),
-                event.segment_a_start,
-                event.segment_b_start,
-                event.event_id,
+            key=lambda item: _boundary_field_replacement_sort_key(
+                item[0],
+                item[1],
+                item[2],
+                context,
             ),
         )
-        for event in replacement_candidates:
+        for _mode, event, blockers in replacement_candidates:
             if (
-                replacement_count
+                len(chosen_replacements)
                 >= TRACE_LOOP_BOUNDARY_FIELD_REPLACEMENT_LIMIT_PER_ROW
             ):
                 break
-            blockers = [
-                selected_event
-                for selected_event in row_selected
-                if not compatible_future_event(selected_event, event)
-            ]
-            if not blockers:
+            blocker_ids = {blocker.event_id for blocker in blockers}
+            if replaced_terminal_ids & blocker_ids:
                 continue
-            remaining = [
-                selected_event
-                for selected_event in row_selected
-                if selected_event.event_id
-                not in {blocker.event_id for blocker in blockers}
-            ]
             if any(
-                not compatible_future_event(selected_event, event)
-                for selected_event in remaining
+                not compatible_future_event(replacement_event, event)
+                for _, replacement_event, _ in chosen_replacements
             ):
                 continue
-            row_selected = [*remaining, event]
-            selected_ids = {selected_event.event_id for selected_event in row_selected}
-            replacement_count += 1
+            chosen_replacements.append((mode, event, blockers))
+            replaced_terminal_ids.update(blocker_ids)
+        row_selected = [
+            event
+            for event in terminal_row_selected
+            if event.event_id not in replaced_terminal_ids
+        ]
+        row_selected.extend(event for _, event, _ in chosen_replacements)
         selected.extend(row_selected)
     return tuple(selected)
 
