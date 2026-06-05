@@ -612,6 +612,10 @@ def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> Non
         "external_persistent_rank_consistent_cluster_gated_recovered_event_count"
         in report
     )
+    assert (
+        "external_persistent_rank_consistent_cluster_gated_score_margin_expansion_candidate_count"
+        in report
+    )
     assert "hard_adversarial_calibrated_probe_passed" in report
     assert (
         "external_rank_consistent_cluster_gated_native_positive_frontier_count"
@@ -630,6 +634,12 @@ def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> Non
         report["external_persistent_rank_consistent_cluster_gated_claim_allowed"]
         is False
     )
+    assert (
+        report[
+            "external_persistent_rank_consistent_cluster_gated_score_margin_expansion_claim_allowed"
+        ]
+        is False
+    )
     assert report["mechanism_discovery_claim_allowed"] is False
     assert report["folding_problem_solved"] is False
     assert report["claim_allowed"] is False
@@ -644,9 +654,12 @@ def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> Non
     )
     assert len(selectors) == 48
     assert len(controls) == 48
-    assert len(frontier) == report[
-        "external_rank_consistent_cluster_gated_native_positive_frontier_count"
-    ]
+    assert len(frontier) == (
+        report["external_rank_consistent_cluster_gated_native_positive_frontier_count"]
+        + report[
+            "external_persistent_rank_consistent_cluster_gated_recall_frontier_count"
+        ]
+    )
     assert len(row_status) == 8
     assert (
         "external_rank_consistent_cluster_gated_native_positive_frontier_count"
@@ -654,6 +667,10 @@ def test_external_trace_loop_runner_writes_claim_locked_outputs(tmp_path) -> Non
     )
     assert (
         "external_persistent_rank_consistent_cluster_gated_recovered_event_count"
+        in dashboard
+    )
+    assert (
+        "external_persistent_rank_consistent_cluster_gated_score_margin_expansion_candidate_count"
         in dashboard
     )
     assert (

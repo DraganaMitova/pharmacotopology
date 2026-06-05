@@ -56,6 +56,18 @@ false-nucleus control, precision, and recall. Raw coupling-only enrichment
 remains just below the gates, while the selector's full non-oracle
 coupling-nucleus score clears matched and adversarial enrichment controls.
 
+Current recall frontier:
+
+```text
+persistent_recall_frontier_count = 23
+score_margin_expansion_candidate_count = 2
+score_margin_expansion_candidate_native_long_range_contacts = 38
+score_margin_expansion_claim_allowed = false
+```
+
+Those two candidates show where the next recall gain sits, but the expansion is
+kept diagnostic-only until controls are strong enough to admit it as a selector.
+
 Claim mode remains locked. A folding-solved claim is refused unless the data and
 per-constraint provenance stay external:
 

@@ -23,12 +23,14 @@ from pharmacotopology.folding_coupling_nucleus_selector import (
     TRACE_LOOP_RANK_CONSISTENT_RECOVERY_FUTURE_PRESERVATION_MIN,
     build_coupling_nucleus_context,
     coupling_claim_mode_validation_failures,
+    coupling_nucleus_score,
     select_coupling_events,
     selected_event_rows,
     selector_metrics,
 )
 from pharmacotopology.folding_evolutionary_constraints import (
     CouplingDataset,
+    compatible_future_event,
     load_coupling_dataset,
 )
 from pharmacotopology.folding_coupling_decoy_falsification import (
@@ -39,6 +41,7 @@ from pharmacotopology.folding_external_coupling_importer import (
     import_external_coupling_dataset,
 )
 from pharmacotopology.folding_nucleus_decoy_falsification import (
+    decoy_distance,
     matched_decoys_for_selected_events,
 )
 from pharmacotopology.folding_nucleus_closure_search import NucleusClosureEvent
@@ -77,6 +80,12 @@ ADVERSARIAL_CALIBRATED_CONTROL_KIND = (
     COUPLING_ADVERSARIAL_CALIBRATED_CONTROL_KIND
 )
 ADVERSARIAL_ENRICHMENT_MIN_SELECTED_EVENTS = 4
+SCORE_MARGIN_EXPANSION_SCORE_MIN = 0.44
+SCORE_MARGIN_EXPANSION_DECOY_MARGIN_MIN = 0.15
+SCORE_MARGIN_EXPANSION_CLUSTER_MIN = 0.46
+SCORE_MARGIN_EXPANSION_DIRECT_SUPPORT_MIN = 0.10
+SCORE_MARGIN_EXPANSION_FUTURE_PRESERVATION_MIN = 0.18
+SCORE_MARGIN_EXPANSION_BLOCKED_FUTURE_MAX = 0.08
 
 
 @dataclass(frozen=True)
@@ -221,6 +230,174 @@ def _frontier_exclusion_reasons(
     return tuple(reasons)
 
 
+def _matched_selector_score_decoy(
+    *,
+    context: CouplingNucleusContext,
+    event: NucleusClosureEvent,
+) -> tuple[NucleusClosureEvent, float]:
+    row_candidates = [
+        candidate
+        for candidate in context.competitive_events
+        if candidate.row_id == event.row_id and candidate.event_id != event.event_id
+    ]
+    decoy = min(
+        row_candidates,
+        key=lambda candidate: decoy_distance(event, candidate),
+        default=event,
+    )
+    margin = _rounded(
+        coupling_nucleus_score(event, context)
+        - coupling_nucleus_score(decoy, context)
+    )
+    return decoy, margin
+
+
+def _score_margin_expansion_reasons(
+    *,
+    context: CouplingNucleusContext,
+    event: NucleusClosureEvent,
+    selector_score_margin: float,
+) -> tuple[str, ...]:
+    assessment = context.assessment_by_event_id[event.event_id]
+    score = coupling_nucleus_score(event, context)
+    reasons: list[str] = []
+    if score < SCORE_MARGIN_EXPANSION_SCORE_MIN:
+        reasons.append("below_selector_score")
+    if selector_score_margin < SCORE_MARGIN_EXPANSION_DECOY_MARGIN_MIN:
+        reasons.append("below_selector_score_decoy_margin")
+    if event.contact_cluster_gain < SCORE_MARGIN_EXPANSION_CLUSTER_MIN:
+        reasons.append("below_expansion_cluster")
+    if assessment.direct_support_score < SCORE_MARGIN_EXPANSION_DIRECT_SUPPORT_MIN:
+        reasons.append("below_expansion_direct_support")
+    if (
+        assessment.future_preservation_score
+        < SCORE_MARGIN_EXPANSION_FUTURE_PRESERVATION_MIN
+    ):
+        reasons.append("below_expansion_future_preservation")
+    if assessment.blocked_future_pressure > SCORE_MARGIN_EXPANSION_BLOCKED_FUTURE_MAX:
+        reasons.append("above_expansion_blocked_future")
+    return tuple(reasons)
+
+
+def persistent_recall_frontier_rows(
+    *,
+    context: CouplingNucleusContext,
+    persistent_run: TraceLoopRun,
+) -> list[dict[str, object]]:
+    selected_ids = {event.event_id for event in persistent_run.selected_events}
+    selected_by_row: dict[str, list[NucleusClosureEvent]] = {}
+    for event in persistent_run.selected_events:
+        selected_by_row.setdefault(event.row_id, []).append(event)
+
+    trace_events = select_coupling_events(
+        context,
+        selector_name="coupling_trace_loop",
+    )
+    frontier_events = tuple(
+        event
+        for event in trace_events
+        if event.event_id not in selected_ids
+        and event.native_contact_count_after_scoring > 0
+        and all(
+            compatible_future_event(selected_event, event)
+            for selected_event in selected_by_row.get(event.row_id, ())
+        )
+    )
+    rows: list[dict[str, object]] = []
+    for rank, event in enumerate(
+        sorted(
+            frontier_events,
+            key=lambda item: (
+                -item.native_long_range_contact_count_after_scoring,
+                -item.native_contact_count_after_scoring,
+                -coupling_nucleus_score(item, context),
+                item.row_id,
+                item.segment_a_start,
+                item.segment_b_start,
+                item.event_id,
+            ),
+        ),
+        start=1,
+    ):
+        assessment = context.assessment_by_event_id[event.event_id]
+        decoy, selector_score_margin = _matched_selector_score_decoy(
+            context=context,
+            event=event,
+        )
+        decoy_assessment = context.assessment_by_event_id[decoy.event_id]
+        reasons = _score_margin_expansion_reasons(
+            context=context,
+            event=event,
+            selector_score_margin=selector_score_margin,
+        )
+        rows.append(
+            {
+                "frontier_kind": "persistent_score_margin_recall_frontier_v0",
+                "source_selector": "coupling_trace_loop",
+                "target_selector": persistent_run.selector_name,
+                "row_id": event.row_id,
+                "source_accession": event.source_accession,
+                "event_id": event.event_id,
+                "segment_a_start": event.segment_a_start,
+                "segment_a_end": event.segment_a_end,
+                "segment_b_start": event.segment_b_start,
+                "segment_b_end": event.segment_b_end,
+                "native_contact_count_after_scoring": (
+                    event.native_contact_count_after_scoring
+                ),
+                "native_long_range_contact_count_after_scoring": (
+                    event.native_long_range_contact_count_after_scoring
+                ),
+                "contact_cluster_gain": event.contact_cluster_gain,
+                "coupling_selectivity_score": assessment.coupling_selectivity_score,
+                "direct_support_score": assessment.direct_support_score,
+                "future_preservation_score": assessment.future_preservation_score,
+                "blocked_future_pressure": assessment.blocked_future_pressure,
+                "coupling_decoy_margin": (
+                    context.coupling_decoy_margin_by_event_id[event.event_id]
+                ),
+                "coupling_nucleus_score": coupling_nucleus_score(event, context),
+                "selector_score_decoy_margin": selector_score_margin,
+                "exclusion_reasons": ";".join(reasons),
+                "matched_decoy_event_id": decoy.event_id,
+                "matched_decoy_native_positive_after_scoring": (
+                    decoy.native_contact_count_after_scoring > 0
+                ),
+                "matched_decoy_contact_cluster_gain": decoy.contact_cluster_gain,
+                "matched_decoy_coupling_selectivity_score": (
+                    decoy_assessment.coupling_selectivity_score
+                ),
+                "matched_decoy_direct_support_score": (
+                    decoy_assessment.direct_support_score
+                ),
+                "matched_decoy_future_preservation_score": (
+                    decoy_assessment.future_preservation_score
+                ),
+                "matched_decoy_blocked_future_pressure": (
+                    decoy_assessment.blocked_future_pressure
+                ),
+                "matched_decoy_coupling_nucleus_score": coupling_nucleus_score(
+                    decoy,
+                    context,
+                ),
+                "real_beats_decoy_by_coupling_score": (
+                    assessment.coupling_selectivity_score
+                    > decoy_assessment.coupling_selectivity_score
+                ),
+                "real_beats_decoy_by_coupling_nucleus_score": (
+                    selector_score_margin > 0.0
+                ),
+                "score_margin_expansion_gate_passed": not reasons,
+                "recall_frontier_rank": rank,
+                "native_truth_used_before_selection": False,
+                "native_label_attached_after_event_generation": True,
+                "diagnostic_claim_allowed": False,
+            }
+        )
+        rows[-1].update(_direct_constraint_stats(context=context, event=event))
+    return rows
+
+
 def rank_consistent_frontier_rows(
     *,
     context: CouplingNucleusContext,
@@ -263,7 +440,12 @@ def rank_consistent_frontier_rows(
         ]
         match = match_by_event_id[event.event_id]
         comparison = comparison_by_event_id[event.event_id]
+        decoy_event = context.event_by_id[match.decoy_event_id]
         decoy_assessment = context.assessment_by_event_id[match.decoy_event_id]
+        selector_score_decoy_margin = _rounded(
+            coupling_nucleus_score(event, context)
+            - coupling_nucleus_score(decoy_event, context)
+        )
         row = {
             "frontier_kind": "rank_consistent_native_after_scoring_frontier_v0",
             "source_selector": cluster_gated_run.selector_name,
@@ -287,6 +469,8 @@ def rank_consistent_frontier_rows(
             "future_preservation_score": assessment.future_preservation_score,
             "blocked_future_pressure": assessment.blocked_future_pressure,
             "coupling_decoy_margin": coupling_decoy_margin,
+            "coupling_nucleus_score": coupling_nucleus_score(event, context),
+            "selector_score_decoy_margin": selector_score_decoy_margin,
             "exclusion_reasons": ";".join(
                 _frontier_exclusion_reasons(context=context, event=event)
             ),
@@ -307,9 +491,18 @@ def rank_consistent_frontier_rows(
             "matched_decoy_blocked_future_pressure": (
                 decoy_assessment.blocked_future_pressure
             ),
+            "matched_decoy_coupling_nucleus_score": coupling_nucleus_score(
+                decoy_event,
+                context,
+            ),
             "real_beats_decoy_by_coupling_score": (
                 comparison.real_beats_decoy_by_coupling_score
             ),
+            "real_beats_decoy_by_coupling_nucleus_score": (
+                selector_score_decoy_margin > 0.0
+            ),
+            "score_margin_expansion_gate_passed": False,
+            "recall_frontier_rank": "",
             "native_truth_used_before_selection": False,
             "native_label_attached_after_event_generation": True,
             "diagnostic_claim_allowed": False,
@@ -445,6 +638,15 @@ def _certificate(report: Mapping[str, object]) -> dict[str, object]:
         "external_persistent_rank_consistent_cluster_gated_recovered_native_contact_count": report[
             "external_persistent_rank_consistent_cluster_gated_recovered_native_contact_count"
         ],
+        "external_persistent_rank_consistent_cluster_gated_score_margin_expansion_candidate_count": report[
+            "external_persistent_rank_consistent_cluster_gated_score_margin_expansion_candidate_count"
+        ],
+        "external_persistent_rank_consistent_cluster_gated_score_margin_expansion_candidate_native_long_range_contact_count": report[
+            "external_persistent_rank_consistent_cluster_gated_score_margin_expansion_candidate_native_long_range_contact_count"
+        ],
+        "external_persistent_rank_consistent_cluster_gated_score_margin_expansion_claim_allowed": report[
+            "external_persistent_rank_consistent_cluster_gated_score_margin_expansion_claim_allowed"
+        ],
         "external_rank_consistent_cluster_gated_frontier_claim_allowed": report[
             "external_rank_consistent_cluster_gated_frontier_claim_allowed"
         ],
@@ -483,6 +685,7 @@ def _build_report(
     adversarial_persistent_rank_consistent_controls: Sequence[TraceLoopRun],
     oracle_positive_control: TraceLoopRun,
     frontier_rows: Sequence[Mapping[str, object]],
+    recall_frontier_rows: Sequence[Mapping[str, object]],
     source_benchmark_file: Path,
     external_coupling_file: Path,
     oracle_coupling_file: Path,
@@ -1082,6 +1285,19 @@ def _build_report(
         int(row["native_long_range_contact_count_after_scoring"])
         for row in frontier_rows
     )
+    score_margin_expansion_rows = [
+        row
+        for row in recall_frontier_rows
+        if bool(row["score_margin_expansion_gate_passed"])
+    ]
+    score_margin_expansion_native_contact_count = sum(
+        int(row["native_contact_count_after_scoring"])
+        for row in score_margin_expansion_rows
+    )
+    score_margin_expansion_native_long_range_contact_count = sum(
+        int(row["native_long_range_contact_count_after_scoring"])
+        for row in score_margin_expansion_rows
+    )
     return {
         "report_kind": EXTERNAL_COUPLING_TRACE_LOOP_REPORT_KIND,
         "batch_id": EXTERNAL_EVOLUTIONARY_COUPLING_TRACE_LOOP_BATCH_ID,
@@ -1478,6 +1694,22 @@ def _build_report(
                 for event in persistent_recovered_events
             )
         ),
+        "external_persistent_rank_consistent_cluster_gated_recall_frontier_kind": (
+            "persistent_score_margin_recall_frontier_v0"
+        ),
+        "external_persistent_rank_consistent_cluster_gated_recall_frontier_count": (
+            len(recall_frontier_rows)
+        ),
+        "external_persistent_rank_consistent_cluster_gated_score_margin_expansion_candidate_count": (
+            len(score_margin_expansion_rows)
+        ),
+        "external_persistent_rank_consistent_cluster_gated_score_margin_expansion_candidate_native_contact_count": (
+            score_margin_expansion_native_contact_count
+        ),
+        "external_persistent_rank_consistent_cluster_gated_score_margin_expansion_candidate_native_long_range_contact_count": (
+            score_margin_expansion_native_long_range_contact_count
+        ),
+        "external_persistent_rank_consistent_cluster_gated_score_margin_expansion_claim_allowed": False,
         "external_rank_consistent_cluster_gated_frontier_diagnostic_kind": (
             "rank_consistent_native_after_scoring_frontier_v0"
         ),
@@ -1588,6 +1820,10 @@ def render_external_coupling_trace_loop_dashboard(
         "external_persistent_rank_consistent_cluster_gated_recovered_event_count",
         "external_persistent_rank_consistent_cluster_gated_recovered_native_contact_count",
         "external_persistent_rank_consistent_cluster_gated_recovered_native_long_range_contact_count",
+        "external_persistent_rank_consistent_cluster_gated_recall_frontier_count",
+        "external_persistent_rank_consistent_cluster_gated_score_margin_expansion_candidate_count",
+        "external_persistent_rank_consistent_cluster_gated_score_margin_expansion_candidate_native_long_range_contact_count",
+        "external_persistent_rank_consistent_cluster_gated_score_margin_expansion_claim_allowed",
         "external_rank_consistent_cluster_gated_native_positive_frontier_count",
         "external_rank_consistent_cluster_gated_frontier_native_contact_count",
         "external_rank_consistent_cluster_gated_frontier_native_long_range_contact_count",
@@ -1879,6 +2115,10 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
         cluster_gated_run=external_cluster_gated_core_expanded,
         rank_consistent_run=external_rank_consistent_cluster_gated,
     )
+    recall_frontier_rows = persistent_recall_frontier_rows(
+        context=external_context,
+        persistent_run=external_persistent_rank_consistent_cluster_gated,
+    )
     report = _build_report(
         rows=rows,
         import_result=import_result,
@@ -1915,6 +2155,7 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
         ),
         oracle_positive_control=oracle_positive_control,
         frontier_rows=frontier_rows,
+        recall_frontier_rows=recall_frontier_rows,
         source_benchmark_file=benchmark_file,
         external_coupling_file=external_coupling_file,
         oracle_coupling_file=oracle_coupling_file,
@@ -1934,7 +2175,7 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
     for run in all_runs:
         selected_rows.extend(run.selected_rows)
     write_csv_rows(selected_rows, selected_events_path)
-    write_csv_rows(frontier_rows, frontier_path)
+    write_csv_rows([*frontier_rows, *recall_frontier_rows], frontier_path)
     write_csv_rows(_controls_from_runs(all_runs), controls_path)
     write_csv_rows(
         [status.to_dict() for status in import_result.row_statuses],

@@ -297,6 +297,10 @@ external_persistent_rank_consistent_cluster_gated_recovered_native_long_range_co
 external_persistent_rank_consistent_cluster_gated_probe_passed = false
 external_persistent_rank_consistent_cluster_gated_selector_score_probe_passed = true
 external_persistent_rank_consistent_cluster_gated_hard_selector_score_probe_passed = true
+external_persistent_rank_consistent_cluster_gated_recall_frontier_count = 23
+external_persistent_rank_consistent_cluster_gated_score_margin_expansion_candidate_count = 2
+external_persistent_rank_consistent_cluster_gated_score_margin_expansion_candidate_native_long_range_contact_count = 38
+external_persistent_rank_consistent_cluster_gated_score_margin_expansion_claim_allowed = false
 claim_allowed = false
 ```
 
@@ -308,6 +312,8 @@ persistence improves precision and long-range recall over the strict rank gate
 the added event weakens the decoy-enrichment margin
 raw coupling-only adversarial calibrated enrichment remains too close
 the selector's full coupling-nucleus score clears matched and adversarial enrichment controls
+the score-margin expansion frontier exposes two addable native-positive trace events
+that would add 38 long-range contacts, but expansion remains diagnostic-only
 claims remain locked
 ```
 
