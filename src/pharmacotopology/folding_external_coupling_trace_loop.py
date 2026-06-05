@@ -45,7 +45,10 @@ from pharmacotopology.folding_nucleus_decoy_falsification import (
     matched_decoys_for_selected_events,
 )
 from pharmacotopology.folding_nucleus_closure_search import NucleusClosureEvent
-from pharmacotopology.folding_physical_selection import build_active_physical_context
+from pharmacotopology.folding_physical_selection import (
+    ActivePhysicalContext,
+    build_active_physical_context,
+)
 from pharmacotopology.folding_external_coupling_sources import (
     EXTERNAL_COUPLING_TRACE_LOOP_CERTIFICATE_KIND,
     EXTERNAL_COUPLING_TRACE_LOOP_REPORT_KIND,
@@ -89,6 +92,15 @@ SCORE_MARGIN_EXPANSION_FUTURE_PRESERVATION_MIN = 0.18
 SCORE_MARGIN_EXPANSION_BLOCKED_FUTURE_MAX = 0.08
 MACRO_SCALE_SEGMENT_LENGTH = 20
 MACRO_SCALE_SEGMENT_STRIDE = 4
+MULTISCALE_FUTURE_PRESERVED_SEGMENT_STRIDE = 4
+MULTISCALE_FUTURE_PRESERVED_MAX_EVENTS_PER_ROW = 10
+MULTISCALE_FUTURE_PRESERVED_CONFIGS = (
+    (18, 0.24),
+    (20, 0.36),
+    (24, 0.36),
+    (32, 0.34),
+    (36, 0.36),
+)
 
 
 @dataclass(frozen=True)
@@ -100,6 +112,14 @@ class TraceLoopRun:
     selected_rows: tuple[dict[str, object], ...]
     constraint_count: int
     control_kind: str
+
+
+@dataclass(frozen=True)
+class MultiScaleSelectedEvent:
+    segment_length: int
+    future_preservation_min: float
+    context: CouplingNucleusContext
+    event: NucleusClosureEvent
 
 
 def _rounded(value: float) -> float:
@@ -191,6 +211,245 @@ def _build_macro_scale_coupling_context(
         rows=rows,
         coupling_dataset=dataset,
         physical_context=macro_physical_context,
+    )
+
+
+def _build_multiscale_physical_contexts(
+    rows: Sequence[RealCoordinateVisualRow],
+) -> dict[int, ActivePhysicalContext]:
+    return {
+        segment_length: build_active_physical_context(
+            rows,
+            segment_length=segment_length,
+            segment_stride=MULTISCALE_FUTURE_PRESERVED_SEGMENT_STRIDE,
+        )
+        for segment_length, _ in MULTISCALE_FUTURE_PRESERVED_CONFIGS
+    }
+
+
+def _multiscale_metric(
+    *,
+    rows: Sequence[RealCoordinateVisualRow],
+    dataset: CouplingDataset,
+    selector_name: str,
+    selected_items: Sequence[MultiScaleSelectedEvent],
+) -> CouplingSelectorMetric:
+    selected_by_row: dict[str, list[MultiScaleSelectedEvent]] = {}
+    for item in selected_items:
+        selected_by_row.setdefault(item.event.row_id, []).append(item)
+    constraints_by_row = dataset.constraints_by_row_id()
+    false_rates: list[float] = []
+    precisions: list[float] = []
+    long_recalls: list[float] = []
+    constraint_recalls: list[float] = []
+    selectivity_scores: list[float] = []
+    nucleus_scores: list[float] = []
+    for row in rows:
+        row_items = selected_by_row.get(row.row_id, [])
+        row_events = [item.event for item in row_items]
+        native_pairs = set(row.native_contact_pairs())
+        native_long = {pair for pair in native_pairs if pair[1] - pair[0] >= 24}
+        constraint_pairs = {
+            constraint.pair()
+            for constraint in constraints_by_row.get(row.row_id, ())
+        }
+        region: set[tuple[int, int]] = set()
+        for event in row_events:
+            region.update(event.candidate_region_pairs())
+        native_hit_count = sum(
+            event.native_contact_count_after_scoring for event in row_events
+        )
+        possible_region_pair_count = sum(
+            len(event.candidate_region_pairs()) for event in row_events
+        )
+        false_count = sum(
+            1
+            for event in row_events
+            if event.native_contact_count_after_scoring == 0
+        )
+        false_rates.append(false_count / len(row_events) if row_events else 0.0)
+        precisions.append(
+            native_hit_count / possible_region_pair_count
+            if possible_region_pair_count
+            else 0.0
+        )
+        long_recalls.append(
+            len(region & native_long) / len(native_long) if native_long else 1.0
+        )
+        constraint_recalls.append(
+            len(region & constraint_pairs) / len(constraint_pairs)
+            if constraint_pairs
+            else 0.0
+        )
+        for item in row_items:
+            assessment = item.context.assessment_by_event_id[item.event.event_id]
+            selectivity_scores.append(assessment.coupling_selectivity_score)
+            nucleus_scores.append(coupling_nucleus_score(item.event, item.context))
+    false_rate = _rounded(mean(false_rates) if false_rates else 0.0)
+    precision = _rounded(mean(precisions) if precisions else 0.0)
+    long_recall = _rounded(mean(long_recalls) if long_recalls else 0.0)
+    selected_selectivity_mean = _rounded(
+        mean(selectivity_scores) if selectivity_scores else 0.0
+    )
+    selected_nucleus_mean = _rounded(
+        mean(nucleus_scores) if nucleus_scores else 0.0
+    )
+    return CouplingSelectorMetric(
+        selector_name=selector_name,
+        selected_event_count=len(selected_items),
+        false_nucleus_rate=false_rate,
+        contact_cluster_precision=precision,
+        long_range_contact_recall=long_recall,
+        coupling_constraint_recall=_rounded(
+            mean(constraint_recalls) if constraint_recalls else 0.0
+        ),
+        real_vs_decoy_coupling_enrichment_ratio=0.0,
+        real_beats_decoy_coupling_score_rate=0.0,
+        mean_selected_coupling_selectivity_score=selected_selectivity_mean,
+        mean_decoy_coupling_selectivity_score=0.0,
+        mean_coupling_decoy_selectivity_margin=selected_selectivity_mean,
+        mean_coupling_nucleus_score=selected_nucleus_mean,
+        mean_decoy_coupling_nucleus_score=0.0,
+        mean_coupling_nucleus_decoy_margin=selected_nucleus_mean,
+        real_vs_decoy_coupling_nucleus_enrichment_ratio=0.0,
+        real_beats_decoy_coupling_nucleus_score_rate=0.0,
+        survives_targets=False,
+        coordinate_truth_used_to_build_constraints=dataset.coordinate_truth_tainted,
+        native_truth_used_before_coupling_selection=(
+            dataset.native_truth_used_before_coupling_selection
+        ),
+        raw_sequence_exposed=False,
+    )
+
+
+def _multiscale_selected_rows(
+    *,
+    selector_name: str,
+    selected_items: Sequence[MultiScaleSelectedEvent],
+) -> tuple[dict[str, object], ...]:
+    rows: list[dict[str, object]] = []
+    for rank, item in enumerate(selected_items, start=1):
+        event = item.event
+        context = item.context
+        assessment = context.assessment_by_event_id[event.event_id]
+        state = context.physical_context.state_by_event_id[event.event_id]
+        rows.append(
+            {
+                "selector_name": selector_name,
+                "rank": rank,
+                "row_id": event.row_id,
+                "source_accession": event.source_accession,
+                "event_id": event.event_id,
+                "segment_a_start": event.segment_a_start,
+                "segment_a_end": event.segment_a_end,
+                "segment_b_start": event.segment_b_start,
+                "segment_b_end": event.segment_b_end,
+                "normalized_span": event.normalized_span,
+                "coupling_nucleus_score": coupling_nucleus_score(event, context),
+                "coupling_selectivity_score": (
+                    assessment.coupling_selectivity_score
+                ),
+                "direct_support_score": assessment.direct_support_score,
+                "future_preservation_score": (
+                    assessment.future_preservation_score
+                ),
+                "blocked_future_pressure": assessment.blocked_future_pressure,
+                "coupling_decoy_margin": (
+                    context.coupling_decoy_margin_by_event_id[event.event_id]
+                ),
+                "physical_state_score": state.physical_state_score,
+                "burial_gain": state.burial_gain,
+                "unsatisfied_polar_penalty": state.unsatisfied_polar_penalty,
+                "native_contact_count_after_scoring": (
+                    event.native_contact_count_after_scoring
+                ),
+                "coordinate_truth_used_to_build_constraints": (
+                    context.coupling_dataset.coordinate_truth_tainted
+                ),
+                "native_truth_used_before_coupling_selection": (
+                    context.coupling_dataset.native_truth_used_before_coupling_selection
+                ),
+                "raw_sequence_exposed": False,
+                "multiscale_segment_length": item.segment_length,
+                "multiscale_future_preservation_min": (
+                    item.future_preservation_min
+                ),
+            }
+        )
+    return tuple(rows)
+
+
+def _run_multiscale_future_preserved_selector(
+    *,
+    rows: Sequence[RealCoordinateVisualRow],
+    dataset: CouplingDataset,
+    selector_name: str,
+    control_kind: str,
+    physical_contexts: Mapping[int, ActivePhysicalContext],
+) -> TraceLoopRun:
+    candidates_by_row: dict[str, list[MultiScaleSelectedEvent]] = {
+        row.row_id: [] for row in rows
+    }
+    for segment_length, future_preservation_min in (
+        MULTISCALE_FUTURE_PRESERVED_CONFIGS
+    ):
+        context = build_coupling_nucleus_context(
+            rows=rows,
+            coupling_dataset=dataset,
+            physical_context=physical_contexts[segment_length],
+        )
+        candidates = select_coupling_events(
+            context,
+            selector_name="coupling_trace_loop_boundary_field_replacement_probe",
+        )
+        for event in candidates:
+            assessment = context.assessment_by_event_id[event.event_id]
+            if assessment.future_preservation_score < future_preservation_min:
+                continue
+            candidates_by_row[event.row_id].append(
+                MultiScaleSelectedEvent(
+                    segment_length=segment_length,
+                    future_preservation_min=future_preservation_min,
+                    context=context,
+                    event=event,
+                )
+            )
+    selected_items: list[MultiScaleSelectedEvent] = []
+    for row in rows:
+        row_candidates = sorted(
+            candidates_by_row[row.row_id],
+            key=lambda item: (
+                item.context.assessment_by_event_id[
+                    item.event.event_id
+                ].future_preservation_score,
+                item.context.assessment_by_event_id[
+                    item.event.event_id
+                ].direct_support_score,
+                item.event.closure_event_stability,
+                -item.segment_length,
+            ),
+            reverse=True,
+        )
+        selected_items.extend(
+            row_candidates[:MULTISCALE_FUTURE_PRESERVED_MAX_EVENTS_PER_ROW]
+        )
+    metric = _multiscale_metric(
+        rows=rows,
+        dataset=dataset,
+        selector_name=selector_name,
+        selected_items=selected_items,
+    )
+    return TraceLoopRun(
+        selector_name=selector_name,
+        dataset=dataset,
+        metric=metric,
+        selected_events=tuple(item.event for item in selected_items),
+        selected_rows=_multiscale_selected_rows(
+            selector_name=selector_name,
+            selected_items=selected_items,
+        ),
+        constraint_count=len(dataset.constraints),
+        control_kind=control_kind,
     )
 
 
@@ -1199,6 +1458,42 @@ def _certificate(report: Mapping[str, object]) -> dict[str, object]:
         "external_macro_scale_future_preserved_claim_allowed": report[
             "external_macro_scale_future_preserved_claim_allowed"
         ],
+        "external_multiscale_future_preserved_segment_lengths": report[
+            "external_multiscale_future_preserved_segment_lengths"
+        ],
+        "external_multiscale_future_preserved_max_events_per_row": report[
+            "external_multiscale_future_preserved_max_events_per_row"
+        ],
+        "external_multiscale_future_preserved_selected_event_count": report[
+            "external_multiscale_future_preserved_selected_event_count"
+        ],
+        "external_multiscale_future_preserved_false_nucleus_rate": report[
+            "external_multiscale_future_preserved_false_nucleus_rate"
+        ],
+        "external_multiscale_future_preserved_cluster_precision": report[
+            "external_multiscale_future_preserved_cluster_precision"
+        ],
+        "external_multiscale_future_preserved_long_range_recall": report[
+            "external_multiscale_future_preserved_long_range_recall"
+        ],
+        "external_multiscale_future_preserved_long_range_recall_delta_vs_macro": report[
+            "external_multiscale_future_preserved_long_range_recall_delta_vs_macro"
+        ],
+        "external_multiscale_future_preserved_long_range_recall_margin_vs_matched_controls": report[
+            "external_multiscale_future_preserved_long_range_recall_margin_vs_matched_controls"
+        ],
+        "external_multiscale_future_preserved_long_range_recall_margin_vs_adversarial_controls": report[
+            "external_multiscale_future_preserved_long_range_recall_margin_vs_adversarial_controls"
+        ],
+        "external_multiscale_future_preserved_beats_matched_controls": report[
+            "external_multiscale_future_preserved_beats_matched_controls"
+        ],
+        "external_multiscale_future_preserved_beats_adversarial_calibrated_controls": report[
+            "external_multiscale_future_preserved_beats_adversarial_calibrated_controls"
+        ],
+        "external_multiscale_future_preserved_claim_allowed": report[
+            "external_multiscale_future_preserved_claim_allowed"
+        ],
         "external_terminal_bridge_replacement_frontier_count": report[
             "external_terminal_bridge_replacement_frontier_count"
         ],
@@ -1340,6 +1635,9 @@ def _build_report(
     external_macro_scale_future_preserved: TraceLoopRun,
     macro_scale_future_preserved_controls: Sequence[TraceLoopRun],
     adversarial_macro_scale_future_preserved_controls: Sequence[TraceLoopRun],
+    external_multiscale_future_preserved: TraceLoopRun,
+    multiscale_future_preserved_controls: Sequence[TraceLoopRun],
+    adversarial_multiscale_future_preserved_controls: Sequence[TraceLoopRun],
     physical_baseline: TraceLoopRun,
     matched_controls: Sequence[TraceLoopRun],
     margin_gated_controls: Sequence[TraceLoopRun],
@@ -2453,6 +2751,68 @@ def _build_report(
         > macro_scale_future_preserved_max_adversarial_precision
         and macro_scale_future_preserved_metric.long_range_contact_recall
         > macro_scale_future_preserved_max_adversarial_long_range_recall
+    )
+    multiscale_future_preserved_metric = (
+        external_multiscale_future_preserved.metric
+    )
+    multiscale_future_preserved_selected_event_count = (
+        multiscale_future_preserved_metric.selected_event_count
+    )
+    multiscale_future_preserved_max_matched_control_precision = (
+        _max_selected_metric(
+            multiscale_future_preserved_controls,
+            "contact_cluster_precision",
+        )
+    )
+    multiscale_future_preserved_max_matched_control_long_range_recall = (
+        _max_selected_metric(
+            multiscale_future_preserved_controls,
+            "long_range_contact_recall",
+        )
+    )
+    multiscale_future_preserved_max_adversarial_precision = _max_selected_metric(
+        adversarial_multiscale_future_preserved_controls,
+        "contact_cluster_precision",
+    )
+    multiscale_future_preserved_max_adversarial_long_range_recall = (
+        _max_selected_metric(
+            adversarial_multiscale_future_preserved_controls,
+            "long_range_contact_recall",
+        )
+    )
+    multiscale_future_preserved_noninferior_false_rate_vs_matched_controls = (
+        bool(multiscale_future_preserved_controls)
+        and multiscale_future_preserved_selected_event_count > 0
+        and all(
+            run.metric.selected_event_count == 0
+            or multiscale_future_preserved_metric.false_nucleus_rate
+            <= run.metric.false_nucleus_rate
+            for run in multiscale_future_preserved_controls
+        )
+    )
+    multiscale_future_preserved_noninferior_false_rate_vs_adversarial_controls = (
+        bool(adversarial_multiscale_future_preserved_controls)
+        and multiscale_future_preserved_selected_event_count > 0
+        and all(
+            run.metric.selected_event_count == 0
+            or multiscale_future_preserved_metric.false_nucleus_rate
+            <= run.metric.false_nucleus_rate
+            for run in adversarial_multiscale_future_preserved_controls
+        )
+    )
+    multiscale_future_preserved_beats_matched_controls = (
+        multiscale_future_preserved_noninferior_false_rate_vs_matched_controls
+        and multiscale_future_preserved_metric.contact_cluster_precision
+        > multiscale_future_preserved_max_matched_control_precision
+        and multiscale_future_preserved_metric.long_range_contact_recall
+        > multiscale_future_preserved_max_matched_control_long_range_recall
+    )
+    multiscale_future_preserved_beats_adversarial_calibrated_controls = (
+        multiscale_future_preserved_noninferior_false_rate_vs_adversarial_controls
+        and multiscale_future_preserved_metric.contact_cluster_precision
+        > multiscale_future_preserved_max_adversarial_precision
+        and multiscale_future_preserved_metric.long_range_contact_recall
+        > multiscale_future_preserved_max_adversarial_long_range_recall
     )
     replacement_frontier_native_long_range_delta_sum = sum(
         int(row["replacement_native_long_range_delta_after_scoring"])
@@ -3621,6 +3981,93 @@ def _build_report(
             macro_scale_future_preserved_beats_adversarial_calibrated_controls
         ),
         "external_macro_scale_future_preserved_claim_allowed": False,
+        "external_multiscale_future_preserved_segment_lengths": tuple(
+            segment_length
+            for segment_length, _ in MULTISCALE_FUTURE_PRESERVED_CONFIGS
+        ),
+        "external_multiscale_future_preserved_future_preservation_mins": tuple(
+            future_preservation_min
+            for _, future_preservation_min in MULTISCALE_FUTURE_PRESERVED_CONFIGS
+        ),
+        "external_multiscale_future_preserved_segment_stride": (
+            MULTISCALE_FUTURE_PRESERVED_SEGMENT_STRIDE
+        ),
+        "external_multiscale_future_preserved_max_events_per_row": (
+            MULTISCALE_FUTURE_PRESERVED_MAX_EVENTS_PER_ROW
+        ),
+        "external_multiscale_future_preserved_selected_event_count": (
+            multiscale_future_preserved_metric.selected_event_count
+        ),
+        "external_multiscale_future_preserved_false_nucleus_rate": (
+            multiscale_future_preserved_metric.false_nucleus_rate
+            if multiscale_future_preserved_selected_event_count
+            else 0.0
+        ),
+        "external_multiscale_future_preserved_cluster_precision": (
+            multiscale_future_preserved_metric.contact_cluster_precision
+            if multiscale_future_preserved_selected_event_count
+            else 0.0
+        ),
+        "external_multiscale_future_preserved_long_range_recall": (
+            multiscale_future_preserved_metric.long_range_contact_recall
+            if multiscale_future_preserved_selected_event_count
+            else 0.0
+        ),
+        "external_multiscale_future_preserved_long_range_recall_delta_vs_macro": (
+            _rounded(
+                multiscale_future_preserved_metric.long_range_contact_recall
+                - macro_scale_future_preserved_metric.long_range_contact_recall
+            )
+        ),
+        "external_multiscale_future_preserved_max_matched_control_cluster_precision": (
+            multiscale_future_preserved_max_matched_control_precision
+        ),
+        "external_multiscale_future_preserved_max_matched_control_long_range_recall": (
+            multiscale_future_preserved_max_matched_control_long_range_recall
+        ),
+        "external_multiscale_future_preserved_cluster_precision_margin_vs_matched_controls": (
+            _rounded(
+                multiscale_future_preserved_metric.contact_cluster_precision
+                - multiscale_future_preserved_max_matched_control_precision
+            )
+        ),
+        "external_multiscale_future_preserved_long_range_recall_margin_vs_matched_controls": (
+            _rounded(
+                multiscale_future_preserved_metric.long_range_contact_recall
+                - multiscale_future_preserved_max_matched_control_long_range_recall
+            )
+        ),
+        "external_multiscale_future_preserved_max_adversarial_cluster_precision": (
+            multiscale_future_preserved_max_adversarial_precision
+        ),
+        "external_multiscale_future_preserved_max_adversarial_long_range_recall": (
+            multiscale_future_preserved_max_adversarial_long_range_recall
+        ),
+        "external_multiscale_future_preserved_cluster_precision_margin_vs_adversarial_controls": (
+            _rounded(
+                multiscale_future_preserved_metric.contact_cluster_precision
+                - multiscale_future_preserved_max_adversarial_precision
+            )
+        ),
+        "external_multiscale_future_preserved_long_range_recall_margin_vs_adversarial_controls": (
+            _rounded(
+                multiscale_future_preserved_metric.long_range_contact_recall
+                - multiscale_future_preserved_max_adversarial_long_range_recall
+            )
+        ),
+        "external_multiscale_future_preserved_noninferior_false_rate_vs_matched_controls": (
+            multiscale_future_preserved_noninferior_false_rate_vs_matched_controls
+        ),
+        "external_multiscale_future_preserved_noninferior_false_rate_vs_adversarial_controls": (
+            multiscale_future_preserved_noninferior_false_rate_vs_adversarial_controls
+        ),
+        "external_multiscale_future_preserved_beats_matched_controls": (
+            multiscale_future_preserved_beats_matched_controls
+        ),
+        "external_multiscale_future_preserved_beats_adversarial_calibrated_controls": (
+            multiscale_future_preserved_beats_adversarial_calibrated_controls
+        ),
+        "external_multiscale_future_preserved_claim_allowed": False,
         "external_terminal_bridge_replacement_frontier_kind": (
             "terminal_bridge_replacement_frontier_v0"
         ),
@@ -3983,6 +4430,20 @@ def render_external_coupling_trace_loop_dashboard(
         "external_macro_scale_future_preserved_beats_matched_controls",
         "external_macro_scale_future_preserved_beats_adversarial_calibrated_controls",
         "external_macro_scale_future_preserved_claim_allowed",
+        "external_multiscale_future_preserved_segment_lengths",
+        "external_multiscale_future_preserved_max_events_per_row",
+        "external_multiscale_future_preserved_selected_event_count",
+        "external_multiscale_future_preserved_false_nucleus_rate",
+        "external_multiscale_future_preserved_cluster_precision",
+        "external_multiscale_future_preserved_long_range_recall",
+        "external_multiscale_future_preserved_long_range_recall_delta_vs_macro",
+        "external_multiscale_future_preserved_cluster_precision_margin_vs_matched_controls",
+        "external_multiscale_future_preserved_long_range_recall_margin_vs_matched_controls",
+        "external_multiscale_future_preserved_cluster_precision_margin_vs_adversarial_controls",
+        "external_multiscale_future_preserved_long_range_recall_margin_vs_adversarial_controls",
+        "external_multiscale_future_preserved_beats_matched_controls",
+        "external_multiscale_future_preserved_beats_adversarial_calibrated_controls",
+        "external_multiscale_future_preserved_claim_allowed",
         "external_terminal_bridge_replacement_frontier_count",
         "external_terminal_bridge_replacement_frontier_native_long_range_delta_sum",
         "external_terminal_bridge_replacement_frontier_probe_selected_count",
@@ -4204,6 +4665,16 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
         selector_name="external_macro_scale_future_preserved",
         selection_mode="coupling_trace_loop_macro_scale_future_preserved",
         control_kind="external_real_macro_scale_future_preserved",
+    )
+    multiscale_physical_contexts = _build_multiscale_physical_contexts(rows)
+    external_multiscale_future_preserved = (
+        _run_multiscale_future_preserved_selector(
+            rows=rows,
+            dataset=import_result.dataset,
+            selector_name="external_multiscale_future_preserved",
+            control_kind="external_real_multiscale_future_preserved",
+            physical_contexts=multiscale_physical_contexts,
+        )
     )
     physical_baseline = _run_trace_loop_selector_from_context(
         context=external_context,
@@ -4490,6 +4961,26 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
         )
         for name, control in adversarial_controls.items()
     )
+    multiscale_future_preserved_control_runs = tuple(
+        _run_multiscale_future_preserved_selector(
+            rows=rows,
+            dataset=control.dataset,
+            selector_name=f"external_multiscale_future_preserved_{name}",
+            control_kind=control.control_kind,
+            physical_contexts=multiscale_physical_contexts,
+        )
+        for name, control in controls.items()
+    )
+    adversarial_multiscale_future_preserved_control_runs = tuple(
+        _run_multiscale_future_preserved_selector(
+            rows=rows,
+            dataset=control.dataset,
+            selector_name=f"external_multiscale_future_preserved_{name}",
+            control_kind=control.control_kind,
+            physical_contexts=multiscale_physical_contexts,
+        )
+        for name, control in adversarial_controls.items()
+    )
     oracle_context = build_coupling_nucleus_context(
         rows=rows,
         coupling_dataset=oracle_dataset,
@@ -4517,6 +5008,7 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
         external_terminal_bridge_expanded,
         external_boundary_field_replacement_probe,
         external_macro_scale_future_preserved,
+        external_multiscale_future_preserved,
         physical_baseline,
         *matched_control_runs,
         *margin_gated_control_runs,
@@ -4541,6 +5033,8 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
         *adversarial_terminal_bridge_expanded_control_runs,
         *macro_scale_future_preserved_control_runs,
         *adversarial_macro_scale_future_preserved_control_runs,
+        *multiscale_future_preserved_control_runs,
+        *adversarial_multiscale_future_preserved_control_runs,
         oracle_positive_control,
     )
     frontier_rows = rank_consistent_frontier_rows(
@@ -4624,6 +5118,15 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
         ),
         adversarial_macro_scale_future_preserved_controls=(
             adversarial_macro_scale_future_preserved_control_runs
+        ),
+        external_multiscale_future_preserved=(
+            external_multiscale_future_preserved
+        ),
+        multiscale_future_preserved_controls=(
+            multiscale_future_preserved_control_runs
+        ),
+        adversarial_multiscale_future_preserved_controls=(
+            adversarial_multiscale_future_preserved_control_runs
         ),
         physical_baseline=physical_baseline,
         matched_controls=matched_control_runs,
