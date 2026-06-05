@@ -22,6 +22,12 @@ from build_query_centered_hmmer_plmc_couplings_v0 import (  # noqa: E402
     DEFAULT_MINIMUM_SEQUENCE_SEPARATION,
     build_query_centered_hmmer_plmc_couplings_v0,
 )
+from build_query_centered_hmmer_apc_couplings_v0 import (  # noqa: E402
+    build_query_centered_hmmer_apc_couplings_v0,
+)
+from build_query_centered_hmmer_plmc_apc_consensus_couplings_v0 import (  # noqa: E402
+    build_query_centered_hmmer_plmc_apc_consensus_couplings_v0,
+)
 from pharmacotopology.folding_coupling_negative_controls import (  # noqa: E402
     EXTERNAL_ADVERSARIAL_CALIBRATED_CONTROL_NAMES,
     EXTERNAL_COUPLING_CONTROL_NAMES,
@@ -30,7 +36,9 @@ from pharmacotopology.folding_coupling_negative_controls import (  # noqa: E402
 )
 from pharmacotopology import folding_coupling_nucleus_selector as selector_module  # noqa: E402
 from pharmacotopology.folding_evolutionary_constraints import (  # noqa: E402
+    COUPLING_CONSTRAINT_KIND,
     CouplingClosureAssessment,
+    EVOLUTIONARY_COUPLING_LAYER_KIND,
     load_coupling_dataset,
 )
 from pharmacotopology.folding_nucleus_closure_search import (  # noqa: E402
@@ -278,6 +286,203 @@ def test_query_centered_hmmer_plmc_builder_filters_local_pairs_before_top_l(
         ]
         == DEFAULT_MINIMUM_SEQUENCE_SEPARATION
     )
+
+
+def test_query_centered_hmmer_apc_builder_emits_external_long_range_channel(
+    tmp_path,
+) -> None:
+    rows = tuple(load_real_coordinate_visual_rows(BENCHMARK_8))
+    row = next(row for row in rows if row.source_accession == "1PGA:A")
+    alphabet = "ACDEFGHIKLMNPQRSTVWY"
+    records = [f">synthetic_focus\n{row.sequence}"]
+    for record_index in range(1, 96):
+        sequence = "".join(
+            alphabet[
+                (
+                    record_index * ((position % 5) + 1)
+                    + position
+                    + (position // 9)
+                )
+                % len(alphabet)
+            ]
+            for position in range(1, row.sequence_length + 1)
+        )
+        records.append(f">synthetic_{record_index}\n{sequence}")
+    focus_fasta = tmp_path / "focus_apc.fasta"
+    focus_fasta.write_text("\n".join(records) + "\n", encoding="utf-8")
+
+    base_external = tmp_path / "base_external.json"
+    base_external.write_text(
+        json.dumps(
+            {
+                "layer_kind": EVOLUTIONARY_COUPLING_LAYER_KIND,
+                "batch_id": EXTERNAL_EVOLUTIONARY_COUPLING_TRACE_LOOP_BATCH_ID,
+                "constraint_kind": COUPLING_CONSTRAINT_KIND,
+                "coupling_source_kind": "external_uniref_msa_dca_v1",
+                "external_evolutionary_couplings_used": True,
+                "coordinate_truth_used_to_build_constraints": False,
+                "native_truth_used_before_coupling_selection": False,
+                "oracle_constraint_control": False,
+                "raw_sequence_exposed": False,
+                "source_benchmark_file": str(REL_BENCHMARK_8),
+                "benchmark_row_ids_preregistered": [row.row_id for row in rows],
+                "constraints": [],
+            },
+            ensure_ascii=False,
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+
+    output = build_query_centered_hmmer_apc_couplings_v0(
+        benchmark_file=BENCHMARK_8,
+        base_external_coupling_file=base_external,
+        row_id=row.row_id,
+        focus_fasta_file=focus_fasta,
+        output=tmp_path / "query_centered_apc_external.json",
+        msa_depth=400,
+        effective_sequence_count=400.0,
+        max_records=96,
+    )
+
+    payload = json.loads(output.read_text(encoding="utf-8"))
+    constraints = payload["constraints"]
+
+    assert len(constraints) == row.sequence_length
+    assert all(
+        constraint["sequence_separation"] >= DEFAULT_MINIMUM_SEQUENCE_SEPARATION
+        for constraint in constraints
+    )
+    assert all(
+        constraint["constraint_class"]
+        == "external_query_centered_hmmer_mi_apc_coupling"
+        for constraint in constraints
+    )
+    assert all(
+        constraint["source_kind"] == "external_uniref_msa_dca_v1"
+        for constraint in constraints
+    )
+    assert all(
+        constraint["coordinate_truth_used_to_build_constraint"] is False
+        and constraint["native_truth_used_before_coupling_selection"] is False
+        and constraint["structure_model_used"] is False
+        for constraint in constraints
+    )
+    assert constraints[0]["minimum_sequence_separation"] == (
+        DEFAULT_MINIMUM_SEQUENCE_SEPARATION
+    )
+    assert constraints[0]["apc_focus_id"] == "synthetic_focus"
+    result = import_external_coupling_dataset(
+        rows=rows,
+        external_coupling_file=output,
+    )
+    statuses = {status.source_accession: status for status in result.row_statuses}
+    assert statuses["1PGA:A"].row_external_status == "external_couplings_available"
+    assert result.dataset.coordinate_truth_tainted is False
+    assert result.dataset.native_truth_tainted is False
+    assert result.dataset.structure_model_tainted is False
+
+
+def test_query_centered_plmc_apc_consensus_reweights_plmc_spine(
+    tmp_path,
+) -> None:
+    rows = tuple(load_real_coordinate_visual_rows(BENCHMARK_8))
+    row = next(row for row in rows if row.source_accession == "1PGA:A")
+    alphabet = "ACDEFGHIKLMNPQRSTVWY"
+    records = [f">synthetic_focus\n{row.sequence}"]
+    for record_index in range(1, 96):
+        sequence = "".join(
+            alphabet[
+                (
+                    record_index * ((position % 5) + 1)
+                    + position
+                    + (position // 9)
+                )
+                % len(alphabet)
+            ]
+            for position in range(1, row.sequence_length + 1)
+        )
+        records.append(f">synthetic_{record_index}\n{sequence}")
+    focus_fasta = tmp_path / "focus_apc.fasta"
+    focus_fasta.write_text("\n".join(records) + "\n", encoding="utf-8")
+    base_constraints = [
+        _external_constraint(
+            row,
+            rank=rank,
+            source_kind="external_msa_dca_plmc_v1",
+        )
+        for rank in range(1, row.sequence_length + 1)
+    ]
+    base_external = tmp_path / "base_external.json"
+    base_external.write_text(
+        json.dumps(
+            {
+                "layer_kind": EVOLUTIONARY_COUPLING_LAYER_KIND,
+                "batch_id": EXTERNAL_EVOLUTIONARY_COUPLING_TRACE_LOOP_BATCH_ID,
+                "constraint_kind": COUPLING_CONSTRAINT_KIND,
+                "coupling_source_kind": "external_msa_dca_plmc_v1",
+                "external_evolutionary_couplings_used": True,
+                "coordinate_truth_used_to_build_constraints": False,
+                "native_truth_used_before_coupling_selection": False,
+                "oracle_constraint_control": False,
+                "raw_sequence_exposed": False,
+                "source_benchmark_file": str(REL_BENCHMARK_8),
+                "benchmark_row_ids_preregistered": [row.row_id for row in rows],
+                "constraints": base_constraints,
+            },
+            ensure_ascii=False,
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+
+    output = build_query_centered_hmmer_plmc_apc_consensus_couplings_v0(
+        benchmark_file=BENCHMARK_8,
+        base_external_coupling_file=base_external,
+        row_id=row.row_id,
+        focus_fasta_file=focus_fasta,
+        output=tmp_path / "query_centered_consensus_external.json",
+        consensus_weight=0.75,
+        max_records=96,
+    )
+
+    payload = json.loads(output.read_text(encoding="utf-8"))
+    constraints = payload["constraints"]
+    base_pairs = {(constraint["i"], constraint["j"]) for constraint in base_constraints}
+    consensus_pairs = {
+        (constraint["i"], constraint["j"]) for constraint in constraints
+    }
+
+    assert len(constraints) == row.sequence_length
+    assert consensus_pairs <= base_pairs
+    assert all(
+        constraint["constraint_class"]
+        == "external_query_centered_hmmer_plmc_apc_consensus_coupling"
+        for constraint in constraints
+    )
+    assert all(
+        constraint["plmc_apc_consensus_method"]
+        == "plmc_plus_weighted_apc_agreement"
+        for constraint in constraints
+    )
+    assert constraints[0]["plmc_apc_consensus_weight"] == 0.75
+    assert all(
+        constraint["coordinate_truth_used_to_build_constraint"] is False
+        and constraint["native_truth_used_before_coupling_selection"] is False
+        and constraint["structure_model_used"] is False
+        for constraint in constraints
+    )
+    result = import_external_coupling_dataset(
+        rows=rows,
+        external_coupling_file=output,
+    )
+    statuses = {status.source_accession: status for status in result.row_statuses}
+    assert statuses["1PGA:A"].row_external_status == "external_couplings_available"
+    assert result.dataset.oracle_constraint_control is False
 
 
 def test_external_importer_rejects_disallowed_source_kind(tmp_path) -> None:
