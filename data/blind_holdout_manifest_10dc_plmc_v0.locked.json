@@ -1,0 +1,81 @@
+{
+  "coordinate_truth_used_to_build_constraints": false,
+  "generated_at_utc": "2026-06-06T11:38:46.788617+00:00",
+  "manifest_frozen": true,
+  "manifest_kind": "rcsb_blind_external_holdout_manifest_10dc_plmc_v0",
+  "native_truth_used_before_coupling_selection": false,
+  "oracle_constraint_control": false,
+  "raw_sequence_exposed": false,
+  "rcsb_search_query_sha256": "sha256:92f242325bb9a7b3349bb72214d462223032789d92053a5944e0462209b771f7",
+  "rejection_counts": {
+    "filtered": 46
+  },
+  "requested_target_count": 2,
+  "search_rows": 200,
+  "seed": "blind_holdout_smoke_v0",
+  "selection_policy": {
+    "allowed_methods": [
+      "ELECTRON MICROSCOPY",
+      "X-RAY DIFFRACTION"
+    ],
+    "deterministic_hash_selection": true,
+    "exclude_benchmark_files": [
+      "data/folding_real_coordinate_visual_8.locked.json",
+      "data/folding_real_coordinate_holdout_1ubq.locked.json"
+    ],
+    "excluded_sequence_sha256_count": 9,
+    "excluded_sequence_similarity_count": 9,
+    "excluded_source_accession_count": 9,
+    "manual_target_selection_after_scoring": false,
+    "max_excluded_sequence_similarity": 0.35,
+    "max_length": 250,
+    "max_resolution_angstrom": 2.5,
+    "min_length": 50,
+    "protein_entity_count_per_entry": 1,
+    "require_pfam_mapping": true,
+    "return_type": "polymer_entity",
+    "single_chain_only": true
+  },
+  "selector_frozen_after_manifest": true,
+  "selector_name": "external_multiscale_phase_aligned_footprint_novelty_boundary",
+  "source_api": {
+    "pdbe_pfam_mapping_url": "https://www.ebi.ac.uk/pdbe/api/mappings/pfam/{pdb_id}",
+    "rcsb_entry_url": "https://data.rcsb.org/rest/v1/core/entry/{pdb_id}",
+    "rcsb_polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/{pdb_id}/{entity_id}",
+    "rcsb_search_url": "https://search.rcsb.org/rcsbsearch/v2/query"
+  },
+  "target_count": 1,
+  "targets": [
+    {
+      "benchmark_file": "data/blind_coordinate_holdouts_v0/blind_001_10dc_a.locked.json",
+      "chain_id": "A",
+      "coordinate_source_url": "https://files.rcsb.org/download/10DC.pdb",
+      "coordinate_truth_used_to_build_constraints": false,
+      "entity_id": "1",
+      "experimental_method": "X-RAY DIFFRACTION",
+      "external_coupling_file": "data/blind_external_couplings_v0/blind_001_10dc_a_pfam_plmc.locked.json",
+      "initial_release_date": "2026-02-11T00:00:00.000+00:00",
+      "native_truth_used_before_coupling_selection": false,
+      "oracle_constraint_control": false,
+      "pdb_id": "10DC",
+      "pfam_ids": [
+        "PF00071"
+      ],
+      "pfam_mapping_required": true,
+      "raw_sequence_exposed": false,
+      "rcsb_entry_url": "https://data.rcsb.org/rest/v1/core/entry/10DC",
+      "rcsb_polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/10DC/1",
+      "resolution_angstrom": 2.08,
+      "selection_hash": "3c1cefc3f615ceddaf2866010229947e526cee7574dc8eaecb7cbc12ff593b53",
+      "selection_rank": 1,
+      "sequence_length": 166,
+      "sequence_sha256": "04fdee737523926977ff54914b4fb0f63ae8d32a79761a7f8198d3ceec24fe58",
+      "source_accession": "10DC:A",
+      "source_database": "RCSB_PDB",
+      "target_id": "blind_001_10dc_a",
+      "uniprot_ids": [
+        "P01112"
+      ]
+    }
+  ]
+}

@@ -18,5 +18,5 @@
   "report_kind": "blind_external_holdout_battery_v0",
   "saturation_selector_name": "external_multiscale_phase_aligned_footprint_novelty_boundary",
   "selector_name": "external_multiscale_phase_aligned_external_novelty_frontier",
-  "target_manifest_sha256": "sha256:54c02b486f7f596bd998149f5986c32be25d8c1f8d6a9e4dcc82d8db42db8bed"
+  "target_manifest_sha256": "sha256:ac77ed7856b2a7a10a6d558d2cbb4ec68b3ab52351d34455064600e20ba3baa3"
 }
