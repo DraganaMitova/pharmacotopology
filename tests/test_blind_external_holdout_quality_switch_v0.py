@@ -10,7 +10,9 @@ from scripts.run_blind_external_holdout_battery_v0 import (  # noqa: E402
     _apply_self_critical_quality_switch,
 )
 from scripts.score_cached_contact_map_modes_v0 import (  # noqa: E402
+    ANCHORED_SEQUENCE_COUPLING_BALANCE_SELECTOR,
     ROW_LOCAL_CRITICAL_MODE_SELECTOR,
+    _sequence_coupling_expansion_decision,
     _select_row_local_critical_mode,
 )
 
@@ -311,3 +313,44 @@ def test_cached_row_local_critical_switch_routes_by_internal_phase_conflict() ->
         )
         == "region_density_boundary"
     )
+
+
+def test_anchored_sequence_coupling_balance_uses_compact_self_critical_gate() -> None:
+    assert ANCHORED_SEQUENCE_COUPLING_BALANCE_SELECTOR == (
+        "cached_anchored_sequence_coupling_balance_v0"
+    )
+    assert _sequence_coupling_expansion_decision(
+        phase_mode="square",
+        phase_radius=2,
+        selected_event_count=8,
+        anchor_count=342,
+        addition_count=4,
+    ) == (False, "square_phase_anchor_only", 21)
+    assert _sequence_coupling_expansion_decision(
+        phase_mode="point",
+        phase_radius=1,
+        selected_event_count=1,
+        anchor_count=41,
+        addition_count=6,
+    ) == (False, "point_single_event_anchor_only", 8)
+    assert _sequence_coupling_expansion_decision(
+        phase_mode="point",
+        phase_radius=1,
+        selected_event_count=2,
+        anchor_count=92,
+        addition_count=45,
+    ) == (True, "point_multi_event_sequence_balance", 11)
+    assert _sequence_coupling_expansion_decision(
+        phase_mode="diagonal",
+        phase_radius=7,
+        selected_event_count=3,
+        anchor_count=16,
+        addition_count=4,
+    ) == (True, "diagonal_compact_sequence_balance", 11)
+    assert _sequence_coupling_expansion_decision(
+        phase_mode="diagonal",
+        phase_radius=6,
+        selected_event_count=3,
+        anchor_count=76,
+        addition_count=56,
+    ) == (False, "diagonal_diffuse_or_singleton_anchor_only", 15)

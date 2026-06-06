@@ -5,6 +5,7 @@ import csv
 import json
 import sys
 from datetime import datetime, timezone
+from math import ceil, sqrt
 from pathlib import Path
 from statistics import mean
 from typing import Mapping, Sequence
@@ -22,8 +23,12 @@ from pharmacotopology.folding_coupling_nucleus_selector import (  # noqa: E402
 from pharmacotopology.folding_external_coupling_trace_loop import (  # noqa: E402
     TraceLoopRun,
 )
+from pharmacotopology.folding_contact_law_features import (  # noqa: E402
+    contact_law_feature_rows_for_row,
+)
 from pharmacotopology.folding_nucleus_closure_search import (  # noqa: E402
     NucleusClosureEvent,
+    nucleus_closure_events_for_row,
 )
 
 from scripts.run_blind_external_holdout_battery_v0 import (  # noqa: E402
@@ -52,6 +57,7 @@ from scripts.run_blind_external_holdout_battery_v0 import (  # noqa: E402
     _phase_density_spine_scaffold_core,
     _phase_field_scaffold_core,
     _precision_recall_f1,
+    _region_density_scores,
     _resolve_path,
     _rounded,
     _scaffold_contact_metrics,
@@ -66,6 +72,9 @@ from scripts.run_blind_external_holdout_battery_v0 import (  # noqa: E402
 
 CACHED_MODE_SCORE_REPORT_KIND = "cached_contact_map_mode_score_v0"
 ROW_LOCAL_CRITICAL_MODE_SELECTOR = "cached_row_local_critical_mode_switch_v0"
+ANCHORED_SEQUENCE_COUPLING_BALANCE_SELECTOR = (
+    "cached_anchored_sequence_coupling_balance_v0"
+)
 DEFAULT_TARGET_MANIFEST = Path(
     "data/all_locked_real_external_coupling_holdout_manifest_v0.locked.json"
 )
@@ -521,6 +530,256 @@ def _cached_row_local_critical_switch_metrics(
     }
 
 
+def _normalized_score_map(
+    scores: Mapping[tuple[int, int], float | int],
+) -> dict[tuple[int, int], float]:
+    maximum = max((float(value) for value in scores.values()), default=0.0)
+    if maximum <= 0.0:
+        return {pair: 0.0 for pair in scores}
+    return {pair: float(value) / maximum for pair, value in scores.items()}
+
+
+def _self_critical_pair_gap_prefix(
+    scores: Mapping[tuple[int, int], float],
+    *,
+    max_count: int,
+) -> tuple[set[tuple[int, int]], float, float]:
+    ordered = [
+        (pair, score)
+        for pair, score in sorted(
+            scores.items(),
+            key=lambda item: (item[1], item[0]),
+            reverse=True,
+        )
+        if score > 0.0
+    ][: max(1, max_count)]
+    if not ordered:
+        return set(), 0.0, 0.0
+    top_score = ordered[0][1]
+    if len(ordered) == 1:
+        return {ordered[0][0]}, _rounded(top_score), 0.0
+    values = [score for _, score in ordered]
+    gap, boundary_index = max(
+        (
+            (values[index] - values[index + 1], index)
+            for index in range(len(values) - 1)
+        ),
+        key=lambda item: (item[0], values[item[1]], -item[1]),
+    )
+    return (
+        {pair for pair, _ in ordered[: boundary_index + 1]},
+        _rounded(top_score),
+        _rounded(gap),
+    )
+
+
+def _sequence_coupling_expansion_decision(
+    *,
+    phase_mode: str,
+    phase_radius: int,
+    selected_event_count: int,
+    anchor_count: int,
+    addition_count: int,
+) -> tuple[bool, str, int]:
+    compact_diagonal_limit = ceil(sqrt(max(1, anchor_count)) + phase_radius)
+    if phase_mode == "square":
+        return False, "square_phase_anchor_only", compact_diagonal_limit
+    if phase_mode == "point":
+        expansion_allowed = selected_event_count > 1 and addition_count > 1
+        return (
+            expansion_allowed,
+            (
+                "point_multi_event_sequence_balance"
+                if expansion_allowed
+                else "point_single_event_anchor_only"
+            ),
+            compact_diagonal_limit,
+        )
+    if phase_mode == "diagonal":
+        expansion_allowed = (
+            addition_count > 1 and addition_count <= compact_diagonal_limit
+        )
+        return (
+            expansion_allowed,
+            (
+                "diagonal_compact_sequence_balance"
+                if expansion_allowed
+                else "diagonal_diffuse_or_singleton_anchor_only"
+            ),
+            compact_diagonal_limit,
+        )
+    return False, "unsupported_phase_anchor_only", compact_diagonal_limit
+
+
+def _sequence_coupling_anchor_additions(
+    *,
+    row: object,
+    anchor_pairs: set[tuple[int, int]],
+    selected_events: Sequence[NucleusClosureEvent],
+    constraints: Sequence[object],
+    metadata: Mapping[str, object],
+) -> tuple[set[tuple[int, int]], dict[str, object]]:
+    sequence_features = contact_law_feature_rows_for_row(row)
+    sequence_events = nucleus_closure_events_for_row(row, sequence_features)
+    sequence_event_support: dict[tuple[int, int], float] = {}
+    for event in sequence_events:
+        event_support = max(
+            float(event.closure_event_stability),
+            float(event.nucleus_score),
+            float(event.contact_cluster_gain),
+        )
+        for pair in event.candidate_region_pairs():
+            if pair[1] - pair[0] < 24 or pair in anchor_pairs:
+                continue
+            sequence_event_support[pair] = max(
+                sequence_event_support.get(pair, 0.0),
+                event_support,
+            )
+
+    coupling_density = _region_density_scores(
+        region_pairs=set(sequence_event_support) | anchor_pairs,
+        constraints=constraints,
+    )
+    sequence_norm = _normalized_score_map(sequence_event_support)
+    coupling_norm = _normalized_score_map(coupling_density)
+    balance_scores = {
+        pair: min(sequence_norm.get(pair, 0.0), coupling_norm.get(pair, 0.0))
+        for pair in sequence_event_support
+    }
+    candidate_additions, top_score, boundary_gap = (
+        _self_critical_pair_gap_prefix(
+            balance_scores,
+            max_count=max(1, len(anchor_pairs)),
+        )
+    )
+    phase_mode = str(metadata.get("phase_mode", ""))
+    phase_radius = int(metadata.get("phase_radius", 0))
+    selected_event_count = len(selected_events)
+    anchor_count = len(anchor_pairs)
+    addition_count = len(candidate_additions)
+    expansion_allowed, expansion_reason, compact_diagonal_limit = (
+        _sequence_coupling_expansion_decision(
+            phase_mode=phase_mode,
+            phase_radius=phase_radius,
+            selected_event_count=selected_event_count,
+            anchor_count=anchor_count,
+            addition_count=addition_count,
+        )
+    )
+
+    return (
+        candidate_additions if expansion_allowed else set(),
+        {
+            "candidate_addition_count": addition_count,
+            "sequence_coupling_balance_top_score": top_score,
+            "sequence_coupling_balance_boundary_gap": boundary_gap,
+            "sequence_coupling_balance_phase_mode": phase_mode,
+            "sequence_coupling_balance_phase_radius": phase_radius,
+            "sequence_coupling_balance_compact_diagonal_limit": (
+                compact_diagonal_limit
+            ),
+            "sequence_coupling_balance_expansion_allowed": expansion_allowed,
+            "sequence_coupling_balance_expansion_reason": expansion_reason,
+        },
+    )
+
+
+def _cached_anchored_sequence_coupling_balance_metrics(
+    *,
+    rows: Sequence[object],
+    dataset: object,
+    selected_events: Sequence[NucleusClosureEvent],
+) -> dict[str, object]:
+    constraints_by_row = dataset.constraints_by_row_id()
+    selected_by_row: dict[str, list[NucleusClosureEvent]] = {}
+    for event in selected_events:
+        selected_by_row.setdefault(event.row_id, []).append(event)
+
+    precisions: list[float] = []
+    long_recalls: list[float] = []
+    f1s: list[float] = []
+    contact_counts: list[int] = []
+    perfect_flags: list[bool] = []
+    mode_trace: list[str] = []
+    feature_trace: list[str] = []
+    for row in rows:
+        native_pairs = set(row.native_contact_pairs())
+        native_long_pairs = {
+            pair for pair in native_pairs if pair[1] - pair[0] >= 24
+        }
+        row_events = tuple(selected_by_row.get(row.row_id, ()))
+        row_constraints = tuple(constraints_by_row.get(row.row_id, ()))
+        mode_pair_sets, metadata = _mode_pair_sets_for_row(
+            row=row,
+            selected_events=row_events,
+            constraints=row_constraints,
+        )
+        anchor_mode = _select_row_local_critical_mode(metadata)
+        anchor_pairs = set(mode_pair_sets.get(anchor_mode, set()))
+        additions, expansion_metadata = _sequence_coupling_anchor_additions(
+            row=row,
+            anchor_pairs=anchor_pairs,
+            selected_events=row_events,
+            constraints=row_constraints,
+            metadata=metadata,
+        )
+        balanced_pairs = anchor_pairs | additions
+        scores = _row_contact_scores(
+            balanced_pairs,
+            native_pairs=native_pairs,
+            native_long_pairs=native_long_pairs,
+        )
+        precisions.append(float(scores["precision"]))
+        long_recalls.append(float(scores["long_recall"]))
+        f1s.append(float(scores["precision_recall_f1"]))
+        contact_counts.append(int(scores["contact_count"]))
+        perfect_flags.append(bool(scores["contact_map_perfect"]))
+        mode_trace.append(
+            (
+                f"{row.row_id}:{anchor_mode}"
+                f":additions={len(additions)}"
+                f":reason={expansion_metadata['sequence_coupling_balance_expansion_reason']}"
+            )
+        )
+        feature_trace.append(
+            (
+                f"{row.row_id}:phase={metadata['phase_mode']}"
+                f":radius={metadata['phase_radius']}"
+                f":events={len(row_events)}"
+                f":candidate_additions={expansion_metadata['candidate_addition_count']}"
+                f":allowed={expansion_metadata['sequence_coupling_balance_expansion_allowed']}"
+            )
+        )
+
+    return {
+        "anchored_sequence_coupling_balance_selector_name": (
+            ANCHORED_SEQUENCE_COUPLING_BALANCE_SELECTOR
+        ),
+        "anchored_sequence_coupling_balance_claim_allowed": False,
+        "anchored_sequence_coupling_balance_exact_contact_precision": (
+            _rounded(mean(precisions)) if precisions else 0.0
+        ),
+        "anchored_sequence_coupling_balance_exact_long_range_contact_recall": (
+            _rounded(mean(long_recalls)) if long_recalls else 0.0
+        ),
+        "anchored_sequence_coupling_balance_precision_recall_f1": (
+            _rounded(mean(f1s)) if f1s else 0.0
+        ),
+        "anchored_sequence_coupling_balance_contact_count": (
+            sum(contact_counts)
+        ),
+        "anchored_sequence_coupling_balance_contact_map_perfect": (
+            bool(perfect_flags) and all(perfect_flags)
+        ),
+        "anchored_sequence_coupling_balance_mode_trace": ";".join(
+            mode_trace
+        ),
+        "anchored_sequence_coupling_balance_feature_trace": ";".join(
+            feature_trace
+        ),
+    }
+
+
 def _cached_contact_universe_ceiling_metrics(
     *,
     rows: Sequence[object],
@@ -702,6 +961,13 @@ def score_cached_contact_map_modes_v0(
                     selected_events=events,
                 )
             )
+            anchored_sequence_balance_metrics = (
+                _cached_anchored_sequence_coupling_balance_metrics(
+                    rows=rows,
+                    dataset=import_result.dataset,
+                    selected_events=events,
+                )
+            )
             contact_universe_ceiling_metrics = (
                 _cached_contact_universe_ceiling_metrics(
                     rows=rows,
@@ -721,6 +987,7 @@ def score_cached_contact_map_modes_v0(
             row_out.update(exact_metrics.to_dict())
             row_out.update(scaffold_metrics.to_dict())
             row_out.update(row_local_critical_metrics)
+            row_out.update(anchored_sequence_balance_metrics)
             row_out.update(contact_universe_ceiling_metrics)
             row_out.update(_external_coupling_quality_summary(external_coupling_file))
             output_rows.append(row_out)
@@ -746,6 +1013,22 @@ def score_cached_contact_map_modes_v0(
                 - float(
                     row.get(
                         "self_critical_quality_switch_precision_recall_f1",
+                        0.0,
+                    )
+                )
+            )
+        )
+        row["anchored_sequence_coupling_balance_delta_vs_row_local_critical_switch"] = (
+            _rounded(
+                float(
+                    row.get(
+                        "anchored_sequence_coupling_balance_precision_recall_f1",
+                        0.0,
+                    )
+                )
+                - float(
+                    row.get(
+                        "row_local_critical_switch_precision_recall_f1",
                         0.0,
                     )
                 )
@@ -799,6 +1082,18 @@ def score_cached_contact_map_modes_v0(
         "row_local_critical_switch_contact_map_perfect_rate": _mean_field(
             output_rows,
             "row_local_critical_switch_contact_map_perfect",
+        ),
+        "mean_anchored_sequence_coupling_balance_precision_recall_f1": _mean_field(
+            output_rows,
+            "anchored_sequence_coupling_balance_precision_recall_f1",
+        ),
+        "mean_anchored_sequence_coupling_balance_delta_vs_row_local_critical_switch": _mean_field(
+            output_rows,
+            "anchored_sequence_coupling_balance_delta_vs_row_local_critical_switch",
+        ),
+        "anchored_sequence_coupling_balance_contact_map_perfect_rate": _mean_field(
+            output_rows,
+            "anchored_sequence_coupling_balance_contact_map_perfect",
         ),
         "mean_event_union_ceiling_exact_long_range_contact_recall": _mean_field(
             output_rows,
