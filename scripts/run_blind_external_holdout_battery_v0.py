@@ -67,6 +67,9 @@ PAIR_RANDOMIZING_CONTROL_NAMES = frozenset(
         "external_random_long_range_same_count",
     }
 )
+SELF_CRITICAL_QUALITY_SWITCH_SELECTOR = (
+    "external_self_critical_coupling_quality_switch_v0"
+)
 
 
 @dataclass(frozen=True)
@@ -207,6 +210,62 @@ def _load_json(path: Path) -> Mapping[str, object]:
     if not isinstance(parsed, Mapping):
         raise ValueError(f"{path} must contain a JSON object")
     return parsed
+
+
+def _external_coupling_quality_summary(
+    external_coupling_file: Path,
+) -> dict[str, object]:
+    payload = _load_json(external_coupling_file)
+    raw_constraints = payload.get("constraints", [])
+    if not isinstance(raw_constraints, list):
+        raw_constraints = []
+    effseq_per_length_values: list[float] = []
+    rank_fraction_values: list[float] = []
+    score_values: list[float] = []
+    for raw_constraint in raw_constraints:
+        if not isinstance(raw_constraint, Mapping):
+            continue
+        raw_effseq_per_length = raw_constraint.get(
+            "effective_sequence_count_over_length"
+        )
+        if isinstance(raw_effseq_per_length, (int, float)):
+            effseq_per_length_values.append(float(raw_effseq_per_length))
+        raw_rank_fraction = raw_constraint.get("rank_fraction")
+        if isinstance(raw_rank_fraction, (int, float)):
+            rank_fraction_values.append(float(raw_rank_fraction))
+        raw_score = raw_constraint.get(
+            "apc_corrected_score",
+            raw_constraint.get("raw_score"),
+        )
+        if isinstance(raw_score, (int, float)):
+            score_values.append(float(raw_score))
+
+    return {
+        "coupling_quality_constraint_count": len(raw_constraints),
+        "coupling_quality_mean_effseq_per_length": (
+            _rounded(mean(effseq_per_length_values))
+            if effseq_per_length_values
+            else 0.0
+        ),
+        "coupling_quality_min_effseq_per_length": (
+            _rounded(min(effseq_per_length_values))
+            if effseq_per_length_values
+            else 0.0
+        ),
+        "coupling_quality_max_effseq_per_length": (
+            _rounded(max(effseq_per_length_values))
+            if effseq_per_length_values
+            else 0.0
+        ),
+        "coupling_quality_mean_rank_fraction": (
+            _rounded(mean(rank_fraction_values))
+            if rank_fraction_values
+            else 0.0
+        ),
+        "coupling_quality_mean_score": (
+            _rounded(mean(score_values)) if score_values else 0.0
+        ),
+    }
 
 
 def _resolve_path(raw: object, *, base_dir: Path) -> Path:
@@ -2031,6 +2090,112 @@ def _mean_field(rows: Sequence[Mapping[str, object]], field_name: str) -> float:
     return _rounded(mean(values)) if values else 0.0
 
 
+def _largest_gap_boundary(values: Sequence[float]) -> tuple[float, float, bool]:
+    unique_values = sorted(set(values))
+    if len(unique_values) < 2:
+        return 0.0, 0.0, False
+    gaps = [
+        (
+            _rounded(unique_values[index + 1] - unique_values[index]),
+            unique_values[index],
+            unique_values[index + 1],
+        )
+        for index in range(len(unique_values) - 1)
+    ]
+    gap, left, right = max(gaps, key=lambda item: item[0])
+    return _rounded((left + right) / 2.0), gap, True
+
+
+def _bool_field(value: object) -> bool:
+    return value is True or str(value) == "True"
+
+
+def _copy_switch_metric(
+    row: dict[str, object],
+    *,
+    selected_mode: str,
+    source_prefix: str,
+) -> None:
+    row["self_critical_quality_switch_mode"] = selected_mode
+    row["self_critical_quality_switch_scaffold_contact_count"] = row[
+        f"{source_prefix}_scaffold_contact_count"
+    ]
+    row["self_critical_quality_switch_exact_contact_precision"] = row[
+        f"{source_prefix}_scaffold_exact_contact_precision"
+    ]
+    row[
+        "self_critical_quality_switch_exact_long_range_contact_recall"
+    ] = row[f"{source_prefix}_scaffold_exact_long_range_contact_recall"]
+    row["self_critical_quality_switch_precision_recall_f1"] = row[
+        f"{source_prefix}_scaffold_precision_recall_f1"
+    ]
+    row["self_critical_quality_switch_contact_map_perfect"] = _bool_field(
+        row[f"{source_prefix}_scaffold_contact_map_perfect"]
+    )
+    row[
+        "self_critical_quality_switch_f1_delta_vs_phase_coverage"
+    ] = _rounded(
+        float(row["self_critical_quality_switch_precision_recall_f1"])
+        - float(row["phase_coverage_scaffold_precision_recall_f1"])
+    )
+    row[
+        "self_critical_quality_switch_f1_delta_vs_region_density_top_l"
+    ] = _rounded(
+        float(row["self_critical_quality_switch_precision_recall_f1"])
+        - float(row["region_density_top_l_scaffold_precision_recall_f1"])
+    )
+
+
+def _apply_self_critical_quality_switch(
+    target_rows: Sequence[dict[str, object]],
+) -> dict[str, object]:
+    quality_values = [
+        float(row.get("coupling_quality_mean_effseq_per_length", 0.0))
+        for row in target_rows
+    ]
+    boundary, boundary_gap, boundary_available = _largest_gap_boundary(
+        quality_values
+    )
+    for row in target_rows:
+        quality = float(row.get("coupling_quality_mean_effseq_per_length", 0.0))
+        row["self_critical_quality_switch_selector_name"] = (
+            SELF_CRITICAL_QUALITY_SWITCH_SELECTOR
+        )
+        row["self_critical_quality_switch_boundary_feature"] = (
+            "coupling_quality_mean_effseq_per_length"
+        )
+        row["self_critical_quality_switch_boundary_value"] = boundary
+        row["self_critical_quality_switch_boundary_gap"] = boundary_gap
+        row["self_critical_quality_switch_boundary_available"] = (
+            boundary_available
+        )
+        if boundary_available and quality > boundary:
+            _copy_switch_metric(
+                row,
+                selected_mode="region_density_top_l",
+                source_prefix="region_density_top_l",
+            )
+        else:
+            _copy_switch_metric(
+                row,
+                selected_mode="phase_coverage",
+                source_prefix="phase_coverage",
+            )
+
+    selected_modes = {
+        str(row.get("self_critical_quality_switch_mode", ""))
+        for row in target_rows
+    }
+    return {
+        "selector_name": SELF_CRITICAL_QUALITY_SWITCH_SELECTOR,
+        "boundary_feature": "coupling_quality_mean_effseq_per_length",
+        "boundary_value": boundary,
+        "boundary_gap": boundary_gap,
+        "boundary_available": boundary_available,
+        "selected_modes": tuple(sorted(selected_modes)),
+    }
+
+
 def _max_field(rows: Sequence[Mapping[str, object]], field_name: str) -> float:
     values = [float(row[field_name]) for row in rows]
     return _rounded(max(values)) if values else 0.0
@@ -2251,6 +2416,26 @@ def _folding_problem_solved_audit(
                 for row in target_rows
             )
         ),
+        "all_targets_self_critical_quality_switch_scaffold_contact_maps_perfect": (
+            bool(target_rows)
+            and all(
+                str(
+                    row.get(
+                        (
+                            "self_critical_quality_switch_"
+                            "contact_map_perfect"
+                        ),
+                        "False",
+                    )
+                )
+                == "True"
+                or row.get(
+                    "self_critical_quality_switch_contact_map_perfect"
+                )
+                is True
+                for row in target_rows
+            )
+        ),
         "universal_holdout_scope_declared": (
             str(manifest.get("holdout_scope", ""))
             == "all_available_complete_external_coupling_protein_targets"
@@ -2406,6 +2591,9 @@ def run_blind_external_holdout_battery_v0(
                 benchmark_file_sha256=benchmark_file_sha256,
                 external_coupling_file_sha256=coupling_file_sha256,
                 source_accessions=source_accessions,
+            )
+            target_row.update(
+                _external_coupling_quality_summary(external_coupling_file)
             )
             target_row["frontier_selector_name"] = FRONTIER_SELECTOR
             target_row["precision_boundary_selected_event_count"] = (
@@ -2574,6 +2762,9 @@ def run_blind_external_holdout_battery_v0(
                 }
             )
 
+    self_critical_quality_switch = _apply_self_critical_quality_switch(
+        target_rows
+    )
     classification = _battery_classification(
         target_rows=target_rows,
         control_rows=control_rows,
@@ -3017,6 +3208,59 @@ def run_blind_external_holdout_battery_v0(
                 "region_density_boundary_scaffold_contact_map_perfect",
             )
         ),
+        "self_critical_quality_switch": self_critical_quality_switch,
+        "mean_coupling_quality_effseq_per_length": _mean_field(
+            target_rows,
+            "coupling_quality_mean_effseq_per_length",
+        ),
+        "mean_self_critical_quality_switch_scaffold_contact_count": (
+            _mean_field(
+                target_rows,
+                "self_critical_quality_switch_scaffold_contact_count",
+            )
+        ),
+        "mean_self_critical_quality_switch_exact_contact_precision": (
+            _mean_field(
+                target_rows,
+                "self_critical_quality_switch_exact_contact_precision",
+            )
+        ),
+        "mean_self_critical_quality_switch_exact_long_range_contact_recall": (
+            _mean_field(
+                target_rows,
+                (
+                    "self_critical_quality_switch_"
+                    "exact_long_range_contact_recall"
+                ),
+            )
+        ),
+        "mean_self_critical_quality_switch_precision_recall_f1": (
+            _mean_field(
+                target_rows,
+                "self_critical_quality_switch_precision_recall_f1",
+            )
+        ),
+        "mean_self_critical_quality_switch_f1_delta_vs_phase_coverage": (
+            _mean_field(
+                target_rows,
+                "self_critical_quality_switch_f1_delta_vs_phase_coverage",
+            )
+        ),
+        "mean_self_critical_quality_switch_f1_delta_vs_region_density_top_l": (
+            _mean_field(
+                target_rows,
+                (
+                    "self_critical_quality_switch_f1_delta_vs_"
+                    "region_density_top_l"
+                ),
+            )
+        ),
+        "self_critical_quality_switch_contact_map_perfect_rate": (
+            _mean_field(
+                target_rows,
+                "self_critical_quality_switch_contact_map_perfect",
+            )
+        ),
         "frontier_control_win_rate": _mean_field(
             target_rows,
             "frontier_control_win",
@@ -3089,6 +3333,7 @@ def run_blind_external_holdout_battery_v0(
         "saturation_selector_name": SATURATION_BOUNDARY_SELECTOR,
         "precision_boundary_selector_name": PRECISION_BOUNDARY_SELECTOR,
         "target_manifest_sha256": target_manifest_sha256,
+        "self_critical_quality_switch": self_critical_quality_switch,
         "final_classification": classification,
         "folding_problem_solved": report["folding_problem_solved"],
         "folding_problem_solved_audit": folding_solved_audit,

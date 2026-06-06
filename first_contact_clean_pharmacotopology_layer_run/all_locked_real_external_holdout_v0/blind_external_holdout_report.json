@@ -1,7 +1,7 @@
 {
   "adjacent_density_patch_scaffold_contact_map_perfect_rate": 0.0,
   "claim_allowed": true,
-  "commit_hash": "bc1b3ba8599d591e031163e1ecc44ac6bee123c6",
+  "commit_hash": "6732c1765b4fbc3138914357a6dfd09c46fa834d",
   "compact_scaffold_contact_map_perfect_rate": 0.0,
   "control_names": [
     "external_random_long_range_same_count"
@@ -28,6 +28,7 @@
       "all_targets_region_density_boundary_scaffold_contact_maps_perfect": false,
       "all_targets_region_density_top_l_scaffold_contact_maps_perfect": false,
       "all_targets_scaffold_contact_maps_perfect": false,
+      "all_targets_self_critical_quality_switch_scaffold_contact_maps_perfect": false,
       "all_targets_zero_false_nucleus_rate": true,
       "atomic_coordinate_generation_validated": false,
       "exact_contact_signal_confirmed": true,
@@ -47,6 +48,7 @@
       "all_targets_phase_confidence_scaffold_contact_maps_perfect",
       "all_targets_region_density_top_l_scaffold_contact_maps_perfect",
       "all_targets_region_density_boundary_scaffold_contact_maps_perfect",
+      "all_targets_self_critical_quality_switch_scaffold_contact_maps_perfect",
       "universal_holdout_scope_declared",
       "all_existing_complete_targets_tested",
       "full_atomic_folding_available",
@@ -54,7 +56,7 @@
     ]
   },
   "frontier_control_win_rate": 0.5,
-  "generated_at_utc": "2026-06-06T14:59:34.041744+00:00",
+  "generated_at_utc": "2026-06-06T15:12:09.032044+00:00",
   "hard_gates": {
     "all_hard_gates_passed": true,
     "coordinate_truth_used_to_build_constraints": false,
@@ -83,6 +85,7 @@
   "mean_compact_scaffold_exact_long_range_contact_recall": 0.079788,
   "mean_compact_scaffold_precision_delta_vs_scaffold": 0.050665,
   "mean_compact_scaffold_recall_delta_vs_scaffold": -0.031143,
+  "mean_coupling_quality_effseq_per_length": 9.09432,
   "mean_density_compact_scaffold_contact_count": 97.5,
   "mean_density_compact_scaffold_exact_contact_precision": 0.353681,
   "mean_density_compact_scaffold_exact_long_range_contact_recall": 0.058669,
@@ -133,6 +136,12 @@
   "mean_scaffold_contact_recall_delta_vs_region": -0.541061,
   "mean_scaffold_exact_contact_precision": 0.187482,
   "mean_scaffold_exact_long_range_contact_recall": 0.110931,
+  "mean_self_critical_quality_switch_exact_contact_precision": 0.29308,
+  "mean_self_critical_quality_switch_exact_long_range_contact_recall": 0.25387,
+  "mean_self_critical_quality_switch_f1_delta_vs_phase_coverage": 0.080813,
+  "mean_self_critical_quality_switch_f1_delta_vs_region_density_top_l": 0.040371,
+  "mean_self_critical_quality_switch_precision_recall_f1": 0.255418,
+  "mean_self_critical_quality_switch_scaffold_contact_count": 375.5,
   "native_taint_violation_count": 0,
   "oracle_taint_violation_count": 0,
   "pair_randomizing_control_count": 8,
@@ -154,6 +163,18 @@
   "scaffold_contact_map_perfect_rate": 0.0,
   "selector_frozen_after_manifest": true,
   "selector_name": "external_multiscale_phase_aligned_external_novelty_frontier",
+  "self_critical_quality_switch": {
+    "boundary_available": true,
+    "boundary_feature": "coupling_quality_mean_effseq_per_length",
+    "boundary_gap": 7.439885,
+    "boundary_value": 9.008767,
+    "selected_modes": [
+      "phase_coverage",
+      "region_density_top_l"
+    ],
+    "selector_name": "external_self_critical_coupling_quality_switch_v0"
+  },
+  "self_critical_quality_switch_contact_map_perfect_rate": 0.0,
   "target_count": 4,
   "target_id_filter": [],
   "target_manifest": "data/all_locked_real_external_coupling_holdout_manifest_v0.locked.json",

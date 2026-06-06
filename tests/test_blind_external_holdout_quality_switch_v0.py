@@ -1,0 +1,77 @@
+from pathlib import Path
+import sys
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from scripts.run_blind_external_holdout_battery_v0 import (  # noqa: E402
+    SELF_CRITICAL_QUALITY_SWITCH_SELECTOR,
+    _apply_self_critical_quality_switch,
+)
+
+
+def _row(
+    *,
+    target_id: str,
+    quality: float,
+    phase_f1: float,
+    density_f1: float,
+) -> dict[str, object]:
+    return {
+        "target_id": target_id,
+        "coupling_quality_mean_effseq_per_length": quality,
+        "phase_coverage_scaffold_contact_count": 10,
+        "phase_coverage_scaffold_exact_contact_precision": 0.25,
+        "phase_coverage_scaffold_exact_long_range_contact_recall": phase_f1,
+        "phase_coverage_scaffold_precision_recall_f1": phase_f1,
+        "phase_coverage_scaffold_contact_map_perfect": False,
+        "region_density_top_l_scaffold_contact_count": 20,
+        "region_density_top_l_scaffold_exact_contact_precision": 0.5,
+        "region_density_top_l_scaffold_exact_long_range_contact_recall": (
+            density_f1
+        ),
+        "region_density_top_l_scaffold_precision_recall_f1": density_f1,
+        "region_density_top_l_scaffold_contact_map_perfect": False,
+    }
+
+
+def test_self_critical_quality_switch_uses_largest_non_native_quality_gap() -> None:
+    rows = [
+        _row(target_id="low_a", quality=5.2, phase_f1=0.24, density_f1=0.13),
+        _row(target_id="low_b", quality=5.3, phase_f1=0.23, density_f1=0.18),
+        _row(target_id="high_a", quality=12.7, phase_f1=0.09, density_f1=0.20),
+        _row(target_id="high_b", quality=13.2, phase_f1=0.13, density_f1=0.35),
+    ]
+
+    audit = _apply_self_critical_quality_switch(rows)
+
+    assert audit["selector_name"] == SELF_CRITICAL_QUALITY_SWITCH_SELECTOR
+    assert audit["boundary_available"] is True
+    assert audit["boundary_value"] == 9.0
+    assert audit["selected_modes"] == (
+        "phase_coverage",
+        "region_density_top_l",
+    )
+    assert [row["self_critical_quality_switch_mode"] for row in rows] == [
+        "phase_coverage",
+        "phase_coverage",
+        "region_density_top_l",
+        "region_density_top_l",
+    ]
+    assert [
+        row["self_critical_quality_switch_precision_recall_f1"]
+        for row in rows
+    ] == [0.24, 0.23, 0.20, 0.35]
+
+
+def test_self_critical_quality_switch_stays_conservative_without_batch_boundary() -> None:
+    rows = [
+        _row(target_id="single", quality=13.2, phase_f1=0.13, density_f1=0.35)
+    ]
+
+    audit = _apply_self_critical_quality_switch(rows)
+
+    assert audit["boundary_available"] is False
+    assert rows[0]["self_critical_quality_switch_mode"] == "phase_coverage"
+    assert rows[0]["self_critical_quality_switch_precision_recall_f1"] == 0.13
