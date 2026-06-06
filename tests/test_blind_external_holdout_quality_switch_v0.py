@@ -13,6 +13,7 @@ from scripts.score_cached_contact_map_modes_v0 import (  # noqa: E402
     ANCHORED_SEQUENCE_COUPLING_BALANCE_SELECTOR,
     ROW_LOCAL_CRITICAL_MODE_SELECTOR,
     _sequence_coupling_expansion_decision,
+    _sequence_feature_fallback_decision,
     _select_row_local_critical_mode,
 )
 
@@ -354,3 +355,22 @@ def test_anchored_sequence_coupling_balance_uses_compact_self_critical_gate() ->
         anchor_count=76,
         addition_count=56,
     ) == (False, "diagonal_diffuse_or_singleton_anchor_only", 15)
+
+    assert _sequence_feature_fallback_decision(
+        anchor_mode="region_density_top_l",
+        phase_mode="diagonal",
+        compact_diagonal_limit=15,
+        addition_count=2,
+    ) == (True, "feature_compact_density_anchor_balance")
+    assert _sequence_feature_fallback_decision(
+        anchor_mode="phase_coverage",
+        phase_mode="diagonal",
+        compact_diagonal_limit=19,
+        addition_count=1,
+    ) == (False, "feature_fallback_requires_density_anchor")
+    assert _sequence_feature_fallback_decision(
+        anchor_mode="region_density_top_l",
+        phase_mode="square",
+        compact_diagonal_limit=21,
+        addition_count=4,
+    ) == (False, "feature_fallback_square_phase_anchor_only")

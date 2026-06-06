@@ -611,9 +611,34 @@ def _sequence_coupling_expansion_decision(
     return False, "unsupported_phase_anchor_only", compact_diagonal_limit
 
 
+def _sequence_feature_fallback_decision(
+    *,
+    anchor_mode: str,
+    phase_mode: str,
+    compact_diagonal_limit: int,
+    addition_count: int,
+) -> tuple[bool, str]:
+    if anchor_mode != "region_density_top_l":
+        return False, "feature_fallback_requires_density_anchor"
+    if phase_mode == "square":
+        return False, "feature_fallback_square_phase_anchor_only"
+    expansion_allowed = (
+        addition_count > 1 and addition_count <= compact_diagonal_limit
+    )
+    return (
+        expansion_allowed,
+        (
+            "feature_compact_density_anchor_balance"
+            if expansion_allowed
+            else "feature_diffuse_or_singleton_anchor_only"
+        ),
+    )
+
+
 def _sequence_coupling_anchor_additions(
     *,
     row: object,
+    anchor_mode: str,
     anchor_pairs: set[tuple[int, int]],
     selected_events: Sequence[NucleusClosureEvent],
     constraints: Sequence[object],
@@ -635,20 +660,37 @@ def _sequence_coupling_anchor_additions(
                 sequence_event_support.get(pair, 0.0),
                 event_support,
             )
+    sequence_feature_support: dict[tuple[int, int], float] = {}
+    for feature in sequence_features:
+        pair = feature.pair()
+        if feature.sequence_separation < 24 or pair in anchor_pairs:
+            continue
+        sequence_feature_support[pair] = max(
+            float(feature.pair_plus_cluster_plus_entropy_score),
+            float(feature.pair_plus_cluster_score),
+        )
 
     coupling_density = _region_density_scores(
-        region_pairs=set(sequence_event_support) | anchor_pairs,
+        region_pairs=(
+            set(sequence_event_support)
+            | set(sequence_feature_support)
+            | anchor_pairs
+        ),
         constraints=constraints,
     )
-    sequence_norm = _normalized_score_map(sequence_event_support)
+    sequence_event_norm = _normalized_score_map(sequence_event_support)
+    sequence_feature_norm = _normalized_score_map(sequence_feature_support)
     coupling_norm = _normalized_score_map(coupling_density)
-    balance_scores = {
-        pair: min(sequence_norm.get(pair, 0.0), coupling_norm.get(pair, 0.0))
+    event_balance_scores = {
+        pair: min(
+            sequence_event_norm.get(pair, 0.0),
+            coupling_norm.get(pair, 0.0),
+        )
         for pair in sequence_event_support
     }
-    candidate_additions, top_score, boundary_gap = (
+    event_candidate_additions, event_top_score, event_boundary_gap = (
         _self_critical_pair_gap_prefix(
-            balance_scores,
+            event_balance_scores,
             max_count=max(1, len(anchor_pairs)),
         )
     )
@@ -656,30 +698,69 @@ def _sequence_coupling_anchor_additions(
     phase_radius = int(metadata.get("phase_radius", 0))
     selected_event_count = len(selected_events)
     anchor_count = len(anchor_pairs)
-    addition_count = len(candidate_additions)
+    event_addition_count = len(event_candidate_additions)
     expansion_allowed, expansion_reason, compact_diagonal_limit = (
         _sequence_coupling_expansion_decision(
             phase_mode=phase_mode,
             phase_radius=phase_radius,
             selected_event_count=selected_event_count,
             anchor_count=anchor_count,
-            addition_count=addition_count,
+            addition_count=event_addition_count,
         )
     )
+    selected_additions = (
+        event_candidate_additions if expansion_allowed else set()
+    )
+    expansion_source = "event" if expansion_allowed else "none"
+
+    feature_balance_scores = {
+        pair: sequence_feature_norm.get(pair, 0.0)
+        * coupling_norm.get(pair, 0.0)
+        for pair in sequence_feature_support
+    }
+    feature_candidate_additions, feature_top_score, feature_boundary_gap = (
+        _self_critical_pair_gap_prefix(
+            feature_balance_scores,
+            max_count=max(1, len(anchor_pairs) // 2),
+        )
+    )
+    feature_expansion_allowed, feature_expansion_reason = (
+        _sequence_feature_fallback_decision(
+            anchor_mode=anchor_mode,
+            phase_mode=phase_mode,
+            compact_diagonal_limit=compact_diagonal_limit,
+            addition_count=len(feature_candidate_additions),
+        )
+    )
+    if not expansion_allowed and feature_expansion_allowed:
+        selected_additions = feature_candidate_additions
+        expansion_reason = feature_expansion_reason
+        expansion_source = "feature"
+    elif not expansion_allowed:
+        expansion_reason = feature_expansion_reason
 
     return (
-        candidate_additions if expansion_allowed else set(),
+        selected_additions,
         {
-            "candidate_addition_count": addition_count,
-            "sequence_coupling_balance_top_score": top_score,
-            "sequence_coupling_balance_boundary_gap": boundary_gap,
+            "candidate_addition_count": len(selected_additions),
+            "event_candidate_addition_count": event_addition_count,
+            "feature_candidate_addition_count": len(
+                feature_candidate_additions
+            ),
+            "sequence_coupling_balance_top_score": event_top_score,
+            "sequence_coupling_balance_boundary_gap": event_boundary_gap,
+            "feature_coupling_balance_top_score": feature_top_score,
+            "feature_coupling_balance_boundary_gap": feature_boundary_gap,
             "sequence_coupling_balance_phase_mode": phase_mode,
             "sequence_coupling_balance_phase_radius": phase_radius,
             "sequence_coupling_balance_compact_diagonal_limit": (
                 compact_diagonal_limit
             ),
-            "sequence_coupling_balance_expansion_allowed": expansion_allowed,
+            "sequence_coupling_balance_expansion_allowed": bool(
+                selected_additions
+            ),
             "sequence_coupling_balance_expansion_reason": expansion_reason,
+            "sequence_coupling_balance_expansion_source": expansion_source,
         },
     )
 
@@ -718,6 +799,7 @@ def _cached_anchored_sequence_coupling_balance_metrics(
         anchor_pairs = set(mode_pair_sets.get(anchor_mode, set()))
         additions, expansion_metadata = _sequence_coupling_anchor_additions(
             row=row,
+            anchor_mode=anchor_mode,
             anchor_pairs=anchor_pairs,
             selected_events=row_events,
             constraints=row_constraints,
@@ -738,6 +820,7 @@ def _cached_anchored_sequence_coupling_balance_metrics(
             (
                 f"{row.row_id}:{anchor_mode}"
                 f":additions={len(additions)}"
+                f":source={expansion_metadata['sequence_coupling_balance_expansion_source']}"
                 f":reason={expansion_metadata['sequence_coupling_balance_expansion_reason']}"
             )
         )
