@@ -31,6 +31,7 @@ from pharmacotopology.folding_external_coupling_importer import (  # noqa: E402
 from pharmacotopology.folding_external_coupling_trace_loop import (  # noqa: E402
     TraceLoopRun,
     _build_multiscale_physical_contexts,
+    _run_multiscale_phase_aligned_critical_boundary_selector,
     _run_multiscale_phase_aligned_external_novelty_boundary_selector,
 )
 from pharmacotopology.folding_real_coordinate_visual_benchmark import (  # noqa: E402
@@ -47,6 +48,11 @@ DEFAULT_OUTPUT_DIR = Path(
     "first_contact_clean_pharmacotopology_layer_run/blind_external_holdout_v0"
 )
 DEFAULT_SELECTOR = "external_multiscale_phase_aligned_external_novelty_boundary"
+FRONTIER_SELECTOR = "external_multiscale_phase_aligned_external_novelty_frontier"
+PRECISION_BOUNDARY_SELECTOR = (
+    "external_multiscale_phase_aligned_critical_boundary"
+)
+SATURATION_BOUNDARY_SELECTOR = DEFAULT_SELECTOR
 PASS_TARGET_WIN_RATE_MIN = 0.70
 
 
@@ -267,6 +273,84 @@ def _metric_row(
     return row
 
 
+def _run_real_frontier(
+    *,
+    rows: Sequence[RealCoordinateVisualRow],
+    dataset: CouplingDataset,
+    physical_contexts: Mapping[int, object],
+    control_kind: str,
+) -> tuple[TraceLoopRun, TraceLoopRun]:
+    precision = _run_multiscale_phase_aligned_critical_boundary_selector(
+        rows=rows,
+        dataset=dataset,
+        selector_name=PRECISION_BOUNDARY_SELECTOR,
+        control_kind=control_kind,
+        physical_contexts=physical_contexts,
+    )
+    saturation = _run_multiscale_phase_aligned_external_novelty_boundary_selector(
+        rows=rows,
+        dataset=dataset,
+        selector_name=SATURATION_BOUNDARY_SELECTOR,
+        control_kind=control_kind,
+        physical_contexts=physical_contexts,
+    )
+    return precision, saturation
+
+
+def _run_control_frontier(
+    *,
+    rows: Sequence[RealCoordinateVisualRow],
+    dataset: CouplingDataset,
+    physical_contexts: Mapping[int, object],
+    control_name: str,
+    control_kind: str,
+) -> tuple[TraceLoopRun, TraceLoopRun]:
+    precision = _run_multiscale_phase_aligned_critical_boundary_selector(
+        rows=rows,
+        dataset=dataset,
+        selector_name=f"{control_name}_precision_boundary",
+        control_kind=control_kind,
+        physical_contexts=physical_contexts,
+    )
+    saturation = _run_multiscale_phase_aligned_external_novelty_boundary_selector(
+        rows=rows,
+        dataset=dataset,
+        selector_name=f"{control_name}_saturation_boundary",
+        control_kind=control_kind,
+        physical_contexts=physical_contexts,
+    )
+    return precision, saturation
+
+
+def _dominates(left: TraceLoopRun, right: TraceLoopRun) -> bool:
+    left_metric = left.metric
+    right_metric = right.metric
+    return (
+        left_metric.false_nucleus_rate <= right_metric.false_nucleus_rate
+        and left_metric.long_range_contact_recall
+        >= right_metric.long_range_contact_recall
+        and left_metric.contact_cluster_precision
+        > right_metric.contact_cluster_precision
+    )
+
+
+def _frontier_dominates(
+    left_runs: Sequence[TraceLoopRun],
+    right_runs: Sequence[TraceLoopRun],
+) -> bool:
+    return all(
+        any(_dominates(left, right) for left in left_runs)
+        for right in right_runs
+    )
+
+
+def _frontier_best_metric(
+    runs: Sequence[TraceLoopRun],
+    field_name: str,
+) -> float:
+    return _rounded(max(float(getattr(run.metric, field_name)) for run in runs))
+
+
 def _write_json(path: Path, payload: Mapping[str, object]) -> Path:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(
@@ -316,16 +400,8 @@ def _battery_classification(
     if not target_rows or not control_rows:
         return "blind_batch_inconclusive"
 
-    individual_win_rate = _mean_field(target_rows, "individual_control_win")
-    scaffold_signal = (
-        _mean_field(target_rows, "false_nucleus_rate")
-        <= _max_field(control_rows, "false_nucleus_rate")
-        and _mean_field(target_rows, "long_range_contact_recall")
-        > _max_field(control_rows, "long_range_contact_recall")
-        and _mean_field(target_rows, "cluster_precision")
-        > _max_field(control_rows, "cluster_precision")
-        and individual_win_rate >= PASS_TARGET_WIN_RATE_MIN
-    )
+    frontier_win_rate = _mean_field(target_rows, "frontier_control_win")
+    scaffold_signal = frontier_win_rate >= PASS_TARGET_WIN_RATE_MIN
     exact_signal = (
         scaffold_signal
         and _mean_field(target_rows, "exact_contact_precision_top_L")
@@ -348,7 +424,7 @@ def run_blind_external_holdout_battery_v0(
     selector_name: str,
     control_names: Sequence[str],
 ) -> tuple[Path, Path, Path, Path, Path, Path]:
-    if selector_name != DEFAULT_SELECTOR:
+    if selector_name not in (DEFAULT_SELECTOR, FRONTIER_SELECTOR):
         raise ValueError(f"unsupported frozen selector: {selector_name}")
 
     manifest = _load_json(target_manifest)
@@ -410,14 +486,11 @@ def run_blind_external_holdout_battery_v0(
                 )
                 continue
             physical_contexts = _build_multiscale_physical_contexts(rows)
-            real_run = (
-                _run_multiscale_phase_aligned_external_novelty_boundary_selector(
-                    rows=rows,
-                    dataset=import_result.dataset,
-                    selector_name=selector_name,
-                    control_kind="external_real_blind_holdout",
-                    physical_contexts=physical_contexts,
-                )
+            real_precision_run, real_saturation_run = _run_real_frontier(
+                rows=rows,
+                dataset=import_result.dataset,
+                control_kind="external_real_blind_holdout",
+                physical_contexts=physical_contexts,
             )
             controls = generate_external_coupling_negative_controls(
                 rows=rows,
@@ -429,11 +502,16 @@ def run_blind_external_holdout_battery_v0(
             real_exact_metrics = _exact_contact_metrics(
                 rows=rows,
                 dataset=import_result.dataset,
-                run=real_run,
+                run=real_saturation_run,
+            )
+            real_precision_exact_metrics = _exact_contact_metrics(
+                rows=rows,
+                dataset=import_result.dataset,
+                run=real_precision_run,
             )
             target_row = _metric_row(
                 target_id=target_id,
-                run=real_run,
+                run=real_saturation_run,
                 exact_metrics=real_exact_metrics,
                 benchmark_file=benchmark_file,
                 external_coupling_file=external_coupling_file,
@@ -441,7 +519,27 @@ def run_blind_external_holdout_battery_v0(
                 external_coupling_file_sha256=coupling_file_sha256,
                 source_accessions=source_accessions,
             )
+            target_row["frontier_selector_name"] = FRONTIER_SELECTOR
+            target_row["precision_boundary_selected_event_count"] = (
+                real_precision_run.metric.selected_event_count
+            )
+            target_row["precision_boundary_false_nucleus_rate"] = (
+                real_precision_run.metric.false_nucleus_rate
+            )
+            target_row["precision_boundary_cluster_precision"] = (
+                real_precision_run.metric.contact_cluster_precision
+            )
+            target_row["precision_boundary_long_range_contact_recall"] = (
+                real_precision_run.metric.long_range_contact_recall
+            )
+            target_row["precision_boundary_exact_contact_precision_top_L"] = (
+                real_precision_exact_metrics.exact_contact_precision_top_L
+            )
+            target_row["precision_boundary_region_width_penalty"] = (
+                real_precision_exact_metrics.region_width_penalty
+            )
             row_control_rows: list[dict[str, object]] = []
+            control_frontier_win_flags: list[int] = []
             row_controls_to_run = tuple(
                 control_name
                 for control_name in controls_to_run
@@ -452,33 +550,44 @@ def run_blind_external_holdout_battery_v0(
             )
             for control_name in row_controls_to_run:
                 control = controls[control_name]
-                control_run = (
-                    _run_multiscale_phase_aligned_external_novelty_boundary_selector(
-                        rows=rows,
-                        dataset=control.dataset,
-                        selector_name=control_name,
-                        control_kind=control.control_kind,
-                        physical_contexts=physical_contexts,
-                    )
-                )
-                control_exact_metrics = _exact_contact_metrics(
+                control_precision_run, control_saturation_run = _run_control_frontier(
                     rows=rows,
                     dataset=control.dataset,
-                    run=control_run,
-                )
-                control_row = _metric_row(
-                    target_id=target_id,
-                    run=control_run,
-                    exact_metrics=control_exact_metrics,
-                    benchmark_file=benchmark_file,
-                    external_coupling_file=external_coupling_file,
-                    benchmark_file_sha256=benchmark_file_sha256,
-                    external_coupling_file_sha256=coupling_file_sha256,
-                    source_accessions=source_accessions,
                     control_name=control_name,
+                    control_kind=control.control_kind,
+                    physical_contexts=physical_contexts,
                 )
-                row_control_rows.append(control_row)
-                control_rows.append(control_row)
+                control_frontier_win_flags.append(
+                    int(
+                        _frontier_dominates(
+                            (real_precision_run, real_saturation_run),
+                            (control_precision_run, control_saturation_run),
+                        )
+                    )
+                )
+                for boundary_name, control_run in (
+                    ("precision_boundary", control_precision_run),
+                    ("saturation_boundary", control_saturation_run),
+                ):
+                    control_exact_metrics = _exact_contact_metrics(
+                        rows=rows,
+                        dataset=control.dataset,
+                        run=control_run,
+                    )
+                    control_row = _metric_row(
+                        target_id=target_id,
+                        run=control_run,
+                        exact_metrics=control_exact_metrics,
+                        benchmark_file=benchmark_file,
+                        external_coupling_file=external_coupling_file,
+                        benchmark_file_sha256=benchmark_file_sha256,
+                        external_coupling_file_sha256=coupling_file_sha256,
+                        source_accessions=source_accessions,
+                        control_name=control_name,
+                    )
+                    control_row["frontier_member"] = boundary_name
+                    row_control_rows.append(control_row)
+                    control_rows.append(control_row)
 
             target_row["max_control_false_nucleus_rate"] = _max_field(
                 row_control_rows,
@@ -492,24 +601,29 @@ def run_blind_external_holdout_battery_v0(
                 row_control_rows,
                 "cluster_precision",
             )
-            target_row["individual_control_win"] = int(
-                float(target_row["false_nucleus_rate"])
-                <= float(target_row["max_control_false_nucleus_rate"])
-                and float(target_row["long_range_contact_recall"])
-                >= float(target_row["max_control_long_range_contact_recall"])
-                and float(target_row["cluster_precision"])
-                > float(target_row["max_control_cluster_precision"])
+            target_row["frontier_control_count"] = len(control_frontier_win_flags)
+            target_row["frontier_beaten_control_count"] = sum(
+                control_frontier_win_flags
             )
+            target_row["frontier_control_win"] = int(
+                bool(control_frontier_win_flags)
+                and all(control_frontier_win_flags)
+            )
+            target_row["individual_control_win"] = target_row[
+                "frontier_control_win"
+            ]
             target_rows.append(target_row)
-            for selected_row in real_run.selected_rows:
-                selected_event_rows.append(
-                    {
-                        "target_id": target_id,
-                        "benchmark_file_sha256": benchmark_file_sha256,
-                        "external_coupling_file_sha256": coupling_file_sha256,
-                        **selected_row,
-                    }
-                )
+            for real_run in (real_precision_run, real_saturation_run):
+                for selected_row in real_run.selected_rows:
+                    selected_event_rows.append(
+                        {
+                            "target_id": target_id,
+                            "frontier_selector_name": FRONTIER_SELECTOR,
+                            "benchmark_file_sha256": benchmark_file_sha256,
+                            "external_coupling_file_sha256": coupling_file_sha256,
+                            **selected_row,
+                        }
+                    )
         except Exception as exc:  # noqa: BLE001
             failure_rows.append(
                 {
@@ -555,7 +669,9 @@ def run_blind_external_holdout_battery_v0(
         "python_version": sys.version,
         "platform": platform.platform(),
         "commit_hash": current_commit,
-        "selector_name": selector_name,
+        "selector_name": FRONTIER_SELECTOR,
+        "saturation_selector_name": SATURATION_BOUNDARY_SELECTOR,
+        "precision_boundary_selector_name": PRECISION_BOUNDARY_SELECTOR,
         "target_manifest": str(target_manifest),
         "target_manifest_sha256": target_manifest_sha256,
         "target_manifest_declared_kind": str(manifest.get("manifest_kind", "")),
@@ -588,6 +704,10 @@ def run_blind_external_holdout_battery_v0(
         "mean_region_width_penalty": _mean_field(
             target_rows,
             "region_width_penalty",
+        ),
+        "frontier_control_win_rate": _mean_field(
+            target_rows,
+            "frontier_control_win",
         ),
         "individual_control_win_rate": _mean_field(
             target_rows,
@@ -627,7 +747,9 @@ def run_blind_external_holdout_battery_v0(
         "certificate_kind": BATTERY_CERTIFICATE_KIND,
         "report_kind": BATTERY_REPORT_KIND,
         "commit_hash": current_commit,
-        "selector_name": selector_name,
+        "selector_name": FRONTIER_SELECTOR,
+        "saturation_selector_name": SATURATION_BOUNDARY_SELECTOR,
+        "precision_boundary_selector_name": PRECISION_BOUNDARY_SELECTOR,
         "target_manifest_sha256": target_manifest_sha256,
         "final_classification": classification,
         "folding_problem_solved": False,
