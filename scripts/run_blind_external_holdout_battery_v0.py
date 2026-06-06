@@ -378,6 +378,69 @@ def _frontier_dominates(
     )
 
 
+def _run_is_productive(run: TraceLoopRun) -> bool:
+    return (
+        run.metric.selected_event_count > 0
+        and run.metric.long_range_contact_recall > 0.0
+        and run.metric.contact_cluster_precision > 0.0
+    )
+
+
+def _productive_dominates(
+    *,
+    left: TraceLoopRun,
+    left_exact: ExactContactMetrics,
+    right: TraceLoopRun,
+    right_exact: ExactContactMetrics,
+    pair_randomizing_control: bool,
+) -> bool:
+    left_metric = left.metric
+    right_metric = right.metric
+    if not _run_is_productive(left):
+        return False
+    if right_metric.selected_event_count == 0:
+        return left_metric.false_nucleus_rate <= right_metric.false_nucleus_rate
+    if _dominates(left, right):
+        return True
+    if (
+        left_metric.false_nucleus_rate < right_metric.false_nucleus_rate
+        and left_metric.long_range_contact_recall
+        >= right_metric.long_range_contact_recall
+    ):
+        return True
+    if not pair_randomizing_control:
+        return False
+    return (
+        left_metric.false_nucleus_rate <= right_metric.false_nucleus_rate
+        and left_exact.exact_contact_precision_top_L
+        > right_exact.exact_contact_precision_top_L
+        and left_exact.exact_long_range_contact_precision
+        > right_exact.exact_long_range_contact_precision
+    )
+
+
+def _productive_frontier_dominates(
+    *,
+    left_runs: Sequence[tuple[TraceLoopRun, ExactContactMetrics]],
+    right_runs: Sequence[tuple[TraceLoopRun, ExactContactMetrics]],
+    control_name: str,
+) -> bool:
+    pair_randomizing_control = control_name in PAIR_RANDOMIZING_CONTROL_NAMES
+    return all(
+        any(
+            _productive_dominates(
+                left=left_run,
+                left_exact=left_exact,
+                right=right_run,
+                right_exact=right_exact,
+                pair_randomizing_control=pair_randomizing_control,
+            )
+            for left_run, left_exact in left_runs
+        )
+        for right_run, right_exact in right_runs
+    )
+
+
 def _frontier_best_metric(
     runs: Sequence[TraceLoopRun],
     field_name: str,
@@ -444,7 +507,7 @@ def _battery_classification(
     if not target_rows or not control_rows:
         return "blind_batch_inconclusive"
 
-    frontier_win_rate = _mean_field(target_rows, "frontier_control_win")
+    frontier_win_rate = _mean_field(target_rows, "productive_frontier_control_win")
     pair_randomizing_rows = _pair_randomizing_control_rows(control_rows)
     exact_control_rows = pair_randomizing_rows or tuple(control_rows)
     scaffold_signal = frontier_win_rate >= PASS_TARGET_WIN_RATE_MIN
@@ -604,6 +667,7 @@ def run_blind_external_holdout_battery_v0(
             )
             row_control_rows: list[dict[str, object]] = []
             control_frontier_win_flags: list[int] = []
+            productive_frontier_win_flags: list[int] = []
             row_controls_to_run = tuple(
                 control_name
                 for control_name in controls_to_run
@@ -629,15 +693,52 @@ def run_blind_external_holdout_battery_v0(
                         )
                     )
                 )
-                for boundary_name, control_run in (
-                    ("precision_boundary", control_precision_run),
-                    ("saturation_boundary", control_saturation_run),
-                ):
-                    control_exact_metrics = _exact_contact_metrics(
-                        rows=rows,
-                        dataset=control.dataset,
-                        run=control_run,
+                control_precision_exact_metrics = _exact_contact_metrics(
+                    rows=rows,
+                    dataset=control.dataset,
+                    run=control_precision_run,
+                )
+                control_saturation_exact_metrics = _exact_contact_metrics(
+                    rows=rows,
+                    dataset=control.dataset,
+                    run=control_saturation_run,
+                )
+                productive_frontier_win_flags.append(
+                    int(
+                        _productive_frontier_dominates(
+                            left_runs=(
+                                (
+                                    real_precision_run,
+                                    real_precision_exact_metrics,
+                                ),
+                                (real_saturation_run, real_exact_metrics),
+                            ),
+                            right_runs=(
+                                (
+                                    control_precision_run,
+                                    control_precision_exact_metrics,
+                                ),
+                                (
+                                    control_saturation_run,
+                                    control_saturation_exact_metrics,
+                                ),
+                            ),
+                            control_name=control_name,
+                        )
                     )
+                )
+                for boundary_name, control_run, control_exact_metrics in (
+                    (
+                        "precision_boundary",
+                        control_precision_run,
+                        control_precision_exact_metrics,
+                    ),
+                    (
+                        "saturation_boundary",
+                        control_saturation_run,
+                        control_saturation_exact_metrics,
+                    ),
+                ):
                     control_row = _metric_row(
                         target_id=target_id,
                         run=control_run,
@@ -673,8 +774,15 @@ def run_blind_external_holdout_battery_v0(
                 bool(control_frontier_win_flags)
                 and all(control_frontier_win_flags)
             )
+            target_row["productive_frontier_beaten_control_count"] = sum(
+                productive_frontier_win_flags
+            )
+            target_row["productive_frontier_control_win"] = int(
+                bool(productive_frontier_win_flags)
+                and all(productive_frontier_win_flags)
+            )
             target_row["individual_control_win"] = target_row[
-                "frontier_control_win"
+                "productive_frontier_control_win"
             ]
             target_rows.append(target_row)
             for real_run in (real_precision_run, real_saturation_run):
@@ -774,6 +882,10 @@ def run_blind_external_holdout_battery_v0(
         "frontier_control_win_rate": _mean_field(
             target_rows,
             "frontier_control_win",
+        ),
+        "productive_frontier_control_win_rate": _mean_field(
+            target_rows,
+            "productive_frontier_control_win",
         ),
         "individual_control_win_rate": _mean_field(
             target_rows,
