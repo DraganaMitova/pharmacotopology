@@ -274,6 +274,12 @@ def build_query_centered_hmmer_plmc_couplings_v0(
         ),
     )
     payload["external_constraint_count"] = len(payload["constraints"])
+    payload["coupling_source_kind"] = "external_msa_dca_plmc_v1"
+    payload["external_evolutionary_couplings_used"] = True
+    payload["coordinate_truth_used_to_build_constraints"] = False
+    payload["native_truth_used_before_coupling_selection"] = False
+    payload["oracle_constraint_control"] = False
+    payload["dca_tool_mode"] = "query_centered_hmmer_plmc_fast"
     payload[f"hmmer_query_centered_{row.source_accession.replace(':', '_')}_added"] = True
     payload[
         f"hmmer_query_centered_{row.source_accession.replace(':', '_')}_alignment_sha256"

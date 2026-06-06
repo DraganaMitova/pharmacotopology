@@ -33,6 +33,7 @@ from pharmacotopology.folding_external_coupling_trace_loop import (  # noqa: E40
     _build_multiscale_physical_contexts,
     _run_multiscale_phase_aligned_critical_boundary_selector,
     _run_multiscale_phase_aligned_external_novelty_boundary_selector,
+    _run_multiscale_phase_aligned_footprint_novelty_boundary_selector,
 )
 from pharmacotopology.folding_real_coordinate_visual_benchmark import (  # noqa: E402
     RealCoordinateVisualRow,
@@ -47,13 +48,24 @@ DEFAULT_COUPLING_DIR = Path("data/blind_external_couplings_v0")
 DEFAULT_OUTPUT_DIR = Path(
     "first_contact_clean_pharmacotopology_layer_run/blind_external_holdout_v0"
 )
-DEFAULT_SELECTOR = "external_multiscale_phase_aligned_external_novelty_boundary"
+DEFAULT_SELECTOR = "external_multiscale_phase_aligned_footprint_novelty_boundary"
+EXTERNAL_NOVELTY_SELECTOR = (
+    "external_multiscale_phase_aligned_external_novelty_boundary"
+)
+FOOTPRINT_NOVELTY_SELECTOR = DEFAULT_SELECTOR
 FRONTIER_SELECTOR = "external_multiscale_phase_aligned_external_novelty_frontier"
 PRECISION_BOUNDARY_SELECTOR = (
     "external_multiscale_phase_aligned_critical_boundary"
 )
 SATURATION_BOUNDARY_SELECTOR = DEFAULT_SELECTOR
 PASS_TARGET_WIN_RATE_MIN = 0.70
+PAIR_RANDOMIZING_CONTROL_NAMES = frozenset(
+    {
+        "external_shuffled_same_row_same_separation",
+        "external_cross_row_swapped",
+        "external_random_long_range_same_count",
+    }
+)
 
 
 @dataclass(frozen=True)
@@ -287,13 +299,24 @@ def _run_real_frontier(
         control_kind=control_kind,
         physical_contexts=physical_contexts,
     )
-    saturation = _run_multiscale_phase_aligned_external_novelty_boundary_selector(
-        rows=rows,
-        dataset=dataset,
-        selector_name=SATURATION_BOUNDARY_SELECTOR,
-        control_kind=control_kind,
-        physical_contexts=physical_contexts,
-    )
+    if SATURATION_BOUNDARY_SELECTOR == FOOTPRINT_NOVELTY_SELECTOR:
+        saturation = (
+            _run_multiscale_phase_aligned_footprint_novelty_boundary_selector(
+                rows=rows,
+                dataset=dataset,
+                selector_name=SATURATION_BOUNDARY_SELECTOR,
+                control_kind=control_kind,
+                physical_contexts=physical_contexts,
+            )
+        )
+    else:
+        saturation = _run_multiscale_phase_aligned_external_novelty_boundary_selector(
+            rows=rows,
+            dataset=dataset,
+            selector_name=EXTERNAL_NOVELTY_SELECTOR,
+            control_kind=control_kind,
+            physical_contexts=physical_contexts,
+        )
     return precision, saturation
 
 
@@ -312,13 +335,24 @@ def _run_control_frontier(
         control_kind=control_kind,
         physical_contexts=physical_contexts,
     )
-    saturation = _run_multiscale_phase_aligned_external_novelty_boundary_selector(
-        rows=rows,
-        dataset=dataset,
-        selector_name=f"{control_name}_saturation_boundary",
-        control_kind=control_kind,
-        physical_contexts=physical_contexts,
-    )
+    if SATURATION_BOUNDARY_SELECTOR == FOOTPRINT_NOVELTY_SELECTOR:
+        saturation = (
+            _run_multiscale_phase_aligned_footprint_novelty_boundary_selector(
+                rows=rows,
+                dataset=dataset,
+                selector_name=f"{control_name}_footprint_novelty_boundary",
+                control_kind=control_kind,
+                physical_contexts=physical_contexts,
+            )
+        )
+    else:
+        saturation = _run_multiscale_phase_aligned_external_novelty_boundary_selector(
+            rows=rows,
+            dataset=dataset,
+            selector_name=f"{control_name}_external_novelty_boundary",
+            control_kind=control_kind,
+            physical_contexts=physical_contexts,
+        )
     return precision, saturation
 
 
@@ -380,6 +414,16 @@ def _max_field(rows: Sequence[Mapping[str, object]], field_name: str) -> float:
     return _rounded(max(values)) if values else 0.0
 
 
+def _pair_randomizing_control_rows(
+    rows: Sequence[Mapping[str, object]],
+) -> tuple[Mapping[str, object], ...]:
+    return tuple(
+        row
+        for row in rows
+        if str(row.get("control_name", "")) in PAIR_RANDOMIZING_CONTROL_NAMES
+    )
+
+
 def _battery_classification(
     *,
     target_rows: Sequence[Mapping[str, object]],
@@ -401,13 +445,15 @@ def _battery_classification(
         return "blind_batch_inconclusive"
 
     frontier_win_rate = _mean_field(target_rows, "frontier_control_win")
+    pair_randomizing_rows = _pair_randomizing_control_rows(control_rows)
+    exact_control_rows = pair_randomizing_rows or tuple(control_rows)
     scaffold_signal = frontier_win_rate >= PASS_TARGET_WIN_RATE_MIN
     exact_signal = (
         scaffold_signal
         and _mean_field(target_rows, "exact_contact_precision_top_L")
-        > _max_field(control_rows, "exact_contact_precision_top_L")
+        > _max_field(exact_control_rows, "exact_contact_precision_top_L")
         and _mean_field(target_rows, "exact_long_range_contact_precision")
-        > _max_field(control_rows, "exact_long_range_contact_precision")
+        > _max_field(exact_control_rows, "exact_long_range_contact_precision")
     )
     if exact_signal:
         return "blind_batch_exact_contact_signal_confirmed"
@@ -425,7 +471,11 @@ def run_blind_external_holdout_battery_v0(
     control_names: Sequence[str],
     target_ids: Sequence[str] = (),
 ) -> tuple[Path, Path, Path, Path, Path, Path]:
-    if selector_name not in (DEFAULT_SELECTOR, FRONTIER_SELECTOR):
+    if selector_name not in (
+        DEFAULT_SELECTOR,
+        EXTERNAL_NOVELTY_SELECTOR,
+        FRONTIER_SELECTOR,
+    ):
         raise ValueError(f"unsupported frozen selector: {selector_name}")
 
     manifest = _load_json(target_manifest)
@@ -677,6 +727,7 @@ def run_blind_external_holdout_battery_v0(
         and bool(hard_gates["target_manifest_frozen"])
         and bool(hard_gates["selector_frozen_after_manifest"])
     )
+    pair_randomizing_control_rows = _pair_randomizing_control_rows(control_rows)
     report = {
         "report_kind": BATTERY_REPORT_KIND,
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
@@ -747,6 +798,27 @@ def run_blind_external_holdout_battery_v0(
         "max_control_exact_long_range_contact_precision": _max_field(
             control_rows,
             "exact_long_range_contact_precision",
+        ),
+        "pair_randomizing_control_count": len(pair_randomizing_control_rows),
+        "pair_randomizing_control_names": tuple(
+            sorted(
+                {
+                    str(row.get("control_name", ""))
+                    for row in pair_randomizing_control_rows
+                }
+            )
+        ),
+        "max_pair_randomizing_control_exact_contact_precision_top_L": (
+            _max_field(
+                pair_randomizing_control_rows,
+                "exact_contact_precision_top_L",
+            )
+        ),
+        "max_pair_randomizing_control_exact_long_range_contact_precision": (
+            _max_field(
+                pair_randomizing_control_rows,
+                "exact_long_range_contact_precision",
+            )
         ),
         "hard_gates": hard_gates,
         "final_classification": classification,

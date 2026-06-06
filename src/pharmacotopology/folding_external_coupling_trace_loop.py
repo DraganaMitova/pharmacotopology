@@ -776,6 +776,78 @@ def _phase_aligned_external_novelty_boundary_items(
     return selected_items
 
 
+def _segment_overlap_length(
+    left_start: int,
+    left_end: int,
+    right_start: int,
+    right_end: int,
+) -> int:
+    return max(0, min(left_end, right_end) - max(left_start, right_start) + 1)
+
+
+def _same_phase_footprint(
+    left: MultiScaleSelectedEvent,
+    right: MultiScaleSelectedEvent,
+) -> bool:
+    left_event = left.event
+    right_event = right.event
+    if left_event.row_id != right_event.row_id:
+        return False
+    left_a_width = left_event.segment_a_end - left_event.segment_a_start + 1
+    left_b_width = left_event.segment_b_end - left_event.segment_b_start + 1
+    right_a_width = right_event.segment_a_end - right_event.segment_a_start + 1
+    right_b_width = right_event.segment_b_end - right_event.segment_b_start + 1
+    a_overlap = _segment_overlap_length(
+        left_event.segment_a_start,
+        left_event.segment_a_end,
+        right_event.segment_a_start,
+        right_event.segment_a_end,
+    )
+    b_overlap = _segment_overlap_length(
+        left_event.segment_b_start,
+        left_event.segment_b_end,
+        right_event.segment_b_start,
+        right_event.segment_b_end,
+    )
+    return (
+        a_overlap * 2 >= min(left_a_width, right_a_width)
+        and b_overlap * 2 >= min(left_b_width, right_b_width)
+    )
+
+
+def _phase_aligned_external_footprint_novelty_boundary_items(
+    *,
+    rows: Sequence[RealCoordinateVisualRow],
+    dataset: CouplingDataset,
+    physical_contexts: Mapping[int, ActivePhysicalContext],
+) -> list[MultiScaleSelectedEvent]:
+    selected_items = _phase_aligned_external_novelty_boundary_items(
+        rows=rows,
+        dataset=dataset,
+        physical_contexts=physical_contexts,
+    )
+    ordered = sorted(
+        selected_items,
+        key=lambda item: (
+            _multiscale_critical_coherence_score(item),
+            len(_multiscale_direct_constraint_pairs(item)),
+            item.event.closure_event_stability,
+            -item.segment_length,
+            item.event.event_id,
+        ),
+        reverse=True,
+    )
+    footprint_novel_items: list[MultiScaleSelectedEvent] = []
+    for item in ordered:
+        if any(
+            _same_phase_footprint(item, kept_item)
+            for kept_item in footprint_novel_items
+        ):
+            continue
+        footprint_novel_items.append(item)
+    return footprint_novel_items
+
+
 def _run_multiscale_phase_aligned_external_novelty_boundary_selector(
     *,
     rows: Sequence[RealCoordinateVisualRow],
@@ -785,6 +857,39 @@ def _run_multiscale_phase_aligned_external_novelty_boundary_selector(
     physical_contexts: Mapping[int, ActivePhysicalContext],
 ) -> TraceLoopRun:
     selected_items = _phase_aligned_external_novelty_boundary_items(
+        rows=rows,
+        dataset=dataset,
+        physical_contexts=physical_contexts,
+    )
+    metric = _multiscale_metric(
+        rows=rows,
+        dataset=dataset,
+        selector_name=selector_name,
+        selected_items=selected_items,
+    )
+    return TraceLoopRun(
+        selector_name=selector_name,
+        dataset=dataset,
+        metric=metric,
+        selected_events=tuple(item.event for item in selected_items),
+        selected_rows=_multiscale_selected_rows(
+            selector_name=selector_name,
+            selected_items=selected_items,
+        ),
+        constraint_count=len(dataset.constraints),
+        control_kind=control_kind,
+    )
+
+
+def _run_multiscale_phase_aligned_footprint_novelty_boundary_selector(
+    *,
+    rows: Sequence[RealCoordinateVisualRow],
+    dataset: CouplingDataset,
+    selector_name: str,
+    control_kind: str,
+    physical_contexts: Mapping[int, ActivePhysicalContext],
+) -> TraceLoopRun:
+    selected_items = _phase_aligned_external_footprint_novelty_boundary_items(
         rows=rows,
         dataset=dataset,
         physical_contexts=physical_contexts,

@@ -111,6 +111,48 @@ def _focus_alignment_from_exact_record(
     return prefix + domain_focus + suffix
 
 
+def _focus_alignment_from_occupancy_columns(
+    *,
+    records: OrderedDict[str, str],
+    sequence: str,
+    row_id: str,
+    domain_start: int,
+    domain_end: int,
+) -> str:
+    domain_sequence = sequence[domain_start - 1 : domain_end]
+    width = max((len(alignment) for alignment in records.values()), default=0)
+    if width < len(domain_sequence):
+        raise ValueError(
+            f"{row_id} alignment width {width} is shorter than domain "
+            f"{domain_start}-{domain_end}"
+        )
+    occupancies: list[tuple[int, int]] = []
+    for index in range(width):
+        occupied = sum(
+            1
+            for alignment in records.values()
+            if index < len(alignment) and alignment[index].isalpha()
+        )
+        occupancies.append((occupied, index))
+    match_columns = sorted(
+        index
+        for _, index in sorted(
+            occupancies,
+            key=lambda item: (-item[0], item[1]),
+        )[: len(domain_sequence)]
+    )
+    if len(match_columns) != len(domain_sequence):
+        raise ValueError(
+            f"{row_id} could not infer {len(domain_sequence)} match columns"
+        )
+    focus = ["."] * width
+    for residue, index in zip(domain_sequence, match_columns):
+        focus[index] = residue
+    prefix = sequence[: domain_start - 1].lower()
+    suffix = sequence[domain_end:].lower()
+    return prefix + "".join(focus) + suffix
+
+
 def build_hmmer_stockholm_focus_fasta_v0(
     *,
     benchmark_file: Path,
@@ -122,6 +164,7 @@ def build_hmmer_stockholm_focus_fasta_v0(
     domain_start: int = 1,
     domain_end: Optional[int] = None,
     focus_record_name: Optional[str] = None,
+    allow_occupancy_focus_fallback: bool = False,
 ) -> Path:
     rows = tuple(load_real_coordinate_visual_rows(benchmark_file))
     row_by_id = {row.row_id: row for row in rows}
@@ -137,14 +180,25 @@ def build_hmmer_stockholm_focus_fasta_v0(
             domain_end=domain_end,
         )
     else:
-        focus_alignment = _focus_alignment_from_exact_record(
-            records=records,
-            sequence=row.sequence,
-            row_id=row_id,
-            domain_start=domain_start,
-            domain_end=domain_end,
-            focus_record_name=focus_record_name,
-        )
+        try:
+            focus_alignment = _focus_alignment_from_exact_record(
+                records=records,
+                sequence=row.sequence,
+                row_id=row_id,
+                domain_start=domain_start,
+                domain_end=domain_end,
+                focus_record_name=focus_record_name,
+            )
+        except ValueError:
+            if not allow_occupancy_focus_fallback:
+                raise
+            focus_alignment = _focus_alignment_from_occupancy_columns(
+                records=records,
+                sequence=row.sequence,
+                row_id=row_id,
+                domain_start=domain_start,
+                domain_end=domain_end,
+            )
     prefix_gap = "-" * (domain_start - 1)
     suffix_gap = "-" * (row.sequence_length - domain_end)
     output.parent.mkdir(parents=True, exist_ok=True)
@@ -179,6 +233,7 @@ def main() -> None:
     parser.add_argument("--domain-start", type=int, default=1)
     parser.add_argument("--domain-end", type=int)
     parser.add_argument("--focus-record-name")
+    parser.add_argument("--allow-occupancy-focus-fallback", action="store_true")
     args = parser.parse_args()
     output = build_hmmer_stockholm_focus_fasta_v0(
         benchmark_file=Path(args.benchmark_file),
@@ -190,6 +245,7 @@ def main() -> None:
         domain_start=args.domain_start,
         domain_end=args.domain_end,
         focus_record_name=args.focus_record_name,
+        allow_occupancy_focus_fallback=args.allow_occupancy_focus_fallback,
     )
     print(output)
 
