@@ -5,7 +5,7 @@ import gzip
 import sys
 from collections import OrderedDict
 from pathlib import Path
-from typing import Optional
+from typing import Optional, Sequence
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 SRC_ROOT = REPO_ROOT / "src"
@@ -26,9 +26,16 @@ def _open_text(path: Path):
     return path.open("r", encoding="utf-8", errors="replace")
 
 
-def _read_stockholm(path: Path) -> tuple[OrderedDict[str, str], str]:
+def _read_stockholm(
+    path: Path,
+    *,
+    record_limit: Optional[int] = None,
+    focus_record_name: Optional[str] = None,
+) -> tuple[OrderedDict[str, str], str, tuple[int, ...]]:
     records: OrderedDict[str, list[str]] = OrderedDict()
     reference_fragments: list[str] = []
+    occupancy_counts: list[int] = []
+    alignment_width_by_name: dict[str, int] = {}
     with _open_text(path) as file:
         for line in file:
             stripped = line.strip()
@@ -43,9 +50,26 @@ def _read_stockholm(path: Path) -> tuple[OrderedDict[str, str], str]:
             if stripped.startswith("#"):
                 continue
             name, fragment = parts[0], parts[1]
+            column_offset = alignment_width_by_name.get(name, 0)
+            for fragment_index, char in enumerate(fragment):
+                column_index = column_offset + fragment_index
+                while len(occupancy_counts) <= column_index:
+                    occupancy_counts.append(0)
+                if char.isalpha():
+                    occupancy_counts[column_index] += 1
+            alignment_width_by_name[name] = column_offset + len(fragment)
+            if (
+                name not in records
+                and record_limit is not None
+                and len(records) >= record_limit
+                and name != focus_record_name
+            ):
+                continue
             records.setdefault(name, []).append(fragment)
-    return OrderedDict((name, "".join(parts)) for name, parts in records.items()), "".join(
-        reference_fragments
+    return (
+        OrderedDict((name, "".join(parts)) for name, parts in records.items()),
+        "".join(reference_fragments),
+        tuple(occupancy_counts),
     )
 
 
@@ -114,26 +138,29 @@ def _focus_alignment_from_exact_record(
 def _focus_alignment_from_occupancy_columns(
     *,
     records: OrderedDict[str, str],
+    occupancy_counts: Sequence[int],
     sequence: str,
     row_id: str,
     domain_start: int,
     domain_end: int,
 ) -> str:
     domain_sequence = sequence[domain_start - 1 : domain_end]
-    width = max((len(alignment) for alignment in records.values()), default=0)
+    width = max(
+        len(occupancy_counts),
+        max((len(alignment) for alignment in records.values()), default=0),
+    )
     if width < len(domain_sequence):
         raise ValueError(
             f"{row_id} alignment width {width} is shorter than domain "
             f"{domain_start}-{domain_end}"
         )
-    occupancies: list[tuple[int, int]] = []
-    for index in range(width):
-        occupied = sum(
-            1
-            for alignment in records.values()
-            if index < len(alignment) and alignment[index].isalpha()
+    occupancies = [
+        (
+            occupancy_counts[index] if index < len(occupancy_counts) else 0,
+            index,
         )
-        occupancies.append((occupied, index))
+        for index in range(width)
+    ]
     match_columns = sorted(
         index
         for _, index in sorted(
@@ -170,7 +197,16 @@ def build_hmmer_stockholm_focus_fasta_v0(
     row_by_id = {row.row_id: row for row in rows}
     row = row_by_id[row_id]
     domain_end = domain_end or row.sequence_length
-    records, rf = _read_stockholm(stockholm_file)
+    record_limit = (
+        max_records
+        if allow_occupancy_focus_fallback and not focus_record_name
+        else None
+    )
+    records, rf, occupancy_counts = _read_stockholm(
+        stockholm_file,
+        record_limit=record_limit,
+        focus_record_name=focus_record_name,
+    )
     if rf:
         focus_alignment = _focus_alignment_from_rf(
             rf=rf,
@@ -194,6 +230,7 @@ def build_hmmer_stockholm_focus_fasta_v0(
                 raise
             focus_alignment = _focus_alignment_from_occupancy_columns(
                 records=records,
+                occupancy_counts=occupancy_counts,
                 sequence=row.sequence,
                 row_id=row_id,
                 domain_start=domain_start,
