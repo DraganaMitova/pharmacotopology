@@ -1,7 +1,7 @@
 {
   "adjacent_density_patch_scaffold_contact_map_perfect_rate": 0.0,
   "claim_allowed": true,
-  "commit_hash": "1e9494dee3c35807d1cae8e1e2d380bdddff8eda",
+  "commit_hash": "2d04baddd43641997fe3d9de866a0a15f71e5916",
   "compact_scaffold_contact_map_perfect_rate": 0.0,
   "control_names": [
     "external_shuffled_same_row_same_separation",
@@ -24,6 +24,7 @@
       "all_targets_adjacent_density_patch_scaffold_contact_maps_perfect": false,
       "all_targets_compact_scaffold_contact_maps_perfect": false,
       "all_targets_density_compact_scaffold_contact_maps_perfect": false,
+      "all_targets_phase_field_scaffold_contact_maps_perfect": false,
       "all_targets_productive_frontier_win": true,
       "all_targets_scaffold_contact_maps_perfect": false,
       "all_targets_zero_false_nucleus_rate": true,
@@ -39,6 +40,7 @@
       "all_targets_compact_scaffold_contact_maps_perfect",
       "all_targets_density_compact_scaffold_contact_maps_perfect",
       "all_targets_adjacent_density_patch_scaffold_contact_maps_perfect",
+      "all_targets_phase_field_scaffold_contact_maps_perfect",
       "universal_holdout_scope_declared",
       "all_existing_complete_targets_tested",
       "full_atomic_folding_available",
@@ -46,7 +48,7 @@
     ]
   },
   "frontier_control_win_rate": 0.5,
-  "generated_at_utc": "2026-06-06T13:40:30.670238+00:00",
+  "generated_at_utc": "2026-06-06T13:57:02.048236+00:00",
   "hard_gates": {
     "all_hard_gates_passed": true,
     "coordinate_truth_used_to_build_constraints": false,
@@ -85,6 +87,11 @@
   "mean_exact_long_range_contact_precision": 0.167175,
   "mean_false_nucleus_rate": 0.0,
   "mean_long_range_contact_recall": 0.631463,
+  "mean_phase_field_scaffold_contact_count": 48.5,
+  "mean_phase_field_scaffold_exact_contact_precision": 0.475958,
+  "mean_phase_field_scaffold_exact_long_range_contact_recall": 0.091996,
+  "mean_phase_field_scaffold_precision_delta_vs_adjacent_density_patch": 0.053544,
+  "mean_phase_field_scaffold_recall_delta_vs_adjacent_density_patch": 0.039122,
   "mean_region_width_penalty": 0.959987,
   "mean_scaffold_contact_count": 114.0,
   "mean_scaffold_contact_precision_delta_vs_top_L": 0.02358,
@@ -98,6 +105,7 @@
     "external_random_long_range_same_count",
     "external_shuffled_same_row_same_separation"
   ],
+  "phase_field_scaffold_contact_map_perfect_rate": 0.0,
   "platform": "macOS-26.3.1-arm64-arm-64bit",
   "precision_boundary_selector_name": "external_multiscale_phase_aligned_critical_boundary",
   "productive_frontier_control_win_rate": 1.0,
