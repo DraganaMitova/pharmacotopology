@@ -81,6 +81,19 @@ class ExactContactMetrics:
         return asdict(self)
 
 
+@dataclass(frozen=True)
+class ScaffoldContactMetrics:
+    scaffold_contact_count: int
+    scaffold_exact_contact_precision: float
+    scaffold_exact_long_range_contact_recall: float
+    scaffold_contact_precision_delta_vs_top_L: float
+    scaffold_contact_recall_delta_vs_region: float
+    scaffold_contact_map_perfect: bool
+
+    def to_dict(self) -> dict[str, object]:
+        return asdict(self)
+
+
 def _rounded(value: float) -> float:
     return round(value, 6)
 
@@ -237,11 +250,73 @@ def _exact_contact_metrics(
     )
 
 
+def _scaffold_contact_metrics(
+    *,
+    rows: Sequence[RealCoordinateVisualRow],
+    dataset: CouplingDataset,
+    run: TraceLoopRun,
+    exact_metrics: ExactContactMetrics,
+) -> ScaffoldContactMetrics:
+    constraints_by_row = dataset.constraints_by_row_id()
+    selected_by_row: dict[str, list[object]] = {}
+    for event in run.selected_events:
+        selected_by_row.setdefault(event.row_id, []).append(event)
+
+    precisions: list[float] = []
+    long_recalls: list[float] = []
+    contact_counts: list[int] = []
+    perfect_flags: list[bool] = []
+    for row in rows:
+        native_pairs = set(row.native_contact_pairs())
+        native_long = {pair for pair in native_pairs if pair[1] - pair[0] >= 24}
+        selected_events = selected_by_row.get(row.row_id, [])
+        scaffold_pairs: set[tuple[int, int]] = set()
+        for constraint in constraints_by_row.get(row.row_id, ()):
+            constraint_pair = constraint.pair()
+            if any(
+                constraint_pair in event.candidate_region_pairs()
+                for event in selected_events
+            ):
+                scaffold_pairs.add(constraint_pair)
+        supported = scaffold_pairs & native_pairs
+        supported_long = scaffold_pairs & native_long
+        precision = (
+            _rounded(len(supported) / len(scaffold_pairs))
+            if scaffold_pairs
+            else 0.0
+        )
+        long_recall = (
+            _rounded(len(supported_long) / len(native_long))
+            if native_long
+            else 1.0
+        )
+        precisions.append(precision)
+        long_recalls.append(long_recall)
+        contact_counts.append(len(scaffold_pairs))
+        perfect_flags.append(precision == 1.0 and long_recall == 1.0)
+
+    precision = _rounded(mean(precisions)) if precisions else 0.0
+    long_recall = _rounded(mean(long_recalls)) if long_recalls else 0.0
+    return ScaffoldContactMetrics(
+        scaffold_contact_count=sum(contact_counts),
+        scaffold_exact_contact_precision=precision,
+        scaffold_exact_long_range_contact_recall=long_recall,
+        scaffold_contact_precision_delta_vs_top_L=_rounded(
+            precision - exact_metrics.exact_contact_precision_top_L
+        ),
+        scaffold_contact_recall_delta_vs_region=_rounded(
+            long_recall - run.metric.long_range_contact_recall
+        ),
+        scaffold_contact_map_perfect=bool(perfect_flags) and all(perfect_flags),
+    )
+
+
 def _metric_row(
     *,
     target_id: str,
     run: TraceLoopRun,
     exact_metrics: ExactContactMetrics,
+    scaffold_metrics: ScaffoldContactMetrics,
     benchmark_file: Path,
     external_coupling_file: Path,
     benchmark_file_sha256: str,
@@ -282,6 +357,7 @@ def _metric_row(
         "raw_sequence_exposed": metric.raw_sequence_exposed,
     }
     row.update(exact_metrics.to_dict())
+    row.update(scaffold_metrics.to_dict())
     return row
 
 
@@ -550,6 +626,14 @@ def _folding_problem_solved_audit(
                 for row in target_rows
             )
         ),
+        "all_targets_scaffold_contact_maps_perfect": (
+            bool(target_rows)
+            and all(
+                str(row.get("scaffold_contact_map_perfect", "False")) == "True"
+                or row.get("scaffold_contact_map_perfect") is True
+                for row in target_rows
+            )
+        ),
         "universal_holdout_scope_declared": (
             str(manifest.get("holdout_scope", ""))
             == "all_available_complete_external_coupling_protein_targets"
@@ -684,6 +768,12 @@ def run_blind_external_holdout_battery_v0(
                 dataset=import_result.dataset,
                 run=real_saturation_run,
             )
+            real_scaffold_metrics = _scaffold_contact_metrics(
+                rows=rows,
+                dataset=import_result.dataset,
+                run=real_saturation_run,
+                exact_metrics=real_exact_metrics,
+            )
             real_precision_exact_metrics = _exact_contact_metrics(
                 rows=rows,
                 dataset=import_result.dataset,
@@ -693,6 +783,7 @@ def run_blind_external_holdout_battery_v0(
                 target_id=target_id,
                 run=real_saturation_run,
                 exact_metrics=real_exact_metrics,
+                scaffold_metrics=real_scaffold_metrics,
                 benchmark_file=benchmark_file,
                 external_coupling_file=external_coupling_file,
                 benchmark_file_sha256=benchmark_file_sha256,
@@ -796,6 +887,12 @@ def run_blind_external_holdout_battery_v0(
                         target_id=target_id,
                         run=control_run,
                         exact_metrics=control_exact_metrics,
+                        scaffold_metrics=_scaffold_contact_metrics(
+                            rows=rows,
+                            dataset=control.dataset,
+                            run=control_run,
+                            exact_metrics=control_exact_metrics,
+                        ),
                         benchmark_file=benchmark_file,
                         external_coupling_file=external_coupling_file,
                         benchmark_file_sha256=benchmark_file_sha256,
@@ -938,6 +1035,30 @@ def run_blind_external_holdout_battery_v0(
         "mean_region_width_penalty": _mean_field(
             target_rows,
             "region_width_penalty",
+        ),
+        "mean_scaffold_contact_count": _mean_field(
+            target_rows,
+            "scaffold_contact_count",
+        ),
+        "mean_scaffold_exact_contact_precision": _mean_field(
+            target_rows,
+            "scaffold_exact_contact_precision",
+        ),
+        "mean_scaffold_exact_long_range_contact_recall": _mean_field(
+            target_rows,
+            "scaffold_exact_long_range_contact_recall",
+        ),
+        "mean_scaffold_contact_precision_delta_vs_top_L": _mean_field(
+            target_rows,
+            "scaffold_contact_precision_delta_vs_top_L",
+        ),
+        "mean_scaffold_contact_recall_delta_vs_region": _mean_field(
+            target_rows,
+            "scaffold_contact_recall_delta_vs_region",
+        ),
+        "scaffold_contact_map_perfect_rate": _mean_field(
+            target_rows,
+            "scaffold_contact_map_perfect",
         ),
         "frontier_control_win_rate": _mean_field(
             target_rows,
