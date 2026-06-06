@@ -177,6 +177,13 @@ class ScaffoldContactMetrics:
     phase_density_conflict_shell_scaffold_precision_delta_vs_phase_density_conflict_consensus: float
     phase_density_conflict_shell_scaffold_recall_delta_vs_phase_density_conflict_consensus: float
     phase_density_conflict_shell_scaffold_contact_map_perfect: bool
+    phase_density_conflict_phase_confidence_scaffold_contact_count: int
+    phase_density_conflict_phase_confidence_scaffold_exact_contact_precision: float
+    phase_density_conflict_phase_confidence_scaffold_exact_long_range_contact_recall: float
+    phase_density_conflict_phase_confidence_scaffold_precision_recall_f1: float
+    phase_density_conflict_phase_confidence_scaffold_precision_delta_vs_phase_density_conflict_shell: float
+    phase_density_conflict_phase_confidence_scaffold_recall_delta_vs_phase_density_conflict_shell: float
+    phase_density_conflict_phase_confidence_scaffold_contact_map_perfect: bool
 
     def to_dict(self) -> dict[str, object]:
         return asdict(self)
@@ -1170,6 +1177,28 @@ def _phase_density_conflict_shell_scaffold_core(
     )
 
 
+def _phase_density_conflict_phase_confidence_scaffold_core(
+    *,
+    row_length: int,
+    conflict_pairs: set[tuple[int, int]],
+    phase_confidence_pairs: set[tuple[int, int]],
+    phase_mode: str,
+) -> set[tuple[int, int]]:
+    if phase_mode != "square":
+        return _phase_density_conflict_shell_scaffold_core(
+            row_length=row_length,
+            conflict_pairs=conflict_pairs,
+        )
+    return (
+        _square_extend_pairs(
+            row_length=row_length,
+            pairs=conflict_pairs,
+            span=1,
+        )
+        | phase_confidence_pairs
+    )
+
+
 def _top_l_region_density_scaffold_core(
     *,
     row_length: int,
@@ -1286,6 +1315,11 @@ def _scaffold_contact_metrics(
     phase_density_conflict_shell_f1s: list[float] = []
     phase_density_conflict_shell_contact_counts: list[int] = []
     phase_density_conflict_shell_perfect_flags: list[bool] = []
+    phase_density_conflict_phase_confidence_precisions: list[float] = []
+    phase_density_conflict_phase_confidence_long_recalls: list[float] = []
+    phase_density_conflict_phase_confidence_f1s: list[float] = []
+    phase_density_conflict_phase_confidence_contact_counts: list[int] = []
+    phase_density_conflict_phase_confidence_perfect_flags: list[bool] = []
     for row in rows:
         native_pairs = set(row.native_contact_pairs())
         native_long = {pair for pair in native_pairs if pair[1] - pair[0] >= 24}
@@ -1417,6 +1451,14 @@ def _scaffold_contact_metrics(
                 conflict_pairs=phase_density_conflict_consensus_pairs,
             )
         )
+        phase_density_conflict_phase_confidence_pairs = (
+            _phase_density_conflict_phase_confidence_scaffold_core(
+                row_length=row.sequence_length,
+                conflict_pairs=phase_density_conflict_consensus_pairs,
+                phase_confidence_pairs=phase_confidence_pairs,
+                phase_mode=phase_field_mode,
+            )
+        )
         supported = scaffold_pairs & native_pairs
         supported_long = scaffold_pairs & native_long
         compact_supported = compact_pairs & native_pairs
@@ -1466,6 +1508,12 @@ def _scaffold_contact_metrics(
         )
         phase_density_conflict_shell_supported_long = (
             phase_density_conflict_shell_pairs & native_long
+        )
+        phase_density_conflict_phase_confidence_supported = (
+            phase_density_conflict_phase_confidence_pairs & native_pairs
+        )
+        phase_density_conflict_phase_confidence_supported_long = (
+            phase_density_conflict_phase_confidence_pairs & native_long
         )
         precision = (
             _rounded(len(supported) / len(scaffold_pairs))
@@ -1798,6 +1846,42 @@ def _scaffold_contact_metrics(
             phase_density_conflict_shell_precision == 1.0
             and phase_density_conflict_shell_long_recall == 1.0
         )
+        phase_density_conflict_phase_confidence_precision = (
+            _rounded(
+                len(phase_density_conflict_phase_confidence_supported)
+                / len(phase_density_conflict_phase_confidence_pairs)
+            )
+            if phase_density_conflict_phase_confidence_pairs
+            else 0.0
+        )
+        phase_density_conflict_phase_confidence_long_recall = (
+            _rounded(
+                len(phase_density_conflict_phase_confidence_supported_long)
+                / len(native_long)
+            )
+            if native_long
+            else 1.0
+        )
+        phase_density_conflict_phase_confidence_f1 = _precision_recall_f1(
+            phase_density_conflict_phase_confidence_precision,
+            phase_density_conflict_phase_confidence_long_recall,
+        )
+        phase_density_conflict_phase_confidence_precisions.append(
+            phase_density_conflict_phase_confidence_precision
+        )
+        phase_density_conflict_phase_confidence_long_recalls.append(
+            phase_density_conflict_phase_confidence_long_recall
+        )
+        phase_density_conflict_phase_confidence_f1s.append(
+            phase_density_conflict_phase_confidence_f1
+        )
+        phase_density_conflict_phase_confidence_contact_counts.append(
+            len(phase_density_conflict_phase_confidence_pairs)
+        )
+        phase_density_conflict_phase_confidence_perfect_flags.append(
+            phase_density_conflict_phase_confidence_precision == 1.0
+            and phase_density_conflict_phase_confidence_long_recall == 1.0
+        )
 
     precision = _rounded(mean(precisions)) if precisions else 0.0
     long_recall = _rounded(mean(long_recalls)) if long_recalls else 0.0
@@ -1948,6 +2032,21 @@ def _scaffold_contact_metrics(
     phase_density_conflict_shell_f1 = (
         _rounded(mean(phase_density_conflict_shell_f1s))
         if phase_density_conflict_shell_f1s
+        else 0.0
+    )
+    phase_density_conflict_phase_confidence_precision = (
+        _rounded(mean(phase_density_conflict_phase_confidence_precisions))
+        if phase_density_conflict_phase_confidence_precisions
+        else 0.0
+    )
+    phase_density_conflict_phase_confidence_long_recall = (
+        _rounded(mean(phase_density_conflict_phase_confidence_long_recalls))
+        if phase_density_conflict_phase_confidence_long_recalls
+        else 0.0
+    )
+    phase_density_conflict_phase_confidence_f1 = (
+        _rounded(mean(phase_density_conflict_phase_confidence_f1s))
+        if phase_density_conflict_phase_confidence_f1s
         else 0.0
     )
     return ScaffoldContactMetrics(
@@ -2233,6 +2332,34 @@ def _scaffold_contact_metrics(
         phase_density_conflict_shell_scaffold_contact_map_perfect=(
             bool(phase_density_conflict_shell_perfect_flags)
             and all(phase_density_conflict_shell_perfect_flags)
+        ),
+        phase_density_conflict_phase_confidence_scaffold_contact_count=sum(
+            phase_density_conflict_phase_confidence_contact_counts
+        ),
+        phase_density_conflict_phase_confidence_scaffold_exact_contact_precision=(
+            phase_density_conflict_phase_confidence_precision
+        ),
+        phase_density_conflict_phase_confidence_scaffold_exact_long_range_contact_recall=(
+            phase_density_conflict_phase_confidence_long_recall
+        ),
+        phase_density_conflict_phase_confidence_scaffold_precision_recall_f1=(
+            phase_density_conflict_phase_confidence_f1
+        ),
+        phase_density_conflict_phase_confidence_scaffold_precision_delta_vs_phase_density_conflict_shell=(
+            _rounded(
+                phase_density_conflict_phase_confidence_precision
+                - phase_density_conflict_shell_precision
+            )
+        ),
+        phase_density_conflict_phase_confidence_scaffold_recall_delta_vs_phase_density_conflict_shell=(
+            _rounded(
+                phase_density_conflict_phase_confidence_long_recall
+                - phase_density_conflict_shell_long_recall
+            )
+        ),
+        phase_density_conflict_phase_confidence_scaffold_contact_map_perfect=(
+            bool(phase_density_conflict_phase_confidence_perfect_flags)
+            and all(phase_density_conflict_phase_confidence_perfect_flags)
         ),
     )
 
@@ -2578,16 +2705,36 @@ def _apply_self_critical_quality_switch(
         row["self_critical_quality_switch_low_quality_conflict_value"] = str(
             row.get("phase_coverage_scaffold_mode", "")
         )
+        row["self_critical_quality_switch_high_event_conflict_feature"] = (
+            "phase_coverage_scaffold_mode"
+        )
+        row["self_critical_quality_switch_high_event_conflict_value"] = str(
+            row.get("phase_coverage_scaffold_mode", "")
+        )
         if boundary_available and quality > boundary:
             if (
                 event_boundary_available
                 and selected_event_count > event_boundary
             ):
-                _copy_switch_metric(
-                    row,
-                    selected_mode="phase_density_conflict_shell",
-                    source_prefix="phase_density_conflict_shell",
+                phase_coverage_mode = str(
+                    row.get("phase_coverage_scaffold_mode", "")
                 )
+                if "square" in phase_coverage_mode:
+                    _copy_switch_metric(
+                        row,
+                        selected_mode=(
+                            "phase_density_conflict_phase_confidence"
+                        ),
+                        source_prefix=(
+                            "phase_density_conflict_phase_confidence"
+                        ),
+                    )
+                else:
+                    _copy_switch_metric(
+                        row,
+                        selected_mode="phase_density_conflict_shell",
+                        source_prefix="phase_density_conflict_shell",
+                    )
             else:
                 _copy_switch_metric(
                     row,
@@ -2624,6 +2771,7 @@ def _apply_self_critical_quality_switch(
         "event_boundary_gap": event_boundary_gap,
         "event_boundary_available": event_boundary_available,
         "low_quality_conflict_feature": "phase_coverage_scaffold_mode",
+        "high_event_conflict_feature": "phase_coverage_scaffold_mode",
         "selected_modes": tuple(sorted(selected_modes)),
     }
 
@@ -2934,6 +3082,29 @@ def _folding_problem_solved_audit(
                 for row in target_rows
             )
         ),
+        "all_targets_phase_density_conflict_phase_confidence_scaffold_contact_maps_perfect": (
+            bool(target_rows)
+            and all(
+                str(
+                    row.get(
+                        (
+                            "phase_density_conflict_phase_confidence_scaffold_"
+                            "contact_map_perfect"
+                        ),
+                        "False",
+                    )
+                )
+                == "True"
+                or row.get(
+                    (
+                        "phase_density_conflict_phase_confidence_scaffold_"
+                        "contact_map_perfect"
+                    )
+                )
+                is True
+                for row in target_rows
+            )
+        ),
         "universal_holdout_scope_declared": (
             str(manifest.get("holdout_scope", ""))
             == "all_available_complete_external_coupling_protein_targets"
@@ -2970,6 +3141,7 @@ def run_blind_external_holdout_battery_v0(
     selector_name: str,
     control_names: Sequence[str],
     target_ids: Sequence[str] = (),
+    skip_controls: bool = False,
 ) -> tuple[Path, Path, Path, Path, Path, Path]:
     if selector_name not in (
         DEFAULT_SELECTOR,
@@ -2995,7 +3167,7 @@ def run_blind_external_holdout_battery_v0(
                 "target-id filter did not match any manifest targets: "
                 + ", ".join(sorted(requested_target_ids))
             )
-    controls_to_run = _control_names(tuple(control_names))
+    controls_to_run = () if skip_controls else _control_names(tuple(control_names))
     target_manifest_sha256 = _sha256_file(target_manifest)
     current_commit = _current_commit_hash()
     selector_frozen_after_manifest = bool(
@@ -3056,9 +3228,13 @@ def run_blind_external_holdout_battery_v0(
                 control_kind="external_real_blind_holdout",
                 physical_contexts=physical_contexts,
             )
-            controls = generate_external_coupling_negative_controls(
-                rows=rows,
-                dataset=import_result.dataset,
+            controls = (
+                {}
+                if skip_controls
+                else generate_external_coupling_negative_controls(
+                    rows=rows,
+                    dataset=import_result.dataset,
+                )
             )
             benchmark_file_sha256 = _sha256_file(benchmark_file)
             coupling_file_sha256 = _sha256_file(external_coupling_file)
@@ -3314,6 +3490,7 @@ def run_blind_external_holdout_battery_v0(
         "target_manifest_frozen": bool(manifest.get("manifest_frozen", False)),
         "selector_frozen_after_manifest": selector_frozen_after_manifest,
         "control_names": tuple(controls_to_run),
+        "controls_skipped_for_fast_mode_iteration": skip_controls,
         "target_id_filter": tuple(sorted(requested_target_ids)),
         "target_count": len(target_rows),
         "failure_count": len(failure_rows),
@@ -3872,6 +4049,69 @@ def run_blind_external_holdout_battery_v0(
                 "phase_density_conflict_shell_scaffold_contact_map_perfect",
             )
         ),
+        "mean_phase_density_conflict_phase_confidence_scaffold_contact_count": (
+            _mean_field(
+                target_rows,
+                (
+                    "phase_density_conflict_phase_confidence_scaffold_"
+                    "contact_count"
+                ),
+            )
+        ),
+        "mean_phase_density_conflict_phase_confidence_scaffold_exact_contact_precision": (
+            _mean_field(
+                target_rows,
+                (
+                    "phase_density_conflict_phase_confidence_scaffold_"
+                    "exact_contact_precision"
+                ),
+            )
+        ),
+        "mean_phase_density_conflict_phase_confidence_scaffold_exact_long_range_contact_recall": (
+            _mean_field(
+                target_rows,
+                (
+                    "phase_density_conflict_phase_confidence_scaffold_"
+                    "exact_long_range_contact_recall"
+                ),
+            )
+        ),
+        "mean_phase_density_conflict_phase_confidence_scaffold_precision_recall_f1": (
+            _mean_field(
+                target_rows,
+                (
+                    "phase_density_conflict_phase_confidence_scaffold_"
+                    "precision_recall_f1"
+                ),
+            )
+        ),
+        "mean_phase_density_conflict_phase_confidence_scaffold_precision_delta_vs_phase_density_conflict_shell": (
+            _mean_field(
+                target_rows,
+                (
+                    "phase_density_conflict_phase_confidence_scaffold_"
+                    "precision_delta_vs_phase_density_conflict_shell"
+                ),
+            )
+        ),
+        "mean_phase_density_conflict_phase_confidence_scaffold_recall_delta_vs_phase_density_conflict_shell": (
+            _mean_field(
+                target_rows,
+                (
+                    "phase_density_conflict_phase_confidence_scaffold_"
+                    "recall_delta_vs_phase_density_conflict_shell"
+                ),
+            )
+        ),
+        "phase_density_conflict_phase_confidence_scaffold_contact_map_perfect_rate": (
+            _mean_field(
+                target_rows,
+                (
+                    "phase_density_conflict_phase_confidence_scaffold_"
+                    "contact_map_perfect"
+                ),
+            )
+        ),
         "self_critical_quality_switch": self_critical_quality_switch,
         "mean_coupling_quality_effseq_per_length": _mean_field(
             target_rows,
@@ -4070,6 +4310,14 @@ def main() -> None:
             "to run every matched control."
         ),
     )
+    parser.add_argument(
+        "--skip-controls",
+        action="store_true",
+        help=(
+            "Run real targets only for fast mode iteration. The report is "
+            "marked inconclusive and cannot support claim mode."
+        ),
+    )
     args = parser.parse_args()
     for output in run_blind_external_holdout_battery_v0(
         target_manifest=Path(args.target_manifest),
@@ -4078,6 +4326,7 @@ def main() -> None:
         selector_name=args.selector,
         control_names=tuple(args.control_name),
         target_ids=tuple(args.target_id),
+        skip_controls=args.skip_controls,
     ):
         print(output)
 

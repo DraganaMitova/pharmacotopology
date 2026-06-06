@@ -22,6 +22,7 @@ def _row(
     spine_f1: float = 0.0,
     conflict_f1: float = 0.0,
     shell_f1: float = 0.0,
+    phase_conflict_f1: float = 0.0,
 ) -> dict[str, object]:
     return {
         "target_id": target_id,
@@ -63,6 +64,17 @@ def _row(
         ),
         "phase_density_conflict_shell_scaffold_precision_recall_f1": shell_f1,
         "phase_density_conflict_shell_scaffold_contact_map_perfect": False,
+        "phase_density_conflict_phase_confidence_scaffold_contact_count": 21,
+        "phase_density_conflict_phase_confidence_scaffold_exact_contact_precision": 0.34,
+        "phase_density_conflict_phase_confidence_scaffold_exact_long_range_contact_recall": (
+            phase_conflict_f1
+        ),
+        "phase_density_conflict_phase_confidence_scaffold_precision_recall_f1": (
+            phase_conflict_f1
+        ),
+        "phase_density_conflict_phase_confidence_scaffold_contact_map_perfect": (
+            False
+        ),
     }
 
 
@@ -152,6 +164,47 @@ def test_self_critical_quality_switch_generates_spine_for_high_event_conflict() 
         "phase_density_conflict_shell"
     )
     assert rows[2]["self_critical_quality_switch_precision_recall_f1"] == 0.26
+
+
+def test_self_critical_quality_switch_uses_phase_confidence_for_square_high_event() -> None:
+    rows = [
+        _row(
+            target_id="low_quality",
+            quality=5.2,
+            selected_event_count=4,
+            phase_f1=0.24,
+            density_f1=0.13,
+            shell_f1=0.19,
+            phase_conflict_f1=0.18,
+        ),
+        _row(
+            target_id="high_quality_compact",
+            quality=13.2,
+            selected_event_count=3,
+            phase_f1=0.13,
+            density_f1=0.35,
+            shell_f1=0.29,
+            phase_conflict_f1=0.28,
+        ),
+        _row(
+            target_id="high_quality_square_conflict",
+            quality=12.7,
+            selected_event_count=30,
+            phase_coverage_mode="square_one_cell",
+            phase_f1=0.09,
+            density_f1=0.20,
+            shell_f1=0.26,
+            phase_conflict_f1=0.27,
+        ),
+    ]
+
+    audit = _apply_self_critical_quality_switch(rows)
+
+    assert audit["high_event_conflict_feature"] == "phase_coverage_scaffold_mode"
+    assert rows[2]["self_critical_quality_switch_mode"] == (
+        "phase_density_conflict_phase_confidence"
+    )
+    assert rows[2]["self_critical_quality_switch_precision_recall_f1"] == 0.27
 
 
 def test_self_critical_quality_switch_uses_shell_for_low_quality_square_phase() -> None:
