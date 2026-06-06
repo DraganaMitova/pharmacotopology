@@ -2,7 +2,7 @@
   "certificate_kind": "blind_external_holdout_battery_certificate_v0",
   "claim_allowed": true,
   "claim_scope": "long_range_folding_nucleus_region_recovery_only_not_full_atomic_folding",
-  "commit_hash": "00e9fe6fb93073a1aa59d72be74f3d427073bd9d",
+  "commit_hash": "d7ab6545ed4c2d2a9cc2182a3b77ed27b6d5744f",
   "final_classification": "blind_batch_exact_contact_signal_confirmed",
   "folding_problem_solved": false,
   "folding_problem_solved_audit": {
@@ -11,6 +11,7 @@
     "requirements": {
       "all_existing_complete_targets_tested": false,
       "all_hard_gates_passed": true,
+      "all_targets_compact_scaffold_contact_maps_perfect": false,
       "all_targets_productive_frontier_win": true,
       "all_targets_scaffold_contact_maps_perfect": false,
       "all_targets_zero_false_nucleus_rate": true,
@@ -23,6 +24,7 @@
     "solved": false,
     "unmet_requirements": [
       "all_targets_scaffold_contact_maps_perfect",
+      "all_targets_compact_scaffold_contact_maps_perfect",
       "universal_holdout_scope_declared",
       "all_existing_complete_targets_tested",
       "full_atomic_folding_available",
