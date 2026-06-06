@@ -525,6 +525,59 @@ def _battery_classification(
     return "blind_batch_failed"
 
 
+def _folding_problem_solved_audit(
+    *,
+    manifest: Mapping[str, object],
+    target_rows: Sequence[Mapping[str, object]],
+    failure_rows: Sequence[Mapping[str, object]],
+    hard_gates: Mapping[str, object],
+    classification: str,
+) -> dict[str, object]:
+    requirements = {
+        "exact_contact_signal_confirmed": (
+            classification == "blind_batch_exact_contact_signal_confirmed"
+        ),
+        "all_hard_gates_passed": bool(hard_gates["all_hard_gates_passed"]),
+        "no_target_failures": not failure_rows,
+        "all_targets_zero_false_nucleus_rate": (
+            bool(target_rows)
+            and all(float(row["false_nucleus_rate"]) == 0.0 for row in target_rows)
+        ),
+        "all_targets_productive_frontier_win": (
+            bool(target_rows)
+            and all(
+                int(row.get("productive_frontier_control_win", 0)) == 1
+                for row in target_rows
+            )
+        ),
+        "universal_holdout_scope_declared": (
+            str(manifest.get("holdout_scope", ""))
+            == "all_available_complete_external_coupling_protein_targets"
+        ),
+        "all_existing_complete_targets_tested": bool(
+            manifest.get("all_existing_complete_targets_tested", False)
+        ),
+        "full_atomic_folding_available": bool(
+            manifest.get("full_atomic_folding_available", False)
+        ),
+        "atomic_coordinate_generation_validated": bool(
+            manifest.get("atomic_coordinate_generation_validated", False)
+        ),
+    }
+    unmet = tuple(
+        name for name, passed in requirements.items() if not passed
+    )
+    return {
+        "audit_kind": "folding_problem_solved_audit_v0",
+        "solved": not unmet,
+        "requirements": requirements,
+        "unmet_requirements": unmet,
+        "current_claim_scope": (
+            "long_range_folding_nucleus_region_recovery_only_not_full_atomic_folding"
+        ),
+    }
+
+
 def run_blind_external_holdout_battery_v0(
     *,
     target_manifest: Path,
@@ -836,6 +889,13 @@ def run_blind_external_holdout_battery_v0(
         and bool(hard_gates["selector_frozen_after_manifest"])
     )
     pair_randomizing_control_rows = _pair_randomizing_control_rows(control_rows)
+    folding_solved_audit = _folding_problem_solved_audit(
+        manifest=manifest,
+        target_rows=target_rows,
+        failure_rows=failure_rows,
+        hard_gates=hard_gates,
+        classification=classification,
+    )
     report = {
         "report_kind": BATTERY_REPORT_KIND,
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
@@ -934,7 +994,8 @@ def run_blind_external_holdout_battery_v0(
         ),
         "hard_gates": hard_gates,
         "final_classification": classification,
-        "folding_problem_solved": False,
+        "folding_problem_solved": bool(folding_solved_audit["solved"]),
+        "folding_problem_solved_audit": folding_solved_audit,
         "claim_allowed": classification
         in (
             "blind_batch_scaffold_signal_confirmed",
@@ -951,7 +1012,8 @@ def run_blind_external_holdout_battery_v0(
         "precision_boundary_selector_name": PRECISION_BOUNDARY_SELECTOR,
         "target_manifest_sha256": target_manifest_sha256,
         "final_classification": classification,
-        "folding_problem_solved": False,
+        "folding_problem_solved": report["folding_problem_solved"],
+        "folding_problem_solved_audit": folding_solved_audit,
         "claim_allowed": report["claim_allowed"],
         "claim_scope": (
             "long_range_folding_nucleus_region_recovery_only_not_full_atomic_folding"
