@@ -62,6 +62,7 @@ from scripts.run_blind_external_holdout_battery_v0 import (  # noqa: E402
     _rounded,
     _scaffold_contact_metrics,
     _single_gap_phase_ribbon_bridge,
+    _square_extend_pairs,
     _target_coupling_file,
     _top_l_region_density_scaffold_core,
     _valid_long_range_pairs,
@@ -74,6 +75,12 @@ CACHED_MODE_SCORE_REPORT_KIND = "cached_contact_map_mode_score_v0"
 ROW_LOCAL_CRITICAL_MODE_SELECTOR = "cached_row_local_critical_mode_switch_v0"
 ANCHORED_SEQUENCE_COUPLING_BALANCE_SELECTOR = (
     "cached_anchored_sequence_coupling_balance_v0"
+)
+RELAXED_ANCHORED_SEQUENCE_COUPLING_BALANCE_SELECTOR = (
+    "cached_relaxed_anchored_sequence_coupling_balance_v0"
+)
+COHERENT_RELAXED_SEQUENCE_COUPLING_BALANCE_SELECTOR = (
+    "cached_coherent_relaxed_sequence_coupling_balance_v0"
 )
 DEFAULT_TARGET_MANIFEST = Path(
     "data/all_locked_real_external_coupling_holdout_manifest_v0.locked.json"
@@ -573,6 +580,45 @@ def _self_critical_pair_gap_prefix(
     )
 
 
+def _contact_map_distance(
+    left: tuple[int, int],
+    right: tuple[int, int],
+) -> int:
+    return max(abs(left[0] - right[0]), abs(left[1] - right[1]))
+
+
+def _seed_halo_support_scores(
+    *,
+    candidate_pairs: set[tuple[int, int]],
+    seed_pairs: set[tuple[int, int]],
+) -> dict[tuple[int, int], float]:
+    scores: dict[tuple[int, int], float] = {}
+    for pair in candidate_pairs:
+        best_support = 0.0
+        for seed_pair in seed_pairs:
+            distance = _contact_map_distance(pair, seed_pair)
+            if distance <= 2:
+                best_support = max(best_support, (3 - distance) / 3)
+        if best_support > 0.0:
+            scores[pair] = best_support
+    return scores
+
+
+def _contact_map_coherent_subset(
+    pairs: set[tuple[int, int]],
+    *,
+    radius: int,
+) -> set[tuple[int, int]]:
+    return {
+        pair
+        for pair in pairs
+        if any(
+            pair != other and _contact_map_distance(pair, other) <= radius
+            for other in pairs
+        )
+    }
+
+
 def _sequence_coupling_expansion_decision(
     *,
     phase_mode: str,
@@ -643,7 +689,7 @@ def _sequence_coupling_anchor_additions(
     selected_events: Sequence[NucleusClosureEvent],
     constraints: Sequence[object],
     metadata: Mapping[str, object],
-) -> tuple[set[tuple[int, int]], dict[str, object]]:
+) -> tuple[set[tuple[int, int]], set[tuple[int, int]], dict[str, object]]:
     sequence_features = contact_law_feature_rows_for_row(row)
     sequence_events = nucleus_closure_events_for_row(row, sequence_features)
     sequence_event_support: dict[tuple[int, int], float] = {}
@@ -739,8 +785,53 @@ def _sequence_coupling_anchor_additions(
     elif not expansion_allowed:
         expansion_reason = feature_expansion_reason
 
+    balanced_pairs = anchor_pairs | selected_additions
+    relaxation_candidates = (
+        _square_extend_pairs(
+            row_length=row.sequence_length,
+            pairs=balanced_pairs,
+            span=2,
+        )
+        - balanced_pairs
+    )
+    relaxation_density = _region_density_scores(
+        region_pairs=relaxation_candidates | balanced_pairs,
+        constraints=constraints,
+    )
+    relaxation_density_norm = _normalized_score_map(relaxation_density)
+    seed_support_norm = _normalized_score_map(
+        _seed_halo_support_scores(
+            candidate_pairs=relaxation_candidates,
+            seed_pairs=balanced_pairs,
+        )
+    )
+    sequence_union_norm = _normalized_score_map(
+        {
+            pair: max(
+                sequence_event_support.get(pair, 0.0),
+                sequence_feature_support.get(pair, 0.0),
+            )
+            for pair in relaxation_candidates
+        }
+    )
+    relaxation_scores = {
+        pair: (
+            seed_support_norm.get(pair, 0.0)
+            * (0.5 + 0.5 * relaxation_density_norm.get(pair, 0.0))
+            * (0.5 + 0.5 * sequence_union_norm.get(pair, 0.0))
+        )
+        for pair in relaxation_candidates
+    }
+    relaxation_additions, relaxation_top_score, relaxation_boundary_gap = (
+        _self_critical_pair_gap_prefix(
+            relaxation_scores,
+            max_count=max(1, len(balanced_pairs) // 2),
+        )
+    )
+
     return (
         selected_additions,
+        relaxation_additions,
         {
             "candidate_addition_count": len(selected_additions),
             "event_candidate_addition_count": event_addition_count,
@@ -761,6 +852,18 @@ def _sequence_coupling_anchor_additions(
             ),
             "sequence_coupling_balance_expansion_reason": expansion_reason,
             "sequence_coupling_balance_expansion_source": expansion_source,
+            "relaxed_sequence_coupling_balance_candidate_count": (
+                len(relaxation_candidates)
+            ),
+            "relaxed_sequence_coupling_balance_addition_count": (
+                len(relaxation_additions)
+            ),
+            "relaxed_sequence_coupling_balance_top_score": (
+                relaxation_top_score
+            ),
+            "relaxed_sequence_coupling_balance_boundary_gap": (
+                relaxation_boundary_gap
+            ),
         },
     )
 
@@ -781,6 +884,16 @@ def _cached_anchored_sequence_coupling_balance_metrics(
     f1s: list[float] = []
     contact_counts: list[int] = []
     perfect_flags: list[bool] = []
+    relaxed_precisions: list[float] = []
+    relaxed_long_recalls: list[float] = []
+    relaxed_f1s: list[float] = []
+    relaxed_contact_counts: list[int] = []
+    relaxed_perfect_flags: list[bool] = []
+    coherent_relaxed_precisions: list[float] = []
+    coherent_relaxed_long_recalls: list[float] = []
+    coherent_relaxed_f1s: list[float] = []
+    coherent_relaxed_contact_counts: list[int] = []
+    coherent_relaxed_perfect_flags: list[bool] = []
     mode_trace: list[str] = []
     feature_trace: list[str] = []
     for row in rows:
@@ -797,17 +910,35 @@ def _cached_anchored_sequence_coupling_balance_metrics(
         )
         anchor_mode = _select_row_local_critical_mode(metadata)
         anchor_pairs = set(mode_pair_sets.get(anchor_mode, set()))
-        additions, expansion_metadata = _sequence_coupling_anchor_additions(
-            row=row,
-            anchor_mode=anchor_mode,
-            anchor_pairs=anchor_pairs,
-            selected_events=row_events,
-            constraints=row_constraints,
-            metadata=metadata,
+        additions, relaxation_additions, expansion_metadata = (
+            _sequence_coupling_anchor_additions(
+                row=row,
+                anchor_mode=anchor_mode,
+                anchor_pairs=anchor_pairs,
+                selected_events=row_events,
+                constraints=row_constraints,
+                metadata=metadata,
+            )
         )
         balanced_pairs = anchor_pairs | additions
+        relaxed_balanced_pairs = balanced_pairs | relaxation_additions
+        coherent_relaxation_additions = _contact_map_coherent_subset(
+            relaxation_additions,
+            radius=2,
+        )
+        coherent_relaxed_pairs = balanced_pairs | coherent_relaxation_additions
         scores = _row_contact_scores(
             balanced_pairs,
+            native_pairs=native_pairs,
+            native_long_pairs=native_long_pairs,
+        )
+        relaxed_scores = _row_contact_scores(
+            relaxed_balanced_pairs,
+            native_pairs=native_pairs,
+            native_long_pairs=native_long_pairs,
+        )
+        coherent_relaxed_scores = _row_contact_scores(
+            coherent_relaxed_pairs,
             native_pairs=native_pairs,
             native_long_pairs=native_long_pairs,
         )
@@ -816,11 +947,35 @@ def _cached_anchored_sequence_coupling_balance_metrics(
         f1s.append(float(scores["precision_recall_f1"]))
         contact_counts.append(int(scores["contact_count"]))
         perfect_flags.append(bool(scores["contact_map_perfect"]))
+        relaxed_precisions.append(float(relaxed_scores["precision"]))
+        relaxed_long_recalls.append(float(relaxed_scores["long_recall"]))
+        relaxed_f1s.append(float(relaxed_scores["precision_recall_f1"]))
+        relaxed_contact_counts.append(int(relaxed_scores["contact_count"]))
+        relaxed_perfect_flags.append(
+            bool(relaxed_scores["contact_map_perfect"])
+        )
+        coherent_relaxed_precisions.append(
+            float(coherent_relaxed_scores["precision"])
+        )
+        coherent_relaxed_long_recalls.append(
+            float(coherent_relaxed_scores["long_recall"])
+        )
+        coherent_relaxed_f1s.append(
+            float(coherent_relaxed_scores["precision_recall_f1"])
+        )
+        coherent_relaxed_contact_counts.append(
+            int(coherent_relaxed_scores["contact_count"])
+        )
+        coherent_relaxed_perfect_flags.append(
+            bool(coherent_relaxed_scores["contact_map_perfect"])
+        )
         mode_trace.append(
             (
                 f"{row.row_id}:{anchor_mode}"
                 f":additions={len(additions)}"
                 f":source={expansion_metadata['sequence_coupling_balance_expansion_source']}"
+                f":relax={len(relaxation_additions)}"
+                f":coherent_relax={len(coherent_relaxation_additions)}"
                 f":reason={expansion_metadata['sequence_coupling_balance_expansion_reason']}"
             )
         )
@@ -830,6 +985,8 @@ def _cached_anchored_sequence_coupling_balance_metrics(
                 f":radius={metadata['phase_radius']}"
                 f":events={len(row_events)}"
                 f":candidate_additions={expansion_metadata['candidate_addition_count']}"
+                f":relax_candidates={expansion_metadata['relaxed_sequence_coupling_balance_candidate_count']}"
+                f":relax_additions={expansion_metadata['relaxed_sequence_coupling_balance_addition_count']}"
                 f":allowed={expansion_metadata['sequence_coupling_balance_expansion_allowed']}"
             )
         )
@@ -859,6 +1016,53 @@ def _cached_anchored_sequence_coupling_balance_metrics(
         ),
         "anchored_sequence_coupling_balance_feature_trace": ";".join(
             feature_trace
+        ),
+        "relaxed_anchored_sequence_coupling_balance_selector_name": (
+            RELAXED_ANCHORED_SEQUENCE_COUPLING_BALANCE_SELECTOR
+        ),
+        "relaxed_anchored_sequence_coupling_balance_claim_allowed": False,
+        "relaxed_anchored_sequence_coupling_balance_exact_contact_precision": (
+            _rounded(mean(relaxed_precisions)) if relaxed_precisions else 0.0
+        ),
+        "relaxed_anchored_sequence_coupling_balance_exact_long_range_contact_recall": (
+            _rounded(mean(relaxed_long_recalls))
+            if relaxed_long_recalls
+            else 0.0
+        ),
+        "relaxed_anchored_sequence_coupling_balance_precision_recall_f1": (
+            _rounded(mean(relaxed_f1s)) if relaxed_f1s else 0.0
+        ),
+        "relaxed_anchored_sequence_coupling_balance_contact_count": (
+            sum(relaxed_contact_counts)
+        ),
+        "relaxed_anchored_sequence_coupling_balance_contact_map_perfect": (
+            bool(relaxed_perfect_flags) and all(relaxed_perfect_flags)
+        ),
+        "coherent_relaxed_sequence_coupling_balance_selector_name": (
+            COHERENT_RELAXED_SEQUENCE_COUPLING_BALANCE_SELECTOR
+        ),
+        "coherent_relaxed_sequence_coupling_balance_claim_allowed": False,
+        "coherent_relaxed_sequence_coupling_balance_exact_contact_precision": (
+            _rounded(mean(coherent_relaxed_precisions))
+            if coherent_relaxed_precisions
+            else 0.0
+        ),
+        "coherent_relaxed_sequence_coupling_balance_exact_long_range_contact_recall": (
+            _rounded(mean(coherent_relaxed_long_recalls))
+            if coherent_relaxed_long_recalls
+            else 0.0
+        ),
+        "coherent_relaxed_sequence_coupling_balance_precision_recall_f1": (
+            _rounded(mean(coherent_relaxed_f1s))
+            if coherent_relaxed_f1s
+            else 0.0
+        ),
+        "coherent_relaxed_sequence_coupling_balance_contact_count": (
+            sum(coherent_relaxed_contact_counts)
+        ),
+        "coherent_relaxed_sequence_coupling_balance_contact_map_perfect": (
+            bool(coherent_relaxed_perfect_flags)
+            and all(coherent_relaxed_perfect_flags)
         ),
     }
 
@@ -1117,6 +1321,38 @@ def score_cached_contact_map_modes_v0(
                 )
             )
         )
+        row["relaxed_anchored_sequence_coupling_balance_delta_vs_anchored_sequence_coupling_balance"] = (
+            _rounded(
+                float(
+                    row.get(
+                        "relaxed_anchored_sequence_coupling_balance_precision_recall_f1",
+                        0.0,
+                    )
+                )
+                - float(
+                    row.get(
+                        "anchored_sequence_coupling_balance_precision_recall_f1",
+                        0.0,
+                    )
+                )
+            )
+        )
+        row["coherent_relaxed_sequence_coupling_balance_delta_vs_anchored_sequence_coupling_balance"] = (
+            _rounded(
+                float(
+                    row.get(
+                        "coherent_relaxed_sequence_coupling_balance_precision_recall_f1",
+                        0.0,
+                    )
+                )
+                - float(
+                    row.get(
+                        "anchored_sequence_coupling_balance_precision_recall_f1",
+                        0.0,
+                    )
+                )
+            )
+        )
     report = {
         "report_kind": CACHED_MODE_SCORE_REPORT_KIND,
         "source_report_kind": BATTERY_REPORT_KIND,
@@ -1177,6 +1413,30 @@ def score_cached_contact_map_modes_v0(
         "anchored_sequence_coupling_balance_contact_map_perfect_rate": _mean_field(
             output_rows,
             "anchored_sequence_coupling_balance_contact_map_perfect",
+        ),
+        "mean_relaxed_anchored_sequence_coupling_balance_precision_recall_f1": _mean_field(
+            output_rows,
+            "relaxed_anchored_sequence_coupling_balance_precision_recall_f1",
+        ),
+        "mean_relaxed_anchored_sequence_coupling_balance_delta_vs_anchored_sequence_coupling_balance": _mean_field(
+            output_rows,
+            "relaxed_anchored_sequence_coupling_balance_delta_vs_anchored_sequence_coupling_balance",
+        ),
+        "relaxed_anchored_sequence_coupling_balance_contact_map_perfect_rate": _mean_field(
+            output_rows,
+            "relaxed_anchored_sequence_coupling_balance_contact_map_perfect",
+        ),
+        "mean_coherent_relaxed_sequence_coupling_balance_precision_recall_f1": _mean_field(
+            output_rows,
+            "coherent_relaxed_sequence_coupling_balance_precision_recall_f1",
+        ),
+        "mean_coherent_relaxed_sequence_coupling_balance_delta_vs_anchored_sequence_coupling_balance": _mean_field(
+            output_rows,
+            "coherent_relaxed_sequence_coupling_balance_delta_vs_anchored_sequence_coupling_balance",
+        ),
+        "coherent_relaxed_sequence_coupling_balance_contact_map_perfect_rate": _mean_field(
+            output_rows,
+            "coherent_relaxed_sequence_coupling_balance_contact_map_perfect",
         ),
         "mean_event_union_ceiling_exact_long_range_contact_recall": _mean_field(
             output_rows,

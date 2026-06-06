@@ -11,6 +11,8 @@ from scripts.run_blind_external_holdout_battery_v0 import (  # noqa: E402
 )
 from scripts.score_cached_contact_map_modes_v0 import (  # noqa: E402
     ANCHORED_SEQUENCE_COUPLING_BALANCE_SELECTOR,
+    COHERENT_RELAXED_SEQUENCE_COUPLING_BALANCE_SELECTOR,
+    RELAXED_ANCHORED_SEQUENCE_COUPLING_BALANCE_SELECTOR,
     ROW_LOCAL_CRITICAL_MODE_SELECTOR,
     _sequence_coupling_expansion_decision,
     _sequence_feature_fallback_decision,
@@ -319,6 +321,12 @@ def test_cached_row_local_critical_switch_routes_by_internal_phase_conflict() ->
 def test_anchored_sequence_coupling_balance_uses_compact_self_critical_gate() -> None:
     assert ANCHORED_SEQUENCE_COUPLING_BALANCE_SELECTOR == (
         "cached_anchored_sequence_coupling_balance_v0"
+    )
+    assert RELAXED_ANCHORED_SEQUENCE_COUPLING_BALANCE_SELECTOR == (
+        "cached_relaxed_anchored_sequence_coupling_balance_v0"
+    )
+    assert COHERENT_RELAXED_SEQUENCE_COUPLING_BALANCE_SELECTOR == (
+        "cached_coherent_relaxed_sequence_coupling_balance_v0"
     )
     assert _sequence_coupling_expansion_decision(
         phase_mode="square",
