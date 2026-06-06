@@ -1,7 +1,7 @@
 {
   "adjacent_density_patch_scaffold_contact_map_perfect_rate": 0.0,
   "claim_allowed": true,
-  "commit_hash": "e94f047ff3f74548b193ae301436f1e3e792c771",
+  "commit_hash": "5a779d9b1a877a8ed8250f6ff4a4b26f10dbddcd",
   "compact_scaffold_contact_map_perfect_rate": 0.0,
   "control_names": [
     "external_shuffled_same_row_same_separation",
@@ -24,6 +24,7 @@
       "all_targets_adjacent_density_patch_scaffold_contact_maps_perfect": false,
       "all_targets_compact_scaffold_contact_maps_perfect": false,
       "all_targets_density_compact_scaffold_contact_maps_perfect": false,
+      "all_targets_phase_coverage_scaffold_contact_maps_perfect": false,
       "all_targets_phase_field_scaffold_contact_maps_perfect": false,
       "all_targets_phase_ribbon_bridge_scaffold_contact_maps_perfect": false,
       "all_targets_productive_frontier_win": true,
@@ -43,6 +44,7 @@
       "all_targets_adjacent_density_patch_scaffold_contact_maps_perfect",
       "all_targets_phase_field_scaffold_contact_maps_perfect",
       "all_targets_phase_ribbon_bridge_scaffold_contact_maps_perfect",
+      "all_targets_phase_coverage_scaffold_contact_maps_perfect",
       "universal_holdout_scope_declared",
       "all_existing_complete_targets_tested",
       "full_atomic_folding_available",
@@ -50,7 +52,7 @@
     ]
   },
   "frontier_control_win_rate": 0.5,
-  "generated_at_utc": "2026-06-06T14:06:36.284305+00:00",
+  "generated_at_utc": "2026-06-06T14:15:56.040514+00:00",
   "hard_gates": {
     "all_hard_gates_passed": true,
     "coordinate_truth_used_to_build_constraints": false,
@@ -89,6 +91,12 @@
   "mean_exact_long_range_contact_precision": 0.167175,
   "mean_false_nucleus_rate": 0.0,
   "mean_long_range_contact_recall": 0.631463,
+  "mean_phase_coverage_scaffold_contact_count": 143.5,
+  "mean_phase_coverage_scaffold_exact_contact_precision": 0.330114,
+  "mean_phase_coverage_scaffold_exact_long_range_contact_recall": 0.185286,
+  "mean_phase_coverage_scaffold_precision_delta_vs_phase_ribbon_bridge": -0.162849,
+  "mean_phase_coverage_scaffold_precision_recall_f1": 0.236926,
+  "mean_phase_coverage_scaffold_recall_delta_vs_phase_ribbon_bridge": 0.083429,
   "mean_phase_field_scaffold_contact_count": 48.5,
   "mean_phase_field_scaffold_exact_contact_precision": 0.475958,
   "mean_phase_field_scaffold_exact_long_range_contact_recall": 0.091996,
@@ -112,6 +120,7 @@
     "external_random_long_range_same_count",
     "external_shuffled_same_row_same_separation"
   ],
+  "phase_coverage_scaffold_contact_map_perfect_rate": 0.0,
   "phase_field_scaffold_contact_map_perfect_rate": 0.0,
   "phase_ribbon_bridge_scaffold_contact_map_perfect_rate": 0.0,
   "platform": "macOS-26.3.1-arm64-arm-64bit",
