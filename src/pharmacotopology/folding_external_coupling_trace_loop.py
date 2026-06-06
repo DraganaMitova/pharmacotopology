@@ -686,6 +686,129 @@ def _run_multiscale_phase_aligned_critical_boundary_selector(
     )
 
 
+def _multiscale_boundary_probe_items(
+    *,
+    rows: Sequence[RealCoordinateVisualRow],
+    dataset: CouplingDataset,
+    physical_contexts: Mapping[int, ActivePhysicalContext],
+) -> list[MultiScaleSelectedEvent]:
+    items: list[MultiScaleSelectedEvent] = []
+    for segment_length, _future_preservation_min in (
+        MULTISCALE_FUTURE_PRESERVED_CONFIGS
+    ):
+        context = build_coupling_nucleus_context(
+            rows=rows,
+            coupling_dataset=dataset,
+            physical_context=physical_contexts[segment_length],
+        )
+        candidates = select_coupling_events(
+            context,
+            selector_name="coupling_trace_loop_boundary_field_replacement_probe",
+        )
+        items.extend(
+            MultiScaleSelectedEvent(
+                segment_length=segment_length,
+                future_preservation_min=0.0,
+                context=context,
+                event=event,
+            )
+            for event in candidates
+        )
+    return items
+
+
+def _phase_aligned_external_novelty_boundary_items(
+    *,
+    rows: Sequence[RealCoordinateVisualRow],
+    dataset: CouplingDataset,
+    physical_contexts: Mapping[int, ActivePhysicalContext],
+) -> list[MultiScaleSelectedEvent]:
+    selected_items = _phase_align_multiscale_critical_items(
+        rows=rows,
+        selected_items=_multiscale_critical_boundary_items(
+            rows=rows,
+            dataset=dataset,
+            physical_contexts=physical_contexts,
+        ),
+    )
+    selected_keys = {
+        (item.segment_length, item.event.event_id)
+        for item in selected_items
+    }
+    covered_pairs_by_row: dict[str, set[tuple[int, int]]] = {
+        row.row_id: set() for row in rows
+    }
+    for item in selected_items:
+        covered_pairs_by_row[item.event.row_id].update(
+            _multiscale_direct_constraint_pairs(item)
+        )
+
+    for item in sorted(
+        _multiscale_boundary_probe_items(
+            rows=rows,
+            dataset=dataset,
+            physical_contexts=physical_contexts,
+        ),
+        key=lambda candidate: (
+            _multiscale_critical_coherence_score(candidate),
+            len(_multiscale_direct_constraint_pairs(candidate)),
+            candidate.event.closure_event_stability,
+            -candidate.segment_length,
+            candidate.event.event_id,
+        ),
+        reverse=True,
+    ):
+        key = (item.segment_length, item.event.event_id)
+        if key in selected_keys:
+            continue
+        direct_pairs = set(_multiscale_direct_constraint_pairs(item))
+        if not direct_pairs:
+            continue
+        row_covered_pairs = covered_pairs_by_row.setdefault(
+            item.event.row_id,
+            set(),
+        )
+        if direct_pairs <= row_covered_pairs:
+            continue
+        selected_items.append(item)
+        selected_keys.add(key)
+        row_covered_pairs.update(direct_pairs)
+    return selected_items
+
+
+def _run_multiscale_phase_aligned_external_novelty_boundary_selector(
+    *,
+    rows: Sequence[RealCoordinateVisualRow],
+    dataset: CouplingDataset,
+    selector_name: str,
+    control_kind: str,
+    physical_contexts: Mapping[int, ActivePhysicalContext],
+) -> TraceLoopRun:
+    selected_items = _phase_aligned_external_novelty_boundary_items(
+        rows=rows,
+        dataset=dataset,
+        physical_contexts=physical_contexts,
+    )
+    metric = _multiscale_metric(
+        rows=rows,
+        dataset=dataset,
+        selector_name=selector_name,
+        selected_items=selected_items,
+    )
+    return TraceLoopRun(
+        selector_name=selector_name,
+        dataset=dataset,
+        metric=metric,
+        selected_events=tuple(item.event for item in selected_items),
+        selected_rows=_multiscale_selected_rows(
+            selector_name=selector_name,
+            selected_items=selected_items,
+        ),
+        constraint_count=len(dataset.constraints),
+        control_kind=control_kind,
+    )
+
+
 def _direct_constraint_stats(
     *,
     context: CouplingNucleusContext,

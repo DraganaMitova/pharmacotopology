@@ -1,0 +1,2 @@
+row_id,source_accession,mapping_status,failure_kind,rejection_reason,pfam_ids,mapping_source_kind,coordinate_truth_used_to_build_constraints,native_truth_used_before_coupling_selection,structure_model_used,raw_sequence_exposed
+coord_holdout_1ubq_a,1UBQ:A,mapping_resolved,,,PF00240,pdbe_sifts_pfam_mapping_api,False,False,False,False

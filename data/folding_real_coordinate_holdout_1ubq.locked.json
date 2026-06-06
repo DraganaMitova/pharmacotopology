@@ -1,0 +1,658 @@
+{
+  "benchmark_kind": "real_coordinate_visual_contact_benchmark_v1",
+  "benchmark_size": 1,
+  "blind_prediction_before_coordinate_scoring": true,
+  "clinical_use_allowed": false,
+  "coarse_ca_only": true,
+  "contact_cutoff_angstrom": 8.0,
+  "coordinate_fixture_kind": "locked_c_alpha_coordinate_trace_v1",
+  "drug_design_created": false,
+  "folding_problem_solved": false,
+  "folding_solution_claim_created": false,
+  "full_atomic_folding_available": false,
+  "global_folding_claim_allowed": false,
+  "holdout_split": "known_protein_single_holdout_v0",
+  "locked_after_generation": true,
+  "mechanism_discovery_claim_allowed": false,
+  "minimum_sequence_separation": 3,
+  "molecule_generated": false,
+  "native_contact_derivation_kind": "rcsb_ca_coordinate_native_contacts_v1",
+  "native_contact_derivation_rule": "C-alpha distance <= 8.0 angstrom with sequence separation >= 3",
+  "protein_sequence_design_created": false,
+  "references": [
+    {
+      "coordinate_coverage": 1.0,
+      "coordinate_points": [
+        {
+          "insertion_code": "",
+          "residue_number": 1,
+          "sequence_index": 1,
+          "x": 26.266,
+          "y": 25.413,
+          "z": 2.842
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 2,
+          "sequence_index": 2,
+          "x": 26.85,
+          "y": 29.021,
+          "z": 3.898
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 3,
+          "sequence_index": 3,
+          "x": 26.235,
+          "y": 30.058,
+          "z": 7.497
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 4,
+          "sequence_index": 4,
+          "x": 26.772,
+          "y": 33.436,
+          "z": 9.197
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 5,
+          "sequence_index": 5,
+          "x": 28.605,
+          "y": 33.965,
+          "z": 12.503
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 6,
+          "sequence_index": 6,
+          "x": 27.691,
+          "y": 37.315,
+          "z": 14.143
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 7,
+          "sequence_index": 7,
+          "x": 30.225,
+          "y": 38.643,
+          "z": 16.662
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 8,
+          "sequence_index": 8,
+          "x": 29.607,
+          "y": 41.18,
+          "z": 19.467
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 9,
+          "sequence_index": 9,
+          "x": 31.422,
+          "y": 43.94,
+          "z": 17.553
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 10,
+          "sequence_index": 10,
+          "x": 28.978,
+          "y": 43.96,
+          "z": 14.678
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 11,
+          "sequence_index": 11,
+          "x": 31.191,
+          "y": 42.012,
+          "z": 12.331
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 12,
+          "sequence_index": 12,
+          "x": 29.542,
+          "y": 39.02,
+          "z": 10.653
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 13,
+          "sequence_index": 13,
+          "x": 31.72,
+          "y": 36.289,
+          "z": 9.176
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 14,
+          "sequence_index": 14,
+          "x": 30.505,
+          "y": 33.884,
+          "z": 6.512
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 15,
+          "sequence_index": 15,
+          "x": 31.677,
+          "y": 30.275,
+          "z": 6.639
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 16,
+          "sequence_index": 16,
+          "x": 31.22,
+          "y": 27.341,
+          "z": 4.275
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 17,
+          "sequence_index": 17,
+          "x": 30.288,
+          "y": 24.245,
+          "z": 6.193
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 18,
+          "sequence_index": 18,
+          "x": 28.468,
+          "y": 20.94,
+          "z": 5.98
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 19,
+          "sequence_index": 19,
+          "x": 25.829,
+          "y": 19.825,
+          "z": 8.494
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 20,
+          "sequence_index": 20,
+          "x": 28.054,
+          "y": 16.835,
+          "z": 9.21
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 21,
+          "sequence_index": 21,
+          "x": 30.796,
+          "y": 19.083,
+          "z": 10.566
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 22,
+          "sequence_index": 22,
+          "x": 31.398,
+          "y": 19.064,
+          "z": 14.286
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 23,
+          "sequence_index": 23,
+          "x": 31.288,
+          "y": 22.201,
+          "z": 16.417
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 24,
+          "sequence_index": 24,
+          "x": 35.031,
+          "y": 21.722,
+          "z": 17.069
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 25,
+          "sequence_index": 25,
+          "x": 35.59,
+          "y": 21.945,
+          "z": 13.302
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 26,
+          "sequence_index": 26,
+          "x": 33.533,
+          "y": 25.097,
+          "z": 12.978
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 27,
+          "sequence_index": 27,
+          "x": 35.596,
+          "y": 26.715,
+          "z": 15.736
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 28,
+          "sequence_index": 28,
+          "x": 38.794,
+          "y": 25.761,
+          "z": 13.88
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 29,
+          "sequence_index": 29,
+          "x": 37.471,
+          "y": 27.391,
+          "z": 10.668
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 30,
+          "sequence_index": 30,
+          "x": 36.731,
+          "y": 30.57,
+          "z": 12.645
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 31,
+          "sequence_index": 31,
+          "x": 40.269,
+          "y": 30.508,
+          "z": 14.115
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 32,
+          "sequence_index": 32,
+          "x": 41.718,
+          "y": 30.022,
+          "z": 10.643
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 33,
+          "sequence_index": 33,
+          "x": 39.808,
+          "y": 32.994,
+          "z": 9.233
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 34,
+          "sequence_index": 34,
+          "x": 39.676,
+          "y": 35.547,
+          "z": 12.072
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 35,
+          "sequence_index": 35,
+          "x": 42.345,
+          "y": 34.269,
+          "z": 14.431
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 36,
+          "sequence_index": 36,
+          "x": 40.226,
+          "y": 33.716,
+          "z": 17.509
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 37,
+          "sequence_index": 37,
+          "x": 41.461,
+          "y": 30.751,
+          "z": 19.594
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 38,
+          "sequence_index": 38,
+          "x": 38.817,
+          "y": 28.02,
+          "z": 19.889
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 39,
+          "sequence_index": 39,
+          "x": 39.063,
+          "y": 28.063,
+          "z": 23.695
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 40,
+          "sequence_index": 40,
+          "x": 37.738,
+          "y": 31.637,
+          "z": 23.712
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 41,
+          "sequence_index": 41,
+          "x": 34.738,
+          "y": 30.875,
+          "z": 21.473
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 42,
+          "sequence_index": 42,
+          "x": 31.2,
+          "y": 30.329,
+          "z": 22.78
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 43,
+          "sequence_index": 43,
+          "x": 28.762,
+          "y": 29.573,
+          "z": 19.906
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 44,
+          "sequence_index": 44,
+          "x": 25.034,
+          "y": 30.17,
+          "z": 20.401
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 45,
+          "sequence_index": 45,
+          "x": 22.126,
+          "y": 29.062,
+          "z": 18.183
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 46,
+          "sequence_index": 46,
+          "x": 18.443,
+          "y": 29.143,
+          "z": 19.083
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 47,
+          "sequence_index": 47,
+          "x": 19.399,
+          "y": 29.894,
+          "z": 22.655
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 48,
+          "sequence_index": 48,
+          "x": 21.55,
+          "y": 26.796,
+          "z": 23.133
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 49,
+          "sequence_index": 49,
+          "x": 25.349,
+          "y": 26.872,
+          "z": 23.643
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 50,
+          "sequence_index": 50,
+          "x": 26.826,
+          "y": 24.521,
+          "z": 21.012
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 51,
+          "sequence_index": 51,
+          "x": 29.015,
+          "y": 21.657,
+          "z": 22.288
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 52,
+          "sequence_index": 52,
+          "x": 32.262,
+          "y": 20.67,
+          "z": 20.514
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 53,
+          "sequence_index": 53,
+          "x": 31.568,
+          "y": 16.962,
+          "z": 19.825
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 54,
+          "sequence_index": 54,
+          "x": 28.108,
+          "y": 17.439,
+          "z": 18.276
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 55,
+          "sequence_index": 55,
+          "x": 27.574,
+          "y": 18.192,
+          "z": 14.563
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 56,
+          "sequence_index": 56,
+          "x": 25.594,
+          "y": 21.109,
+          "z": 13.072
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 57,
+          "sequence_index": 57,
+          "x": 22.924,
+          "y": 18.583,
+          "z": 12.025
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 58,
+          "sequence_index": 58,
+          "x": 22.418,
+          "y": 17.638,
+          "z": 15.693
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 59,
+          "sequence_index": 59,
+          "x": 21.079,
+          "y": 21.149,
+          "z": 16.251
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 60,
+          "sequence_index": 60,
+          "x": 19.065,
+          "y": 21.352,
+          "z": 12.999
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 61,
+          "sequence_index": 61,
+          "x": 21.184,
+          "y": 24.263,
+          "z": 11.69
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 62,
+          "sequence_index": 62,
+          "x": 20.081,
+          "y": 24.773,
+          "z": 8.033
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 63,
+          "sequence_index": 63,
+          "x": 21.656,
+          "y": 26.847,
+          "z": 5.24
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 64,
+          "sequence_index": 64,
+          "x": 21.907,
+          "y": 30.563,
+          "z": 5.881
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 65,
+          "sequence_index": 65,
+          "x": 21.419,
+          "y": 30.253,
+          "z": 9.62
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 66,
+          "sequence_index": 66,
+          "x": 23.212,
+          "y": 32.762,
+          "z": 11.891
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 67,
+          "sequence_index": 67,
+          "x": 25.149,
+          "y": 31.609,
+          "z": 14.98
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 68,
+          "sequence_index": 68,
+          "x": 26.179,
+          "y": 34.127,
+          "z": 17.65
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 69,
+          "sequence_index": 69,
+          "x": 29.801,
+          "y": 34.145,
+          "z": 18.829
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 70,
+          "sequence_index": 70,
+          "x": 30.479,
+          "y": 35.369,
+          "z": 22.374
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 71,
+          "sequence_index": 71,
+          "x": 34.145,
+          "y": 35.472,
+          "z": 23.481
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 72,
+          "sequence_index": 72,
+          "x": 35.161,
+          "y": 34.174,
+          "z": 26.896
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 73,
+          "sequence_index": 73,
+          "x": 38.668,
+          "y": 35.502,
+          "z": 27.68
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 74,
+          "sequence_index": 74,
+          "x": 40.873,
+          "y": 33.802,
+          "z": 30.253
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 75,
+          "sequence_index": 75,
+          "x": 41.845,
+          "y": 36.55,
+          "z": 32.686
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 76,
+          "sequence_index": 76,
+          "x": 40.373,
+          "y": 39.813,
+          "z": 33.944
+        }
+      ],
+      "coordinate_residue_count": 76,
+      "coordinate_source_url": "https://files.rcsb.org/download/1UBQ.pdb",
+      "coordinate_trace_hash": "sha256:d5474054626149c795c6ac028f2317e6abd58d3aa665a61ad04b474d457132a4",
+      "native_contact_map_hash": "sha256:0e18af525f8fc33cda83db3432b9b5d4fa55ebc268921289b20d89b18dbecbab",
+      "reference_fold_class": "alpha_beta_mixed",
+      "reference_structure_source": "pdb:1UBQ:A",
+      "row_id": "coord_holdout_1ubq_a",
+      "sequence": "MQIFVKTLTGKTITLEVEPSDTIENVKAKIQDKEGIPPDQQRLIFAGKQLEDGRTLSDYNIQKESTLHLVLRLRGG",
+      "sequence_length": 76,
+      "sequence_sha256": "233b4b0b8c4616095bc3249f9375fc345d32af7deaef07117d0383c51d6f19aa",
+      "source_accession": "1UBQ:A",
+      "source_database": "RCSB_PDB",
+      "source_id": "ubiquitin_1ubq_a",
+      "truth_axes": {
+        "architecture_axis": "compact_single_domain",
+        "environment_axis": "soluble_like",
+        "order_axis": "ordered",
+        "secondary_structure_axis": "alpha_beta_mixed"
+      }
+    }
+  ],
+  "source_coordinate_database": "RCSB_PDB",
+  "toy_locked_contact_targets_used": false
+}
