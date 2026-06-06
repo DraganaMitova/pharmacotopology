@@ -8,6 +8,7 @@ if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
 from pharmacotopology.external_dca_runner import (  # noqa: E402
+    FAMILY_WIDE_PFAM_APC_METHOD,
     PfamDomainMapping,
     read_stockholm_sample,
     run_pfam_apc_covariation_for_row,
@@ -59,7 +60,7 @@ def test_pfam_apc_runner_scores_gzipped_stockholm_without_truth(tmp_path) -> Non
     assert len(sequences) == 25
     assert total_seen == 40
     assert result.dca_status == "dca_available"
-    assert result.covariation_method == "interpro_pfam_full_alignment_mi_apc"
+    assert result.covariation_method == FAMILY_WIDE_PFAM_APC_METHOD
     assert result.sample_depth == 25
     assert result.accepted_pair_count > 0
     assert result.pairs[0].i < result.pairs[0].j

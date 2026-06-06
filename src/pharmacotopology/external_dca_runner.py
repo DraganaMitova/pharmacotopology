@@ -60,6 +60,11 @@ class PfamApcRowResult:
 
 AA_ALPHABET = "ACDEFGHIKLMNPQRSTVWY"
 GAP_CODE = 20
+FAMILY_WIDE_PFAM_APC_METHOD = "interpro_pfam_full_alignment_mi_apc"
+QUERY_STRATIFIED_PFAM_APC_METHOD = (
+    "interpro_pfam_full_alignment_query_stratified_mi_apc"
+)
+PFAM_APC_SAMPLE_STRATEGIES = frozenset(("family_wide", "query_stratified"))
 
 
 def sha256_file(path: Path) -> str:
@@ -97,6 +102,90 @@ def read_stockholm_sample(
     return tuple("".join(parts) for parts in records.values()), len(seen_total)
 
 
+def _clean_stockholm_match_columns(sequence: str) -> str:
+    return "".join(char.upper() for char in sequence if not char.islower())
+
+
+def _query_focus_score(sequence: str, target_sequence: str) -> tuple[float, float, float]:
+    cleaned = _clean_stockholm_match_columns(sequence)
+    target = target_sequence.upper()
+    usable = min(len(cleaned), len(target))
+    if usable == 0 or not target:
+        return (0.0, 0.0, 0.0)
+    covered = 0
+    matches = 0
+    for index in range(usable):
+        residue = cleaned[index]
+        if residue not in AA_ALPHABET:
+            continue
+        covered += 1
+        if residue == target[index]:
+            matches += 1
+    coverage = covered / len(target)
+    identity = matches / covered if covered else 0.0
+    return (identity * coverage, identity, coverage)
+
+
+def _stratified_rank_sample(
+    ranked: Sequence[tuple[tuple[float, float, float], str, str]],
+    *,
+    max_records: int,
+) -> tuple[str, ...]:
+    if len(ranked) <= max_records:
+        return tuple(item[2] for item in ranked)
+    focused_count = max(1, max_records // 2)
+    chosen = list(ranked[:focused_count])
+    remaining_count = max_records - len(chosen)
+    remaining = ranked[focused_count:]
+    if remaining_count <= 0 or not remaining:
+        return tuple(item[2] for item in chosen)
+    if remaining_count == 1:
+        chosen.append(remaining[0])
+    else:
+        last_index = len(remaining) - 1
+        indexes = {
+            round(index * last_index / (remaining_count - 1))
+            for index in range(remaining_count)
+        }
+        for index in sorted(indexes):
+            chosen.append(remaining[index])
+    return tuple(item[2] for item in chosen[:max_records])
+
+
+def read_query_stratified_stockholm_sample(
+    path: Path,
+    *,
+    target_sequence: str,
+    max_records: int = 4000,
+) -> tuple[tuple[str, ...], int]:
+    opener = gzip.open if path.read_bytes()[:2] == b"\x1f\x8b" else open
+    records: OrderedDict[str, list[str]] = OrderedDict()
+    seen_total: set[str] = set()
+    with opener(path, "rt", encoding="utf-8", errors="replace") as file:
+        for line in file:
+            stripped = line.strip()
+            if not stripped or stripped.startswith("#") or stripped == "//":
+                continue
+            parts = stripped.split()
+            if len(parts) < 2:
+                continue
+            name, fragment = parts[0], parts[1]
+            seen_total.add(name)
+            records.setdefault(name, []).append(fragment)
+    ranked = sorted(
+        (
+            (
+                _query_focus_score("".join(parts), target_sequence),
+                name,
+                "".join(parts),
+            )
+            for name, parts in records.items()
+        ),
+        key=lambda item: (-item[0][0], -item[0][1], -item[0][2], item[1]),
+    )
+    return _stratified_rank_sample(ranked, max_records=max_records), len(seen_total)
+
+
 def _encode_alignment(sequences: Sequence[str]):
     import numpy as np
 
@@ -106,7 +195,7 @@ def _encode_alignment(sequences: Sequence[str]):
     width = max(len(sequence) for sequence in sequences)
     matrix = np.full((len(sequences), width), GAP_CODE, dtype=np.int16)
     for row_index, sequence in enumerate(sequences):
-        cleaned = "".join(char for char in sequence if not char.islower())
+        cleaned = _clean_stockholm_match_columns(sequence)
         for column_index, residue in enumerate(cleaned[:width]):
             matrix[row_index, column_index] = encoded.get(residue.upper(), GAP_CODE)
     return matrix
@@ -193,7 +282,15 @@ def run_pfam_apc_covariation_for_row(
     alignment_dir: Path,
     max_records: int = 4000,
     minimum_sequence_separation: int = 24,
+    sample_strategy: str = "family_wide",
 ) -> PfamApcRowResult:
+    if sample_strategy not in PFAM_APC_SAMPLE_STRATEGIES:
+        raise ValueError(f"unknown Pfam APC sample strategy: {sample_strategy}")
+    covariation_method = (
+        QUERY_STRATIFIED_PFAM_APC_METHOD
+        if sample_strategy == "query_stratified"
+        else FAMILY_WIDE_PFAM_APC_METHOD
+    )
     if not mappings:
         return PfamApcRowResult(
             row_id=row.row_id,
@@ -203,7 +300,7 @@ def run_pfam_apc_covariation_for_row(
             failure_kind="mapping_failed",
             rejection_reason="no_pdbe_pfam_mapping",
             dca_tool="none",
-            covariation_method="interpro_pfam_full_alignment_mi_apc",
+            covariation_method=covariation_method,
             pfam_ids="",
             sample_depth=0,
             total_depth_seen=0,
@@ -221,10 +318,22 @@ def run_pfam_apc_covariation_for_row(
         alignment_path = alignment_dir / f"{mapping.pfam_id}.full.sto.gz"
         if not alignment_path.exists():
             continue
-        sequences, total_depth = read_stockholm_sample(
-            alignment_path,
-            max_records=max_records,
-        )
+        if sample_strategy == "query_stratified":
+            target_sequence = "".join(
+                row.sequence[position - 1]
+                for position in mapping.positions()
+                if 1 <= position <= row.sequence_length
+            )
+            sequences, total_depth = read_query_stratified_stockholm_sample(
+                alignment_path,
+                target_sequence=target_sequence,
+                max_records=max_records,
+            )
+        else:
+            sequences, total_depth = read_stockholm_sample(
+                alignment_path,
+                max_records=max_records,
+            )
         sample_depth = max(sample_depth, len(sequences))
         total_depth_seen = max(total_depth_seen, total_depth)
         hashes.append(sha256_file(alignment_path))
@@ -264,7 +373,7 @@ def run_pfam_apc_covariation_for_row(
         failure_kind="" if ranked else "dca_failed",
         rejection_reason="" if ranked else "no_ranked_covariation_pairs",
         dca_tool="none",
-        covariation_method="interpro_pfam_full_alignment_mi_apc",
+        covariation_method=covariation_method,
         pfam_ids=",".join(mapping.pfam_id for mapping in mappings),
         sample_depth=sample_depth,
         total_depth_seen=total_depth_seen,

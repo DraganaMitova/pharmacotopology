@@ -1,0 +1,1410 @@
+{
+  "benchmark_kind": "real_coordinate_visual_contact_benchmark_v1",
+  "benchmark_size": 1,
+  "blind_prediction_before_coordinate_scoring": true,
+  "clinical_use_allowed": false,
+  "coarse_ca_only": true,
+  "contact_cutoff_angstrom": 8.0,
+  "coordinate_fixture_kind": "locked_c_alpha_coordinate_trace_v1",
+  "drug_design_created": false,
+  "folding_problem_solved": false,
+  "folding_solution_claim_created": false,
+  "full_atomic_folding_available": false,
+  "global_folding_claim_allowed": false,
+  "holdout_split": "known_protein_single_holdout_v0",
+  "locked_after_generation": true,
+  "mechanism_discovery_claim_allowed": false,
+  "minimum_sequence_separation": 3,
+  "molecule_generated": false,
+  "native_contact_derivation_kind": "rcsb_ca_coordinate_native_contacts_v1",
+  "native_contact_derivation_rule": "C-alpha distance <= 8.0 angstrom with sequence separation >= 3",
+  "protein_sequence_design_created": false,
+  "references": [
+    {
+      "coordinate_coverage": 1.0,
+      "coordinate_points": [
+        {
+          "insertion_code": "",
+          "residue_number": 2,
+          "sequence_index": 1,
+          "x": 5.939,
+          "y": 13.869,
+          "z": 10.148
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 3,
+          "sequence_index": 2,
+          "x": 9.431,
+          "y": 12.487,
+          "z": 11.042
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 4,
+          "sequence_index": 3,
+          "x": 12.785,
+          "y": 14.313,
+          "z": 11.24
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 5,
+          "sequence_index": 4,
+          "x": 15.052,
+          "y": 14.017,
+          "z": 8.215
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 6,
+          "sequence_index": 5,
+          "x": 18.829,
+          "y": 14.323,
+          "z": 8.46
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 7,
+          "sequence_index": 6,
+          "x": 21.639,
+          "y": 13.996,
+          "z": 5.938
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 8,
+          "sequence_index": 7,
+          "x": 25.277,
+          "y": 13.16,
+          "z": 5.391
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 9,
+          "sequence_index": 8,
+          "x": 27.331,
+          "y": 14.639,
+          "z": 2.545
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 10,
+          "sequence_index": 9,
+          "x": 29.917,
+          "y": 11.92,
+          "z": 1.95
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 11,
+          "sequence_index": 10,
+          "x": 33.437,
+          "y": 12.243,
+          "z": 0.61
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 12,
+          "sequence_index": 11,
+          "x": 35.531,
+          "y": 9.358,
+          "z": -0.724
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 13,
+          "sequence_index": 12,
+          "x": 39.234,
+          "y": 10.136,
+          "z": -0.759
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 14,
+          "sequence_index": 13,
+          "x": 38.28,
+          "y": 13.741,
+          "z": -0.01
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 15,
+          "sequence_index": 14,
+          "x": 35.954,
+          "y": 14.139,
+          "z": -3.03
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 16,
+          "sequence_index": 15,
+          "x": 32.198,
+          "y": 14.439,
+          "z": -2.876
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 17,
+          "sequence_index": 16,
+          "x": 30.276,
+          "y": 11.232,
+          "z": -3.482
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 18,
+          "sequence_index": 17,
+          "x": 26.784,
+          "y": 12.578,
+          "z": -2.809
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 19,
+          "sequence_index": 18,
+          "x": 24.157,
+          "y": 12.958,
+          "z": -0.119
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 20,
+          "sequence_index": 19,
+          "x": 22.487,
+          "y": 10.302,
+          "z": 2.016
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 21,
+          "sequence_index": 20,
+          "x": 19.127,
+          "y": 11.446,
+          "z": 3.407
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 22,
+          "sequence_index": 21,
+          "x": 17.686,
+          "y": 9.549,
+          "z": 6.376
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 23,
+          "sequence_index": 22,
+          "x": 14.24,
+          "y": 9.519,
+          "z": 7.96
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 24,
+          "sequence_index": 23,
+          "x": 14.268,
+          "y": 9.009,
+          "z": 11.722
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 25,
+          "sequence_index": 24,
+          "x": 11.537,
+          "y": 7.054,
+          "z": 13.5
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 26,
+          "sequence_index": 25,
+          "x": 10.896,
+          "y": 9.644,
+          "z": 16.221
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 27,
+          "sequence_index": 26,
+          "x": 7.359,
+          "y": 8.248,
+          "z": 16.588
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 28,
+          "sequence_index": 27,
+          "x": 8.769,
+          "y": 4.832,
+          "z": 17.596
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 29,
+          "sequence_index": 28,
+          "x": 12.159,
+          "y": 5.485,
+          "z": 19.255
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 30,
+          "sequence_index": 29,
+          "x": 12.108,
+          "y": 9.203,
+          "z": 20.162
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 31,
+          "sequence_index": 30,
+          "x": 15.122,
+          "y": 9.115,
+          "z": 22.486
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 32,
+          "sequence_index": 31,
+          "x": 17.256,
+          "y": 7.198,
+          "z": 19.978
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 33,
+          "sequence_index": 32,
+          "x": 16.137,
+          "y": 9.429,
+          "z": 17.117
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 34,
+          "sequence_index": 33,
+          "x": 16.936,
+          "y": 12.567,
+          "z": 19.151
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 35,
+          "sequence_index": 34,
+          "x": 20.47,
+          "y": 11.328,
+          "z": 19.826
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 36,
+          "sequence_index": 35,
+          "x": 21.107,
+          "y": 10.72,
+          "z": 16.125
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 37,
+          "sequence_index": 36,
+          "x": 19.483,
+          "y": 14.006,
+          "z": 15.091
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 38,
+          "sequence_index": 37,
+          "x": 21.63,
+          "y": 15.937,
+          "z": 17.546
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 39,
+          "sequence_index": 38,
+          "x": 24.786,
+          "y": 14.155,
+          "z": 16.402
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 40,
+          "sequence_index": 39,
+          "x": 23.944,
+          "y": 15.323,
+          "z": 12.869
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 41,
+          "sequence_index": 40,
+          "x": 23.406,
+          "y": 18.964,
+          "z": 13.889
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 42,
+          "sequence_index": 41,
+          "x": 26.032,
+          "y": 19.204,
+          "z": 16.627
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 43,
+          "sequence_index": 42,
+          "x": 23.598,
+          "y": 21.267,
+          "z": 18.653
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 44,
+          "sequence_index": 43,
+          "x": 24.225,
+          "y": 19.733,
+          "z": 22.097
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 45,
+          "sequence_index": 44,
+          "x": 27.833,
+          "y": 20.959,
+          "z": 22.282
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 46,
+          "sequence_index": 45,
+          "x": 30.437,
+          "y": 18.808,
+          "z": 24.022
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 47,
+          "sequence_index": 46,
+          "x": 30.305,
+          "y": 15.202,
+          "z": 25.195
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 48,
+          "sequence_index": 47,
+          "x": 31.899,
+          "y": 13.341,
+          "z": 28.08
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 49,
+          "sequence_index": 48,
+          "x": 35.047,
+          "y": 13.087,
+          "z": 25.96
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 50,
+          "sequence_index": 49,
+          "x": 35.371,
+          "y": 16.872,
+          "z": 25.842
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 51,
+          "sequence_index": 50,
+          "x": 34.911,
+          "y": 16.644,
+          "z": 22.056
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 52,
+          "sequence_index": 51,
+          "x": 32.029,
+          "y": 17.978,
+          "z": 20.019
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 53,
+          "sequence_index": 52,
+          "x": 28.938,
+          "y": 15.746,
+          "z": 19.873
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 54,
+          "sequence_index": 53,
+          "x": 28.902,
+          "y": 15.897,
+          "z": 16.089
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 55,
+          "sequence_index": 54,
+          "x": 29.365,
+          "y": 13.453,
+          "z": 13.228
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 56,
+          "sequence_index": 55,
+          "x": 30.852,
+          "y": 16.161,
+          "z": 10.977
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 57,
+          "sequence_index": 56,
+          "x": 34.358,
+          "y": 15.226,
+          "z": 9.861
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 58,
+          "sequence_index": 57,
+          "x": 34.12,
+          "y": 11.663,
+          "z": 11.189
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 59,
+          "sequence_index": 58,
+          "x": 35.007,
+          "y": 8.639,
+          "z": 9.091
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 60,
+          "sequence_index": 59,
+          "x": 33.409,
+          "y": 5.248,
+          "z": 8.619
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 61,
+          "sequence_index": 60,
+          "x": 35.55,
+          "y": 2.7,
+          "z": 10.445
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 62,
+          "sequence_index": 61,
+          "x": 34.333,
+          "y": -0.417,
+          "z": 8.588
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 63,
+          "sequence_index": 62,
+          "x": 32.566,
+          "y": -0.857,
+          "z": 5.258
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 64,
+          "sequence_index": 63,
+          "x": 31.611,
+          "y": -4.463,
+          "z": 4.473
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 65,
+          "sequence_index": 64,
+          "x": 30.175,
+          "y": -5.278,
+          "z": 1.032
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 66,
+          "sequence_index": 65,
+          "x": 26.915,
+          "y": -7.209,
+          "z": 1.183
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 67,
+          "sequence_index": 66,
+          "x": 26.498,
+          "y": -6.377,
+          "z": 4.886
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 68,
+          "sequence_index": 67,
+          "x": 26.653,
+          "y": -2.72,
+          "z": 5.979
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 69,
+          "sequence_index": 68,
+          "x": 28.493,
+          "y": 0.533,
+          "z": 6.538
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 70,
+          "sequence_index": 69,
+          "x": 29.633,
+          "y": 1.105,
+          "z": 10.134
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 71,
+          "sequence_index": 70,
+          "x": 30.285,
+          "y": 4.668,
+          "z": 11.273
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 72,
+          "sequence_index": 71,
+          "x": 29.738,
+          "y": 7.221,
+          "z": 13.984
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 73,
+          "sequence_index": 72,
+          "x": 32.982,
+          "y": 6.855,
+          "z": 15.967
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 74,
+          "sequence_index": 73,
+          "x": 33.667,
+          "y": 10.576,
+          "z": 16.008
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 75,
+          "sequence_index": 74,
+          "x": 36.221,
+          "y": 10.399,
+          "z": 18.838
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 76,
+          "sequence_index": 75,
+          "x": 38.559,
+          "y": 7.708,
+          "z": 17.408
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 77,
+          "sequence_index": 76,
+          "x": 37.374,
+          "y": 6.7,
+          "z": 13.924
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 78,
+          "sequence_index": 77,
+          "x": 38.199,
+          "y": 3.044,
+          "z": 14.563
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 79,
+          "sequence_index": 78,
+          "x": 35.16,
+          "y": 1.408,
+          "z": 16.125
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 80,
+          "sequence_index": 79,
+          "x": 36.176,
+          "y": 1.767,
+          "z": 19.769
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 81,
+          "sequence_index": 80,
+          "x": 34.965,
+          "y": 5.321,
+          "z": 20.47
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 82,
+          "sequence_index": 81,
+          "x": 31.961,
+          "y": 7.574,
+          "z": 20.231
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 83,
+          "sequence_index": 82,
+          "x": 29.387,
+          "y": 8.616,
+          "z": 22.813
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 84,
+          "sequence_index": 83,
+          "x": 25.774,
+          "y": 9.752,
+          "z": 22.956
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 85,
+          "sequence_index": 84,
+          "x": 24.106,
+          "y": 13.002,
+          "z": 23.959
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 86,
+          "sequence_index": 85,
+          "x": 23.1,
+          "y": 11.139,
+          "z": 27.15
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 87,
+          "sequence_index": 86,
+          "x": 26.66,
+          "y": 10.228,
+          "z": 28.149
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 88,
+          "sequence_index": 87,
+          "x": 28.861,
+          "y": 7.293,
+          "z": 27.168
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 89,
+          "sequence_index": 88,
+          "x": 25.88,
+          "y": 4.922,
+          "z": 26.823
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 90,
+          "sequence_index": 89,
+          "x": 22.088,
+          "y": 4.844,
+          "z": 26.829
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 91,
+          "sequence_index": 90,
+          "x": 19.423,
+          "y": 2.122,
+          "z": 27.089
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 92,
+          "sequence_index": 91,
+          "x": 17.839,
+          "y": 0.093,
+          "z": 24.323
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 93,
+          "sequence_index": 92,
+          "x": 14.61,
+          "y": 1.998,
+          "z": 23.814
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 94,
+          "sequence_index": 93,
+          "x": 12.723,
+          "y": -0.849,
+          "z": 22.104
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 95,
+          "sequence_index": 94,
+          "x": 13.195,
+          "y": -3.423,
+          "z": 19.326
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 96,
+          "sequence_index": 95,
+          "x": 9.96,
+          "y": -2.678,
+          "z": 17.473
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 97,
+          "sequence_index": 96,
+          "x": 11.572,
+          "y": -2.036,
+          "z": 14.074
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 98,
+          "sequence_index": 97,
+          "x": 13.473,
+          "y": -4.836,
+          "z": 12.36
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 99,
+          "sequence_index": 98,
+          "x": 16.413,
+          "y": -5.271,
+          "z": 10.003
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 100,
+          "sequence_index": 99,
+          "x": 14.387,
+          "y": -5.816,
+          "z": 6.858
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 101,
+          "sequence_index": 100,
+          "x": 16.776,
+          "y": -4.879,
+          "z": 4.057
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 102,
+          "sequence_index": 101,
+          "x": 19.126,
+          "y": -2.288,
+          "z": 2.601
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 103,
+          "sequence_index": 102,
+          "x": 18.827,
+          "y": 1.194,
+          "z": 4.05
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 104,
+          "sequence_index": 103,
+          "x": 17.961,
+          "y": 0.237,
+          "z": 7.618
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 105,
+          "sequence_index": 104,
+          "x": 19.632,
+          "y": 2.431,
+          "z": 10.229
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 106,
+          "sequence_index": 105,
+          "x": 20.519,
+          "y": 0.64,
+          "z": 13.464
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 107,
+          "sequence_index": 106,
+          "x": 22.644,
+          "y": 1.399,
+          "z": 16.533
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 108,
+          "sequence_index": 107,
+          "x": 25.9,
+          "y": -0.427,
+          "z": 17.137
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 109,
+          "sequence_index": 108,
+          "x": 26.468,
+          "y": -1.554,
+          "z": 20.725
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 110,
+          "sequence_index": 109,
+          "x": 28.563,
+          "y": -3.576,
+          "z": 23.157
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 111,
+          "sequence_index": 110,
+          "x": 25.686,
+          "y": -5.643,
+          "z": 24.506
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 112,
+          "sequence_index": 111,
+          "x": 22.407,
+          "y": -4.628,
+          "z": 26.149
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 113,
+          "sequence_index": 112,
+          "x": 21.872,
+          "y": -0.951,
+          "z": 26.968
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 114,
+          "sequence_index": 113,
+          "x": 25.161,
+          "y": 0.337,
+          "z": 25.548
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 115,
+          "sequence_index": 114,
+          "x": 24.101,
+          "y": 2.589,
+          "z": 22.671
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 116,
+          "sequence_index": 115,
+          "x": 26.478,
+          "y": 5.443,
+          "z": 21.919
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 117,
+          "sequence_index": 116,
+          "x": 27.069,
+          "y": 7.199,
+          "z": 18.598
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 118,
+          "sequence_index": 117,
+          "x": 28.157,
+          "y": 4.316,
+          "z": 16.356
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 119,
+          "sequence_index": 118,
+          "x": 25.568,
+          "y": 3.237,
+          "z": 13.811
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 120,
+          "sequence_index": 119,
+          "x": 24.961,
+          "y": 0.879,
+          "z": 10.928
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 121,
+          "sequence_index": 120,
+          "x": 23.585,
+          "y": 1.562,
+          "z": 7.449
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 122,
+          "sequence_index": 121,
+          "x": 22.575,
+          "y": -1.88,
+          "z": 6.207
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 123,
+          "sequence_index": 122,
+          "x": 23.145,
+          "y": -2.928,
+          "z": 2.61
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 124,
+          "sequence_index": 123,
+          "x": 21.356,
+          "y": -6.299,
+          "z": 2.986
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 125,
+          "sequence_index": 124,
+          "x": 18.682,
+          "y": -7.901,
+          "z": 5.168
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 126,
+          "sequence_index": 125,
+          "x": 20.401,
+          "y": -8.596,
+          "z": 8.507
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 127,
+          "sequence_index": 126,
+          "x": 17.681,
+          "y": -10.305,
+          "z": 10.512
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 128,
+          "sequence_index": 127,
+          "x": 20.088,
+          "y": -11.894,
+          "z": 13.024
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 129,
+          "sequence_index": 128,
+          "x": 20.512,
+          "y": -8.378,
+          "z": 14.492
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 130,
+          "sequence_index": 129,
+          "x": 16.808,
+          "y": -8.137,
+          "z": 15.367
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 131,
+          "sequence_index": 130,
+          "x": 16.253,
+          "y": -7.801,
+          "z": 19.09
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 132,
+          "sequence_index": 131,
+          "x": 19.918,
+          "y": -6.913,
+          "z": 19.645
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 133,
+          "sequence_index": 132,
+          "x": 20.323,
+          "y": -3.602,
+          "z": 17.791
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 134,
+          "sequence_index": 133,
+          "x": 17.821,
+          "y": -0.756,
+          "z": 17.962
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 135,
+          "sequence_index": 134,
+          "x": 16.521,
+          "y": 0.22,
+          "z": 14.527
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 136,
+          "sequence_index": 135,
+          "x": 15.755,
+          "y": 3.928,
+          "z": 14.416
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 137,
+          "sequence_index": 136,
+          "x": 15.383,
+          "y": 5.039,
+          "z": 10.801
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 138,
+          "sequence_index": 137,
+          "x": 15.944,
+          "y": 4.393,
+          "z": 7.142
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 139,
+          "sequence_index": 138,
+          "x": 17.725,
+          "y": 5.85,
+          "z": 4.142
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 140,
+          "sequence_index": 139,
+          "x": 15.19,
+          "y": 7.623,
+          "z": 1.919
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 141,
+          "sequence_index": 140,
+          "x": 17.573,
+          "y": 9.162,
+          "z": -0.652
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 142,
+          "sequence_index": 141,
+          "x": 21.104,
+          "y": 8.293,
+          "z": -1.7
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 143,
+          "sequence_index": 142,
+          "x": 21.204,
+          "y": 4.508,
+          "z": -1.649
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 144,
+          "sequence_index": 143,
+          "x": 23.363,
+          "y": 4.925,
+          "z": -4.776
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 145,
+          "sequence_index": 144,
+          "x": 25.833,
+          "y": 6.862,
+          "z": -2.61
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 146,
+          "sequence_index": 145,
+          "x": 25.698,
+          "y": 4.057,
+          "z": -0.041
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 147,
+          "sequence_index": 146,
+          "x": 26.517,
+          "y": 1.604,
+          "z": -2.845
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 148,
+          "sequence_index": 147,
+          "x": 29.446,
+          "y": 3.735,
+          "z": -4.023
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 149,
+          "sequence_index": 148,
+          "x": 30.809,
+          "y": 3.699,
+          "z": -0.466
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 150,
+          "sequence_index": 149,
+          "x": 30.16,
+          "y": -0.026,
+          "z": -0.138
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 151,
+          "sequence_index": 150,
+          "x": 32.354,
+          "y": -0.683,
+          "z": -3.203
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 152,
+          "sequence_index": 151,
+          "x": 35.334,
+          "y": 0.87,
+          "z": -1.371
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 153,
+          "sequence_index": 152,
+          "x": 35.015,
+          "y": -1.657,
+          "z": 1.48
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 154,
+          "sequence_index": 153,
+          "x": 36.294,
+          "y": -5.184,
+          "z": 2.012
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 155,
+          "sequence_index": 154,
+          "x": 35.568,
+          "y": -8.323,
+          "z": 4.0
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 156,
+          "sequence_index": 155,
+          "x": 37.661,
+          "y": -7.025,
+          "z": 6.916
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 157,
+          "sequence_index": 156,
+          "x": 35.879,
+          "y": -3.675,
+          "z": 6.71
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 158,
+          "sequence_index": 157,
+          "x": 39.016,
+          "y": -1.813,
+          "z": 5.673
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 159,
+          "sequence_index": 158,
+          "x": 38.324,
+          "y": 0.893,
+          "z": 3.111
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 160,
+          "sequence_index": 159,
+          "x": 40.526,
+          "y": 1.602,
+          "z": 0.098
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 161,
+          "sequence_index": 160,
+          "x": 39.818,
+          "y": 5.35,
+          "z": 0.411
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 162,
+          "sequence_index": 161,
+          "x": 38.7,
+          "y": 7.289,
+          "z": 3.475
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 163,
+          "sequence_index": 162,
+          "x": 34.913,
+          "y": 7.611,
+          "z": 3.733
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 164,
+          "sequence_index": 163,
+          "x": 34.078,
+          "y": 10.814,
+          "z": 5.614
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 165,
+          "sequence_index": 164,
+          "x": 30.902,
+          "y": 12.563,
+          "z": 6.724
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 166,
+          "sequence_index": 165,
+          "x": 32.129,
+          "y": 15.849,
+          "z": 5.279
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 167,
+          "sequence_index": 166,
+          "x": 28.906,
+          "y": 17.65,
+          "z": 6.184
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 168,
+          "sequence_index": 167,
+          "x": 25.736,
+          "y": 16.683,
+          "z": 7.998
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 169,
+          "sequence_index": 168,
+          "x": 22.658,
+          "y": 18.239,
+          "z": 9.495
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 170,
+          "sequence_index": 169,
+          "x": 18.867,
+          "y": 18.33,
+          "z": 9.641
+        },
+        {
+          "insertion_code": "",
+          "residue_number": 171,
+          "sequence_index": 170,
+          "x": 16.539,
+          "y": 19.121,
+          "z": 6.719
+        }
+      ],
+      "coordinate_residue_count": 170,
+      "coordinate_source_url": "https://files.rcsb.org/download/10AF.pdb",
+      "coordinate_trace_hash": "sha256:efdb3e53d0f317a1698b5cf79e21c60b53ecf8df896d83ca8e02e09dc12dd807",
+      "native_contact_map_hash": "sha256:2372b2f0f3ed14d57d3ea97c742f546ac7fe440d4baa307173661b7fc625be40",
+      "reference_fold_class": "weak_or_unknown",
+      "reference_structure_source": "pdb:10AF:A",
+      "row_id": "coord_holdout_10af_a",
+      "sequence": "SRPHVFFDITIGGSNAGRIVMELFADIVPKTAENFRCLCTGERGMGRSGKKLHYKGSKFHRVIPNFMLQGGDFTRGNGTGGESIYGEKFPDENFQEKHTGPGVLSMANAGPNTNGSQFFICTAKTEWLDGKHVVFGRVVEGMNVVKAVESKGSQSGRTSADIVIADCGQL",
+      "sequence_length": 170,
+      "sequence_sha256": "a6a317ad63b083d399a05b6f974ea7c20e07e5977c968a146ada4d6fd333070d",
+      "source_accession": "10AF:A",
+      "source_database": "RCSB_PDB",
+      "source_id": "blind_002_10af_a",
+      "truth_axes": {
+        "architecture_axis": "unknown",
+        "environment_axis": "soluble_like",
+        "order_axis": "ordered",
+        "secondary_structure_axis": "weak_or_unknown"
+      }
+    }
+  ],
+  "source_coordinate_database": "RCSB_PDB",
+  "toy_locked_contact_targets_used": false
+}

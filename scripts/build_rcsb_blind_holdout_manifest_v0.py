@@ -300,7 +300,7 @@ def _candidate_target(
         "rcsb_entry_url": RCSB_ENTRY_URL.format(pdb_id=pdb_id),
         "benchmark_file": str(benchmark_dir / f"{slug}.locked.json"),
         "external_coupling_file": str(
-            coupling_dir / f"{slug}_query_centered_apc.locked.json"
+            coupling_dir / f"{slug}_pfam_apc.locked.json"
         ),
         "raw_sequence_exposed": False,
         "coordinate_truth_used_to_build_constraints": False,

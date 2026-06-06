@@ -423,6 +423,7 @@ def run_blind_external_holdout_battery_v0(
     output_dir: Path,
     selector_name: str,
     control_names: Sequence[str],
+    target_ids: Sequence[str] = (),
 ) -> tuple[Path, Path, Path, Path, Path, Path]:
     if selector_name not in (DEFAULT_SELECTOR, FRONTIER_SELECTOR):
         raise ValueError(f"unsupported frozen selector: {selector_name}")
@@ -431,6 +432,19 @@ def run_blind_external_holdout_battery_v0(
     targets = manifest.get("targets", [])
     if not isinstance(targets, list) or not targets:
         raise ValueError("target manifest must include a non-empty targets list")
+    requested_target_ids = {target_id.strip() for target_id in target_ids if target_id.strip()}
+    if requested_target_ids:
+        targets = [
+            target
+            for target in targets
+            if isinstance(target, Mapping)
+            and str(target.get("target_id", "")).strip() in requested_target_ids
+        ]
+        if not targets:
+            raise ValueError(
+                "target-id filter did not match any manifest targets: "
+                + ", ".join(sorted(requested_target_ids))
+            )
     controls_to_run = _control_names(tuple(control_names))
     target_manifest_sha256 = _sha256_file(target_manifest)
     current_commit = _current_commit_hash()
@@ -678,6 +692,7 @@ def run_blind_external_holdout_battery_v0(
         "target_manifest_frozen": bool(manifest.get("manifest_frozen", False)),
         "selector_frozen_after_manifest": selector_frozen_after_manifest,
         "control_names": tuple(controls_to_run),
+        "target_id_filter": tuple(sorted(requested_target_ids)),
         "target_count": len(target_rows),
         "failure_count": len(failure_rows),
         "coordinate_taint_violation_count": coordinate_taint_violation_count,
@@ -804,6 +819,15 @@ def main() -> None:
     parser.add_argument("--output-dir", default=str(DEFAULT_OUTPUT_DIR))
     parser.add_argument("--selector", default=DEFAULT_SELECTOR)
     parser.add_argument(
+        "--target-id",
+        action="append",
+        default=[],
+        help=(
+            "Optional manifest target_id to run. Repeat for several. Omit to "
+            "run every target."
+        ),
+    )
+    parser.add_argument(
         "--control-name",
         action="append",
         choices=tuple(EXTERNAL_COUPLING_CONTROL_NAMES) + ("all",),
@@ -820,6 +844,7 @@ def main() -> None:
         output_dir=Path(args.output_dir),
         selector_name=args.selector,
         control_names=tuple(args.control_name),
+        target_ids=tuple(args.target_id),
     ):
         print(output)
 

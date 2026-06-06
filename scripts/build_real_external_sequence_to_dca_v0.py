@@ -17,7 +17,10 @@ from pharmacotopology.external_coupling_json_writer import (  # noqa: E402
     write_external_coupling_json,
 )
 from pharmacotopology.external_dca_runner import (  # noqa: E402
+    FAMILY_WIDE_PFAM_APC_METHOD,
     PfamDomainMapping,
+    PFAM_APC_SAMPLE_STRATEGIES,
+    QUERY_STRATIFIED_PFAM_APC_METHOD,
     run_pfam_apc_covariation_for_row,
 )
 from pharmacotopology.folding_external_coupling_sources import (  # noqa: E402
@@ -188,6 +191,7 @@ def build_real_external_sequence_to_dca_v0(
     dca_log: Path,
     work_dir: Path,
     max_records: int,
+    sample_strategy: str,
 ) -> tuple[Path, Path, Path, Path]:
     rows = tuple(load_real_coordinate_visual_rows(benchmark_file))
     work_dir.mkdir(parents=True, exist_ok=True)
@@ -227,6 +231,7 @@ def build_real_external_sequence_to_dca_v0(
             mappings=mappings,
             alignment_dir=work_dir,
             max_records=max_records,
+            sample_strategy=sample_strategy,
         )
         msa_rows.append(
             {
@@ -260,10 +265,18 @@ def build_real_external_sequence_to_dca_v0(
             "dca_tool_used": False,
             "dca_tool_missing": True,
             "covariation_fallback_used": True,
-            "covariation_method": "interpro_pfam_full_alignment_mi_apc",
+            "covariation_method": (
+                QUERY_STRATIFIED_PFAM_APC_METHOD
+                if sample_strategy == "query_stratified"
+                else FAMILY_WIDE_PFAM_APC_METHOD
+            ),
+            "sample_strategy": sample_strategy,
             "external_data_sources": (
                 "PDBe SIFTS-derived Pfam mapping API",
                 "InterPro Pfam full Stockholm alignments",
+            ),
+            "query_focused_alignment_selection_used": (
+                sample_strategy == "query_stratified"
             ),
         },
     )
@@ -291,6 +304,11 @@ def main() -> None:
     parser.add_argument("--dca-log-output", default=str(DEFAULT_DCA_LOG))
     parser.add_argument("--work-dir", default=str(DEFAULT_WORK_DIR))
     parser.add_argument("--max-records", type=int, default=4000)
+    parser.add_argument(
+        "--sample-strategy",
+        choices=tuple(sorted(PFAM_APC_SAMPLE_STRATEGIES)),
+        default="family_wide",
+    )
     args = parser.parse_args()
 
     outputs = build_real_external_sequence_to_dca_v0(
@@ -301,6 +319,7 @@ def main() -> None:
         dca_log=Path(args.dca_log_output),
         work_dir=Path(args.work_dir),
         max_records=args.max_records,
+        sample_strategy=args.sample_strategy,
     )
     for output in outputs:
         print(output)
