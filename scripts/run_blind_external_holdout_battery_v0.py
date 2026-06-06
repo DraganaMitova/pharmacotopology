@@ -89,9 +89,33 @@ class ScaffoldContactMetrics:
     scaffold_contact_precision_delta_vs_top_L: float
     scaffold_contact_recall_delta_vs_region: float
     scaffold_contact_map_perfect: bool
+    compact_scaffold_contact_count: int
+    compact_scaffold_exact_contact_precision: float
+    compact_scaffold_exact_long_range_contact_recall: float
+    compact_scaffold_precision_delta_vs_scaffold: float
+    compact_scaffold_recall_delta_vs_scaffold: float
+    compact_scaffold_contact_map_perfect: bool
 
     def to_dict(self) -> dict[str, object]:
         return asdict(self)
+
+
+@dataclass(frozen=True)
+class ScaffoldContactCandidate:
+    pair: tuple[int, int]
+    confidence: float
+    sequence_separation: int
+    event_ids: tuple[str, ...]
+    center_compactness: float
+    separation_compactness: float
+
+    @property
+    def compactness_score(self) -> float:
+        return (
+            self.confidence
+            * self.center_compactness
+            * self.separation_compactness
+        )
 
 
 def _rounded(value: float) -> float:
@@ -250,6 +274,64 @@ def _exact_contact_metrics(
     )
 
 
+def _center_compactness_for_event(
+    *,
+    pair: tuple[int, int],
+    event: object,
+) -> float:
+    left_width = max(1, event.segment_a_end - event.segment_a_start + 1)
+    right_width = max(1, event.segment_b_end - event.segment_b_start + 1)
+    left_center = (event.segment_a_start + event.segment_a_end) / 2
+    right_center = (event.segment_b_start + event.segment_b_end) / 2
+    left_offset = abs(pair[0] - left_center) / max(1.0, left_width / 2)
+    right_offset = abs(pair[1] - right_center) / max(1.0, right_width / 2)
+    return max(0.0, 1.0 - (left_offset + right_offset) / 2)
+
+
+def _compact_scaffold_core(
+    candidates: Sequence[ScaffoldContactCandidate],
+) -> tuple[ScaffoldContactCandidate, ...]:
+    if len(candidates) <= 1:
+        return tuple(candidates)
+    ordered = tuple(
+        sorted(
+            candidates,
+            key=lambda candidate: (
+                candidate.compactness_score,
+                candidate.confidence,
+                len(candidate.event_ids),
+                -candidate.sequence_separation,
+                candidate.pair,
+            ),
+            reverse=True,
+        )
+    )
+    required_events = {
+        event_id
+        for candidate in ordered
+        for event_id in candidate.event_ids
+    }
+    covered_events: set[str] = set()
+    coverage_index = 0
+    for index, candidate in enumerate(ordered):
+        covered_events.update(candidate.event_ids)
+        if covered_events == required_events:
+            coverage_index = index
+            break
+    scores = [candidate.compactness_score for candidate in ordered]
+    gaps = [
+        (scores[index] - scores[index + 1], index)
+        for index in range(coverage_index, len(scores) - 1)
+    ]
+    if not gaps:
+        return ordered[: coverage_index + 1]
+    _, boundary_index = max(
+        gaps,
+        key=lambda item: (item[0], scores[item[1]], -item[1]),
+    )
+    return ordered[: boundary_index + 1]
+
+
 def _scaffold_contact_metrics(
     *,
     rows: Sequence[RealCoordinateVisualRow],
@@ -266,20 +348,60 @@ def _scaffold_contact_metrics(
     long_recalls: list[float] = []
     contact_counts: list[int] = []
     perfect_flags: list[bool] = []
+    compact_precisions: list[float] = []
+    compact_long_recalls: list[float] = []
+    compact_contact_counts: list[int] = []
+    compact_perfect_flags: list[bool] = []
     for row in rows:
         native_pairs = set(row.native_contact_pairs())
         native_long = {pair for pair in native_pairs if pair[1] - pair[0] >= 24}
         selected_events = selected_by_row.get(row.row_id, [])
-        scaffold_pairs: set[tuple[int, int]] = set()
+        candidates_by_pair: dict[tuple[int, int], ScaffoldContactCandidate] = {}
         for constraint in constraints_by_row.get(row.row_id, ()):
             constraint_pair = constraint.pair()
-            if any(
-                constraint_pair in event.candidate_region_pairs()
+            memberships = [
+                event
                 for event in selected_events
+                if constraint_pair in event.candidate_region_pairs()
+            ]
+            if not memberships:
+                continue
+            center_compactness = max(
+                _center_compactness_for_event(
+                    pair=constraint_pair,
+                    event=event,
+                )
+                for event in memberships
+            )
+            separation_compactness = max(
+                0.0,
+                1.0 - constraint.sequence_separation / row.sequence_length,
+            )
+            candidate = ScaffoldContactCandidate(
+                pair=constraint_pair,
+                confidence=float(constraint.confidence),
+                sequence_separation=int(constraint.sequence_separation),
+                event_ids=tuple(sorted(event.event_id for event in memberships)),
+                center_compactness=center_compactness,
+                separation_compactness=separation_compactness,
+            )
+            previous = candidates_by_pair.get(constraint_pair)
+            if (
+                previous is None
+                or candidate.compactness_score > previous.compactness_score
             ):
-                scaffold_pairs.add(constraint_pair)
+                candidates_by_pair[constraint_pair] = candidate
+        scaffold_pairs = set(candidates_by_pair)
+        compact_pairs = {
+            candidate.pair
+            for candidate in _compact_scaffold_core(
+                tuple(candidates_by_pair.values())
+            )
+        }
         supported = scaffold_pairs & native_pairs
         supported_long = scaffold_pairs & native_long
+        compact_supported = compact_pairs & native_pairs
+        compact_supported_long = compact_pairs & native_long
         precision = (
             _rounded(len(supported) / len(scaffold_pairs))
             if scaffold_pairs
@@ -294,9 +416,31 @@ def _scaffold_contact_metrics(
         long_recalls.append(long_recall)
         contact_counts.append(len(scaffold_pairs))
         perfect_flags.append(precision == 1.0 and long_recall == 1.0)
+        compact_precision = (
+            _rounded(len(compact_supported) / len(compact_pairs))
+            if compact_pairs
+            else 0.0
+        )
+        compact_long_recall = (
+            _rounded(len(compact_supported_long) / len(native_long))
+            if native_long
+            else 1.0
+        )
+        compact_precisions.append(compact_precision)
+        compact_long_recalls.append(compact_long_recall)
+        compact_contact_counts.append(len(compact_pairs))
+        compact_perfect_flags.append(
+            compact_precision == 1.0 and compact_long_recall == 1.0
+        )
 
     precision = _rounded(mean(precisions)) if precisions else 0.0
     long_recall = _rounded(mean(long_recalls)) if long_recalls else 0.0
+    compact_precision = (
+        _rounded(mean(compact_precisions)) if compact_precisions else 0.0
+    )
+    compact_long_recall = (
+        _rounded(mean(compact_long_recalls)) if compact_long_recalls else 0.0
+    )
     return ScaffoldContactMetrics(
         scaffold_contact_count=sum(contact_counts),
         scaffold_exact_contact_precision=precision,
@@ -308,6 +452,18 @@ def _scaffold_contact_metrics(
             long_recall - run.metric.long_range_contact_recall
         ),
         scaffold_contact_map_perfect=bool(perfect_flags) and all(perfect_flags),
+        compact_scaffold_contact_count=sum(compact_contact_counts),
+        compact_scaffold_exact_contact_precision=compact_precision,
+        compact_scaffold_exact_long_range_contact_recall=compact_long_recall,
+        compact_scaffold_precision_delta_vs_scaffold=_rounded(
+            compact_precision - precision
+        ),
+        compact_scaffold_recall_delta_vs_scaffold=_rounded(
+            compact_long_recall - long_recall
+        ),
+        compact_scaffold_contact_map_perfect=(
+            bool(compact_perfect_flags) and all(compact_perfect_flags)
+        ),
     )
 
 
@@ -631,6 +787,15 @@ def _folding_problem_solved_audit(
             and all(
                 str(row.get("scaffold_contact_map_perfect", "False")) == "True"
                 or row.get("scaffold_contact_map_perfect") is True
+                for row in target_rows
+            )
+        ),
+        "all_targets_compact_scaffold_contact_maps_perfect": (
+            bool(target_rows)
+            and all(
+                str(row.get("compact_scaffold_contact_map_perfect", "False"))
+                == "True"
+                or row.get("compact_scaffold_contact_map_perfect") is True
                 for row in target_rows
             )
         ),
@@ -1059,6 +1224,30 @@ def run_blind_external_holdout_battery_v0(
         "scaffold_contact_map_perfect_rate": _mean_field(
             target_rows,
             "scaffold_contact_map_perfect",
+        ),
+        "mean_compact_scaffold_contact_count": _mean_field(
+            target_rows,
+            "compact_scaffold_contact_count",
+        ),
+        "mean_compact_scaffold_exact_contact_precision": _mean_field(
+            target_rows,
+            "compact_scaffold_exact_contact_precision",
+        ),
+        "mean_compact_scaffold_exact_long_range_contact_recall": _mean_field(
+            target_rows,
+            "compact_scaffold_exact_long_range_contact_recall",
+        ),
+        "mean_compact_scaffold_precision_delta_vs_scaffold": _mean_field(
+            target_rows,
+            "compact_scaffold_precision_delta_vs_scaffold",
+        ),
+        "mean_compact_scaffold_recall_delta_vs_scaffold": _mean_field(
+            target_rows,
+            "compact_scaffold_recall_delta_vs_scaffold",
+        ),
+        "compact_scaffold_contact_map_perfect_rate": _mean_field(
+            target_rows,
+            "compact_scaffold_contact_map_perfect",
         ),
         "frontier_control_win_rate": _mean_field(
             target_rows,
