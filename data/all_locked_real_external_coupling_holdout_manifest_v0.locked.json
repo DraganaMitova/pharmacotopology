@@ -1,0 +1,66 @@
+{
+  "all_existing_complete_targets_tested": false,
+  "atomic_coordinate_generation_validated": false,
+  "coordinate_truth_used_to_build_constraints": false,
+  "full_atomic_folding_available": false,
+  "generated_at_utc": "2026-06-06T15:00:00+00:00",
+  "holdout_scope": "all_locked_external_coupling_protein_targets_in_clean_branch",
+  "manifest_frozen": true,
+  "manifest_kind": "all_locked_real_external_coupling_holdout_manifest_v0",
+  "native_truth_used_before_coupling_selection": false,
+  "oracle_constraint_control": false,
+  "raw_sequence_exposed": false,
+  "selection_policy": {
+    "internet_fetch_performed_for_this_manifest": false,
+    "manual_target_selection_after_scoring": false,
+    "note": "Includes every complete non-oracle external coupling dataset currently locked in this clean branch; this is not all PDB/UniProt.",
+    "source": "checked_in_locked_external_coupling_artifacts_only"
+  },
+  "selector_frozen_after_manifest": true,
+  "targets": [
+    {
+      "benchmark_file": "data/folding_real_coordinate_visual_8.locked.json",
+      "coordinate_truth_used_to_build_constraints": false,
+      "external_coupling_file": "data/folding_real_coordinate_visual_8_external_couplings.v0.locked.json",
+      "native_truth_used_before_coupling_selection": false,
+      "oracle_constraint_control": false,
+      "raw_sequence_exposed": false,
+      "source_accession": "1MBN:A;2LZM:A;1TEN:A;1CSP:A;1TIM:A;1PGA:A;4AKE:A;1CLL:A",
+      "source_database": "RCSB_PDB_locked_benchmark",
+      "target_id": "real_external_visual_8"
+    },
+    {
+      "benchmark_file": "data/folding_real_coordinate_holdout_1ubq.locked.json",
+      "coordinate_truth_used_to_build_constraints": false,
+      "external_coupling_file": "data/folding_real_coordinate_holdout_1ubq_query_centered_apc_external_couplings.v0.locked.json",
+      "native_truth_used_before_coupling_selection": false,
+      "oracle_constraint_control": false,
+      "raw_sequence_exposed": false,
+      "source_accession": "1UBQ:A",
+      "source_database": "RCSB_PDB_locked_holdout",
+      "target_id": "real_external_1ubq_query_centered_apc"
+    },
+    {
+      "benchmark_file": "data/blind_coordinate_holdouts_v0/blind_001_10dc_a.locked.json",
+      "coordinate_truth_used_to_build_constraints": false,
+      "external_coupling_file": "data/blind_external_couplings_v0/blind_001_10dc_a_pfam_plmc.locked.json",
+      "native_truth_used_before_coupling_selection": false,
+      "oracle_constraint_control": false,
+      "raw_sequence_exposed": false,
+      "source_accession": "10DC:A",
+      "source_database": "RCSB_PDB_blind_holdout",
+      "target_id": "blind_001_10dc_a_plmc"
+    },
+    {
+      "benchmark_file": "data/blind_coordinate_holdouts_v0/blind_002_10af_a.locked.json",
+      "coordinate_truth_used_to_build_constraints": false,
+      "external_coupling_file": "data/blind_external_couplings_v0/blind_002_10af_a_pfam_plmc.locked.json",
+      "native_truth_used_before_coupling_selection": false,
+      "oracle_constraint_control": false,
+      "raw_sequence_exposed": false,
+      "source_accession": "10AF:A",
+      "source_database": "RCSB_PDB_blind_holdout",
+      "target_id": "blind_002_10af_a_plmc"
+    }
+  ]
+}
