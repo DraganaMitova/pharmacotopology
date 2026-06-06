@@ -9,6 +9,10 @@ from scripts.run_blind_external_holdout_battery_v0 import (  # noqa: E402
     SELF_CRITICAL_QUALITY_SWITCH_SELECTOR,
     _apply_self_critical_quality_switch,
 )
+from scripts.score_cached_contact_map_modes_v0 import (  # noqa: E402
+    ROW_LOCAL_CRITICAL_MODE_SELECTOR,
+    _select_row_local_critical_mode,
+)
 
 
 def _row(
@@ -246,3 +250,64 @@ def test_self_critical_quality_switch_uses_shell_for_low_quality_square_phase() 
         "phase_density_conflict_shell"
     )
     assert rows[1]["self_critical_quality_switch_precision_recall_f1"] == 0.25
+
+
+def test_cached_row_local_critical_switch_routes_by_internal_phase_conflict() -> None:
+    assert ROW_LOCAL_CRITICAL_MODE_SELECTOR == (
+        "cached_row_local_critical_mode_switch_v0"
+    )
+    assert (
+        _select_row_local_critical_mode(
+            {
+                "phase_mode": "point",
+                "phase_radius": 1,
+                "selected_event_count": 1,
+                "direct_density_ratio": 2.5,
+            }
+        )
+        == "phase_density_conflict_shell"
+    )
+    assert (
+        _select_row_local_critical_mode(
+            {
+                "phase_mode": "square",
+                "phase_radius": 1,
+                "selected_event_count": 4,
+                "direct_density_ratio": 2.5,
+            }
+        )
+        == "region_density_top_l"
+    )
+    assert (
+        _select_row_local_critical_mode(
+            {
+                "phase_mode": "square",
+                "phase_radius": 2,
+                "selected_event_count": 8,
+                "direct_density_ratio": 4.8,
+            }
+        )
+        == "phase_density_conflict_shell"
+    )
+    assert (
+        _select_row_local_critical_mode(
+            {
+                "phase_mode": "diagonal",
+                "phase_radius": 10,
+                "selected_event_count": 5,
+                "direct_density_ratio": 7.1,
+            }
+        )
+        == "scaffold"
+    )
+    assert (
+        _select_row_local_critical_mode(
+            {
+                "phase_mode": "diagonal",
+                "phase_radius": 7,
+                "selected_event_count": 3,
+                "direct_density_ratio": 5.2,
+            }
+        )
+        == "region_density_boundary"
+    )
