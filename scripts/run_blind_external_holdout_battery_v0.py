@@ -101,6 +101,12 @@ class ScaffoldContactMetrics:
     density_compact_scaffold_precision_delta_vs_compact: float
     density_compact_scaffold_recall_delta_vs_compact: float
     density_compact_scaffold_contact_map_perfect: bool
+    adjacent_density_patch_scaffold_contact_count: int
+    adjacent_density_patch_scaffold_exact_contact_precision: float
+    adjacent_density_patch_scaffold_exact_long_range_contact_recall: float
+    adjacent_density_patch_scaffold_precision_delta_vs_density_compact: float
+    adjacent_density_patch_scaffold_recall_delta_vs_density_compact: float
+    adjacent_density_patch_scaffold_contact_map_perfect: bool
 
     def to_dict(self) -> dict[str, object]:
         return asdict(self)
@@ -361,6 +367,13 @@ def _local_contact_density(
     return density
 
 
+def _contact_map_distance(
+    left: tuple[int, int],
+    right: tuple[int, int],
+) -> int:
+    return max(abs(left[0] - right[0]), abs(left[1] - right[1]))
+
+
 def _density_compact_score(
     candidate: ScaffoldContactCandidate,
     candidates: Sequence[ScaffoldContactCandidate],
@@ -374,6 +387,48 @@ def _density_compact_score(
         for radius in (2, 4, 8)
     )
     return candidate.compactness_score * (1.0 + density)
+
+
+def _self_critical_scored_prefix(
+    candidates: Sequence[ScaffoldContactCandidate],
+    *,
+    score_candidates: Sequence[ScaffoldContactCandidate],
+    minimum_count: int,
+) -> tuple[ScaffoldContactCandidate, ...]:
+    if not candidates:
+        return ()
+    ordered = tuple(
+        sorted(
+            candidates,
+            key=lambda candidate: (
+                _density_compact_score(candidate, score_candidates),
+                candidate.compactness_score,
+                candidate.confidence,
+                len(candidate.event_ids),
+                -candidate.sequence_separation,
+                candidate.pair,
+            ),
+            reverse=True,
+        )
+    )
+    minimum_index = max(0, min(len(ordered) - 1, minimum_count - 1))
+    if len(ordered) <= minimum_index + 1:
+        return ordered
+    scores = [
+        _density_compact_score(candidate, score_candidates)
+        for candidate in ordered
+    ]
+    gaps = [
+        (scores[index] - scores[index + 1], index)
+        for index in range(minimum_index, len(scores) - 1)
+    ]
+    if not gaps:
+        return ordered[: minimum_index + 1]
+    _, boundary_index = max(
+        gaps,
+        key=lambda item: (item[0], scores[item[1]], -item[1]),
+    )
+    return ordered[: boundary_index + 1]
 
 
 def _density_compact_scaffold_core(
@@ -424,6 +479,35 @@ def _density_compact_scaffold_core(
     return ordered[: boundary_index + 1]
 
 
+def _adjacent_density_patch_scaffold_core(
+    candidates: Sequence[ScaffoldContactCandidate],
+) -> tuple[ScaffoldContactCandidate, ...]:
+    all_candidates = tuple(candidates)
+    density_core = _density_compact_scaffold_core(all_candidates)
+    if not density_core:
+        return ()
+    core_pairs = {candidate.pair for candidate in density_core}
+    patch_candidates = tuple(
+        candidate
+        for candidate in all_candidates
+        if candidate.pair in core_pairs
+        or any(
+            _contact_map_distance(candidate.pair, core_pair) <= 1
+            for core_pair in core_pairs
+        )
+    )
+    selected = _self_critical_scored_prefix(
+        patch_candidates,
+        score_candidates=all_candidates,
+        minimum_count=len(density_core),
+    )
+    selected_by_pair = {candidate.pair: candidate for candidate in selected}
+    selected_by_pair.update(
+        {candidate.pair: candidate for candidate in density_core}
+    )
+    return tuple(selected_by_pair.values())
+
+
 def _scaffold_contact_metrics(
     *,
     rows: Sequence[RealCoordinateVisualRow],
@@ -448,6 +532,10 @@ def _scaffold_contact_metrics(
     density_compact_long_recalls: list[float] = []
     density_compact_contact_counts: list[int] = []
     density_compact_perfect_flags: list[bool] = []
+    adjacent_patch_precisions: list[float] = []
+    adjacent_patch_long_recalls: list[float] = []
+    adjacent_patch_contact_counts: list[int] = []
+    adjacent_patch_perfect_flags: list[bool] = []
     for row in rows:
         native_pairs = set(row.native_contact_pairs())
         native_long = {pair for pair in native_pairs if pair[1] - pair[0] >= 24}
@@ -500,12 +588,20 @@ def _scaffold_contact_metrics(
                 tuple(candidates_by_pair.values())
             )
         }
+        adjacent_patch_pairs = {
+            candidate.pair
+            for candidate in _adjacent_density_patch_scaffold_core(
+                tuple(candidates_by_pair.values())
+            )
+        }
         supported = scaffold_pairs & native_pairs
         supported_long = scaffold_pairs & native_long
         compact_supported = compact_pairs & native_pairs
         compact_supported_long = compact_pairs & native_long
         density_compact_supported = density_compact_pairs & native_pairs
         density_compact_supported_long = density_compact_pairs & native_long
+        adjacent_patch_supported = adjacent_patch_pairs & native_pairs
+        adjacent_patch_supported_long = adjacent_patch_pairs & native_long
         precision = (
             _rounded(len(supported) / len(scaffold_pairs))
             if scaffold_pairs
@@ -553,6 +649,27 @@ def _scaffold_contact_metrics(
             density_compact_precision == 1.0
             and density_compact_long_recall == 1.0
         )
+        adjacent_patch_precision = (
+            _rounded(
+                len(adjacent_patch_supported) / len(adjacent_patch_pairs)
+            )
+            if adjacent_patch_pairs
+            else 0.0
+        )
+        adjacent_patch_long_recall = (
+            _rounded(
+                len(adjacent_patch_supported_long) / len(native_long)
+            )
+            if native_long
+            else 1.0
+        )
+        adjacent_patch_precisions.append(adjacent_patch_precision)
+        adjacent_patch_long_recalls.append(adjacent_patch_long_recall)
+        adjacent_patch_contact_counts.append(len(adjacent_patch_pairs))
+        adjacent_patch_perfect_flags.append(
+            adjacent_patch_precision == 1.0
+            and adjacent_patch_long_recall == 1.0
+        )
 
     precision = _rounded(mean(precisions)) if precisions else 0.0
     long_recall = _rounded(mean(long_recalls)) if long_recalls else 0.0
@@ -570,6 +687,16 @@ def _scaffold_contact_metrics(
     density_compact_long_recall = (
         _rounded(mean(density_compact_long_recalls))
         if density_compact_long_recalls
+        else 0.0
+    )
+    adjacent_patch_precision = (
+        _rounded(mean(adjacent_patch_precisions))
+        if adjacent_patch_precisions
+        else 0.0
+    )
+    adjacent_patch_long_recall = (
+        _rounded(mean(adjacent_patch_long_recalls))
+        if adjacent_patch_long_recalls
         else 0.0
     )
     return ScaffoldContactMetrics(
@@ -613,6 +740,25 @@ def _scaffold_contact_metrics(
         density_compact_scaffold_contact_map_perfect=(
             bool(density_compact_perfect_flags)
             and all(density_compact_perfect_flags)
+        ),
+        adjacent_density_patch_scaffold_contact_count=sum(
+            adjacent_patch_contact_counts
+        ),
+        adjacent_density_patch_scaffold_exact_contact_precision=(
+            adjacent_patch_precision
+        ),
+        adjacent_density_patch_scaffold_exact_long_range_contact_recall=(
+            adjacent_patch_long_recall
+        ),
+        adjacent_density_patch_scaffold_precision_delta_vs_density_compact=(
+            _rounded(adjacent_patch_precision - density_compact_precision)
+        ),
+        adjacent_density_patch_scaffold_recall_delta_vs_density_compact=(
+            _rounded(adjacent_patch_long_recall - density_compact_long_recall)
+        ),
+        adjacent_density_patch_scaffold_contact_map_perfect=(
+            bool(adjacent_patch_perfect_flags)
+            and all(adjacent_patch_perfect_flags)
         ),
     )
 
@@ -960,6 +1106,23 @@ def _folding_problem_solved_audit(
                 )
                 == "True"
                 or row.get("density_compact_scaffold_contact_map_perfect") is True
+                for row in target_rows
+            )
+        ),
+        "all_targets_adjacent_density_patch_scaffold_contact_maps_perfect": (
+            bool(target_rows)
+            and all(
+                str(
+                    row.get(
+                        "adjacent_density_patch_scaffold_contact_map_perfect",
+                        "False",
+                    )
+                )
+                == "True"
+                or row.get(
+                    "adjacent_density_patch_scaffold_contact_map_perfect"
+                )
+                is True
                 for row in target_rows
             )
         ),
@@ -1442,6 +1605,46 @@ def run_blind_external_holdout_battery_v0(
         "density_compact_scaffold_contact_map_perfect_rate": _mean_field(
             target_rows,
             "density_compact_scaffold_contact_map_perfect",
+        ),
+        "mean_adjacent_density_patch_scaffold_contact_count": _mean_field(
+            target_rows,
+            "adjacent_density_patch_scaffold_contact_count",
+        ),
+        "mean_adjacent_density_patch_scaffold_exact_contact_precision": (
+            _mean_field(
+                target_rows,
+                "adjacent_density_patch_scaffold_exact_contact_precision",
+            )
+        ),
+        "mean_adjacent_density_patch_scaffold_exact_long_range_contact_recall": (
+            _mean_field(
+                target_rows,
+                "adjacent_density_patch_scaffold_exact_long_range_contact_recall",
+            )
+        ),
+        "mean_adjacent_density_patch_scaffold_precision_delta_vs_density_compact": (
+            _mean_field(
+                target_rows,
+                (
+                    "adjacent_density_patch_scaffold_precision_delta_vs_"
+                    "density_compact"
+                ),
+            )
+        ),
+        "mean_adjacent_density_patch_scaffold_recall_delta_vs_density_compact": (
+            _mean_field(
+                target_rows,
+                (
+                    "adjacent_density_patch_scaffold_recall_delta_vs_"
+                    "density_compact"
+                ),
+            )
+        ),
+        "adjacent_density_patch_scaffold_contact_map_perfect_rate": (
+            _mean_field(
+                target_rows,
+                "adjacent_density_patch_scaffold_contact_map_perfect",
+            )
         ),
         "frontier_control_win_rate": _mean_field(
             target_rows,
