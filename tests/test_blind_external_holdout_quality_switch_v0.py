@@ -12,6 +12,7 @@ from scripts.run_blind_external_holdout_battery_v0 import (  # noqa: E402
 from scripts.score_cached_contact_map_modes_v0 import (  # noqa: E402
     ANCHORED_SEQUENCE_COUPLING_BALANCE_SELECTOR,
     COHERENT_RELAXED_SEQUENCE_COUPLING_BALANCE_SELECTOR,
+    CONFLICT_SHELL_DENSITY_RESCUE_SELECTOR,
     RELAXED_ANCHORED_SEQUENCE_COUPLING_BALANCE_SELECTOR,
     ROW_LOCAL_CRITICAL_MODE_SELECTOR,
     _sequence_coupling_expansion_decision,
@@ -327,6 +328,9 @@ def test_anchored_sequence_coupling_balance_uses_compact_self_critical_gate() ->
     )
     assert COHERENT_RELAXED_SEQUENCE_COUPLING_BALANCE_SELECTOR == (
         "cached_coherent_relaxed_sequence_coupling_balance_v0"
+    )
+    assert CONFLICT_SHELL_DENSITY_RESCUE_SELECTOR == (
+        "cached_conflict_shell_density_rescue_v0"
     )
     assert _sequence_coupling_expansion_decision(
         phase_mode="square",

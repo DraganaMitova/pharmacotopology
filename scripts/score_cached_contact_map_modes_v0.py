@@ -82,6 +82,9 @@ RELAXED_ANCHORED_SEQUENCE_COUPLING_BALANCE_SELECTOR = (
 COHERENT_RELAXED_SEQUENCE_COUPLING_BALANCE_SELECTOR = (
     "cached_coherent_relaxed_sequence_coupling_balance_v0"
 )
+CONFLICT_SHELL_DENSITY_RESCUE_SELECTOR = (
+    "cached_conflict_shell_density_rescue_v0"
+)
 DEFAULT_TARGET_MANIFEST = Path(
     "data/all_locked_real_external_coupling_holdout_manifest_v0.locked.json"
 )
@@ -894,6 +897,11 @@ def _cached_anchored_sequence_coupling_balance_metrics(
     coherent_relaxed_f1s: list[float] = []
     coherent_relaxed_contact_counts: list[int] = []
     coherent_relaxed_perfect_flags: list[bool] = []
+    conflict_rescue_precisions: list[float] = []
+    conflict_rescue_long_recalls: list[float] = []
+    conflict_rescue_f1s: list[float] = []
+    conflict_rescue_contact_counts: list[int] = []
+    conflict_rescue_perfect_flags: list[bool] = []
     mode_trace: list[str] = []
     feature_trace: list[str] = []
     for row in rows:
@@ -927,6 +935,15 @@ def _cached_anchored_sequence_coupling_balance_metrics(
             radius=2,
         )
         coherent_relaxed_pairs = balanced_pairs | coherent_relaxation_additions
+        conflict_rescue_pairs = (
+            coherent_relaxed_pairs
+            | set(mode_pair_sets.get("density_compact", set()))
+            if anchor_mode == "phase_density_conflict_shell"
+            else coherent_relaxed_pairs
+        )
+        conflict_density_rescue_count = len(
+            conflict_rescue_pairs - coherent_relaxed_pairs
+        )
         scores = _row_contact_scores(
             balanced_pairs,
             native_pairs=native_pairs,
@@ -939,6 +956,11 @@ def _cached_anchored_sequence_coupling_balance_metrics(
         )
         coherent_relaxed_scores = _row_contact_scores(
             coherent_relaxed_pairs,
+            native_pairs=native_pairs,
+            native_long_pairs=native_long_pairs,
+        )
+        conflict_rescue_scores = _row_contact_scores(
+            conflict_rescue_pairs,
             native_pairs=native_pairs,
             native_long_pairs=native_long_pairs,
         )
@@ -969,6 +991,21 @@ def _cached_anchored_sequence_coupling_balance_metrics(
         coherent_relaxed_perfect_flags.append(
             bool(coherent_relaxed_scores["contact_map_perfect"])
         )
+        conflict_rescue_precisions.append(
+            float(conflict_rescue_scores["precision"])
+        )
+        conflict_rescue_long_recalls.append(
+            float(conflict_rescue_scores["long_recall"])
+        )
+        conflict_rescue_f1s.append(
+            float(conflict_rescue_scores["precision_recall_f1"])
+        )
+        conflict_rescue_contact_counts.append(
+            int(conflict_rescue_scores["contact_count"])
+        )
+        conflict_rescue_perfect_flags.append(
+            bool(conflict_rescue_scores["contact_map_perfect"])
+        )
         mode_trace.append(
             (
                 f"{row.row_id}:{anchor_mode}"
@@ -976,6 +1013,7 @@ def _cached_anchored_sequence_coupling_balance_metrics(
                 f":source={expansion_metadata['sequence_coupling_balance_expansion_source']}"
                 f":relax={len(relaxation_additions)}"
                 f":coherent_relax={len(coherent_relaxation_additions)}"
+                f":conflict_density_rescue={conflict_density_rescue_count}"
                 f":reason={expansion_metadata['sequence_coupling_balance_expansion_reason']}"
             )
         )
@@ -1063,6 +1101,32 @@ def _cached_anchored_sequence_coupling_balance_metrics(
         "coherent_relaxed_sequence_coupling_balance_contact_map_perfect": (
             bool(coherent_relaxed_perfect_flags)
             and all(coherent_relaxed_perfect_flags)
+        ),
+        "conflict_shell_density_rescue_selector_name": (
+            CONFLICT_SHELL_DENSITY_RESCUE_SELECTOR
+        ),
+        "conflict_shell_density_rescue_claim_allowed": False,
+        "conflict_shell_density_rescue_exact_contact_precision": (
+            _rounded(mean(conflict_rescue_precisions))
+            if conflict_rescue_precisions
+            else 0.0
+        ),
+        "conflict_shell_density_rescue_exact_long_range_contact_recall": (
+            _rounded(mean(conflict_rescue_long_recalls))
+            if conflict_rescue_long_recalls
+            else 0.0
+        ),
+        "conflict_shell_density_rescue_precision_recall_f1": (
+            _rounded(mean(conflict_rescue_f1s))
+            if conflict_rescue_f1s
+            else 0.0
+        ),
+        "conflict_shell_density_rescue_contact_count": (
+            sum(conflict_rescue_contact_counts)
+        ),
+        "conflict_shell_density_rescue_contact_map_perfect": (
+            bool(conflict_rescue_perfect_flags)
+            and all(conflict_rescue_perfect_flags)
         ),
     }
 
@@ -1353,6 +1417,22 @@ def score_cached_contact_map_modes_v0(
                 )
             )
         )
+        row["conflict_shell_density_rescue_delta_vs_coherent_relaxed_sequence_coupling_balance"] = (
+            _rounded(
+                float(
+                    row.get(
+                        "conflict_shell_density_rescue_precision_recall_f1",
+                        0.0,
+                    )
+                )
+                - float(
+                    row.get(
+                        "coherent_relaxed_sequence_coupling_balance_precision_recall_f1",
+                        0.0,
+                    )
+                )
+            )
+        )
     report = {
         "report_kind": CACHED_MODE_SCORE_REPORT_KIND,
         "source_report_kind": BATTERY_REPORT_KIND,
@@ -1437,6 +1517,18 @@ def score_cached_contact_map_modes_v0(
         "coherent_relaxed_sequence_coupling_balance_contact_map_perfect_rate": _mean_field(
             output_rows,
             "coherent_relaxed_sequence_coupling_balance_contact_map_perfect",
+        ),
+        "mean_conflict_shell_density_rescue_precision_recall_f1": _mean_field(
+            output_rows,
+            "conflict_shell_density_rescue_precision_recall_f1",
+        ),
+        "mean_conflict_shell_density_rescue_delta_vs_coherent_relaxed_sequence_coupling_balance": _mean_field(
+            output_rows,
+            "conflict_shell_density_rescue_delta_vs_coherent_relaxed_sequence_coupling_balance",
+        ),
+        "conflict_shell_density_rescue_contact_map_perfect_rate": _mean_field(
+            output_rows,
+            "conflict_shell_density_rescue_contact_map_perfect",
         ),
         "mean_event_union_ceiling_exact_long_range_contact_recall": _mean_field(
             output_rows,
