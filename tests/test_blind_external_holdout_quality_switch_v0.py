@@ -18,6 +18,7 @@ def _row(
     phase_f1: float,
     density_f1: float,
     selected_event_count: int = 0,
+    phase_coverage_mode: str = "diagonal_half_radius",
     spine_f1: float = 0.0,
     conflict_f1: float = 0.0,
     shell_f1: float = 0.0,
@@ -31,6 +32,7 @@ def _row(
         "phase_coverage_scaffold_exact_long_range_contact_recall": phase_f1,
         "phase_coverage_scaffold_precision_recall_f1": phase_f1,
         "phase_coverage_scaffold_contact_map_perfect": False,
+        "phase_coverage_scaffold_mode": phase_coverage_mode,
         "region_density_top_l_scaffold_contact_count": 20,
         "region_density_top_l_scaffold_exact_contact_precision": 0.5,
         "region_density_top_l_scaffold_exact_long_range_contact_recall": (
@@ -150,3 +152,44 @@ def test_self_critical_quality_switch_generates_spine_for_high_event_conflict() 
         "phase_density_conflict_shell"
     )
     assert rows[2]["self_critical_quality_switch_precision_recall_f1"] == 0.26
+
+
+def test_self_critical_quality_switch_uses_shell_for_low_quality_square_phase() -> None:
+    rows = [
+        _row(
+            target_id="low_quality_diagonal",
+            quality=5.2,
+            selected_event_count=4,
+            phase_coverage_mode="diagonal_half_radius",
+            phase_f1=0.24,
+            density_f1=0.13,
+            shell_f1=0.19,
+        ),
+        _row(
+            target_id="low_quality_square",
+            quality=5.3,
+            selected_event_count=8,
+            phase_coverage_mode="square_one_cell",
+            phase_f1=0.23,
+            density_f1=0.18,
+            shell_f1=0.25,
+        ),
+        _row(
+            target_id="high_quality_compact",
+            quality=13.2,
+            selected_event_count=3,
+            phase_coverage_mode="diagonal_half_radius",
+            phase_f1=0.13,
+            density_f1=0.35,
+            shell_f1=0.29,
+        ),
+    ]
+
+    audit = _apply_self_critical_quality_switch(rows)
+
+    assert audit["low_quality_conflict_feature"] == "phase_coverage_scaffold_mode"
+    assert rows[0]["self_critical_quality_switch_mode"] == "phase_coverage"
+    assert rows[1]["self_critical_quality_switch_mode"] == (
+        "phase_density_conflict_shell"
+    )
+    assert rows[1]["self_critical_quality_switch_precision_recall_f1"] == 0.25

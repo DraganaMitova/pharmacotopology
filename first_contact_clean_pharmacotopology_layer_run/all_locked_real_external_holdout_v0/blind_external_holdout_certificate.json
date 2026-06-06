@@ -2,7 +2,7 @@
   "certificate_kind": "blind_external_holdout_battery_certificate_v0",
   "claim_allowed": true,
   "claim_scope": "long_range_folding_nucleus_region_recovery_only_not_full_atomic_folding",
-  "commit_hash": "6bc1bebcc57d36d1a5f6e82a7c0d95d22a596543",
+  "commit_hash": "7281f864430f632010ad9d1e723ef9b0e8b4d5fd",
   "final_classification": "blind_batch_exact_contact_signal_confirmed",
   "folding_problem_solved": false,
   "folding_problem_solved_audit": {
@@ -77,6 +77,7 @@
     "event_boundary_feature": "selected_event_count",
     "event_boundary_gap": 22.0,
     "event_boundary_value": 19.0,
+    "low_quality_conflict_feature": "phase_coverage_scaffold_mode",
     "selected_modes": [
       "phase_coverage",
       "phase_density_conflict_shell",

@@ -2572,6 +2572,12 @@ def _apply_self_critical_quality_switch(
         row["self_critical_quality_switch_event_boundary_available"] = (
             event_boundary_available
         )
+        row["self_critical_quality_switch_low_quality_conflict_feature"] = (
+            "phase_coverage_scaffold_mode"
+        )
+        row["self_critical_quality_switch_low_quality_conflict_value"] = str(
+            row.get("phase_coverage_scaffold_mode", "")
+        )
         if boundary_available and quality > boundary:
             if (
                 event_boundary_available
@@ -2589,10 +2595,18 @@ def _apply_self_critical_quality_switch(
                     source_prefix="region_density_top_l",
                 )
         else:
-            _copy_switch_metric(
-                row,
-                selected_mode="phase_coverage",
-                source_prefix="phase_coverage",
+            phase_coverage_mode = str(row.get("phase_coverage_scaffold_mode", ""))
+            if "square" in phase_coverage_mode:
+                _copy_switch_metric(
+                    row,
+                    selected_mode="phase_density_conflict_shell",
+                    source_prefix="phase_density_conflict_shell",
+                )
+            else:
+                _copy_switch_metric(
+                    row,
+                    selected_mode="phase_coverage",
+                    source_prefix="phase_coverage",
             )
 
     selected_modes = {
@@ -2609,6 +2623,7 @@ def _apply_self_critical_quality_switch(
         "event_boundary_value": event_boundary,
         "event_boundary_gap": event_boundary_gap,
         "event_boundary_available": event_boundary_available,
+        "low_quality_conflict_feature": "phase_coverage_scaffold_mode",
         "selected_modes": tuple(sorted(selected_modes)),
     }
 

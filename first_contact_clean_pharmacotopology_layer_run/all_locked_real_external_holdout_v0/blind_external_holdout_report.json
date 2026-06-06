@@ -1,10 +1,14 @@
 {
   "adjacent_density_patch_scaffold_contact_map_perfect_rate": 0.0,
   "claim_allowed": true,
-  "commit_hash": "6bc1bebcc57d36d1a5f6e82a7c0d95d22a596543",
+  "commit_hash": "7281f864430f632010ad9d1e723ef9b0e8b4d5fd",
   "compact_scaffold_contact_map_perfect_rate": 0.0,
   "control_names": [
-    "external_random_long_range_same_count"
+    "external_shuffled_same_row_same_separation",
+    "external_confidence_permuted",
+    "external_cross_row_swapped",
+    "external_random_long_range_same_count",
+    "external_low_confidence_tail"
   ],
   "coordinate_taint_violation_count": 0,
   "density_compact_scaffold_contact_map_perfect_rate": 0.0,
@@ -62,7 +66,7 @@
     ]
   },
   "frontier_control_win_rate": 0.5,
-  "generated_at_utc": "2026-06-06T16:04:42.332621+00:00",
+  "generated_at_utc": "2026-06-06T16:23:06.769463+00:00",
   "hard_gates": {
     "all_hard_gates_passed": true,
     "coordinate_truth_used_to_build_constraints": false,
@@ -73,10 +77,10 @@
     "target_manifest_frozen": true
   },
   "individual_control_win_rate": 1.0,
-  "max_control_cluster_precision": 0.047539,
-  "max_control_exact_contact_precision_top_L": 0.105263,
-  "max_control_exact_long_range_contact_precision": 0.105263,
-  "max_control_false_nucleus_rate": 0.285714,
+  "max_control_cluster_precision": 0.06431,
+  "max_control_exact_contact_precision_top_L": 0.229412,
+  "max_control_exact_long_range_contact_precision": 0.229412,
+  "max_control_false_nucleus_rate": 0.5,
   "max_control_long_range_contact_recall": 1.0,
   "max_pair_randomizing_control_exact_contact_precision_top_L": 0.105263,
   "max_pair_randomizing_control_exact_long_range_contact_precision": 0.105263,
@@ -160,17 +164,19 @@
   "mean_scaffold_contact_recall_delta_vs_region": -0.541061,
   "mean_scaffold_exact_contact_precision": 0.187482,
   "mean_scaffold_exact_long_range_contact_recall": 0.110931,
-  "mean_self_critical_quality_switch_exact_contact_precision": 0.300135,
-  "mean_self_critical_quality_switch_exact_long_range_contact_recall": 0.262215,
-  "mean_self_critical_quality_switch_f1_delta_vs_phase_coverage": 0.089253,
-  "mean_self_critical_quality_switch_f1_delta_vs_region_density_top_l": 0.048812,
-  "mean_self_critical_quality_switch_precision_recall_f1": 0.263858,
-  "mean_self_critical_quality_switch_scaffold_contact_count": 395.75,
+  "mean_self_critical_quality_switch_exact_contact_precision": 0.280546,
+  "mean_self_critical_quality_switch_exact_long_range_contact_recall": 0.283568,
+  "mean_self_critical_quality_switch_f1_delta_vs_phase_coverage": 0.09298,
+  "mean_self_critical_quality_switch_f1_delta_vs_region_density_top_l": 0.052539,
+  "mean_self_critical_quality_switch_precision_recall_f1": 0.267585,
+  "mean_self_critical_quality_switch_scaffold_contact_count": 438.0,
   "native_taint_violation_count": 0,
   "oracle_taint_violation_count": 0,
-  "pair_randomizing_control_count": 8,
+  "pair_randomizing_control_count": 18,
   "pair_randomizing_control_names": [
-    "external_random_long_range_same_count"
+    "external_cross_row_swapped",
+    "external_random_long_range_same_count",
+    "external_shuffled_same_row_same_separation"
   ],
   "phase_confidence_scaffold_contact_map_perfect_rate": 0.0,
   "phase_coverage_scaffold_contact_map_perfect_rate": 0.0,
@@ -199,6 +205,7 @@
     "event_boundary_feature": "selected_event_count",
     "event_boundary_gap": 22.0,
     "event_boundary_value": 19.0,
+    "low_quality_conflict_feature": "phase_coverage_scaffold_mode",
     "selected_modes": [
       "phase_coverage",
       "phase_density_conflict_shell",
