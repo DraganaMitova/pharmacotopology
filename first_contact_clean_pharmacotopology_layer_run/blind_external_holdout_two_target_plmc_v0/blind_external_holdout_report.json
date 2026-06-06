@@ -1,6 +1,6 @@
 {
   "claim_allowed": true,
-  "commit_hash": "efed37e317b25c4b6b9d0c114990312d0de2f1bd",
+  "commit_hash": "00e9fe6fb93073a1aa59d72be74f3d427073bd9d",
   "control_names": [
     "external_shuffled_same_row_same_separation",
     "external_confidence_permuted",
@@ -19,6 +19,7 @@
       "all_existing_complete_targets_tested": false,
       "all_hard_gates_passed": true,
       "all_targets_productive_frontier_win": true,
+      "all_targets_scaffold_contact_maps_perfect": false,
       "all_targets_zero_false_nucleus_rate": true,
       "atomic_coordinate_generation_validated": false,
       "exact_contact_signal_confirmed": true,
@@ -28,6 +29,7 @@
     },
     "solved": false,
     "unmet_requirements": [
+      "all_targets_scaffold_contact_maps_perfect",
       "universal_holdout_scope_declared",
       "all_existing_complete_targets_tested",
       "full_atomic_folding_available",
@@ -35,7 +37,7 @@
     ]
   },
   "frontier_control_win_rate": 0.5,
-  "generated_at_utc": "2026-06-06T12:58:33.420190+00:00",
+  "generated_at_utc": "2026-06-06T13:11:01.697238+00:00",
   "hard_gates": {
     "all_hard_gates_passed": true,
     "coordinate_truth_used_to_build_constraints": false,
@@ -60,6 +62,11 @@
   "mean_false_nucleus_rate": 0.0,
   "mean_long_range_contact_recall": 0.631463,
   "mean_region_width_penalty": 0.959987,
+  "mean_scaffold_contact_count": 114.0,
+  "mean_scaffold_contact_precision_delta_vs_top_L": 0.02358,
+  "mean_scaffold_contact_recall_delta_vs_region": -0.546409,
+  "mean_scaffold_exact_contact_precision": 0.190755,
+  "mean_scaffold_exact_long_range_contact_recall": 0.085055,
   "native_taint_violation_count": 0,
   "oracle_taint_violation_count": 0,
   "pair_randomizing_control_count": 8,
@@ -73,6 +80,7 @@
   "python_version": "3.9.6 (default, Apr 17 2026, 18:15:52) \n[Clang 21.0.0 (clang-2100.1.1.101)]",
   "report_kind": "blind_external_holdout_battery_v0",
   "saturation_selector_name": "external_multiscale_phase_aligned_footprint_novelty_boundary",
+  "scaffold_contact_map_perfect_rate": 0.0,
   "selector_frozen_after_manifest": true,
   "selector_name": "external_multiscale_phase_aligned_external_novelty_frontier",
   "target_count": 2,
