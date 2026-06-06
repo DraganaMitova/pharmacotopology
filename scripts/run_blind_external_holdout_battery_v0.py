@@ -8,6 +8,7 @@ import subprocess
 import sys
 from dataclasses import asdict, dataclass
 from datetime import datetime, timezone
+from math import sqrt
 from pathlib import Path
 from statistics import mean
 from typing import Mapping, Sequence
@@ -107,6 +108,14 @@ class ScaffoldContactMetrics:
     adjacent_density_patch_scaffold_precision_delta_vs_density_compact: float
     adjacent_density_patch_scaffold_recall_delta_vs_density_compact: float
     adjacent_density_patch_scaffold_contact_map_perfect: bool
+    phase_field_scaffold_contact_count: int
+    phase_field_scaffold_exact_contact_precision: float
+    phase_field_scaffold_exact_long_range_contact_recall: float
+    phase_field_scaffold_precision_delta_vs_adjacent_density_patch: float
+    phase_field_scaffold_recall_delta_vs_adjacent_density_patch: float
+    phase_field_scaffold_contact_map_perfect: bool
+    phase_field_scaffold_mode: str
+    phase_field_scaffold_radius: int
 
     def to_dict(self) -> dict[str, object]:
         return asdict(self)
@@ -508,6 +517,219 @@ def _adjacent_density_patch_scaffold_core(
     return tuple(selected_by_pair.values())
 
 
+def _population_stddev(values: Sequence[float]) -> float:
+    if not values:
+        return 0.0
+    center = mean(values)
+    return sqrt(mean((value - center) ** 2 for value in values))
+
+
+def _pair_correlation(pairs: Sequence[tuple[int, int]]) -> float:
+    if len(pairs) <= 1:
+        return 0.0
+    left = [float(pair[0]) for pair in pairs]
+    right = [float(pair[1]) for pair in pairs]
+    left_center = mean(left)
+    right_center = mean(right)
+    left_ss = sum((value - left_center) ** 2 for value in left)
+    right_ss = sum((value - right_center) ** 2 for value in right)
+    if left_ss == 0.0 or right_ss == 0.0:
+        return 0.0
+    covariance = sum(
+        (left_value - left_center) * (right_value - right_center)
+        for left_value, right_value in zip(left, right)
+    )
+    return covariance / sqrt(left_ss * right_ss)
+
+
+def _nearest_phase_votes(
+    pairs: Sequence[tuple[int, int]],
+) -> tuple[int, int]:
+    diagonal_votes = 0
+    square_votes = 0
+    for pair in pairs:
+        nearest: tuple[int, int, int] | None = None
+        for other in pairs:
+            if other == pair:
+                continue
+            delta_left = other[0] - pair[0]
+            delta_right = other[1] - pair[1]
+            distance = max(abs(delta_left), abs(delta_right))
+            candidate = (distance, delta_left, delta_right)
+            if nearest is None or candidate < nearest:
+                nearest = candidate
+        if nearest is None:
+            continue
+        distance, delta_left, delta_right = nearest
+        if abs(delta_left - delta_right) <= 1:
+            diagonal_votes += 1
+        if distance <= 2:
+            square_votes += 1
+    return diagonal_votes, square_votes
+
+
+def _phase_field_mode_and_radius(
+    seeds: Sequence[ScaffoldContactCandidate],
+) -> tuple[str, int]:
+    pairs = tuple(candidate.pair for candidate in seeds)
+    if len(pairs) <= 1:
+        return "point", 1
+    offsets = [float(right - left) for left, right in pairs]
+    sums = [float(right + left) for left, right in pairs]
+    offset_spread = _population_stddev(offsets)
+    sum_spread = _population_stddev(sums)
+    correlation = max(0.0, _pair_correlation(pairs))
+    diagonal_votes, square_votes = _nearest_phase_votes(pairs)
+    diagonal_score = correlation * sum_spread / (offset_spread + 1.0)
+    square_score = (square_votes / len(pairs)) * sqrt(offset_spread + 1.0)
+    if diagonal_score > square_score:
+        return "diagonal", max(1, int(round(offset_spread)))
+    radius = max(1, int(round(sqrt(len(pairs)))))
+    return "square", radius
+
+
+def _phase_field_support(
+    *,
+    row_length: int,
+    candidates: Sequence[ScaffoldContactCandidate],
+    seeds: Sequence[ScaffoldContactCandidate],
+    radius: int,
+    mode: str,
+) -> tuple[dict[tuple[int, int], float], set[tuple[int, int]]]:
+    candidates_by_pair = {candidate.pair: candidate for candidate in candidates}
+    direct_pairs = set(candidates_by_pair)
+    max_seed_score = (
+        max(_density_compact_score(candidate, candidates) for candidate in seeds)
+        if seeds
+        else 1.0
+    ) or 1.0
+    support: dict[tuple[int, int], float] = {}
+    for seed in seeds:
+        seed_left, seed_right = seed.pair
+        seed_score = _density_compact_score(seed, candidates) / max_seed_score
+        for delta_left in range(-radius, radius + 1):
+            for delta_right in range(-radius, radius + 1):
+                if mode == "diagonal" and abs(delta_left - delta_right) > 1:
+                    continue
+                pair_left = seed_left + delta_left
+                pair_right = seed_right + delta_right
+                if (
+                    pair_left < 1
+                    or pair_right > row_length
+                    or pair_right - pair_left < 24
+                ):
+                    continue
+                distance = max(abs(delta_left), abs(delta_right))
+                if distance > radius:
+                    continue
+                kernel = (radius + 1 - distance) / (radius + 1)
+                score = seed_score * kernel
+                direct_candidate = candidates_by_pair.get((pair_left, pair_right))
+                if direct_candidate is not None:
+                    score += (
+                        0.35
+                        * _density_compact_score(direct_candidate, candidates)
+                        / max_seed_score
+                    )
+                support[(pair_left, pair_right)] = (
+                    support.get((pair_left, pair_right), 0.0) + score
+                )
+    return support, direct_pairs
+
+
+def _phase_field_prefix(
+    support: Mapping[tuple[int, int], float],
+    *,
+    minimum_count: int,
+) -> set[tuple[int, int]]:
+    if not support:
+        return set()
+    ordered = sorted(
+        support.items(),
+        key=lambda item: (item[1], -item[0][0], -item[0][1]),
+        reverse=True,
+    )
+    minimum_index = max(0, min(len(ordered) - 1, minimum_count - 1))
+    scores = [score for _, score in ordered]
+    gaps = [
+        (scores[index] - scores[index + 1], index)
+        for index in range(minimum_index, len(scores) - 1)
+    ]
+    if gaps:
+        _, boundary_index = max(
+            gaps,
+            key=lambda item: (item[0], scores[item[1]], -item[1]),
+        )
+    else:
+        boundary_index = minimum_index
+    return {pair for pair, _ in ordered[: boundary_index + 1]}
+
+
+def _phase_field_scaffold_core(
+    *,
+    row_length: int,
+    candidates: Sequence[ScaffoldContactCandidate],
+) -> tuple[set[tuple[int, int]], str, int]:
+    all_candidates = tuple(candidates)
+    seeds = _adjacent_density_patch_scaffold_core(all_candidates)
+    if not seeds:
+        return set(), "none", 0
+    mode, max_radius = _phase_field_mode_and_radius(seeds)
+    if mode == "point":
+        return {candidate.pair for candidate in seeds}, mode, 1
+    radius_results: list[
+        tuple[int, set[tuple[int, int]], float, int, float]
+    ] = []
+    for radius in range(1, max_radius + 1):
+        support, direct_pairs = _phase_field_support(
+            row_length=row_length,
+            candidates=all_candidates,
+            seeds=seeds,
+            radius=radius,
+            mode=mode,
+        )
+        pairs = _phase_field_prefix(support, minimum_count=len(seeds))
+        if not pairs:
+            continue
+        scores = [support[pair] for pair in pairs]
+        direct_fraction = len(pairs & direct_pairs) / len(pairs)
+        radius_results.append(
+            (radius, pairs, direct_fraction, len(pairs), mean(scores))
+        )
+    if not radius_results:
+        return {candidate.pair for candidate in seeds}, mode, 1
+    if mode == "diagonal":
+        radius, pairs, _, _, _ = max(
+            radius_results,
+            key=lambda item: (
+                item[4],
+                item[3],
+                item[0],
+            ),
+        )
+        return pairs, mode, radius
+    if len(radius_results) == 1:
+        radius, pairs, _, _, _ = radius_results[0]
+        return pairs, mode, radius
+    drops = [
+        (
+            radius_results[index][2] - radius_results[index + 1][2],
+            radius_results[index],
+        )
+        for index in range(len(radius_results) - 1)
+    ]
+    _, selected = max(
+        drops,
+        key=lambda item: (
+            item[0],
+            item[1][3],
+            -item[1][0],
+        ),
+    )
+    radius, pairs, _, _, _ = selected
+    return pairs, mode, radius
+
+
 def _scaffold_contact_metrics(
     *,
     rows: Sequence[RealCoordinateVisualRow],
@@ -536,6 +758,12 @@ def _scaffold_contact_metrics(
     adjacent_patch_long_recalls: list[float] = []
     adjacent_patch_contact_counts: list[int] = []
     adjacent_patch_perfect_flags: list[bool] = []
+    phase_field_precisions: list[float] = []
+    phase_field_long_recalls: list[float] = []
+    phase_field_contact_counts: list[int] = []
+    phase_field_perfect_flags: list[bool] = []
+    phase_field_modes: list[str] = []
+    phase_field_radii: list[int] = []
     for row in rows:
         native_pairs = set(row.native_contact_pairs())
         native_long = {pair for pair in native_pairs if pair[1] - pair[0] >= 24}
@@ -594,6 +822,14 @@ def _scaffold_contact_metrics(
                 tuple(candidates_by_pair.values())
             )
         }
+        (
+            phase_field_pairs,
+            phase_field_mode,
+            phase_field_radius,
+        ) = _phase_field_scaffold_core(
+            row_length=row.sequence_length,
+            candidates=tuple(candidates_by_pair.values()),
+        )
         supported = scaffold_pairs & native_pairs
         supported_long = scaffold_pairs & native_long
         compact_supported = compact_pairs & native_pairs
@@ -602,6 +838,8 @@ def _scaffold_contact_metrics(
         density_compact_supported_long = density_compact_pairs & native_long
         adjacent_patch_supported = adjacent_patch_pairs & native_pairs
         adjacent_patch_supported_long = adjacent_patch_pairs & native_long
+        phase_field_supported = phase_field_pairs & native_pairs
+        phase_field_supported_long = phase_field_pairs & native_long
         precision = (
             _rounded(len(supported) / len(scaffold_pairs))
             if scaffold_pairs
@@ -670,6 +908,25 @@ def _scaffold_contact_metrics(
             adjacent_patch_precision == 1.0
             and adjacent_patch_long_recall == 1.0
         )
+        phase_field_precision = (
+            _rounded(len(phase_field_supported) / len(phase_field_pairs))
+            if phase_field_pairs
+            else 0.0
+        )
+        phase_field_long_recall = (
+            _rounded(len(phase_field_supported_long) / len(native_long))
+            if native_long
+            else 1.0
+        )
+        phase_field_precisions.append(phase_field_precision)
+        phase_field_long_recalls.append(phase_field_long_recall)
+        phase_field_contact_counts.append(len(phase_field_pairs))
+        phase_field_perfect_flags.append(
+            phase_field_precision == 1.0
+            and phase_field_long_recall == 1.0
+        )
+        phase_field_modes.append(phase_field_mode)
+        phase_field_radii.append(phase_field_radius)
 
     precision = _rounded(mean(precisions)) if precisions else 0.0
     long_recall = _rounded(mean(long_recalls)) if long_recalls else 0.0
@@ -697,6 +954,16 @@ def _scaffold_contact_metrics(
     adjacent_patch_long_recall = (
         _rounded(mean(adjacent_patch_long_recalls))
         if adjacent_patch_long_recalls
+        else 0.0
+    )
+    phase_field_precision = (
+        _rounded(mean(phase_field_precisions))
+        if phase_field_precisions
+        else 0.0
+    )
+    phase_field_long_recall = (
+        _rounded(mean(phase_field_long_recalls))
+        if phase_field_long_recalls
         else 0.0
     )
     return ScaffoldContactMetrics(
@@ -759,6 +1026,25 @@ def _scaffold_contact_metrics(
         adjacent_density_patch_scaffold_contact_map_perfect=(
             bool(adjacent_patch_perfect_flags)
             and all(adjacent_patch_perfect_flags)
+        ),
+        phase_field_scaffold_contact_count=sum(phase_field_contact_counts),
+        phase_field_scaffold_exact_contact_precision=phase_field_precision,
+        phase_field_scaffold_exact_long_range_contact_recall=(
+            phase_field_long_recall
+        ),
+        phase_field_scaffold_precision_delta_vs_adjacent_density_patch=(
+            _rounded(phase_field_precision - adjacent_patch_precision)
+        ),
+        phase_field_scaffold_recall_delta_vs_adjacent_density_patch=(
+            _rounded(phase_field_long_recall - adjacent_patch_long_recall)
+        ),
+        phase_field_scaffold_contact_map_perfect=(
+            bool(phase_field_perfect_flags)
+            and all(phase_field_perfect_flags)
+        ),
+        phase_field_scaffold_mode=";".join(phase_field_modes),
+        phase_field_scaffold_radius=(
+            int(round(mean(phase_field_radii))) if phase_field_radii else 0
         ),
     )
 
@@ -1123,6 +1409,20 @@ def _folding_problem_solved_audit(
                     "adjacent_density_patch_scaffold_contact_map_perfect"
                 )
                 is True
+                for row in target_rows
+            )
+        ),
+        "all_targets_phase_field_scaffold_contact_maps_perfect": (
+            bool(target_rows)
+            and all(
+                str(
+                    row.get(
+                        "phase_field_scaffold_contact_map_perfect",
+                        "False",
+                    )
+                )
+                == "True"
+                or row.get("phase_field_scaffold_contact_map_perfect") is True
                 for row in target_rows
             )
         ),
@@ -1645,6 +1945,42 @@ def run_blind_external_holdout_battery_v0(
                 target_rows,
                 "adjacent_density_patch_scaffold_contact_map_perfect",
             )
+        ),
+        "mean_phase_field_scaffold_contact_count": _mean_field(
+            target_rows,
+            "phase_field_scaffold_contact_count",
+        ),
+        "mean_phase_field_scaffold_exact_contact_precision": _mean_field(
+            target_rows,
+            "phase_field_scaffold_exact_contact_precision",
+        ),
+        "mean_phase_field_scaffold_exact_long_range_contact_recall": (
+            _mean_field(
+                target_rows,
+                "phase_field_scaffold_exact_long_range_contact_recall",
+            )
+        ),
+        "mean_phase_field_scaffold_precision_delta_vs_adjacent_density_patch": (
+            _mean_field(
+                target_rows,
+                (
+                    "phase_field_scaffold_precision_delta_vs_"
+                    "adjacent_density_patch"
+                ),
+            )
+        ),
+        "mean_phase_field_scaffold_recall_delta_vs_adjacent_density_patch": (
+            _mean_field(
+                target_rows,
+                (
+                    "phase_field_scaffold_recall_delta_vs_"
+                    "adjacent_density_patch"
+                ),
+            )
+        ),
+        "phase_field_scaffold_contact_map_perfect_rate": _mean_field(
+            target_rows,
+            "phase_field_scaffold_contact_map_perfect",
         ),
         "frontier_control_win_rate": _mean_field(
             target_rows,
