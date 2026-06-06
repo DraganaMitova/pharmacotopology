@@ -1,7 +1,7 @@
 {
   "adjacent_density_patch_scaffold_contact_map_perfect_rate": 0.0,
   "claim_allowed": true,
-  "commit_hash": "f0b9da67498673fbad7b03bb256dd53e27a7f714",
+  "commit_hash": "1cca3997fc90311310ff5bfeaf1708d8ab054b15",
   "compact_scaffold_contact_map_perfect_rate": 0.0,
   "control_names": [
     "external_random_long_range_same_count"
@@ -22,6 +22,7 @@
       "all_targets_density_compact_scaffold_contact_maps_perfect": false,
       "all_targets_phase_confidence_scaffold_contact_maps_perfect": false,
       "all_targets_phase_coverage_scaffold_contact_maps_perfect": false,
+      "all_targets_phase_density_conflict_consensus_scaffold_contact_maps_perfect": false,
       "all_targets_phase_density_spine_scaffold_contact_maps_perfect": false,
       "all_targets_phase_field_scaffold_contact_maps_perfect": false,
       "all_targets_phase_ribbon_bridge_scaffold_contact_maps_perfect": false,
@@ -51,6 +52,7 @@
       "all_targets_region_density_boundary_scaffold_contact_maps_perfect",
       "all_targets_self_critical_quality_switch_scaffold_contact_maps_perfect",
       "all_targets_phase_density_spine_scaffold_contact_maps_perfect",
+      "all_targets_phase_density_conflict_consensus_scaffold_contact_maps_perfect",
       "universal_holdout_scope_declared",
       "all_existing_complete_targets_tested",
       "full_atomic_folding_available",
@@ -58,7 +60,7 @@
     ]
   },
   "frontier_control_win_rate": 0.5,
-  "generated_at_utc": "2026-06-06T15:43:10.143472+00:00",
+  "generated_at_utc": "2026-06-06T15:55:11.761003+00:00",
   "hard_gates": {
     "all_hard_gates_passed": true,
     "coordinate_truth_used_to_build_constraints": false,
@@ -110,6 +112,12 @@
   "mean_phase_coverage_scaffold_precision_delta_vs_phase_ribbon_bridge": -0.148314,
   "mean_phase_coverage_scaffold_precision_recall_f1": 0.174605,
   "mean_phase_coverage_scaffold_recall_delta_vs_phase_ribbon_bridge": 0.052719,
+  "mean_phase_density_conflict_consensus_scaffold_contact_count": 291.5,
+  "mean_phase_density_conflict_consensus_scaffold_exact_contact_precision": 0.272499,
+  "mean_phase_density_conflict_consensus_scaffold_exact_long_range_contact_recall": 0.216359,
+  "mean_phase_density_conflict_consensus_scaffold_precision_delta_vs_phase_density_spine": 0.002939,
+  "mean_phase_density_conflict_consensus_scaffold_precision_recall_f1": 0.231144,
+  "mean_phase_density_conflict_consensus_scaffold_recall_delta_vs_phase_density_spine": 0.005334,
   "mean_phase_density_spine_scaffold_contact_count": 270.0,
   "mean_phase_density_spine_scaffold_exact_contact_precision": 0.26956,
   "mean_phase_density_spine_scaffold_exact_long_range_contact_recall": 0.211025,
@@ -144,12 +152,12 @@
   "mean_scaffold_contact_recall_delta_vs_region": -0.541061,
   "mean_scaffold_exact_contact_precision": 0.187482,
   "mean_scaffold_exact_long_range_contact_recall": 0.110931,
-  "mean_self_critical_quality_switch_exact_contact_precision": 0.310074,
-  "mean_self_critical_quality_switch_exact_long_range_contact_recall": 0.241825,
-  "mean_self_critical_quality_switch_f1_delta_vs_phase_coverage": 0.086962,
-  "mean_self_critical_quality_switch_f1_delta_vs_region_density_top_l": 0.046521,
-  "mean_self_critical_quality_switch_precision_recall_f1": 0.261568,
-  "mean_self_critical_quality_switch_scaffold_contact_count": 270.75,
+  "mean_self_critical_quality_switch_exact_contact_precision": 0.308939,
+  "mean_self_critical_quality_switch_exact_long_range_contact_recall": 0.243766,
+  "mean_self_critical_quality_switch_f1_delta_vs_phase_coverage": 0.087168,
+  "mean_self_critical_quality_switch_f1_delta_vs_region_density_top_l": 0.046727,
+  "mean_self_critical_quality_switch_precision_recall_f1": 0.261773,
+  "mean_self_critical_quality_switch_scaffold_contact_count": 291.0,
   "native_taint_violation_count": 0,
   "oracle_taint_violation_count": 0,
   "pair_randomizing_control_count": 8,
@@ -158,6 +166,7 @@
   ],
   "phase_confidence_scaffold_contact_map_perfect_rate": 0.0,
   "phase_coverage_scaffold_contact_map_perfect_rate": 0.0,
+  "phase_density_conflict_consensus_scaffold_contact_map_perfect_rate": 0.0,
   "phase_density_spine_scaffold_contact_map_perfect_rate": 0.0,
   "phase_field_scaffold_contact_map_perfect_rate": 0.0,
   "phase_ribbon_bridge_scaffold_contact_map_perfect_rate": 0.0,
@@ -183,7 +192,7 @@
     "event_boundary_value": 19.0,
     "selected_modes": [
       "phase_coverage",
-      "phase_density_spine",
+      "phase_density_conflict_consensus",
       "region_density_top_l"
     ],
     "selector_name": "external_self_critical_coupling_quality_switch_v0"

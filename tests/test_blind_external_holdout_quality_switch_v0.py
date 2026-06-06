@@ -19,6 +19,7 @@ def _row(
     density_f1: float,
     selected_event_count: int = 0,
     spine_f1: float = 0.0,
+    conflict_f1: float = 0.0,
 ) -> dict[str, object]:
     return {
         "target_id": target_id,
@@ -43,6 +44,15 @@ def _row(
         ),
         "phase_density_spine_scaffold_precision_recall_f1": spine_f1,
         "phase_density_spine_scaffold_contact_map_perfect": False,
+        "phase_density_conflict_consensus_scaffold_contact_count": 12,
+        "phase_density_conflict_consensus_scaffold_exact_contact_precision": 0.45,
+        "phase_density_conflict_consensus_scaffold_exact_long_range_contact_recall": (
+            conflict_f1
+        ),
+        "phase_density_conflict_consensus_scaffold_precision_recall_f1": (
+            conflict_f1
+        ),
+        "phase_density_conflict_consensus_scaffold_contact_map_perfect": False,
     }
 
 
@@ -96,6 +106,7 @@ def test_self_critical_quality_switch_generates_spine_for_high_event_conflict() 
             phase_f1=0.24,
             density_f1=0.13,
             spine_f1=0.21,
+            conflict_f1=0.18,
         ),
         _row(
             target_id="high_quality_compact",
@@ -104,6 +115,7 @@ def test_self_critical_quality_switch_generates_spine_for_high_event_conflict() 
             phase_f1=0.13,
             density_f1=0.35,
             spine_f1=0.33,
+            conflict_f1=0.31,
         ),
         _row(
             target_id="high_quality_conflict",
@@ -112,6 +124,7 @@ def test_self_critical_quality_switch_generates_spine_for_high_event_conflict() 
             phase_f1=0.09,
             density_f1=0.20,
             spine_f1=0.22,
+            conflict_f1=0.24,
         ),
     ]
 
@@ -123,6 +136,6 @@ def test_self_critical_quality_switch_generates_spine_for_high_event_conflict() 
         "region_density_top_l"
     )
     assert rows[2]["self_critical_quality_switch_mode"] == (
-        "phase_density_spine"
+        "phase_density_conflict_consensus"
     )
-    assert rows[2]["self_critical_quality_switch_precision_recall_f1"] == 0.22
+    assert rows[2]["self_critical_quality_switch_precision_recall_f1"] == 0.24
