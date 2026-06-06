@@ -1,0 +1,22 @@
+{
+  "certificate_kind": "blind_external_holdout_battery_certificate_v0",
+  "claim_allowed": true,
+  "claim_scope": "long_range_folding_nucleus_region_recovery_only_not_full_atomic_folding",
+  "commit_hash": "d7b723d4fa6cc20b3d2e659dbbbe751efcdad429",
+  "final_classification": "blind_batch_exact_contact_signal_confirmed",
+  "folding_problem_solved": false,
+  "hard_gates": {
+    "all_hard_gates_passed": true,
+    "coordinate_truth_used_to_build_constraints": false,
+    "external_evolutionary_couplings_used": true,
+    "native_truth_used_before_coupling_selection": false,
+    "oracle_constraint_control": false,
+    "selector_frozen_after_manifest": true,
+    "target_manifest_frozen": true
+  },
+  "precision_boundary_selector_name": "external_multiscale_phase_aligned_critical_boundary",
+  "report_kind": "blind_external_holdout_battery_v0",
+  "saturation_selector_name": "external_multiscale_phase_aligned_footprint_novelty_boundary",
+  "selector_name": "external_multiscale_phase_aligned_external_novelty_frontier",
+  "target_manifest_sha256": "sha256:54c02b486f7f596bd998149f5986c32be25d8c1f8d6a9e4dcc82d8db42db8bed"
+}
