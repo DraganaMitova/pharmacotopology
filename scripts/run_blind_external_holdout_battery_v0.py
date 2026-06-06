@@ -131,6 +131,14 @@ class ScaffoldContactMetrics:
     phase_coverage_scaffold_contact_map_perfect: bool
     phase_coverage_scaffold_mode: str
     phase_coverage_scaffold_span: int
+    phase_confidence_scaffold_contact_count: int
+    phase_confidence_scaffold_exact_contact_precision: float
+    phase_confidence_scaffold_exact_long_range_contact_recall: float
+    phase_confidence_scaffold_precision_recall_f1: float
+    phase_confidence_scaffold_precision_delta_vs_phase_ribbon_bridge: float
+    phase_confidence_scaffold_recall_delta_vs_phase_ribbon_bridge: float
+    phase_confidence_scaffold_contact_map_perfect: bool
+    phase_confidence_scaffold_mode: str
 
     def to_dict(self) -> dict[str, object]:
         return asdict(self)
@@ -842,6 +850,129 @@ def _phase_coverage_scaffold_core(
     return set(phase_pairs), phase_mode, 0
 
 
+def _phase_coverage_support_map(
+    *,
+    row_length: int,
+    phase_pairs: set[tuple[int, int]],
+    phase_mode: str,
+    phase_radius: int,
+) -> tuple[dict[tuple[int, int], float], dict[tuple[int, int], int]]:
+    if not phase_pairs:
+        return {}, {}
+    if phase_mode == "diagonal":
+        span = max(1, phase_radius // 2)
+        offsets = tuple((offset, offset) for offset in range(-span, span + 1))
+    elif phase_mode == "square":
+        span = 1
+        offsets = tuple(
+            (left_offset, right_offset)
+            for left_offset in range(-span, span + 1)
+            for right_offset in range(-span, span + 1)
+        )
+    else:
+        span = 0
+        offsets = ((0, 0),)
+    weights: dict[tuple[int, int], float] = {}
+    counts: dict[tuple[int, int], int] = {}
+    for left, right in phase_pairs:
+        for left_offset, right_offset in offsets:
+            pair = (left + left_offset, right + right_offset)
+            if (
+                pair[0] < 1
+                or pair[1] > row_length
+                or pair[1] - pair[0] < 24
+            ):
+                continue
+            distance = max(abs(left_offset), abs(right_offset))
+            weight = (span + 1 - distance) / (span + 1) if span else 1.0
+            weights[pair] = weights.get(pair, 0.0) + weight
+            counts[pair] = counts.get(pair, 0) + 1
+    return weights, counts
+
+
+def _local_pair_neighbor_count(
+    *,
+    pair: tuple[int, int],
+    pairs: set[tuple[int, int]],
+    radius: int = 1,
+) -> int:
+    return sum(
+        1
+        for other in pairs
+        if other != pair and _contact_map_distance(pair, other) <= radius
+    )
+
+
+def _phase_confidence_scaffold_core(
+    *,
+    row_length: int,
+    candidates: Sequence[ScaffoldContactCandidate],
+    ribbon_pairs: set[tuple[int, int]],
+    phase_mode: str,
+    phase_radius: int,
+) -> tuple[set[tuple[int, int]], str]:
+    if not ribbon_pairs:
+        return set(), "none"
+    weights, counts = _phase_coverage_support_map(
+        row_length=row_length,
+        phase_pairs=ribbon_pairs,
+        phase_mode=phase_mode,
+        phase_radius=phase_radius,
+    )
+    coverage_pairs = set(weights)
+    if not coverage_pairs:
+        return set(ribbon_pairs), "ribbon_only"
+    candidates_by_pair = {candidate.pair: candidate for candidate in candidates}
+    max_candidate_score = (
+        max(_density_compact_score(candidate, candidates) for candidate in candidates)
+        if candidates
+        else 1.0
+    ) or 1.0
+    if phase_mode == "diagonal":
+        direct_coef, count_coef, neighbor_coef, ribbon_bonus = (
+            2.0,
+            0.1,
+            0.05,
+            0.5,
+        )
+        confidence_mode = "diagonal_direct_soft"
+    elif phase_mode == "square":
+        direct_coef, count_coef, neighbor_coef, ribbon_bonus = (
+            2.0,
+            0.4,
+            0.25,
+            0.7,
+        )
+        confidence_mode = "square_direct_weight_neighbor"
+    else:
+        direct_coef, count_coef, neighbor_coef, ribbon_bonus = (
+            2.0,
+            0.2,
+            0.1,
+            0.5,
+        )
+        confidence_mode = f"{phase_mode}_direct_soft"
+    scores: dict[tuple[int, int], float] = {}
+    for pair in coverage_pairs:
+        candidate = candidates_by_pair.get(pair)
+        direct_score = (
+            _density_compact_score(candidate, candidates) / max_candidate_score
+            if candidate is not None
+            else 0.0
+        )
+        scores[pair] = (
+            (ribbon_bonus if pair in ribbon_pairs else 0.0)
+            + direct_coef * direct_score
+            + count_coef * counts[pair]
+            + neighbor_coef
+            * _local_pair_neighbor_count(pair=pair, pairs=coverage_pairs)
+            + weights[pair]
+        )
+    selected = _phase_field_prefix(scores, minimum_count=len(ribbon_pairs))
+    selected.update(ribbon_pairs)
+    return selected, confidence_mode
+
+
 def _precision_recall_f1(precision: float, recall: float) -> float:
     if precision + recall == 0.0:
         return 0.0
@@ -893,6 +1024,12 @@ def _scaffold_contact_metrics(
     phase_coverage_perfect_flags: list[bool] = []
     phase_coverage_modes: list[str] = []
     phase_coverage_spans: list[int] = []
+    phase_confidence_precisions: list[float] = []
+    phase_confidence_long_recalls: list[float] = []
+    phase_confidence_f1s: list[float] = []
+    phase_confidence_contact_counts: list[int] = []
+    phase_confidence_perfect_flags: list[bool] = []
+    phase_confidence_modes: list[str] = []
     for row in rows:
         native_pairs = set(row.native_contact_pairs())
         native_long = {pair for pair in native_pairs if pair[1] - pair[0] >= 24}
@@ -973,6 +1110,16 @@ def _scaffold_contact_metrics(
             phase_mode=phase_field_mode,
             phase_radius=phase_field_radius,
         )
+        (
+            phase_confidence_pairs,
+            phase_confidence_mode,
+        ) = _phase_confidence_scaffold_core(
+            row_length=row.sequence_length,
+            candidates=tuple(candidates_by_pair.values()),
+            ribbon_pairs=phase_ribbon_bridge_pairs,
+            phase_mode=phase_field_mode,
+            phase_radius=phase_field_radius,
+        )
         supported = scaffold_pairs & native_pairs
         supported_long = scaffold_pairs & native_long
         compact_supported = compact_pairs & native_pairs
@@ -991,6 +1138,8 @@ def _scaffold_contact_metrics(
         )
         phase_coverage_supported = phase_coverage_pairs & native_pairs
         phase_coverage_supported_long = phase_coverage_pairs & native_long
+        phase_confidence_supported = phase_confidence_pairs & native_pairs
+        phase_confidence_supported_long = phase_confidence_pairs & native_long
         precision = (
             _rounded(len(supported) / len(scaffold_pairs))
             if scaffold_pairs
@@ -1130,6 +1279,31 @@ def _scaffold_contact_metrics(
         )
         phase_coverage_modes.append(phase_coverage_mode)
         phase_coverage_spans.append(phase_coverage_span)
+        phase_confidence_precision = (
+            _rounded(
+                len(phase_confidence_supported) / len(phase_confidence_pairs)
+            )
+            if phase_confidence_pairs
+            else 0.0
+        )
+        phase_confidence_long_recall = (
+            _rounded(len(phase_confidence_supported_long) / len(native_long))
+            if native_long
+            else 1.0
+        )
+        phase_confidence_f1 = _precision_recall_f1(
+            phase_confidence_precision,
+            phase_confidence_long_recall,
+        )
+        phase_confidence_precisions.append(phase_confidence_precision)
+        phase_confidence_long_recalls.append(phase_confidence_long_recall)
+        phase_confidence_f1s.append(phase_confidence_f1)
+        phase_confidence_contact_counts.append(len(phase_confidence_pairs))
+        phase_confidence_perfect_flags.append(
+            phase_confidence_precision == 1.0
+            and phase_confidence_long_recall == 1.0
+        )
+        phase_confidence_modes.append(phase_confidence_mode)
 
     precision = _rounded(mean(precisions)) if precisions else 0.0
     long_recall = _rounded(mean(long_recalls)) if long_recalls else 0.0
@@ -1191,6 +1365,21 @@ def _scaffold_contact_metrics(
     )
     phase_coverage_f1 = (
         _rounded(mean(phase_coverage_f1s)) if phase_coverage_f1s else 0.0
+    )
+    phase_confidence_precision = (
+        _rounded(mean(phase_confidence_precisions))
+        if phase_confidence_precisions
+        else 0.0
+    )
+    phase_confidence_long_recall = (
+        _rounded(mean(phase_confidence_long_recalls))
+        if phase_confidence_long_recalls
+        else 0.0
+    )
+    phase_confidence_f1 = (
+        _rounded(mean(phase_confidence_f1s))
+        if phase_confidence_f1s
+        else 0.0
     )
     return ScaffoldContactMetrics(
         scaffold_contact_count=sum(contact_counts),
@@ -1321,6 +1510,33 @@ def _scaffold_contact_metrics(
             if phase_coverage_spans
             else 0
         ),
+        phase_confidence_scaffold_contact_count=sum(
+            phase_confidence_contact_counts
+        ),
+        phase_confidence_scaffold_exact_contact_precision=(
+            phase_confidence_precision
+        ),
+        phase_confidence_scaffold_exact_long_range_contact_recall=(
+            phase_confidence_long_recall
+        ),
+        phase_confidence_scaffold_precision_recall_f1=(
+            phase_confidence_f1
+        ),
+        phase_confidence_scaffold_precision_delta_vs_phase_ribbon_bridge=(
+            _rounded(
+                phase_confidence_precision - phase_ribbon_bridge_precision
+            )
+        ),
+        phase_confidence_scaffold_recall_delta_vs_phase_ribbon_bridge=(
+            _rounded(
+                phase_confidence_long_recall - phase_ribbon_bridge_long_recall
+            )
+        ),
+        phase_confidence_scaffold_contact_map_perfect=(
+            bool(phase_confidence_perfect_flags)
+            and all(phase_confidence_perfect_flags)
+        ),
+        phase_confidence_scaffold_mode=";".join(phase_confidence_modes),
     )
 
 
@@ -1729,6 +1945,21 @@ def _folding_problem_solved_audit(
                 )
                 == "True"
                 or row.get("phase_coverage_scaffold_contact_map_perfect") is True
+                for row in target_rows
+            )
+        ),
+        "all_targets_phase_confidence_scaffold_contact_maps_perfect": (
+            bool(target_rows)
+            and all(
+                str(
+                    row.get(
+                        "phase_confidence_scaffold_contact_map_perfect",
+                        "False",
+                    )
+                )
+                == "True"
+                or row.get("phase_confidence_scaffold_contact_map_perfect")
+                is True
                 for row in target_rows
             )
         ),
@@ -2365,6 +2596,46 @@ def run_blind_external_holdout_battery_v0(
         "phase_coverage_scaffold_contact_map_perfect_rate": _mean_field(
             target_rows,
             "phase_coverage_scaffold_contact_map_perfect",
+        ),
+        "mean_phase_confidence_scaffold_contact_count": _mean_field(
+            target_rows,
+            "phase_confidence_scaffold_contact_count",
+        ),
+        "mean_phase_confidence_scaffold_exact_contact_precision": _mean_field(
+            target_rows,
+            "phase_confidence_scaffold_exact_contact_precision",
+        ),
+        "mean_phase_confidence_scaffold_exact_long_range_contact_recall": (
+            _mean_field(
+                target_rows,
+                "phase_confidence_scaffold_exact_long_range_contact_recall",
+            )
+        ),
+        "mean_phase_confidence_scaffold_precision_recall_f1": _mean_field(
+            target_rows,
+            "phase_confidence_scaffold_precision_recall_f1",
+        ),
+        "mean_phase_confidence_scaffold_precision_delta_vs_phase_ribbon_bridge": (
+            _mean_field(
+                target_rows,
+                (
+                    "phase_confidence_scaffold_precision_delta_vs_"
+                    "phase_ribbon_bridge"
+                ),
+            )
+        ),
+        "mean_phase_confidence_scaffold_recall_delta_vs_phase_ribbon_bridge": (
+            _mean_field(
+                target_rows,
+                (
+                    "phase_confidence_scaffold_recall_delta_vs_"
+                    "phase_ribbon_bridge"
+                ),
+            )
+        ),
+        "phase_confidence_scaffold_contact_map_perfect_rate": _mean_field(
+            target_rows,
+            "phase_confidence_scaffold_contact_map_perfect",
         ),
         "frontier_control_win_rate": _mean_field(
             target_rows,
