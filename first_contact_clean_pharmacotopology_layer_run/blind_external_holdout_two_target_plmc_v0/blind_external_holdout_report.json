@@ -1,6 +1,6 @@
 {
   "claim_allowed": true,
-  "commit_hash": "d7ab6545ed4c2d2a9cc2182a3b77ed27b6d5744f",
+  "commit_hash": "f980e4ca73ddc5e7dfef943831e66a33eec15c5a",
   "compact_scaffold_contact_map_perfect_rate": 0.0,
   "control_names": [
     "external_shuffled_same_row_same_separation",
@@ -10,6 +10,7 @@
     "external_low_confidence_tail"
   ],
   "coordinate_taint_violation_count": 0,
+  "density_compact_scaffold_contact_map_perfect_rate": 0.0,
   "failure_count": 0,
   "final_classification": "blind_batch_exact_contact_signal_confirmed",
   "folding_problem_solved": false,
@@ -20,6 +21,7 @@
       "all_existing_complete_targets_tested": false,
       "all_hard_gates_passed": true,
       "all_targets_compact_scaffold_contact_maps_perfect": false,
+      "all_targets_density_compact_scaffold_contact_maps_perfect": false,
       "all_targets_productive_frontier_win": true,
       "all_targets_scaffold_contact_maps_perfect": false,
       "all_targets_zero_false_nucleus_rate": true,
@@ -33,6 +35,7 @@
     "unmet_requirements": [
       "all_targets_scaffold_contact_maps_perfect",
       "all_targets_compact_scaffold_contact_maps_perfect",
+      "all_targets_density_compact_scaffold_contact_maps_perfect",
       "universal_holdout_scope_declared",
       "all_existing_complete_targets_tested",
       "full_atomic_folding_available",
@@ -40,7 +43,7 @@
     ]
   },
   "frontier_control_win_rate": 0.5,
-  "generated_at_utc": "2026-06-06T13:21:07.509184+00:00",
+  "generated_at_utc": "2026-06-06T13:29:43.955435+00:00",
   "hard_gates": {
     "all_hard_gates_passed": true,
     "coordinate_truth_used_to_build_constraints": false,
@@ -64,6 +67,11 @@
   "mean_compact_scaffold_exact_long_range_contact_recall": 0.064693,
   "mean_compact_scaffold_precision_delta_vs_scaffold": 0.072403,
   "mean_compact_scaffold_recall_delta_vs_scaffold": -0.020362,
+  "mean_density_compact_scaffold_contact_count": 25.5,
+  "mean_density_compact_scaffold_exact_contact_precision": 0.422414,
+  "mean_density_compact_scaffold_exact_long_range_contact_recall": 0.042197,
+  "mean_density_compact_scaffold_precision_delta_vs_compact": 0.159256,
+  "mean_density_compact_scaffold_recall_delta_vs_compact": -0.022495,
   "mean_exact_contact_precision_L_over_2": 0.197313,
   "mean_exact_contact_precision_top_L": 0.167175,
   "mean_exact_long_range_contact_precision": 0.167175,
