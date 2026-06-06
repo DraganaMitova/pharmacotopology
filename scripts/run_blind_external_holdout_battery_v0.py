@@ -1099,7 +1099,7 @@ def _phase_density_spine_scaffold_core(
         region_pairs=region_pairs,
         constraints=constraints,
     )
-    weights, counts = _phase_coverage_support_map(
+    weights, _counts = _phase_coverage_support_map(
         row_length=row_length,
         phase_pairs=ribbon_pairs,
         phase_mode=phase_mode,
@@ -1107,13 +1107,11 @@ def _phase_density_spine_scaffold_core(
     )
     density_norm = _normalized_scores(density_scores)
     weight_norm = _normalized_scores(weights)
-    count_norm = _normalized_scores(counts)
     candidate_pairs = set(region_pairs) | set(weights)
     scores = {
         pair: (
             density_norm.get(pair, 0.0)
-            + weight_norm.get(pair, 0.0)
-            + 0.5 * count_norm.get(pair, 0.0)
+            + 0.25 * weight_norm.get(pair, 0.0)
             + (0.2 if pair in ribbon_pairs else 0.0)
         )
         for pair in candidate_pairs
@@ -1123,7 +1121,7 @@ def _phase_density_spine_scaffold_core(
         key=lambda item: (item[1], item[0]),
         reverse=True,
     )
-    budget = max(1, selected_event_count * 20)
+    budget = max(1, selected_event_count * 24)
     return {pair for pair, _ in ordered[:budget]}
 
 
