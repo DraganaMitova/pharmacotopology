@@ -116,6 +116,12 @@ class ScaffoldContactMetrics:
     phase_field_scaffold_contact_map_perfect: bool
     phase_field_scaffold_mode: str
     phase_field_scaffold_radius: int
+    phase_ribbon_bridge_scaffold_contact_count: int
+    phase_ribbon_bridge_scaffold_exact_contact_precision: float
+    phase_ribbon_bridge_scaffold_exact_long_range_contact_recall: float
+    phase_ribbon_bridge_scaffold_precision_delta_vs_phase_field: float
+    phase_ribbon_bridge_scaffold_recall_delta_vs_phase_field: float
+    phase_ribbon_bridge_scaffold_contact_map_perfect: bool
 
     def to_dict(self) -> dict[str, object]:
         return asdict(self)
@@ -730,6 +736,33 @@ def _phase_field_scaffold_core(
     return pairs, mode, radius
 
 
+def _single_gap_phase_ribbon_bridge(
+    *,
+    row_length: int,
+    phase_pairs: set[tuple[int, int]],
+) -> set[tuple[int, int]]:
+    bridged = set(phase_pairs)
+    ordered = sorted(phase_pairs)
+    for index, left_pair in enumerate(ordered):
+        left_i, left_j = left_pair
+        for right_i, right_j in ordered[index + 1 :]:
+            delta_i = right_i - left_i
+            delta_j = right_j - left_j
+            distance = max(abs(delta_i), abs(delta_j))
+            if distance != 2 or abs(delta_i - delta_j) > 1:
+                continue
+            for step in range(distance + 1):
+                bridge_i = round(left_i + delta_i * step / distance)
+                bridge_j = round(left_j + delta_j * step / distance)
+                if (
+                    bridge_i >= 1
+                    and bridge_j <= row_length
+                    and bridge_j - bridge_i >= 24
+                ):
+                    bridged.add((bridge_i, bridge_j))
+    return bridged
+
+
 def _scaffold_contact_metrics(
     *,
     rows: Sequence[RealCoordinateVisualRow],
@@ -764,6 +797,10 @@ def _scaffold_contact_metrics(
     phase_field_perfect_flags: list[bool] = []
     phase_field_modes: list[str] = []
     phase_field_radii: list[int] = []
+    phase_ribbon_bridge_precisions: list[float] = []
+    phase_ribbon_bridge_long_recalls: list[float] = []
+    phase_ribbon_bridge_contact_counts: list[int] = []
+    phase_ribbon_bridge_perfect_flags: list[bool] = []
     for row in rows:
         native_pairs = set(row.native_contact_pairs())
         native_long = {pair for pair in native_pairs if pair[1] - pair[0] >= 24}
@@ -830,6 +867,10 @@ def _scaffold_contact_metrics(
             row_length=row.sequence_length,
             candidates=tuple(candidates_by_pair.values()),
         )
+        phase_ribbon_bridge_pairs = _single_gap_phase_ribbon_bridge(
+            row_length=row.sequence_length,
+            phase_pairs=phase_field_pairs,
+        )
         supported = scaffold_pairs & native_pairs
         supported_long = scaffold_pairs & native_long
         compact_supported = compact_pairs & native_pairs
@@ -840,6 +881,12 @@ def _scaffold_contact_metrics(
         adjacent_patch_supported_long = adjacent_patch_pairs & native_long
         phase_field_supported = phase_field_pairs & native_pairs
         phase_field_supported_long = phase_field_pairs & native_long
+        phase_ribbon_bridge_supported = (
+            phase_ribbon_bridge_pairs & native_pairs
+        )
+        phase_ribbon_bridge_supported_long = (
+            phase_ribbon_bridge_pairs & native_long
+        )
         precision = (
             _rounded(len(supported) / len(scaffold_pairs))
             if scaffold_pairs
@@ -927,6 +974,32 @@ def _scaffold_contact_metrics(
         )
         phase_field_modes.append(phase_field_mode)
         phase_field_radii.append(phase_field_radius)
+        phase_ribbon_bridge_precision = (
+            _rounded(
+                len(phase_ribbon_bridge_supported)
+                / len(phase_ribbon_bridge_pairs)
+            )
+            if phase_ribbon_bridge_pairs
+            else 0.0
+        )
+        phase_ribbon_bridge_long_recall = (
+            _rounded(
+                len(phase_ribbon_bridge_supported_long) / len(native_long)
+            )
+            if native_long
+            else 1.0
+        )
+        phase_ribbon_bridge_precisions.append(phase_ribbon_bridge_precision)
+        phase_ribbon_bridge_long_recalls.append(
+            phase_ribbon_bridge_long_recall
+        )
+        phase_ribbon_bridge_contact_counts.append(
+            len(phase_ribbon_bridge_pairs)
+        )
+        phase_ribbon_bridge_perfect_flags.append(
+            phase_ribbon_bridge_precision == 1.0
+            and phase_ribbon_bridge_long_recall == 1.0
+        )
 
     precision = _rounded(mean(precisions)) if precisions else 0.0
     long_recall = _rounded(mean(long_recalls)) if long_recalls else 0.0
@@ -964,6 +1037,16 @@ def _scaffold_contact_metrics(
     phase_field_long_recall = (
         _rounded(mean(phase_field_long_recalls))
         if phase_field_long_recalls
+        else 0.0
+    )
+    phase_ribbon_bridge_precision = (
+        _rounded(mean(phase_ribbon_bridge_precisions))
+        if phase_ribbon_bridge_precisions
+        else 0.0
+    )
+    phase_ribbon_bridge_long_recall = (
+        _rounded(mean(phase_ribbon_bridge_long_recalls))
+        if phase_ribbon_bridge_long_recalls
         else 0.0
     )
     return ScaffoldContactMetrics(
@@ -1045,6 +1128,25 @@ def _scaffold_contact_metrics(
         phase_field_scaffold_mode=";".join(phase_field_modes),
         phase_field_scaffold_radius=(
             int(round(mean(phase_field_radii))) if phase_field_radii else 0
+        ),
+        phase_ribbon_bridge_scaffold_contact_count=sum(
+            phase_ribbon_bridge_contact_counts
+        ),
+        phase_ribbon_bridge_scaffold_exact_contact_precision=(
+            phase_ribbon_bridge_precision
+        ),
+        phase_ribbon_bridge_scaffold_exact_long_range_contact_recall=(
+            phase_ribbon_bridge_long_recall
+        ),
+        phase_ribbon_bridge_scaffold_precision_delta_vs_phase_field=(
+            _rounded(phase_ribbon_bridge_precision - phase_field_precision)
+        ),
+        phase_ribbon_bridge_scaffold_recall_delta_vs_phase_field=(
+            _rounded(phase_ribbon_bridge_long_recall - phase_field_long_recall)
+        ),
+        phase_ribbon_bridge_scaffold_contact_map_perfect=(
+            bool(phase_ribbon_bridge_perfect_flags)
+            and all(phase_ribbon_bridge_perfect_flags)
         ),
     )
 
@@ -1423,6 +1525,23 @@ def _folding_problem_solved_audit(
                 )
                 == "True"
                 or row.get("phase_field_scaffold_contact_map_perfect") is True
+                for row in target_rows
+            )
+        ),
+        "all_targets_phase_ribbon_bridge_scaffold_contact_maps_perfect": (
+            bool(target_rows)
+            and all(
+                str(
+                    row.get(
+                        "phase_ribbon_bridge_scaffold_contact_map_perfect",
+                        "False",
+                    )
+                )
+                == "True"
+                or row.get(
+                    "phase_ribbon_bridge_scaffold_contact_map_perfect"
+                )
+                is True
                 for row in target_rows
             )
         ),
@@ -1981,6 +2100,44 @@ def run_blind_external_holdout_battery_v0(
         "phase_field_scaffold_contact_map_perfect_rate": _mean_field(
             target_rows,
             "phase_field_scaffold_contact_map_perfect",
+        ),
+        "mean_phase_ribbon_bridge_scaffold_contact_count": _mean_field(
+            target_rows,
+            "phase_ribbon_bridge_scaffold_contact_count",
+        ),
+        "mean_phase_ribbon_bridge_scaffold_exact_contact_precision": (
+            _mean_field(
+                target_rows,
+                "phase_ribbon_bridge_scaffold_exact_contact_precision",
+            )
+        ),
+        "mean_phase_ribbon_bridge_scaffold_exact_long_range_contact_recall": (
+            _mean_field(
+                target_rows,
+                "phase_ribbon_bridge_scaffold_exact_long_range_contact_recall",
+            )
+        ),
+        "mean_phase_ribbon_bridge_scaffold_precision_delta_vs_phase_field": (
+            _mean_field(
+                target_rows,
+                (
+                    "phase_ribbon_bridge_scaffold_precision_delta_vs_"
+                    "phase_field"
+                ),
+            )
+        ),
+        "mean_phase_ribbon_bridge_scaffold_recall_delta_vs_phase_field": (
+            _mean_field(
+                target_rows,
+                (
+                    "phase_ribbon_bridge_scaffold_recall_delta_vs_"
+                    "phase_field"
+                ),
+            )
+        ),
+        "phase_ribbon_bridge_scaffold_contact_map_perfect_rate": _mean_field(
+            target_rows,
+            "phase_ribbon_bridge_scaffold_contact_map_perfect",
         ),
         "frontier_control_win_rate": _mean_field(
             target_rows,
