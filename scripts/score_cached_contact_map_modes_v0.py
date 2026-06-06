@@ -695,6 +695,9 @@ def _global_contact_map_collapse_pairs(
     constraints: Sequence[object],
     metadata: Mapping[str, object],
 ) -> tuple[set[tuple[int, int]], dict[str, object]]:
+    phase_mode = str(metadata.get("phase_mode", ""))
+    phase_radius = int(metadata.get("phase_radius", 0))
+    selected_event_count = int(metadata.get("selected_event_count", 0))
     if anchor_mode == "phase_coverage":
         radius = 1
         steps = 1
@@ -703,13 +706,55 @@ def _global_contact_map_collapse_pairs(
         reason = "phase_coverage_event_region_collapse"
     elif (
         anchor_mode == "phase_density_conflict_shell"
-        and str(metadata.get("phase_mode", "")) == "square"
+        and phase_mode == "square"
     ):
         radius = 1
         steps = 3
         degree_cap = 8
         target_count = row.sequence_length
         reason = "square_conflict_shell_event_region_collapse"
+    elif anchor_mode == "region_density_top_l" and phase_mode == "square":
+        radius = 2
+        steps = 1
+        degree_cap = 6
+        target_count = max(1, row.sequence_length // 2)
+        reason = "square_density_under_collapsed"
+    elif (
+        anchor_mode == "region_density_top_l"
+        and phase_mode == "diagonal"
+        and phase_radius >= 10
+    ):
+        radius = 2
+        steps = 3
+        degree_cap = 3
+        target_count = row.sequence_length
+        reason = "wide_diagonal_density_under_collapsed"
+    elif (
+        anchor_mode == "region_density_top_l"
+        and phase_mode == "diagonal"
+        and phase_radius <= 6
+        and selected_event_count <= 3
+    ):
+        radius = 1
+        steps = 1
+        degree_cap = 2
+        target_count = max(1, row.sequence_length // 2)
+        reason = "compact_diagonal_density_under_collapsed"
+    elif anchor_mode == "region_density_boundary" and phase_mode == "diagonal":
+        radius = 1
+        steps = 1
+        degree_cap = 4
+        target_count = len(base_pairs)
+        reason = "diagonal_boundary_patch_collapse"
+    elif (
+        anchor_mode == "phase_density_conflict_phase_confidence"
+        and phase_mode == "square"
+    ):
+        radius = 2
+        steps = 2
+        degree_cap = 8
+        target_count = row.sequence_length * 2
+        reason = "square_phase_confidence_collapse"
     else:
         return (
             set(base_pairs),
