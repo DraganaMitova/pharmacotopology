@@ -91,6 +91,9 @@ GLOBAL_CONTACT_MAP_COLLAPSE_SELECTOR = (
 CONSTRUCTIVE_GAP_VOTING_CONTACT_MAP_SELECTOR = (
     "cached_constructive_gap_voting_contact_map_v0"
 )
+PHASE_OPEN_SEQUENCE_EVENT_GENERATION_SELECTOR = (
+    "cached_phase_open_sequence_event_generation_v0"
+)
 DEFAULT_TARGET_MANIFEST = Path(
     "data/all_locked_real_external_coupling_holdout_manifest_v0.locked.json"
 )
@@ -1049,6 +1052,102 @@ def _constructive_gap_voting_contact_map_pairs(
     )
 
 
+def _phase_open_sequence_event_generation_pairs(
+    *,
+    row: object,
+    selected_events: Sequence[NucleusClosureEvent],
+    constraints: Sequence[object],
+    metadata: Mapping[str, object],
+) -> tuple[set[tuple[int, int]], dict[str, object]]:
+    base_region_pairs = _valid_long_range_pairs(
+        row_length=row.sequence_length,
+        pairs={
+            pair
+            for event in selected_events
+            for pair in event.candidate_region_pairs()
+        },
+    )
+    phase_mode = str(metadata.get("phase_mode", ""))
+    phase_radius = int(metadata.get("phase_radius", 0))
+    if phase_mode != "diagonal" or phase_radius <= 0:
+        return (
+            base_region_pairs,
+            {
+                "phase_open_event_generation_applied": False,
+                "phase_open_event_generation_reason": (
+                    "requires_diagonal_phase"
+                ),
+                "phase_open_event_generation_added_count": 0,
+                "phase_open_event_generation_expanded_event_count": 0,
+            },
+        )
+
+    sequence_features = {
+        feature.pair(): feature
+        for feature in contact_law_feature_rows_for_row(row)
+        if feature.sequence_separation >= 24
+    }
+    external_pairs = {
+        constraint.pair()
+        for constraint in constraints
+        if constraint.sequence_separation >= 24
+    }
+    extension_span = min(12, phase_radius)
+    sequence_support_floor = max(2, extension_span)
+    coupling_support_floor = max(3, extension_span)
+    generated_pairs: set[tuple[int, int]] = set()
+    expanded_event_count = 0
+    for event in selected_events:
+        start = max(0, event.segment_a_start - extension_span)
+        proposed_band = _valid_long_range_pairs(
+            row_length=row.sequence_length,
+            pairs={
+                (left, right)
+                for left in range(start, event.segment_a_start)
+                for right in range(event.segment_b_start, event.segment_b_end + 1)
+            },
+        )
+        sequence_support_count = sum(
+            1
+            for pair in proposed_band
+            if pair in sequence_features
+            and sequence_features[pair].pair_plus_cluster_score > 0.0
+        )
+        coupling_support_count = len(proposed_band & external_pairs)
+        if (
+            sequence_support_count >= sequence_support_floor
+            and coupling_support_count >= coupling_support_floor
+        ):
+            generated_pairs |= proposed_band
+            expanded_event_count += 1
+
+    expanded_pairs = base_region_pairs | generated_pairs
+    return (
+        expanded_pairs,
+        {
+            "phase_open_event_generation_applied": expanded_event_count > 0,
+            "phase_open_event_generation_reason": (
+                "sequence_proposed_coupling_confirmed_phase_open_band"
+                if expanded_event_count > 0
+                else "no_coupling_confirmed_phase_open_band"
+            ),
+            "phase_open_event_generation_added_count": len(
+                expanded_pairs - base_region_pairs
+            ),
+            "phase_open_event_generation_expanded_event_count": (
+                expanded_event_count
+            ),
+            "phase_open_event_generation_extension_span": extension_span,
+            "phase_open_event_generation_sequence_support_floor": (
+                sequence_support_floor
+            ),
+            "phase_open_event_generation_coupling_support_floor": (
+                coupling_support_floor
+            ),
+        },
+    )
+
+
 def _sequence_coupling_expansion_decision(
     *,
     phase_mode: str,
@@ -1699,6 +1798,11 @@ def _cached_contact_universe_ceiling_metrics(
     event_f1s: list[float] = []
     event_contact_counts: list[int] = []
     event_full_recall_flags: list[bool] = []
+    phase_open_event_precisions: list[float] = []
+    phase_open_event_long_recalls: list[float] = []
+    phase_open_event_f1s: list[float] = []
+    phase_open_event_contact_counts: list[int] = []
+    phase_open_event_full_recall_flags: list[bool] = []
     external_precisions: list[float] = []
     external_long_recalls: list[float] = []
     external_f1s: list[float] = []
@@ -1718,13 +1822,33 @@ def _cached_contact_universe_ceiling_metrics(
                 for pair in event.candidate_region_pairs()
             },
         )
+        row_events = tuple(selected_by_row.get(row.row_id, ()))
+        row_constraints = tuple(constraints_by_row.get(row.row_id, ()))
+        mode_pair_sets, metadata = _mode_pair_sets_for_row(
+            row=row,
+            selected_events=row_events,
+            constraints=row_constraints,
+        )
+        phase_open_event_pairs, phase_open_metadata = (
+            _phase_open_sequence_event_generation_pairs(
+                row=row,
+                selected_events=row_events,
+                constraints=row_constraints,
+                metadata=metadata,
+            )
+        )
         external_long_pairs = {
             constraint.pair()
-            for constraint in constraints_by_row.get(row.row_id, ())
+            for constraint in row_constraints
             if constraint.sequence_separation >= 24
         }
         event_scores = _row_contact_scores(
             selected_region_pairs,
+            native_pairs=native_pairs,
+            native_long_pairs=native_long_pairs,
+        )
+        phase_open_event_scores = _row_contact_scores(
+            phase_open_event_pairs,
             native_pairs=native_pairs,
             native_long_pairs=native_long_pairs,
         )
@@ -1740,6 +1864,21 @@ def _cached_contact_universe_ceiling_metrics(
         event_full_recall_flags.append(
             float(event_scores["long_recall"]) == 1.0
         )
+        phase_open_event_precisions.append(
+            float(phase_open_event_scores["precision"])
+        )
+        phase_open_event_long_recalls.append(
+            float(phase_open_event_scores["long_recall"])
+        )
+        phase_open_event_f1s.append(
+            float(phase_open_event_scores["precision_recall_f1"])
+        )
+        phase_open_event_contact_counts.append(
+            int(phase_open_event_scores["contact_count"])
+        )
+        phase_open_event_full_recall_flags.append(
+            float(phase_open_event_scores["long_recall"]) == 1.0
+        )
         external_precisions.append(float(external_scores["precision"]))
         external_long_recalls.append(float(external_scores["long_recall"]))
         external_f1s.append(float(external_scores["precision_recall_f1"]))
@@ -1750,6 +1889,9 @@ def _cached_contact_universe_ceiling_metrics(
         row_trace.append(
             (
                 f"{row.row_id}:event_recall={event_scores['long_recall']}"
+                f":phase_open_recall={phase_open_event_scores['long_recall']}"
+                f":phase_open_added={phase_open_metadata['phase_open_event_generation_added_count']}"
+                f":phase_open_reason={phase_open_metadata['phase_open_event_generation_reason']}"
                 f":external_recall={external_scores['long_recall']}"
             )
         )
@@ -1767,6 +1909,37 @@ def _cached_contact_universe_ceiling_metrics(
         "event_union_ceiling_contact_count": sum(event_contact_counts),
         "event_union_ceiling_full_long_recall": (
             bool(event_full_recall_flags) and all(event_full_recall_flags)
+        ),
+        "phase_open_event_generation_selector_name": (
+            PHASE_OPEN_SEQUENCE_EVENT_GENERATION_SELECTOR
+        ),
+        "phase_open_event_generation_exact_contact_precision": (
+            _rounded(mean(phase_open_event_precisions))
+            if phase_open_event_precisions
+            else 0.0
+        ),
+        "phase_open_event_generation_exact_long_range_contact_recall": (
+            _rounded(mean(phase_open_event_long_recalls))
+            if phase_open_event_long_recalls
+            else 0.0
+        ),
+        "phase_open_event_generation_precision_recall_f1": (
+            _rounded(mean(phase_open_event_f1s))
+            if phase_open_event_f1s
+            else 0.0
+        ),
+        "phase_open_event_generation_contact_count": sum(
+            phase_open_event_contact_counts
+        ),
+        "phase_open_event_generation_full_long_recall": (
+            bool(phase_open_event_full_recall_flags)
+            and all(phase_open_event_full_recall_flags)
+        ),
+        "phase_open_event_generation_full_long_recall_row_count": sum(
+            1 for flag in phase_open_event_full_recall_flags if flag
+        ),
+        "phase_open_event_generation_scored_row_count": len(
+            phase_open_event_full_recall_flags
         ),
         "external_long_constraint_exact_contact_precision": (
             _rounded(mean(external_precisions)) if external_precisions else 0.0
@@ -2142,6 +2315,10 @@ def score_cached_contact_map_modes_v0(
             output_rows,
             "event_union_ceiling_exact_long_range_contact_recall",
         ),
+        "mean_phase_open_event_generation_exact_long_range_contact_recall": _mean_field(
+            output_rows,
+            "phase_open_event_generation_exact_long_range_contact_recall",
+        ),
         "mean_external_long_constraint_exact_long_range_contact_recall": _mean_field(
             output_rows,
             "external_long_constraint_exact_long_range_contact_recall",
@@ -2149,6 +2326,23 @@ def score_cached_contact_map_modes_v0(
         "event_union_ceiling_full_long_recall_rate": _mean_field(
             output_rows,
             "event_union_ceiling_full_long_recall",
+        ),
+        "phase_open_event_generation_full_long_recall_rate": _mean_field(
+            output_rows,
+            "phase_open_event_generation_full_long_recall",
+        ),
+        "phase_open_event_generation_full_long_recall_rows": sum(
+            int(
+                row.get(
+                    "phase_open_event_generation_full_long_recall_row_count",
+                    0,
+                )
+            )
+            for row in output_rows
+        ),
+        "phase_open_event_generation_scored_rows": sum(
+            int(row.get("phase_open_event_generation_scored_row_count", 0))
+            for row in output_rows
         ),
         "external_long_constraint_full_long_recall_rate": _mean_field(
             output_rows,
