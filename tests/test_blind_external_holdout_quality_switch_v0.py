@@ -17,9 +17,12 @@ def _row(
     quality: float,
     phase_f1: float,
     density_f1: float,
+    selected_event_count: int = 0,
+    spine_f1: float = 0.0,
 ) -> dict[str, object]:
     return {
         "target_id": target_id,
+        "selected_event_count": selected_event_count,
         "coupling_quality_mean_effseq_per_length": quality,
         "phase_coverage_scaffold_contact_count": 10,
         "phase_coverage_scaffold_exact_contact_precision": 0.25,
@@ -33,6 +36,13 @@ def _row(
         ),
         "region_density_top_l_scaffold_precision_recall_f1": density_f1,
         "region_density_top_l_scaffold_contact_map_perfect": False,
+        "phase_density_spine_scaffold_contact_count": 15,
+        "phase_density_spine_scaffold_exact_contact_precision": 0.4,
+        "phase_density_spine_scaffold_exact_long_range_contact_recall": (
+            spine_f1
+        ),
+        "phase_density_spine_scaffold_precision_recall_f1": spine_f1,
+        "phase_density_spine_scaffold_contact_map_perfect": False,
     }
 
 
@@ -75,3 +85,44 @@ def test_self_critical_quality_switch_stays_conservative_without_batch_boundary(
     assert audit["boundary_available"] is False
     assert rows[0]["self_critical_quality_switch_mode"] == "phase_coverage"
     assert rows[0]["self_critical_quality_switch_precision_recall_f1"] == 0.13
+
+
+def test_self_critical_quality_switch_generates_spine_for_high_event_conflict() -> None:
+    rows = [
+        _row(
+            target_id="low_quality",
+            quality=5.2,
+            selected_event_count=4,
+            phase_f1=0.24,
+            density_f1=0.13,
+            spine_f1=0.21,
+        ),
+        _row(
+            target_id="high_quality_compact",
+            quality=13.2,
+            selected_event_count=3,
+            phase_f1=0.13,
+            density_f1=0.35,
+            spine_f1=0.33,
+        ),
+        _row(
+            target_id="high_quality_conflict",
+            quality=12.7,
+            selected_event_count=30,
+            phase_f1=0.09,
+            density_f1=0.20,
+            spine_f1=0.22,
+        ),
+    ]
+
+    audit = _apply_self_critical_quality_switch(rows)
+
+    assert audit["event_boundary_available"] is True
+    assert rows[0]["self_critical_quality_switch_mode"] == "phase_coverage"
+    assert rows[1]["self_critical_quality_switch_mode"] == (
+        "region_density_top_l"
+    )
+    assert rows[2]["self_critical_quality_switch_mode"] == (
+        "phase_density_spine"
+    )
+    assert rows[2]["self_critical_quality_switch_precision_recall_f1"] == 0.22

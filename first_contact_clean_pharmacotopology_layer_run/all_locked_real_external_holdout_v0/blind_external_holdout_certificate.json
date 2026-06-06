@@ -2,7 +2,7 @@
   "certificate_kind": "blind_external_holdout_battery_certificate_v0",
   "claim_allowed": true,
   "claim_scope": "long_range_folding_nucleus_region_recovery_only_not_full_atomic_folding",
-  "commit_hash": "6732c1765b4fbc3138914357a6dfd09c46fa834d",
+  "commit_hash": "9ab61483e0ef7cedc989d03aff61929f41ebae24",
   "final_classification": "blind_batch_exact_contact_signal_confirmed",
   "folding_problem_solved": false,
   "folding_problem_solved_audit": {
@@ -16,6 +16,7 @@
       "all_targets_density_compact_scaffold_contact_maps_perfect": false,
       "all_targets_phase_confidence_scaffold_contact_maps_perfect": false,
       "all_targets_phase_coverage_scaffold_contact_maps_perfect": false,
+      "all_targets_phase_density_spine_scaffold_contact_maps_perfect": false,
       "all_targets_phase_field_scaffold_contact_maps_perfect": false,
       "all_targets_phase_ribbon_bridge_scaffold_contact_maps_perfect": false,
       "all_targets_productive_frontier_win": true,
@@ -43,6 +44,7 @@
       "all_targets_region_density_top_l_scaffold_contact_maps_perfect",
       "all_targets_region_density_boundary_scaffold_contact_maps_perfect",
       "all_targets_self_critical_quality_switch_scaffold_contact_maps_perfect",
+      "all_targets_phase_density_spine_scaffold_contact_maps_perfect",
       "universal_holdout_scope_declared",
       "all_existing_complete_targets_tested",
       "full_atomic_folding_available",
@@ -67,8 +69,13 @@
     "boundary_feature": "coupling_quality_mean_effseq_per_length",
     "boundary_gap": 7.439885,
     "boundary_value": 9.008767,
+    "event_boundary_available": true,
+    "event_boundary_feature": "selected_event_count",
+    "event_boundary_gap": 22.0,
+    "event_boundary_value": 19.0,
     "selected_modes": [
       "phase_coverage",
+      "phase_density_spine",
       "region_density_top_l"
     ],
     "selector_name": "external_self_critical_coupling_quality_switch_v0"
