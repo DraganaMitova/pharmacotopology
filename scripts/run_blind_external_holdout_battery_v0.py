@@ -170,6 +170,13 @@ class ScaffoldContactMetrics:
     phase_density_conflict_consensus_scaffold_precision_delta_vs_phase_density_spine: float
     phase_density_conflict_consensus_scaffold_recall_delta_vs_phase_density_spine: float
     phase_density_conflict_consensus_scaffold_contact_map_perfect: bool
+    phase_density_conflict_shell_scaffold_contact_count: int
+    phase_density_conflict_shell_scaffold_exact_contact_precision: float
+    phase_density_conflict_shell_scaffold_exact_long_range_contact_recall: float
+    phase_density_conflict_shell_scaffold_precision_recall_f1: float
+    phase_density_conflict_shell_scaffold_precision_delta_vs_phase_density_conflict_consensus: float
+    phase_density_conflict_shell_scaffold_recall_delta_vs_phase_density_conflict_consensus: float
+    phase_density_conflict_shell_scaffold_contact_map_perfect: bool
 
     def to_dict(self) -> dict[str, object]:
         return asdict(self)
@@ -1151,6 +1158,18 @@ def _phase_density_conflict_consensus_scaffold_core(
     }
 
 
+def _phase_density_conflict_shell_scaffold_core(
+    *,
+    row_length: int,
+    conflict_pairs: set[tuple[int, int]],
+) -> set[tuple[int, int]]:
+    return _diagonal_extend_pairs(
+        row_length=row_length,
+        pairs=conflict_pairs,
+        span=1,
+    )
+
+
 def _top_l_region_density_scaffold_core(
     *,
     row_length: int,
@@ -1262,6 +1281,11 @@ def _scaffold_contact_metrics(
     phase_density_conflict_consensus_f1s: list[float] = []
     phase_density_conflict_consensus_contact_counts: list[int] = []
     phase_density_conflict_consensus_perfect_flags: list[bool] = []
+    phase_density_conflict_shell_precisions: list[float] = []
+    phase_density_conflict_shell_long_recalls: list[float] = []
+    phase_density_conflict_shell_f1s: list[float] = []
+    phase_density_conflict_shell_contact_counts: list[int] = []
+    phase_density_conflict_shell_perfect_flags: list[bool] = []
     for row in rows:
         native_pairs = set(row.native_contact_pairs())
         native_long = {pair for pair in native_pairs if pair[1] - pair[0] >= 24}
@@ -1387,6 +1411,12 @@ def _scaffold_contact_metrics(
                 spine_pairs=phase_density_spine_pairs,
             )
         )
+        phase_density_conflict_shell_pairs = (
+            _phase_density_conflict_shell_scaffold_core(
+                row_length=row.sequence_length,
+                conflict_pairs=phase_density_conflict_consensus_pairs,
+            )
+        )
         supported = scaffold_pairs & native_pairs
         supported_long = scaffold_pairs & native_long
         compact_supported = compact_pairs & native_pairs
@@ -1430,6 +1460,12 @@ def _scaffold_contact_metrics(
         )
         phase_density_conflict_consensus_supported_long = (
             phase_density_conflict_consensus_pairs & native_long
+        )
+        phase_density_conflict_shell_supported = (
+            phase_density_conflict_shell_pairs & native_pairs
+        )
+        phase_density_conflict_shell_supported_long = (
+            phase_density_conflict_shell_pairs & native_long
         )
         precision = (
             _rounded(len(supported) / len(scaffold_pairs))
@@ -1726,6 +1762,42 @@ def _scaffold_contact_metrics(
             phase_density_conflict_consensus_precision == 1.0
             and phase_density_conflict_consensus_long_recall == 1.0
         )
+        phase_density_conflict_shell_precision = (
+            _rounded(
+                len(phase_density_conflict_shell_supported)
+                / len(phase_density_conflict_shell_pairs)
+            )
+            if phase_density_conflict_shell_pairs
+            else 0.0
+        )
+        phase_density_conflict_shell_long_recall = (
+            _rounded(
+                len(phase_density_conflict_shell_supported_long)
+                / len(native_long)
+            )
+            if native_long
+            else 1.0
+        )
+        phase_density_conflict_shell_f1 = _precision_recall_f1(
+            phase_density_conflict_shell_precision,
+            phase_density_conflict_shell_long_recall,
+        )
+        phase_density_conflict_shell_precisions.append(
+            phase_density_conflict_shell_precision
+        )
+        phase_density_conflict_shell_long_recalls.append(
+            phase_density_conflict_shell_long_recall
+        )
+        phase_density_conflict_shell_f1s.append(
+            phase_density_conflict_shell_f1
+        )
+        phase_density_conflict_shell_contact_counts.append(
+            len(phase_density_conflict_shell_pairs)
+        )
+        phase_density_conflict_shell_perfect_flags.append(
+            phase_density_conflict_shell_precision == 1.0
+            and phase_density_conflict_shell_long_recall == 1.0
+        )
 
     precision = _rounded(mean(precisions)) if precisions else 0.0
     long_recall = _rounded(mean(long_recalls)) if long_recalls else 0.0
@@ -1861,6 +1933,21 @@ def _scaffold_contact_metrics(
     phase_density_conflict_consensus_f1 = (
         _rounded(mean(phase_density_conflict_consensus_f1s))
         if phase_density_conflict_consensus_f1s
+        else 0.0
+    )
+    phase_density_conflict_shell_precision = (
+        _rounded(mean(phase_density_conflict_shell_precisions))
+        if phase_density_conflict_shell_precisions
+        else 0.0
+    )
+    phase_density_conflict_shell_long_recall = (
+        _rounded(mean(phase_density_conflict_shell_long_recalls))
+        if phase_density_conflict_shell_long_recalls
+        else 0.0
+    )
+    phase_density_conflict_shell_f1 = (
+        _rounded(mean(phase_density_conflict_shell_f1s))
+        if phase_density_conflict_shell_f1s
         else 0.0
     )
     return ScaffoldContactMetrics(
@@ -2118,6 +2205,34 @@ def _scaffold_contact_metrics(
         phase_density_conflict_consensus_scaffold_contact_map_perfect=(
             bool(phase_density_conflict_consensus_perfect_flags)
             and all(phase_density_conflict_consensus_perfect_flags)
+        ),
+        phase_density_conflict_shell_scaffold_contact_count=sum(
+            phase_density_conflict_shell_contact_counts
+        ),
+        phase_density_conflict_shell_scaffold_exact_contact_precision=(
+            phase_density_conflict_shell_precision
+        ),
+        phase_density_conflict_shell_scaffold_exact_long_range_contact_recall=(
+            phase_density_conflict_shell_long_recall
+        ),
+        phase_density_conflict_shell_scaffold_precision_recall_f1=(
+            phase_density_conflict_shell_f1
+        ),
+        phase_density_conflict_shell_scaffold_precision_delta_vs_phase_density_conflict_consensus=(
+            _rounded(
+                phase_density_conflict_shell_precision
+                - phase_density_conflict_consensus_precision
+            )
+        ),
+        phase_density_conflict_shell_scaffold_recall_delta_vs_phase_density_conflict_consensus=(
+            _rounded(
+                phase_density_conflict_shell_long_recall
+                - phase_density_conflict_consensus_long_recall
+            )
+        ),
+        phase_density_conflict_shell_scaffold_contact_map_perfect=(
+            bool(phase_density_conflict_shell_perfect_flags)
+            and all(phase_density_conflict_shell_perfect_flags)
         ),
     )
 
@@ -2464,8 +2579,8 @@ def _apply_self_critical_quality_switch(
             ):
                 _copy_switch_metric(
                     row,
-                    selected_mode="phase_density_conflict_consensus",
-                    source_prefix="phase_density_conflict_consensus",
+                    selected_mode="phase_density_conflict_shell",
+                    source_prefix="phase_density_conflict_shell",
                 )
             else:
                 _copy_switch_metric(
@@ -2774,6 +2889,29 @@ def _folding_problem_solved_audit(
                 or row.get(
                     (
                         "phase_density_conflict_consensus_scaffold_"
+                        "contact_map_perfect"
+                    )
+                )
+                is True
+                for row in target_rows
+            )
+        ),
+        "all_targets_phase_density_conflict_shell_scaffold_contact_maps_perfect": (
+            bool(target_rows)
+            and all(
+                str(
+                    row.get(
+                        (
+                            "phase_density_conflict_shell_scaffold_"
+                            "contact_map_perfect"
+                        ),
+                        "False",
+                    )
+                )
+                == "True"
+                or row.get(
+                    (
+                        "phase_density_conflict_shell_scaffold_"
                         "contact_map_perfect"
                     )
                 )
@@ -3660,6 +3798,63 @@ def run_blind_external_holdout_battery_v0(
                     "phase_density_conflict_consensus_scaffold_"
                     "contact_map_perfect"
                 ),
+            )
+        ),
+        "mean_phase_density_conflict_shell_scaffold_contact_count": (
+            _mean_field(
+                target_rows,
+                "phase_density_conflict_shell_scaffold_contact_count",
+            )
+        ),
+        "mean_phase_density_conflict_shell_scaffold_exact_contact_precision": (
+            _mean_field(
+                target_rows,
+                (
+                    "phase_density_conflict_shell_scaffold_"
+                    "exact_contact_precision"
+                ),
+            )
+        ),
+        "mean_phase_density_conflict_shell_scaffold_exact_long_range_contact_recall": (
+            _mean_field(
+                target_rows,
+                (
+                    "phase_density_conflict_shell_scaffold_"
+                    "exact_long_range_contact_recall"
+                ),
+            )
+        ),
+        "mean_phase_density_conflict_shell_scaffold_precision_recall_f1": (
+            _mean_field(
+                target_rows,
+                (
+                    "phase_density_conflict_shell_scaffold_"
+                    "precision_recall_f1"
+                ),
+            )
+        ),
+        "mean_phase_density_conflict_shell_scaffold_precision_delta_vs_phase_density_conflict_consensus": (
+            _mean_field(
+                target_rows,
+                (
+                    "phase_density_conflict_shell_scaffold_precision_delta_vs_"
+                    "phase_density_conflict_consensus"
+                ),
+            )
+        ),
+        "mean_phase_density_conflict_shell_scaffold_recall_delta_vs_phase_density_conflict_consensus": (
+            _mean_field(
+                target_rows,
+                (
+                    "phase_density_conflict_shell_scaffold_recall_delta_vs_"
+                    "phase_density_conflict_consensus"
+                ),
+            )
+        ),
+        "phase_density_conflict_shell_scaffold_contact_map_perfect_rate": (
+            _mean_field(
+                target_rows,
+                "phase_density_conflict_shell_scaffold_contact_map_perfect",
             )
         ),
         "self_critical_quality_switch": self_critical_quality_switch,

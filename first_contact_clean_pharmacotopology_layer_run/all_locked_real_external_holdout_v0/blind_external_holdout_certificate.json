@@ -2,7 +2,7 @@
   "certificate_kind": "blind_external_holdout_battery_certificate_v0",
   "claim_allowed": true,
   "claim_scope": "long_range_folding_nucleus_region_recovery_only_not_full_atomic_folding",
-  "commit_hash": "1cca3997fc90311310ff5bfeaf1708d8ab054b15",
+  "commit_hash": "6bc1bebcc57d36d1a5f6e82a7c0d95d22a596543",
   "final_classification": "blind_batch_exact_contact_signal_confirmed",
   "folding_problem_solved": false,
   "folding_problem_solved_audit": {
@@ -17,6 +17,7 @@
       "all_targets_phase_confidence_scaffold_contact_maps_perfect": false,
       "all_targets_phase_coverage_scaffold_contact_maps_perfect": false,
       "all_targets_phase_density_conflict_consensus_scaffold_contact_maps_perfect": false,
+      "all_targets_phase_density_conflict_shell_scaffold_contact_maps_perfect": false,
       "all_targets_phase_density_spine_scaffold_contact_maps_perfect": false,
       "all_targets_phase_field_scaffold_contact_maps_perfect": false,
       "all_targets_phase_ribbon_bridge_scaffold_contact_maps_perfect": false,
@@ -47,6 +48,7 @@
       "all_targets_self_critical_quality_switch_scaffold_contact_maps_perfect",
       "all_targets_phase_density_spine_scaffold_contact_maps_perfect",
       "all_targets_phase_density_conflict_consensus_scaffold_contact_maps_perfect",
+      "all_targets_phase_density_conflict_shell_scaffold_contact_maps_perfect",
       "universal_holdout_scope_declared",
       "all_existing_complete_targets_tested",
       "full_atomic_folding_available",
@@ -77,7 +79,7 @@
     "event_boundary_value": 19.0,
     "selected_modes": [
       "phase_coverage",
-      "phase_density_conflict_consensus",
+      "phase_density_conflict_shell",
       "region_density_top_l"
     ],
     "selector_name": "external_self_critical_coupling_quality_switch_v0"
