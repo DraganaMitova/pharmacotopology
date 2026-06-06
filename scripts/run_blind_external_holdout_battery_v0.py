@@ -139,6 +139,20 @@ class ScaffoldContactMetrics:
     phase_confidence_scaffold_recall_delta_vs_phase_ribbon_bridge: float
     phase_confidence_scaffold_contact_map_perfect: bool
     phase_confidence_scaffold_mode: str
+    region_density_top_l_scaffold_contact_count: int
+    region_density_top_l_scaffold_exact_contact_precision: float
+    region_density_top_l_scaffold_exact_long_range_contact_recall: float
+    region_density_top_l_scaffold_precision_recall_f1: float
+    region_density_top_l_scaffold_precision_delta_vs_phase_coverage: float
+    region_density_top_l_scaffold_recall_delta_vs_phase_coverage: float
+    region_density_top_l_scaffold_contact_map_perfect: bool
+    region_density_boundary_scaffold_contact_count: int
+    region_density_boundary_scaffold_exact_contact_precision: float
+    region_density_boundary_scaffold_exact_long_range_contact_recall: float
+    region_density_boundary_scaffold_precision_recall_f1: float
+    region_density_boundary_scaffold_precision_delta_vs_phase_coverage: float
+    region_density_boundary_scaffold_recall_delta_vs_phase_coverage: float
+    region_density_boundary_scaffold_contact_map_perfect: bool
 
     def to_dict(self) -> dict[str, object]:
         return asdict(self)
@@ -973,6 +987,63 @@ def _phase_confidence_scaffold_core(
     return selected, confidence_mode
 
 
+def _region_density_scores(
+    *,
+    region_pairs: set[tuple[int, int]],
+    constraints: Sequence[object],
+) -> dict[tuple[int, int], float]:
+    confidence_by_pair: dict[tuple[int, int], float] = {}
+    for constraint in constraints:
+        pair = constraint.pair()
+        confidence_by_pair[pair] = max(
+            confidence_by_pair.get(pair, 0.0),
+            float(constraint.confidence),
+        )
+    scores: dict[tuple[int, int], float] = {}
+    for pair in region_pairs:
+        density = 0.0
+        for constraint_pair, confidence in confidence_by_pair.items():
+            distance = _contact_map_distance(pair, constraint_pair)
+            if distance <= 3:
+                density += confidence * (4 - distance) / 4
+        scores[pair] = density
+    return scores
+
+
+def _top_l_region_density_scaffold_core(
+    *,
+    row_length: int,
+    region_pairs: set[tuple[int, int]],
+    constraints: Sequence[object],
+) -> set[tuple[int, int]]:
+    density_scores = _region_density_scores(
+        region_pairs=region_pairs,
+        constraints=constraints,
+    )
+    ordered = sorted(
+        density_scores.items(),
+        key=lambda item: (item[1], item[0]),
+        reverse=True,
+    )
+    return {pair for pair, _ in ordered[:row_length]}
+
+
+def _boundary_region_density_scaffold_core(
+    *,
+    region_pairs: set[tuple[int, int]],
+    constraints: Sequence[object],
+    minimum_count: int,
+) -> set[tuple[int, int]]:
+    density_scores = _region_density_scores(
+        region_pairs=region_pairs,
+        constraints=constraints,
+    )
+    return _phase_field_prefix(
+        density_scores,
+        minimum_count=max(1, minimum_count),
+    )
+
+
 def _precision_recall_f1(precision: float, recall: float) -> float:
     if precision + recall == 0.0:
         return 0.0
@@ -1030,12 +1101,31 @@ def _scaffold_contact_metrics(
     phase_confidence_contact_counts: list[int] = []
     phase_confidence_perfect_flags: list[bool] = []
     phase_confidence_modes: list[str] = []
+    region_density_top_l_precisions: list[float] = []
+    region_density_top_l_long_recalls: list[float] = []
+    region_density_top_l_f1s: list[float] = []
+    region_density_top_l_contact_counts: list[int] = []
+    region_density_top_l_perfect_flags: list[bool] = []
+    region_density_boundary_precisions: list[float] = []
+    region_density_boundary_long_recalls: list[float] = []
+    region_density_boundary_f1s: list[float] = []
+    region_density_boundary_contact_counts: list[int] = []
+    region_density_boundary_perfect_flags: list[bool] = []
     for row in rows:
         native_pairs = set(row.native_contact_pairs())
         native_long = {pair for pair in native_pairs if pair[1] - pair[0] >= 24}
         selected_events = selected_by_row.get(row.row_id, [])
+        selected_region_pairs = _valid_long_range_pairs(
+            row_length=row.sequence_length,
+            pairs={
+                pair
+                for event in selected_events
+                for pair in event.candidate_region_pairs()
+            },
+        )
         candidates_by_pair: dict[tuple[int, int], ScaffoldContactCandidate] = {}
-        for constraint in constraints_by_row.get(row.row_id, ()):
+        row_constraints = tuple(constraints_by_row.get(row.row_id, ()))
+        for constraint in row_constraints:
             constraint_pair = constraint.pair()
             memberships = [
                 event
@@ -1120,6 +1210,16 @@ def _scaffold_contact_metrics(
             phase_mode=phase_field_mode,
             phase_radius=phase_field_radius,
         )
+        region_density_top_l_pairs = _top_l_region_density_scaffold_core(
+            row_length=row.sequence_length,
+            region_pairs=selected_region_pairs,
+            constraints=row_constraints,
+        )
+        region_density_boundary_pairs = _boundary_region_density_scaffold_core(
+            region_pairs=selected_region_pairs,
+            constraints=row_constraints,
+            minimum_count=len(selected_events),
+        )
         supported = scaffold_pairs & native_pairs
         supported_long = scaffold_pairs & native_long
         compact_supported = compact_pairs & native_pairs
@@ -1140,6 +1240,18 @@ def _scaffold_contact_metrics(
         phase_coverage_supported_long = phase_coverage_pairs & native_long
         phase_confidence_supported = phase_confidence_pairs & native_pairs
         phase_confidence_supported_long = phase_confidence_pairs & native_long
+        region_density_top_l_supported = (
+            region_density_top_l_pairs & native_pairs
+        )
+        region_density_top_l_supported_long = (
+            region_density_top_l_pairs & native_long
+        )
+        region_density_boundary_supported = (
+            region_density_boundary_pairs & native_pairs
+        )
+        region_density_boundary_supported_long = (
+            region_density_boundary_pairs & native_long
+        )
         precision = (
             _rounded(len(supported) / len(scaffold_pairs))
             if scaffold_pairs
@@ -1304,6 +1416,70 @@ def _scaffold_contact_metrics(
             and phase_confidence_long_recall == 1.0
         )
         phase_confidence_modes.append(phase_confidence_mode)
+        region_density_top_l_precision = (
+            _rounded(
+                len(region_density_top_l_supported)
+                / len(region_density_top_l_pairs)
+            )
+            if region_density_top_l_pairs
+            else 0.0
+        )
+        region_density_top_l_long_recall = (
+            _rounded(
+                len(region_density_top_l_supported_long) / len(native_long)
+            )
+            if native_long
+            else 1.0
+        )
+        region_density_top_l_f1 = _precision_recall_f1(
+            region_density_top_l_precision,
+            region_density_top_l_long_recall,
+        )
+        region_density_top_l_precisions.append(region_density_top_l_precision)
+        region_density_top_l_long_recalls.append(
+            region_density_top_l_long_recall
+        )
+        region_density_top_l_f1s.append(region_density_top_l_f1)
+        region_density_top_l_contact_counts.append(
+            len(region_density_top_l_pairs)
+        )
+        region_density_top_l_perfect_flags.append(
+            region_density_top_l_precision == 1.0
+            and region_density_top_l_long_recall == 1.0
+        )
+        region_density_boundary_precision = (
+            _rounded(
+                len(region_density_boundary_supported)
+                / len(region_density_boundary_pairs)
+            )
+            if region_density_boundary_pairs
+            else 0.0
+        )
+        region_density_boundary_long_recall = (
+            _rounded(
+                len(region_density_boundary_supported_long) / len(native_long)
+            )
+            if native_long
+            else 1.0
+        )
+        region_density_boundary_f1 = _precision_recall_f1(
+            region_density_boundary_precision,
+            region_density_boundary_long_recall,
+        )
+        region_density_boundary_precisions.append(
+            region_density_boundary_precision
+        )
+        region_density_boundary_long_recalls.append(
+            region_density_boundary_long_recall
+        )
+        region_density_boundary_f1s.append(region_density_boundary_f1)
+        region_density_boundary_contact_counts.append(
+            len(region_density_boundary_pairs)
+        )
+        region_density_boundary_perfect_flags.append(
+            region_density_boundary_precision == 1.0
+            and region_density_boundary_long_recall == 1.0
+        )
 
     precision = _rounded(mean(precisions)) if precisions else 0.0
     long_recall = _rounded(mean(long_recalls)) if long_recalls else 0.0
@@ -1379,6 +1555,36 @@ def _scaffold_contact_metrics(
     phase_confidence_f1 = (
         _rounded(mean(phase_confidence_f1s))
         if phase_confidence_f1s
+        else 0.0
+    )
+    region_density_top_l_precision = (
+        _rounded(mean(region_density_top_l_precisions))
+        if region_density_top_l_precisions
+        else 0.0
+    )
+    region_density_top_l_long_recall = (
+        _rounded(mean(region_density_top_l_long_recalls))
+        if region_density_top_l_long_recalls
+        else 0.0
+    )
+    region_density_top_l_f1 = (
+        _rounded(mean(region_density_top_l_f1s))
+        if region_density_top_l_f1s
+        else 0.0
+    )
+    region_density_boundary_precision = (
+        _rounded(mean(region_density_boundary_precisions))
+        if region_density_boundary_precisions
+        else 0.0
+    )
+    region_density_boundary_long_recall = (
+        _rounded(mean(region_density_boundary_long_recalls))
+        if region_density_boundary_long_recalls
+        else 0.0
+    )
+    region_density_boundary_f1 = (
+        _rounded(mean(region_density_boundary_f1s))
+        if region_density_boundary_f1s
         else 0.0
     )
     return ScaffoldContactMetrics(
@@ -1537,6 +1743,54 @@ def _scaffold_contact_metrics(
             and all(phase_confidence_perfect_flags)
         ),
         phase_confidence_scaffold_mode=";".join(phase_confidence_modes),
+        region_density_top_l_scaffold_contact_count=sum(
+            region_density_top_l_contact_counts
+        ),
+        region_density_top_l_scaffold_exact_contact_precision=(
+            region_density_top_l_precision
+        ),
+        region_density_top_l_scaffold_exact_long_range_contact_recall=(
+            region_density_top_l_long_recall
+        ),
+        region_density_top_l_scaffold_precision_recall_f1=(
+            region_density_top_l_f1
+        ),
+        region_density_top_l_scaffold_precision_delta_vs_phase_coverage=(
+            _rounded(region_density_top_l_precision - phase_coverage_precision)
+        ),
+        region_density_top_l_scaffold_recall_delta_vs_phase_coverage=(
+            _rounded(
+                region_density_top_l_long_recall - phase_coverage_long_recall
+            )
+        ),
+        region_density_top_l_scaffold_contact_map_perfect=(
+            bool(region_density_top_l_perfect_flags)
+            and all(region_density_top_l_perfect_flags)
+        ),
+        region_density_boundary_scaffold_contact_count=sum(
+            region_density_boundary_contact_counts
+        ),
+        region_density_boundary_scaffold_exact_contact_precision=(
+            region_density_boundary_precision
+        ),
+        region_density_boundary_scaffold_exact_long_range_contact_recall=(
+            region_density_boundary_long_recall
+        ),
+        region_density_boundary_scaffold_precision_recall_f1=(
+            region_density_boundary_f1
+        ),
+        region_density_boundary_scaffold_precision_delta_vs_phase_coverage=(
+            _rounded(region_density_boundary_precision - phase_coverage_precision)
+        ),
+        region_density_boundary_scaffold_recall_delta_vs_phase_coverage=(
+            _rounded(
+                region_density_boundary_long_recall - phase_coverage_long_recall
+            )
+        ),
+        region_density_boundary_scaffold_contact_map_perfect=(
+            bool(region_density_boundary_perfect_flags)
+            and all(region_density_boundary_perfect_flags)
+        ),
     )
 
 
@@ -1959,6 +2213,40 @@ def _folding_problem_solved_audit(
                 )
                 == "True"
                 or row.get("phase_confidence_scaffold_contact_map_perfect")
+                is True
+                for row in target_rows
+            )
+        ),
+        "all_targets_region_density_top_l_scaffold_contact_maps_perfect": (
+            bool(target_rows)
+            and all(
+                str(
+                    row.get(
+                        "region_density_top_l_scaffold_contact_map_perfect",
+                        "False",
+                    )
+                )
+                == "True"
+                or row.get(
+                    "region_density_top_l_scaffold_contact_map_perfect"
+                )
+                is True
+                for row in target_rows
+            )
+        ),
+        "all_targets_region_density_boundary_scaffold_contact_maps_perfect": (
+            bool(target_rows)
+            and all(
+                str(
+                    row.get(
+                        "region_density_boundary_scaffold_contact_map_perfect",
+                        "False",
+                    )
+                )
+                == "True"
+                or row.get(
+                    "region_density_boundary_scaffold_contact_map_perfect"
+                )
                 is True
                 for row in target_rows
             )
@@ -2636,6 +2924,98 @@ def run_blind_external_holdout_battery_v0(
         "phase_confidence_scaffold_contact_map_perfect_rate": _mean_field(
             target_rows,
             "phase_confidence_scaffold_contact_map_perfect",
+        ),
+        "mean_region_density_top_l_scaffold_contact_count": _mean_field(
+            target_rows,
+            "region_density_top_l_scaffold_contact_count",
+        ),
+        "mean_region_density_top_l_scaffold_exact_contact_precision": (
+            _mean_field(
+                target_rows,
+                "region_density_top_l_scaffold_exact_contact_precision",
+            )
+        ),
+        "mean_region_density_top_l_scaffold_exact_long_range_contact_recall": (
+            _mean_field(
+                target_rows,
+                "region_density_top_l_scaffold_exact_long_range_contact_recall",
+            )
+        ),
+        "mean_region_density_top_l_scaffold_precision_recall_f1": (
+            _mean_field(
+                target_rows,
+                "region_density_top_l_scaffold_precision_recall_f1",
+            )
+        ),
+        "mean_region_density_top_l_scaffold_precision_delta_vs_phase_coverage": (
+            _mean_field(
+                target_rows,
+                (
+                    "region_density_top_l_scaffold_precision_delta_vs_"
+                    "phase_coverage"
+                ),
+            )
+        ),
+        "mean_region_density_top_l_scaffold_recall_delta_vs_phase_coverage": (
+            _mean_field(
+                target_rows,
+                (
+                    "region_density_top_l_scaffold_recall_delta_vs_"
+                    "phase_coverage"
+                ),
+            )
+        ),
+        "region_density_top_l_scaffold_contact_map_perfect_rate": (
+            _mean_field(
+                target_rows,
+                "region_density_top_l_scaffold_contact_map_perfect",
+            )
+        ),
+        "mean_region_density_boundary_scaffold_contact_count": _mean_field(
+            target_rows,
+            "region_density_boundary_scaffold_contact_count",
+        ),
+        "mean_region_density_boundary_scaffold_exact_contact_precision": (
+            _mean_field(
+                target_rows,
+                "region_density_boundary_scaffold_exact_contact_precision",
+            )
+        ),
+        "mean_region_density_boundary_scaffold_exact_long_range_contact_recall": (
+            _mean_field(
+                target_rows,
+                "region_density_boundary_scaffold_exact_long_range_contact_recall",
+            )
+        ),
+        "mean_region_density_boundary_scaffold_precision_recall_f1": (
+            _mean_field(
+                target_rows,
+                "region_density_boundary_scaffold_precision_recall_f1",
+            )
+        ),
+        "mean_region_density_boundary_scaffold_precision_delta_vs_phase_coverage": (
+            _mean_field(
+                target_rows,
+                (
+                    "region_density_boundary_scaffold_precision_delta_vs_"
+                    "phase_coverage"
+                ),
+            )
+        ),
+        "mean_region_density_boundary_scaffold_recall_delta_vs_phase_coverage": (
+            _mean_field(
+                target_rows,
+                (
+                    "region_density_boundary_scaffold_recall_delta_vs_"
+                    "phase_coverage"
+                ),
+            )
+        ),
+        "region_density_boundary_scaffold_contact_map_perfect_rate": (
+            _mean_field(
+                target_rows,
+                "region_density_boundary_scaffold_contact_map_perfect",
+            )
         ),
         "frontier_control_win_rate": _mean_field(
             target_rows,
