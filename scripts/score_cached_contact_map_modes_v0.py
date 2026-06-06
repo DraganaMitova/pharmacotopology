@@ -85,6 +85,9 @@ COHERENT_RELAXED_SEQUENCE_COUPLING_BALANCE_SELECTOR = (
 CONFLICT_SHELL_DENSITY_RESCUE_SELECTOR = (
     "cached_conflict_shell_density_rescue_v0"
 )
+GLOBAL_CONTACT_MAP_COLLAPSE_SELECTOR = (
+    "cached_global_contact_map_collapse_v0"
+)
 DEFAULT_TARGET_MANIFEST = Path(
     "data/all_locked_real_external_coupling_holdout_manifest_v0.locked.json"
 )
@@ -622,6 +625,190 @@ def _contact_map_coherent_subset(
     }
 
 
+def _smooth_contact_map_scores(
+    *,
+    region_pairs: set[tuple[int, int]],
+    scores: Mapping[tuple[int, int], float],
+    radius: int,
+    steps: int,
+) -> dict[tuple[int, int], float]:
+    current = dict(scores)
+    for _ in range(steps):
+        next_scores: dict[tuple[int, int], float] = {}
+        for left, right in region_pairs:
+            total = current.get((left, right), 0.0)
+            weight = 1.0
+            for delta_left in range(-radius, radius + 1):
+                for delta_right in range(-radius, radius + 1):
+                    if delta_left == 0 and delta_right == 0:
+                        continue
+                    neighbor = (left + delta_left, right + delta_right)
+                    if neighbor not in region_pairs:
+                        continue
+                    neighbor_weight = 1.0 / (
+                        1 + max(abs(delta_left), abs(delta_right))
+                    )
+                    total += neighbor_weight * current.get(neighbor, 0.0)
+                    weight += neighbor_weight
+            next_scores[(left, right)] = total / weight
+        current = next_scores
+    return current
+
+
+def _degree_limited_contact_prefix(
+    scores: Mapping[tuple[int, int], float],
+    *,
+    target_count: int,
+    degree_cap: int,
+) -> set[tuple[int, int]]:
+    if target_count <= 0:
+        return set()
+    residue_degrees: dict[int, int] = {}
+    selected: set[tuple[int, int]] = set()
+    for pair, score in sorted(
+        scores.items(),
+        key=lambda item: (item[1], item[0]),
+        reverse=True,
+    ):
+        if score <= 0.0:
+            continue
+        left, right = pair
+        if (
+            residue_degrees.get(left, 0) >= degree_cap
+            or residue_degrees.get(right, 0) >= degree_cap
+        ):
+            continue
+        selected.add(pair)
+        residue_degrees[left] = residue_degrees.get(left, 0) + 1
+        residue_degrees[right] = residue_degrees.get(right, 0) + 1
+        if len(selected) >= target_count:
+            break
+    return selected
+
+
+def _global_contact_map_collapse_pairs(
+    *,
+    row: object,
+    base_pairs: set[tuple[int, int]],
+    anchor_mode: str,
+    selected_events: Sequence[NucleusClosureEvent],
+    constraints: Sequence[object],
+    metadata: Mapping[str, object],
+) -> tuple[set[tuple[int, int]], dict[str, object]]:
+    if anchor_mode == "phase_coverage":
+        radius = 1
+        steps = 1
+        degree_cap = 8
+        target_count = len(base_pairs)
+        reason = "phase_coverage_event_region_collapse"
+    elif (
+        anchor_mode == "phase_density_conflict_shell"
+        and str(metadata.get("phase_mode", "")) == "square"
+    ):
+        radius = 1
+        steps = 3
+        degree_cap = 8
+        target_count = row.sequence_length
+        reason = "square_conflict_shell_event_region_collapse"
+    else:
+        return (
+            set(base_pairs),
+            {
+                "global_contact_map_collapse_applied": False,
+                "global_contact_map_collapse_reason": (
+                    "collapse_gate_not_matched"
+                ),
+                "global_contact_map_collapse_addition_count": 0,
+                "global_contact_map_collapse_region_count": 0,
+            },
+        )
+
+    region_pairs = _valid_long_range_pairs(
+        row_length=row.sequence_length,
+        pairs={
+            pair
+            for event in selected_events
+            for pair in event.candidate_region_pairs()
+        },
+    )
+    if not region_pairs:
+        return (
+            set(base_pairs),
+            {
+                "global_contact_map_collapse_applied": False,
+                "global_contact_map_collapse_reason": "empty_event_region",
+                "global_contact_map_collapse_addition_count": 0,
+                "global_contact_map_collapse_region_count": 0,
+            },
+        )
+
+    density_norm = _normalized_score_map(
+        _region_density_scores(
+            region_pairs=region_pairs,
+            constraints=constraints,
+        )
+    )
+    event_weights = {pair: 0.0 for pair in region_pairs}
+    for event in selected_events:
+        event_weight = max(
+            float(event.closure_event_stability),
+            float(event.nucleus_score),
+            float(event.contact_cluster_gain),
+        )
+        for pair in event.candidate_region_pairs():
+            if pair in event_weights:
+                event_weights[pair] += event_weight
+    event_norm = _normalized_score_map(event_weights)
+    sequence_features = {
+        feature.pair(): feature
+        for feature in contact_law_feature_rows_for_row(row)
+        if feature.sequence_separation >= 24 and feature.pair() in region_pairs
+    }
+    sequence_norm = _normalized_score_map(
+        {
+            pair: feature.pair_plus_cluster_plus_entropy_score
+            for pair, feature in sequence_features.items()
+        }
+    )
+    seed_scores = {pair: 1.0 if pair in base_pairs else 0.0 for pair in region_pairs}
+    raw_scores = {
+        pair: (
+            2.4 * seed_scores.get(pair, 0.0)
+            + event_norm.get(pair, 0.0)
+            + 1.4 * density_norm.get(pair, 0.0)
+            + 0.35 * sequence_norm.get(pair, 0.0)
+        )
+        for pair in region_pairs
+    }
+    smoothed = _smooth_contact_map_scores(
+        region_pairs=region_pairs,
+        scores=raw_scores,
+        radius=radius,
+        steps=steps,
+    )
+    additions = _degree_limited_contact_prefix(
+        smoothed,
+        target_count=target_count,
+        degree_cap=degree_cap,
+    )
+    collapsed_pairs = set(base_pairs) | additions
+    return (
+        collapsed_pairs,
+        {
+            "global_contact_map_collapse_applied": True,
+            "global_contact_map_collapse_reason": reason,
+            "global_contact_map_collapse_addition_count": len(
+                collapsed_pairs - base_pairs
+            ),
+            "global_contact_map_collapse_region_count": len(region_pairs),
+            "global_contact_map_collapse_radius": radius,
+            "global_contact_map_collapse_steps": steps,
+            "global_contact_map_collapse_degree_cap": degree_cap,
+            "global_contact_map_collapse_target_count": target_count,
+        },
+    )
+
+
 def _sequence_coupling_expansion_decision(
     *,
     phase_mode: str,
@@ -902,6 +1089,11 @@ def _cached_anchored_sequence_coupling_balance_metrics(
     conflict_rescue_f1s: list[float] = []
     conflict_rescue_contact_counts: list[int] = []
     conflict_rescue_perfect_flags: list[bool] = []
+    global_collapse_precisions: list[float] = []
+    global_collapse_long_recalls: list[float] = []
+    global_collapse_f1s: list[float] = []
+    global_collapse_contact_counts: list[int] = []
+    global_collapse_perfect_flags: list[bool] = []
     mode_trace: list[str] = []
     feature_trace: list[str] = []
     for row in rows:
@@ -944,6 +1136,16 @@ def _cached_anchored_sequence_coupling_balance_metrics(
         conflict_density_rescue_count = len(
             conflict_rescue_pairs - coherent_relaxed_pairs
         )
+        global_collapse_pairs, global_collapse_metadata = (
+            _global_contact_map_collapse_pairs(
+                row=row,
+                base_pairs=conflict_rescue_pairs,
+                anchor_mode=anchor_mode,
+                selected_events=row_events,
+                constraints=row_constraints,
+                metadata=metadata,
+            )
+        )
         scores = _row_contact_scores(
             balanced_pairs,
             native_pairs=native_pairs,
@@ -961,6 +1163,11 @@ def _cached_anchored_sequence_coupling_balance_metrics(
         )
         conflict_rescue_scores = _row_contact_scores(
             conflict_rescue_pairs,
+            native_pairs=native_pairs,
+            native_long_pairs=native_long_pairs,
+        )
+        global_collapse_scores = _row_contact_scores(
+            global_collapse_pairs,
             native_pairs=native_pairs,
             native_long_pairs=native_long_pairs,
         )
@@ -1006,6 +1213,21 @@ def _cached_anchored_sequence_coupling_balance_metrics(
         conflict_rescue_perfect_flags.append(
             bool(conflict_rescue_scores["contact_map_perfect"])
         )
+        global_collapse_precisions.append(
+            float(global_collapse_scores["precision"])
+        )
+        global_collapse_long_recalls.append(
+            float(global_collapse_scores["long_recall"])
+        )
+        global_collapse_f1s.append(
+            float(global_collapse_scores["precision_recall_f1"])
+        )
+        global_collapse_contact_counts.append(
+            int(global_collapse_scores["contact_count"])
+        )
+        global_collapse_perfect_flags.append(
+            bool(global_collapse_scores["contact_map_perfect"])
+        )
         mode_trace.append(
             (
                 f"{row.row_id}:{anchor_mode}"
@@ -1014,6 +1236,7 @@ def _cached_anchored_sequence_coupling_balance_metrics(
                 f":relax={len(relaxation_additions)}"
                 f":coherent_relax={len(coherent_relaxation_additions)}"
                 f":conflict_density_rescue={conflict_density_rescue_count}"
+                f":global_collapse={global_collapse_metadata['global_contact_map_collapse_addition_count']}"
                 f":reason={expansion_metadata['sequence_coupling_balance_expansion_reason']}"
             )
         )
@@ -1026,6 +1249,7 @@ def _cached_anchored_sequence_coupling_balance_metrics(
                 f":relax_candidates={expansion_metadata['relaxed_sequence_coupling_balance_candidate_count']}"
                 f":relax_additions={expansion_metadata['relaxed_sequence_coupling_balance_addition_count']}"
                 f":allowed={expansion_metadata['sequence_coupling_balance_expansion_allowed']}"
+                f":global_reason={global_collapse_metadata['global_contact_map_collapse_reason']}"
             )
         )
 
@@ -1127,6 +1351,32 @@ def _cached_anchored_sequence_coupling_balance_metrics(
         "conflict_shell_density_rescue_contact_map_perfect": (
             bool(conflict_rescue_perfect_flags)
             and all(conflict_rescue_perfect_flags)
+        ),
+        "global_contact_map_collapse_selector_name": (
+            GLOBAL_CONTACT_MAP_COLLAPSE_SELECTOR
+        ),
+        "global_contact_map_collapse_claim_allowed": False,
+        "global_contact_map_collapse_exact_contact_precision": (
+            _rounded(mean(global_collapse_precisions))
+            if global_collapse_precisions
+            else 0.0
+        ),
+        "global_contact_map_collapse_exact_long_range_contact_recall": (
+            _rounded(mean(global_collapse_long_recalls))
+            if global_collapse_long_recalls
+            else 0.0
+        ),
+        "global_contact_map_collapse_precision_recall_f1": (
+            _rounded(mean(global_collapse_f1s))
+            if global_collapse_f1s
+            else 0.0
+        ),
+        "global_contact_map_collapse_contact_count": (
+            sum(global_collapse_contact_counts)
+        ),
+        "global_contact_map_collapse_contact_map_perfect": (
+            bool(global_collapse_perfect_flags)
+            and all(global_collapse_perfect_flags)
         ),
     }
 
@@ -1433,6 +1683,22 @@ def score_cached_contact_map_modes_v0(
                 )
             )
         )
+        row["global_contact_map_collapse_delta_vs_conflict_shell_density_rescue"] = (
+            _rounded(
+                float(
+                    row.get(
+                        "global_contact_map_collapse_precision_recall_f1",
+                        0.0,
+                    )
+                )
+                - float(
+                    row.get(
+                        "conflict_shell_density_rescue_precision_recall_f1",
+                        0.0,
+                    )
+                )
+            )
+        )
     report = {
         "report_kind": CACHED_MODE_SCORE_REPORT_KIND,
         "source_report_kind": BATTERY_REPORT_KIND,
@@ -1529,6 +1795,18 @@ def score_cached_contact_map_modes_v0(
         "conflict_shell_density_rescue_contact_map_perfect_rate": _mean_field(
             output_rows,
             "conflict_shell_density_rescue_contact_map_perfect",
+        ),
+        "mean_global_contact_map_collapse_precision_recall_f1": _mean_field(
+            output_rows,
+            "global_contact_map_collapse_precision_recall_f1",
+        ),
+        "mean_global_contact_map_collapse_delta_vs_conflict_shell_density_rescue": _mean_field(
+            output_rows,
+            "global_contact_map_collapse_delta_vs_conflict_shell_density_rescue",
+        ),
+        "global_contact_map_collapse_contact_map_perfect_rate": _mean_field(
+            output_rows,
+            "global_contact_map_collapse_contact_map_perfect",
         ),
         "mean_event_union_ceiling_exact_long_range_contact_recall": _mean_field(
             output_rows,

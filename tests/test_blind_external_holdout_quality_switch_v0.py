@@ -13,6 +13,7 @@ from scripts.score_cached_contact_map_modes_v0 import (  # noqa: E402
     ANCHORED_SEQUENCE_COUPLING_BALANCE_SELECTOR,
     COHERENT_RELAXED_SEQUENCE_COUPLING_BALANCE_SELECTOR,
     CONFLICT_SHELL_DENSITY_RESCUE_SELECTOR,
+    GLOBAL_CONTACT_MAP_COLLAPSE_SELECTOR,
     RELAXED_ANCHORED_SEQUENCE_COUPLING_BALANCE_SELECTOR,
     ROW_LOCAL_CRITICAL_MODE_SELECTOR,
     _sequence_coupling_expansion_decision,
@@ -331,6 +332,9 @@ def test_anchored_sequence_coupling_balance_uses_compact_self_critical_gate() ->
     )
     assert CONFLICT_SHELL_DENSITY_RESCUE_SELECTOR == (
         "cached_conflict_shell_density_rescue_v0"
+    )
+    assert GLOBAL_CONTACT_MAP_COLLAPSE_SELECTOR == (
+        "cached_global_contact_map_collapse_v0"
     )
     assert _sequence_coupling_expansion_decision(
         phase_mode="square",
