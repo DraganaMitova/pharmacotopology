@@ -88,6 +88,9 @@ CONFLICT_SHELL_DENSITY_RESCUE_SELECTOR = (
 GLOBAL_CONTACT_MAP_COLLAPSE_SELECTOR = (
     "cached_global_contact_map_collapse_v0"
 )
+CONSTRUCTIVE_GAP_VOTING_CONTACT_MAP_SELECTOR = (
+    "cached_constructive_gap_voting_contact_map_v0"
+)
 DEFAULT_TARGET_MANIFEST = Path(
     "data/all_locked_real_external_coupling_holdout_manifest_v0.locked.json"
 )
@@ -854,6 +857,198 @@ def _global_contact_map_collapse_pairs(
     )
 
 
+def _constructive_ridge_support_scores(
+    *,
+    row_length: int,
+    seed_pairs: set[tuple[int, int]],
+    max_delta: int,
+) -> dict[tuple[int, int], float]:
+    ridge_pairs: set[tuple[int, int]] = set()
+    for left, right in seed_pairs:
+        for delta in range(-max_delta, max_delta + 1):
+            if delta == 0:
+                continue
+            for candidate in (
+                (left + delta, right + delta),
+                (left + delta, right - delta),
+                (left + delta, right),
+                (left, right + delta),
+            ):
+                candidate_left, candidate_right = candidate
+                if (
+                    0 <= candidate_left < candidate_right < row_length
+                    and candidate_right - candidate_left >= 24
+                ):
+                    ridge_pairs.add(candidate)
+
+    scores: dict[tuple[int, int], float] = {}
+    for pair in ridge_pairs:
+        best_support = 0.0
+        for seed_pair in seed_pairs:
+            distance = _contact_map_distance(pair, seed_pair)
+            if distance <= max_delta:
+                best_support = max(
+                    best_support,
+                    (max_delta + 1 - distance) / (max_delta + 1),
+                )
+        if best_support > 0.0:
+            scores[pair] = best_support
+    return scores
+
+
+def _constructive_gap_voting_contact_map_pairs(
+    *,
+    row: object,
+    base_pairs: set[tuple[int, int]],
+    mode_pair_sets: Mapping[str, set[tuple[int, int]]],
+    selected_events: Sequence[NucleusClosureEvent],
+    constraints: Sequence[object],
+) -> tuple[set[tuple[int, int]], dict[str, object]]:
+    region_pairs = _valid_long_range_pairs(
+        row_length=row.sequence_length,
+        pairs={
+            pair
+            for event in selected_events
+            for pair in event.candidate_region_pairs()
+        },
+    )
+    external_pairs = {
+        constraint.pair()
+        for constraint in constraints
+        if constraint.sequence_separation >= 24
+    }
+    sequence_features = {
+        feature.pair(): feature
+        for feature in contact_law_feature_rows_for_row(row)
+        if feature.sequence_separation >= 24
+    }
+    phase_mode_names = (
+        "phase_field",
+        "phase_coverage",
+        "phase_confidence",
+        "phase_density_spine",
+        "phase_density_conflict_shell",
+        "phase_density_conflict_phase_confidence",
+    )
+    density_mode_names = (
+        "scaffold",
+        "compact",
+        "density_compact",
+        "adjacent_density_patch",
+        "region_density_top_l",
+        "region_density_boundary",
+    )
+    mode_pairs = {
+        pair
+        for name in (*phase_mode_names, *density_mode_names)
+        for pair in mode_pair_sets.get(name, set())
+    }
+    ridge_scores = _constructive_ridge_support_scores(
+        row_length=row.sequence_length,
+        seed_pairs=base_pairs,
+        max_delta=12,
+    )
+    candidate_universe = _valid_long_range_pairs(
+        row_length=row.sequence_length,
+        pairs=(
+            set(base_pairs)
+            | region_pairs
+            | external_pairs
+            | set(sequence_features)
+            | mode_pairs
+            | set(ridge_scores)
+        ),
+    )
+    if not candidate_universe:
+        return (
+            set(base_pairs),
+            {
+                "constructive_gap_voting_applied": False,
+                "constructive_gap_voting_reason": "empty_candidate_universe",
+                "constructive_gap_voting_candidate_count": 0,
+                "constructive_gap_voting_selected_count": len(base_pairs),
+                "constructive_gap_voting_gap": 0.0,
+                "constructive_gap_voting_top_score": 0.0,
+            },
+        )
+
+    density_norm = _normalized_score_map(
+        _region_density_scores(
+            region_pairs=region_pairs,
+            constraints=constraints,
+        )
+    )
+    event_weights = {pair: 0.0 for pair in region_pairs}
+    for event in selected_events:
+        event_weight = max(
+            float(event.closure_event_stability),
+            float(event.nucleus_score),
+            float(event.contact_cluster_gain),
+        )
+        for pair in event.candidate_region_pairs():
+            if pair in event_weights:
+                event_weights[pair] += event_weight
+    event_norm = _normalized_score_map(event_weights)
+    sequence_norm = _normalized_score_map(
+        {
+            pair: feature.pair_plus_cluster_plus_entropy_score
+            for pair, feature in sequence_features.items()
+        }
+    )
+    sequence_cluster_norm = _normalized_score_map(
+        {
+            pair: feature.pair_plus_cluster_score
+            for pair, feature in sequence_features.items()
+        }
+    )
+    raw_scores = {}
+    for pair in candidate_universe:
+        phase_vote = sum(
+            1 for name in phase_mode_names if pair in mode_pair_sets.get(name, set())
+        ) / len(phase_mode_names)
+        density_vote = sum(
+            1 for name in density_mode_names if pair in mode_pair_sets.get(name, set())
+        ) / len(density_mode_names)
+        raw_scores[pair] = (
+            2.8 * (1.0 if pair in base_pairs else 0.0)
+            + 1.6 * (1.0 if pair in external_pairs else 0.0)
+            + 0.8 * (1.0 if pair in region_pairs else 0.0)
+            + 0.9 * phase_vote
+            + 0.9 * density_vote
+            + 0.6 * event_norm.get(pair, 0.0)
+            + 0.8 * density_norm.get(pair, 0.0)
+            + 0.5 * sequence_norm.get(pair, 0.0)
+            + 0.35 * sequence_cluster_norm.get(pair, 0.0)
+            + 1.8 * ridge_scores.get(pair, 0.0)
+        )
+
+    gap_pairs, top_score, gap = _self_critical_pair_gap_prefix(
+        raw_scores,
+        max_count=min(4000, len(raw_scores)),
+    )
+    if len(gap_pairs) < len(base_pairs):
+        selected_pairs = set(base_pairs)
+        reason = "gap_under_selected_base_floor"
+    else:
+        selected_pairs = gap_pairs
+        reason = "constructive_largest_gap"
+
+    return (
+        selected_pairs,
+        {
+            "constructive_gap_voting_applied": True,
+            "constructive_gap_voting_reason": reason,
+            "constructive_gap_voting_candidate_count": len(candidate_universe),
+            "constructive_gap_voting_selected_count": len(selected_pairs),
+            "constructive_gap_voting_addition_count": len(
+                selected_pairs - base_pairs
+            ),
+            "constructive_gap_voting_gap": gap,
+            "constructive_gap_voting_top_score": top_score,
+        },
+    )
+
+
 def _sequence_coupling_expansion_decision(
     *,
     phase_mode: str,
@@ -1139,6 +1334,11 @@ def _cached_anchored_sequence_coupling_balance_metrics(
     global_collapse_f1s: list[float] = []
     global_collapse_contact_counts: list[int] = []
     global_collapse_perfect_flags: list[bool] = []
+    constructive_gap_precisions: list[float] = []
+    constructive_gap_long_recalls: list[float] = []
+    constructive_gap_f1s: list[float] = []
+    constructive_gap_contact_counts: list[int] = []
+    constructive_gap_perfect_flags: list[bool] = []
     mode_trace: list[str] = []
     feature_trace: list[str] = []
     for row in rows:
@@ -1191,6 +1391,15 @@ def _cached_anchored_sequence_coupling_balance_metrics(
                 metadata=metadata,
             )
         )
+        constructive_gap_pairs, constructive_gap_metadata = (
+            _constructive_gap_voting_contact_map_pairs(
+                row=row,
+                base_pairs=global_collapse_pairs,
+                mode_pair_sets=mode_pair_sets,
+                selected_events=row_events,
+                constraints=row_constraints,
+            )
+        )
         scores = _row_contact_scores(
             balanced_pairs,
             native_pairs=native_pairs,
@@ -1213,6 +1422,11 @@ def _cached_anchored_sequence_coupling_balance_metrics(
         )
         global_collapse_scores = _row_contact_scores(
             global_collapse_pairs,
+            native_pairs=native_pairs,
+            native_long_pairs=native_long_pairs,
+        )
+        constructive_gap_scores = _row_contact_scores(
+            constructive_gap_pairs,
             native_pairs=native_pairs,
             native_long_pairs=native_long_pairs,
         )
@@ -1273,6 +1487,21 @@ def _cached_anchored_sequence_coupling_balance_metrics(
         global_collapse_perfect_flags.append(
             bool(global_collapse_scores["contact_map_perfect"])
         )
+        constructive_gap_precisions.append(
+            float(constructive_gap_scores["precision"])
+        )
+        constructive_gap_long_recalls.append(
+            float(constructive_gap_scores["long_recall"])
+        )
+        constructive_gap_f1s.append(
+            float(constructive_gap_scores["precision_recall_f1"])
+        )
+        constructive_gap_contact_counts.append(
+            int(constructive_gap_scores["contact_count"])
+        )
+        constructive_gap_perfect_flags.append(
+            bool(constructive_gap_scores["contact_map_perfect"])
+        )
         mode_trace.append(
             (
                 f"{row.row_id}:{anchor_mode}"
@@ -1282,6 +1511,7 @@ def _cached_anchored_sequence_coupling_balance_metrics(
                 f":coherent_relax={len(coherent_relaxation_additions)}"
                 f":conflict_density_rescue={conflict_density_rescue_count}"
                 f":global_collapse={global_collapse_metadata['global_contact_map_collapse_addition_count']}"
+                f":constructive_gap={constructive_gap_metadata['constructive_gap_voting_selected_count']}"
                 f":reason={expansion_metadata['sequence_coupling_balance_expansion_reason']}"
             )
         )
@@ -1295,6 +1525,7 @@ def _cached_anchored_sequence_coupling_balance_metrics(
                 f":relax_additions={expansion_metadata['relaxed_sequence_coupling_balance_addition_count']}"
                 f":allowed={expansion_metadata['sequence_coupling_balance_expansion_allowed']}"
                 f":global_reason={global_collapse_metadata['global_contact_map_collapse_reason']}"
+                f":constructive_reason={constructive_gap_metadata['constructive_gap_voting_reason']}"
             )
         )
 
@@ -1422,6 +1653,32 @@ def _cached_anchored_sequence_coupling_balance_metrics(
         "global_contact_map_collapse_contact_map_perfect": (
             bool(global_collapse_perfect_flags)
             and all(global_collapse_perfect_flags)
+        ),
+        "constructive_gap_voting_selector_name": (
+            CONSTRUCTIVE_GAP_VOTING_CONTACT_MAP_SELECTOR
+        ),
+        "constructive_gap_voting_claim_allowed": False,
+        "constructive_gap_voting_exact_contact_precision": (
+            _rounded(mean(constructive_gap_precisions))
+            if constructive_gap_precisions
+            else 0.0
+        ),
+        "constructive_gap_voting_exact_long_range_contact_recall": (
+            _rounded(mean(constructive_gap_long_recalls))
+            if constructive_gap_long_recalls
+            else 0.0
+        ),
+        "constructive_gap_voting_precision_recall_f1": (
+            _rounded(mean(constructive_gap_f1s))
+            if constructive_gap_f1s
+            else 0.0
+        ),
+        "constructive_gap_voting_contact_count": sum(
+            constructive_gap_contact_counts
+        ),
+        "constructive_gap_voting_contact_map_perfect": (
+            bool(constructive_gap_perfect_flags)
+            and all(constructive_gap_perfect_flags)
         ),
     }
 
@@ -1744,6 +2001,22 @@ def score_cached_contact_map_modes_v0(
                 )
             )
         )
+        row["constructive_gap_voting_delta_vs_global_contact_map_collapse"] = (
+            _rounded(
+                float(
+                    row.get(
+                        "constructive_gap_voting_precision_recall_f1",
+                        0.0,
+                    )
+                )
+                - float(
+                    row.get(
+                        "global_contact_map_collapse_precision_recall_f1",
+                        0.0,
+                    )
+                )
+            )
+        )
     report = {
         "report_kind": CACHED_MODE_SCORE_REPORT_KIND,
         "source_report_kind": BATTERY_REPORT_KIND,
@@ -1852,6 +2125,18 @@ def score_cached_contact_map_modes_v0(
         "global_contact_map_collapse_contact_map_perfect_rate": _mean_field(
             output_rows,
             "global_contact_map_collapse_contact_map_perfect",
+        ),
+        "mean_constructive_gap_voting_precision_recall_f1": _mean_field(
+            output_rows,
+            "constructive_gap_voting_precision_recall_f1",
+        ),
+        "mean_constructive_gap_voting_delta_vs_global_contact_map_collapse": _mean_field(
+            output_rows,
+            "constructive_gap_voting_delta_vs_global_contact_map_collapse",
+        ),
+        "constructive_gap_voting_contact_map_perfect_rate": _mean_field(
+            output_rows,
+            "constructive_gap_voting_contact_map_perfect",
         ),
         "mean_event_union_ceiling_exact_long_range_contact_recall": _mean_field(
             output_rows,
