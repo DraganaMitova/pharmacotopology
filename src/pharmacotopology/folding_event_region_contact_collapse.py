@@ -5,6 +5,12 @@ from math import sqrt
 from statistics import mean, median, pstdev
 from typing import Mapping, Sequence
 
+
+def mean(values):
+    vals = tuple(values)
+    return sum(vals) / len(vals) if vals else 0.0
+
+
 from pharmacotopology.folding_contact_law_features import ContactLawFeatureRow
 from pharmacotopology.folding_evolutionary_constraints import CouplingConstraint
 from pharmacotopology.folding_native_contact_eval import ContactMetricPacket, evaluate_contact_prediction

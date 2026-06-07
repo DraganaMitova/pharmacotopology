@@ -249,3 +249,46 @@ frontier_generation_bottleneck_for_0_40_recall: true
 ```
 
 Meaning: with the current 100 competitive events, even taking every competitive region only exposes about 21.8% of the 4AKE long-range native map. The full candidate generator can cover the map, but the competitive frontier filter removes most of those regions before collapse sees them. So the missing puzzle piece is no longer just collapse. For 4AKE, the honest next bottleneck is a new self-deciding frontier-generation layer that can safely promote candidates from the broader candidate-event pool without collapsing precision.
+
+## Candidate-pool frontier generation probe
+
+A broader `frontier_generation` layer has now been added as an honest native-free probe. It looks beyond the old competitive-event ceiling and scores events from the full candidate generator, but it still does not use native/contact truth or coordinate truth before selection.
+
+The generation controller is self-deciding:
+
+```text
+seed frontier -> row-local identity baseline
+candidate-generator event -> native-free generation score
+candidate score / identity baseline -> normalized generation score
+largest internal gap -> prefilter boundary
+self-collapse confidence -> second normalized internal-gap boundary
+```
+
+There is no fixed `confidence > 0.6` gate, no global low-score floor, and no accession-specific rule for 4AKE, 1CLL, or 1MBN. The generated frontier is then evaluated after selection in the audit report.
+
+For 4AKE, this broad generation probe is deliberately **not** accepted as the main path:
+
+```text
+current self-verified expansion:
+selected events: 6
+collapsed pairs: 65
+true positives: 24
+precision: 0.369231
+long-range recall: 0.124352
+
+candidate-pool generation probe:
+selected events: 6
+collapsed pairs: 59
+true positives: 18
+precision: 0.305085
+long-range recall: 0.093264
+```
+
+The broader generator proves that candidate-pool promotion is wired and native-free, but in this locked run it does not beat the current expansion path. The audit decision is therefore:
+
+```text
+frontier_generation_probe_accepted_as_main: false
+frontier_generation_decision: rejected_precision_collapse_or_no_recall_gain
+```
+
+This is the correct outcome for an honest optimizer. The system is allowed to test broader generation, but it is not allowed to call the target solved if recall fails to improve or precision collapses. The current bottleneck remains: the candidate generator contains enough regions for 4AKE, but the self-deciding promotion rule still has not found a clean enough native-free boundary to lift recall toward 0.40 while preserving precision.

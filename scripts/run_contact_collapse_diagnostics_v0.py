@@ -12,7 +12,9 @@ from pharmacotopology.folding_contact_law_features import (
 from pharmacotopology.folding_coupling_nucleus_selector import (
     build_coupling_nucleus_context,
     select_coupling_trace_loop_self_deciding_frontier_expanded_events,
+    select_coupling_trace_loop_self_deciding_frontier_generated_events,
     self_deciding_frontier_expansion_rows,
+    self_deciding_frontier_generation_rows,
 )
 from pharmacotopology.folding_event_region_contact_collapse import (
     DEFAULT_BALANCED_PAIRS_PER_EVENT,
@@ -143,6 +145,7 @@ def _frontier_ceiling_audit(
     context,
     event_ids_by_row: Mapping[str, Sequence[str]],
     merged_expansion_event_ids_by_row: Mapping[str, Sequence[str]],
+    generated_event_ids_by_row: Mapping[str, Sequence[str]],
     features_by_row: Mapping[str, Sequence[object]],
     constraints_by_row: Mapping[str, Sequence[object]],
 ) -> dict[str, dict[str, object]]:
@@ -166,6 +169,11 @@ def _frontier_ceiling_audit(
             event_ids_by_row=merged_expansion_event_ids_by_row,
             event_by_id=context.event_by_id,
         )
+        generated_events = _selected_frontier_events(
+            row=row,
+            event_ids_by_row=generated_event_ids_by_row,
+            event_by_id=context.event_by_id,
+        )
         competitive_events = tuple(competitive_by_row.get(row.row_id, ()))
         candidate_events = tuple(candidate_by_row.get(row.row_id, ()))
         contact_ceiling = _self_deciding_contact_long_recall_ceiling(
@@ -180,8 +188,10 @@ def _frontier_ceiling_audit(
             "expanded_frontier_event_count": len(expanded_events),
             "competitive_event_count": len(competitive_events),
             "candidate_event_count": len(candidate_events),
+            "generated_frontier_event_count": len(generated_events),
             "seed_region_long_range_recall_ceiling": _event_region_long_recall_ceiling(row=row, events=seed_events),
             "expanded_region_long_range_recall_ceiling": _event_region_long_recall_ceiling(row=row, events=expanded_events),
+            "generated_region_long_range_recall_ceiling": _event_region_long_recall_ceiling(row=row, events=generated_events),
             "competitive_region_long_range_recall_ceiling": _event_region_long_recall_ceiling(row=row, events=competitive_events),
             "candidate_generator_long_range_recall_ceiling": _event_region_long_recall_ceiling(row=row, events=candidate_events),
             "frontier_generation_bottleneck_for_0_40_recall": (
@@ -313,6 +323,16 @@ def main() -> None:
     for event in merged_self_expanded_frontier_events:
         merged_expansion_event_ids_by_row.setdefault(event.row_id, []).append(event.event_id)
 
+    generated_frontier_events = (
+        select_coupling_trace_loop_self_deciding_frontier_generated_events(
+            context,
+            seed_events=seed_frontier_events,
+        )
+    )
+    generated_event_ids_by_row: dict[str, list[str]] = {}
+    for event in generated_frontier_events:
+        generated_event_ids_by_row.setdefault(event.row_id, []).append(event.event_id)
+
     hard_target_rescue_probe: dict[str, dict[str, object]] = {}
     for target_accession in ("4AKE:A", "1MBN:A"):
         target_row = next((row for row in rows if row.source_accession == target_accession), None)
@@ -343,6 +363,7 @@ def main() -> None:
         for expansion_name, expansion_event_ids_by_row in (
             ("self_deciding_frontier_expansion_only", self_expansion_event_ids_by_row),
             ("self_deciding_frontier_expansion_merged", merged_expansion_event_ids_by_row),
+            ("self_deciding_frontier_generation_merged", generated_event_ids_by_row),
         ):
             expansion_events = _selected_frontier_events(
                 row=target_row,
@@ -366,6 +387,7 @@ def main() -> None:
         context=context,
         event_ids_by_row=event_ids_by_row,
         merged_expansion_event_ids_by_row=merged_expansion_event_ids_by_row,
+        generated_event_ids_by_row=generated_event_ids_by_row,
         features_by_row=features_by_row,
         constraints_by_row=constraints_by_row,
     )
@@ -373,6 +395,42 @@ def main() -> None:
         context,
         seed_events=seed_frontier_events,
     )
+    generation_rows_for_report = self_deciding_frontier_generation_rows(
+        context,
+        seed_events=seed_frontier_events,
+    )
+
+    frontier_generation_decisions: dict[str, dict[str, object]] = {}
+    for accession, probes in hard_target_rescue_probe.items():
+        expanded = probes.get("self_deciding_frontier_expansion_merged", {})
+        generated = probes.get("self_deciding_frontier_generation_merged", {})
+        expanded_precision = float(expanded.get("collapsed_contact_precision", 0.0)) if isinstance(expanded, Mapping) else 0.0
+        generated_precision = float(generated.get("collapsed_contact_precision", 0.0)) if isinstance(generated, Mapping) else 0.0
+        generated_recall = float(generated.get("collapsed_long_range_recall", 0.0)) if isinstance(generated, Mapping) else 0.0
+        expanded_recall = float(expanded.get("collapsed_long_range_recall", 0.0)) if isinstance(expanded, Mapping) else 0.0
+        improves = (
+            generated_precision >= expanded_precision
+            and generated_recall >= expanded_recall
+            and (generated_precision > expanded_precision or generated_recall > expanded_recall)
+        )
+        equivalent = generated_precision == expanded_precision and generated_recall == expanded_recall
+        frontier_generation_decisions[accession] = {
+            "frontier_generation_probe_accepted_as_main": improves,
+            "frontier_generation_decision": (
+                "accepted_generation_improves_precision_or_recall_without_regression"
+                if improves
+                else "equivalent_no_main_change"
+                if equivalent
+                else "rejected_precision_collapse_or_no_recall_gain"
+            ),
+            "expanded_precision_reference": expanded_precision,
+            "generated_precision": generated_precision,
+            "expanded_long_range_recall_reference": expanded_recall,
+            "generated_long_range_recall": generated_recall,
+            "native_truth_used_before_frontier_generation_decision": False,
+            "native_truth_attached_after_frontier_generation_for_evaluation": True,
+        }
+
     report = {
         "report_kind": "event_region_contact_collapse_diagnostics_v0",
         "collapse_kind": EVENT_REGION_CONTACT_COLLAPSE_KIND,
@@ -412,6 +470,14 @@ def main() -> None:
         "hard_target_rescue_probe": hard_target_rescue_probe,
         "frontier_ceiling_audit": frontier_ceiling_audit,
         "self_deciding_frontier_expansion_rows": expansion_rows_for_report,
+        "self_deciding_frontier_generation_rows": generation_rows_for_report,
+        "frontier_generation_decisions": frontier_generation_decisions,
+        "self_deciding_frontier_generation_interpretation": (
+            "A broader candidate-generator frontier was implemented as an honest probe. It ranks candidate events from the full "
+            "candidate pool by row-local identity-normalized native-free evidence, applies an internal-gap prefilter, collapses "
+            "surviving regions, then applies another internal-gap boundary. If the generated path increases recall but destroys "
+            "precision, the report rejects it as the main path instead of calling the target solved."
+        ),
         "self_deciding_frontier_expansion_interpretation": (
             "The expansion selector is native-free and accession-agnostic. It is now self-verified by contact collapse: "
             "a candidate low-score frontier region is considered only if the row already contains an accepted broad ridge seed. "
@@ -447,6 +513,10 @@ def main() -> None:
     _csv_write(
         OUTPUT_DIR / "self_deciding_frontier_expansion_rows_v0.csv",
         expansion_rows_for_report,
+    )
+    _csv_write(
+        OUTPUT_DIR / "self_deciding_frontier_generation_rows_v0.csv",
+        generation_rows_for_report,
     )
 
 
