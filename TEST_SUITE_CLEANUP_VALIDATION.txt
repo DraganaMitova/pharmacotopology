@@ -1,0 +1,13 @@
+TEST_SUITE_CLEANUP_VALIDATION_V0
+
+Active tests:
+tests/test_4ake_alphafold_real_source_end_to_end_v0.py
+
+Root-level test files:
+
+pytest:
+.                                                                        [100%]
+1 passed in 6.69s
+
+compileall:
+compileall_ok
