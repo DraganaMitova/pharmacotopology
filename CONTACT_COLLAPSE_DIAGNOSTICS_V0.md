@@ -30,6 +30,7 @@ The self-deciding path does **not** use an accession-specific rule and does **no
 7. residue-degree pressure while adding selected pairs
 8. phase-aware score-surface choice: boundary/frontier vs direct-ridge trace
 9. tier-aware low-score widening for broad direct-ridge traces
+10. self-verified frontier expansion, where a candidate region is added only after its own native-free collapse confidence survives the row's accepted seed profile
 
 The controller can therefore choose different native-free outcomes per event:
 
@@ -152,20 +153,20 @@ long-range recall: 0.015544
 frontier long-native retention: 0.115385
 ```
 
-Native-free frontier expansion was added as a probe, not as a solved main path:
+A self-verified frontier expansion controller was added after the raw expansion probe. It does not lower the frontier floor globally. It only opens extra regions when the accepted seed frontier already contains a broad low-score `direct_ridge_trace` region, and each candidate region survives its own native-free self-collapse confidence check.
 
 ```text
-merged expansion events: 17
+self-verified merged expansion events: 5
 uncollapsed long-range recall: 0.160622
-collapsed pairs: 64
-true positives: 16
-contact precision: 0.250000
-long-range precision: 0.296296
-long-range recall: 0.082902
-long-range F1: 0.129555
+collapsed pairs: 44
+true positives: 18
+contact precision: 0.409091
+long-range precision: 0.409091
+long-range recall: 0.093264
+long-range F1: 0.151898
 ```
 
-Honest conclusion: 4AKE is now **partially cracked beyond precision-only mode**. The tier-aware controller increases collapsed true positives from 6 to 16 and long-range recall from 0.031088 to 0.082902 while keeping contact precision above 0.47. It is still not fully solved because total long-range recall remains below 0.10. Expansion exposes wider frontier recall, but the system correctly keeps it as a probe because precision drops when the frontier is widened.
+The accepted expansion rows are selected by internal collapse confidence, not native labels. For 4AKE the controller adds two extra ridge-trace regions and rejects the broad ungated low-floor expansion. Honest conclusion: 4AKE is now **frontier-expansion rescued but not fully solved**. The controller increases collapsed true positives from 16 to 18 and long-range recall from 0.082902 to 0.093264 while keeping precision above 0.40. It is still not fully solved because total long-range recall remains below 0.10.
 
 ### 1MBN
 
@@ -205,4 +206,4 @@ fixed pairs/event budget in main path: false
 accession-specific collapse rules: false
 ```
 
-1CLL remains a real contact-level collapse breakthrough. 1MBN shows that the self-deciding path can generalize a precision rescue outside 1CLL. 4AKE is no longer a total collapse failure: tier-aware self-decision recovers 16 true positives from 34 contacts with 0.470588 precision, but recall is still low relative to the full native long-range map. The next honest bottleneck is a frontier-expansion controller that adds new regions only when their own self-collapse confidence survives, instead of accepting every low-floor frontier expansion.
+1CLL remains a real contact-level collapse breakthrough. 1MBN shows that the self-deciding path can generalize a precision rescue outside 1CLL. 4AKE is no longer a total collapse failure: tier-aware self-decision recovers 16 true positives from 34 contacts with 0.470588 precision, and the self-verified frontier expansion raises that to 18 true positives from 44 contacts with 0.409091 precision. Recall is still low relative to the full native long-range map, so the next honest bottleneck is not another raw low-floor expansion; it is finding additional frontier regions whose own self-collapse confidence survives without precision collapse.

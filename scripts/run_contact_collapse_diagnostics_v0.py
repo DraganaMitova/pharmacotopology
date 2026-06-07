@@ -255,6 +255,10 @@ def main() -> None:
             target_reports[expansion_name] = _row_result_to_report(expansion_result)
         hard_target_rescue_probe[target_accession] = target_reports
 
+    expansion_rows_for_report = self_deciding_frontier_expansion_rows(
+        context,
+        seed_events=seed_frontier_events,
+    )
     report = {
         "report_kind": "event_region_contact_collapse_diagnostics_v0",
         "collapse_kind": EVENT_REGION_CONTACT_COLLAPSE_KIND,
@@ -292,14 +296,11 @@ def main() -> None:
         "one_cll_self_deciding_report": one_cll_reports.get(SELF_DECIDING_STRATEGY_NAME, {}),
         "one_cll_internal_gap_report": one_cll_reports.get("frontier_internal_gap_balanced", {}),
         "hard_target_rescue_probe": hard_target_rescue_probe,
-        "self_deciding_frontier_expansion_rows": self_deciding_frontier_expansion_rows(
-            context,
-            seed_events=seed_frontier_events,
-        ),
+        "self_deciding_frontier_expansion_rows": expansion_rows_for_report,
         "self_deciding_frontier_expansion_interpretation": (
-            "The expansion selector is native-free and accession-agnostic. It is reported separately from the main "
-            "collapse path because some rows gain frontier recall but lose contact precision after collapse; the system "
-            "must not accept a wider frontier just because post-hoc native recall rises."
+            "The expansion selector is native-free and accession-agnostic. It is now self-verified by contact collapse: "
+            "a candidate low-score frontier region is added only if the row already contains an accepted broad ridge seed "
+            "and the candidate survives its own native-free collapse-confidence check. Native labels remain audit-only."
         ),
         "one_cll_fixed_budget_probe": one_cll_budget_probe,
         "one_cll_best_long_range_f1_budget": max(
@@ -328,7 +329,7 @@ def main() -> None:
     _csv_write(OUTPUT_DIR / "contact_collapse_event_rows_v0.csv", event_rows)
     _csv_write(
         OUTPUT_DIR / "self_deciding_frontier_expansion_rows_v0.csv",
-        self_deciding_frontier_expansion_rows(context, seed_events=seed_frontier_events),
+        expansion_rows_for_report,
     )
 
 

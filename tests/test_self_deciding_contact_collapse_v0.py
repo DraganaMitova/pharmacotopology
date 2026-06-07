@@ -72,12 +72,15 @@ def test_4ake_phase_aware_self_deciding_rescues_precision_but_not_full_recall():
     assert self_result["collapsed_long_range_recall"] < 0.10
     assert self_result["collapsed_long_range_f1"] >= 0.14
 
-    # Native-free frontier expansion exposes more uncollapsed recall, but the
-    # collapse controller does not accept it as a solved contact map because
-    # contact precision drops sharply and collapsed recall does not materially
-    # beat the self-deciding seed frontier.
+    # Self-verified frontier expansion adds only ridge-trace regions whose own
+    # native-free collapse confidence survives.  It improves 4AKE recall while
+    # keeping precision above 0.40, but it is still not a solved contact map.
+    assert expansion["selected_event_count"] == 5
+    assert expansion["collapsed_pair_count"] == 44
+    assert expansion["collapsed_true_positive_contacts"] >= 18
     assert expansion["uncollapsed_long_range_recall"] > self_result["uncollapsed_long_range_recall"]
-    assert expansion["collapsed_long_range_recall"] >= self_result["collapsed_long_range_recall"]
+    assert expansion["collapsed_long_range_recall"] > self_result["collapsed_long_range_recall"]
+    assert expansion["collapsed_contact_precision"] >= 0.40
     assert expansion["collapsed_contact_precision"] < self_result["collapsed_contact_precision"]
 
     assert self_result["native_truth_used_before_collapse_selection"] is False

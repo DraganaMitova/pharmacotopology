@@ -25,6 +25,7 @@ from pharmacotopology.folding_event_region_contact_collapse import (
     EVENT_REGION_CONTACT_COLLAPSE_KIND,
     SELF_DECIDING_STRATEGY_NAME,
     RowCollapseResult,
+    collapse_event_region_contacts,
     collapse_row_event_regions,
 )
 from pharmacotopology.folding_evolutionary_constraints import (
@@ -275,6 +276,13 @@ ROOT_OUTPUT_NAMES = (
 EXTERNAL_EVOLUTIONARY_COUPLING_SOURCE_KINDS = ACCEPTED_EXTERNAL_COUPLING_SOURCE_KINDS
 PRIMARY_CONTACT_COLLAPSE_SELECTOR_NAME = "coupling_trace_loop"
 PRIMARY_CONTACT_COLLAPSE_STRATEGY = SELF_DECIDING_STRATEGY_NAME
+
+# Frontier expansion is now verified by the same native-free collapse layer that
+# will later score the added region.  The controller only opens new frontier
+# regions when the row already contains a broad, low-score ridge seed and the
+# candidate survives an internal collapse-confidence distribution.
+SELF_VERIFIED_EXPANSION_PROFILE = "direct_ridge_trace"
+SELF_VERIFIED_EXPANSION_TIER_MODE = "direct_ridge_trace_low_score_tier"
 
 
 @dataclass(frozen=True)
@@ -1559,13 +1567,146 @@ def _self_deciding_frontier_expansion_score(
     }
 
 
+def _collapse_inputs_for_context(
+    context: CouplingNucleusContext,
+) -> tuple[
+    Mapping[str, Sequence[object]],
+    Mapping[str, Sequence[CouplingConstraint]],
+]:
+    # The feature rows are sequence/contact-law derived.  They do not inspect the
+    # native contact map and are safe for pre-evaluation controller decisions.
+    features_by_row = feature_rows_by_row_id(contact_law_feature_rows(context.rows))
+    constraints_by_row = context.coupling_dataset.constraints_by_row_id()
+    return features_by_row, constraints_by_row
+
+
+def _self_collapse_confidence(
+    *,
+    selected_pairs,
+    summary,
+) -> float:
+    """Native-free confidence that a candidate region collapses cleanly.
+
+    This does not estimate precision from native labels.  It combines the
+    already-selected contact subset with the event's own score shape: selected
+    support, gap clarity, external-root density, non-total collapse width, and a
+    profile-consistency signal.  The downstream selector uses distribution ranks
+    over this value instead of a fixed absolute threshold.
+    """
+    selected_count = int(summary.selected_pair_count)
+    candidate_count = int(summary.candidate_region_pair_count)
+    if selected_count <= 0 or candidate_count <= 0:
+        return 0.0
+    mean_pair_score = mean([float(pair.collapse_score) for pair in selected_pairs]) if selected_pairs else 0.0
+    mean_internal_support = mean(
+        [
+            0.34 * float(pair.ridge_coherence_score)
+            + 0.28 * float(pair.coupling_density_score)
+            + 0.22 * float(pair.sequence_law_support_score)
+            + 0.16 * float(pair.boundary_coherence_score)
+            for pair in selected_pairs
+        ]
+    ) if selected_pairs else 0.0
+    gap_signal = float(summary.self_deciding_gap_clarity) / max(
+        1.0,
+        float(summary.self_deciding_gap_clarity) + 12.0,
+    )
+    direct_root_signal = min(
+        1.0,
+        float(summary.direct_coupling_count_in_region) / max(1.0, sqrt(candidate_count)),
+    )
+    # Good expansion candidates are neither closed nor the full 8x8 block.  A
+    # wide tier is allowed, but a near-total region is not trusted as expansion.
+    width_signal = _rounded(1.0 - selected_count / max(1.0, candidate_count))
+    profile_signal = 0.0
+    if str(summary.self_deciding_profile) == SELF_VERIFIED_EXPANSION_PROFILE:
+        profile_signal += 0.55
+    if str(summary.self_deciding_tier_mode) == SELF_VERIFIED_EXPANSION_TIER_MODE:
+        profile_signal += 0.45
+    return _rounded(
+        0.24 * mean_pair_score
+        + 0.24 * mean_internal_support
+        + 0.20 * gap_signal
+        + 0.14 * direct_root_signal
+        + 0.10 * width_signal
+        + 0.08 * profile_signal
+    )
+
+
+def _self_verified_collapse_row(
+    event: NucleusClosureEvent,
+    context: CouplingNucleusContext,
+    *,
+    features_by_row: Mapping[str, Sequence[object]],
+    constraints_by_row: Mapping[str, Sequence[CouplingConstraint]],
+    cache: dict[str, dict[str, object]] | None = None,
+) -> dict[str, object]:
+    if cache is not None and event.event_id in cache:
+        return cache[event.event_id]
+    selected_pairs, summary = collapse_event_region_contacts(
+        event=event,
+        row_features=features_by_row.get(event.row_id, ()),  # type: ignore[arg-type]
+        row_constraints=constraints_by_row.get(event.row_id, ()),
+        collapse_strategy=SELF_DECIDING_STRATEGY_NAME,
+        min_pairs_per_event=0,
+        max_pairs_per_event=0,
+    )
+    confidence = _self_collapse_confidence(
+        selected_pairs=selected_pairs,
+        summary=summary,
+    )
+    output = {
+        "self_collapse_confidence": confidence,
+        "self_collapse_selected_pair_count": summary.selected_pair_count,
+        "self_collapse_candidate_region_pair_count": summary.candidate_region_pair_count,
+        "self_collapse_profile": summary.self_deciding_profile,
+        "self_collapse_phase_mode": summary.self_deciding_phase_mode,
+        "self_collapse_tier_mode": summary.self_deciding_tier_mode,
+        "self_collapse_decision_reason": summary.collapse_decision_reason,
+        "self_collapse_gap_clarity": summary.self_deciding_gap_clarity,
+        "self_collapse_cutoff_signal": summary.self_deciding_cutoff_signal,
+        "self_collapse_direct_coupling_count": summary.direct_coupling_count_in_region,
+        "self_collapse_native_truth_used_before_selection": False,
+        "self_collapse_coordinate_truth_used_before_selection": False,
+    }
+    if cache is not None:
+        cache[event.event_id] = output
+    return output
+
+
+def _self_verified_expandable_profiles(
+    seed_events: Sequence[NucleusClosureEvent],
+    context: CouplingNucleusContext,
+    *,
+    features_by_row: Mapping[str, Sequence[object]],
+    constraints_by_row: Mapping[str, Sequence[CouplingConstraint]],
+    cache: dict[str, dict[str, object]] | None = None,
+) -> set[str]:
+    profiles: set[str] = set()
+    for event in seed_events:
+        collapse_row = _self_verified_collapse_row(
+            event,
+            context,
+            features_by_row=features_by_row,
+            constraints_by_row=constraints_by_row,
+            cache=cache,
+        )
+        if (
+            int(collapse_row["self_collapse_selected_pair_count"]) > 0
+            and str(collapse_row["self_collapse_profile"]) == SELF_VERIFIED_EXPANSION_PROFILE
+            and str(collapse_row["self_collapse_tier_mode"]) == SELF_VERIFIED_EXPANSION_TIER_MODE
+        ):
+            profiles.add(str(collapse_row["self_collapse_profile"]))
+    return profiles
+
+
 def _self_deciding_frontier_expansion_cutoff(
     scores: Sequence[float],
 ) -> tuple[int, str, float]:
     if not scores:
         return 0, "empty_expansion_distribution", 0.0
     if len(scores) == 1:
-        return 1, "single_external_root_region", scores[0]
+        return 1, "single_self_verified_external_root_region", scores[0]
     ordered = sorted(scores, reverse=True)
     gaps = [ordered[index] - ordered[index + 1] for index in range(len(ordered) - 1)]
     gap_cutoff = max(range(len(gaps)), key=lambda index: gaps[index]) + 1
@@ -1574,7 +1715,7 @@ def _self_deciding_frontier_expansion_cutoff(
     distribution_floor = center + 0.5 * spread
     distribution_cutoff = sum(1 for score in ordered if score >= distribution_floor)
     cutoff = max(1, min(SELECTED_EVENTS_PER_ROW, max(gap_cutoff, distribution_cutoff)))
-    reason = "self_gap_and_distribution_external_root_frontier"
+    reason = "self_collapse_verified_gap_and_distribution_frontier"
     return cutoff, reason, _rounded(distribution_floor)
 
 
@@ -1583,20 +1724,32 @@ def select_coupling_trace_loop_self_deciding_frontier_expanded_events(
     *,
     seed_events: Sequence[NucleusClosureEvent] = (),
 ) -> tuple[NucleusClosureEvent, ...]:
-    """Select a self-deciding external-root frontier expansion.
+    """Select a self-verified external-root frontier expansion.
 
-    The selector is protein-agnostic and native-free.  It starts from optional
-    seed events, then expands per row using a distribution boundary over external
-    constraint coverage, future/physical support and blocked-future pressure.
-    It intentionally does not use accession-specific rules or a fixed number of
-    added events.
+    This is not a raw low-floor expansion.  It starts from the already accepted
+    frontier and opens extra regions only for rows whose seed frontier contains a
+    broad, low-score ridge trace.  Each candidate is collapsed first with the
+    native-free self-deciding collapse layer, then ranked by its own expansion
+    evidence and collapse confidence distribution.  Native labels are not read.
     """
+    features_by_row, constraints_by_row = _collapse_inputs_for_context(context)
+    collapse_cache: dict[str, dict[str, object]] = {}
     seed_by_row = _events_by_row(seed_events)
     selected: list[NucleusClosureEvent] = []
     competitive_by_row = _events_by_row(context.competitive_events)
     for row in context.rows:
         row_selected: list[NucleusClosureEvent] = list(seed_by_row.get(row.row_id, ()))
         selected_ids = {event.event_id for event in row_selected}
+        expandable_profiles = _self_verified_expandable_profiles(
+            row_selected,
+            context,
+            features_by_row=features_by_row,
+            constraints_by_row=constraints_by_row,
+            cache=collapse_cache,
+        )
+        if not expandable_profiles:
+            selected.extend(row_selected)
+            continue
         candidates: list[tuple[float, NucleusClosureEvent, dict[str, object]]] = []
         for event in competitive_by_row.get(row.row_id, ()):
             if event.event_id in selected_ids:
@@ -1604,15 +1757,35 @@ def select_coupling_trace_loop_self_deciding_frontier_expanded_events(
             score_row = _self_deciding_frontier_expansion_score(event, context)
             if int(score_row["direct_constraint_count"]) <= 0:
                 continue
-            candidates.append((
-                float(score_row["self_deciding_frontier_expansion_score"]),
+            collapse_row = _self_verified_collapse_row(
                 event,
-                score_row,
-            ))
+                context,
+                features_by_row=features_by_row,
+                constraints_by_row=constraints_by_row,
+                cache=collapse_cache,
+            )
+            if int(collapse_row["self_collapse_selected_pair_count"]) <= 0:
+                continue
+            if str(collapse_row["self_collapse_profile"]) not in expandable_profiles:
+                continue
+            acceptance_score = _rounded(
+                float(score_row["self_deciding_frontier_expansion_score"])
+                * (0.40 + 0.60 * float(collapse_row["self_collapse_confidence"]))
+            )
+            merged_row = {
+                **score_row,
+                **collapse_row,
+                "self_verified_frontier_expansion_acceptance_score": acceptance_score,
+                "self_verified_frontier_expansion_gate_reason": "matching_seed_low_score_ridge_trace_self_collapse_survived",
+                "native_truth_used_before_frontier_expansion": False,
+                "coordinate_truth_used_before_frontier_expansion": False,
+            }
+            candidates.append((acceptance_score, event, merged_row))
         candidates.sort(
             key=lambda item: (
                 -item[0],
-                -float(item[2]["direct_constraint_confidence_sum"]),
+                -float(item[2]["self_deciding_frontier_expansion_score"]),
+                -float(item[2]["self_collapse_confidence"]),
                 item[1].segment_a_start,
                 item[1].segment_b_start,
                 item[1].event_id,
@@ -1632,11 +1805,31 @@ def select_coupling_trace_loop_self_deciding_frontier_expanded_events(
     return tuple(selected)
 
 
+def _closed_self_verified_collapse_row() -> dict[str, object]:
+    return {
+        "self_collapse_confidence": 0.0,
+        "self_collapse_selected_pair_count": 0,
+        "self_collapse_candidate_region_pair_count": 0,
+        "self_collapse_profile": "not_evaluated_without_seed_expandable_profile",
+        "self_collapse_phase_mode": "",
+        "self_collapse_tier_mode": "closed",
+        "self_collapse_decision_reason": "row_has_no_self_verified_expandable_seed",
+        "self_collapse_gap_clarity": 0.0,
+        "self_collapse_cutoff_signal": 0.0,
+        "self_collapse_direct_coupling_count": 0,
+        "self_collapse_native_truth_used_before_selection": False,
+        "self_collapse_coordinate_truth_used_before_selection": False,
+    }
+
+
 def self_deciding_frontier_expansion_rows(
     context: CouplingNucleusContext,
     *,
     seed_events: Sequence[NucleusClosureEvent] = (),
 ) -> list[dict[str, object]]:
+    features_by_row, constraints_by_row = _collapse_inputs_for_context(context)
+    collapse_cache: dict[str, dict[str, object]] = {}
+    seed_by_row = _events_by_row(seed_events)
     seed_ids = {event.event_id for event in seed_events}
     selected_ids = {
         event.event_id
@@ -1645,15 +1838,59 @@ def self_deciding_frontier_expansion_rows(
             seed_events=seed_events,
         )
     }
+    expandable_profiles_by_row = {
+        row_id: _self_verified_expandable_profiles(
+            events,
+            context,
+            features_by_row=features_by_row,
+            constraints_by_row=constraints_by_row,
+            cache=collapse_cache,
+        )
+        for row_id, events in seed_by_row.items()
+    }
     rows: list[dict[str, object]] = []
     for event in context.competitive_events:
         score_row = _self_deciding_frontier_expansion_score(event, context)
         if int(score_row["direct_constraint_count"]) <= 0 and event.event_id not in selected_ids:
             continue
+        expandable_profiles = expandable_profiles_by_row.get(event.row_id, set())
+        if event.event_id in seed_ids or expandable_profiles:
+            collapse_row = _self_verified_collapse_row(
+                event,
+                context,
+                features_by_row=features_by_row,
+                constraints_by_row=constraints_by_row,
+                cache=collapse_cache,
+            )
+        else:
+            collapse_row = _closed_self_verified_collapse_row()
+        candidate_profile_allowed = (
+            str(collapse_row["self_collapse_profile"]) in expandable_profiles
+            and int(collapse_row["self_collapse_selected_pair_count"]) > 0
+        )
+        acceptance_score = _rounded(
+            float(score_row["self_deciding_frontier_expansion_score"])
+            * (0.40 + 0.60 * float(collapse_row["self_collapse_confidence"]))
+        ) if candidate_profile_allowed else 0.0
+        score_row.update(
+            collapse_row
+        )
         score_row.update(
             {
                 "seed_event": event.event_id in seed_ids,
+                "self_verified_candidate_profile_allowed": candidate_profile_allowed,
+                "self_verified_frontier_expansion_acceptance_score": acceptance_score,
                 "self_deciding_frontier_expansion_selected": event.event_id in selected_ids,
+                "self_verified_frontier_expansion_selected": event.event_id in selected_ids,
+                "self_verified_frontier_expansion_gate_reason": (
+                    "seed_event"
+                    if event.event_id in seed_ids
+                    else "matching_seed_low_score_ridge_trace_self_collapse_survived"
+                    if candidate_profile_allowed
+                    else "closed_or_profile_not_seed_verified"
+                ),
+                "native_truth_used_before_frontier_expansion": False,
+                "coordinate_truth_used_before_frontier_expansion": False,
             }
         )
         rows.append(score_row)
@@ -1661,6 +1898,7 @@ def self_deciding_frontier_expansion_rows(
         rows,
         key=lambda row: (
             str(row["row_id"]),
+            -float(row["self_verified_frontier_expansion_acceptance_score"]),
             -float(row["self_deciding_frontier_expansion_score"]),
             str(row["event_id"]),
         ),
