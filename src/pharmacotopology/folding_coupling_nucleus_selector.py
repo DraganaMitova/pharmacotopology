@@ -9,11 +9,22 @@ from statistics import mean
 from typing import Mapping, Sequence
 
 from pharmacotopology.artifact_io import write_csv_rows
+from pharmacotopology.folding_contact_law_features import (
+    contact_law_feature_rows,
+    feature_rows_by_row_id,
+)
 from pharmacotopology.folding_coupling_decoy_falsification import (
     COUPLING_DECOY_FALSIFICATION_KIND,
     coupling_decoy_comparisons,
     real_beats_decoy_coupling_score_rate,
     real_vs_decoy_coupling_enrichment_ratio,
+)
+from pharmacotopology.folding_event_region_contact_collapse import (
+    DEFAULT_BALANCED_PAIRS_PER_EVENT,
+    EVENT_REGION_CONTACT_COLLAPSE_BOUNDARY,
+    EVENT_REGION_CONTACT_COLLAPSE_KIND,
+    RowCollapseResult,
+    collapse_row_event_regions,
 )
 from pharmacotopology.folding_evolutionary_constraints import (
     COUPLING_ASSESSMENT_KIND,
@@ -29,6 +40,7 @@ from pharmacotopology.folding_external_coupling_sources import (
     ACCEPTED_EXTERNAL_COUPLING_SOURCE_KINDS,
     EXTERNAL_EVOLUTIONARY_COUPLING_TRACE_LOOP_BATCH_ID,
 )
+from pharmacotopology.folding_native_contact_eval import contact_map_hash
 from pharmacotopology.folding_nucleus_closure_search import (
     FOLDING_NUCLEUS_CLOSURE_EVENT_KIND,
     NucleusClosureEvent,
@@ -253,10 +265,15 @@ ROOT_OUTPUT_NAMES = (
     "coupling_nucleus_selector_selected_events.csv",
     "coupling_nucleus_selector_assessments.csv",
     "coupling_nucleus_selector_decoys.csv",
+    "coupling_nucleus_selector_contact_collapse_rows.csv",
+    "coupling_nucleus_selector_collapsed_contacts.csv",
+    "coupling_nucleus_selector_contact_collapse_events.csv",
     "coupling_nucleus_selector_dashboard.html",
     "coupling_nucleus_selector_certificate.json",
 )
 EXTERNAL_EVOLUTIONARY_COUPLING_SOURCE_KINDS = ACCEPTED_EXTERNAL_COUPLING_SOURCE_KINDS
+PRIMARY_CONTACT_COLLAPSE_SELECTOR_NAME = "coupling_trace_loop"
+PRIMARY_CONTACT_COLLAPSE_STRATEGY = "frontier_balanced"
 
 
 @dataclass(frozen=True)
@@ -2609,6 +2626,123 @@ def selected_event_rows(
     return rows
 
 
+def contact_collapse_results_for_selected_events(
+    context: CouplingNucleusContext,
+    selected_events: Sequence[NucleusClosureEvent],
+    *,
+    collapse_strategy: str = PRIMARY_CONTACT_COLLAPSE_STRATEGY,
+) -> tuple[RowCollapseResult, ...]:
+    """Collapse selected 8x8 event regions into residue-pair contact maps.
+
+    This is part of the selector pipeline, not an oracle filter.  Native labels are
+    attached only inside RowCollapseEvaluation after the sequence/coupling-only
+    pair subset has already been selected.
+    """
+    row_by_id = {row.row_id: row for row in context.rows}
+    events_by_row = _events_by_row(selected_events)
+    constraints_by_row = context.coupling_dataset.constraints_by_row_id()
+    features_by_row = feature_rows_by_row_id(contact_law_feature_rows(context.rows))
+    results: list[RowCollapseResult] = []
+    for row_id in sorted(events_by_row):
+        row = row_by_id.get(row_id)
+        if row is None:
+            continue
+        row_events = tuple(events_by_row[row_id])
+        if not row_events:
+            continue
+        results.append(
+            collapse_row_event_regions(
+                row=row,
+                events=row_events,
+                row_features=features_by_row.get(row_id, ()),
+                row_constraints=constraints_by_row.get(row_id, ()),
+                collapse_strategy=collapse_strategy,
+                min_pairs_per_event=DEFAULT_BALANCED_PAIRS_PER_EVENT,
+                max_pairs_per_event=DEFAULT_BALANCED_PAIRS_PER_EVENT,
+            )
+        )
+    return tuple(results)
+
+
+def _row_collapse_report_row(result: RowCollapseResult) -> dict[str, object]:
+    collapsed_pairs = tuple(pair.pair() for pair in result.collapsed_pairs)
+    return {
+        **result.evaluation.to_dict(),
+        "collapsed_contact_map_hash": contact_map_hash(collapsed_pairs),
+        "uncollapsed_region_contact_map_hash": contact_map_hash(result.uncollapsed_pairs),
+    }
+
+
+def contact_collapse_row_rows(
+    results: Sequence[RowCollapseResult],
+) -> list[dict[str, object]]:
+    return [_row_collapse_report_row(result) for result in results]
+
+
+def contact_collapse_pair_rows(
+    results: Sequence[RowCollapseResult],
+) -> list[dict[str, object]]:
+    rows: list[dict[str, object]] = []
+    for result in results:
+        rows.extend(pair.to_dict() for pair in result.collapsed_pairs)
+    return rows
+
+
+def contact_collapse_event_rows(
+    results: Sequence[RowCollapseResult],
+) -> list[dict[str, object]]:
+    rows: list[dict[str, object]] = []
+    for result in results:
+        rows.extend(summary.to_dict() for summary in result.event_summaries)
+    return rows
+
+
+def contact_collapse_summary(
+    results: Sequence[RowCollapseResult],
+) -> dict[str, object]:
+    row_reports = contact_collapse_row_rows(results)
+    one_cll = next(
+        (row for row in row_reports if row.get("source_accession") == "1CLL:A"),
+        None,
+    )
+    return {
+        "contact_collapse_integrated": True,
+        "contact_collapse_kind": EVENT_REGION_CONTACT_COLLAPSE_KIND,
+        "contact_collapse_boundary": EVENT_REGION_CONTACT_COLLAPSE_BOUNDARY,
+        "contact_collapse_source_selector": PRIMARY_CONTACT_COLLAPSE_SELECTOR_NAME,
+        "contact_collapse_strategy": PRIMARY_CONTACT_COLLAPSE_STRATEGY,
+        "contact_collapse_row_count": len(row_reports),
+        "contact_collapse_collapsed_pair_count": sum(
+            int(row["collapsed_pair_count"]) for row in row_reports
+        ),
+        "contact_collapse_mean_contact_precision": _rounded(
+            mean([float(row["collapsed_contact_precision"]) for row in row_reports])
+            if row_reports
+            else 0.0
+        ),
+        "contact_collapse_mean_long_range_precision": _rounded(
+            mean([float(row["collapsed_long_range_precision"]) for row in row_reports])
+            if row_reports
+            else 0.0
+        ),
+        "contact_collapse_mean_long_range_recall": _rounded(
+            mean([float(row["collapsed_long_range_recall"]) for row in row_reports])
+            if row_reports
+            else 0.0
+        ),
+        "contact_collapse_mean_long_range_f1": _rounded(
+            mean([float(row["collapsed_long_range_f1"]) for row in row_reports])
+            if row_reports
+            else 0.0
+        ),
+        "contact_collapse_native_truth_used_before_selection": False,
+        "contact_collapse_coordinate_truth_used_before_selection": False,
+        "contact_collapse_native_truth_attached_after_selection_for_evaluation": True,
+        "contact_collapse_1cll_balanced": one_cll or {},
+        "contact_collapse_rows": row_reports,
+    }
+
+
 def decoy_rows(
     context: CouplingNucleusContext,
     selected_events: Sequence[NucleusClosureEvent],
@@ -2651,6 +2785,7 @@ def build_coupling_nucleus_selector_report(
     selector_rows: Sequence[CouplingSelectorMetric],
     source_benchmark_file: Path,
     coupling_file: Path,
+    contact_collapse_results: Sequence[RowCollapseResult] = (),
 ) -> dict[str, object]:
     selector_lookup = {row.selector_name: row for row in selector_rows}
     coupling_target_survives = any(row.survives_targets for row in selector_rows)
@@ -2659,7 +2794,9 @@ def build_coupling_nucleus_selector_report(
     )
     claim_mode_validation_passed = not claim_mode_failures
     claim_allowed = coupling_target_survives and claim_mode_validation_passed
+    contact_collapse_payload = contact_collapse_summary(contact_collapse_results)
     return {
+        **contact_collapse_payload,
         "report_kind": COUPLING_NUCLEUS_SELECTOR_REPORT_KIND,
         "source_benchmark_kind": REAL_COORDINATE_VISUAL_BENCHMARK_KIND,
         "source_benchmark_file": str(source_benchmark_file),
@@ -2828,6 +2965,16 @@ def build_coupling_nucleus_selector_certificate(
         "coupling_trace_loop_real_vs_decoy_enrichment_ratio": report[
             "coupling_trace_loop_real_vs_decoy_enrichment_ratio"
         ],
+        "contact_collapse_integrated": report.get("contact_collapse_integrated", False),
+        "contact_collapse_strategy": report.get("contact_collapse_strategy", ""),
+        "contact_collapse_mean_contact_precision": report.get(
+            "contact_collapse_mean_contact_precision",
+            0.0,
+        ),
+        "contact_collapse_mean_long_range_f1": report.get(
+            "contact_collapse_mean_long_range_f1",
+            0.0,
+        ),
         "external_evolutionary_couplings_used": report[
             "external_evolutionary_couplings_used"
         ],
@@ -2953,13 +3100,18 @@ def run_coupling_nucleus_selector_benchmark(
     )
     selected_rows = selected_event_rows(context, selections)
     decoys = decoy_rows(context, selections["coupling_rerank"])
+    contact_collapse_results = contact_collapse_results_for_selected_events(
+        context,
+        selections[PRIMARY_CONTACT_COLLAPSE_SELECTOR_NAME],
+    )
     report = build_coupling_nucleus_selector_report(
         context=context,
         selector_rows=selector_rows,
         source_benchmark_file=benchmark_file,
         coupling_file=coupling_file,
+        contact_collapse_results=contact_collapse_results,
     )
-    return write_coupling_nucleus_selector_outputs(
+    outputs = write_coupling_nucleus_selector_outputs(
         report=report,
         selector_rows=selector_rows,
         selected_rows=selected_rows,
@@ -2973,6 +3125,19 @@ def run_coupling_nucleus_selector_benchmark(
         dashboard_path=dashboard_path,
         certificate_path=certificate_path,
     )
+    write_csv_rows(
+        contact_collapse_row_rows(contact_collapse_results),
+        selected_events_path.with_name("coupling_nucleus_selector_contact_collapse_rows.csv"),
+    )
+    write_csv_rows(
+        contact_collapse_pair_rows(contact_collapse_results),
+        selected_events_path.with_name("coupling_nucleus_selector_collapsed_contacts.csv"),
+    )
+    write_csv_rows(
+        contact_collapse_event_rows(contact_collapse_results),
+        selected_events_path.with_name("coupling_nucleus_selector_contact_collapse_events.csv"),
+    )
+    return outputs
 
 
 def _escape(value: object) -> str:

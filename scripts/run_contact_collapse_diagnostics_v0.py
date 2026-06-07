@@ -11,6 +11,7 @@ from pharmacotopology.folding_contact_law_features import (
 )
 from pharmacotopology.folding_coupling_nucleus_selector import build_coupling_nucleus_context
 from pharmacotopology.folding_event_region_contact_collapse import (
+    DEFAULT_BALANCED_PAIRS_PER_EVENT,
     DEFAULT_PRECISION_MAX_PAIRS_PER_EVENT,
     DEFAULT_RECALL_MAX_PAIRS_PER_EVENT,
     EVENT_REGION_CONTACT_COLLAPSE_BOUNDARY,
@@ -94,6 +95,7 @@ def main() -> None:
     event_rows: list[dict[str, object]] = []
     strategy_reports: dict[str, list[dict[str, object]]] = {
         "frontier_precision": [],
+        "frontier_balanced": [],
         "frontier_recall": [],
         "ridge_coupling": [],
     }
@@ -111,12 +113,15 @@ def main() -> None:
             )
             if not events:
                 continue
-            max_pairs = (
-                DEFAULT_RECALL_MAX_PAIRS_PER_EVENT
-                if strategy == "frontier_recall"
-                else DEFAULT_PRECISION_MAX_PAIRS_PER_EVENT
-            )
-            min_pairs = 8 if strategy == "frontier_recall" else 1
+            if strategy == "frontier_recall":
+                max_pairs = DEFAULT_RECALL_MAX_PAIRS_PER_EVENT
+                min_pairs = 8
+            elif strategy == "frontier_balanced":
+                max_pairs = DEFAULT_BALANCED_PAIRS_PER_EVENT
+                min_pairs = DEFAULT_BALANCED_PAIRS_PER_EVENT
+            else:
+                max_pairs = DEFAULT_PRECISION_MAX_PAIRS_PER_EVENT
+                min_pairs = 1
             result = collapse_row_event_regions(
                 row=row,
                 events=events,
@@ -134,6 +139,28 @@ def main() -> None:
                 pair_rows.append(pair.to_dict())
             for summary in result.event_summaries:
                 event_rows.append(summary.to_dict())
+
+    one_cll_budget_probe: list[dict[str, object]] = []
+    one_cll_row = next((row for row in rows if row.source_accession == "1CLL:A"), None)
+    if one_cll_row is not None:
+        one_cll_events = _selected_frontier_events(
+            row=one_cll_row,
+            event_ids_by_row=event_ids_by_row,
+            event_by_id=context.event_by_id,
+        )
+        for budget in range(DEFAULT_BALANCED_PAIRS_PER_EVENT, DEFAULT_RECALL_MAX_PAIRS_PER_EVENT + 1):
+            budget_result = collapse_row_event_regions(
+                row=one_cll_row,
+                events=one_cll_events,
+                row_features=features_by_row.get(one_cll_row.row_id, ()),
+                row_constraints=constraints_by_row.get(one_cll_row.row_id, ()),
+                collapse_strategy="frontier_balanced",
+                min_pairs_per_event=budget,
+                max_pairs_per_event=budget,
+            )
+            row_report = _row_result_to_report(budget_result)
+            row_report["pairs_per_event_budget"] = budget
+            one_cll_budget_probe.append(row_report)
 
     report = {
         "report_kind": "event_region_contact_collapse_diagnostics_v0",
@@ -169,6 +196,11 @@ def main() -> None:
             for strategy, rows_for_strategy in strategy_reports.items()
         },
         "one_cll_strategy_reports": one_cll_reports,
+        "one_cll_fixed_budget_probe": one_cll_budget_probe,
+        "one_cll_best_long_range_f1_budget": max(
+            one_cll_budget_probe,
+            key=lambda row: float(row["collapsed_long_range_f1"]),
+        ) if one_cll_budget_probe else {},
         "row_reports_by_strategy": strategy_reports,
         "interpretation": (
             "Frontier event success and contact-map success are separate. Collapse reduces each 8x8 event region "

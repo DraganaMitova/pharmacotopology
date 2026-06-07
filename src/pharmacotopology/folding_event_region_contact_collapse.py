@@ -21,6 +21,7 @@ EVENT_REGION_CONTACT_COLLAPSE_BOUNDARY = (
 # report the precision/recall tradeoff explicitly.
 DEFAULT_PRECISION_MAX_PAIRS_PER_EVENT = 5
 DEFAULT_RECALL_MAX_PAIRS_PER_EVENT = 16
+DEFAULT_BALANCED_PAIRS_PER_EVENT = 6
 DEFAULT_RESIDUE_DEGREE_CAP = 5
 
 
@@ -94,6 +95,10 @@ class RowCollapseEvaluation:
     collapsed_contact_recall: float
     uncollapsed_long_range_recall: float
     collapsed_long_range_recall: float
+    uncollapsed_long_range_precision: float
+    collapsed_long_range_precision: float
+    uncollapsed_long_range_f1: float
+    collapsed_long_range_f1: float
     frontier_native_pair_count: int
     frontier_native_retention: float
     frontier_long_native_pair_count: int
@@ -130,6 +135,20 @@ def _score(value: float) -> float:
 
 def _mean(values: Sequence[float]) -> float:
     return _score(mean(values)) if values else 0.0
+
+
+def _f1(precision: float, recall: float) -> float:
+    return _rounded(
+        2.0 * precision * recall / (precision + recall)
+        if precision + recall
+        else 0.0
+    )
+
+
+def _precision(true_positive_count: int, predicted_count: int) -> float:
+    if predicted_count <= 0:
+        return 0.0
+    return _rounded(true_positive_count / predicted_count)
 
 
 def _features_by_pair(
@@ -372,7 +391,7 @@ def collapse_event_region_contacts(
     max_pairs_per_event: int = DEFAULT_PRECISION_MAX_PAIRS_PER_EVENT,
     residue_degree_cap: int = DEFAULT_RESIDUE_DEGREE_CAP,
 ) -> tuple[tuple[CollapsedContactPair, ...], EventRegionCollapseSummary]:
-    if collapse_strategy not in {"frontier_precision", "frontier_recall", "ridge_coupling"}:
+    if collapse_strategy not in {"frontier_precision", "frontier_recall", "frontier_balanced", "ridge_coupling"}:
         raise ValueError(f"unknown collapse strategy: {collapse_strategy}")
     features_by_pair = _features_by_pair(row_features)
     constraints_by_pair = _constraints_by_pair(row_constraints)
@@ -398,7 +417,7 @@ def collapse_event_region_contacts(
         sequence_law = _sequence_law_support_score(feature)
         ridge = _ridge_coherence_score(pair, support_scores=support_scores)
         boundary = _boundary_coherence_score(pair, event, feature)
-        if collapse_strategy in {"frontier_precision", "frontier_recall"}:
+        if collapse_strategy in {"frontier_precision", "frontier_recall", "frontier_balanced"}:
             score = _frontier_precision_score(
                 pair=pair,
                 event=event,
@@ -438,11 +457,24 @@ def collapse_event_region_contacts(
     if collapse_strategy == "frontier_recall":
         max_pairs_per_event = max(max_pairs_per_event, DEFAULT_RECALL_MAX_PAIRS_PER_EVENT)
         min_pairs_per_event = max(min_pairs_per_event, min(8, max_pairs_per_event))
+    if collapse_strategy == "frontier_balanced":
+        max_pairs_per_event = max(max_pairs_per_event, DEFAULT_BALANCED_PAIRS_PER_EVENT)
+        min_pairs_per_event = max(min_pairs_per_event, min(DEFAULT_BALANCED_PAIRS_PER_EVENT, max_pairs_per_event))
     if collapse_strategy == "frontier_recall":
         # Recall mode is an explicit tradeoff probe: keep the bounded upper slice
         # even when the score gap is early, so we can test whether the frontier
         # contained recoverable contacts without reverting to all 64 pairs.
         applied_cutoff = max_pairs_per_event
+    elif collapse_strategy == "frontier_balanced":
+        # Balanced mode is the production collapse budget: do not let an early
+        # local score gap collapse the event to only one residue-pair, but also
+        # do not reopen the whole 8x8 region.  The fixed six-pair event budget is
+        # sequence/coupling-only and is evaluated later against native labels.
+        applied_cutoff = _bounded_cutoff(
+            DEFAULT_BALANCED_PAIRS_PER_EVENT,
+            min_pairs_per_event=min_pairs_per_event,
+            max_pairs_per_event=max_pairs_per_event,
+        )
     else:
         applied_cutoff = _bounded_cutoff(
             natural_gap_cutoff,
@@ -546,6 +578,18 @@ def collapse_row_event_regions(
     native_long_pairs = {pair for pair in native_pairs if pair[1] - pair[0] >= 24}
     frontier_native_pairs = uncollapsed_pairs & native_pairs
     frontier_long_native_pairs = uncollapsed_pairs & native_long_pairs
+    uncollapsed_long_pairs = {pair for pair in uncollapsed_pairs if pair[1] - pair[0] >= 24}
+    collapsed_long_pairs = {pair for pair in collapsed_pair_set if pair[1] - pair[0] >= 24}
+    uncollapsed_true_positive_long_pairs = uncollapsed_long_pairs & native_long_pairs
+    collapsed_true_positive_long_pairs = collapsed_long_pairs & native_long_pairs
+    uncollapsed_long_precision = _precision(
+        len(uncollapsed_true_positive_long_pairs),
+        len(uncollapsed_long_pairs),
+    )
+    collapsed_long_precision = _precision(
+        len(collapsed_true_positive_long_pairs),
+        len(collapsed_long_pairs),
+    )
     collapsed_metric = evaluate_contact_prediction(
         native_pairs=native_pairs,
         predicted_pairs=collapsed_pair_set,
@@ -574,6 +618,16 @@ def collapse_row_event_regions(
         collapsed_contact_recall=collapsed_metric.native_contact_recall,
         uncollapsed_long_range_recall=uncollapsed_metric.long_range_contact_recall,
         collapsed_long_range_recall=collapsed_metric.long_range_contact_recall,
+        uncollapsed_long_range_precision=uncollapsed_long_precision,
+        collapsed_long_range_precision=collapsed_long_precision,
+        uncollapsed_long_range_f1=_f1(
+            uncollapsed_long_precision,
+            uncollapsed_metric.long_range_contact_recall,
+        ),
+        collapsed_long_range_f1=_f1(
+            collapsed_long_precision,
+            collapsed_metric.long_range_contact_recall,
+        ),
         frontier_native_pair_count=len(frontier_native_pairs),
         frontier_native_retention=_rounded(
             len(collapsed_pair_set & frontier_native_pairs) / max(1, len(frontier_native_pairs))

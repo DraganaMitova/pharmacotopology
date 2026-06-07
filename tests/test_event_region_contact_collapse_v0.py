@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import csv
+from functools import lru_cache
 from pathlib import Path
 
 from pharmacotopology.folding_contact_law_features import (
@@ -22,6 +23,7 @@ COUPLING_FILE = REPO_ROOT / "data" / "folding_real_coordinate_visual_8_external_
 FRONTIER_FILE = REPO_ROOT / "first_contact_clean_pharmacotopology_layer_run" / "external_coupling_trace_loop_frontier.csv"
 
 
+@lru_cache(maxsize=1)
 def _one_cll_frontier_events():
     rows = tuple(load_real_coordinate_visual_rows(BENCHMARK_FILE))
     row = next(candidate for candidate in rows if candidate.source_accession == "1CLL:A")
@@ -99,3 +101,23 @@ def test_1cll_frontier_recall_collapse_preserves_long_frontier_signal():
         result.evaluation.collapsed_contact_precision
         > result.evaluation.uncollapsed_region_precision
     )
+
+
+def test_1cll_frontier_balanced_collapse_enters_main_tradeoff_band():
+    row, events, row_features, row_constraints = _one_cll_frontier_events()
+    result = collapse_row_event_regions(
+        row=row,
+        events=events,
+        row_features=row_features,
+        row_constraints=row_constraints,
+        collapse_strategy="frontier_balanced",
+    )
+    assert len(events) == 7
+    assert 35 <= result.evaluation.collapsed_pair_count <= 50
+    assert result.evaluation.collapsed_contact_precision >= 0.30
+    assert result.evaluation.collapsed_long_range_precision >= 0.40
+    assert result.evaluation.collapsed_long_range_recall >= 0.30
+    assert result.evaluation.collapsed_long_range_f1 >= 0.35
+    assert result.evaluation.precision_improvement_factor >= 6.0
+    assert result.evaluation.native_truth_used_before_collapse_selection is False
+    assert result.evaluation.coordinate_truth_used_before_collapse_selection is False

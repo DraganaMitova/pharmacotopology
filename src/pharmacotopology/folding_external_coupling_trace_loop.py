@@ -22,6 +22,11 @@ from pharmacotopology.folding_coupling_nucleus_selector import (
     TRACE_LOOP_RANK_CONSISTENT_RECOVERY_DIRECT_SUPPORT_MIN,
     TRACE_LOOP_RANK_CONSISTENT_RECOVERY_FUTURE_PRESERVATION_MIN,
     build_coupling_nucleus_context,
+    contact_collapse_event_rows,
+    contact_collapse_pair_rows,
+    contact_collapse_results_for_selected_events,
+    contact_collapse_row_rows,
+    contact_collapse_summary,
     coupling_claim_mode_validation_failures,
     coupling_nucleus_score,
     select_coupling_events,
@@ -67,6 +72,9 @@ ROOT_OUTPUT_NAMES = (
     "external_coupling_trace_loop_selectors.csv",
     "external_coupling_trace_loop_selected_events.csv",
     "external_coupling_trace_loop_frontier.csv",
+    "external_coupling_trace_loop_contact_collapse_rows.csv",
+    "external_coupling_trace_loop_collapsed_contacts.csv",
+    "external_coupling_trace_loop_contact_collapse_events.csv",
     "external_coupling_trace_loop_controls.csv",
     "external_coupling_trace_loop_row_status.csv",
     "external_coupling_trace_loop_dashboard.html",
@@ -2156,6 +2164,22 @@ def _certificate(report: Mapping[str, object]) -> dict[str, object]:
         "external_rank_consistent_cluster_gated_frontier_claim_allowed": report[
             "external_rank_consistent_cluster_gated_frontier_claim_allowed"
         ],
+        "external_frontier_contact_collapse_integrated": report.get(
+            "external_frontier_contact_collapse_integrated",
+            False,
+        ),
+        "external_frontier_contact_collapse_strategy": report.get(
+            "external_frontier_contact_collapse_strategy",
+            "",
+        ),
+        "external_frontier_contact_collapse_mean_contact_precision": report.get(
+            "external_frontier_contact_collapse_mean_contact_precision",
+            0.0,
+        ),
+        "external_frontier_contact_collapse_mean_long_range_f1": report.get(
+            "external_frontier_contact_collapse_mean_long_range_f1",
+            0.0,
+        ),
         "hard_adversarial_calibrated_probe_passed": report[
             "hard_adversarial_calibrated_probe_passed"
         ],
@@ -2228,6 +2252,7 @@ def _build_report(
     replacement_frontier_rows: Sequence[Mapping[str, object]],
     matched_control_recall_frontier_summaries: Sequence[Mapping[str, int]],
     adversarial_recall_frontier_summaries: Sequence[Mapping[str, int]],
+    frontier_contact_collapse_summary: Mapping[str, object],
     source_benchmark_file: Path,
     external_coupling_file: Path,
     oracle_coupling_file: Path,
@@ -2820,6 +2845,10 @@ def _build_report(
         )
     )
     external_metric_defined = external_selected_event_count > 0
+    frontier_contact_collapse_1cll = frontier_contact_collapse_summary.get(
+        "contact_collapse_1cll_balanced",
+        {},
+    )
     frontier_native_contact_count = sum(
         int(row["native_contact_count_after_scoring"]) for row in frontier_rows
     )
@@ -5113,6 +5142,42 @@ def _build_report(
         "external_rank_consistent_cluster_gated_frontier_native_long_range_contact_count": (
             frontier_native_long_range_contact_count
         ),
+        "external_frontier_contact_collapse_integrated": bool(
+            frontier_contact_collapse_summary.get("contact_collapse_integrated", False)
+        ),
+        "external_frontier_contact_collapse_strategy": (
+            frontier_contact_collapse_summary.get("contact_collapse_strategy", "")
+        ),
+        "external_frontier_contact_collapse_row_count": (
+            frontier_contact_collapse_summary.get("contact_collapse_row_count", 0)
+        ),
+        "external_frontier_contact_collapse_mean_contact_precision": (
+            frontier_contact_collapse_summary.get(
+                "contact_collapse_mean_contact_precision",
+                0.0,
+            )
+        ),
+        "external_frontier_contact_collapse_mean_long_range_precision": (
+            frontier_contact_collapse_summary.get(
+                "contact_collapse_mean_long_range_precision",
+                0.0,
+            )
+        ),
+        "external_frontier_contact_collapse_mean_long_range_recall": (
+            frontier_contact_collapse_summary.get(
+                "contact_collapse_mean_long_range_recall",
+                0.0,
+            )
+        ),
+        "external_frontier_contact_collapse_mean_long_range_f1": (
+            frontier_contact_collapse_summary.get(
+                "contact_collapse_mean_long_range_f1",
+                0.0,
+            )
+        ),
+        "external_frontier_contact_collapse_1cll_balanced": (
+            frontier_contact_collapse_1cll
+        ),
         "external_rank_consistent_cluster_gated_frontier_claim_allowed": False,
         "matched_negative_controls_present": bool(matched_controls),
         "external_claim_mode_validation_failures": claim_mode_failures,
@@ -5405,6 +5470,10 @@ def render_external_coupling_trace_loop_dashboard(
         "external_rank_consistent_cluster_gated_native_positive_frontier_count",
         "external_rank_consistent_cluster_gated_frontier_native_contact_count",
         "external_rank_consistent_cluster_gated_frontier_native_long_range_contact_count",
+        "external_frontier_contact_collapse_integrated",
+        "external_frontier_contact_collapse_strategy",
+        "external_frontier_contact_collapse_mean_contact_precision",
+        "external_frontier_contact_collapse_mean_long_range_f1",
         "external_rank_consistent_cluster_gated_frontier_claim_allowed",
         "hard_adversarial_calibrated_probe_passed",
         "mechanism_discovery_claim_allowed",
@@ -6044,6 +6113,26 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
         terminal_run=external_terminal_bridge_expanded,
         replacement_probe_run=external_boundary_field_replacement_probe,
     )
+    frontier_output_rows = [*replacement_frontier_rows, *frontier_rows, *recall_frontier_rows]
+    frontier_event_ids: list[str] = []
+    seen_frontier_event_ids: set[str] = set()
+    for frontier_row in frontier_output_rows:
+        event_id = str(frontier_row.get("event_id", ""))
+        if event_id and event_id not in seen_frontier_event_ids:
+            seen_frontier_event_ids.add(event_id)
+            frontier_event_ids.append(event_id)
+    frontier_contact_collapse_events = tuple(
+        external_context.event_by_id[event_id]
+        for event_id in frontier_event_ids
+        if event_id in external_context.event_by_id
+    )
+    frontier_contact_collapse_results = contact_collapse_results_for_selected_events(
+        external_context,
+        frontier_contact_collapse_events,
+    )
+    frontier_contact_collapse_summary = contact_collapse_summary(
+        frontier_contact_collapse_results
+    )
     persistent_control_run_by_name = {
         run.selector_name.replace(
             "external_persistent_rank_consistent_cluster_gated_",
@@ -6195,6 +6284,7 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
             matched_control_recall_frontier_summaries
         ),
         adversarial_recall_frontier_summaries=adversarial_recall_frontier_summaries,
+        frontier_contact_collapse_summary=frontier_contact_collapse_summary,
         source_benchmark_file=benchmark_file,
         external_coupling_file=external_coupling_file,
         oracle_coupling_file=oracle_coupling_file,
@@ -6215,8 +6305,20 @@ def run_external_evolutionary_coupling_trace_loop_benchmark(
         selected_rows.extend(run.selected_rows)
     write_csv_rows(selected_rows, selected_events_path)
     write_csv_rows(
-        [*replacement_frontier_rows, *frontier_rows, *recall_frontier_rows],
+        frontier_output_rows,
         frontier_path,
+    )
+    write_csv_rows(
+        contact_collapse_row_rows(frontier_contact_collapse_results),
+        frontier_path.with_name("external_coupling_trace_loop_contact_collapse_rows.csv"),
+    )
+    write_csv_rows(
+        contact_collapse_pair_rows(frontier_contact_collapse_results),
+        frontier_path.with_name("external_coupling_trace_loop_collapsed_contacts.csv"),
+    )
+    write_csv_rows(
+        contact_collapse_event_rows(frontier_contact_collapse_results),
+        frontier_path.with_name("external_coupling_trace_loop_contact_collapse_events.csv"),
     )
     write_csv_rows(_controls_from_runs(all_runs), controls_path)
     write_csv_rows(
