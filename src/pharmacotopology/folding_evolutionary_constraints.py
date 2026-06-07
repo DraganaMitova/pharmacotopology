@@ -40,6 +40,13 @@ class CouplingConstraint:
     apc_corrected_score: float = 0.0
     rank: int = 0
     rank_fraction: float = 0.0
+    msa_source_kind: str = ""
+    msa_sha256: str = ""
+    msa_depth: int = 0
+    effective_sequence_count: float = 0.0
+    effective_sequence_count_over_length: float = 0.0
+    target_coverage: float = 0.0
+    focus_sequence_mapping_confidence: float = 0.0
 
     def pair(self) -> tuple[int, int]:
         return (self.i, self.j)
@@ -200,6 +207,19 @@ def _constraint_from_raw(
         apc_corrected_score=_score(float(raw.get("apc_corrected_score", 0.0))),
         rank=int(raw.get("rank", 0)),
         rank_fraction=_rounded(float(raw.get("rank_fraction", 0.0))),
+        msa_source_kind=str(raw.get("msa_source_kind", "")),
+        msa_sha256=str(raw.get("msa_sha256", "")),
+        msa_depth=int(raw.get("msa_depth", 0)),
+        effective_sequence_count=_score(
+            float(raw.get("effective_sequence_count", 0.0))
+        ),
+        effective_sequence_count_over_length=_score(
+            float(raw.get("effective_sequence_count_over_length", 0.0))
+        ),
+        target_coverage=_score(float(raw.get("target_coverage", 0.0))),
+        focus_sequence_mapping_confidence=_score(
+            float(raw.get("focus_sequence_mapping_confidence", 0.0))
+        ),
     )
 
 

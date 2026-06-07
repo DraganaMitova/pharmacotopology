@@ -27,7 +27,7 @@ def analyze_all_proteins():
     PROTEIN_NAMES = {
         "1CLL": "Calmodulin (multi-domain N-lobe/C-lobe)",
         "1CSP": "Cold Shock Protein",
-        "1MBN": "Maltose Binding Protein (multi-domain)",
+        "1MBN": "Myoglobin (low-signal challenge; dataset labels compact single-domain)",
         "1PGA": "Protein G domain B1",
         "1TEN": "Tenascin fibronectin",
         "1TIM": "Triosephosphate isomerase",
@@ -35,7 +35,7 @@ def analyze_all_proteins():
         "4AKE": "Adenylate kinase (multi-domain)",
     }
     
-    MULTIDOMAIN_PROTEINS = {"1CLL", "1MBN", "4AKE"}  # Should use 0.50 threshold
+    MULTIDOMAIN_PROTEINS = {"1CLL", "4AKE"}  # Dataset-labeled multidomain/segmented rows
     
     print(f"\n{'='*120}")
     print(f"COMPREHENSIVE MULTI-PROTEIN TEST: PROTEIN FOLDING MECHANISM VALIDATION")
@@ -185,14 +185,14 @@ def analyze_all_proteins():
     print(f"  ✓ Fix integration: COMPLETE and WORKING")
     
     print(f"\n{'='*120}")
-    print(f"CONCLUSION: PROTEIN FOLDING MECHANISM CRACKED")
+    print(f"CONCLUSION: ADAPTIVE GATING DIAGNOSTIC COMPLETE")
     print(f"{'='*120}\n")
     
     print(f"""
 ✅ VALIDATION COMPLETE:
 
 1. MULTI-DOMAIN PROTEINS GET SMARTER GATING:
-   - Calmodulin (1CLL), Maltose BP (1MBN), Adenylate kinase (4AKE)
+   - Calmodulin (1CLL), Adenylate kinase (4AKE); 1MBN remains a low-signal challenge row
    - Benefit from relaxed threshold (0.50) for inter-domain contacts
    - Use coupling signals to complement weak direct signals
    - Total {multidomain_total_gain} frontier events unlocked
@@ -207,11 +207,10 @@ def analyze_all_proteins():
    - Works through production pipeline
    - Extensible design for future multi-domain proteins
 
-4. PROTEIN FOLDING MECHANISM: CRACKED ✅
-   - The bottleneck was GATE DESIGN (not data quality)
-   - Dynamic protein-specific thresholding is the solution
-   - Enables proper representation of conformational dynamics
-   - Ready for deployment across all protein families
+4. CLAIM BOUNDARY
+   - This is an adaptive-gating diagnostic, not a proof that folding is solved
+   - Exact contact-map precision must be checked separately
+   - More locked external multi-domain proteins are still needed
     """)
     
     return True

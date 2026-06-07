@@ -1,8 +1,9 @@
 from __future__ import annotations
 
 import json
-from collections import defaultdict
+from collections import Counter, defaultdict
 from dataclasses import asdict, dataclass
+from math import log2, sqrt
 from pathlib import Path
 from statistics import mean
 from typing import Mapping, Sequence
@@ -79,10 +80,24 @@ COUPLING_INTERLOBE_NORMALIZED_SPAN_MIN = 0.25
 COUPLING_INTERLOBE_DIRECT_SUPPORT_MAX = 0.15
 COUPLING_INTERLOBE_CLUSTER_GAIN_MAX = 0.35
 
-# Adaptive threshold safety rails for inter-lobe contacts
-# Floor prevents over-relaxation; ceiling caps blocked_future tolerance
-COUPLING_INTERLOBE_FUTURE_PRESERVATION_FLOOR = 0.42
+# Adaptive threshold safety rails for inter-lobe / low-signal contacts.
+# The default remains conservative, but the effective floor can now move
+# per row from phase shape + sequence complexity + MSA depth/coverage.
+COUPLING_INTERLOBE_FUTURE_PRESERVATION_FLOOR_DEFAULT = 0.42
+COUPLING_INTERLOBE_FUTURE_PRESERVATION_FLOOR_MIN = 0.35
+COUPLING_INTERLOBE_FUTURE_PRESERVATION_FLOOR_MAX = 0.48
+# Backwards-compatible name used by older tests/docs.
+COUPLING_INTERLOBE_FUTURE_PRESERVATION_FLOOR = (
+    COUPLING_INTERLOBE_FUTURE_PRESERVATION_FLOOR_DEFAULT
+)
 COUPLING_INTERLOBE_BLOCKED_FUTURE_CEILING = 0.25
+COUPLING_ADAPTIVE_LOW_SIGNAL_FUTURE_MIN = 0.24
+COUPLING_ADAPTIVE_LOW_SIGNAL_DIRECT_SUPPORT_MIN = 0.50
+COUPLING_ADAPTIVE_LOW_SIGNAL_CLUSTER_MIN = 0.40
+COUPLING_ADAPTIVE_LOW_SIGNAL_BLOCKED_FUTURE_CEILING = 0.35
+COUPLING_ADAPTIVE_LOW_SIGNAL_PHYSICAL_SCORE_FLOOR_DEFAULT = 0.42
+COUPLING_ADAPTIVE_LOW_SIGNAL_PHYSICAL_SCORE_FLOOR_MIN = 0.35
+COUPLING_ADAPTIVE_LOW_SIGNAL_PHYSICAL_SCORE_FLOOR_MAX = 0.48
 TRACE_LOOP_MARGIN_GATE_MIN = 0.0
 TRACE_LOOP_MARGIN_GATE_BLOCKED_FUTURE_MAX = 0.16
 TRACE_LOOP_TOP_RANK_FRACTION = 0.30
@@ -305,6 +320,25 @@ class TraceLoopPersistenceEvidence:
         return asdict(self)
 
 
+@dataclass(frozen=True)
+class AdaptiveCouplingFloorProfile:
+    row_id: str
+    source_accession: str
+    phase_mode: str
+    sequence_complexity: float
+    coupling_depth_over_length: float
+    target_coverage: float
+    row_future_preservation_ceiling: float
+    future_preservation_floor: float
+    physical_score_floor: float
+    adaptive_gate_enabled: bool
+    low_signal_rescue_enabled: bool
+    signal_reason: str
+
+    def to_dict(self) -> dict[str, object]:
+        return asdict(self)
+
+
 def _rounded(value: float) -> float:
     return round(value, 6)
 
@@ -327,6 +361,300 @@ def _constraint_confidence_by_pair(
     constraints: Sequence[CouplingConstraint],
 ) -> dict[tuple[int, int], float]:
     return {constraint.pair(): constraint.confidence for constraint in constraints}
+
+
+def _bounded_float(value: float, *, minimum: float, maximum: float) -> float:
+    return max(minimum, min(maximum, value))
+
+
+def _row_for_event(
+    event: NucleusClosureEvent,
+    context: CouplingNucleusContext,
+) -> RealCoordinateVisualRow | None:
+    for row in context.rows:
+        if row.row_id == event.row_id:
+            return row
+    return None
+
+
+def _constraints_for_row(
+    row_id: str,
+    context: CouplingNucleusContext,
+) -> tuple[CouplingConstraint, ...]:
+    return tuple(context.coupling_dataset.constraints_by_row_id().get(row_id, ()))
+
+
+def _row_sequence_complexity(row: RealCoordinateVisualRow | None) -> float:
+    if row is None or not row.sequence:
+        return 0.0
+    counts = Counter(residue for residue in row.sequence if residue)
+    total = sum(counts.values())
+    if total <= 0 or len(counts) <= 1:
+        return 0.0
+    entropy = -sum(
+        (count / total) * log2(count / total)
+        for count in counts.values()
+        if count > 0
+    )
+    return _rounded(_bounded_float(entropy / log2(20), minimum=0.0, maximum=1.0))
+
+
+def _population_stddev(values: Sequence[float]) -> float:
+    if not values:
+        return 0.0
+    center = mean(values)
+    return sqrt(mean((value - center) ** 2 for value in values))
+
+
+def _pair_correlation(pairs: Sequence[tuple[int, int]]) -> float:
+    if len(pairs) <= 1:
+        return 0.0
+    left = [float(pair[0]) for pair in pairs]
+    right = [float(pair[1]) for pair in pairs]
+    left_center = mean(left)
+    right_center = mean(right)
+    left_ss = sum((value - left_center) ** 2 for value in left)
+    right_ss = sum((value - right_center) ** 2 for value in right)
+    if left_ss == 0.0 or right_ss == 0.0:
+        return 0.0
+    covariance = sum(
+        (left_value - left_center) * (right_value - right_center)
+        for left_value, right_value in zip(left, right)
+    )
+    return covariance / sqrt(left_ss * right_ss)
+
+
+def _nearest_phase_votes(
+    pairs: Sequence[tuple[int, int]],
+) -> tuple[int, int]:
+    diagonal_votes = 0
+    square_votes = 0
+    for pair in pairs:
+        nearest: tuple[int, int, int] | None = None
+        for other in pairs:
+            if other == pair:
+                continue
+            delta_left = other[0] - pair[0]
+            delta_right = other[1] - pair[1]
+            distance = max(abs(delta_left), abs(delta_right))
+            candidate = (distance, delta_left, delta_right)
+            if nearest is None or candidate < nearest:
+                nearest = candidate
+        if nearest is None:
+            continue
+        distance, delta_left, delta_right = nearest
+        if abs(delta_left - delta_right) <= 1:
+            diagonal_votes += 1
+        if distance <= 2:
+            square_votes += 1
+    return diagonal_votes, square_votes
+
+
+def _phase_mode_from_pairs(pairs: Sequence[tuple[int, int]]) -> str:
+    if len(pairs) <= 1:
+        return "point"
+    offsets = [float(right - left) for left, right in pairs]
+    sums = [float(right + left) for left, right in pairs]
+    offset_spread = _population_stddev(offsets)
+    sum_spread = _population_stddev(sums)
+    correlation = max(0.0, _pair_correlation(pairs))
+    _, square_votes = _nearest_phase_votes(pairs)
+    diagonal_score = correlation * sum_spread / (offset_spread + 1.0)
+    square_score = (square_votes / len(pairs)) * sqrt(offset_spread + 1.0)
+    if diagonal_score > square_score:
+        return "diagonal"
+    return "square"
+
+
+def _row_phase_mode(
+    row: RealCoordinateVisualRow | None,
+    context: CouplingNucleusContext,
+) -> str:
+    if row is None:
+        return "unknown"
+    constraints = sorted(
+        _constraints_for_row(row.row_id, context),
+        key=lambda constraint: (
+            -constraint.confidence,
+            constraint.i,
+            constraint.j,
+            constraint.constraint_id,
+        ),
+    )
+    top_count = min(24, len(constraints))
+    if top_count <= 0:
+        return "none"
+    return _phase_mode_from_pairs(
+        tuple(constraint.pair() for constraint in constraints[:top_count])
+    )
+
+
+def _row_coupling_quality(
+    row_id: str,
+    context: CouplingNucleusContext,
+) -> tuple[float, float]:
+    constraints = _constraints_for_row(row_id, context)
+    depth_values = [
+        float(constraint.effective_sequence_count_over_length)
+        for constraint in constraints
+        if constraint.effective_sequence_count_over_length > 0.0
+    ]
+    coverage_values = [
+        float(constraint.target_coverage)
+        for constraint in constraints
+        if constraint.target_coverage > 0.0
+    ]
+    if depth_values:
+        depth_over_length = mean(depth_values)
+    else:
+        row = next((candidate for candidate in context.rows if candidate.row_id == row_id), None)
+        depth_over_length = (
+            len(constraints) / max(1, row.sequence_length)
+            if row is not None
+            else 0.0
+        )
+    target_coverage = mean(coverage_values) if coverage_values else 0.0
+    return _rounded(depth_over_length), _rounded(target_coverage)
+
+
+def _row_future_preservation_ceiling(
+    row_id: str,
+    context: CouplingNucleusContext,
+) -> float:
+    values = [
+        context.assessment_by_event_id[event.event_id].future_preservation_score
+        for event in context.competitive_events
+        if event.row_id == row_id
+    ]
+    return _rounded(max(values, default=0.0))
+
+
+def _adaptive_coupling_floor_profile(
+    event: NucleusClosureEvent,
+    context: CouplingNucleusContext,
+) -> AdaptiveCouplingFloorProfile:
+    row = _row_for_event(event, context)
+    source_accession = row.source_accession if row is not None else event.source_accession
+    phase_mode = _row_phase_mode(row, context)
+    sequence_complexity = _row_sequence_complexity(row)
+    depth_over_length, target_coverage = _row_coupling_quality(event.row_id, context)
+    future_ceiling = _row_future_preservation_ceiling(event.row_id, context)
+
+    future_floor = COUPLING_INTERLOBE_FUTURE_PRESERVATION_FLOOR_DEFAULT
+    reasons: list[str] = []
+    if phase_mode == "diagonal":
+        future_floor -= 0.04
+        reasons.append("diagonal_phase")
+    elif phase_mode == "square":
+        future_floor -= 0.03
+        reasons.append("square_phase")
+    elif phase_mode == "point":
+        future_floor += 0.03
+        reasons.append("point_phase_guard")
+    else:
+        reasons.append(f"phase={phase_mode}")
+
+    if sequence_complexity >= 0.90:
+        future_floor -= 0.015
+        reasons.append("high_sequence_complexity")
+    elif sequence_complexity < 0.82:
+        future_floor += 0.03
+        reasons.append("low_sequence_complexity_guard")
+    elif sequence_complexity < 0.86:
+        future_floor += 0.015
+        reasons.append("moderate_sequence_complexity_guard")
+
+    if depth_over_length >= 12.0:
+        future_floor -= 0.015
+        reasons.append("deep_msa")
+    elif depth_over_length >= 8.0:
+        future_floor -= 0.01
+        reasons.append("usable_msa_depth")
+    elif 0.0 < depth_over_length < 3.0:
+        future_floor += 0.04
+        reasons.append("low_msa_depth_guard")
+
+    if target_coverage >= 0.95:
+        future_floor -= 0.005
+        reasons.append("full_target_coverage")
+    elif 0.0 < target_coverage < 0.85:
+        future_floor += 0.03
+        reasons.append("low_target_coverage_guard")
+
+    if future_ceiling < COUPLING_ADAPTIVE_LOW_SIGNAL_FUTURE_MIN:
+        future_floor = max(
+            future_floor,
+            COUPLING_INTERLOBE_FUTURE_PRESERVATION_FLOOR_DEFAULT,
+        )
+        reasons.append("low_future_ceiling_noise_guard")
+
+    future_floor = _rounded(
+        _bounded_float(
+            future_floor,
+            minimum=COUPLING_INTERLOBE_FUTURE_PRESERVATION_FLOOR_MIN,
+            maximum=COUPLING_INTERLOBE_FUTURE_PRESERVATION_FLOOR_MAX,
+        )
+    )
+
+    physical_floor = COUPLING_ADAPTIVE_LOW_SIGNAL_PHYSICAL_SCORE_FLOOR_DEFAULT
+    if phase_mode in {"diagonal", "square"}:
+        physical_floor -= 0.035
+    if sequence_complexity >= 0.88:
+        physical_floor -= 0.015
+    elif sequence_complexity < 0.82:
+        physical_floor += 0.03
+    if depth_over_length >= 8.0:
+        physical_floor -= 0.02
+    elif 0.0 < depth_over_length < 3.0:
+        physical_floor += 0.04
+    if target_coverage >= 0.95:
+        physical_floor -= 0.005
+    elif 0.0 < target_coverage < 0.85:
+        physical_floor += 0.03
+    if future_ceiling < COUPLING_ADAPTIVE_LOW_SIGNAL_FUTURE_MIN:
+        physical_floor += 0.05
+
+    physical_floor = _rounded(
+        _bounded_float(
+            physical_floor,
+            minimum=COUPLING_ADAPTIVE_LOW_SIGNAL_PHYSICAL_SCORE_FLOOR_MIN,
+            maximum=COUPLING_ADAPTIVE_LOW_SIGNAL_PHYSICAL_SCORE_FLOOR_MAX,
+        )
+    )
+
+    adaptive_gate_enabled = (
+        future_floor < COUPLING_INTERLOBE_FUTURE_PRESERVATION_FLOOR_DEFAULT
+        and depth_over_length >= 8.0
+        and target_coverage >= 0.85
+        and sequence_complexity >= 0.82
+        and future_ceiling >= COUPLING_ADAPTIVE_LOW_SIGNAL_FUTURE_MIN
+    )
+    low_signal_rescue_enabled = (
+        adaptive_gate_enabled
+        and physical_floor <= 0.38
+        and future_ceiling >= COUPLING_ADAPTIVE_LOW_SIGNAL_FUTURE_MIN
+    )
+    return AdaptiveCouplingFloorProfile(
+        row_id=event.row_id,
+        source_accession=source_accession,
+        phase_mode=phase_mode,
+        sequence_complexity=sequence_complexity,
+        coupling_depth_over_length=depth_over_length,
+        target_coverage=target_coverage,
+        row_future_preservation_ceiling=future_ceiling,
+        future_preservation_floor=future_floor,
+        physical_score_floor=physical_floor,
+        adaptive_gate_enabled=adaptive_gate_enabled,
+        low_signal_rescue_enabled=low_signal_rescue_enabled,
+        signal_reason=";".join(reasons),
+    )
+
+
+def adaptive_coupling_floor_report(
+    event: NucleusClosureEvent,
+    context: CouplingNucleusContext,
+) -> dict[str, object]:
+    return _adaptive_coupling_floor_profile(event, context).to_dict()
 
 
 def _top_confidence_pairs(
@@ -536,19 +864,10 @@ def _adaptive_future_preservation_threshold(
 
 
 
-def _is_multidomain_protein(
+def _has_strict_interlobe_row_signature(
     event: NucleusClosureEvent,
     context: CouplingNucleusContext,
 ) -> bool:
-    """
-    Identify multi-domain proteins dynamically by checking if they contain
-    any contacts with the strict inter-lobe signature (large span, extremely
-    weak direct conservation, low local cluster density).
-
-    If a protein has even one such contact (like event 7 in 1CLL), the entire
-    protein is treated as multi-domain, and its contacts receive adaptive,
-    gap-based thresholds rather than standard rigid gates.
-    """
     for candidate in context.competitive_events:
         if candidate.row_id != event.row_id:
             continue
@@ -558,13 +877,51 @@ def _is_multidomain_protein(
     return False
 
 
+def _is_multidomain_protein(
+    event: NucleusClosureEvent,
+    context: CouplingNucleusContext,
+) -> bool:
+    """
+    Dynamic adaptive-mode detector.
+
+    The old gate switched only on a strict inter-lobe signature. That catches
+    1CLL, but it misses weak/segmented rows such as 4AKE and underuses MSA
+    quality when the signal is real but shallow. The new decision still accepts
+    the strict signature, then adds a non-oracle row-level profile based on
+    phase mode, sequence complexity, coupling depth and coverage.
+    """
+    if _has_strict_interlobe_row_signature(event, context):
+        return True
+    return _adaptive_coupling_floor_profile(event, context).adaptive_gate_enabled
+
+
+def _passes_low_signal_adaptive_rescue(
+    event: NucleusClosureEvent,
+    context: CouplingNucleusContext,
+    profile: AdaptiveCouplingFloorProfile,
+) -> bool:
+    if not profile.low_signal_rescue_enabled:
+        return False
+    assessment = context.assessment_by_event_id[event.event_id]
+    return (
+        assessment.future_preservation_score >= COUPLING_ADAPTIVE_LOW_SIGNAL_FUTURE_MIN
+        and coupling_nucleus_score(event, context) >= profile.physical_score_floor
+        and assessment.direct_support_score
+        >= COUPLING_ADAPTIVE_LOW_SIGNAL_DIRECT_SUPPORT_MIN
+        and event.contact_cluster_gain >= COUPLING_ADAPTIVE_LOW_SIGNAL_CLUSTER_MIN
+        and assessment.blocked_future_pressure
+        <= COUPLING_ADAPTIVE_LOW_SIGNAL_BLOCKED_FUTURE_CEILING
+    )
+
+
 def _passes_coupling_future_gate(
     event: NucleusClosureEvent,
     context: CouplingNucleusContext,
 ) -> bool:
     assessment = context.assessment_by_event_id[event.event_id]
+    profile = _adaptive_coupling_floor_profile(event, context)
 
-    # Standard proteins: require all three gates
+    # Standard rows: keep the original strict gates. This is the 1TIM guard.
     if not _is_multidomain_protein(event, context):
         return (
             assessment.direct_support_score >= COUPLING_DIRECT_SUPPORT_MIN
@@ -572,10 +929,10 @@ def _passes_coupling_future_gate(
             and assessment.blocked_future_pressure <= COUPLING_BLOCKED_FUTURE_MAX
         )
 
-    # Multi-domain proteins: adaptive gating for all contacts in the protein
-    # 1. Skip direct_support gate (inherently weak for inter-lobe contacts)
-    # 2. Use gap-based future_preservation threshold from row distribution
-    # 3. Use relaxed blocked_future ceiling
+    # Adaptive rows:
+    # 1. Skip direct_support for inter-lobe-style contacts.
+    # 2. Use a row gap threshold, but with a floor derived from phase/sequence/MSA.
+    # 3. Allow a narrow low-signal rescue only when physical/coupling support is high.
     row_assessments = [
         context.assessment_by_event_id[e.event_id]
         for e in context.competitive_events
@@ -584,11 +941,16 @@ def _passes_coupling_future_gate(
     adaptive_fp = _adaptive_future_preservation_threshold(
         row_assessments,
         default=COUPLING_FUTURE_PRESERVATION_MIN,
-        floor=COUPLING_INTERLOBE_FUTURE_PRESERVATION_FLOOR,
+        floor=profile.future_preservation_floor,
     )
-    return (
+    adaptive_future_pass = (
         assessment.future_preservation_score >= adaptive_fp
         and assessment.blocked_future_pressure <= COUPLING_INTERLOBE_BLOCKED_FUTURE_CEILING
+    )
+    return adaptive_future_pass or _passes_low_signal_adaptive_rescue(
+        event,
+        context,
+        profile,
     )
 
 
@@ -2183,6 +2545,7 @@ def selected_event_rows(
         ):
             assessment = context.assessment_by_event_id[event.event_id]
             state = context.physical_context.state_by_event_id[event.event_id]
+            adaptive_profile = _adaptive_coupling_floor_profile(event, context)
             rows.append(
                 {
                     "selector_name": selector_name,
@@ -2204,6 +2567,27 @@ def selected_event_rows(
                         assessment.future_preservation_score
                     ),
                     "blocked_future_pressure": assessment.blocked_future_pressure,
+                    "adaptive_phase_mode": adaptive_profile.phase_mode,
+                    "adaptive_sequence_complexity": (
+                        adaptive_profile.sequence_complexity
+                    ),
+                    "adaptive_coupling_depth_over_length": (
+                        adaptive_profile.coupling_depth_over_length
+                    ),
+                    "adaptive_target_coverage": adaptive_profile.target_coverage,
+                    "adaptive_future_preservation_floor": (
+                        adaptive_profile.future_preservation_floor
+                    ),
+                    "adaptive_physical_score_floor": (
+                        adaptive_profile.physical_score_floor
+                    ),
+                    "adaptive_gate_enabled": (
+                        adaptive_profile.adaptive_gate_enabled
+                    ),
+                    "adaptive_low_signal_rescue_enabled": (
+                        adaptive_profile.low_signal_rescue_enabled
+                    ),
+                    "adaptive_signal_reason": adaptive_profile.signal_reason,
                     "coupling_decoy_margin": (
                         context.coupling_decoy_margin_by_event_id[event.event_id]
                     ),

@@ -483,6 +483,17 @@ def import_external_coupling_dataset(
                 apc_corrected_score=audit.apc_corrected_score,
                 rank=audit.rank,
                 rank_fraction=audit.rank_fraction,
+                msa_source_kind=audit.msa_source_kind,
+                msa_sha256=audit.msa_sha256,
+                msa_depth=audit.msa_depth,
+                effective_sequence_count=audit.effective_sequence_count,
+                effective_sequence_count_over_length=(
+                    audit.effective_sequence_count_over_length
+                ),
+                target_coverage=audit.target_coverage,
+                focus_sequence_mapping_confidence=(
+                    audit.focus_sequence_mapping_confidence
+                ),
             )
         )
 
