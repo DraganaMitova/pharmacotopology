@@ -362,3 +362,44 @@ PYTHONPATH=src python3 scripts/run_msa_free_single_sequence_structure_probe_v0.p
 
 No predictor is run unless `--prediction-command` is explicitly provided, and that subprocess is bounded by `--timeout-seconds`. AlphaFold-like source IDs are rejected by default in this MSA-free probe.
 
+
+## 4AKE no-AlphaFold hard attempt v0
+
+Run the bounded internet MSA-free attempt:
+
+```bash
+PYTHONPATH=src python3 scripts/run_4ake_noaf_hard_attempt_v0.py \
+  --out-dir first_contact_clean_pharmacotopology_layer_run/4ake_noaf_hard_attempt_v0
+```
+
+Run only the internet ESMFold/BioLM sweep:
+
+```bash
+PYTHONPATH=src python3 scripts/run_4ake_msa_free_internet_sweep_v0.py \
+  --out-dir first_contact_clean_pharmacotopology_layer_run/4ake_msa_free_internet_sweep_v0 \
+  --timeout-seconds 120
+```
+
+Run with a real non-AlphaFold predicted PDB:
+
+```bash
+PYTHONPATH=src python3 scripts/run_msa_free_single_sequence_structure_probe_v0.py \
+  --source-accession 4AKE:A \
+  --predicted-pdb /path/to/esmfold_or_omegafold_or_spired_4ake.pdb \
+  --predicted-source-id esmfold_single_sequence_4ake \
+  --predicted-pdb-chain A \
+  --include-sequence-physical-priors \
+  --out-dir first_contact_clean_pharmacotopology_layer_run/msa_free_single_sequence_structure_v0
+```
+
+Default tests are fast and non-visual:
+
+```bash
+PYTHONPATH=src PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 python3 -m pytest -q -vv
+```
+
+Slow/full tests are opt-in:
+
+```bash
+PYTHONPATH=src PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 python3 -m pytest -q -vv --run-full-suite
+```

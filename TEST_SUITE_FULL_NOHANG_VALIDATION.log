@@ -1,0 +1,16 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.5, pytest-9.0.2, pluggy-1.6.0 -- /opt/pyvenv/bin/python3
+cachedir: .pytest_cache
+rootdir: /mnt/data/work_solve/pharmacotopology
+configfile: pyproject.toml
+testpaths: tests
+collecting ... collected 6 items
+
+tests/test_4ake_alphafold_real_source_end_to_end_v0.py::test_4ake_done_mode_cracks_without_default_gif_generation PASSED
+tests/test_4ake_alphafold_real_source_end_to_end_v0.py::test_4ake_done_mode_visual_proof_is_explicit_opt_in SKIPPED
+tests/test_msa_free_internet_predictor_v0.py::test_esm_atlas_adapter_fails_closed_without_persisting_sequence PASSED
+tests/test_msa_free_single_sequence_structure_source_v0.py::test_msa_free_adapter_rejects_alphafold_like_source_id_without_opt_in PASSED
+tests/test_msa_free_single_sequence_structure_source_v0.py::test_msa_free_adapter_times_out_and_does_not_persist_query_fasta_by_default PASSED
+tests/test_self_consistent_contact_loop_v0.py::test_self_consistent_loop_respects_native_free_self_decision_without_static_threshold PASSED
+
+======================== 5 passed, 1 skipped in 26.02s =========================

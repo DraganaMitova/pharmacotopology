@@ -34,7 +34,10 @@ from pharmacotopology.folding_independent_contact_evidence import (  # noqa: E40
     sequence_physical_prior_contact_evidence,
     write_contact_evidence_json,
 )
-from pharmacotopology.folding_native_contact_eval import contact_map_hash  # noqa: E402
+from pharmacotopology.folding_native_contact_eval import (  # noqa: E402
+    contact_map_hash,
+    evaluate_contact_prediction,
+)
 from pharmacotopology.folding_nucleus_closure_search import NucleusClosureEvent  # noqa: E402
 from pharmacotopology.folding_real_coordinate_visual_benchmark import (  # noqa: E402
     RealCoordinateVisualRow,
@@ -124,6 +127,8 @@ def main() -> None:
     parser.add_argument("--include-sequence-physical-priors", action="store_true")
     parser.add_argument("--physical-prior-min-confidence", type=float, default=0.55)
     parser.add_argument("--min-votes", type=int, default=2)
+    parser.add_argument("--solved-precision-threshold", type=float, default=0.70)
+    parser.add_argument("--solved-recall-threshold", type=float, default=0.70)
     parser.add_argument("--fail-without-prediction", action="store_true")
     args = parser.parse_args()
 
@@ -167,18 +172,19 @@ def main() -> None:
     )
 
     predictor_parse_error = ""
+    direct_structure_pairs: tuple[tuple[int, int], ...] = ()
     if source_run.status == "prediction_available":
         try:
-            evidence.extend(
-                contact_evidence_from_predicted_pdb(
-                    row=row,
-                    pdb_path=Path(source_run.predicted_pdb_path),
-                    chain_id=args.predicted_pdb_chain,
-                    source_id=args.predicted_source_id,
-                    source_kind=SINGLE_SEQUENCE_STRUCTURE_CONTACT_SOURCE_KIND,
-                    source_family="independent_structure",
-                )
+            structure_evidence = contact_evidence_from_predicted_pdb(
+                row=row,
+                pdb_path=Path(source_run.predicted_pdb_path),
+                chain_id=args.predicted_pdb_chain,
+                source_id=args.predicted_source_id,
+                source_kind=SINGLE_SEQUENCE_STRUCTURE_CONTACT_SOURCE_KIND,
+                source_family="independent_structure",
             )
+            direct_structure_pairs = tuple(item.pair() for item in structure_evidence)
+            evidence.extend(structure_evidence)
         except Exception as exc:  # noqa: BLE001 - report parse failure rather than hang/crash by default
             predictor_parse_error = f"{type(exc).__name__}: {exc}"
 
@@ -191,6 +197,35 @@ def main() -> None:
     )
     selected_decisions = tuple(decision for decision in decisions if decision.selected)
     selected_pairs = tuple(decision.pair() for decision in selected_decisions)
+
+    direct_structure_metric = evaluate_contact_prediction(
+        native_pairs=row.native_contact_pairs(),
+        predicted_pairs=direct_structure_pairs,
+    )
+    native_long_pairs = {pair for pair in row.native_contact_pairs() if pair[1] - pair[0] >= 24}
+    direct_long_pairs = {pair for pair in direct_structure_pairs if pair[1] - pair[0] >= 24}
+    direct_long_tp = native_long_pairs & direct_long_pairs
+    direct_long_precision = (
+        round(len(direct_long_tp) / len(direct_long_pairs), 6) if direct_long_pairs else 0.0
+    )
+
+    direct_structure_claim_allowed = (
+        source_run.status == "prediction_available"
+        and not source_run.source_rejected
+        and not source_run.alphafold_like_source_id
+        and not source_run.raw_sequence_exposed_in_persisted_artifacts
+        and not predictor_parse_error
+        and direct_structure_metric.native_contact_precision >= args.solved_precision_threshold
+        and direct_structure_metric.native_contact_recall >= args.solved_recall_threshold
+    )
+    ensemble_solved = (
+        report.benchmark_claim_allowed
+        and report.contact_precision >= args.solved_precision_threshold
+        and report.contact_recall >= args.solved_recall_threshold
+        and not source_run.alphafold_like_source_id
+        and not predictor_parse_error
+    )
+    folding_problem_solved = bool(direct_structure_claim_allowed or ensemble_solved)
 
     script_safety_rejection = "none"
     if source_run.source_rejected:
@@ -213,6 +248,14 @@ def main() -> None:
         "predictor_parse_error": predictor_parse_error,
         "source_family_pair_counts": _family_counts(evidence),
         "selected_contact_map_hash": contact_map_hash(selected_pairs),
+        "direct_structure_contact_map_hash": contact_map_hash(direct_structure_pairs),
+        "direct_structure_metric": {
+            **direct_structure_metric.to_dict(),
+            "long_range_contact_precision": direct_long_precision,
+            "claim_allowed": direct_structure_claim_allowed,
+            "solved_precision_threshold": args.solved_precision_threshold,
+            "solved_recall_threshold": args.solved_recall_threshold,
+        },
         "report": report.to_dict(),
         "selected_contacts": [decision.to_dict() for decision in selected_decisions],
         "safety": {
@@ -224,11 +267,12 @@ def main() -> None:
             "query_fasta_persisted": source_run.query_fasta_persisted,
             "raw_sequence_exposed_in_persisted_artifacts": source_run.raw_sequence_exposed_in_persisted_artifacts,
             "benchmark_claim_allowed_by_ensemble": report.benchmark_claim_allowed,
+            "benchmark_claim_allowed_by_direct_structure": direct_structure_claim_allowed,
             "script_safety_rejection": script_safety_rejection,
             "native_truth_used_before_selection": report.native_truth_used_before_selection,
             "coordinate_truth_used_before_selection": report.coordinate_truth_used_before_selection,
             "native_truth_attached_after_selection_for_evaluation": True,
-            "folding_problem_solved": False,
+            "folding_problem_solved": folding_problem_solved,
         },
     }
 

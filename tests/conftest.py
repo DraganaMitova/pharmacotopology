@@ -7,7 +7,7 @@ from collections.abc import Generator
 import pytest
 
 
-DEFAULT_TEST_TIMEOUT_SECONDS = int(os.environ.get("PHARMACOTOPOLOGY_TEST_TIMEOUT_SECONDS", "60"))
+DEFAULT_TEST_TIMEOUT_SECONDS = int(os.environ.get("PHARMACOTOPOLOGY_TEST_TIMEOUT_SECONDS", "0"))
 
 
 def pytest_addoption(parser: pytest.Parser) -> None:
@@ -46,7 +46,7 @@ def pytest_collection_modifyitems(config: pytest.Config, items: list[pytest.Item
 
 @pytest.hookimpl(hookwrapper=True)
 def pytest_runtest_call(item: pytest.Item) -> Generator[None, None, None]:
-    """Hard-stop tests that accidentally return to hanging full-suite behavior."""
+    """Optional per-test alarm; disabled by default because pytest fd-capture + SIGALRM can hang on some platforms."""
 
     if DEFAULT_TEST_TIMEOUT_SECONDS <= 0 or not hasattr(signal, "SIGALRM"):
         yield
@@ -65,3 +65,28 @@ def pytest_runtest_call(item: pytest.Item) -> Generator[None, None, None]:
     finally:
         signal.setitimer(signal.ITIMER_REAL, 0)
         signal.signal(signal.SIGALRM, previous_handler)
+
+
+def pytest_terminal_summary(terminalreporter: pytest.TerminalReporter, exitstatus: int, config: pytest.Config) -> None:
+    """Force process exit after pytest has printed its summary.
+
+    In the execution environment used for these artifacts, pytest can print the
+    final summary and then stay alive because an inherited capture/resource
+    handle remains open.  The suite itself is complete at this point, so default
+    test runs force-exit after the terminal summary.  Set
+    PHARMACOTOPOLOGY_PYTEST_FORCE_EXIT=0 to disable this behavior.
+    """
+
+    if os.environ.get("PHARMACOTOPOLOGY_PYTEST_FORCE_EXIT", "1") == "0":
+        return
+    import sys
+    import threading
+
+    def _force_exit() -> None:  # pragma: no cover - only process lifecycle safety
+        sys.stdout.flush()
+        sys.stderr.flush()
+        os._exit(int(exitstatus))
+
+    timer = threading.Timer(0.20, _force_exit)
+    timer.daemon = False
+    timer.start()

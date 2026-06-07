@@ -3,6 +3,8 @@ from __future__ import annotations
 from pathlib import Path
 import sys
 
+import pytest
+
 REPO_ROOT = Path(__file__).resolve().parents[1]
 SRC_ROOT = REPO_ROOT / "src"
 if str(SRC_ROOT) not in sys.path:
@@ -18,6 +20,7 @@ from pharmacotopology.folding_self_consistent_contact_loop import run_self_consi
 
 
 
+@pytest.mark.slow
 def test_self_consistent_loop_respects_native_free_self_decision_without_static_threshold() -> None:
     rows = load_real_coordinate_visual_rows(REPO_ROOT / "data" / "folding_real_coordinate_visual_8.locked.json")
     row = next(item for item in rows if item.source_accession == "4AKE:A")
