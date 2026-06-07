@@ -30,7 +30,8 @@ The self-deciding path does **not** use an accession-specific rule and does **no
 7. residue-degree pressure while adding selected pairs
 8. phase-aware score-surface choice: boundary/frontier vs direct-ridge trace
 9. tier-aware low-score widening for broad direct-ridge traces
-10. self-verified frontier expansion, where candidate regions are ranked by native-free self-collapse confidence and accepted at the largest internal gap, not by a fixed confidence threshold
+10. phase-specific self-collapse confidence: direct-ridge traces emphasize ridge/degree consistency, lattice/boundary regions emphasize boundary-degree completeness, and alpha-strip regions emphasize compactness-style support
+11. self-verified frontier expansion, where candidate regions are ranked by native-free phase-specific self-collapse acceptance and accepted at the largest internal gap, not by a fixed confidence threshold
 
 The controller can therefore choose different native-free outcomes per event:
 
@@ -133,12 +134,12 @@ frontier long-native retention: 0.230769
 The current tier-aware self-deciding path keeps the same native-free score-surface choice, then opens a wider low-score ridge tier only for broad long-range ridge traces:
 
 ```text
-collapsed pairs: 34
+collapsed pairs: 38
 true positives: 16
-contact precision: 0.470588
-long-range precision: 0.470588
+contact precision: 0.421053
+long-range precision: 0.421053
 long-range recall: 0.082902
-long-range F1: 0.140970
+long-range F1: 0.138529
 frontier long-native retention: 0.615385
 ```
 
@@ -153,20 +154,20 @@ long-range recall: 0.015544
 frontier long-native retention: 0.115385
 ```
 
-A self-verified frontier expansion controller was added after the raw expansion probe. It does not lower the frontier floor globally and it does not use a fixed confidence threshold such as 0.55 or 0.60. It only evaluates extra regions when the accepted seed frontier already contains a broad low-score `direct_ridge_trace` region; candidate regions are then ranked by native-free self-collapse acceptance score and accepted at the largest internal gap in that row-specific distribution.
+A self-verified frontier expansion controller was added after the raw expansion probe. It does not lower the frontier floor globally and it does not use a fixed confidence threshold such as 0.55 or 0.60. It only evaluates extra regions when the accepted seed frontier already contains a broad low-score `direct_ridge_trace` region; candidate regions are then ranked by native-free phase-specific self-collapse acceptance score and accepted at the largest internal gap in that row-specific distribution.
 
 ```text
-self-verified merged expansion events: 5
-uncollapsed long-range recall: 0.160622
-collapsed pairs: 44
-true positives: 18
-contact precision: 0.409091
-long-range precision: 0.409091
-long-range recall: 0.093264
-long-range F1: 0.151898
+self-verified merged expansion events: 6
+uncollapsed long-range recall: 0.207254
+collapsed pairs: 65
+true positives: 24
+contact precision: 0.369231
+long-range precision: 0.369231
+long-range recall: 0.124352
+long-range F1: 0.186046
 ```
 
-The accepted expansion rows are selected by the largest internal gap over self-collapse acceptance scores, not native labels and not a fixed confidence threshold. For 4AKE the controller adds two extra ridge-trace regions and rejects the broad ungated low-floor expansion. Honest conclusion: 4AKE is now **frontier-expansion rescued but not fully solved**. The controller increases collapsed true positives from 16 to 18 and long-range recall from 0.082902 to 0.093264 while keeping precision above 0.40. It is still not fully solved because total long-range recall remains below 0.10.
+The accepted expansion rows are selected by the largest internal gap over phase-specific self-collapse acceptance scores, not native labels and not a fixed confidence threshold. For 4AKE the controller now adds three extra ridge-trace regions and rejects the broad ungated low-floor expansion. Honest conclusion: 4AKE is now **phase-specific frontier-expansion rescued but not fully solved**. The controller increases collapsed true positives from 16 to 24 and long-range recall from 0.082902 to 0.124352, but precision drops to 0.369231. This is an honest recall gain, not a full solve: total long-range recall remains below 0.15 and the precision/recall frontier still needs improvement.
 
 ### 1MBN
 
@@ -206,4 +207,4 @@ fixed pairs/event budget in main path: false
 accession-specific collapse rules: false
 ```
 
-1CLL remains a real contact-level collapse breakthrough. 1MBN shows that the self-deciding path can generalize a precision rescue outside 1CLL. 4AKE is no longer a total collapse failure: tier-aware self-decision recovers 16 true positives from 34 contacts with 0.470588 precision, and the self-verified frontier expansion raises that to 18 true positives from 44 contacts with 0.409091 precision. Recall is still low relative to the full native long-range map, so the next honest bottleneck is not another raw low-floor expansion; it is finding additional frontier regions whose own self-collapse confidence survives without precision collapse.
+1CLL remains a real contact-level collapse breakthrough. 1MBN shows that the self-deciding path can generalize a precision rescue outside 1CLL. 4AKE is no longer a total collapse failure: tier-aware self-decision recovers 16 true positives from 38 contacts with 0.421053 precision, and phase-specific self-verified frontier expansion raises that to 24 true positives from 65 contacts with 0.369231 precision. Recall is still low relative to the full native long-range map, so the next honest bottleneck is not another raw low-floor expansion; it is improving the internal confidence ranking so additional frontier regions survive without precision collapse.

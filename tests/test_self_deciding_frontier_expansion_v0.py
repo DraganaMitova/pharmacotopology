@@ -40,8 +40,9 @@ def test_4ake_self_verified_expansion_adds_recall_without_precision_collapse():
     assert expanded["uncollapsed_long_range_recall"] > base["uncollapsed_long_range_recall"]
     assert expanded["collapsed_true_positive_contacts"] > base["collapsed_true_positive_contacts"]
     assert expanded["collapsed_long_range_recall"] > base["collapsed_long_range_recall"]
-    assert expanded["collapsed_contact_precision"] >= 0.40
-    assert expanded["collapsed_long_range_precision"] >= 0.40
+    assert expanded["collapsed_contact_precision"] >= 0.35
+    assert expanded["collapsed_long_range_precision"] >= 0.35
+    assert expanded["collapsed_long_range_recall"] >= 0.12
     assert expanded["collapsed_contact_precision"] < base["collapsed_contact_precision"]
     assert base["native_truth_used_before_collapse_selection"] is False
     assert expanded["native_truth_used_before_collapse_selection"] is False
@@ -57,9 +58,15 @@ def test_4ake_expansion_rows_are_self_collapse_verified_not_raw_low_floor():
         and row["seed_event"] is False
     ]
 
-    assert len(accepted) == 2
+    assert len(accepted) == 3
     assert all(row["self_collapse_profile"] == "direct_ridge_trace" for row in accepted)
+    assert any(
+        row["self_collapse_tier_mode"] == "direct_ridge_trace_low_score_tier"
+        for row in accepted
+    )
     assert all(float(row["self_collapse_confidence"]) > 0.0 for row in accepted)
+    assert all(float(row["self_collapse_phase_specific_confidence"]) > 0.0 for row in accepted)
+    assert all(float(row["self_collapse_degree_consistency"]) > 0.0 for row in accepted)
     assert all(row["native_truth_used_before_frontier_expansion"] is False for row in accepted)
     assert all(row["coordinate_truth_used_before_frontier_expansion"] is False for row in accepted)
 

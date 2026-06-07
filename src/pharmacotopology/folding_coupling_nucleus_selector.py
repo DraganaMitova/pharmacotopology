@@ -1580,24 +1580,55 @@ def _collapse_inputs_for_context(
     return features_by_row, constraints_by_row
 
 
-def _self_collapse_confidence(
+def _selected_pair_degree_consistency(selected_pairs) -> float:
+    """Native-free residue-degree regularity for a collapsed candidate set.
+
+    This is not the old fixed ``2..5 contacts`` rule.  It measures whether the
+    collapsed set is spread across its own residue footprint instead of being
+    dominated by a single hub.  The scale comes from the selected set itself.
+    """
+    if not selected_pairs:
+        return 0.0
+    degree: Counter[int] = Counter()
+    for pair in selected_pairs:
+        degree[int(pair.i)] += 1
+        degree[int(pair.j)] += 1
+    if not degree:
+        return 0.0
+    values = tuple(degree.values())
+    max_degree = max(values)
+    mean_degree = mean(values)
+    footprint_fraction = len(values) / max(1.0, 2.0 * len(selected_pairs))
+    hub_balance = mean_degree / max(1.0, float(max_degree))
+    return _rounded(0.55 * footprint_fraction + 0.45 * hub_balance)
+
+
+def _self_collapse_confidence_components(
     *,
     selected_pairs,
     summary,
-) -> float:
+) -> dict[str, float | str]:
     """Native-free confidence that a candidate region collapses cleanly.
 
-    This does not estimate precision from native labels.  It combines the
-    already-selected contact subset with the event's own score shape: selected
-    support, gap clarity, external-root density, non-total collapse width, and a
-    profile-consistency signal.  The downstream selector uses distribution ranks
-    over this value instead of a fixed absolute threshold.
+    The confidence is phase-specific but still self-deciding: no native map,
+    accession name, coordinate truth, fixed confidence threshold, or row-specific
+    override enters this score.  The downstream selector still cuts by the
+    largest internal gap in the row's candidate-confidence distribution.
     """
     selected_count = int(summary.selected_pair_count)
     candidate_count = int(summary.candidate_region_pair_count)
     if selected_count <= 0 or candidate_count <= 0:
-        return 0.0
+        return {
+            "self_collapse_confidence": 0.0,
+            "self_collapse_phase_specific_confidence": 0.0,
+            "self_collapse_degree_consistency": 0.0,
+            "self_collapse_confidence_mode": "closed",
+        }
     mean_pair_score = mean([float(pair.collapse_score) for pair in selected_pairs]) if selected_pairs else 0.0
+    mean_ridge = mean([float(pair.ridge_coherence_score) for pair in selected_pairs]) if selected_pairs else 0.0
+    mean_density = mean([float(pair.coupling_density_score) for pair in selected_pairs]) if selected_pairs else 0.0
+    mean_sequence = mean([float(pair.sequence_law_support_score) for pair in selected_pairs]) if selected_pairs else 0.0
+    mean_boundary = mean([float(pair.boundary_coherence_score) for pair in selected_pairs]) if selected_pairs else 0.0
     mean_internal_support = mean(
         [
             0.34 * float(pair.ridge_coherence_score)
@@ -1618,18 +1649,86 @@ def _self_collapse_confidence(
     # Good expansion candidates are neither closed nor the full 8x8 block.  A
     # wide tier is allowed, but a near-total region is not trusted as expansion.
     width_signal = _rounded(1.0 - selected_count / max(1.0, candidate_count))
+    degree_consistency = _selected_pair_degree_consistency(selected_pairs)
     profile_signal = 0.0
     if str(summary.self_deciding_profile) == SELF_VERIFIED_EXPANSION_PROFILE:
         profile_signal += 0.55
     if str(summary.self_deciding_tier_mode) == SELF_VERIFIED_EXPANSION_TIER_MODE:
         profile_signal += 0.45
-    return _rounded(
-        0.24 * mean_pair_score
-        + 0.24 * mean_internal_support
-        + 0.20 * gap_signal
+    base_confidence = _rounded(
+        0.22 * mean_pair_score
+        + 0.20 * mean_internal_support
+        + 0.18 * gap_signal
         + 0.14 * direct_root_signal
-        + 0.10 * width_signal
-        + 0.08 * profile_signal
+        + 0.12 * width_signal
+        + 0.10 * degree_consistency
+        + 0.04 * profile_signal
+    )
+
+    profile = str(summary.self_deciding_profile)
+    phase = str(summary.self_deciding_phase_mode)
+    if profile == "direct_ridge_trace":
+        # Ridge traces trust coherent external-root density, but they also need a
+        # sane degree footprint so low-score expansion does not reopen an 8x8 map.
+        phase_confidence = _rounded(
+            0.20 * mean_pair_score
+            + 0.18 * mean_ridge
+            + 0.18 * mean_density
+            + 0.16 * mean_sequence
+            + 0.14 * degree_consistency
+            + 0.08 * direct_root_signal
+            + 0.06 * width_signal
+        )
+        mode = "phase_direct_ridge_trace"
+    elif phase == "sequence_inferred_lattice_or_beta":
+        phase_confidence = _rounded(
+            0.20 * mean_pair_score
+            + 0.22 * mean_boundary
+            + 0.18 * degree_consistency
+            + 0.16 * mean_sequence
+            + 0.12 * gap_signal
+            + 0.12 * direct_root_signal
+        )
+        mode = "phase_lattice_boundary_degree"
+    elif phase == "sequence_inferred_alpha_strip":
+        phase_confidence = _rounded(
+            0.20 * mean_pair_score
+            + 0.24 * mean_sequence
+            + 0.20 * mean_boundary
+            + 0.16 * degree_consistency
+            + 0.10 * direct_root_signal
+            + 0.10 * width_signal
+        )
+        mode = "phase_alpha_strip_compactness"
+    else:
+        phase_confidence = _rounded(
+            0.22 * mean_pair_score
+            + 0.20 * mean_internal_support
+            + 0.20 * degree_consistency
+            + 0.16 * gap_signal
+            + 0.12 * direct_root_signal
+            + 0.10 * width_signal
+        )
+        mode = "phase_mixed_internal_evidence"
+
+    return {
+        "self_collapse_confidence": _rounded(0.45 * base_confidence + 0.55 * phase_confidence),
+        "self_collapse_phase_specific_confidence": phase_confidence,
+        "self_collapse_degree_consistency": degree_consistency,
+        "self_collapse_confidence_mode": mode,
+    }
+
+
+def _self_collapse_confidence(
+    *,
+    selected_pairs,
+    summary,
+) -> float:
+    return float(
+        _self_collapse_confidence_components(
+            selected_pairs=selected_pairs,
+            summary=summary,
+        )["self_collapse_confidence"]
     )
 
 
@@ -1651,12 +1750,13 @@ def _self_verified_collapse_row(
         min_pairs_per_event=0,
         max_pairs_per_event=0,
     )
-    confidence = _self_collapse_confidence(
+    confidence_components = _self_collapse_confidence_components(
         selected_pairs=selected_pairs,
         summary=summary,
     )
+    confidence = float(confidence_components["self_collapse_confidence"])
     output = {
-        "self_collapse_confidence": confidence,
+        **confidence_components,
         "self_collapse_selected_pair_count": summary.selected_pair_count,
         "self_collapse_candidate_region_pair_count": summary.candidate_region_pair_count,
         "self_collapse_profile": summary.self_deciding_profile,
@@ -1698,6 +1798,38 @@ def _self_verified_expandable_profiles(
         ):
             profiles.add(str(collapse_row["self_collapse_profile"]))
     return profiles
+
+
+def _self_verified_frontier_expansion_acceptance_score(
+    score_row: Mapping[str, object],
+    collapse_row: Mapping[str, object],
+) -> float:
+    """Native-free multi-evidence ranking score for expansion candidates.
+
+    This replaces the earlier product-style score.  It is still not a threshold:
+    candidates are ranked by this score and accepted only at the row-local largest
+    gap.  The separate terms let phase-specific collapse confidence rescue a
+    clean low-score ridge-shadow region without lowering a global floor.
+    """
+    expansion_score = float(score_row["self_deciding_frontier_expansion_score"])
+    phase_confidence = float(collapse_row.get("self_collapse_phase_specific_confidence", 0.0))
+    degree_consistency = float(collapse_row.get("self_collapse_degree_consistency", 0.0))
+    selected_count = float(collapse_row.get("self_collapse_selected_pair_count", 0.0))
+    candidate_count = float(collapse_row.get("self_collapse_candidate_region_pair_count", 0.0))
+    breadth_signal = sqrt(selected_count / candidate_count) if candidate_count > 0.0 else 0.0
+    tier_signal = (
+        1.0
+        if str(collapse_row.get("self_collapse_tier_mode", ""))
+        == SELF_VERIFIED_EXPANSION_TIER_MODE
+        else 0.0
+    )
+    return _rounded(
+        0.38 * expansion_score
+        + 0.22 * phase_confidence
+        + 0.18 * breadth_signal
+        + 0.10 * degree_consistency
+        + 0.12 * tier_signal
+    )
 
 
 def _self_deciding_frontier_expansion_cutoff(
@@ -1775,9 +1907,9 @@ def select_coupling_trace_loop_self_deciding_frontier_expanded_events(
                 continue
             if str(collapse_row["self_collapse_profile"]) not in expandable_profiles:
                 continue
-            acceptance_score = _rounded(
-                float(score_row["self_deciding_frontier_expansion_score"])
-                * (0.40 + 0.60 * float(collapse_row["self_collapse_confidence"]))
+            acceptance_score = _self_verified_frontier_expansion_acceptance_score(
+                score_row,
+                collapse_row,
             )
             merged_row = {
                 **score_row,
@@ -1815,6 +1947,9 @@ def select_coupling_trace_loop_self_deciding_frontier_expanded_events(
 def _closed_self_verified_collapse_row() -> dict[str, object]:
     return {
         "self_collapse_confidence": 0.0,
+        "self_collapse_phase_specific_confidence": 0.0,
+        "self_collapse_degree_consistency": 0.0,
+        "self_collapse_confidence_mode": "closed",
         "self_collapse_selected_pair_count": 0,
         "self_collapse_candidate_region_pair_count": 0,
         "self_collapse_profile": "not_evaluated_without_seed_expandable_profile",
@@ -1875,10 +2010,11 @@ def self_deciding_frontier_expansion_rows(
             str(collapse_row["self_collapse_profile"]) in expandable_profiles
             and int(collapse_row["self_collapse_selected_pair_count"]) > 0
         )
-        acceptance_score = _rounded(
-            float(score_row["self_deciding_frontier_expansion_score"])
-            * (0.40 + 0.60 * float(collapse_row["self_collapse_confidence"]))
-        ) if candidate_profile_allowed else 0.0
+        acceptance_score = (
+            _self_verified_frontier_expansion_acceptance_score(score_row, collapse_row)
+            if candidate_profile_allowed
+            else 0.0
+        )
         score_row.update(
             collapse_row
         )

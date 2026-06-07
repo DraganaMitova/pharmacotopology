@@ -667,6 +667,12 @@ def _self_deciding_score_profile(
         and (
             phase_mode == "sequence_inferred_lattice_or_beta"
             or event.contact_cluster_gain < 0.42
+            or (
+                phase_mode == "sequence_inferred_alpha_strip"
+                and event.sequence_span * 2 >= event.sequence_length
+                and mean_sequence >= mean_ridge
+                and mean_density <= mean_ridge
+            )
         )
     ):
         return "direct_ridge_trace"
@@ -804,8 +810,19 @@ def _self_deciding_cutoff(
         tier_floor = median(scores) + tier_std_fraction * (
             pstdev(scores) if len(scores) > 1 else 0.0
         )
+        if event.sequence_span * 2 >= event.sequence_length:
+            # For half-chain inter-domain traces, the useful ridge can sit just
+            # below the median.  Use the event's own lower-quartile shoulder as
+            # a second, native-free plateau boundary instead of a fixed pair
+            # budget.  Degree pressure still prevents reopening the full 8x8 map.
+            ordered_scores = sorted(scores, reverse=True)
+            lower_quartile = ordered_scores[min(len(ordered_scores) - 1, (3 * len(ordered_scores)) // 4)]
+            tier_floor = min(tier_floor, (median(scores) + lower_quartile) / 2.0)
         tier_cutoff = sum(1 for score in scores if score >= tier_floor)
-        tier_cap = max(1, int(round(SELF_DECIDING_RIDGE_TRACE_MAX_SQRT_MULTIPLIER * sqrt(candidate_count))))
+        if event.sequence_span * 2 >= event.sequence_length:
+            tier_cap = tier_cutoff
+        else:
+            tier_cap = max(1, int(round(SELF_DECIDING_RIDGE_TRACE_MAX_SQRT_MULTIPLIER * sqrt(candidate_count))))
         diffuse_cutoff = max(core_cutoff, min(tier_cap, tier_cutoff))
         return (
             diffuse_cutoff,
