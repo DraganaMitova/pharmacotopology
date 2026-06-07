@@ -1,2 +1,0 @@
-row_id,source_accession,msa_status,failure_kind,rejection_reason,pfam_ids,msa_source_kind,sample_depth,total_depth_seen,msa_sha256,raw_sequence_exposed
-coord_holdout_1ubq_a,1UBQ:A,msa_attempted,,,PF00240,interpro_pfam_full_stockholm_alignment,1000,91907,sha256:1b954e91a92248f9b23f208a115bf3137990c1ca93f08f86fe7f4229380970b3,False

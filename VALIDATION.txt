@@ -1,0 +1,11 @@
+Focused validation command:
+PYTHONPATH=src pytest -q tests/test_aggressive_relative_frontier_v0.py tests/test_self_deciding_frontier_generation_v0.py tests/test_contact_collapse_pipeline_integration_v0.py
+
+Observed result:
+7 passed in 16.24s
+
+Full pytest:
+PYTHONPATH=src pytest -q
+
+Observed result:
+Timed out in this environment after printing progress dots. No focused failure observed.
