@@ -21,6 +21,7 @@ from pharmacotopology.folding_event_region_contact_collapse import (
     EVENT_REGION_CONTACT_COLLAPSE_BOUNDARY,
     EVENT_REGION_CONTACT_COLLAPSE_KIND,
     SELF_DECIDING_STRATEGY_NAME,
+    collapse_event_region_contacts,
     collapse_row_event_regions,
 )
 from pharmacotopology.folding_evolutionary_constraints import load_coupling_dataset
@@ -84,6 +85,111 @@ def _row_result_to_report(
         "collapsed_contact_map_hash": contact_map_hash(collapsed_pairs),
         "uncollapsed_region_contact_map_hash": contact_map_hash(result.uncollapsed_pairs),
     }
+
+
+def _long_native_pairs(row: RealCoordinateVisualRow) -> set[tuple[int, int]]:
+    return {pair for pair in row.native_contact_pairs() if abs(pair[1] - pair[0]) >= 24}
+
+
+def _event_region_long_recall_ceiling(
+    *,
+    row: RealCoordinateVisualRow,
+    events: Sequence[NucleusClosureEvent],
+) -> float:
+    native_long = _long_native_pairs(row)
+    if not native_long:
+        return 0.0
+    region_pairs: set[tuple[int, int]] = set()
+    for event in events:
+        region_pairs.update(event.candidate_region_pairs())
+    return round(len(region_pairs & native_long) / len(native_long), 6)
+
+
+def _self_deciding_contact_long_recall_ceiling(
+    *,
+    row: RealCoordinateVisualRow,
+    events: Sequence[NucleusClosureEvent],
+    features_by_row: Mapping[str, Sequence[object]],
+    constraints_by_row: Mapping[str, Sequence[object]],
+) -> dict[str, object]:
+    native_pairs = set(row.native_contact_pairs())
+    native_long = _long_native_pairs(row)
+    predicted: set[tuple[int, int]] = set()
+    for event in events:
+        pairs, _summary = collapse_event_region_contacts(
+            event=event,
+            row_features=features_by_row.get(row.row_id, ()),  # type: ignore[arg-type]
+            row_constraints=constraints_by_row.get(row.row_id, ()),  # type: ignore[arg-type]
+            collapse_strategy=SELF_DECIDING_STRATEGY_NAME,
+            min_pairs_per_event=0,
+            max_pairs_per_event=0,
+        )
+        predicted.update(pair.pair() for pair in pairs)
+    tp = predicted & native_pairs
+    long_tp = predicted & native_long
+    return {
+        "self_deciding_all_candidate_pair_count": len(predicted),
+        "self_deciding_all_candidate_true_positive_contacts": len(tp),
+        "self_deciding_all_candidate_precision": round(len(tp) / len(predicted), 6) if predicted else 0.0,
+        "self_deciding_all_candidate_long_range_recall": round(len(long_tp) / len(native_long), 6) if native_long else 0.0,
+        "native_truth_used_before_frontier_ceiling_audit": False,
+        "native_truth_attached_after_frontier_ceiling_for_evaluation": True,
+    }
+
+
+def _frontier_ceiling_audit(
+    *,
+    rows: Sequence[RealCoordinateVisualRow],
+    context,
+    event_ids_by_row: Mapping[str, Sequence[str]],
+    merged_expansion_event_ids_by_row: Mapping[str, Sequence[str]],
+    features_by_row: Mapping[str, Sequence[object]],
+    constraints_by_row: Mapping[str, Sequence[object]],
+) -> dict[str, dict[str, object]]:
+    output: dict[str, dict[str, object]] = {}
+    competitive_by_row: dict[str, list[NucleusClosureEvent]] = {}
+    candidate_by_row: dict[str, list[NucleusClosureEvent]] = {}
+    for event in context.competitive_events:
+        competitive_by_row.setdefault(event.row_id, []).append(event)
+    for event in context.physical_context.candidate_events:
+        candidate_by_row.setdefault(event.row_id, []).append(event)
+    for row in rows:
+        if row.source_accession not in {"1CLL:A", "1MBN:A", "4AKE:A"}:
+            continue
+        seed_events = _selected_frontier_events(
+            row=row,
+            event_ids_by_row=event_ids_by_row,
+            event_by_id=context.event_by_id,
+        )
+        expanded_events = _selected_frontier_events(
+            row=row,
+            event_ids_by_row=merged_expansion_event_ids_by_row,
+            event_by_id=context.event_by_id,
+        )
+        competitive_events = tuple(competitive_by_row.get(row.row_id, ()))
+        candidate_events = tuple(candidate_by_row.get(row.row_id, ()))
+        contact_ceiling = _self_deciding_contact_long_recall_ceiling(
+            row=row,
+            events=competitive_events,
+            features_by_row=features_by_row,
+            constraints_by_row=constraints_by_row,
+        )
+        output[row.source_accession] = {
+            "native_long_range_contact_count": len(_long_native_pairs(row)),
+            "seed_frontier_event_count": len(seed_events),
+            "expanded_frontier_event_count": len(expanded_events),
+            "competitive_event_count": len(competitive_events),
+            "candidate_event_count": len(candidate_events),
+            "seed_region_long_range_recall_ceiling": _event_region_long_recall_ceiling(row=row, events=seed_events),
+            "expanded_region_long_range_recall_ceiling": _event_region_long_recall_ceiling(row=row, events=expanded_events),
+            "competitive_region_long_range_recall_ceiling": _event_region_long_recall_ceiling(row=row, events=competitive_events),
+            "candidate_generator_long_range_recall_ceiling": _event_region_long_recall_ceiling(row=row, events=candidate_events),
+            "frontier_generation_bottleneck_for_0_40_recall": (
+                _event_region_long_recall_ceiling(row=row, events=competitive_events) < 0.40
+            ),
+            **contact_ceiling,
+        }
+    return output
 
 
 def main() -> None:
@@ -255,6 +361,14 @@ def main() -> None:
             target_reports[expansion_name] = _row_result_to_report(expansion_result)
         hard_target_rescue_probe[target_accession] = target_reports
 
+    frontier_ceiling_audit = _frontier_ceiling_audit(
+        rows=rows,
+        context=context,
+        event_ids_by_row=event_ids_by_row,
+        merged_expansion_event_ids_by_row=merged_expansion_event_ids_by_row,
+        features_by_row=features_by_row,
+        constraints_by_row=constraints_by_row,
+    )
     expansion_rows_for_report = self_deciding_frontier_expansion_rows(
         context,
         seed_events=seed_frontier_events,
@@ -296,12 +410,14 @@ def main() -> None:
         "one_cll_self_deciding_report": one_cll_reports.get(SELF_DECIDING_STRATEGY_NAME, {}),
         "one_cll_internal_gap_report": one_cll_reports.get("frontier_internal_gap_balanced", {}),
         "hard_target_rescue_probe": hard_target_rescue_probe,
+        "frontier_ceiling_audit": frontier_ceiling_audit,
         "self_deciding_frontier_expansion_rows": expansion_rows_for_report,
         "self_deciding_frontier_expansion_interpretation": (
             "The expansion selector is native-free and accession-agnostic. It is now self-verified by contact collapse: "
             "a candidate low-score frontier region is considered only if the row already contains an accepted broad ridge seed. "
-            "Candidate regions are then ranked by native-free self-collapse acceptance score and selected at the largest "
-            "internal gap in that row-specific distribution, not by a fixed confidence threshold. Native labels remain audit-only."
+            "Candidate regions are normalized against the seed frontier's own identity baseline, then selected at "
+            "the largest internal gap plus any row-local seed-envelope tier. This is not a fixed confidence threshold. "
+            "Native labels remain audit-only; the report also records the frontier-ceiling audit so recall limits are not hidden."
         ),
         "one_cll_fixed_budget_probe": one_cll_budget_probe,
         "one_cll_best_long_range_f1_budget": max(

@@ -208,3 +208,44 @@ accession-specific collapse rules: false
 ```
 
 1CLL remains a real contact-level collapse breakthrough. 1MBN shows that the self-deciding path can generalize a precision rescue outside 1CLL. 4AKE is no longer a total collapse failure: tier-aware self-decision recovers 16 true positives from 38 contacts with 0.421053 precision, and phase-specific self-verified frontier expansion raises that to 24 true positives from 65 contacts with 0.369231 precision. Recall is still low relative to the full native long-range map, so the next honest bottleneck is not another raw low-floor expansion; it is improving the internal confidence ranking so additional frontier regions survive without precision collapse.
+
+## Identity-normalized frontier expansion update
+
+The frontier expansion controller has been tightened again. Candidate regions are no longer ranked only by raw self-collapse acceptance score. The controller now builds a row-local identity baseline from the already accepted seed frontier:
+
+```text
+identity baseline = median positive seed-frontier acceptance score for the same row/profile
+identity lower envelope = weakest positive seed-frontier acceptance score
+candidate normalized score = candidate acceptance score / identity baseline
+```
+
+The cutoff is still native-free. It is applied on the identity-normalized candidate distribution, using the largest internal gap. A second tier can open only if a candidate still lies inside the seed frontier's own normalized lower envelope. There is no global `confidence > 0.6`, no distribution floor, no accession-specific override, and no native/contact truth before selection.
+
+For 4AKE this did not change the selected event count: the row-local natural boundary still selects the same three expansion regions and rejects the next candidates. That is important: the system did not force extra recall by reintroducing a hidden threshold. It preserved the previous honest result:
+
+```text
+self-verified merged expansion events: 6
+collapsed pairs: 65
+true positives: 24
+contact precision: 0.369231
+long-range recall: 0.124352
+long-range F1: 0.186046
+```
+
+## Frontier ceiling audit
+
+The diagnostic report now includes `frontier_ceiling_audit`. This is post-selection/native-attached audit only. It exists to prevent a false claim that collapse can recover contacts that were never offered to it by the frontier generator.
+
+For 4AKE:
+
+```text
+native long-range contacts: 193
+seed frontier region ceiling: 0.134715
+expanded frontier region ceiling: 0.196891
+competitive-event region ceiling: 0.217617
+candidate-generator region ceiling: 1.000000
+self-deciding collapse over all competitive events: 0.124352 long-range recall
+frontier_generation_bottleneck_for_0_40_recall: true
+```
+
+Meaning: with the current 100 competitive events, even taking every competitive region only exposes about 21.8% of the 4AKE long-range native map. The full candidate generator can cover the map, but the competitive frontier filter removes most of those regions before collapse sees them. So the missing puzzle piece is no longer just collapse. For 4AKE, the honest next bottleneck is a new self-deciding frontier-generation layer that can safely promote candidates from the broader candidate-event pool without collapsing precision.

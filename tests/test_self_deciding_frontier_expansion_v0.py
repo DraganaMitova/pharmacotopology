@@ -94,13 +94,18 @@ def test_4ake_expansion_cutoff_is_gap_based_not_fixed_confidence_threshold():
     rejected = [row for row in candidates if row["self_verified_frontier_expansion_selected"] is False]
     natural_boundary = accepted[-1]["self_verified_frontier_expansion_natural_boundary"]
     assert float(natural_boundary) == min(
-        float(row["self_verified_frontier_expansion_acceptance_score"])
+        float(row["self_verified_frontier_expansion_identity_normalized_score"])
         for row in accepted
     )
     assert max(
-        float(row["self_verified_frontier_expansion_acceptance_score"])
+        float(row["self_verified_frontier_expansion_identity_normalized_score"])
         for row in rejected
     ) < float(natural_boundary)
+    assert all(
+        row["self_verified_frontier_expansion_normalization_reason"]
+        == "identity_normalized_seed_baseline"
+        for row in candidates
+    )
 
 
 def test_1mbn_expansion_controller_rejects_precision_destroying_expansion():
@@ -114,3 +119,35 @@ def test_1mbn_expansion_controller_rejects_precision_destroying_expansion():
     assert expanded["collapsed_true_positive_contacts"] == base["collapsed_true_positive_contacts"]
     assert expanded["collapsed_contact_precision"] == base["collapsed_contact_precision"]
     assert expanded["native_truth_used_before_collapse_selection"] is False
+
+
+def test_expansion_uses_identity_normalized_scores_not_raw_global_confidence():
+    report = _diagnostics()
+    rows = report["self_deciding_frontier_expansion_rows"]
+    candidates = [
+        row for row in rows
+        if row["source_accession"] == "4AKE:A"
+        and row["seed_event"] is False
+        and row["self_verified_candidate_profile_allowed"] is True
+    ]
+
+    assert candidates
+    assert all(float(row["self_verified_frontier_expansion_identity_baseline"]) > 0.0 for row in candidates)
+    assert all(float(row["self_verified_frontier_expansion_identity_normalized_score"]) > 0.0 for row in candidates)
+    assert all(row["native_truth_used_before_frontier_expansion"] is False for row in candidates)
+    assert all(row["coordinate_truth_used_before_frontier_expansion"] is False for row in candidates)
+
+
+def test_4ake_frontier_ceiling_audit_blocks_false_fully_solved_claim():
+    report = _diagnostics()
+    audit = report["frontier_ceiling_audit"]["4AKE:A"]
+    expansion = report["hard_target_rescue_probe"]["4AKE:A"][
+        "self_deciding_frontier_expansion_merged"
+    ]
+
+    assert audit["native_truth_used_before_frontier_ceiling_audit"] is False
+    assert audit["native_truth_attached_after_frontier_ceiling_for_evaluation"] is True
+    assert audit["expanded_region_long_range_recall_ceiling"] >= expansion["collapsed_long_range_recall"]
+    assert audit["competitive_region_long_range_recall_ceiling"] < 0.40
+    assert audit["candidate_generator_long_range_recall_ceiling"] == 1.0
+    assert audit["frontier_generation_bottleneck_for_0_40_recall"] is True

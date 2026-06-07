@@ -1832,8 +1832,102 @@ def _self_verified_frontier_expansion_acceptance_score(
     )
 
 
+
+
+def _median_positive(values: Sequence[float]) -> float:
+    positive = sorted(float(value) for value in values if float(value) > 0.0)
+    if not positive:
+        return 0.0
+    midpoint = len(positive) // 2
+    if len(positive) % 2:
+        return _rounded(positive[midpoint])
+    return _rounded((positive[midpoint - 1] + positive[midpoint]) / 2.0)
+
+
+def _self_verified_identity_baseline_rows(
+    seed_events: Sequence[NucleusClosureEvent],
+    context: CouplingNucleusContext,
+    *,
+    features_by_row: Mapping[str, Sequence[object]],
+    constraints_by_row: Mapping[str, Sequence[CouplingConstraint]],
+    cache: dict[str, dict[str, object]] | None = None,
+) -> dict[str, dict[str, object]]:
+    """Return row-local, identity-derived baselines for expansion scoring.
+
+    The baseline is not a global confidence threshold.  It is derived from the
+    already accepted seed frontier for the same row and profile.  Candidate
+    expansion regions are normalized against this seed identity before the
+    largest-gap cutoff is applied.  Native/contact labels are not read here.
+    """
+    seed_by_row = _events_by_row(seed_events)
+    output: dict[str, dict[str, object]] = {}
+    for row_id, events in seed_by_row.items():
+        by_profile: dict[str, list[float]] = defaultdict(list)
+        all_scores: list[float] = []
+        mode_counts: Counter[str] = Counter()
+        for event in events:
+            score_row = _self_deciding_frontier_expansion_score(event, context)
+            collapse_row = _self_verified_collapse_row(
+                event,
+                context,
+                features_by_row=features_by_row,
+                constraints_by_row=constraints_by_row,
+                cache=cache,
+            )
+            if int(collapse_row["self_collapse_selected_pair_count"]) <= 0:
+                continue
+            acceptance = _self_verified_frontier_expansion_acceptance_score(
+                score_row,
+                collapse_row,
+            )
+            profile = str(collapse_row["self_collapse_profile"])
+            mode = str(collapse_row["self_collapse_confidence_mode"])
+            by_profile[profile].append(acceptance)
+            all_scores.append(acceptance)
+            mode_counts[mode] += 1
+        profile_baseline = {
+            profile: _median_positive(scores)
+            for profile, scores in by_profile.items()
+            if _median_positive(scores) > 0.0
+        }
+        baseline = _median_positive(all_scores)
+        lower_envelope = min((score for score in all_scores if score > 0.0), default=0.0)
+        dominant_mode = mode_counts.most_common(1)[0][0] if mode_counts else "closed"
+        output[row_id] = {
+            "self_verified_identity_baseline": baseline,
+            "self_verified_identity_lower_envelope": _rounded(lower_envelope),
+            "self_verified_identity_profile_baselines": profile_baseline,
+            "self_verified_identity_dominant_mode": dominant_mode,
+            "self_verified_identity_seed_count": len(events),
+            "native_truth_used_before_frontier_expansion": False,
+            "coordinate_truth_used_before_frontier_expansion": False,
+        }
+    return output
+
+
+def _identity_normalized_expansion_score(
+    *,
+    row_id: str,
+    profile: str,
+    acceptance_score: float,
+    baseline_rows: Mapping[str, Mapping[str, object]],
+) -> tuple[float, float, str]:
+    baseline_row = baseline_rows.get(row_id, {})
+    profile_baselines = baseline_row.get("self_verified_identity_profile_baselines", {})
+    profile_baseline = 0.0
+    if isinstance(profile_baselines, Mapping):
+        profile_baseline = float(profile_baselines.get(profile, 0.0))
+    row_baseline = float(baseline_row.get("self_verified_identity_baseline", 0.0))
+    baseline = profile_baseline or row_baseline
+    if baseline <= 0.0:
+        return _rounded(acceptance_score), 0.0, "raw_score_no_seed_identity_baseline"
+    return _rounded(acceptance_score / baseline), _rounded(baseline), "identity_normalized_seed_baseline"
+
+
 def _self_deciding_frontier_expansion_cutoff(
     scores: Sequence[float],
+    *,
+    seed_lower_envelope: float | None = None,
 ) -> tuple[int, str, float]:
     """Return a native-free, gap-only expansion cutoff.
 
@@ -1855,6 +1949,16 @@ def _self_deciding_frontier_expansion_cutoff(
         return 0, "flat_self_collapse_distribution_no_internal_gap", _rounded(ordered[0])
     cutoff = min(SELECTED_EVENTS_PER_ROW, max_gap_index + 1)
     natural_boundary = ordered[cutoff - 1]
+    if seed_lower_envelope is not None and seed_lower_envelope > 0.0:
+        # Multi-tier identity expansion: after the strongest natural gap, keep
+        # any additional candidate whose normalized score still lives inside the
+        # seed frontier's own lower envelope.  This is a row-local identity
+        # baseline, not an absolute confidence threshold.
+        envelope_cutoff = sum(1 for score in ordered if score >= seed_lower_envelope)
+        if envelope_cutoff > cutoff:
+            cutoff = min(SELECTED_EVENTS_PER_ROW, envelope_cutoff)
+            natural_boundary = ordered[cutoff - 1]
+            return cutoff, "identity_normalized_multitier_gap_frontier", _rounded(natural_boundary)
     return cutoff, "self_collapse_verified_internal_gap_frontier", _rounded(natural_boundary)
 
 
@@ -1874,6 +1978,13 @@ def select_coupling_trace_loop_self_deciding_frontier_expanded_events(
     features_by_row, constraints_by_row = _collapse_inputs_for_context(context)
     collapse_cache: dict[str, dict[str, object]] = {}
     seed_by_row = _events_by_row(seed_events)
+    identity_baseline_rows = _self_verified_identity_baseline_rows(
+        seed_events,
+        context,
+        features_by_row=features_by_row,
+        constraints_by_row=constraints_by_row,
+        cache=collapse_cache,
+    )
     selected: list[NucleusClosureEvent] = []
     competitive_by_row = _events_by_row(context.competitive_events)
     for row in context.rows:
@@ -1911,18 +2022,30 @@ def select_coupling_trace_loop_self_deciding_frontier_expanded_events(
                 score_row,
                 collapse_row,
             )
+            normalized_score, identity_baseline, normalization_reason = (
+                _identity_normalized_expansion_score(
+                    row_id=event.row_id,
+                    profile=str(collapse_row["self_collapse_profile"]),
+                    acceptance_score=acceptance_score,
+                    baseline_rows=identity_baseline_rows,
+                )
+            )
             merged_row = {
                 **score_row,
                 **collapse_row,
                 "self_verified_frontier_expansion_acceptance_score": acceptance_score,
+                "self_verified_frontier_expansion_identity_normalized_score": normalized_score,
+                "self_verified_frontier_expansion_identity_baseline": identity_baseline,
+                "self_verified_frontier_expansion_normalization_reason": normalization_reason,
                 "self_verified_frontier_expansion_gate_reason": "matching_seed_low_score_ridge_trace_self_collapse_survived",
                 "native_truth_used_before_frontier_expansion": False,
                 "coordinate_truth_used_before_frontier_expansion": False,
             }
-            candidates.append((acceptance_score, event, merged_row))
+            candidates.append((normalized_score, event, merged_row))
         candidates.sort(
             key=lambda item: (
                 -item[0],
+                -float(item[2]["self_verified_frontier_expansion_acceptance_score"]),
                 -float(item[2]["self_deciding_frontier_expansion_score"]),
                 -float(item[2]["self_collapse_confidence"]),
                 item[1].segment_a_start,
@@ -1930,8 +2053,17 @@ def select_coupling_trace_loop_self_deciding_frontier_expanded_events(
                 item[1].event_id,
             )
         )
+        baseline_row = identity_baseline_rows.get(row.row_id, {})
+        identity_baseline = float(baseline_row.get("self_verified_identity_baseline", 0.0))
+        lower_envelope = float(baseline_row.get("self_verified_identity_lower_envelope", 0.0))
+        normalized_lower_envelope = (
+            _rounded(lower_envelope / identity_baseline)
+            if identity_baseline > 0.0 and lower_envelope > 0.0
+            else None
+        )
         cutoff, _reason, _natural_boundary = _self_deciding_frontier_expansion_cutoff(
-            [score for score, _event, _score_row in candidates]
+            [score for score, _event, _score_row in candidates],
+            seed_lower_envelope=normalized_lower_envelope,
         )
         for _score, event, _score_row in candidates[:cutoff]:
             if len(row_selected) >= SELECTED_EVENTS_PER_ROW:
@@ -1972,6 +2104,13 @@ def self_deciding_frontier_expansion_rows(
     features_by_row, constraints_by_row = _collapse_inputs_for_context(context)
     collapse_cache: dict[str, dict[str, object]] = {}
     seed_by_row = _events_by_row(seed_events)
+    identity_baseline_rows = _self_verified_identity_baseline_rows(
+        seed_events,
+        context,
+        features_by_row=features_by_row,
+        constraints_by_row=constraints_by_row,
+        cache=collapse_cache,
+    )
     seed_ids = {event.event_id for event in seed_events}
     selected_ids = {
         event.event_id
@@ -2015,6 +2154,17 @@ def self_deciding_frontier_expansion_rows(
             if candidate_profile_allowed
             else 0.0
         )
+        normalized_score, identity_baseline, normalization_reason = (
+            _identity_normalized_expansion_score(
+                row_id=event.row_id,
+                profile=str(collapse_row["self_collapse_profile"]),
+                acceptance_score=acceptance_score,
+                baseline_rows=identity_baseline_rows,
+            )
+            if candidate_profile_allowed
+            else (0.0, 0.0, "not_candidate_for_identity_normalization")
+        )
+        baseline_row = identity_baseline_rows.get(event.row_id, {})
         score_row.update(
             collapse_row
         )
@@ -2023,6 +2173,17 @@ def self_deciding_frontier_expansion_rows(
                 "seed_event": event.event_id in seed_ids,
                 "self_verified_candidate_profile_allowed": candidate_profile_allowed,
                 "self_verified_frontier_expansion_acceptance_score": acceptance_score,
+                "self_verified_frontier_expansion_identity_normalized_score": normalized_score,
+                "self_verified_frontier_expansion_identity_baseline": identity_baseline,
+                "self_verified_frontier_expansion_identity_lower_envelope": baseline_row.get(
+                    "self_verified_identity_lower_envelope",
+                    0.0,
+                ),
+                "self_verified_frontier_expansion_identity_dominant_mode": baseline_row.get(
+                    "self_verified_identity_dominant_mode",
+                    "closed",
+                ),
+                "self_verified_frontier_expansion_normalization_reason": normalization_reason,
                 "self_deciding_frontier_expansion_selected": event.event_id in selected_ids,
                 "self_verified_frontier_expansion_selected": event.event_id in selected_ids,
                 "self_verified_frontier_expansion_gate_reason": (
@@ -2051,17 +2212,27 @@ def self_deciding_frontier_expansion_rows(
         ordered_rows = sorted(
             candidate_rows,
             key=lambda row: (
+                -float(row["self_verified_frontier_expansion_identity_normalized_score"]),
                 -float(row["self_verified_frontier_expansion_acceptance_score"]),
                 -float(row["self_deciding_frontier_expansion_score"]),
                 -float(row["self_collapse_confidence"]),
                 str(row["event_id"]),
             ),
         )
+        baseline_row = identity_baseline_rows.get(row_id, {})
+        identity_baseline = float(baseline_row.get("self_verified_identity_baseline", 0.0))
+        lower_envelope = float(baseline_row.get("self_verified_identity_lower_envelope", 0.0))
+        normalized_lower_envelope = (
+            _rounded(lower_envelope / identity_baseline)
+            if identity_baseline > 0.0 and lower_envelope > 0.0
+            else None
+        )
         cutoff, reason, natural_boundary = _self_deciding_frontier_expansion_cutoff(
             [
-                float(row["self_verified_frontier_expansion_acceptance_score"])
+                float(row["self_verified_frontier_expansion_identity_normalized_score"])
                 for row in ordered_rows
-            ]
+            ],
+            seed_lower_envelope=normalized_lower_envelope,
         )
         cutoff_metadata_by_row[row_id] = (cutoff, reason, natural_boundary)
         for rank, row in enumerate(ordered_rows, start=1):
