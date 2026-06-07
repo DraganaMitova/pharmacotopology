@@ -16,6 +16,7 @@ from pharmacotopology.folding_event_region_contact_collapse import (
     DEFAULT_RECALL_MAX_PAIRS_PER_EVENT,
     EVENT_REGION_CONTACT_COLLAPSE_BOUNDARY,
     EVENT_REGION_CONTACT_COLLAPSE_KIND,
+    SELF_DECIDING_STRATEGY_NAME,
     collapse_row_event_regions,
 )
 from pharmacotopology.folding_evolutionary_constraints import load_coupling_dataset
@@ -94,6 +95,7 @@ def main() -> None:
     pair_rows: list[dict[str, object]] = []
     event_rows: list[dict[str, object]] = []
     strategy_reports: dict[str, list[dict[str, object]]] = {
+        SELF_DECIDING_STRATEGY_NAME: [],
         "frontier_precision": [],
         "frontier_balanced": [],
         "frontier_internal_gap_balanced": [],
@@ -114,7 +116,10 @@ def main() -> None:
             )
             if not events:
                 continue
-            if strategy == "frontier_recall":
+            if strategy == SELF_DECIDING_STRATEGY_NAME:
+                max_pairs = 0
+                min_pairs = 0
+            elif strategy == "frontier_recall":
                 max_pairs = DEFAULT_RECALL_MAX_PAIRS_PER_EVENT
                 min_pairs = 8
             elif strategy == "frontier_balanced":
@@ -178,6 +183,7 @@ def main() -> None:
         )
         target_reports: dict[str, object] = {}
         for target_strategy, min_pairs, max_pairs in (
+            (SELF_DECIDING_STRATEGY_NAME, 0, 0),
             ("frontier_internal_gap_balanced", 1, DEFAULT_BALANCED_PAIRS_PER_EVENT),
             ("ridge_coupling", 1, DEFAULT_PRECISION_MAX_PAIRS_PER_EVENT),
             ("frontier_recall", 8, DEFAULT_RECALL_MAX_PAIRS_PER_EVENT),
@@ -228,6 +234,7 @@ def main() -> None:
             for strategy, rows_for_strategy in strategy_reports.items()
         },
         "one_cll_strategy_reports": one_cll_reports,
+        "one_cll_self_deciding_report": one_cll_reports.get(SELF_DECIDING_STRATEGY_NAME, {}),
         "one_cll_internal_gap_report": one_cll_reports.get("frontier_internal_gap_balanced", {}),
         "hard_target_rescue_probe": hard_target_rescue_probe,
         "one_cll_fixed_budget_probe": one_cll_budget_probe,
@@ -239,8 +246,10 @@ def main() -> None:
         "interpretation": (
             "Frontier event success and contact-map success are separate. Collapse reduces each 8x8 event region "
             "to a ranked residue-pair subset, then reports precision/recall instead of treating all region pairs as contacts. "
-            "The internal-gap balanced strategy uses score gaps, short-region closing, one support-completion corner, "
-            "and one edge rescue; native labels remain post-selection diagnostics only."
+            "The self-deciding strategy uses only internal score distributions, sequence-inferred phase shape, "
+            "long-range candidate geometry, direct external-coupling roots, gap clarity, and degree pressure. "
+            "Native labels remain post-selection diagnostics only; no accession-specific or fixed pairs-per-event "
+            "budget is used by the main self-deciding collapse path."
         ),
     }
     (OUTPUT_DIR / "contact_collapse_diagnostics_v0.json").write_text(

@@ -2,7 +2,7 @@
 
 ## Boundary
 
-The frontier selector and the contact-map collapse layer are now separate.
+The frontier selector and the contact-map collapse layer are separate.
 
 - Frontier selection answers: **which 8x8 event regions are worth inspecting?**
 - Contact collapse answers: **which residue pairs inside those regions should survive?**
@@ -14,19 +14,29 @@ Native contacts are not used to select collapsed pairs. Native labels are attach
 Primary strategy is now:
 
 ```text
-frontier_internal_gap_balanced
+frontier_self_deciding
 ```
 
-It replaces the earlier fixed six-pair balanced budget in the main pipeline surface.
+This replaces the previous main `frontier_internal_gap_balanced` path. The old internal-gap strategy remains as a regression probe because it produced a strong 1CLL result, but it is no longer the main claim.
 
-The strategy uses only internal pre-native signals:
+The self-deciding path does **not** use an accession-specific rule and does **not** use a fixed pairs-per-event budget. Per event region, it derives its own decision from pre-native internal evidence:
 
-1. ranked pair score inside each frontier event region
-2. first score-gap lock for decisive one-pair events
-3. short/sparse region closing to avoid reopening noisy local regions
-4. five-pair internal-gap core when no decisive single-pair gap exists
-5. one support-completion rectangle corner when the selected core implies a missing internally supported pair
-6. one edge-rescue pair when a first-gap lock would otherwise discard a coherent boundary partner
+1. pair score distribution inside the event region
+2. gap clarity / score spread
+3. sequence-inferred phase shape from contact-law features
+4. long-range candidate geometry inside the 8x8 region
+5. direct external-coupling root count
+6. ridge / lattice / boundary support already present in the feature row
+7. residue-degree pressure while adding selected pairs
+
+The controller can therefore choose different native-free outcomes per event:
+
+- close event: no long-range candidate space
+- close event: partial strip without direct external-coupling root
+- first-gap lock
+- alpha-strip plateau
+- distribution frontier
+- self-completion candidate when the selected core implies an internally supported missing partner
 
 ## 1CLL result
 
@@ -52,10 +62,9 @@ contact precision: 0.317073
 long-range precision: 0.458333
 long-range recall: 0.305556
 long-range F1: 0.366667
-precision improvement: 6.52x
 ```
 
-### New internal-gap balanced collapse
+### Previous internal-gap balanced regression probe
 
 ```text
 collapsed pairs: 23
@@ -67,32 +76,60 @@ long-range recall: 0.361111
 long-range F1: 0.472727
 frontier long-native retention: 1.000000
 precision improvement: 11.627348x
-collapse reduction: 94.6759%
 ```
 
-Interpretation: the new strategy keeps the same long-range recall as the uncollapsed 1CLL frontier, but cuts the candidate map from 432 region pairs to 23 contact pairs.
+This remains the strongest 1CLL probe, but it has fixed-rule elements and is not the main self-deciding claim.
+
+### New self-deciding main path
+
+```text
+collapsed pairs: 25
+true positives: 12
+false positives: 13
+contact precision: 0.480000
+long-range precision: 0.550000
+long-range recall: 0.305556
+long-range F1: 0.392858
+frontier long-native retention: 0.846154
+precision improvement: 9.874286x
+collapse reduction: 94.212963%
+```
+
+Interpretation: the self-deciding path is slightly weaker than the best 1CLL internal-gap probe, but it is the more honest main path because it does not depend on a fixed event budget or accession-specific collapse rule.
 
 ## Hard-target rescue probe
 
-The diagnostic script also reports 4AKE and 1MBN rescue probes without making them solved claims.
+The diagnostic script also reports 4AKE and 1MBN rescue probes without making solved claims.
 
 ### 4AKE
 
-Best current rescue probe is `ridge_coupling`:
+Current self-deciding path:
+
+```text
+collapsed pairs: 9
+true positives: 1
+contact precision: 0.111111
+long-range precision: 0.111111
+long-range recall: 0.005181
+frontier long-native retention: 0.038462
+```
+
+Best current precision probe remains `ridge_coupling`:
 
 ```text
 collapsed pairs: 4
 true positives: 3
-contact precision: 0.75
-long-range precision: 1.0
+contact precision: 0.750000
+long-range precision: 1.000000
 long-range recall: 0.015544
+frontier long-native retention: 0.115385
 ```
 
-This proves there is a precise contact signal inside the 4AKE frontier, but recall remains extremely low.
+Honest conclusion: 4AKE is **not solved by collapse**. There is precise ridge signal, but the selected frontier has a low long-range recall ceiling, so recall must be attacked upstream in frontier expansion rather than claimed as a collapse win.
 
 ### 1MBN
 
-Best current recall rescue probe is `frontier_recall`:
+Previous recall rescue probe:
 
 ```text
 collapsed pairs: 80
@@ -103,17 +140,29 @@ long-range recall: 0.092784
 frontier long-native retention: 0.750000
 ```
 
-This proves 1MBN has recoverable long-range frontier signal, but the collapse is still too noisy.
+New self-deciding path:
+
+```text
+collapsed pairs: 16
+true positives: 9
+contact precision: 0.562500
+long-range precision: 0.562500
+long-range recall: 0.092784
+frontier long-native retention: 0.750000
+```
+
+Interpretation: 1MBN is the main cross-protein gain in this patch. The self-deciding controller keeps the same recoverable true-positive signal as the noisy recall probe while cutting 80 pairs down to 16.
 
 ## Current conclusion
 
-This is not a perfect contact map. It is a real contact-level collapse breakthrough for 1CLL:
+This is not a perfect contact-map solver. It is a stricter, more honest collapse architecture:
 
 ```text
-432 candidates -> 23 collapsed pairs
-21 frontier true contacts -> 13 retained contacts
-long-range recall preserved at 0.361111
-contact precision raised from 0.048611 to 0.565217
+main path: frontier_self_deciding
+native truth before selection: false
+coordinate truth before selection: false
+fixed pairs/event budget in main path: false
+accession-specific collapse rules: false
 ```
 
-The next unsolved frontier is not region detection for 1CLL. It is cross-protein generalization of the collapse rules, especially for 4AKE and 1MBN.
+1CLL remains a real contact-level collapse breakthrough. 1MBN now shows that the self-deciding path can generalize a precision rescue outside 1CLL. 4AKE remains an upstream frontier-recall problem: collapse sees a precise ridge seed but cannot recover contacts that the frontier never exposes.

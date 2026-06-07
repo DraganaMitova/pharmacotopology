@@ -1,7 +1,8 @@
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass
-from statistics import mean
+from math import sqrt
+from statistics import mean, median, pstdev
 from typing import Mapping, Sequence
 
 from pharmacotopology.folding_contact_law_features import ContactLawFeatureRow
@@ -30,6 +31,7 @@ DEFAULT_INTERNAL_GAP_SHORT_SEGMENT_CLOSE_MAX = 7
 DEFAULT_INTERNAL_GAP_CLOSURE_SCORE_MIN = 0.65
 DEFAULT_INTERNAL_GAP_EDGE_RESCUE_SCORE_MIN = 0.57
 DEFAULT_RESIDUE_DEGREE_CAP = 5
+SELF_DECIDING_STRATEGY_NAME = "frontier_self_deciding"
 
 
 @dataclass(frozen=True)
@@ -83,6 +85,11 @@ class EventRegionCollapseSummary:
     mean_sequence_law_support_score: float
     mean_ridge_coherence_score: float
     mean_boundary_coherence_score: float
+    self_deciding_profile: str = ""
+    self_deciding_phase_mode: str = ""
+    self_deciding_gap_clarity: float = 0.0
+    self_deciding_long_range_candidate_fraction: float = 0.0
+    self_deciding_cutoff_signal: float = 0.0
     native_truth_used_before_collapse_selection: bool = False
     coordinate_truth_used_before_collapse_selection: bool = False
     raw_sequence_exposed: bool = False
@@ -513,6 +520,203 @@ def _edge_rescue_candidates(
     return tuple(pair for _, pair in candidates[:1])
 
 
+
+def _score_gaps(scores: Sequence[float]) -> tuple[float, ...]:
+    if len(scores) <= 1:
+        return ()
+    ordered = sorted(scores, reverse=True)
+    return tuple(
+        _score(ordered[index] - ordered[index + 1])
+        for index in range(len(ordered) - 1)
+    )
+
+
+def _mad(values: Sequence[float]) -> float:
+    if not values:
+        return 0.0
+    center = median(values)
+    return _score(median([abs(value - center) for value in values]))
+
+
+def _score_gap_clarity(scored_rows: Sequence[Mapping[str, object]]) -> float:
+    gaps = _score_gaps([float(item["score"]) for item in scored_rows])
+    if not gaps:
+        return 0.0
+    background = median(gaps)
+    spread = _mad(gaps)
+    return _score((max(gaps) - background) / max(spread, 0.000001))
+
+
+def _count_above_interpolated_frontier(scores: Sequence[float]) -> tuple[int, float]:
+    """Return a distribution-derived core size, not a fixed event budget.
+
+    The cutoff is a score front between the event median and event top.  The
+    interpolation is intentionally based on the event's own score spread: a
+    sharply separated region yields a small core, while a broad plateau yields
+    a wider core.  No native labels, accession names or fixed pairs/event budget
+    are used.
+    """
+    if not scores:
+        return 0, 0.0
+    ordered = sorted(scores, reverse=True)
+    top = ordered[0]
+    center = median(ordered)
+    spread = pstdev(ordered) if len(ordered) > 1 else 0.0
+    if top <= center:
+        return 1, top
+    relative_spread = min(1.0, spread / max(top - center, 0.000001))
+    # Concentrated distributions use a higher frontier; diffuse distributions
+    # lower the frontier so the system keeps a plateau rather than one point.
+    interpolation = max(0.50, min(0.80, 0.72 - 0.22 * relative_spread))
+    cutoff_signal = _score(center + interpolation * (top - center))
+    return max(1, sum(1 for score in ordered if score >= cutoff_signal)), cutoff_signal
+
+
+def _candidate_long_range_fraction(event: NucleusClosureEvent) -> float:
+    pairs = event.candidate_region_pairs()
+    if not pairs:
+        return 0.0
+    return _rounded(sum(1 for pair in pairs if pair[1] - pair[0] >= 24) / len(pairs))
+
+
+def _direct_coupling_count(
+    pairs: Sequence[tuple[int, int]],
+    constraints_by_pair: Mapping[tuple[int, int], CouplingConstraint],
+) -> int:
+    return sum(1 for pair in pairs if pair in constraints_by_pair)
+
+
+def _mean_feature_value(
+    scored_rows: Sequence[Mapping[str, object]],
+    field_name: str,
+) -> float:
+    values: list[float] = []
+    for item in scored_rows:
+        feature = item.get("feature")
+        if feature is None:
+            continue
+        values.append(float(getattr(feature, field_name, 0.0)))
+    return _mean(values)
+
+
+def _self_deciding_phase_mode(scored_rows: Sequence[Mapping[str, object]]) -> str:
+    helix = _mean_feature_value(scored_rows, "helix_window_support")
+    beta = _mean_feature_value(scored_rows, "beta_window_support")
+    parallel = _mean_feature_value(scored_rows, "parallel_contact_support")
+    ridge = _mean([float(item.get("ridge_coherence_score", 0.0)) for item in scored_rows])
+    boundary = _mean([float(item.get("boundary_coherence_score", 0.0)) for item in scored_rows])
+    density = _mean([float(item.get("coupling_density_score", 0.0)) for item in scored_rows])
+    if helix > beta and helix > parallel:
+        return "sequence_inferred_alpha_strip"
+    if beta >= helix and (parallel >= density or ridge >= density):
+        return "sequence_inferred_lattice_or_beta"
+    if boundary >= max(ridge, density):
+        return "boundary_frontier"
+    return "mixed_internal_evidence"
+
+
+def _top_score_line_fraction(scored_rows: Sequence[Mapping[str, object]]) -> float:
+    if not scored_rows:
+        return 0.0
+    scores = [float(item["score"]) for item in scored_rows]
+    core_count, _cutoff_signal = _count_above_interpolated_frontier(scores)
+    core = tuple(scored_rows[:core_count])
+    if not core:
+        return 0.0
+    left_counts: dict[int, int] = {}
+    right_counts: dict[int, int] = {}
+    for item in core:
+        pair = item["pair"]  # type: ignore[assignment]
+        left_counts[int(pair[0])] = left_counts.get(int(pair[0]), 0) + 1  # type: ignore[index]
+        right_counts[int(pair[1])] = right_counts.get(int(pair[1]), 0) + 1  # type: ignore[index]
+    return _rounded(max(max(left_counts.values()), max(right_counts.values())) / len(core))
+
+
+def _self_deciding_cutoff(
+    *,
+    event: NucleusClosureEvent,
+    scored_rows: Sequence[Mapping[str, object]],
+    constraints_by_pair: Mapping[tuple[int, int], CouplingConstraint],
+) -> tuple[int, str, str, float, float, float]:
+    if not scored_rows:
+        return 0, "empty_region", "none", 0.0, 0.0, 0.0
+    candidate_pairs = tuple(item["pair"] for item in scored_rows)  # type: ignore[misc]
+    long_fraction = _candidate_long_range_fraction(event)
+    if long_fraction <= 0.0:
+        return 0, "self_closed_no_long_range_candidate_space", "no_long_range_space", 0.0, long_fraction, 0.0
+
+    direct_count = _direct_coupling_count(candidate_pairs, constraints_by_pair)  # type: ignore[arg-type]
+    long_candidate_count = sum(1 for pair in candidate_pairs if int(pair[1]) - int(pair[0]) >= 24)  # type: ignore[index]
+    candidate_count = len(candidate_pairs)
+    narrow_long_strip = long_candidate_count < sqrt(candidate_count) * sqrt(sqrt(candidate_count))
+    if narrow_long_strip and direct_count * direct_count < max(1, long_candidate_count):
+        return 0, "self_closed_partial_strip_without_direct_root", "partial_strip", 0.0, long_fraction, 0.0
+
+    phase_mode = _self_deciding_phase_mode(scored_rows)
+    scores = [float(item["score"]) for item in scored_rows]
+    core_cutoff, cutoff_signal = _count_above_interpolated_frontier(scores)
+    gap_clarity = _score_gap_clarity(scored_rows)
+    gaps = _score_gaps(scores)
+    first_gap = gaps[0] if gaps else 0.0
+    gap_background = median(gaps) if gaps else 0.0
+    gap_spread = _mad(gaps)
+    first_gap_is_internal_outlier = bool(
+        gaps
+        and first_gap == max(gaps)
+        and first_gap > gap_background + gap_spread
+    )
+    line_fraction = _top_score_line_fraction(scored_rows)
+    if first_gap_is_internal_outlier and line_fraction < 1.0:
+        return 1, "self_first_gap_lock", phase_mode, gap_clarity, long_fraction, cutoff_signal
+
+    if (
+        phase_mode == "sequence_inferred_alpha_strip"
+        and line_fraction >= 1.0
+        and long_fraction >= 1.0
+    ):
+        diffuse_cutoff = max(core_cutoff, int(round(sqrt(candidate_count) * (1.0 + long_fraction))))
+        return diffuse_cutoff, "self_alpha_strip_plateau", phase_mode, gap_clarity, long_fraction, cutoff_signal
+
+    return core_cutoff, "self_distribution_frontier", phase_mode, gap_clarity, long_fraction, cutoff_signal
+
+
+def _self_completion_candidates(
+    *,
+    selected_pairs: set[tuple[int, int]],
+    scored_rows: Sequence[Mapping[str, object]],
+    scored_by_pair: Mapping[tuple[int, int], Mapping[str, object]],
+) -> tuple[tuple[int, int], ...]:
+    if not selected_pairs or not scored_rows:
+        return ()
+    scores = [float(item["score"]) for item in scored_rows]
+    center = median(scores)
+    spread = pstdev(scores) if len(scores) > 1 else 0.0
+    completion_signal = center + spread
+    selected_left = {pair[0] for pair in selected_pairs}
+    selected_right = {pair[1] for pair in selected_pairs}
+    candidates: list[tuple[float, tuple[int, int]]] = []
+    for pair, item in scored_by_pair.items():
+        if pair in selected_pairs:
+            continue
+        score = float(item["score"])
+        if score < completion_signal:
+            continue
+        # Add only internally supported alternatives that complete the selected
+        # residue footprint.  This is the native-free replacement for a fixed
+        # edge rescue rule.
+        footprint_touch = pair[0] in selected_left or pair[1] in selected_right
+        diagonal_touch = any(
+            abs(pair[0] - kept[0]) == abs(pair[1] - kept[1])
+            for kept in selected_pairs
+        )
+        if footprint_touch or diagonal_touch:
+            candidates.append((score, pair))
+    candidates.sort(key=lambda item: (-item[0], item[1][0], item[1][1]))
+    # The number of completions is itself distribution-bound: one extra support
+    # closure per independently selected sqrt-sized core, not a fixed target.
+    completion_limit = max(1, int(round(sqrt(len(selected_pairs)))) - 1)
+    return tuple(pair for _score_value, pair in candidates[:completion_limit])
+
 def collapse_event_region_contacts(
     *,
     event: NucleusClosureEvent,
@@ -523,7 +727,7 @@ def collapse_event_region_contacts(
     max_pairs_per_event: int = DEFAULT_PRECISION_MAX_PAIRS_PER_EVENT,
     residue_degree_cap: int = DEFAULT_RESIDUE_DEGREE_CAP,
 ) -> tuple[tuple[CollapsedContactPair, ...], EventRegionCollapseSummary]:
-    if collapse_strategy not in {"frontier_precision", "frontier_recall", "frontier_balanced", "frontier_internal_gap_balanced", "ridge_coupling"}:
+    if collapse_strategy not in {"frontier_precision", "frontier_recall", "frontier_balanced", "frontier_internal_gap_balanced", "ridge_coupling", SELF_DECIDING_STRATEGY_NAME}:
         raise ValueError(f"unknown collapse strategy: {collapse_strategy}")
     features_by_pair = _features_by_pair(row_features)
     constraints_by_pair = _constraints_by_pair(row_constraints)
@@ -549,7 +753,7 @@ def collapse_event_region_contacts(
         sequence_law = _sequence_law_support_score(feature)
         ridge = _ridge_coherence_score(pair, support_scores=support_scores)
         boundary = _boundary_coherence_score(pair, event, feature)
-        if collapse_strategy in {"frontier_precision", "frontier_recall", "frontier_balanced", "frontier_internal_gap_balanced"}:
+        if collapse_strategy in {"frontier_precision", "frontier_recall", "frontier_balanced", "frontier_internal_gap_balanced", SELF_DECIDING_STRATEGY_NAME}:
             score = _frontier_precision_score(
                 pair=pair,
                 event=event,
@@ -590,6 +794,11 @@ def collapse_event_region_contacts(
     first_gap = _first_score_gap(scored_rows)
     density_supported_count = _density_supported_pair_count(scored_rows)
     collapse_decision_reason = "natural_gap"
+    self_profile = ""
+    self_phase_mode = ""
+    self_gap_clarity = 0.0
+    self_long_fraction = 0.0
+    self_cutoff_signal = 0.0
     if collapse_strategy == "frontier_recall":
         max_pairs_per_event = max(max_pairs_per_event, DEFAULT_RECALL_MAX_PAIRS_PER_EVENT)
         min_pairs_per_event = max(min_pairs_per_event, min(8, max_pairs_per_event))
@@ -618,6 +827,22 @@ def collapse_event_region_contacts(
             min_pairs_per_event=min_pairs_per_event,
             max_pairs_per_event=max_pairs_per_event,
         )
+    elif collapse_strategy == SELF_DECIDING_STRATEGY_NAME:
+        (
+            applied_cutoff,
+            collapse_decision_reason,
+            self_phase_mode,
+            self_gap_clarity,
+            self_long_fraction,
+            self_cutoff_signal,
+        ) = _self_deciding_cutoff(
+            event=event,
+            scored_rows=scored_rows,
+            constraints_by_pair=constraints_by_pair,
+        )
+        self_profile = "frontier_precision_distribution"
+        max_pairs_per_event = applied_cutoff
+        min_pairs_per_event = 0 if applied_cutoff == 0 else 1
     else:
         applied_cutoff = _bounded_cutoff(
             natural_gap_cutoff,
@@ -684,6 +909,18 @@ def collapse_event_region_contacts(
         ):
             if add_pair_item(scored_by_pair[pair], "edge_rescue"):
                 edge_rescue_count += 1
+    if collapse_strategy == SELF_DECIDING_STRATEGY_NAME:
+        selected_pair_set = {
+            item["pair"]  # type: ignore[index]
+            for item, _ in selected_item_rows
+        }
+        for pair in _self_completion_candidates(
+            selected_pairs=selected_pair_set,
+            scored_rows=scored_rows,
+            scored_by_pair=scored_by_pair,
+        ):
+            if add_pair_item(scored_by_pair[pair], "self_completion"):
+                support_completion_count += 1
 
     selected: list[CollapsedContactPair] = []
     for item, reason in selected_item_rows:
@@ -742,6 +979,11 @@ def collapse_event_region_contacts(
         mean_boundary_coherence_score=_mean(
             [float(item["boundary_coherence_score"]) for item in scored_rows]
         ),
+        self_deciding_profile=self_profile,
+        self_deciding_phase_mode=self_phase_mode,
+        self_deciding_gap_clarity=self_gap_clarity,
+        self_deciding_long_range_candidate_fraction=self_long_fraction,
+        self_deciding_cutoff_signal=self_cutoff_signal,
     )
     return tuple(selected), summary
 

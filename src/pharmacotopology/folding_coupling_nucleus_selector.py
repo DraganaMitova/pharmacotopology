@@ -23,6 +23,7 @@ from pharmacotopology.folding_event_region_contact_collapse import (
     DEFAULT_BALANCED_PAIRS_PER_EVENT,
     EVENT_REGION_CONTACT_COLLAPSE_BOUNDARY,
     EVENT_REGION_CONTACT_COLLAPSE_KIND,
+    SELF_DECIDING_STRATEGY_NAME,
     RowCollapseResult,
     collapse_row_event_regions,
 )
@@ -273,7 +274,7 @@ ROOT_OUTPUT_NAMES = (
 )
 EXTERNAL_EVOLUTIONARY_COUPLING_SOURCE_KINDS = ACCEPTED_EXTERNAL_COUPLING_SOURCE_KINDS
 PRIMARY_CONTACT_COLLAPSE_SELECTOR_NAME = "coupling_trace_loop"
-PRIMARY_CONTACT_COLLAPSE_STRATEGY = "frontier_internal_gap_balanced"
+PRIMARY_CONTACT_COLLAPSE_STRATEGY = SELF_DECIDING_STRATEGY_NAME
 
 
 @dataclass(frozen=True)
@@ -2650,7 +2651,15 @@ def contact_collapse_results_for_selected_events(
         row_events = tuple(events_by_row[row_id])
         if not row_events:
             continue
-        if collapse_strategy == "frontier_internal_gap_balanced":
+        if collapse_strategy == SELF_DECIDING_STRATEGY_NAME:
+            # The self-deciding collapse strategy derives its own per-event cutoff
+            # from the score distribution, long-range candidate space, sequence-
+            # inferred phase shape, direct-coupling roots, and gap clarity. These
+            # placeholders are intentionally zero so no fixed event budget leaks
+            # into the decision path.
+            min_pairs_per_event = 0
+            max_pairs_per_event = 0
+        elif collapse_strategy == "frontier_internal_gap_balanced":
             min_pairs_per_event = 1
             max_pairs_per_event = DEFAULT_BALANCED_PAIRS_PER_EVENT
         else:
@@ -2744,6 +2753,7 @@ def contact_collapse_summary(
         "contact_collapse_native_truth_used_before_selection": False,
         "contact_collapse_coordinate_truth_used_before_selection": False,
         "contact_collapse_native_truth_attached_after_selection_for_evaluation": True,
+        "contact_collapse_1cll_self_deciding": one_cll or {},
         "contact_collapse_1cll_balanced": one_cll or {},
         "contact_collapse_1cll_internal_gap": one_cll or {},
         "contact_collapse_rows": row_reports,
