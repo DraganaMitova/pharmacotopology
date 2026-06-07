@@ -5,7 +5,7 @@ from collections import Counter, defaultdict
 from dataclasses import asdict, dataclass
 from math import log2, sqrt
 from pathlib import Path
-from statistics import mean, median, pstdev
+from statistics import mean
 from typing import Mapping, Sequence
 
 from pharmacotopology.artifact_io import write_csv_rows
@@ -1703,20 +1703,27 @@ def _self_verified_expandable_profiles(
 def _self_deciding_frontier_expansion_cutoff(
     scores: Sequence[float],
 ) -> tuple[int, str, float]:
+    """Return a native-free, gap-only expansion cutoff.
+
+    Frontier expansion must not depend on an absolute confidence threshold such
+    as 0.55 or 0.60.  The candidate regions are ranked by their own
+    self-collapse acceptance score and the acceptance boundary is placed at the
+    largest internal score gap.  Native/contact labels are intentionally absent
+    from this decision.
+    """
     if not scores:
         return 0, "empty_expansion_distribution", 0.0
-    if len(scores) == 1:
-        return 1, "single_self_verified_external_root_region", scores[0]
     ordered = sorted(scores, reverse=True)
+    if len(ordered) == 1:
+        return 1, "single_self_verified_external_root_region", _rounded(ordered[0])
     gaps = [ordered[index] - ordered[index + 1] for index in range(len(ordered) - 1)]
-    gap_cutoff = max(range(len(gaps)), key=lambda index: gaps[index]) + 1
-    center = median(ordered)
-    spread = pstdev(ordered) if len(ordered) > 1 else 0.0
-    distribution_floor = center + 0.5 * spread
-    distribution_cutoff = sum(1 for score in ordered if score >= distribution_floor)
-    cutoff = max(1, min(SELECTED_EVENTS_PER_ROW, max(gap_cutoff, distribution_cutoff)))
-    reason = "self_collapse_verified_gap_and_distribution_frontier"
-    return cutoff, reason, _rounded(distribution_floor)
+    max_gap_index = max(range(len(gaps)), key=lambda index: gaps[index])
+    max_gap = gaps[max_gap_index]
+    if max_gap <= 0.0:
+        return 0, "flat_self_collapse_distribution_no_internal_gap", _rounded(ordered[0])
+    cutoff = min(SELECTED_EVENTS_PER_ROW, max_gap_index + 1)
+    natural_boundary = ordered[cutoff - 1]
+    return cutoff, "self_collapse_verified_internal_gap_frontier", _rounded(natural_boundary)
 
 
 def select_coupling_trace_loop_self_deciding_frontier_expanded_events(
@@ -1791,7 +1798,7 @@ def select_coupling_trace_loop_self_deciding_frontier_expanded_events(
                 item[1].event_id,
             )
         )
-        cutoff, _reason, _distribution_floor = _self_deciding_frontier_expansion_cutoff(
+        cutoff, _reason, _natural_boundary = _self_deciding_frontier_expansion_cutoff(
             [score for score, _event, _score_row in candidates]
         )
         for _score, event, _score_row in candidates[:cutoff]:
@@ -1894,6 +1901,53 @@ def self_deciding_frontier_expansion_rows(
             }
         )
         rows.append(score_row)
+
+    candidate_rows_by_row: dict[str, list[dict[str, object]]] = defaultdict(list)
+    for row in rows:
+        if row["seed_event"] is True:
+            continue
+        if row["self_verified_candidate_profile_allowed"] is not True:
+            continue
+        candidate_rows_by_row[str(row["row_id"])].append(row)
+
+    cutoff_metadata_by_row: dict[str, tuple[int, str, float]] = {}
+    for row_id, candidate_rows in candidate_rows_by_row.items():
+        ordered_rows = sorted(
+            candidate_rows,
+            key=lambda row: (
+                -float(row["self_verified_frontier_expansion_acceptance_score"]),
+                -float(row["self_deciding_frontier_expansion_score"]),
+                -float(row["self_collapse_confidence"]),
+                str(row["event_id"]),
+            ),
+        )
+        cutoff, reason, natural_boundary = _self_deciding_frontier_expansion_cutoff(
+            [
+                float(row["self_verified_frontier_expansion_acceptance_score"])
+                for row in ordered_rows
+            ]
+        )
+        cutoff_metadata_by_row[row_id] = (cutoff, reason, natural_boundary)
+        for rank, row in enumerate(ordered_rows, start=1):
+            row["self_verified_frontier_expansion_gap_rank"] = rank
+            row["self_verified_frontier_expansion_cutoff_count"] = cutoff
+            row["self_verified_frontier_expansion_cutoff_reason"] = reason
+            row["self_verified_frontier_expansion_natural_boundary"] = natural_boundary
+            row["self_verified_frontier_expansion_gap_selected"] = rank <= cutoff
+
+    for row in rows:
+        if "self_verified_frontier_expansion_cutoff_reason" in row:
+            continue
+        cutoff, reason, natural_boundary = cutoff_metadata_by_row.get(
+            str(row["row_id"]),
+            (0, "not_candidate_for_gap_cutoff", 0.0),
+        )
+        row["self_verified_frontier_expansion_gap_rank"] = 0
+        row["self_verified_frontier_expansion_cutoff_count"] = cutoff
+        row["self_verified_frontier_expansion_cutoff_reason"] = reason
+        row["self_verified_frontier_expansion_natural_boundary"] = natural_boundary
+        row["self_verified_frontier_expansion_gap_selected"] = False
+
     return sorted(
         rows,
         key=lambda row: (

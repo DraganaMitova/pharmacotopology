@@ -299,8 +299,9 @@ def main() -> None:
         "self_deciding_frontier_expansion_rows": expansion_rows_for_report,
         "self_deciding_frontier_expansion_interpretation": (
             "The expansion selector is native-free and accession-agnostic. It is now self-verified by contact collapse: "
-            "a candidate low-score frontier region is added only if the row already contains an accepted broad ridge seed "
-            "and the candidate survives its own native-free collapse-confidence check. Native labels remain audit-only."
+            "a candidate low-score frontier region is considered only if the row already contains an accepted broad ridge seed. "
+            "Candidate regions are then ranked by native-free self-collapse acceptance score and selected at the largest "
+            "internal gap in that row-specific distribution, not by a fixed confidence threshold. Native labels remain audit-only."
         ),
         "one_cll_fixed_budget_probe": one_cll_budget_probe,
         "one_cll_best_long_range_f1_budget": max(

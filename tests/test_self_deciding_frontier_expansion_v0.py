@@ -64,6 +64,38 @@ def test_4ake_expansion_rows_are_self_collapse_verified_not_raw_low_floor():
     assert all(row["coordinate_truth_used_before_frontier_expansion"] is False for row in accepted)
 
 
+def test_4ake_expansion_cutoff_is_gap_based_not_fixed_confidence_threshold():
+    report = _diagnostics()
+    rows = report["self_deciding_frontier_expansion_rows"]
+    candidates = [
+        row for row in rows
+        if row["source_accession"] == "4AKE:A"
+        and row["seed_event"] is False
+        and row["self_verified_candidate_profile_allowed"] is True
+    ]
+
+    assert candidates
+    assert {row["self_verified_frontier_expansion_cutoff_reason"] for row in candidates} == {
+        "self_collapse_verified_internal_gap_frontier"
+    }
+    assert all("distribution" not in row["self_verified_frontier_expansion_cutoff_reason"] for row in candidates)
+    assert all(
+        row["self_verified_frontier_expansion_selected"] is row["self_verified_frontier_expansion_gap_selected"]
+        for row in candidates
+    )
+    accepted = [row for row in candidates if row["self_verified_frontier_expansion_selected"] is True]
+    rejected = [row for row in candidates if row["self_verified_frontier_expansion_selected"] is False]
+    natural_boundary = accepted[-1]["self_verified_frontier_expansion_natural_boundary"]
+    assert float(natural_boundary) == min(
+        float(row["self_verified_frontier_expansion_acceptance_score"])
+        for row in accepted
+    )
+    assert max(
+        float(row["self_verified_frontier_expansion_acceptance_score"])
+        for row in rejected
+    ) < float(natural_boundary)
+
+
 def test_1mbn_expansion_controller_rejects_precision_destroying_expansion():
     report = _diagnostics()
     probes = report["hard_target_rescue_probe"]["1MBN:A"]

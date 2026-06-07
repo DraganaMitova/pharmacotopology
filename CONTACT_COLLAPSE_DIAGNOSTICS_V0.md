@@ -30,7 +30,7 @@ The self-deciding path does **not** use an accession-specific rule and does **no
 7. residue-degree pressure while adding selected pairs
 8. phase-aware score-surface choice: boundary/frontier vs direct-ridge trace
 9. tier-aware low-score widening for broad direct-ridge traces
-10. self-verified frontier expansion, where a candidate region is added only after its own native-free collapse confidence survives the row's accepted seed profile
+10. self-verified frontier expansion, where candidate regions are ranked by native-free self-collapse confidence and accepted at the largest internal gap, not by a fixed confidence threshold
 
 The controller can therefore choose different native-free outcomes per event:
 
@@ -153,7 +153,7 @@ long-range recall: 0.015544
 frontier long-native retention: 0.115385
 ```
 
-A self-verified frontier expansion controller was added after the raw expansion probe. It does not lower the frontier floor globally. It only opens extra regions when the accepted seed frontier already contains a broad low-score `direct_ridge_trace` region, and each candidate region survives its own native-free self-collapse confidence check.
+A self-verified frontier expansion controller was added after the raw expansion probe. It does not lower the frontier floor globally and it does not use a fixed confidence threshold such as 0.55 or 0.60. It only evaluates extra regions when the accepted seed frontier already contains a broad low-score `direct_ridge_trace` region; candidate regions are then ranked by native-free self-collapse acceptance score and accepted at the largest internal gap in that row-specific distribution.
 
 ```text
 self-verified merged expansion events: 5
@@ -166,7 +166,7 @@ long-range recall: 0.093264
 long-range F1: 0.151898
 ```
 
-The accepted expansion rows are selected by internal collapse confidence, not native labels. For 4AKE the controller adds two extra ridge-trace regions and rejects the broad ungated low-floor expansion. Honest conclusion: 4AKE is now **frontier-expansion rescued but not fully solved**. The controller increases collapsed true positives from 16 to 18 and long-range recall from 0.082902 to 0.093264 while keeping precision above 0.40. It is still not fully solved because total long-range recall remains below 0.10.
+The accepted expansion rows are selected by the largest internal gap over self-collapse acceptance scores, not native labels and not a fixed confidence threshold. For 4AKE the controller adds two extra ridge-trace regions and rejects the broad ungated low-floor expansion. Honest conclusion: 4AKE is now **frontier-expansion rescued but not fully solved**. The controller increases collapsed true positives from 16 to 18 and long-range recall from 0.082902 to 0.093264 while keeping precision above 0.40. It is still not fully solved because total long-range recall remains below 0.10.
 
 ### 1MBN
 
