@@ -1,0 +1,5 @@
+usage: build_external_evolutionary_coupling_trace_loop_v0.py
+       [-h] [--benchmark-file BENCHMARK_FILE] --external-coupling-file
+       EXTERNAL_COUPLING_FILE [--output OUTPUT]
+       [--row-status-output ROW_STATUS_OUTPUT]
+build_external_evolutionary_coupling_trace_loop_v0.py: error: the following arguments are required: --external-coupling-file

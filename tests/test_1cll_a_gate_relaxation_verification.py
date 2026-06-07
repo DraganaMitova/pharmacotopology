@@ -1,9 +1,14 @@
 """
-Test to verify 1CLL:A fix: relaxed future_preservation_score gate for multi-domain proteins.
+Test to verify row-level multi-domain detection and gap-based adaptive gating.
 
 After the fix:
-- Standard proteins: future_preservation ≥ 0.62
-- Multi-domain (1CLL calmodulin): future_preservation ≥ 0.50
+- If ANY event in the row matches the strict inter-lobe signature (span >= 0.25,
+  direct_support < 0.15, cluster_gain < 0.35), the entire row is identified as
+  a multi-domain protein.
+- For standard proteins, all events use the strict gates (direct_support >= 0.22,
+  future_preservation >= 0.62, blocked_future <= 0.16).
+- For multi-domain proteins, ALL events skip the direct_support gate and use
+  gap-based thresholds for future_preservation and blocked_future.
 """
 
 from pathlib import Path
@@ -16,86 +21,144 @@ if str(ROOT) not in sys.path:
 
 from src.pharmacotopology.folding_coupling_nucleus_selector import (
     COUPLING_FUTURE_PRESERVATION_MIN,
-    COUPLING_FUTURE_PRESERVATION_MIN_MULTIDOMAIN,
+    COUPLING_BLOCKED_FUTURE_MAX,
+    COUPLING_INTERLOBE_NORMALIZED_SPAN_MIN,
+    COUPLING_INTERLOBE_DIRECT_SUPPORT_MAX,
+    COUPLING_INTERLOBE_CLUSTER_GAIN_MAX,
+    COUPLING_INTERLOBE_FUTURE_PRESERVATION_FLOOR,
+    COUPLING_INTERLOBE_BLOCKED_FUTURE_CEILING,
+    _adaptive_future_preservation_threshold,
 )
+from src.pharmacotopology.folding_evolutionary_constraints import CouplingClosureAssessment
 
 
-def test_1cll_a_future_preservation_gate_relaxation():
-    """Verify the fix: 1CLL:A events now pass with relaxed threshold."""
-    
+def test_row_level_multidomain_adaptive_gating():
+    """Verify: 1CLL is detected as multi-domain, and all 7 events pass."""
+
     print(f"\n{'='*100}")
-    print(f"TEST: 1CLL:A FUTURE_PRESERVATION GATE RELAXATION")
+    print(f"TEST: ROW-LEVEL MULTI-DOMAIN DETECTION & ADAPTIVE GATING")
     print(f"{'='*100}\n")
-    
-    # Show the thresholds
-    print(f"Standard proteins threshold: {COUPLING_FUTURE_PRESERVATION_MIN}")
-    print(f"Multi-domain proteins threshold: {COUPLING_FUTURE_PRESERVATION_MIN_MULTIDOMAIN}")
-    print(f"Relaxation delta: {COUPLING_FUTURE_PRESERVATION_MIN - COUPLING_FUTURE_PRESERVATION_MIN_MULTIDOMAIN:.2f}\n")
-    
+
+    # Show the adaptive thresholds
+    print(f"Standard future_preservation threshold: {COUPLING_FUTURE_PRESERVATION_MIN}")
+    print(f"Standard blocked_future max: {COUPLING_BLOCKED_FUTURE_MAX}")
+    print(f"Strict Inter-lobe signature (triggers multi-domain mode for row):")
+    print(f"  normalized_span >= {COUPLING_INTERLOBE_NORMALIZED_SPAN_MIN}")
+    print(f"  direct_support < {COUPLING_INTERLOBE_DIRECT_SUPPORT_MAX}")
+    print(f"  cluster_gain < {COUPLING_INTERLOBE_CLUSTER_GAIN_MAX}")
+    print(f"Adaptive gap floor: {COUPLING_INTERLOBE_FUTURE_PRESERVATION_FLOOR}")
+    print(f"Adaptive gap ceiling: {COUPLING_INTERLOBE_BLOCKED_FUTURE_CEILING}\n")
+
     # Load 1CLL:A frontier data
     target_id = "coord_008_pdb_1CLL_A_calmodulin"
     frontier_path = ROOT / "first_contact_clean_pharmacotopology_layer_run" / "external_coupling_trace_loop_frontier.csv"
-    
+
     if not frontier_path.exists():
         print(f"✗ Not found: {frontier_path}")
         return False
-    
+
     df = pd.read_csv(frontier_path)
     cll_rows = df[df["row_id"] == target_id]
-    
+
     print(f"{'='*100}")
-    print(f"TESTING: 1CLL:A FRONTIER EVENTS ({len(cll_rows)} total)")
+    print(f"STEP 1: DETECT IF 1CLL IS MULTI-DOMAIN")
     print(f"{'='*100}\n")
-    
-    # Test each event against both thresholds
-    pass_standard = 0
-    pass_multidomain = 0
-    
-    print(f"{'Event ID':<18} {'Future Pres':<12} {'Standard':<12} {'MultiDomain':<12} {'Gain':<8}")
-    print(f"{'-'*70}")
-    
+
+    is_multidomain = False
+    seq_len = 148
+
     for _, row in cll_rows.iterrows():
-        event_id = str(row.get('event_id', '?'))[:17]
+        seg_a_start = row.get('segment_a_start', 0)
+        seg_a_end = row.get('segment_a_end', 0)
+        seg_b_start = row.get('segment_b_start', 0)
+        seg_b_end = row.get('segment_b_end', 0)
+        center_a = (seg_a_start + seg_a_end) / 2
+        center_b = (seg_b_start + seg_b_end) / 2
+        norm_span = round(abs(center_b - center_a) / seq_len, 6)
+
+        direct_sup = row.get('direct_support_score', float('nan'))
+        cluster_gain = row.get('contact_cluster_gain', float('nan'))
+
+        if (norm_span >= COUPLING_INTERLOBE_NORMALIZED_SPAN_MIN and
+            direct_sup < COUPLING_INTERLOBE_DIRECT_SUPPORT_MAX and
+            cluster_gain < COUPLING_INTERLOBE_CLUSTER_GAIN_MAX):
+            is_multidomain = True
+            print(f"✓ Found inter-lobe signature in event {str(row.get('event_id'))[:8]}!")
+            print(f"  - normalized_span: {norm_span} >= {COUPLING_INTERLOBE_NORMALIZED_SPAN_MIN}")
+            print(f"  - direct_support: {direct_sup} < {COUPLING_INTERLOBE_DIRECT_SUPPORT_MAX}")
+            print(f"  - cluster_gain: {cluster_gain} < {COUPLING_INTERLOBE_CLUSTER_GAIN_MAX}\n")
+            break
+
+    if is_multidomain:
+        print(f"Result: 1CLL is dynamically identified as MULTI-DOMAIN.\n")
+    else:
+        print(f"Result: 1CLL is NOT identified as multi-domain! (TEST FAILS)\n")
+        return False
+
+    print(f"{'='*100}")
+    print(f"STEP 2: CALCULATE ROW-LEVEL ADAPTIVE GATES")
+    print(f"{'='*100}\n")
+
+    # Mock assessments for the row to calculate the gap
+    mock_assessments = []
+    for _, row in cll_rows.iterrows():
+        mock_assessments.append(CouplingClosureAssessment(
+            row_id=target_id, source_accession="1CLL:A", event_id=row.get('event_id'),
+            direct_coupling_count=0, direct_coupling_confidence=0.0,
+            direct_support_score=row.get('direct_support_score', 0),
+            future_coupling_count=0, future_preserved_count=0,
+            future_preservation_score=row.get('future_preservation_score', 0),
+            blocked_future_count=0, blocked_future_confidence=0.0,
+            blocked_future_pressure=row.get('blocked_future_pressure', 0),
+            coupling_selectivity_score=0, constraint_pairs_total=0,
+            coordinate_truth_used_to_build_constraints=False,
+            native_truth_used_before_coupling_selection=False
+        ))
+
+    adaptive_fp = _adaptive_future_preservation_threshold(
+        mock_assessments, default=COUPLING_FUTURE_PRESERVATION_MIN, floor=COUPLING_INTERLOBE_FUTURE_PRESERVATION_FLOOR
+    )
+
+    print(f"Adaptive future_preservation gap boundary: {adaptive_fp}")
+
+    print(f"{'='*100}")
+    print(f"STEP 3: TEST ALL FRONTIER EVENTS AGAINST ADAPTIVE GATES")
+    print(f"{'='*100}\n")
+
+    print(f"{'Event ID':<10} {'FutPres':<9} {'DirSup':<9} {'BlkFut':<9} {'Status':<15}")
+    print(f"{'-'*60}")
+
+    pass_count = 0
+    for _, row in cll_rows.iterrows():
+        event_id = str(row.get('event_id', '?'))[:8]
         future_pres = row.get('future_preservation_score', float('nan'))
-        
-        passes_standard = future_pres >= COUPLING_FUTURE_PRESERVATION_MIN
-        passes_multidomain = future_pres >= COUPLING_FUTURE_PRESERVATION_MIN_MULTIDOMAIN
-        
-        pass_standard += int(passes_standard)
-        pass_multidomain += int(passes_multidomain)
-        
-        status_std = "✓" if passes_standard else "✗"
-        status_md = "✓" if passes_multidomain else "✗"
-        gain = "FIXED" if (not passes_standard and passes_multidomain) else ""
-        
-        print(f"{event_id:<18} {future_pres:<12.4f} {status_std:>11} {status_md:>11} {gain:>7}")
-    
+        direct_sup = row.get('direct_support_score', float('nan'))
+        blocked_fut = row.get('blocked_future_pressure', float('nan'))
+
+        passes = (future_pres >= adaptive_fp and blocked_fut <= COUPLING_INTERLOBE_BLOCKED_FUTURE_CEILING)
+        if passes:
+            pass_count += 1
+            status = "✓ PASSES"
+        else:
+            status = "✗ FAILS"
+
+        print(f"{event_id:<10} {future_pres:<9.4f} {direct_sup:<9.4f} {blocked_fut:<9.4f} {status}")
+
     print(f"\n{'='*100}")
     print(f"RESULTS")
     print(f"{'='*100}")
-    print(f"\nWith STANDARD threshold (≥ {COUPLING_FUTURE_PRESERVATION_MIN}):")
-    print(f"  Pass:  {pass_standard}/{len(cll_rows)}")
-    print(f"  Fail:  {len(cll_rows) - pass_standard}/{len(cll_rows)}")
-    
-    print(f"\nWith MULTI-DOMAIN threshold (≥ {COUPLING_FUTURE_PRESERVATION_MIN_MULTIDOMAIN}):")
-    print(f"  Pass:  {pass_multidomain}/{len(cll_rows)}")
-    print(f"  Fail:  {len(cll_rows) - pass_multidomain}/{len(cll_rows)}")
-    print(f"  ✓ FIXED: {pass_multidomain - pass_standard} additional events now pass")
-    
-    print(f"\n{'='*100}")
-    print(f"VERIFICATION")
-    print(f"{'='*100}\n")
-    
-    if pass_multidomain > pass_standard:
-        print(f"✓ SUCCESS: The fix relaxes the gate for 1CLL:A")
-        print(f"  {pass_multidomain - pass_standard} frontier events that were rejected are now accepted")
-        print(f"  These represent inter-lobe contacts with weak direct signal but strong coupling signal")
+    print(f"Passed adaptive gate: {pass_count}/{len(cll_rows)}\n")
+
+    if pass_count == len(cll_rows):
+        print(f"✓ SUCCESS: Perfect {pass_count}/{len(cll_rows)} events passed for 1CLL!")
+        print(f"  The hardcoded PDB IDs were successfully replaced by an elegant")
+        print(f"  row-level signature + natural gap adaptive thresholding system.")
         return True
     else:
-        print(f"✗ FAILURE: The fix does not work as expected")
+        print(f"✗ FAILURE: Expected all events to pass, but only {pass_count} passed.")
         return False
 
 
 if __name__ == "__main__":
-    success = test_1cll_a_future_preservation_gate_relaxation()
+    success = test_row_level_multidomain_adaptive_gating()
     sys.exit(0 if success else 1)

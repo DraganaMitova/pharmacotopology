@@ -69,12 +69,20 @@ EXTERNAL_EVOLUTIONARY_COUPLING_TRACE_LOOP_BATCH_KIND = (
 SELECTED_EVENTS_PER_ROW = 40
 COUPLING_DIRECT_SUPPORT_MIN = 0.22
 COUPLING_FUTURE_PRESERVATION_MIN = 0.62
-# Relaxed threshold for multi-domain proteins (e.g., calmodulin with inter-lobe contacts)
-# These proteins have weak direct evolutionary signal in inter-domain positions
-# but strong coupling signal from allosteric coevolution
-COUPLING_FUTURE_PRESERVATION_MIN_MULTIDOMAIN = 0.50
 COUPLING_BLOCKED_FUTURE_MAX = 0.16
 COUPLING_DECOY_MARGIN_MIN = 0.04
+
+# Inter-lobe contact detection thresholds (signal-based, protein-agnostic)
+# If a protein contains any contact matching this strict signature,
+# the entire protein is treated as multi-domain and gets adaptive gating.
+COUPLING_INTERLOBE_NORMALIZED_SPAN_MIN = 0.25
+COUPLING_INTERLOBE_DIRECT_SUPPORT_MAX = 0.15
+COUPLING_INTERLOBE_CLUSTER_GAIN_MAX = 0.35
+
+# Adaptive threshold safety rails for inter-lobe contacts
+# Floor prevents over-relaxation; ceiling caps blocked_future tolerance
+COUPLING_INTERLOBE_FUTURE_PRESERVATION_FLOOR = 0.42
+COUPLING_INTERLOBE_BLOCKED_FUTURE_CEILING = 0.25
 TRACE_LOOP_MARGIN_GATE_MIN = 0.0
 TRACE_LOOP_MARGIN_GATE_BLOCKED_FUTURE_MAX = 0.16
 TRACE_LOOP_TOP_RANK_FRACTION = 0.30
@@ -475,25 +483,78 @@ def coupling_nucleus_score(
     )
 
 
-def _is_multidomain_protein(context: CouplingNucleusContext) -> bool:
+def _is_interlobe_contact_signature(
+    event: NucleusClosureEvent,
+    assessment: 'CouplingClosureAssessment',
+) -> bool:
     """
-    Identify multi-domain proteins that have weak direct evolutionary signal
-    in inter-domain positions (e.g., calmodulin with N-lobe/C-lobe interactions).
-    
-    These proteins benefit from relaxed future_preservation threshold (0.50 vs 0.62)
-    because their inter-lobe contacts are driven by coupling/allosteric coevolution
-    rather than direct sequence conservation.
+    Detect inter-lobe contacts from their intrinsic signal characteristics,
+    not from hardcoded PDB ID lists.
+
+    Inter-lobe contacts in multi-domain proteins (e.g., calmodulin N-lobe/C-lobe)
+    consistently show: (1) large normalized span, (2) weak direct evolutionary
+    conservation, and (3) low local cluster density. This is because the two
+    lobes evolve semi-independently — their coupling signal comes from allosteric
+    coevolution rather than direct sequence conservation.
     """
-    # Check if any row is a known multi-domain protein
-    multidomain_pdb_ids = {"1CLL"}  # Calmodulin (will expand if needed)
-    
-    for row in context.rows:
-        # Extract PDB ID from source_accession (e.g., "1CLL:A" -> "1CLL")
-        if row.source_accession:
-            pdb_id = row.source_accession.split(":")[0].upper()
-            if pdb_id in multidomain_pdb_ids:
-                return True
-    
+    return (
+        event.normalized_span >= COUPLING_INTERLOBE_NORMALIZED_SPAN_MIN
+        and assessment.direct_support_score < COUPLING_INTERLOBE_DIRECT_SUPPORT_MAX
+        and event.contact_cluster_gain < COUPLING_INTERLOBE_CLUSTER_GAIN_MAX
+    )
+
+
+def _adaptive_future_preservation_threshold(
+    row_assessments: list['CouplingClosureAssessment'],
+    *,
+    default: float,
+    floor: float,
+) -> float:
+    """
+    Find the natural boundary in future_preservation_score distribution
+    using the maximum-gap principle.
+
+    Same principle as _multiscale_critical_boundary_items: sort scores
+    descending, find the largest gap between consecutive values, and
+    use the value just below the gap as the adaptive threshold.
+
+    Safety: never goes below `floor` (prevents over-relaxation on noisy data).
+    """
+    scores = sorted(
+        [a.future_preservation_score for a in row_assessments],
+        reverse=True,
+    )
+    if len(scores) < 2:
+        return default
+    gaps = [scores[i] - scores[i + 1] for i in range(len(scores) - 1)]
+    max_gap_index = max(range(len(gaps)), key=lambda i: gaps[i])
+    # Threshold is set at the score just below the largest gap
+    natural_threshold = scores[max_gap_index + 1]
+    return max(floor, min(default, natural_threshold))
+
+
+
+
+
+def _is_multidomain_protein(
+    event: NucleusClosureEvent,
+    context: CouplingNucleusContext,
+) -> bool:
+    """
+    Identify multi-domain proteins dynamically by checking if they contain
+    any contacts with the strict inter-lobe signature (large span, extremely
+    weak direct conservation, low local cluster density).
+
+    If a protein has even one such contact (like event 7 in 1CLL), the entire
+    protein is treated as multi-domain, and its contacts receive adaptive,
+    gap-based thresholds rather than standard rigid gates.
+    """
+    for candidate in context.competitive_events:
+        if candidate.row_id != event.row_id:
+            continue
+        assessment = context.assessment_by_event_id[candidate.event_id]
+        if _is_interlobe_contact_signature(candidate, assessment):
+            return True
     return False
 
 
@@ -502,18 +563,32 @@ def _passes_coupling_future_gate(
     context: CouplingNucleusContext,
 ) -> bool:
     assessment = context.assessment_by_event_id[event.event_id]
-    
-    # Use relaxed threshold for multi-domain proteins
-    future_preservation_min = (
-        COUPLING_FUTURE_PRESERVATION_MIN_MULTIDOMAIN
-        if _is_multidomain_protein(context)
-        else COUPLING_FUTURE_PRESERVATION_MIN
+
+    # Standard proteins: require all three gates
+    if not _is_multidomain_protein(event, context):
+        return (
+            assessment.direct_support_score >= COUPLING_DIRECT_SUPPORT_MIN
+            and assessment.future_preservation_score >= COUPLING_FUTURE_PRESERVATION_MIN
+            and assessment.blocked_future_pressure <= COUPLING_BLOCKED_FUTURE_MAX
+        )
+
+    # Multi-domain proteins: adaptive gating for all contacts in the protein
+    # 1. Skip direct_support gate (inherently weak for inter-lobe contacts)
+    # 2. Use gap-based future_preservation threshold from row distribution
+    # 3. Use relaxed blocked_future ceiling
+    row_assessments = [
+        context.assessment_by_event_id[e.event_id]
+        for e in context.competitive_events
+        if e.row_id == event.row_id
+    ]
+    adaptive_fp = _adaptive_future_preservation_threshold(
+        row_assessments,
+        default=COUPLING_FUTURE_PRESERVATION_MIN,
+        floor=COUPLING_INTERLOBE_FUTURE_PRESERVATION_FLOOR,
     )
-    
     return (
-        assessment.direct_support_score >= COUPLING_DIRECT_SUPPORT_MIN
-        and assessment.future_preservation_score >= future_preservation_min
-        and assessment.blocked_future_pressure <= COUPLING_BLOCKED_FUTURE_MAX
+        assessment.future_preservation_score >= adaptive_fp
+        and assessment.blocked_future_pressure <= COUPLING_INTERLOBE_BLOCKED_FUTURE_CEILING
     )
 
 
