@@ -29,6 +29,7 @@ The self-deciding path does **not** use an accession-specific rule and does **no
 6. ridge / lattice / boundary support already present in the feature row
 7. residue-degree pressure while adding selected pairs
 8. phase-aware score-surface choice: boundary/frontier vs direct-ridge trace
+9. tier-aware low-score widening for broad direct-ridge traces
 
 The controller can therefore choose different native-free outcomes per event:
 
@@ -39,6 +40,7 @@ The controller can therefore choose different native-free outcomes per event:
 - distribution frontier
 - self-completion candidate when the selected core implies an internally supported missing partner
 - switch score profile to `direct_ridge_trace` when external roots and ridge support dominate boundary evidence
+- widen only a broad `direct_ridge_trace` through a score-distribution tier, then let residue-degree pressure keep the tier from becoming the whole 8x8 region
 
 ## 1CLL result
 
@@ -116,7 +118,7 @@ long-range recall: 0.005181
 frontier long-native retention: 0.038462
 ```
 
-The new phase-aware self-deciding path chooses `direct_ridge_trace` from internal evidence on the weak-ridge regions:
+The phase-aware self-deciding path first rescued the weak 4AKE frontier by choosing `direct_ridge_trace` from internal evidence:
 
 ```text
 collapsed pairs: 9
@@ -125,6 +127,18 @@ contact precision: 0.666667
 long-range precision: 0.666667
 long-range recall: 0.031088
 frontier long-native retention: 0.230769
+```
+
+The current tier-aware self-deciding path keeps the same native-free score-surface choice, then opens a wider low-score ridge tier only for broad long-range ridge traces:
+
+```text
+collapsed pairs: 34
+true positives: 16
+contact precision: 0.470588
+long-range precision: 0.470588
+long-range recall: 0.082902
+long-range F1: 0.140970
+frontier long-native retention: 0.615385
 ```
 
 The old `ridge_coupling` precision probe remains a useful comparison:
@@ -143,15 +157,15 @@ Native-free frontier expansion was added as a probe, not as a solved main path:
 ```text
 merged expansion events: 17
 uncollapsed long-range recall: 0.160622
-collapsed pairs: 49
-true positives: 8
-contact precision: 0.163265
-long-range precision: 0.205128
-long-range recall: 0.041451
-long-range F1: 0.068966
+collapsed pairs: 64
+true positives: 16
+contact precision: 0.250000
+long-range precision: 0.296296
+long-range recall: 0.082902
+long-range F1: 0.129555
 ```
 
-Honest conclusion: 4AKE is **partially cracked at precision level** by phase-aware self-deciding collapse, but it is not fully solved. Expansion exposes slightly more recall, yet the system correctly keeps it as a probe because precision collapses when the frontier is widened.
+Honest conclusion: 4AKE is now **partially cracked beyond precision-only mode**. The tier-aware controller increases collapsed true positives from 6 to 16 and long-range recall from 0.031088 to 0.082902 while keeping contact precision above 0.47. It is still not fully solved because total long-range recall remains below 0.10. Expansion exposes wider frontier recall, but the system correctly keeps it as a probe because precision drops when the frontier is widened.
 
 ### 1MBN
 
@@ -191,4 +205,4 @@ fixed pairs/event budget in main path: false
 accession-specific collapse rules: false
 ```
 
-1CLL remains a real contact-level collapse breakthrough. 1MBN shows that the self-deciding path can generalize a precision rescue outside 1CLL. 4AKE is no longer a total collapse failure: phase-aware self-decision recovers 6 true positives from 9 contacts with 0.666667 precision, but recall is still low. The next honest bottleneck is a frontier-expansion controller that widens candidate space only when its own post-collapse confidence does not collapse.
+1CLL remains a real contact-level collapse breakthrough. 1MBN shows that the self-deciding path can generalize a precision rescue outside 1CLL. 4AKE is no longer a total collapse failure: tier-aware self-decision recovers 16 true positives from 34 contacts with 0.470588 precision, but recall is still low relative to the full native long-range map. The next honest bottleneck is a frontier-expansion controller that adds new regions only when their own self-collapse confidence survives, instead of accepting every low-floor frontier expansion.

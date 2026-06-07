@@ -39,7 +39,7 @@ def test_4ake_expansion_exposes_frontier_recall_but_controller_keeps_it_as_probe
     assert expanded["selected_event_count"] > base["selected_event_count"]
     assert expanded["uncollapsed_long_range_recall"] > base["uncollapsed_long_range_recall"]
     assert expanded["collapsed_true_positive_contacts"] >= base["collapsed_true_positive_contacts"]
-    assert expanded["collapsed_long_range_recall"] > base["collapsed_long_range_recall"]
+    assert expanded["collapsed_long_range_recall"] >= base["collapsed_long_range_recall"]
     assert expanded["collapsed_contact_precision"] < base["collapsed_contact_precision"]
     assert base["native_truth_used_before_collapse_selection"] is False
     assert expanded["native_truth_used_before_collapse_selection"] is False

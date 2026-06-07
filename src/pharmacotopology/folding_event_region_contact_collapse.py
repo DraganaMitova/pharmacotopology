@@ -31,6 +31,11 @@ DEFAULT_INTERNAL_GAP_SHORT_SEGMENT_CLOSE_MAX = 7
 DEFAULT_INTERNAL_GAP_CLOSURE_SCORE_MIN = 0.65
 DEFAULT_INTERNAL_GAP_EDGE_RESCUE_SCORE_MIN = 0.57
 DEFAULT_RESIDUE_DEGREE_CAP = 5
+# Native-free tier widening for broad direct-ridge traces.  The value is expressed
+# relative to the 8x8 event width, not as an accession-specific contact count.
+SELF_DECIDING_RIDGE_TRACE_LONG_GAP_MIN_FACTOR = 6.0
+SELF_DECIDING_RIDGE_TRACE_PLATEAU_STD_FRACTION_MAX = 0.50
+SELF_DECIDING_RIDGE_TRACE_MAX_SQRT_MULTIPLIER = 4.0
 SELF_DECIDING_STRATEGY_NAME = "frontier_self_deciding"
 
 
@@ -90,6 +95,7 @@ class EventRegionCollapseSummary:
     self_deciding_gap_clarity: float = 0.0
     self_deciding_long_range_candidate_fraction: float = 0.0
     self_deciding_cutoff_signal: float = 0.0
+    self_deciding_tier_mode: str = ""
     native_truth_used_before_collapse_selection: bool = False
     coordinate_truth_used_before_collapse_selection: bool = False
     raw_sequence_exposed: bool = False
@@ -740,20 +746,21 @@ def _self_deciding_cutoff(
     event: NucleusClosureEvent,
     scored_rows: Sequence[Mapping[str, object]],
     constraints_by_pair: Mapping[tuple[int, int], CouplingConstraint],
-) -> tuple[int, str, str, float, float, float]:
+    self_profile: str,
+) -> tuple[int, str, str, float, float, float, str]:
     if not scored_rows:
-        return 0, "empty_region", "none", 0.0, 0.0, 0.0
+        return 0, "empty_region", "none", 0.0, 0.0, 0.0, "empty"
     candidate_pairs = tuple(item["pair"] for item in scored_rows)  # type: ignore[misc]
     long_fraction = _candidate_long_range_fraction(event)
     if long_fraction <= 0.0:
-        return 0, "self_closed_no_long_range_candidate_space", "no_long_range_space", 0.0, long_fraction, 0.0
+        return 0, "self_closed_no_long_range_candidate_space", "no_long_range_space", 0.0, long_fraction, 0.0, "closed"
 
     direct_count = _direct_coupling_count(candidate_pairs, constraints_by_pair)  # type: ignore[arg-type]
     long_candidate_count = sum(1 for pair in candidate_pairs if int(pair[1]) - int(pair[0]) >= 24)  # type: ignore[index]
     candidate_count = len(candidate_pairs)
     narrow_long_strip = long_candidate_count < sqrt(candidate_count) * sqrt(sqrt(candidate_count))
     if narrow_long_strip and direct_count * direct_count < max(1, long_candidate_count):
-        return 0, "self_closed_partial_strip_without_direct_root", "partial_strip", 0.0, long_fraction, 0.0
+        return 0, "self_closed_partial_strip_without_direct_root", "partial_strip", 0.0, long_fraction, 0.0, "closed"
 
     phase_mode = _self_deciding_phase_mode(scored_rows)
     scores = [float(item["score"]) for item in scored_rows]
@@ -770,7 +777,45 @@ def _self_deciding_cutoff(
     )
     line_fraction = _top_score_line_fraction(scored_rows)
     if first_gap_is_internal_outlier and line_fraction < 1.0:
-        return 1, "self_first_gap_lock", phase_mode, gap_clarity, long_fraction, cutoff_signal
+        return 1, "self_first_gap_lock", phase_mode, gap_clarity, long_fraction, cutoff_signal, "first_gap_lock"
+
+    if (
+        self_profile == "direct_ridge_trace"
+        and long_fraction >= 0.98
+        and (event.segment_b_start - event.segment_a_end)
+        >= SELF_DECIDING_RIDGE_TRACE_LONG_GAP_MIN_FACTOR * sqrt(candidate_count)
+    ):
+        # Broad inter-segment ridge traces often carry a weak but coherent low-score
+        # contact tier.  A first/core cutoff throws away recall even though the
+        # selected score surface is already the ridge/coupling surface.  Widen only
+        # when the event itself is broad long-range space; short strips stay closed
+        # by the degree cap and ordinary distribution frontier.
+        broadness_ratio = (event.segment_b_start - event.segment_a_end) / max(
+            1.0,
+            SELF_DECIDING_RIDGE_TRACE_LONG_GAP_MIN_FACTOR * sqrt(candidate_count),
+        )
+        tier_std_fraction = max(
+            0.0,
+            min(
+                SELF_DECIDING_RIDGE_TRACE_PLATEAU_STD_FRACTION_MAX,
+                SELF_DECIDING_RIDGE_TRACE_PLATEAU_STD_FRACTION_MAX * (2.0 - broadness_ratio),
+            ),
+        )
+        tier_floor = median(scores) + tier_std_fraction * (
+            pstdev(scores) if len(scores) > 1 else 0.0
+        )
+        tier_cutoff = sum(1 for score in scores if score >= tier_floor)
+        tier_cap = max(1, int(round(SELF_DECIDING_RIDGE_TRACE_MAX_SQRT_MULTIPLIER * sqrt(candidate_count))))
+        diffuse_cutoff = max(core_cutoff, min(tier_cap, tier_cutoff))
+        return (
+            diffuse_cutoff,
+            "self_direct_ridge_trace_tier_plateau",
+            phase_mode,
+            gap_clarity,
+            long_fraction,
+            _score(tier_floor),
+            "direct_ridge_trace_low_score_tier",
+        )
 
     if (
         phase_mode == "sequence_inferred_alpha_strip"
@@ -778,9 +823,9 @@ def _self_deciding_cutoff(
         and long_fraction >= 1.0
     ):
         diffuse_cutoff = max(core_cutoff, int(round(sqrt(candidate_count) * (1.0 + long_fraction))))
-        return diffuse_cutoff, "self_alpha_strip_plateau", phase_mode, gap_clarity, long_fraction, cutoff_signal
+        return diffuse_cutoff, "self_alpha_strip_plateau", phase_mode, gap_clarity, long_fraction, cutoff_signal, "alpha_strip_plateau"
 
-    return core_cutoff, "self_distribution_frontier", phase_mode, gap_clarity, long_fraction, cutoff_signal
+    return core_cutoff, "self_distribution_frontier", phase_mode, gap_clarity, long_fraction, cutoff_signal, "distribution_frontier"
 
 
 def _self_completion_candidates(
@@ -917,6 +962,7 @@ def collapse_event_region_contacts(
     self_gap_clarity = 0.0
     self_long_fraction = 0.0
     self_cutoff_signal = 0.0
+    self_tier_mode = ""
     if collapse_strategy == "frontier_recall":
         max_pairs_per_event = max(max_pairs_per_event, DEFAULT_RECALL_MAX_PAIRS_PER_EVENT)
         min_pairs_per_event = max(min_pairs_per_event, min(8, max_pairs_per_event))
@@ -953,10 +999,12 @@ def collapse_event_region_contacts(
             self_gap_clarity,
             self_long_fraction,
             self_cutoff_signal,
+            self_tier_mode,
         ) = _self_deciding_cutoff(
             event=event,
             scored_rows=scored_rows,
             constraints_by_pair=constraints_by_pair,
+            self_profile=self_profile,
         )
         max_pairs_per_event = applied_cutoff
         min_pairs_per_event = 0 if applied_cutoff == 0 else 1
@@ -1100,6 +1148,7 @@ def collapse_event_region_contacts(
         self_deciding_gap_clarity=self_gap_clarity,
         self_deciding_long_range_candidate_fraction=self_long_fraction,
         self_deciding_cutoff_signal=self_cutoff_signal,
+        self_deciding_tier_mode=self_tier_mode,
     )
     return tuple(selected), summary
 

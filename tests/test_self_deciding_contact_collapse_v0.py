@@ -60,20 +60,24 @@ def test_4ake_phase_aware_self_deciding_rescues_precision_but_not_full_recall():
     assert ridge_probe["collapsed_long_range_precision"] == 1.0
     assert ridge_probe["collapsed_long_range_recall"] < 0.02
 
-    # The self-deciding scorer now chooses a direct-ridge surface on the weak
-    # 4AKE frontier instead of the old boundary surface.  This is a real rescue,
-    # but recall is still low enough that the row is not solved.
-    assert self_result["collapsed_pair_count"] == 9
-    assert self_result["collapsed_true_positive_contacts"] >= 6
-    assert self_result["collapsed_contact_precision"] >= 0.60
-    assert self_result["collapsed_long_range_precision"] >= 0.60
-    assert self_result["collapsed_long_range_recall"] >= 0.03
-    assert self_result["collapsed_long_range_recall"] < 0.05
+    # The self-deciding scorer now chooses a direct-ridge surface and then widens
+    # only broad ridge traces through an internal low-score tier.  This improves
+    # recall without accepting the whole expanded frontier, but the row is still
+    # not solved because total long-range recall remains below 0.10.
+    assert self_result["collapsed_pair_count"] == 34
+    assert self_result["collapsed_true_positive_contacts"] >= 16
+    assert self_result["collapsed_contact_precision"] >= 0.45
+    assert self_result["collapsed_long_range_precision"] >= 0.45
+    assert self_result["collapsed_long_range_recall"] >= 0.08
+    assert self_result["collapsed_long_range_recall"] < 0.10
+    assert self_result["collapsed_long_range_f1"] >= 0.14
 
-    # Native-free frontier expansion can expose more recall, but it is not
-    # accepted as a solved contact map because precision drops sharply.
+    # Native-free frontier expansion exposes more uncollapsed recall, but the
+    # collapse controller does not accept it as a solved contact map because
+    # contact precision drops sharply and collapsed recall does not materially
+    # beat the self-deciding seed frontier.
     assert expansion["uncollapsed_long_range_recall"] > self_result["uncollapsed_long_range_recall"]
-    assert expansion["collapsed_long_range_recall"] > self_result["collapsed_long_range_recall"]
+    assert expansion["collapsed_long_range_recall"] >= self_result["collapsed_long_range_recall"]
     assert expansion["collapsed_contact_precision"] < self_result["collapsed_contact_precision"]
 
     assert self_result["native_truth_used_before_collapse_selection"] is False
