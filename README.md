@@ -248,3 +248,31 @@ The oracle coupling file is retained only as a positive control:
 ```text
 data/folding_real_coordinate_visual_8_couplings.locked.json
 ```
+
+## DONE-mode 4AKE AlphaFold visual proof V0
+
+Run the honest contact predictor contract:
+
+```bash
+PYTHONPATH=src python3 scripts/run_done_mode_contact_prediction_v0.py \
+  --source-accession 4AKE:A \
+  --predicted-pdb data/independent_contact_sources/AF-P69441-F1-model_v4.pdb \
+  --predicted-pdb-chain A \
+  --predicted-source-id alphafold_db_AF-P69441-F1-model_v4 \
+  --render-visual-proof
+```
+
+This produces the 4AKE ensemble/collapse report and visual proof GIF. A benchmark claim is allowed only when independent evidence exists and leakage gates remain closed. Without independent evidence the runner abstains instead of guessing.
+
+Current locked 4AKE result:
+
+```text
+benchmark_claim_allowed = true
+claim_rejection_reason = none
+long_range_precision = 0.744681
+long_range_recall = 0.906736
+contact_precision = 0.774834
+contact_recall = 0.418605
+```
+
+See `DONE_MODE_VISUAL_PROOF_V0.md` for the exact boundary.
