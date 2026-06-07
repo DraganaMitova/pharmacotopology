@@ -9,7 +9,11 @@ from pharmacotopology.folding_contact_law_features import (
     contact_law_feature_rows,
     feature_rows_by_row_id,
 )
-from pharmacotopology.folding_coupling_nucleus_selector import build_coupling_nucleus_context
+from pharmacotopology.folding_coupling_nucleus_selector import (
+    build_coupling_nucleus_context,
+    select_coupling_trace_loop_self_deciding_frontier_expanded_events,
+    self_deciding_frontier_expansion_rows,
+)
 from pharmacotopology.folding_event_region_contact_collapse import (
     DEFAULT_BALANCED_PAIRS_PER_EVENT,
     DEFAULT_PRECISION_MAX_PAIRS_PER_EVENT,
@@ -171,6 +175,38 @@ def main() -> None:
             row_report["pairs_per_event_budget"] = budget
             one_cll_budget_probe.append(row_report)
 
+    seed_frontier_events_list = []
+    for row_id, event_ids in sorted(event_ids_by_row.items()):
+        row = row_by_id.get(row_id)
+        if row is None:
+            continue
+        seed_frontier_events_list.extend(
+            _selected_frontier_events(
+                row=row,
+                event_ids_by_row={row_id: event_ids},
+                event_by_id=context.event_by_id,
+            )
+        )
+    seed_frontier_events = tuple(seed_frontier_events_list)
+    self_expanded_frontier_events = (
+        select_coupling_trace_loop_self_deciding_frontier_expanded_events(
+            context,
+            seed_events=(),
+        )
+    )
+    merged_self_expanded_frontier_events = (
+        select_coupling_trace_loop_self_deciding_frontier_expanded_events(
+            context,
+            seed_events=seed_frontier_events,
+        )
+    )
+    self_expansion_event_ids_by_row: dict[str, list[str]] = {}
+    for event in self_expanded_frontier_events:
+        self_expansion_event_ids_by_row.setdefault(event.row_id, []).append(event.event_id)
+    merged_expansion_event_ids_by_row: dict[str, list[str]] = {}
+    for event in merged_self_expanded_frontier_events:
+        merged_expansion_event_ids_by_row.setdefault(event.row_id, []).append(event.event_id)
+
     hard_target_rescue_probe: dict[str, dict[str, object]] = {}
     for target_accession in ("4AKE:A", "1MBN:A"):
         target_row = next((row for row in rows if row.source_accession == target_accession), None)
@@ -198,6 +234,25 @@ def main() -> None:
                 max_pairs_per_event=max_pairs,
             )
             target_reports[target_strategy] = _row_result_to_report(target_result)
+        for expansion_name, expansion_event_ids_by_row in (
+            ("self_deciding_frontier_expansion_only", self_expansion_event_ids_by_row),
+            ("self_deciding_frontier_expansion_merged", merged_expansion_event_ids_by_row),
+        ):
+            expansion_events = _selected_frontier_events(
+                row=target_row,
+                event_ids_by_row=expansion_event_ids_by_row,
+                event_by_id=context.event_by_id,
+            )
+            expansion_result = collapse_row_event_regions(
+                row=target_row,
+                events=expansion_events,
+                row_features=features_by_row.get(target_row.row_id, ()),
+                row_constraints=constraints_by_row.get(target_row.row_id, ()),
+                collapse_strategy=SELF_DECIDING_STRATEGY_NAME,
+                min_pairs_per_event=0,
+                max_pairs_per_event=0,
+            )
+            target_reports[expansion_name] = _row_result_to_report(expansion_result)
         hard_target_rescue_probe[target_accession] = target_reports
 
     report = {
@@ -237,6 +292,15 @@ def main() -> None:
         "one_cll_self_deciding_report": one_cll_reports.get(SELF_DECIDING_STRATEGY_NAME, {}),
         "one_cll_internal_gap_report": one_cll_reports.get("frontier_internal_gap_balanced", {}),
         "hard_target_rescue_probe": hard_target_rescue_probe,
+        "self_deciding_frontier_expansion_rows": self_deciding_frontier_expansion_rows(
+            context,
+            seed_events=seed_frontier_events,
+        ),
+        "self_deciding_frontier_expansion_interpretation": (
+            "The expansion selector is native-free and accession-agnostic. It is reported separately from the main "
+            "collapse path because some rows gain frontier recall but lose contact precision after collapse; the system "
+            "must not accept a wider frontier just because post-hoc native recall rises."
+        ),
         "one_cll_fixed_budget_probe": one_cll_budget_probe,
         "one_cll_best_long_range_f1_budget": max(
             one_cll_budget_probe,
@@ -262,6 +326,10 @@ def main() -> None:
     )
     _csv_write(OUTPUT_DIR / "contact_collapse_pairs_v0.csv", pair_rows)
     _csv_write(OUTPUT_DIR / "contact_collapse_event_rows_v0.csv", event_rows)
+    _csv_write(
+        OUTPUT_DIR / "self_deciding_frontier_expansion_rows_v0.csv",
+        self_deciding_frontier_expansion_rows(context, seed_events=seed_frontier_events),
+    )
 
 
 if __name__ == "__main__":

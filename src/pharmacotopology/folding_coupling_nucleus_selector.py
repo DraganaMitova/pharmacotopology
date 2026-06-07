@@ -5,7 +5,7 @@ from collections import Counter, defaultdict
 from dataclasses import asdict, dataclass
 from math import log2, sqrt
 from pathlib import Path
-from statistics import mean
+from statistics import mean, median, pstdev
 from typing import Mapping, Sequence
 
 from pharmacotopology.artifact_io import write_csv_rows
@@ -1038,6 +1038,8 @@ def select_coupling_events(
         return select_coupling_trace_loop_macro_scale_future_preserved_events(
             context
         )
+    if selector_name == "coupling_trace_loop_self_deciding_frontier_expanded":
+        return select_coupling_trace_loop_self_deciding_frontier_expanded_events(context)
 
     selected: list[NucleusClosureEvent] = []
     competitive_by_row = _events_by_row(context.competitive_events)
@@ -1499,6 +1501,170 @@ def _direct_constraint_trace_evidence(
             1 for constraint in direct if constraint.rank_fraction <= 0.10
         ),
     }
+
+
+
+
+def _self_deciding_frontier_expansion_score(
+    event: NucleusClosureEvent,
+    context: CouplingNucleusContext,
+) -> dict[str, object]:
+    """Native-free score for bringing extra event regions into the contact frontier.
+
+    This is deliberately different from contact collapse.  It asks whether an
+    event region is a good *candidate space* because it covers external DCA roots
+    and has enough internal physical/future support to deserve collapse.  Native
+    labels are not read here; they remain audit-only after selection.
+    """
+    constraints = context.coupling_dataset.constraints_by_row_id().get(
+        event.row_id,
+        (),
+    )
+    region_pairs = set(event.candidate_region_pairs())
+    direct = tuple(
+        constraint for constraint in constraints if constraint.pair() in region_pairs
+    )
+    assessment = context.assessment_by_event_id[event.event_id]
+    direct_count = len(direct)
+    direct_confidence_sum = sum(constraint.confidence for constraint in direct)
+    direct_top_rank_count = sum(1 for constraint in direct if constraint.rank_fraction <= 0.10)
+    confidence_density = direct_confidence_sum / max(1, len(region_pairs))
+    coverage_score = min(1.0, direct_confidence_sum / 2.0)
+    count_score = min(1.0, direct_count / 4.0)
+    top_rank_score = min(1.0, direct_top_rank_count / 2.0)
+    score = _rounded(
+        0.36 * coverage_score
+        + 0.22 * count_score
+        + 0.16 * coupling_nucleus_score(event, context)
+        + 0.12 * assessment.future_preservation_score
+        + 0.10 * event.contact_cluster_gain
+        + 0.08 * top_rank_score
+        - 0.10 * assessment.blocked_future_pressure
+    )
+    return {
+        "event_id": event.event_id,
+        "row_id": event.row_id,
+        "source_accession": event.source_accession,
+        "self_deciding_frontier_expansion_score": score,
+        "direct_constraint_count": direct_count,
+        "direct_constraint_confidence_sum": _rounded(direct_confidence_sum),
+        "direct_top_10pct_rank_count": direct_top_rank_count,
+        "direct_constraint_confidence_density": _rounded(confidence_density),
+        "coupling_nucleus_score": coupling_nucleus_score(event, context),
+        "future_preservation_score": assessment.future_preservation_score,
+        "blocked_future_pressure": assessment.blocked_future_pressure,
+        "contact_cluster_gain": event.contact_cluster_gain,
+        "native_truth_used_before_frontier_expansion": False,
+        "coordinate_truth_used_before_frontier_expansion": False,
+    }
+
+
+def _self_deciding_frontier_expansion_cutoff(
+    scores: Sequence[float],
+) -> tuple[int, str, float]:
+    if not scores:
+        return 0, "empty_expansion_distribution", 0.0
+    if len(scores) == 1:
+        return 1, "single_external_root_region", scores[0]
+    ordered = sorted(scores, reverse=True)
+    gaps = [ordered[index] - ordered[index + 1] for index in range(len(ordered) - 1)]
+    gap_cutoff = max(range(len(gaps)), key=lambda index: gaps[index]) + 1
+    center = median(ordered)
+    spread = pstdev(ordered) if len(ordered) > 1 else 0.0
+    distribution_floor = center + 0.5 * spread
+    distribution_cutoff = sum(1 for score in ordered if score >= distribution_floor)
+    cutoff = max(1, min(SELECTED_EVENTS_PER_ROW, max(gap_cutoff, distribution_cutoff)))
+    reason = "self_gap_and_distribution_external_root_frontier"
+    return cutoff, reason, _rounded(distribution_floor)
+
+
+def select_coupling_trace_loop_self_deciding_frontier_expanded_events(
+    context: CouplingNucleusContext,
+    *,
+    seed_events: Sequence[NucleusClosureEvent] = (),
+) -> tuple[NucleusClosureEvent, ...]:
+    """Select a self-deciding external-root frontier expansion.
+
+    The selector is protein-agnostic and native-free.  It starts from optional
+    seed events, then expands per row using a distribution boundary over external
+    constraint coverage, future/physical support and blocked-future pressure.
+    It intentionally does not use accession-specific rules or a fixed number of
+    added events.
+    """
+    seed_by_row = _events_by_row(seed_events)
+    selected: list[NucleusClosureEvent] = []
+    competitive_by_row = _events_by_row(context.competitive_events)
+    for row in context.rows:
+        row_selected: list[NucleusClosureEvent] = list(seed_by_row.get(row.row_id, ()))
+        selected_ids = {event.event_id for event in row_selected}
+        candidates: list[tuple[float, NucleusClosureEvent, dict[str, object]]] = []
+        for event in competitive_by_row.get(row.row_id, ()):
+            if event.event_id in selected_ids:
+                continue
+            score_row = _self_deciding_frontier_expansion_score(event, context)
+            if int(score_row["direct_constraint_count"]) <= 0:
+                continue
+            candidates.append((
+                float(score_row["self_deciding_frontier_expansion_score"]),
+                event,
+                score_row,
+            ))
+        candidates.sort(
+            key=lambda item: (
+                -item[0],
+                -float(item[2]["direct_constraint_confidence_sum"]),
+                item[1].segment_a_start,
+                item[1].segment_b_start,
+                item[1].event_id,
+            )
+        )
+        cutoff, _reason, _distribution_floor = _self_deciding_frontier_expansion_cutoff(
+            [score for score, _event, _score_row in candidates]
+        )
+        for _score, event, _score_row in candidates[:cutoff]:
+            if len(row_selected) >= SELECTED_EVENTS_PER_ROW:
+                break
+            if event.event_id in selected_ids:
+                continue
+            row_selected.append(event)
+            selected_ids.add(event.event_id)
+        selected.extend(row_selected)
+    return tuple(selected)
+
+
+def self_deciding_frontier_expansion_rows(
+    context: CouplingNucleusContext,
+    *,
+    seed_events: Sequence[NucleusClosureEvent] = (),
+) -> list[dict[str, object]]:
+    seed_ids = {event.event_id for event in seed_events}
+    selected_ids = {
+        event.event_id
+        for event in select_coupling_trace_loop_self_deciding_frontier_expanded_events(
+            context,
+            seed_events=seed_events,
+        )
+    }
+    rows: list[dict[str, object]] = []
+    for event in context.competitive_events:
+        score_row = _self_deciding_frontier_expansion_score(event, context)
+        if int(score_row["direct_constraint_count"]) <= 0 and event.event_id not in selected_ids:
+            continue
+        score_row.update(
+            {
+                "seed_event": event.event_id in seed_ids,
+                "self_deciding_frontier_expansion_selected": event.event_id in selected_ids,
+            }
+        )
+        rows.append(score_row)
+    return sorted(
+        rows,
+        key=lambda row: (
+            str(row["row_id"]),
+            -float(row["self_deciding_frontier_expansion_score"]),
+            str(row["event_id"]),
+        ),
+    )
 
 
 def _passes_pressure_release_rescue_gate(

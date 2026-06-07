@@ -48,14 +48,33 @@ def test_1mbn_self_deciding_keeps_recall_signal_but_removes_recall_probe_noise()
     assert self_result["coordinate_truth_used_before_collapse_selection"] is False
 
 
-def test_4ake_is_honestly_not_solved_by_collapse_when_frontier_recall_ceiling_is_low():
+def test_4ake_phase_aware_self_deciding_rescues_precision_but_not_full_recall():
     report = _diagnostics()
     ridge_probe = report["hard_target_rescue_probe"]["4AKE:A"]["ridge_coupling"]
     self_result = report["hard_target_rescue_probe"]["4AKE:A"][SELF_DECIDING_STRATEGY_NAME]
+    expansion = report["hard_target_rescue_probe"]["4AKE:A"][
+        "self_deciding_frontier_expansion_merged"
+    ]
+
     assert ridge_probe["collapsed_contact_precision"] >= 0.75
     assert ridge_probe["collapsed_long_range_precision"] == 1.0
     assert ridge_probe["collapsed_long_range_recall"] < 0.02
-    assert self_result["frontier_long_native_retention"] < 0.05
-    assert self_result["collapsed_long_range_recall"] < 0.01
+
+    # The self-deciding scorer now chooses a direct-ridge surface on the weak
+    # 4AKE frontier instead of the old boundary surface.  This is a real rescue,
+    # but recall is still low enough that the row is not solved.
+    assert self_result["collapsed_pair_count"] == 9
+    assert self_result["collapsed_true_positive_contacts"] >= 6
+    assert self_result["collapsed_contact_precision"] >= 0.60
+    assert self_result["collapsed_long_range_precision"] >= 0.60
+    assert self_result["collapsed_long_range_recall"] >= 0.03
+    assert self_result["collapsed_long_range_recall"] < 0.05
+
+    # Native-free frontier expansion can expose more recall, but it is not
+    # accepted as a solved contact map because precision drops sharply.
+    assert expansion["uncollapsed_long_range_recall"] > self_result["uncollapsed_long_range_recall"]
+    assert expansion["collapsed_long_range_recall"] > self_result["collapsed_long_range_recall"]
+    assert expansion["collapsed_contact_precision"] < self_result["collapsed_contact_precision"]
+
     assert self_result["native_truth_used_before_collapse_selection"] is False
     assert self_result["coordinate_truth_used_before_collapse_selection"] is False

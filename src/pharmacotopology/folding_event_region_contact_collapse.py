@@ -615,6 +615,109 @@ def _self_deciding_phase_mode(scored_rows: Sequence[Mapping[str, object]]) -> st
     return "mixed_internal_evidence"
 
 
+
+
+def _self_deciding_score_profile(
+    *,
+    event: NucleusClosureEvent,
+    scored_rows: Sequence[Mapping[str, object]],
+    direct_coupling_count: int,
+    density_supported_count: int,
+    long_range_fraction: float,
+) -> str:
+    """Choose the contact-level score surface from internal evidence only.
+
+    The first self-deciding version used a single boundary/frontier score and
+    only made the cutoff adaptive.  That was honest, but it under-read rows where
+    the useful signal is an external-coupling ridge instead of a boundary peak.
+    This chooser is still native-free: it sees only the event geometry, the
+    sequence/contact-law feature distribution, and the external-coupling density.
+    """
+    if not scored_rows:
+        return "empty"
+    phase_mode = _self_deciding_phase_mode(scored_rows)
+    mean_sequence = _mean(
+        [float(item.get("sequence_law_support_score", 0.0)) for item in scored_rows]
+    )
+    mean_density = _mean(
+        [float(item.get("coupling_density_score", 0.0)) for item in scored_rows]
+    )
+    mean_ridge = _mean(
+        [float(item.get("ridge_coherence_score", 0.0)) for item in scored_rows]
+    )
+    density_fraction = density_supported_count / max(1, len(scored_rows))
+
+    # Weak/diagonal frontiers can have a real external-coupling trace even when
+    # boundary peaks are sharper.  Let the system switch to the ridge/coupling
+    # surface only when the region has direct roots, broad long-range candidate
+    # space, and non-trivial sequence-law/ridge support.  The contact-cluster
+    # guard prevents dense high-confidence boundary regions from being degraded.
+    if (
+        direct_coupling_count >= 2
+        and long_range_fraction >= 0.85
+        and mean_sequence >= 0.10
+        and density_fraction >= 0.35
+        and mean_ridge >= 0.10
+        and (
+            phase_mode == "sequence_inferred_lattice_or_beta"
+            or event.contact_cluster_gain < 0.42
+        )
+    ):
+        return "direct_ridge_trace"
+
+    if (
+        phase_mode == "sequence_inferred_alpha_strip"
+        and long_range_fraction >= 1.0
+        and mean_density >= 0.06
+        and event.contact_cluster_gain >= 0.38
+    ):
+        return "alpha_strip_frontier"
+
+    return "boundary_frontier"
+
+
+def _apply_self_deciding_score_profile(
+    *,
+    event: NucleusClosureEvent,
+    scored_rows: Sequence[Mapping[str, object]],
+    profile: str,
+) -> list[dict[str, object]]:
+    output: list[dict[str, object]] = []
+    for item in scored_rows:
+        updated = dict(item)
+        feature = updated.get("feature")
+        if feature is None:
+            output.append(updated)
+            continue
+        if profile == "direct_ridge_trace":
+            updated["score"] = _ridge_coupling_score(
+                feature=feature,  # type: ignore[arg-type]
+                coupling_density_score=float(updated.get("coupling_density_score", 0.0)),
+                sequence_law_support_score=float(updated.get("sequence_law_support_score", 0.0)),
+                ridge_coherence_score=float(updated.get("ridge_coherence_score", 0.0)),
+                boundary_coherence_score=float(updated.get("boundary_coherence_score", 0.0)),
+            )
+        else:
+            pair = updated["pair"]  # type: ignore[assignment]
+            updated["score"] = _frontier_precision_score(
+                pair=pair,  # type: ignore[arg-type]
+                event=event,
+                feature=feature,  # type: ignore[arg-type]
+                coupling_density_score=float(updated.get("coupling_density_score", 0.0)),
+                sequence_law_support_score=float(updated.get("sequence_law_support_score", 0.0)),
+                ridge_coherence_score=float(updated.get("ridge_coherence_score", 0.0)),
+                boundary_coherence_score=float(updated.get("boundary_coherence_score", 0.0)),
+            )
+        output.append(updated)
+    output.sort(
+        key=lambda item: (
+            -float(item["score"]),
+            int(item["pair"][0]),  # type: ignore[index]
+            int(item["pair"][1]),  # type: ignore[index]
+        )
+    )
+    return output
+
 def _top_score_line_fraction(scored_rows: Sequence[Mapping[str, object]]) -> float:
     if not scored_rows:
         return 0.0
@@ -790,11 +893,26 @@ def collapse_event_region_contacts(
             int(item["pair"][1]),  # type: ignore[index]
         )
     )
+    density_supported_count = _density_supported_pair_count(scored_rows)
+    direct_coupling_count = sum(1 for pair in candidate_pairs if pair in constraints_by_pair)
+    self_profile = ""
+    if collapse_strategy == SELF_DECIDING_STRATEGY_NAME:
+        self_profile = _self_deciding_score_profile(
+            event=event,
+            scored_rows=scored_rows,
+            direct_coupling_count=direct_coupling_count,
+            density_supported_count=density_supported_count,
+            long_range_fraction=_candidate_long_range_fraction(event),
+        )
+        scored_rows = _apply_self_deciding_score_profile(
+            event=event,
+            scored_rows=scored_rows,
+            profile=self_profile,
+        )
+        density_supported_count = _density_supported_pair_count(scored_rows)
     natural_gap_cutoff = _gap_cutoff([float(item["score"]) for item in scored_rows])
     first_gap = _first_score_gap(scored_rows)
-    density_supported_count = _density_supported_pair_count(scored_rows)
     collapse_decision_reason = "natural_gap"
-    self_profile = ""
     self_phase_mode = ""
     self_gap_clarity = 0.0
     self_long_fraction = 0.0
@@ -840,7 +958,6 @@ def collapse_event_region_contacts(
             scored_rows=scored_rows,
             constraints_by_pair=constraints_by_pair,
         )
-        self_profile = "frontier_precision_distribution"
         max_pairs_per_event = applied_cutoff
         min_pairs_per_event = 0 if applied_cutoff == 0 else 1
     else:
@@ -950,7 +1067,6 @@ def collapse_event_region_contacts(
             )
         )
 
-    direct_coupling_count = sum(1 for pair in candidate_pairs if pair in constraints_by_pair)
     summary = EventRegionCollapseSummary(
         row_id=event.row_id,
         source_accession=event.source_accession,

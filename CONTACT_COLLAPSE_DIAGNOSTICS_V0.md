@@ -28,6 +28,7 @@ The self-deciding path does **not** use an accession-specific rule and does **no
 5. direct external-coupling root count
 6. ridge / lattice / boundary support already present in the feature row
 7. residue-degree pressure while adding selected pairs
+8. phase-aware score-surface choice: boundary/frontier vs direct-ridge trace
 
 The controller can therefore choose different native-free outcomes per event:
 
@@ -37,6 +38,7 @@ The controller can therefore choose different native-free outcomes per event:
 - alpha-strip plateau
 - distribution frontier
 - self-completion candidate when the selected core implies an internally supported missing partner
+- switch score profile to `direct_ridge_trace` when external roots and ridge support dominate boundary evidence
 
 ## 1CLL result
 
@@ -103,7 +105,7 @@ The diagnostic script also reports 4AKE and 1MBN rescue probes without making so
 
 ### 4AKE
 
-Current self-deciding path:
+Previous self-deciding path used one boundary/frontier score surface and failed the weak 4AKE frontier:
 
 ```text
 collapsed pairs: 9
@@ -114,7 +116,18 @@ long-range recall: 0.005181
 frontier long-native retention: 0.038462
 ```
 
-Best current precision probe remains `ridge_coupling`:
+The new phase-aware self-deciding path chooses `direct_ridge_trace` from internal evidence on the weak-ridge regions:
+
+```text
+collapsed pairs: 9
+true positives: 6
+contact precision: 0.666667
+long-range precision: 0.666667
+long-range recall: 0.031088
+frontier long-native retention: 0.230769
+```
+
+The old `ridge_coupling` precision probe remains a useful comparison:
 
 ```text
 collapsed pairs: 4
@@ -125,7 +138,20 @@ long-range recall: 0.015544
 frontier long-native retention: 0.115385
 ```
 
-Honest conclusion: 4AKE is **not solved by collapse**. There is precise ridge signal, but the selected frontier has a low long-range recall ceiling, so recall must be attacked upstream in frontier expansion rather than claimed as a collapse win.
+Native-free frontier expansion was added as a probe, not as a solved main path:
+
+```text
+merged expansion events: 17
+uncollapsed long-range recall: 0.160622
+collapsed pairs: 49
+true positives: 8
+contact precision: 0.163265
+long-range precision: 0.205128
+long-range recall: 0.041451
+long-range F1: 0.068966
+```
+
+Honest conclusion: 4AKE is **partially cracked at precision level** by phase-aware self-deciding collapse, but it is not fully solved. Expansion exposes slightly more recall, yet the system correctly keeps it as a probe because precision collapses when the frontier is widened.
 
 ### 1MBN
 
@@ -165,4 +191,4 @@ fixed pairs/event budget in main path: false
 accession-specific collapse rules: false
 ```
 
-1CLL remains a real contact-level collapse breakthrough. 1MBN now shows that the self-deciding path can generalize a precision rescue outside 1CLL. 4AKE remains an upstream frontier-recall problem: collapse sees a precise ridge seed but cannot recover contacts that the frontier never exposes.
+1CLL remains a real contact-level collapse breakthrough. 1MBN shows that the self-deciding path can generalize a precision rescue outside 1CLL. 4AKE is no longer a total collapse failure: phase-aware self-decision recovers 6 true positives from 9 contacts with 0.666667 precision, but recall is still low. The next honest bottleneck is a frontier-expansion controller that widens candidate space only when its own post-collapse confidence does not collapse.
