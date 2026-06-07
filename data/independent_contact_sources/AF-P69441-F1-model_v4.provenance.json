@@ -1,0 +1,36 @@
+{
+  "file": {
+    "file_name": "AF-P69441-F1-model_v4.pdb",
+    "line_count": 1721,
+    "path": "data/independent_contact_sources/AF-P69441-F1-model_v4.pdb",
+    "sha256": "7438d23afdec2dc18cb32d518ddc71b07c31f0c6b81d60dce5fca628302142a0",
+    "size_bytes": 139400
+  },
+  "kind": "independent_predicted_structure_source_provenance_v0",
+  "model_identity": {
+    "alphafold_model_id": "AF-P69441-F1-model_v4",
+    "ca_point_count": 214,
+    "chain_id": "A",
+    "pdb_header_observed": "HEADER                                            01-JUN-22                     "
+  },
+  "protein": {
+    "benchmark_source_accession": "4AKE:A",
+    "description": "Adenylate kinase, Escherichia coli K-12",
+    "expected_sequence_length": 214,
+    "uniprot_accession": "P69441"
+  },
+  "retrieval": {
+    "downloaded_in_sandbox": true,
+    "intended_primary_source": "AlphaFold DB AF-P69441-F1-model_v4 PDB file",
+    "reason_mirror_used": "Sandbox DNS/direct-download restrictions blocked direct AlphaFold DB PDB retrieval; GitHub raw text mirror was accessible. The file identity and model id are preserved in the PDB header and source id.",
+    "retrieved_from_mirror": "https://github.com/jansson-erik/protein-lddmm/raw/refs/heads/main/AF-P69441-F1-model_v4.pdb"
+  },
+  "safety_and_leakage": {
+    "benchmark_coordinates_source": "not used as source; attached after selection only for evaluation",
+    "coordinate_truth_used_before_selection": false,
+    "native_truth_used_before_selection": false,
+    "raw_sequence_exposed": false
+  },
+  "source_family": "independent_structure",
+  "source_role": "external_predicted_structure_contacts_v0"
+}
