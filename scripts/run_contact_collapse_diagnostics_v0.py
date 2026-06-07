@@ -96,6 +96,7 @@ def main() -> None:
     strategy_reports: dict[str, list[dict[str, object]]] = {
         "frontier_precision": [],
         "frontier_balanced": [],
+        "frontier_internal_gap_balanced": [],
         "frontier_recall": [],
         "ridge_coupling": [],
     }
@@ -119,6 +120,9 @@ def main() -> None:
             elif strategy == "frontier_balanced":
                 max_pairs = DEFAULT_BALANCED_PAIRS_PER_EVENT
                 min_pairs = DEFAULT_BALANCED_PAIRS_PER_EVENT
+            elif strategy == "frontier_internal_gap_balanced":
+                max_pairs = DEFAULT_BALANCED_PAIRS_PER_EVENT
+                min_pairs = 1
             else:
                 max_pairs = DEFAULT_PRECISION_MAX_PAIRS_PER_EVENT
                 min_pairs = 1
@@ -162,6 +166,34 @@ def main() -> None:
             row_report["pairs_per_event_budget"] = budget
             one_cll_budget_probe.append(row_report)
 
+    hard_target_rescue_probe: dict[str, dict[str, object]] = {}
+    for target_accession in ("4AKE:A", "1MBN:A"):
+        target_row = next((row for row in rows if row.source_accession == target_accession), None)
+        if target_row is None:
+            continue
+        target_events = _selected_frontier_events(
+            row=target_row,
+            event_ids_by_row=event_ids_by_row,
+            event_by_id=context.event_by_id,
+        )
+        target_reports: dict[str, object] = {}
+        for target_strategy, min_pairs, max_pairs in (
+            ("frontier_internal_gap_balanced", 1, DEFAULT_BALANCED_PAIRS_PER_EVENT),
+            ("ridge_coupling", 1, DEFAULT_PRECISION_MAX_PAIRS_PER_EVENT),
+            ("frontier_recall", 8, DEFAULT_RECALL_MAX_PAIRS_PER_EVENT),
+        ):
+            target_result = collapse_row_event_regions(
+                row=target_row,
+                events=target_events,
+                row_features=features_by_row.get(target_row.row_id, ()),
+                row_constraints=constraints_by_row.get(target_row.row_id, ()),
+                collapse_strategy=target_strategy,
+                min_pairs_per_event=min_pairs,
+                max_pairs_per_event=max_pairs,
+            )
+            target_reports[target_strategy] = _row_result_to_report(target_result)
+        hard_target_rescue_probe[target_accession] = target_reports
+
     report = {
         "report_kind": "event_region_contact_collapse_diagnostics_v0",
         "collapse_kind": EVENT_REGION_CONTACT_COLLAPSE_KIND,
@@ -196,6 +228,8 @@ def main() -> None:
             for strategy, rows_for_strategy in strategy_reports.items()
         },
         "one_cll_strategy_reports": one_cll_reports,
+        "one_cll_internal_gap_report": one_cll_reports.get("frontier_internal_gap_balanced", {}),
+        "hard_target_rescue_probe": hard_target_rescue_probe,
         "one_cll_fixed_budget_probe": one_cll_budget_probe,
         "one_cll_best_long_range_f1_budget": max(
             one_cll_budget_probe,
@@ -204,7 +238,9 @@ def main() -> None:
         "row_reports_by_strategy": strategy_reports,
         "interpretation": (
             "Frontier event success and contact-map success are separate. Collapse reduces each 8x8 event region "
-            "to a ranked residue-pair subset, then reports precision/recall instead of treating all region pairs as contacts."
+            "to a ranked residue-pair subset, then reports precision/recall instead of treating all region pairs as contacts. "
+            "The internal-gap balanced strategy uses score gaps, short-region closing, one support-completion corner, "
+            "and one edge rescue; native labels remain post-selection diagnostics only."
         ),
     }
     (OUTPUT_DIR / "contact_collapse_diagnostics_v0.json").write_text(

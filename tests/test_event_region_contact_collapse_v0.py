@@ -121,3 +121,32 @@ def test_1cll_frontier_balanced_collapse_enters_main_tradeoff_band():
     assert result.evaluation.precision_improvement_factor >= 6.0
     assert result.evaluation.native_truth_used_before_collapse_selection is False
     assert result.evaluation.coordinate_truth_used_before_collapse_selection is False
+
+
+def test_1cll_internal_gap_balanced_collapse_cracks_contact_level_tradeoff():
+    row, events, row_features, row_constraints = _one_cll_frontier_events()
+    result = collapse_row_event_regions(
+        row=row,
+        events=events,
+        row_features=row_features,
+        row_constraints=row_constraints,
+        collapse_strategy="frontier_internal_gap_balanced",
+    )
+    assert len(events) == 7
+    assert result.evaluation.uncollapsed_region_pair_count == 432
+    assert result.evaluation.collapsed_pair_count <= 25
+    assert result.evaluation.collapse_reduction_ratio >= 0.94
+    assert result.evaluation.collapsed_true_positive_contacts >= 13
+    assert result.evaluation.collapsed_contact_precision >= 0.55
+    assert result.evaluation.collapsed_long_range_precision >= 0.65
+    assert result.evaluation.collapsed_long_range_recall >= 0.36
+    assert result.evaluation.collapsed_long_range_f1 >= 0.47
+    assert result.evaluation.frontier_long_native_retention == 1.0
+    assert result.evaluation.precision_improvement_factor >= 10.0
+    assert result.evaluation.native_truth_used_before_collapse_selection is False
+    assert result.evaluation.coordinate_truth_used_before_collapse_selection is False
+    reasons = {summary.collapse_decision_reason for summary in result.event_summaries}
+    assert "first_gap_lock" in reasons
+    assert "short_sparse_region_closed" in reasons
+    assert any(summary.support_completion_pair_count for summary in result.event_summaries)
+    assert any(summary.edge_rescue_pair_count for summary in result.event_summaries)

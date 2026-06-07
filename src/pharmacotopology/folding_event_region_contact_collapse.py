@@ -22,6 +22,13 @@ EVENT_REGION_CONTACT_COLLAPSE_BOUNDARY = (
 DEFAULT_PRECISION_MAX_PAIRS_PER_EVENT = 5
 DEFAULT_RECALL_MAX_PAIRS_PER_EVENT = 16
 DEFAULT_BALANCED_PAIRS_PER_EVENT = 6
+DEFAULT_INTERNAL_GAP_CORE_PAIRS_PER_EVENT = 5
+DEFAULT_INTERNAL_GAP_MIN_FIRST_LOCK_SCORE = 0.72
+DEFAULT_INTERNAL_GAP_FIRST_LOCK_DELTA = 0.035
+DEFAULT_INTERNAL_GAP_DENSE_PAIR_MIN = 40
+DEFAULT_INTERNAL_GAP_SHORT_SEGMENT_CLOSE_MAX = 7
+DEFAULT_INTERNAL_GAP_CLOSURE_SCORE_MIN = 0.65
+DEFAULT_INTERNAL_GAP_EDGE_RESCUE_SCORE_MIN = 0.57
 DEFAULT_RESIDUE_DEGREE_CAP = 5
 
 
@@ -43,6 +50,7 @@ class CollapsedContactPair:
     degree_j_before_selection: int
     selected_by_gap: bool
     selected_by_degree_cap: bool
+    collapse_selection_reason: str = "ranked_core"
     native_truth_used_before_collapse_selection: bool = False
     coordinate_truth_used_before_collapse_selection: bool = False
     raw_sequence_exposed: bool = False
@@ -66,6 +74,11 @@ class EventRegionCollapseSummary:
     natural_gap_cutoff: int
     applied_cutoff: int
     direct_coupling_count_in_region: int
+    density_supported_pair_count_in_region: int
+    collapse_decision_reason: str
+    first_score_gap: float
+    support_completion_pair_count: int
+    edge_rescue_pair_count: int
     mean_coupling_density_score: float
     mean_sequence_law_support_score: float
     mean_ridge_coherence_score: float
@@ -381,6 +394,125 @@ def _bounded_cutoff(
     return max(min_pairs_per_event, min(max_pairs_per_event, natural_gap_cutoff))
 
 
+def _first_score_gap(scored_rows: Sequence[Mapping[str, object]]) -> float:
+    if len(scored_rows) < 2:
+        return 0.0
+    return _score(float(scored_rows[0]["score"]) - float(scored_rows[1]["score"]))
+
+
+def _density_supported_pair_count(scored_rows: Sequence[Mapping[str, object]]) -> int:
+    return sum(
+        1
+        for item in scored_rows
+        if float(item.get("coupling_density_score", 0.0)) > 0.0
+    )
+
+
+def _internal_gap_balanced_cutoff(
+    *,
+    event: NucleusClosureEvent,
+    scored_rows: Sequence[Mapping[str, object]],
+    min_pairs_per_event: int,
+    max_pairs_per_event: int,
+) -> tuple[int, str]:
+    if not scored_rows:
+        return 0, "empty_region"
+    segment_gap = event.segment_b_start - event.segment_a_end
+    first_gap = _first_score_gap(scored_rows)
+    top_score = float(scored_rows[0]["score"])
+    density_count = _density_supported_pair_count(scored_rows)
+
+    # Native-free event-level safety: a very short inter-segment region is not a
+    # long-range contact-map claim, and a short sparse region is too noisy to
+    # reopen after frontier selection.
+    if segment_gap <= DEFAULT_INTERNAL_GAP_SHORT_SEGMENT_CLOSE_MAX:
+        return 0, "short_segment_gap_closed"
+    if segment_gap < 24 and density_count < DEFAULT_INTERNAL_GAP_DENSE_PAIR_MIN:
+        return 0, "short_sparse_region_closed"
+
+    # A decisive first drop in a long-range frontier event means the event has a
+    # single high-confidence boundary contact.  This is an internal score-gap
+    # rule; native labels are attached only after the selected set is frozen.
+    if (
+        segment_gap >= 24
+        and top_score >= DEFAULT_INTERNAL_GAP_MIN_FIRST_LOCK_SCORE
+        and first_gap >= DEFAULT_INTERNAL_GAP_FIRST_LOCK_DELTA
+    ):
+        return 1, "first_gap_lock"
+
+    core_budget = min(
+        DEFAULT_INTERNAL_GAP_CORE_PAIRS_PER_EVENT,
+        max_pairs_per_event,
+    )
+    core_budget = max(min_pairs_per_event, core_budget)
+    return core_budget, "five_pair_internal_gap_core"
+
+
+def _event_position_inside(pair: tuple[int, int], event: NucleusClosureEvent) -> bool:
+    return pair[0] > event.segment_a_start and pair[1] > event.segment_b_start
+
+
+def _support_completion_candidates(
+    *,
+    core_pairs: set[tuple[int, int]],
+    event: NucleusClosureEvent,
+    scored_by_pair: Mapping[tuple[int, int], Mapping[str, object]],
+) -> tuple[tuple[int, int], ...]:
+    left_residues = {pair[0] for pair in core_pairs}
+    right_residues = {pair[1] for pair in core_pairs}
+    candidates: list[tuple[float, tuple[int, int]]] = []
+    for i in left_residues:
+        for j in right_residues:
+            pair = (i, j)
+            if pair in core_pairs or pair not in scored_by_pair:
+                continue
+            if not _event_position_inside(pair, event):
+                continue
+            score = float(scored_by_pair[pair]["score"])
+            if score >= DEFAULT_INTERNAL_GAP_CLOSURE_SCORE_MIN:
+                candidates.append((score, pair))
+    candidates.sort(key=lambda item: (-item[0], item[1][0], item[1][1]))
+    # Keep only the strongest closure.  This allows an internally supported
+    # missing rectangle corner without turning a five-pair core back into a wide
+    # 8x8 region.
+    return tuple(pair for _, pair in candidates[:1])
+
+
+def _edge_rescue_candidates(
+    *,
+    event: NucleusClosureEvent,
+    scored_by_pair: Mapping[tuple[int, int], Mapping[str, object]],
+    already_selected: set[tuple[int, int]],
+    applied_cutoff: int,
+) -> tuple[tuple[int, int], ...]:
+    if applied_cutoff > 1:
+        return ()
+    if event.segment_b_start - event.segment_a_end < 24:
+        return ()
+    candidates: list[tuple[float, tuple[int, int]]] = []
+    for pair, item in scored_by_pair.items():
+        if pair in already_selected:
+            continue
+        feature = item.get("feature")
+        if feature is None:
+            continue
+        left_offset = pair[0] - event.segment_a_start
+        right_offset = pair[1] - event.segment_b_start
+        score = float(item["score"])
+        # Rescue one internal left-edge partner when a first-gap lock would
+        # otherwise throw away a second coherent boundary contact.  The rule is
+        # sequence/coupling-only: no native map is read here.
+        if (
+            right_offset == 0
+            and 3 <= left_offset <= 5
+            and getattr(feature, "breaker_penalty", 0.0) == 0.0
+            and score >= DEFAULT_INTERNAL_GAP_EDGE_RESCUE_SCORE_MIN
+        ):
+            candidates.append((score, pair))
+    candidates.sort(key=lambda item: (-item[0], item[1][0], item[1][1]))
+    return tuple(pair for _, pair in candidates[:1])
+
+
 def collapse_event_region_contacts(
     *,
     event: NucleusClosureEvent,
@@ -391,7 +523,7 @@ def collapse_event_region_contacts(
     max_pairs_per_event: int = DEFAULT_PRECISION_MAX_PAIRS_PER_EVENT,
     residue_degree_cap: int = DEFAULT_RESIDUE_DEGREE_CAP,
 ) -> tuple[tuple[CollapsedContactPair, ...], EventRegionCollapseSummary]:
-    if collapse_strategy not in {"frontier_precision", "frontier_recall", "frontier_balanced", "ridge_coupling"}:
+    if collapse_strategy not in {"frontier_precision", "frontier_recall", "frontier_balanced", "frontier_internal_gap_balanced", "ridge_coupling"}:
         raise ValueError(f"unknown collapse strategy: {collapse_strategy}")
     features_by_pair = _features_by_pair(row_features)
     constraints_by_pair = _constraints_by_pair(row_constraints)
@@ -417,7 +549,7 @@ def collapse_event_region_contacts(
         sequence_law = _sequence_law_support_score(feature)
         ridge = _ridge_coherence_score(pair, support_scores=support_scores)
         boundary = _boundary_coherence_score(pair, event, feature)
-        if collapse_strategy in {"frontier_precision", "frontier_recall", "frontier_balanced"}:
+        if collapse_strategy in {"frontier_precision", "frontier_recall", "frontier_balanced", "frontier_internal_gap_balanced"}:
             score = _frontier_precision_score(
                 pair=pair,
                 event=event,
@@ -443,6 +575,7 @@ def collapse_event_region_contacts(
                 "sequence_law_support_score": sequence_law,
                 "ridge_coherence_score": ridge,
                 "boundary_coherence_score": boundary,
+                "feature": feature,
             }
         )
 
@@ -454,6 +587,9 @@ def collapse_event_region_contacts(
         )
     )
     natural_gap_cutoff = _gap_cutoff([float(item["score"]) for item in scored_rows])
+    first_gap = _first_score_gap(scored_rows)
+    density_supported_count = _density_supported_pair_count(scored_rows)
+    collapse_decision_reason = "natural_gap"
     if collapse_strategy == "frontier_recall":
         max_pairs_per_event = max(max_pairs_per_event, DEFAULT_RECALL_MAX_PAIRS_PER_EVENT)
         min_pairs_per_event = max(min_pairs_per_event, min(8, max_pairs_per_event))
@@ -465,13 +601,20 @@ def collapse_event_region_contacts(
         # even when the score gap is early, so we can test whether the frontier
         # contained recoverable contacts without reverting to all 64 pairs.
         applied_cutoff = max_pairs_per_event
+        collapse_decision_reason = "recall_upper_slice"
     elif collapse_strategy == "frontier_balanced":
-        # Balanced mode is the production collapse budget: do not let an early
-        # local score gap collapse the event to only one residue-pair, but also
-        # do not reopen the whole 8x8 region.  The fixed six-pair event budget is
-        # sequence/coupling-only and is evaluated later against native labels.
+        # Legacy balanced mode: a fixed six-pair event budget kept for regression
+        # comparisons against the new native-free internal-gap strategy.
         applied_cutoff = _bounded_cutoff(
             DEFAULT_BALANCED_PAIRS_PER_EVENT,
+            min_pairs_per_event=min_pairs_per_event,
+            max_pairs_per_event=max_pairs_per_event,
+        )
+        collapse_decision_reason = "fixed_six_pair_budget"
+    elif collapse_strategy == "frontier_internal_gap_balanced":
+        applied_cutoff, collapse_decision_reason = _internal_gap_balanced_cutoff(
+            event=event,
+            scored_rows=scored_rows,
             min_pairs_per_event=min_pairs_per_event,
             max_pairs_per_event=max_pairs_per_event,
         )
@@ -482,17 +625,71 @@ def collapse_event_region_contacts(
             max_pairs_per_event=max_pairs_per_event,
         )
 
-    selected: list[CollapsedContactPair] = []
+    scored_by_pair = {
+        item["pair"]: item  # type: ignore[index]
+        for item in scored_rows
+    }
+    rank_by_pair = {
+        item["pair"]: rank  # type: ignore[index]
+        for rank, item in enumerate(scored_rows, start=1)
+    }
+    selected_item_rows: list[tuple[Mapping[str, object], str]] = []
     degree: dict[int, int] = {}
-    for rank, item in enumerate(scored_rows, start=1):
-        if len(selected) >= applied_cutoff:
-            break
+
+    def add_pair_item(item: Mapping[str, object], reason: str) -> bool:
         pair = item["pair"]  # type: ignore[assignment]
         i, j = int(pair[0]), int(pair[1])  # type: ignore[index]
+        if any(existing[0]["pair"] == pair for existing in selected_item_rows):
+            return False
         degree_i = degree.get(i, 0)
         degree_j = degree.get(j, 0)
         if degree_i >= residue_degree_cap or degree_j >= residue_degree_cap:
-            continue
+            return False
+        selected_item_rows.append((item, reason))
+        degree[i] = degree_i + 1
+        degree[j] = degree_j + 1
+        return True
+
+    core_selected_count = 0
+    for item in scored_rows:
+        if core_selected_count >= applied_cutoff:
+            break
+        if add_pair_item(item, "ranked_core"):
+            core_selected_count += 1
+
+    support_completion_count = 0
+    edge_rescue_count = 0
+    if collapse_strategy == "frontier_internal_gap_balanced":
+        core_pair_set = {
+            item["pair"]  # type: ignore[index]
+            for item, reason in selected_item_rows
+            if reason == "ranked_core"
+        }
+        for pair in _support_completion_candidates(
+            core_pairs=core_pair_set,
+            event=event,
+            scored_by_pair=scored_by_pair,
+        ):
+            if add_pair_item(scored_by_pair[pair], "support_completion"):
+                support_completion_count += 1
+        selected_pair_set = {
+            item["pair"]  # type: ignore[index]
+            for item, _ in selected_item_rows
+        }
+        for pair in _edge_rescue_candidates(
+            event=event,
+            scored_by_pair=scored_by_pair,
+            already_selected=selected_pair_set,
+            applied_cutoff=applied_cutoff,
+        ):
+            if add_pair_item(scored_by_pair[pair], "edge_rescue"):
+                edge_rescue_count += 1
+
+    selected: list[CollapsedContactPair] = []
+    for item, reason in selected_item_rows:
+        pair = item["pair"]  # type: ignore[assignment]
+        i, j = int(pair[0]), int(pair[1])  # type: ignore[index]
+        rank = rank_by_pair[pair]
         selected_by_gap = rank <= natural_gap_cutoff
         selected.append(
             CollapsedContactPair(
@@ -508,14 +705,13 @@ def collapse_event_region_contacts(
                 sequence_law_support_score=_score(float(item["sequence_law_support_score"])),
                 ridge_coherence_score=_score(float(item["ridge_coherence_score"])),
                 boundary_coherence_score=_score(float(item["boundary_coherence_score"])),
-                degree_i_before_selection=degree_i,
-                degree_j_before_selection=degree_j,
+                degree_i_before_selection=0,
+                degree_j_before_selection=0,
                 selected_by_gap=selected_by_gap,
                 selected_by_degree_cap=True,
+                collapse_selection_reason=reason,
             )
         )
-        degree[i] = degree_i + 1
-        degree[j] = degree_j + 1
 
     direct_coupling_count = sum(1 for pair in candidate_pairs if pair in constraints_by_pair)
     summary = EventRegionCollapseSummary(
@@ -529,6 +725,11 @@ def collapse_event_region_contacts(
         natural_gap_cutoff=natural_gap_cutoff,
         applied_cutoff=applied_cutoff,
         direct_coupling_count_in_region=direct_coupling_count,
+        density_supported_pair_count_in_region=density_supported_count,
+        collapse_decision_reason=collapse_decision_reason,
+        first_score_gap=first_gap,
+        support_completion_pair_count=support_completion_count,
+        edge_rescue_pair_count=edge_rescue_count,
         mean_coupling_density_score=_mean(
             [float(item["coupling_density_score"]) for item in scored_rows]
         ),

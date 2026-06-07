@@ -273,7 +273,7 @@ ROOT_OUTPUT_NAMES = (
 )
 EXTERNAL_EVOLUTIONARY_COUPLING_SOURCE_KINDS = ACCEPTED_EXTERNAL_COUPLING_SOURCE_KINDS
 PRIMARY_CONTACT_COLLAPSE_SELECTOR_NAME = "coupling_trace_loop"
-PRIMARY_CONTACT_COLLAPSE_STRATEGY = "frontier_balanced"
+PRIMARY_CONTACT_COLLAPSE_STRATEGY = "frontier_internal_gap_balanced"
 
 
 @dataclass(frozen=True)
@@ -2650,6 +2650,12 @@ def contact_collapse_results_for_selected_events(
         row_events = tuple(events_by_row[row_id])
         if not row_events:
             continue
+        if collapse_strategy == "frontier_internal_gap_balanced":
+            min_pairs_per_event = 1
+            max_pairs_per_event = DEFAULT_BALANCED_PAIRS_PER_EVENT
+        else:
+            min_pairs_per_event = DEFAULT_BALANCED_PAIRS_PER_EVENT
+            max_pairs_per_event = DEFAULT_BALANCED_PAIRS_PER_EVENT
         results.append(
             collapse_row_event_regions(
                 row=row,
@@ -2657,8 +2663,8 @@ def contact_collapse_results_for_selected_events(
                 row_features=features_by_row.get(row_id, ()),
                 row_constraints=constraints_by_row.get(row_id, ()),
                 collapse_strategy=collapse_strategy,
-                min_pairs_per_event=DEFAULT_BALANCED_PAIRS_PER_EVENT,
-                max_pairs_per_event=DEFAULT_BALANCED_PAIRS_PER_EVENT,
+                min_pairs_per_event=min_pairs_per_event,
+                max_pairs_per_event=max_pairs_per_event,
             )
         )
     return tuple(results)
@@ -2739,6 +2745,7 @@ def contact_collapse_summary(
         "contact_collapse_coordinate_truth_used_before_selection": False,
         "contact_collapse_native_truth_attached_after_selection_for_evaluation": True,
         "contact_collapse_1cll_balanced": one_cll or {},
+        "contact_collapse_1cll_internal_gap": one_cll or {},
         "contact_collapse_rows": row_reports,
     }
 

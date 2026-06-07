@@ -39,16 +39,19 @@ def test_frontier_contact_collapse_is_pipeline_summary_not_oracle_selection():
     )
     results = contact_collapse_results_for_selected_events(context, events)
     summary = contact_collapse_summary(results)
-    one_cll = summary["contact_collapse_1cll_balanced"]
+    one_cll = summary["contact_collapse_1cll_internal_gap"]
 
     assert summary["contact_collapse_integrated"] is True
     assert summary["contact_collapse_strategy"] == PRIMARY_CONTACT_COLLAPSE_STRATEGY
+    assert PRIMARY_CONTACT_COLLAPSE_STRATEGY == "frontier_internal_gap_balanced"
     assert one_cll["selected_event_count"] == 7
     assert one_cll["uncollapsed_region_pair_count"] == 432
-    assert one_cll["collapsed_pair_count"] == 41
-    assert one_cll["collapsed_contact_precision"] >= 0.30
-    assert one_cll["collapsed_long_range_precision"] >= 0.40
-    assert one_cll["collapsed_long_range_recall"] >= 0.30
-    assert one_cll["collapsed_long_range_f1"] >= 0.35
+    assert one_cll["collapsed_pair_count"] == 23
+    assert one_cll["collapse_reduction_ratio"] >= 0.94
+    assert one_cll["collapsed_true_positive_contacts"] >= 13
+    assert one_cll["collapsed_contact_precision"] >= 0.55
+    assert one_cll["collapsed_long_range_precision"] >= 0.65
+    assert one_cll["collapsed_long_range_recall"] >= 0.36
+    assert one_cll["collapsed_long_range_f1"] >= 0.47
     assert one_cll["native_truth_used_before_collapse_selection"] is False
     assert one_cll["coordinate_truth_used_before_collapse_selection"] is False
