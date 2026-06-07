@@ -266,7 +266,7 @@ self-collapse confidence -> second normalized internal-gap boundary
 
 There is no fixed `confidence > 0.6` gate, no global low-score floor, and no accession-specific rule for 4AKE, 1CLL, or 1MBN. The generated frontier is then evaluated after selection in the audit report.
 
-For 4AKE, this broad generation probe is deliberately **not** accepted as the main path:
+For 4AKE, this broad generation probe is still **not** accepted as the main path, but the failure mode changed after the latest cleanup. The generator now includes a native-free seed-identity continuation signal before the internal-gap prefilter, so weak candidate regions that are topological continuations of an accepted ridge seed can reach collapse audit. Collapse confidence now also records phase-specific lattice/alpha compactness components.
 
 ```text
 current self-verified expansion:
@@ -276,19 +276,19 @@ true positives: 24
 precision: 0.369231
 long-range recall: 0.124352
 
-candidate-pool generation probe:
-selected events: 6
-collapsed pairs: 59
-true positives: 18
-precision: 0.305085
-long-range recall: 0.093264
+candidate-pool generation probe after seed-continuation + phase-confidence:
+selected events: 4
+collapsed pairs: 55
+true positives: 22
+precision: 0.400000
+long-range recall: 0.113990
 ```
 
-The broader generator proves that candidate-pool promotion is wired and native-free, but in this locked run it does not beat the current expansion path. The audit decision is therefore:
+The broader generator no longer collapses into a noisy precision failure. It improves precision versus the current expansion path, but loses recall. The audit decision is therefore:
 
 ```text
 frontier_generation_probe_accepted_as_main: false
-frontier_generation_decision: rejected_precision_collapse_or_no_recall_gain
+frontier_generation_decision: rejected_precision_gain_without_recall_gain
 ```
 
-This is the correct outcome for an honest optimizer. The system is allowed to test broader generation, but it is not allowed to call the target solved if recall fails to improve or precision collapses. The current bottleneck remains: the candidate generator contains enough regions for 4AKE, but the self-deciding promotion rule still has not found a clean enough native-free boundary to lift recall toward 0.40 while preserving precision.
+This is the correct outcome for an honest optimizer. The system is allowed to test broader generation, but it is not allowed to replace the current main path when recall regresses. The new diagnostic result is sharper: candidate-pool generation can now find a clean seed-continuation contact core for 4AKE, but it still cannot expand recall beyond the existing self-verified expansion without losing the no-regression guarantee. The missing piece is not a lower threshold; it is a better native-free rule for adding additional low-confidence continuation regions only when their row-level collapse footprint survives without recall/precision tradeoff.

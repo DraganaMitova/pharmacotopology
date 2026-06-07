@@ -1525,10 +1525,82 @@ def _direct_constraint_trace_evidence(
 
 
 
+def _interval_overlap_fraction(
+    start_a: int,
+    end_a: int,
+    start_b: int,
+    end_b: int,
+) -> float:
+    overlap = max(0, min(end_a, end_b) - max(start_a, start_b) + 1)
+    width = max(1, min(end_a - start_a + 1, end_b - start_b + 1))
+    return _rounded(overlap / width)
+
+
+def _seed_identity_continuation_score(
+    event: NucleusClosureEvent,
+    seed_events: Sequence[NucleusClosureEvent],
+) -> float:
+    """Native-free topological continuation of the accepted seed frontier.
+
+    The broad candidate generator previously ranked only local event evidence,
+    which let dense but unrelated high-score regions crowd out weak continuation
+    regions from the same accepted ridge identity.  This score is not a threshold
+    and does not use accession/native/coordinate labels: it asks whether a
+    candidate event is a small topological continuation of an already accepted
+    event in the same row.  The downstream boundary is still an internal gap.
+    """
+    best = 0.0
+    event_width_a = max(1, event.segment_a_end - event.segment_a_start + 1)
+    event_width_b = max(1, event.segment_b_end - event.segment_b_start + 1)
+    event_span = max(1, event.sequence_span)
+    event_gap = max(0, event.segment_b_start - event.segment_a_end)
+    for seed in seed_events:
+        if seed.row_id != event.row_id or seed.event_id == event.event_id:
+            continue
+        overlap_a = _interval_overlap_fraction(
+            event.segment_a_start,
+            event.segment_a_end,
+            seed.segment_a_start,
+            seed.segment_a_end,
+        )
+        overlap_b = _interval_overlap_fraction(
+            event.segment_b_start,
+            event.segment_b_end,
+            seed.segment_b_start,
+            seed.segment_b_end,
+        )
+        overlap_identity = _rounded(0.5 * overlap_a + 0.5 * overlap_b)
+        start_shift = abs(event.segment_a_start - seed.segment_a_start) + abs(
+            event.segment_b_start - seed.segment_b_start
+        )
+        # The normalizing length is derived from the two segment widths, not a
+        # global hand threshold.  Adjacent stride shifts remain visible; distant
+        # regions fade out smoothly.
+        shift_scale = max(1.0, float(event_width_a + event_width_b + 2))
+        adjacency_identity = _rounded(1.0 / (1.0 + start_shift / shift_scale))
+        span_identity = _rounded(
+            1.0
+            - min(1.0, abs(event.sequence_span - seed.sequence_span) / max(event_span, seed.sequence_span, 1))
+        )
+        seed_gap = max(0, seed.segment_b_start - seed.segment_a_end)
+        gap_identity = _rounded(
+            1.0 - min(1.0, abs(event_gap - seed_gap) / max(event_gap, seed_gap, 1))
+        )
+        continuation = _rounded(
+            0.38 * overlap_identity
+            + 0.28 * adjacency_identity
+            + 0.22 * span_identity
+            + 0.12 * gap_identity
+        )
+        best = max(best, continuation)
+    return _rounded(best)
+
+
 def _self_deciding_frontier_generation_score(
     event: NucleusClosureEvent,
     *,
     row_constraints: Sequence[CouplingConstraint] | Mapping[tuple[int, int], CouplingConstraint],
+    seed_events: Sequence[NucleusClosureEvent] = (),
 ) -> dict[str, object]:
     """Native-free score for promoting broader candidate events into frontier.
 
@@ -1568,7 +1640,7 @@ def _self_deciding_frontier_generation_score(
         - 0.06 * event.geometry_violation_cost
         - 0.04 * event.isolation_penalty,
     )
-    score = _rounded(
+    base_score = _rounded(
         0.24 * coverage_score
         + 0.19 * count_score
         + 0.12 * top_rank_score
@@ -1576,11 +1648,19 @@ def _self_deciding_frontier_generation_score(
         + 0.21 * intrinsic_signal
         + 0.12 * event.normalized_span
     )
+    seed_continuation = _seed_identity_continuation_score(event, seed_events)
+    score = (
+        _rounded(0.70 * base_score + 0.30 * seed_continuation)
+        if seed_events
+        else base_score
+    )
     return {
         "event_id": event.event_id,
         "row_id": event.row_id,
         "source_accession": event.source_accession,
         "self_deciding_frontier_generation_score": score,
+        "candidate_generation_base_score": base_score,
+        "candidate_generation_seed_identity_continuation_score": seed_continuation,
         # Alias used by the shared acceptance combiner.  The row also keeps the
         # generation-specific field above so audits can distinguish the layers.
         "self_deciding_frontier_expansion_score": score,
@@ -1804,6 +1884,63 @@ def _selected_pair_degree_consistency(selected_pairs) -> float:
     return _rounded(0.55 * footprint_fraction + 0.45 * hub_balance)
 
 
+def _selected_pair_lattice_completeness(selected_pairs) -> float:
+    """Native-free lattice/rectangle support for beta-like boundary regions.
+
+    This is an internal shape score, not a threshold.  A lattice-like collapsed
+    region should reuse multiple residues on both sides and contain local
+    rectangle closures instead of isolated spokes.
+    """
+    if not selected_pairs:
+        return 0.0
+    pair_set = {(int(pair.i), int(pair.j)) for pair in selected_pairs}
+    left = {i for i, _j in pair_set}
+    right = {j for _i, j in pair_set}
+    if not left or not right:
+        return 0.0
+    left_degree: Counter[int] = Counter(i for i, _j in pair_set)
+    right_degree: Counter[int] = Counter(j for _i, j in pair_set)
+    reusable = sum(1 for i, j in pair_set if left_degree[i] > 1 and right_degree[j] > 1)
+    reusable_fraction = reusable / max(1, len(pair_set))
+    grid_fill = len(pair_set) / max(1.0, float(len(left) * len(right)))
+    side_balance = min(len(left), len(right)) / max(1.0, float(max(len(left), len(right))))
+    rectangle_hits = 0
+    rectangle_trials = 0
+    ordered_pairs = sorted(pair_set)
+    for index, (i1, j1) in enumerate(ordered_pairs):
+        for i2, j2 in ordered_pairs[index + 1 :]:
+            if i1 == i2 or j1 == j2:
+                continue
+            rectangle_trials += 1
+            if (i1, j2) in pair_set and (i2, j1) in pair_set:
+                rectangle_hits += 1
+    rectangle_fraction = (
+        rectangle_hits / rectangle_trials if rectangle_trials else reusable_fraction
+    )
+    return _rounded(
+        0.34 * reusable_fraction
+        + 0.28 * min(1.0, 2.0 * grid_fill)
+        + 0.22 * side_balance
+        + 0.16 * min(1.0, 4.0 * rectangle_fraction)
+    )
+
+
+def _selected_pair_alpha_compactness(selected_pairs) -> float:
+    """Native-free compact strip support for alpha-like candidate regions."""
+    if not selected_pairs:
+        return 0.0
+    offsets = [int(pair.j) - int(pair.i) for pair in selected_pairs]
+    if not offsets:
+        return 0.0
+    offset_span = max(offsets) - min(offsets)
+    left = [int(pair.i) for pair in selected_pairs]
+    right = [int(pair.j) for pair in selected_pairs]
+    footprint_span = max(max(left) - min(left) + 1, max(right) - min(right) + 1, 1)
+    compact_offset = 1.0 / (1.0 + offset_span / max(1.0, float(footprint_span)))
+    unique_balance = min(len(set(left)), len(set(right))) / max(1.0, float(max(len(set(left)), len(set(right)))))
+    return _rounded(0.62 * compact_offset + 0.38 * unique_balance)
+
+
 def _self_collapse_confidence_components(
     *,
     selected_pairs,
@@ -1851,6 +1988,8 @@ def _self_collapse_confidence_components(
     # wide tier is allowed, but a near-total region is not trusted as expansion.
     width_signal = _rounded(1.0 - selected_count / max(1.0, candidate_count))
     degree_consistency = _selected_pair_degree_consistency(selected_pairs)
+    lattice_completeness = _selected_pair_lattice_completeness(selected_pairs)
+    alpha_compactness = _selected_pair_alpha_compactness(selected_pairs)
     profile_signal = 0.0
     if str(summary.self_deciding_profile) == SELF_VERIFIED_EXPANSION_PROFILE:
         profile_signal += 0.55
@@ -1876,29 +2015,32 @@ def _self_collapse_confidence_components(
             + 0.18 * mean_ridge
             + 0.18 * mean_density
             + 0.16 * mean_sequence
-            + 0.14 * degree_consistency
+            + 0.12 * degree_consistency
+            + 0.06 * lattice_completeness
             + 0.08 * direct_root_signal
-            + 0.06 * width_signal
+            + 0.02 * width_signal
         )
         mode = "phase_direct_ridge_trace"
     elif phase == "sequence_inferred_lattice_or_beta":
         phase_confidence = _rounded(
             0.20 * mean_pair_score
-            + 0.22 * mean_boundary
-            + 0.18 * degree_consistency
-            + 0.16 * mean_sequence
-            + 0.12 * gap_signal
-            + 0.12 * direct_root_signal
+            + 0.18 * mean_boundary
+            + 0.22 * lattice_completeness
+            + 0.16 * degree_consistency
+            + 0.12 * mean_sequence
+            + 0.08 * gap_signal
+            + 0.04 * direct_root_signal
         )
         mode = "phase_lattice_boundary_degree"
     elif phase == "sequence_inferred_alpha_strip":
         phase_confidence = _rounded(
             0.20 * mean_pair_score
-            + 0.24 * mean_sequence
-            + 0.20 * mean_boundary
-            + 0.16 * degree_consistency
-            + 0.10 * direct_root_signal
-            + 0.10 * width_signal
+            + 0.22 * mean_sequence
+            + 0.14 * mean_boundary
+            + 0.20 * alpha_compactness
+            + 0.14 * degree_consistency
+            + 0.06 * direct_root_signal
+            + 0.04 * width_signal
         )
         mode = "phase_alpha_strip_compactness"
     else:
@@ -1916,6 +2058,8 @@ def _self_collapse_confidence_components(
         "self_collapse_confidence": _rounded(0.45 * base_confidence + 0.55 * phase_confidence),
         "self_collapse_phase_specific_confidence": phase_confidence,
         "self_collapse_degree_consistency": degree_consistency,
+        "self_collapse_lattice_completeness": lattice_completeness,
+        "self_collapse_alpha_compactness": alpha_compactness,
         "self_collapse_confidence_mode": mode,
     }
 
@@ -2358,6 +2502,7 @@ def select_coupling_trace_loop_self_deciding_frontier_generated_events(
             score_row = _self_deciding_frontier_generation_score(
                 event,
                 row_constraints=row_constraint_map,
+                seed_events=tuple(seed_by_row.get(row.row_id, ())),
             )
             if int(score_row["direct_constraint_count"]) <= 0:
                 continue
@@ -2434,7 +2579,7 @@ def select_coupling_trace_loop_self_deciding_frontier_generated_events(
         )
         selected_rows, _cutoff, _reason, _natural_boundary = _events_by_identity_gap(
             scored_candidates,
-            seed_lower_envelope=normalized_lower_envelope,
+            seed_lower_envelope=None,
         )
         for event, _row in selected_rows:
             if len(row_selected) >= SELECTED_EVENTS_PER_ROW:
@@ -2498,6 +2643,7 @@ def self_deciding_frontier_generation_rows(
             score_row = _self_deciding_frontier_generation_score(
                 event,
                 row_constraints=row_constraint_map,
+                seed_events=tuple(seed_by_row.get(row.row_id, ())),
             )
             if int(score_row["direct_constraint_count"]) <= 0 and event.event_id not in selected_ids:
                 continue
