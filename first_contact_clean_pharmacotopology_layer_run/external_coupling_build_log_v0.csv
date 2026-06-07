@@ -1,0 +1,9 @@
+row_id,source_accession,external_coupling_status,rejection_reason,raw_constraint_count,accepted_constraint_count,duplicate_count_dropped,target_coverage,focus_sequence_mapping_confidence,effective_sequence_count_over_length,top_l_couplings_available,raw_sequence_exposed
+coord_001_pdb_1MBN_A_myoglobin,1MBN:A,external_couplings_available,,153,153,0,1.0,1.0,13.078431,True,False
+coord_002_pdb_2LZM_A_t4_lysozyme,2LZM:A,external_couplings_available,,164,164,0,1.0,1.0,12.195122,True,False
+coord_003_pdb_1TEN_A_tenascin_fn3,1TEN:A,external_couplings_available,,90,90,0,1.0,1.0,22.233333,True,False
+coord_004_pdb_1CSP_A_cold_shock_protein,1CSP:A,external_couplings_available,,67,67,0,1.0,1.0,29.865672,True,False
+coord_005_pdb_1TIM_A_triosephosphate_isomerase,1TIM:A,external_couplings_available,,247,247,0,1.0,1.0,8.101215,True,False
+coord_006_pdb_1PGA_A_protein_g_b1,1PGA:A,external_couplings_available,,56,56,0,0.910714,1.0,8.785714,True,False
+coord_007_pdb_4AKE_A_adenylate_kinase,4AKE:A,external_couplings_available,,214,214,0,1.0,1.0,9.350467,True,False
+coord_008_pdb_1CLL_A_calmodulin,1CLL:A,external_couplings_available,,148,148,0,1.0,1.0,13.52027,True,False
