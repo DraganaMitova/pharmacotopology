@@ -68,6 +68,12 @@ def main() -> None:
     parser.add_argument("--out-dir", default=None)
     parser.add_argument("--timeout-seconds", type=int, default=30)
     parser.add_argument(
+        "--visual-proof-timeout-seconds",
+        type=int,
+        default=None,
+        help="Optional separate timeout for GIF rendering. Defaults to --timeout-seconds.",
+    )
+    parser.add_argument(
         "--render-visual-proof",
         action="store_true",
         help="Render the 4AKE visual proof GIF when source-accession is 4AKE:A.",
@@ -135,6 +141,8 @@ def main() -> None:
             "selected_contacts": _safe_rel(selected_path),
             "evidence": _safe_rel(evidence_path),
         },
+        "visual_proof_enabled": False,
+        "visual_proof_policy": "off_by_default_explicit_render_visual_proof_flag_required",
         "probe_stdout_tail": result.stdout.splitlines()[-4:],
     }
 
@@ -159,9 +167,12 @@ def main() -> None:
                 "--output-frames-dir",
                 str(frames_dir),
             ],
-            timeout=args.timeout_seconds,
+            timeout=args.visual_proof_timeout_seconds or args.timeout_seconds,
         )
+        manifest["visual_proof_enabled"] = True
         manifest["outputs"] = dict(manifest["outputs"], visual_proof_gif=_safe_rel(gif_path), visual_proof_manifest=_safe_rel(gif_manifest_path))
+    elif args.render_visual_proof:
+        manifest["visual_proof_policy"] = "render_visual_proof_requested_but_only_4ake_a_has_visual_renderer"
 
     manifest_path = out_dir / "done_mode_manifest.json"
     manifest_path.write_text(json.dumps(manifest, indent=2, sort_keys=True), encoding="utf-8")

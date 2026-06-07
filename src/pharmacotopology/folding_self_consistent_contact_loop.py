@@ -23,11 +23,20 @@ from pharmacotopology.folding_real_coordinate_visual_benchmark import (
     MIN_SEQUENCE_SEPARATION,
     RealCoordinateVisualRow,
 )
+from pharmacotopology.folding_sequence_physical_priors import (
+    SEQUENCE_PHYSICAL_PRIOR_KIND,
+    SequenceContactPhysicalPrior,
+    build_sequence_physical_prior_scores,
+)
 
 
 SELF_CONSISTENT_CONTACT_LOOP_KIND = "self_consistent_contact_loop_v0"
 SELF_CONSISTENT_INTERNAL_CONTACT_SOURCE_KIND = "self_consistent_internal_contact_source_v0"
 SELF_CONSISTENT_CONTROL_KIND = "self_consistent_matched_negative_control_v0"
+SELF_CONSISTENT_SCORING_RULE = (
+    "weighted_coupling_event_graph_plus_sequence_energy_secondary_structure_degree;"
+    "row_local_largest_gap;adaptive_seed_derived_minimum;no_static_confidence_threshold"
+)
 
 
 @dataclass(frozen=True)
@@ -56,6 +65,10 @@ class SelfConsistentIteration:
     selected_contact_map_hash: str
     boundary: GapBoundary
     mean_selected_score: float
+    mean_selected_contact_energy_score: float = 0.0
+    mean_selected_secondary_structure_score: float = 0.0
+    mean_selected_degree_consistency_score: float = 0.0
+    mean_selected_physical_prior_score: float = 0.0
     coordinate_truth_used_before_selection: bool = False
     native_truth_used_before_selection: bool = False
     raw_sequence_exposed: bool = False
@@ -78,6 +91,10 @@ class SelfConsistentControlResult:
     coupling_retention: float
     graph_closure_coherence: float
     boundary_gap: float
+    mean_final_contact_energy_score: float = 0.0
+    mean_final_secondary_structure_score: float = 0.0
+    mean_final_degree_consistency_score: float = 0.0
+    mean_final_physical_prior_score: float = 0.0
     control_kind: str = SELF_CONSISTENT_CONTROL_KIND
     coordinate_truth_used_before_selection: bool = False
     native_truth_used_before_selection: bool = False
@@ -102,6 +119,7 @@ class SelfConsistentContactLoopReport:
     final_contact_map_hash: str
     iteration_count: int
     decision_rule: str
+    sequence_physical_prior_kind: str
     self_consistency_status: str
     self_consistent_internal_claim_allowed: bool
     external_independent_claim_allowed: bool
@@ -117,6 +135,10 @@ class SelfConsistentContactLoopReport:
     seed_retention: float
     coupling_retention: float
     graph_closure_coherence: float
+    mean_final_contact_energy_score: float
+    mean_final_secondary_structure_score: float
+    mean_final_degree_consistency_score: float
+    mean_final_physical_prior_score: float
     seed_contact_precision_after_native_audit: float
     seed_contact_recall_after_native_audit: float
     seed_long_range_recall_after_native_audit: float
@@ -230,7 +252,13 @@ def _rank_percentiles(values: Mapping[ContactPair, float]) -> dict[ContactPair, 
     }
 
 
-def _gap_boundary(scores: Mapping[ContactPair, float], *, seed_size: int) -> GapBoundary:
+def _gap_boundary(
+    scores: Mapping[ContactPair, float],
+    *,
+    seed_size: int,
+    minimum_selected_count: int = 0,
+    enforce_seed_identity_envelope: bool = False,
+) -> GapBoundary:
     ordered = sorted(scores.items(), key=lambda item: (-item[1], item[0][0], item[0][1]))
     positive_ordered = tuple(item for item in ordered if item[1] > 0.0)
     if not positive_ordered:
@@ -254,15 +282,31 @@ def _gap_boundary(scores: Mapping[ContactPair, float], *, seed_size: int) -> Gap
 
     values = [score for _pair, score in positive_ordered]
     gaps = [values[index] - values[index + 1] for index in range(len(values) - 1)]
-    largest_gap = max(gaps) if gaps else 0.0
-    if largest_gap <= 0.0:
+    minimum_count = max(0, min(int(minimum_selected_count), len(positive_ordered)))
+    allowed_gap_indices = [
+        index
+        for index in range(len(gaps))
+        if index + 1 >= minimum_count
+    ]
+    if not allowed_gap_indices:
+        allowed_gap_indices = list(range(len(gaps)))
+    if not allowed_gap_indices:
         cutoff = len(positive_ordered)
+        largest_gap = 0.0
         reason = "all_positive_scores_tied"
     else:
-        cutoff = gaps.index(largest_gap) + 1
-        reason = "row_local_largest_gap"
+        largest_gap_index = max(allowed_gap_indices, key=lambda index: gaps[index])
+        largest_gap = gaps[largest_gap_index]
+        if largest_gap <= 0.0:
+            cutoff = len(positive_ordered)
+            reason = "all_positive_scores_tied"
+        else:
+            cutoff = largest_gap_index + 1
+            reason = "row_local_largest_gap"
+            if minimum_count > 0:
+                reason = f"{reason}_after_adaptive_seed_derived_minimum"
 
-    if seed_size > 0 and cutoff < seed_size:
+    if enforce_seed_identity_envelope and seed_size > 0 and cutoff < seed_size:
         cutoff = min(seed_size, len(positive_ordered))
         reason = f"{reason}_with_seed_identity_envelope"
 
@@ -284,6 +328,55 @@ def _adjacency(pairs: set[ContactPair]) -> dict[int, set[int]]:
     return adjacency
 
 
+def _degree_consistency_score_from_degrees(left_degree: int, right_degree: int) -> float:
+    def one(degree: int) -> float:
+        if 2 <= degree <= 5:
+            return 1.0
+        if degree == 1:
+            return 0.70
+        if degree == 6:
+            return 0.82
+        if degree == 7:
+            return 0.62
+        if degree == 8:
+            return 0.42
+        if degree == 9:
+            return 0.25
+        if degree >= 10:
+            return 0.08
+        return 0.45
+
+    return _rounded(mean((one(left_degree), one(right_degree))))
+
+
+def _summarize_prior_score_maps(
+    *,
+    selected_pairs: set[ContactPair],
+    contact_energy_scores: Mapping[ContactPair, float],
+    secondary_structure_scores: Mapping[ContactPair, float],
+    degree_consistency_scores: Mapping[ContactPair, float],
+) -> dict[str, float]:
+    if not selected_pairs:
+        return {
+            "mean_contact_energy_score": 0.0,
+            "mean_secondary_structure_score": 0.0,
+            "mean_degree_consistency_score": 0.0,
+            "mean_physical_prior_score": 0.0,
+        }
+    physical_scores = [
+        0.45 * contact_energy_scores[pair]
+        + 0.30 * secondary_structure_scores[pair]
+        + 0.25 * degree_consistency_scores[pair]
+        for pair in selected_pairs
+    ]
+    return {
+        "mean_contact_energy_score": _rounded(mean(contact_energy_scores[pair] for pair in selected_pairs)),
+        "mean_secondary_structure_score": _rounded(mean(secondary_structure_scores[pair] for pair in selected_pairs)),
+        "mean_degree_consistency_score": _rounded(mean(degree_consistency_scores[pair] for pair in selected_pairs)),
+        "mean_physical_prior_score": _rounded(mean(physical_scores)),
+    }
+
+
 def _score_candidate_pairs(
     *,
     candidate_pairs: set[ContactPair],
@@ -291,14 +384,11 @@ def _score_candidate_pairs(
     coupling_scores: Mapping[ContactPair, float],
     event_scores: Mapping[ContactPair, float],
     event_counts: Mapping[ContactPair, int],
-) -> dict[ContactPair, float]:
+    static_physical_priors: Mapping[ContactPair, SequenceContactPhysicalPrior],
+) -> tuple[dict[ContactPair, float], dict[str, dict[ContactPair, float]]]:
     adjacency = _adjacency(current_pairs)
     shared_neighbor_raw = {
         pair: float(len(adjacency[pair[0]] & adjacency[pair[1]]))
-        for pair in candidate_pairs
-    }
-    endpoint_degree_raw = {
-        pair: float(len(adjacency[pair[0]]) + len(adjacency[pair[1]]))
         for pair in candidate_pairs
     }
     prior_presence_raw = {
@@ -317,18 +407,53 @@ def _score_candidate_pairs(
         pair: float(event_counts.get(pair, 0))
         for pair in candidate_pairs
     }
-    rank_layers = (
-        _rank_percentiles(shared_neighbor_raw),
-        _rank_percentiles(endpoint_degree_raw),
-        _rank_percentiles(prior_presence_raw),
-        _rank_percentiles(direct_coupling_raw),
-        _rank_percentiles(event_score_raw),
-        _rank_percentiles(event_count_raw),
-    )
-    return {
-        pair: _score(sum(layer[pair] for layer in rank_layers) / len(rank_layers))
+    contact_energy_raw = {
+        pair: float(static_physical_priors[pair].contact_energy_score)
         for pair in candidate_pairs
     }
+    secondary_structure_raw = {
+        pair: float(static_physical_priors[pair].secondary_structure_score)
+        for pair in candidate_pairs
+    }
+    degree_consistency_raw = {}
+    for pair in candidate_pairs:
+        left, right = pair
+        left_degree = len(adjacency[left]) + (0 if right in adjacency[left] else 1)
+        right_degree = len(adjacency[right]) + (0 if left in adjacency[right] else 1)
+        degree_consistency_raw[pair] = _degree_consistency_score_from_degrees(left_degree, right_degree)
+
+    rank_layers = {
+        "direct_coupling": _rank_percentiles(direct_coupling_raw),
+        "prior_presence": _rank_percentiles(prior_presence_raw),
+        "event_score": _rank_percentiles(event_score_raw),
+        "event_count": _rank_percentiles(event_count_raw),
+        "shared_neighbor": _rank_percentiles(shared_neighbor_raw),
+        "contact_energy": _rank_percentiles(contact_energy_raw),
+        "secondary_structure": _rank_percentiles(secondary_structure_raw),
+        "degree_consistency": _rank_percentiles(degree_consistency_raw),
+    }
+    weights = {
+        "direct_coupling": 0.42,
+        "prior_presence": 0.20,
+        "event_score": 0.08,
+        "event_count": 0.04,
+        "shared_neighbor": 0.06,
+        "contact_energy": 0.12,
+        "secondary_structure": 0.04,
+        "degree_consistency": 0.04,
+    }
+    scores = {
+        pair: _score(
+            sum(weights[layer_name] * rank_layers[layer_name][pair] for layer_name in weights)
+        )
+        for pair in candidate_pairs
+    }
+    prior_score_maps = {
+        "contact_energy": contact_energy_raw,
+        "secondary_structure": secondary_structure_raw,
+        "degree_consistency": degree_consistency_raw,
+    }
+    return scores, prior_score_maps
 
 
 def _select_by_boundary(
@@ -401,6 +526,7 @@ def _run_self_loop(
     coupling_scores: Mapping[ContactPair, float],
     event_scores: Mapping[ContactPair, float],
     event_counts: Mapping[ContactPair, int],
+    static_physical_priors: Mapping[ContactPair, SequenceContactPhysicalPrior],
 ) -> tuple[set[ContactPair], tuple[SelfConsistentIteration, ...], dict[str, float]]:
     current_pairs = set(seed_pairs)
     previous_pairs = set(seed_pairs)
@@ -410,15 +536,27 @@ def _run_self_loop(
     last_boundary = GapBoundary(0, 0.0, "not_started", 0.0, 0, len(seed_pairs))
 
     for iteration_index in range(1, iteration_budget + 1):
-        scores = _score_candidate_pairs(
+        scores, prior_score_maps = _score_candidate_pairs(
             candidate_pairs=candidate_pairs,
             current_pairs=current_pairs,
             coupling_scores=coupling_scores,
             event_scores=event_scores,
             event_counts=event_counts,
+            static_physical_priors=static_physical_priors,
         )
-        boundary = _gap_boundary(scores, seed_size=len(seed_pairs))
+        boundary = _gap_boundary(
+            scores,
+            seed_size=len(seed_pairs),
+            minimum_selected_count=max(1, len(seed_pairs) // 4),
+            enforce_seed_identity_envelope=False,
+        )
         selected_pairs = _select_by_boundary(scores, boundary=boundary)
+        prior_summary = _summarize_prior_score_maps(
+            selected_pairs=selected_pairs,
+            contact_energy_scores=prior_score_maps["contact_energy"],
+            secondary_structure_scores=prior_score_maps["secondary_structure"],
+            degree_consistency_scores=prior_score_maps["degree_consistency"],
+        )
         selected_hash = contact_map_hash(selected_pairs)
         changed = len(selected_pairs ^ current_pairs)
         previous_jaccard = _jaccard(selected_pairs, current_pairs)
@@ -436,6 +574,10 @@ def _run_self_loop(
                 selected_contact_map_hash=selected_hash,
                 boundary=boundary,
                 mean_selected_score=mean_score,
+                mean_selected_contact_energy_score=prior_summary["mean_contact_energy_score"],
+                mean_selected_secondary_structure_score=prior_summary["mean_secondary_structure_score"],
+                mean_selected_degree_consistency_score=prior_summary["mean_degree_consistency_score"],
+                mean_selected_physical_prior_score=prior_summary["mean_physical_prior_score"],
             )
         )
         previous_pairs = current_pairs
@@ -445,6 +587,21 @@ def _run_self_loop(
             break
         seen_hashes.add(selected_hash)
 
+    final_scores, final_prior_score_maps = _score_candidate_pairs(
+        candidate_pairs=candidate_pairs,
+        current_pairs=current_pairs,
+        coupling_scores=coupling_scores,
+        event_scores=event_scores,
+        event_counts=event_counts,
+        static_physical_priors=static_physical_priors,
+    )
+    _ = final_scores
+    final_prior_summary = _summarize_prior_score_maps(
+        selected_pairs=current_pairs,
+        contact_energy_scores=final_prior_score_maps["contact_energy"],
+        secondary_structure_scores=final_prior_score_maps["secondary_structure"],
+        degree_consistency_scores=final_prior_score_maps["degree_consistency"],
+    )
     components = _loop_strength_components(
         final_pairs=current_pairs,
         previous_pairs=previous_pairs,
@@ -452,6 +609,7 @@ def _run_self_loop(
         coupling_scores=coupling_scores,
         boundary=last_boundary,
     )
+    components.update(final_prior_summary)
     return current_pairs, tuple(iterations), components
 
 
@@ -578,6 +736,11 @@ def run_self_consistent_contact_loop(
     candidate_pairs, event_scores, event_counts = _candidate_pairs_from_events(row, events)
     coupling_scores = _coupling_scores_by_candidate_pair(row, constraints, candidate_pairs)
     seed_pairs = set(coupling_scores)
+    static_physical_priors = build_sequence_physical_prior_scores(
+        row=row,
+        candidate_pairs=candidate_pairs,
+        current_pairs=(),
+    )
 
     final_pairs, iterations, components = _run_self_loop(
         loop_name="real",
@@ -587,6 +750,7 @@ def run_self_consistent_contact_loop(
         coupling_scores=coupling_scores,
         event_scores=event_scores,
         event_counts=event_counts,
+        static_physical_priors=static_physical_priors,
     )
 
     controls: list[SelfConsistentControlResult] = []
@@ -605,6 +769,7 @@ def run_self_consistent_contact_loop(
             coupling_scores=control_scores,
             event_scores=event_scores,
             event_counts=event_counts,
+            static_physical_priors=static_physical_priors,
         )
         controls.append(
             SelfConsistentControlResult(
@@ -618,6 +783,10 @@ def run_self_consistent_contact_loop(
                 coupling_retention=control_components["coupling_retention"],
                 graph_closure_coherence=control_components["graph_closure_coherence"],
                 boundary_gap=control_components["boundary_gap"],
+                mean_final_contact_energy_score=control_components["mean_contact_energy_score"],
+                mean_final_secondary_structure_score=control_components["mean_secondary_structure_score"],
+                mean_final_degree_consistency_score=control_components["mean_degree_consistency_score"],
+                mean_final_physical_prior_score=control_components["mean_physical_prior_score"],
             )
         )
         # The full per-control iteration trace is intentionally not merged into
@@ -666,10 +835,8 @@ def run_self_consistent_contact_loop(
         final_long_range_pair_count=len(selected_long_pairs),
         final_contact_map_hash=contact_map_hash(selected_pairs),
         iteration_count=len(iterations),
-        decision_rule=(
-            "native_free_row_local_largest_gap_contact_loop_plus_matched_negative_control_rank_gap;"
-            "no_static_confidence_threshold"
-        ),
+        decision_rule=SELF_CONSISTENT_SCORING_RULE,
+        sequence_physical_prior_kind=SEQUENCE_PHYSICAL_PRIOR_KIND,
         self_consistency_status=status,
         self_consistent_internal_claim_allowed=allowed,
         external_independent_claim_allowed=False,
@@ -685,6 +852,10 @@ def run_self_consistent_contact_loop(
         seed_retention=components["seed_retention"],
         coupling_retention=components["coupling_retention"],
         graph_closure_coherence=components["graph_closure_coherence"],
+        mean_final_contact_energy_score=components["mean_contact_energy_score"],
+        mean_final_secondary_structure_score=components["mean_secondary_structure_score"],
+        mean_final_degree_consistency_score=components["mean_degree_consistency_score"],
+        mean_final_physical_prior_score=components["mean_physical_prior_score"],
         seed_contact_precision_after_native_audit=seed_metric.native_contact_precision,
         seed_contact_recall_after_native_audit=seed_metric.native_contact_recall,
         seed_long_range_recall_after_native_audit=seed_metric.long_range_contact_recall,

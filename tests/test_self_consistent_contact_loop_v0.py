@@ -47,8 +47,12 @@ def test_self_consistent_loop_respects_native_free_self_decision_without_static_
     assert report["candidate_pair_count"] == 19824
     assert report["external_coupling_pair_count"] == 197
     assert report["seed_pair_count"] == 197
-    assert report["final_pair_count"] == 197
-    assert report["decision_rule"].endswith("no_static_confidence_threshold")
+    assert report["final_pair_count"] == 195
+    assert report["decision_rule"] == (
+        "weighted_coupling_event_graph_plus_sequence_energy_secondary_structure_degree;"
+        "row_local_largest_gap;adaptive_seed_derived_minimum;no_static_confidence_threshold"
+    )
+    assert report["sequence_physical_prior_kind"] == "sequence_only_energy_secondary_structure_degree_prior_v0"
     assert report["negative_control_count"] == 3
     assert report["real_rank_among_controls"] == 1
     assert report["self_consistency_status"] == "self_consistency_survived_matched_negative_controls"
@@ -62,10 +66,16 @@ def test_self_consistent_loop_respects_native_free_self_decision_without_static_
     assert report["raw_sequence_exposed"] is False
     assert report["native_truth_attached_after_selection_for_evaluation"] is True
 
-    assert report["contact_precision_after_native_audit"] == 0.147208
-    assert report["long_range_recall_after_native_audit"] == 0.093264
-    assert report["contact_precision_delta_vs_seed_after_native_audit"] == -0.030457
-    assert report["long_range_recall_delta_vs_seed_after_native_audit"] == -0.005182
+    assert report["mean_final_contact_energy_score"] == 0.528571
+    assert report["mean_final_secondary_structure_score"] == 0.440308
+    assert report["mean_final_degree_consistency_score"] == 0.886718
+    assert report["mean_final_physical_prior_score"] == 0.591629
+
+    assert report["contact_precision_after_native_audit"] == 0.179487
+    assert report["long_range_precision_after_native_audit"] == 0.2
+    assert report["long_range_recall_after_native_audit"] == 0.098446
+    assert report["contact_precision_delta_vs_seed_after_native_audit"] == 0.001822
+    assert report["long_range_recall_delta_vs_seed_after_native_audit"] == 0.0
     assert report["final_contact_map_hash"] == (
-        "sha256:877c5b19e38f3a702d1932ae2376ff210957debb5ef9c336b49b1815c6451887"
+        "sha256:b19cf803c0ebe1bac19a9c2c01a542fbc91a70430a7ed53089ac1372ce22fedb"
     )

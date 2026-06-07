@@ -222,10 +222,36 @@ oracle_constraint_control = false
 
 ## Useful Commands
 
-Run the focused tests:
+Run the default non-hanging focused suite. Use `python3 -m pytest` plus disabled
+plugin autoload; bare `pytest` can inherit globally installed plugins that keep
+processes alive after tests finish.
 
 ```bash
-python3 -m pytest tests/test_external_evolutionary_coupling_trace_loop_v0.py tests/test_real_external_sequence_to_dca_build_v0.py
+PYTHONPATH=src PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 python3 -m pytest -q
+```
+
+Visual/GIF tests are skipped by default. They run only when explicitly requested:
+
+```bash
+PYTHONPATH=src PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 python3 -m pytest -q --run-visual
+```
+
+Every test gets a hard timeout; override only when deliberately doing a long run:
+
+```bash
+PYTHONPATH=src PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 \
+PHARMACOTOPOLOGY_TEST_TIMEOUT_SECONDS=120 \
+python3 -m pytest -q --run-full-suite
+```
+
+Run the fast 4AKE AlphaFold source probe. Historical probe variants are off by
+default; use `--suite-mode full` only when intentionally running the old broader
+probe set. Each subprocess has its own timeout.
+
+```bash
+PYTHONPATH=src python3 scripts/run_4ake_alphafold_real_source_probe_v0.py \
+  --suite-mode fast \
+  --timeout-seconds 30
 ```
 
 Regenerate the current external trace-loop artifacts:
@@ -249,9 +275,52 @@ The oracle coupling file is retained only as a positive control:
 data/folding_real_coordinate_visual_8_couplings.locked.json
 ```
 
-## DONE-mode 4AKE AlphaFold visual proof V0
+## 4AKE no-AlphaFold sequence-physics self-consistency V0
 
-Run the honest contact predictor contract:
+The no-AlphaFold loop now adds sequence-only physical priors to the contact
+ensemble: pair contact energy, lightweight secondary-structure compatibility,
+and current-graph degree consistency. These are independent of AlphaFold and
+PDB coordinates, but they are still weak priors rather than a solved-folding
+oracle.
+
+Current checked regression result:
+
+```text
+sequence_physical_prior_kind = sequence_only_energy_secondary_structure_degree_prior_v0
+final_pair_count = 195
+final_long_range_pair_count = 95
+final_contact_precision = 0.179487
+final_contact_recall = 0.050505
+final_precision_delta_vs_seed = +0.001822
+final_recall_delta_vs_seed = -0.006734
+long_range_recall = 0.098446
+long_range_recall_delta_vs_seed = 0.000000
+mean_final_contact_energy_score = 0.528571
+mean_final_secondary_structure_score = 0.440308
+mean_final_degree_consistency_score = 0.886718
+mean_final_physical_prior_score = 0.591629
+folding_problem_solved = false
+external_independent_claim_allowed = false
+```
+
+That is an honest small precision lift, not a 4AKE crack. The loop now has the
+missing physics vote, but the no-AlphaFold data channel remains too weak for a
+solved-folding claim.
+
+## DONE-mode 4AKE AlphaFold contract V0
+
+Run the honest contact predictor contract without visual rendering:
+
+```bash
+PYTHONPATH=src python3 scripts/run_done_mode_contact_prediction_v0.py \
+  --source-accession 4AKE:A \
+  --predicted-pdb data/independent_contact_sources/AF-P69441-F1-model_v4.pdb \
+  --predicted-pdb-chain A \
+  --predicted-source-id alphafold_db_AF-P69441-F1-model_v4
+```
+
+GIF generation is off by default. A GIF is produced only with the explicit
+`--render-visual-proof` opt-in:
 
 ```bash
 PYTHONPATH=src python3 scripts/run_done_mode_contact_prediction_v0.py \
@@ -262,9 +331,11 @@ PYTHONPATH=src python3 scripts/run_done_mode_contact_prediction_v0.py \
   --render-visual-proof
 ```
 
-This produces the 4AKE ensemble/collapse report and visual proof GIF. A benchmark claim is allowed only when independent evidence exists and leakage gates remain closed. Without independent evidence the runner abstains instead of guessing.
+A benchmark claim is allowed only when independent evidence exists and leakage
+gates remain closed. Without independent evidence the runner abstains instead of
+guessing.
 
-Current locked 4AKE result:
+Current locked 4AKE AlphaFold-source result:
 
 ```text
 benchmark_claim_allowed = true

@@ -11,3 +11,11 @@ dependencies = []
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+  "visual: opt-in GIF/visual proof test",
+  "slow: opt-in slow test",
+  "full_suite: opt-in full-suite regression",
+]

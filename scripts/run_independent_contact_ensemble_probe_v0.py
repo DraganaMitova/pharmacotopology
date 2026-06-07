@@ -26,6 +26,7 @@ from pharmacotopology.folding_independent_contact_evidence import (  # noqa: E40
     evaluate_ensemble_contacts,
     load_contact_evidence_json,
     native_coordinate_positive_control_evidence,
+    sequence_physical_prior_contact_evidence,
     write_contact_evidence_json,
 )
 from pharmacotopology.folding_native_contact_eval import contact_map_hash  # noqa: E402
@@ -145,6 +146,15 @@ def main() -> None:
             "coordinates. This is not allowed as a benchmark claim."
         ),
     )
+    parser.add_argument(
+        "--include-sequence-physical-priors",
+        action="store_true",
+        help=(
+            "Add sequence-only energy/secondary-structure/degree contacts as an "
+            "extra non-claim ensemble vote. These are not an independent structure source."
+        ),
+    )
+    parser.add_argument("--physical-prior-min-confidence", type=float, default=0.55)
     parser.add_argument("--min-votes", type=int, default=2)
     parser.add_argument(
         "--allow-without-candidate-region",
@@ -171,8 +181,18 @@ def main() -> None:
     events = _events_for_source(row=row, context=context, event_source=args.event_source)
 
     evidence = []
-    evidence.extend(candidate_region_evidence_from_events(row=row, events=events))
+    candidate_region_evidence = candidate_region_evidence_from_events(row=row, events=events)
+    evidence.extend(candidate_region_evidence)
     evidence.extend(coupling_contact_evidence(row=row, constraints=row_constraints))
+
+    if args.include_sequence_physical_priors:
+        evidence.extend(
+            sequence_physical_prior_contact_evidence(
+                row=row,
+                candidate_pairs=[item.pair() for item in candidate_region_evidence],
+                min_confidence=args.physical_prior_min_confidence,
+            )
+        )
 
     for evidence_path in args.independent_contact_json:
         loaded = load_contact_evidence_json(Path(evidence_path))

@@ -6,6 +6,8 @@ import sys
 from hashlib import sha256
 from pathlib import Path
 
+import pytest
+
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 PDB_PATH = REPO_ROOT / "data" / "independent_contact_sources" / "AF-P69441-F1-model_v4.pdb"
@@ -18,14 +20,7 @@ PROVENANCE_PATH = (
 DONE_MODE_RUNNER = REPO_ROOT / "scripts" / "run_done_mode_contact_prediction_v0.py"
 
 
-def test_4ake_done_mode_cracks_with_visual_proof_without_leakage_or_timeout(tmp_path: Path) -> None:
-    """The one active regression test: 4AKE real AF source -> claim + GIF.
-
-    It runs the actual DONE-mode wrapper, which calls the ensemble probe and then
-    renders the visual proof GIF.  The timeout keeps the suite from returning to
-    the old slow/irrelevant-test state.
-    """
-
+def _assert_locked_alphafold_source_is_safe() -> None:
     raw_pdb = PDB_PATH.read_bytes()
     provenance = json.loads(PROVENANCE_PATH.read_text(encoding="utf-8"))
 
@@ -35,26 +30,30 @@ def test_4ake_done_mode_cracks_with_visual_proof_without_leakage_or_timeout(tmp_
     assert provenance["safety_and_leakage"]["coordinate_truth_used_before_selection"] is False
     assert provenance["safety_and_leakage"]["native_truth_used_before_selection"] is False
 
+
+def _run_done_mode(tmp_path: Path, *, render_visual_proof: bool) -> None:
+    command = [
+        sys.executable,
+        str(DONE_MODE_RUNNER),
+        "--source-accession",
+        "4AKE:A",
+        "--predicted-pdb",
+        str(PDB_PATH.relative_to(REPO_ROOT)),
+        "--predicted-pdb-chain",
+        "A",
+        "--predicted-source-id",
+        "alphafold_db_AF-P69441-F1-model_v4",
+        "--event-source",
+        "aggressive_relative_frontier",
+        "--min-votes",
+        "2",
+        "--out-dir",
+        str(tmp_path),
+    ]
+    if render_visual_proof:
+        command.append("--render-visual-proof")
     subprocess.run(
-        [
-            sys.executable,
-            str(DONE_MODE_RUNNER),
-            "--source-accession",
-            "4AKE:A",
-            "--predicted-pdb",
-            str(PDB_PATH.relative_to(REPO_ROOT)),
-            "--predicted-pdb-chain",
-            "A",
-            "--predicted-source-id",
-            "alphafold_db_AF-P69441-F1-model_v4",
-            "--event-source",
-            "aggressive_relative_frontier",
-            "--min-votes",
-            "2",
-            "--out-dir",
-            str(tmp_path),
-            "--render-visual-proof",
-        ],
+        command,
         cwd=REPO_ROOT,
         check=True,
         timeout=30,
@@ -62,15 +61,14 @@ def test_4ake_done_mode_cracks_with_visual_proof_without_leakage_or_timeout(tmp_
         text=True,
     )
 
+
+def _assert_core_done_mode_report(tmp_path: Path) -> None:
     done_manifest = json.loads((tmp_path / "done_mode_manifest.json").read_text(encoding="utf-8"))
     payload = json.loads((tmp_path / "contact_prediction_report.json").read_text(encoding="utf-8"))
-    gif_manifest = json.loads((tmp_path / "4ake_visual_proof_manifest.json").read_text(encoding="utf-8"))
-    gif_path = tmp_path / "4ake_visual_proof.gif"
 
-    assert gif_path.exists()
-    assert gif_path.stat().st_size > 50_000
     assert done_manifest["kind"] == "done_mode_contact_prediction_v0"
     assert done_manifest["status"] == "claim_allowed"
+    assert done_manifest["visual_proof_enabled"] is False
     assert done_manifest["done_contract"] == {
         "abstains_instead_of_guessing_without_independent_evidence": True,
         "claim_requires_independent_evidence": True,
@@ -121,6 +119,35 @@ def test_4ake_done_mode_cracks_with_visual_proof_without_leakage_or_timeout(tmp_
     assert report["long_range_precision"] == 0.744681
     assert report["long_range_recall"] == 0.906736
 
+
+def test_4ake_done_mode_cracks_without_default_gif_generation(tmp_path: Path) -> None:
+    """Default regression path: claim report yes, GIF generation no."""
+
+    _assert_locked_alphafold_source_is_safe()
+    _run_done_mode(tmp_path, render_visual_proof=False)
+    _assert_core_done_mode_report(tmp_path)
+
+    done_manifest = json.loads((tmp_path / "done_mode_manifest.json").read_text(encoding="utf-8"))
+    assert "visual_proof_gif" not in done_manifest["outputs"]
+    assert "visual_proof_manifest" not in done_manifest["outputs"]
+    assert not (tmp_path / "4ake_visual_proof.gif").exists()
+    assert not (tmp_path / "4ake_visual_proof_manifest.json").exists()
+
+
+@pytest.mark.visual
+def test_4ake_done_mode_visual_proof_is_explicit_opt_in(tmp_path: Path) -> None:
+    """GIF rendering exists, but full-suite/default pytest does not pay this cost."""
+
+    _assert_locked_alphafold_source_is_safe()
+    _run_done_mode(tmp_path, render_visual_proof=True)
+
+    done_manifest = json.loads((tmp_path / "done_mode_manifest.json").read_text(encoding="utf-8"))
+    gif_manifest = json.loads((tmp_path / "4ake_visual_proof_manifest.json").read_text(encoding="utf-8"))
+    gif_path = tmp_path / "4ake_visual_proof.gif"
+
+    assert done_manifest["visual_proof_enabled"] is True
+    assert gif_path.exists()
+    assert gif_path.stat().st_size > 50_000
     assert gif_manifest["kind"] == "4ake_alphafold_visual_proof_gif_v0"
     assert gif_manifest["visual_boundary"] == {
         "coordinate_truth_used_before_selection": False,

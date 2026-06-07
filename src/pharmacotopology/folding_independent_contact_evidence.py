@@ -16,6 +16,10 @@ from pharmacotopology.folding_real_coordinate_visual_benchmark import (
     CoordinatePoint,
     RealCoordinateVisualRow,
 )
+from pharmacotopology.folding_sequence_physical_priors import (
+    SEQUENCE_PHYSICAL_PRIOR_KIND,
+    build_sequence_physical_prior_scores,
+)
 
 
 INDEPENDENT_CONTACT_EVIDENCE_KIND = "independent_contact_evidence_v0"
@@ -26,6 +30,7 @@ NATIVE_COORDINATE_LEAKAGE_POSITIVE_CONTROL_KIND = (
 )
 CANDIDATE_REGION_SOURCE_KIND = "candidate_region_sequence_closure_source_v0"
 EXTERNAL_COUPLING_CONTACT_SOURCE_KIND = "external_evolutionary_coupling_contact_source_v0"
+SEQUENCE_PHYSICAL_PRIOR_CONTACT_SOURCE_KIND = "sequence_only_physical_prior_contact_source_v0"
 
 
 @dataclass(frozen=True)
@@ -342,6 +347,47 @@ def coupling_contact_evidence(
         )
     return tuple(evidence)
 
+
+
+def sequence_physical_prior_contact_evidence(
+    *,
+    row: RealCoordinateVisualRow,
+    candidate_pairs: Sequence[tuple[int, int]],
+    min_confidence: float = 0.55,
+) -> tuple[IndependentContactEvidencePair, ...]:
+    """Convert sequence-only physical priors into non-claim contact evidence.
+
+    These contacts are useful as an ensemble vote, but they are not an external
+    independent structure source.  They therefore do not make a benchmark claim
+    allowed by themselves.
+    """
+
+    priors = build_sequence_physical_prior_scores(
+        row=row,
+        candidate_pairs=set(candidate_pairs),
+        current_pairs=(),
+    )
+    evidence: list[IndependentContactEvidencePair] = []
+    for pair, prior in sorted(priors.items()):
+        if prior.physical_prior_score < min_confidence:
+            continue
+        evidence.append(
+            IndependentContactEvidencePair(
+                row_id=row.row_id,
+                source_accession=row.source_accession,
+                source_id="sequence_energy_secondary_structure_degree_prior",
+                source_kind=SEQUENCE_PHYSICAL_PRIOR_CONTACT_SOURCE_KIND,
+                source_family="sequence_physical_prior",
+                i=pair[0],
+                j=pair[1],
+                confidence=prior.physical_prior_score,
+                sequence_separation=pair[1] - pair[0],
+                coordinate_truth_used_before_selection=False,
+                native_truth_used_before_selection=False,
+                raw_sequence_exposed=False,
+            )
+        )
+    return tuple(evidence)
 
 def load_contact_evidence_json(path: Path) -> tuple[IndependentContactEvidencePair, ...]:
     parsed = json.loads(path.read_text(encoding="utf-8"))

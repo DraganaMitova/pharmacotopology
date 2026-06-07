@@ -3,14 +3,27 @@
 This repo is now cleaned around one active regression path:
 
 ```text
-4AKE:A + real AlphaFold independent source + ensemble/collapse + leakage gate + visual proof GIF
+4AKE:A + real AlphaFold independent source + ensemble/collapse + leakage gate
 ```
+
+Visual proof GIF generation is off by default. It is an explicit opt-in artifact,
+not part of the default done-mode contract.
 
 ## What "done mode" means
 
 This does **not** claim universal de novo folding for every possible protein.
 
 It means the system now has one stable interface that can be run for any locked target:
+
+```bash
+PYTHONPATH=src python3 scripts/run_done_mode_contact_prediction_v0.py \
+  --source-accession 4AKE:A \
+  --predicted-pdb data/independent_contact_sources/AF-P69441-F1-model_v4.pdb \
+  --predicted-pdb-chain A \
+  --predicted-source-id alphafold_db_AF-P69441-F1-model_v4
+```
+
+To render the GIF, add `--render-visual-proof` deliberately:
 
 ```bash
 PYTHONPATH=src python3 scripts/run_done_mode_contact_prediction_v0.py \
@@ -44,6 +57,8 @@ contact_recall       = 0.418605
 ```
 
 ## Visual proof outputs
+
+These files are created only after the explicit `--render-visual-proof` opt-in.
 
 Primary GIF:
 
@@ -86,4 +101,4 @@ Only one active test remains:
 tests/test_4ake_alphafold_real_source_end_to_end_v0.py
 ```
 
-It runs the done-mode wrapper, the ensemble probe, and the GIF renderer with a 30-second hard timeout.
+The default test runs the done-mode wrapper and ensemble probe with GIF output disabled. The GIF renderer is covered by an optional `visual` test that runs only with `--run-visual`. Each subprocess/test path has a hard timeout so the focused suite cannot hang indefinitely.
