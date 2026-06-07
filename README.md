@@ -347,3 +347,18 @@ contact_recall = 0.418605
 ```
 
 See `DONE_MODE_VISUAL_PROOF_V0.md` for the exact boundary.
+
+## MSA-free single-sequence structure-source probe
+
+4AKE without AlphaFold needs an independent source beyond DCA and hand-coded sequence physics. The repo now includes a bounded adapter for non-AlphaFold single-sequence predictors such as ESMFold/OmegaFold-style local PDB outputs:
+
+```bash
+PYTHONPATH=src python3 scripts/run_msa_free_single_sequence_structure_probe_v0.py \
+  --source-accession 4AKE:A \
+  --predicted-pdb /path/to/single_sequence_prediction.pdb \
+  --predicted-source-id omegafold_single_sequence_4ake \
+  --predicted-pdb-chain A
+```
+
+No predictor is run unless `--prediction-command` is explicitly provided, and that subprocess is bounded by `--timeout-seconds`. AlphaFold-like source IDs are rejected by default in this MSA-free probe.
+
