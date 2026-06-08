@@ -21,7 +21,7 @@ from dataclasses import asdict, dataclass
 from math import log, sqrt
 from pathlib import Path
 from statistics import mean
-from typing import Dict, Iterable, List, Mapping, Optional, Sequence, Tuple
+from typing import Dict, Iterable, List, Mapping, Optional, Sequence, Tuple, Union
 
 from pharmacotopology.folding_coarse_grain_md_geometry import CoarseGrainMDContactDecision, _matched_controls_for_report, _pair_hash, _rounded
 from pharmacotopology.folding_evolutionary_constraints import CouplingConstraint
@@ -41,6 +41,8 @@ LONG_RANGE_THRESHOLD = 24
 LOCAL_LONG_RANGE_FLOOR = 30
 GAP_CHARS = set("-.")
 AA_ALPHABET = tuple("ACDEFGHIKLMNPQRSTVWYXBZUO")
+AutoThreshold = Union[float, str]
+AUTO_THRESHOLD_VALUES = frozenset({"auto", "internal-gap", "internal_gap", "internalgap"})
 
 
 @dataclass(frozen=True)
@@ -349,6 +351,29 @@ def _normalized_mi(xs: Sequence[str], ys: Sequence[str], pseudocount: float = 0.
     return _bounded01(nmi), round(mi, 6)
 
 
+def _resolve_internal_gap_threshold(scores: Sequence[float]) -> float:
+    if not scores:
+        return 0.0
+    if len(scores) == 1:
+        return scores[0]
+    ordered = sorted(scores, reverse=True)
+    gaps = [ordered[index] - ordered[index + 1] for index in range(len(ordered) - 1)]
+    if not gaps:
+        return ordered[-1]
+    max_gap_index = max(range(len(gaps)), key=lambda index: gaps[index])
+    return ordered[max_gap_index + 1]
+
+
+def _resolve_threshold(
+    *,
+    threshold: AutoThreshold,
+    candidate_scores: Sequence[float],
+) -> float:
+    if isinstance(threshold, str) and threshold.lower() in AUTO_THRESHOLD_VALUES:
+        return _bounded01(_resolve_internal_gap_threshold(candidate_scores))
+    return _bounded01(float(threshold))
+
+
 def _records_matching_anchor(msa: ParsedMSA, row: RealCoordinateVisualRow, anchor: CouplingConstraint) -> Tuple[List[int], str, str]:
     ai = msa.query_to_alignment[anchor.i]
     aj = msa.query_to_alignment[anchor.j]
@@ -369,13 +394,20 @@ def build_true_local_msa_contacts(
     msa: ParsedMSA,
     top_anchor_count: int = 50,
     window: int = 5,
-    threshold: float = 0.5,
+    threshold: AutoThreshold = 0.5,
     degree_cap: int = 5,
     min_filtered_sequences: int = 16,
-) -> Tuple[Tuple[TrueLocalMSAContact, ...], Tuple[ContactPair, ...], Dict[ContactPair, float]]:
+) -> Tuple[
+    Tuple[TrueLocalMSAContact, ...],
+    Tuple[ContactPair, ...],
+    Dict[ContactPair, float],
+    float,
+    int,
+]:
     anchors = _safe_anchors(row, constraints, top_n=top_anchor_count)
     accepted: Dict[ContactPair, TrueLocalMSAContact] = {}
     scores: Dict[ContactPair, float] = {}
+    local_candidates: list[tuple[float, TrueLocalMSAContact]] = []
 
     def add(record: TrueLocalMSAContact) -> None:
         pair = record.pair()
@@ -422,9 +454,7 @@ def build_true_local_msa_contacts(
                 # Anchor-conditioned local MI: the original anchor must define
                 # the sub-MSA, but selection is decided by the candidate pair's
                 # MI in that filtered sub-MSA.
-                if nmi < threshold:
-                    continue
-                add(TrueLocalMSAContact(
+                local_candidates.append((nmi, TrueLocalMSAContact(
                     row_id=row.row_id,
                     source_accession=row.source_accession,
                     i=i2,
@@ -442,7 +472,14 @@ def build_true_local_msa_contacts(
                     anchor_j_residue=anchor_j_res,
                     query_i_residue=row.sequence[i2 - 1].upper(),
                     query_j_residue=row.sequence[j2 - 1].upper(),
-                ))
+                )))
+    resolved_threshold = _resolve_threshold(
+        threshold=threshold,
+        candidate_scores=tuple(score for score, _ in local_candidates),
+    )
+    for score, record in local_candidates:
+        if score >= resolved_threshold:
+            add(record)
     ranked = sorted(accepted.values(), key=lambda r: (-r.score, r.channel != "direct_safe_dca_anchor_with_msa_filter", r.i, r.j))
     degrees = [0] * row.sequence_length
     selected: List[ContactPair] = []
@@ -455,7 +492,7 @@ def build_true_local_msa_contacts(
         selected_scores[(i, j)] = record.score
         degrees[i - 1] += 1
         degrees[j - 1] += 1
-    return tuple(ranked), normalized_contact_pairs(selected), selected_scores
+    return tuple(ranked), normalized_contact_pairs(selected), selected_scores, resolved_threshold, len(local_candidates)
 
 
 def _claim(metric: ContactMetricPacket, f1_margin: float, lr_margin: float) -> Tuple[bool, bool, str]:
@@ -497,11 +534,17 @@ def run_true_local_msa_row(
     msa: ParsedMSA,
     top_anchor_count: int = 50,
     window: int = 5,
-    threshold: float = 0.5,
+    threshold: AutoThreshold = 0.5,
     degree_cap: int = 5,
     min_filtered_sequences: int = 16,
 ) -> Tuple[TrueLocalMSARowReport, Tuple[TrueLocalMSAContact, ...], Tuple[CoarseGrainMDContactDecision, ...]]:
-    contacts, selected, scores = build_true_local_msa_contacts(
+    (
+        contacts,
+        selected,
+        scores,
+        resolved_threshold,
+        candidate_local_pair_count,
+    ) = build_true_local_msa_contacts(
         row,
         constraints,
         msa,
@@ -529,9 +572,9 @@ def run_true_local_msa_row(
         top_safe_dca_anchor_count_requested=top_anchor_count,
         safe_anchor_count=len(anchors),
         local_window=window,
-        threshold=_rounded(threshold),
+        threshold=_rounded(resolved_threshold),
         min_filtered_sequences=min_filtered_sequences,
-        candidate_local_pair_count=len(anchors) * ((2 * window + 1) ** 2 - 1),
+        candidate_local_pair_count=candidate_local_pair_count,
         accepted_local_pair_count=sum(1 for c in contacts if c.channel == "true_local_msa_mi_window"),
         selected_contact_count=len(selected),
         selected_long_range_contact_count=sum(1 for i, j in selected if j - i >= LONG_RANGE_THRESHOLD),
@@ -556,7 +599,7 @@ def run_true_local_msa_packet(
     evaluation_source_accessions: Optional[Sequence[str]] = None,
     top_anchor_count: int = 50,
     window: int = 5,
-    threshold: float = 0.5,
+    threshold: AutoThreshold = 0.5,
     degree_cap: int = 5,
     min_filtered_sequences: int = 16,
 ) -> TrueLocalMSAPacket:
@@ -600,7 +643,7 @@ def run_true_local_msa_packet(
         raw_msa_available_for_true_local_mi=True,
         top_safe_dca_anchor_count_requested=top_anchor_count,
         local_window=window,
-        threshold=_rounded(threshold),
+        threshold=_rounded(reports[0].threshold if reports else 0.0),
         min_filtered_sequences=min_filtered_sequences,
         mean_safe_anchor_count=_mean([r.safe_anchor_count for r in reports]),
         mean_accepted_local_pair_count=_mean([r.accepted_local_pair_count for r in reports]),

@@ -54,9 +54,19 @@ def test_true_local_msa_channel_uses_real_mi_not_proxy(tmp_path):
     _rows, constraints, row, anchor = _fixture()
     path = _write_synthetic_msa(tmp_path, row, anchor)
     msa = parse_msa(path, row.sequence)
-    contacts, selected, scores = build_true_local_msa_contacts(row, constraints, msa, top_anchor_count=50, window=5, threshold=0.25, min_filtered_sequences=16)
+    contacts, selected, scores, resolved_threshold, candidate_local_pair_count = build_true_local_msa_contacts(
+        row,
+        constraints,
+        msa,
+        top_anchor_count=50,
+        window=5,
+        threshold=0.25,
+        min_filtered_sequences=16,
+    )
     assert selected
     assert scores
+    assert resolved_threshold >= 0.0
+    assert candidate_local_pair_count >= 0
     assert any(c.channel == "true_local_msa_mi_window" for c in contacts)
     assert all(c.true_msa_mi_used for c in contacts)
     assert all(not c.native_truth_used_before_selection for c in contacts)

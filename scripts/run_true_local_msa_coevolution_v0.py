@@ -116,7 +116,11 @@ def main() -> None:
     parser.add_argument("--source-accession", default="4AKE:A")
     parser.add_argument("--top-anchor-count", type=int, default=50)
     parser.add_argument("--window", type=int, default=5)
-    parser.add_argument("--threshold", type=float, default=0.5)
+    parser.add_argument(
+        "--threshold",
+        default="auto",
+        help="float score threshold or auto/internal-gap",
+    )
     parser.add_argument("--degree-cap", type=int, default=5)
     parser.add_argument("--min-filtered-sequences", type=int, default=16)
     args = parser.parse_args()
