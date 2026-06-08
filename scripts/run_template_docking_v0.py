@@ -19,7 +19,8 @@ from pharmacotopology.folding_real_coordinate_visual_benchmark import (
 from pharmacotopology.folding_template_docking import (
     TEMPLATE_DOCKING_KIND,
     collect_pdb_templates,
-    parse_benchmark_templates,
+    _is_kinase_like,
+    parse_benchmark_templates_with_filters,
     run_template_docking_v0,
 )
 
@@ -65,6 +66,23 @@ def _flatten_report(report: dict[str, object]) -> dict[str, object]:
     return payload
 
 
+def _read_accession_lines(path: str | None) -> set[str]:
+    if not path:
+        return set()
+    requested = Path(path)
+    if not requested.exists():
+        raise SystemExit(f"Accession file does not exist: {requested}")
+    values = set()
+    for line in requested.read_text(encoding="utf-8").splitlines():
+        cleaned = line.strip()
+        if not cleaned or cleaned.startswith("#"):
+            continue
+        for token in cleaned.replace(",", " ").split():
+            if token:
+                values.add(token.strip())
+    return values
+
+
 def _to_csv_rows(values: list[dict[str, object]]) -> list[dict[str, object]]:
     out: list[dict[str, object]] = []
     for raw in values:
@@ -98,11 +116,22 @@ def main() -> None:
         default=None,
         help="float threshold or 'auto' (default)",
     )
+    parser.add_argument("--no-auto-kinase-filter", action="store_true", default=False)
+    parser.add_argument("--match-target-architecture", action="store_true", default=False)
+    parser.add_argument("--only-kinase-templates", action="store_true", default=False)
+    parser.add_argument("--template-allowlist", default=None, help="Template accession allowlist file")
+    parser.add_argument("--template-exclude", default=None, help="Template accession exclude list file")
     parser.add_argument(
         "--domain-scan-step",
         type=int,
         default=1,
         help="Domain-scan step for faster domain-aware alignment (>=1)",
+    )
+    parser.add_argument(
+        "--domain-scan-window",
+        type=int,
+        default=0,
+        help="Window around midpoint for domain-aware scan (0 = full scan)",
     )
     parser.add_argument("--jobs", type=int, default=1, help="Number of parallel workers (0 = all CPUs)")
     parser.add_argument("--min-template-support", type=int, default=1)
@@ -118,9 +147,38 @@ def main() -> None:
     if target_row is None:
         raise SystemExit(f"No target row for source-accession={args.source_accession}")
 
+    target_reference_fold_class = target_row.reference_fold_class
+    target_architecture_axis = target_row.truth_axes.get("architecture_axis", "unknown")
+    target_is_kinase_like = (
+        _is_kinase_like(target_row.source_id)
+        or _is_kinase_like(target_row.source_accession)
+        or _is_kinase_like(target_row.reference_fold_class)
+    )
+    effective_only_kinase_templates = (
+        args.only_kinase_templates
+        or (not args.no_auto_kinase_filter and target_is_kinase_like)
+    )
+    match_target_architecture = (
+        args.match_target_architecture
+        or (effective_only_kinase_templates and not args.no_auto_kinase_filter)
+    )
+
     templates = []
     if args.include_benchmark_templates:
-        templates.extend(parse_benchmark_templates(rows, args.source_accession))
+        templates.extend(
+            parse_benchmark_templates_with_filters(
+                rows,
+                args.source_accession,
+                only_kinase_templates=effective_only_kinase_templates,
+                allowed_source_accessions=_read_accession_lines(args.template_allowlist),
+                excluded_source_accessions=_read_accession_lines(args.template_exclude),
+                target_reference_fold_class=target_reference_fold_class,
+                target_architecture_axis=target_architecture_axis,
+                restrict_same_architecture=match_target_architecture,
+            )
+        )
+        if effective_only_kinase_templates and args.max_template_count is None:
+            templates = list(templates)[:50]
 
     template_paths = []
     if args.template_dir:
@@ -163,6 +221,7 @@ def main() -> None:
         minimum_sequence_separation=3,
         min_template_support=args.min_template_support,
         domain_scan_step=args.domain_scan_step,
+        domain_scan_window=args.domain_scan_window,
         jobs=args.jobs,
         source_mode="+".join(source_mode_parts),
     )
