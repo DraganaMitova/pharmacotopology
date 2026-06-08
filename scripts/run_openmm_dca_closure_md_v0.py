@@ -243,6 +243,9 @@ def _run_openmm(
     temperature_kelvin: float,
     seed: int,
     platform_name: str = "auto",
+    cpu_threads: int = 12,
+    reporter_interval_steps: int = 0,
+    write_trajectory: bool = True,
 ) -> dict:
     try:
         import openmm as mm
@@ -319,7 +322,8 @@ def _run_openmm(
         if name == "reference":
             return mm.Platform.getPlatformByName("Reference")
         platform = mm.Platform.getPlatformByName("CPU")
-        platform.setPropertyDefaultValue("Threads", "12")
+        if cpu_threads > 0:
+            platform.setPropertyDefaultValue("Threads", str(cpu_threads))
         return platform
 
     try:
@@ -339,9 +343,12 @@ def _run_openmm(
     simulation.context.setPositions([(x, y, z) * nanometer for x, y, z in positions])
     simulation.minimizeEnergy(maxIterations=500)
 
-    trajectory_path = out_dir / "openmm_dca_restrained_trajectory.pdb"
-    reporter_interval = max(1, min(2000, max(1, steps // 5000)))
-    simulation.reporters.append(app.PDBReporter(str(trajectory_path), reporter_interval))
+    if reporter_interval_steps and reporter_interval_steps > 0:
+        reporter_interval = reporter_interval_steps
+    else:
+        reporter_interval = max(1, min(10000, max(1, steps // 10000)))
+    if write_trajectory:
+        simulation.reporters.append(app.PDBReporter(str(trajectory_path), reporter_interval))
     simulation.reporters.append(app.StateDataReporter(
         str(out_dir / "openmm_dca_openmm.log"),
         reporter_interval,
@@ -357,9 +364,10 @@ def _run_openmm(
     with final_pdb.open("w", encoding="utf-8") as handle:
         app.PDBFile.writeFile(topology, final_positions, handle)
 
+    trajectory_path = out_dir / "openmm_dca_restrained_trajectory.pdb"
     return {
         "success": True,
-        "trajectory_pdb": str(trajectory_path),
+        "trajectory_pdb": str(trajectory_path) if write_trajectory and trajectory_path.is_file() else None,
         "final_pdb": str(final_pdb),
         "anchors_applied": len(anchors),
         "log": str(out_dir / "openmm_dca_openmm.log"),
@@ -478,6 +486,26 @@ def main() -> None:
             "OpenMM platform to use. auto tries OpenCL first and falls back to CPU."
         ),
     )
+    parser.add_argument(
+        "--cpu-threads",
+        type=int,
+        default=12,
+        help="CPU threads for OpenMM CPU platform (for faster CPU execution).",
+    )
+    parser.add_argument(
+        "--reporter-interval-steps",
+        type=int,
+        default=0,
+        help=(
+            "Custom reporter interval (steps). Set to 0 for automatic interval; "
+            "larger values reduce I/O and can improve throughput."
+        ),
+    )
+    parser.add_argument(
+        "--no-trajectory",
+        action="store_true",
+        help="Skip writing trajectory PDB file for speed.",
+    )
     args = parser.parse_args()
 
     out_dir = Path(args.out_dir)
@@ -521,6 +549,9 @@ def main() -> None:
         temperature_kelvin=args.temperature_kelvin,
         seed=args.seed,
         platform_name=args.platform,
+        cpu_threads=args.cpu_threads,
+        reporter_interval_steps=args.reporter_interval_steps,
+        write_trajectory=not args.no_trajectory,
     )
     if not openmm_results.get("success") and args.fallback:
         openmm_results = _run_fallback_dependency_free(
