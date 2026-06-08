@@ -20,14 +20,14 @@ log "NO GIF. NO ALPHAFOLD. NO MSA. HARD TIMEOUTS."
 log "Trying ESMFold API raw text/plain"
 (
   cd "$ROOT"
-  timeout "$TIMEOUT_ESMFOLD_API" ./esmfold_api.sh 4ake.fasta "$RUN_ROOT/4ake_esmfold_api.pdb"
+  python3 "$ROOT/run_with_timeout.py" "$TIMEOUT_ESMFOLD_API" ./esmfold_api.sh 4ake.fasta "$RUN_ROOT/4ake_esmfold_api.pdb"
 ) >> "$LOG" 2>&1 || log "ESMFold API did not produce a usable PDB in this environment"
 
 # 2. Local ESMFold v1 if dependencies/weights exist.
 log "Trying local ESMFold v1"
 (
   cd "$ROOT"
-  timeout "$TIMEOUT_LOCAL_ESMFOLD" ./run_local_esmfold_v1.py 4ake.fasta "$RUN_ROOT/4ake_esmfold_local.pdb"
+  python3 "$ROOT/run_with_timeout.py" "$TIMEOUT_LOCAL_ESMFOLD" ./run_local_esmfold_v1.py 4ake.fasta "$RUN_ROOT/4ake_esmfold_local.pdb"
 ) >> "$LOG" 2>&1 || log "Local ESMFold v1 unavailable or failed"
 
 # 3. OmegaFold fallback.

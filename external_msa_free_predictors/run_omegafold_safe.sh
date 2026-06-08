@@ -2,6 +2,8 @@
 # Usage: ./run_omegafold_safe.sh [fasta] [out_dir]
 # Tries an installed omegafold first. If absent and network exists, tries source install.
 set -euo pipefail
+ROOT=$(cd "$(dirname "$0")" && pwd)
+run_timeout(){ python3 "$ROOT/run_with_timeout.py" "$@"; }
 FASTA=${1:-4ake.fasta}
 OUTDIR=${2:-omegafold_out}
 TIMEOUT_SECONDS=${OMEGAFOLD_TIMEOUT_SECONDS:-900}
@@ -17,16 +19,16 @@ REPORT="$OUTDIR/omegafold_safe_report.json"
 } > "$LOG"
 if command -v omegafold >/dev/null 2>&1; then
   echo "using=installed_omegafold" >> "$LOG"
-  timeout "$TIMEOUT_SECONDS" omegafold "$FASTA" "$OUTDIR" >> "$LOG" 2>&1 || true
+  run_timeout "$TIMEOUT_SECONDS" omegafold "$FASTA" "$OUTDIR" >> "$LOG" 2>&1 || true
 elif [ -d OmegaFold ]; then
   echo "using=existing_OmegaFold_checkout" >> "$LOG"
-  timeout "$TIMEOUT_SECONDS" python3 OmegaFold/main.py "$FASTA" "$OUTDIR" >> "$LOG" 2>&1 || true
+  run_timeout "$TIMEOUT_SECONDS" python3 OmegaFold/main.py "$FASTA" "$OUTDIR" >> "$LOG" 2>&1 || true
 else
   echo "using=git_clone_attempt" >> "$LOG"
-  timeout 180 git clone https://github.com/HeliXonProtein/OmegaFold >> "$LOG" 2>&1 || true
+  run_timeout 180 git clone https://github.com/HeliXonProtein/OmegaFold >> "$LOG" 2>&1 || true
   if [ -d OmegaFold ]; then
     (cd OmegaFold && python3 setup.py install >> "$LOG" 2>&1) || true
-    timeout "$TIMEOUT_SECONDS" python3 OmegaFold/main.py "$FASTA" "$OUTDIR" >> "$LOG" 2>&1 || true
+    run_timeout "$TIMEOUT_SECONDS" python3 OmegaFold/main.py "$FASTA" "$OUTDIR" >> "$LOG" 2>&1 || true
   fi
 fi
 python3 - <<PY > "$REPORT"

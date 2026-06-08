@@ -420,3 +420,22 @@ PYTHONPATH=src python3 -u scripts/run_4ake_iterative_distance_geometry_diffusion
 ```
 
 The 4AKE audit result in this package is not solved: precision `0.181818`, recall `0.143113`, F1 `0.160160`. GIF generation is not used.
+
+## 4AKE no-AlphaFold closure result
+
+The final native-free iterative distance-geometry diffusion run did not solve 4AKE. It converged safely, avoided GIF generation, did not use AlphaFold as evidence, and then abstained because precision/recall did not reach the predeclared 0.70/0.70 solved threshold.
+
+Final result:
+
+```text
+precision = 0.181818
+recall = 0.143113
+F1 = 0.160160
+predicted_contacts = 440
+true_positive_contacts = 80
+false_positive_contacts = 360
+false_negative_contacts = 479
+folding_problem_solved = false
+```
+
+See `4AKE_NOAF_CLOSURE_DECISION_SUMMARY.md` and `4AKE_NOAF_FINAL_METRICS.json`.

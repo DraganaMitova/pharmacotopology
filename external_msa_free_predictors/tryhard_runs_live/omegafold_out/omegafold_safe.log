@@ -1,7 +1,0 @@
-kind=omegafold_safe_runner_v1
-fasta=4ake.fasta
-outdir=/Users/draganamitova/My Projects/pharmacotopology/external_msa_free_predictors/tryhard_runs_live/omegafold_out
-timeout_seconds=900
-started_utc=2026-06-08T10:03:24Z
-using=git_clone_attempt
-./run_omegafold_safe.sh: line 26: timeout: command not found
