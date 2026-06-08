@@ -1,0 +1,7 @@
+{
+  "candidate_root": "/mnt/data/pharmacotopology_4ake_tryhard_live_solution_full/current_validation/live_tryhard_runs",
+  "kind": "probe_candidate_pdbs_v1",
+  "out_root": "/mnt/data/pharmacotopology_4ake_tryhard_live_solution_full/current_validation/live_tryhard_runs/probe_results",
+  "results": [],
+  "tested_count": 0
+}

@@ -1,0 +1,8 @@
+kind=omegafold_safe_runner_v1
+fasta=4ake.fasta
+outdir=/mnt/data/pharmacotopology_4ake_tryhard_live_solution_full/tryhard_sandbox_validation/live_tryhard_runs/omegafold_out
+timeout_seconds=30
+started_utc=2026-06-08T09:36:56Z
+using=git_clone_attempt
+Cloning into 'OmegaFold'...
+fatal: unable to access 'https://github.com/HeliXonProtein/OmegaFold/': Could not resolve host: github.com

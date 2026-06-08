@@ -1,0 +1,24 @@
+{
+  "biological_claim": "not_tested_without_real_msa_free_pdb",
+  "candidate_pdb_count": 0,
+  "esmfold_api_status": "failed_in_sandbox_dns_could_not_resolve_api_esmatlas_com",
+  "execution_claim": "runner_bounded_non_hanging_validated",
+  "final_tryhard_verdict": {
+    "all": [],
+    "best": [],
+    "folding_problem_solved": false,
+    "kind": "tryhard_final_verdict_v1",
+    "report_root": "/mnt/data/pharmacotopology_4ake_tryhard_live_solution_full/current_validation/live_tryhard_runs/probe_results",
+    "solved_count": 0,
+    "tested_reports": 0
+  },
+  "folding_problem_solved": false,
+  "kind": "current_tryhard_run_summary_v1",
+  "local_esmfold_status": "failed_missing_openfold_dependency",
+  "omegafold_status": "no_pdb_produced_in_sandbox",
+  "pytest_exit": "0",
+  "pytest_result": "5 passed, 2 skipped in 15.06s",
+  "run_all_exit": "0",
+  "tested_probe_reports": 0,
+  "timestamp_utc": "2026-06-08T09:42:29Z"
+}
