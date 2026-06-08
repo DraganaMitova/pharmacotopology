@@ -1,0 +1,7 @@
+{
+  "kind": "omegafold_safe_runner_v1",
+  "outdir": "/Users/draganamitova/My Projects/pharmacotopology/external_msa_free_predictors/tryhard_runs_live/omegafold_out",
+  "pdb_count": 0,
+  "pdbs": [],
+  "status": "no_pdb_produced"
+}

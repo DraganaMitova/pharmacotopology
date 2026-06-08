@@ -1,0 +1,119 @@
+[2026-06-08T10:53:49Z] PROJECT=..
+[2026-06-08T10:53:49Z] RUN_ROOT=/Users/draganamitova/My Projects/pharmacotopology/external_msa_free_predictors/tryhard_runs_live
+[2026-06-08T10:53:49Z] NO GIF. NO ALPHAFOLD. NO MSA. HARD TIMEOUTS.
+[2026-06-08T10:53:49Z] Trying ESMFold API raw text/plain
+{
+  "api_url": "https://api.esmatlas.com/foldSequence/v1/pdb/",
+  "elapsed_seconds": 1.669,
+  "error": "",
+  "fasta": "4ake.fasta",
+  "http_status": 200,
+  "kind": "esmfold_api_runner_v1",
+  "output_pdb": "/Users/draganamitova/My Projects/pharmacotopology/external_msa_free_predictors/tryhard_runs_live/4ake_esmfold_api.pdb",
+  "pdb_atom_lines": 1655,
+  "pdb_exists": true,
+  "sequence_length": 214,
+  "status": "success",
+  "timeout_seconds": 600.0
+}
+[2026-06-08T10:53:51Z] Trying local ESMFold v1
+{
+  "chunk_size": 64,
+  "device": "auto_cuda_if_available",
+  "elapsed_seconds": 0.0,
+  "error": "ModuleNotFoundError: No module named 'torch'",
+  "fasta": "4ake.fasta",
+  "kind": "local_esmfold_v1_runner",
+  "output_pdb": "/Users/draganamitova/My Projects/pharmacotopology/external_msa_free_predictors/tryhard_runs_live/4ake_esmfold_local.pdb",
+  "pdb_atom_lines": 0,
+  "pdb_exists": false,
+  "sequence_length": 214,
+  "status": "exception"
+}
+[2026-06-08T10:53:51Z] Local ESMFold v1 unavailable or failed
+[2026-06-08T10:53:51Z] Trying OmegaFold safe wrapper
+{
+  "kind": "omegafold_safe_runner_v1",
+  "outdir": "/Users/draganamitova/My Projects/pharmacotopology/external_msa_free_predictors/tryhard_runs_live/omegafold_out",
+  "pdb_count": 0,
+  "pdbs": [],
+  "status": "no_pdb_produced"
+}
+[2026-06-08T10:53:54Z] Scanning for candidate PDB files
+{
+  "kind": "candidate_pdb_scan_v1",
+  "root": "/Users/draganamitova/My Projects/pharmacotopology/external_msa_free_predictors/tryhard_runs_live",
+  "candidate_count": 1,
+  "usable_count": 1,
+  "candidates": [
+    {
+      "path": "/Users/draganamitova/My Projects/pharmacotopology/external_msa_free_predictors/tryhard_runs_live/4ake_esmfold_api.pdb",
+      "size_bytes": 135555,
+      "atom_lines": 1655,
+      "usable": true
+    }
+  ]
+}
+[2026-06-08T10:53:54Z] Running pharmacotopology probe on every candidate PDB
+{
+  "candidate_root": "/Users/draganamitova/My Projects/pharmacotopology/external_msa_free_predictors/tryhard_runs_live",
+  "kind": "probe_candidate_pdbs_v1",
+  "out_root": "/Users/draganamitova/My Projects/pharmacotopology/external_msa_free_predictors/tryhard_runs_live/probe_results",
+  "results": [
+    {
+      "atom_lines": 1655,
+      "direct_precision": 0.880068,
+      "direct_recall": 0.932021,
+      "ensemble_precision": 0.797945,
+      "ensemble_recall": 0.416816,
+      "folding_problem_solved": true,
+      "pdb": "/Users/draganamitova/My Projects/pharmacotopology/external_msa_free_predictors/tryhard_runs_live/4ake_esmfold_api.pdb",
+      "report_path": "/Users/draganamitova/My Projects/pharmacotopology/external_msa_free_predictors/tryhard_runs_live/probe_results/4ake_esmfold_api/msa_free_single_sequence_structure_probe_report.json",
+      "returncode": 0,
+      "script_safety_rejection": "none",
+      "source_id": "esmfold_single_sequence_4ake",
+      "stderr_tail": "",
+      "stdout_tail": "{\n  \"alphafold_used_by_this_script\": false,\n  \"benchmark_claim_allowed_by_direct_structure\": true,\n  \"benchmark_claim_allowed_by_ensemble\": true,\n  \"coordinate_truth_used_before_selection\": false,\n  \"folding_problem_solved\": true,\n  \"msa_used_by_this_script\": false,\n  \"native_truth_attached_after_selection_for_evaluation\": true,\n  \"native_truth_used_before_selection\": false,\n  \"prediction_command_opt_in_only\": true,\n  \"prediction_command_timed_out\": false,\n  \"prediction_command_timeout_seconds\": 120.0,\n  \"query_fasta_persisted\": false,\n  \"raw_sequence_exposed_in_persisted_artifacts\": false,\n  \"script_safety_rejection\": \"none\"\n}\n{\n  \"benchmark_claim_allowed\": true,\n  \"candidate_region_pair_count\": 19824,\n  \"claim_rejection_reason\": \"none\",\n  \"contact_precision\": 0.797945,\n  \"contact_recall\": 0.416816,\n  \"coordinate_truth_used_before_selection\": false,\n  \"evidence_kind\": \"independent_contact_ensemble_probe_v0\",\n  \"evidence_pair_count\": 20131,\n  \"external_coupling_pair_count\": 214,\n  \"final_long_range_pair_count\": 226,\n  \"final_pair_count\": 292,\n  \"independent_structure_pair_count\": 592,\n  \"long_range_precision\": 0.769912,\n  \"long_range_recall\": 0.901554,\n  \"min_votes_required\": 1,\n  \"native_contact_count\": 559,\n  \"native_long_range_contact_count\": 193,\n  \"native_truth_attached_after_selection_for_evaluation\": true,\n  \"native_truth_used_before_selection\": false,\n  \"raw_sequence_exposed\": false,\n  \"require_candidate_region_support\": true,\n  \"require_independent_structure_support\": true,\n  \"row_id\": \"coord_007_pdb_4AKE_A_adenylate_kinase\",\n  \"source_accession\": \"4AKE:A\",\n  \"source_family_count\": 4,\n  \"true_positive_contacts\": 233,\n  \"true_positive_long_range_contacts\": 174\n}\n/Users/draganamitova/My Projects/pharmacotopology/external_msa_free_predictors/tryhard_runs_live/probe_results/4ake_esmfold_api/msa_free_single_sequence_structure_probe_report.json\n"
+    }
+  ],
+  "tested_count": 1
+}
+[2026-06-08T10:54:01Z] Aggregating verdict
+{
+  "all": [
+    {
+      "direct_precision": 0.880068,
+      "direct_recall": 0.932021,
+      "ensemble_precision": 0.797945,
+      "ensemble_recall": 0.416816,
+      "folding_problem_solved": true,
+      "independent_structure_pair_count": 592,
+      "pdb_path": "/Users/draganamitova/My Projects/pharmacotopology/external_msa_free_predictors/tryhard_runs_live/4ake_esmfold_api.pdb",
+      "report_path": "/Users/draganamitova/My Projects/pharmacotopology/external_msa_free_predictors/tryhard_runs_live/probe_results/4ake_esmfold_api/msa_free_single_sequence_structure_probe_report.json",
+      "script_safety_rejection": "none",
+      "source_accession": "4AKE:A",
+      "status": "prediction_available"
+    }
+  ],
+  "best": [
+    {
+      "direct_precision": 0.880068,
+      "direct_recall": 0.932021,
+      "ensemble_precision": 0.797945,
+      "ensemble_recall": 0.416816,
+      "folding_problem_solved": true,
+      "independent_structure_pair_count": 592,
+      "pdb_path": "/Users/draganamitova/My Projects/pharmacotopology/external_msa_free_predictors/tryhard_runs_live/4ake_esmfold_api.pdb",
+      "report_path": "/Users/draganamitova/My Projects/pharmacotopology/external_msa_free_predictors/tryhard_runs_live/probe_results/4ake_esmfold_api/msa_free_single_sequence_structure_probe_report.json",
+      "script_safety_rejection": "none",
+      "source_accession": "4AKE:A",
+      "status": "prediction_available"
+    }
+  ],
+  "folding_problem_solved": true,
+  "kind": "tryhard_final_verdict_v1",
+  "report_root": "/Users/draganamitova/My Projects/pharmacotopology/external_msa_free_predictors/tryhard_runs_live/probe_results",
+  "solved_count": 1,
+  "tested_reports": 1
+}
+[2026-06-08T10:54:01Z] DONE

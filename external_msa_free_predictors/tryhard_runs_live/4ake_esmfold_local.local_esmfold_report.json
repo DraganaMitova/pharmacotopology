@@ -1,0 +1,13 @@
+{
+  "chunk_size": 64,
+  "device": "auto_cuda_if_available",
+  "elapsed_seconds": 0.0,
+  "error": "ModuleNotFoundError: No module named 'torch'",
+  "fasta": "4ake.fasta",
+  "kind": "local_esmfold_v1_runner",
+  "output_pdb": "/Users/draganamitova/My Projects/pharmacotopology/external_msa_free_predictors/tryhard_runs_live/4ake_esmfold_local.pdb",
+  "pdb_atom_lines": 0,
+  "pdb_exists": false,
+  "sequence_length": 214,
+  "status": "exception"
+}
