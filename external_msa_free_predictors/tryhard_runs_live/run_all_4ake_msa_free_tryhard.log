@@ -1,0 +1,44 @@
+[2026-06-08T10:03:23Z] PROJECT=..
+[2026-06-08T10:03:23Z] RUN_ROOT=/Users/draganamitova/My Projects/pharmacotopology/external_msa_free_predictors/tryhard_runs_live
+[2026-06-08T10:03:23Z] NO GIF. NO ALPHAFOLD. NO MSA. HARD TIMEOUTS.
+[2026-06-08T10:03:23Z] Trying ESMFold API raw text/plain
+./run_all_4ake_msa_free_tryhard.sh: line 23: timeout: command not found
+[2026-06-08T10:03:23Z] ESMFold API did not produce a usable PDB in this environment
+[2026-06-08T10:03:23Z] Trying local ESMFold v1
+./run_all_4ake_msa_free_tryhard.sh: line 30: timeout: command not found
+[2026-06-08T10:03:23Z] Local ESMFold v1 unavailable or failed
+[2026-06-08T10:03:23Z] Trying OmegaFold safe wrapper
+{
+  "kind": "omegafold_safe_runner_v1",
+  "outdir": "/Users/draganamitova/My Projects/pharmacotopology/external_msa_free_predictors/tryhard_runs_live/omegafold_out",
+  "pdb_count": 0,
+  "pdbs": [],
+  "status": "no_pdb_produced"
+}
+[2026-06-08T10:03:24Z] Scanning for candidate PDB files
+{
+  "kind": "candidate_pdb_scan_v1",
+  "root": "/Users/draganamitova/My Projects/pharmacotopology/external_msa_free_predictors/tryhard_runs_live",
+  "candidate_count": 0,
+  "usable_count": 0,
+  "candidates": []
+}
+[2026-06-08T10:03:24Z] Running pharmacotopology probe on every candidate PDB
+{
+  "candidate_root": "/Users/draganamitova/My Projects/pharmacotopology/external_msa_free_predictors/tryhard_runs_live",
+  "kind": "probe_candidate_pdbs_v1",
+  "out_root": "/Users/draganamitova/My Projects/pharmacotopology/external_msa_free_predictors/tryhard_runs_live/probe_results",
+  "results": [],
+  "tested_count": 0
+}
+[2026-06-08T10:03:24Z] Aggregating verdict
+{
+  "all": [],
+  "best": [],
+  "folding_problem_solved": false,
+  "kind": "tryhard_final_verdict_v1",
+  "report_root": "/Users/draganamitova/My Projects/pharmacotopology/external_msa_free_predictors/tryhard_runs_live/probe_results",
+  "solved_count": 0,
+  "tested_reports": 0
+}
+[2026-06-08T10:03:24Z] DONE

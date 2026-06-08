@@ -1,0 +1,21 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.5, pytest-9.0.2, pluggy-1.6.0 -- /opt/pyvenv/bin/python3
+cachedir: .pytest_cache
+rootdir: /mnt/data/pharm_solution_hunt
+configfile: pyproject.toml
+testpaths: tests
+collecting ... collected 11 items
+
+tests/test_4ake_alphafold_real_source_end_to_end_v0.py::test_4ake_done_mode_cracks_without_default_gif_generation PASSED
+tests/test_4ake_alphafold_real_source_end_to_end_v0.py::test_4ake_done_mode_visual_proof_is_explicit_opt_in SKIPPED
+tests/test_chai1_conformational_ensemble_v0.py::test_conformational_ensemble_selects_open_proxy_short_d118_k136 PASSED
+tests/test_chai1_conformational_ensemble_v0.py::test_conformational_ensemble_rejects_alphafold_like_input PASSED
+tests/test_iterative_distance_geometry_diffusion_v0.py::test_iterative_distance_geometry_diffusion_is_native_free_and_bounded PASSED
+tests/test_leave_one_out_empirical_contact_prior_v0.py::test_leave_one_out_empirical_prior_excludes_target_and_remains_native_free PASSED
+tests/test_leave_one_out_empirical_contact_prior_v0.py::test_leave_one_out_prior_rejects_target_training_leakage PASSED
+tests/test_msa_free_internet_predictor_v0.py::test_esm_atlas_adapter_fails_closed_without_persisting_sequence PASSED
+tests/test_msa_free_single_sequence_structure_source_v0.py::test_msa_free_adapter_rejects_alphafold_like_source_id_without_opt_in PASSED
+tests/test_msa_free_single_sequence_structure_source_v0.py::test_msa_free_adapter_times_out_and_does_not_persist_query_fasta_by_default PASSED
+tests/test_self_consistent_contact_loop_v0.py::test_self_consistent_loop_respects_native_free_self_decision_without_static_threshold SKIPPED
+
+======================== 9 passed, 2 skipped in 15.53s =========================
