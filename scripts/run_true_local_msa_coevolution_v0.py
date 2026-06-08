@@ -91,11 +91,11 @@ Requested MSA path: `{msa_path}`
 Build the MSA locally, then rerun:
 
 ```bash
-bash scripts/build_4ake_msa_with_jackhmmer_v0.sh \
+PYTHONPATH=src bash scripts/build_4ake_msa_with_jackhmmer_v0.sh \
   --database /path/to/uniprot_sprot.fasta \
   --out-dir external_msa/4ake_jackhmmer
 
-python scripts/run_true_local_msa_coevolution_v0.py \
+PYTHONPATH=src python3 scripts/run_true_local_msa_coevolution_v0.py \
   --source-accession 4AKE:A \
   --msa external_msa/4ake_jackhmmer/4ake_jackhmmer.afa \
   --out-dir first_contact_clean_pharmacotopology_layer_run/true_local_msa_coevolution_v0

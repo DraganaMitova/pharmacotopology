@@ -86,7 +86,15 @@ else
   echo "WARNING: esl-reformat not found; keeping Stockholm only: $STO" | tee -a "$LOG"
 fi
 
-python3 scripts/run_true_local_msa_coevolution_v0.py \
+if [[ -f "$AFA" ]]; then
+  MSA_INPUT="$AFA"
+else
+  MSA_INPUT="$STO"
+fi
+
+echo "Running local MI benchmark with MSA: $MSA_INPUT" | tee -a "$LOG"
+
+PYTHONPATH=src python3 scripts/run_true_local_msa_coevolution_v0.py \
   --source-accession 4AKE:A \
-  --msa "$AFA" \
+  --msa "$MSA_INPUT" \
   --out-dir first_contact_clean_pharmacotopology_layer_run/true_local_msa_coevolution_v0

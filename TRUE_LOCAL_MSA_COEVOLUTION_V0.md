@@ -52,7 +52,7 @@ used before selection.
 First build an MSA using a local sequence database:
 
 ```bash
-bash scripts/build_4ake_msa_with_jackhmmer_v0.sh \
+PYTHONPATH=src bash scripts/build_4ake_msa_with_jackhmmer_v0.sh \
   --database /path/to/uniprot_or_uniref.fasta \
   --out-dir external_msa/4ake_jackhmmer \
   --cpu 4
