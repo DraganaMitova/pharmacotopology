@@ -242,6 +242,7 @@ def _run_openmm(
     timestep: float,
     temperature_kelvin: float,
     seed: int,
+    platform_name: str = "auto",
 ) -> dict:
     try:
         import openmm as mm
@@ -307,11 +308,33 @@ def _run_openmm(
     )
     integrator.setRandomNumberSeed(seed)
 
-    try:
+    def _make_platform(name: str) -> mm.Platform:
+        if name == "auto":
+            try:
+                return _make_platform("opencl")
+            except Exception:
+                return _make_platform("cpu")
+        if name == "opencl":
+            return mm.Platform.getPlatformByName("OpenCL")
+        if name == "reference":
+            return mm.Platform.getPlatformByName("Reference")
         platform = mm.Platform.getPlatformByName("CPU")
+        platform.setPropertyDefaultValue("Threads", "12")
+        return platform
+
+    try:
+        platform = _make_platform(platform_name)
         simulation = app.Simulation(topology, system, integrator, platform)
-    except Exception:
-        simulation = app.Simulation(topology, system, integrator)
+    except Exception as exc:
+        if platform_name in {"auto", "opencl"}:
+            simulation = app.Simulation(
+                topology,
+                system,
+                integrator,
+                _make_platform("cpu"),
+            )
+        else:
+            raise SystemExit(f"platform init failed: {exc}")
 
     simulation.context.setPositions([(x, y, z) * nanometer for x, y, z in positions])
     simulation.minimizeEnergy(maxIterations=500)
@@ -447,6 +470,14 @@ def main() -> None:
         action="store_true",
         help="Run dependency-free fallback if OpenMM is unavailable.",
     )
+    parser.add_argument(
+        "--platform",
+        default="auto",
+        choices=("auto", "cpu", "opencl", "reference"),
+        help=(
+            "OpenMM platform to use. auto tries OpenCL first and falls back to CPU."
+        ),
+    )
     args = parser.parse_args()
 
     out_dir = Path(args.out_dir)
@@ -489,6 +520,7 @@ def main() -> None:
         timestep=args.timestep_ps,
         temperature_kelvin=args.temperature_kelvin,
         seed=args.seed,
+        platform_name=args.platform,
     )
     if not openmm_results.get("success") and args.fallback:
         openmm_results = _run_fallback_dependency_free(
