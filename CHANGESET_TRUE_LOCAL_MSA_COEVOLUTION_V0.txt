@@ -1,0 +1,15 @@
+TRUE_LOCAL_MSA_COEVOLUTION_V0 changeset
+
+Added:
+- src/pharmacotopology/folding_true_local_msa_coevolution.py
+- scripts/run_true_local_msa_coevolution_v0.py
+- scripts/build_4ake_msa_with_jackhmmer_v0.sh
+- scripts/check_raw_msa_presence_v0.py
+- tests/test_true_local_msa_coevolution_v0.py
+- TRUE_LOCAL_MSA_COEVOLUTION_V0.md
+
+Behavior:
+- Implements true anchor-conditioned local normalized MI from a raw MSA.
+- Refuses proxy fallback when raw MSA is absent.
+- Emits ACTION_REQUIRED_RAW_MSA.md with exact local commands.
+- Keeps native/coordinate truth out of selection; native is audit-only.
