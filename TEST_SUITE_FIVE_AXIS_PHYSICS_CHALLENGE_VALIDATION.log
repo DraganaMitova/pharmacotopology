@@ -1,0 +1,13 @@
+{
+  "claim_rejection_reason": "global_folding_claim_rejected_five_axis_gate_failed_for_rows:1MBN:A,2LZM:A,1TEN:A,1CSP:A,1TIM:A,1PGA:A,4AKE:A,1CLL:A",
+  "folding_problem_solved": false,
+  "kind": "sequence_only_five_axis_physics_challenge_v0",
+  "mean_contact_map_f1_after_audit": 0.069241,
+  "mean_f1_margin_vs_best_control": 0.013417,
+  "mean_long_range_contact_recall_after_audit": 0.007464,
+  "mean_native_contact_precision_after_audit": 0.387362,
+  "mean_native_contact_recall_after_audit": 0.039198,
+  "report_path": "/mnt/data/pharmacotopology_work/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/five_axis_physics_challenge_v0/five_axis_physics_challenge_report.json",
+  "row_count": 8,
+  "universal_physical_law_claim_allowed": false
+}

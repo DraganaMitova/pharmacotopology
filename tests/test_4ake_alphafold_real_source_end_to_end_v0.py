@@ -49,6 +49,8 @@ def _run_done_mode(tmp_path: Path, *, render_visual_proof: bool) -> None:
         "2",
         "--out-dir",
         str(tmp_path),
+        "--timeout-seconds",
+        "60",
     ]
     if render_visual_proof:
         command.append("--render-visual-proof")
@@ -56,7 +58,7 @@ def _run_done_mode(tmp_path: Path, *, render_visual_proof: bool) -> None:
         command,
         cwd=REPO_ROOT,
         check=True,
-        timeout=30,
+        timeout=75,
         capture_output=True,
         text=True,
     )

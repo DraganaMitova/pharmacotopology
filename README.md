@@ -9,6 +9,36 @@ It intentionally does not include the earlier non-folding pharmacotopology
 layer, profile dashboards, or legacy benchmark families. The preserved source
 branch with the broader history is `protein-folding-hypothesis-lab`.
 
+
+## Latest Honest Frontier: Five-Axis Physics Challenge V0
+
+The repo now includes a sequence-only challenge layer for the five missing axes
+from the current diagnosis: energy/free energy, entropy, cooperativity,
+dynamics, and environment/context. It is intentionally native-free before
+selection and learned-prior/MSA/template-free.
+
+Run it with:
+
+```bash
+python3 scripts/kill_project_cpu_workers_v0.py --min-cpu 5
+PYTHONPATH=src timeout 120s python3 scripts/run_five_axis_physics_challenge_v0.py
+```
+
+Locked result on the 8-row real-coordinate benchmark:
+
+```text
+mean_native_contact_precision_after_audit = 0.387362
+mean_native_contact_recall_after_audit = 0.039198
+mean_long_range_contact_recall_after_audit = 0.007464
+mean_contact_map_f1_after_audit = 0.069241
+universal_physical_law_claim_allowed = false
+folding_problem_solved = false
+```
+
+Interpretation: the missing axes are now explicitly wired, but the current
+sequence-only physics still fails the universal-law gate, especially on
+long-range cooperative contact recovery. See `FIVE_AXIS_PHYSICS_CHALLENGE_V0.md`.
+
 ## Current Focus
 
 ```text
