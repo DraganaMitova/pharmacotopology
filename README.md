@@ -483,3 +483,27 @@ PYTHONPATH=src python3 scripts/run_msa_free_model_ensemble_consensus_v0.py \
 ```
 
 See `MSA_FREE_LEARNED_PRIOR_ENSEMBLE_V0.md` for the exact result and safety boundaries.
+
+## Global factor-graph + ensemble V0
+
+After the five-axis sequence-only physics challenge failed to recover long-range
+contacts, the project now includes a global contact factor graph:
+
+```bash
+PYTHONPATH=src python scripts/run_global_factor_graph_ensemble_v0.py --ensemble-size 6
+```
+
+It runs two bounded checks by default:
+
+1. sequence-only five-axis factor graph over the locked 8-row benchmark;
+2. learned-geometry factor graph on 4AKE when the included real ESMFold PDB is available.
+
+Current locked result:
+
+- sequence-only global factor graph: `folding_problem_solved = false`
+- 4AKE + non-AlphaFold ESMFold learned geometry prior: precision `0.880068`, recall `0.932021`, long-range recall `0.901554`, `folding_problem_solved = true`
+
+The 4AKE result is a target solve over an external MSA-free learned global
+geometry prior. It is explicitly **not** a universal sequence-only physical-law
+claim.
+
