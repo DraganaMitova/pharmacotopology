@@ -1,0 +1,26 @@
+{
+  "candidate_root": "/mnt/data/pharm_uploaded_full/pharmacotopology/external_msa_free_predictors/tryhard_runs_live",
+  "kind": "probe_candidate_pdbs_v1",
+  "out_root": "/mnt/data/pharm_uploaded_full/pharmacotopology/external_msa_free_predictors/tryhard_runs_live/probe_results_audited",
+  "results": [
+    {
+      "atom_lines": 1655,
+      "direct_precision": 0.880068,
+      "direct_recall": 0.932021,
+      "direct_structure_solved": true,
+      "ensemble_contact_collapse_solved": false,
+      "ensemble_precision": 0.797945,
+      "ensemble_recall": 0.416816,
+      "folding_problem_solved": true,
+      "folding_solution_mode": "direct_msa_free_single_sequence_structure",
+      "pdb": "/mnt/data/pharm_uploaded_full/pharmacotopology/external_msa_free_predictors/tryhard_runs_live/4ake_esmfold_api.pdb",
+      "report_path": "/mnt/data/pharm_uploaded_full/pharmacotopology/external_msa_free_predictors/tryhard_runs_live/probe_results_audited/4ake_esmfold_api/msa_free_single_sequence_structure_probe_report.json",
+      "returncode": 0,
+      "script_safety_rejection": "none",
+      "source_id": "esmfold_single_sequence_4ake",
+      "stderr_tail": "",
+      "stdout_tail": "false,\n  \"benchmark_claim_allowed_by_direct_structure\": true,\n  \"benchmark_claim_allowed_by_ensemble\": true,\n  \"coordinate_truth_used_before_selection\": false,\n  \"direct_structure_solved\": true,\n  \"ensemble_contact_collapse_solved\": false,\n  \"folding_problem_solved\": true,\n  \"folding_solution_mode\": \"direct_msa_free_single_sequence_structure\",\n  \"msa_used_by_this_script\": false,\n  \"native_truth_attached_after_selection_for_evaluation\": true,\n  \"native_truth_used_before_selection\": false,\n  \"prediction_command_opt_in_only\": true,\n  \"prediction_command_timed_out\": false,\n  \"prediction_command_timeout_seconds\": 120.0,\n  \"query_fasta_persisted\": false,\n  \"raw_sequence_exposed_in_persisted_artifacts\": false,\n  \"script_safety_rejection\": \"none\"\n}\n{\n  \"benchmark_claim_allowed\": true,\n  \"candidate_region_pair_count\": 19824,\n  \"claim_rejection_reason\": \"none\",\n  \"contact_precision\": 0.797945,\n  \"contact_recall\": 0.416816,\n  \"coordinate_truth_used_before_selection\": false,\n  \"evidence_kind\": \"independent_contact_ensemble_probe_v0\",\n  \"evidence_pair_count\": 20131,\n  \"external_coupling_pair_count\": 214,\n  \"final_long_range_pair_count\": 226,\n  \"final_pair_count\": 292,\n  \"independent_structure_pair_count\": 592,\n  \"long_range_precision\": 0.769912,\n  \"long_range_recall\": 0.901554,\n  \"min_votes_required\": 1,\n  \"native_contact_count\": 559,\n  \"native_long_range_contact_count\": 193,\n  \"native_truth_attached_after_selection_for_evaluation\": true,\n  \"native_truth_used_before_selection\": false,\n  \"raw_sequence_exposed\": false,\n  \"require_candidate_region_support\": true,\n  \"require_independent_structure_support\": true,\n  \"row_id\": \"coord_007_pdb_4AKE_A_adenylate_kinase\",\n  \"source_accession\": \"4AKE:A\",\n  \"source_family_count\": 4,\n  \"true_positive_contacts\": 233,\n  \"true_positive_long_range_contacts\": 174\n}\n/mnt/data/pharm_uploaded_full/pharmacotopology/external_msa_free_predictors/tryhard_runs_live/probe_results_audited/4ake_esmfold_api/msa_free_single_sequence_structure_probe_report.json\n"
+    }
+  ],
+  "tested_count": 1
+}

@@ -55,7 +55,11 @@ def main() -> int:
         if report_path.exists():
             try:
                 rep = json.loads(report_path.read_text())
-                record["folding_problem_solved"] = rep.get("safety", {}).get("folding_problem_solved")
+                safety = rep.get("safety", {})
+                record["folding_problem_solved"] = safety.get("folding_problem_solved")
+                record["folding_solution_mode"] = safety.get("folding_solution_mode")
+                record["direct_structure_solved"] = safety.get("direct_structure_solved")
+                record["ensemble_contact_collapse_solved"] = safety.get("ensemble_contact_collapse_solved")
                 record["direct_precision"] = rep.get("direct_structure_metric", {}).get("native_contact_precision")
                 record["direct_recall"] = rep.get("direct_structure_metric", {}).get("native_contact_recall")
                 record["ensemble_precision"] = rep.get("report", {}).get("contact_precision")

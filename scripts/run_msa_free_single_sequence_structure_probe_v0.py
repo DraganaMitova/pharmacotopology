@@ -209,7 +209,7 @@ def main() -> None:
         round(len(direct_long_tp) / len(direct_long_pairs), 6) if direct_long_pairs else 0.0
     )
 
-    direct_structure_claim_allowed = (
+    direct_structure_solved = (
         source_run.status == "prediction_available"
         and not source_run.source_rejected
         and not source_run.alphafold_like_source_id
@@ -218,14 +218,21 @@ def main() -> None:
         and direct_structure_metric.native_contact_precision >= args.solved_precision_threshold
         and direct_structure_metric.native_contact_recall >= args.solved_recall_threshold
     )
-    ensemble_solved = (
+    ensemble_contact_collapse_solved = (
         report.benchmark_claim_allowed
         and report.contact_precision >= args.solved_precision_threshold
         and report.contact_recall >= args.solved_recall_threshold
         and not source_run.alphafold_like_source_id
         and not predictor_parse_error
     )
-    folding_problem_solved = bool(direct_structure_claim_allowed or ensemble_solved)
+    folding_problem_solved = bool(direct_structure_solved or ensemble_contact_collapse_solved)
+    folding_solution_mode = "unsolved"
+    if direct_structure_solved and ensemble_contact_collapse_solved:
+        folding_solution_mode = "direct_msa_free_structure_and_contact_ensemble"
+    elif direct_structure_solved:
+        folding_solution_mode = "direct_msa_free_single_sequence_structure"
+    elif ensemble_contact_collapse_solved:
+        folding_solution_mode = "contact_ensemble_collapse"
 
     script_safety_rejection = "none"
     if source_run.source_rejected:
@@ -252,7 +259,8 @@ def main() -> None:
         "direct_structure_metric": {
             **direct_structure_metric.to_dict(),
             "long_range_contact_precision": direct_long_precision,
-            "claim_allowed": direct_structure_claim_allowed,
+            "claim_allowed": direct_structure_solved,
+            "direct_structure_solved": direct_structure_solved,
             "solved_precision_threshold": args.solved_precision_threshold,
             "solved_recall_threshold": args.solved_recall_threshold,
         },
@@ -267,7 +275,10 @@ def main() -> None:
             "query_fasta_persisted": source_run.query_fasta_persisted,
             "raw_sequence_exposed_in_persisted_artifacts": source_run.raw_sequence_exposed_in_persisted_artifacts,
             "benchmark_claim_allowed_by_ensemble": report.benchmark_claim_allowed,
-            "benchmark_claim_allowed_by_direct_structure": direct_structure_claim_allowed,
+            "benchmark_claim_allowed_by_direct_structure": direct_structure_solved,
+            "direct_structure_solved": direct_structure_solved,
+            "ensemble_contact_collapse_solved": ensemble_contact_collapse_solved,
+            "folding_solution_mode": folding_solution_mode,
             "script_safety_rejection": script_safety_rejection,
             "native_truth_used_before_selection": report.native_truth_used_before_selection,
             "coordinate_truth_used_before_selection": report.coordinate_truth_used_before_selection,
