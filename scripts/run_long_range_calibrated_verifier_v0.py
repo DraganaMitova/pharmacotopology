@@ -100,6 +100,7 @@ def main() -> None:
     parser.add_argument("--max-direct", type=int, default=80)
     parser.add_argument("--max-sequence-closure", type=int, default=120)
     parser.add_argument("--max-geodesic", type=int, default=260)
+    parser.add_argument("--use-chemical-score", action="store_true", help="Prioritize combined chemical/statistical scoring for residue-pair terms.")
     parser.add_argument("--source-accession", default="", help="Optional single accession, e.g. 4AKE:A")
     args = parser.parse_args()
     rows = load_real_coordinate_visual_rows(Path(args.benchmark_file))
@@ -117,12 +118,14 @@ def main() -> None:
         max_direct=args.max_direct or None,
         max_sequence_closure=args.max_sequence_closure or None,
         max_geodesic=args.max_geodesic or None,
+        use_chemical_score=args.use_chemical_score,
     )
     artifacts = _write_packet(packet, out_dir)
     summary = _summary(packet)
     summary.update({
         "out_dir": str(out_dir),
         "artifacts": artifacts,
+        "use_chemical_score": args.use_chemical_score,
         "full_suite_run": False,
         "gif_generation_used": False,
         "internet_required": False,

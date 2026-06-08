@@ -167,6 +167,31 @@ def long_range_contact_score(pair: ContactPair, sequence: str, potential: LongRa
     return potential.score(sequence[i - 1], sequence[j - 1], j - i)
 
 
+def chemical_score(aa_i: str, aa_j: str) -> float:
+    hydrophobic = set("AVILMFWY")
+    positive = set("KRH")
+    negative = set("DE")
+    polar = set("STNQ")
+    if aa_i not in AA_ALPHABET or aa_j not in AA_ALPHABET:
+        return 0.1
+    if aa_i in hydrophobic and aa_j in hydrophobic:
+        return 1.0
+    if (aa_i in positive and aa_j in negative) or (aa_i in negative and aa_j in positive):
+        return 0.9
+    if aa_i in polar and aa_j in polar:
+        return 0.5
+    if (aa_i in polar and aa_j in hydrophobic) or (aa_i in hydrophobic and aa_j in polar):
+        return 0.3
+    return 0.1
+
+
+def combined_score(i: int, j: int, sequence: str, stat_score: float, *, chem_weight: float = 0.7, stat_weight: float = 0.3) -> float:
+    if i <= 0 or j <= 0 or i > len(sequence) or j > len(sequence):
+        return stat_score
+    chem = chemical_score(sequence[i - 1], sequence[j - 1])
+    return chem_weight * chem + stat_weight * stat_score
+
+
 def _patch_support(pair: ContactPair, raw_set: set[ContactPair]) -> float:
     i, j = pair
     patch = 0
@@ -190,6 +215,7 @@ def long_range_aware_filter_contacts(
     potential: LongRangePotential,
     *,
     probability_threshold: float = 0.34,
+    use_chemical_score: bool = False,
 ) -> tuple[tuple[ContactPair, ...], dict[ContactPair, float]]:
     if not raw_contacts:
         return (), {}
@@ -202,6 +228,8 @@ def long_range_aware_filter_contacts(
         lr = long_range_contact_score(pair, row.sequence, potential)
         sep = pair[1] - pair[0]
         residue = _residue_pair_score(row.sequence[pair[0] - 1], row.sequence[pair[1] - 1], 7.2, sep)
+        if use_chemical_score:
+            residue = combined_score(pair[0], pair[1], row.sequence, residue)
         patch = _patch_support(pair, raw_set)
         restraint = restraint_map.get(pair, 0.0)
         raw = max(0.0, min(1.0, float(raw_scores.get(pair, 0.0))))
@@ -418,6 +446,7 @@ def run_long_range_calibrated_verifier_row(
     max_direct: int | None = 80,
     max_sequence_closure: int | None = 120,
     max_geodesic: int | None = 260,
+    use_chemical_score: bool = False,
 ) -> tuple[LongRangeCalibratedRowReport, tuple[CoarseGrainMDContactDecision, ...]]:
     samples = _training_samples_for_target(
         all_rows,
@@ -443,7 +472,16 @@ def run_long_range_calibrated_verifier_row(
             max_sequence_closure=max_sequence_closure,
             max_geodesic=max_geodesic,
         )
-        selected, selected_scores = long_range_aware_filter_contacts(row, coords, raw_contacts, raw_scores, restraints, weights, potential)
+        selected, selected_scores = long_range_aware_filter_contacts(
+            row,
+            coords,
+            raw_contacts,
+            raw_scores,
+            restraints,
+            weights,
+            potential,
+            use_chemical_score=use_chemical_score,
+        )
         score, components = long_range_global_score(row, coords, selected, restraints, potential)
         if best is None or score > best[0]:
             best = (score, idx, restraints, coords, raw_contacts, selected, selected_scores, components, energy)
@@ -526,6 +564,7 @@ def run_long_range_calibrated_verifier_packet(
     max_direct: int | None = 80,
     max_sequence_closure: int | None = 120,
     max_geodesic: int | None = 260,
+    use_chemical_score: bool = False,
 ) -> LongRangeCalibratedVerifierPacket:
     evaluation_set = set(evaluation_source_accessions or ())
     evaluation_rows = tuple(row for row in rows if not evaluation_set or row.source_accession in evaluation_set)
@@ -541,6 +580,7 @@ def run_long_range_calibrated_verifier_packet(
             max_direct=max_direct,
             max_sequence_closure=max_sequence_closure,
             max_geodesic=max_geodesic,
+            use_chemical_score=use_chemical_score,
         )
         reports.append(report)
         decisions.extend(row_decisions[:500])
