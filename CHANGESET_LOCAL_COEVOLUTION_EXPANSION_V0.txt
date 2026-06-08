@@ -1,0 +1,12 @@
+LOCAL_COEVOLUTION_EXPANSION_V0 changeset
+
+Added:
+- src/pharmacotopology/folding_local_coevolution_expansion.py
+- scripts/run_local_coevolution_expansion_v0.py
+- tests/test_local_coevolution_expansion_v0.py
+- LOCAL_COEVOLUTION_EXPANSION_V0.md
+
+Boundary:
+- raw MSA was not available in the ZIP; true local MI was not computed.
+- implemented an explicit local co-evolution proxy from safe external coupling support.
+- target native contacts are attached only after contact selection for audit.

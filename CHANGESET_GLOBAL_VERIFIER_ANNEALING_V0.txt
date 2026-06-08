@@ -1,0 +1,10 @@
+GLOBAL_VERIFIER_ANNEALING_V0
+
+Added:
+- src/pharmacotopology/folding_global_verifier_annealing.py
+- scripts/run_global_verifier_annealing_v0.py
+- tests/test_global_verifier_annealing_v0.py
+- GLOBAL_VERIFIER_ANNEALING_V0.md
+- first_contact_clean_pharmacotopology_layer_run/global_verifier_annealing_v0/*
+
+Note: the uploaded ZIP did not contain a .git directory, so no real Git commit could be created inside this sandbox. This changelog records the exact patch contents.

@@ -1,0 +1,16 @@
+LONG_RANGE_CALIBRATED_VERIFIER_V0 changeset
+
+Added:
+- src/pharmacotopology/folding_long_range_calibrated_verifier.py
+- scripts/run_long_range_calibrated_verifier_v0.py
+- scripts/compute_long_range_potential_v0.py
+- tests/test_long_range_calibrated_verifier_v0.py
+- LONG_RANGE_CALIBRATED_VERIFIER_V0.md
+
+Validation target:
+- focused tests only
+- focused 4AKE runner only
+- no full suite
+- no GIF generation
+- no predictor subprocesses
+- CPU cleanup before/after runs
