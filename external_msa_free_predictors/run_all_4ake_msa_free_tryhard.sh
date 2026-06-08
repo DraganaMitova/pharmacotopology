@@ -51,4 +51,15 @@ python3 "$ROOT/run_probe_for_candidate_pdbs.py" \
 
 log "Aggregating verdict"
 python3 "$ROOT/summarize_probe_reports.py" "$RUN_ROOT/probe_results" | tee "$RUN_ROOT/final_tryhard_verdict.json" | tee -a "$LOG"
+
+log "Running MSA-free learned-model ensemble consensus over every candidate PDB"
+(
+  cd "$PROJECT"
+  PYTHONPATH=src python3 scripts/run_msa_free_model_ensemble_consensus_v0.py \
+    --source-accession 4AKE:A \
+    --predicted-structure-dir "$RUN_ROOT" \
+    --default-chain A \
+    --out-dir "$RUN_ROOT/msa_free_model_ensemble_consensus"
+) | tee "$RUN_ROOT/msa_free_model_ensemble_consensus_summary.json" | tee -a "$LOG" || log "MSA-free model ensemble consensus unavailable or failed"
+
 log "DONE"

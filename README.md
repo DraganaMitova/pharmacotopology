@@ -439,3 +439,17 @@ folding_problem_solved = false
 ```
 
 See `4AKE_NOAF_CLOSURE_DECISION_SUMMARY.md` and `4AKE_NOAF_FINAL_METRICS.json`.
+
+## MSA-free learned-prior ensemble v0
+
+After the Mac-safe ESMFold run produced a real non-AlphaFold, no-MSA 4AKE PDB, the project now includes a learned-geometry ensemble layer:
+
+```bash
+PYTHONPATH=src python3 scripts/run_msa_free_model_ensemble_consensus_v0.py \
+  --source-accession 4AKE:A \
+  --predicted-structure-dir external_msa_free_predictors/tryhard_runs_live \
+  --default-chain A \
+  --out-dir first_contact_clean_pharmacotopology_layer_run/msa_free_model_ensemble_consensus_v0
+```
+
+See `MSA_FREE_LEARNED_PRIOR_ENSEMBLE_V0.md` for the exact result and safety boundaries.

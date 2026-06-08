@@ -24,9 +24,6 @@ for rp in sorted(root.rglob("msa_free_single_sequence_structure_probe_report.jso
         "ensemble_recall":r.get("contact_recall"),
         "independent_structure_pair_count":r.get("independent_structure_pair_count"),
         "folding_problem_solved":s.get("folding_problem_solved"),
-        "folding_solution_mode":s.get("folding_solution_mode"),
-        "direct_structure_solved":s.get("direct_structure_solved"),
-        "ensemble_contact_collapse_solved":s.get("ensemble_contact_collapse_solved"),
         "script_safety_rejection":s.get("script_safety_rejection"),
     })
 solved=[x for x in rows if x.get("folding_problem_solved")]
