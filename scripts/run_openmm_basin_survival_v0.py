@@ -42,17 +42,24 @@ SURVIVAL_SCORE_WEIGHTS = {
     "balanced": (0.52, 0.30, 0.18),
     "broad": (0.65, 0.30, 0.05),
 }
+PLATEAU_PROFILE_BUDGET_DIVISORS = {"strict": 5, "balanced": 2, "broad": 1}
+PLATEAU_PROFILE_NAMES = ("strict", "balanced", "broad", "diagnostic")
+PLATEAU_STABILITY_LOW_THRESHOLD = 0.25
+PLATEAU_TAIL_SENSITIVITY_THRESHOLD = 0.20
+PLATEAU_CUTOFF_SENSITIVITY_THRESHOLD = 0.20
+PLATEAU_BASIN_STABILITY_THRESHOLD = 0.30
+PLATEAU_STABLE_CORE_SUPPORT = 0.65
 GATE_SEQUENCE = ("frequency", "chemical", "dca", "topology", "control", "survival", "degree", "budget", "collapse")
 ABLATION_CUMULATIVE_MAP = {
     "frequency_only": {"frequency"},
     "budget_only": {"frequency", "budget"},
     "dca_only": {"frequency", "dca"},
-    "topology_only": {"frequency", "chemical", "dca", "topology"},
+    "topology_only": {"frequency", "chemical", "topology"},
     "control_gap_only": {"frequency", "chemical", "dca", "topology", "control"},
-    "collapse_only": {"frequency", "chemical", "dca", "topology", "control", "survival", "degree", "budget", "collapse"},
+    "collapse_only": set(),
     "frequency_plus_budget": {"frequency", "budget"},
     "frequency_plus_budget_plus_collapse": {"frequency", "budget", "collapse"},
-    "frequency_plus_budget_plus_dca": {"frequency", "dca", "budget"},
+    "frequency_plus_budget_plus_dca": {"frequency", "budget", "dca"},
     "full": {"frequency", "chemical", "dca", "topology", "control", "survival", "degree", "budget"},
 }
 ABLATION_VALID_CASES = set(ABLATION_CUMULATIVE_MAP.keys())
@@ -865,9 +872,9 @@ def _select_contacts_for_frames(
         base = {
             "frequency_only": {"frequency"},
             "budget_only": {"budget"},
-            "dca_only": {"dca"},
-            "topology_only": {"topology"},
-            "control_gap_only": {"control"},
+            "dca_only": {"frequency", "dca"},
+            "topology_only": {"frequency", "chemical", "topology"},
+            "control_gap_only": {"frequency", "chemical", "dca", "topology", "control"},
             "collapse_only": set(),
             "frequency_plus_budget": {"frequency", "budget"},
             "frequency_plus_budget_plus_collapse": {"frequency", "budget"},
@@ -980,6 +987,15 @@ def _select_contacts_for_frames(
                     "selected_pair_count": int(hard_summary.get("selected_pair_count", 0)),
                     "selected_by_budget": int(hard_summary.get("budgeted_pair_count", 0)),
                 }
+                profile_payload["dca_as_soft_score_topK"] = {
+                    "selected_pair_count": int(soft_summary.get("selected_pair_count", 0)),
+                    "selected_by_budget": int(soft_summary.get("budgeted_pair_count", 0)),
+                }
+                profile_payload["dca_as_hard_gate_topK"] = {
+                    "selected_pair_count": int(hard_summary.get("selected_pair_count", 0)),
+                    "selected_by_budget": int(hard_summary.get("budgeted_pair_count", 0)),
+                }
+
             ablation_profiles[name] = profile_payload
             ablation_counts[name] = int(cumulative_summary.get("budgeted_pair_count", 0))
 
@@ -1034,6 +1050,329 @@ def _contact_set_overlap(left: set[tuple[int, int]], right: set[tuple[int, int]]
     if not union:
         return 0.0
     return len(left & right) / len(union)
+
+
+def _to_pair_obj(raw: object) -> tuple[int, int] | None:
+    if isinstance(raw, (tuple, list)) and len(raw) >= 2:
+        try:
+            left = int(raw[0])
+            right = int(raw[1])
+            if left < right:
+                return (left, right)
+            return (right, left)
+        except Exception:
+            return None
+    return None
+
+
+def _extract_ranked_pairs(payload: object) -> list[tuple[tuple[int, int], float]]:
+    out: list[tuple[tuple[int, int], float]] = []
+    if not isinstance(payload, list):
+        return out
+    for item in payload:
+        if isinstance(item, dict):
+            pair = _to_pair_obj(item.get("pair"))
+            if pair is None:
+                continue
+            score = float(item.get("count", 0.0) or 0.0)
+            out.append((pair, score))
+            continue
+        if not isinstance(item, (tuple, list)) or len(item) < 2:
+            continue
+        pair = _to_pair_obj(item[:2])
+        if pair is None:
+            continue
+        score = float(item[2]) if len(item) > 2 else 1.0
+        out.append((pair, score))
+    if not out:
+        return out
+    out.sort(key=lambda item: (-item[1], item[0][0], item[0][1]))
+    return out
+
+
+def _profile_top_k(sequence_length: int, profile: str) -> int:
+    if profile == "strict":
+        return max(1, sequence_length // PLATEAU_PROFILE_BUDGET_DIVISORS["strict"])
+    if profile == "balanced":
+        return max(1, sequence_length // PLATEAU_PROFILE_BUDGET_DIVISORS["balanced"])
+    if profile == "broad":
+        return max(1, sequence_length // PLATEAU_PROFILE_BUDGET_DIVISORS["broad"])
+    if profile == "diagnostic":
+        return -1
+    return sequence_length
+
+
+def _normalize_rank_payload(
+    ranked: list[tuple[tuple[int, int], float]],
+    top_k: int,
+) -> tuple[list[tuple[int, int]], dict[tuple[int, int], int]]:
+    if top_k < 0:
+        top_k = len(ranked)
+    top = [pair for pair, _ in ranked[:top_k]]
+    positions: dict[tuple[int, int], int] = {pair: idx + 1 for idx, pair in enumerate(top)}
+    return top, positions
+
+
+def _rank_similarity(
+    left: dict[tuple[int, int], int],
+    right: dict[tuple[int, int], int],
+    top_k: int,
+) -> float:
+    if top_k < 0:
+        top_k = max(
+            max(left.values(), default=1),
+            max(right.values(), default=1),
+        )
+    if not left and not right:
+        return 1.0
+    union = set(left.keys()) | set(right.keys())
+    if not union:
+        return 1.0
+    scale = float(top_k + 1)
+    score = 0.0
+    for pair in union:
+        lpos = float(left.get(pair, top_k + 1))
+        rpos = float(right.get(pair, top_k + 1))
+        score += max(0.0, (scale - abs(lpos - rpos)) / scale)
+    return score / len(union)
+
+
+def _mean_matrix_off_diagonal(values: list[list[float]]) -> float:
+    if len(values) < 2:
+        return 1.0
+    total = 0.0
+    pairs = 0
+    for i in range(len(values)):
+        for j in range(i + 1, len(values[i])):
+            total += values[i][j]
+            pairs += 1
+    return total / pairs if pairs else 1.0
+
+
+def _neighbor_overlap_stability(
+    entries: list[dict],
+    dimension: str,
+    profile_sets: list[set[tuple[int, int]]],
+) -> float:
+    if not entries:
+        return 0.0
+    groups: dict[int, list[int]] = defaultdict(list)
+    for idx, entry in enumerate(entries):
+        key = int(entry.get("tail_index" if dimension == "cutoff" else "cutoff_index", 0)) if dimension in {"tail", "cutoff"} else 0
+        groups[key].append(idx)
+    if not groups:
+        return 1.0
+    overlaps: list[float] = []
+    for _, idxs in groups.items():
+        idxs = sorted(set(idxs))
+        if len(idxs) < 2:
+            continue
+        for a, b in zip(idxs, idxs[1:]):
+            overlaps.append(_contact_set_overlap(profile_sets[a], profile_sets[b]))
+    if not overlaps:
+        return 1.0
+    return sum(overlaps) / len(overlaps)
+
+
+def _evaluate_plateau_ranked_stability(
+    configs: list[dict],
+    *,
+    sequence_length: int,
+    row: RealCoordinateVisualRow,
+    dca_scores: dict[tuple[int, int], float],
+    dca_threshold: float,
+) -> dict[str, object]:
+    if not configs:
+        return {
+            "selected_profile": "diagnostic",
+            "profiles": {},
+            "topK_overlap_matrix": [],
+            "rank_stability": 0.0,
+            "score_stability": 0.0,
+            "cutoff_sensitivity": 0.0,
+            "tail_sensitivity": 0.0,
+            "basin_membership_stability": 0.0,
+            "stable_core_count": 0,
+            "stable_core_DCA_fraction": 0.0,
+            "stable_core_collapse_score": 0.0,
+            "stable_native_dashboard": {
+                "native_contact_precision": 0.0,
+                "native_contact_recall": 0.0,
+                "long_range_contact_recall": 0.0,
+                "contact_map_f1": 0.0,
+                "false_contact_rate": 0.0,
+            },
+            "failure_hint": "empty_sweep",
+            "profile_core_sizes": {},
+        }
+
+    profile_payloads: dict[str, object] = {}
+
+    for profile_name in PLATEAU_PROFILE_NAMES:
+        top_k = _profile_top_k(sequence_length, profile_name)
+        profile_sets: list[set[tuple[int, int]]] = []
+        rank_positions: list[dict[tuple[int, int], int]] = []
+        basin_sets: list[set[int]] = []
+        for entry in configs:
+            ranked_pairs = _extract_ranked_pairs(entry.get("ensemble_contact_ranked_pairs"))
+            pairs, positions = _normalize_rank_payload(ranked_pairs, top_k)
+            if not pairs:
+                contact_pairs = [tuple(pair) for pair in entry.get("ensemble_contacts", []) if isinstance(pair, (list, tuple)) and len(pair) >= 2]
+                pairs = [(_to_pair_obj(pair) or (0, 0)) for pair in contact_pairs]
+                pairs = [pair for pair in pairs if pair != (0, 0)]
+                if len(pairs) > top_k:
+                    pairs = pairs[:top_k]
+                positions = {pair: idx + 1 for idx, pair in enumerate(pairs)}
+            profile_sets.append(set(pairs))
+            rank_positions.append(positions)
+            compatible_ids = entry.get("compatible_basin_ids", [])
+            basin_sets.append(set(int(v) for v in compatible_ids if isinstance(v, int)) if isinstance(compatible_ids, list) else set())
+
+        overlap_matrix: list[list[float]] = [
+            [_contact_set_overlap(profile_sets[i], profile_sets[j]) for j in range(len(profile_sets))]
+            for i in range(len(profile_sets))
+        ]
+
+        rank_sims: list[float] = []
+        for i in range(len(profile_sets)):
+            for j in range(i + 1, len(profile_sets)):
+                rank_sims.append(_rank_similarity(rank_positions[i], rank_positions[j], top_k))
+
+        basin_overlaps: list[float] = []
+        for i in range(len(profile_sets)):
+            for j in range(i + 1, len(profile_sets)):
+                basin_overlaps.append(_contact_set_overlap(basin_sets[i], basin_sets[j]))
+
+        top_k_pairs = [pair for pair in profile_sets for pair in pair]
+        stable_counter: Counter[tuple[int, int]] = Counter(top_k_pairs)
+        min_support = max(1, math.ceil(PLATEAU_STABLE_CORE_SUPPORT * len(configs)))
+        stable_core = {pair for pair, freq in stable_counter.items() if freq >= min_support}
+        dca_supported = sum(
+            1
+            for pair in stable_core
+            if (dca_threshold <= 0 and dca_scores.get(pair, 0.0) > 0.0)
+            or (dca_threshold > 0.0 and dca_scores.get(pair, 0.0) >= dca_threshold)
+        )
+        dca_fraction = float(dca_supported / len(stable_core)) if stable_core else 0.0
+        collapse_scores = [
+            float(entry.get("internal_summary", {}).get("mean_collapse_score", 0.0))
+            for entry in configs
+            if isinstance(entry.get("internal_summary"), dict)
+        ]
+        collapse_score = stats.mean(collapse_scores) if collapse_scores else 0.0
+
+        profile_payloads[profile_name] = {
+            "top_k": int(top_k),
+            "overlap_matrix": overlap_matrix,
+            "rank_stability": _mean_matrix_off_diagonal(overlap_matrix),
+            "score_stability": sum(rank_sims) / len(rank_sims) if rank_sims else 1.0,
+            "cutoff_sensitivity": _neighbor_overlap_stability(configs, "cutoff", profile_sets),
+            "tail_sensitivity": _neighbor_overlap_stability(configs, "tail", profile_sets),
+            "basin_membership_stability": sum(basin_overlaps) / len(basin_overlaps) if basin_overlaps else 1.0,
+            "stable_core_count": int(len(stable_core)),
+            "stable_core_DCA_fraction": float(dca_fraction),
+            "stable_core_collapse_score": float(collapse_score),
+            "stable_core_pairs": sorted(stable_core),
+        }
+
+    selected_profile = "diagnostic"
+    ranked_scores: list[tuple[str, float]] = []
+    for profile in PLATEAU_PROFILE_NAMES:
+        payload = profile_payloads.get(profile)
+        if not isinstance(payload, dict):
+            continue
+        score = 0.55 * float(payload.get("rank_stability", 0.0)) + 0.45 * float(payload.get("score_stability", 0.0))
+        ranked_scores.append((profile, score))
+    if ranked_scores:
+        selected_profile = max(ranked_scores, key=lambda item: item[1])[0]
+
+    selected_payload = profile_payloads.get(selected_profile, {})
+    if not isinstance(selected_payload, dict):
+        selected_payload = {}
+
+    stable_pairs_raw = selected_payload.get("stable_core_pairs", [])
+    stable_pairs: set[tuple[int, int]] = set()
+    if isinstance(stable_pairs_raw, list):
+        for item in stable_pairs_raw:
+            pair = _to_pair_obj(item)
+            if pair is not None:
+                stable_pairs.add(pair)
+
+    stable_metric = {
+        "native_contact_precision": 0.0,
+        "native_contact_recall": 0.0,
+        "long_range_contact_recall": 0.0,
+        "contact_map_f1": 0.0,
+        "false_contact_rate": 0.0,
+    }
+    if stable_pairs:
+        stable_metric = evaluate_contact_prediction(
+            native_pairs=row.native_contact_pairs(),
+            predicted_pairs=stable_pairs,
+            long_range_threshold=24,
+            short_range_threshold=12,
+        ).to_dict()
+
+    return {
+        "selected_profile": selected_profile,
+        "profiles": profile_payloads,
+        "topK_overlap_matrix": selected_payload.get("overlap_matrix", []),
+        "rank_stability": float(selected_payload.get("rank_stability", 0.0)),
+        "score_stability": float(selected_payload.get("score_stability", 0.0)),
+        "cutoff_sensitivity": float(selected_payload.get("cutoff_sensitivity", 0.0)),
+        "tail_sensitivity": float(selected_payload.get("tail_sensitivity", 0.0)),
+        "basin_membership_stability": float(selected_payload.get("basin_membership_stability", 0.0)),
+        "stable_core_count": int(selected_payload.get("stable_core_count", 0)),
+        "stable_core_DCA_fraction": float(selected_payload.get("stable_core_DCA_fraction", 0.0)),
+        "stable_core_collapse_score": float(selected_payload.get("stable_core_collapse_score", 0.0)),
+        "stable_native_dashboard": stable_metric,
+        "profile_core_sizes": {name: int(profile_payloads.get(name, {}).get("stable_core_count", 0)) for name in PLATEAU_PROFILE_NAMES},
+        "failure_hint": "no_plateau_found" if len(configs) > 1 else "insufficient_configs",
+    }
+
+
+def _classify_no_plateau_by_readout(plateau_diag: dict[str, object]) -> tuple[str, str, str]:
+    selected_profile = plateau_diag.get("selected_profile")
+    profiles = plateau_diag.get("profiles")
+    selected = {}
+    if isinstance(profiles, dict) and isinstance(selected_profile, str):
+        candidate = profiles.get(selected_profile)
+        if isinstance(candidate, dict):
+            selected = candidate
+
+    stable_core_count = int(selected.get("stable_core_count", 0))
+    if stable_core_count > 0:
+        return "no_plateau_but_stable_core_found", "stable_core_detected", "review_stable_core_only"
+
+    extinction = plateau_diag.get("extinction")
+    if isinstance(extinction, dict) and extinction.get("is_extinct"):
+        reason = str(extinction.get("reason") or "")
+        subtype = str(extinction.get("subtype") or "")
+        if reason in {"collapse_extinction", "topology_extinction", "dca_extinction", "control_gap_extinction", "voting_extinction"}:
+            if reason == "collapse_extinction":
+                return "gate_extinction", "collapse_extinction", f"inspect_extinction:{subtype}" if subtype else "inspect_gate_flow"
+            if reason == "topology_extinction":
+                return "gate_extinction", "topology_extinction", f"inspect_extinction:{subtype}" if subtype else "inspect_gate_flow"
+            if reason == "dca_extinction":
+                return "gate_extinction", "dca_extinction", f"inspect_extinction:{subtype}" if subtype else "inspect_gate_flow"
+            if reason == "control_gap_extinction":
+                return "gate_extinction", "control_gap_extinction", f"inspect_extinction:{subtype}" if subtype else "inspect_gate_flow"
+            if reason == "voting_extinction":
+                return "gate_extinction", "voting_extinction", f"inspect_extinction:{subtype}" if subtype else "inspect_gate_flow"
+
+    stable_flag = float(selected.get("rank_stability", 0.0))
+    tail_sens = float(selected.get("tail_sensitivity", 0.0))
+    cutoff_sens = float(selected.get("cutoff_sensitivity", 0.0))
+    basin_stability = float(selected.get("basin_membership_stability", 0.0))
+    if tail_sens < PLATEAU_TAIL_SENSITIVITY_THRESHOLD and tail_sens <= cutoff_sens:
+        return "no_plateau_due_to_broad_tail_noise", "weak_tail_stability", "sweep_finer_tail_grid"
+    if cutoff_sens < PLATEAU_CUTOFF_SENSITIVITY_THRESHOLD and cutoff_sens <= tail_sens:
+        return "no_plateau_due_to_cutoff_sensitivity", "weak_cutoff_stability", "sweep_finer_cutoff_grid"
+    if stable_flag < PLATEAU_STABILITY_LOW_THRESHOLD and basin_stability < PLATEAU_BASIN_STABILITY_THRESHOLD:
+        return "no_plateau_due_to_basin_instability", "bassin_membership_jitter", "repair_compatible_basins"
+    if stable_flag < PLATEAU_STABILITY_LOW_THRESHOLD:
+        return "no_plateau_due_to_basin_instability", "score_rank_jitter", "tighten_ensemble_or_gates"
+    return "no_plateau_found", "insufficient_plateau_support", "expand_sweep_or_relax_gates"
 
 
 def _parse_float_list(raw: str | None, *, default: Sequence[float], validate: str = "any") -> list[float]:
@@ -1143,8 +1482,8 @@ def _pair_gate_eval_for_ablation(
         "cumulative_after_control_pair_count": int(metadata.get("cumulative_after_control_pair_count", 0)),
         "cumulative_after_survival_pair_count": int(metadata.get("cumulative_after_survival_pair_count", 0)),
         "cumulative_after_degree_pair_count": int(metadata.get("cumulative_after_degree_pair_count", 0)),
+        "selected_pair_count": int(len(pairs)),
         "budgeted_pair_count": int(budgeted),
-        "selected_pair_count": int(budgeted),
     }
 
 
@@ -1251,12 +1590,16 @@ def _classify_extinction(selected_run: dict, *, collapse_reject_threshold: float
     return {"is_extinct": False, "reason": None, "subtype": None}
 
 
-def _classify_sweep_state(selected_config: dict, extinction: dict[str, object] | None = None) -> dict[str, object]:
+def _classify_sweep_state(
+    selected_config: dict,
+    extinction: dict[str, object] | None = None,
+    plateau_diagnostics: dict[str, object] | None = None,
+) -> dict[str, object]:
     selected_contacts = int(selected_config.get("ensemble_contact_count", selected_config.get("ensemble_predicted_count", 0)))
     internal_score = float(selected_config.get("internal_stability_score", 0.0))
     plateau_size = int(selected_config.get("plateau_size", 0))
     extinction = extinction or {"is_extinct": False, "reason": None, "subtype": None}
-    if selected_contacts <= 0:
+    if selected_contacts <= 0 and not extinction.get("is_extinct"):
         return {
             "sweep_status": "degenerate_null_plateau",
             "signal_status": "no_surviving_contacts",
@@ -1264,12 +1607,26 @@ def _classify_sweep_state(selected_config: dict, extinction: dict[str, object] |
             "next_action": "stage_readout_ablation",
             "extinction": extinction,
         }
-    if plateau_size < 1:
+    if extinction.get("is_extinct"):
+        reason = str(extinction.get("reason") or "gate_extinction")
+        subtype = str(extinction.get("subtype") or "")
+        next_action = "inspect_extinction"
+        if subtype:
+            next_action = f"inspect_extinction:{subtype}"
         return {
-            "sweep_status": "no_plateau_found",
-            "signal_status": "insufficient_plateau_support",
+            "sweep_status": "gate_extinction",
+            "signal_status": reason,
             "claim_allowed": False,
-            "next_action": "sampling_or_steering_repair",
+            "next_action": next_action,
+            "extinction": extinction,
+        }
+    if plateau_size < 1:
+        status, signal_status, next_action = _classify_no_plateau_by_readout(plateau_diagnostics or {})
+        return {
+            "sweep_status": status,
+            "signal_status": signal_status,
+            "claim_allowed": False,
+            "next_action": next_action,
             "extinction": extinction,
         }
     if internal_score < 0.25:
@@ -1616,6 +1973,9 @@ def _run_ensemble(
             internal_quality.append(float(item["internal_summary"]["mean_internal_quality"]))
     final_size = len(replica_paths) or 1
     ensemble_pairs = [pair for pair, count in all_votes.items() if count >= max(1, args.basin_vote_min)]
+    ranked_pairs = [[pair[0], pair[1], count] for pair, count in all_votes.items()]
+    if ranked_pairs:
+        ranked_pairs.sort(key=lambda item: (-item[2], item[0], item[1]))
     ensemble_metric = evaluate_contact_prediction(
         native_pairs=row.native_contact_pairs(),
         predicted_pairs=set(tuple(pair) for pair in ensemble_pairs),
@@ -1641,6 +2001,9 @@ def _run_ensemble(
         "internal_stability_score": stats.mean(internal_quality) if internal_quality else 0.0,
         "ensemble_contacts": sorted([list(pair) for pair in ensemble_pairs]),
         "ensemble_contact_count": len(ensemble_pairs),
+        "ensemble_contact_ranked_pairs": ranked_pairs,
+        "ensemble_contact_vote_total": final_size,
+        "ensemble_vote_threshold": max(1, args.basin_vote_min),
         "ablation_profiles": _aggregate_replica_gate_profiles(all_runs),
     }
     if args.run_gate_readout:
@@ -1843,7 +2206,20 @@ def main() -> None:
                 selected_report["plateau_size"] = int(entry["size"])
         if not selected_report["plateau_size"] and plateau_found:
             selected_report["plateau_size"] = int(len(plateau_summaries[0].get("config_indexes", [])))
-        classification = _classify_sweep_state(selected_report, extinction=selected_report.get("extinction"))
+        plateau_diagnostics = _evaluate_plateau_ranked_stability(
+            sweep_runs,
+            sequence_length=len(row.sequence),
+            row=row,
+            dca_scores=dca_scores,
+            dca_threshold=args.dca_threshold,
+        )
+        plateau_diagnostics["extinction"] = selected_report.get("extinction", {"is_extinct": False, "reason": None, "subtype": None})
+        selected_report["plateau_ranked_readout"] = plateau_diagnostics
+        classification = _classify_sweep_state(
+            selected_report,
+            extinction=selected_report.get("extinction"),
+            plateau_diagnostics=plateau_diagnostics,
+        )
         selected_report["calibration_note"] = (
             "This is a garage calibration run. Native metrics are used only as "
             "diagnostic dashboard, not as selection authority."
@@ -1869,6 +2245,7 @@ def main() -> None:
             "sweep_overlap_threshold": args.sweep_overlap_threshold,
             "sweep_min_plateau_size": args.sweep_min_plateau_size,
             "sweep_top_k": args.sweep_top_k,
+            "plateau_rank_diagnostics": plateau_diagnostics,
             "plateau_summaries": plateau_summaries,
             "configs": [
                 {
@@ -1911,8 +2288,19 @@ def main() -> None:
                 "weighted_vote_precision": selected_report.get("weighted_vote_score", {}).get("native_contact_precision", 0.0),
                 "weighted_vote_recall": selected_report.get("weighted_vote_score", {}).get("native_contact_recall", 0.0),
                 "weighted_vote_f1": selected_report.get("weighted_vote_score", {}).get("contact_map_f1", 0.0),
+                "topK_overlap_matrix": plateau_diagnostics.get("topK_overlap_matrix", []),
+                "rank_stability": plateau_diagnostics.get("rank_stability", 0.0),
+                "score_stability": plateau_diagnostics.get("score_stability", 0.0),
+                "cutoff_sensitivity": plateau_diagnostics.get("cutoff_sensitivity", 0.0),
+                "tail_sensitivity": plateau_diagnostics.get("tail_sensitivity", 0.0),
+                "basin_membership_stability": plateau_diagnostics.get("basin_membership_stability", 0.0),
+                "stable_core_count": plateau_diagnostics.get("stable_core_count", 0),
+                "stable_core_DCA_fraction": plateau_diagnostics.get("stable_core_DCA_fraction", 0.0),
+                "stable_core_collapse_score": plateau_diagnostics.get("stable_core_collapse_score", 0.0),
+                "stable_native_dashboard": plateau_diagnostics.get("stable_native_dashboard", {}),
                 "extinction": selected_report.get("extinction", {"is_extinct": False, "reason": None, "subtype": None}),
                 "ablation_profiles": selected_report.get("ablation_profiles", {}),
+                "ranked_plateau_readout": plateau_diagnostics,
             },
         }
         sweep_path = out_dir / "openmm_basin_survival_sweep_summary.json"
