@@ -1284,6 +1284,12 @@ def main() -> None:
     out_root = Path(args.out_dir)
     out_root.mkdir(parents=True, exist_ok=True)
 
+    # Ensure targeted phase doesn't swallow the entire run if steps were lowered
+    effective_target_open_steps = args.target_open_steps
+    if args.steps <= args.target_open_steps and args.target_pdb:
+        effective_target_open_steps = int(args.steps * 0.1)
+        print(f"Warning: --target-open-steps ({args.target_open_steps}) >= --steps ({args.steps}). Adjusting lead-in to {effective_target_open_steps} steps.")
+
     row = _load_row(Path(args.benchmark_file), args.source_accession)
     if not args.target_pdb:
         raise SystemExit("--target-pdb is required for targeted MD style replicas.")
@@ -1439,6 +1445,7 @@ def main() -> None:
         str(args.anchor_min_separation),
         "--target-open-steps",
         str(args.target_open_steps),
+        str(effective_target_open_steps),
         "--target-force-constant-kj-per-mol-nm2",
         str(args.target_force_constant_kj_per_mol_nm2),
         "--target-min-separation",
