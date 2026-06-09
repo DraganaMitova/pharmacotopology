@@ -44,6 +44,7 @@ SURVIVAL_SCORE_WEIGHTS = {
 }
 PLATEAU_PROFILE_BUDGET_DIVISORS = {"strict": 5, "balanced": 2, "broad": 1}
 PLATEAU_PROFILE_NAMES = ("strict", "balanced", "broad", "diagnostic")
+PLATEAU_CORE_PROFILE_NAMES = ("strict", "balanced", "broad")
 PLATEAU_STABILITY_LOW_THRESHOLD = 0.25
 PLATEAU_TAIL_SENSITIVITY_THRESHOLD = 0.20
 PLATEAU_CUTOFF_SENSITIVITY_THRESHOLD = 0.20
@@ -1174,6 +1175,33 @@ def _neighbor_overlap_stability(
     return sum(overlaps) / len(overlaps)
 
 
+def _extract_gate_support_metrics(entries: list[dict]) -> tuple[float, float]:
+    topo_support_values: list[float] = []
+    control_gap_support_values: list[float] = []
+    for entry in entries:
+        if not isinstance(entry, dict):
+            continue
+        internal_summary = entry.get("internal_summary")
+        if not isinstance(internal_summary, dict):
+            continue
+        mean_gate = internal_summary.get("mean_gate_cull_profile")
+        if not isinstance(mean_gate, dict):
+            continue
+        freq_pass = float(mean_gate.get("frequency_pass_pair_count", 0.0))
+        topo_pass = float(mean_gate.get("topology_pass_pair_count", 0.0))
+        pre_control = float(mean_gate.get("pre_control_pair_count", 0.0))
+        control_removed = float(mean_gate.get("control_removed_pair_count", 0.0))
+
+        topology = topo_pass / freq_pass if freq_pass > 0 else 0.0
+        control_gap = 1.0 if pre_control <= 0.0 else max(0.0, 1.0 - (control_removed / pre_control))
+        topo_support_values.append(min(1.0, max(0.0, topology)))
+        control_gap_support_values.append(min(1.0, max(0.0, control_gap)))
+
+    topology_support = stats.mean(topo_support_values) if topo_support_values else 1.0
+    control_gap_support = stats.mean(control_gap_support_values) if control_gap_support_values else 1.0
+    return topology_support, control_gap_support
+
+
 def _evaluate_plateau_ranked_stability(
     configs: list[dict],
     *,
@@ -1181,7 +1209,17 @@ def _evaluate_plateau_ranked_stability(
     row: RealCoordinateVisualRow,
     dca_scores: dict[tuple[int, int], float],
     dca_threshold: float,
+    profile_names: Sequence[str] | None = None,
 ) -> dict[str, object]:
+    active_profiles = tuple(profile_names) if profile_names else PLATEAU_PROFILE_NAMES
+    profile_set = list(active_profiles)
+    if "diagnostic" not in profile_set:
+        profile_set.append("diagnostic")
+    profile_set = [name for name in profile_set if name in PLATEAU_PROFILE_NAMES]
+    if not profile_set:
+        profile_set = list(PLATEAU_PROFILE_NAMES)
+
+    topology_support, control_gap_support = _extract_gate_support_metrics(configs)
     if not configs:
         return {
             "selected_profile": "diagnostic",
@@ -1192,6 +1230,8 @@ def _evaluate_plateau_ranked_stability(
             "cutoff_sensitivity": 0.0,
             "tail_sensitivity": 0.0,
             "basin_membership_stability": 0.0,
+            "control_gap_support": float(control_gap_support),
+            "topology_support": float(topology_support),
             "stable_core_count": 0,
             "stable_core_DCA_fraction": 0.0,
             "stable_core_collapse_score": 0.0,
@@ -1208,7 +1248,7 @@ def _evaluate_plateau_ranked_stability(
 
     profile_payloads: dict[str, object] = {}
 
-    for profile_name in PLATEAU_PROFILE_NAMES:
+    for profile_name in profile_set:
         top_k = _profile_top_k(sequence_length, profile_name)
         profile_sets: list[set[tuple[int, int]]] = []
         rank_positions: list[dict[tuple[int, int], int]] = []
@@ -1273,11 +1313,16 @@ def _evaluate_plateau_ranked_stability(
             "stable_core_DCA_fraction": float(dca_fraction),
             "stable_core_collapse_score": float(collapse_score),
             "stable_core_pairs": sorted(stable_core),
+            "collapse_association": float(collapse_score),
+            "control_gap_support": float(control_gap_support),
+            "topology_support": float(topology_support),
         }
 
     selected_profile = "diagnostic"
     ranked_scores: list[tuple[str, float]] = []
-    for profile in PLATEAU_PROFILE_NAMES:
+    for profile in profile_set:
+        if profile == "diagnostic" and "diagnostic" not in active_profiles:
+            continue
         payload = profile_payloads.get(profile)
         if not isinstance(payload, dict):
             continue
@@ -1313,20 +1358,73 @@ def _evaluate_plateau_ranked_stability(
             short_range_threshold=12,
         ).to_dict()
 
+    selected_stable_dca_fraction = float(selected_payload.get("stable_core_DCA_fraction", 0.0))
+    diagnostic_payload = profile_payloads.get("diagnostic", {})
+    diagnostic_dca_fraction = float(diagnostic_payload.get("stable_core_DCA_fraction", 0.0) if isinstance(diagnostic_payload, dict) else 0.0)
+    for profile_name in profile_set:
+        candidate = profile_payloads.get(profile_name)
+        if not isinstance(candidate, dict):
+            continue
+        candidate_dca_fraction = float(candidate.get("stable_core_DCA_fraction", 0.0))
+        candidate_dca_enrichment = 0.0
+        if diagnostic_dca_fraction > 0.0:
+            candidate_dca_enrichment = candidate_dca_fraction / diagnostic_dca_fraction
+        candidate["DCA_enrichment_vs_full"] = candidate_dca_enrichment
+        dashboard = {
+            "native_contact_precision": 0.0,
+            "native_contact_recall": 0.0,
+            "long_range_contact_recall": 0.0,
+            "contact_map_f1": 0.0,
+            "false_contact_rate": 0.0,
+        }
+        profile_pairs = set(candidate.get("stable_core_pairs", []))
+        if profile_pairs:
+            profile_metric = evaluate_contact_prediction(
+                native_pairs=row.native_contact_pairs(),
+                predicted_pairs=set(profile_pairs),
+                long_range_threshold=24,
+                short_range_threshold=12,
+            ).to_dict()
+            dashboard = {
+                "native_contact_precision": float(profile_metric.get("native_contact_precision", 0.0)),
+                "native_contact_recall": float(profile_metric.get("native_contact_recall", 0.0)),
+                "long_range_contact_recall": float(profile_metric.get("long_range_contact_recall", 0.0)),
+                "contact_map_f1": float(profile_metric.get("contact_map_f1", 0.0)),
+                "false_contact_rate": float(profile_metric.get("false_contact_rate", 0.0)),
+            }
+        candidate["stable_native_dashboard"] = dashboard
+        candidate["native_dashboard_precision"] = dashboard.get("native_contact_precision", 0.0)
+        candidate["native_dashboard_recall"] = dashboard.get("native_contact_recall", 0.0)
+        candidate["native_dashboard_long_range_recall"] = dashboard.get("long_range_contact_recall", 0.0)
+        candidate["rank_stability"] = float(candidate.get("rank_stability", 0.0))
+        candidate["score_stability"] = float(candidate.get("score_stability", 0.0))
+        candidate["cutoff_sensitivity"] = float(candidate.get("cutoff_sensitivity", 0.0))
+        candidate["tail_sensitivity"] = float(candidate.get("tail_sensitivity", 0.0))
+        candidate["collapse_association"] = float(candidate.get("collapse_association", candidate.get("stable_core_collapse_score", 0.0)))
+        candidate["control_gap_support"] = float(candidate.get("control_gap_support", control_gap_support))
+        candidate["topology_support"] = float(candidate.get("topology_support", topology_support))
+
+    selected_stable_payload = profile_payloads.get(selected_profile, {})
+
     return {
         "selected_profile": selected_profile,
         "profiles": profile_payloads,
         "topK_overlap_matrix": selected_payload.get("overlap_matrix", []),
-        "rank_stability": float(selected_payload.get("rank_stability", 0.0)),
-        "score_stability": float(selected_payload.get("score_stability", 0.0)),
-        "cutoff_sensitivity": float(selected_payload.get("cutoff_sensitivity", 0.0)),
-        "tail_sensitivity": float(selected_payload.get("tail_sensitivity", 0.0)),
+        "rank_stability": float(selected_stable_payload.get("rank_stability", 0.0)),
+        "score_stability": float(selected_stable_payload.get("score_stability", 0.0)),
+        "cutoff_sensitivity": float(selected_stable_payload.get("cutoff_sensitivity", 0.0)),
+        "tail_sensitivity": float(selected_stable_payload.get("tail_sensitivity", 0.0)),
         "basin_membership_stability": float(selected_payload.get("basin_membership_stability", 0.0)),
+        "control_gap_support": float(selected_stable_payload.get("control_gap_support", control_gap_support)),
+        "topology_support": float(selected_stable_payload.get("topology_support", topology_support)),
+        "selected_dca_enrichment_vs_full": selected_stable_dca_fraction / diagnostic_dca_fraction if diagnostic_dca_fraction > 0.0 else 0.0,
         "stable_core_count": int(selected_payload.get("stable_core_count", 0)),
         "stable_core_DCA_fraction": float(selected_payload.get("stable_core_DCA_fraction", 0.0)),
         "stable_core_collapse_score": float(selected_payload.get("stable_core_collapse_score", 0.0)),
+        "collapse_association": float(selected_payload.get("collapse_association", selected_payload.get("stable_core_collapse_score", 0.0))),
+        "selected_native_dashboard": stable_metric,
         "stable_native_dashboard": stable_metric,
-        "profile_core_sizes": {name: int(profile_payloads.get(name, {}).get("stable_core_count", 0)) for name in PLATEAU_PROFILE_NAMES},
+        "profile_core_sizes": {name: int(profile_payloads.get(name, {}).get("stable_core_count", 0)) for name in active_profiles},
         "failure_hint": "no_plateau_found" if len(configs) > 1 else "insufficient_configs",
     }
 
@@ -2143,6 +2241,7 @@ def main() -> None:
     parser.add_argument("--run-gate-readout", action="store_true", help="Keep per-phase contact counts and optional one-gate ablation diagnostics.")
     parser.add_argument("--gate-ablation-cases", default="frequency_only,budget_only,dca_only,topology_only,control_gap_only,collapse_only,frequency_plus_budget,frequency_plus_budget_plus_collapse,frequency_plus_budget_plus_dca,full", help="Comma-separated ablation cases to evaluate when run-gate-readout is enabled.")
     parser.add_argument("--collapse-hard-reject", action="store_true", help="Apply hard collapse threshold rejection (legacy default behavior).")
+    parser.add_argument("--stable-core-only", action="store_true", help="Evaluate only strict/balanced/broad ranked core envelopes first.")
     args = parser.parse_args()
 
     row = _load_row(Path(args.benchmark_file), args.source_accession)
@@ -2206,20 +2305,44 @@ def main() -> None:
                 selected_report["plateau_size"] = int(entry["size"])
         if not selected_report["plateau_size"] and plateau_found:
             selected_report["plateau_size"] = int(len(plateau_summaries[0].get("config_indexes", [])))
+        profile_probe = PLATEAU_CORE_PROFILE_NAMES if args.stable_core_only else PLATEAU_PROFILE_NAMES
         plateau_diagnostics = _evaluate_plateau_ranked_stability(
             sweep_runs,
             sequence_length=len(row.sequence),
             row=row,
             dca_scores=dca_scores,
             dca_threshold=args.dca_threshold,
+            profile_names=profile_probe,
         )
         plateau_diagnostics["extinction"] = selected_report.get("extinction", {"is_extinct": False, "reason": None, "subtype": None})
         selected_report["plateau_ranked_readout"] = plateau_diagnostics
+        stable_profiles = plateau_diagnostics.get("profiles", {})
+        selected_report["stable_core_profiles"] = {
+            name: {
+                "stable_core_count": int(data.get("stable_core_count", 0)),
+                "stable_core_DCA_fraction": float(data.get("stable_core_DCA_fraction", 0.0)),
+                "DCA_enrichment_vs_full": float(data.get("DCA_enrichment_vs_full", 0.0)),
+                "rank_stability": float(data.get("rank_stability", 0.0)),
+                "score_stability": float(data.get("score_stability", 0.0)),
+                "cutoff_sensitivity": float(data.get("cutoff_sensitivity", 0.0)),
+                "tail_sensitivity": float(data.get("tail_sensitivity", 0.0)),
+                "collapse_association": float(data.get("collapse_association", data.get("stable_core_collapse_score", 0.0))),
+                "control_gap_support": float(data.get("control_gap_support", 0.0)),
+                "topology_support": float(data.get("topology_support", 0.0)),
+                "native_dashboard_precision": float(data.get("native_dashboard_precision", data.get("stable_native_dashboard", {}).get("native_contact_precision", 0.0))),
+                "native_dashboard_recall": float(data.get("native_dashboard_recall", data.get("stable_native_dashboard", {}).get("native_contact_recall", 0.0))),
+                "native_dashboard_long_range_recall": float(data.get("native_dashboard_long_range_recall", data.get("stable_native_dashboard", {}).get("long_range_contact_recall", 0.0))),
+            }
+            for name, data in stable_profiles.items()
+            if isinstance(data, dict) and name in profile_probe
+        }
         classification = _classify_sweep_state(
             selected_report,
             extinction=selected_report.get("extinction"),
             plateau_diagnostics=plateau_diagnostics,
         )
+        if args.stable_core_only:
+            classification["claim_allowed"] = False
         selected_report["calibration_note"] = (
             "This is a garage calibration run. Native metrics are used only as "
             "diagnostic dashboard, not as selection authority."
@@ -2296,8 +2419,14 @@ def main() -> None:
                 "basin_membership_stability": plateau_diagnostics.get("basin_membership_stability", 0.0),
                 "stable_core_count": plateau_diagnostics.get("stable_core_count", 0),
                 "stable_core_DCA_fraction": plateau_diagnostics.get("stable_core_DCA_fraction", 0.0),
+                "DCA_enrichment_vs_full": plateau_diagnostics.get("selected_dca_enrichment_vs_full", 0.0),
                 "stable_core_collapse_score": plateau_diagnostics.get("stable_core_collapse_score", 0.0),
+                "collapse_association": plateau_diagnostics.get("collapse_association", plateau_diagnostics.get("stable_core_collapse_score", 0.0)),
+                "control_gap_support": plateau_diagnostics.get("control_gap_support", 0.0),
+                "topology_support": plateau_diagnostics.get("topology_support", 0.0),
                 "stable_native_dashboard": plateau_diagnostics.get("stable_native_dashboard", {}),
+                "stable_core_profiles": selected_report.get("stable_core_profiles", {}),
+                "stable_core_only_mode": bool(args.stable_core_only),
                 "extinction": selected_report.get("extinction", {"is_extinct": False, "reason": None, "subtype": None}),
                 "ablation_profiles": selected_report.get("ablation_profiles", {}),
                 "ranked_plateau_readout": plateau_diagnostics,
