@@ -1549,6 +1549,10 @@ def main() -> None:
             result = done.result()
             running_results.append(result)
             status = "ok" if result.returncode == 0 else "fail"
+            if result.returncode != 0:
+                log_path = result.out_dir / "run_openmm_tmd_replica.log"
+                err = log_path.read_text().splitlines()[-1] if log_path.exists() else "Unknown Error"
+                print(f"replica={result.index:02d} FAILED: {err}")
             print(
                 f"replica={result.index:02d} seed={result.seed} status={status} out={result.out_dir}",
                 flush=True,
@@ -2121,11 +2125,6 @@ def main() -> None:
         failure_reasons.append("no_selected_pairs_smoke_or_underpowered_run")
     if not preflight_state["v5_ready"]:
         failure_reasons.append("v5_preflight_checks_failed")
-
-    # Differentiate biological abstain from technical failure
-    if physics_interpretation_allowed and not runtime_v10_selected_pairs:
-        if "no_core_selected_pairs_after_role_binding" not in failure_reasons:
-            failure_reasons.append("biological_signal_abstain")
 
     success_evaluation = {
         "strict_overlap": success_criteria["strict_overlap"],
