@@ -138,6 +138,78 @@ def _extract_contacts(
     return contacts
 
 
+def _distance(
+    coords: dict[int, tuple[float, float, float]],
+    left: int,
+    right: int,
+) -> float:
+    if left not in coords or right not in coords:
+        return float("inf")
+    lx, ly, lz = coords[left]
+    rx, ry, rz = coords[right]
+    dx = lx - rx
+    dy = ly - ry
+    dz = lz - rz
+    return math.sqrt(dx * dx + dy * dy + dz * dz)
+
+
+def _evaluate_audit_pair_trajectory_reachability(
+    frames: list[dict[int, tuple[float, float, float]]],
+    *,
+    audit_pairs: set[tuple[int, int]],
+    contact_cutoff_angstrom: float,
+    tail_count: int,
+) -> dict[tuple[int, int], dict[str, object]]:
+    if not frames or not audit_pairs:
+        return {}
+    tail_start = max(0, len(frames) - tail_count)
+    reachability: dict[tuple[int, int], dict[str, object]] = {}
+    for left, right in sorted(audit_pairs):
+        min_distance = float("inf")
+        min_tail_distance = float("inf")
+        tail_hits = 0
+        tail_state_seen = False
+        first_contact = None
+        last_contact = None
+        for frame_index, frame in enumerate(frames):
+            dist = _distance(frame, left, right)
+            if math.isinf(dist):
+                continue
+            if dist < min_distance:
+                min_distance = dist
+            if frame_index >= tail_start and dist < min_tail_distance:
+                min_tail_distance = dist
+            if dist <= contact_cutoff_angstrom:
+                if frame_index >= tail_start:
+                    tail_hits += 1
+                    tail_state_seen = True
+                if first_contact is None:
+                    first_contact = frame_index
+                last_contact = frame_index
+        observed = first_contact is not None
+        tail_observed = tail_state_seen
+        tail_frequency = float(tail_hits) / float(tail_count) if tail_count else 0.0
+        if not observed:
+            trajectory_state = "never_approached"
+        elif not tail_observed:
+            trajectory_state = "approach_then_disappear"
+        else:
+            trajectory_state = "present_in_tail"
+        reachability[(left, right)] = {
+            "observed": observed,
+            "tail_observed": tail_observed,
+            "trajectory_state": trajectory_state,
+            "min_distance": min_distance if min_distance != float("inf") else None,
+            "min_tail_distance": min_tail_distance if min_tail_distance != float("inf") else None,
+            "tail_frequency": round(tail_frequency, 6),
+            "first_contact_frame": first_contact,
+            "last_contact_frame": last_contact,
+            "tail_start_frame": tail_start,
+            "tail_frame_count": max(1, tail_count),
+        }
+    return reachability
+
+
 def _load_dca_scores(
     *,
     coupling_file: Path,
@@ -314,6 +386,71 @@ def _load_pair_baseline(
     if found_any:
         return parsed
     return None
+
+
+def _set_overlap_ratio(
+    selected_pairs: set[tuple[int, int]],
+    blueprint_pairs: set[tuple[int, int]],
+) -> float:
+    if not blueprint_pairs:
+        return 1.0 if not selected_pairs else 0.0
+    return round(len(selected_pairs & blueprint_pairs) / len(blueprint_pairs), 6)
+
+
+def _safe_ratio(count: int, total: int) -> float:
+    if total == 0:
+        return 0.0
+    return round(count / total, 6)
+
+
+def _summarize_reachability_metrics(
+    reachability_by_replica: dict[int, object],
+    *,
+    selected_in_final_vote: bool,
+) -> dict[str, object]:
+    states: Counter[str] = Counter()
+    min_distances: list[float] = []
+    tail_distances: list[float] = []
+    tail_frequencies: list[float] = []
+    per_replica_tail_presence: dict[int, bool] = {}
+    for index, details in sorted(reachability_by_replica.items()):
+        if not isinstance(details, dict):
+            continue
+        state = str(details.get("trajectory_state", "missing_from_tail"))
+        states[state] += 1
+        per_replica_tail_presence[index] = bool(details.get("tail_observed", False))
+        min_distance = details.get("min_distance")
+        if isinstance(min_distance, (int, float)) and math.isfinite(min_distance):
+            min_distances.append(float(min_distance))
+        min_tail_distance = details.get("min_tail_distance")
+        if isinstance(min_tail_distance, (int, float)) and math.isfinite(min_tail_distance):
+            tail_distances.append(float(min_tail_distance))
+        tail_frequency = details.get("tail_frequency")
+        if isinstance(tail_frequency, (int, float)) and math.isfinite(tail_frequency):
+            tail_frequencies.append(float(tail_frequency))
+
+    if min_distances:
+        min_distance = min(min_distances)
+    else:
+        min_distance = None
+    if tail_distances:
+        mean_tail_distance = round(sum(tail_distances) / len(tail_distances), 6)
+    else:
+        mean_tail_distance = None
+    if tail_frequencies:
+        mean_tail_frequency = round(sum(tail_frequencies) / len(tail_frequencies), 6)
+    else:
+        mean_tail_frequency = None
+    return {
+        "min_distance_over_trajectory": min_distance,
+        "mean_tail_distance": mean_tail_distance,
+        "tail_contact_frequency": mean_tail_frequency,
+        "per_replica_tail_presence": per_replica_tail_presence,
+        "approached_then_lost": states["approach_then_disappear"] > 0,
+        "never_approached": states["never_approached"] > 0,
+        "state_counts": dict(states),
+        "selected_in_final_vote": selected_in_final_vote,
+    }
 
 
 def _resolve_pair_class(raw: str) -> str:
@@ -646,6 +783,12 @@ def _build_stable_contacts(
     resolved_frequency_threshold = _resolve_threshold(
         frequency_threshold, freq_values, default=0.5
     )
+    pair_reachability = _evaluate_audit_pair_trajectory_reachability(
+        frames,
+        audit_pairs=set(audit_pairs or set()),
+        contact_cutoff_angstrom=contact_cutoff_angstrom,
+        tail_count=tail_count,
+    )
     dca_values = [dca_scores.get(pair, 0.0) for pair in pair_counts]
     lane_dca_thresholds = _lane_dca_threshold_config(
         dca_threshold,
@@ -692,7 +835,13 @@ def _build_stable_contacts(
     audit_pairs = set(audit_pairs or set())
     for pair in audit_pairs:
         if pair not in pair_counts:
-            pair_rejection_reasons[pair] = "missing_from_tail"
+            trajectory_state = pair_reachability.get(pair, {}).get("trajectory_state", "missing_from_tail")
+            if trajectory_state == "never_approached":
+                pair_rejection_reasons[pair] = "never_approached"
+            elif trajectory_state == "approach_then_disappear":
+                pair_rejection_reasons[pair] = "approach_then_disappear"
+            else:
+                pair_rejection_reasons[pair] = "missing_from_tail"
 
     for (left, right), count in pair_counts.items():
         raw_pair_class = anchor_classes.get((left, right), coupling_classes.get((left, right), ""))
@@ -840,6 +989,9 @@ def _build_stable_contacts(
         "lane_rejections": {
             reason: {lane: count for lane, count in by_lane.items()}
             for reason, by_lane in lane_precontrol_failures.items()
+        },
+        "pair_trajectory_reachability": {
+            f"{left}-{right}": details for (left, right), details in pair_reachability.items()
         },
         "lane_reject_reasons": sorted(
             [[left, right, reason] for (left, right), reason in pair_rejection_reasons.items()]
@@ -1067,8 +1219,21 @@ def main() -> None:
         except Exception:
             target_audit_pairs = set()
 
+    external_coupling_loaded = external_coupling.exists()
+    anchor_profile_loaded = bool(anchor_profile and anchor_profile.exists())
+
     baseline_lane_pairs = _load_pair_baseline(
         path=Path(args.preflight_baseline_json) if args.preflight_baseline_json else None,
+    )
+    effective_lane_pairs = _effective_lane_pairs(
+        anchor_profile_file=anchor_profile,
+        coupling_file=readout_coupling,
+        row=row,
+        strict_dca_threshold=args.strict_dca_threshold,
+        balanced_strong_dca_threshold=args.balanced_strong_dca_threshold,
+        balanced_rescue_dca_threshold=args.balanced_rescue_dca_threshold,
+        monitor_dca_threshold=args.monitor_dca_threshold,
+        dca_threshold=args.dca_threshold,
     )
     preflight_state: dict[str, object] = {
         "baseline": {},
@@ -1076,24 +1241,47 @@ def main() -> None:
         "status": "disabled",
         "notes": [],
         "difference": {},
+        "v5_requirements": {},
+        "v5_ready": False,
     }
+    v5_ready_checks: dict[str, object] = {
+        "effective_strict_count": len(effective_lane_pairs["strict"]),
+        "effective_balanced_count": len(effective_lane_pairs["balanced"]),
+        "effective_rescue_count": len(effective_lane_pairs["balanced_rescue"]),
+        "audit_pair_count": len(target_audit_pairs),
+        "anchor_profile_loaded": anchor_profile_loaded,
+        "external_coupling_loaded": external_coupling_loaded,
+        "topology_mode_set": args.topology_mode != "none",
+        "short_circuit_disabled": not args.short_circuit,
+    }
+    failed_v5_checks = [
+        name
+        for name, ok in {
+            "effective_strict_count": v5_ready_checks["effective_strict_count"] > 0,
+            "effective_balanced_count": v5_ready_checks["effective_balanced_count"] > 0,
+            "effective_rescue_count": v5_ready_checks["effective_rescue_count"] > 0,
+            "audit_pair_count": v5_ready_checks["audit_pair_count"] > 0,
+            "anchor_profile_loaded": v5_ready_checks["anchor_profile_loaded"],
+            "external_coupling_loaded": v5_ready_checks["external_coupling_loaded"],
+            "topology_mode_set": v5_ready_checks["topology_mode_set"],
+            "short_circuit_disabled": v5_ready_checks["short_circuit_disabled"],
+        }.items()
+        if not ok
+    ]
+    preflight_state["v5_requirements"] = {
+        **v5_ready_checks,
+        "ready": len(failed_v5_checks) == 0,
+        "failed_checks": sorted(failed_v5_checks),
+    }
+    preflight_state["v5_ready"] = len(failed_v5_checks) == 0
+    preflight_state["effective"] = {
+        lane: sorted([list(item) for item in sorted(value)]) for lane, value in effective_lane_pairs.items()
+    }
+
     if baseline_lane_pairs:
-        effective_lane_pairs = _effective_lane_pairs(
-            anchor_profile_file=anchor_profile,
-            coupling_file=readout_coupling,
-            row=row,
-            strict_dca_threshold=args.strict_dca_threshold,
-            balanced_strong_dca_threshold=args.balanced_strong_dca_threshold,
-            balanced_rescue_dca_threshold=args.balanced_rescue_dca_threshold,
-            monitor_dca_threshold=args.monitor_dca_threshold,
-            dca_threshold=args.dca_threshold,
-        )
         preflight_state["status"] = "computed"
         preflight_state["baseline"] = {
             lane: sorted([list(item) for item in sorted(value)]) for lane, value in baseline_lane_pairs.items()
-        }
-        preflight_state["effective"] = {
-            lane: sorted([list(item) for item in sorted(value)]) for lane, value in effective_lane_pairs.items()
         }
         difference = {
             "strict_added": sorted([list(item) for item in sorted(effective_lane_pairs["strict"] - baseline_lane_pairs["strict"])]),
@@ -1118,6 +1306,14 @@ def main() -> None:
             if args.write_audit_json:
                 Path(args.write_audit_json).write_text(json.dumps(preflight_state, indent=2, sort_keys=True), encoding="utf-8")
             raise SystemExit("Preflight blocked: effective lane partition unchanged; adjust V3 rescue lane before running.")
+
+    if failed_v5_checks:
+        preflight_state["notes"].append(
+            f"V5 preflight readiness failed: {', '.join(sorted(failed_v5_checks))}"
+        )
+        preflight_state["failure_type"] = "v5_preflight_checks_failed"
+        if preflight_state["status"] == "disabled":
+            preflight_state["status"] = "blocked"
 
     base_cmd = [
         sys.executable,
@@ -1377,6 +1573,13 @@ def main() -> None:
         balanced_rescue_min_average_chem=args.balanced_rescue_vote_min_average_chemical,
         monitor_min_average_chem=args.monitor_vote_min_average_chemical,
     )
+    predicted_pairs = {(i, j) for i, j, _, _, _ in voted_pairs}
+    metric = evaluate_contact_prediction(
+        native_pairs=row.native_contact_pairs(),
+        predicted_pairs=predicted_pairs,
+        long_range_threshold=24,
+        short_range_threshold=12,
+    ).to_dict()
 
     pair_audit: dict[tuple[int, int], dict[str, object]] = {}
     selected_pair_lookup = {(i, j): True for i, j, _, _, _ in voted_pairs}
@@ -1384,6 +1587,8 @@ def main() -> None:
         per_stage_reason: dict[str, object] = {}
         stage_hits: dict[int, object] = {}
         stable_hits: dict[int, bool] = {}
+        reachability_by_replica: dict[int, object] = {}
+        selected_in_final_vote = pair in selected_pair_lookup
         for item in successful:
             reasons = item.stable_metadata.get("lane_reasons", {})
             if isinstance(reasons, dict):
@@ -1392,15 +1597,151 @@ def main() -> None:
                     stage_hits[item.index] = str(r)
             if item.stable_pairs:
                 stable_hits[item.index] = pair in item.stable_pairs
+            reachability = item.stable_metadata.get("pair_trajectory_reachability", {})
+            if isinstance(reachability, dict):
+                key = f"{pair[0]}-{pair[1]}"
+                trajectory_state = reachability.get(key)
+                if isinstance(trajectory_state, dict):
+                    reachability_by_replica[item.index] = trajectory_state
         per_stage_reason["stable_by_replica"] = stable_hits
         per_stage_reason["lane_reason_by_replica"] = stage_hits
+        per_stage_reason["reachability_by_replica"] = reachability_by_replica
+        per_stage_reason["reachability_summary"] = _summarize_reachability_metrics(
+            reachability_by_replica,
+            selected_in_final_vote=selected_in_final_vote,
+        )
         if pair in vote_pair_reasons:
             per_stage_reason["vote"] = str(vote_pair_reasons[pair])
-        if pair in selected_pair_lookup:
+        if selected_in_final_vote:
             per_stage_reason["voted"] = "selected"
         else:
             per_stage_reason["voted"] = "not_selected"
         pair_audit[pair] = per_stage_reason
+
+    selected_pairs = {(i, j) for i, j, _, _, _ in voted_pairs}
+    selected_pairs_by_lane: dict[str, set[tuple[int, int]]] = {
+        "strict": set(),
+        "balanced": set(),
+        "balanced_rescue": set(),
+        "monitor": set(),
+        "unknown": set(),
+    }
+    for left, right, _cnt, _mean_chem, lane in voted_pairs:
+        selected_pairs_by_lane.setdefault(lane, set()).add((left, right))
+
+    strict_overlap = _set_overlap_ratio(
+        selected_pairs_by_lane["strict"],
+        effective_lane_pairs["strict"],
+    )
+    balanced_overlap = _set_overlap_ratio(
+        selected_pairs_by_lane["balanced"],
+        effective_lane_pairs["balanced"],
+    )
+    rescue_overlap = _set_overlap_ratio(
+        selected_pairs_by_lane["balanced_rescue"],
+        effective_lane_pairs["balanced_rescue"],
+    )
+    selected_pair_count = len(predicted_pairs)
+    if selected_pair_count == 0:
+        strict_overlap = 0.0
+        rescue_overlap = 0.0
+
+    effective_anchor_pairs = (
+        effective_lane_pairs["strict"]
+        | effective_lane_pairs["balanced"]
+        | effective_lane_pairs["balanced_rescue"]
+    )
+    selected_outside_effective_anchor_set = sorted(
+        [
+            [left, right]
+            for left, right in sorted(selected_pairs)
+            if (left, right) not in effective_anchor_pairs
+        ]
+    )
+    pair_in_blueprint = (
+        _safe_ratio(len(selected_pairs & effective_anchor_pairs), len(selected_pairs))
+        if selected_pairs
+        else 0.0
+    )
+    run_only_noise = (
+        lane_selected_counts.get("monitor", 0) + lane_selected_counts.get("unknown", 0)
+    )
+
+    rescue_tail_reachability = {}
+    rescue_tail_presence = 0
+    for pair in selected_pairs_by_lane["balanced_rescue"]:
+        left, right = pair
+        states: set[str] = set()
+        for item in successful:
+            reachability = item.stable_metadata.get("pair_trajectory_reachability", {})
+            if not isinstance(reachability, dict):
+                continue
+            details = reachability.get(f"{left}-{right}")
+            if isinstance(details, dict):
+                state = details.get("trajectory_state")
+                if isinstance(state, str):
+                    states.add(state)
+        rescue_tail_reachability[f"{left}-{right}"] = sorted(states)
+        if "present_in_tail" in states:
+            rescue_tail_presence += 1
+
+    success_criteria = {
+        "strict_overlap": {"value": strict_overlap, "min": 0.70},
+        "balanced_overlap": {"value": balanced_overlap, "min": 0.70},
+        "rescue_tail_presence": {"value": rescue_tail_presence, "min": 1},
+        "pair_in_blueprint": {"value": pair_in_blueprint, "min": 1.0},
+        "precision": {"value": float(metric["native_contact_precision"]), "min": 0.30},
+        "run_only_noise": {"value": run_only_noise, "max": 0},
+        "selected_pair_count": {"value": selected_pair_count, "min": 1},
+    }
+    for item in success_criteria.values():
+        if "min" in item:
+            item["pass"] = item["value"] >= item["min"]  # type: ignore[index]
+        else:
+            item["pass"] = item["value"] <= item["max"]  # type: ignore[index]
+
+    run_type = "v5_physics_run" if preflight_state["v5_ready"] and selected_pair_count > 0 else "wiring_smoke_test"
+    physics_interpretation_allowed = preflight_state["v5_ready"] and selected_pair_count > 0
+    failure_reasons: list[str] = []
+    if selected_pair_count == 0:
+        failure_reasons.append("no_selected_pairs_smoke_or_underpowered_run")
+    if not preflight_state["v5_ready"]:
+        failure_reasons.append("v5_preflight_checks_failed")
+
+    success_evaluation = {
+        "strict_overlap": success_criteria["strict_overlap"],
+        "balanced_overlap": success_criteria["balanced_overlap"],
+        "rescue_overlap": {"value": rescue_overlap, "min": 0.0, "pass": rescue_overlap >= 0.0 and selected_pair_count > 0},
+        "pair_in_blueprint": success_criteria["pair_in_blueprint"],
+        "precision": success_criteria["precision"],
+        "run_only_noise": success_criteria["run_only_noise"],
+        "selected_pair_count": success_criteria["selected_pair_count"],
+        "run_type": run_type,
+        "result": "v5_physics_run" if run_type == "v5_physics_run" else "runner_outputs_v5_fields_successfully",
+        "physics_interpretation_allowed": physics_interpretation_allowed,
+        "failure_type": failure_reasons[0] if failure_reasons else None,
+        "failure_types": failure_reasons,
+        "selected_outside_effective_anchor_set_count": len(selected_outside_effective_anchor_set),
+        "selected_outside_effective_anchor_set": selected_outside_effective_anchor_set,
+        "selected_outside_effective_anchor_set_ratio": _safe_ratio(
+            len(selected_outside_effective_anchor_set), len(selected_pairs)
+        ),
+        "rescue_tail_presence": {
+            "by_pair": rescue_tail_reachability,
+            "pairs_present_in_tail": rescue_tail_presence,
+            "pairs_selected": len(selected_pairs_by_lane["balanced_rescue"]),
+        },
+        "claim_allowed": False,
+    }
+    success_evaluation["pass"] = (
+        success_criteria["strict_overlap"]["pass"]
+        and success_criteria["balanced_overlap"]["pass"]
+        and success_criteria["pair_in_blueprint"]["pass"]
+        and success_criteria["precision"]["pass"]
+        and success_criteria["run_only_noise"]["pass"]
+        and success_criteria["rescue_tail_presence"]["pass"]
+        and success_criteria["selected_pair_count"]["pass"]
+    )
 
     voted_rows: list[dict[str, object]] = []
     for i, j, cnt, mean_chem, _lane in voted_pairs:
@@ -1414,14 +1755,6 @@ def main() -> None:
         )
 
     _write_csv(out_root / "openmm_tmd_ensemble_voted_pairs.csv", voted_rows)
-    predicted_pairs = {(i, j) for i, j, _, _, _ in voted_pairs}
-
-    metric = evaluate_contact_prediction(
-        native_pairs=row.native_contact_pairs(),
-        predicted_pairs=predicted_pairs,
-        long_range_threshold=24,
-        short_range_threshold=12,
-    ).to_dict()
 
     final_rows = []
     for i, j, _, _, _ in voted_pairs:
@@ -1446,6 +1779,7 @@ def main() -> None:
         "lane_selected_counts": lane_selected_counts,
         "vote_failures": total_vote_failures,
         "preflight": preflight_state,
+        "success_evaluation": success_evaluation,
         "pair_audit": {
             f"{left}-{right}": details for (left, right), details in pair_audit.items()
         },
@@ -1462,6 +1796,10 @@ def main() -> None:
         "max_control_overlap_fraction": args.max_control_overlap_fraction,
         "unique_voted_pairs": unique_vote_candidates,
         "selected_pair_count": len(predicted_pairs),
+        "run_classification": {
+            "run_type": run_type,
+            "physics_interpretation_allowed": physics_interpretation_allowed,
+        },
         "native_contact_precision": metric["native_contact_precision"],
         "native_contact_recall": metric["native_contact_recall"],
         "long_range_contact_recall": metric["long_range_contact_recall"],
@@ -1489,6 +1827,7 @@ def main() -> None:
                     "pair_audit": {
                         f"{left}-{right}": details for (left, right), details in pair_audit.items()
                     },
+                    "success_evaluation": success_evaluation,
                     "summary": summary,
                     "baseline_source": args.preflight_baseline_json or None,
                     "audit_pairs_source": args.audit_pairs_json or None,
