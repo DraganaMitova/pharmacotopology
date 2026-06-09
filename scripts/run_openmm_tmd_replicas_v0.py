@@ -1430,49 +1430,8 @@ def main() -> None:
     base_cmd = [
         sys.executable,
         str(RUNNER_SCRIPT),
-        "--source-accession",
-        args.source_accession,
-        "--benchmark-file",
-        str(args.benchmark_file),
-        "--external-coupling-file",
-        str(args.external_coupling_file),
-        "--target-pdb",
-        args.target_pdb,
-        "--start-mode",
-        args.start_mode,
-        "--steps",
-        str(args.steps),
-        "--timestep-ps",
-        str(args.timestep_ps),
-        "--temperature-kelvin",
-        str(args.temperature_kelvin),
-        "--force-constant-kj-per-mol-nm2",
-        str(args.force_constant_kj_per_mol_nm2),
-        "--top-anchor-count",
-        str(args.top_anchor_count),
-        "--min-anchor-confidence",
-        str(args.min_anchor_confidence),
-        "--anchor-min-separation",
-        str(args.anchor_min_separation),
-        "--target-open-steps",
-        str(effective_target_open_steps),
-        "--target-force-constant-kj-per-mol-nm2",
-        str(args.target_force_constant_kj_per_mol_nm2),
-        "--target-min-separation",
-        str(args.target_min_separation),
-        "--target-cutoff-angstrom",
-        str(args.target_cutoff_angstrom),
-        "--target-max-pairs",
-        str(args.target_max_pairs),
-        "--platform",
-        args.platform,
-        "--cpu-threads",
-        str(args.cpu_threads),
-        "--reporter-interval-steps",
-        str(args.reporter_interval_steps),
-        "--seed",  # overwritten per-replica
-        "0",
     ]
+
     supported_runner_args = {
         "--source-accession",
         "--benchmark-file",
@@ -1501,6 +1460,28 @@ def main() -> None:
     def add(key: str, value):
         if value is not None and key in supported_runner_args:
             base_cmd.extend([key, str(value)])
+
+    add("--source-accession", args.source_accession)
+    add("--benchmark-file", args.benchmark_file)
+    add("--external-coupling-file", args.external_coupling_file)
+    add("--target-pdb", args.target_pdb)
+    add("--start-mode", args.start_mode)
+    add("--steps", args.steps)
+    add("--timestep-ps", args.timestep_ps)
+    add("--temperature-kelvin", args.temperature_kelvin)
+    add("--force-constant-kj-per-mol-nm2", args.force_constant_kj_per_mol_nm2)
+    add("--top-anchor-count", args.top_anchor_count)
+    add("--min-anchor-confidence", args.min_anchor_confidence)
+    add("--anchor-min-separation", args.anchor_min_separation)
+    add("--target-open-steps", effective_target_open_steps)
+    add("--target-force-constant-kj-per-mol-nm2", args.target_force_constant_kj_per_mol_nm2)
+    add("--target-min-separation", args.target_min_separation)
+    add("--target-cutoff-angstrom", args.target_cutoff_angstrom)
+    add("--target-max-pairs", args.target_max_pairs)
+    add("--platform", args.platform)
+    add("--cpu-threads", args.cpu_threads)
+    add("--reporter-interval-steps", args.reporter_interval_steps)
+
     add("--tail-fraction", args.tail_fraction)
     add("--contact-cutoff-ang", args.contact_cutoff_ang)
     add("--frequency-threshold", args.frequency_threshold)
@@ -1549,10 +1530,6 @@ def main() -> None:
             result = done.result()
             running_results.append(result)
             status = "ok" if result.returncode == 0 else "fail"
-            if result.returncode != 0:
-                log_path = result.out_dir / "run_openmm_tmd_replica.log"
-                err = log_path.read_text().splitlines()[-1] if log_path.exists() else "Unknown Error"
-                print(f"replica={result.index:02d} FAILED: {err}")
             print(
                 f"replica={result.index:02d} seed={result.seed} status={status} out={result.out_dir}",
                 flush=True,
@@ -2125,6 +2102,11 @@ def main() -> None:
         failure_reasons.append("no_selected_pairs_smoke_or_underpowered_run")
     if not preflight_state["v5_ready"]:
         failure_reasons.append("v5_preflight_checks_failed")
+
+    # Differentiate biological abstain from technical failure
+    if physics_interpretation_allowed and not runtime_v10_selected_pairs:
+        if "no_core_selected_pairs_after_role_binding" not in failure_reasons:
+            failure_reasons.append("biological_signal_abstain")
 
     success_evaluation = {
         "strict_overlap": success_criteria["strict_overlap"],
