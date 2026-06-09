@@ -1822,8 +1822,9 @@ def main() -> None:
 
         border_rescue_selected_count = 0
         border_rescue_monitor_count = 0
+        runtime_v10_runtime_pairs = sorted(set(selected_pairs) | set(target_audit_pairs))
 
-        for pair in sorted(target_audit_pairs):
+        for pair in runtime_v10_runtime_pairs:
             left, right = pair
             sequence_sep = right - left
             pair_selected = pair in selected_pair_lookup
@@ -1876,29 +1877,26 @@ def main() -> None:
             selected_under_rescue_late_rule = False
             final_decision = "not_selected"
 
-        if pair_role == "border_long_range_rescue":
-            if candidate_eligible and float(dca_scores.get(pair, 0.0)) >= v10_rescue_threshold:
-                selected_under_rescue_late_rule = support_by_pair.get(pair, 0) >= args.rescue_late_vote_threshold
-                if selected_under_rescue_late_rule:
-                    selected_border_rescue.add(pair)
-                    border_rescue_selected_count += 1
-                    final_decision = "selected_border_rescue"
-                else:
+            if pair_role == "border_long_range_rescue":
+                if candidate_eligible and float(dca_scores.get(pair, 0.0)) >= v10_rescue_threshold:
+                    selected_under_rescue_late_rule = support_by_pair.get(pair, 0) >= args.rescue_late_vote_threshold
+                    if selected_under_rescue_late_rule:
+                        selected_border_rescue.add(pair)
+                        border_rescue_selected_count += 1
+                        final_decision = "selected_border_rescue"
+                    else:
+                        monitor_only_border_rescue.add(pair)
+                        border_rescue_monitor_count += 1
+                        final_decision = "monitor_only_border_rescue"
+                elif candidate_eligible and geometry_reached:
                     monitor_only_border_rescue.add(pair)
                     border_rescue_monitor_count += 1
                     final_decision = "monitor_only_border_rescue"
-            elif candidate_eligible and geometry_reached:
-                monitor_only_border_rescue.add(pair)
-                border_rescue_monitor_count += 1
-                final_decision = "monitor_only_border_rescue"
-
-            if pair_role == "true_long_range_core" and pair_selected:
+            elif pair_role == "true_long_range_core" and pair_selected:
                 if pair_blueprint_lane == "strict":
                     selected_strict_scaffold.add(pair)
                 elif pair_blueprint_lane == "balanced":
                     selected_balanced_core.add(pair)
-                elif pair_blueprint_lane == "monitor":
-                    pass
             elif pair_role == "local_support" and pair_selected:
                 selected_local_support.add(pair)
             elif pair_role == "medium_support" and pair_selected:
@@ -1906,7 +1904,8 @@ def main() -> None:
             elif pair_role == "diagnostic_shell" and pair_selected:
                 diagnostic_shell.add(pair)
 
-            pair_audit[pair]["runtime_v10"] = {
+            pair_record = pair_audit.setdefault(pair, {})
+            pair_record["runtime_v10"] = {
                 "pair_lane": pair_lane,
                 "pair_role": pair_role,
                 "sequence_separation": sequence_sep,
@@ -1928,6 +1927,11 @@ def main() -> None:
             | selected_medium_support
             | diagnostic_shell
         )
+        runtime_v10_no_core_selected_pairs = len(runtime_v10_selected_pairs) == 0
+        runtime_v10_failure_reasons: list[str] = []
+        if runtime_v10_no_core_selected_pairs:
+            runtime_v10_failure_reasons.append("no_core_selected_pairs_after_role_binding")
+        runtime_v10_physics_interpretation_allowed = not runtime_v10_no_core_selected_pairs
         long_range_evidence_pairs = selected_strict_scaffold | selected_balanced_core | selected_border_rescue
         support_evidence_pairs = selected_local_support | selected_medium_support
         runtime_long_range_overlap = _set_overlap_ratio(
@@ -1994,6 +1998,9 @@ def main() -> None:
             "runtime_v10_selected_pairs": sorted([list(pair) for pair in sorted(runtime_v10_selected_pairs)]),
             "runtime_v10_selected_pair_count": len(runtime_v10_selected_pairs),
             "runtime_v10_long_range_overlap": runtime_long_range_overlap,
+            "failure_type": runtime_v10_failure_reasons[0] if runtime_v10_failure_reasons else None,
+            "failure_types": runtime_v10_failure_reasons,
+            "physics_interpretation_allowed": runtime_v10_physics_interpretation_allowed,
         }
 
     success_criteria = {
