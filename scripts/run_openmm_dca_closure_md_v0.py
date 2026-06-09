@@ -67,6 +67,50 @@ class AnchorRecord:
     force_constant_kj_per_mol_nm2: float
 
 
+def _extract_target_anchors(
+    coords: list[tuple[int, tuple[float, float, float]]],
+    sequence_length: int,
+    *,
+    min_sequence_separation: int = 24,
+    max_pairs: int = 150,
+    target_cutoff_angstrom: float = 8.0,
+) -> tuple[AnchorRecord, ...]:
+    if not coords:
+        return ()
+    coord_map = {
+        index: (x, y, z)
+        for index, (x, y, z) in coords
+        if 1 <= index <= sequence_length
+    }
+    ordered_indexes = sorted(coord_map)
+    cutoff_sq = target_cutoff_angstrom * target_cutoff_angstrom
+    contacts: list[tuple[int, int, float]] = []
+    for left_i, index_left in enumerate(ordered_indexes[:-1], start=0):
+        left_x, left_y, left_z = coord_map[index_left]
+        for index_right in ordered_indexes[left_i + 1 :]:
+            if index_right - index_left < min_sequence_separation:
+                continue
+            right_x, right_y, right_z = coord_map[index_right]
+            dx = left_x - right_x
+            dy = left_y - right_y
+            dz = left_z - right_z
+            dist_sq = dx * dx + dy * dy + dz * dz
+            if dist_sq <= cutoff_sq:
+                contacts.append((index_left, index_right, math.sqrt(dist_sq)))
+    contacts.sort(key=lambda item: item[2])
+    selected = contacts[:max_pairs]
+    return tuple(
+        AnchorRecord(
+            i=left,
+            j=right,
+            confidence=1.0,
+            distance_angstrom=distance,
+            force_constant_kj_per_mol_nm2=0.0,
+        )
+        for left, right, distance in selected
+    )
+
+
 def _load_row(benchmark_file: Path, source_accession: str) -> RealCoordinateVisualRow:
     rows = load_real_coordinate_visual_rows(benchmark_file)
     for row in rows:
@@ -256,6 +300,9 @@ def _run_openmm(
     temperature_kelvin: float,
     seed: int,
     force_constant_kj_per_mol_nm2: float = 100.0,
+    target_anchors: Sequence[AnchorRecord] = (),
+    target_anchor_force_constant_kj_per_mol_nm2: float = 0.0,
+    target_anchor_open_steps: int = 0,
     initial_positions_angstrom: list[tuple[float, float, float]] | None = None,
     skip_minimization: bool = False,
     platform_name: str = "auto",
@@ -320,6 +367,29 @@ def _run_openmm(
         )
     system.addForce(restraint_force)
 
+    target_restraint_force = None
+    if target_anchors:
+        target_restraint_force = mm.CustomBondForce(
+            "alpha*kt*step(r-(r0+w))*(r-(r0+w))^2 + alpha*kt*step((r0-w)-r)*( (r0-w)-r )^2"
+        )
+        target_restraint_force.addGlobalParameter(
+            "kt",
+            target_anchor_force_constant_kj_per_mol_nm2
+            * kilojoules_per_mole
+            / (nanometer ** 2),
+        )
+        target_restraint_force.addGlobalParameter("alpha", 0.0)
+        target_restraint_force.addGlobalParameter("w", 0.2 * nanometer)
+        target_restraint_force.addPerBondParameter("r0")
+        for anchor in target_anchors:
+            r0 = anchor.distance_angstrom / 10.0 * nanometer
+            target_restraint_force.addBond(
+                anchor.i - 1,
+                anchor.j - 1,
+                [r0],
+            )
+        system.addForce(target_restraint_force)
+
     # masses are already set above via System.addParticle
 
     integrator = mm.LangevinIntegrator(
@@ -362,6 +432,17 @@ def _run_openmm(
     if not skip_minimization:
         simulation.minimizeEnergy(maxIterations=500)
 
+    open_steps = steps
+    target_steps = 0
+    if target_anchors:
+        open_steps = min(steps, max(0, target_anchor_open_steps))
+        target_steps = steps - open_steps
+        if target_steps <= 0:
+            raise SystemExit(
+                f"invalid target-open-steps={target_anchor_open_steps} for total steps={steps}"
+            )
+
+    trajectory_path = out_dir / "openmm_dca_restrained_trajectory.pdb"
     if reporter_interval_steps and reporter_interval_steps > 0:
         reporter_interval = reporter_interval_steps
     else:
@@ -375,7 +456,15 @@ def _run_openmm(
         potentialEnergy=True,
         temperature=True,
     ))
-    simulation.step(steps)
+    if open_steps:
+        simulation.step(open_steps)
+    if target_anchors:
+        if target_restraint_force is not None:
+            simulation.context.setParameter("alpha", 1.0)
+        if target_steps:
+            simulation.step(target_steps)
+    elif not target_anchors and steps:
+        simulation.step(steps - open_steps)
 
     state = simulation.context.getState(getPositions=True)
     final_positions = state.getPositions(asNumpy=False)
@@ -383,12 +472,14 @@ def _run_openmm(
     with final_pdb.open("w", encoding="utf-8") as handle:
         app.PDBFile.writeFile(topology, final_positions, handle)
 
-    trajectory_path = out_dir / "openmm_dca_restrained_trajectory.pdb"
     return {
         "success": True,
         "trajectory_pdb": str(trajectory_path) if write_trajectory and trajectory_path.is_file() else None,
         "final_pdb": str(final_pdb),
         "anchors_applied": len(anchors),
+        "target_anchors_applied": len(target_anchors),
+        "target_open_steps": target_anchor_open_steps if target_anchors else 0,
+        "target_total_steps": target_steps if target_anchors else 0,
         "log": str(out_dir / "openmm_dca_openmm.log"),
     }
 
@@ -448,6 +539,8 @@ def _build_metric_rows(
     metric: dict,
     openmm_results: dict,
     force_constant_kj_per_mol_nm2: float,
+    target_force_constant_kj_per_mol_nm2: float,
+    target_anchors: Sequence[AnchorRecord],
 ) -> dict:
     return {
         "kind": "openmm_dca_closure_v0",
@@ -458,6 +551,8 @@ def _build_metric_rows(
         "anchor_distance_target_angstrom": 6.0,
         "anchor_distance_window_angstrom": 2.0,
         "anchor_force_constant_kj_mol_nm2": force_constant_kj_per_mol_nm2,
+        "target_anchor_count": len(target_anchors),
+        "target_anchor_force_constant_kj_mol_nm2": target_force_constant_kj_per_mol_nm2,
         "mean_precision_after_audit": metric["native_contact_precision"],
         "mean_recall_after_audit": metric["native_contact_recall"],
         "mean_long_range_recall_after_audit": metric["long_range_contact_recall"],
@@ -473,6 +568,8 @@ def _build_metric_rows(
         ),
         "trajectory_pdb": openmm_results.get("trajectory_pdb"),
         "final_pdb": openmm_results.get("final_pdb"),
+        "target_open_steps": openmm_results.get("target_open_steps"),
+        "target_total_steps": openmm_results.get("target_total_steps"),
     }
 
 
@@ -494,6 +591,16 @@ def main() -> None:
     parser.add_argument("--temperature-kelvin", type=float, default=300.0)
     parser.add_argument("--force-constant-kj-per-mol-nm2", type=float, default=100.0)
     parser.add_argument("--seed", type=int, default=11)
+    parser.add_argument("--target-pdb", default="")
+    parser.add_argument("--target-open-steps", type=int, default=0)
+    parser.add_argument(
+        "--target-force-constant-kj-per-mol-nm2",
+        type=float,
+        default=500.0,
+    )
+    parser.add_argument("--target-min-separation", type=int, default=24)
+    parser.add_argument("--target-cutoff-angstrom", type=float, default=8.0)
+    parser.add_argument("--target-max-pairs", type=int, default=150)
     parser.add_argument("--resume-pdb", default="")
     parser.add_argument(
         "--skip-minimization",
@@ -548,6 +655,33 @@ def main() -> None:
         min_anchor_confidence=args.min_anchor_confidence,
         minimum_sequence_separation=args.anchor_min_separation,
     )
+    target_anchors = ()
+    if args.target_pdb:
+        target_coords = _parse_last_ca_coords(Path(args.target_pdb))
+        target_anchors = _extract_target_anchors(
+            target_coords,
+            row.sequence_length,
+            min_sequence_separation=args.target_min_separation,
+            max_pairs=args.target_max_pairs,
+            target_cutoff_angstrom=args.target_cutoff_angstrom,
+        )
+        if not target_anchors:
+            raise SystemExit(
+                f"no target anchors extracted from {args.target_pdb!r}; "
+                f"try increasing --target-cutoff-angstrom or lowering --target-max-pairs"
+            )
+        _write_csv(
+            out_dir / "target_anchors.csv",
+            [
+                {
+                    "i": anchor.i,
+                    "j": anchor.j,
+                    "distance_angstrom": anchor.distance_angstrom,
+                    "confidence": anchor.confidence,
+                }
+                for anchor in target_anchors
+            ],
+        )
     if not anchors:
         raise SystemExit("no anchors selected for this run")
 
@@ -576,6 +710,9 @@ def main() -> None:
         temperature_kelvin=args.temperature_kelvin,
         seed=args.seed,
         force_constant_kj_per_mol_nm2=args.force_constant_kj_per_mol_nm2,
+        target_anchors=target_anchors,
+        target_anchor_force_constant_kj_per_mol_nm2=args.target_force_constant_kj_per_mol_nm2,
+        target_anchor_open_steps=args.target_open_steps,
         initial_positions_angstrom=_build_positions_from_coords(
             _parse_last_ca_coords(Path(args.resume_pdb)),
             row.sequence_length,
@@ -644,6 +781,8 @@ def main() -> None:
         metric=metric,
         openmm_results=openmm_results,
         force_constant_kj_per_mol_nm2=args.force_constant_kj_per_mol_nm2,
+        target_force_constant_kj_per_mol_nm2=args.target_force_constant_kj_per_mol_nm2,
+        target_anchors=target_anchors,
     )
     summary["openmm_results"] = openmm_results
     certificate_path = out_dir / "openmm_dca_closure_md_certificate_v0.json"
