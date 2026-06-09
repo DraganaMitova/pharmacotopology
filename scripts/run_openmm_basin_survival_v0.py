@@ -37,6 +37,25 @@ FREQ_PROFILE_WEIGHTS = {
     "balanced": (0.38, 0.48, 0.14),
     "broad": (0.22, 0.60, 0.18),
 }
+SURVIVAL_SCORE_WEIGHTS = {
+    "strict": (0.50, 0.25, 0.25),
+    "balanced": (0.52, 0.30, 0.18),
+    "broad": (0.65, 0.30, 0.05),
+}
+GATE_SEQUENCE = ("frequency", "chemical", "dca", "topology", "control", "survival", "degree", "budget", "collapse")
+ABLATION_CUMULATIVE_MAP = {
+    "frequency_only": {"frequency"},
+    "budget_only": {"frequency", "budget"},
+    "dca_only": {"frequency", "dca"},
+    "topology_only": {"frequency", "chemical", "dca", "topology"},
+    "control_gap_only": {"frequency", "chemical", "dca", "topology", "control"},
+    "collapse_only": {"frequency", "chemical", "dca", "topology", "control", "survival", "degree", "budget", "collapse"},
+    "frequency_plus_budget": {"frequency", "budget"},
+    "frequency_plus_budget_plus_collapse": {"frequency", "budget", "collapse"},
+    "frequency_plus_budget_plus_dca": {"frequency", "dca", "budget"},
+    "full": {"frequency", "chemical", "dca", "topology", "control", "survival", "degree", "budget"},
+}
+ABLATION_VALID_CASES = set(ABLATION_CUMULATIVE_MAP.keys())
 
 
 @dataclass
@@ -59,6 +78,7 @@ class BasinPrediction:
     dca_met_ratio: float
     gate_counts: dict[str, int]
     ablation_counts: dict[str, int]
+    ablation_profiles: dict[str, dict[str, object]]
 
 
 def _parse_ca_trajectory(path: Path, chain_id: str = "A") -> list[dict[int, tuple[float, float, float]]]:
@@ -285,6 +305,14 @@ def _percentile_95(values: Sequence[float]) -> float:
     return float(sorted_values[idx])
 
 
+def _dca_mode_for_profile(profile: str) -> str:
+    return "strict" if profile == "strict" else "soft"
+
+
+def _resolve_cumulative_ablation_gates(case_name: str) -> set[str]:
+    return set(ABLATION_CUMULATIVE_MAP.get(case_name, {case_name}) )
+
+
 def _build_stable_pairs_for_frequency_threshold(
     pair_counts: Counter[tuple[int, int]],
     required_frames: int,
@@ -299,6 +327,8 @@ def _build_stable_pairs_for_frequency_threshold(
     max_control_overlap_fraction: float,
     max_degree: int,
     frequency_threshold: float,
+    profile: str,
+    dca_mode: str,
     *,
     enabled_gates: set[str] | None = None,
 ) -> tuple[list[tuple[tuple[int, int], dict[str, float]]], dict[str, int]]:
@@ -347,7 +377,7 @@ def _build_stable_pairs_for_frequency_threshold(
             continue
         chem_count += 1
         dca = dca_scores.get((left, right), 0.0)
-        if dca_enabled and dca < dca_threshold:
+        if dca_enabled and dca_mode == "strict" and dca < dca_threshold:
             continue
         dca_count += 1
         if topo_enabled and not _topology_ok(left, right, boundaries=domain_boundaries, topology_mode=topology_mode):
@@ -381,13 +411,22 @@ def _build_stable_pairs_for_frequency_threshold(
         if control_enabled and overlap > max_control_overlap_fraction:
             control_removed += 1
             continue
-        payload["survival_score"] = 0.5 * payload["frequency"] + 0.25 * payload["chemical_score"] + 0.25 * payload["dca_score"] if surv_enabled else payload["frequency"]
+        freq_weight, chem_weight, dca_weight = SURVIVAL_SCORE_WEIGHTS.get(profile, SURVIVAL_SCORE_WEIGHTS["balanced"])
+        if not surv_enabled:
+            payload["survival_score"] = payload["frequency"]
+        else:
+            payload["survival_score"] = (
+                freq_weight * payload["frequency"]
+                + chem_weight * payload["chemical_score"]
+                + dca_weight * payload["dca_score"]
+            )
         surviving.append((pair, payload))
 
     surviving.sort(key=lambda item: (-item[1]["survival_score"], -item[1]["frequency"], -item[1]["dca_score"], item[0][0], item[0][1]))
     before = len(surviving)
     surviving = _apply_degree_cap(surviving, sequence_length=len(sequence), max_degree=max_degree) if degree_enabled else surviving
     degree_culled = before - len(surviving)
+    degree_scored_count = len(surviving)
 
     metadata = {
         "raw_pair_count": raw_pairs,
@@ -401,6 +440,14 @@ def _build_stable_pairs_for_frequency_threshold(
         "degree_culled_pair_count": degree_culled,
         "dca_supported_pair_count": len([pair for pair in pair_counts if dca_scores.get(pair, 0.0) >= dca_threshold]),
         "survival_scored_pair_count": len(surviving),
+        "degree_scored_pair_count": degree_scored_count,
+        "cumulative_after_frequency_pair_count": freq_count,
+        "cumulative_after_chemical_pair_count": chem_count,
+        "cumulative_after_dca_pair_count": dca_count,
+        "cumulative_after_topology_pair_count": topo_count,
+        "cumulative_after_control_pair_count": max(0, pre_control_count - control_removed),
+        "cumulative_after_survival_pair_count": len(surviving),
+        "cumulative_after_degree_pair_count": degree_scored_count,
         "budgeted_pair_count": 0,
     }
     return surviving, metadata
@@ -486,6 +533,8 @@ def _auto_basin_threshold(
             control_count=control_count,
             max_control_overlap_fraction=max_control_overlap_fraction,
             max_degree=max_degree,
+            profile=profile,
+            dca_mode=_dca_mode_for_profile(profile),
             frequency_threshold=th,
             enabled_gates=enabled_gates,
         )
@@ -539,6 +588,8 @@ def _auto_basin_threshold(
             control_count=control_count,
             max_control_overlap_fraction=max_control_overlap_fraction,
             max_degree=max_degree,
+            profile=profile,
+            dca_mode=_dca_mode_for_profile(profile),
             frequency_threshold=fallback,
             enabled_gates=enabled_gates,
         )
@@ -776,6 +827,7 @@ def _select_contacts_for_frames(
             0.0,
             {},
             {},
+            {},
         )
 
     dca_thr = dca_threshold
@@ -807,6 +859,7 @@ def _select_contacts_for_frames(
     dca_ratio = (len(selected_pairs) / max(1, dca_supported_count)) if dca_supported_count > 0 else (1.0 if not dca_scores else 0.0)
 
     ablation_counts: dict[str, int] = {}
+    ablation_profiles: dict[str, dict[str, object]] = {}
     if ablation_gates:
         full_gates = {"frequency", "chemical", "dca", "topology", "control", "survival", "degree", "budget"}
         base = {
@@ -824,15 +877,12 @@ def _select_contacts_for_frames(
         for name in sorted(ablation_gates):
             if name not in base:
                 continue
+            if name == "collapse_only":
+                continue
             gates = base[name]
             if name == "full":
                 gates = full_gates
-            if "collapse" in gates:
-                continue
-            if name == "collapse_only":
-                ablation_counts[name] = int(len(selected_pairs))
-                continue
-            summary = _pair_gate_eval_for_ablation(
+            one_gate_summary = _pair_gate_eval_for_ablation(
                 pair_counts=pair_counts,
                 required_frames=len(frames),
                 row=row,
@@ -847,9 +897,91 @@ def _select_contacts_for_frames(
                 max_degree=max_degree,
                 frequency_threshold=threshold,
                 budget=budget,
+                profile=profile,
                 enabled_gates=gates,
             )
-            ablation_counts[name] = int(summary.get("budgeted_pair_count", 0))
+            cumulative_gates = _resolve_cumulative_ablation_gates(name)
+            cumulative_summary = _pair_gate_eval_for_ablation(
+                pair_counts=pair_counts,
+                required_frames=len(frames),
+                row=row,
+                sequence=row.sequence,
+                dca_scores=dca_scores,
+                dca_threshold=dca_thr,
+                chemical_threshold=chemical_threshold,
+                topology_mode=topology_mode,
+                domain_boundaries=domain_boundaries,
+                control_count=control_count,
+                max_control_overlap_fraction=max_control_overlap_fraction,
+                max_degree=max_degree,
+                frequency_threshold=threshold,
+                budget=budget,
+                profile=profile,
+                enabled_gates=cumulative_gates,
+            )
+            profile_payload: dict[str, object] = {
+                "one_gate_only": {
+                    "selected_pair_count": int(one_gate_summary.get("selected_pair_count", 0)),
+                    "selected_by_budget": int(one_gate_summary.get("budgeted_pair_count", 0)),
+                    "survival_scored_pair_count": int(one_gate_summary.get("survival_scored_pair_count", 0)),
+                    "degree_scored_pair_count": int(one_gate_summary.get("degree_scored_pair_count", 0)),
+                },
+                "cumulative_gate": {
+                    "selected_pair_count": int(cumulative_summary.get("selected_pair_count", 0)),
+                    "selected_by_budget": int(cumulative_summary.get("budgeted_pair_count", 0)),
+                    "survival_scored_pair_count": int(cumulative_summary.get("survival_scored_pair_count", 0)),
+                    "degree_scored_pair_count": int(cumulative_summary.get("degree_scored_pair_count", 0)),
+                },
+            }
+            if name == "dca_only":
+                soft_summary = _pair_gate_eval_for_ablation(
+                    pair_counts=pair_counts,
+                    required_frames=len(frames),
+                    row=row,
+                    sequence=row.sequence,
+                    dca_scores=dca_scores,
+                    dca_threshold=dca_thr,
+                    chemical_threshold=chemical_threshold,
+                    topology_mode=topology_mode,
+                    domain_boundaries=domain_boundaries,
+                    control_count=control_count,
+                    max_control_overlap_fraction=max_control_overlap_fraction,
+                    max_degree=max_degree,
+                    frequency_threshold=threshold,
+                    budget=budget,
+                    profile="balanced",
+                    enabled_gates={"frequency", "dca"},
+                    dca_mode="soft",
+                )
+                hard_summary = _pair_gate_eval_for_ablation(
+                    pair_counts=pair_counts,
+                    required_frames=len(frames),
+                    row=row,
+                    sequence=row.sequence,
+                    dca_scores=dca_scores,
+                    dca_threshold=dca_thr,
+                    chemical_threshold=chemical_threshold,
+                    topology_mode=topology_mode,
+                    domain_boundaries=domain_boundaries,
+                    control_count=control_count,
+                    max_control_overlap_fraction=max_control_overlap_fraction,
+                    max_degree=max_degree,
+                    frequency_threshold=threshold,
+                    budget=budget,
+                    profile="strict",
+                    enabled_gates={"frequency", "dca"},
+                    dca_mode="strict",
+                )
+                profile_payload["soft_score_only"] = {
+                    "selected_pair_count": int(soft_summary.get("selected_pair_count", 0)),
+                    "selected_by_budget": int(soft_summary.get("budgeted_pair_count", 0)),
+                }
+                profile_payload["hard_gate_final"] = {
+                    "selected_pair_count": int(hard_summary.get("selected_pair_count", 0)),
+                    "selected_by_budget": int(hard_summary.get("budgeted_pair_count", 0)),
+                }
+            ablation_profiles[name] = profile_payload
+            ablation_counts[name] = int(cumulative_summary.get("budgeted_pair_count", 0))
 
     selected = [pair for pair, _ in selected_pairs]
     metric = evaluate_contact_prediction(
@@ -891,6 +1023,7 @@ def _select_contacts_for_frames(
             "final_selected_pair_count": int(metadata.get("selected_count", len(selected_pairs))),
         },
         ablation_counts=ablation_counts,
+        ablation_profiles=ablation_profiles,
     )
 
 
@@ -969,8 +1102,11 @@ def _pair_gate_eval_for_ablation(
     max_degree: int,
     frequency_threshold: float,
     budget: int,
+    profile: str,
     enabled_gates: set[str],
+    dca_mode: str | None = None,
 ) -> dict[str, int]:
+    dca_mode = dca_mode or _dca_mode_for_profile(profile)
     pairs, metadata = _build_stable_pairs_for_frequency_threshold(
         pair_counts,
         required_frames=required_frames,
@@ -984,6 +1120,8 @@ def _pair_gate_eval_for_ablation(
         control_count=control_count,
         max_control_overlap_fraction=max_control_overlap_fraction,
         max_degree=max_degree,
+        profile=profile,
+        dca_mode=dca_mode,
         frequency_threshold=frequency_threshold,
         enabled_gates=enabled_gates,
     )
@@ -997,7 +1135,16 @@ def _pair_gate_eval_for_ablation(
         "control_removed_pair_count": int(metadata.get("control_removed_pair_count", 0)),
         "degree_culled_pair_count": int(metadata.get("degree_culled_pair_count", 0)),
         "survival_scored_pair_count": int(metadata.get("survival_scored_pair_count", 0)),
+        "degree_scored_pair_count": int(metadata.get("degree_scored_pair_count", 0)),
+        "cumulative_after_frequency_pair_count": int(metadata.get("cumulative_after_frequency_pair_count", 0)),
+        "cumulative_after_chemical_pair_count": int(metadata.get("cumulative_after_chemical_pair_count", 0)),
+        "cumulative_after_dca_pair_count": int(metadata.get("cumulative_after_dca_pair_count", 0)),
+        "cumulative_after_topology_pair_count": int(metadata.get("cumulative_after_topology_pair_count", 0)),
+        "cumulative_after_control_pair_count": int(metadata.get("cumulative_after_control_pair_count", 0)),
+        "cumulative_after_survival_pair_count": int(metadata.get("cumulative_after_survival_pair_count", 0)),
+        "cumulative_after_degree_pair_count": int(metadata.get("cumulative_after_degree_pair_count", 0)),
         "budgeted_pair_count": int(budgeted),
+        "selected_pair_count": int(budgeted),
     }
 
 
@@ -1011,16 +1158,111 @@ def _mean_gate_profile(predictions: list[BasinPrediction]) -> dict[str, float]:
     }
 
 
-def _classify_sweep_state(selected_config: dict) -> dict[str, object]:
+def _aggregate_replica_gate_profiles(replica_runs: list[dict]) -> dict[str, object]:
+    profile_samples: dict[str, object] = {}
+
+    def _collect(samples: dict[str, object], values: dict[str, object]) -> None:
+        for key, value in values.items():
+            if isinstance(value, dict):
+                target = samples.setdefault(key, {})
+                if isinstance(target, dict):
+                    _collect(target, value)
+                else:
+                    continue
+            elif isinstance(value, (int, float)):
+                bucket = samples.setdefault(key, [])
+                if isinstance(bucket, list):
+                    bucket.append(float(value))
+            elif isinstance(value, list):
+                bucket = samples.setdefault(key, [])
+                if isinstance(bucket, list):
+                    total = sum(float(v) for v in value if isinstance(v, (int, float)))
+                    if total:
+                        bucket.append(total)
+
+    for run in replica_runs:
+        if "basins" not in run:
+            continue
+        for basin in run["basins"]:
+            profiles = basin.get("ablation_profiles")
+            if not isinstance(profiles, dict):
+                continue
+            _collect(profile_samples, profiles)
+
+    output: dict[str, object] = {}
+
+    def _to_means(samples: object) -> object:
+        if isinstance(samples, list):
+            return float(stats.mean(samples)) if samples else 0.0
+        if not isinstance(samples, dict):
+            return samples
+        return {key: _to_means(value) for key, value in samples.items()}
+
+    for key, value in profile_samples.items():
+        output[key] = _to_means(value)
+    return output
+
+
+def _classify_extinction(selected_run: dict, *, collapse_reject_threshold: float = 0.75) -> dict[str, object]:
+    gate_summary = selected_run.get("contact_gate_summary", {})
+    if not isinstance(gate_summary, dict):
+        return {"is_extinct": False, "reason": None, "subtype": None}
+
+    final_count = int(gate_summary.get("final_predicted_count", 0))
+    final_no_collapse = int(gate_summary.get("final_predicted_count_no_collapse", 0))
+    if final_count > 0:
+        return {"is_extinct": False, "reason": None, "subtype": None}
+
+    basins = selected_run.get("basins", [])
+    compatible_count = int(selected_run.get("compatible_basin_count", 0))
+    internal_summary = selected_run.get("internal_summary", {})
+    mean_profile = {}
+    if isinstance(internal_summary, dict):
+        mean_profile = internal_summary.get("mean_gate_cull_profile", {})
+    if not isinstance(mean_profile, dict):
+        mean_profile = {}
+
+    raw = float(mean_profile.get("raw_pair_count", 0))
+    dca_pass = float(mean_profile.get("dca_pass_pair_count", 0))
+    topo_pass = float(mean_profile.get("topology_pass_pair_count", 0))
+    freq_pass = float(mean_profile.get("frequency_pass_pair_count", 0))
+    control_gap = float(mean_profile.get("control_removed_pair_count", 0))
+    control_total = float(mean_profile.get("pre_control_pair_count", 0))
+    survival_scored = float(mean_profile.get("survival_scored_pair_count", 0))
+    degree_culled = float(mean_profile.get("degree_culled_pair_count", 0))
+
+    basin_contact_total = sum(int(item.get("predicted_count", 0)) for item in basins if isinstance(item, dict))
+    candidate_mean = float(stats.mean([float(item.get("collapse_score", 1.0)) for item in basins if isinstance(item, dict)]) if basins else 1.0)
+
+    if dca_pass <= 0 and freq_pass > 0 and topo_pass > 0:
+        return {"is_extinct": True, "reason": "dca_extinction", "subtype": "dca_gate_zero"}
+    if topo_pass <= 0 and freq_pass > 0 and dca_pass > 0:
+        return {"is_extinct": True, "reason": "topology_extinction", "subtype": "topology_cumulative_inconsistency"}
+    if control_total > 0 and control_gap >= 0.75 * control_total:
+        return {"is_extinct": True, "reason": "control_gap_extinction", "subtype": "control_overlap_filter"}
+    if degree_culled > 0 and freq_pass > 0 and dca_pass > 0 and topo_pass > 0 and survival_scored > 0:
+        return {"is_extinct": True, "reason": "collapse_extinction", "subtype": "degree_cap_extinction"}
+    if basin_contact_total > 0 and (compatible_count >= 0) and final_no_collapse == 0:
+        return {"is_extinct": True, "reason": "voting_extinction", "subtype": "basin_vote_all_or_nothing"}
+    if raw <= 0:
+        return {"is_extinct": True, "reason": "raw_signal_extinction", "subtype": "empty_input"}
+    if candidate_mean >= collapse_reject_threshold and basin_contact_total > 0 and compatible_count > 0:
+        return {"is_extinct": True, "reason": "collapse_extinction", "subtype": "collapse_threshold"}
+    return {"is_extinct": False, "reason": None, "subtype": None}
+
+
+def _classify_sweep_state(selected_config: dict, extinction: dict[str, object] | None = None) -> dict[str, object]:
     selected_contacts = int(selected_config.get("ensemble_contact_count", selected_config.get("ensemble_predicted_count", 0)))
     internal_score = float(selected_config.get("internal_stability_score", 0.0))
     plateau_size = int(selected_config.get("plateau_size", 0))
+    extinction = extinction or {"is_extinct": False, "reason": None, "subtype": None}
     if selected_contacts <= 0:
         return {
             "sweep_status": "degenerate_null_plateau",
             "signal_status": "no_surviving_contacts",
             "claim_allowed": False,
             "next_action": "stage_readout_ablation",
+            "extinction": extinction,
         }
     if plateau_size < 1:
         return {
@@ -1028,6 +1270,7 @@ def _classify_sweep_state(selected_config: dict) -> dict[str, object]:
             "signal_status": "insufficient_plateau_support",
             "claim_allowed": False,
             "next_action": "sampling_or_steering_repair",
+            "extinction": extinction,
         }
     if internal_score < 0.25:
         return {
@@ -1035,6 +1278,7 @@ def _classify_sweep_state(selected_config: dict) -> dict[str, object]:
             "signal_status": "weak_internal_signal",
             "claim_allowed": False,
             "next_action": "pipeline_tuning_readout",
+            "extinction": extinction,
         }
     if selected_contacts > 900:
         return {
@@ -1042,12 +1286,14 @@ def _classify_sweep_state(selected_config: dict) -> dict[str, object]:
             "signal_status": "contact_set_too_large",
             "claim_allowed": False,
             "next_action": "gate_tuning_ablation",
+            "extinction": extinction,
         }
     return {
         "sweep_status": "stable_plateau",
         "signal_status": "surviving_contacts",
         "claim_allowed": True,
         "next_action": "proceed_to_follow_up",
+        "extinction": extinction,
     }
 
 
@@ -1093,12 +1339,12 @@ def run_replica(
 
     labels = _cluster_basin_labels(feature_vectors, args.basin_count)
     basin_frames: dict[int, list[dict[int, tuple[float, float, float]]]] = defaultdict(list)
+    ablation_gates = _parse_gate_set(args.gate_ablation_cases) if args.run_gate_readout and args.gate_ablation_cases else set()
     for frame, basin in zip(frames, labels):
         basin_frames[basin].append(frame)
 
     basin_results: list[BasinPrediction] = []
     for basin_id in sorted(basin_frames):
-        ablation_gates = _parse_gate_set(args.gate_ablation_cases) if args.run_gate_readout and args.gate_ablation_cases else set()
         pred = _select_contacts_for_frames(
             basin_frames[basin_id],
             row=row,
@@ -1144,6 +1390,7 @@ def run_replica(
             dca_met_ratio=pred.dca_met_ratio,
             gate_counts=pred.gate_counts,
             ablation_counts=pred.ablation_counts,
+            ablation_profiles=pred.ablation_profiles,
         )
         basin_results.append(pred)
 
@@ -1155,6 +1402,19 @@ def run_replica(
         score, stats_map = _collapse_from_feature_stats(all_feature_dicts, list(range(len(labels))), labels, pred.basin_id)
         pred.feature_centroid.update(stats_map)
         pred.collapse_score = score
+        if "collapse_only" in ablation_gates or "collapse_only" in _parse_gate_set(args.gate_ablation_cases):
+            collapse_only_count = len(pred.contacts) if score < args.collapse_reject_threshold else 0
+            pred.ablation_profiles["collapse_only"] = {
+                "hard_gate_final": {
+                    "selected_pair_count": int(collapse_only_count),
+                    "selected_by_budget": int(collapse_only_count),
+                },
+                "one_gate_only": {
+                    "selected_pair_count": int(collapse_only_count),
+                    "selected_by_budget": int(collapse_only_count),
+                },
+            }
+            pred.ablation_counts["collapse_only"] = int(collapse_only_count)
 
     baseline = sorted(
         [r for r in basin_results],
@@ -1270,6 +1530,7 @@ def run_replica(
                 "top_contacts": [list(pair) for pair in pred.contacts[: min(25, len(pred.contacts))]],
                 "gate_counts": pred.gate_counts,
                 "ablation_counts": pred.ablation_counts,
+                "ablation_profiles": pred.ablation_profiles,
             }
             for pred in sorted(
                 basin_results,
@@ -1287,6 +1548,14 @@ def run_replica(
             "final_predicted_count_no_collapse": int(len(final_pairs_no_collapse)),
             "weighted_predicted_count": int(len(weighted_final_pairs)),
         },
+        "ablation_profiles": _aggregate_replica_gate_profiles([{
+            "basins": [
+                {
+                    "ablation_profiles": pred.ablation_profiles
+                }
+                for pred in basin_results
+            ]
+        }]),
         "compatible_basin_ids": [pred.basin_id for pred in compatible[: max(1, args.compatible_basin_cap)]],
         "final_vote_counts": {
             "with_collapse_filter": int(len(final_pairs)),
@@ -1302,6 +1571,10 @@ def run_replica(
         "long_range_contact_recall": final_metric["long_range_contact_recall"],
         "false_contact_rate": final_metric["false_contact_rate"],
     }
+    output["extinction"] = _classify_extinction(
+        output,
+        collapse_reject_threshold=args.collapse_reject_threshold if args.collapse_hard_reject else 1.0,
+    )
     return output
 
 
@@ -1356,6 +1629,7 @@ def _run_ensemble(
         "tail_fraction": tail_fraction,
         "contact_cutoff_angstrom": contact_cutoff_ang,
         "replica_count": len(replica_paths),
+        "run_summaries": all_runs,
         "ensemble_predicted_count": len(ensemble_pairs),
         "replica_compatibility_basin_vote_min": args.basin_vote_min,
         "frequency_profile": args.frequency_auto_profile,
@@ -1367,7 +1641,16 @@ def _run_ensemble(
         "internal_stability_score": stats.mean(internal_quality) if internal_quality else 0.0,
         "ensemble_contacts": sorted([list(pair) for pair in ensemble_pairs]),
         "ensemble_contact_count": len(ensemble_pairs),
+        "ablation_profiles": _aggregate_replica_gate_profiles(all_runs),
     }
+    if args.run_gate_readout:
+        run_extinctions = [r.get("extinction") for r in all_runs if isinstance(r, dict) and "extinction" in r]
+        if run_extinctions and report["ensemble_contact_count"] <= 0:
+            report["extinction"] = run_extinctions[0]
+        else:
+            report["extinction"] = {"is_extinct": False, "reason": None, "subtype": None}
+    else:
+        report["extinction"] = {"is_extinct": False, "reason": None, "subtype": None}
     return report, all_runs, set(ensemble_pairs)
 
 
@@ -1560,7 +1843,7 @@ def main() -> None:
                 selected_report["plateau_size"] = int(entry["size"])
         if not selected_report["plateau_size"] and plateau_found:
             selected_report["plateau_size"] = int(len(plateau_summaries[0].get("config_indexes", [])))
-        classification = _classify_sweep_state(selected_report)
+        classification = _classify_sweep_state(selected_report, extinction=selected_report.get("extinction"))
         selected_report["calibration_note"] = (
             "This is a garage calibration run. Native metrics are used only as "
             "diagnostic dashboard, not as selection authority."
@@ -1618,6 +1901,8 @@ def main() -> None:
                 "tail_fraction": selected_tail,
                 "contact_cutoff_angstrom": selected_cutoff,
                 "internal_stability_score": selected_report.get("internal_stability_score", 0.0),
+                "ensemble_predicted_count": int(selected_report.get("ensemble_predicted_count", 0)),
+                "ensemble_contact_count": int(selected_report.get("ensemble_contact_count", 0)),
                 "contact_map_f1": selected_report.get("contact_map_f1", 0.0),
                 "native_contact_recall": selected_report.get("native_contact_recall", 0.0),
                 "native_contact_precision": selected_report.get("native_contact_precision", 0.0),
@@ -1626,6 +1911,8 @@ def main() -> None:
                 "weighted_vote_precision": selected_report.get("weighted_vote_score", {}).get("native_contact_precision", 0.0),
                 "weighted_vote_recall": selected_report.get("weighted_vote_score", {}).get("native_contact_recall", 0.0),
                 "weighted_vote_f1": selected_report.get("weighted_vote_score", {}).get("contact_map_f1", 0.0),
+                "extinction": selected_report.get("extinction", {"is_extinct": False, "reason": None, "subtype": None}),
+                "ablation_profiles": selected_report.get("ablation_profiles", {}),
             },
         }
         sweep_path = out_dir / "openmm_basin_survival_sweep_summary.json"
