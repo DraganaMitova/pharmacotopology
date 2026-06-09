@@ -1807,6 +1807,8 @@ def main() -> None:
         selected_local_support: set[tuple[int, int]] = set()
         selected_medium_support: set[tuple[int, int]] = set()
         diagnostic_shell: set[tuple[int, int]] = set()
+        selected_blueprint_unclassified_core: set[tuple[int, int]] = set()
+        rejected_selected_pairs: set[tuple[int, int]] = set()
 
         support_by_pair: Counter[tuple[int, int]] = Counter()
         dca_scores, _ = _load_dca_scores(
@@ -1820,9 +1822,11 @@ def main() -> None:
             for pair in item.stable_pairs:
                 support_by_pair[pair] += 1
 
+        input_selected_pair_count = len(selected_pairs)
         border_rescue_selected_count = 0
         border_rescue_monitor_count = 0
         runtime_v10_runtime_pairs = sorted(set(selected_pairs) | set(target_audit_pairs))
+        selected_pair_classification: dict[tuple[int, int], str] = {}
 
         for pair in runtime_v10_runtime_pairs:
             left, right = pair
@@ -1876,6 +1880,7 @@ def main() -> None:
             candidate_eligible = topology_ok and pair in effective_anchor_pairs and tail_freq_mean >= args.rescue_tail_frequency_threshold
             selected_under_rescue_late_rule = False
             final_decision = "not_selected"
+            final_pair_bucket = "unclassified"
 
             if pair_role == "border_long_range_rescue":
                 if candidate_eligible and float(dca_scores.get(pair, 0.0)) >= v10_rescue_threshold:
@@ -1883,26 +1888,76 @@ def main() -> None:
                     if selected_under_rescue_late_rule:
                         selected_border_rescue.add(pair)
                         border_rescue_selected_count += 1
+                        if pair_selected:
+                            final_pair_bucket = "selected_border_rescue"
+                            selected_pair_classification[pair] = final_pair_bucket
                         final_decision = "selected_border_rescue"
                     else:
                         monitor_only_border_rescue.add(pair)
                         border_rescue_monitor_count += 1
+                        if pair_selected:
+                            final_pair_bucket = "monitor_only_border_rescue"
+                            selected_pair_classification[pair] = final_pair_bucket
                         final_decision = "monitor_only_border_rescue"
                 elif candidate_eligible and geometry_reached:
                     monitor_only_border_rescue.add(pair)
                     border_rescue_monitor_count += 1
+                    if pair_selected:
+                        final_pair_bucket = "monitor_only_border_rescue"
+                        selected_pair_classification[pair] = final_pair_bucket
                     final_decision = "monitor_only_border_rescue"
+                elif pair_selected:
+                    final_pair_bucket = "rejected_outside_blueprint_or_noise"
+                    rejected_selected_pairs.add(pair)
+                    final_decision = "rejected_border_rescue_candidate"
             elif pair_role == "true_long_range_core" and pair_selected:
                 if pair_blueprint_lane == "strict":
                     selected_strict_scaffold.add(pair)
+                    final_pair_bucket = "selected_strict_scaffold"
+                    selected_pair_classification[pair] = final_pair_bucket
                 elif pair_blueprint_lane == "balanced":
                     selected_balanced_core.add(pair)
+                    final_pair_bucket = "selected_balanced_core"
+                    selected_pair_classification[pair] = final_pair_bucket
+                else:
+                    final_pair_bucket = (
+                        "selected_blueprint_unclassified_core"
+                        if pair in effective_anchor_pairs
+                        else "rejected_outside_blueprint_or_noise"
+                    )
+                    if final_pair_bucket == "selected_blueprint_unclassified_core":
+                        selected_blueprint_unclassified_core.add(pair)
+                    else:
+                        rejected_selected_pairs.add(pair)
+                    selected_pair_classification[pair] = final_pair_bucket
             elif pair_role == "local_support" and pair_selected:
                 selected_local_support.add(pair)
+                final_pair_bucket = "selected_local_support"
+                selected_pair_classification[pair] = final_pair_bucket
             elif pair_role == "medium_support" and pair_selected:
                 selected_medium_support.add(pair)
+                final_pair_bucket = "selected_medium_support"
+                selected_pair_classification[pair] = final_pair_bucket
             elif pair_role == "diagnostic_shell" and pair_selected:
                 diagnostic_shell.add(pair)
+                final_pair_bucket = "diagnostic_shell"
+                selected_pair_classification[pair] = final_pair_bucket
+            elif pair_selected:
+                if pair in effective_anchor_pairs:
+                    selected_blueprint_unclassified_core.add(pair)
+                    final_pair_bucket = "selected_blueprint_unclassified_core"
+                else:
+                    rejected_selected_pairs.add(pair)
+                    final_pair_bucket = "rejected_outside_blueprint_or_noise"
+                selected_pair_classification[pair] = final_pair_bucket
+
+            if pair_selected and pair not in selected_pair_classification:
+                if pair in effective_anchor_pairs:
+                    selected_blueprint_unclassified_core.add(pair)
+                    selected_pair_classification[pair] = "selected_blueprint_unclassified_core"
+                else:
+                    rejected_selected_pairs.add(pair)
+                    selected_pair_classification[pair] = "rejected_outside_blueprint_or_noise"
 
             pair_record = pair_audit.setdefault(pair, {})
             pair_record["runtime_v10"] = {
@@ -1917,6 +1972,7 @@ def main() -> None:
                 "rescue_late_support": support_by_pair.get(pair, 0),
                 "rescue_late_qualified": selected_under_rescue_late_rule,
                 "final_decision": final_decision,
+                "input_bucket": final_pair_bucket,
             }
 
         runtime_v10_selected_pairs = (
@@ -1927,11 +1983,17 @@ def main() -> None:
             | selected_medium_support
             | diagnostic_shell
         )
+        classified_selected_pair_count = len(selected_pair_classification)
+        dropped_selected_pair_count = input_selected_pair_count - classified_selected_pair_count
         runtime_v10_no_core_selected_pairs = len(runtime_v10_selected_pairs) == 0
         runtime_v10_failure_reasons: list[str] = []
         if runtime_v10_no_core_selected_pairs:
             runtime_v10_failure_reasons.append("no_core_selected_pairs_after_role_binding")
+        if dropped_selected_pair_count > 0:
+            runtime_v10_failure_reasons.append("role_binding_incomplete")
         runtime_v10_physics_interpretation_allowed = not runtime_v10_no_core_selected_pairs
+        if dropped_selected_pair_count > 0:
+            runtime_v10_physics_interpretation_allowed = False
         long_range_evidence_pairs = selected_strict_scaffold | selected_balanced_core | selected_border_rescue
         support_evidence_pairs = selected_local_support | selected_medium_support
         runtime_long_range_overlap = _set_overlap_ratio(
@@ -1963,6 +2025,9 @@ def main() -> None:
             "selected_local_support": sorted([list(pair) for pair in sorted(selected_local_support)]),
             "selected_medium_support": sorted([list(pair) for pair in sorted(selected_medium_support)]),
             "diagnostic_shell": sorted([list(pair) for pair in sorted(diagnostic_shell)]),
+            "selected_blueprint_unclassified_core": sorted([
+                list(pair) for pair in sorted(selected_blueprint_unclassified_core)
+            ]),
             "long_range_evidence": {
                 "pairs": sorted([list(pair) for pair in sorted(long_range_evidence_pairs)]),
                 "count": len(long_range_evidence_pairs),
@@ -2000,6 +2065,20 @@ def main() -> None:
             "runtime_v10_long_range_overlap": runtime_long_range_overlap,
             "failure_type": runtime_v10_failure_reasons[0] if runtime_v10_failure_reasons else None,
             "failure_types": runtime_v10_failure_reasons,
+            "input_selected_pair_count": input_selected_pair_count,
+            "classified_selected_pair_count": classified_selected_pair_count,
+            "dropped_selected_pair_count": dropped_selected_pair_count,
+            "unclassified_selected_pairs": sorted([
+                list(pair) for pair in sorted([
+                    pair for pair, bucket in selected_pair_classification.items()
+                    if bucket == "selected_blueprint_unclassified_core"
+                ])
+            ]),
+            "rejected_selected_pairs": sorted([list(pair) for pair in sorted(rejected_selected_pairs)]),
+            "classification_coverage_ratio": _safe_ratio(
+                classified_selected_pair_count,
+                input_selected_pair_count,
+            ),
             "physics_interpretation_allowed": runtime_v10_physics_interpretation_allowed,
         }
 
