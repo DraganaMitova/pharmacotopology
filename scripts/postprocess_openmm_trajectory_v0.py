@@ -26,6 +26,18 @@ DEFAULT_EXTERNAL_COUPLING_FILE = (
 )
 
 
+_FREQUENCY_AUTO_BUDGET_FRACTIONS = {
+    "strict": 0.20,  # top-L/5
+    "balanced": 0.50,  # top-L/2
+    "broad": 1.00,  # top-L
+}
+
+
+def _auto_frequency_budgets(sequence_length: int, profile: str) -> int:
+    fraction = _FREQUENCY_AUTO_BUDGET_FRACTIONS.get(profile, 0.50)
+    return max(1, int(math.floor(sequence_length * fraction)))
+
+
 def _load_row(benchmark_file: Path, source_accession: str) -> RealCoordinateVisualRow:
     rows = load_real_coordinate_visual_rows(benchmark_file)
     for row in rows:
@@ -116,6 +128,306 @@ def _auto_threshold(values: Sequence[float], *, default: float) -> float:
     if gap <= 0.0:
         return default
     return max(0.0, sorted_values[index + 1])
+
+
+def _build_stable_pairs_for_frequency_threshold(
+    pair_counts: Counter[tuple[int, int]],
+    *,
+    required_frames: int,
+    row: RealCoordinateVisualRow,
+    sequence: str,
+    dca_scores: dict[tuple[int, int], float],
+    dca_threshold: float,
+    chemical_threshold: float,
+    topology_mode: str,
+    domain_boundaries: tuple[tuple[int, int], ...],
+    control_count: int,
+    max_control_overlap_fraction: float,
+    max_degree: int,
+    frequency_threshold: float,
+) -> tuple[
+    list[tuple[tuple[int, int], dict[str, float]]],
+    dict[str, int],
+]:
+    if not pair_counts:
+        return [], {
+            "pre_control_pair_count": 0,
+            "control_removed_pair_count": 0,
+            "control_count": 0,
+            "degree_culled_pair_count": 0,
+            "dca_supported_pair_count": 0,
+        }
+
+    pre_candidates: list[tuple[tuple[int, int], dict[str, float]]] = []
+    for (left, right), count in pair_counts.items():
+        if left > len(sequence) or right > len(sequence):
+            continue
+        if left >= right:
+            continue
+        freq = count / required_frames
+        if freq < frequency_threshold:
+            continue
+        chem = chemical_score(sequence[left - 1], sequence[right - 1])
+        if chem < chemical_threshold:
+            continue
+        dca = dca_scores.get((left, right), 0.0)
+        if dca < dca_threshold:
+            continue
+        if not _topology_ok(
+            left,
+            right,
+            domain_boundaries=domain_boundaries,
+            topology_mode=topology_mode,
+        ):
+            continue
+        pre_candidates.append(
+            (
+                (left, right),
+                {
+                    "count": count,
+                    "frequency": freq,
+                    "chemical_score": chem,
+                    "dca_score": dca,
+                },
+            )
+        )
+
+    pre_control_count = len(pre_candidates)
+    auto_control_count = control_count
+    if auto_control_count <= 0:
+        auto_control_count = 0 if pre_control_count <= 0 else min(6, int(math.sqrt(pre_control_count)))
+
+    control_hits = _control_gap(
+        row=row,
+        selected_pairs=[pair for pair, _ in pre_candidates],
+        candidate_pairs=tuple(sorted(pair_counts)),
+        control_count=auto_control_count,
+    )
+
+    surviving_pairs: list[tuple[tuple[int, int], dict[str, float]]] = []
+    control_removed = 0
+    for pair, payload in pre_candidates:
+        overlap = control_hits.get(pair, 0) / auto_control_count if auto_control_count else 0.0
+        payload = dict(payload)
+        payload["control_overlap_fraction"] = overlap
+        payload["control_gap"] = 1.0 - overlap
+        if overlap > max_control_overlap_fraction:
+            control_removed += 1
+            continue
+        payload["survival_score"] = (
+            0.50 * payload["frequency"]
+            + 0.25 * payload["chemical_score"]
+            + 0.25 * payload["dca_score"]
+        )
+        surviving_pairs.append((pair, payload))
+
+    surviving_pairs = sorted(
+        surviving_pairs,
+        key=lambda item: (-item[1]["survival_score"], -item[1]["frequency"], -item[1]["dca_score"], item[0][0], item[0][1]),
+    )
+    before_degree_cull = len(surviving_pairs)
+    surviving_pairs = _apply_degree_cap(
+        surviving_pairs,
+        max_degree=max_degree,
+        sequence_length=len(sequence),
+    )
+    degree_culled = before_degree_cull - len(surviving_pairs)
+
+    payload = {
+        "pre_control_pair_count": pre_control_count,
+        "control_removed_pair_count": control_removed,
+        "control_count": auto_control_count,
+        "degree_culled_pair_count": degree_culled,
+        "dca_supported_pair_count": len([pair for pair, count in pair_counts.items() if dca_scores.get(pair, 0.0) >= dca_threshold]),
+    }
+    return surviving_pairs, payload
+
+
+def _auto_frequency_candidate_profiles(profile: str) -> tuple[float, float, float]:
+    profile = profile.lower()
+    if profile == "strict":
+        return (0.72, 0.20, 0.08)  # precision-first
+    if profile == "broad":
+        return (0.22, 0.60, 0.18)  # recall-first
+    return (0.38, 0.48, 0.14)  # balanced
+
+
+def _resolve_auto_frequency_threshold(
+    pair_counts: Counter[tuple[int, int]],
+    required_frames: int,
+    *,
+    row: RealCoordinateVisualRow,
+    sequence: str,
+    dca_scores: dict[tuple[int, int], float],
+    dca_threshold: float,
+    chemical_threshold: float,
+    topology_mode: str,
+    domain_boundaries: tuple[tuple[int, int], ...],
+    control_count: int,
+    max_control_overlap_fraction: float,
+    max_degree: int,
+    profile: str,
+    fallback_frequency: float = 0.0,
+) -> tuple[
+    float,
+    list[tuple[tuple[int, int], dict[str, float]]],
+    dict[str, object],
+]:
+    if not pair_counts:
+        return fallback_frequency, [], {
+            "auto_profile": profile,
+            "selected_frequency_threshold": fallback_frequency,
+            "frequency_budget_target": _auto_frequency_budgets(len(sequence), profile),
+            "frequency_auto_selection_reason": "no_frequency_distribution",
+            "frequency_auto_candidates": 0,
+            "frequency_auto_valid_candidates": 0,
+            "best_coverage_to_budget": 0.0,
+            "best_mean_frequency": 0.0,
+            "best_mean_survival_score": 0.0,
+            "best_largest_count_drop": 0.0,
+        }
+
+    frequency_values = sorted(
+        {count / required_frames for count in pair_counts.values()},
+        reverse=True,
+    )
+    if not frequency_values:
+        return fallback_frequency, [], {
+            "auto_profile": profile,
+            "selected_frequency_threshold": fallback_frequency,
+            "frequency_budget_target": _auto_frequency_budgets(len(sequence), profile),
+            "frequency_auto_selection_reason": "no_frequency_distribution",
+            "frequency_auto_candidates": 0,
+            "frequency_auto_valid_candidates": 0,
+            "best_coverage_to_budget": 0.0,
+            "best_mean_frequency": 0.0,
+            "best_mean_survival_score": 0.0,
+            "best_largest_count_drop": 0.0,
+        }
+
+    if frequency_values[-1] > 0.0:
+        frequency_values.append(0.0)
+
+    weight_freq, weight_coverage, weight_survival = _auto_frequency_candidate_profiles(profile)
+    budget = _auto_frequency_budgets(len(sequence), profile)
+    budget = max(1, budget)
+
+    best_threshold = frequency_values[-1]
+    best_metadata: dict[str, object] = {}
+    best_score = -1.0
+    valid_candidates = 0
+    best_drop = 0.0
+    best_selected_pairs: list[tuple[tuple[int, int], dict[str, float]]] = []
+
+    last_raw_count: int | None = None
+    for index, frequency_threshold in enumerate(frequency_values):
+        stable_pairs, metadata = _build_stable_pairs_for_frequency_threshold(
+            pair_counts,
+            required_frames=required_frames,
+            row=row,
+            sequence=sequence,
+            dca_scores=dca_scores,
+            dca_threshold=dca_threshold,
+            chemical_threshold=chemical_threshold,
+            topology_mode=topology_mode,
+            domain_boundaries=domain_boundaries,
+            control_count=control_count,
+            max_control_overlap_fraction=max_control_overlap_fraction,
+            max_degree=max_degree,
+            frequency_threshold=frequency_threshold,
+        )
+
+        selected_pairs = stable_pairs[:budget]
+        raw_selected_count = len(stable_pairs)
+        selected_count = len(selected_pairs)
+        if selected_count <= 0:
+            continue
+        valid_candidates += 1
+
+        coverage = selected_count / budget if budget else 0.0
+        mean_frequency = sum(item[1]["frequency"] for item in selected_pairs) / selected_count
+        mean_survival = sum(item[1]["survival_score"] for item in selected_pairs) / selected_count
+        largest_count_drop = 0.0
+        if last_raw_count is not None:
+            prev = last_raw_count
+            drop = (prev - raw_selected_count) if prev > raw_selected_count else 0.0
+            if prev > 0:
+                largest_count_drop = max(largest_count_drop, drop / max(1, prev))
+        last_raw_count = raw_selected_count
+
+        score = (
+            weight_freq * mean_frequency
+            + weight_coverage * coverage
+            + weight_survival * mean_survival
+        )
+
+        candidate_payload = {
+            "frequency_threshold": frequency_threshold,
+            "raw_selected_count": raw_selected_count,
+            "selected_count": selected_count,
+            "coverage": coverage,
+            "mean_frequency": mean_frequency,
+            "mean_survival_score": mean_survival,
+            "largest_count_drop": largest_count_drop,
+            **metadata,
+        }
+
+        if score > best_score:
+            best_score = score
+            best_threshold = frequency_threshold
+            best_metadata = candidate_payload
+            best_selected_pairs = selected_pairs
+            best_drop = largest_count_drop
+
+    if not best_metadata:
+        fallback_threshold = frequency_values[-1]
+        stable_pairs, metadata = _build_stable_pairs_for_frequency_threshold(
+            pair_counts,
+            required_frames=required_frames,
+            row=row,
+            sequence=sequence,
+            dca_scores=dca_scores,
+            dca_threshold=dca_threshold,
+            chemical_threshold=chemical_threshold,
+            topology_mode=topology_mode,
+            domain_boundaries=domain_boundaries,
+            control_count=control_count,
+            max_control_overlap_fraction=max_control_overlap_fraction,
+            max_degree=max_degree,
+            frequency_threshold=fallback_threshold,
+        )
+        return fallback_threshold, stable_pairs[:budget], {
+            **metadata,
+            "auto_profile": profile,
+            "selected_frequency_threshold": fallback_threshold,
+            "frequency_budget_target": budget,
+            "frequency_auto_selection_reason": "fallback_due_to_zero_utility",
+            "frequency_auto_candidates": len(frequency_values),
+            "frequency_auto_valid_candidates": valid_candidates,
+            "best_coverage_to_budget": 0.0,
+            "best_mean_frequency": 0.0,
+            "best_mean_survival_score": 0.0,
+            "best_largest_count_drop": best_drop,
+        }
+
+    candidate_payload = best_metadata.copy()
+    candidate_payload["selected_count"] = len(best_selected_pairs)
+    candidate_payload.update(
+        {
+            "auto_profile": profile,
+            "selected_frequency_threshold": best_threshold,
+            "frequency_budget_target": budget,
+            "frequency_auto_candidates": len(frequency_values),
+            "frequency_auto_valid_candidates": valid_candidates,
+            "best_coverage_to_budget": candidate_payload["coverage"],
+            "best_mean_frequency": candidate_payload["mean_frequency"],
+            "best_mean_survival_score": candidate_payload["mean_survival_score"],
+            "best_largest_count_drop": best_drop,
+            "frequency_auto_selection_reason": "best_auto_utility",
+        },
+    )
+    return float(best_threshold), list(best_selected_pairs), candidate_payload
+
 
 
 def _resolve_threshold(raw: str | float | None, values: Sequence[float], *, default: float) -> float:
@@ -272,7 +584,13 @@ def main() -> None:
     parser.add_argument(
         "--frequency-threshold",
         default="auto",
-        help='Either numeric threshold [0-1] or "auto" to use internal largest-gap cutoff.',
+        help='Either numeric threshold [0-1] or "auto" to use profile-controlled auto selector.',
+    )
+    parser.add_argument(
+        "--frequency-auto-profile",
+        default="balanced",
+        choices=("strict", "balanced", "broad"),
+        help="Auto profile: strict=L/5, balanced=L/2, broad=L.",
     )
     parser.add_argument("--chemical-threshold", type=float, default=0.50)
     parser.add_argument(
@@ -343,10 +661,16 @@ def main() -> None:
             "tail_frames": tail_count,
             "considered_frames": required_frames,
             "frequency_threshold": args.frequency_threshold,
+            "frequency_auto_profile": args.frequency_auto_profile if args.frequency_threshold == "auto" else "manual",
             "resolved_frequency_threshold": 0.0,
             "chemical_threshold": args.chemical_threshold,
             "dca_threshold": args.dca_threshold,
             "resolved_dca_threshold": 0.0,
+            "frequency_auto_metadata": {},
+            "selected_count_before_budget": 0,
+            "frequency_budget_target": _auto_frequency_budgets(row.sequence_length, args.frequency_auto_profile) if args.frequency_threshold == "auto" else 0,
+            "frequency_auto_candidates": 0,
+            "frequency_auto_valid_candidates": 0,
             "topology_mode": args.topology_mode,
             "domain_boundaries": args.domain_boundaries,
             "max_degree": args.max_degree,
@@ -376,90 +700,64 @@ def main() -> None:
         return
 
     raw_pair_count = len(pair_counts)
-    freq_values = [count / required_frames for count in pair_counts.values()]
-    freq_threshold = _resolve_threshold(args.frequency_threshold, freq_values, default=0.50)
     dca_values = [dca_scores.get(pair, 0.0) for pair in candidate_pairs]
     dca_threshold = _resolve_threshold(args.dca_threshold, dca_values, default=0.0)
 
-    candidates: list[tuple[tuple[int, int], dict[str, float]]] = []
-    for (left, right), count in pair_counts.items():
-        if left > len(row.sequence) or right > len(row.sequence):
-            continue
-        if left >= right:
-            continue
-        freq = count / required_frames
-        if freq < freq_threshold:
-            continue
-        chem = chemical_score(row.sequence[left - 1], row.sequence[right - 1])
-        if chem < args.chemical_threshold:
-            continue
-        dca = dca_scores.get((left, right), 0.0)
-        if dca < dca_threshold:
-            continue
-        if not _topology_ok(
-            left,
-            right,
-            domain_boundaries=domain_boundaries,
+    frequency_auto_mode = isinstance(args.frequency_threshold, str) and args.frequency_threshold.strip().lower() == "auto"
+    if frequency_auto_mode:
+        freq_threshold = 0.0
+    else:
+        freq_values = [count / required_frames for count in pair_counts.values()]
+        freq_threshold = _resolve_threshold(args.frequency_threshold, freq_values, default=0.50)
+    auto_frequency_metadata: dict[str, object] = {}
+
+    if frequency_auto_mode:
+        freq_threshold, surviving_pairs, auto_frequency_metadata = _resolve_auto_frequency_threshold(
+            pair_counts,
+            required_frames,
+            row=row,
+            sequence=row.sequence,
+            dca_scores=dca_scores,
+            dca_threshold=dca_threshold,
+            chemical_threshold=args.chemical_threshold,
             topology_mode=args.topology_mode,
-        ):
-            continue
-        candidates.append(
-            (
-                (left, right),
-                {
-                    "count": count,
-                    "frequency": freq,
-                    "chemical_score": chem,
-                    "dca_score": dca,
-                },
-            )
+            domain_boundaries=domain_boundaries,
+            control_count=args.control_count,
+            max_control_overlap_fraction=args.max_control_overlap_fraction,
+            max_degree=args.max_degree,
+            profile=args.frequency_auto_profile,
+            fallback_frequency=freq_threshold,
         )
-
-    pre_control_count = len(candidates)
-
-    control_count = args.control_count
-    if control_count <= 0:
-        if pre_control_count <= 0:
-            control_count = 0
-        else:
-            control_count = min(6, int(math.sqrt(pre_control_count)))
-    control_hits = _control_gap(
-        row=row,
-        selected_pairs=[pair for pair, _ in candidates],
-        candidate_pairs=candidate_pairs,
-        control_count=control_count,
-    )
-
-    surviving_pairs: list[tuple[tuple[int, int], dict[str, float]]] = []
-    control_removed = 0
-    for pair, payload in candidates:
-        overlap = control_hits.get(pair, 0) / control_count if control_count else 0.0
-        payload = dict(payload)
-        payload["control_overlap_fraction"] = overlap
-        payload["control_gap"] = 1.0 - overlap
-        if overlap > args.max_control_overlap_fraction:
-            control_removed += 1
-            continue
-        payload["survival_score"] = (
-            0.50 * payload["frequency"]
-            + 0.25 * payload["chemical_score"]
-            + 0.25 * payload["dca_score"]
+        pre_control_count = int(auto_frequency_metadata.get("pre_control_pair_count", 0))
+        control_removed = int(auto_frequency_metadata.get("control_removed_pair_count", 0))
+        control_count = int(auto_frequency_metadata.get("control_count", 0))
+        degree_culled = int(auto_frequency_metadata.get("degree_culled_pair_count", 0))
+        dca_supported_count = int(auto_frequency_metadata.get("dca_supported_pair_count", 0))
+        selected_count_before_budget = len(surviving_pairs)
+        frequency_budget_target = int(auto_frequency_metadata.get("frequency_budget_target", _auto_frequency_budgets(len(row.sequence), args.frequency_auto_profile)))
+    else:
+        surviving_pairs, metadata = _build_stable_pairs_for_frequency_threshold(
+            pair_counts,
+            required_frames=required_frames,
+            row=row,
+            sequence=row.sequence,
+            dca_scores=dca_scores,
+            dca_threshold=dca_threshold,
+            chemical_threshold=args.chemical_threshold,
+            topology_mode=args.topology_mode,
+            domain_boundaries=domain_boundaries,
+            control_count=args.control_count,
+            max_control_overlap_fraction=args.max_control_overlap_fraction,
+            max_degree=args.max_degree,
+            frequency_threshold=freq_threshold,
         )
-        surviving_pairs.append((pair, payload))
-
-    surviving_pairs = sorted(
-        surviving_pairs,
-        key=lambda item: (-item[1]["survival_score"], -item[1]["frequency"], -item[1]["dca_score"], item[0][0], item[0][1]),
-    )
-    before_degree_cull = len(surviving_pairs)
-    surviving_pairs = _apply_degree_cap(
-        surviving_pairs,
-        max_degree=args.max_degree,
-        sequence_length=row.sequence_length,
-    )
-    degree_culled = before_degree_cull - len(surviving_pairs)
-
-    kept_pairs = [pair for pair, _ in surviving_pairs]
+        pre_control_count = int(metadata["pre_control_pair_count"])
+        control_removed = int(metadata["control_removed_pair_count"])
+        control_count = int(metadata["control_count"])
+        degree_culled = int(metadata["degree_culled_pair_count"])
+        dca_supported_count = int(metadata["dca_supported_pair_count"])
+        selected_count_before_budget = len(surviving_pairs)
+        frequency_budget_target = 0
 
     contact_file = out_dir / "openmm_stable_trajectory_contacts.csv"
     with contact_file.open("w", encoding="utf-8", newline="") as handle:
@@ -499,6 +797,7 @@ def main() -> None:
                 }
             )
 
+    kept_pairs = [pair for pair, _ in surviving_pairs]
     predicted_pairs = set(kept_pairs)
     metric = evaluate_contact_prediction(
         native_pairs=row.native_contact_pairs(),
@@ -519,6 +818,7 @@ def main() -> None:
         "considered_frames": required_frames,
         "frequency_threshold": args.frequency_threshold,
         "resolved_frequency_threshold": freq_threshold,
+        "frequency_auto_profile": args.frequency_auto_profile if frequency_auto_mode else "manual",
         "chemical_threshold": args.chemical_threshold,
         "dca_threshold": args.dca_threshold,
         "resolved_dca_threshold": dca_threshold,
@@ -534,7 +834,12 @@ def main() -> None:
         "pre_control_pair_count": pre_control_count,
         "control_removed_pair_count": control_removed,
         "degree_culled_pair_count": degree_culled,
-        "dca_supported_pair_count": len([pair for pair in pair_counts if dca_scores.get(pair, 0.0) >= dca_threshold]),
+        "dca_supported_pair_count": dca_supported_count,
+        "selected_count_before_budget": selected_count_before_budget,
+        "frequency_budget_target": frequency_budget_target,
+        "frequency_auto_metadata": auto_frequency_metadata if frequency_auto_mode else {},
+        "frequency_auto_candidates": int(auto_frequency_metadata.get("frequency_auto_candidates", 0)),
+        "frequency_auto_valid_candidates": int(auto_frequency_metadata.get("frequency_auto_valid_candidates", 0)),
         "kept_pair_count": len(predicted_pairs),
         "predicted_contacts_from_selected_frames": len(predicted_pairs),
         **metric_payload,
