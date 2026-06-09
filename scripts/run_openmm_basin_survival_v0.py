@@ -1255,7 +1255,12 @@ def main() -> None:
             tail_fraction=selected_tail,
             contact_cutoff_ang=selected_cutoff,
         )
+        selected_report["calibration_note"] = (
+            "This is a garage calibration run. Native metrics are used only as "
+            "diagnostic dashboard, not as selection authority."
+        )
         summary_payload = {
+            "calibration_note": selected_report["calibration_note"],
             **selected_report,
             "selected_tail_fraction": selected_tail,
             "selected_contact_cutoff_angstrom": selected_cutoff,
@@ -1315,6 +1320,10 @@ def main() -> None:
             dca_scores=dca_scores,
             tail_fraction=args.tail_fraction,
             contact_cutoff_ang=args.contact_cutoff_ang,
+        )
+        selected_report["calibration_note"] = (
+            "This is a garage calibration run. Native metrics are used only as "
+            "diagnostic dashboard, not as selection authority."
         )
         summary_path = out_dir / "openmm_basin_survival_summary.json"
         summary_path.write_text(json.dumps(selected_runs, indent=2, sort_keys=True), encoding="utf-8")
