@@ -30,6 +30,11 @@ SRC_ROOT = REPO_ROOT / "src"
 if str(SRC_ROOT) not in sys.path:
     sys.path.insert(0, str(SRC_ROOT))
 
+Pair = tuple[int, int]
+
+CORE_LONG_RANGE_SEPARATION = 24
+MEDIUM_SUPPORT_MIN_SEPARATION = 8
+
 from pharmacotopology.folding_native_contact_eval import evaluate_contact_prediction
 from pharmacotopology.folding_evolutionary_constraints import load_coupling_dataset
 from pharmacotopology.folding_real_coordinate_visual_benchmark import (
@@ -397,10 +402,83 @@ def _set_overlap_ratio(
     return round(len(selected_pairs & blueprint_pairs) / len(blueprint_pairs), 6)
 
 
+def _classify_contact_role(lane: str, sequence_sep: int) -> str:
+    if sequence_sep >= CORE_LONG_RANGE_SEPARATION:
+        if lane == "balanced_rescue":
+            return "border_long_range_rescue"
+        if lane in {"strict", "balanced"}:
+            return "true_long_range_core"
+        return "diagnostic_shell"
+    if sequence_sep >= MEDIUM_SUPPORT_MIN_SEPARATION:
+        return "medium_support"
+    return "local_support"
+
+
+def _aggregate_pair_status(values: Sequence[str]) -> str:
+    if not values:
+        return "missing_from_tail"
+    priority = [
+        "selected",
+        "degree_cap",
+        "control_overlap",
+        "lane_min_separation",
+        "topology",
+        "dca",
+        "chemical",
+        "frequency",
+        "approach_then_disappear",
+        "never_approached",
+        "missing_from_tail",
+    ]
+    for status in priority:
+        if status in values:
+            return status
+    return "missing_from_tail"
+
+
+def _collect_replica_map(
+    items: list[dict[Pair, str]],
+    pair: Pair,
+) -> dict[str, str]:
+    values: dict[str, str] = {}
+    for idx, payload in enumerate(items, start=1):
+        if pair in payload:
+            values[f"replica_{idx:02d}"] = payload[pair]
+    return values
+
+
+def _collect_replica_lanes(
+    items: list[dict[Pair, str]],
+    pair: Pair,
+) -> dict[str, str]:
+    values: dict[str, str] = {}
+    for idx, payload in enumerate(items, start=1):
+        if pair in payload:
+            values[f"replica_{idx:02d}"] = payload[pair]
+    return values
+
+
+def _collect_replica_reachability(
+    items: list[dict[Pair, dict[str, object]]],
+    pair: Pair,
+) -> dict[int, dict[str, object]]:
+    values: dict[int, dict[str, object]] = {}
+    for idx, payload in enumerate(items, start=1):
+        if pair in payload:
+            details = payload[pair]
+            if isinstance(details, dict):
+                values[idx] = details
+    return values
+
+
 def _safe_ratio(count: int, total: int) -> float:
     if total == 0:
         return 0.0
     return round(count / total, 6)
+
+
+def _mean_float(values: Sequence[float]) -> float:
+    return round(sum(values) / len(values), 6) if values else 0.0
 
 
 def _summarize_reachability_metrics(
@@ -1160,6 +1238,23 @@ def main() -> None:
     parser.add_argument("--balanced-rescue-vote-min-average-chemical", type=float)
     parser.add_argument("--monitor-vote-min-average-chemical", type=float)
     parser.add_argument(
+        "--runtime-v10-role-aware-selector",
+        action="store_true",
+        help="Enable V10 role-aware final selection on runtime output.",
+    )
+    parser.add_argument(
+        "--rescue-late-vote-threshold",
+        type=int,
+        default=2,
+        help="Minimum replica support for rescue-late border role selection.",
+    )
+    parser.add_argument(
+        "--rescue-tail-frequency-threshold",
+        type=float,
+        default=0.5,
+        help="Tail contact frequency threshold for rescue-late border candidates.",
+    )
+    parser.add_argument(
         "--preflight-baseline-json",
         default="",
         help="Optional path with baseline lane pair sets for actuator preflight diff.",
@@ -1685,6 +1780,222 @@ def main() -> None:
         if "present_in_tail" in states:
             rescue_tail_presence += 1
 
+    runtime_v10_selection: Optional[dict[str, object]] = None
+    if args.runtime_v10_role_aware_selector:
+        resolved_v10_dca_thresholds = _lane_dca_threshold_config(
+            args.dca_threshold,
+            args.strict_dca_threshold,
+            args.balanced_strong_dca_threshold,
+            args.balanced_rescue_dca_threshold,
+            args.monitor_dca_threshold,
+        )
+        dca_values = [score for score in _load_dca_scores(
+            coupling_file=readout_coupling,
+            row=row,
+            sequence_length=row.sequence_length,
+        )[0].values()]
+        v10_dca_thresholds = {
+            lane: _resolve_threshold(value, dca_values, default=0.0)
+            for lane, value in resolved_v10_dca_thresholds.items()
+        }
+        v10_rescue_threshold = v10_dca_thresholds["balanced_rescue"]
+
+        selected_strict_scaffold: set[tuple[int, int]] = set()
+        selected_balanced_core: set[tuple[int, int]] = set()
+        selected_border_rescue: set[tuple[int, int]] = set()
+        monitor_only_border_rescue: set[tuple[int, int]] = set()
+        selected_local_support: set[tuple[int, int]] = set()
+        selected_medium_support: set[tuple[int, int]] = set()
+        diagnostic_shell: set[tuple[int, int]] = set()
+
+        support_by_pair: Counter[tuple[int, int]] = Counter()
+        dca_scores, _ = _load_dca_scores(
+            coupling_file=readout_coupling,
+            row=row,
+            sequence_length=row.sequence_length,
+        )
+        boundary_windows = _parse_domain_boundaries(args.domain_boundaries)
+
+        for item in successful:
+            for pair in item.stable_pairs:
+                support_by_pair[pair] += 1
+
+        border_rescue_selected_count = 0
+        border_rescue_monitor_count = 0
+
+        for pair in sorted(target_audit_pairs):
+            left, right = pair
+            sequence_sep = right - left
+            pair_selected = pair in selected_pair_lookup
+            lane_votes: Counter[str] = Counter()
+            pair_reachability = pair_audit.get(pair, {}).get("reachability_by_replica", {})
+            for item in successful:
+                payload = item.stable_pairs.get(pair)
+                if not payload:
+                    continue
+                payload_lane = payload.get("pair_lane", "monitor")
+                lane_votes[str(payload_lane)] += 1
+            observed_lane = sorted(lane_votes.items(), key=lambda item: item[1], reverse=True)
+            pair_lane = observed_lane[0][0] if observed_lane else "monitor"
+            pair_blueprint_lane = "monitor"
+            if pair in effective_lane_pairs["strict"]:
+                pair_blueprint_lane = "strict"
+            elif pair in effective_lane_pairs["balanced"]:
+                pair_blueprint_lane = "balanced"
+            elif pair in effective_lane_pairs["balanced_rescue"]:
+                pair_blueprint_lane = "balanced_rescue"
+            elif pair in effective_lane_pairs["monitor"]:
+                pair_blueprint_lane = "monitor"
+            elif pair in effective_lane_pairs["unknown"]:
+                pair_blueprint_lane = "unknown"
+            pair_role = _classify_contact_role(pair_blueprint_lane, sequence_sep)
+
+            tail_frequencies: list[float] = []
+            tail_presence_count = 0
+            geometry_observed = False
+            if isinstance(pair_reachability, dict):
+                for details in pair_reachability.values():
+                    if not isinstance(details, dict):
+                        continue
+                    if details.get("tail_observed"):
+                        tail_presence_count += 1
+                    freq = details.get("tail_frequency")
+                    if isinstance(freq, (int, float)):
+                        tail_frequencies.append(float(freq))
+                    if details.get("observed"):
+                        geometry_observed = True
+            tail_freq_mean = _mean_float(tail_frequencies)
+            geometry_reached = geometry_observed or tail_presence_count > 0
+            topology_ok = _topology_ok(
+                left,
+                right,
+                domain_boundaries=boundary_windows,
+                topology_mode=args.topology_mode,
+            )
+            candidate_eligible = topology_ok and pair in effective_anchor_pairs and tail_freq_mean >= args.rescue_tail_frequency_threshold
+            selected_under_rescue_late_rule = False
+            final_decision = "not_selected"
+
+        if pair_role == "border_long_range_rescue":
+            if candidate_eligible and float(dca_scores.get(pair, 0.0)) >= v10_rescue_threshold:
+                selected_under_rescue_late_rule = support_by_pair.get(pair, 0) >= args.rescue_late_vote_threshold
+                if selected_under_rescue_late_rule:
+                    selected_border_rescue.add(pair)
+                    border_rescue_selected_count += 1
+                    final_decision = "selected_border_rescue"
+                else:
+                    monitor_only_border_rescue.add(pair)
+                    border_rescue_monitor_count += 1
+                    final_decision = "monitor_only_border_rescue"
+            elif candidate_eligible and geometry_reached:
+                monitor_only_border_rescue.add(pair)
+                border_rescue_monitor_count += 1
+                final_decision = "monitor_only_border_rescue"
+
+            if pair_role == "true_long_range_core" and pair_selected:
+                if pair_blueprint_lane == "strict":
+                    selected_strict_scaffold.add(pair)
+                elif pair_blueprint_lane == "balanced":
+                    selected_balanced_core.add(pair)
+                elif pair_blueprint_lane == "monitor":
+                    pass
+            elif pair_role == "local_support" and pair_selected:
+                selected_local_support.add(pair)
+            elif pair_role == "medium_support" and pair_selected:
+                selected_medium_support.add(pair)
+            elif pair_role == "diagnostic_shell" and pair_selected:
+                diagnostic_shell.add(pair)
+
+            pair_audit[pair]["runtime_v10"] = {
+                "pair_lane": pair_lane,
+                "pair_role": pair_role,
+                "sequence_separation": sequence_sep,
+                "tail_frequency_mean": tail_freq_mean,
+                "tail_presence_count": tail_presence_count,
+                "topology_ok": topology_ok,
+                "geometry_reached": geometry_reached,
+                "dca_score": float(dca_scores.get(pair, 0.0)),
+                "rescue_late_support": support_by_pair.get(pair, 0),
+                "rescue_late_qualified": selected_under_rescue_late_rule,
+                "final_decision": final_decision,
+            }
+
+        runtime_v10_selected_pairs = (
+            selected_strict_scaffold
+            | selected_balanced_core
+            | selected_border_rescue
+            | selected_local_support
+            | selected_medium_support
+            | diagnostic_shell
+        )
+        long_range_evidence_pairs = selected_strict_scaffold | selected_balanced_core | selected_border_rescue
+        support_evidence_pairs = selected_local_support | selected_medium_support
+        runtime_long_range_overlap = _set_overlap_ratio(
+            long_range_evidence_pairs,
+            effective_lane_pairs["strict"] | effective_lane_pairs["balanced"] | effective_lane_pairs["balanced_rescue"],
+        )
+        long_range_evidence_polluted = (
+            len(
+                (
+                    set(long_range_evidence_pairs)
+                    & (selected_local_support | selected_medium_support | diagnostic_shell)
+                )
+            )
+            > 0
+        )
+        runtime_pair_in_blueprint = (
+            _safe_ratio(
+                len(long_range_evidence_pairs & effective_anchor_pairs),
+                len(long_range_evidence_pairs),
+            )
+            if long_range_evidence_pairs
+            else 0.0
+        )
+        runtime_v10_selection = {
+            "selected_strict_scaffold": sorted([list(pair) for pair in sorted(selected_strict_scaffold)]),
+            "selected_balanced_core": sorted([list(pair) for pair in sorted(selected_balanced_core)]),
+            "selected_border_rescue": sorted([list(pair) for pair in sorted(selected_border_rescue)]),
+            "monitor_only_border_rescue": sorted([list(pair) for pair in sorted(monitor_only_border_rescue)]),
+            "selected_local_support": sorted([list(pair) for pair in sorted(selected_local_support)]),
+            "selected_medium_support": sorted([list(pair) for pair in sorted(selected_medium_support)]),
+            "diagnostic_shell": sorted([list(pair) for pair in sorted(diagnostic_shell)]),
+            "long_range_evidence": {
+                "pairs": sorted([list(pair) for pair in sorted(long_range_evidence_pairs)]),
+                "count": len(long_range_evidence_pairs),
+            },
+            "support_evidence": {
+                "pairs": sorted([list(pair) for pair in sorted(support_evidence_pairs)]),
+                "count": len(support_evidence_pairs),
+            },
+            "monitor_only": {
+                "pairs": sorted([list(pair) for pair in sorted(monitor_only_border_rescue)]),
+                "count": len(monitor_only_border_rescue),
+            },
+            "diagnostic_only": {
+                "pairs": sorted([list(pair) for pair in sorted(diagnostic_shell)]),
+                "count": len(diagnostic_shell),
+            },
+            "noise_added": 0,
+            "long_range_evidence_polluted": bool(long_range_evidence_polluted),
+            "pair_in_blueprint": runtime_pair_in_blueprint,
+            "strict_overlap": _set_overlap_ratio(
+                selected_strict_scaffold,
+                effective_lane_pairs["strict"],
+            ),
+            "balanced_overlap": _set_overlap_ratio(
+                selected_balanced_core,
+                effective_lane_pairs["balanced"],
+            ),
+            "border_rescue_selected_count": border_rescue_selected_count,
+            "border_rescue_monitor_count": border_rescue_monitor_count,
+            "native_dashboard_precision": float(metric["native_contact_precision"]),
+            "native_dashboard_recall": float(metric["native_contact_recall"]),
+            "claim_allowed": False,
+            "runtime_v10_selected_pairs": sorted([list(pair) for pair in sorted(runtime_v10_selected_pairs)]),
+            "runtime_v10_selected_pair_count": len(runtime_v10_selected_pairs),
+            "runtime_v10_long_range_overlap": runtime_long_range_overlap,
+        }
+
     success_criteria = {
         "strict_overlap": {"value": strict_overlap, "min": 0.70},
         "balanced_overlap": {"value": balanced_overlap, "min": 0.70},
@@ -1818,6 +2129,10 @@ def main() -> None:
             for r in replica_results
         ],
     }
+    if runtime_v10_selection is not None:
+        summary["runtime_v10_role_aware_selector"] = True
+        summary.update(runtime_v10_selection)
+
     if args.write_audit_json:
         path = Path(args.write_audit_json)
         path.write_text(
