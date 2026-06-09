@@ -5,8 +5,9 @@ from __future__ import annotations
 
 Each replica runs `run_openmm_dca_closure_md_v0.py` with a different seed and
 same deterministic settings. Contacts are extracted from the trajectory tail using
-the same chemistry+frequency filter as `postprocess_openmm_trajectory_v0.py`,
-then residues pairs are voted across replicas.
+an explicit "contact survival" rule (frequency, chemistry, DCA support,
+topology gate, control-gap and per-residue degree cap) before voting across
+replicas.
 """
 
 import argparse
@@ -21,7 +22,7 @@ from collections import Counter
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any
+from typing import Sequence
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 SRC_ROOT = REPO_ROOT / "src"
@@ -29,10 +30,12 @@ if str(SRC_ROOT) not in sys.path:
     sys.path.insert(0, str(SRC_ROOT))
 
 from pharmacotopology.folding_native_contact_eval import evaluate_contact_prediction
+from pharmacotopology.folding_evolutionary_constraints import load_coupling_dataset
 from pharmacotopology.folding_real_coordinate_visual_benchmark import (
     RealCoordinateVisualRow,
     load_real_coordinate_visual_rows,
 )
+from pharmacotopology.folding_five_axis_physics import matched_control_pairs
 from pharmacotopology.folding_template_docking import chemical_score
 
 
@@ -134,6 +137,148 @@ def _extract_contacts(
     return contacts
 
 
+def _load_dca_scores(
+    *,
+    coupling_file: Path,
+    row: RealCoordinateVisualRow,
+    sequence_length: int,
+) -> dict[tuple[int, int], float]:
+    if not coupling_file or not coupling_file.exists():
+        return {}
+    try:
+        dataset = load_coupling_dataset(coupling_file)
+    except Exception:
+        return {}
+    scores: dict[tuple[int, int], float] = {}
+    for constraint in dataset.constraints:
+        if constraint.row_id != row.row_id and constraint.source_accession != row.source_accession:
+            continue
+        if not (1 <= constraint.i <= sequence_length and 1 <= constraint.j <= sequence_length):
+            continue
+        if constraint.i >= constraint.j:
+            continue
+        pair = (constraint.i, constraint.j)
+        prev = scores.get(pair, 0.0)
+        confidence = float(constraint.confidence)
+        if confidence > prev:
+            scores[pair] = confidence
+    return scores
+
+
+def _auto_threshold(values: Sequence[float], *, default: float) -> float:
+    sorted_values = sorted(set(float(value) for value in values), reverse=True)
+    if len(sorted_values) < 2:
+        return default
+    gaps: list[tuple[float, int]] = []
+    for index, left_value in enumerate(sorted_values[:-1]):
+        right_value = sorted_values[index + 1]
+        gaps.append((left_value - right_value, index))
+    if not gaps:
+        return default
+    gap, index = max(gaps, key=lambda item: item[0])
+    if gap <= 0.0:
+        return default
+    return max(0.0, sorted_values[index + 1])
+
+
+def _resolve_threshold(raw: str | float | None, values: Sequence[float], *, default: float) -> float:
+    if raw is None:
+        return default
+    if isinstance(raw, str):
+        candidate = raw.strip().lower()
+        if candidate == "auto":
+            return _auto_threshold(values, default=default)
+        return float(candidate)
+    return float(raw)
+
+
+def _parse_domain_boundaries(raw: str | None) -> tuple[tuple[int, int], ...]:
+    if not raw:
+        return ()
+    bounds: list[tuple[int, int]] = []
+    for chunk in [item.strip() for item in raw.split(",") if item.strip()]:
+        if "-" not in chunk:
+            raise ValueError(f"invalid domain boundary segment: {chunk!r}")
+        start_text, end_text = chunk.split("-", maxsplit=1)
+        start = int(start_text.strip())
+        end = int(end_text.strip())
+        if start < 1 or end < start:
+            raise ValueError(f"invalid domain boundary: {chunk!r}")
+        bounds.append((start, end))
+    if not bounds:
+        return ()
+    return tuple(sorted(bounds, key=lambda item: (item[0], item[1])))
+
+
+def _residue_domain_index(position: int, boundaries: tuple[tuple[int, int], ...]) -> int:
+    for index, (start, end) in enumerate(boundaries):
+        if start <= position <= end:
+            return index
+    return -1
+
+
+def _topology_ok(
+    left: int,
+    right: int,
+    *,
+    domain_boundaries: tuple[tuple[int, int], ...],
+    topology_mode: str,
+) -> bool:
+    if topology_mode == "none" or not domain_boundaries:
+        return True
+    left_domain = _residue_domain_index(left, domain_boundaries)
+    right_domain = _residue_domain_index(right, domain_boundaries)
+    if left_domain == -1 or right_domain == -1:
+        return True
+    if topology_mode == "interdomain":
+        return left_domain != right_domain
+    if topology_mode == "intradomain":
+        return left_domain == right_domain
+    return True
+
+
+def _control_hits(
+    *,
+    row: RealCoordinateVisualRow,
+    selected_pairs: Sequence[tuple[int, int]],
+    candidate_pairs: Sequence[tuple[int, int]],
+    control_count: int,
+) -> dict[tuple[int, int], int]:
+    if control_count <= 0 or not selected_pairs:
+        return {}
+    hits: dict[tuple[int, int], int] = Counter()
+    for control_index in range(1, control_count + 1):
+        for pair in matched_control_pairs(
+            row=row,
+            selected_pairs=selected_pairs,
+            candidate_pairs=candidate_pairs,
+            control_index=control_index,
+        ):
+            hits[pair] += 1
+    return hits
+
+
+def _apply_degree_cap(
+    pairs: list[tuple[tuple[int, int], dict[str, float]]],
+    *,
+    max_degree: int,
+    sequence_length: int,
+) -> list[tuple[tuple[int, int], dict[str, float]]]:
+    if max_degree <= 0 or not pairs:
+        return pairs
+    degree: list[int] = [0] * (sequence_length + 1)
+    accepted: list[tuple[tuple[int, int], dict[str, float]]] = []
+    for pair, payload in pairs:
+        left, right = pair
+        if left <= sequence_length and right <= sequence_length:
+            if degree[left] >= max_degree or degree[right] >= max_degree:
+                continue
+            degree[left] += 1
+            degree[right] += 1
+            accepted.append((pair, payload))
+    return accepted
+
+
 @dataclass
 class ReplicaResult:
     index: int
@@ -144,6 +289,7 @@ class ReplicaResult:
     trajectory: Path | None
     metric: dict[str, object] | None
     stable_pairs: dict[tuple[int, int], dict[str, float]]
+    stable_metadata: dict[str, object]
 
 
 def _run_replica(
@@ -193,45 +339,159 @@ def _run_replica(
         trajectory=trajectory,
         metric=metric,
         stable_pairs={},
+        stable_metadata={},
     )
 
 
 def _build_stable_contacts(
     trajectory: Path,
+    row: RealCoordinateVisualRow,
     sequence: str,
     tail_fraction: float,
     contact_cutoff_angstrom: float,
     min_separation: int,
-    frequency_threshold: float,
+    frequency_threshold: str | float,
+    dca_threshold: str | float,
     chemical_threshold: float,
-) -> tuple[dict[tuple[int, int], dict[str, float]], int]:
+    topology_mode: str,
+    domain_boundaries_raw: str,
+    max_degree: int,
+    control_count: int,
+    max_control_overlap_fraction: float,
+    coupling_file: Path,
+) -> tuple[
+    dict[tuple[int, int], dict[str, float]],
+    int,
+    dict[str, object],
+]:
     frames = _parse_ca_trajectory(trajectory)
     if not frames:
-        return {}, 0
+        return {}, 0, {"tail_count": 0, "considered_frames": 0}
     tail_count = max(1, math.ceil(len(frames) * tail_fraction))
     final_frames = frames[-tail_count:]
+
     pair_counts: Counter[tuple[int, int]] = Counter()
     for frame in final_frames:
         contacts = _extract_contacts(frame, contact_cutoff_angstrom, min_separation)
         pair_counts.update(contacts)
 
     required_frames = len(final_frames)
-    freq_cutoff = required_frames * frequency_threshold
-    stable: dict[tuple[int, int], dict[str, float]] = {}
+    raw_pairs = len(pair_counts)
+    dca_scores = _load_dca_scores(
+        coupling_file=coupling_file,
+        row=row,
+        sequence_length=row.sequence_length,
+    )
+    freq_values = [count / required_frames for count in pair_counts.values()] if pair_counts else []
+    resolved_frequency_threshold = _resolve_threshold(
+        frequency_threshold, freq_values, default=0.5
+    )
+    dca_values = [dca_scores.get(pair, 0.0) for pair in pair_counts]
+    resolved_dca_threshold = _resolve_threshold(dca_threshold, dca_values, default=0.0)
+
+    candidate_pairs = tuple(sorted(pair_counts))
+    boundaries = _parse_domain_boundaries(domain_boundaries_raw)
+    pre_control_candidates: list[tuple[tuple[int, int], dict[str, float]]] = []
     for (left, right), count in pair_counts.items():
-        if count <= freq_cutoff:
-            continue
         if left > len(sequence) or right > len(sequence):
+            continue
+        if left >= right:
+            continue
+        freq = count / required_frames
+        if freq < resolved_frequency_threshold:
             continue
         chem = chemical_score(sequence[left - 1], sequence[right - 1])
         if chem < chemical_threshold:
             continue
-        stable[(left, right)] = {
-            "count": float(count),
-            "frequency": count / required_frames,
-            "chemical_score": chem,
-        }
-    return stable, required_frames
+        dca = dca_scores.get((left, right), 0.0)
+        if dca < resolved_dca_threshold:
+            continue
+        if not _topology_ok(
+            left,
+            right,
+            domain_boundaries=boundaries,
+            topology_mode=topology_mode,
+        ):
+            continue
+        pre_control_candidates.append(
+            (
+                (left, right),
+                {
+                    "count": float(count),
+                    "frequency": freq,
+                    "chemical_score": chem,
+                    "dca_score": dca,
+                },
+            )
+        )
+
+    pre_control_count = len(pre_control_candidates)
+    auto_control_count = control_count
+    if auto_control_count <= 0:
+        auto_control_count = 0 if pre_control_count <= 0 else min(6, int(math.sqrt(pre_control_count)))
+
+    control_hits = _control_hits(
+        row=row,
+        selected_pairs=[pair for pair, _ in pre_control_candidates],
+        candidate_pairs=candidate_pairs,
+        control_count=auto_control_count,
+    )
+    surviving_pairs: list[tuple[tuple[int, int], dict[str, float]]] = []
+    control_removed = 0
+    for pair, payload in pre_control_candidates:
+        overlap = control_hits.get(pair, 0) / auto_control_count if auto_control_count else 0.0
+        payload = dict(payload)
+        payload["control_overlap_fraction"] = overlap
+        payload["control_gap"] = 1.0 - overlap
+        if overlap > max_control_overlap_fraction:
+            control_removed += 1
+            continue
+        payload["survival_score"] = (
+            0.50 * payload["frequency"]
+            + 0.25 * payload["chemical_score"]
+            + 0.25 * payload["dca_score"]
+        )
+        surviving_pairs.append((pair, payload))
+
+    surviving_pairs.sort(
+        key=lambda item: (
+            -item[1]["survival_score"],
+            -item[1]["frequency"],
+            -item[1]["dca_score"],
+            item[0][0],
+            item[0][1],
+        ),
+    )
+    before_degree = len(surviving_pairs)
+    surviving_pairs = _apply_degree_cap(
+        surviving_pairs,
+        max_degree=max_degree,
+        sequence_length=row.sequence_length,
+    )
+    degree_culled = before_degree - len(surviving_pairs)
+    stable = {pair: payload for pair, payload in surviving_pairs}
+    dca_supported_count = len([pair for pair in pair_counts if dca_scores.get(pair, 0.0) >= resolved_dca_threshold])
+
+    metadata = {
+        "tail_count": tail_count,
+        "considered_frames": required_frames,
+        "raw_contact_pair_count": raw_pairs,
+        "resolved_frequency_threshold": resolved_frequency_threshold,
+        "resolved_dca_threshold": resolved_dca_threshold,
+        "pre_control_pair_count": pre_control_count,
+        "control_removed_pair_count": control_removed,
+        "degree_culled_pair_count": degree_culled,
+        "dca_supported_pair_count": dca_supported_count,
+        "control_count": auto_control_count,
+        "max_control_overlap_fraction": max_control_overlap_fraction,
+        "topology_mode": topology_mode,
+        "domain_boundaries": domain_boundaries_raw,
+        "max_degree": max_degree,
+        "frequency_threshold": frequency_threshold,
+        "dca_threshold": dca_threshold,
+        "chemical_threshold": chemical_threshold,
+    }
+    return stable, len(stable), metadata
 
 
 def _vote_pairs(replica_pairs: list[dict[tuple[int, int], dict[str, float]]], vote_threshold: int, min_average_chem: float) -> tuple[list[tuple[int, int, int, float]], int]:
@@ -286,9 +546,23 @@ def main() -> None:
 
     parser.add_argument("--tail-fraction", type=float, default=0.20)
     parser.add_argument("--contact-cutoff-ang", type=float, default=7.0)
-    parser.add_argument("--frequency-threshold", type=float, default=0.50)
+    parser.add_argument(
+        "--frequency-threshold",
+        default="auto",
+        help='Either numeric threshold [0-1] or "auto" to use internal largest-gap cutoff.',
+    )
+    parser.add_argument(
+        "--dca-threshold",
+        default="auto",
+        help='Either numeric confidence [0-1] or "auto" to use internal largest-gap cutoff.',
+    )
     parser.add_argument("--chemical-threshold", type=float, default=0.50)
     parser.add_argument("--min-separation", type=int, default=24)
+    parser.add_argument("--topology-mode", choices=("none", "interdomain", "intradomain"), default="none")
+    parser.add_argument("--domain-boundaries", default="", help='Example: "1-120,121-214"')
+    parser.add_argument("--max-degree", type=int, default=10, help="Residue degree cap (<=0 disables).")
+    parser.add_argument("--control-count", type=int, default=0, help="Matched control count (0=>auto).")
+    parser.add_argument("--max-control-overlap-fraction", type=float, default=0.20, help="Drop pair if appears in controls above this fraction.")
     parser.add_argument("--vote-threshold", type=int, default=7)
     parser.add_argument("--vote-min-average-chemical", type=float, default=0.50)
     parser.add_argument("--short-circuit", action="store_true", help="Stop after first successful high-precision run.")
@@ -386,27 +660,42 @@ def main() -> None:
             )
 
             if result.trajectory is not None and result.returncode == 0:
-                stable_pairs, considered_frames = _build_stable_contacts(
+                stable_pairs, kept_count, contact_meta = _build_stable_contacts(
                     trajectory=result.trajectory,
+                    row=row,
                     sequence=row.sequence,
                     tail_fraction=args.tail_fraction,
                     contact_cutoff_angstrom=args.contact_cutoff_ang,
                     min_separation=args.min_separation,
                     frequency_threshold=args.frequency_threshold,
+                    dca_threshold=args.dca_threshold,
                     chemical_threshold=args.chemical_threshold,
+                    topology_mode=args.topology_mode,
+                    domain_boundaries_raw=args.domain_boundaries,
+                    max_degree=args.max_degree,
+                    control_count=args.control_count,
+                    max_control_overlap_fraction=args.max_control_overlap_fraction,
+                    coupling_file=Path(args.external_coupling_file),
                 )
                 result.stable_pairs = stable_pairs
+                result.stable_metadata = contact_meta
                 stable_path = result.out_dir / "openmm_stable_replica_contacts.json"
                 stable_path.write_text(
                     json.dumps(
                         {
-                            "considered_frames": considered_frames,
+                            **contact_meta,
                             "tail_fraction": args.tail_fraction,
                             "contact_cutoff_angstrom": args.contact_cutoff_ang,
                             "frequency_threshold": args.frequency_threshold,
+                            "dca_threshold": args.dca_threshold,
                             "chemical_threshold": args.chemical_threshold,
+                            "topology_mode": args.topology_mode,
+                            "domain_boundaries": args.domain_boundaries,
+                            "max_degree": args.max_degree,
+                            "control_count": args.control_count,
+                            "max_control_overlap_fraction": args.max_control_overlap_fraction,
                             "min_separation": args.min_separation,
-                            "stable_pair_count": len(stable_pairs),
+                            "stable_pair_count": kept_count,
                             "stable_pairs": [
                                 {
                                     "i": i,
@@ -414,6 +703,10 @@ def main() -> None:
                                     "count": payload["count"],
                                     "frequency": payload["frequency"],
                                     "chemical_score": payload["chemical_score"],
+                                    "dca_score": payload["dca_score"],
+                                    "control_overlap_fraction": payload["control_overlap_fraction"],
+                                    "control_gap": payload["control_gap"],
+                                    "survival_score": payload["survival_score"],
                                 }
                                 for (i, j), payload in stable_pairs.items()
                             ],
@@ -425,14 +718,22 @@ def main() -> None:
                 )
 
             if args.short_circuit and result.returncode == 0 and result.trajectory is not None:
-                stable_pairs, _ = _build_stable_contacts(
+                stable_pairs, _, _ = _build_stable_contacts(
                     trajectory=result.trajectory,
+                    row=row,
                     sequence=row.sequence,
                     tail_fraction=args.tail_fraction,
                     contact_cutoff_angstrom=args.contact_cutoff_ang,
                     min_separation=args.min_separation,
                     frequency_threshold=args.frequency_threshold,
+                    dca_threshold=args.dca_threshold,
                     chemical_threshold=args.chemical_threshold,
+                    topology_mode=args.topology_mode,
+                    domain_boundaries_raw=args.domain_boundaries,
+                    max_degree=args.max_degree,
+                    control_count=args.control_count,
+                    max_control_overlap_fraction=args.max_control_overlap_fraction,
+                    coupling_file=Path(args.external_coupling_file),
                 )
                 metric = evaluate_contact_prediction(
                     native_pairs=row.native_contact_pairs(),
@@ -497,11 +798,17 @@ def main() -> None:
         "successful_replicas": len(successful),
         "vote_threshold": args.vote_threshold,
         "vote_min_average_chemical": args.vote_min_average_chemical,
+        "frequency_threshold": args.frequency_threshold,
+        "dca_threshold": args.dca_threshold,
+        "chemical_threshold": args.chemical_threshold,
         "tail_fraction": args.tail_fraction,
         "contact_cutoff_angstrom": args.contact_cutoff_ang,
-        "frequency_threshold": args.frequency_threshold,
-        "chemical_threshold": args.chemical_threshold,
         "min_separation": args.min_separation,
+        "topology_mode": args.topology_mode,
+        "domain_boundaries": args.domain_boundaries,
+        "max_degree": args.max_degree,
+        "control_count": args.control_count,
+        "max_control_overlap_fraction": args.max_control_overlap_fraction,
         "unique_voted_pairs": unique_vote_candidates,
         "selected_pair_count": len(predicted_pairs),
         "native_contact_precision": metric["native_contact_precision"],
@@ -516,6 +823,7 @@ def main() -> None:
                 "returncode": r.returncode,
                 "out_dir": str(r.out_dir),
                 "trajectory": str(r.trajectory) if r.trajectory else None,
+                "stable_metadata": r.stable_metadata,
                 "metric": r.metric,
             }
             for r in replica_results
