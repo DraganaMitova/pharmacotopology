@@ -1,0 +1,914 @@
+{
+  "after_min_separation_by_lane": {
+    "balanced": 24,
+    "balanced_rescue": 12,
+    "monitor": 24,
+    "strict": 24,
+    "unknown": 24
+  },
+  "before_min_separation_by_lane": {
+    "balanced": 24,
+    "balanced_rescue": 24,
+    "monitor": 24,
+    "strict": 24,
+    "unknown": 24
+  },
+  "lane_vote_support_after": {
+    "balanced": 13
+  },
+  "lane_vote_support_before": {
+    "balanced": 13
+  },
+  "long_range_evidence_polluted": false,
+  "long_range_selected_after": 3,
+  "long_range_selected_before": 3,
+  "noise_added": 0,
+  "pair_in_blueprint": 1.0,
+  "preflight": {
+    "failure_types": [],
+    "source_preflight_ready": true,
+    "v5_requirements": {
+      "anchor_profile_loaded": true,
+      "audit_pair_count": 8,
+      "effective_balanced_count": 30,
+      "effective_rescue_count": 14,
+      "effective_strict_count": 27,
+      "external_coupling_loaded": true,
+      "failed_checks": [],
+      "ready": true,
+      "short_circuit_disabled": true,
+      "topology_mode_set": true
+    }
+  },
+  "rescue_candidates_after": 0,
+  "rescue_candidates_before": 0,
+  "rescue_pairs": [
+    {
+      "allowed_by_rescue_lane_min_sep": false,
+      "blocked_by_global_min_sep_before": true,
+      "evidence_class": "diagnostic_shell",
+      "lane_admission_status": "lane_min_separation",
+      "lane_by_replica_after": {
+        "replica_01": "monitor",
+        "replica_02": "monitor",
+        "replica_03": "monitor",
+        "replica_04": "monitor"
+      },
+      "pair": [
+        4,
+        8
+      ],
+      "reachability_summary": {
+        "approached_then_lost": false,
+        "mean_tail_distance": 3.994936,
+        "min_distance_over_trajectory": 1.5204755834935464,
+        "never_approached": false,
+        "per_replica_tail_presence": {
+          "replica_01": true,
+          "replica_02": true,
+          "replica_03": true,
+          "replica_04": true
+        },
+        "selected_in_final_vote": false,
+        "state_counts": {
+          "present_in_tail": 4
+        },
+        "tail_contact_frequency": 0.75,
+        "tail_presence_count": 4
+      },
+      "reason_by_replica_after": {
+        "replica_01": "lane_min_separation",
+        "replica_02": "lane_min_separation",
+        "replica_03": "lane_min_separation",
+        "replica_04": "lane_min_separation"
+      },
+      "reason_by_replica_before": {
+        "replica_01": "lane_min_separation",
+        "replica_02": "lane_min_separation",
+        "replica_03": "lane_min_separation",
+        "replica_04": "lane_min_separation"
+      },
+      "role_classification": "diagnostic_shell",
+      "selected_after_rescue_lane": false,
+      "sequence_separation": 4,
+      "tail_contact_frequency": 0.75,
+      "tail_reachability_by_replica": {
+        "replica_01": {
+          "first_contact_frame": 0,
+          "last_contact_frame": 9,
+          "min_distance": 2.641002271865735,
+          "min_tail_distance": 5.6936039553168625,
+          "observed": true,
+          "tail_frame_count": 2,
+          "tail_frequency": 0.5,
+          "tail_observed": true,
+          "tail_start_frame": 8,
+          "trajectory_state": "present_in_tail"
+        },
+        "replica_02": {
+          "first_contact_frame": 1,
+          "last_contact_frame": 9,
+          "min_distance": 3.9466707488717847,
+          "min_tail_distance": 5.008711011827311,
+          "observed": true,
+          "tail_frame_count": 2,
+          "tail_frequency": 1.0,
+          "tail_observed": true,
+          "tail_start_frame": 8,
+          "trajectory_state": "present_in_tail"
+        },
+        "replica_03": {
+          "first_contact_frame": 1,
+          "last_contact_frame": 9,
+          "min_distance": 1.5204755834935464,
+          "min_tail_distance": 1.7997699853036662,
+          "observed": true,
+          "tail_frame_count": 2,
+          "tail_frequency": 0.5,
+          "tail_observed": true,
+          "tail_start_frame": 8,
+          "trajectory_state": "present_in_tail"
+        },
+        "replica_04": {
+          "first_contact_frame": 1,
+          "last_contact_frame": 9,
+          "min_distance": 3.1765580429137668,
+          "min_tail_distance": 3.477658551381938,
+          "observed": true,
+          "tail_frame_count": 2,
+          "tail_frequency": 1.0,
+          "tail_observed": true,
+          "tail_start_frame": 8,
+          "trajectory_state": "present_in_tail"
+        }
+      },
+      "vote_count_after_lane_admission": 0
+    },
+    {
+      "allowed_by_rescue_lane_min_sep": false,
+      "blocked_by_global_min_sep_before": true,
+      "evidence_class": "diagnostic_shell",
+      "lane_admission_status": "lane_min_separation",
+      "lane_by_replica_after": {
+        "replica_02": "monitor",
+        "replica_03": "monitor",
+        "replica_04": "monitor"
+      },
+      "pair": [
+        4,
+        11
+      ],
+      "reachability_summary": {
+        "approached_then_lost": true,
+        "mean_tail_distance": 5.593402,
+        "min_distance_over_trajectory": 0.513851145761105,
+        "never_approached": false,
+        "per_replica_tail_presence": {
+          "replica_01": false,
+          "replica_02": true,
+          "replica_03": true,
+          "replica_04": true
+        },
+        "selected_in_final_vote": false,
+        "state_counts": {
+          "approach_then_disappear": 1,
+          "present_in_tail": 3
+        },
+        "tail_contact_frequency": 0.625,
+        "tail_presence_count": 3
+      },
+      "reason_by_replica_after": {
+        "replica_01": "missing_from_tail",
+        "replica_02": "lane_min_separation",
+        "replica_03": "lane_min_separation",
+        "replica_04": "lane_min_separation"
+      },
+      "reason_by_replica_before": {
+        "replica_01": "missing_from_tail",
+        "replica_02": "lane_min_separation",
+        "replica_03": "lane_min_separation",
+        "replica_04": "lane_min_separation"
+      },
+      "role_classification": "diagnostic_shell",
+      "selected_after_rescue_lane": false,
+      "sequence_separation": 7,
+      "tail_contact_frequency": 0.625,
+      "tail_reachability_by_replica": {
+        "replica_01": {
+          "first_contact_frame": 0,
+          "last_contact_frame": 7,
+          "min_distance": 0.513851145761105,
+          "min_tail_distance": 7.308674435217356,
+          "observed": true,
+          "tail_frame_count": 2,
+          "tail_frequency": 0.0,
+          "tail_observed": false,
+          "tail_start_frame": 8,
+          "trajectory_state": "approach_then_disappear"
+        },
+        "replica_02": {
+          "first_contact_frame": 0,
+          "last_contact_frame": 9,
+          "min_distance": 0.9916335008459513,
+          "min_tail_distance": 4.249696577404069,
+          "observed": true,
+          "tail_frame_count": 2,
+          "tail_frequency": 1.0,
+          "tail_observed": true,
+          "tail_start_frame": 8,
+          "trajectory_state": "present_in_tail"
+        },
+        "replica_03": {
+          "first_contact_frame": 3,
+          "last_contact_frame": 9,
+          "min_distance": 3.8797047568081813,
+          "min_tail_distance": 4.445930498782024,
+          "observed": true,
+          "tail_frame_count": 2,
+          "tail_frequency": 0.5,
+          "tail_observed": true,
+          "tail_start_frame": 8,
+          "trajectory_state": "present_in_tail"
+        },
+        "replica_04": {
+          "first_contact_frame": 1,
+          "last_contact_frame": 9,
+          "min_distance": 4.721097647793374,
+          "min_tail_distance": 6.369306163154653,
+          "observed": true,
+          "tail_frame_count": 2,
+          "tail_frequency": 1.0,
+          "tail_observed": true,
+          "tail_start_frame": 8,
+          "trajectory_state": "present_in_tail"
+        }
+      },
+      "vote_count_after_lane_admission": 0
+    },
+    {
+      "allowed_by_rescue_lane_min_sep": false,
+      "blocked_by_global_min_sep_before": true,
+      "evidence_class": "diagnostic_shell",
+      "lane_admission_status": "lane_min_separation",
+      "lane_by_replica_after": {
+        "replica_01": "monitor",
+        "replica_02": "monitor",
+        "replica_03": "monitor",
+        "replica_04": "monitor"
+      },
+      "pair": [
+        5,
+        11
+      ],
+      "reachability_summary": {
+        "approached_then_lost": false,
+        "mean_tail_distance": 4.795445,
+        "min_distance_over_trajectory": 2.5727024701663295,
+        "never_approached": false,
+        "per_replica_tail_presence": {
+          "replica_01": true,
+          "replica_02": true,
+          "replica_03": true,
+          "replica_04": true
+        },
+        "selected_in_final_vote": false,
+        "state_counts": {
+          "present_in_tail": 4
+        },
+        "tail_contact_frequency": 0.75,
+        "tail_presence_count": 4
+      },
+      "reason_by_replica_after": {
+        "replica_01": "lane_min_separation",
+        "replica_02": "lane_min_separation",
+        "replica_03": "lane_min_separation",
+        "replica_04": "lane_min_separation"
+      },
+      "reason_by_replica_before": {
+        "replica_01": "lane_min_separation",
+        "replica_02": "lane_min_separation",
+        "replica_03": "lane_min_separation",
+        "replica_04": "lane_min_separation"
+      },
+      "role_classification": "diagnostic_shell",
+      "selected_after_rescue_lane": false,
+      "sequence_separation": 6,
+      "tail_contact_frequency": 0.75,
+      "tail_reachability_by_replica": {
+        "replica_01": {
+          "first_contact_frame": 1,
+          "last_contact_frame": 9,
+          "min_distance": 4.279128649620155,
+          "min_tail_distance": 4.803791523369853,
+          "observed": true,
+          "tail_frame_count": 2,
+          "tail_frequency": 0.5,
+          "tail_observed": true,
+          "tail_start_frame": 8,
+          "trajectory_state": "present_in_tail"
+        },
+        "replica_02": {
+          "first_contact_frame": 0,
+          "last_contact_frame": 9,
+          "min_distance": 2.5727024701663295,
+          "min_tail_distance": 2.5727024701663295,
+          "observed": true,
+          "tail_frame_count": 2,
+          "tail_frequency": 1.0,
+          "tail_observed": true,
+          "tail_start_frame": 8,
+          "trajectory_state": "present_in_tail"
+        },
+        "replica_03": {
+          "first_contact_frame": 1,
+          "last_contact_frame": 9,
+          "min_distance": 3.3375408611730872,
+          "min_tail_distance": 6.4502404606340145,
+          "observed": true,
+          "tail_frame_count": 2,
+          "tail_frequency": 0.5,
+          "tail_observed": true,
+          "tail_start_frame": 8,
+          "trajectory_state": "present_in_tail"
+        },
+        "replica_04": {
+          "first_contact_frame": 0,
+          "last_contact_frame": 9,
+          "min_distance": 5.355044164150289,
+          "min_tail_distance": 5.355044164150289,
+          "observed": true,
+          "tail_frame_count": 2,
+          "tail_frequency": 1.0,
+          "tail_observed": true,
+          "tail_start_frame": 8,
+          "trajectory_state": "present_in_tail"
+        }
+      },
+      "vote_count_after_lane_admission": 0
+    },
+    {
+      "allowed_by_rescue_lane_min_sep": false,
+      "blocked_by_global_min_sep_before": true,
+      "evidence_class": "diagnostic_shell",
+      "lane_admission_status": "lane_min_separation",
+      "lane_by_replica_after": {
+        "replica_01": "monitor",
+        "replica_02": "monitor",
+        "replica_03": "monitor",
+        "replica_04": "monitor"
+      },
+      "pair": [
+        6,
+        11
+      ],
+      "reachability_summary": {
+        "approached_then_lost": false,
+        "mean_tail_distance": 3.427569,
+        "min_distance_over_trajectory": 1.53221865280384,
+        "never_approached": false,
+        "per_replica_tail_presence": {
+          "replica_01": true,
+          "replica_02": true,
+          "replica_03": true,
+          "replica_04": true
+        },
+        "selected_in_final_vote": false,
+        "state_counts": {
+          "present_in_tail": 4
+        },
+        "tail_contact_frequency": 1.0,
+        "tail_presence_count": 4
+      },
+      "reason_by_replica_after": {
+        "replica_01": "lane_min_separation",
+        "replica_02": "lane_min_separation",
+        "replica_03": "lane_min_separation",
+        "replica_04": "lane_min_separation"
+      },
+      "reason_by_replica_before": {
+        "replica_01": "lane_min_separation",
+        "replica_02": "lane_min_separation",
+        "replica_03": "lane_min_separation",
+        "replica_04": "lane_min_separation"
+      },
+      "role_classification": "diagnostic_shell",
+      "selected_after_rescue_lane": false,
+      "sequence_separation": 5,
+      "tail_contact_frequency": 1.0,
+      "tail_reachability_by_replica": {
+        "replica_01": {
+          "first_contact_frame": 1,
+          "last_contact_frame": 9,
+          "min_distance": 1.53221865280384,
+          "min_tail_distance": 1.55961629896587,
+          "observed": true,
+          "tail_frame_count": 2,
+          "tail_frequency": 1.0,
+          "tail_observed": true,
+          "tail_start_frame": 8,
+          "trajectory_state": "present_in_tail"
+        },
+        "replica_02": {
+          "first_contact_frame": 0,
+          "last_contact_frame": 9,
+          "min_distance": 2.0982454575192144,
+          "min_tail_distance": 2.8321387677866348,
+          "observed": true,
+          "tail_frame_count": 2,
+          "tail_frequency": 1.0,
+          "tail_observed": true,
+          "tail_start_frame": 8,
+          "trajectory_state": "present_in_tail"
+        },
+        "replica_03": {
+          "first_contact_frame": 1,
+          "last_contact_frame": 9,
+          "min_distance": 3.4081298390759693,
+          "min_tail_distance": 3.4081298390759693,
+          "observed": true,
+          "tail_frame_count": 2,
+          "tail_frequency": 1.0,
+          "tail_observed": true,
+          "tail_start_frame": 8,
+          "trajectory_state": "present_in_tail"
+        },
+        "replica_04": {
+          "first_contact_frame": 0,
+          "last_contact_frame": 9,
+          "min_distance": 4.418552930541863,
+          "min_tail_distance": 5.910390934616757,
+          "observed": true,
+          "tail_frame_count": 2,
+          "tail_frequency": 1.0,
+          "tail_observed": true,
+          "tail_start_frame": 8,
+          "trajectory_state": "present_in_tail"
+        }
+      },
+      "vote_count_after_lane_admission": 0
+    },
+    {
+      "allowed_by_rescue_lane_min_sep": false,
+      "blocked_by_global_min_sep_before": true,
+      "evidence_class": "diagnostic_shell",
+      "lane_admission_status": "lane_min_separation",
+      "lane_by_replica_after": {
+        "replica_01": "monitor",
+        "replica_02": "monitor",
+        "replica_03": "monitor",
+        "replica_04": "monitor"
+      },
+      "pair": [
+        8,
+        11
+      ],
+      "reachability_summary": {
+        "approached_then_lost": false,
+        "mean_tail_distance": 2.582931,
+        "min_distance_over_trajectory": 1.7521249955411289,
+        "never_approached": false,
+        "per_replica_tail_presence": {
+          "replica_01": true,
+          "replica_02": true,
+          "replica_03": true,
+          "replica_04": true
+        },
+        "selected_in_final_vote": false,
+        "state_counts": {
+          "present_in_tail": 4
+        },
+        "tail_contact_frequency": 1.0,
+        "tail_presence_count": 4
+      },
+      "reason_by_replica_after": {
+        "replica_01": "lane_min_separation",
+        "replica_02": "lane_min_separation",
+        "replica_03": "lane_min_separation",
+        "replica_04": "lane_min_separation"
+      },
+      "reason_by_replica_before": {
+        "replica_01": "lane_min_separation",
+        "replica_02": "lane_min_separation",
+        "replica_03": "lane_min_separation",
+        "replica_04": "lane_min_separation"
+      },
+      "role_classification": "diagnostic_shell",
+      "selected_after_rescue_lane": false,
+      "sequence_separation": 3,
+      "tail_contact_frequency": 1.0,
+      "tail_reachability_by_replica": {
+        "replica_01": {
+          "first_contact_frame": 0,
+          "last_contact_frame": 9,
+          "min_distance": 1.7521249955411289,
+          "min_tail_distance": 1.7521249955411289,
+          "observed": true,
+          "tail_frame_count": 2,
+          "tail_frequency": 1.0,
+          "tail_observed": true,
+          "tail_start_frame": 8,
+          "trajectory_state": "present_in_tail"
+        },
+        "replica_02": {
+          "first_contact_frame": 1,
+          "last_contact_frame": 9,
+          "min_distance": 2.6155928582254764,
+          "min_tail_distance": 2.6155928582254764,
+          "observed": true,
+          "tail_frame_count": 2,
+          "tail_frequency": 1.0,
+          "tail_observed": true,
+          "tail_start_frame": 8,
+          "trajectory_state": "present_in_tail"
+        },
+        "replica_03": {
+          "first_contact_frame": 0,
+          "last_contact_frame": 9,
+          "min_distance": 1.9488255437570403,
+          "min_tail_distance": 2.0526638789631475,
+          "observed": true,
+          "tail_frame_count": 2,
+          "tail_frequency": 1.0,
+          "tail_observed": true,
+          "tail_start_frame": 8,
+          "trajectory_state": "present_in_tail"
+        },
+        "replica_04": {
+          "first_contact_frame": 0,
+          "last_contact_frame": 9,
+          "min_distance": 2.981670840317566,
+          "min_tail_distance": 3.9113406908629176,
+          "observed": true,
+          "tail_frame_count": 2,
+          "tail_frequency": 1.0,
+          "tail_observed": true,
+          "tail_start_frame": 8,
+          "trajectory_state": "present_in_tail"
+        }
+      },
+      "vote_count_after_lane_admission": 0
+    },
+    {
+      "allowed_by_rescue_lane_min_sep": false,
+      "blocked_by_global_min_sep_before": true,
+      "evidence_class": "diagnostic_shell",
+      "lane_admission_status": "lane_min_separation",
+      "lane_by_replica_after": {
+        "replica_01": "monitor",
+        "replica_02": "monitor",
+        "replica_03": "monitor",
+        "replica_04": "monitor"
+      },
+      "pair": [
+        17,
+        20
+      ],
+      "reachability_summary": {
+        "approached_then_lost": false,
+        "mean_tail_distance": 3.228126,
+        "min_distance_over_trajectory": 1.1813928220537009,
+        "never_approached": false,
+        "per_replica_tail_presence": {
+          "replica_01": true,
+          "replica_02": true,
+          "replica_03": true,
+          "replica_04": true
+        },
+        "selected_in_final_vote": false,
+        "state_counts": {
+          "present_in_tail": 4
+        },
+        "tail_contact_frequency": 0.75,
+        "tail_presence_count": 4
+      },
+      "reason_by_replica_after": {
+        "replica_01": "lane_min_separation",
+        "replica_02": "lane_min_separation",
+        "replica_03": "lane_min_separation",
+        "replica_04": "lane_min_separation"
+      },
+      "reason_by_replica_before": {
+        "replica_01": "lane_min_separation",
+        "replica_02": "lane_min_separation",
+        "replica_03": "lane_min_separation",
+        "replica_04": "lane_min_separation"
+      },
+      "role_classification": "diagnostic_shell",
+      "selected_after_rescue_lane": false,
+      "sequence_separation": 3,
+      "tail_contact_frequency": 0.75,
+      "tail_reachability_by_replica": {
+        "replica_01": {
+          "first_contact_frame": 2,
+          "last_contact_frame": 9,
+          "min_distance": 2.838376120249028,
+          "min_tail_distance": 2.838376120249028,
+          "observed": true,
+          "tail_frame_count": 2,
+          "tail_frequency": 0.5,
+          "tail_observed": true,
+          "tail_start_frame": 8,
+          "trajectory_state": "present_in_tail"
+        },
+        "replica_02": {
+          "first_contact_frame": 2,
+          "last_contact_frame": 9,
+          "min_distance": 1.1813928220537009,
+          "min_tail_distance": 4.395299648488132,
+          "observed": true,
+          "tail_frame_count": 2,
+          "tail_frequency": 0.5,
+          "tail_observed": true,
+          "tail_start_frame": 8,
+          "trajectory_state": "present_in_tail"
+        },
+        "replica_03": {
+          "first_contact_frame": 0,
+          "last_contact_frame": 9,
+          "min_distance": 2.4171607311058185,
+          "min_tail_distance": 2.4171607311058185,
+          "observed": true,
+          "tail_frame_count": 2,
+          "tail_frequency": 1.0,
+          "tail_observed": true,
+          "tail_start_frame": 8,
+          "trajectory_state": "present_in_tail"
+        },
+        "replica_04": {
+          "first_contact_frame": 0,
+          "last_contact_frame": 9,
+          "min_distance": 3.0714275182722437,
+          "min_tail_distance": 3.2616684380849965,
+          "observed": true,
+          "tail_frame_count": 2,
+          "tail_frequency": 1.0,
+          "tail_observed": true,
+          "tail_start_frame": 8,
+          "trajectory_state": "present_in_tail"
+        }
+      },
+      "vote_count_after_lane_admission": 0
+    },
+    {
+      "allowed_by_rescue_lane_min_sep": false,
+      "blocked_by_global_min_sep_before": true,
+      "evidence_class": "diagnostic_shell",
+      "lane_admission_status": "lane_min_separation",
+      "lane_by_replica_after": {
+        "replica_01": "monitor",
+        "replica_02": "monitor",
+        "replica_04": "monitor"
+      },
+      "pair": [
+        93,
+        117
+      ],
+      "reachability_summary": {
+        "approached_then_lost": true,
+        "mean_tail_distance": 5.580021,
+        "min_distance_over_trajectory": 3.28196602663711,
+        "never_approached": false,
+        "per_replica_tail_presence": {
+          "replica_01": true,
+          "replica_02": true,
+          "replica_03": false,
+          "replica_04": true
+        },
+        "selected_in_final_vote": false,
+        "state_counts": {
+          "approach_then_disappear": 1,
+          "present_in_tail": 3
+        },
+        "tail_contact_frequency": 0.5,
+        "tail_presence_count": 3
+      },
+      "reason_by_replica_after": {
+        "replica_01": "lane_min_separation",
+        "replica_02": "lane_min_separation",
+        "replica_03": "missing_from_tail",
+        "replica_04": "lane_min_separation"
+      },
+      "reason_by_replica_before": {
+        "replica_01": "lane_min_separation",
+        "replica_02": "lane_min_separation",
+        "replica_03": "missing_from_tail",
+        "replica_04": "lane_min_separation"
+      },
+      "role_classification": "diagnostic_shell",
+      "selected_after_rescue_lane": false,
+      "sequence_separation": 24,
+      "tail_contact_frequency": 0.5,
+      "tail_reachability_by_replica": {
+        "replica_01": {
+          "first_contact_frame": 2,
+          "last_contact_frame": 9,
+          "min_distance": 4.1496748065360425,
+          "min_tail_distance": 4.709838744585625,
+          "observed": true,
+          "tail_frame_count": 2,
+          "tail_frequency": 1.0,
+          "tail_observed": true,
+          "tail_start_frame": 8,
+          "trajectory_state": "present_in_tail"
+        },
+        "replica_02": {
+          "first_contact_frame": 0,
+          "last_contact_frame": 9,
+          "min_distance": 3.4023372848675537,
+          "min_tail_distance": 6.604982437523962,
+          "observed": true,
+          "tail_frame_count": 2,
+          "tail_frequency": 0.5,
+          "tail_observed": true,
+          "tail_start_frame": 8,
+          "trajectory_state": "present_in_tail"
+        },
+        "replica_03": {
+          "first_contact_frame": 0,
+          "last_contact_frame": 7,
+          "min_distance": 3.28196602663711,
+          "min_tail_distance": 7.310487124672336,
+          "observed": true,
+          "tail_frame_count": 2,
+          "tail_frequency": 0.0,
+          "tail_observed": false,
+          "tail_start_frame": 8,
+          "trajectory_state": "approach_then_disappear"
+        },
+        "replica_04": {
+          "first_contact_frame": 1,
+          "last_contact_frame": 8,
+          "min_distance": 3.6947759066010963,
+          "min_tail_distance": 3.6947759066010963,
+          "observed": true,
+          "tail_frame_count": 2,
+          "tail_frequency": 0.5,
+          "tail_observed": true,
+          "tail_start_frame": 8,
+          "trajectory_state": "present_in_tail"
+        }
+      },
+      "vote_count_after_lane_admission": 0
+    },
+    {
+      "allowed_by_rescue_lane_min_sep": false,
+      "blocked_by_global_min_sep_before": true,
+      "evidence_class": "medium_support",
+      "lane_admission_status": "lane_min_separation",
+      "lane_by_replica_after": {
+        "replica_01": "balanced",
+        "replica_04": "balanced"
+      },
+      "pair": [
+        96,
+        120
+      ],
+      "reachability_summary": {
+        "approached_then_lost": true,
+        "mean_tail_distance": 6.418923,
+        "min_distance_over_trajectory": 3.6040084628091553,
+        "never_approached": false,
+        "per_replica_tail_presence": {
+          "replica_01": true,
+          "replica_02": false,
+          "replica_03": false,
+          "replica_04": true
+        },
+        "selected_in_final_vote": false,
+        "state_counts": {
+          "approach_then_disappear": 2,
+          "present_in_tail": 2
+        },
+        "tail_contact_frequency": 0.5,
+        "tail_presence_count": 2
+      },
+      "reason_by_replica_after": {
+        "replica_01": "lane_min_separation",
+        "replica_02": "missing_from_tail",
+        "replica_03": "missing_from_tail",
+        "replica_04": "lane_min_separation"
+      },
+      "reason_by_replica_before": {
+        "replica_01": "lane_min_separation",
+        "replica_02": "missing_from_tail",
+        "replica_03": "missing_from_tail",
+        "replica_04": "lane_min_separation"
+      },
+      "role_classification": "balanced_core",
+      "selected_after_rescue_lane": false,
+      "sequence_separation": 24,
+      "tail_contact_frequency": 0.5,
+      "tail_reachability_by_replica": {
+        "replica_01": {
+          "first_contact_frame": 0,
+          "last_contact_frame": 9,
+          "min_distance": 4.146598244344381,
+          "min_tail_distance": 6.108896054116496,
+          "observed": true,
+          "tail_frame_count": 2,
+          "tail_frequency": 1.0,
+          "tail_observed": true,
+          "tail_start_frame": 8,
+          "trajectory_state": "present_in_tail"
+        },
+        "replica_02": {
+          "first_contact_frame": 0,
+          "last_contact_frame": 7,
+          "min_distance": 3.6040084628091553,
+          "min_tail_distance": 7.1790640754906265,
+          "observed": true,
+          "tail_frame_count": 2,
+          "tail_frequency": 0.0,
+          "tail_observed": false,
+          "tail_start_frame": 8,
+          "trajectory_state": "approach_then_disappear"
+        },
+        "replica_03": {
+          "first_contact_frame": 1,
+          "last_contact_frame": 7,
+          "min_distance": 4.092985585119985,
+          "min_tail_distance": 7.107095398262194,
+          "observed": true,
+          "tail_frame_count": 2,
+          "tail_frequency": 0.0,
+          "tail_observed": false,
+          "tail_start_frame": 8,
+          "trajectory_state": "approach_then_disappear"
+        },
+        "replica_04": {
+          "first_contact_frame": 0,
+          "last_contact_frame": 9,
+          "min_distance": 4.761084330276035,
+          "min_tail_distance": 5.280638408374512,
+          "observed": true,
+          "tail_frame_count": 2,
+          "tail_frequency": 1.0,
+          "tail_observed": true,
+          "tail_start_frame": 8,
+          "trajectory_state": "present_in_tail"
+        }
+      },
+      "vote_count_after_lane_admission": 0
+    }
+  ],
+  "rescue_selected_after": 0,
+  "run_mode": "postprocess_no_new_simulation",
+  "run_type": "GARAGE_RESCUE_LANE_SELECTOR_V6b",
+  "selected_by_lane_after": {
+    "balanced": [
+      [
+        147,
+        172
+      ],
+      [
+        147,
+        184
+      ],
+      [
+        153,
+        178
+      ]
+    ],
+    "balanced_rescue": [],
+    "monitor": [],
+    "strict": [],
+    "unknown": []
+  },
+  "selected_by_lane_before": {
+    "balanced": [
+      [
+        147,
+        172
+      ],
+      [
+        147,
+        184
+      ],
+      [
+        153,
+        178
+      ]
+    ],
+    "balanced_rescue": [],
+    "monitor": [],
+    "strict": [],
+    "unknown": []
+  },
+  "selected_pair_count": 3,
+  "selected_pairs": [
+    [
+      147,
+      172
+    ],
+    [
+      147,
+      184
+    ],
+    [
+      153,
+      178
+    ]
+  ],
+  "source_certificate": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/GARAGE_TAIL_REACHABILITY_WITH_STRICT_GUARD_V5/openmm_tmd_replicas_v0_certificate.json",
+  "source_run_dir": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/GARAGE_TAIL_REACHABILITY_WITH_STRICT_GUARD_V5"
+}
