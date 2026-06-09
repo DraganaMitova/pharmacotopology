@@ -149,6 +149,19 @@ def _build_random_coil_positions(length: int, seed: int = 11) -> list[tuple[floa
     return positions
 
 
+def _build_positions_from_coords(
+    coords: list[tuple[int, tuple[float, float, float]]],
+    length: int,
+) -> list[tuple[float, float, float]]:
+    if not coords:
+        raise ValueError("no CA coordinates available from resume structure")
+    coord_map = {index: xyz for index, xyz in coords}
+    missing = [index for index in range(1, length + 1) if index not in coord_map]
+    if missing:
+        raise ValueError(f"resume structure missing CA indices: first missing index={missing[0]}")
+    return [coord_map[index] for index in range(1, length + 1)]
+
+
 def _parse_last_ca_coords(pdb_path: Path) -> list[tuple[int, tuple[float, float, float]]]:
     lines = pdb_path.read_text(encoding="utf-8").splitlines()
     model_active = False
@@ -242,6 +255,9 @@ def _run_openmm(
     timestep: float,
     temperature_kelvin: float,
     seed: int,
+    force_constant_kj_per_mol_nm2: float = 100.0,
+    initial_positions_angstrom: list[tuple[float, float, float]] | None = None,
+    skip_minimization: bool = False,
     platform_name: str = "auto",
     cpu_threads: int = 12,
     reporter_interval_steps: int = 0,
@@ -265,7 +281,9 @@ def _run_openmm(
         residue = topology.addResidue("ALA", chain)
         topology.addAtom("CA", app.Element.getBySymbol("C"), residue)
         residues.append((index, aa))
-    if start_mode == "random":
+    if initial_positions_angstrom is not None:
+        positions = [(x * 0.1, y * 0.1, z * 0.1) for x, y, z in initial_positions_angstrom]
+    elif start_mode == "random":
         positions = _build_random_coil_positions(row.sequence_length, seed=seed)
     else:
         positions = _build_linear_positions(row.sequence_length)
@@ -289,7 +307,7 @@ def _run_openmm(
     )
     restraint_force.addGlobalParameter(
         "k",
-        100.0 * kilojoules_per_mole / (nanometer ** 2),
+        force_constant_kj_per_mol_nm2 * kilojoules_per_mole / (nanometer ** 2),
     )
     restraint_force.addGlobalParameter("w", 0.2 * nanometer)
     restraint_force.addPerBondParameter("r0")
@@ -341,7 +359,8 @@ def _run_openmm(
             raise SystemExit(f"platform init failed: {exc}")
 
     simulation.context.setPositions([(x, y, z) * nanometer for x, y, z in positions])
-    simulation.minimizeEnergy(maxIterations=500)
+    if not skip_minimization:
+        simulation.minimizeEnergy(maxIterations=500)
 
     if reporter_interval_steps and reporter_interval_steps > 0:
         reporter_interval = reporter_interval_steps
@@ -428,6 +447,7 @@ def _build_metric_rows(
     anchors: Sequence[AnchorRecord],
     metric: dict,
     openmm_results: dict,
+    force_constant_kj_per_mol_nm2: float,
 ) -> dict:
     return {
         "kind": "openmm_dca_closure_v0",
@@ -437,7 +457,7 @@ def _build_metric_rows(
         "anchor_count": len(anchors),
         "anchor_distance_target_angstrom": 6.0,
         "anchor_distance_window_angstrom": 2.0,
-        "anchor_force_constant_kj_mol_nm2": 100.0,
+        "anchor_force_constant_kj_mol_nm2": force_constant_kj_per_mol_nm2,
         "mean_precision_after_audit": metric["native_contact_precision"],
         "mean_recall_after_audit": metric["native_contact_recall"],
         "mean_long_range_recall_after_audit": metric["long_range_contact_recall"],
@@ -472,7 +492,14 @@ def main() -> None:
     parser.add_argument("--steps", type=int, default=500000)
     parser.add_argument("--timestep-ps", type=float, default=0.002)
     parser.add_argument("--temperature-kelvin", type=float, default=300.0)
+    parser.add_argument("--force-constant-kj-per-mol-nm2", type=float, default=100.0)
     parser.add_argument("--seed", type=int, default=11)
+    parser.add_argument("--resume-pdb", default="")
+    parser.add_argument(
+        "--skip-minimization",
+        action="store_true",
+        help="Skip minimization to continue from a previous trajectory frame.",
+    )
     parser.add_argument(
         "--fallback",
         action="store_true",
@@ -548,6 +575,14 @@ def main() -> None:
         timestep=args.timestep_ps,
         temperature_kelvin=args.temperature_kelvin,
         seed=args.seed,
+        force_constant_kj_per_mol_nm2=args.force_constant_kj_per_mol_nm2,
+        initial_positions_angstrom=_build_positions_from_coords(
+            _parse_last_ca_coords(Path(args.resume_pdb)),
+            row.sequence_length,
+        )
+        if args.resume_pdb
+        else None,
+        skip_minimization=args.skip_minimization,
         platform_name=args.platform,
         cpu_threads=args.cpu_threads,
         reporter_interval_steps=args.reporter_interval_steps,
@@ -603,7 +638,13 @@ def main() -> None:
         )
 
 
-    summary = _build_metric_rows(row, anchors, metric, openmm_results)
+    summary = _build_metric_rows(
+        row=row,
+        anchors=anchors,
+        metric=metric,
+        openmm_results=openmm_results,
+        force_constant_kj_per_mol_nm2=args.force_constant_kj_per_mol_nm2,
+    )
     summary["openmm_results"] = openmm_results
     certificate_path = out_dir / "openmm_dca_closure_md_certificate_v0.json"
     certificate_path.write_text(json.dumps(summary, indent=2, sort_keys=True), encoding="utf-8")
