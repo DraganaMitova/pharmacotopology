@@ -840,7 +840,7 @@ def _build_stable_contacts(
     pair_counts: Counter[tuple[int, int]] = Counter()
     for frame in final_frames:
         contacts = _extract_contacts(frame, contact_cutoff_angstrom, min_separation)
-        pair_counts.update(contacts)
+        pair_counts.update(contacts.keys())
 
     required_frames = len(final_frames)
     raw_pairs = len(pair_counts)
@@ -1259,6 +1259,11 @@ def main() -> None:
         default="",
         help="Optional path with baseline lane pair sets for actuator preflight diff.",
     )
+    parser.add_argument(
+        "--preflight-only",
+        action="store_true",
+        help="Verify inputs and provenance, print preflight state, and exit before running MD.",
+    )
     parser.add_argument("--write-audit-json", default="", help="Optional artifact path for per-run audit payload.")
     parser.add_argument(
         "--audit-pairs-json",
@@ -1379,6 +1384,12 @@ def main() -> None:
         lane: sorted([list(item) for item in sorted(value)]) for lane, value in effective_lane_pairs.items()
     }
 
+    if args.preflight_only:
+        print("\n=== PREFLIGHT ONLY MODE ===")
+        print(json.dumps(preflight_state, indent=2, sort_keys=True))
+        print("Exiting as requested before MD execution.")
+        sys.exit(0)
+
     if baseline_lane_pairs:
         preflight_state["status"] = "computed"
         preflight_state["baseline"] = {
@@ -1444,7 +1455,6 @@ def main() -> None:
         "--anchor-min-separation",
         str(args.anchor_min_separation),
         "--target-open-steps",
-        str(args.target_open_steps),
         str(effective_target_open_steps),
         "--target-force-constant-kj-per-mol-nm2",
         str(args.target_force_constant_kj_per_mol_nm2),
@@ -2111,6 +2121,11 @@ def main() -> None:
         failure_reasons.append("no_selected_pairs_smoke_or_underpowered_run")
     if not preflight_state["v5_ready"]:
         failure_reasons.append("v5_preflight_checks_failed")
+
+    # Differentiate biological abstain from technical failure
+    if physics_interpretation_allowed and not runtime_v10_selected_pairs:
+        if "no_core_selected_pairs_after_role_binding" not in failure_reasons:
+            failure_reasons.append("biological_signal_abstain")
 
     success_evaluation = {
         "strict_overlap": success_criteria["strict_overlap"],
