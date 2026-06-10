@@ -1,0 +1,20 @@
+{
+  "kind": "CLEAN_REPO_V15_4AKE_BALANCED_CANDIDATE_V17",
+  "claim_allowed": false,
+  "changes": [
+    "Added postprocess-only V15 4AKE balanced-candidate dynamic grammar readout",
+    "Added 4AKE candidate frequency sweep over existing trajectories",
+    "Added 4AKE selected balanced/domain/hinge candidate bridge support",
+    "Kept fixed residue cutoff retired; separation remains descriptive context only",
+    "No MD rerun is performed by the new readout scripts"
+  ],
+  "new_files": [
+    "scripts/run_v15_4ake_balanced_candidate_readout_v0.py",
+    "scripts/run_v15_4ake_balanced_candidate_readout.sh",
+    "scripts/print_v15_4ake_balanced_candidate_summary.py",
+    "tests/test_v15_4ake_balanced_candidate_readout.py",
+    "docs/V15_4AKE_BALANCED_CANDIDATE_READOUT.md",
+    "V15_4AKE_BALANCED_CANDIDATE_RUN_COMMANDS.md"
+  ],
+  "targeted_tests": "28 passed"
+}

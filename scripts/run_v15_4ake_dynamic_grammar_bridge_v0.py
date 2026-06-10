@@ -22,6 +22,8 @@ RUN_ROOT = REPO_ROOT / "first_contact_clean_pharmacotopology_layer_run"
 DEFAULT_OUT_DIR = RUN_ROOT / "V15_4AKE_DYNAMIC_GRAMMAR_BRIDGE"
 
 DEFAULT_CANDIDATE_ROLE_CERTS = [
+    RUN_ROOT / "V15_4AKE_BALANCED_CANDIDATE_READOUT" / "v15_4ake_balanced_candidate_readout_certificate.json",
+    RUN_ROOT / "V15_4AKE_CLEAN_DYNAMIC_ROLE_GRAMMAR_REBUILD" / "openmm_tmd_replicas_v0_certificate.json",
     RUN_ROOT / "V13c_4AKE_ADENYLATE_KINASE" / "openmm_tmd_replicas_v0_certificate.json",
     RUN_ROOT / "V13c_4AKE_ADENYLATE_KINASE" / "v15_4ake_dynamic_grammar_bridge_source.json",
     RUN_ROOT / "comparison_v9" / "4AKE" / "garage_role_aware_rescue_selector_v9_certificate.json",
