@@ -69,3 +69,88 @@ def test_selects_highest_passing_threshold_not_hardcoded() -> None:
     selected = _select_highest_passing_threshold(rows)
     assert selected is not None
     assert selected["threshold"] == 0.76
+
+from run_v13a_purpose_gate_readout_v0 import _evaluate_frequency_threshold, _tail_pair_frequencies
+
+
+def test_tail_pair_frequencies_count_contact_presence_not_distance(tmp_path) -> None:
+    def atom(serial: int, resid: int, x: float, y: float, z: float) -> str:
+        return (
+            f"ATOM  {serial:5d}  CA  ALA A{resid:4d}    "
+            f"{x:8.3f}{y:8.3f}{z:8.3f}  1.00  0.00           C\n"
+        )
+
+    lines = []
+    serial = 1
+    # Four models, pair 1-30 contact in exactly two tail frames.
+    for model, dist in enumerate([20.0, 20.0, 5.0, 5.0], start=1):
+        lines.append(f"MODEL     {model}\n")
+        lines.append(atom(serial, 1, 0.0, 0.0, 0.0)); serial += 1
+        lines.append(atom(serial, 30, dist, 0.0, 0.0)); serial += 1
+        lines.append("ENDMDL\n")
+    traj = tmp_path / "trajectory.pdb"
+    traj.write_text("".join(lines), encoding="utf-8")
+
+    freqs, _audit, frame_count, tail_count = _tail_pair_frequencies(
+        traj,
+        contact_cutoff_angstrom=7.0,
+        min_separation=24,
+        tail_fraction=1.0,
+        audit_pairs=set(),
+    )
+    assert frame_count == 4
+    assert tail_count == 4
+    assert freqs[(1, 30)] == 0.5
+    assert all(0.0 <= value <= 1.0 for value in freqs.values())
+
+
+def test_adaptive_soft_guard_can_keep_dca_supported_low_chemical_pair() -> None:
+    pair = (1, 30)
+    payloads = [
+        {"frequencies": {pair: 0.8}, "audit_reachability": {}}
+        for _ in range(7)
+    ]
+    effective = {"strict": set(), "balanced": {pair}, "balanced_rescue": set(), "monitor": set(), "unknown": set()}
+    # A-C has low chemical score, so hard threshold 0.5 rejects it.
+    sequence = "A" + ("G" * 28) + "C" + ("G" * 30)
+
+    hard = _evaluate_frequency_threshold(
+        0.75,
+        trajectory_payloads=payloads,
+        row=object(),  # unused by the readout evaluator
+        sequence=sequence,
+        dca_scores={pair: 0.95},
+        anchor_classes={pair: "balanced"},
+        effective_lane_pairs=effective,
+        balanced_dca_threshold=0.80,
+        chemical_threshold=0.50,
+        chemical_policy="hard_threshold",
+        legacy_chemical_reference_threshold=0.50,
+        vote_threshold=7,
+        topology_mode="none",
+        domain_boundaries_raw="",
+        audit_pairs={pair},
+    )
+    soft = _evaluate_frequency_threshold(
+        0.75,
+        trajectory_payloads=payloads,
+        row=object(),
+        sequence=sequence,
+        dca_scores={pair: 0.95},
+        anchor_classes={pair: "balanced"},
+        effective_lane_pairs=effective,
+        balanced_dca_threshold=0.80,
+        chemical_threshold=0.50,
+        chemical_policy="adaptive_soft_guard",
+        legacy_chemical_reference_threshold=0.50,
+        vote_threshold=7,
+        topology_mode="none",
+        domain_boundaries_raw="",
+        audit_pairs={pair},
+    )
+
+    assert hard["selected_pair_count"] == 0
+    assert soft["selected_pair_count"] == 1
+    assert soft["selected_balanced_core"] == [[1, 30]]
+    assert soft["legacy_chemical_hard_gate_would_block_selected_count"] == 1
+    assert soft["mean_frequency_by_selected_pair"]["1-30"] == 0.8

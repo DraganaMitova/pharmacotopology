@@ -276,7 +276,7 @@ def _tail_pair_frequencies(
     tail_frames = frames[-tail_count:]
     counts: Counter[Pair] = Counter()
     for frame in tail_frames:
-        counts.update(_extract_contacts(frame, contact_cutoff_angstrom, min_separation))
+        counts.update(_extract_contacts(frame, contact_cutoff_angstrom, min_separation).keys())
     freqs = {pair: count / float(tail_count) for pair, count in counts.items()}
 
     audit_reachability: dict[Pair, dict[str, object]] = {}
@@ -341,6 +341,8 @@ def _evaluate_frequency_threshold(
     effective_lane_pairs: dict[str, set[Pair]],
     balanced_dca_threshold: float,
     chemical_threshold: float,
+    chemical_policy: str,
+    legacy_chemical_reference_threshold: float,
     vote_threshold: int,
     topology_mode: str,
     domain_boundaries_raw: str,
@@ -393,9 +395,14 @@ def _evaluate_frequency_threshold(
                 per_pair_failure[pair]["dca"] += 1
                 continue
             chem = chemical_score(sequence[left - 1], sequence[right - 1])
-            if chem < chemical_threshold:
+            if chemical_policy == "hard_threshold" and chem < chemical_threshold:
                 per_pair_failure[pair]["chemical"] += 1
                 continue
+            if chemical_policy == "adaptive_soft_guard" and chem < legacy_chemical_reference_threshold:
+                # Diagnostic only: chemical would have killed this pair under the old
+                # global hard gate, but the purpose-aware soft guard lets DCA +
+                # topology + replica support decide.
+                per_pair_failure[pair]["legacy_chemical_hard_gate_would_block"] += 1
             if float(freq) < threshold:
                 per_pair_failure[pair]["frequency"] += 1
                 continue
@@ -411,6 +418,18 @@ def _evaluate_frequency_threshold(
     background_dca_values = [float(dca_scores.get(pair, 0.0)) for pair in effective_balanced]
     dca_mean = _mean(dca_values)
     background_mean = _mean(background_dca_values)
+    selected_chemical_scores = {
+        pair: chemical_score(sequence[pair[0] - 1], sequence[pair[1] - 1])
+        for pair in selected_balanced_core
+    }
+    selected_chemical_values = list(selected_chemical_scores.values())
+    chemical_mean_selected = _mean(selected_chemical_values)
+    chemical_min_selected = min(selected_chemical_values) if selected_chemical_values else None
+    chemical_max_selected = max(selected_chemical_values) if selected_chemical_values else None
+    legacy_chemical_hard_gate_would_block_count = len([
+        value for value in selected_chemical_values
+        if value < legacy_chemical_reference_threshold
+    ])
     dca_enrichment_ratio = None
     if dca_mean is not None and background_mean not in (None, 0):
         dca_enrichment_ratio = round(dca_mean / float(background_mean), 6)
@@ -450,22 +469,36 @@ def _evaluate_frequency_threshold(
             "dca_score": float(dca_scores.get(pair, 0.0)),
             "candidate_for_balanced_compact_core": pair in effective_balanced,
             "blocked_reason_at_threshold": "selected" if pair in selected_pairs else (
-                "support_below_vote_threshold" if support.get(pair, 0) > 0 else "frequency_or_gate_filter"
+                "support_below_vote_threshold" if support.get(pair, 0) > 0 else (
+                    per_pair_failure.get(pair, Counter()).most_common(1)[0][0]
+                    if per_pair_failure.get(pair)
+                    else "frequency_or_gate_filter"
+                )
             ),
         }
 
     classification_coverage_ratio = 1.0 if selected_pairs else 0.0
     long_range_evidence_polluted = False
     noise_added = len(selected_outside_effective)
+    if chemical_policy == "adaptive_soft_guard":
+        chemical_guard_pass = bool(selected_balanced_core)
+    else:
+        chemical_guard_pass = bool(selected_balanced_core) and (
+            chemical_min_selected is not None and chemical_min_selected >= chemical_threshold
+        )
     pass_checks = {
         "nonzero_balanced_core": len(selected_balanced_core) > 0,
         "dca_enrichment_pass": dca_enrichment_pass,
         "noise_added_zero": noise_added == 0,
         "long_range_evidence_not_polluted": not long_range_evidence_polluted,
         "classification_coverage_complete": classification_coverage_ratio == 1.0 if selected_pairs else False,
+        "chemical_guard_pass": chemical_guard_pass,
     }
     return {
         "threshold": round(float(threshold), 6),
+        "chemical_policy": chemical_policy,
+        "chemical_threshold": round(float(chemical_threshold), 6),
+        "legacy_chemical_reference_threshold": round(float(legacy_chemical_reference_threshold), 6),
         "selected_pair_count": len(selected_pairs),
         "selected_balanced_core_count": len(selected_balanced_core),
         "selected_balanced_core": [list(pair) for pair in selected_balanced_core],
@@ -477,6 +510,14 @@ def _evaluate_frequency_threshold(
         "dca_mean_effective_balanced_background": background_mean,
         "dca_enrichment_ratio": dca_enrichment_ratio,
         "dca_enrichment_pass": dca_enrichment_pass,
+        "chemical_mean_selected": chemical_mean_selected,
+        "chemical_min_selected": chemical_min_selected,
+        "chemical_max_selected": chemical_max_selected,
+        "chemical_score_by_selected_pair": {
+            f"{pair[0]}-{pair[1]}": round(float(score), 6)
+            for pair, score in selected_chemical_scores.items()
+        },
+        "legacy_chemical_hard_gate_would_block_selected_count": legacy_chemical_hard_gate_would_block_count,
         "vote_threshold": vote_threshold,
         "support_by_selected_pair": {
             f"{pair[0]}-{pair[1]}": int(support.get(pair, 0)) for pair in selected_balanced_core
@@ -517,6 +558,19 @@ def main() -> None:
     parser.add_argument("--min-separation", type=int, default=24)
     parser.add_argument("--balanced-dca-threshold", type=float, default=0.80)
     parser.add_argument("--chemical-threshold", type=float, default=0.50)
+    parser.add_argument(
+        "--chemical-policy",
+        choices=("hard_threshold", "adaptive_soft_guard", "ablation"),
+        default="hard_threshold",
+        help=(
+            "hard_threshold keeps the legacy chemical hard gate; "
+            "adaptive_soft_guard records chemical evidence but does not let a global "
+            "chemical cutoff kill DCA+geometry+replica-supported balanced core pairs; "
+            "ablation is explicit diagnostic-only hard_threshold at 0.0."
+        ),
+    )
+    parser.add_argument("--chemical-grid", default="0.00:0.50:0.05")
+    parser.add_argument("--legacy-chemical-reference-threshold", type=float, default=0.50)
     parser.add_argument("--vote-threshold", type=int, default=7)
     args = parser.parse_args()
 
@@ -595,6 +649,14 @@ def main() -> None:
         )
 
     thresholds = _parse_frequency_grid(args.frequency_grid)
+    if args.chemical_policy == "ablation":
+        args.chemical_threshold = 0.0
+        active_chemical_policy = "hard_threshold"
+    elif args.chemical_policy == "adaptive_soft_guard":
+        active_chemical_policy = "adaptive_soft_guard"
+    else:
+        active_chemical_policy = "hard_threshold"
+
     sweep_rows: list[dict[str, object]] = []
     for threshold in thresholds:
         sweep_rows.append(
@@ -608,6 +670,8 @@ def main() -> None:
                 effective_lane_pairs=effective_lane_pairs,
                 balanced_dca_threshold=args.balanced_dca_threshold,
                 chemical_threshold=args.chemical_threshold,
+                chemical_policy=active_chemical_policy,
+                legacy_chemical_reference_threshold=args.legacy_chemical_reference_threshold,
                 vote_threshold=args.vote_threshold,
                 topology_mode=args.topology_mode,
                 domain_boundaries_raw=args.domain_boundaries,
@@ -618,11 +682,65 @@ def main() -> None:
     selected_band = _select_highest_passing_threshold(sweep_rows)
     decision = "purpose_readout_core_found" if selected_band else "clean_abstain_no_stable_frequency_band"
 
+    chemical_threshold_sweep: list[dict[str, object]] = []
+    selected_chemical_admissibility_band: Optional[dict[str, object]] = None
+    for chemical_threshold_candidate in _parse_frequency_grid(args.chemical_grid):
+        hard_rows: list[dict[str, object]] = []
+        for threshold in thresholds:
+            hard_rows.append(
+                _evaluate_frequency_threshold(
+                    threshold,
+                    trajectory_payloads=trajectory_payloads,
+                    row=row,
+                    sequence=row.sequence,
+                    dca_scores=dca_scores,
+                    anchor_classes=anchor_classes,
+                    effective_lane_pairs=effective_lane_pairs,
+                    balanced_dca_threshold=args.balanced_dca_threshold,
+                    chemical_threshold=chemical_threshold_candidate,
+                    chemical_policy="hard_threshold",
+                    legacy_chemical_reference_threshold=args.legacy_chemical_reference_threshold,
+                    vote_threshold=args.vote_threshold,
+                    topology_mode=args.topology_mode,
+                    domain_boundaries_raw=args.domain_boundaries,
+                    audit_pairs=audit_pairs,
+                )
+            )
+        hard_selected = _select_highest_passing_threshold(hard_rows)
+        row_summary: dict[str, object] = {
+            "chemical_threshold": round(float(chemical_threshold_candidate), 6),
+            "decision": "hard_threshold_core_found" if hard_selected else "hard_threshold_abstain",
+            "selected_frequency_threshold": hard_selected.get("threshold") if hard_selected else None,
+            "selected_pair_count": hard_selected.get("selected_pair_count") if hard_selected else 0,
+            "selected_balanced_core": hard_selected.get("selected_balanced_core") if hard_selected else [],
+            "chemical_min_selected": hard_selected.get("chemical_min_selected") if hard_selected else None,
+            "chemical_mean_selected": hard_selected.get("chemical_mean_selected") if hard_selected else None,
+            "pass_checks": hard_selected.get("pass_checks") if hard_selected else {},
+        }
+        chemical_threshold_sweep.append(row_summary)
+        if hard_selected and selected_chemical_admissibility_band is None:
+            selected_chemical_admissibility_band = {
+                **row_summary,
+                "selected_frequency_band": hard_selected,
+            }
+
+    if active_chemical_policy == "adaptive_soft_guard" and selected_band:
+        if selected_chemical_admissibility_band:
+            chemical_policy_decision = "adaptive_soft_core_found_with_hard_chemical_admissibility_band"
+        else:
+            chemical_policy_decision = "adaptive_soft_core_found_no_hard_chemical_band"
+    elif selected_band:
+        chemical_policy_decision = "hard_or_ablation_core_found"
+    else:
+        chemical_policy_decision = "clean_abstain_no_chemical_policy_core"
+
     flat_sweep_rows = []
     for row_payload in sweep_rows:
         flat_sweep_rows.append(
             {
                 "threshold": row_payload["threshold"],
+                "chemical_policy": row_payload["chemical_policy"],
+                "chemical_threshold": row_payload["chemical_threshold"],
                 "passes_purpose_fit": row_payload["passes_purpose_fit"],
                 "selected_pair_count": row_payload["selected_pair_count"],
                 "selected_balanced_core_count": row_payload["selected_balanced_core_count"],
@@ -632,6 +750,9 @@ def main() -> None:
                 "dca_mean_selected": row_payload["dca_mean_selected"],
                 "dca_mean_effective_balanced_background": row_payload["dca_mean_effective_balanced_background"],
                 "dca_enrichment_ratio": row_payload["dca_enrichment_ratio"],
+                "chemical_mean_selected": row_payload["chemical_mean_selected"],
+                "chemical_min_selected": row_payload["chemical_min_selected"],
+                "legacy_chemical_hard_gate_would_block_selected_count": row_payload["legacy_chemical_hard_gate_would_block_selected_count"],
                 "selected_balanced_core": json.dumps(row_payload["selected_balanced_core"]),
                 "support_by_selected_pair": json.dumps(row_payload["support_by_selected_pair"], sort_keys=True),
             }
@@ -656,15 +777,23 @@ def main() -> None:
             lane: [list(pair) for pair in sorted(pairs)] for lane, pairs in effective_lane_pairs.items()
         },
         "frequency_grid": thresholds,
+        "chemical_policy": active_chemical_policy,
+        "chemical_threshold": args.chemical_threshold,
+        "legacy_chemical_reference_threshold": args.legacy_chemical_reference_threshold,
+        "chemical_grid": _parse_frequency_grid(args.chemical_grid),
         "frequency_sweep": sweep_rows,
+        "chemical_threshold_sweep": chemical_threshold_sweep,
+        "selected_chemical_admissibility_band": selected_chemical_admissibility_band,
         "selected_frequency_band": selected_band,
         "purpose_gate_decision": decision,
+        "chemical_policy_decision": chemical_policy_decision,
         "official_runtime_rerun_required_for_claim": bool(selected_band),
         "claim_allowed": False,
         "physics_interpretation_allowed": False,
         "biological_transfer_claim_allowed": False,
         "forbidden_methods": {
             "hardcoded_target_threshold": False,
+            "hardcoded_chemical_threshold_selected": False,
             "native_precision_used_to_select_threshold": False,
             "selector_rules_modified": False,
             "partial_target_allowed": False,
@@ -692,9 +821,23 @@ def main() -> None:
         "legacy_v5_failed_checks": source_certificate.get("preflight", {}).get("v5_requirements", {}).get("failed_checks") if isinstance(source_certificate.get("preflight"), dict) and isinstance(source_certificate.get("preflight", {}).get("v5_requirements"), dict) else None,
         "legacy_runtime_v10_selected_pair_count": source_certificate.get("runtime_v10_selected_pair_count"),
         "purpose_gate_decision": decision,
+        "chemical_policy_decision": chemical_policy_decision,
+        "chemical_policy": active_chemical_policy,
+        "selected_chemical_admissibility_threshold": (
+            selected_chemical_admissibility_band.get("chemical_threshold")
+            if selected_chemical_admissibility_band
+            else None
+        ),
         "selected_threshold": selected_band.get("threshold") if selected_band else None,
         "selected_balanced_core": selected_band.get("selected_balanced_core") if selected_band else [],
         "selected_pair_count": selected_band.get("selected_pair_count") if selected_band else 0,
+        "chemical_min_selected": selected_band.get("chemical_min_selected") if selected_band else None,
+        "chemical_mean_selected": selected_band.get("chemical_mean_selected") if selected_band else None,
+        "legacy_chemical_hard_gate_would_block_selected_count": (
+            selected_band.get("legacy_chemical_hard_gate_would_block_selected_count")
+            if selected_band
+            else None
+        ),
         "claim_allowed": False,
         "certificate": str(cert_path),
     }
