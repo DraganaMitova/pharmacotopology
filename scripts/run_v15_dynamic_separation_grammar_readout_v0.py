@@ -37,6 +37,11 @@ DEFAULT_V14_CERT = (
     / "V14_UNIFIED_PROTEIN_ESPERANTO_GRAMMAR_READOUT"
     / "v14_unified_protein_esperanto_grammar_readout_certificate.json"
 )
+DEFAULT_4AKE_BRIDGE_CERT = (
+    DEFAULT_RUN_ROOT
+    / "V15_4AKE_DYNAMIC_GRAMMAR_BRIDGE"
+    / "v15_4ake_dynamic_grammar_bridge_certificate.json"
+)
 
 GRAMMAR_AXES = [
     "external_DCA_or_coupling_signal",
@@ -346,9 +351,22 @@ def normalize_1cll_dynamic(payload: Optional[dict[str, Any]], artifact_path: Pat
     }
 
 
-def normalize_4ake_dynamic(v14_payload: Optional[dict[str, Any]] = None) -> dict[str, Any]:
+def normalize_4ake_dynamic(bridge_payload: Optional[dict[str, Any]] = None, v14_payload: Optional[dict[str, Any]] = None) -> dict[str, Any]:
     # V15 does not synthesize 4AKE evidence from PDB-only or visual-only files.
-    # A separate machine-readable 4AKE grammar bridge is still required.
+    # If a V15 4AKE bridge artifact exists, it may enter the panel, but its row
+    # remains claim-disabled and positive only when backed by a machine-readable
+    # role artifact.
+    if isinstance(bridge_payload, dict) and isinstance(bridge_payload.get("protein_row"), dict):
+        row = dict(bridge_payload["protein_row"])
+        row["protein"] = "4AKE"
+        row["claim_allowed"] = False
+        row["biological_transfer_claim_allowed"] = False
+        row["separation_policy"] = "dynamic_contextual_role_assignment_no_fixed_residue_cutoff"
+        row["fixed_residue_cutoff_used"] = False
+        row.setdefault("dynamic_pair_roles", {})
+        row.setdefault("selected_pairs", [])
+        row.setdefault("positive_evidence_found", False)
+        return row
     return {
         "protein": "4AKE",
         "artifact_status": "missing_machine_readable_grammar_artifact",
@@ -370,6 +388,14 @@ def normalize_4ake_dynamic(v14_payload: Optional[dict[str, Any]] = None) -> dict
 def _global_status(rows: list[dict[str, Any]]) -> str:
     positives = [row["protein"] for row in rows if row.get("positive_evidence_found")]
     missing = [row["protein"] for row in rows if str(row.get("artifact_status", "")).startswith("missing")]
+    bridge_pending = [
+        row["protein"]
+        for row in rows
+        if "bridge_pending" in str(row.get("artifact_status", ""))
+        or "bridge_pending" in str(row.get("claim_lock_status", ""))
+    ]
+    if len(positives) >= 2 and "4AKE" in bridge_pending:
+        return "dynamic_separation_grammar_positive_on_1UBQ_1CLL_4AKE_bridge_pending_claim_disabled"
     if len(positives) >= 2 and "4AKE" in missing:
         return "dynamic_separation_grammar_positive_on_1UBQ_1CLL_4AKE_missing_claim_disabled"
     if len(positives) == 3:
@@ -388,6 +414,12 @@ def _coherence_checks(rows: list[dict[str, Any]]) -> dict[str, Any]:
         ),
         "positive_evidence_proteins": [row["protein"] for row in rows if row.get("positive_evidence_found")],
         "missing_artifacts": [row["protein"] for row in rows if str(row.get("artifact_status", "")).startswith("missing")],
+        "bridge_pending_artifacts": [
+            row["protein"]
+            for row in rows
+            if "bridge_pending" in str(row.get("artifact_status", ""))
+            or "bridge_pending" in str(row.get("claim_lock_status", ""))
+        ],
     }
 
 
@@ -451,15 +483,17 @@ def main() -> None:
     parser.add_argument("--1ubq-cert", default=str(DEFAULT_UBQ_CERT))
     parser.add_argument("--1cll-cert", default=str(DEFAULT_CLL_CERT))
     parser.add_argument("--v14-cert", default=str(DEFAULT_V14_CERT))
+    parser.add_argument("--4ake-bridge-cert", default=str(DEFAULT_4AKE_BRIDGE_CERT))
     parser.add_argument("--out-dir", default=str(DEFAULT_OUT_DIR))
     args = parser.parse_args()
 
     ubq_payload = _read_json(Path(args.__dict__["1ubq_cert"]))
     cll_payload = _read_json(Path(args.__dict__["1cll_cert"]))
     v14_payload = _read_json(Path(args.v14_cert))
+    bridge_payload = _read_json(Path(args.__dict__["4ake_bridge_cert"]))
 
     rows = [
-        normalize_4ake_dynamic(v14_payload),
+        normalize_4ake_dynamic(bridge_payload, v14_payload),
         normalize_1ubq_dynamic(ubq_payload, Path(args.__dict__["1ubq_cert"])),
         normalize_1cll_dynamic(cll_payload, Path(args.__dict__["1cll_cert"])),
     ]

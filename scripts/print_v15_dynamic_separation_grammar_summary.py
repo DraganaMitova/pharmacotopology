@@ -25,6 +25,7 @@ def main() -> None:
     print("claim_allowed:", payload.get("claim_allowed"))
     print("positive_evidence_proteins:", payload.get("positive_evidence_proteins"))
     print("missing_artifacts:", payload.get("missing_artifacts"))
+    print("bridge_pending_artifacts:", (payload.get("coherence_checks") or {}).get("bridge_pending_artifacts"))
     checks = payload.get("coherence_checks", {})
     print("no_fixed_residue_cutoff_used_anywhere:", checks.get("no_fixed_residue_cutoff_used_anywhere"))
     print("no_claim_allowed_anywhere:", checks.get("no_claim_allowed_anywhere"))
