@@ -194,13 +194,13 @@ def _expected_target_hints(source_accession: str) -> dict[str, object]:
     # These are path/provenance guards only. They do not change selector rules.
     hints = {
         "1UBQ:A": {
-            "recommended_target_basename": "AF-P62988-F1-model_v4_1UBQ_mature_segment.pdb",
-            "allowed_target_substrings": ["P62988", "P0CG47", "P0CG48", "1UBQ_mature_segment", "1UBQ_heldout_independent"],
+            "recommended_target_basename": "1UBQ_independent_target_segment.pdb",
+            "allowed_target_substrings": ["P62988", "P0CG47", "P0CG48", "1UBQ_independent_target_segment", "1UBQ_mature_segment", "1UBQ_heldout_independent"],
             "forbidden_target_substrings": ["P62158", "P0DP23", "1CLL", "calmodulin"],
         },
         "1CLL:A": {
-            "recommended_target_basename": "AF-P0DP23-F1-model_v4_1CLL_calmodulin_segment.pdb",
-            "allowed_target_substrings": ["P0DP23", "P62158", "1CLL_calmodulin_segment", "1CLL_calmodulin_independent"],
+            "recommended_target_basename": "1CLL_independent_target_segment.pdb",
+            "allowed_target_substrings": ["P0DP23", "P62158", "1CLL_independent_target_segment", "1CLL_calmodulin_segment", "1CLL_calmodulin_independent"],
             "forbidden_target_substrings": ["P62988", "P0CG47", "P0CG48", "1UBQ", "ubiquitin"],
         },
     }

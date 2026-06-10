@@ -5,7 +5,7 @@ REPO_ROOT="${REPO_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}"
 cd "$REPO_ROOT"
 export PYTHONPATH="$REPO_ROOT/src:$REPO_ROOT/scripts"
 
-TARGET_PDB="$REPO_ROOT/data/independent_contact_sources/AF-P62988-F1-model_v4_1UBQ_mature_segment.pdb"
+TARGET_PDB="$REPO_ROOT/data/independent_contact_sources/1UBQ_independent_target_segment.pdb"
 OUT_DIR="$REPO_ROOT/first_contact_clean_pharmacotopology_layer_run/V13a_1UBQ_REPAIR_FIXED"
 
 if [[ ! -f "$TARGET_PDB" ]]; then
@@ -34,6 +34,9 @@ COMMON_ARGS=(
   --out-dir "$OUT_DIR"
   --replicas "${REPLICAS:-10}"
   --max-parallel "${MAX_PARALLEL:-2}"
+  --steps "${STEPS:-5000000}"
+  --target-open-steps "${TARGET_OPEN_STEPS:-500000}"
+  --reporter-interval-steps "${REPORTER_INTERVAL_STEPS:-10000}"
   --topology-mode "none"
   --runtime-v10-role-aware-selector
   --platform "${OPENMM_PLATFORM:-cpu}"
