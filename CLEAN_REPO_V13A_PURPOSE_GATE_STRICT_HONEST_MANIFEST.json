@@ -1,0 +1,21 @@
+{
+  "added_files": [
+    "scripts/run_v13a_purpose_gate_readout_v0.py",
+    "scripts/run_v13a_1ubq_purpose_gate_readout.sh",
+    "scripts/print_v13a_purpose_gate_summary.py",
+    "tests/test_v13a_purpose_gate_readout.py",
+    "docs/V13A_1UBQ_PURPOSE_GATE_REPAIR.md",
+    "V13A_PURPOSE_GATE_RUN_COMMANDS.md"
+  ],
+  "base": "V13 strict honest clean repo v5 + full purpose-gate readout files",
+  "created_utc": "2026-06-10T15:45:39Z",
+  "kind": "pharmacotopology_clean_repo_v13a_purpose_gate_strict_honest_v6",
+  "strict_honest_guards": {
+    "claim_allowed_default": false,
+    "hardcoded_threshold_0_62": false,
+    "native_precision_threshold_selection": false,
+    "native_target_fallback": false,
+    "partial_target_fallback": false,
+    "synthetic_target_fallback": false
+  }
+}

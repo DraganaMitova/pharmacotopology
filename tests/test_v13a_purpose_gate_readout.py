@@ -1,5 +1,15 @@
 from __future__ import annotations
 
+import sys
+from pathlib import Path
+
+REPO_ROOT = Path(__file__).resolve().parents[1]
+SCRIPTS_ROOT = REPO_ROOT / "scripts"
+SRC_ROOT = REPO_ROOT / "src"
+for _path in (SCRIPTS_ROOT, SRC_ROOT):
+    if str(_path) not in sys.path:
+        sys.path.insert(0, str(_path))
+
 from run_v13a_purpose_gate_readout_v0 import (
     _build_v13_purpose_preflight,
     _classify_target_purpose,
