@@ -1,0 +1,324 @@
+diff --git a/scripts/run_openmm_dca_closure_md_v0.py b/scripts/run_openmm_dca_closure_md_v0.py
+index dd7a089..e8c3383 100644
+--- a/scripts/run_openmm_dca_closure_md_v0.py
++++ b/scripts/run_openmm_dca_closure_md_v0.py
+@@ -119,6 +119,12 @@ def _load_row(benchmark_file: Path, source_accession: str) -> RealCoordinateVisu
+     raise SystemExit(f"no row found for source_accession={source_accession!r}")
+ 
+ 
++
++
++def _require_existing_file(path: Path, label: str) -> None:
++    if not path.is_file():
++        raise SystemExit(f"{label}_missing: {path}")
++
+ def _extract_top_anchors(
+     row: RealCoordinateVisualRow,
+     external_coupling_path: Path,
+@@ -647,6 +653,12 @@ def main() -> None:
+ 
+     benchmark_file = Path(args.benchmark_file)
+     coupling_file = Path(args.external_coupling_file)
++    _require_existing_file(benchmark_file, "benchmark_file")
++    _require_existing_file(coupling_file, "external_coupling_file")
++    if args.target_pdb:
++        _require_existing_file(Path(args.target_pdb), "target_pdb")
++    if args.resume_pdb:
++        _require_existing_file(Path(args.resume_pdb), "resume_pdb")
+     row = _load_row(benchmark_file, args.source_accession)
+     anchors = _extract_top_anchors(
+         row=row,
+diff --git a/scripts/run_openmm_tmd_replicas_v0.py b/scripts/run_openmm_tmd_replicas_v0.py
+index bd0443f..440c2c0 100644
+--- a/scripts/run_openmm_tmd_replicas_v0.py
++++ b/scripts/run_openmm_tmd_replicas_v0.py
+@@ -117,6 +117,224 @@ def _parse_ca_trajectory(path: Path, chain_id: str = "A") -> list[dict[int, tupl
+     return models
+ 
+ 
++
++
++def _pdb_ca_summary(path: Path) -> dict[str, object]:
++    """Return a tiny CA-only PDB summary used for input provenance checks.
++
++    This deliberately does not perform biological scoring. It only prevents a
++    missing/wrong target structure from wasting all replica launches and then
++    looking like a folding/selector failure.
++    """
++    chain_counts: Counter[str] = Counter()
++    residue_numbers_by_chain: dict[str, set[int]] = defaultdict(set)
++    try:
++        lines = path.read_text(encoding="utf-8").splitlines()
++    except UnicodeDecodeError:
++        lines = path.read_text(encoding="latin-1").splitlines()
++    for raw_line in lines:
++        if not raw_line.startswith("ATOM"):
++            continue
++        if raw_line[12:16].strip() != "CA":
++            continue
++        chain = raw_line[21].strip() or "A"
++        try:
++            residue_number = int(raw_line[22:26].strip())
++        except Exception:
++            continue
++        chain_counts[chain] += 1
++        residue_numbers_by_chain[chain].add(residue_number)
++    max_residue_by_chain = {
++        chain: max(values) if values else None
++        for chain, values in sorted(residue_numbers_by_chain.items())
++    }
++    return {
++        "path": str(path),
++        "exists": path.exists(),
++        "is_file": path.is_file(),
++        "ca_atom_count": int(sum(chain_counts.values())),
++        "chain_ca_counts": dict(sorted(chain_counts.items())),
++        "max_residue_number_by_chain": max_residue_by_chain,
++    }
++
++
++def _write_input_preflight_artifact(
++    out_root: Path,
++    payload: dict[str, object],
++    *,
++    failed: bool = False,
++) -> Path:
++    out_root.mkdir(parents=True, exist_ok=True)
++    filename = "input_preflight_failed.json" if failed else "input_preflight.json"
++    path = out_root / filename
++    path.write_text(json.dumps(payload, indent=2, sort_keys=True), encoding="utf-8")
++    return path
++
++
++def _abort_input_preflight(
++    out_root: Path,
++    *,
++    failure_type: str,
++    message: str,
++    payload: dict[str, object],
++) -> None:
++    blocked_payload = {
++        **payload,
++        "status": "blocked",
++        "failure_type": failure_type,
++        "message": message,
++        "claim_allowed": False,
++        "physics_interpretation_allowed": False,
++    }
++    path = _write_input_preflight_artifact(out_root, blocked_payload, failed=True)
++    raise SystemExit(f"{failure_type}: {message}\ninput_preflight_written={path}")
++
++
++def _expected_target_hints(source_accession: str) -> dict[str, object]:
++    # These are path/provenance guards only. They do not change selector rules.
++    hints = {
++        "1UBQ:A": {
++            "recommended_target_basename": "AF-P62988-F1-model_v4_1UBQ_mature_segment.pdb",
++            "allowed_target_substrings": ["P62988", "P0CG47", "P0CG48", "1UBQ_mature_segment", "1UBQ_heldout_independent"],
++            "forbidden_target_substrings": ["P62158", "P0DP23", "1CLL", "calmodulin"],
++        },
++        "1CLL:A": {
++            "recommended_target_basename": "AF-P0DP23-F1-model_v4_1CLL_calmodulin_segment.pdb",
++            "allowed_target_substrings": ["P0DP23", "P62158", "1CLL_calmodulin_segment", "1CLL_calmodulin_independent"],
++            "forbidden_target_substrings": ["P62988", "P0CG47", "P0CG48", "1UBQ", "ubiquitin"],
++        },
++    }
++    return hints.get(source_accession, {})
++
++
++def _validate_runtime_inputs(
++    *,
++    args: argparse.Namespace,
++    out_root: Path,
++    row: RealCoordinateVisualRow,
++    benchmark_file: Path,
++    external_coupling: Path,
++    readout_coupling: Path,
++    anchor_profile: Optional[Path],
++    target_audit_pairs: set[tuple[int, int]],
++) -> dict[str, object]:
++    target_pdb = Path(args.target_pdb) if args.target_pdb else None
++    hints = _expected_target_hints(row.source_accession)
++    payload: dict[str, object] = {
++        "status": "checking",
++        "kind": "v13_runtime_input_preflight_v0",
++        "source_accession": row.source_accession,
++        "row_id": row.row_id,
++        "sequence_length": row.sequence_length,
++        "benchmark_file": str(benchmark_file),
++        "external_coupling_file": str(external_coupling),
++        "readout_coupling_file": str(readout_coupling),
++        "anchor_profile_file": str(anchor_profile) if anchor_profile else None,
++        "target_pdb": str(target_pdb) if target_pdb else None,
++        "audit_pair_count": len(target_audit_pairs),
++        "expected_target_hints": hints,
++        "checks": {},
++    }
++    checks: dict[str, object] = {}
++    payload["checks"] = checks
++
++    required_paths = {
++        "runner_script": RUNNER_SCRIPT,
++        "benchmark_file": benchmark_file,
++        "external_coupling_file": external_coupling,
++        "readout_coupling_file": readout_coupling,
++    }
++    if anchor_profile is not None:
++        required_paths["anchor_profile_file"] = anchor_profile
++    if args.audit_pairs_json:
++        required_paths["audit_pairs_json"] = Path(args.audit_pairs_json)
++    if target_pdb is not None:
++        required_paths["target_pdb"] = target_pdb
++
++    missing = []
++    for name, path in required_paths.items():
++        ok = path.is_file()
++        checks[f"{name}_exists"] = ok
++        if not ok:
++            missing.append([name, str(path)])
++    if missing:
++        _abort_input_preflight(
++            out_root,
++            failure_type="missing_required_runtime_input",
++            message="one or more required runtime input files are missing",
++            payload={**payload, "missing_paths": missing},
++        )
++
++    if target_pdb is None:
++        _abort_input_preflight(
++            out_root,
++            failure_type="missing_target_pdb",
++            message="--target-pdb is required for targeted MD style replicas",
++            payload=payload,
++        )
++
++    target_summary = _pdb_ca_summary(target_pdb)
++    payload["target_pdb_summary"] = target_summary
++    chain_a_count = int(target_summary.get("chain_ca_counts", {}).get("A", 0))  # type: ignore[union-attr]
++    total_ca_count = int(target_summary.get("ca_atom_count", 0))
++    checks["target_pdb_has_ca_atoms"] = total_ca_count > 0
++    checks["target_pdb_has_chain_a_ca_atoms"] = chain_a_count > 0
++    if total_ca_count <= 0 or chain_a_count <= 0:
++        _abort_input_preflight(
++            out_root,
++            failure_type="target_pdb_has_no_chain_a_ca_atoms",
++            message="target PDB exists but no chain A CA atoms were readable; child runner reads chain A",
++            payload=payload,
++        )
++
++    basename_text = target_pdb.name.lower()
++    forbidden = [text for text in hints.get("forbidden_target_substrings", []) if str(text).lower() in basename_text]
++    checks["target_pdb_forbidden_name_hit"] = forbidden
++    if forbidden and not args.allow_target_pdb_mismatch:
++        recommended = hints.get("recommended_target_basename")
++        _abort_input_preflight(
++            out_root,
++            failure_type="target_pdb_source_accession_mismatch",
++            message=(
++                f"target PDB name looks wrong for {row.source_accession}: "
++                f"{target_pdb.name}; recommended={recommended}; "
++                "use --allow-target-pdb-mismatch only for deliberate debugging"
++            ),
++            payload=payload,
++        )
++
++    min_reasonable = max(16, int(row.sequence_length * 0.80))
++    max_reasonable = max(row.sequence_length + 10, int(row.sequence_length * 1.35))
++    checks["target_chain_a_ca_count_min_reasonable"] = chain_a_count >= min_reasonable
++    checks["target_chain_a_ca_count_max_reasonable"] = chain_a_count <= max_reasonable
++    if chain_a_count < min_reasonable and not args.allow_target_pdb_mismatch:
++        _abort_input_preflight(
++            out_root,
++            failure_type="target_pdb_too_short_for_source_sequence",
++            message=(
++                f"target chain A has {chain_a_count} CA atoms but source sequence length is "
++                f"{row.sequence_length}"
++            ),
++            payload=payload,
++        )
++    if chain_a_count > max_reasonable and not args.allow_target_pdb_mismatch:
++        _abort_input_preflight(
++            out_root,
++            failure_type="target_pdb_too_long_for_source_sequence",
++            message=(
++                f"target chain A has {chain_a_count} CA atoms but source sequence length is "
++                f"{row.sequence_length}; this often means the wrong protein target file was used"
++            ),
++            payload=payload,
++        )
++
++    payload["status"] = "ready"
++    payload["claim_allowed"] = False
++    payload["physics_interpretation_allowed"] = False
++    path = _write_input_preflight_artifact(out_root, payload, failed=False)
++    payload["artifact_path"] = str(path)
++    return payload
++
+ def _extract_contacts(
+     coords: dict[int, tuple[float, float, float]],
+     cutoff_angstrom: float,
+@@ -1175,6 +1393,16 @@ def main() -> None:
+     parser.add_argument("--external-coupling-file", default=str(DEFAULT_EXTERNAL_COUPLING_FILE))
+     parser.add_argument("--target-pdb", default=str(DEFAULT_TARGET_PDB))
+     parser.add_argument("--out-dir", default=str(DEFAULT_OUTPUT_DIR))
++    parser.add_argument(
++        "--input-preflight-only",
++        action="store_true",
++        help="Validate runtime inputs and write input_preflight.json, then exit before launching replicas.",
++    )
++    parser.add_argument(
++        "--allow-target-pdb-mismatch",
++        action="store_true",
++        help="Bypass target/source accession mismatch guard for deliberate debugging only.",
++    )
+ 
+     parser.add_argument("--replicas", type=int, default=10)
+     parser.add_argument("--seed-base", type=int, default=11)
+@@ -1325,6 +1553,20 @@ def main() -> None:
+         except Exception:
+             target_audit_pairs = set()
+ 
++    input_preflight_payload = _validate_runtime_inputs(
++        args=args,
++        out_root=out_root,
++        row=row,
++        benchmark_file=Path(args.benchmark_file),
++        external_coupling=external_coupling,
++        readout_coupling=readout_coupling,
++        anchor_profile=anchor_profile,
++        target_audit_pairs=target_audit_pairs,
++    )
++    if args.input_preflight_only:
++        print(json.dumps(input_preflight_payload, indent=2, sort_keys=True), flush=True)
++        return
++
+     external_coupling_loaded = external_coupling.exists()
+     anchor_profile_loaded = bool(anchor_profile and anchor_profile.exists())
+ 
+@@ -1357,9 +1599,6 @@ def main() -> None:
+         "audit_pair_count": len(target_audit_pairs),
+         "anchor_profile_loaded": anchor_profile_loaded,
+         "external_coupling_loaded": external_coupling_loaded,
+-        # Fix: topology_mode_set is true if mode is 'none' (for single domain) 
+-        # or if boundaries are provided for multi-domain modes.
+-        "topology_mode_set": args.topology_mode == "none" or bool(args.domain_boundaries),
+         # Fix: topology_mode_set should be true if a mode is explicitly provided, 
+         # including 'none' for single-domain proteins.
+         "topology_mode_set": args.topology_mode in ("none", "interdomain", "intradomain"),
+@@ -1370,7 +1609,6 @@ def main() -> None:
+         for name, ok in {
+             "effective_strict_count": v5_ready_checks["effective_strict_count"] > 0,
+             "effective_balanced_count": v5_ready_checks["effective_balanced_count"] > 0,
+-            "effective_rescue_count": v5_ready_checks["effective_rescue_count"] >= 0, # Relaxed to allow 0 rescue pairs
+             "effective_rescue_count": True, # Allow 0 rescue pairs for provenance repair runs
+             "audit_pair_count": v5_ready_checks["audit_pair_count"] > 0,
+             "anchor_profile_loaded": v5_ready_checks["anchor_profile_loaded"],
+@@ -2207,6 +2445,8 @@ def main() -> None:
+         "min_separation": args.min_separation,
+         "topology_mode": args.topology_mode,
+         "domain_boundaries": args.domain_boundaries,
++        "target_pdb": str(Path(args.target_pdb)),
++        "input_preflight": input_preflight_payload,
+         "max_degree": args.max_degree,
+         "control_count": args.control_count,
+         "max_control_overlap_fraction": args.max_control_overlap_fraction,

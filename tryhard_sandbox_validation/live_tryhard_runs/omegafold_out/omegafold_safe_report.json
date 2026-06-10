@@ -1,7 +1,0 @@
-{
-  "kind": "omegafold_safe_runner_v1",
-  "outdir": "/mnt/data/pharmacotopology_4ake_tryhard_live_solution_full/tryhard_sandbox_validation/live_tryhard_runs/omegafold_out",
-  "pdb_count": 0,
-  "pdbs": [],
-  "status": "no_pdb_produced"
-}

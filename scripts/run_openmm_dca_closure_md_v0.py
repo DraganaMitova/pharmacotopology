@@ -119,6 +119,12 @@ def _load_row(benchmark_file: Path, source_accession: str) -> RealCoordinateVisu
     raise SystemExit(f"no row found for source_accession={source_accession!r}")
 
 
+
+
+def _require_existing_file(path: Path, label: str) -> None:
+    if not path.is_file():
+        raise SystemExit(f"{label}_missing: {path}")
+
 def _extract_top_anchors(
     row: RealCoordinateVisualRow,
     external_coupling_path: Path,
@@ -647,6 +653,12 @@ def main() -> None:
 
     benchmark_file = Path(args.benchmark_file)
     coupling_file = Path(args.external_coupling_file)
+    _require_existing_file(benchmark_file, "benchmark_file")
+    _require_existing_file(coupling_file, "external_coupling_file")
+    if args.target_pdb:
+        _require_existing_file(Path(args.target_pdb), "target_pdb")
+    if args.resume_pdb:
+        _require_existing_file(Path(args.resume_pdb), "resume_pdb")
     row = _load_row(benchmark_file, args.source_accession)
     anchors = _extract_top_anchors(
         row=row,

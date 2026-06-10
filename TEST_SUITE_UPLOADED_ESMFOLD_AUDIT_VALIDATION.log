@@ -1,5 +1,0 @@
-Command:
-PYTHONPATH=src PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 PHARMACOTOPOLOGY_TEST_TIMEOUT_SECONDS=70 timeout 180s python3 -m pytest -q -vv
-
-Result:
-5 passed, 2 skipped in 14.73s
