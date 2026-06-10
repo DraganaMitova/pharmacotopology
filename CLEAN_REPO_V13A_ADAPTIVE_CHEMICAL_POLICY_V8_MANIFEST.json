@@ -1,0 +1,17 @@
+{
+  "biological_transfer_claim_allowed": false,
+  "claim_allowed": false,
+  "clean_repo_build": "V13a_ADAPTIVE_CHEMICAL_POLICY_v8_DCA_LOCK_SEMANTICS",
+  "main_scripts": [
+    "scripts/run_v13a_purpose_gate_readout_v0.py",
+    "scripts/run_v13a_1ubq_adaptive_chemical_policy_readout.sh",
+    "scripts/print_v13a_adaptive_chemical_policy_summary.py",
+    "scripts/run_v13a_1ubq_repair_fixed.sh",
+    "scripts/download_v13_independent_target_pdbs.sh"
+  ],
+  "notes": "DCA background enrichment is now explicitly claim-lock diagnostic only; selector uses absolute DCA support.",
+  "tests": [
+    "tests/test_v13a_purpose_gate_readout.py"
+  ],
+  "verified": "python3 -m compileall -q src scripts && python3 -m pytest -q tests/test_v13a_purpose_gate_readout.py -> 6 passed"
+}

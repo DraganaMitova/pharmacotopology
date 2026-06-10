@@ -430,10 +430,17 @@ def _evaluate_frequency_threshold(
         value for value in selected_chemical_values
         if value < legacy_chemical_reference_threshold
     ])
-    dca_enrichment_ratio = None
+    dca_background_enrichment_ratio = None
     if dca_mean is not None and background_mean not in (None, 0):
-        dca_enrichment_ratio = round(dca_mean / float(background_mean), 6)
-    dca_enrichment_pass = bool(selected_balanced_core) and all(value >= balanced_dca_threshold for value in dca_values)
+        dca_background_enrichment_ratio = round(dca_mean / float(background_mean), 6)
+    # Absolute DCA support is the admissibility rule for purpose-fit selection.
+    # Enrichment against the already-high effective balanced anchor background is
+    # reported separately as a diagnostic/claim-lock field, not as the selector
+    # pass condition.  Calling this "dca_enrichment_pass" was misleading.
+    dca_absolute_support_pass = bool(selected_balanced_core) and all(value >= balanced_dca_threshold for value in dca_values)
+    dca_background_enrichment_pass = (
+        dca_background_enrichment_ratio is not None and dca_background_enrichment_ratio >= 1.0
+    )
 
     audit_payload: dict[str, object] = {}
     for pair in sorted(audit_pairs):
@@ -488,11 +495,15 @@ def _evaluate_frequency_threshold(
         )
     pass_checks = {
         "nonzero_balanced_core": len(selected_balanced_core) > 0,
-        "dca_enrichment_pass": dca_enrichment_pass,
+        "dca_absolute_support_pass": dca_absolute_support_pass,
         "noise_added_zero": noise_added == 0,
         "long_range_evidence_not_polluted": not long_range_evidence_polluted,
         "classification_coverage_complete": classification_coverage_ratio == 1.0 if selected_pairs else False,
         "chemical_guard_pass": chemical_guard_pass,
+    }
+    diagnostic_checks = {
+        "dca_background_enrichment_pass": dca_background_enrichment_pass,
+        "dca_background_enrichment_is_claim_lock_only": True,
     }
     return {
         "threshold": round(float(threshold), 6),
@@ -508,8 +519,12 @@ def _evaluate_frequency_threshold(
         "classification_coverage_ratio": classification_coverage_ratio,
         "dca_mean_selected": dca_mean,
         "dca_mean_effective_balanced_background": background_mean,
-        "dca_enrichment_ratio": dca_enrichment_ratio,
-        "dca_enrichment_pass": dca_enrichment_pass,
+        "dca_enrichment_ratio": dca_background_enrichment_ratio,
+        "dca_background_enrichment_ratio": dca_background_enrichment_ratio,
+        "dca_absolute_support_pass": dca_absolute_support_pass,
+        "dca_background_enrichment_pass": dca_background_enrichment_pass,
+        "dca_pass_semantics": "absolute_support_for_selection_background_enrichment_for_claim_lock_only",
+        "diagnostic_checks": diagnostic_checks,
         "chemical_mean_selected": chemical_mean_selected,
         "chemical_min_selected": chemical_min_selected,
         "chemical_max_selected": chemical_max_selected,
@@ -539,6 +554,52 @@ def _select_highest_passing_threshold(sweep_rows: Sequence[dict[str, object]]) -
     if not passing:
         return None
     return sorted(passing, key=lambda row: (float(row.get("threshold", 0.0)), int(row.get("selected_pair_count", 0))), reverse=True)[0]
+
+
+def _build_claim_lock_check(selected_band: Optional[dict[str, object]]) -> dict[str, object]:
+    if not selected_band:
+        return {
+            "kind": "v13a_adaptive_chemical_policy_claim_lock_v0",
+            "status": "blocked_no_selected_band",
+            "claim_allowed": False,
+            "failed_checks": ["selected_band_present"],
+            "checks": {"selected_band_present": False},
+        }
+    checks = {
+        "selected_band_present": True,
+        "selected_inside_effective_anchor_set": len(selected_band.get("selected_outside_effective_anchor_set") or []) == 0,
+        "support_vote_threshold_met": all(
+            int(value) >= int(selected_band.get("vote_threshold", 7))
+            for value in (selected_band.get("support_by_selected_pair") or {}).values()
+        ),
+        "mean_frequencies_valid_0_to_1": all(
+            isinstance(value, (int, float)) and 0.0 <= float(value) <= 1.0
+            for value in (selected_band.get("mean_frequency_by_selected_pair") or {}).values()
+        ),
+        "chemical_soft_guard_documented": selected_band.get("chemical_policy") == "adaptive_soft_guard",
+        "legacy_hard_chemical_gate_would_block": int(selected_band.get("legacy_chemical_hard_gate_would_block_selected_count") or 0) > 0,
+        "noise_added_zero": selected_band.get("noise_added") == 0,
+        "long_range_evidence_not_polluted": selected_band.get("long_range_evidence_polluted") is False,
+        "classification_coverage_complete": selected_band.get("classification_coverage_ratio") == 1.0,
+        "dca_absolute_support_pass": selected_band.get("dca_absolute_support_pass") is True,
+        # Background enrichment is deliberately a claim-lock diagnostic, not the
+        # purpose-fit selector.  If this is false, the mechanism can be recorded
+        # as positive readout, but not promoted to stronger biological claim.
+        "dca_background_enrichment_pass": selected_band.get("dca_background_enrichment_pass") is True,
+    }
+    failed = sorted(name for name, passed in checks.items() if not passed)
+    return {
+        "kind": "v13a_adaptive_chemical_policy_claim_lock_v0",
+        "status": "claim_locked_pending_cross_target_validation" if failed else "claim_lock_passed_but_claim_still_disabled",
+        "claim_allowed": False,
+        "failed_checks": failed,
+        "checks": checks,
+        "interpretation": (
+            "positive adaptive-chemical readout is allowed, but stronger claim remains blocked because "
+            + ", ".join(failed) if failed else
+            "all lock checks passed; claim remains disabled until cross-target validation"
+        ),
+    }
 
 
 def main() -> None:
@@ -750,6 +811,9 @@ def main() -> None:
                 "dca_mean_selected": row_payload["dca_mean_selected"],
                 "dca_mean_effective_balanced_background": row_payload["dca_mean_effective_balanced_background"],
                 "dca_enrichment_ratio": row_payload["dca_enrichment_ratio"],
+                "dca_absolute_support_pass": row_payload["dca_absolute_support_pass"],
+                "dca_background_enrichment_pass": row_payload["dca_background_enrichment_pass"],
+                "dca_pass_semantics": row_payload["dca_pass_semantics"],
                 "chemical_mean_selected": row_payload["chemical_mean_selected"],
                 "chemical_min_selected": row_payload["chemical_min_selected"],
                 "legacy_chemical_hard_gate_would_block_selected_count": row_payload["legacy_chemical_hard_gate_would_block_selected_count"],
@@ -757,6 +821,8 @@ def main() -> None:
                 "support_by_selected_pair": json.dumps(row_payload["support_by_selected_pair"], sort_keys=True),
             }
         )
+
+    claim_lock_check = _build_claim_lock_check(selected_band)
 
     certificate = {
         "kind": "V13a_1UBQ_PURPOSE_GATE_READOUT_v0",
@@ -787,6 +853,7 @@ def main() -> None:
         "selected_frequency_band": selected_band,
         "purpose_gate_decision": decision,
         "chemical_policy_decision": chemical_policy_decision,
+        "claim_lock_check": claim_lock_check,
         "official_runtime_rerun_required_for_claim": bool(selected_band),
         "claim_allowed": False,
         "physics_interpretation_allowed": False,
@@ -838,6 +905,8 @@ def main() -> None:
             if selected_band
             else None
         ),
+        "claim_lock_status": claim_lock_check.get("status"),
+        "claim_lock_failed_checks": claim_lock_check.get("failed_checks"),
         "claim_allowed": False,
         "certificate": str(cert_path),
     }

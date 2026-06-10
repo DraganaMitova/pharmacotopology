@@ -154,3 +154,46 @@ def test_adaptive_soft_guard_can_keep_dca_supported_low_chemical_pair() -> None:
     assert soft["selected_balanced_core"] == [[1, 30]]
     assert soft["legacy_chemical_hard_gate_would_block_selected_count"] == 1
     assert soft["mean_frequency_by_selected_pair"]["1-30"] == 0.8
+
+
+def test_dca_pass_semantics_are_absolute_support_not_background_enrichment() -> None:
+    selected_pair = (1, 30)
+    high_background_pair = (2, 31)
+    payloads = [
+        {"frequencies": {selected_pair: 0.8}, "audit_reachability": {}}
+        for _ in range(7)
+    ]
+    effective = {
+        "strict": set(),
+        "balanced": {selected_pair, high_background_pair},
+        "balanced_rescue": set(),
+        "monitor": set(),
+        "unknown": set(),
+    }
+    sequence = "A" + ("G" * 28) + "C" + ("G" * 30)
+
+    row = _evaluate_frequency_threshold(
+        0.75,
+        trajectory_payloads=payloads,
+        row=object(),
+        sequence=sequence,
+        dca_scores={selected_pair: 0.95, high_background_pair: 1.0},
+        anchor_classes={selected_pair: "balanced", high_background_pair: "balanced"},
+        effective_lane_pairs=effective,
+        balanced_dca_threshold=0.80,
+        chemical_threshold=0.50,
+        chemical_policy="adaptive_soft_guard",
+        legacy_chemical_reference_threshold=0.50,
+        vote_threshold=7,
+        topology_mode="none",
+        domain_boundaries_raw="",
+        audit_pairs={selected_pair},
+    )
+
+    assert row["selected_pair_count"] == 1
+    assert row["dca_absolute_support_pass"] is True
+    assert row["dca_background_enrichment_pass"] is False
+    assert row["dca_pass_semantics"] == "absolute_support_for_selection_background_enrichment_for_claim_lock_only"
+    assert row["pass_checks"]["dca_absolute_support_pass"] is True
+    assert "dca_enrichment_pass" not in row["pass_checks"]
+    assert row["passes_purpose_fit"] is True
