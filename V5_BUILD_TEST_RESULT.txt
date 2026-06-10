@@ -1,0 +1,5 @@
+V13_runtime_repair_v5_strict_honest_targets
+compileall: passed
+pytest command: PYTHONPATH=src:scripts python3 -m pytest -q
+pytest result: 44 passed, 2 skipped
+Official target policy: no partial target, no native/debug fallback, no synthetic/generated target.

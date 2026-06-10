@@ -8,22 +8,23 @@ RAW_DIR="$REPO_ROOT/data/independent_contact_sources/raw"
 OUT_DIR="$REPO_ROOT/data/independent_contact_sources"
 mkdir -p "$RAW_DIR" "$OUT_DIR"
 
-# This script prepares target PDBs needed by the V13 runtime tests.
-# It intentionally does NOT tune role rules and every prepared target writes
-# provenance with claim_allowed=false.
+# Strict honest target preparation for V13 runtime tests.
 #
-# Important 1UBQ note:
-# AFDB currently returns 404 for the usual mature ubiquitin accessions in this setup.
-# So V13a defaults to an independent, highly similar experimental ubiquitin structure
-# from RCSB (3ONS first, then 1UBI). This is a target/provenance repair, not a claim.
+# This script does NOT synthesize targets, does NOT use native/debug fallback,
+# and does NOT accept partial-length targets. A target is accepted only if the
+# downloaded experimental/computed structure contains the full benchmark sequence
+# and can be trimmed/renumbered exactly.
 #
-# Useful overrides:
+# 1UBQ transfer target policy:
+#   Use independent real ubiquitin structures with full 76-residue sequence.
+#   Defaults avoid 1UBI because its RCSB title/provenance is synthetic.
+#   Defaults also avoid 3ONS because it commonly resolves only 72/76 residues.
+#   First candidates: 1D3Z (human ubiquitin NMR), 5DK8 (human ubiquitin crystal).
+#
+# Useful commands:
 #   ONLY=1UBQ bash scripts/download_v13_independent_target_pdbs.sh
-#   UBQ_PDB_ID=3ONS bash scripts/download_v13_independent_target_pdbs.sh
-#   ALLOW_NATIVE_TARGET_DEBUG=1 bash scripts/download_v13_independent_target_pdbs.sh
-#
-# ALLOW_NATIVE_TARGET_DEBUG=1 may fall back to bundled 1UBQ coordinates only to test
-# the runtime plumbing. That mode is NOT an independent biological transfer result.
+#   UBQ_PDB_IDS="1D3Z 5DK8" bash scripts/download_v13_independent_target_pdbs.sh
+#   ONLY=1CLL bash scripts/download_v13_independent_target_pdbs.sh
 
 ONLY="${ONLY:-all}"
 if [[ "$ONLY" != "all" && "$ONLY" != "1UBQ" && "$ONLY" != "1CLL" ]]; then
@@ -31,123 +32,108 @@ if [[ "$ONLY" != "all" && "$ONLY" != "1UBQ" && "$ONLY" != "1CLL" ]]; then
   exit 2
 fi
 
-fetch_rcsb_first_available() {
+fetch_rcsb() {
   local label="$1"
-  shift
-  local candidates=("$@")
-  local id out url
-  for id in "${candidates[@]}"; do
-    id="$(printf '%s' "$id" | tr '[:lower:]' '[:upper:]')"
-    out="$RAW_DIR/RCSB-${id}.pdb"
-    url="https://files.rcsb.org/download/${id}.pdb"
-    if [[ -s "$out" ]]; then
-      echo "$label already present: $out" >&2
-      printf '%s\n' "$out"
-      return 0
-    fi
-    echo "$label trying RCSB: $url" >&2
-    if curl -fL "$url" -o "$out"; then
-      printf '%s\n' "$out"
-      return 0
-    fi
-    rm -f "$out"
-  done
+  local id="$2"
+  local out url
+  id="$(printf '%s' "$id" | tr '[:lower:]' '[:upper:]')"
+  out="$RAW_DIR/RCSB-${id}.pdb"
+  url="https://files.rcsb.org/download/${id}.pdb"
+  if [[ -s "$out" ]]; then
+    echo "$label already present: $out" >&2
+    printf '%s\n' "$out"
+    return 0
+  fi
+  echo "$label trying RCSB: $url" >&2
+  if curl -fL "$url" -o "$out"; then
+    printf '%s\n' "$out"
+    return 0
+  fi
+  rm -f "$out"
   return 1
 }
 
-fetch_af_first_available() {
+fetch_af() {
   local label="$1"
-  shift
-  local candidates=("$@")
-  local id out url
-  for id in "${candidates[@]}"; do
-    out="$RAW_DIR/AF-${id}-F1-model_v4.pdb"
-    url="https://alphafold.ebi.ac.uk/files/AF-${id}-F1-model_v4.pdb"
-    if [[ -s "$out" ]]; then
-      echo "$label already present: $out" >&2
-      printf '%s\n' "$out"
-      return 0
-    fi
-    echo "$label trying AFDB: $url" >&2
-    if curl -fL "$url" -o "$out"; then
-      printf '%s\n' "$out"
-      return 0
-    fi
-    rm -f "$out"
-  done
+  local id="$2"
+  local out url
+  out="$RAW_DIR/AF-${id}-F1-model_v4.pdb"
+  url="https://alphafold.ebi.ac.uk/files/AF-${id}-F1-model_v4.pdb"
+  if [[ -s "$out" ]]; then
+    echo "$label already present: $out" >&2
+    printf '%s\n' "$out"
+    return 0
+  fi
+  echo "$label trying AFDB: $url" >&2
+  if curl -fL "$url" -o "$out"; then
+    printf '%s\n' "$out"
+    return 0
+  fi
+  rm -f "$out"
   return 1
 }
-
-UBQ_RAW=""
-if [[ "$ONLY" == "all" || "$ONLY" == "1UBQ" ]]; then
-  if [[ -n "${UBQ_PDB_ID:-}" ]]; then
-    UBQ_RAW="$(fetch_rcsb_first_available "1UBQ-like target" "$UBQ_PDB_ID")" || {
-      echo "failed to download requested UBQ_PDB_ID=$UBQ_PDB_ID" >&2
-      exit 1
-    }
-  else
-    UBQ_RAW="$(fetch_rcsb_first_available "1UBQ-like target" 3ONS 1UBI)" || true
-  fi
-
-  if [[ -z "$UBQ_RAW" && "${ALLOW_NATIVE_TARGET_DEBUG:-0}" == "1" ]]; then
-    if [[ -s "$REPO_ROOT/data/rcsb_pdb/1UBQ.pdb" ]]; then
-      UBQ_RAW="$REPO_ROOT/data/rcsb_pdb/1UBQ.pdb"
-      echo "1UBQ DEBUG fallback using bundled native PDB: $UBQ_RAW" >&2
-      echo "WARNING: this is runtime plumbing only, not independent transfer evidence." >&2
-    else
-      UBQ_RAW="$(fetch_rcsb_first_available "1UBQ native debug target" 1UBQ)" || true
-      echo "WARNING: downloaded 1UBQ native debug target; not independent transfer evidence." >&2
-    fi
-  fi
-
-  if [[ -z "$UBQ_RAW" ]]; then
-    echo "failed to prepare 1UBQ-like target. Try: UBQ_PDB_ID=3ONS or ALLOW_NATIVE_TARGET_DEBUG=1" >&2
-    exit 1
-  fi
-fi
-
-CLL_RAW=""
-if [[ "$ONLY" == "all" || "$ONLY" == "1CLL" ]]; then
-  if [[ -n "${CLL_PDB_ID:-}" ]]; then
-    CLL_RAW="$(fetch_rcsb_first_available "1CLL target" "$CLL_PDB_ID")" || {
-      echo "failed to download requested CLL_PDB_ID=$CLL_PDB_ID" >&2
-      exit 1
-    }
-  else
-    CLL_RAW="$(fetch_af_first_available "1CLL target" P0DP23 P62158)" || true
-    if [[ -z "$CLL_RAW" ]]; then
-      CLL_RAW="$(fetch_rcsb_first_available "1CLL target" 1CLL)" || true
-    fi
-  fi
-  if [[ -z "$CLL_RAW" ]]; then
-    echo "failed to prepare 1CLL target from AFDB/RCSB candidates" >&2
-    exit 1
-  fi
-fi
 
 export PYTHONPATH="$REPO_ROOT/src:$REPO_ROOT/scripts"
 
-if [[ "$ONLY" == "1UBQ" ]]; then
+prepare_ubq_from_raw_exact() {
+  local raw="$1"
   python3 "$REPO_ROOT/scripts/prepare_v13_independent_target_pdbs.py" \
     --repo-root "$REPO_ROOT" \
     --only 1UBQ \
-    --ubq-raw-pdb "${UBQ_RAW#$REPO_ROOT/}" \
+    --ubq-raw-pdb "${raw#$REPO_ROOT/}" \
     --ubq-out-pdb "data/independent_contact_sources/1UBQ_independent_target_segment.pdb"
-elif [[ "$ONLY" == "1CLL" ]]; then
+}
+
+prepare_cll_from_raw_exact() {
+  local raw="$1"
   python3 "$REPO_ROOT/scripts/prepare_v13_independent_target_pdbs.py" \
     --repo-root "$REPO_ROOT" \
     --only 1CLL \
-    --cll-raw-pdb "${CLL_RAW#$REPO_ROOT/}" \
+    --cll-raw-pdb "${raw#$REPO_ROOT/}" \
     --cll-out-pdb "data/independent_contact_sources/1CLL_independent_target_segment.pdb"
-else
-  python3 "$REPO_ROOT/scripts/prepare_v13_independent_target_pdbs.py" \
-    --repo-root "$REPO_ROOT" \
-    --only all \
-    --ubq-raw-pdb "${UBQ_RAW#$REPO_ROOT/}" \
-    --ubq-out-pdb "data/independent_contact_sources/1UBQ_independent_target_segment.pdb" \
-    --cll-raw-pdb "${CLL_RAW#$REPO_ROOT/}" \
-    --cll-out-pdb "data/independent_contact_sources/1CLL_independent_target_segment.pdb"
+}
+
+if [[ "$ONLY" == "all" || "$ONLY" == "1UBQ" ]]; then
+  rm -f "$OUT_DIR/1UBQ_independent_target_segment.pdb" "$OUT_DIR/1UBQ_independent_target_segment.pdb.provenance.json"
+  UBQ_PREPARED=0
+  read -r -a UBQ_IDS <<< "${UBQ_PDB_IDS:-1D3Z 5DK8}"
+  for id in "${UBQ_IDS[@]}"; do
+    raw="$(fetch_rcsb "1UBQ independent real target" "$id")" || continue
+    echo "1UBQ preparing exact full-length target from RCSB $id" >&2
+    if prepare_ubq_from_raw_exact "$raw"; then
+      UBQ_PREPARED=1
+      echo "1UBQ exact independent target accepted from RCSB $id" >&2
+      break
+    fi
+    echo "1UBQ exact preparation failed for RCSB $id; trying next exact candidate" >&2
+  done
+  if [[ "$UBQ_PREPARED" != "1" ]]; then
+    echo "failed to prepare strict 1UBQ independent target from candidates: ${UBQ_IDS[*]}" >&2
+    echo "No partial/native/synthetic fallback was used. Add another real full-length candidate via UBQ_PDB_IDS." >&2
+    exit 1
+  fi
 fi
 
-echo "ready target PDBs:"
+if [[ "$ONLY" == "all" || "$ONLY" == "1CLL" ]]; then
+  rm -f "$OUT_DIR/1CLL_independent_target_segment.pdb" "$OUT_DIR/1CLL_independent_target_segment.pdb.provenance.json"
+  CLL_PREPARED=0
+  read -r -a CLL_AF_IDS_ARRAY <<< "${CLL_AF_IDS:-P0DP23 P62158}"
+  for id in "${CLL_AF_IDS_ARRAY[@]}"; do
+    raw="$(fetch_af "1CLL independent AFDB target" "$id")" || continue
+    echo "1CLL preparing exact target from AFDB $id" >&2
+    if prepare_cll_from_raw_exact "$raw"; then
+      CLL_PREPARED=1
+      echo "1CLL exact independent target accepted from AFDB $id" >&2
+      break
+    fi
+    echo "1CLL exact preparation failed for AFDB $id; trying next exact candidate" >&2
+  done
+  if [[ "$CLL_PREPARED" != "1" ]]; then
+    echo "failed to prepare strict 1CLL independent AFDB target from candidates: ${CLL_AF_IDS_ARRAY[*]}" >&2
+    echo "No native RCSB 1CLL fallback was used." >&2
+    exit 1
+  fi
+fi
+
+echo "ready strict target PDBs:"
 ls -lh "$OUT_DIR"/*independent_target_segment.pdb

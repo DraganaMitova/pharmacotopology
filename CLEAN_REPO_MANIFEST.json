@@ -1,28 +1,15 @@
 {
-  "kind": "clean_pharmacotopology_repo_v13_runtime_provenance_repair",
-  "created_for": "replace polluted local repo and continue V13a/V13b transfer testing",
-  "removed_categories": [
-    ".venv",
-    ".git",
-    "__MACOSX",
-    ".DS_Store",
-    "pytest/cache/pycache",
-    "generated first_contact_clean_pharmacotopology_layer_run artifacts",
-    "top-level run logs and one-off generated artifacts"
+  "clean_repo_variant": "V13_runtime_repair_v5_strict_honest_targets",
+  "generated_run_artifacts_removed": true,
+  "git_removed": true,
+  "venv_removed": true,
+  "strict_target_policy": "real downloaded exact full-length target only",
+  "disallowed_official_target_modes": [
+    "partial_prefix_target",
+    "native_debug_fallback",
+    "synthetic_generated_target"
   ],
-  "kept_roots": [
-    "src",
-    "scripts",
-    "tests",
-    "data",
-    "docs",
-    "external_msa",
-    "external_msa_free_predictors"
-  ],
-  "validation_performed": [
-    "python3 -m compileall -q src scripts"
-  ],
-  "claim_allowed": false,
-  "biology_interpretation_allowed_by_this_zip": false,
-  "purpose": "runtime provenance repair and clean rerun, not a folding claim"
+  "default_1ubq_independent_candidates": ["1D3Z", "5DK8"],
+  "default_1cll_independent_candidates": ["AF-P0DP23-F1-model_v4", "AF-P62158-F1-model_v4"],
+  "claim_allowed_default": false
 }

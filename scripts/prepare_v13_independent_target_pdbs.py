@@ -3,10 +3,14 @@ from __future__ import annotations
 
 """Prepare independent target PDB segments for V13 transfer runs.
 
-This script trims downloaded AlphaFold model PDBs to the exact benchmark sequence
+This script trims a downloaded target PDB to the benchmark-compatible residue
 segment and renumbers the segment to 1..N. It is a provenance/format repair
-step only: it does not read native coordinates and it does not tune selector
+step only: it does not read native coordinate truth and it does not tune selector
 rules.
+
+Strict honest mode only: the raw target must contain an exact full-length
+benchmark sequence segment. Partial-prefix, native/debug, synthetic, or generated
+targets are not accepted by this script.
 """
 
 import argparse
@@ -15,7 +19,7 @@ import json
 import sys
 from collections import OrderedDict
 from pathlib import Path
-from typing import Iterable
+from typing import Iterable, NamedTuple
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 SRC_ROOT = REPO_ROOT / "src"
@@ -53,6 +57,13 @@ AA3_TO_1 = {
 }
 
 
+class SegmentMatch(NamedTuple):
+    start: int
+    length: int
+    sequence_exact_match: bool
+    note: str
+
+
 def _sha256_text(text: str) -> str:
     return hashlib.sha256(text.encode("utf-8")).hexdigest()
 
@@ -65,12 +76,7 @@ def _load_row(benchmark_file: Path, source_accession: str) -> RealCoordinateVisu
 
 
 def _iter_first_model_atom_lines(pdb_path: Path) -> Iterable[str]:
-    """Yield ATOM/HETATM lines from the first model, or all lines if no MODEL tags.
-
-    Some RCSB structures are NMR multi-model PDBs. The target-preparation step
-    only needs one coordinate model; otherwise duplicate CA atoms make the
-    prepared segment look corrupt.
-    """
+    """Yield ATOM/HETATM lines from the first model, or all lines if no MODEL tags."""
     in_first_model = False
     seen_model_tag = False
     first_model_done = False
@@ -92,12 +98,7 @@ def _iter_first_model_atom_lines(pdb_path: Path) -> Iterable[str]:
 
 
 def _parse_residue_order(pdb_path: Path, chain_id: str = "A") -> tuple[list[tuple[str, int, str, str]], str]:
-    """Return ordered residues and one-letter sequence for a chain.
-
-    Residue key is (chain, residue_number, insertion_code, residue_name).
-    The sequence is based only on residue order, not on coordinates from the
-    benchmark/native structure.
-    """
+    """Return ordered residues and one-letter sequence for a chain."""
     if not pdb_path.is_file():
         raise SystemExit(f"raw_target_pdb_missing: {pdb_path}")
     residues: "OrderedDict[tuple[str, int, str, str], str]" = OrderedDict()
@@ -123,23 +124,23 @@ def _parse_residue_order(pdb_path: Path, chain_id: str = "A") -> tuple[list[tupl
     return ordered_keys, sequence
 
 
-def _find_exact_segment(raw_sequence: str, target_sequence: str) -> int:
+def _find_segment_match(
+    raw_sequence: str,
+    target_sequence: str,
+) -> SegmentMatch:
     start = raw_sequence.find(target_sequence)
     if start >= 0:
-        return start
-    # A common mature-protein case: the AF model has an initiator Met before the
-    # benchmark segment. Keep this as a format repair, not a scoring rule.
+        return SegmentMatch(start, len(target_sequence), True, "exact_target_sequence_found")
     if raw_sequence.startswith("M" + target_sequence):
-        return 1
+        return SegmentMatch(1, len(target_sequence), True, "exact_target_sequence_found_after_initiator_methionine")
+
     raise SystemExit(
-        "target_sequence_not_found_in_raw_af_model: "
+        "target_sequence_not_found_in_raw_target_model_strict_exact_required: "
         f"target_len={len(target_sequence)} raw_len={len(raw_sequence)} "
         f"raw_prefix={raw_sequence[:30]!r} target_prefix={target_sequence[:30]!r}"
     )
 
-
 def _renumber_atom_line(line: str, *, new_resseq: int, new_chain: str = "A") -> str:
-    # PDB columns: chain id at 22 (0-index 21), resseq columns 23-26 (22:26).
     if len(line) < 54:
         line = line.rstrip("\n").ljust(54)
     return f"{line[:21]}{new_chain}{new_resseq:4d}{line[26:]}"
@@ -190,14 +191,19 @@ def prepare_one(
 ) -> dict[str, object]:
     row = _load_row(benchmark_file, source_accession)
     residue_keys, raw_sequence = _parse_residue_order(raw_pdb, chain_id=chain_id)
-    start = _find_exact_segment(raw_sequence, row.sequence)
-    end = start + len(row.sequence)
-    segment_keys = residue_keys[start:end]
-    if len(segment_keys) != row.sequence_length:
+    match = _find_segment_match(raw_sequence, row.sequence)
+    end = match.start + match.length
+    segment_keys = residue_keys[match.start:end]
+    if len(segment_keys) != match.length:
         raise SystemExit(
-            f"segment_length_mismatch: got={len(segment_keys)} expected={row.sequence_length} source={source_accession}"
+            f"segment_length_mismatch: got={len(segment_keys)} expected={match.length} source={source_accession}"
+        )
+    if match.sequence_exact_match and len(segment_keys) != row.sequence_length:
+        raise SystemExit(
+            f"exact_segment_length_mismatch: got={len(segment_keys)} expected={row.sequence_length} source={source_accession}"
         )
     ca_count = _write_segment_pdb(raw_pdb=raw_pdb, out_pdb=out_pdb, segment_keys=segment_keys)
+    prepared_sequence = raw_sequence[match.start:end]
     provenance = {
         "kind": "v13_independent_target_segment_provenance_v0",
         "source_accession": source_accession,
@@ -207,16 +213,23 @@ def prepare_one(
         "prepared_target_pdb": str(out_pdb),
         "raw_chain_id": chain_id,
         "raw_sequence_length": len(raw_sequence),
-        "segment_start_residue_order_index_1based": start + 1,
+        "segment_start_residue_order_index_1based": match.start + 1,
         "segment_end_residue_order_index_1based": end,
         "prepared_ca_count": ca_count,
+        "prepared_sequence_length": len(prepared_sequence),
         "expected_sequence_length": row.sequence_length,
-        "sequence_exact_match": True,
-        "sequence_sha256": _sha256_text(row.sequence),
+        "prepared_target_coverage_ratio": round(len(prepared_sequence) / float(row.sequence_length), 6),
+        "sequence_exact_match": match.sequence_exact_match,
+        "partial_prefix_match": False,
+        "partial_prefix_allowed": False,
+        "match_note": match.note,
+        "prepared_sequence_sha256": _sha256_text(prepared_sequence),
+        "expected_sequence_sha256": _sha256_text(row.sequence),
         "coordinate_truth_used_to_prepare_target": False,
         "native_truth_used_to_prepare_target": False,
         "selector_rules_modified": False,
         "claim_allowed": False,
+        "biological_transfer_claim_allowed": False,
     }
     out_pdb.with_suffix(out_pdb.suffix + ".provenance.json").write_text(
         json.dumps(provenance, indent=2, sort_keys=True),
@@ -231,11 +244,11 @@ def main() -> None:
     parser.add_argument("--chain-id", default="A")
     parser.add_argument(
         "--ubq-raw-pdb",
-        default="data/independent_contact_sources/raw/AF-P62988-F1-model_v4.pdb",
+        default="data/independent_contact_sources/raw/RCSB-1D3Z.pdb",
     )
     parser.add_argument(
         "--ubq-out-pdb",
-        default="data/independent_contact_sources/AF-P62988-F1-model_v4_1UBQ_mature_segment.pdb",
+        default="data/independent_contact_sources/1UBQ_independent_target_segment.pdb",
     )
     parser.add_argument(
         "--cll-raw-pdb",
@@ -243,7 +256,7 @@ def main() -> None:
     )
     parser.add_argument(
         "--cll-out-pdb",
-        default="data/independent_contact_sources/AF-P0DP23-F1-model_v4_1CLL_calmodulin_segment.pdb",
+        default="data/independent_contact_sources/1CLL_independent_target_segment.pdb",
     )
     parser.add_argument(
         "--ubq-benchmark-file",

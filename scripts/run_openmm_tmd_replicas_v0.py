@@ -275,6 +275,14 @@ def _validate_runtime_inputs(
 
     target_summary = _pdb_ca_summary(target_pdb)
     payload["target_pdb_summary"] = target_summary
+    target_provenance_path = target_pdb.with_suffix(target_pdb.suffix + ".provenance.json")
+    if target_provenance_path.is_file():
+        try:
+            payload["target_pdb_provenance"] = json.loads(
+                target_provenance_path.read_text(encoding="utf-8")
+            )
+        except Exception as exc:
+            payload["target_pdb_provenance"] = {"read_error": str(exc)}
     chain_a_count = int(target_summary.get("chain_ca_counts", {}).get("A", 0))  # type: ignore[union-attr]
     total_ca_count = int(target_summary.get("ca_atom_count", 0))
     checks["target_pdb_has_ca_atoms"] = total_ca_count > 0

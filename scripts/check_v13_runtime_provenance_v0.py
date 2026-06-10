@@ -31,12 +31,17 @@ def main() -> None:
             if marker in text:
                 error_hits.append({"log": str(log), "marker": marker})
                 break
+    target_provenance = input_preflight.get("target_pdb_provenance") if isinstance(input_preflight, dict) else None
     summary = {
         "run_dir": str(run_dir),
         "certificate_present": bool(cert),
         "input_preflight_status": input_preflight.get("status"),
         "input_preflight_failure_type": input_preflight.get("failure_type"),
         "target_pdb": cert.get("target_pdb") or input_preflight.get("target_pdb"),
+        "target_sequence_exact_match": (target_provenance or {}).get("sequence_exact_match") if isinstance(target_provenance, dict) else None,
+        "target_prepared_ca_count": (target_provenance or {}).get("prepared_ca_count") if isinstance(target_provenance, dict) else None,
+        "target_expected_sequence_length": (target_provenance or {}).get("expected_sequence_length") if isinstance(target_provenance, dict) else None,
+        "target_prepared_coverage_ratio": (target_provenance or {}).get("prepared_target_coverage_ratio") if isinstance(target_provenance, dict) else None,
         "successful_replicas": cert.get("successful_replicas"),
         "replica_count_in_certificate": len(cert.get("replica_summaries", [])) if cert else 0,
         "trajectory_count": len(trajectories),
