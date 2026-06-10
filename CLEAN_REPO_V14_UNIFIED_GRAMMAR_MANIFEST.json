@@ -1,0 +1,22 @@
+{
+  "name": "pharmacotopology_CLEAN_REPO_V14_UNIFIED_PROTEIN_ESPERANTO_GRAMMAR_READOUT",
+  "version": "v11",
+  "base": "V13b_HIERARCHICAL_TOPOLOGY_GRAMMAR_v10",
+  "added": [
+    "scripts/run_v14_unified_protein_esperanto_grammar_readout_v0.py",
+    "scripts/run_v14_unified_protein_esperanto_grammar_readout.sh",
+    "scripts/print_v14_unified_protein_esperanto_grammar_summary.py",
+    "tests/test_v14_unified_protein_esperanto_grammar_readout.py",
+    "docs/V14_UNIFIED_PROTEIN_ESPERANTO_GRAMMAR_READOUT.md",
+    "V14_UNIFIED_GRAMMAR_RUN_COMMANDS.md"
+  ],
+  "principles": [
+    "postprocess_only_no_new_simulation",
+    "no_threshold_tuning",
+    "no_native_precision_selection",
+    "claim_allowed_false",
+    "missing_artifacts_reported_not_invented",
+    "unified_role_aware_evidence_grammar"
+  ],
+  "targeted_tests": "17 passed"
+}
