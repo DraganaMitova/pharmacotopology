@@ -64,6 +64,33 @@ def _load_row(benchmark_file: Path, source_accession: str) -> RealCoordinateVisu
     raise SystemExit(f"no row found for source_accession={source_accession!r} in {benchmark_file}")
 
 
+def _iter_first_model_atom_lines(pdb_path: Path) -> Iterable[str]:
+    """Yield ATOM/HETATM lines from the first model, or all lines if no MODEL tags.
+
+    Some RCSB structures are NMR multi-model PDBs. The target-preparation step
+    only needs one coordinate model; otherwise duplicate CA atoms make the
+    prepared segment look corrupt.
+    """
+    in_first_model = False
+    seen_model_tag = False
+    first_model_done = False
+    for line in pdb_path.read_text(encoding="utf-8", errors="replace").splitlines():
+        if line.startswith("MODEL"):
+            seen_model_tag = True
+            if first_model_done:
+                break
+            in_first_model = True
+            continue
+        if line.startswith("ENDMDL") and in_first_model:
+            first_model_done = True
+            in_first_model = False
+            continue
+        if seen_model_tag and not in_first_model:
+            continue
+        if line.startswith("ATOM") or line.startswith("HETATM"):
+            yield line
+
+
 def _parse_residue_order(pdb_path: Path, chain_id: str = "A") -> tuple[list[tuple[str, int, str, str]], str]:
     """Return ordered residues and one-letter sequence for a chain.
 
@@ -74,7 +101,7 @@ def _parse_residue_order(pdb_path: Path, chain_id: str = "A") -> tuple[list[tupl
     if not pdb_path.is_file():
         raise SystemExit(f"raw_target_pdb_missing: {pdb_path}")
     residues: "OrderedDict[tuple[str, int, str, str], str]" = OrderedDict()
-    for line in pdb_path.read_text(encoding="utf-8", errors="replace").splitlines():
+    for line in _iter_first_model_atom_lines(pdb_path):
         if not line.startswith("ATOM"):
             continue
         chain = line[21].strip() or "A"
@@ -127,7 +154,7 @@ def _write_segment_pdb(
     key_to_new_index = {key: idx for idx, key in enumerate(segment_keys, start=1)}
     out_lines: list[str] = []
     ca_count = 0
-    for line in raw_pdb.read_text(encoding="utf-8", errors="replace").splitlines():
+    for line in _iter_first_model_atom_lines(raw_pdb):
         if not (line.startswith("ATOM") or line.startswith("HETATM")):
             continue
         chain = line[21].strip() or "A"
