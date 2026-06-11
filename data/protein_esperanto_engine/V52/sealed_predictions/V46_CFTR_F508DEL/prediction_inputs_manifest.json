@@ -1,0 +1,11 @@
+{
+  "coordinates_available_before_seal": false,
+  "holdouts_available_before_seal": false,
+  "kind": "V52_PREDICTION_INPUTS_MANIFEST_v0",
+  "source_ids": [
+    "UNIPROT_P13569_SEQUENCE_FEATURES_NONCOORDINATE",
+    "UNIPROT_P13569_F508DEL_VARIANT_NONCOORDINATE",
+    "CFTR_DOMAIN_PATTERN_FEATURES_DERIVED_FROM_ALLOWED_INPUTS"
+  ],
+  "target_id": "V46_CFTR_F508DEL"
+}

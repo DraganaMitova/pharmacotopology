@@ -1,0 +1,30 @@
+{
+  "expected_mechanism_class": "intrinsic_disorder_phase_separation",
+  "expected_observables": [
+    {
+      "check_id": "prion_like_phase_ensemble_supported",
+      "comparator": ">=",
+      "metric": "basin:phase_prone_dynamic",
+      "threshold": 0.23
+    },
+    {
+      "check_id": "generic_compact_fold_rejected",
+      "comparator": "<=",
+      "metric": "basin:compact_single_fold",
+      "threshold": 0.12
+    }
+  ],
+  "holdout_opened_after_prediction_hash": "15c8d81524eadd94616be8764d17ec27dcbf139e77f92ad7d87c89b8f640c766",
+  "kind": "V55_SIMULATION_HOLDOUT_VALIDATION_MANIFEST_v0",
+  "postseal_sources": [
+    {
+      "rationale": "Post-seal operator/state validation summary for coarse trajectory direction.",
+      "source_class": "spatial_proxy_non_coordinate",
+      "source_id": "V45_TDP43_LCD_POSTSEAL_OPERATOR_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "target_id": "V45_TDP43_LCD",
+  "target_name": "TDP-43 LCD residues 274-414"
+}

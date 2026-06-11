@@ -1,0 +1,11 @@
+{
+  "coordinates_available_before_seal": false,
+  "holdouts_available_before_seal": false,
+  "kind": "V52_PREDICTION_INPUTS_MANIFEST_v0",
+  "source_ids": [
+    "UNIPROT_Q13148_SEQUENCE_FEATURES_NONCOORDINATE",
+    "DISPROT_DP01108_DISORDER_ONLY_NONCOORDINATE",
+    "TDP43_LCD_SEQUENCE_PATTERN_FEATURES_DERIVED_FROM_ALLOWED_INPUTS"
+  ],
+  "target_id": "V45_TDP43_LCD"
+}

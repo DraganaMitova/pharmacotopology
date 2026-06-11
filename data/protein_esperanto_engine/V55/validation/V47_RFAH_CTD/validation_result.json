@@ -1,0 +1,50 @@
+{
+  "checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "metamorphic_fold_switching",
+      "observed": "metamorphic_fold_switching",
+      "passed": true
+    },
+    {
+      "check_id": "alpha_basin_present",
+      "comparator": ">=",
+      "metric": "basin:alpha_context_basin",
+      "observed": 0.4336,
+      "passed": true,
+      "threshold": 0.3
+    },
+    {
+      "check_id": "beta_basin_present",
+      "comparator": ">=",
+      "metric": "basin:beta_released_basin",
+      "observed": 0.4264,
+      "passed": true,
+      "threshold": 0.3
+    },
+    {
+      "check_id": "averaged_fold_rejected",
+      "comparator": "<=",
+      "metric": "basin:averaged_single_fold",
+      "observed": 0.0684,
+      "passed": true,
+      "threshold": 0.15
+    }
+  ],
+  "coordinate_derived_sources_used_before_prediction": 0,
+  "holdout_opened_after_prediction_hash": "2970a3a7154262198067bd230013ee87e10fe840389837671f0289d9a326d6a7",
+  "internal_runtime_sources_used_for_prediction": 0,
+  "kind": "PROTEIN_ESPERANTO_POST_SEAL_VALIDATION_v0",
+  "postseal_sources": [
+    {
+      "rationale": "Post-seal operator/state validation summary for coarse trajectory direction.",
+      "source_class": "spatial_proxy_non_coordinate",
+      "source_id": "V47_RFAH_CTD_POSTSEAL_OPERATOR_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "score_label": "supported",
+  "sealed_prediction_hash": "2970a3a7154262198067bd230013ee87e10fe840389837671f0289d9a326d6a7",
+  "target_id": "V47_RFAH_CTD"
+}

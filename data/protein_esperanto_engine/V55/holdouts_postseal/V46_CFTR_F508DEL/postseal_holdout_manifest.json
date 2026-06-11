@@ -1,0 +1,30 @@
+{
+  "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "expected_observables": [
+    {
+      "check_id": "proteostasis_route_supported",
+      "comparator": ">=",
+      "metric": "proteostasis_routing",
+      "threshold": 0.55
+    },
+    {
+      "check_id": "interface_route_supported",
+      "comparator": ">=",
+      "metric": "interface_readiness",
+      "threshold": 0.55
+    }
+  ],
+  "holdout_opened_after_prediction_hash": "82a1fb25082e76d060760845076454bae4360abbe64a436db7602b5ef1ad46ff",
+  "kind": "V55_SIMULATION_HOLDOUT_VALIDATION_MANIFEST_v0",
+  "postseal_sources": [
+    {
+      "rationale": "Post-seal operator/state validation summary for coarse trajectory direction.",
+      "source_class": "spatial_proxy_non_coordinate",
+      "source_id": "V46_CFTR_F508DEL_POSTSEAL_OPERATOR_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "target_id": "V46_CFTR_F508DEL",
+  "target_name": "CFTR F508del"
+}

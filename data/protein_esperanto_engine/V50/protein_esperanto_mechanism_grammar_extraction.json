@@ -1,0 +1,280 @@
+{
+  "all_existing_hard_classes_rewritten": true,
+  "allowed_evidence_classes": [
+    "pure_non_coordinate",
+    "explicitly_tagged_spatial_proxy_non_coordinate_prediction_input"
+  ],
+  "falsification_rules": [
+    "independent holdout shows no compaction or wrong operator regions",
+    "holdout shows condition-independent stable globular dominance",
+    "holdout shows purely local defect with no interface/proteostasis dependence",
+    "holdout supports only one state under all contexts",
+    "wrong-region perturbations dominate while predicted interface is inert",
+    "free-state holdout shows stable standalone fold",
+    "ligand-independent stability dominates all conditions",
+    "holdout shows no assembly dependence"
+  ],
+  "folding_problem_solved": false,
+  "forbidden_evidence_classes": [
+    "coordinate_derived_before_seal",
+    "internal_runtime_as_biological_evidence",
+    "holdout_before_seal"
+  ],
+  "kind": "V50_PROTEIN_ESPERANTO_MECHANISM_GRAMMAR_EXTRACTION_v0",
+  "mechanism_classes": [
+    "globular_closure",
+    "intrinsic_disorder_phase_separation",
+    "membrane_multidomain_folding_proteostasis",
+    "metamorphic_fold_switching",
+    "short_region_host_interface_hijacking",
+    "fold_upon_binding_disorder",
+    "cofactor_ligand_assisted_stabilization",
+    "oligomerization_controlled_folding",
+    "insufficient_evidence_clean_abstain"
+  ],
+  "null_controls": [
+    "generic hydrophobicity alone cannot validate target-specific closure",
+    "forcing compact single-fold grammar fails",
+    "single local mutation-only shortcut fails",
+    "single averaged consensus fold is rejected",
+    "generic viral accessory annotation cannot validate the packet",
+    "bound-state order cannot be promoted to free-state solved fold",
+    "generic ligand annotation alone cannot define full grammar",
+    "monomer-only grammar fails"
+  ],
+  "perturbation_prediction_rules": [
+    "correct perturbations move the named state variable in the predicted direction",
+    "wrong-region perturbations must remain weaker than correct perturbations",
+    "forced wrong grammar must abstain or fail"
+  ],
+  "required_sections": [
+    "universal_marks",
+    "universal_operators",
+    "mechanism_classes",
+    "state_variables",
+    "environmental_pressures",
+    "allowed_evidence_classes",
+    "forbidden_evidence_classes",
+    "transition_rules",
+    "perturbation_prediction_rules",
+    "falsification_rules",
+    "null_controls",
+    "simulation_readiness_decision"
+  ],
+  "simulation_readiness_decision": "ready_for_v51_contract_and_v52_coarse_mvp",
+  "state_variables": [
+    "residue_exposure",
+    "segment_compaction",
+    "contact_probability",
+    "operator_activation",
+    "frustration",
+    "state_basin_occupancy",
+    "interface_readiness",
+    "disorder_order_balance",
+    "proteostasis_routing"
+  ],
+  "transition_rules": [
+    {
+      "falsification_rule": "independent holdout shows no compaction or wrong operator regions",
+      "grammar_sentence": "hydrophobic + aromatic + secondary_structure_tendency + solvent + folding_nucleus + closure_operator + frustration_operator -> expanded chain to compact nucleus/contact-enriched ensemble -> core-region perturbation weakens compaction and long-range topology",
+      "marks": [
+        "hydrophobic",
+        "aromatic",
+        "secondary_structure_tendency"
+      ],
+      "mechanism_class": "globular_closure",
+      "null_control": "generic hydrophobicity alone cannot validate target-specific closure",
+      "operators": [
+        "closure_operator",
+        "frustration_operator"
+      ],
+      "pressures": [
+        "solvent",
+        "folding_nucleus"
+      ],
+      "state_change": "expanded chain to compact nucleus/contact-enriched ensemble",
+      "testable_effect": "core-region perturbation weakens compaction and long-range topology"
+    },
+    {
+      "falsification_rule": "holdout shows condition-independent stable globular dominance",
+      "grammar_sentence": "low_complexity + aromatic + charged + glycine/proline-rich + concentration + salt + rna_partner + disorder_operator + phase_operator + repulsion_operator -> expanded disorder to dynamic phase-prone ensemble without single stable fold -> aromatic/charge or condition perturbations shift condensation tendency",
+      "marks": [
+        "low_complexity",
+        "aromatic",
+        "charged",
+        "glycine/proline-rich"
+      ],
+      "mechanism_class": "intrinsic_disorder_phase_separation",
+      "null_control": "forcing compact single-fold grammar fails",
+      "operators": [
+        "disorder_operator",
+        "phase_operator",
+        "repulsion_operator"
+      ],
+      "pressures": [
+        "concentration",
+        "salt",
+        "rna_partner"
+      ],
+      "state_change": "expanded disorder to dynamic phase-prone ensemble without single stable fold",
+      "testable_effect": "aromatic/charge or condition perturbations shift condensation tendency"
+    },
+    {
+      "falsification_rule": "holdout shows purely local defect with no interface/proteostasis dependence",
+      "grammar_sentence": "membrane_segment + domain_boundary + mutation_site + interface + membrane + proteostasis_quality_control + interdomain_coupling + membrane_pressure_operator + closure_operator + proteostasis_operator + interface_operator -> domain-local destabilization to interface/proteostasis routing defect -> NBD1-only correction is partial; interface/proteostasis correction strengthens rescue",
+      "marks": [
+        "membrane_segment",
+        "domain_boundary",
+        "mutation_site",
+        "interface"
+      ],
+      "mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "null_control": "single local mutation-only shortcut fails",
+      "operators": [
+        "membrane_pressure_operator",
+        "closure_operator",
+        "proteostasis_operator",
+        "interface_operator"
+      ],
+      "pressures": [
+        "membrane",
+        "proteostasis_quality_control",
+        "interdomain_coupling"
+      ],
+      "state_change": "domain-local destabilization to interface/proteostasis routing defect",
+      "testable_effect": "NBD1-only correction is partial; interface/proteostasis correction strengthens rescue"
+    },
+    {
+      "falsification_rule": "holdout supports only one state under all contexts",
+      "grammar_sentence": "state_basin + partner_context + secondary_structure_conflict + release_or_activation_context + binding_partner + dual_basin_switch_operator + interface_operator + frustration_operator -> one context-favored basin to competing alpha/beta state distribution -> context or partner perturbations shift basin occupancy",
+      "marks": [
+        "state_basin",
+        "partner_context",
+        "secondary_structure_conflict"
+      ],
+      "mechanism_class": "metamorphic_fold_switching",
+      "null_control": "single averaged consensus fold is rejected",
+      "operators": [
+        "dual_basin_switch_operator",
+        "interface_operator",
+        "frustration_operator"
+      ],
+      "pressures": [
+        "release_or_activation_context",
+        "binding_partner"
+      ],
+      "state_change": "one context-favored basin to competing alpha/beta state distribution",
+      "testable_effect": "context or partner perturbations shift basin occupancy"
+    },
+    {
+      "falsification_rule": "wrong-region perturbations dominate while predicted interface is inert",
+      "grammar_sentence": "short_linear_motif + c_terminal_interface + host_binding_surface + host_binding_partner + localization_context + host_hijack_operator + interface_operator + disorder_operator -> short exposed motif to host-interface capture without global fold requirement -> C-terminal/interface perturbations weaken host hijacking consequences",
+      "marks": [
+        "short_linear_motif",
+        "c_terminal_interface",
+        "host_binding_surface"
+      ],
+      "mechanism_class": "short_region_host_interface_hijacking",
+      "null_control": "generic viral accessory annotation cannot validate the packet",
+      "operators": [
+        "host_hijack_operator",
+        "interface_operator",
+        "disorder_operator"
+      ],
+      "pressures": [
+        "host_binding_partner",
+        "localization_context"
+      ],
+      "state_change": "short exposed motif to host-interface capture without global fold requirement",
+      "testable_effect": "C-terminal/interface perturbations weaken host hijacking consequences"
+    },
+    {
+      "falsification_rule": "free-state holdout shows stable standalone fold",
+      "grammar_sentence": "disorder_tendency + partner_motif + amphipathic_segment + binding_partner + disorder_operator + interface_operator + closure_operator -> free disorder to partner-conditioned local ordering -> partner removal restores disorder and weakens interface readiness",
+      "marks": [
+        "disorder_tendency",
+        "partner_motif",
+        "amphipathic_segment"
+      ],
+      "mechanism_class": "fold_upon_binding_disorder",
+      "null_control": "bound-state order cannot be promoted to free-state solved fold",
+      "operators": [
+        "disorder_operator",
+        "interface_operator",
+        "closure_operator"
+      ],
+      "pressures": [
+        "binding_partner"
+      ],
+      "state_change": "free disorder to partner-conditioned local ordering",
+      "testable_effect": "partner removal restores disorder and weakens interface readiness"
+    },
+    {
+      "falsification_rule": "ligand-independent stability dominates all conditions",
+      "grammar_sentence": "cofactor_motif + polar_cluster + burial_defect + ligand_or_cofactor + closure_operator + interface_operator -> weak apo basin to ligand-stabilized basin -> cofactor removal destabilizes the predicted basin",
+      "marks": [
+        "cofactor_motif",
+        "polar_cluster",
+        "burial_defect"
+      ],
+      "mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "null_control": "generic ligand annotation alone cannot define full grammar",
+      "operators": [
+        "closure_operator",
+        "interface_operator"
+      ],
+      "pressures": [
+        "ligand_or_cofactor"
+      ],
+      "state_change": "weak apo basin to ligand-stabilized basin",
+      "testable_effect": "cofactor removal destabilizes the predicted basin"
+    },
+    {
+      "falsification_rule": "holdout shows no assembly dependence",
+      "grammar_sentence": "repeat_interface + oligomer_motif + burial_surface + concentration + partner_copy + interface_operator + closure_operator -> monomeric partial order to oligomer-stabilized interface basin -> interface or concentration perturbation shifts folding/assembly",
+      "marks": [
+        "repeat_interface",
+        "oligomer_motif",
+        "burial_surface"
+      ],
+      "mechanism_class": "oligomerization_controlled_folding",
+      "null_control": "monomer-only grammar fails",
+      "operators": [
+        "interface_operator",
+        "closure_operator"
+      ],
+      "pressures": [
+        "concentration",
+        "partner_copy"
+      ],
+      "state_change": "monomeric partial order to oligomer-stabilized interface basin",
+      "testable_effect": "interface or concentration perturbation shifts folding/assembly"
+    }
+  ],
+  "universal_marks": [
+    "charge",
+    "hydrophobicity",
+    "aromatic_density",
+    "low_complexity",
+    "disorder_tendency",
+    "secondary_structure_tendency",
+    "motif_presence",
+    "proline_glycine_cysteine_effects",
+    "membrane_tendency",
+    "domain_boundary_tendency",
+    "interface_motif_tendency",
+    "evolutionary_conservation_if_allowed"
+  ],
+  "universal_operators": [
+    "closure_operator",
+    "repulsion_operator",
+    "frustration_operator",
+    "disorder_operator",
+    "phase_operator",
+    "interface_operator",
+    "membrane_pressure_operator",
+    "dual_basin_switch_operator",
+    "proteostasis_operator",
+    "host_hijack_operator"
+  ]
+}

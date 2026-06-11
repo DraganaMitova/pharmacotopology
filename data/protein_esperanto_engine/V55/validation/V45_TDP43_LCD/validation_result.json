@@ -1,0 +1,42 @@
+{
+  "checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "intrinsic_disorder_phase_separation",
+      "observed": "intrinsic_disorder_phase_separation",
+      "passed": true
+    },
+    {
+      "check_id": "prion_like_phase_ensemble_supported",
+      "comparator": ">=",
+      "metric": "basin:phase_prone_dynamic",
+      "observed": 0.58,
+      "passed": true,
+      "threshold": 0.23
+    },
+    {
+      "check_id": "generic_compact_fold_rejected",
+      "comparator": "<=",
+      "metric": "basin:compact_single_fold",
+      "observed": 0.04,
+      "passed": true,
+      "threshold": 0.12
+    }
+  ],
+  "coordinate_derived_sources_used_before_prediction": 0,
+  "holdout_opened_after_prediction_hash": "15c8d81524eadd94616be8764d17ec27dcbf139e77f92ad7d87c89b8f640c766",
+  "internal_runtime_sources_used_for_prediction": 0,
+  "kind": "PROTEIN_ESPERANTO_POST_SEAL_VALIDATION_v0",
+  "postseal_sources": [
+    {
+      "rationale": "Post-seal operator/state validation summary for coarse trajectory direction.",
+      "source_class": "spatial_proxy_non_coordinate",
+      "source_id": "V45_TDP43_LCD_POSTSEAL_OPERATOR_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "score_label": "supported",
+  "sealed_prediction_hash": "15c8d81524eadd94616be8764d17ec27dcbf139e77f92ad7d87c89b8f640c766",
+  "target_id": "V45_TDP43_LCD"
+}

@@ -1,0 +1,30 @@
+{
+  "expected_mechanism_class": "short_region_host_interface_hijacking",
+  "expected_observables": [
+    {
+      "check_id": "host_interface_dominant",
+      "comparator": ">=",
+      "metric": "basin:host_interface_engaged",
+      "threshold": 0.6
+    },
+    {
+      "check_id": "compact_globular_shortcut_rejected",
+      "comparator": "<=",
+      "metric": "basin:compact_single_fold",
+      "threshold": 0.1
+    }
+  ],
+  "holdout_opened_after_prediction_hash": "ebc9834a2ba6ffedcd911f2e9e68703ee8b37836b5cf06ef0c72efd3896c3cea",
+  "kind": "V55_SIMULATION_HOLDOUT_VALIDATION_MANIFEST_v0",
+  "postseal_sources": [
+    {
+      "rationale": "Post-seal operator/state validation summary for coarse trajectory direction.",
+      "source_class": "spatial_proxy_non_coordinate",
+      "source_id": "V48_SARS2_ORF6_POSTSEAL_OPERATOR_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "target_id": "V48_SARS2_ORF6",
+  "target_name": "SARS-CoV-2 ORF6"
+}

@@ -1,0 +1,92 @@
+{
+  "kind": "V53_MULTIREGIME_SIMULATION_BATTERY_v0",
+  "passed": true,
+  "rows": [
+    {
+      "compact_single_fold_probability": 0.04,
+      "final_state_basin_occupancy": {
+        "compact_single_fold": 0.04,
+        "expanded_disordered": 0.62,
+        "phase_prone_dynamic": 0.58
+      },
+      "mechanism_class": "intrinsic_disorder_phase_separation",
+      "operator_names": [
+        "disorder_operator",
+        "phase_operator",
+        "repulsion_operator"
+      ],
+      "score_label": "supported",
+      "target_id": "V44_FUS_LC",
+      "target_name": "FUS-LC residues 1-214"
+    },
+    {
+      "compact_single_fold_probability": 0.04,
+      "final_state_basin_occupancy": {
+        "compact_single_fold": 0.04,
+        "expanded_disordered": 0.62,
+        "phase_prone_dynamic": 0.58
+      },
+      "mechanism_class": "intrinsic_disorder_phase_separation",
+      "operator_names": [
+        "disorder_operator",
+        "phase_operator",
+        "repulsion_operator"
+      ],
+      "score_label": "supported",
+      "target_id": "V45_TDP43_LCD",
+      "target_name": "TDP-43 LCD residues 274-414"
+    },
+    {
+      "compact_single_fold_probability": 0.0,
+      "final_state_basin_occupancy": {
+        "mature_membrane_routed": 0.674414,
+        "partial_nbd1_rescue": 0.704,
+        "qc_retained_misfolded": 0.0
+      },
+      "mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "operator_names": [
+        "membrane_pressure_operator",
+        "closure_operator",
+        "interface_operator",
+        "proteostasis_operator"
+      ],
+      "score_label": "supported",
+      "target_id": "V46_CFTR_F508DEL",
+      "target_name": "CFTR F508del"
+    },
+    {
+      "compact_single_fold_probability": 0.0,
+      "final_state_basin_occupancy": {
+        "alpha_context_basin": 0.4336,
+        "averaged_single_fold": 0.0684,
+        "beta_released_basin": 0.4264
+      },
+      "mechanism_class": "metamorphic_fold_switching",
+      "operator_names": [
+        "dual_basin_switch_operator",
+        "interface_operator",
+        "frustration_operator"
+      ],
+      "score_label": "supported",
+      "target_id": "V47_RFAH_CTD",
+      "target_name": "RfaH-CTD residues 101-162"
+    },
+    {
+      "compact_single_fold_probability": 0.04,
+      "final_state_basin_occupancy": {
+        "compact_single_fold": 0.04,
+        "exposed_short_region": 0.62,
+        "host_interface_engaged": 0.941
+      },
+      "mechanism_class": "short_region_host_interface_hijacking",
+      "operator_names": [
+        "host_hijack_operator",
+        "interface_operator",
+        "disorder_operator"
+      ],
+      "score_label": "supported",
+      "target_id": "V48_SARS2_ORF6",
+      "target_name": "SARS-CoV-2 ORF6"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "custom_force_mapping_count": 7,
+  "fail_condition": "custom forces force the holdout answer or use coordinate truth before sealing",
+  "full_atom_md_first_proof": false,
+  "kind": "V56_OPERATOR_TO_CUSTOM_FORCE_BRIDGE_SPEC_v0",
+  "mappings": [
+    {
+      "custom_force_term": "weak attractive bias between predicted coarse regions",
+      "guard": "bias may be compared with unbiased baseline; it must not encode holdout coordinates",
+      "operator": "closure_operator"
+    },
+    {
+      "custom_force_term": "penalty against over-collapse for high-disorder regions",
+      "guard": "does not force a target fold",
+      "operator": "disorder_operator"
+    },
+    {
+      "custom_force_term": "partner-proximity or surface-readiness bias",
+      "guard": "partner context must come from sealed operator grammar",
+      "operator": "interface_operator"
+    },
+    {
+      "custom_force_term": "two-state basin potential with context-dependent weights",
+      "guard": "must preserve competing basins rather than average them",
+      "operator": "dual_basin_switch_operator"
+    },
+    {
+      "custom_force_term": "environment-dependent burial/exposure term",
+      "guard": "membrane field cannot replace post-seal validation",
+      "operator": "membrane_pressure_operator"
+    },
+    {
+      "custom_force_term": "routing/state-weight observable outside atomistic force field core",
+      "guard": "quality-control readout remains an observable, not a coordinate restraint",
+      "operator": "proteostasis_operator"
+    },
+    {
+      "custom_force_term": "short motif host-interface bias",
+      "guard": "host-interface coordinates remain holdout-only before sealing",
+      "operator": "host_hijack_operator"
+    }
+  ],
+  "openmm_execution_required_for_v56": false,
+  "pass_condition": "biased physical simulation improves sealed observables over unbiased baseline without encoding the answer"
+}

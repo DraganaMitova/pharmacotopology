@@ -1,0 +1,12 @@
+{
+  "coordinates_available_before_seal": false,
+  "holdouts_available_before_seal": false,
+  "kind": "V52_PREDICTION_INPUTS_MANIFEST_v0",
+  "source_ids": [
+    "UNIPROT_P0DTC6_SEQUENCE_FUNCTION_NONCOORDINATE",
+    "ORF6_RAE1_NUP98_HOST_HIJACKING_TEXT_NONCOORDINATE",
+    "ORF6_LOCALIZATION_MEMBRANE_CONTEXT_TEXT_NONCOORDINATE",
+    "ORF6_SHORT_REGION_SEQUENCE_FEATURES_DERIVED_FROM_ALLOWED_INPUTS"
+  ],
+  "target_id": "V48_SARS2_ORF6"
+}

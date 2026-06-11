@@ -1,0 +1,12 @@
+{
+  "coordinates_available_before_seal": false,
+  "holdouts_available_before_seal": false,
+  "kind": "V52_PREDICTION_INPUTS_MANIFEST_v0",
+  "source_ids": [
+    "UNIPROT_P0AFW0_SEQUENCE_FUNCTION_NONCOORDINATE",
+    "RFAH_CTD_ALPHA_BETA_SWITCH_CELL_2012_NONCOORDINATE",
+    "RFAH_NTD_PARTNER_CONTEXT_FOLD_SWITCH_2021_NONCOORDINATE",
+    "RFAH_CTD_SEQUENCE_PATTERN_FEATURES_DERIVED_FROM_ALLOWED_INPUTS"
+  ],
+  "target_id": "V47_RFAH_CTD"
+}

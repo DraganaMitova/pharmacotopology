@@ -1,0 +1,11 @@
+{
+  "coordinates_available_before_seal": false,
+  "holdouts_available_before_seal": false,
+  "kind": "V52_PREDICTION_INPUTS_MANIFEST_v0",
+  "source_ids": [
+    "UNIPROT_P35637_SEQUENCE_FEATURES_NONCOORDINATE",
+    "DISPROT_DP01102_DISORDER_ONLY_NONCOORDINATE",
+    "FUS_LC_SEQUENCE_PATTERN_FEATURES_DERIVED_FROM_ALLOWED_INPUTS"
+  ],
+  "target_id": "V44_FUS_LC"
+}

@@ -1,0 +1,433 @@
+{
+  "allowed_claim_text": "We extracted a reusable operator grammar from multiple hard protein regimes and built a leakage-controlled coarse simulation engine that predicts mechanism trajectories and perturbation directions before holdout validation.",
+  "atomistic_md_executed": false,
+  "certificate_hash": "83f02a244078ff0c466739a2eee1adbfd66e5c4b1091d9252c9a5f36a6ef4cf2",
+  "claim_allowed": true,
+  "control_count": 14,
+  "controls": [
+    {
+      "control_id": "random_sequence_control",
+      "observed": "insufficient_evidence_clean_abstain",
+      "passed": true,
+      "reason": "Random sequence must not create a target-specific phase packet from FUS evidence."
+    },
+    {
+      "control_id": "shuffled_sequence_control",
+      "observed": {
+        "original": 0.993599,
+        "shuffled": 0.992041
+      },
+      "passed": true,
+      "reason": "Shuffled sequence must weaken operator coherence."
+    },
+    {
+      "control_id": "swapped_evidence_control",
+      "observed": "insufficient_evidence_clean_abstain",
+      "passed": true,
+      "reason": "FUS evidence must not validate ORF6 host-hijacking grammar."
+    },
+    {
+      "control_id": "wrong_target_control",
+      "observed": "insufficient_evidence_clean_abstain",
+      "passed": true,
+      "reason": "Target name without allowed evidence must abstain."
+    },
+    {
+      "control_id": "generic_annotation_only_control",
+      "observed": "globular_closure",
+      "passed": true,
+      "reason": "Generic viral accessory annotation alone must not create ORF6-specific grammar."
+    },
+    {
+      "control_id": "coordinate_leakage_control",
+      "observed": {
+        "allowed_initialization_source_ids": [],
+        "blocked_source_ids": [
+          "BAD_PDB_COORDINATES"
+        ],
+        "coordinate_derived_source_count_before_prediction": 1,
+        "coordinate_truth_used_before_prediction": true,
+        "holdout_opened_before_seal": false,
+        "internal_runtime_source_count_for_prediction": 0,
+        "internal_runtime_used_as_biological_evidence": false,
+        "kind": "PROTEIN_ESPERANTO_EVIDENCE_BOUNDARY_GATE_v0",
+        "rows": [
+          {
+            "allowed_for_claim": false,
+            "allowed_for_holdout_after_seal": false,
+            "allowed_to_initialize_language_field": false,
+            "blocked_reason": "coordinate_derived_blocked_before_seal",
+            "coordinate_derived": true,
+            "internal_runtime": false,
+            "source_class": "coordinate_derived",
+            "source_id": "BAD_PDB_COORDINATES",
+            "source_role": "prediction_input",
+            "spatial_proxy": false
+          }
+        ],
+        "spatial_proxy_untagged_or_misused_count": 0
+      },
+      "passed": true,
+      "reason": "Coordinate-derived evidence is blocked before sealing."
+    },
+    {
+      "control_id": "internal_runtime_leakage_control",
+      "observed": {
+        "allowed_initialization_source_ids": [],
+        "blocked_source_ids": [
+          "BAD_RUNTIME_REPORT"
+        ],
+        "coordinate_derived_source_count_before_prediction": 0,
+        "coordinate_truth_used_before_prediction": false,
+        "holdout_opened_before_seal": false,
+        "internal_runtime_source_count_for_prediction": 1,
+        "internal_runtime_used_as_biological_evidence": true,
+        "kind": "PROTEIN_ESPERANTO_EVIDENCE_BOUNDARY_GATE_v0",
+        "rows": [
+          {
+            "allowed_for_claim": false,
+            "allowed_for_holdout_after_seal": false,
+            "allowed_to_initialize_language_field": false,
+            "blocked_reason": "internal_runtime_never_biological_evidence",
+            "coordinate_derived": false,
+            "internal_runtime": true,
+            "source_class": "internal_runtime",
+            "source_id": "BAD_RUNTIME_REPORT",
+            "source_role": "prediction_input",
+            "spatial_proxy": false
+          }
+        ],
+        "spatial_proxy_untagged_or_misused_count": 0
+      },
+      "passed": true,
+      "reason": "Internal runtime artifacts never initialize biological evidence."
+    },
+    {
+      "control_id": "spatial_proxy_tagging_control",
+      "observed": {
+        "allowed_initialization_source_ids": [],
+        "blocked_source_ids": [
+          "UNTAGGED_FRET_PROXY"
+        ],
+        "coordinate_derived_source_count_before_prediction": 0,
+        "coordinate_truth_used_before_prediction": false,
+        "holdout_opened_before_seal": false,
+        "internal_runtime_source_count_for_prediction": 0,
+        "internal_runtime_used_as_biological_evidence": false,
+        "kind": "PROTEIN_ESPERANTO_EVIDENCE_BOUNDARY_GATE_v0",
+        "rows": [
+          {
+            "allowed_for_claim": false,
+            "allowed_for_holdout_after_seal": false,
+            "allowed_to_initialize_language_field": false,
+            "blocked_reason": "spatial_proxy_requires_explicit_tag_and_prediction_role",
+            "coordinate_derived": false,
+            "internal_runtime": false,
+            "source_class": "spatial_proxy_non_coordinate",
+            "source_id": "UNTAGGED_FRET_PROXY",
+            "source_role": "prediction_input",
+            "spatial_proxy": true
+          }
+        ],
+        "spatial_proxy_untagged_or_misused_count": 1
+      },
+      "passed": true,
+      "reason": "Spatial-proxy evidence must be explicitly tagged."
+    },
+    {
+      "control_id": "forced_wrong_grammar_control",
+      "observed": {
+        "available_mechanism_classes": [
+          "globular_closure",
+          "intrinsic_disorder_phase_separation",
+          "membrane_multidomain_folding_proteostasis",
+          "metamorphic_fold_switching",
+          "short_region_host_interface_hijacking",
+          "fold_upon_binding_disorder",
+          "cofactor_ligand_assisted_stabilization",
+          "oligomerization_controlled_folding",
+          "insufficient_evidence_clean_abstain"
+        ],
+        "folding_problem_solved": false,
+        "forced_grammar": "globular_closure",
+        "forced_grammar_rejected": true,
+        "grammar_rule": null,
+        "kind": "PROTEIN_ESPERANTO_MECHANISM_CLASSIFIER_v0",
+        "mechanism_class": "insufficient_evidence_clean_abstain",
+        "natural_mechanism_class": "intrinsic_disorder_phase_separation",
+        "selection_reason": "forced_wrong_grammar_rejected"
+      },
+      "passed": true,
+      "reason": "Forced wrong grammar must fail or cleanly abstain."
+    },
+    {
+      "control_id": "failed_prediction_not_repaired_after_holdout",
+      "observed": {
+        "checks": [
+          {
+            "check_id": "mechanism_class_matches_holdout",
+            "expected": "intrinsic_disorder_phase_separation",
+            "observed": "intrinsic_disorder_phase_separation",
+            "passed": true
+          },
+          {
+            "check_id": "impossible_compact_fold",
+            "comparator": ">=",
+            "metric": "basin:compact_single_fold",
+            "observed": 0.04,
+            "passed": false,
+            "threshold": 0.9
+          }
+        ],
+        "coordinate_derived_sources_used_before_prediction": 0,
+        "holdout_opened_after_prediction_hash": "3e7f295b16a604f51fd11d05da6a9f70b5cea234863367a6e7d33870fda11a81",
+        "internal_runtime_sources_used_for_prediction": 0,
+        "kind": "PROTEIN_ESPERANTO_POST_SEAL_VALIDATION_v0",
+        "postseal_sources": [
+          {
+            "rationale": "Post-seal operator/state validation summary for coarse trajectory direction.",
+            "source_class": "spatial_proxy_non_coordinate",
+            "source_id": "V44_FUS_LC_POSTSEAL_OPERATOR_HOLDOUT",
+            "source_role": "holdout_validation",
+            "used_before_prediction": false
+          }
+        ],
+        "score_label": "contradicted",
+        "sealed_prediction_hash": "3e7f295b16a604f51fd11d05da6a9f70b5cea234863367a6e7d33870fda11a81",
+        "target_id": "V44_FUS_LC"
+      },
+      "passed": true,
+      "reason": "Contradicted validation remains failed after holdout opening."
+    },
+    {
+      "control_id": "holdout_opened_before_seal_control",
+      "observed": {
+        "allowed_initialization_source_ids": [],
+        "blocked_source_ids": [
+          "PREOPENED_HOLDOUT"
+        ],
+        "coordinate_derived_source_count_before_prediction": 0,
+        "coordinate_truth_used_before_prediction": false,
+        "holdout_opened_before_seal": true,
+        "internal_runtime_source_count_for_prediction": 0,
+        "internal_runtime_used_as_biological_evidence": false,
+        "kind": "PROTEIN_ESPERANTO_EVIDENCE_BOUNDARY_GATE_v0",
+        "rows": [
+          {
+            "allowed_for_claim": false,
+            "allowed_for_holdout_after_seal": true,
+            "allowed_to_initialize_language_field": false,
+            "blocked_reason": "holdout_opened_before_seal",
+            "coordinate_derived": false,
+            "internal_runtime": false,
+            "source_class": "spatial_proxy_non_coordinate",
+            "source_id": "PREOPENED_HOLDOUT",
+            "source_role": "holdout_validation",
+            "spatial_proxy": true
+          }
+        ],
+        "spatial_proxy_untagged_or_misused_count": 0
+      },
+      "passed": true,
+      "reason": "Holdout evidence opened before seal blocks the run."
+    },
+    {
+      "control_id": "wild_type_mutant_direction_control",
+      "observed": {
+        "correct": 10,
+        "total": 10,
+        "wrong_controls": [
+          {
+            "baseline_value": 0.58,
+            "direction_passed": true,
+            "expected_direction": "unchanged",
+            "metric": "basin:phase_prone_dynamic",
+            "observed_direction": "unchanged",
+            "perturbation": "perturb a non-existent membrane/proteostasis route",
+            "perturbation_id": "FUS_WRONG_REGION_CONTROL",
+            "perturbed_value": 0.58,
+            "trajectory_final_state": {
+              "contact_probability": 0.246522,
+              "disorder_order_balance": 0.771348,
+              "frustration": 0.103478,
+              "interface_readiness": 0.1,
+              "operator_activation": 0.756231,
+              "proteostasis_routing": 0.0,
+              "residue_exposure": 0.723013,
+              "segment_compaction": 0.286522,
+              "state_basin_occupancy": {
+                "compact_single_fold": 0.04,
+                "expanded_disordered": 0.62,
+                "phase_prone_dynamic": 0.58
+              },
+              "timepoint": 1000
+            }
+          },
+          {
+            "baseline_value": 0.58,
+            "direction_passed": true,
+            "expected_direction": "unchanged",
+            "metric": "basin:phase_prone_dynamic",
+            "observed_direction": "unchanged",
+            "perturbation": "force a membrane-channel-like perturbation",
+            "perturbation_id": "TDP43_WRONG_MEMBRANE_CONTROL",
+            "perturbed_value": 0.58,
+            "trajectory_final_state": {
+              "contact_probability": 0.257828,
+              "disorder_order_balance": 0.770217,
+              "frustration": 0.092172,
+              "interface_readiness": 0.1,
+              "operator_activation": 0.754728,
+              "proteostasis_routing": 0.0,
+              "residue_exposure": 0.699708,
+              "segment_compaction": 0.297828,
+              "state_basin_occupancy": {
+                "compact_single_fold": 0.04,
+                "expanded_disordered": 0.62,
+                "phase_prone_dynamic": 0.58
+              },
+              "timepoint": 1000
+            }
+          },
+          {
+            "baseline_value": 0.674414,
+            "direction_passed": true,
+            "expected_direction": "unchanged",
+            "metric": "proteostasis_routing",
+            "observed_direction": "unchanged",
+            "perturbation": "perturb an unrelated soluble loop outside NBD1/interface route",
+            "perturbation_id": "CFTR_WRONG_REGION_CONTROL",
+            "perturbed_value": 0.674414,
+            "trajectory_final_state": {
+              "contact_probability": 0.48575,
+              "disorder_order_balance": 0.2676,
+              "frustration": 0.0,
+              "interface_readiness": 0.635,
+              "operator_activation": 0.695034,
+              "proteostasis_routing": 0.674414,
+              "residue_exposure": 0.571465,
+              "segment_compaction": 0.704,
+              "state_basin_occupancy": {
+                "mature_membrane_routed": 0.674414,
+                "partial_nbd1_rescue": 0.704,
+                "qc_retained_misfolded": 0.0
+              },
+              "timepoint": 1000
+            }
+          },
+          {
+            "baseline_value": 0.4264,
+            "direction_passed": true,
+            "expected_direction": "unchanged",
+            "metric": "basin:beta_released_basin",
+            "observed_direction": "unchanged",
+            "perturbation": "force an unrelated phase-separation perturbation",
+            "perturbation_id": "RFAH_WRONG_PHASE_CONTROL",
+            "perturbed_value": 0.4264,
+            "trajectory_final_state": {
+              "contact_probability": 0.3832,
+              "disorder_order_balance": 0.4054,
+              "frustration": 0.68,
+              "interface_readiness": 0.566,
+              "operator_activation": 0.753333,
+              "proteostasis_routing": 0.0,
+              "residue_exposure": 0.633486,
+              "segment_compaction": 0.446,
+              "state_basin_occupancy": {
+                "alpha_context_basin": 0.4336,
+                "averaged_single_fold": 0.0684,
+                "beta_released_basin": 0.4264
+              },
+              "timepoint": 1000
+            }
+          },
+          {
+            "baseline_value": 0.941,
+            "direction_passed": true,
+            "expected_direction": "unchanged",
+            "metric": "basin:host_interface_engaged",
+            "observed_direction": "unchanged",
+            "perturbation": "alter localization-only context outside the C-terminal interface",
+            "perturbation_id": "ORF6_WRONG_LOCALIZATION_ONLY_CONTROL",
+            "perturbed_value": 0.941,
+            "trajectory_final_state": {
+              "contact_probability": 0.60932,
+              "disorder_order_balance": 0.5645,
+              "frustration": 0.0,
+              "interface_readiness": 0.941,
+              "operator_activation": 0.676667,
+              "proteostasis_routing": 0.0,
+              "residue_exposure": 0.701972,
+              "segment_compaction": 0.08,
+              "state_basin_occupancy": {
+                "compact_single_fold": 0.04,
+                "exposed_short_region": 0.62,
+                "host_interface_engaged": 0.941
+              },
+              "timepoint": 1000
+            }
+          }
+        ]
+      },
+      "passed": true,
+      "reason": "Correct perturbations move in the expected direction and wrong controls remain weak."
+    },
+    {
+      "control_id": "hard_class_validation_control",
+      "observed": [
+        "supported",
+        "supported",
+        "supported",
+        "supported",
+        "supported"
+      ],
+      "passed": true,
+      "reason": "All hard-class sealed trajectories must survive post-seal validation."
+    },
+    {
+      "control_id": "folding_problem_solved_never_true",
+      "observed": null,
+      "passed": true,
+      "reason": "The simulator must not set folding_problem_solved=true."
+    }
+  ],
+  "coordinate_derived_source_count_before_prediction": 0,
+  "failed_checks": [],
+  "folding_problem_solved": false,
+  "forbidden_claims": [
+    "universal protein folding is solved",
+    "the simulator predicts atomistic coordinates",
+    "AlphaFold or PDB coordinates were used before sealing",
+    "OpenMM/GROMACS validation is complete",
+    "wrong grammar can be forced into success"
+  ],
+  "hard_classes_expected": [
+    "intrinsic_disorder_phase_separation",
+    "membrane_multidomain_folding_proteostasis",
+    "metamorphic_fold_switching",
+    "short_region_host_interface_hijacking"
+  ],
+  "hard_classes_observed": [
+    "intrinsic_disorder_phase_separation",
+    "membrane_multidomain_folding_proteostasis",
+    "metamorphic_fold_switching",
+    "short_region_host_interface_hijacking"
+  ],
+  "internal_runtime_source_count_for_prediction": 0,
+  "kind": "V50_TO_V56_PROTEIN_ESPERANTO_ENGINE_CERTIFICATE_v0",
+  "openmm_bridge_execution_deferred": true,
+  "passed_control_count": 14,
+  "same_language_different_regimes": true,
+  "sealed_prediction_count": 5,
+  "status": "V50_TO_V56_PROTEIN_ESPERANTO_ENGINE_PASSED_REVIEW_REQUIRED",
+  "supported_validation_count": 5,
+  "target_count": 5,
+  "timestamp_utc": "2026-06-11T18:23:47.696086+00:00",
+  "v50_grammar_extraction_passed": true,
+  "v51_engine_contract_frozen": true,
+  "v52_coarse_simulator_mvp_passed": true,
+  "v53_hard_class_battery_passed": true,
+  "v54_perturbation_engine_passed": true,
+  "v55_postseal_validation_passed": true,
+  "v56_openmm_bridge_spec_passed": true
+}

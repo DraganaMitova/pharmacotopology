@@ -1,0 +1,36 @@
+{
+  "expected_mechanism_class": "metamorphic_fold_switching",
+  "expected_observables": [
+    {
+      "check_id": "alpha_basin_present",
+      "comparator": ">=",
+      "metric": "basin:alpha_context_basin",
+      "threshold": 0.3
+    },
+    {
+      "check_id": "beta_basin_present",
+      "comparator": ">=",
+      "metric": "basin:beta_released_basin",
+      "threshold": 0.3
+    },
+    {
+      "check_id": "averaged_fold_rejected",
+      "comparator": "<=",
+      "metric": "basin:averaged_single_fold",
+      "threshold": 0.15
+    }
+  ],
+  "holdout_opened_after_prediction_hash": "2970a3a7154262198067bd230013ee87e10fe840389837671f0289d9a326d6a7",
+  "kind": "V55_SIMULATION_HOLDOUT_VALIDATION_MANIFEST_v0",
+  "postseal_sources": [
+    {
+      "rationale": "Post-seal operator/state validation summary for coarse trajectory direction.",
+      "source_class": "spatial_proxy_non_coordinate",
+      "source_id": "V47_RFAH_CTD_POSTSEAL_OPERATOR_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "target_id": "V47_RFAH_CTD",
+  "target_name": "RfaH-CTD residues 101-162"
+}
