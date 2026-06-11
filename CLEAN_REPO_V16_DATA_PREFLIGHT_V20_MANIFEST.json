@@ -1,0 +1,18 @@
+{
+  "kind": "CLEAN_REPO_V16_DATA_PREFLIGHT_V20_MANIFEST",
+  "base": "V16_TARGET_MANIFEST_LOCK_v19",
+  "adds": [
+    "data/v16_transfer_data_material_manifest.json",
+    "scripts/download_v16_pressure_target_structures.sh",
+    "scripts/run_v16_transfer_data_preflight_v0.py",
+    "scripts/run_v16_transfer_data_preflight.sh",
+    "scripts/print_v16_transfer_data_preflight_summary.py",
+    "tests/test_v16_transfer_data_preflight.py",
+    "docs/V16_TRANSFER_DATA_PREFLIGHT.md",
+    "V16_TRANSFER_DATA_PREFLIGHT_COMMANDS.md"
+  ],
+  "claim_allowed": false,
+  "new_md_executed": false,
+  "grammar_tuning_allowed": false,
+  "purpose": "Start testing V16 pressure targets with a clean data/material preflight before any role-readout or MD."
+}
