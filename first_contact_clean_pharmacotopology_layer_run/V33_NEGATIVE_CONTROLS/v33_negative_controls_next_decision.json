@@ -1,0 +1,8 @@
+{
+  "claim_allowed": false,
+  "decision_status": "V33_NEGATIVE_CONTROLS_PASSED_CLAIM_DISABLED",
+  "folding_problem_solved": false,
+  "kind": "V33_NEGATIVE_CONTROLS_NEXT_DECISION_v0",
+  "new_MD_allowed": false,
+  "next_action": "run_discriminative_or_randomized_constraint_controls_before_any_MD"
+}

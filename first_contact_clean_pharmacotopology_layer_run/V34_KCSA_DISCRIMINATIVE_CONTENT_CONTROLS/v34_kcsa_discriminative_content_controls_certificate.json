@@ -1,0 +1,198 @@
+{
+  "artifacts": {
+    "certificate": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V34_KCSA_DISCRIMINATIVE_CONTENT_CONTROLS/v34_kcsa_discriminative_content_controls_certificate.json",
+    "decision": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V34_KCSA_DISCRIMINATIVE_CONTENT_CONTROLS/v34_kcsa_discriminative_content_controls_next_decision.json",
+    "report": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V34_KCSA_DISCRIMINATIVE_CONTENT_CONTROLS/V34_KCSA_DISCRIMINATIVE_CONTENT_CONTROLS_REPORT.md"
+  },
+  "baseline_content_signature": {
+    "interface_chain_pair_count": 6,
+    "interface_chain_pairs": [
+      "A-B",
+      "A-C",
+      "A-D",
+      "B-C",
+      "B-D",
+      "C-D"
+    ],
+    "interface_chains": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "interface_constraint_classes": [
+      "ASSEMBLY_INTERFACE_HEAVY_ATOM_CONTACT"
+    ],
+    "interface_row_count": 186,
+    "pore_chains": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "pore_constraint_classes": [
+      "PORE_FILTER_POTASSIUM_COORDINATION_CONTACT"
+    ],
+    "pore_ion_names": [
+      "K"
+    ],
+    "pore_motif_labels": [
+      "TVGYG"
+    ],
+    "pore_residue_numbers": [
+      75,
+      76,
+      77,
+      78
+    ],
+    "pore_row_count": 20
+  },
+  "claim_allowed": false,
+  "control_count": 8,
+  "control_status": "V34_KCSA_DISCRIMINATIVE_CONTENT_CONTROLS_PASSED_CLAIM_DISABLED",
+  "controls": [
+    {
+      "control_id": "baseline_real_kcsa_content_signature_valid",
+      "expected_failure_any": [],
+      "expected_valid": true,
+      "observed_failures": [],
+      "observed_valid": true,
+      "passed": true,
+      "reason": "Real imported KcsA source rows must carry pore/filter identity, K+ coordination identity, and tetramer/interface identity."
+    },
+    {
+      "control_id": "pore_residue_shuffle_breaks_canonical_filter_identity",
+      "expected_failure_any": [
+        "missing_canonical_filter_residues_75_78"
+      ],
+      "expected_valid": false,
+      "observed_failures": [
+        "missing_canonical_filter_residues_75_78"
+      ],
+      "observed_valid": false,
+      "passed": true,
+      "reason": "A residue-number randomized pore file must not still count as the KcsA canonical filter."
+    },
+    {
+      "control_id": "pore_motif_relabel_breaks_TVGYG_identity",
+      "expected_failure_any": [
+        "missing_TVGYG_motif_label"
+      ],
+      "expected_valid": false,
+      "observed_failures": [
+        "missing_TVGYG_motif_label"
+      ],
+      "observed_valid": false,
+      "passed": true,
+      "reason": "A pore file without the TVGYG label must not pass as KcsA filter grammar."
+    },
+    {
+      "control_id": "pore_ion_relabel_breaks_potassium_identity",
+      "expected_failure_any": [
+        "missing_potassium_ion_identity"
+      ],
+      "expected_valid": false,
+      "observed_failures": [
+        "missing_potassium_ion_identity"
+      ],
+      "observed_valid": false,
+      "passed": true,
+      "reason": "KcsA filter evidence must not survive if K+ identity is removed or relabeled."
+    },
+    {
+      "control_id": "pore_constraint_class_relabel_breaks_filter_contact_identity",
+      "expected_failure_any": [
+        "missing_pore_filter_potassium_coordination_class"
+      ],
+      "expected_valid": false,
+      "observed_failures": [
+        "missing_pore_filter_potassium_coordination_class"
+      ],
+      "observed_valid": false,
+      "passed": true,
+      "reason": "Generic contacts must not be promoted into pore/filter potassium-coordination evidence."
+    },
+    {
+      "control_id": "interface_same_chain_collapse_breaks_tetramer_context",
+      "expected_failure_any": [
+        "insufficient_oligomer_chains",
+        "insufficient_distinct_chain_pairs"
+      ],
+      "expected_valid": false,
+      "observed_failures": [
+        "insufficient_distinct_chain_pairs",
+        "insufficient_oligomer_chains"
+      ],
+      "observed_valid": false,
+      "passed": true,
+      "reason": "A collapsed same-chain interface file must not pass as tetramer/interface context."
+    },
+    {
+      "control_id": "singleton_rows_do_not_define_operator_context",
+      "expected_failure_any": [
+        "pore_filter_too_few_rows",
+        "assembly_interface_too_few_rows"
+      ],
+      "expected_valid": false,
+      "observed_failures": [
+        "assembly_interface_too_few_rows",
+        "insufficient_distinct_chain_pairs",
+        "insufficient_oligomer_chains",
+        "missing_canonical_filter_residues_75_78",
+        "pore_filter_not_observed_across_four_chains",
+        "pore_filter_too_few_rows"
+      ],
+      "observed_valid": false,
+      "passed": true,
+      "reason": "One row is not enough to define a stable operator context for either pore or interface."
+    },
+    {
+      "control_id": "swapped_pore_and_interface_schema_fails_content_validation",
+      "expected_failure_any": [
+        "missing_TVGYG_motif_label",
+        "missing_assembly_interface_contact_class",
+        "insufficient_distinct_chain_pairs"
+      ],
+      "expected_valid": false,
+      "observed_failures": [
+        "insufficient_distinct_chain_pairs",
+        "missing_TVGYG_motif_label",
+        "missing_assembly_interface_contact_class",
+        "missing_pore_filter_potassium_coordination_class",
+        "missing_potassium_ion_identity"
+      ],
+      "observed_valid": false,
+      "passed": true,
+      "reason": "Swapping pore/interface schemas must not pass merely because rows exist."
+    }
+  ],
+  "fixed_threshold_policy": "content_invariant_controls_only_no_prediction_threshold_tuning",
+  "folding_problem_solved": false,
+  "kind": "V34_KCSA_DISCRIMINATIVE_CONTENT_CONTROLS_v0",
+  "locked_interpretation": "Passing V34 means the imported KcsA source files are not merely counted: damaged pore/filter identity, K+ identity, constraint-class identity, tetramer/interface identity, singleton rows, and swapped schemas fail. This is still not de-novo folding prediction and does not solve universal protein folding.",
+  "membrane_md_executed": false,
+  "native_metrics_used_for_selection": false,
+  "new_MD_allowed": false,
+  "new_MD_recommended": false,
+  "new_md_executed": false,
+  "next_action": "move_to_non_coordinate_external_evolutionary_or_blind_holdout_tests",
+  "next_decision": {
+    "claim_allowed": false,
+    "decision_status": "V34_KCSA_DISCRIMINATIVE_CONTENT_CONTROLS_PASSED_CLAIM_DISABLED",
+    "folding_problem_solved": false,
+    "kind": "V34_KCSA_DISCRIMINATIVE_CONTENT_CONTROLS_NEXT_DECISION_v0",
+    "new_MD_allowed": false,
+    "next_action": "move_to_non_coordinate_external_evolutionary_or_blind_holdout_tests"
+  },
+  "passed_control_count": 8,
+  "positive_folding_evidence_found": false,
+  "precondition_failures": [],
+  "run_mode": "content_discriminative_controls_no_MD_no_threshold_tuning_claim_disabled",
+  "source_boundary": "external_coordinate_derived_content_controls_only_not_de_novo_folding_prediction",
+  "source_interface_paths": [
+    "data/external_constraints/KcsA/assembly_interface/kcsa_1bl8_assembly_interface_external_contacts.csv"
+  ],
+  "source_pore_paths": [
+    "data/external_constraints/KcsA/pore_filter/kcsa_1bl8_pore_filter_external_contacts.csv"
+  ]
+}

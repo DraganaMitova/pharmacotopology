@@ -1,0 +1,115 @@
+{
+  "artifacts": {
+    "certificate": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V33_NEGATIVE_CONTROLS/v33_negative_controls_certificate.json",
+    "decision": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V33_NEGATIVE_CONTROLS/v33_negative_controls_next_decision.json",
+    "report": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V33_NEGATIVE_CONTROLS/V33_NEGATIVE_CONTROLS_REPORT.md"
+  },
+  "baseline_v33_operator_readout_found": true,
+  "baseline_v33_status": "V33_CONSTRAINT_BACKED_OPERATOR_READOUT_PASSED_CLAIM_DISABLED",
+  "claim_allowed": false,
+  "control_count": 9,
+  "controls": [
+    {
+      "control_id": "baseline_real_kcsa_sources_pass_before_negative_controls",
+      "expected_status": "V33_CONSTRAINT_BACKED_OPERATOR_READOUT_PASSED_CLAIM_DISABLED",
+      "observed_status": "V33_CONSTRAINT_BACKED_OPERATOR_READOUT_PASSED_CLAIM_DISABLED",
+      "passed": true,
+      "reason": "Real KcsA pore/filter + assembly/interface imported source rows should pass only as claim-disabled operator readout."
+    },
+    {
+      "control_id": "missing_pore_filter_bucket_abstains",
+      "expected_status": "V33_CLEAN_ABSTAIN_NO_V32_SELECTED_TARGET_OR_CONSTRAINT_BUCKETS_CLAIM_DISABLED",
+      "observed_missing_operator_evidence": [
+        "pore_filter_external_constraint_rows"
+      ],
+      "observed_status": "V33_CLEAN_ABSTAIN_NO_V32_SELECTED_TARGET_OR_CONSTRAINT_BUCKETS_CLAIM_DISABLED",
+      "passed": true,
+      "reason": "KcsA cannot produce a pore/filter operator readout without the pore/filter source bucket."
+    },
+    {
+      "control_id": "missing_assembly_interface_bucket_abstains",
+      "expected_status": "V33_CLEAN_ABSTAIN_NO_V32_SELECTED_TARGET_OR_CONSTRAINT_BUCKETS_CLAIM_DISABLED",
+      "observed_missing_operator_evidence": [
+        "assembly_interface_external_constraint_rows"
+      ],
+      "observed_status": "V33_CLEAN_ABSTAIN_NO_V32_SELECTED_TARGET_OR_CONSTRAINT_BUCKETS_CLAIM_DISABLED",
+      "passed": true,
+      "reason": "KcsA cannot produce a tetramer/interface operator readout without the assembly/interface source bucket."
+    },
+    {
+      "control_id": "empty_operator_buckets_abstain",
+      "expected_status": "V33_CLEAN_ABSTAIN_NO_V32_SELECTED_TARGET_OR_CONSTRAINT_BUCKETS_CLAIM_DISABLED",
+      "observed_missing_operator_evidence": [
+        "pore_filter_external_constraint_rows",
+        "assembly_interface_external_constraint_rows"
+      ],
+      "observed_status": "V33_CLEAN_ABSTAIN_NO_V32_SELECTED_TARGET_OR_CONSTRAINT_BUCKETS_CLAIM_DISABLED",
+      "passed": true,
+      "reason": "No source buckets means no operator readout."
+    },
+    {
+      "control_id": "wrong_target_xcl1_blocked_by_v33_v0_scope",
+      "expected_status": "V33_BLOCKED_PRECONDITION_OR_PROVENANCE_FAILURE_CLAIM_DISABLED",
+      "observed_failed_checks": [
+        "selected_target_not_supported_by_V33_v0"
+      ],
+      "observed_status": "V33_BLOCKED_PRECONDITION_OR_PROVENANCE_FAILURE_CLAIM_DISABLED",
+      "passed": true,
+      "reason": "V33 v0 is deliberately scoped to KcsA after V32 selection; XCL1 needs its own state-specific import/readout."
+    },
+    {
+      "control_id": "internal_runtime_source_poison_blocked_by_v32",
+      "expected_status": "V32_EXTERNAL_CONSTRAINT_SOURCE_IMPORT_PREFLIGHT_BLOCKED",
+      "observed_failed_checks": [
+        "internal_generated_artifact_supplied_as_external_source"
+      ],
+      "observed_status": "V32_EXTERNAL_CONSTRAINT_SOURCE_IMPORT_PREFLIGHT_BLOCKED",
+      "passed": true,
+      "reason": "Files under first_contact_clean_pharmacotopology_layer_run must never become external evidence."
+    },
+    {
+      "control_id": "annotation_only_context_does_not_select_v33",
+      "expected_status": "V32_CLEAN_ABSTAIN_REAL_EXTERNAL_CONSTRAINT_IMPORT_REQUIRED",
+      "observed_selected_V33_target": null,
+      "observed_status": "V32_CLEAN_ABSTAIN_REAL_EXTERNAL_CONSTRAINT_IMPORT_REQUIRED",
+      "passed": true,
+      "reason": "Annotation-only rows can give role context, but must not open a constraint-backed operator readout."
+    },
+    {
+      "control_id": "v32_only_pore_bucket_not_ready_for_kcsa_v33",
+      "expected_status": "V32_CLEAN_ABSTAIN_REAL_EXTERNAL_CONSTRAINT_IMPORT_REQUIRED",
+      "observed_selected_V33_target": null,
+      "observed_status": "V32_CLEAN_ABSTAIN_REAL_EXTERNAL_CONSTRAINT_IMPORT_REQUIRED",
+      "passed": true,
+      "reason": "KcsA needs both pore/filter and assembly/interface source buckets before V33 selection."
+    },
+    {
+      "control_id": "v32_only_interface_bucket_not_ready_for_kcsa_v33",
+      "expected_status": "V32_CLEAN_ABSTAIN_REAL_EXTERNAL_CONSTRAINT_IMPORT_REQUIRED",
+      "observed_selected_V33_target": null,
+      "observed_status": "V32_CLEAN_ABSTAIN_REAL_EXTERNAL_CONSTRAINT_IMPORT_REQUIRED",
+      "passed": true,
+      "reason": "Assembly/interface context alone must not become a KcsA pore/filter readout."
+    }
+  ],
+  "folding_problem_solved": false,
+  "kind": "V33_NEGATIVE_CONTROLS_v0",
+  "locked_interpretation": "These controls validate V32/V33 evidence gating only. Passing them means the system blocks internal/runtime evidence, annotation-only rows, missing buckets, and wrong-target misuse while keeping claim and MD gates closed. It does not prove de novo folding or universal protein-folding prediction.",
+  "membrane_md_executed": false,
+  "negative_control_status": "V33_NEGATIVE_CONTROLS_PASSED_CLAIM_DISABLED",
+  "new_MD_allowed": false,
+  "new_MD_recommended": false,
+  "new_md_executed": false,
+  "next_action": "run_discriminative_or_randomized_constraint_controls_before_any_MD",
+  "next_decision": {
+    "claim_allowed": false,
+    "decision_status": "V33_NEGATIVE_CONTROLS_PASSED_CLAIM_DISABLED",
+    "folding_problem_solved": false,
+    "kind": "V33_NEGATIVE_CONTROLS_NEXT_DECISION_v0",
+    "new_MD_allowed": false,
+    "next_action": "run_discriminative_or_randomized_constraint_controls_before_any_MD"
+  },
+  "passed_control_count": 9,
+  "positive_folding_evidence_found": false,
+  "run_mode": "negative_controls_no_MD_no_threshold_tuning_claim_disabled"
+}

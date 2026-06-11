@@ -1,0 +1,8 @@
+{
+  "claim_allowed": false,
+  "decision_status": "V34_KCSA_DISCRIMINATIVE_CONTENT_CONTROLS_PASSED_CLAIM_DISABLED",
+  "folding_problem_solved": false,
+  "kind": "V34_KCSA_DISCRIMINATIVE_CONTENT_CONTROLS_NEXT_DECISION_v0",
+  "new_MD_allowed": false,
+  "next_action": "move_to_non_coordinate_external_evolutionary_or_blind_holdout_tests"
+}

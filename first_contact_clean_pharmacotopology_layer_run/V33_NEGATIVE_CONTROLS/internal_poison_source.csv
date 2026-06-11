@@ -1,0 +1,2 @@
+constraint_id,chain,residue_number,constraint_class
+BAD,A,75,pore_filter_coupling
