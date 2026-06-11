@@ -1,0 +1,34 @@
+{
+  "batch_id": "V63_RCSB_500_DISCOVERY_BATCH",
+  "entity_id": "1",
+  "entry_id": "1AGJ",
+  "expected_mechanism_class": "short_region_host_interface_hijacking",
+  "expected_observables": [
+    {
+      "check_id": "host_interface_present",
+      "comparator": ">=",
+      "metric": "basin:host_interface_engaged",
+      "threshold": 0.55
+    }
+  ],
+  "experimental_method": "X-RAY DIFFRACTION",
+  "holdout_opened_after_prediction_hash": "74c3ee5d46316e79c5864366dfbfcc1624d15c045539a94b5ad899ae7aa3eaca",
+  "kind": "V63_RCSB_500_POSTSEAL_HOLDOUT_v0",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1AGJ",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1AGJ/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V63_1AGJ_1_RCSB_DATA_API_POSTSEAL",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "postseal text indicates short host-interface behavior"
+  ],
+  "protein_id": "1AGJ_1",
+  "release_date": "1997-09-26T00:00:00.000+00:00",
+  "target_id": "V63_1AGJ_1"
+}

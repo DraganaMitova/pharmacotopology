@@ -24,6 +24,19 @@
       "mechanism_class_set_hash": "c088ecef4efacdd6de1b451237e717fa4b5149ca8f3be5bf46666ff567f1eb29",
       "operator_set_hash": "1421426c696edb0f3ddce7a984c3fc0603e32fea4eb28a9f8acb83bbf07e910a",
       "required_start_commit": "after_V61_discovery_batch"
+    },
+    {
+      "batch_id": "E62_V63_FAILURE_DRIVEN_ENGINE_REVISION",
+      "change_summary": "Post-V63 failure-driven engine revision: strong membrane/topology context now outranks incidental cofactor/ligand and oligomer/assembly context after V63 exposed 216 membrane_misread failures.",
+      "commit": "this_commit",
+      "commit_pointer_policy": "A commit cannot contain its own final hash; this value denotes the commit that introduces E62.",
+      "engine_modified_during_batch": true,
+      "engine_source_sha256": "483c8b85cf0bfeae867f02d5f2b097841f726bf6bec694d4905efb19c4b432ef",
+      "engine_version": "E62",
+      "fresh_frozen_replication_required": true,
+      "mechanism_class_set_hash": "c088ecef4efacdd6de1b451237e717fa4b5149ca8f3be5bf46666ff567f1eb29",
+      "operator_set_hash": "1421426c696edb0f3ddce7a984c3fc0603e32fea4eb28a9f8acb83bbf07e910a",
+      "required_start_commit": "after_V63_discovery_batch"
     }
   ]
 }

@@ -1,0 +1,101 @@
+{
+  "alphafold_used_before_seal": false,
+  "batch_id": "V63_RCSB_500_DISCOVERY_BATCH",
+  "blocked_prediction_inputs": [
+    "PDB/mmCIF coordinates before sealing",
+    "native contacts, distance maps, residue-residue proximity, and coordinate-derived topology",
+    "ligand coordinates, metal coordination geometry, and bound-state contact geometry",
+    "AlphaFold, ESMFold, RoseTTAFold, or other structure models before sealing",
+    "post-seal validation annotations before prediction hash",
+    "V61/V62 same-target repair labels as prediction evidence",
+    "internal runtime artifacts as biological evidence"
+  ],
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "discovery_context_policy": {
+    "biological_cofactor_components_seen": [
+      "CA"
+    ],
+    "context_derivation": "V63 discovery uses sequence plus public non-coordinate RCSB metadata only; V61/V62 labels and post-seal holdout classes are not used for prediction context",
+    "context_marks": [
+      "assembly_context",
+      "channel_context",
+      "cofactor_context",
+      "homomeric_context",
+      "ligand_context",
+      "membrane_context_strong",
+      "metal_context",
+      "oligomer_context",
+      "partner_copy_context",
+      "transmembrane_context"
+    ],
+    "polymer_copy_counts": {
+      "entity_molecule_count": 3,
+      "polymer_composition": "homomeric protein",
+      "polymer_entity_instance_count": 3
+    },
+    "reasons": [
+      "RCSB public non-coordinate component list contains biological cofactor candidates: ['CA']",
+      "RCSB public metadata indicates multiple copies or assembly context",
+      "RCSB public metadata or strong sequence field indicates membrane/topology context"
+    ]
+  },
+  "entity_id": "1",
+  "entry_id": "1A0S",
+  "folding_problem_solved": false,
+  "kind": "V63_RCSB_500_DISCOVERY_SOURCE_MANIFEST_v0",
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence for the RCSB polymer entity.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V63_1A0S_1_RAW_SEQUENCE",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1A0S/1",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "RCSB title: SUCROSE-SPECIFIC PORIN. Entity description: SUCROSE-SPECIFIC PORIN. Organism: Salmonella enterica subsp. enterica serovar Typhimurium. Polymer composition: homomeric protein. Sequence-derived marks: sequence-derived hydrophobic closure tendency; public metadata indicates multiple polymer instances or molecule copies. Coordinates, native contacts, residue-residue distances, and validation annotations are unopened before the prediction hash.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V63_1A0S_1_PUBLIC_METADATA",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/1A0S",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "V63 discovery metadata context marks: assembly_context channel_context cofactor_context homomeric_context ligand_context membrane_context_strong metal_context oligomer_context partner_copy_context transmembrane_context. Marks come from sequence and public non-coordinate RCSB metadata only; coordinates, contacts, distance maps, ligand geometry, and native topology are blocked before sealing.",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [
+        "assembly_context",
+        "channel_context",
+        "cofactor_context",
+        "homomeric_context",
+        "ligand_context",
+        "membrane_context_strong",
+        "metal_context",
+        "oligomer_context",
+        "partner_copy_context",
+        "transmembrane_context"
+      ],
+      "metadata_context_reasons": [
+        "RCSB public non-coordinate component list contains biological cofactor candidates: ['CA']",
+        "RCSB public metadata indicates multiple copies or assembly context",
+        "RCSB public metadata or strong sequence field indicates membrane/topology context"
+      ],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V63_1A0S_1_E61_METADATA_CONTEXT",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/1A0S",
+      "spatial_proxy": false
+    }
+  ],
+  "protein_id": "1A0S_1",
+  "sequence": "SGFEFHGYARSGVIMNDSGASTKSGAYITPAGETGGAIGRLGNQADTYVEMNLEHKQTLDNGATTRFKVMVADGQTSYNDWTASTSDLNVRQAFVELGNLPTFAGPFKGSTLWAGKRFDRDNFDIHWIDSDVVFLAGTGGGIYDVKWNDGLRSNFSLYGRNFGDIDDSSNSVQNYILTMNHFAGPLQMMVSGLRAKDNDERKDSNGNLAKGDAANTGVHALLGLHNDSFYGLRDGSSKTALLYGHGLGAEVKGIGSDGALRPGADTWRIASYGTTPLSENWSVAPAMLAQRSKDRYADGDSYQWATFNLRLIQAINQNFALAYEGSYQYMDLKPEGYNDRQAVNGSFYKLTFAPTFKVGSIGDFFSRPEIRFYTSWMDWSKKLNNYASDDALGSDGFNSGGEWSFGVQMETWF",
+  "sequence_length": 413,
+  "target_id": "V63_1A0S_1",
+  "target_selection_manual": false
+}

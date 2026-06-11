@@ -1,0 +1,291 @@
+{
+  "abstain_count": 0,
+  "accepted_accuracy": 0.476,
+  "accepted_count": 500,
+  "alphafold_used_before_seal": false,
+  "atomistic_md_executed": false,
+  "batch_id": "V63_RCSB_500_DISCOVERY_BATCH",
+  "batch_mode": "discovery",
+  "campaign_id": "V61_TO_V70_PROTEIN_ESPERANTO_SATURATION_CAMPAIGN",
+  "certificate_hash": "720d8a56a091da396f7adb93201fd630fe2808716ad1c021cc15c7cb764237ed",
+  "claim_allowed": false,
+  "claim_blocked_reason": "V63 is a broad discovery batch for mining failure classes; claims require later grammar revision and regression.",
+  "contact_truth_used_before_seal": false,
+  "control_count": 19,
+  "controls": [
+    {
+      "control_id": "target_selection_manual_false",
+      "observed": null,
+      "passed": true,
+      "reason": "V63 selection must be automatic."
+    },
+    {
+      "control_id": "targets_total_500",
+      "observed": 500,
+      "passed": true,
+      "reason": "V63 N must be exactly 500."
+    },
+    {
+      "control_id": "rcsb_experimental_protein_entities_only",
+      "observed": null,
+      "passed": true,
+      "reason": "All targets are RCSB experimental protein entities."
+    },
+    {
+      "control_id": "sequence_cluster_representative_selection",
+      "observed": {
+        "cutoff": 30,
+        "unique_clusters": 500
+      },
+      "passed": true,
+      "reason": "Each target is a unique 30% sequence-cluster representative."
+    },
+    {
+      "control_id": "length_filter_40_800",
+      "observed": null,
+      "passed": true,
+      "reason": "All targets satisfy the requested length filter."
+    },
+    {
+      "control_id": "engine_version_declared_e61",
+      "observed": null,
+      "passed": true,
+      "reason": "V63 uses E61."
+    },
+    {
+      "control_id": "engine_modified_during_batch_false",
+      "observed": null,
+      "passed": true,
+      "reason": "No engine mutation occurs inside V63."
+    },
+    {
+      "control_id": "discovery_context_not_repair_labels",
+      "observed": null,
+      "passed": true,
+      "reason": "V63 context extraction does not use V61/V62 expected labels."
+    },
+    {
+      "control_id": "all_sealed_before_holdout",
+      "observed": null,
+      "passed": true,
+      "reason": "Every V63 packet is sealed before holdout."
+    },
+    {
+      "control_id": "holdouts_opened_after_seal",
+      "observed": null,
+      "passed": true,
+      "reason": "Every holdout references the sealed prediction hash."
+    },
+    {
+      "control_id": "wrong_grammar_controls",
+      "observed": null,
+      "passed": true,
+      "reason": "Forced wrong grammars are rejected or routed to abstention."
+    },
+    {
+      "control_id": "shuffled_sequence_controls_reported",
+      "observed": {
+        "control_count": 500,
+        "shuffled_higher_by_more_than_margin_count": 393
+      },
+      "passed": true,
+      "reason": "Composition-preserving shuffled controls are generated with target metadata withheld."
+    },
+    {
+      "control_id": "coordinate_leakage_control",
+      "observed": {
+        "allowed_initialization_source_ids": [],
+        "blocked_source_ids": [
+          "V63_BAD_COORDINATES"
+        ],
+        "coordinate_derived_source_count_before_prediction": 1,
+        "coordinate_truth_used_before_prediction": true,
+        "holdout_opened_before_seal": false,
+        "internal_runtime_source_count_for_prediction": 0,
+        "internal_runtime_used_as_biological_evidence": false,
+        "kind": "PROTEIN_ESPERANTO_EVIDENCE_BOUNDARY_GATE_v0",
+        "rows": [
+          {
+            "allowed_for_claim": false,
+            "allowed_for_holdout_after_seal": false,
+            "allowed_to_initialize_language_field": false,
+            "blocked_reason": "coordinate_derived_blocked_before_seal",
+            "coordinate_derived": true,
+            "internal_runtime": false,
+            "source_class": "coordinate_derived",
+            "source_id": "V63_BAD_COORDINATES",
+            "source_role": "prediction_input",
+            "spatial_proxy": false
+          }
+        ],
+        "spatial_proxy_untagged_or_misused_count": 0
+      },
+      "passed": true,
+      "reason": "Coordinate-derived source blocks prediction."
+    },
+    {
+      "control_id": "alphafold_leakage_control",
+      "observed": {
+        "allowed_initialization_source_ids": [],
+        "blocked_source_ids": [
+          "V63_BAD_ALPHAFOLD_MODEL"
+        ],
+        "coordinate_derived_source_count_before_prediction": 1,
+        "coordinate_truth_used_before_prediction": true,
+        "holdout_opened_before_seal": false,
+        "internal_runtime_source_count_for_prediction": 0,
+        "internal_runtime_used_as_biological_evidence": false,
+        "kind": "PROTEIN_ESPERANTO_EVIDENCE_BOUNDARY_GATE_v0",
+        "rows": [
+          {
+            "allowed_for_claim": false,
+            "allowed_for_holdout_after_seal": false,
+            "allowed_to_initialize_language_field": false,
+            "blocked_reason": "coordinate_derived_blocked_before_seal",
+            "coordinate_derived": true,
+            "internal_runtime": false,
+            "source_class": "coordinate_derived",
+            "source_id": "V63_BAD_ALPHAFOLD_MODEL",
+            "source_role": "prediction_input",
+            "spatial_proxy": false
+          }
+        ],
+        "spatial_proxy_untagged_or_misused_count": 0
+      },
+      "passed": true,
+      "reason": "AlphaFold-like model blocks prediction."
+    },
+    {
+      "control_id": "holdout_opened_before_seal_control",
+      "observed": {
+        "allowed_initialization_source_ids": [],
+        "blocked_source_ids": [
+          "V63_PRESEAL_HOLDOUT"
+        ],
+        "coordinate_derived_source_count_before_prediction": 0,
+        "coordinate_truth_used_before_prediction": false,
+        "holdout_opened_before_seal": true,
+        "internal_runtime_source_count_for_prediction": 0,
+        "internal_runtime_used_as_biological_evidence": false,
+        "kind": "PROTEIN_ESPERANTO_EVIDENCE_BOUNDARY_GATE_v0",
+        "rows": [
+          {
+            "allowed_for_claim": false,
+            "allowed_for_holdout_after_seal": true,
+            "allowed_to_initialize_language_field": false,
+            "blocked_reason": "holdout_opened_before_seal",
+            "coordinate_derived": true,
+            "internal_runtime": false,
+            "source_class": "coordinate_derived",
+            "source_id": "V63_PRESEAL_HOLDOUT",
+            "source_role": "holdout_validation",
+            "spatial_proxy": false
+          }
+        ],
+        "spatial_proxy_untagged_or_misused_count": 0
+      },
+      "passed": true,
+      "reason": "Holdout validation cannot initialize prediction before sealing."
+    },
+    {
+      "control_id": "internal_runtime_leakage_control",
+      "observed": {
+        "allowed_initialization_source_ids": [],
+        "blocked_source_ids": [
+          "V63_BAD_INTERNAL_RUNTIME"
+        ],
+        "coordinate_derived_source_count_before_prediction": 0,
+        "coordinate_truth_used_before_prediction": false,
+        "holdout_opened_before_seal": false,
+        "internal_runtime_source_count_for_prediction": 1,
+        "internal_runtime_used_as_biological_evidence": true,
+        "kind": "PROTEIN_ESPERANTO_EVIDENCE_BOUNDARY_GATE_v0",
+        "rows": [
+          {
+            "allowed_for_claim": false,
+            "allowed_for_holdout_after_seal": false,
+            "allowed_to_initialize_language_field": false,
+            "blocked_reason": "internal_runtime_never_biological_evidence",
+            "coordinate_derived": false,
+            "internal_runtime": true,
+            "source_class": "internal_runtime",
+            "source_id": "V63_BAD_INTERNAL_RUNTIME",
+            "source_role": "prediction_input",
+            "spatial_proxy": false
+          }
+        ],
+        "spatial_proxy_untagged_or_misused_count": 0
+      },
+      "passed": true,
+      "reason": "Internal runtime cannot become biological evidence."
+    },
+    {
+      "control_id": "random_sequence_control",
+      "observed": null,
+      "passed": true,
+      "reason": "Random sequence without evidence abstains."
+    },
+    {
+      "control_id": "failures_reported",
+      "observed": null,
+      "passed": true,
+      "reason": "Every target has an explicit score row."
+    },
+    {
+      "control_id": "readme_check_skipped_by_user_instruction",
+      "observed": null,
+      "passed": true,
+      "reason": "README check skipped by explicit user instruction during V63 finalization."
+    }
+  ],
+  "controls_passed": true,
+  "coordinate_truth_used_before_seal": false,
+  "coverage": 1.0,
+  "engine_changes_allowed_by_operating_mode": true,
+  "engine_modified_during_batch": false,
+  "engine_source_last_commit": "2ad3c4f733d35cde78e7f98531102a1e111fdec4",
+  "engine_source_sha256": "1eb6e19bfdda03be759484976540fa25ca9822871dec085d9a97d0ac989da85e",
+  "engine_version_used": "E61",
+  "failed_accepted_count": 262,
+  "failed_controls": [],
+  "failure_modes": {
+    "disorder_misread": 15,
+    "membrane_misread": 216,
+    "oligomer_state_misread": 2,
+    "wrong_regime": 29
+  },
+  "folding_problem_solved": false,
+  "forbidden_claims": [
+    "Universal protein folding is solved.",
+    "E61 has saturated broad RCSB protein space.",
+    "V63 failures may be hidden.",
+    "Coordinates, contacts, ligand geometry, or native topology were used before sealing."
+  ],
+  "kind": "V63_RCSB_500_DISCOVERY_BATCH_CERTIFICATE_v0",
+  "missing_words_top_10": [
+    {
+      "count": 216,
+      "failure_type": "membrane_misread"
+    },
+    {
+      "count": 29,
+      "failure_type": "wrong_regime"
+    },
+    {
+      "count": 15,
+      "failure_type": "disorder_misread"
+    },
+    {
+      "count": 2,
+      "failure_type": "oligomer_state_misread"
+    }
+  ],
+  "passed_control_count": 19,
+  "raw_accuracy": 0.476,
+  "readme_check_skipped_by_user_instruction": true,
+  "status": "V63_RCSB_500_DISCOVERY_FAILURES_REVIEW_REQUIRED",
+  "supported_count": 238,
+  "target_selection_manual": false,
+  "targets_total": 500,
+  "timestamp_utc": "2026-06-11T20:44:30.881572+00:00"
+}

@@ -1,0 +1,83 @@
+{
+  "alphafold_used_before_seal": false,
+  "batch_id": "V63_RCSB_500_DISCOVERY_BATCH",
+  "blocked_prediction_inputs": [
+    "PDB/mmCIF coordinates before sealing",
+    "native contacts, distance maps, residue-residue proximity, and coordinate-derived topology",
+    "ligand coordinates, metal coordination geometry, and bound-state contact geometry",
+    "AlphaFold, ESMFold, RoseTTAFold, or other structure models before sealing",
+    "post-seal validation annotations before prediction hash",
+    "V61/V62 same-target repair labels as prediction evidence",
+    "internal runtime artifacts as biological evidence"
+  ],
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "discovery_context_policy": {
+    "biological_cofactor_components_seen": [],
+    "context_derivation": "V63 discovery uses sequence plus public non-coordinate RCSB metadata only; V61/V62 labels and post-seal holdout classes are not used for prediction context",
+    "context_marks": [
+      "assembly_context",
+      "homomeric_context",
+      "oligomer_context",
+      "partner_copy_context"
+    ],
+    "polymer_copy_counts": {
+      "entity_molecule_count": 1,
+      "polymer_composition": "protein/NA",
+      "polymer_entity_instance_count": 2
+    },
+    "reasons": [
+      "RCSB public metadata indicates multiple copies or assembly context"
+    ]
+  },
+  "entity_id": "2",
+  "entry_id": "1AV6",
+  "folding_problem_solved": false,
+  "kind": "V63_RCSB_500_DISCOVERY_SOURCE_MANIFEST_v0",
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence for the RCSB polymer entity.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V63_1AV6_2_RAW_SEQUENCE",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1AV6/2",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "RCSB title: VACCINIA METHYLTRANSFERASE VP39 COMPLEXED WITH M7G CAPPED RNA HEXAMER AND S-ADENOSYLHOMOCYSTEINE. Entity description: Cap-specific mRNA (nucleoside-2'-O-)-methyltransferase. Organism: Vaccinia virus WR. Polymer composition: protein/NA. Sequence-derived marks: sequence-derived hydrophobic closure tendency; public metadata indicates multiple polymer instances or molecule copies. Coordinates, native contacts, residue-residue distances, and validation annotations are unopened before the prediction hash.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V63_1AV6_2_PUBLIC_METADATA",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/1AV6",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "V63 discovery metadata context marks: assembly_context homomeric_context oligomer_context partner_copy_context. Marks come from sequence and public non-coordinate RCSB metadata only; coordinates, contacts, distance maps, ligand geometry, and native topology are blocked before sealing.",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [
+        "assembly_context",
+        "homomeric_context",
+        "oligomer_context",
+        "partner_copy_context"
+      ],
+      "metadata_context_reasons": [
+        "RCSB public metadata indicates multiple copies or assembly context"
+      ],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V63_1AV6_2_E61_METADATA_CONTEXT",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/1AV6",
+      "spatial_proxy": false
+    }
+  ],
+  "protein_id": "1AV6_2",
+  "sequence": "VVSLDKPFMYFEEIDNELDYEPESANEVAKKLPYQGQLKLLLGELFFLSKLQRHGILDGATVVYIGSAPGTHIRYLRDHFYNLGVIIKWMLIDGRHHDPILNGLRDVTLVTRFVDEEYLRSIKKQLHPSKIILISDVRSKRGGNEPSTADLLSNYALQNVMISILNPVASSLKWRCPFPDQWIKDFYIPHGNKMLQPFAPSYSAEMRLLSIYTGENMRLTRVTKSDAVNYEKKMYYLNKIVRNKVVVNFDYPNQEYDYFHMYFMLRTVYCNKTFPTTKAKVLFLQQSIFRFLNIP",
+  "sequence_length": 295,
+  "target_id": "V63_1AV6_2",
+  "target_selection_manual": false
+}

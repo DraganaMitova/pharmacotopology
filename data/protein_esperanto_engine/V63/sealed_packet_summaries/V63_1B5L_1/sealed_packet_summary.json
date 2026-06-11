@@ -1,0 +1,85 @@
+{
+  "active_operator_count": 3,
+  "evidence_manifest": {
+    "allowed_initialization_source_ids": [
+      "V63_1B5L_1_RAW_SEQUENCE",
+      "V63_1B5L_1_PUBLIC_METADATA",
+      "V63_1B5L_1_E61_METADATA_CONTEXT"
+    ],
+    "blocked_source_ids": [],
+    "coordinate_derived_source_count_before_prediction": 0,
+    "coordinate_truth_used_before_prediction": false,
+    "holdout_opened_before_seal": false,
+    "internal_runtime_source_count_for_prediction": 0,
+    "internal_runtime_used_as_biological_evidence": false,
+    "kind": "PROTEIN_ESPERANTO_EVIDENCE_BOUNDARY_GATE_v0",
+    "rows": [
+      {
+        "allowed_for_claim": true,
+        "allowed_for_holdout_after_seal": false,
+        "allowed_to_initialize_language_field": true,
+        "blocked_reason": "",
+        "coordinate_derived": false,
+        "internal_runtime": false,
+        "source_class": "pure_non_coordinate",
+        "source_id": "V63_1B5L_1_RAW_SEQUENCE",
+        "source_role": "prediction_input",
+        "spatial_proxy": false
+      },
+      {
+        "allowed_for_claim": true,
+        "allowed_for_holdout_after_seal": false,
+        "allowed_to_initialize_language_field": true,
+        "blocked_reason": "",
+        "coordinate_derived": false,
+        "internal_runtime": false,
+        "source_class": "pure_non_coordinate",
+        "source_id": "V63_1B5L_1_PUBLIC_METADATA",
+        "source_role": "prediction_input",
+        "spatial_proxy": false
+      },
+      {
+        "allowed_for_claim": true,
+        "allowed_for_holdout_after_seal": false,
+        "allowed_to_initialize_language_field": true,
+        "blocked_reason": "",
+        "coordinate_derived": false,
+        "internal_runtime": false,
+        "source_class": "pure_non_coordinate",
+        "source_id": "V63_1B5L_1_E61_METADATA_CONTEXT",
+        "source_role": "prediction_input",
+        "spatial_proxy": false
+      }
+    ],
+    "spatial_proxy_untagged_or_misused_count": 0
+  },
+  "folding_problem_solved": false,
+  "kind": "V63_COMPACT_SEALED_PACKET_SUMMARY_v0",
+  "natural_mechanism_class": "short_region_host_interface_hijacking",
+  "operator_names": [
+    "host_hijack_operator",
+    "interface_operator",
+    "disorder_operator"
+  ],
+  "prediction_hash": "55beb4e39f28ef2527f0c9ce5c8c9243b6368ed5542f81cba93ae55d00ba105b",
+  "sealed_before_holdout": true,
+  "selected_mechanism_class": "short_region_host_interface_hijacking",
+  "selection_reason": "short_region_host_interface_evidence",
+  "target_id": "V63_1B5L_1",
+  "trajectory_final_state_summary": {
+    "contact_probability": 0.60932,
+    "disorder_order_balance": 0.5645,
+    "frustration": 0.0,
+    "interface_readiness": 0.941,
+    "operator_activation": 0.676667,
+    "proteostasis_routing": 0.0,
+    "residue_exposure": 0.71307,
+    "segment_compaction": 0.08,
+    "state_basin_occupancy": {
+      "compact_single_fold": 0.04,
+      "exposed_short_region": 0.62,
+      "host_interface_engaged": 0.941
+    },
+    "timepoint": 1000
+  }
+}

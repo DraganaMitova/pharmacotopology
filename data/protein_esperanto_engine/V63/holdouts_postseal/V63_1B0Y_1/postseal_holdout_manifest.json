@@ -1,0 +1,27 @@
+{
+  "batch_id": "V63_RCSB_500_DISCOVERY_BATCH",
+  "entity_id": "1",
+  "entry_id": "1B0Y",
+  "expected_mechanism_class": "oligomerization_controlled_folding",
+  "expected_observables": [],
+  "experimental_method": "X-RAY DIFFRACTION",
+  "holdout_opened_after_prediction_hash": "c0971208b8325ba169544bca21bc8a9a815942ac00863629d9ceb3fe05714467",
+  "kind": "V63_RCSB_500_POSTSEAL_HOLDOUT_v0",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1B0Y",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1B0Y/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V63_1B0Y_1_RCSB_DATA_API_POSTSEAL",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "postseal entry/entity metadata indicates oligomer or assembly context"
+  ],
+  "protein_id": "1B0Y_1",
+  "release_date": "1998-12-16T00:00:00.000+00:00",
+  "target_id": "V63_1B0Y_1"
+}

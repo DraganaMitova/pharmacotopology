@@ -1,0 +1,19 @@
+{
+  "abstention_rate": 0.0,
+  "accepted_accuracy": 0.476,
+  "batch_id": "V63_RCSB_500_DISCOVERY_BATCH",
+  "batch_mode": "discovery",
+  "claim_allowed": false,
+  "claim_blocked_reason": "V63 is a broad discovery batch for mining failure classes; claims require later grammar revision and regression.",
+  "control_pass_rate": 1.0,
+  "coverage": 1.0,
+  "engine_version_used": "E61",
+  "failure_count": 262,
+  "failure_modes": {
+    "disorder_misread": 15,
+    "membrane_misread": 216,
+    "oligomer_state_misread": 2,
+    "wrong_regime": 29
+  },
+  "raw_accuracy": 0.476
+}

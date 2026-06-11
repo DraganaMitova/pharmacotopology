@@ -1,0 +1,45 @@
+{
+  "kind": "E62_V63_FAILURE_DRIVEN_ENGINE_REVISION_CERTIFICATE_v0",
+  "engine_version": "E62",
+  "commit": "this_commit",
+  "commit_pointer_policy": "A commit cannot contain its own final hash; this value denotes the commit that introduces E62.",
+  "derived_from_batch": "V63_RCSB_500_DISCOVERY_BATCH",
+  "v63_engine_version_used": "E61",
+  "v63_status": "V63_RCSB_500_DISCOVERY_FAILURES_REVIEW_REQUIRED",
+  "engine_modified_after_v63": true,
+  "engine_modified_during_v63": false,
+  "engine_source_sha256": "483c8b85cf0bfeae867f02d5f2b097841f726bf6bec694d4905efb19c4b432ef",
+  "operator_set_hash": "1421426c696edb0f3ddce7a984c3fc0603e32fea4eb28a9f8acb83bbf07e910a",
+  "mechanism_class_set_hash": "c088ecef4efacdd6de1b451237e717fa4b5149ca8f3be5bf46666ff567f1eb29",
+  "mechanism_classes_added": [],
+  "operators_added": [],
+  "grammar_priority_changes": [
+    "strong membrane/topology context is selected before incidental cofactor/ligand context",
+    "strong membrane/topology context is selected before incidental oligomer/assembly context"
+  ],
+  "failure_modes_addressed": [
+    "membrane_misread"
+  ],
+  "v63_failure_evidence": {
+    "failed_accepted_count": 262,
+    "membrane_misread_count": 216,
+    "dominant_wrong_pairs": [
+      {
+        "predicted": "oligomerization_controlled_folding",
+        "expected": "membrane_multidomain_folding_proteostasis",
+        "count": 139
+      },
+      {
+        "predicted": "cofactor_ligand_assisted_stabilization",
+        "expected": "membrane_multidomain_folding_proteostasis",
+        "count": 75
+      }
+    ]
+  },
+  "claim_boundary": {
+    "v63_rewritten": false,
+    "universal_folding_solved": false,
+    "protein_esperanto_saturation_claim_allowed": false,
+    "next_required_batch": "E62 repair/expansion rerun after V63"
+  }
+}

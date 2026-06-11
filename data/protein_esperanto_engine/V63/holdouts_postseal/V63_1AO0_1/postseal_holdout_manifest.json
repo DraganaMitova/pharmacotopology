@@ -1,0 +1,27 @@
+{
+  "batch_id": "V63_RCSB_500_DISCOVERY_BATCH",
+  "entity_id": "1",
+  "entry_id": "1AO0",
+  "expected_mechanism_class": "cofactor_ligand_assisted_stabilization",
+  "expected_observables": [],
+  "experimental_method": "X-RAY DIFFRACTION",
+  "holdout_opened_after_prediction_hash": "a08716cbf387be0d6e27aaae36cebdd7bc06bd2483dbd39c2acf10569f0cb896",
+  "kind": "V63_RCSB_500_POSTSEAL_HOLDOUT_v0",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1AO0",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1AO0/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V63_1AO0_1_RCSB_DATA_API_POSTSEAL",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "postseal RCSB entry contains biological ligand/cofactor/metal components"
+  ],
+  "protein_id": "1AO0_1",
+  "release_date": "1997-11-12T00:00:00.000+00:00",
+  "target_id": "V63_1AO0_1"
+}

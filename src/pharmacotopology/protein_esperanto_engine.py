@@ -583,6 +583,11 @@ def select_mechanism_grammar(
     else:
         text = _allowed_source_text(sources, evidence_manifest)
         metrics = sequence_field["global_metrics"]
+        explicit_membrane_context = _contains_any(text, STRONG_MEMBRANE_CONTEXT_TOKENS)
+        membrane_text_context = any(
+            token in text
+            for token in ["cftr", "f508", "proteostasis", "trafficking", "nbd1", "transmembrane", "membrane"]
+        )
         if any(token in text for token in ["orf6", "rae1", "nup98", "host hijack", "nucleocytoplasmic", "interferon"]):
             natural = "short_region_host_interface_hijacking"
             reason = "short_region_host_interface_evidence"
@@ -603,19 +608,31 @@ def select_mechanism_grammar(
         ]):
             natural = "metamorphic_fold_switching"
             reason = "state_separated_partner_context_evidence"
+        elif explicit_membrane_context:
+            if (
+                "f508" in text
+                or "proteostasis" in text
+                or "trafficking" in text
+                or metrics["mean_membrane"] >= 0.10
+                or explicit_membrane_context
+            ):
+                natural = "membrane_multidomain_folding_proteostasis"
+                reason = "strong_membrane_topology_context_prioritized_over_incidental_ligand_or_assembly_context"
+            else:
+                natural = "insufficient_evidence_clean_abstain"
+                reason = "generic_membrane_annotation_without_specific_operator"
         elif _contains_any(text, COFACTOR_CONTEXT_TOKENS):
             natural = "cofactor_ligand_assisted_stabilization"
             reason = "explicit_ligand_cofactor_or_metal_context"
         elif _contains_any(text, OLIGOMER_CONTEXT_TOKENS):
             natural = "oligomerization_controlled_folding"
             reason = "explicit_oligomer_or_assembly_context"
-        elif any(token in text for token in ["cftr", "f508", "proteostasis", "trafficking", "nbd1", "transmembrane", "membrane"]) or _contains_any(text, STRONG_MEMBRANE_CONTEXT_TOKENS):
+        elif membrane_text_context:
             if (
                 "f508" in text
                 or "proteostasis" in text
                 or "trafficking" in text
                 or metrics["mean_membrane"] >= 0.10
-                or _contains_any(text, STRONG_MEMBRANE_CONTEXT_TOKENS)
             ):
                 natural = "membrane_multidomain_folding_proteostasis"
                 reason = "membrane_multidomain_mutation_interface_evidence"
