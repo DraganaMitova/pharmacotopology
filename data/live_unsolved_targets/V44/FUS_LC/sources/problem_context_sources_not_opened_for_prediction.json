@@ -1,0 +1,31 @@
+{
+  "sources": [
+    {
+      "allowed_use": "problem_context_and_postseal_validation_only",
+      "coordinate_derived": false,
+      "holdout_source": true,
+      "internal_runtime_source": false,
+      "notes": [
+        "FUS-LC residues 1-214 are condition-sensitive IDP/condensate material.",
+        "Gels, fibrils, and glass-like behavior vary by experimental condition.",
+        "Phosphorylation effects are site-specific and alter state stability."
+      ],
+      "source_id": "FUS_LC_REVIEW_PROBLEM_CONTEXT_ARXIV_2303_04215",
+      "source_type": "review/problem-context literature",
+      "source_url_or_citation": "https://arxiv.org/abs/2303.04215"
+    },
+    {
+      "allowed_use": "postseal_holdout_validation_only",
+      "coordinate_derived": false,
+      "holdout_source": true,
+      "internal_runtime_source": false,
+      "notes": [
+        "Full DisProt region/function annotations are kept out of prediction packet construction.",
+        "Only disorder-only records are available before sealing."
+      ],
+      "source_id": "DISPROT_DP01102_FULL_REGION_HOLDOUT_INDEX",
+      "source_type": "DisProt post-seal region/function holdout index",
+      "source_url_or_citation": "https://disprot.org/api/P35637"
+    }
+  ]
+}

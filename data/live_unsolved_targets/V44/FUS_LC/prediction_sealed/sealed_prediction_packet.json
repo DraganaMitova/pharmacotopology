@@ -1,0 +1,228 @@
+{
+  "blocked_inputs_manifest": "/Users/draganamitova/My Projects/pharmacotopology/data/live_unsolved_targets/V44/FUS_LC/prediction_sealed/blocked_inputs_manifest.json",
+  "claim_boundary": {
+    "allowed": "sealed live solution packet for FUS-LC mechanism language, pending external review",
+    "not_allowed": "universal protein-folding solved claim or global coordinate-solution claim"
+  },
+  "coordinate_derived_source_count_before_prediction": 0,
+  "coordinate_truth_used_before_prediction": false,
+  "falsification_criteria": [
+    "FUS-LC residues 1-214 reproducibly adopt one compact single native fold under ordinary conditions",
+    "aromatic sticker disruption has no effect on self-association or phase behavior",
+    "phosphorylation/phosphomimetic changes have no reproducible effect on LLPS, aggregation, or fibril competence",
+    "RNA/protein partners do not shift ensemble or condensate behavior when binding is observed",
+    "fibril/gel evidence requires a whole-domain native fold rather than local state-dependent ordering",
+    "independent holdouts contradict more than two explicit perturbation predictions"
+  ],
+  "folding_problem_solved": false,
+  "forbidden_operator_buckets_rejected": [
+    "compact_single_native_fold_operator",
+    "solved_atomic_structure_operator",
+    "de_novo_global_coordinate_solution_operator",
+    "AlphaFold_confidence_proxy_operator",
+    "coordinate_contact_operator"
+  ],
+  "full_solution_packet_allowed_by_inputs": true,
+  "holdout_leakage_detected": false,
+  "internal_runtime_source_count_for_prediction": 0,
+  "kind": "V44_FUS_LC_SEALED_LIVE_UNSOLVED_SOLUTION_PACKET_v0",
+  "live_unsolved_target_solution_packet": false,
+  "low_resolution_ensemble_prediction": {
+    "ensemble_type": "heterogeneous IDP ensemble with condition-dependent condensate material states",
+    "fibril_core_boundary": "state/context-dependent local ordering, not a whole-domain native fold",
+    "single_native_fold_expected": false,
+    "state_model": "dilute disorder <-> dense liquid <-> aged gel/fibril/glass-like branch, shifted by phosphorylation, concentration, salt/pH/temperature, RNA, and protein partners"
+  },
+  "mechanism_class": "intrinsic_disorder_phase_separation_contextual_ensemble",
+  "mechanism_confidence": "high_for_live_solution_packet_review_required",
+  "native_metrics_used_before_prediction": false,
+  "no_holdout_access_before_hash": true,
+  "operator_region_rationale": {
+    "LLPS_self_association_operator": "Disordered low-complexity stickers and polar spacers predict concentration-dependent self-association and condensate formation.",
+    "aromatic_sticker_pattern_operator": "Twenty-seven tyrosines are distributed across the LC region at positions [6, 14, 17, 25, 33, 38, 41, 50, 55, 58, 66, 75, 81, 91, 97, 100, 113, 122, 130, 136, 143, 149, 155, 161, 177, 194, 208].",
+    "context_bound_RNA_or_protein_interaction_operator": "FUS is an RNA-binding protein; LC disorder should be context-shifted by RNA/protein partners without becoming a single native fold.",
+    "fibril_or_gel_state_shift_operator": "Sticker-rich windows predict gel/fibril competence as a state-dependent branch, not a whole-domain native fold.",
+    "low_complexity_disorder_operator": "P35637 residues 1-214 are 81.3 percent Q/G/S/Y and overlap UniProt/DisProt disorder annotations.",
+    "phosphorylation_shift_operator": "UniProt annotates phosphoserines at 26, 30, and 42; the LC region contains 51 serines.",
+    "polar_spacer_context_operator": "Glutamine, serine, and glycine dominate the spacers, favoring disordered multivalent contacts over a single hydrophobic core."
+  },
+  "operator_regions": [
+    {
+      "bucket": "low_complexity_disorder_operator",
+      "confidence": "high",
+      "rationale": "P35637 residues 1-214 are 81.3 percent Q/G/S/Y and overlap UniProt/DisProt disorder annotations.",
+      "region_name": "FUS_LC_QGSY_low_complexity_disordered_matrix",
+      "span": "1-214"
+    },
+    {
+      "bucket": "aromatic_sticker_pattern_operator",
+      "confidence": "high",
+      "rationale": "Twenty-seven tyrosines are distributed across the LC region at positions [6, 14, 17, 25, 33, 38, 41, 50, 55, 58, 66, 75, 81, 91, 97, 100, 113, 122, 130, 136, 143, 149, 155, 161, 177, 194, 208].",
+      "region_name": "distributed_tyrosine_sticker_ladder",
+      "span": "1-164 with distal stickers through 208"
+    },
+    {
+      "bucket": "polar_spacer_context_operator",
+      "confidence": "high",
+      "rationale": "Glutamine, serine, and glycine dominate the spacers, favoring disordered multivalent contacts over a single hydrophobic core.",
+      "region_name": "Q_S_G_polar_spacer_network",
+      "span": "1-214"
+    },
+    {
+      "bucket": "phosphorylation_shift_operator",
+      "confidence": "medium_high",
+      "rationale": "UniProt annotates phosphoserines at 26, 30, and 42; the LC region contains 51 serines.",
+      "region_name": "N_terminal_serine_charge_switch",
+      "span": "26,30,42 plus serine-rich LC background"
+    },
+    {
+      "bucket": "LLPS_self_association_operator",
+      "confidence": "high",
+      "rationale": "Disordered low-complexity stickers and polar spacers predict concentration-dependent self-association and condensate formation.",
+      "region_name": "multivalent_LC_self_association_field",
+      "span": "1-214"
+    },
+    {
+      "bucket": "fibril_or_gel_state_shift_operator",
+      "confidence": "medium_high",
+      "rationale": "Sticker-rich windows predict gel/fibril competence as a state-dependent branch, not a whole-domain native fold.",
+      "region_name": "state_dependent_core_prone_windows",
+      "span": "39-95, 110-150, and 155-190 as sequence-pattern hot zones"
+    },
+    {
+      "bucket": "context_bound_RNA_or_protein_interaction_operator",
+      "confidence": "medium",
+      "rationale": "FUS is an RNA-binding protein; LC disorder should be context-shifted by RNA/protein partners without becoming a single native fold.",
+      "region_name": "RNA_or_partner_shifted_ensemble",
+      "span": "1-214 with partner-sensitive contacts near 37-41 and 149-154"
+    }
+  ],
+  "perturbation_predictions": [
+    {
+      "operator_bucket": "phosphorylation_shift_operator",
+      "perturbation": "phosphomimetic or phosphorylation-like increase at N-terminal serine cluster",
+      "predicted_effect": "weakens LLPS, aggregation, and fibril competence by adding negative charge to the sticker-spacer field",
+      "prediction_id": "V44_PERT_001"
+    },
+    {
+      "operator_bucket": "aromatic_sticker_pattern_operator",
+      "perturbation": "tyrosine/aromatic sticker disruption across FUS-LC",
+      "predicted_effect": "weakens self-association and condensation by reducing aromatic multivalence",
+      "prediction_id": "V44_PERT_002"
+    },
+    {
+      "operator_bucket": "aromatic_sticker_pattern_operator",
+      "perturbation": "tyrosine pattern redistribution without changing total length",
+      "predicted_effect": "alters phase boundary and maturation kinetics because sticker spacing is part of the grammar",
+      "prediction_id": "V44_PERT_003"
+    },
+    {
+      "operator_bucket": "low_complexity_disorder_operator",
+      "perturbation": "replace or delete the Q/G/S/Y low-complexity identity",
+      "predicted_effect": "destroys the FUS-LC grammar and collapses the LLPS/fibril-state mechanism",
+      "prediction_id": "V44_PERT_004"
+    },
+    {
+      "operator_bucket": "low_complexity_disorder_operator",
+      "perturbation": "force compact single-fold grammar",
+      "predicted_effect": "must be rejected; the target is an ensemble/phase-separation problem, not a single-native-fold problem",
+      "prediction_id": "V44_PERT_005"
+    },
+    {
+      "operator_bucket": "context_bound_RNA_or_protein_interaction_operator",
+      "perturbation": "add RNA or phase-modulating protein partner",
+      "predicted_effect": "shifts the ensemble and condensate material state through context-dependent binding and charge/sticker rebalance",
+      "prediction_id": "V44_PERT_006"
+    },
+    {
+      "operator_bucket": "fibril_or_gel_state_shift_operator",
+      "perturbation": "isolate or mutate fibril-core-prone windows",
+      "predicted_effect": "changes gel/fibril competence in a state-dependent way while leaving flanking regions fuzzy",
+      "prediction_id": "V44_PERT_007"
+    },
+    {
+      "operator_bucket": "LLPS_self_association_operator",
+      "perturbation": "change pH, salt, concentration, temperature, or phosphorylation state",
+      "predicted_effect": "shifts the ensemble among dilute, liquid, gel, fibril, and glass-like states",
+      "prediction_id": "V44_PERT_008"
+    },
+    {
+      "operator_bucket": "fibril_or_gel_state_shift_operator",
+      "perturbation": "remove the N-terminal core-prone sticker region",
+      "predicted_effect": "reduces core-1-like maturation and can reveal alternate C-terminal LC ordering",
+      "prediction_id": "V44_PERT_009"
+    },
+    {
+      "operator_bucket": "phosphorylation_shift_operator",
+      "perturbation": "remove phosphorylation capacity with serine-to-alanine substitutions",
+      "predicted_effect": "should bias toward stronger self-association relative to phosphomimetic variants",
+      "prediction_id": "V44_PERT_010"
+    }
+  ],
+  "predicted_context_switches": [
+    {
+      "context": "higher concentration",
+      "predicted_shift": "increases dense-phase/self-association probability"
+    },
+    {
+      "context": "increased phosphorylation or phosphomimetic substitution",
+      "predicted_shift": "weakens LLPS, aggregation, and fibril competence"
+    },
+    {
+      "context": "salt/pH/temperature changes",
+      "predicted_shift": "moves liquid/gel/fibril/glass balance rather than selecting one fold"
+    },
+    {
+      "context": "RNA or nuclear import receptor/protein partner present",
+      "predicted_shift": "reshapes ensemble and can suppress or redirect self-association"
+    }
+  ],
+  "predicted_state_grammar": [
+    {
+      "grammar": "expanded heterogeneous IDP ensemble with no single native fold",
+      "state": "dilute_disordered_monomer"
+    },
+    {
+      "grammar": "multivalent aromatic sticker and polar spacer contacts exchange rapidly",
+      "state": "dense_liquid_condensate"
+    },
+    {
+      "grammar": "selected sticker-rich windows become ordered while flanking regions stay fuzzy",
+      "state": "aged_gel_or_fibril_branch"
+    },
+    {
+      "grammar": "condition-dependent kinetic arrest of the condensate network",
+      "state": "glass_like_or_slowed_material"
+    },
+    {
+      "grammar": "RNA or protein partners rebalance stickers, spacers, and charge-mediated contacts",
+      "state": "RNA_or_partner_bound_shift"
+    }
+  ],
+  "prediction_hash": "8887c8d492f3d5c2ff6aea454510a8d92fdd16a42e72c0620b9a424ea972af70",
+  "prediction_inputs_manifest": "/Users/draganamitova/My Projects/pharmacotopology/data/live_unsolved_targets/V44/FUS_LC/prediction_sealed/prediction_inputs_manifest.json",
+  "prediction_source_ids": [
+    "UNIPROT_P35637_SEQUENCE_FEATURES_NONCOORDINATE",
+    "DISPROT_DP01102_DISORDER_ONLY_NONCOORDINATE",
+    "FUS_LC_SEQUENCE_PATTERN_FEATURES_DERIVED_FROM_ALLOWED_INPUTS"
+  ],
+  "prediction_timestamp": "2026-06-11T16:49:42.208347+00:00",
+  "proposed_experimental_tests": [
+    "compare wild-type FUS-LC against S-to-E phosphomimetic and S-to-A phospho-null panels in turbidity, microscopy, FRAP, and fibril assays",
+    "mutate or scramble tyrosine stickers while preserving Q/G/S composition and measure LLPS boundary shifts",
+    "test 1-95, 39-95, 110-150, and 155-190 constructs for gel/fibril maturation and fuzzy-flank behavior",
+    "measure salt, pH, concentration, temperature, and phosphorylation-state phase diagrams",
+    "add RNA and Kapbeta2-like protein context and quantify condensate suppression, recruitment, or material-state redirection",
+    "use NMR/HDX/crosslinking/single-molecule assays to test ensemble shifts without demanding a single coordinate model"
+  ],
+  "protein_folding_solved_candidate_strengthened": false,
+  "sequence_region_scope": {
+    "end": 214,
+    "label": "FUS P35637 residues 1-214",
+    "sequence": "MASNDYTQQATQSYGAYPTQPGQGYSQQSSQPYGQQSYSGYSQSTDTSGYGQSSYSSYGQSQNTGYGTQSTPQGYGSTGGYGSSQSSQSSYGQQSSYPGYGQQPAPSSTSGSYGSSSQSSSYGQPQSGSYSQQPSYGGQQQSYGQQQSYNPPQGYGQQNQYNSSSGGGGGGGGGGNYGQDQSSMSSGGGSGGGYGNQDQSGGGGSGGYGQQDRG",
+    "start": 1
+  },
+  "target": "human FUS low-complexity domain",
+  "target_id": "V44_FUS_LC",
+  "uniprot_accession": "P35637"
+}

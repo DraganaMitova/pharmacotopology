@@ -1,0 +1,46 @@
+{
+  "accession": "P35637",
+  "allowed_use": "prediction_input_before_sealing",
+  "answer_key_source": false,
+  "coordinate_derived": false,
+  "disprot_id": "DP01102",
+  "holdout_source": false,
+  "internal_runtime_source": false,
+  "native_metrics_used_for_selection": false,
+  "regions_excluded_until_holdout": [
+    "amyloid fibril formation regions",
+    "RNA binding regions",
+    "molecular condensate scaffold activity regions",
+    "protein-partner phase-separation inhibition regions"
+  ],
+  "regions_used": [
+    {
+      "end": 507,
+      "namespace": "Structural state",
+      "reference_id": "29677513",
+      "region_id": "DP01102r004",
+      "start": 1,
+      "term": "disorder"
+    },
+    {
+      "end": 163,
+      "namespace": "Structural state",
+      "reference_id": "26455390",
+      "region_id": "DP01102r014",
+      "start": 1,
+      "term": "disorder"
+    },
+    {
+      "end": 214,
+      "namespace": "Structural state",
+      "reference_id": "28942918",
+      "region_id": "DP01102r029",
+      "start": 98,
+      "term": "disorder"
+    }
+  ],
+  "retrieved_or_checked": "2026-06-11",
+  "source_id": "DISPROT_DP01102_DISORDER_ONLY_NONCOORDINATE",
+  "source_type": "DisProt disorder annotation subset",
+  "source_url_or_citation": "https://disprot.org/api/P35637"
+}

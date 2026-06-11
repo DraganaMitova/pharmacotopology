@@ -1,0 +1,7 @@
+{
+  "decision_status": "V44_FUS_LC_LIVE_UNSOLVED_SOLUTION_PACKET_PASSED_REVIEW_REQUIRED",
+  "folding_problem_solved": false,
+  "kind": "V44_FUS_LC_LIVE_UNSOLVED_NEXT_DECISION_v0",
+  "live_unsolved_target_solution_packet": true,
+  "next_action": "external review and wet-lab FUS-LC perturbation testing before strengthening beyond live solution packet wording"
+}

@@ -1,0 +1,396 @@
+{
+  "answer_key_available_to_prediction": false,
+  "blocked_prediction_inputs": [
+    {
+      "blocked_input": "PDB coordinates or mmCIF coordinates before sealing",
+      "reason": "coordinates are validation/structure truth and not prediction evidence"
+    },
+    {
+      "blocked_input": "coordinate-derived contacts or native contact maps",
+      "reason": "would leak structure truth into the live solution packet"
+    },
+    {
+      "blocked_input": "AlphaFold/ESMFold/RoseTTAFold coordinates before sealing",
+      "reason": "predicted coordinate models are blocked as evidence for this live mechanism packet"
+    },
+    {
+      "blocked_input": "first_contact_clean_pharmacotopology_layer_run files as biological evidence",
+      "reason": "runtime artifacts are audit outputs only"
+    },
+    {
+      "blocked_input": "validation holdouts before prediction sealing",
+      "reason": "holdouts open only after sealed prediction hash exists"
+    },
+    {
+      "blocked_input": "answer key/class labels during prediction",
+      "reason": "class assignment must use source-separated allowed evidence"
+    },
+    {
+      "blocked_input": "generic target-name-only assignment",
+      "reason": "FUS name alone cannot create a solution packet"
+    }
+  ],
+  "coordinate_sources_available_before_prediction": false,
+  "disprot_id": "DP01102",
+  "folding_problem_solved": false,
+  "holdouts_created": false,
+  "internal_runtime_sources_available_to_prediction": false,
+  "kind": "V44_FUS_LC_LIVE_UNSOLVED_SOURCE_MANIFEST_v0",
+  "live_unsolved_target_solution_packet": false,
+  "prediction_input_source_count": 3,
+  "prediction_inputs_separated_from_validation_holdouts": true,
+  "prediction_sources": [
+    {
+      "accession": "P35637",
+      "allowed_use": "prediction_input_before_sealing",
+      "answer_key_source": false,
+      "coordinate_derived": false,
+      "features_excluded_before_prediction": [
+        "PDB/mmCIF coordinate records",
+        "coordinate-derived contacts",
+        "native contact maps",
+        "UniProt beta strand/turn records when coordinate-derived",
+        "AlphaFold/ESMFold/RoseTTAFold coordinates"
+      ],
+      "features_used": [
+        {
+          "description": "Disordered",
+          "end": 286,
+          "start": 1,
+          "type": "Region"
+        },
+        {
+          "description": "Polar residues",
+          "end": 14,
+          "start": 1,
+          "type": "Compositional bias"
+        },
+        {
+          "description": "Low complexity",
+          "end": 75,
+          "start": 17,
+          "type": "Compositional bias"
+        },
+        {
+          "description": "Low complexity",
+          "end": 164,
+          "start": 83,
+          "type": "Compositional bias"
+        },
+        {
+          "description": "Gly residues",
+          "end": 177,
+          "start": 165,
+          "type": "Compositional bias"
+        },
+        {
+          "description": "Gly residues",
+          "end": 209,
+          "start": 186,
+          "type": "Compositional bias"
+        },
+        {
+          "description": "Phosphoserine",
+          "end": 26,
+          "start": 26,
+          "type": "Modified residue"
+        },
+        {
+          "description": "Phosphoserine",
+          "end": 30,
+          "start": 30,
+          "type": "Modified residue"
+        },
+        {
+          "description": "Phosphoserine; by ATM",
+          "end": 42,
+          "start": 42,
+          "type": "Modified residue"
+        }
+      ],
+      "holdout_source": false,
+      "internal_runtime_source": false,
+      "native_metrics_used_for_selection": false,
+      "retrieved_or_checked": "2026-06-11",
+      "sequence_region_scope": {
+        "full_length": 526,
+        "protein": "human FUS / RNA-binding protein FUS",
+        "region": "FUS-LC residues 1-214",
+        "region_end": 214,
+        "region_start": 1,
+        "sequence": "MASNDYTQQATQSYGAYPTQPGQGYSQQSSQPYGQQSYSGYSQSTDTSGYGQSSYSSYGQSQNTGYGTQSTPQGYGSTGGYGSSQSSQSSYGQQSSYPGYGQQPAPSSTSGSYGSSSQSSSYGQPQSGSYSQQPSYGGQQQSYGQQQSYNPPQGYGQQNQYNSSSGGGGGGGGGGNYGQDQSSMSSGGGSGGGYGNQDQSGGGGSGGYGQQDRG"
+      },
+      "source_id": "UNIPROT_P35637_SEQUENCE_FEATURES_NONCOORDINATE",
+      "source_type": "UniProtKB sequence and non-coordinate feature annotation",
+      "source_url_or_citation": "https://rest.uniprot.org/uniprotkb/P35637.json"
+    },
+    {
+      "accession": "P35637",
+      "allowed_use": "prediction_input_before_sealing",
+      "answer_key_source": false,
+      "coordinate_derived": false,
+      "disprot_id": "DP01102",
+      "holdout_source": false,
+      "internal_runtime_source": false,
+      "native_metrics_used_for_selection": false,
+      "regions_excluded_until_holdout": [
+        "amyloid fibril formation regions",
+        "RNA binding regions",
+        "molecular condensate scaffold activity regions",
+        "protein-partner phase-separation inhibition regions"
+      ],
+      "regions_used": [
+        {
+          "end": 507,
+          "namespace": "Structural state",
+          "reference_id": "29677513",
+          "region_id": "DP01102r004",
+          "start": 1,
+          "term": "disorder"
+        },
+        {
+          "end": 163,
+          "namespace": "Structural state",
+          "reference_id": "26455390",
+          "region_id": "DP01102r014",
+          "start": 1,
+          "term": "disorder"
+        },
+        {
+          "end": 214,
+          "namespace": "Structural state",
+          "reference_id": "28942918",
+          "region_id": "DP01102r029",
+          "start": 98,
+          "term": "disorder"
+        }
+      ],
+      "retrieved_or_checked": "2026-06-11",
+      "source_id": "DISPROT_DP01102_DISORDER_ONLY_NONCOORDINATE",
+      "source_type": "DisProt disorder annotation subset",
+      "source_url_or_citation": "https://disprot.org/api/P35637"
+    },
+    {
+      "allowed_use": "prediction_input_before_sealing",
+      "answer_key_source": false,
+      "composition": {
+        "counts": {
+          "A": 4,
+          "D": 5,
+          "G": 53,
+          "M": 2,
+          "N": 7,
+          "P": 11,
+          "Q": 43,
+          "R": 1,
+          "S": 51,
+          "T": 10,
+          "Y": 27
+        },
+        "fractions": {
+          "A": 0.018691588785046728,
+          "D": 0.02336448598130841,
+          "G": 0.24766355140186916,
+          "M": 0.009345794392523364,
+          "N": 0.03271028037383177,
+          "P": 0.0514018691588785,
+          "Q": 0.20093457943925233,
+          "R": 0.004672897196261682,
+          "S": 0.2383177570093458,
+          "T": 0.04672897196261682,
+          "Y": 0.1261682242990654
+        },
+        "length": 214,
+        "qgsy_count": 174,
+        "qgsy_fraction": 0.8130841121495327,
+        "serine_positions": [
+          3,
+          13,
+          26,
+          29,
+          30,
+          37,
+          39,
+          42,
+          44,
+          48,
+          53,
+          54,
+          56,
+          57,
+          61,
+          70,
+          77,
+          83,
+          84,
+          86,
+          87,
+          89,
+          90,
+          95,
+          96,
+          107,
+          108,
+          110,
+          112,
+          115,
+          116,
+          117,
+          119,
+          120,
+          121,
+          127,
+          129,
+          131,
+          135,
+          142,
+          148,
+          163,
+          164,
+          165,
+          182,
+          183,
+          185,
+          186,
+          190,
+          200,
+          205
+        ],
+        "tyrosine_positions": [
+          6,
+          14,
+          17,
+          25,
+          33,
+          38,
+          41,
+          50,
+          55,
+          58,
+          66,
+          75,
+          81,
+          91,
+          97,
+          100,
+          113,
+          122,
+          130,
+          136,
+          143,
+          149,
+          155,
+          161,
+          177,
+          194,
+          208
+        ]
+      },
+      "coordinate_derived": false,
+      "derived_from_source_ids": [
+        "UNIPROT_P35637_SEQUENCE_FEATURES_NONCOORDINATE"
+      ],
+      "holdout_source": false,
+      "internal_runtime_source": false,
+      "native_metrics_used_for_selection": false,
+      "sequence_windows": [
+        {
+          "glutamine_count": 16,
+          "glycine_count": 11,
+          "length": 75,
+          "qgsy_fraction": 0.7333333333333333,
+          "sequence_pattern_note": "sequence-derived sticker/spacer and low-complexity window",
+          "serine_count": 16,
+          "span": "1-75",
+          "tyrosine_count": 12
+        },
+        {
+          "glutamine_count": 6,
+          "glycine_count": 8,
+          "length": 37,
+          "qgsy_fraction": 0.8378378378378378,
+          "sequence_pattern_note": "sequence-derived sticker/spacer and low-complexity window",
+          "serine_count": 13,
+          "span": "76-112",
+          "tyrosine_count": 4
+        },
+        {
+          "glutamine_count": 15,
+          "glycine_count": 8,
+          "length": 52,
+          "qgsy_fraction": 0.8653846153846154,
+          "sequence_pattern_note": "sequence-derived sticker/spacer and low-complexity window",
+          "serine_count": 14,
+          "span": "113-164",
+          "tyrosine_count": 8
+        },
+        {
+          "glutamine_count": 6,
+          "glycine_count": 26,
+          "length": 50,
+          "qgsy_fraction": 0.86,
+          "sequence_pattern_note": "sequence-derived sticker/spacer and low-complexity window",
+          "serine_count": 8,
+          "span": "165-214",
+          "tyrosine_count": 3
+        },
+        {
+          "glutamine_count": 10,
+          "glycine_count": 12,
+          "length": 57,
+          "qgsy_fraction": 0.8421052631578947,
+          "sequence_pattern_note": "sequence-derived sticker/spacer and low-complexity window",
+          "serine_count": 18,
+          "span": "39-95",
+          "tyrosine_count": 8
+        },
+        {
+          "glutamine_count": 11,
+          "glycine_count": 7,
+          "length": 41,
+          "qgsy_fraction": 0.926829268292683,
+          "sequence_pattern_note": "sequence-derived sticker/spacer and low-complexity window",
+          "serine_count": 14,
+          "span": "110-150",
+          "tyrosine_count": 6
+        }
+      ],
+      "source_id": "FUS_LC_SEQUENCE_PATTERN_FEATURES_DERIVED_FROM_ALLOWED_INPUTS",
+      "source_type": "derived sequence-composition and sticker-spacer features",
+      "source_url_or_citation": "derived from UniProt P35637 residues 1-214 sequence"
+    }
+  ],
+  "problem_context_sources_not_opened_for_prediction": [
+    {
+      "allowed_use": "problem_context_and_postseal_validation_only",
+      "coordinate_derived": false,
+      "holdout_source": true,
+      "internal_runtime_source": false,
+      "notes": [
+        "FUS-LC residues 1-214 are condition-sensitive IDP/condensate material.",
+        "Gels, fibrils, and glass-like behavior vary by experimental condition.",
+        "Phosphorylation effects are site-specific and alter state stability."
+      ],
+      "source_id": "FUS_LC_REVIEW_PROBLEM_CONTEXT_ARXIV_2303_04215",
+      "source_type": "review/problem-context literature",
+      "source_url_or_citation": "https://arxiv.org/abs/2303.04215"
+    },
+    {
+      "allowed_use": "postseal_holdout_validation_only",
+      "coordinate_derived": false,
+      "holdout_source": true,
+      "internal_runtime_source": false,
+      "notes": [
+        "Full DisProt region/function annotations are kept out of prediction packet construction.",
+        "Only disorder-only records are available before sealing."
+      ],
+      "source_id": "DISPROT_DP01102_FULL_REGION_HOLDOUT_INDEX",
+      "source_type": "DisProt post-seal region/function holdout index",
+      "source_url_or_citation": "https://disprot.org/api/P35637"
+    }
+  ],
+  "sequence_region_scope": "FUS P35637 residues 1-214",
+  "target": "human FUS low-complexity domain",
+  "target_id": "V44_FUS_LC",
+  "uniprot_accession": "P35637"
+}

@@ -1,0 +1,20 @@
+{
+  "coordinate_derived": false,
+  "evidence_statement": "FUS-LC/RNA-binding context changes phase separation behavior.",
+  "internal_runtime_source": false,
+  "opened_after_prediction_hash": "8887c8d492f3d5c2ff6aea454510a8d92fdd16a42e72c0620b9a424ea972af70",
+  "opened_timestamp": "2026-06-11T16:49:42.209329+00:00",
+  "source_class": "RNA_context_support",
+  "source_id": "HOLDOUT_GANSER_2024_RNA_DEPENDENT_PHASE_SEPARATION",
+  "source_url_or_citation": "PubMed 38070499, Ganser et al. Structure 2024",
+  "supports_context_switches": [
+    "RNA or nuclear import receptor/protein partner present"
+  ],
+  "supports_operator_buckets": [
+    "context_bound_RNA_or_protein_interaction_operator"
+  ],
+  "supports_perturbation_ids": [
+    "V44_PERT_006"
+  ],
+  "used_before_prediction": false
+}

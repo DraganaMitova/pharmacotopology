@@ -1,0 +1,186 @@
+{
+  "holdout_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "FUS-LC is annotated as disordered and low-complexity rather than a compact native domain.",
+      "internal_runtime_source": false,
+      "opened_after_prediction_hash": "8887c8d492f3d5c2ff6aea454510a8d92fdd16a42e72c0620b9a424ea972af70",
+      "opened_timestamp": "2026-06-11T16:49:42.209329+00:00",
+      "source_class": "disorder_low_complexity_support",
+      "source_id": "HOLDOUT_DISPROT_DP01102_DISORDER_LOW_COMPLEXITY",
+      "source_url_or_citation": "DisProt DP01102/P35637 disorder regions and UniProt non-coordinate annotations",
+      "supports_context_switches": [],
+      "supports_operator_buckets": [
+        "low_complexity_disorder_operator",
+        "polar_spacer_context_operator"
+      ],
+      "supports_perturbation_ids": [
+        "V44_PERT_004",
+        "V44_PERT_005"
+      ],
+      "used_before_prediction": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Low-complexity domains form RNA-granule-like hydrogels and dynamic fibers.",
+      "internal_runtime_source": false,
+      "opened_after_prediction_hash": "8887c8d492f3d5c2ff6aea454510a8d92fdd16a42e72c0620b9a424ea972af70",
+      "opened_timestamp": "2026-06-11T16:49:42.209329+00:00",
+      "source_class": "LLPS_self_association_support",
+      "source_id": "HOLDOUT_KATO_2012_LC_HYDROGEL_FIBERS",
+      "source_url_or_citation": "PubMed 22579281, Kato et al. Cell 2012",
+      "supports_context_switches": [
+        "higher concentration",
+        "salt/pH/temperature changes"
+      ],
+      "supports_operator_buckets": [
+        "LLPS_self_association_operator",
+        "fibril_or_gel_state_shift_operator"
+      ],
+      "supports_perturbation_ids": [
+        "V44_PERT_004",
+        "V44_PERT_007",
+        "V44_PERT_008"
+      ],
+      "used_before_prediction": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Residue-level FUS granule evidence supports a disordered condensate state.",
+      "internal_runtime_source": false,
+      "opened_after_prediction_hash": "8887c8d492f3d5c2ff6aea454510a8d92fdd16a42e72c0620b9a424ea972af70",
+      "opened_timestamp": "2026-06-11T16:49:42.209329+00:00",
+      "source_class": "LLPS_granule_residue_support",
+      "source_id": "HOLDOUT_BURKE_2015_GRANULE_NMR",
+      "source_url_or_citation": "PubMed 26455390, Burke et al. Molecular Cell 2015",
+      "supports_context_switches": [
+        "higher concentration"
+      ],
+      "supports_operator_buckets": [
+        "LLPS_self_association_operator",
+        "polar_spacer_context_operator"
+      ],
+      "supports_perturbation_ids": [
+        "V44_PERT_008"
+      ],
+      "used_before_prediction": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "FUS condensates can mature from liquid-like to less dynamic material states.",
+      "internal_runtime_source": false,
+      "opened_after_prediction_hash": "8887c8d492f3d5c2ff6aea454510a8d92fdd16a42e72c0620b9a424ea972af70",
+      "opened_timestamp": "2026-06-11T16:49:42.209329+00:00",
+      "source_class": "gel_glass_material_state_support",
+      "source_id": "HOLDOUT_PATEL_2015_LIQUID_TO_SOLID_TRANSITION",
+      "source_url_or_citation": "PubMed 26317470, Patel et al. Cell 2015",
+      "supports_context_switches": [
+        "higher concentration",
+        "salt/pH/temperature changes"
+      ],
+      "supports_operator_buckets": [
+        "LLPS_self_association_operator",
+        "fibril_or_gel_state_shift_operator"
+      ],
+      "supports_perturbation_ids": [
+        "V44_PERT_007",
+        "V44_PERT_008"
+      ],
+      "used_before_prediction": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "FUS-LC fibrils involve state-dependent local core regions with fuzzy disordered flanks.",
+      "internal_runtime_source": false,
+      "opened_after_prediction_hash": "8887c8d492f3d5c2ff6aea454510a8d92fdd16a42e72c0620b9a424ea972af70",
+      "opened_timestamp": "2026-06-11T16:49:42.209329+00:00",
+      "source_class": "fibril_core_support",
+      "source_id": "HOLDOUT_MURRAY_2017_FUS_FIBRIL_CORE",
+      "source_url_or_citation": "PubMed 28942918, Murray et al. Cell 2017",
+      "supports_context_switches": [
+        "salt/pH/temperature changes"
+      ],
+      "supports_operator_buckets": [
+        "aromatic_sticker_pattern_operator",
+        "fibril_or_gel_state_shift_operator"
+      ],
+      "supports_perturbation_ids": [
+        "V44_PERT_002",
+        "V44_PERT_003",
+        "V44_PERT_007",
+        "V44_PERT_009"
+      ],
+      "used_before_prediction": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Aromatic ladders, hydrophilic contacts, condition shifts, and site-specific phosphorylation effects support the state grammar.",
+      "internal_runtime_source": false,
+      "opened_after_prediction_hash": "8887c8d492f3d5c2ff6aea454510a8d92fdd16a42e72c0620b9a424ea972af70",
+      "opened_timestamp": "2026-06-11T16:49:42.209329+00:00",
+      "source_class": "phosphorylation_aromatic_condition_support",
+      "source_id": "HOLDOUT_ARXIV_2303_04215_PHASES_REVIEW",
+      "source_url_or_citation": "https://arxiv.org/abs/2303.04215",
+      "supports_context_switches": [
+        "increased phosphorylation or phosphomimetic substitution",
+        "salt/pH/temperature changes"
+      ],
+      "supports_operator_buckets": [
+        "aromatic_sticker_pattern_operator",
+        "phosphorylation_shift_operator",
+        "fibril_or_gel_state_shift_operator"
+      ],
+      "supports_perturbation_ids": [
+        "V44_PERT_001",
+        "V44_PERT_002",
+        "V44_PERT_003",
+        "V44_PERT_008",
+        "V44_PERT_010"
+      ],
+      "used_before_prediction": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "FUS-LC/RNA-binding context changes phase separation behavior.",
+      "internal_runtime_source": false,
+      "opened_after_prediction_hash": "8887c8d492f3d5c2ff6aea454510a8d92fdd16a42e72c0620b9a424ea972af70",
+      "opened_timestamp": "2026-06-11T16:49:42.209329+00:00",
+      "source_class": "RNA_context_support",
+      "source_id": "HOLDOUT_GANSER_2024_RNA_DEPENDENT_PHASE_SEPARATION",
+      "source_url_or_citation": "PubMed 38070499, Ganser et al. Structure 2024",
+      "supports_context_switches": [
+        "RNA or nuclear import receptor/protein partner present"
+      ],
+      "supports_operator_buckets": [
+        "context_bound_RNA_or_protein_interaction_operator"
+      ],
+      "supports_perturbation_ids": [
+        "V44_PERT_006"
+      ],
+      "used_before_prediction": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Nuclear import receptor binding can inhibit or redirect FUS phase separation.",
+      "internal_runtime_source": false,
+      "opened_after_prediction_hash": "8887c8d492f3d5c2ff6aea454510a8d92fdd16a42e72c0620b9a424ea972af70",
+      "opened_timestamp": "2026-06-11T16:49:42.209329+00:00",
+      "source_class": "protein_context_support",
+      "source_id": "HOLDOUT_YOSHIZAWA_2018_KAPBETA2_PHASE_INHIBITION",
+      "source_url_or_citation": "PubMed 29677513, Yoshizawa et al. Cell 2018",
+      "supports_context_switches": [
+        "RNA or nuclear import receptor/protein partner present"
+      ],
+      "supports_operator_buckets": [
+        "context_bound_RNA_or_protein_interaction_operator"
+      ],
+      "supports_perturbation_ids": [
+        "V44_PERT_006"
+      ],
+      "used_before_prediction": false
+    }
+  ],
+  "kind": "V44_FUS_LC_POSTSEAL_HOLDOUT_MANIFEST_v0",
+  "opened_after_prediction_hash": "8887c8d492f3d5c2ff6aea454510a8d92fdd16a42e72c0620b9a424ea972af70",
+  "target_id": "V44_FUS_LC"
+}

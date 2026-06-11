@@ -1,0 +1,84 @@
+{
+  "accession": "P35637",
+  "allowed_use": "prediction_input_before_sealing",
+  "answer_key_source": false,
+  "coordinate_derived": false,
+  "features_excluded_before_prediction": [
+    "PDB/mmCIF coordinate records",
+    "coordinate-derived contacts",
+    "native contact maps",
+    "UniProt beta strand/turn records when coordinate-derived",
+    "AlphaFold/ESMFold/RoseTTAFold coordinates"
+  ],
+  "features_used": [
+    {
+      "description": "Disordered",
+      "end": 286,
+      "start": 1,
+      "type": "Region"
+    },
+    {
+      "description": "Polar residues",
+      "end": 14,
+      "start": 1,
+      "type": "Compositional bias"
+    },
+    {
+      "description": "Low complexity",
+      "end": 75,
+      "start": 17,
+      "type": "Compositional bias"
+    },
+    {
+      "description": "Low complexity",
+      "end": 164,
+      "start": 83,
+      "type": "Compositional bias"
+    },
+    {
+      "description": "Gly residues",
+      "end": 177,
+      "start": 165,
+      "type": "Compositional bias"
+    },
+    {
+      "description": "Gly residues",
+      "end": 209,
+      "start": 186,
+      "type": "Compositional bias"
+    },
+    {
+      "description": "Phosphoserine",
+      "end": 26,
+      "start": 26,
+      "type": "Modified residue"
+    },
+    {
+      "description": "Phosphoserine",
+      "end": 30,
+      "start": 30,
+      "type": "Modified residue"
+    },
+    {
+      "description": "Phosphoserine; by ATM",
+      "end": 42,
+      "start": 42,
+      "type": "Modified residue"
+    }
+  ],
+  "holdout_source": false,
+  "internal_runtime_source": false,
+  "native_metrics_used_for_selection": false,
+  "retrieved_or_checked": "2026-06-11",
+  "sequence_region_scope": {
+    "full_length": 526,
+    "protein": "human FUS / RNA-binding protein FUS",
+    "region": "FUS-LC residues 1-214",
+    "region_end": 214,
+    "region_start": 1,
+    "sequence": "MASNDYTQQATQSYGAYPTQPGQGYSQQSSQPYGQQSYSGYSQSTDTSGYGQSSYSSYGQSQNTGYGTQSTPQGYGSTGGYGSSQSSQSSYGQQSSYPGYGQQPAPSSTSGSYGSSSQSSSYGQPQSGSYSQQPSYGGQQQSYGQQQSYNPPQGYGQQNQYNSSSGGGGGGGGGGNYGQDQSSMSSGGGSGGGYGNQDQSGGGGSGGYGQQDRG"
+  },
+  "source_id": "UNIPROT_P35637_SEQUENCE_FEATURES_NONCOORDINATE",
+  "source_type": "UniProtKB sequence and non-coordinate feature annotation",
+  "source_url_or_citation": "https://rest.uniprot.org/uniprotkb/P35637.json"
+}

@@ -1,0 +1,143 @@
+{
+  "context_shift_support_rate": 1.0,
+  "context_shift_validation": [
+    {
+      "context": "higher concentration",
+      "predicted_shift": "increases dense-phase/self-association probability",
+      "support_level": "supported"
+    },
+    {
+      "context": "increased phosphorylation or phosphomimetic substitution",
+      "predicted_shift": "weakens LLPS, aggregation, and fibril competence",
+      "support_level": "supported"
+    },
+    {
+      "context": "salt/pH/temperature changes",
+      "predicted_shift": "moves liquid/gel/fibril/glass balance rather than selecting one fold",
+      "support_level": "supported"
+    },
+    {
+      "context": "RNA or nuclear import receptor/protein partner present",
+      "predicted_shift": "reshapes ensemble and can suppress or redirect self-association",
+      "support_level": "supported"
+    }
+  ],
+  "contradicted_prediction_count": 0,
+  "contradicted_predictions": [],
+  "falsifiable_prediction_count": 10,
+  "forbidden_single_fold_rejection_passed": true,
+  "holdout_source_classes": [
+    "LLPS_granule_residue_support",
+    "LLPS_self_association_support",
+    "RNA_context_support",
+    "disorder_low_complexity_support",
+    "fibril_core_support",
+    "gel_glass_material_state_support",
+    "phosphorylation_aromatic_condition_support",
+    "protein_context_support"
+  ],
+  "holdout_source_count": 8,
+  "kind": "V44_FUS_LC_POSTSEAL_VALIDATION_v0",
+  "operator_support_rate": 1.0,
+  "operator_validation": [
+    {
+      "bucket": "low_complexity_disorder_operator",
+      "region_name": "FUS_LC_QGSY_low_complexity_disordered_matrix",
+      "support_level": "supported"
+    },
+    {
+      "bucket": "aromatic_sticker_pattern_operator",
+      "region_name": "distributed_tyrosine_sticker_ladder",
+      "support_level": "supported"
+    },
+    {
+      "bucket": "polar_spacer_context_operator",
+      "region_name": "Q_S_G_polar_spacer_network",
+      "support_level": "supported"
+    },
+    {
+      "bucket": "phosphorylation_shift_operator",
+      "region_name": "N_terminal_serine_charge_switch",
+      "support_level": "supported"
+    },
+    {
+      "bucket": "LLPS_self_association_operator",
+      "region_name": "multivalent_LC_self_association_field",
+      "support_level": "supported"
+    },
+    {
+      "bucket": "fibril_or_gel_state_shift_operator",
+      "region_name": "state_dependent_core_prone_windows",
+      "support_level": "supported"
+    },
+    {
+      "bucket": "context_bound_RNA_or_protein_interaction_operator",
+      "region_name": "RNA_or_partner_shifted_ensemble",
+      "support_level": "supported"
+    }
+  ],
+  "perturbation_support_rate": 1.0,
+  "perturbation_validation": [
+    {
+      "perturbation": "phosphomimetic or phosphorylation-like increase at N-terminal serine cluster",
+      "predicted_effect": "weakens LLPS, aggregation, and fibril competence by adding negative charge to the sticker-spacer field",
+      "prediction_id": "V44_PERT_001",
+      "support_level": "partially_supported"
+    },
+    {
+      "perturbation": "tyrosine/aromatic sticker disruption across FUS-LC",
+      "predicted_effect": "weakens self-association and condensation by reducing aromatic multivalence",
+      "prediction_id": "V44_PERT_002",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "tyrosine pattern redistribution without changing total length",
+      "predicted_effect": "alters phase boundary and maturation kinetics because sticker spacing is part of the grammar",
+      "prediction_id": "V44_PERT_003",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "replace or delete the Q/G/S/Y low-complexity identity",
+      "predicted_effect": "destroys the FUS-LC grammar and collapses the LLPS/fibril-state mechanism",
+      "prediction_id": "V44_PERT_004",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "force compact single-fold grammar",
+      "predicted_effect": "must be rejected; the target is an ensemble/phase-separation problem, not a single-native-fold problem",
+      "prediction_id": "V44_PERT_005",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "add RNA or phase-modulating protein partner",
+      "predicted_effect": "shifts the ensemble and condensate material state through context-dependent binding and charge/sticker rebalance",
+      "prediction_id": "V44_PERT_006",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "isolate or mutate fibril-core-prone windows",
+      "predicted_effect": "changes gel/fibril competence in a state-dependent way while leaving flanking regions fuzzy",
+      "prediction_id": "V44_PERT_007",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "change pH, salt, concentration, temperature, or phosphorylation state",
+      "predicted_effect": "shifts the ensemble among dilute, liquid, gel, fibril, and glass-like states",
+      "prediction_id": "V44_PERT_008",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "remove the N-terminal core-prone sticker region",
+      "predicted_effect": "reduces core-1-like maturation and can reveal alternate C-terminal LC ordering",
+      "prediction_id": "V44_PERT_009",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "remove phosphorylation capacity with serine-to-alanine substitutions",
+      "predicted_effect": "should bias toward stronger self-association relative to phosphomimetic variants",
+      "prediction_id": "V44_PERT_010",
+      "support_level": "partially_supported"
+    }
+  ],
+  "validated_prediction_count": 10
+}

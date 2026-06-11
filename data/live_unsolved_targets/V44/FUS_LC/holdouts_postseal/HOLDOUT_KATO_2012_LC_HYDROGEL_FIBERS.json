@@ -1,0 +1,24 @@
+{
+  "coordinate_derived": false,
+  "evidence_statement": "Low-complexity domains form RNA-granule-like hydrogels and dynamic fibers.",
+  "internal_runtime_source": false,
+  "opened_after_prediction_hash": "8887c8d492f3d5c2ff6aea454510a8d92fdd16a42e72c0620b9a424ea972af70",
+  "opened_timestamp": "2026-06-11T16:49:42.209329+00:00",
+  "source_class": "LLPS_self_association_support",
+  "source_id": "HOLDOUT_KATO_2012_LC_HYDROGEL_FIBERS",
+  "source_url_or_citation": "PubMed 22579281, Kato et al. Cell 2012",
+  "supports_context_switches": [
+    "higher concentration",
+    "salt/pH/temperature changes"
+  ],
+  "supports_operator_buckets": [
+    "LLPS_self_association_operator",
+    "fibril_or_gel_state_shift_operator"
+  ],
+  "supports_perturbation_ids": [
+    "V44_PERT_004",
+    "V44_PERT_007",
+    "V44_PERT_008"
+  ],
+  "used_before_prediction": false
+}

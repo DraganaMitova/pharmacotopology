@@ -1,0 +1,24 @@
+{
+  "coordinate_derived": false,
+  "evidence_statement": "FUS-LC fibrils involve state-dependent local core regions with fuzzy disordered flanks.",
+  "internal_runtime_source": false,
+  "opened_after_prediction_hash": "8887c8d492f3d5c2ff6aea454510a8d92fdd16a42e72c0620b9a424ea972af70",
+  "opened_timestamp": "2026-06-11T16:49:42.209329+00:00",
+  "source_class": "fibril_core_support",
+  "source_id": "HOLDOUT_MURRAY_2017_FUS_FIBRIL_CORE",
+  "source_url_or_citation": "PubMed 28942918, Murray et al. Cell 2017",
+  "supports_context_switches": [
+    "salt/pH/temperature changes"
+  ],
+  "supports_operator_buckets": [
+    "aromatic_sticker_pattern_operator",
+    "fibril_or_gel_state_shift_operator"
+  ],
+  "supports_perturbation_ids": [
+    "V44_PERT_002",
+    "V44_PERT_003",
+    "V44_PERT_007",
+    "V44_PERT_009"
+  ],
+  "used_before_prediction": false
+}
