@@ -1,0 +1,38 @@
+{
+  "claim_allowed": false,
+  "coordinate_truth_used_before_selection": false,
+  "evidence_buckets": [
+    "soluble_single_fold_context",
+    "compact_fold_context",
+    "protein_modifier_context"
+  ],
+  "folding_problem_solved": false,
+  "grammar_rules": {
+    "native_metrics_before_selection_allowed": false,
+    "single_native_fold_model_allowed": true
+  },
+  "kind": "V38_MASKED_DOSSIER_v0",
+  "masked_id": "TARGET_007",
+  "mechanism_evidence": [
+    "small soluble protein modifier",
+    "compact single-fold context",
+    "no two-state metamorphic evidence",
+    "no intrinsic-disorder free-state ensemble evidence"
+  ],
+  "native_metrics_used_for_selection": false,
+  "new_MD_allowed": false,
+  "new_md_executed": false,
+  "positive_folding_evidence_found": false,
+  "source_provenance": [
+    {
+      "claim_allowed": false,
+      "coordinate_derived": false,
+      "coordinate_truth_used_before_selection": false,
+      "internal_runtime_source": false,
+      "native_metrics_used_for_selection": false,
+      "source_id": "DEC_UB_1",
+      "source_type": "UniProt sequence/features/function annotations",
+      "source_url_or_citation": "https://www.uniprot.org/uniprotkb/P0CG47/entry"
+    }
+  ]
+}

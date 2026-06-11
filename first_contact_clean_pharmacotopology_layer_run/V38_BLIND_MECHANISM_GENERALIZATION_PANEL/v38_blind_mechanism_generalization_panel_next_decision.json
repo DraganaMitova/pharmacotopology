@@ -1,0 +1,8 @@
+{
+  "claim_allowed": false,
+  "decision_status": "V38_BLIND_MECHANISM_GENERALIZATION_PASSED_CLAIM_DISABLED",
+  "folding_problem_solved": false,
+  "kind": "V38_BLIND_MECHANISM_GENERALIZATION_PANEL_NEXT_DECISION_v0",
+  "new_MD_allowed": false,
+  "next_action": "use_blind_generalized_mechanism_grammar_for_class_specific_readout_design_no_claim_no_MD"
+}

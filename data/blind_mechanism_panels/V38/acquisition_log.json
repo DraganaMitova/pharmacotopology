@@ -1,0 +1,11 @@
+{
+  "acquisition_mode": "small_curated_external_noncoordinate_blind_panel",
+  "decoy_design": [
+    "Two membrane decoys: bacteriorhodopsin, AQP1.",
+    "Two chemokine/small soluble decoys: CXCL8, ubiquitin.",
+    "Two folded non-IDP decoys: lysozyme, myoglobin."
+  ],
+  "kind": "V38_ACQUISITION_LOG_v0",
+  "replacements": [],
+  "source_rules": "No coordinate contacts, no internal runtime evidence, no predicted coordinates, no native metrics."
+}

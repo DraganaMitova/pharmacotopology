@@ -1,0 +1,38 @@
+{
+  "claim_allowed": false,
+  "coordinate_truth_used_before_selection": false,
+  "evidence_buckets": [
+    "soluble_chemokine_context",
+    "receptor_binding_context",
+    "single_state_function_context"
+  ],
+  "folding_problem_solved": false,
+  "grammar_rules": {
+    "mixed_state_pooling_allowed": false,
+    "native_metrics_before_selection_allowed": false
+  },
+  "kind": "V38_MASKED_DOSSIER_v0",
+  "masked_id": "TARGET_006",
+  "mechanism_evidence": [
+    "soluble chemokine-like cytokine",
+    "receptor-binding inflammatory function",
+    "no two-native-state metamorphic switch evidence",
+    "no mixed-state pooling rule needed"
+  ],
+  "native_metrics_used_for_selection": false,
+  "new_MD_allowed": false,
+  "new_md_executed": false,
+  "positive_folding_evidence_found": false,
+  "source_provenance": [
+    {
+      "claim_allowed": false,
+      "coordinate_derived": false,
+      "coordinate_truth_used_before_selection": false,
+      "internal_runtime_source": false,
+      "native_metrics_used_for_selection": false,
+      "source_id": "DEC_CXCL8_1",
+      "source_type": "UniProt sequence/features/function annotations",
+      "source_url_or_citation": "https://www.uniprot.org/uniprotkb/P10145/entry"
+    }
+  ]
+}

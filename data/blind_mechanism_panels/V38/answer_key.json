@@ -1,0 +1,56 @@
+{
+  "TARGET_001": {
+    "expected_mechanism_class": "membrane_pore_filter_oligomeric_ion_selectivity",
+    "group": "known_positive",
+    "known_positive": true,
+    "target": "KcsA"
+  },
+  "TARGET_002": {
+    "expected_mechanism_class": "metamorphic_two_state_fold_switch",
+    "group": "known_positive",
+    "known_positive": true,
+    "target": "XCL1_lymphotactin"
+  },
+  "TARGET_003": {
+    "expected_mechanism_class": "intrinsic_disorder_contextual_ensemble",
+    "group": "known_positive",
+    "known_positive": true,
+    "target": "alpha_synuclein_SNCA"
+  },
+  "TARGET_004": {
+    "expected_mechanism_class": "other_membrane_or_transport_context",
+    "group": "membrane_decoy",
+    "known_positive": false,
+    "target": "bacteriorhodopsin"
+  },
+  "TARGET_005": {
+    "expected_mechanism_class": "other_membrane_or_transport_context",
+    "group": "membrane_decoy",
+    "known_positive": false,
+    "target": "AQP1"
+  },
+  "TARGET_006": {
+    "expected_mechanism_class": "soluble_single_or_contextual_fold_not_metamorphic",
+    "group": "soluble_decoy",
+    "known_positive": false,
+    "target": "CXCL8"
+  },
+  "TARGET_007": {
+    "expected_mechanism_class": "soluble_single_or_contextual_fold_not_metamorphic",
+    "group": "soluble_decoy",
+    "known_positive": false,
+    "target": "ubiquitin"
+  },
+  "TARGET_008": {
+    "expected_mechanism_class": "soluble_single_or_contextual_fold_not_metamorphic",
+    "group": "folded_decoy",
+    "known_positive": false,
+    "target": "lysozyme"
+  },
+  "TARGET_009": {
+    "expected_mechanism_class": "soluble_single_or_contextual_fold_not_metamorphic",
+    "group": "folded_decoy",
+    "known_positive": false,
+    "target": "myoglobin"
+  }
+}

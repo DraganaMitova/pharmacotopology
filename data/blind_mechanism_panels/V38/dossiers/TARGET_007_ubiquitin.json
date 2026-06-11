@@ -1,0 +1,44 @@
+{
+  "claim_allowed": false,
+  "coordinate_truth_used_before_selection": false,
+  "evidence_buckets": [
+    "soluble_single_fold_context",
+    "compact_fold_context",
+    "protein_modifier_context"
+  ],
+  "expected_mechanism_class_for_answer_key_only": "soluble_single_or_contextual_fold_not_metamorphic",
+  "folding_problem_solved": false,
+  "grammar_rules": {
+    "native_metrics_before_selection_allowed": false,
+    "single_native_fold_model_allowed": true
+  },
+  "group": "soluble_decoy",
+  "kind": "V38_PANEL_DOSSIER_v0",
+  "mechanism_evidence": [
+    "small soluble protein modifier",
+    "compact single-fold context",
+    "no two-state metamorphic evidence",
+    "no intrinsic-disorder free-state ensemble evidence"
+  ],
+  "native_metrics_used_for_selection": false,
+  "new_MD_allowed": false,
+  "new_md_executed": false,
+  "panel_id": "TARGET_007",
+  "positive_folding_evidence_found": false,
+  "source_rows": [
+    {
+      "claim_allowed": false,
+      "coordinate_derived": false,
+      "coordinate_truth_used_before_selection": false,
+      "evidence_statement": "Ubiquitin modifier annotation as compact soluble contrast.",
+      "internal_runtime_source": false,
+      "native_metrics_used_for_selection": false,
+      "source_date_or_version": "accessed_2026-06-11",
+      "source_id": "DEC_UB_1",
+      "source_name": "UniProtKB ubiquitin",
+      "source_type": "UniProt sequence/features/function annotations",
+      "source_url_or_citation": "https://www.uniprot.org/uniprotkb/P0CG47/entry"
+    }
+  ],
+  "target": "ubiquitin"
+}

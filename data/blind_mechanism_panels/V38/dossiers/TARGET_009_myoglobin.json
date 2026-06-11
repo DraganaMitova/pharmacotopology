@@ -1,0 +1,44 @@
+{
+  "claim_allowed": false,
+  "coordinate_truth_used_before_selection": false,
+  "evidence_buckets": [
+    "soluble_heme_protein_context",
+    "compact_fold_context",
+    "single_state_function_context"
+  ],
+  "expected_mechanism_class_for_answer_key_only": "soluble_single_or_contextual_fold_not_metamorphic",
+  "folding_problem_solved": false,
+  "grammar_rules": {
+    "native_metrics_before_selection_allowed": false,
+    "single_native_fold_model_allowed": true
+  },
+  "group": "folded_decoy",
+  "kind": "V38_PANEL_DOSSIER_v0",
+  "mechanism_evidence": [
+    "soluble heme oxygen-storage protein",
+    "compact contextual fold contrast",
+    "no intrinsic disorder/free-state ensemble evidence",
+    "no metamorphic two-native-state evidence"
+  ],
+  "native_metrics_used_for_selection": false,
+  "new_MD_allowed": false,
+  "new_md_executed": false,
+  "panel_id": "TARGET_009",
+  "positive_folding_evidence_found": false,
+  "source_rows": [
+    {
+      "claim_allowed": false,
+      "coordinate_derived": false,
+      "coordinate_truth_used_before_selection": false,
+      "evidence_statement": "Myoglobin soluble heme-protein annotation as folded contrast.",
+      "internal_runtime_source": false,
+      "native_metrics_used_for_selection": false,
+      "source_date_or_version": "accessed_2026-06-11",
+      "source_id": "DEC_MYO_1",
+      "source_name": "UniProtKB myoglobin",
+      "source_type": "UniProt sequence/features/function annotations",
+      "source_url_or_citation": "https://www.uniprot.org/uniprotkb/P02144/entry"
+    }
+  ],
+  "target": "myoglobin"
+}

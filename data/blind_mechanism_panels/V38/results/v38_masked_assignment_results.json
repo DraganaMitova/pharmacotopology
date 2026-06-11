@@ -1,0 +1,110 @@
+[
+  {
+    "abstain_reason": null,
+    "answer_key_or_target_name_leakage_count": 0,
+    "assigned_mechanism_class": "membrane_pore_filter_oligomeric_ion_selectivity",
+    "assignment_status": "assigned",
+    "confidence_strength": 4,
+    "coordinate_derived_source_count": 0,
+    "failed_checks": [],
+    "internal_runtime_source_count": 0,
+    "masked_id": "TARGET_001",
+    "placeholder_source_count": 0
+  },
+  {
+    "abstain_reason": null,
+    "answer_key_or_target_name_leakage_count": 0,
+    "assigned_mechanism_class": "metamorphic_two_state_fold_switch",
+    "assignment_status": "assigned",
+    "confidence_strength": 4,
+    "coordinate_derived_source_count": 0,
+    "failed_checks": [],
+    "internal_runtime_source_count": 0,
+    "masked_id": "TARGET_002",
+    "placeholder_source_count": 0
+  },
+  {
+    "abstain_reason": null,
+    "answer_key_or_target_name_leakage_count": 0,
+    "assigned_mechanism_class": "intrinsic_disorder_contextual_ensemble",
+    "assignment_status": "assigned",
+    "confidence_strength": 4,
+    "coordinate_derived_source_count": 0,
+    "failed_checks": [],
+    "internal_runtime_source_count": 0,
+    "masked_id": "TARGET_003",
+    "placeholder_source_count": 0
+  },
+  {
+    "abstain_reason": null,
+    "answer_key_or_target_name_leakage_count": 0,
+    "assigned_mechanism_class": "other_membrane_or_transport_context",
+    "assignment_status": "assigned",
+    "confidence_strength": 3,
+    "coordinate_derived_source_count": 0,
+    "failed_checks": [],
+    "internal_runtime_source_count": 0,
+    "masked_id": "TARGET_004",
+    "placeholder_source_count": 0
+  },
+  {
+    "abstain_reason": null,
+    "answer_key_or_target_name_leakage_count": 0,
+    "assigned_mechanism_class": "other_membrane_or_transport_context",
+    "assignment_status": "assigned",
+    "confidence_strength": 3,
+    "coordinate_derived_source_count": 0,
+    "failed_checks": [],
+    "internal_runtime_source_count": 0,
+    "masked_id": "TARGET_005",
+    "placeholder_source_count": 0
+  },
+  {
+    "abstain_reason": null,
+    "answer_key_or_target_name_leakage_count": 0,
+    "assigned_mechanism_class": "soluble_single_or_contextual_fold_not_metamorphic",
+    "assignment_status": "assigned",
+    "confidence_strength": 3,
+    "coordinate_derived_source_count": 0,
+    "failed_checks": [],
+    "internal_runtime_source_count": 0,
+    "masked_id": "TARGET_006",
+    "placeholder_source_count": 0
+  },
+  {
+    "abstain_reason": null,
+    "answer_key_or_target_name_leakage_count": 0,
+    "assigned_mechanism_class": "soluble_single_or_contextual_fold_not_metamorphic",
+    "assignment_status": "assigned",
+    "confidence_strength": 3,
+    "coordinate_derived_source_count": 0,
+    "failed_checks": [],
+    "internal_runtime_source_count": 0,
+    "masked_id": "TARGET_007",
+    "placeholder_source_count": 0
+  },
+  {
+    "abstain_reason": null,
+    "answer_key_or_target_name_leakage_count": 0,
+    "assigned_mechanism_class": "soluble_single_or_contextual_fold_not_metamorphic",
+    "assignment_status": "assigned",
+    "confidence_strength": 3,
+    "coordinate_derived_source_count": 0,
+    "failed_checks": [],
+    "internal_runtime_source_count": 0,
+    "masked_id": "TARGET_008",
+    "placeholder_source_count": 0
+  },
+  {
+    "abstain_reason": null,
+    "answer_key_or_target_name_leakage_count": 0,
+    "assigned_mechanism_class": "soluble_single_or_contextual_fold_not_metamorphic",
+    "assignment_status": "assigned",
+    "confidence_strength": 3,
+    "coordinate_derived_source_count": 0,
+    "failed_checks": [],
+    "internal_runtime_source_count": 0,
+    "masked_id": "TARGET_009",
+    "placeholder_source_count": 0
+  }
+]

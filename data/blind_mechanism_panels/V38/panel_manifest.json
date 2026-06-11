@@ -1,0 +1,22 @@
+{
+  "answer_key_used_for_assignment": false,
+  "claim_allowed": false,
+  "decoy_count": 6,
+  "folding_problem_solved": false,
+  "kind": "V38_BLIND_MECHANISM_GENERALIZATION_PANEL_MANIFEST_v0",
+  "known_positive_count": 3,
+  "masked_ids": [
+    "TARGET_001",
+    "TARGET_002",
+    "TARGET_003",
+    "TARGET_004",
+    "TARGET_005",
+    "TARGET_006",
+    "TARGET_007",
+    "TARGET_008",
+    "TARGET_009"
+  ],
+  "masked_panel_used": true,
+  "new_MD_allowed": false,
+  "panel_target_count": 9
+}

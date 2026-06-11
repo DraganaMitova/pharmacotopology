@@ -1,0 +1,65 @@
+[
+  {
+    "assigned_mechanism_class": "membrane_pore_filter_oligomeric_ion_selectivity",
+    "expected_mechanism_class": "membrane_pore_filter_oligomeric_ion_selectivity",
+    "group": "known_positive",
+    "masked_id": "TARGET_001",
+    "target": "KcsA"
+  },
+  {
+    "assigned_mechanism_class": "metamorphic_two_state_fold_switch",
+    "expected_mechanism_class": "metamorphic_two_state_fold_switch",
+    "group": "known_positive",
+    "masked_id": "TARGET_002",
+    "target": "XCL1_lymphotactin"
+  },
+  {
+    "assigned_mechanism_class": "intrinsic_disorder_contextual_ensemble",
+    "expected_mechanism_class": "intrinsic_disorder_contextual_ensemble",
+    "group": "known_positive",
+    "masked_id": "TARGET_003",
+    "target": "alpha_synuclein_SNCA"
+  },
+  {
+    "assigned_mechanism_class": "other_membrane_or_transport_context",
+    "expected_mechanism_class": "other_membrane_or_transport_context",
+    "group": "membrane_decoy",
+    "masked_id": "TARGET_004",
+    "target": "bacteriorhodopsin"
+  },
+  {
+    "assigned_mechanism_class": "other_membrane_or_transport_context",
+    "expected_mechanism_class": "other_membrane_or_transport_context",
+    "group": "membrane_decoy",
+    "masked_id": "TARGET_005",
+    "target": "AQP1"
+  },
+  {
+    "assigned_mechanism_class": "soluble_single_or_contextual_fold_not_metamorphic",
+    "expected_mechanism_class": "soluble_single_or_contextual_fold_not_metamorphic",
+    "group": "soluble_decoy",
+    "masked_id": "TARGET_006",
+    "target": "CXCL8"
+  },
+  {
+    "assigned_mechanism_class": "soluble_single_or_contextual_fold_not_metamorphic",
+    "expected_mechanism_class": "soluble_single_or_contextual_fold_not_metamorphic",
+    "group": "soluble_decoy",
+    "masked_id": "TARGET_007",
+    "target": "ubiquitin"
+  },
+  {
+    "assigned_mechanism_class": "soluble_single_or_contextual_fold_not_metamorphic",
+    "expected_mechanism_class": "soluble_single_or_contextual_fold_not_metamorphic",
+    "group": "folded_decoy",
+    "masked_id": "TARGET_008",
+    "target": "lysozyme"
+  },
+  {
+    "assigned_mechanism_class": "soluble_single_or_contextual_fold_not_metamorphic",
+    "expected_mechanism_class": "soluble_single_or_contextual_fold_not_metamorphic",
+    "group": "folded_decoy",
+    "masked_id": "TARGET_009",
+    "target": "myoglobin"
+  }
+]

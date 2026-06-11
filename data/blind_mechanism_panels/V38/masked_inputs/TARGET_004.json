@@ -1,0 +1,38 @@
+{
+  "claim_allowed": false,
+  "coordinate_truth_used_before_selection": false,
+  "evidence_buckets": [
+    "membrane_topology_context",
+    "transport_or_pump_context",
+    "cofactor_context"
+  ],
+  "folding_problem_solved": false,
+  "grammar_rules": {
+    "coordinate_contact_tables_allowed": false,
+    "native_metrics_before_selection_allowed": false
+  },
+  "kind": "V38_MASKED_DOSSIER_v0",
+  "masked_id": "TARGET_004",
+  "mechanism_evidence": [
+    "multi-pass membrane protein",
+    "light-driven proton pump transport context",
+    "retinal cofactor context",
+    "no potassium filter or K+ ion-selectivity evidence"
+  ],
+  "native_metrics_used_for_selection": false,
+  "new_MD_allowed": false,
+  "new_md_executed": false,
+  "positive_folding_evidence_found": false,
+  "source_provenance": [
+    {
+      "claim_allowed": false,
+      "coordinate_derived": false,
+      "coordinate_truth_used_before_selection": false,
+      "internal_runtime_source": false,
+      "native_metrics_used_for_selection": false,
+      "source_id": "DEC_BR_1",
+      "source_type": "UniProt sequence/features/function annotations",
+      "source_url_or_citation": "UniProtKB P02945; reviewed entry"
+    }
+  ]
+}

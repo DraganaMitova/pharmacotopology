@@ -1,0 +1,58 @@
+{
+  "claim_allowed": false,
+  "coordinate_truth_used_before_selection": false,
+  "evidence_buckets": [
+    "metamorphic_two_state_context",
+    "no_mixed_state_pooling_rule",
+    "state_A_function_context",
+    "state_B_function_context"
+  ],
+  "expected_mechanism_class_for_answer_key_only": "metamorphic_two_state_fold_switch",
+  "folding_problem_solved": false,
+  "grammar_rules": {
+    "mixed_state_pooling_allowed": false,
+    "native_metrics_before_selection_allowed": false
+  },
+  "group": "known_positive",
+  "kind": "V38_PANEL_DOSSIER_v0",
+  "mechanism_evidence": [
+    "metamorphic two-state protein with chemokine-like monomer state A",
+    "beta-sandwich dimer state B with distinct biological function",
+    "state-specific function evidence must remain separated",
+    "mixed-state pooling is forbidden"
+  ],
+  "native_metrics_used_for_selection": false,
+  "new_MD_allowed": false,
+  "new_md_executed": false,
+  "panel_id": "TARGET_002",
+  "positive_folding_evidence_found": false,
+  "source_rows": [
+    {
+      "claim_allowed": false,
+      "coordinate_derived": false,
+      "coordinate_truth_used_before_selection": false,
+      "evidence_statement": "C motif chemokine identity.",
+      "internal_runtime_source": false,
+      "native_metrics_used_for_selection": false,
+      "source_date_or_version": "accessed_2026-06-11",
+      "source_id": "V36_XCL1_1",
+      "source_name": "UniProtKB P47992",
+      "source_type": "UniProt sequence/features/function annotations",
+      "source_url_or_citation": "https://www.uniprot.org/uniprotkb/P47992/entry"
+    },
+    {
+      "claim_allowed": false,
+      "coordinate_derived": false,
+      "coordinate_truth_used_before_selection": false,
+      "evidence_statement": "Two unrelated native-state folds with state-specific functions.",
+      "internal_runtime_source": false,
+      "native_metrics_used_for_selection": false,
+      "source_date_or_version": "accessed_2026-06-11",
+      "source_id": "V36_XCL1_2",
+      "source_name": "XCL1 metamorphic literature",
+      "source_type": "literature-derived state/function annotations",
+      "source_url_or_citation": "Tuinstra RL et al. Proc Natl Acad Sci U S A. 2008;105:5057-5062"
+    }
+  ],
+  "target": "XCL1_lymphotactin"
+}

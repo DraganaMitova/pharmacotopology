@@ -1,0 +1,37 @@
+{
+  "claim_allowed": false,
+  "coordinate_truth_used_before_selection": false,
+  "evidence_buckets": [
+    "membrane_topology_context",
+    "water_channel_context",
+    "transport_context"
+  ],
+  "folding_problem_solved": false,
+  "grammar_rules": {
+    "coordinate_contact_tables_allowed": false,
+    "native_metrics_before_selection_allowed": false
+  },
+  "kind": "V38_MASKED_DOSSIER_v0",
+  "masked_id": "TARGET_005",
+  "mechanism_evidence": [
+    "multi-pass membrane water channel",
+    "transport context is water permeability",
+    "no potassium selectivity or TVGYG-style filter evidence"
+  ],
+  "native_metrics_used_for_selection": false,
+  "new_MD_allowed": false,
+  "new_md_executed": false,
+  "positive_folding_evidence_found": false,
+  "source_provenance": [
+    {
+      "claim_allowed": false,
+      "coordinate_derived": false,
+      "coordinate_truth_used_before_selection": false,
+      "internal_runtime_source": false,
+      "native_metrics_used_for_selection": false,
+      "source_id": "DEC_AQP1_1",
+      "source_type": "UniProt sequence/features/function annotations",
+      "source_url_or_citation": "https://www.uniprot.org/uniprotkb/P29972/entry"
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "claim_allowed": false,
+  "coordinate_truth_used_before_selection": false,
+  "evidence_buckets": [
+    "filter_or_signature_context",
+    "ion_selectivity_context",
+    "membrane_topology_context",
+    "sequence_or_family_identity"
+  ],
+  "expected_mechanism_class_for_answer_key_only": "membrane_pore_filter_oligomeric_ion_selectivity",
+  "folding_problem_solved": false,
+  "grammar_rules": {
+    "coordinate_contact_tables_allowed": false,
+    "native_metrics_before_selection_allowed": false
+  },
+  "group": "known_positive",
+  "kind": "V38_PANEL_DOSSIER_v0",
+  "mechanism_evidence": [
+    "pH-gated potassium channel identity with K+ selectivity",
+    "multi-pass membrane topology and pore/filter context",
+    "TVGYG-style filter or signature context",
+    "oligomeric/interface context present but no coordinate contacts"
+  ],
+  "native_metrics_used_for_selection": false,
+  "new_MD_allowed": false,
+  "new_md_executed": false,
+  "panel_id": "TARGET_001",
+  "positive_folding_evidence_found": false,
+  "source_rows": [
+    {
+      "claim_allowed": false,
+      "coordinate_derived": false,
+      "coordinate_truth_used_before_selection": false,
+      "evidence_statement": "pH-gated potassium channel identity and K+ preference.",
+      "internal_runtime_source": false,
+      "native_metrics_used_for_selection": false,
+      "source_date_or_version": "accessed_2026-06-11",
+      "source_id": "V36_KCSA_1",
+      "source_name": "UniProtKB P0A334",
+      "source_type": "UniProt sequence/features/function annotations",
+      "source_url_or_citation": "https://www.uniprot.org/uniprotkb/P0A334/entry"
+    },
+    {
+      "claim_allowed": false,
+      "coordinate_derived": false,
+      "coordinate_truth_used_before_selection": false,
+      "evidence_statement": "Sequence-level filter/signature context.",
+      "internal_runtime_source": false,
+      "native_metrics_used_for_selection": false,
+      "source_date_or_version": "accessed_2026-06-11",
+      "source_id": "V36_KCSA_2",
+      "source_name": "Potassium-channel filter signature",
+      "source_type": "external sequence conservation signatures",
+      "source_url_or_citation": "UniProtKB P0A334; Heginbotham et al. Biophys J. 1994;66:1061-1067"
+    }
+  ],
+  "target": "KcsA"
+}

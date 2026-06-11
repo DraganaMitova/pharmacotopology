@@ -1,0 +1,59 @@
+{
+  "claim_allowed": false,
+  "coordinate_truth_used_before_selection": false,
+  "evidence_buckets": [
+    "disorder_to_order_context",
+    "ensemble_context",
+    "intrinsic_disorder_context",
+    "no_single_native_fold_rule"
+  ],
+  "expected_mechanism_class_for_answer_key_only": "intrinsic_disorder_contextual_ensemble",
+  "folding_problem_solved": false,
+  "grammar_rules": {
+    "ensemble_not_single_fold": true,
+    "native_metrics_before_selection_allowed": false,
+    "single_native_fold_model_allowed": false
+  },
+  "group": "known_positive",
+  "kind": "V38_PANEL_DOSSIER_v0",
+  "mechanism_evidence": [
+    "free-state intrinsic disorder evidence",
+    "ensemble-not-single-fold rule",
+    "disorder-to-order context when membrane-bound",
+    "context-bound helix is not a folding-solved claim"
+  ],
+  "native_metrics_used_for_selection": false,
+  "new_MD_allowed": false,
+  "new_md_executed": false,
+  "panel_id": "TARGET_003",
+  "positive_folding_evidence_found": false,
+  "source_rows": [
+    {
+      "claim_allowed": false,
+      "coordinate_derived": false,
+      "coordinate_truth_used_before_selection": false,
+      "evidence_statement": "Free-state intrinsic disorder annotation.",
+      "internal_runtime_source": false,
+      "native_metrics_used_for_selection": false,
+      "source_date_or_version": "accessed_2026-06-11",
+      "source_id": "V36_SNCA_1",
+      "source_name": "DisProt alpha-synuclein",
+      "source_type": "DisProt disorder annotations",
+      "source_url_or_citation": "https://disprot.org/DP00070"
+    },
+    {
+      "claim_allowed": false,
+      "coordinate_derived": false,
+      "coordinate_truth_used_before_selection": false,
+      "evidence_statement": "Membrane-bound helical transition context.",
+      "internal_runtime_source": false,
+      "native_metrics_used_for_selection": false,
+      "source_date_or_version": "accessed_2026-06-11",
+      "source_id": "V36_SNCA_2",
+      "source_name": "Alpha-synuclein membrane-bound helix literature",
+      "source_type": "literature-derived state/function annotations",
+      "source_url_or_citation": "Davidson WS et al. J Biol Chem. 1998;273:9443-9449"
+    }
+  ],
+  "target": "alpha_synuclein_SNCA"
+}
