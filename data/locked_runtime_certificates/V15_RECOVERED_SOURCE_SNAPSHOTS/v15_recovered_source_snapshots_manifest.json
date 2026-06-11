@@ -1,0 +1,11 @@
+{
+  "claim_allowed": false,
+  "kind": "V15_RECOVERED_SOURCE_SNAPSHOTS_MANIFEST_v0",
+  "raw_md_trajectory_restored": false,
+  "recovery_scope": "small_locked_summary_certificates_not_raw_trajectories",
+  "snapshot_outputs": {
+    "V13a_1UBQ_ADAPTIVE_CHEMICAL_POLICY_READOUT/v13a_1ubq_purpose_gate_readout_certificate.json": "data/locked_runtime_certificates/V15_RECOVERED_SOURCE_SNAPSHOTS/V13a_1UBQ_ADAPTIVE_CHEMICAL_POLICY_READOUT/v13a_1ubq_purpose_gate_readout_certificate.json",
+    "V13b_1CLL_HIERARCHICAL_PURPOSE_TOPOLOGY_READOUT/v13b_1cll_hierarchical_purpose_topology_readout_certificate.json": "data/locked_runtime_certificates/V15_RECOVERED_SOURCE_SNAPSHOTS/V13b_1CLL_HIERARCHICAL_PURPOSE_TOPOLOGY_READOUT/v13b_1cll_hierarchical_purpose_topology_readout_certificate.json",
+    "V15_4AKE_BALANCED_CANDIDATE_READOUT/v15_4ake_balanced_candidate_readout_certificate.json": "data/locked_runtime_certificates/V15_RECOVERED_SOURCE_SNAPSHOTS/V15_4AKE_BALANCED_CANDIDATE_READOUT/v15_4ake_balanced_candidate_readout_certificate.json"
+  }
+}

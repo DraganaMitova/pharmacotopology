@@ -1,15 +1,29 @@
 {
+  "adds": [
+    "scripts/recover_v15_locked_source_snapshots_v0.py",
+    "scripts/rebuild_runtime_chain_v15_to_v30_after_recovery.sh",
+    "V30_RUNTIME_RECOVERY_COMMANDS.md"
+  ],
+  "claim_allowed": false,
+  "claim_allowed_default": false,
   "clean_repo_variant": "V13_runtime_repair_v5_strict_honest_targets",
-  "generated_run_artifacts_removed": true,
-  "git_removed": true,
-  "venv_removed": true,
-  "strict_target_policy": "real downloaded exact full-length target only",
+  "default_1cll_independent_candidates": [
+    "AF-P0DP23-F1-model_v4",
+    "AF-P62158-F1-model_v4"
+  ],
+  "default_1ubq_independent_candidates": [
+    "1D3Z",
+    "5DK8"
+  ],
   "disallowed_official_target_modes": [
     "partial_prefix_target",
     "native_debug_fallback",
     "synthetic_generated_target"
   ],
-  "default_1ubq_independent_candidates": ["1D3Z", "5DK8"],
-  "default_1cll_independent_candidates": ["AF-P0DP23-F1-model_v4", "AF-P62158-F1-model_v4"],
-  "claim_allowed_default": false
+  "generated_run_artifacts_removed": true,
+  "git_removed": true,
+  "raw_md_trajectory_restored": false,
+  "strict_target_policy": "real downloaded exact full-length target only",
+  "venv_removed": true,
+  "version": "V30_RUNTIME_RECOVERY_v40"
 }

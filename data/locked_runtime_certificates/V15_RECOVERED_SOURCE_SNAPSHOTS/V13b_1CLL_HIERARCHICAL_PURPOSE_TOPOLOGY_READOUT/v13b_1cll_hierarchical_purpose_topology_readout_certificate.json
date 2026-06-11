@@ -1,0 +1,99 @@
+{
+  "chemical_policy": "adaptive_soft_guard",
+  "claim_allowed": false,
+  "claim_lock_failed_checks": [],
+  "claim_lock_status": "claim_lock_passed_but_claim_still_disabled",
+  "final_status": "multi_domain_composite_domain_core_signal_found_with_dynamic_separation_context;interdomain_hinge_not_yet_proven;claim_allowed=false",
+  "kind": "V13b_1CLL_HIERARCHICAL_PURPOSE_TOPOLOGY_READOUT_v0_RECOVERED_SNAPSHOT",
+  "new_md_executed": false,
+  "positive_evidence_found": true,
+  "recovery_metadata": {
+    "claim_allowed": false,
+    "raw_md_trajectory_restored": false,
+    "recovery_scope": "small_claim_disabled_summary_certificate_not_raw_trajectory_restore",
+    "recovery_source": "recovered_from_prior_locked_outputs_shared_in_chat_transcript"
+  },
+  "role_by_candidate_pair": {
+    "22-29": {
+      "chemical_score": 0.1,
+      "dca_score": 0.72114,
+      "domain_relation": "intradomain_N",
+      "evidence_class": "local_support",
+      "mean_frequency": 0.511,
+      "tail_frequency_max": 0.66,
+      "tail_frequency_min": 0.44,
+      "topology_role": "local_support"
+    },
+    "24-60": {
+      "chemical_score": 0.1,
+      "dca_score": 1.0,
+      "domain_relation": "intradomain_N",
+      "evidence_class": "N_domain_core_evidence",
+      "mean_frequency": 0.735,
+      "tail_frequency_max": 0.82,
+      "tail_frequency_min": 0.65,
+      "topology_role": "N_domain_compact_core_candidate"
+    },
+    "95-102": {
+      "chemical_score": 0.1,
+      "dca_score": 0.72114,
+      "domain_relation": "intradomain_C",
+      "evidence_class": "local_support",
+      "mean_frequency": 0.492,
+      "tail_frequency_max": 0.56,
+      "tail_frequency_min": 0.4,
+      "topology_role": "local_support"
+    },
+    "97-133": {
+      "chemical_score": 0.1,
+      "dca_score": 1.0,
+      "domain_relation": "intradomain_C",
+      "evidence_class": "C_domain_core_evidence",
+      "mean_frequency": 0.742,
+      "tail_frequency_max": 0.82,
+      "tail_frequency_min": 0.66,
+      "topology_role": "C_domain_compact_core_candidate"
+    }
+  },
+  "selected_C_domain_core": [
+    [
+      97,
+      133
+    ]
+  ],
+  "selected_N_domain_core": [],
+  "selected_frequency_band": {
+    "chemical_score_by_selected_pair": {
+      "97-133": 0.1
+    },
+    "classification_coverage_ratio": 1.0,
+    "dca_background_enrichment_pass": true,
+    "dca_background_enrichment_ratio": 1.162021,
+    "dca_score_by_selected_pair": {
+      "97-133": 1.0
+    },
+    "long_range_evidence_polluted": false,
+    "mean_frequency_by_selected_pair": {
+      "97-133": 0.742
+    },
+    "noise_added": 0,
+    "selected_C_domain_core": [
+      [
+        97,
+        133
+      ]
+    ],
+    "selected_N_domain_core": [],
+    "selected_interdomain_hinge": [],
+    "support_by_selected_pair": {
+      "97-133": 7
+    }
+  },
+  "selected_interdomain_hinge": [],
+  "selected_local_support": [],
+  "selected_medium_support": [],
+  "sequence_length": 148,
+  "target_id": "1CLL",
+  "target_role": "multi_domain_composite",
+  "topology_policy": "hierarchical_domain_core_plus_interdomain"
+}

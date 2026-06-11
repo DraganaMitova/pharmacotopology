@@ -1,0 +1,48 @@
+{
+  "chemical_policy": "adaptive_soft_guard",
+  "claim_allowed": false,
+  "claim_lock_failed_checks": [
+    "dca_background_enrichment_pass"
+  ],
+  "claim_lock_status": "claim_locked_pending_cross_target_validation",
+  "final_status": "single_domain_compact_signal_found_with_dynamic_separation_context;claim_allowed=false",
+  "kind": "V13a_1UBQ_ADAPTIVE_CHEMICAL_POLICY_READOUT_v0_RECOVERED_SNAPSHOT",
+  "new_md_executed": false,
+  "positive_evidence_found": true,
+  "recovery_metadata": {
+    "claim_allowed": false,
+    "raw_md_trajectory_restored": false,
+    "recovery_scope": "small_claim_disabled_summary_certificate_not_raw_trajectory_restore",
+    "recovery_source": "recovered_from_prior_locked_outputs_shared_in_chat_transcript"
+  },
+  "selected_frequency_band": {
+    "chemical_score_by_selected_pair": {
+      "23-48": 0.1
+    },
+    "classification_coverage_ratio": 1.0,
+    "dca_absolute_support_pass": true,
+    "dca_background_enrichment_pass": false,
+    "dca_background_enrichment_ratio": 0.969389,
+    "dca_mean_selected": 0.947233,
+    "dca_score_by_selected_pair": {
+      "23-48": 0.947233
+    },
+    "long_range_evidence_polluted": false,
+    "mean_frequency_by_selected_pair": {
+      "23-48": 0.784444
+    },
+    "noise_added": 0,
+    "selected_balanced_core": [
+      [
+        23,
+        48
+      ]
+    ],
+    "support_by_selected_pair": {
+      "23-48": 9
+    }
+  },
+  "sequence_length": 76,
+  "target_id": "1UBQ",
+  "target_role": "single_domain_compact"
+}

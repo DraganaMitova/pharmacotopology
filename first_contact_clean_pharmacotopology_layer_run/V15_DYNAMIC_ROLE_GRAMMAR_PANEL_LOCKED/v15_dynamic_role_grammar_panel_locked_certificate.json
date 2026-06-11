@@ -1,0 +1,364 @@
+{
+  "biological_transfer_claim_allowed": false,
+  "claim_allowed": false,
+  "grammar_axes": [
+    "external_DCA_or_coupling_signal",
+    "geometry_reachability_from_trajectory",
+    "replica_persistence",
+    "purpose_or_topology_role_assignment",
+    "role_aware_chemical_policy",
+    "dynamic_separation_context_no_fixed_residue_cutoff",
+    "noise_and_long_range_pollution_guards",
+    "claim_lock_or_clean_abstain"
+  ],
+  "kind": "V15_DYNAMIC_ROLE_GRAMMAR_PANEL_LOCKED_v0",
+  "lock_checks": {
+    "1cll_positive": true,
+    "1ubq_positive": true,
+    "4ake_not_required_for_lock": true,
+    "4ake_positive_when_present": true,
+    "claim_disabled": true,
+    "fixed_residue_cutoff_retired": true,
+    "source_certificate_present": true
+  },
+  "lock_failed_checks": [],
+  "lock_status": "V15_THREE_PROTEIN_DYNAMIC_GRAMMAR_PANEL_LOCKED",
+  "locked_claim": "unified_role_aware_evidence_grammar_three_protein_panel_locked_not_folding_solved",
+  "locked_interpretation": "V15 demonstrates a unified, dynamic, role-aware evidence grammar across three protein object types: single-domain compact, multi-domain composite, and domain-hinge closure. It does not claim universal protein folding, does not claim full hinge/closure recovery for 4AKE or 1CLL, does not use a fixed residue-distance cutoff, and keeps claim_allowed=false.",
+  "locked_protein_rows": [
+    {
+      "artifact_path": "/mnt/data/v40_work/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V15_4AKE_BALANCED_CANDIDATE_READOUT/v15_4ake_balanced_candidate_readout_certificate.json",
+      "artifact_status": "present_machine_readable_4ake_role_artifact",
+      "biological_transfer_claim_allowed": false,
+      "chemical_policy": "role_aware_chemical_policy_unknown_or_legacy",
+      "chemical_score_by_selected_pair": {
+        "124-135": 0.1
+      },
+      "claim_allowed": false,
+      "claim_lock_failed_checks": [],
+      "claim_lock_status": "claim_locked_4ake_bridge_claim_disabled",
+      "classification_coverage_ratio": 1.0,
+      "dca_score_by_selected_pair": {
+        "124-135": 0.866565
+      },
+      "dynamic_pair_roles": {
+        "124-135": {
+          "chemical_score": 0.1,
+          "dca_score": 0.866565,
+          "domain_relation": "intradomain_D4",
+          "evidence_class": "D4_domain_core_evidence",
+          "fixed_residue_cutoff_used": false,
+          "mean_frequency": 0.768,
+          "normalized_sequence_separation": 0.051643,
+          "role_decision": "D4_domain_compact_core_candidate",
+          "selected": true,
+          "separation_filter_applied": false,
+          "sequence_separation": 11,
+          "support": 7,
+          "tail_frequency_max": 0.8,
+          "tail_frequency_min": 0.74,
+          "tail_presence_count_at_0_50": 10
+        }
+      },
+      "final_status": "domain_hinge_object_machine_readable_role_evidence_bridged;claim_allowed=false",
+      "fixed_residue_cutoff_used": false,
+      "grammar_policy": "domain_hinge_dynamic_grammar_bridge_from_machine_readable_artifact",
+      "long_range_evidence_polluted": false,
+      "mean_frequency_by_selected_pair": {
+        "124-135": 0.768
+      },
+      "monitor_only_interdomain_closure_candidates": {
+        "113-136": {
+          "chemical_score": 0.9,
+          "dca_score": 0.738199,
+          "domain_relation": "interdomain_D3_D4",
+          "evidence_class": "domain_hinge_or_interdomain_closure_monitor_evidence",
+          "fixed_residue_cutoff_used": false,
+          "monitor_status": "monitor_only_interdomain_closure_candidate",
+          "role_decision": "domain_hinge_or_interdomain_closure_candidate",
+          "selected": false,
+          "separation_filter_applied": false,
+          "tail_frequency_max": 0.82,
+          "tail_frequency_mean": 0.746,
+          "tail_frequency_min": 0.68,
+          "tail_presence_count_at_0_50": 10
+        },
+        "65-86": {
+          "chemical_score": 1.0,
+          "dca_score": 0.727478,
+          "domain_relation": "interdomain_D2_D3",
+          "evidence_class": "domain_hinge_or_interdomain_closure_monitor_evidence",
+          "fixed_residue_cutoff_used": false,
+          "monitor_status": "monitor_only_interdomain_closure_candidate",
+          "role_decision": "domain_hinge_or_interdomain_closure_candidate",
+          "selected": false,
+          "separation_filter_applied": false,
+          "tail_frequency_max": 0.72,
+          "tail_frequency_mean": 0.657,
+          "tail_frequency_min": 0.59,
+          "tail_presence_count_at_0_50": 10
+        }
+      },
+      "noise_added": 0,
+      "positive_evidence_found": true,
+      "protein": "4AKE",
+      "replica_support": {
+        "124-135": 7
+      },
+      "selected_balanced_core": [
+        "124-135"
+      ],
+      "selected_border_rescue": [],
+      "selected_hinge_or_interdomain": [],
+      "selected_local_support": [],
+      "selected_pairs": [
+        "124-135"
+      ],
+      "selected_strict_scaffold": [],
+      "separation_policy": "dynamic_contextual_role_assignment_no_fixed_residue_cutoff",
+      "target_role": "domain_hinge_closure_object",
+      "topology_policy": "domain_hinge_closure"
+    },
+    {
+      "artifact_path": "/mnt/data/v40_work/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V13a_1UBQ_ADAPTIVE_CHEMICAL_POLICY_READOUT/v13a_1ubq_purpose_gate_readout_certificate.json",
+      "artifact_status": "present",
+      "biological_transfer_claim_allowed": false,
+      "chemical_policy": "adaptive_soft_guard",
+      "chemical_score_by_selected_pair": {
+        "23-48": 0.1
+      },
+      "claim_allowed": false,
+      "claim_lock_failed_checks": [
+        "dca_background_enrichment_pass"
+      ],
+      "claim_lock_status": "claim_locked_pending_cross_target_validation",
+      "classification_coverage_ratio": 1.0,
+      "dca_support": {
+        "dca_absolute_support_pass": true,
+        "dca_background_enrichment_pass": false,
+        "dca_background_enrichment_ratio": 0.969389,
+        "dca_mean_selected": 0.947233,
+        "dca_score_by_selected_pair": {
+          "23-48": 0.947233
+        }
+      },
+      "dynamic_pair_roles": {
+        "23-48": {
+          "chemical_score": 0.1,
+          "dca_score": 0.947233,
+          "domain_relation": "single_domain",
+          "evidence_class": "single_domain_compact_core_evidence",
+          "fixed_residue_cutoff_used": false,
+          "interpretation": "descriptive_context_only_not_a_gate",
+          "mean_frequency": 0.784444,
+          "normalized_sequence_separation": 0.333333,
+          "role_assignment_basis": [
+            "single_domain_compact_target_role",
+            "selected_balanced_core_evidence",
+            "replica_support",
+            "trajectory_frequency",
+            "DCA_support",
+            "adaptive_chemical_policy"
+          ],
+          "role_decision": "single_domain_compact_balanced_core",
+          "selected": true,
+          "separation_filter_applied": false,
+          "sequence_separation": 25,
+          "support": 9
+        }
+      },
+      "final_status": "single_domain_compact_signal_found_with_dynamic_separation_context;claim_allowed=false",
+      "fixed_residue_cutoff_used": false,
+      "grammar_policy": "single_domain_compact_dynamic_separation_adaptive_chemical_policy",
+      "long_range_evidence_polluted": false,
+      "mean_frequency_by_selected_pair": {
+        "23-48": 0.784444
+      },
+      "noise_added": 0,
+      "positive_evidence_found": true,
+      "protein": "1UBQ",
+      "replica_support": {
+        "23-48": 9
+      },
+      "selected_balanced_core": [
+        "23-48"
+      ],
+      "selected_pairs": [
+        "23-48"
+      ],
+      "separation_policy": "dynamic_contextual_role_assignment_no_fixed_residue_cutoff",
+      "target_role": "single_domain_compact"
+    },
+    {
+      "artifact_path": "/mnt/data/v40_work/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V13b_1CLL_HIERARCHICAL_PURPOSE_TOPOLOGY_READOUT/v13b_1cll_hierarchical_purpose_topology_readout_certificate.json",
+      "artifact_status": "present",
+      "biological_transfer_claim_allowed": false,
+      "chemical_policy": "adaptive_soft_guard",
+      "chemical_score_by_selected_pair": {
+        "97-133": 0.1
+      },
+      "claim_allowed": false,
+      "claim_lock_failed_checks": [],
+      "claim_lock_status": "claim_lock_passed_but_claim_still_disabled",
+      "classification_coverage_ratio": 1.0,
+      "dca_support": {
+        "dca_absolute_support_pass": null,
+        "dca_background_enrichment_pass": true,
+        "dca_background_enrichment_ratio": 1.162021,
+        "dca_mean_selected": null,
+        "dca_score_by_selected_pair": {
+          "97-133": 1.0
+        }
+      },
+      "domain_boundaries": null,
+      "dynamic_pair_roles": {
+        "22-29": {
+          "chemical_score": 0.1,
+          "dca_score": 0.72114,
+          "domain_relation": "intradomain_N",
+          "evidence_class": "local_support",
+          "fixed_residue_cutoff_used": false,
+          "inside_effective_balanced": null,
+          "interpretation": "descriptive_context_only_not_a_gate",
+          "mean_frequency": null,
+          "normalized_sequence_separation": 0.047619,
+          "role_assignment_basis": [
+            "declared_domain_boundaries",
+            "domain_relation",
+            "hierarchical_topology_policy",
+            "replica_support_or_candidate_context",
+            "DCA_support",
+            "adaptive_chemical_policy"
+          ],
+          "role_decision": "local_support",
+          "selected": false,
+          "separation_filter_applied": false,
+          "sequence_separation": 7,
+          "support": null,
+          "tail_frequency_max": 0.66,
+          "tail_frequency_min": 0.44,
+          "topology_role": "local_support"
+        },
+        "24-60": {
+          "chemical_score": 0.1,
+          "dca_score": 1.0,
+          "domain_relation": "intradomain_N",
+          "evidence_class": "N_domain_core_evidence",
+          "fixed_residue_cutoff_used": false,
+          "inside_effective_balanced": null,
+          "interpretation": "descriptive_context_only_not_a_gate",
+          "mean_frequency": null,
+          "normalized_sequence_separation": 0.244898,
+          "role_assignment_basis": [
+            "declared_domain_boundaries",
+            "domain_relation",
+            "hierarchical_topology_policy",
+            "replica_support_or_candidate_context",
+            "DCA_support",
+            "adaptive_chemical_policy"
+          ],
+          "role_decision": "N_domain_compact_core_candidate",
+          "selected": false,
+          "separation_filter_applied": false,
+          "sequence_separation": 36,
+          "support": null,
+          "tail_frequency_max": 0.82,
+          "tail_frequency_min": 0.65,
+          "topology_role": "N_domain_compact_core_candidate"
+        },
+        "95-102": {
+          "chemical_score": 0.1,
+          "dca_score": 0.72114,
+          "domain_relation": "intradomain_C",
+          "evidence_class": "local_support",
+          "fixed_residue_cutoff_used": false,
+          "inside_effective_balanced": null,
+          "interpretation": "descriptive_context_only_not_a_gate",
+          "mean_frequency": null,
+          "normalized_sequence_separation": 0.047619,
+          "role_assignment_basis": [
+            "declared_domain_boundaries",
+            "domain_relation",
+            "hierarchical_topology_policy",
+            "replica_support_or_candidate_context",
+            "DCA_support",
+            "adaptive_chemical_policy"
+          ],
+          "role_decision": "local_support",
+          "selected": false,
+          "separation_filter_applied": false,
+          "sequence_separation": 7,
+          "support": null,
+          "tail_frequency_max": 0.56,
+          "tail_frequency_min": 0.4,
+          "topology_role": "local_support"
+        },
+        "97-133": {
+          "chemical_score": 0.1,
+          "dca_score": 1.0,
+          "domain_relation": "intradomain_C",
+          "evidence_class": "C_domain_core_evidence",
+          "fixed_residue_cutoff_used": false,
+          "inside_effective_balanced": null,
+          "interpretation": "descriptive_context_only_not_a_gate",
+          "mean_frequency": 0.742,
+          "normalized_sequence_separation": 0.244898,
+          "role_assignment_basis": [
+            "declared_domain_boundaries",
+            "domain_relation",
+            "hierarchical_topology_policy",
+            "replica_support_or_candidate_context",
+            "DCA_support",
+            "adaptive_chemical_policy"
+          ],
+          "role_decision": "C_domain_compact_core_candidate",
+          "selected": true,
+          "separation_filter_applied": false,
+          "sequence_separation": 36,
+          "support": 7,
+          "tail_frequency_max": 0.82,
+          "tail_frequency_min": 0.66,
+          "topology_role": "C_domain_compact_core_candidate"
+        }
+      },
+      "final_status": "multi_domain_composite_domain_core_signal_found_with_dynamic_separation_context;interdomain_hinge_not_yet_proven;claim_allowed=false",
+      "fixed_residue_cutoff_used": false,
+      "grammar_policy": "multi_domain_composite_dynamic_separation_hierarchical_topology",
+      "long_range_evidence_polluted": false,
+      "mean_frequency_by_selected_pair": {
+        "97-133": 0.742
+      },
+      "noise_added": 0,
+      "positive_evidence_found": true,
+      "protein": "1CLL",
+      "replica_support": {
+        "97-133": 7
+      },
+      "selected_C_domain_core": [
+        "97-133"
+      ],
+      "selected_N_domain_core": [],
+      "selected_domain_core": [
+        "97-133"
+      ],
+      "selected_hinge_or_interdomain": [],
+      "selected_local_support": [],
+      "selected_medium_support": [],
+      "selected_pairs": [
+        "97-133"
+      ],
+      "separation_policy": "dynamic_contextual_role_assignment_no_fixed_residue_cutoff",
+      "target_role": "multi_domain_composite",
+      "topology_policy": "hierarchical_domain_core_plus_interdomain"
+    }
+  ],
+  "missing_artifacts": [],
+  "positive_evidence_proteins": [
+    "4AKE",
+    "1UBQ",
+    "1CLL"
+  ],
+  "run_mode": "postprocess_only_no_new_simulation",
+  "source_certificate": "/mnt/data/v40_work/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V15_DYNAMIC_SEPARATION_GRAMMAR_READOUT/v15_dynamic_separation_grammar_readout_certificate.json",
+  "source_global_status": "dynamic_separation_grammar_coherent_across_three_object_types_claim_disabled"
+}

@@ -1,144 +1,147 @@
+export REPO_ROOT="/Users/draganamitova/My Projects/pharmacotopology"
+cd "$REPO_ROOT" || exit 1
+
+cat > .gitignore <<'EOF'
+# ----------------------------
+# OS / editor noise
+# ----------------------------
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# ----------------------------
+# Python noise
+# ----------------------------
 __pycache__/
 *.py[cod]
+*.pyo
 .pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.ipynb_checkpoints/
+
+# ----------------------------
+# Environments / installs
+# ----------------------------
+.venv/
+venv/
+env/
+ENV/
+site/
+dist/
+build/
+*.egg-info/
+
+# ----------------------------
+# Local rescue / scratch / temp
+# ----------------------------
+_local_rescue_*/
+tmp/
+temp/
+scratch/
+*.tmp
+*.bak
+*.backup
+
+# ----------------------------
+# Logs
+# ----------------------------
+*.log
+
+# ----------------------------
+# KEEP SOURCE DATA TRACKED
+# ----------------------------
+!data/
+!data/**
+!data/locked_runtime_certificates/
+!data/locked_runtime_certificates/**
+
+# ----------------------------
+# KEEP CODE / TESTS / DOCS TRACKED
+# ----------------------------
+!src/
+!src/**
+!scripts/
+!scripts/**
+!tests/
+!tests/**
+!docs/
+!docs/**
+!README*
+!*.md
+
+# ----------------------------
+# Runtime output policy
+# ----------------------------
 first_contact_clean_pharmacotopology_layer_run/*
-!first_contact_clean_pharmacotopology_layer_run/
-!first_contact_clean_pharmacotopology_layer_run/pharmacotopology_dashboard.html
-!first_contact_clean_pharmacotopology_layer_run/multi_profile_dashboard.html
-!first_contact_clean_pharmacotopology_layer_run/real_folding_10_report.json
-!first_contact_clean_pharmacotopology_layer_run/real_folding_10_rows.csv
-!first_contact_clean_pharmacotopology_layer_run/real_folding_10_dashboard.html
-!first_contact_clean_pharmacotopology_layer_run/real_folding_10_certificate.json
-!first_contact_clean_pharmacotopology_layer_run/real_folding_10_failures.csv
-!first_contact_clean_pharmacotopology_layer_run/real_folding_10_confusion_matrix.csv
-!first_contact_clean_pharmacotopology_layer_run/real_folding_10_structure_report.json
-!first_contact_clean_pharmacotopology_layer_run/real_folding_10_structure_rows.csv
-!first_contact_clean_pharmacotopology_layer_run/real_folding_10_structure_dashboard.html
-!first_contact_clean_pharmacotopology_layer_run/real_folding_10_order_controls.csv
-!first_contact_clean_pharmacotopology_layer_run/real_folding_10_falsification_report.json
-!first_contact_clean_pharmacotopology_layer_run/real_folding_10_order_aware_report.json
-!first_contact_clean_pharmacotopology_layer_run/real_folding_10_order_aware_rows.csv
-!first_contact_clean_pharmacotopology_layer_run/real_folding_10_contact_prior.csv
-!first_contact_clean_pharmacotopology_layer_run/real_folding_10_control_separation.csv
-!first_contact_clean_pharmacotopology_layer_run/real_folding_10_order_aware_dashboard.html
-!first_contact_clean_pharmacotopology_layer_run/real_folding_10_motif_alignment_report.json
-!first_contact_clean_pharmacotopology_layer_run/real_folding_10_motif_alignment_rows.csv
-!first_contact_clean_pharmacotopology_layer_run/real_folding_10_failure_diagnosis.csv
-!first_contact_clean_pharmacotopology_layer_run/real_folding_10_evidence_conflicts.csv
-!first_contact_clean_pharmacotopology_layer_run/real_folding_10_motif_alignment_dashboard.html
-!first_contact_clean_pharmacotopology_layer_run/real_folding_10_hierarchical_gate_report.json
-!first_contact_clean_pharmacotopology_layer_run/real_folding_10_hierarchical_gate_rows.csv
-!first_contact_clean_pharmacotopology_layer_run/real_folding_10_gate_paths.csv
-!first_contact_clean_pharmacotopology_layer_run/real_folding_10_gate_failures.csv
-!first_contact_clean_pharmacotopology_layer_run/real_folding_10_hierarchical_gate_dashboard.html
-!first_contact_clean_pharmacotopology_layer_run/real_folding_50_hierarchical_gate_report.json
-!first_contact_clean_pharmacotopology_layer_run/real_folding_50_hierarchical_gate_rows.csv
-!first_contact_clean_pharmacotopology_layer_run/real_folding_50_gate_paths.csv
-!first_contact_clean_pharmacotopology_layer_run/real_folding_50_gate_failures.csv
-!first_contact_clean_pharmacotopology_layer_run/real_folding_50_hierarchical_gate_dashboard.html
-!first_contact_clean_pharmacotopology_layer_run/real_folding_50_certificate.json
-!first_contact_clean_pharmacotopology_layer_run/real_folding_50_confusion_matrix.csv
-!first_contact_clean_pharmacotopology_layer_run/real_folding_50_regime_analysis_report.json
-!first_contact_clean_pharmacotopology_layer_run/real_folding_50_regime_rows.csv
-!first_contact_clean_pharmacotopology_layer_run/real_folding_50_failure_cohorts.csv
-!first_contact_clean_pharmacotopology_layer_run/real_folding_50_high_confidence_wrong.csv
-!first_contact_clean_pharmacotopology_layer_run/real_folding_50_abstention_analysis.csv
-!first_contact_clean_pharmacotopology_layer_run/real_folding_50_regime_dashboard.html
-!first_contact_clean_pharmacotopology_layer_run/real_folding_50_axis_adjudication_report.json
-!first_contact_clean_pharmacotopology_layer_run/real_folding_50_axis_rows.csv
-!first_contact_clean_pharmacotopology_layer_run/real_folding_50_axis_conflicts.csv
-!first_contact_clean_pharmacotopology_layer_run/real_folding_50_axis_manual_review.csv
-!first_contact_clean_pharmacotopology_layer_run/real_folding_50_axis_confusion_matrices.csv
-!first_contact_clean_pharmacotopology_layer_run/real_folding_50_axis_dashboard.html
-!first_contact_clean_pharmacotopology_layer_run/visual_mechanism_12_report.json
-!first_contact_clean_pharmacotopology_layer_run/visual_mechanism_12_rows.csv
-!first_contact_clean_pharmacotopology_layer_run/visual_mechanism_12_contact_metrics.csv
-!first_contact_clean_pharmacotopology_layer_run/visual_mechanism_12_failure_cohorts.csv
-!first_contact_clean_pharmacotopology_layer_run/visual_mechanism_12_dashboard.html
-!first_contact_clean_pharmacotopology_layer_run/visual_mechanism_12_certificate.json
-!first_contact_clean_pharmacotopology_layer_run/visuals/
-!first_contact_clean_pharmacotopology_layer_run/visuals/**
-!first_contact_clean_pharmacotopology_layer_run/contact_topology_repair_12_report.json
-!first_contact_clean_pharmacotopology_layer_run/contact_topology_repair_12_rows.csv
-!first_contact_clean_pharmacotopology_layer_run/contact_topology_repair_12_gap_analysis.csv
-!first_contact_clean_pharmacotopology_layer_run/contact_topology_repair_12_failure_cohorts.csv
-!first_contact_clean_pharmacotopology_layer_run/contact_topology_repair_12_dashboard.html
-!first_contact_clean_pharmacotopology_layer_run/contact_topology_repair_12_certificate.json
-!first_contact_clean_pharmacotopology_layer_run/contact_repair_visuals/
-!first_contact_clean_pharmacotopology_layer_run/contact_repair_visuals/**
-!first_contact_clean_pharmacotopology_layer_run/visual_mechanism_audit_report.json
-!first_contact_clean_pharmacotopology_layer_run/visual_mechanism_audit_rows.csv
-!first_contact_clean_pharmacotopology_layer_run/visual_mechanism_audit_overfit_risks.csv
-!first_contact_clean_pharmacotopology_layer_run/visual_mechanism_audit_dashboard.html
-!first_contact_clean_pharmacotopology_layer_run/visual_mechanism_audit_certificate.json
-!first_contact_clean_pharmacotopology_layer_run/real_coordinate_visual_8_report.json
-!first_contact_clean_pharmacotopology_layer_run/real_coordinate_visual_8_rows.csv
-!first_contact_clean_pharmacotopology_layer_run/real_coordinate_visual_8_contact_metrics.csv
-!first_contact_clean_pharmacotopology_layer_run/real_coordinate_visual_8_native_contact_summary.csv
-!first_contact_clean_pharmacotopology_layer_run/real_coordinate_visual_8_dashboard.html
-!first_contact_clean_pharmacotopology_layer_run/real_coordinate_visual_8_certificate.json
-!first_contact_clean_pharmacotopology_layer_run/real_coordinate_visuals/
-!first_contact_clean_pharmacotopology_layer_run/real_coordinate_visuals/**
-!first_contact_clean_pharmacotopology_layer_run/contact_law_threshold_report.json
-!first_contact_clean_pharmacotopology_layer_run/contact_law_threshold_rows.csv
-!first_contact_clean_pharmacotopology_layer_run/contact_law_threshold_grid.csv
-!first_contact_clean_pharmacotopology_layer_run/contact_law_threshold_holdout.csv
-!first_contact_clean_pharmacotopology_layer_run/contact_law_threshold_failures.csv
-!first_contact_clean_pharmacotopology_layer_run/contact_law_threshold_dashboard.html
-!first_contact_clean_pharmacotopology_layer_run/contact_law_threshold_certificate.json
-!first_contact_clean_pharmacotopology_layer_run/folding_nucleus_closure_report.json
-!first_contact_clean_pharmacotopology_layer_run/folding_nucleus_closure_events.csv
-!first_contact_clean_pharmacotopology_layer_run/folding_nucleus_closure_trajectory.csv
-!first_contact_clean_pharmacotopology_layer_run/folding_nucleus_closure_metrics.csv
-!first_contact_clean_pharmacotopology_layer_run/folding_nucleus_closure_failures.csv
-!first_contact_clean_pharmacotopology_layer_run/folding_nucleus_closure_dashboard.html
-!first_contact_clean_pharmacotopology_layer_run/folding_nucleus_closure_certificate.json
-!first_contact_clean_pharmacotopology_layer_run/competitive_nucleus_selection_report.json
-!first_contact_clean_pharmacotopology_layer_run/competitive_nucleus_selection_selected_events.csv
-!first_contact_clean_pharmacotopology_layer_run/competitive_nucleus_selection_rejections.csv
-!first_contact_clean_pharmacotopology_layer_run/competitive_nucleus_selection_compatibility.csv
-!first_contact_clean_pharmacotopology_layer_run/competitive_nucleus_selection_trajectory.csv
-!first_contact_clean_pharmacotopology_layer_run/competitive_nucleus_selection_metrics.csv
-!first_contact_clean_pharmacotopology_layer_run/competitive_nucleus_selection_dashboard.html
-!first_contact_clean_pharmacotopology_layer_run/competitive_nucleus_selection_certificate.json
-!first_contact_clean_pharmacotopology_layer_run/nucleus_graph_selectivity_report.json
-!first_contact_clean_pharmacotopology_layer_run/nucleus_graph_selectivity_graphs.csv
-!first_contact_clean_pharmacotopology_layer_run/nucleus_graph_selectivity_selected_events.csv
-!first_contact_clean_pharmacotopology_layer_run/nucleus_graph_selectivity_rejections.csv
-!first_contact_clean_pharmacotopology_layer_run/nucleus_graph_selectivity_decoys.csv
-!first_contact_clean_pharmacotopology_layer_run/nucleus_graph_selectivity_rank_enrichment.csv
-!first_contact_clean_pharmacotopology_layer_run/nucleus_graph_selectivity_metrics.csv
-!first_contact_clean_pharmacotopology_layer_run/nucleus_graph_selectivity_dashboard.html
-!first_contact_clean_pharmacotopology_layer_run/nucleus_graph_selectivity_certificate.json
-!first_contact_clean_pharmacotopology_layer_run/physical_closure_state_report.json
-!first_contact_clean_pharmacotopology_layer_run/physical_closure_state_states.csv
-!first_contact_clean_pharmacotopology_layer_run/physical_closure_state_decoys.csv
-!first_contact_clean_pharmacotopology_layer_run/physical_closure_state_rank_enrichment.csv
-!first_contact_clean_pharmacotopology_layer_run/physical_closure_state_metrics.csv
-!first_contact_clean_pharmacotopology_layer_run/physical_closure_state_dashboard.html
-!first_contact_clean_pharmacotopology_layer_run/physical_closure_state_certificate.json
-!first_contact_clean_pharmacotopology_layer_run/active_physical_selection_report.json
-!first_contact_clean_pharmacotopology_layer_run/active_physical_selection_selectors.csv
-!first_contact_clean_pharmacotopology_layer_run/active_physical_selection_selected_events.csv
-!first_contact_clean_pharmacotopology_layer_run/active_physical_selection_ablation.csv
-!first_contact_clean_pharmacotopology_layer_run/active_physical_selection_dashboard.html
-!first_contact_clean_pharmacotopology_layer_run/active_physical_selection_certificate.json
-!first_contact_clean_pharmacotopology_layer_run/coupling_nucleus_selector_report.json
-!first_contact_clean_pharmacotopology_layer_run/coupling_nucleus_selector_selectors.csv
-!first_contact_clean_pharmacotopology_layer_run/coupling_nucleus_selector_selected_events.csv
-!first_contact_clean_pharmacotopology_layer_run/coupling_nucleus_selector_assessments.csv
-!first_contact_clean_pharmacotopology_layer_run/coupling_nucleus_selector_decoys.csv
-!first_contact_clean_pharmacotopology_layer_run/coupling_nucleus_selector_dashboard.html
-!first_contact_clean_pharmacotopology_layer_run/coupling_nucleus_selector_certificate.json
-!first_contact_clean_pharmacotopology_layer_run/external_coupling_trace_loop_report.json
-!first_contact_clean_pharmacotopology_layer_run/external_coupling_trace_loop_certificate.json
-!first_contact_clean_pharmacotopology_layer_run/external_coupling_trace_loop_selectors.csv
-!first_contact_clean_pharmacotopology_layer_run/external_coupling_trace_loop_selected_events.csv
-!first_contact_clean_pharmacotopology_layer_run/external_coupling_trace_loop_controls.csv
-!first_contact_clean_pharmacotopology_layer_run/external_coupling_trace_loop_row_status.csv
-!first_contact_clean_pharmacotopology_layer_run/external_coupling_trace_loop_dashboard.html
-!first_contact_clean_pharmacotopology_layer_run/external_coupling_target_manifest_v0.json
-!first_contact_clean_pharmacotopology_layer_run/external_coupling_build_log_v0.csv
-!first_contact_clean_pharmacotopology_layer_run/external_sequence_mapping_v0.csv
-!first_contact_clean_pharmacotopology_layer_run/external_msa_build_log_v0.csv
-!first_contact_clean_pharmacotopology_layer_run/external_dca_build_log_v0.csv
+!first_contact_clean_pharmacotopology_layer_run/**/
+
+!first_contact_clean_pharmacotopology_layer_run/**/*.json
+!first_contact_clean_pharmacotopology_layer_run/**/*.csv
+!first_contact_clean_pharmacotopology_layer_run/**/*.md
+!first_contact_clean_pharmacotopology_layer_run/**/*.txt
+
+first_contact_clean_pharmacotopology_layer_run/**/*.pdb
+first_contact_clean_pharmacotopology_layer_run/**/*.pdb.gz
+first_contact_clean_pharmacotopology_layer_run/**/*.xtc
+first_contact_clean_pharmacotopology_layer_run/**/*.dcd
+first_contact_clean_pharmacotopology_layer_run/**/*.trr
+first_contact_clean_pharmacotopology_layer_run/**/*.nc
+first_contact_clean_pharmacotopology_layer_run/**/*.h5
+first_contact_clean_pharmacotopology_layer_run/**/*.hdf5
+first_contact_clean_pharmacotopology_layer_run/**/*.npy
+first_contact_clean_pharmacotopology_layer_run/**/*.npz
+first_contact_clean_pharmacotopology_layer_run/**/*.pkl
+first_contact_clean_pharmacotopology_layer_run/**/*.pickle
+
+first_contact_clean_pharmacotopology_layer_run/**/*.png
+first_contact_clean_pharmacotopology_layer_run/**/*.jpg
+first_contact_clean_pharmacotopology_layer_run/**/*.jpeg
+first_contact_clean_pharmacotopology_layer_run/**/*.gif
+first_contact_clean_pharmacotopology_layer_run/**/*.mp4
+first_contact_clean_pharmacotopology_layer_run/**/*.mov
+first_contact_clean_pharmacotopology_layer_run/**/*.svg
+first_contact_clean_pharmacotopology_layer_run/**/*.html
+
+!first_contact_clean_pharmacotopology_layer_run/**/certificate*.json
+!first_contact_clean_pharmacotopology_layer_run/**/*certificate*.json
+!first_contact_clean_pharmacotopology_layer_run/**/*report*.md
+!first_contact_clean_pharmacotopology_layer_run/**/*table*.csv
+
+# ----------------------------
+# Downloaded target structures are reproducibility material
+# ----------------------------
+!data/v16_pressure_targets/
+!data/v16_pressure_targets/**
+
+# ----------------------------
+# KEEP independent target/source structures
+# These are source/provenance material, not disposable runtime output.
+# ----------------------------
+!data/
+!data/**
+!data/independent_contact_sources/
+!data/independent_contact_sources/**
+!data/independent_contact_sources/**/*.pdb
+!data/independent_contact_sources/**/*.pdb.gz
+!data/independent_contact_sources/**/*.json
+!data/independent_contact_sources/**/*.txt
+!data/independent_contact_sources/**/*.fasta
+
+# ----------------------------
+# Large archives
+# ----------------------------
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.7z
+*.rar
+EOF
