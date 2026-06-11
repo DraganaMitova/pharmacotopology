@@ -1,0 +1,88 @@
+{
+  "answer_key_source_count_for_prediction": 0,
+  "blocked_inputs_manifest": "data/solved_flag_trial/V43/predictions_sealed/TARGET_024/blocked_inputs_manifest.json",
+  "coordinate_derived_source_count_before_prediction": 0,
+  "coordinate_truth_used_before_prediction": false,
+  "failed_checks": [],
+  "falsification_criteria": [
+    "post-seal holdout assigns different mechanism class",
+    "operator regions fail overlap/support scoring",
+    "contact or region constraints fail precision/enrichment scoring where applicable",
+    "low-resolution structure or ensemble class is contradicted",
+    "perturbation effects are unsupported or contradicted"
+  ],
+  "folding_problem_solved": false,
+  "holdout_source_count_before_prediction": 0,
+  "internal_runtime_source_count_for_prediction": 0,
+  "kind": "V43_SEALED_SOLVED_FLAG_TRIAL_PREDICTION_v0",
+  "mechanism_class": "metamorphic_or_multistate_switch",
+  "mechanism_confidence": "high",
+  "native_metrics_used_before_prediction": false,
+  "no_holdout_access_before_hash": true,
+  "operator_constraints": [
+    {
+      "constraint_type": "predicted_state_specific_region",
+      "expected_effect": "state deletion or pooling should fail"
+    },
+    {
+      "constraint_type": "predicted_allosteric_or_switch_region",
+      "expected_effect": "state balance perturbation should shift mechanism"
+    }
+  ],
+  "operator_regions": [
+    {
+      "confidence": "high",
+      "evidence_source_id": "CALMODULIN_STATE",
+      "region_name": "EF_hand_lobes",
+      "span": "state/operator region"
+    },
+    {
+      "confidence": "high",
+      "evidence_source_id": "CALMODULIN_STATE",
+      "region_name": "target_binding_switch",
+      "span": "state/operator region"
+    }
+  ],
+  "predicted_contact_or_region_constraints": [
+    {
+      "confidence": "high",
+      "constraint_id": "TARGET_024_C1",
+      "constraint_type": "long_range_contact_or_region_constraint",
+      "region_a": "EF_hand_lobes",
+      "region_b": "core_or_partner_region",
+      "sequence_separation": "long_range_or_cross_context"
+    },
+    {
+      "confidence": "high",
+      "constraint_id": "TARGET_024_C2",
+      "constraint_type": "long_range_contact_or_region_constraint",
+      "region_a": "target_binding_switch",
+      "region_b": "core_or_partner_region",
+      "sequence_separation": "long_range_or_cross_context"
+    }
+  ],
+  "predicted_low_resolution_structure_or_ensemble": "two-state or multi-state ensemble expected",
+  "predicted_perturbation_effects": [
+    {
+      "perturbation": "delete_one_state",
+      "predicted_effect": "break"
+    },
+    {
+      "perturbation": "force_mixed_state_pooling",
+      "predicted_effect": "block"
+    },
+    {
+      "perturbation": "shift_state_balance",
+      "predicted_effect": "shift"
+    }
+  ],
+  "prediction_hash": "56664ef8d47c1aa9f28cea2019f0dfdbb0ed791ee1f549b349a516931391d451",
+  "prediction_inputs_manifest": "data/solved_flag_trial/V43/panel/TARGET_024/prediction_input_manifest.json",
+  "prediction_source_ids": [
+    "CALMODULIN_STATE"
+  ],
+  "prediction_timestamp": "2026-06-11T16:34:17.378612+00:00",
+  "protein_folding_solved_candidate": false,
+  "target_id": "TARGET_024",
+  "target_name": "calmodulin"
+}

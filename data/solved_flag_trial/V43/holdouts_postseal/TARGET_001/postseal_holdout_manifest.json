@@ -1,0 +1,37 @@
+{
+  "contact_scorable": true,
+  "contradicts_prediction": false,
+  "expected_mechanism_class": "membrane_pore_filter_or_transport",
+  "holdout_opened_after_prediction_hash": "7a0916167a9e93d80d9d720495adf5e40a6205be1c75086a146e52405e2ade03",
+  "holdout_opened_timestamp": "2026-06-11T16:34:17.379035+00:00",
+  "kind": "V43_POSTSEAL_STRUCTURE_ENSEMBLE_FUNCTION_HOLDOUT_v0",
+  "postseal_contact_metrics": {
+    "contact_auc_or_enrichment": 2.8,
+    "contact_enrichment_vs_random": 2.8,
+    "false_contact_promotion_rate": 0.08,
+    "top_L_long_range_contact_precision": 0.56,
+    "top_L_over_2_long_range_contact_precision": 0.5
+  },
+  "postseal_sources": [
+    {
+      "allowed_use": "post_hoc_scoring_only_after_prediction_hash",
+      "coordinate_derived": true,
+      "source_id": "TARGET_001_V43_POSTSEAL_HOLDOUT",
+      "source_type": "postseal independent structure/ensemble/function scoring summary",
+      "used_before_prediction": false
+    }
+  ],
+  "structure_or_ensemble_holdout_type": "postseal_structure_contact_region_scoring",
+  "supported_low_resolution_structure_or_ensemble": "membrane-spanning operator expected",
+  "supported_operator_regions": [
+    "selectivity_filter_signature",
+    "transmembrane_pore",
+    "potassium_channel_signature"
+  ],
+  "supported_perturbations": [
+    "remove_signature_or_transport_motif",
+    "remove_membrane_topology_context"
+  ],
+  "target_id": "TARGET_001",
+  "target_name": "KcsA"
+}

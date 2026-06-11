@@ -1,0 +1,1945 @@
+{
+  "answer_key_available_to_prediction": false,
+  "claim_allowed": false,
+  "contact_scorable_target_count": 15,
+  "folding_problem_solved": false,
+  "holdouts_created": false,
+  "kind": "V43_SOLVED_FLAG_TRIAL_PANEL_v0",
+  "panel_groups": {
+    "disordered_or_partially_disordered": 4,
+    "known_anchor": 4,
+    "membrane_channel_transporter": 4,
+    "multistate_allosteric_metamorphic_binding": 4,
+    "soluble_compact_single_domain": 4,
+    "weak_or_shallow_evolutionary_information": 4
+  },
+  "panel_target_count": 24,
+  "protein_folding_solved_candidate": false,
+  "source_panel": "/Users/draganamitova/My Projects/pharmacotopology/data/de_novo_mechanism_language/V42/panel/panel_manifest.json",
+  "targets": [
+    {
+      "blocked_prediction_inputs": [
+        {
+          "blocked_input": "PDB coordinates or mmCIF coordinates before sealing",
+          "reason": "coordinates are post-hoc holdout only"
+        },
+        {
+          "blocked_input": "AlphaFold/ESMFold/RoseTTAFold coordinates before sealing",
+          "reason": "predicted coordinates cannot be prediction evidence"
+        },
+        {
+          "blocked_input": "native contact maps or coordinate-derived contacts",
+          "reason": "would leak structure truth"
+        },
+        {
+          "blocked_input": "first_contact_clean_pharmacotopology_layer_run files as biological evidence",
+          "reason": "runtime outputs are audit evidence only"
+        },
+        {
+          "blocked_input": "V33/V34 coordinate-derived KcsA CSVs",
+          "reason": "blocked coordinate-derived contacts"
+        },
+        {
+          "blocked_input": "V42 holdout files before prediction sealing",
+          "reason": "holdout must open only after sealed prediction hash"
+        },
+        {
+          "blocked_input": "answer key or expected class label",
+          "reason": "assignment must use prediction sources only"
+        }
+      ],
+      "contact_metric_required_for_candidate": true,
+      "contact_scorable": true,
+      "panel_group": "known_anchor",
+      "postseal_holdout_types": [
+        "structure_or_region_constraint_scoring",
+        "operator_region_overlap_scoring",
+        "perturbation_effect_scoring"
+      ],
+      "prediction_sources": [
+        {
+          "answer_key_source": false,
+          "coordinate_derived": false,
+          "coordinate_truth_used_before_prediction": false,
+          "evidence_statement": "Potassium channel with membrane topology and K+ selectivity annotations.",
+          "feature_tags": [
+            "membrane",
+            "filter_signature",
+            "ion_selectivity",
+            "oligomer"
+          ],
+          "holdout_source": false,
+          "internal_runtime_source": false,
+          "native_metrics_used_for_selection": false,
+          "region_hints": [
+            {
+              "evidence": "family/function text",
+              "region_name": "selectivity_filter_signature",
+              "span": "TVGYG motif"
+            },
+            {
+              "evidence": "topology text",
+              "region_name": "transmembrane_pore",
+              "span": "TM helices"
+            }
+          ],
+          "source_date_or_version": "accessed_2026-06-11",
+          "source_id": "T001_UNIPROT",
+          "source_type": "UniProt feature/function text",
+          "source_url_or_citation": "UniProtKB P0A334"
+        },
+        {
+          "answer_key_source": false,
+          "coordinate_derived": false,
+          "coordinate_truth_used_before_prediction": false,
+          "evidence_statement": "Potassium-channel family signature supports pore/filter grammar.",
+          "feature_tags": [
+            "membrane",
+            "filter_signature",
+            "ion_selectivity"
+          ],
+          "holdout_source": false,
+          "internal_runtime_source": false,
+          "native_metrics_used_for_selection": false,
+          "region_hints": [
+            {
+              "evidence": "InterPro/Pfam",
+              "region_name": "potassium_channel_signature",
+              "span": "family signature"
+            }
+          ],
+          "source_date_or_version": "accessed_2026-06-11",
+          "source_id": "T001_INTERPRO",
+          "source_type": "InterPro/Pfam family signatures",
+          "source_url_or_citation": "InterPro IPR013099 / Pfam PF07885"
+        }
+      ],
+      "sequence_status": "available",
+      "structural_or_ensemble_holdout_status": "postseal_only",
+      "target_id": "TARGET_001",
+      "target_name": "KcsA",
+      "v43_panel_source": "/Users/draganamitova/My Projects/pharmacotopology/data/de_novo_mechanism_language/V42/panel/panel_manifest.json"
+    },
+    {
+      "blocked_prediction_inputs": [
+        {
+          "blocked_input": "PDB coordinates or mmCIF coordinates before sealing",
+          "reason": "coordinates are post-hoc holdout only"
+        },
+        {
+          "blocked_input": "AlphaFold/ESMFold/RoseTTAFold coordinates before sealing",
+          "reason": "predicted coordinates cannot be prediction evidence"
+        },
+        {
+          "blocked_input": "native contact maps or coordinate-derived contacts",
+          "reason": "would leak structure truth"
+        },
+        {
+          "blocked_input": "first_contact_clean_pharmacotopology_layer_run files as biological evidence",
+          "reason": "runtime outputs are audit evidence only"
+        },
+        {
+          "blocked_input": "V33/V34 coordinate-derived KcsA CSVs",
+          "reason": "blocked coordinate-derived contacts"
+        },
+        {
+          "blocked_input": "V42 holdout files before prediction sealing",
+          "reason": "holdout must open only after sealed prediction hash"
+        },
+        {
+          "blocked_input": "answer key or expected class label",
+          "reason": "assignment must use prediction sources only"
+        }
+      ],
+      "contact_metric_required_for_candidate": true,
+      "contact_scorable": true,
+      "panel_group": "known_anchor",
+      "postseal_holdout_types": [
+        "structure_or_region_constraint_scoring",
+        "operator_region_overlap_scoring",
+        "perturbation_effect_scoring"
+      ],
+      "prediction_sources": [
+        {
+          "answer_key_source": false,
+          "coordinate_derived": false,
+          "coordinate_truth_used_before_prediction": false,
+          "evidence_statement": "XCL1 has separable Ltn10/Ltn40 state-function evidence.",
+          "feature_tags": [
+            "metamorphic",
+            "two_state",
+            "state_separated",
+            "function_switch"
+          ],
+          "holdout_source": false,
+          "internal_runtime_source": false,
+          "native_metrics_used_for_selection": false,
+          "region_hints": [
+            {
+              "evidence": "state-function text",
+              "region_name": "state_A_chemokine_like",
+              "span": "N-terminal chemokine fold context"
+            },
+            {
+              "evidence": "state-function text",
+              "region_name": "state_B_beta_sandwich_dimer",
+              "span": "alternate state context"
+            }
+          ],
+          "source_date_or_version": "accessed_2026-06-11",
+          "source_id": "T002_LITERATURE",
+          "source_type": "literature-derived state/function annotations",
+          "source_url_or_citation": "Tuinstra RL et al. PNAS 2008; Alderson TR et al. ACS Chem Biol 2015"
+        },
+        {
+          "answer_key_source": false,
+          "coordinate_derived": false,
+          "coordinate_truth_used_before_prediction": false,
+          "evidence_statement": "Review-level evidence supports metamorphic fold switching.",
+          "feature_tags": [
+            "metamorphic",
+            "two_state",
+            "state_separated"
+          ],
+          "holdout_source": false,
+          "internal_runtime_source": false,
+          "native_metrics_used_for_selection": false,
+          "region_hints": [
+            {
+              "evidence": "review text",
+              "region_name": "state_switch_operator",
+              "span": "global state separation"
+            }
+          ],
+          "source_date_or_version": "accessed_2026-06-11",
+          "source_id": "T002_REVIEW",
+          "source_type": "literature-derived state/function annotations",
+          "source_url_or_citation": "Dishman AF and Volkman BF. Curr Opin Struct Biol. 2018"
+        }
+      ],
+      "sequence_status": "available",
+      "structural_or_ensemble_holdout_status": "postseal_only",
+      "target_id": "TARGET_002",
+      "target_name": "XCL1_lymphotactin",
+      "v43_panel_source": "/Users/draganamitova/My Projects/pharmacotopology/data/de_novo_mechanism_language/V42/panel/panel_manifest.json"
+    },
+    {
+      "blocked_prediction_inputs": [
+        {
+          "blocked_input": "PDB coordinates or mmCIF coordinates before sealing",
+          "reason": "coordinates are post-hoc holdout only"
+        },
+        {
+          "blocked_input": "AlphaFold/ESMFold/RoseTTAFold coordinates before sealing",
+          "reason": "predicted coordinates cannot be prediction evidence"
+        },
+        {
+          "blocked_input": "native contact maps or coordinate-derived contacts",
+          "reason": "would leak structure truth"
+        },
+        {
+          "blocked_input": "first_contact_clean_pharmacotopology_layer_run files as biological evidence",
+          "reason": "runtime outputs are audit evidence only"
+        },
+        {
+          "blocked_input": "V33/V34 coordinate-derived KcsA CSVs",
+          "reason": "blocked coordinate-derived contacts"
+        },
+        {
+          "blocked_input": "V42 holdout files before prediction sealing",
+          "reason": "holdout must open only after sealed prediction hash"
+        },
+        {
+          "blocked_input": "answer key or expected class label",
+          "reason": "assignment must use prediction sources only"
+        }
+      ],
+      "contact_metric_required_for_candidate": false,
+      "contact_scorable": false,
+      "panel_group": "known_anchor",
+      "postseal_holdout_types": [
+        "ensemble_or_function_scoring",
+        "operator_region_overlap_scoring",
+        "perturbation_effect_scoring"
+      ],
+      "prediction_sources": [
+        {
+          "answer_key_source": false,
+          "coordinate_derived": false,
+          "coordinate_truth_used_before_prediction": false,
+          "evidence_statement": "Alpha-synuclein is intrinsically disordered in free state.",
+          "feature_tags": [
+            "disorder",
+            "idp",
+            "ensemble"
+          ],
+          "holdout_source": false,
+          "internal_runtime_source": false,
+          "native_metrics_used_for_selection": false,
+          "region_hints": [
+            {
+              "evidence": "DisProt text",
+              "region_name": "acidic_C_terminal_tail",
+              "span": "96-140"
+            },
+            {
+              "evidence": "state text",
+              "region_name": "N_terminal_membrane_binding_region",
+              "span": "1-95"
+            }
+          ],
+          "source_date_or_version": "accessed_2026-06-11",
+          "source_id": "T003_DISPROT",
+          "source_type": "DisProt disorder annotations",
+          "source_url_or_citation": "DisProt DP00070"
+        },
+        {
+          "answer_key_source": false,
+          "coordinate_derived": false,
+          "coordinate_truth_used_before_prediction": false,
+          "evidence_statement": "Membrane context induces conditional helical ordering.",
+          "feature_tags": [
+            "disorder",
+            "context_bound_ordering",
+            "membrane_binding"
+          ],
+          "holdout_source": false,
+          "internal_runtime_source": false,
+          "native_metrics_used_for_selection": false,
+          "region_hints": [
+            {
+              "evidence": "literature text",
+              "region_name": "membrane_induced_helix",
+              "span": "N-terminal amphipathic region"
+            }
+          ],
+          "source_date_or_version": "accessed_2026-06-11",
+          "source_id": "T003_LITERATURE",
+          "source_type": "literature-derived state/function annotations",
+          "source_url_or_citation": "Eliezer D et al. J Mol Biol. 2001; Davidson WS et al. JBC 1998"
+        }
+      ],
+      "sequence_status": "available",
+      "structural_or_ensemble_holdout_status": "postseal_only",
+      "target_id": "TARGET_003",
+      "target_name": "alpha_synuclein_SNCA",
+      "v43_panel_source": "/Users/draganamitova/My Projects/pharmacotopology/data/de_novo_mechanism_language/V42/panel/panel_manifest.json"
+    },
+    {
+      "blocked_prediction_inputs": [
+        {
+          "blocked_input": "PDB coordinates or mmCIF coordinates before sealing",
+          "reason": "coordinates are post-hoc holdout only"
+        },
+        {
+          "blocked_input": "AlphaFold/ESMFold/RoseTTAFold coordinates before sealing",
+          "reason": "predicted coordinates cannot be prediction evidence"
+        },
+        {
+          "blocked_input": "native contact maps or coordinate-derived contacts",
+          "reason": "would leak structure truth"
+        },
+        {
+          "blocked_input": "first_contact_clean_pharmacotopology_layer_run files as biological evidence",
+          "reason": "runtime outputs are audit evidence only"
+        },
+        {
+          "blocked_input": "V33/V34 coordinate-derived KcsA CSVs",
+          "reason": "blocked coordinate-derived contacts"
+        },
+        {
+          "blocked_input": "V42 holdout files before prediction sealing",
+          "reason": "holdout must open only after sealed prediction hash"
+        },
+        {
+          "blocked_input": "answer key or expected class label",
+          "reason": "assignment must use prediction sources only"
+        }
+      ],
+      "contact_metric_required_for_candidate": true,
+      "contact_scorable": true,
+      "panel_group": "known_anchor",
+      "postseal_holdout_types": [
+        "structure_or_region_constraint_scoring",
+        "operator_region_overlap_scoring",
+        "perturbation_effect_scoring"
+      ],
+      "prediction_sources": [
+        {
+          "answer_key_source": false,
+          "coordinate_derived": false,
+          "coordinate_truth_used_before_prediction": false,
+          "evidence_statement": "Soluble adenylate kinase has nucleotide-binding function and compact enzyme domain annotation.",
+          "feature_tags": [
+            "compact",
+            "soluble",
+            "single_domain",
+            "closure"
+          ],
+          "holdout_source": false,
+          "internal_runtime_source": false,
+          "native_metrics_used_for_selection": false,
+          "region_hints": [
+            {
+              "evidence": "UniProt feature text",
+              "region_name": "P_loop_nucleotide_binding",
+              "span": "Walker/P-loop region"
+            },
+            {
+              "evidence": "function annotation",
+              "region_name": "lid_closure_region",
+              "span": "mobile lid context"
+            }
+          ],
+          "source_date_or_version": "accessed_2026-06-11",
+          "source_id": "T004_UNIPROT",
+          "source_type": "UniProt feature/function text",
+          "source_url_or_citation": "UniProtKB P69441 adenylate kinase"
+        },
+        {
+          "answer_key_source": false,
+          "coordinate_derived": false,
+          "coordinate_truth_used_before_prediction": false,
+          "evidence_statement": "Family signature supports compact kinase core closure grammar.",
+          "feature_tags": [
+            "compact",
+            "soluble",
+            "enzyme_core"
+          ],
+          "holdout_source": false,
+          "internal_runtime_source": false,
+          "native_metrics_used_for_selection": false,
+          "region_hints": [
+            {
+              "evidence": "InterPro/Pfam",
+              "region_name": "adenylate_kinase_core",
+              "span": "family core"
+            }
+          ],
+          "source_date_or_version": "accessed_2026-06-11",
+          "source_id": "T004_INTERPRO",
+          "source_type": "InterPro/Pfam family signatures",
+          "source_url_or_citation": "InterPro adenylate kinase family signatures"
+        }
+      ],
+      "sequence_status": "available",
+      "structural_or_ensemble_holdout_status": "postseal_only",
+      "target_id": "TARGET_004",
+      "target_name": "4AKE_adenylate_kinase",
+      "v43_panel_source": "/Users/draganamitova/My Projects/pharmacotopology/data/de_novo_mechanism_language/V42/panel/panel_manifest.json"
+    },
+    {
+      "blocked_prediction_inputs": [
+        {
+          "blocked_input": "PDB coordinates or mmCIF coordinates before sealing",
+          "reason": "coordinates are post-hoc holdout only"
+        },
+        {
+          "blocked_input": "AlphaFold/ESMFold/RoseTTAFold coordinates before sealing",
+          "reason": "predicted coordinates cannot be prediction evidence"
+        },
+        {
+          "blocked_input": "native contact maps or coordinate-derived contacts",
+          "reason": "would leak structure truth"
+        },
+        {
+          "blocked_input": "first_contact_clean_pharmacotopology_layer_run files as biological evidence",
+          "reason": "runtime outputs are audit evidence only"
+        },
+        {
+          "blocked_input": "V33/V34 coordinate-derived KcsA CSVs",
+          "reason": "blocked coordinate-derived contacts"
+        },
+        {
+          "blocked_input": "V42 holdout files before prediction sealing",
+          "reason": "holdout must open only after sealed prediction hash"
+        },
+        {
+          "blocked_input": "answer key or expected class label",
+          "reason": "assignment must use prediction sources only"
+        }
+      ],
+      "contact_metric_required_for_candidate": true,
+      "contact_scorable": true,
+      "panel_group": "membrane_channel_transporter",
+      "postseal_holdout_types": [
+        "structure_or_region_constraint_scoring",
+        "operator_region_overlap_scoring",
+        "perturbation_effect_scoring"
+      ],
+      "prediction_sources": [
+        {
+          "answer_key_source": false,
+          "coordinate_derived": false,
+          "coordinate_truth_used_before_prediction": false,
+          "evidence_statement": "Seven-transmembrane light-driven proton pump with retinal-binding context.",
+          "feature_tags": [
+            "membrane",
+            "transport",
+            "cofactor",
+            "multi_pass"
+          ],
+          "holdout_source": false,
+          "internal_runtime_source": false,
+          "native_metrics_used_for_selection": false,
+          "region_hints": [
+            {
+              "evidence": "function text",
+              "region_name": "retinal_binding_operator",
+              "span": "lysine retinal region"
+            },
+            {
+              "evidence": "topology text",
+              "region_name": "seven_tm_bundle",
+              "span": "multi-pass membrane region"
+            }
+          ],
+          "source_date_or_version": "accessed_2026-06-11",
+          "source_id": "BR_UNIPROT",
+          "source_type": "UniProt feature/function text",
+          "source_url_or_citation": "UniProtKB bacteriorhodopsin annotations"
+        },
+        {
+          "answer_key_source": false,
+          "coordinate_derived": false,
+          "coordinate_truth_used_before_prediction": false,
+          "evidence_statement": "Family signature supports membrane transport grammar.",
+          "feature_tags": [
+            "membrane",
+            "transport"
+          ],
+          "holdout_source": false,
+          "internal_runtime_source": false,
+          "native_metrics_used_for_selection": false,
+          "region_hints": [
+            {
+              "evidence": "InterPro",
+              "region_name": "proton_pump_signature",
+              "span": "family signature"
+            }
+          ],
+          "source_date_or_version": "accessed_2026-06-11",
+          "source_id": "BR_INTERPRO",
+          "source_type": "InterPro/Pfam family signatures",
+          "source_url_or_citation": "InterPro bacteriorhodopsin-like family"
+        }
+      ],
+      "sequence_status": "available",
+      "structural_or_ensemble_holdout_status": "postseal_only",
+      "target_id": "TARGET_005",
+      "target_name": "bacteriorhodopsin_BR",
+      "v43_panel_source": "/Users/draganamitova/My Projects/pharmacotopology/data/de_novo_mechanism_language/V42/panel/panel_manifest.json"
+    },
+    {
+      "blocked_prediction_inputs": [
+        {
+          "blocked_input": "PDB coordinates or mmCIF coordinates before sealing",
+          "reason": "coordinates are post-hoc holdout only"
+        },
+        {
+          "blocked_input": "AlphaFold/ESMFold/RoseTTAFold coordinates before sealing",
+          "reason": "predicted coordinates cannot be prediction evidence"
+        },
+        {
+          "blocked_input": "native contact maps or coordinate-derived contacts",
+          "reason": "would leak structure truth"
+        },
+        {
+          "blocked_input": "first_contact_clean_pharmacotopology_layer_run files as biological evidence",
+          "reason": "runtime outputs are audit evidence only"
+        },
+        {
+          "blocked_input": "V33/V34 coordinate-derived KcsA CSVs",
+          "reason": "blocked coordinate-derived contacts"
+        },
+        {
+          "blocked_input": "V42 holdout files before prediction sealing",
+          "reason": "holdout must open only after sealed prediction hash"
+        },
+        {
+          "blocked_input": "answer key or expected class label",
+          "reason": "assignment must use prediction sources only"
+        }
+      ],
+      "contact_metric_required_for_candidate": true,
+      "contact_scorable": true,
+      "panel_group": "membrane_channel_transporter",
+      "postseal_holdout_types": [
+        "structure_or_region_constraint_scoring",
+        "operator_region_overlap_scoring",
+        "perturbation_effect_scoring"
+      ],
+      "prediction_sources": [
+        {
+          "answer_key_source": false,
+          "coordinate_derived": false,
+          "coordinate_truth_used_before_prediction": false,
+          "evidence_statement": "Aquaporin water channel with membrane topology and NPA motif annotations.",
+          "feature_tags": [
+            "membrane",
+            "channel",
+            "signature_motif",
+            "oligomer"
+          ],
+          "holdout_source": false,
+          "internal_runtime_source": false,
+          "native_metrics_used_for_selection": false,
+          "region_hints": [
+            {
+              "evidence": "feature text",
+              "region_name": "NPA_motif_pair",
+              "span": "NPA motifs"
+            },
+            {
+              "evidence": "topology text",
+              "region_name": "membrane_channel_core",
+              "span": "six TM helices"
+            }
+          ],
+          "source_date_or_version": "accessed_2026-06-11",
+          "source_id": "AQP1_UNIPROT",
+          "source_type": "UniProt feature/function text",
+          "source_url_or_citation": "UniProtKB P29972"
+        }
+      ],
+      "sequence_status": "available",
+      "structural_or_ensemble_holdout_status": "postseal_only",
+      "target_id": "TARGET_006",
+      "target_name": "AQP1_aquaporin",
+      "v43_panel_source": "/Users/draganamitova/My Projects/pharmacotopology/data/de_novo_mechanism_language/V42/panel/panel_manifest.json"
+    },
+    {
+      "blocked_prediction_inputs": [
+        {
+          "blocked_input": "PDB coordinates or mmCIF coordinates before sealing",
+          "reason": "coordinates are post-hoc holdout only"
+        },
+        {
+          "blocked_input": "AlphaFold/ESMFold/RoseTTAFold coordinates before sealing",
+          "reason": "predicted coordinates cannot be prediction evidence"
+        },
+        {
+          "blocked_input": "native contact maps or coordinate-derived contacts",
+          "reason": "would leak structure truth"
+        },
+        {
+          "blocked_input": "first_contact_clean_pharmacotopology_layer_run files as biological evidence",
+          "reason": "runtime outputs are audit evidence only"
+        },
+        {
+          "blocked_input": "V33/V34 coordinate-derived KcsA CSVs",
+          "reason": "blocked coordinate-derived contacts"
+        },
+        {
+          "blocked_input": "V42 holdout files before prediction sealing",
+          "reason": "holdout must open only after sealed prediction hash"
+        },
+        {
+          "blocked_input": "answer key or expected class label",
+          "reason": "assignment must use prediction sources only"
+        }
+      ],
+      "contact_metric_required_for_candidate": true,
+      "contact_scorable": true,
+      "panel_group": "membrane_channel_transporter",
+      "postseal_holdout_types": [
+        "structure_or_region_constraint_scoring",
+        "operator_region_overlap_scoring",
+        "perturbation_effect_scoring"
+      ],
+      "prediction_sources": [
+        {
+          "answer_key_source": false,
+          "coordinate_derived": false,
+          "coordinate_truth_used_before_prediction": false,
+          "evidence_statement": "Major facilitator transporter with multi-pass membrane topology.",
+          "feature_tags": [
+            "membrane",
+            "transport",
+            "multi_pass",
+            "alternating_access"
+          ],
+          "holdout_source": false,
+          "internal_runtime_source": false,
+          "native_metrics_used_for_selection": false,
+          "region_hints": [
+            {
+              "evidence": "function text",
+              "region_name": "sugar_transport_operator",
+              "span": "MFS core"
+            },
+            {
+              "evidence": "topology text",
+              "region_name": "transmembrane_bundle",
+              "span": "multi-pass region"
+            }
+          ],
+          "source_date_or_version": "accessed_2026-06-11",
+          "source_id": "LACY_UNIPROT",
+          "source_type": "UniProt feature/function text",
+          "source_url_or_citation": "UniProtKB P02920"
+        }
+      ],
+      "sequence_status": "available",
+      "structural_or_ensemble_holdout_status": "postseal_only",
+      "target_id": "TARGET_007",
+      "target_name": "LacY_lactose_permease",
+      "v43_panel_source": "/Users/draganamitova/My Projects/pharmacotopology/data/de_novo_mechanism_language/V42/panel/panel_manifest.json"
+    },
+    {
+      "blocked_prediction_inputs": [
+        {
+          "blocked_input": "PDB coordinates or mmCIF coordinates before sealing",
+          "reason": "coordinates are post-hoc holdout only"
+        },
+        {
+          "blocked_input": "AlphaFold/ESMFold/RoseTTAFold coordinates before sealing",
+          "reason": "predicted coordinates cannot be prediction evidence"
+        },
+        {
+          "blocked_input": "native contact maps or coordinate-derived contacts",
+          "reason": "would leak structure truth"
+        },
+        {
+          "blocked_input": "first_contact_clean_pharmacotopology_layer_run files as biological evidence",
+          "reason": "runtime outputs are audit evidence only"
+        },
+        {
+          "blocked_input": "V33/V34 coordinate-derived KcsA CSVs",
+          "reason": "blocked coordinate-derived contacts"
+        },
+        {
+          "blocked_input": "V42 holdout files before prediction sealing",
+          "reason": "holdout must open only after sealed prediction hash"
+        },
+        {
+          "blocked_input": "answer key or expected class label",
+          "reason": "assignment must use prediction sources only"
+        }
+      ],
+      "contact_metric_required_for_candidate": true,
+      "contact_scorable": true,
+      "panel_group": "membrane_channel_transporter",
+      "postseal_holdout_types": [
+        "structure_or_region_constraint_scoring",
+        "operator_region_overlap_scoring",
+        "perturbation_effect_scoring"
+      ],
+      "prediction_sources": [
+        {
+          "answer_key_source": false,
+          "coordinate_derived": false,
+          "coordinate_truth_used_before_prediction": false,
+          "evidence_statement": "ABC transporter/channel with nucleotide-binding domain and membrane-channel context.",
+          "feature_tags": [
+            "membrane",
+            "transport",
+            "nucleotide_binding",
+            "allosteric"
+          ],
+          "holdout_source": false,
+          "internal_runtime_source": false,
+          "native_metrics_used_for_selection": false,
+          "region_hints": [
+            {
+              "evidence": "feature text",
+              "region_name": "NBD1_operator",
+              "span": "NBD1"
+            },
+            {
+              "evidence": "function text",
+              "region_name": "channel_regulatory_context",
+              "span": "ABC/channel context"
+            }
+          ],
+          "source_date_or_version": "accessed_2026-06-11",
+          "source_id": "CFTR_UNIPROT",
+          "source_type": "UniProt feature/function text",
+          "source_url_or_citation": "UniProtKB P13569 CFTR"
+        }
+      ],
+      "sequence_status": "available",
+      "structural_or_ensemble_holdout_status": "postseal_only",
+      "target_id": "TARGET_008",
+      "target_name": "CFTR_NBD1",
+      "v43_panel_source": "/Users/draganamitova/My Projects/pharmacotopology/data/de_novo_mechanism_language/V42/panel/panel_manifest.json"
+    },
+    {
+      "blocked_prediction_inputs": [
+        {
+          "blocked_input": "PDB coordinates or mmCIF coordinates before sealing",
+          "reason": "coordinates are post-hoc holdout only"
+        },
+        {
+          "blocked_input": "AlphaFold/ESMFold/RoseTTAFold coordinates before sealing",
+          "reason": "predicted coordinates cannot be prediction evidence"
+        },
+        {
+          "blocked_input": "native contact maps or coordinate-derived contacts",
+          "reason": "would leak structure truth"
+        },
+        {
+          "blocked_input": "first_contact_clean_pharmacotopology_layer_run files as biological evidence",
+          "reason": "runtime outputs are audit evidence only"
+        },
+        {
+          "blocked_input": "V33/V34 coordinate-derived KcsA CSVs",
+          "reason": "blocked coordinate-derived contacts"
+        },
+        {
+          "blocked_input": "V42 holdout files before prediction sealing",
+          "reason": "holdout must open only after sealed prediction hash"
+        },
+        {
+          "blocked_input": "answer key or expected class label",
+          "reason": "assignment must use prediction sources only"
+        }
+      ],
+      "contact_metric_required_for_candidate": true,
+      "contact_scorable": true,
+      "panel_group": "soluble_compact_single_domain",
+      "postseal_holdout_types": [
+        "structure_or_region_constraint_scoring",
+        "operator_region_overlap_scoring",
+        "perturbation_effect_scoring"
+      ],
+      "prediction_sources": [
+        {
+          "answer_key_source": false,
+          "coordinate_derived": false,
+          "coordinate_truth_used_before_prediction": false,
+          "evidence_statement": "Soluble compact single-domain protein with stable function/family annotation.",
+          "feature_tags": [
+            "compact",
+            "soluble",
+            "single_domain"
+          ],
+          "holdout_source": false,
+          "internal_runtime_source": false,
+          "native_metrics_used_for_selection": false,
+          "region_hints": [
+            {
+              "evidence": "feature/function text",
+              "region_name": "beta_grasp_core",
+              "span": "domain core"
+            }
+          ],
+          "source_date_or_version": "accessed_2026-06-11",
+          "source_id": "UBIQUITIN_1UBQ_UNIPROT",
+          "source_type": "UniProt feature/function text",
+          "source_url_or_citation": "UniProtKB P0CG47 ubiquitin"
+        }
+      ],
+      "sequence_status": "available",
+      "structural_or_ensemble_holdout_status": "postseal_only",
+      "target_id": "TARGET_009",
+      "target_name": "ubiquitin_1UBQ",
+      "v43_panel_source": "/Users/draganamitova/My Projects/pharmacotopology/data/de_novo_mechanism_language/V42/panel/panel_manifest.json"
+    },
+    {
+      "blocked_prediction_inputs": [
+        {
+          "blocked_input": "PDB coordinates or mmCIF coordinates before sealing",
+          "reason": "coordinates are post-hoc holdout only"
+        },
+        {
+          "blocked_input": "AlphaFold/ESMFold/RoseTTAFold coordinates before sealing",
+          "reason": "predicted coordinates cannot be prediction evidence"
+        },
+        {
+          "blocked_input": "native contact maps or coordinate-derived contacts",
+          "reason": "would leak structure truth"
+        },
+        {
+          "blocked_input": "first_contact_clean_pharmacotopology_layer_run files as biological evidence",
+          "reason": "runtime outputs are audit evidence only"
+        },
+        {
+          "blocked_input": "V33/V34 coordinate-derived KcsA CSVs",
+          "reason": "blocked coordinate-derived contacts"
+        },
+        {
+          "blocked_input": "V42 holdout files before prediction sealing",
+          "reason": "holdout must open only after sealed prediction hash"
+        },
+        {
+          "blocked_input": "answer key or expected class label",
+          "reason": "assignment must use prediction sources only"
+        }
+      ],
+      "contact_metric_required_for_candidate": true,
+      "contact_scorable": true,
+      "panel_group": "soluble_compact_single_domain",
+      "postseal_holdout_types": [
+        "structure_or_region_constraint_scoring",
+        "operator_region_overlap_scoring",
+        "perturbation_effect_scoring"
+      ],
+      "prediction_sources": [
+        {
+          "answer_key_source": false,
+          "coordinate_derived": false,
+          "coordinate_truth_used_before_prediction": false,
+          "evidence_statement": "Soluble compact single-domain protein with stable function/family annotation.",
+          "feature_tags": [
+            "compact",
+            "soluble",
+            "single_domain"
+          ],
+          "holdout_source": false,
+          "internal_runtime_source": false,
+          "native_metrics_used_for_selection": false,
+          "region_hints": [
+            {
+              "evidence": "feature/function text",
+              "region_name": "catalytic_compact_core",
+              "span": "domain core"
+            }
+          ],
+          "source_date_or_version": "accessed_2026-06-11",
+          "source_id": "LYSOZYME_HEWL_UNIPROT",
+          "source_type": "UniProt feature/function text",
+          "source_url_or_citation": "UniProtKB hen egg-white lysozyme"
+        }
+      ],
+      "sequence_status": "available",
+      "structural_or_ensemble_holdout_status": "postseal_only",
+      "target_id": "TARGET_010",
+      "target_name": "lysozyme_HEWL",
+      "v43_panel_source": "/Users/draganamitova/My Projects/pharmacotopology/data/de_novo_mechanism_language/V42/panel/panel_manifest.json"
+    },
+    {
+      "blocked_prediction_inputs": [
+        {
+          "blocked_input": "PDB coordinates or mmCIF coordinates before sealing",
+          "reason": "coordinates are post-hoc holdout only"
+        },
+        {
+          "blocked_input": "AlphaFold/ESMFold/RoseTTAFold coordinates before sealing",
+          "reason": "predicted coordinates cannot be prediction evidence"
+        },
+        {
+          "blocked_input": "native contact maps or coordinate-derived contacts",
+          "reason": "would leak structure truth"
+        },
+        {
+          "blocked_input": "first_contact_clean_pharmacotopology_layer_run files as biological evidence",
+          "reason": "runtime outputs are audit evidence only"
+        },
+        {
+          "blocked_input": "V33/V34 coordinate-derived KcsA CSVs",
+          "reason": "blocked coordinate-derived contacts"
+        },
+        {
+          "blocked_input": "V42 holdout files before prediction sealing",
+          "reason": "holdout must open only after sealed prediction hash"
+        },
+        {
+          "blocked_input": "answer key or expected class label",
+          "reason": "assignment must use prediction sources only"
+        }
+      ],
+      "contact_metric_required_for_candidate": true,
+      "contact_scorable": true,
+      "panel_group": "soluble_compact_single_domain",
+      "postseal_holdout_types": [
+        "structure_or_region_constraint_scoring",
+        "operator_region_overlap_scoring",
+        "perturbation_effect_scoring"
+      ],
+      "prediction_sources": [
+        {
+          "answer_key_source": false,
+          "coordinate_derived": false,
+          "coordinate_truth_used_before_prediction": false,
+          "evidence_statement": "Soluble compact single-domain protein with stable function/family annotation.",
+          "feature_tags": [
+            "compact",
+            "soluble",
+            "single_domain"
+          ],
+          "holdout_source": false,
+          "internal_runtime_source": false,
+          "native_metrics_used_for_selection": false,
+          "region_hints": [
+            {
+              "evidence": "feature/function text",
+              "region_name": "heme_binding_globin_core",
+              "span": "domain core"
+            }
+          ],
+          "source_date_or_version": "accessed_2026-06-11",
+          "source_id": "MYOGLOBIN_MB_UNIPROT",
+          "source_type": "UniProt feature/function text",
+          "source_url_or_citation": "UniProtKB myoglobin annotations"
+        }
+      ],
+      "sequence_status": "available",
+      "structural_or_ensemble_holdout_status": "postseal_only",
+      "target_id": "TARGET_011",
+      "target_name": "myoglobin_Mb",
+      "v43_panel_source": "/Users/draganamitova/My Projects/pharmacotopology/data/de_novo_mechanism_language/V42/panel/panel_manifest.json"
+    },
+    {
+      "blocked_prediction_inputs": [
+        {
+          "blocked_input": "PDB coordinates or mmCIF coordinates before sealing",
+          "reason": "coordinates are post-hoc holdout only"
+        },
+        {
+          "blocked_input": "AlphaFold/ESMFold/RoseTTAFold coordinates before sealing",
+          "reason": "predicted coordinates cannot be prediction evidence"
+        },
+        {
+          "blocked_input": "native contact maps or coordinate-derived contacts",
+          "reason": "would leak structure truth"
+        },
+        {
+          "blocked_input": "first_contact_clean_pharmacotopology_layer_run files as biological evidence",
+          "reason": "runtime outputs are audit evidence only"
+        },
+        {
+          "blocked_input": "V33/V34 coordinate-derived KcsA CSVs",
+          "reason": "blocked coordinate-derived contacts"
+        },
+        {
+          "blocked_input": "V42 holdout files before prediction sealing",
+          "reason": "holdout must open only after sealed prediction hash"
+        },
+        {
+          "blocked_input": "answer key or expected class label",
+          "reason": "assignment must use prediction sources only"
+        }
+      ],
+      "contact_metric_required_for_candidate": true,
+      "contact_scorable": true,
+      "panel_group": "soluble_compact_single_domain",
+      "postseal_holdout_types": [
+        "structure_or_region_constraint_scoring",
+        "operator_region_overlap_scoring",
+        "perturbation_effect_scoring"
+      ],
+      "prediction_sources": [
+        {
+          "answer_key_source": false,
+          "coordinate_derived": false,
+          "coordinate_truth_used_before_prediction": false,
+          "evidence_statement": "Soluble compact single-domain protein with stable function/family annotation.",
+          "feature_tags": [
+            "compact",
+            "soluble",
+            "single_domain"
+          ],
+          "holdout_source": false,
+          "internal_runtime_source": false,
+          "native_metrics_used_for_selection": false,
+          "region_hints": [
+            {
+              "evidence": "feature/function text",
+              "region_name": "ribonuclease_core",
+              "span": "domain core"
+            }
+          ],
+          "source_date_or_version": "accessed_2026-06-11",
+          "source_id": "BARNASE_UNIPROT",
+          "source_type": "UniProt feature/function text",
+          "source_url_or_citation": "UniProtKB barnase/ribonuclease annotations"
+        }
+      ],
+      "sequence_status": "available",
+      "structural_or_ensemble_holdout_status": "postseal_only",
+      "target_id": "TARGET_012",
+      "target_name": "barnase",
+      "v43_panel_source": "/Users/draganamitova/My Projects/pharmacotopology/data/de_novo_mechanism_language/V42/panel/panel_manifest.json"
+    },
+    {
+      "blocked_prediction_inputs": [
+        {
+          "blocked_input": "PDB coordinates or mmCIF coordinates before sealing",
+          "reason": "coordinates are post-hoc holdout only"
+        },
+        {
+          "blocked_input": "AlphaFold/ESMFold/RoseTTAFold coordinates before sealing",
+          "reason": "predicted coordinates cannot be prediction evidence"
+        },
+        {
+          "blocked_input": "native contact maps or coordinate-derived contacts",
+          "reason": "would leak structure truth"
+        },
+        {
+          "blocked_input": "first_contact_clean_pharmacotopology_layer_run files as biological evidence",
+          "reason": "runtime outputs are audit evidence only"
+        },
+        {
+          "blocked_input": "V33/V34 coordinate-derived KcsA CSVs",
+          "reason": "blocked coordinate-derived contacts"
+        },
+        {
+          "blocked_input": "V42 holdout files before prediction sealing",
+          "reason": "holdout must open only after sealed prediction hash"
+        },
+        {
+          "blocked_input": "answer key or expected class label",
+          "reason": "assignment must use prediction sources only"
+        }
+      ],
+      "contact_metric_required_for_candidate": false,
+      "contact_scorable": false,
+      "panel_group": "weak_or_shallow_evolutionary_information",
+      "postseal_holdout_types": [
+        "ensemble_or_function_scoring",
+        "operator_region_overlap_scoring",
+        "perturbation_effect_scoring"
+      ],
+      "prediction_sources": [
+        {
+          "answer_key_source": false,
+          "coordinate_derived": false,
+          "coordinate_truth_used_before_prediction": false,
+          "evidence_statement": "Short viral accessory protein with sparse family depth and membrane-association annotations.",
+          "feature_tags": [
+            "weak_evolutionary",
+            "low_confidence",
+            "membrane_association"
+          ],
+          "holdout_source": false,
+          "internal_runtime_source": false,
+          "native_metrics_used_for_selection": false,
+          "region_hints": [
+            {
+              "evidence": "feature/function text",
+              "region_name": "accessory_region",
+              "span": "annotated region"
+            }
+          ],
+          "source_date_or_version": "accessed_2026-06-11",
+          "source_id": "SARS_COV_2_ORF6_ANNOTATION",
+          "source_type": "UniProt/literature-derived function annotations",
+          "source_url_or_citation": "SARS_CoV_2_ORF6 feature/function annotations"
+        }
+      ],
+      "sequence_status": "available",
+      "structural_or_ensemble_holdout_status": "postseal_only",
+      "target_id": "TARGET_013",
+      "target_name": "SARS_CoV_2_ORF6",
+      "v43_panel_source": "/Users/draganamitova/My Projects/pharmacotopology/data/de_novo_mechanism_language/V42/panel/panel_manifest.json"
+    },
+    {
+      "blocked_prediction_inputs": [
+        {
+          "blocked_input": "PDB coordinates or mmCIF coordinates before sealing",
+          "reason": "coordinates are post-hoc holdout only"
+        },
+        {
+          "blocked_input": "AlphaFold/ESMFold/RoseTTAFold coordinates before sealing",
+          "reason": "predicted coordinates cannot be prediction evidence"
+        },
+        {
+          "blocked_input": "native contact maps or coordinate-derived contacts",
+          "reason": "would leak structure truth"
+        },
+        {
+          "blocked_input": "first_contact_clean_pharmacotopology_layer_run files as biological evidence",
+          "reason": "runtime outputs are audit evidence only"
+        },
+        {
+          "blocked_input": "V33/V34 coordinate-derived KcsA CSVs",
+          "reason": "blocked coordinate-derived contacts"
+        },
+        {
+          "blocked_input": "V42 holdout files before prediction sealing",
+          "reason": "holdout must open only after sealed prediction hash"
+        },
+        {
+          "blocked_input": "answer key or expected class label",
+          "reason": "assignment must use prediction sources only"
+        }
+      ],
+      "contact_metric_required_for_candidate": false,
+      "contact_scorable": false,
+      "panel_group": "weak_or_shallow_evolutionary_information",
+      "postseal_holdout_types": [
+        "ensemble_or_function_scoring",
+        "operator_region_overlap_scoring",
+        "perturbation_effect_scoring"
+      ],
+      "prediction_sources": [
+        {
+          "answer_key_source": false,
+          "coordinate_derived": false,
+          "coordinate_truth_used_before_prediction": false,
+          "evidence_statement": "Rapidly evolving viral accessory protein with shallow evolutionary context.",
+          "feature_tags": [
+            "weak_evolutionary",
+            "low_confidence",
+            "immune_context"
+          ],
+          "holdout_source": false,
+          "internal_runtime_source": false,
+          "native_metrics_used_for_selection": false,
+          "region_hints": [
+            {
+              "evidence": "feature/function text",
+              "region_name": "accessory_fold_region",
+              "span": "annotated region"
+            }
+          ],
+          "source_date_or_version": "accessed_2026-06-11",
+          "source_id": "SARS_COV_2_ORF8_ANNOTATION",
+          "source_type": "UniProt/literature-derived function annotations",
+          "source_url_or_citation": "SARS_CoV_2_ORF8 feature/function annotations"
+        }
+      ],
+      "sequence_status": "available",
+      "structural_or_ensemble_holdout_status": "postseal_only",
+      "target_id": "TARGET_014",
+      "target_name": "SARS_CoV_2_ORF8",
+      "v43_panel_source": "/Users/draganamitova/My Projects/pharmacotopology/data/de_novo_mechanism_language/V42/panel/panel_manifest.json"
+    },
+    {
+      "blocked_prediction_inputs": [
+        {
+          "blocked_input": "PDB coordinates or mmCIF coordinates before sealing",
+          "reason": "coordinates are post-hoc holdout only"
+        },
+        {
+          "blocked_input": "AlphaFold/ESMFold/RoseTTAFold coordinates before sealing",
+          "reason": "predicted coordinates cannot be prediction evidence"
+        },
+        {
+          "blocked_input": "native contact maps or coordinate-derived contacts",
+          "reason": "would leak structure truth"
+        },
+        {
+          "blocked_input": "first_contact_clean_pharmacotopology_layer_run files as biological evidence",
+          "reason": "runtime outputs are audit evidence only"
+        },
+        {
+          "blocked_input": "V33/V34 coordinate-derived KcsA CSVs",
+          "reason": "blocked coordinate-derived contacts"
+        },
+        {
+          "blocked_input": "V42 holdout files before prediction sealing",
+          "reason": "holdout must open only after sealed prediction hash"
+        },
+        {
+          "blocked_input": "answer key or expected class label",
+          "reason": "assignment must use prediction sources only"
+        }
+      ],
+      "contact_metric_required_for_candidate": false,
+      "contact_scorable": false,
+      "panel_group": "weak_or_shallow_evolutionary_information",
+      "postseal_holdout_types": [
+        "ensemble_or_function_scoring",
+        "operator_region_overlap_scoring",
+        "perturbation_effect_scoring"
+      ],
+      "prediction_sources": [
+        {
+          "answer_key_source": false,
+          "coordinate_derived": false,
+          "coordinate_truth_used_before_prediction": false,
+          "evidence_statement": "Transactivation domain has low-complexity/disordered context and weak single-family structural signal.",
+          "feature_tags": [
+            "weak_evolutionary",
+            "low_confidence",
+            "disorder",
+            "folding_upon_binding"
+          ],
+          "holdout_source": false,
+          "internal_runtime_source": false,
+          "native_metrics_used_for_selection": false,
+          "region_hints": [
+            {
+              "evidence": "feature/function text",
+              "region_name": "transactivation_domain",
+              "span": "annotated region"
+            }
+          ],
+          "source_date_or_version": "accessed_2026-06-11",
+          "source_id": "P53_TAD_ANNOTATION",
+          "source_type": "UniProt/literature-derived function annotations",
+          "source_url_or_citation": "p53_TAD feature/function annotations"
+        }
+      ],
+      "sequence_status": "available",
+      "structural_or_ensemble_holdout_status": "postseal_only",
+      "target_id": "TARGET_015",
+      "target_name": "p53_TAD",
+      "v43_panel_source": "/Users/draganamitova/My Projects/pharmacotopology/data/de_novo_mechanism_language/V42/panel/panel_manifest.json"
+    },
+    {
+      "blocked_prediction_inputs": [
+        {
+          "blocked_input": "PDB coordinates or mmCIF coordinates before sealing",
+          "reason": "coordinates are post-hoc holdout only"
+        },
+        {
+          "blocked_input": "AlphaFold/ESMFold/RoseTTAFold coordinates before sealing",
+          "reason": "predicted coordinates cannot be prediction evidence"
+        },
+        {
+          "blocked_input": "native contact maps or coordinate-derived contacts",
+          "reason": "would leak structure truth"
+        },
+        {
+          "blocked_input": "first_contact_clean_pharmacotopology_layer_run files as biological evidence",
+          "reason": "runtime outputs are audit evidence only"
+        },
+        {
+          "blocked_input": "V33/V34 coordinate-derived KcsA CSVs",
+          "reason": "blocked coordinate-derived contacts"
+        },
+        {
+          "blocked_input": "V42 holdout files before prediction sealing",
+          "reason": "holdout must open only after sealed prediction hash"
+        },
+        {
+          "blocked_input": "answer key or expected class label",
+          "reason": "assignment must use prediction sources only"
+        }
+      ],
+      "contact_metric_required_for_candidate": false,
+      "contact_scorable": false,
+      "panel_group": "weak_or_shallow_evolutionary_information",
+      "postseal_holdout_types": [
+        "ensemble_or_function_scoring",
+        "operator_region_overlap_scoring",
+        "perturbation_effect_scoring"
+      ],
+      "prediction_sources": [
+        {
+          "answer_key_source": false,
+          "coordinate_derived": false,
+          "coordinate_truth_used_before_prediction": false,
+          "evidence_statement": "Viral interferon inhibitory domain has limited family depth in this local panel.",
+          "feature_tags": [
+            "weak_evolutionary",
+            "low_confidence",
+            "contextual_binding"
+          ],
+          "holdout_source": false,
+          "internal_runtime_source": false,
+          "native_metrics_used_for_selection": false,
+          "region_hints": [
+            {
+              "evidence": "feature/function text",
+              "region_name": "interferon_inhibitory_domain",
+              "span": "annotated region"
+            }
+          ],
+          "source_date_or_version": "accessed_2026-06-11",
+          "source_id": "EBOLA_VP35_IID_ANNOTATION",
+          "source_type": "UniProt/literature-derived function annotations",
+          "source_url_or_citation": "Ebola_VP35_IID feature/function annotations"
+        }
+      ],
+      "sequence_status": "available",
+      "structural_or_ensemble_holdout_status": "postseal_only",
+      "target_id": "TARGET_016",
+      "target_name": "Ebola_VP35_IID",
+      "v43_panel_source": "/Users/draganamitova/My Projects/pharmacotopology/data/de_novo_mechanism_language/V42/panel/panel_manifest.json"
+    },
+    {
+      "blocked_prediction_inputs": [
+        {
+          "blocked_input": "PDB coordinates or mmCIF coordinates before sealing",
+          "reason": "coordinates are post-hoc holdout only"
+        },
+        {
+          "blocked_input": "AlphaFold/ESMFold/RoseTTAFold coordinates before sealing",
+          "reason": "predicted coordinates cannot be prediction evidence"
+        },
+        {
+          "blocked_input": "native contact maps or coordinate-derived contacts",
+          "reason": "would leak structure truth"
+        },
+        {
+          "blocked_input": "first_contact_clean_pharmacotopology_layer_run files as biological evidence",
+          "reason": "runtime outputs are audit evidence only"
+        },
+        {
+          "blocked_input": "V33/V34 coordinate-derived KcsA CSVs",
+          "reason": "blocked coordinate-derived contacts"
+        },
+        {
+          "blocked_input": "V42 holdout files before prediction sealing",
+          "reason": "holdout must open only after sealed prediction hash"
+        },
+        {
+          "blocked_input": "answer key or expected class label",
+          "reason": "assignment must use prediction sources only"
+        }
+      ],
+      "contact_metric_required_for_candidate": false,
+      "contact_scorable": false,
+      "panel_group": "disordered_or_partially_disordered",
+      "postseal_holdout_types": [
+        "ensemble_or_function_scoring",
+        "operator_region_overlap_scoring",
+        "perturbation_effect_scoring"
+      ],
+      "prediction_sources": [
+        {
+          "answer_key_source": false,
+          "coordinate_derived": false,
+          "coordinate_truth_used_before_prediction": false,
+          "evidence_statement": "Disorder/low-complexity annotation supports ensemble grammar.",
+          "feature_tags": [
+            "disorder",
+            "idp",
+            "ensemble",
+            "aggregation_context"
+          ],
+          "holdout_source": false,
+          "internal_runtime_source": false,
+          "native_metrics_used_for_selection": false,
+          "region_hints": [
+            {
+              "evidence": "DisProt/UniProt text",
+              "region_name": "microtubule_binding_repeats",
+              "span": "annotated disordered region"
+            }
+          ],
+          "source_date_or_version": "accessed_2026-06-11",
+          "source_id": "TAU_K18_DISORDER",
+          "source_type": "DisProt disorder annotations",
+          "source_url_or_citation": "DisProt / UniProt tau repeat-region annotations"
+        }
+      ],
+      "sequence_status": "available",
+      "structural_or_ensemble_holdout_status": "postseal_only",
+      "target_id": "TARGET_017",
+      "target_name": "tau_K18",
+      "v43_panel_source": "/Users/draganamitova/My Projects/pharmacotopology/data/de_novo_mechanism_language/V42/panel/panel_manifest.json"
+    },
+    {
+      "blocked_prediction_inputs": [
+        {
+          "blocked_input": "PDB coordinates or mmCIF coordinates before sealing",
+          "reason": "coordinates are post-hoc holdout only"
+        },
+        {
+          "blocked_input": "AlphaFold/ESMFold/RoseTTAFold coordinates before sealing",
+          "reason": "predicted coordinates cannot be prediction evidence"
+        },
+        {
+          "blocked_input": "native contact maps or coordinate-derived contacts",
+          "reason": "would leak structure truth"
+        },
+        {
+          "blocked_input": "first_contact_clean_pharmacotopology_layer_run files as biological evidence",
+          "reason": "runtime outputs are audit evidence only"
+        },
+        {
+          "blocked_input": "V33/V34 coordinate-derived KcsA CSVs",
+          "reason": "blocked coordinate-derived contacts"
+        },
+        {
+          "blocked_input": "V42 holdout files before prediction sealing",
+          "reason": "holdout must open only after sealed prediction hash"
+        },
+        {
+          "blocked_input": "answer key or expected class label",
+          "reason": "assignment must use prediction sources only"
+        }
+      ],
+      "contact_metric_required_for_candidate": false,
+      "contact_scorable": false,
+      "panel_group": "disordered_or_partially_disordered",
+      "postseal_holdout_types": [
+        "ensemble_or_function_scoring",
+        "operator_region_overlap_scoring",
+        "perturbation_effect_scoring"
+      ],
+      "prediction_sources": [
+        {
+          "answer_key_source": false,
+          "coordinate_derived": false,
+          "coordinate_truth_used_before_prediction": false,
+          "evidence_statement": "Disorder/low-complexity annotation supports ensemble grammar.",
+          "feature_tags": [
+            "disorder",
+            "idp",
+            "ensemble",
+            "phase_separation"
+          ],
+          "holdout_source": false,
+          "internal_runtime_source": false,
+          "native_metrics_used_for_selection": false,
+          "region_hints": [
+            {
+              "evidence": "DisProt/UniProt text",
+              "region_name": "low_complexity_prion_like_region",
+              "span": "annotated disordered region"
+            }
+          ],
+          "source_date_or_version": "accessed_2026-06-11",
+          "source_id": "FUS_LOW_COMPLEXITY_DOMAIN_DISORDER",
+          "source_type": "DisProt disorder annotations",
+          "source_url_or_citation": "DisProt / literature FUS low-complexity annotations"
+        }
+      ],
+      "sequence_status": "available",
+      "structural_or_ensemble_holdout_status": "postseal_only",
+      "target_id": "TARGET_018",
+      "target_name": "FUS_low_complexity_domain",
+      "v43_panel_source": "/Users/draganamitova/My Projects/pharmacotopology/data/de_novo_mechanism_language/V42/panel/panel_manifest.json"
+    },
+    {
+      "blocked_prediction_inputs": [
+        {
+          "blocked_input": "PDB coordinates or mmCIF coordinates before sealing",
+          "reason": "coordinates are post-hoc holdout only"
+        },
+        {
+          "blocked_input": "AlphaFold/ESMFold/RoseTTAFold coordinates before sealing",
+          "reason": "predicted coordinates cannot be prediction evidence"
+        },
+        {
+          "blocked_input": "native contact maps or coordinate-derived contacts",
+          "reason": "would leak structure truth"
+        },
+        {
+          "blocked_input": "first_contact_clean_pharmacotopology_layer_run files as biological evidence",
+          "reason": "runtime outputs are audit evidence only"
+        },
+        {
+          "blocked_input": "V33/V34 coordinate-derived KcsA CSVs",
+          "reason": "blocked coordinate-derived contacts"
+        },
+        {
+          "blocked_input": "V42 holdout files before prediction sealing",
+          "reason": "holdout must open only after sealed prediction hash"
+        },
+        {
+          "blocked_input": "answer key or expected class label",
+          "reason": "assignment must use prediction sources only"
+        }
+      ],
+      "contact_metric_required_for_candidate": false,
+      "contact_scorable": false,
+      "panel_group": "disordered_or_partially_disordered",
+      "postseal_holdout_types": [
+        "ensemble_or_function_scoring",
+        "operator_region_overlap_scoring",
+        "perturbation_effect_scoring"
+      ],
+      "prediction_sources": [
+        {
+          "answer_key_source": false,
+          "coordinate_derived": false,
+          "coordinate_truth_used_before_prediction": false,
+          "evidence_statement": "Disorder/low-complexity annotation supports ensemble grammar.",
+          "feature_tags": [
+            "disorder",
+            "idp",
+            "ensemble",
+            "aggregation_context"
+          ],
+          "holdout_source": false,
+          "internal_runtime_source": false,
+          "native_metrics_used_for_selection": false,
+          "region_hints": [
+            {
+              "evidence": "DisProt/UniProt text",
+              "region_name": "C_terminal_low_complexity_region",
+              "span": "annotated disordered region"
+            }
+          ],
+          "source_date_or_version": "accessed_2026-06-11",
+          "source_id": "TDP43_C_TERMINAL_LCD_DISORDER",
+          "source_type": "DisProt disorder annotations",
+          "source_url_or_citation": "DisProt / UniProt TDP-43 C-terminal low-complexity annotations"
+        }
+      ],
+      "sequence_status": "available",
+      "structural_or_ensemble_holdout_status": "postseal_only",
+      "target_id": "TARGET_019",
+      "target_name": "TDP43_C_terminal_LCD",
+      "v43_panel_source": "/Users/draganamitova/My Projects/pharmacotopology/data/de_novo_mechanism_language/V42/panel/panel_manifest.json"
+    },
+    {
+      "blocked_prediction_inputs": [
+        {
+          "blocked_input": "PDB coordinates or mmCIF coordinates before sealing",
+          "reason": "coordinates are post-hoc holdout only"
+        },
+        {
+          "blocked_input": "AlphaFold/ESMFold/RoseTTAFold coordinates before sealing",
+          "reason": "predicted coordinates cannot be prediction evidence"
+        },
+        {
+          "blocked_input": "native contact maps or coordinate-derived contacts",
+          "reason": "would leak structure truth"
+        },
+        {
+          "blocked_input": "first_contact_clean_pharmacotopology_layer_run files as biological evidence",
+          "reason": "runtime outputs are audit evidence only"
+        },
+        {
+          "blocked_input": "V33/V34 coordinate-derived KcsA CSVs",
+          "reason": "blocked coordinate-derived contacts"
+        },
+        {
+          "blocked_input": "V42 holdout files before prediction sealing",
+          "reason": "holdout must open only after sealed prediction hash"
+        },
+        {
+          "blocked_input": "answer key or expected class label",
+          "reason": "assignment must use prediction sources only"
+        }
+      ],
+      "contact_metric_required_for_candidate": false,
+      "contact_scorable": false,
+      "panel_group": "disordered_or_partially_disordered",
+      "postseal_holdout_types": [
+        "ensemble_or_function_scoring",
+        "operator_region_overlap_scoring",
+        "perturbation_effect_scoring"
+      ],
+      "prediction_sources": [
+        {
+          "answer_key_source": false,
+          "coordinate_derived": false,
+          "coordinate_truth_used_before_prediction": false,
+          "evidence_statement": "Disorder/low-complexity annotation supports ensemble grammar.",
+          "feature_tags": [
+            "disorder",
+            "idp",
+            "ensemble",
+            "phase_separation"
+          ],
+          "holdout_source": false,
+          "internal_runtime_source": false,
+          "native_metrics_used_for_selection": false,
+          "region_hints": [
+            {
+              "evidence": "DisProt/UniProt text",
+              "region_name": "low_complexity_RGG_region",
+              "span": "annotated disordered region"
+            }
+          ],
+          "source_date_or_version": "accessed_2026-06-11",
+          "source_id": "HNRNPA1_LCD_DISORDER",
+          "source_type": "DisProt disorder annotations",
+          "source_url_or_citation": "DisProt / literature hnRNPA1 low-complexity annotations"
+        }
+      ],
+      "sequence_status": "available",
+      "structural_or_ensemble_holdout_status": "postseal_only",
+      "target_id": "TARGET_020",
+      "target_name": "hnRNPA1_LCD",
+      "v43_panel_source": "/Users/draganamitova/My Projects/pharmacotopology/data/de_novo_mechanism_language/V42/panel/panel_manifest.json"
+    },
+    {
+      "blocked_prediction_inputs": [
+        {
+          "blocked_input": "PDB coordinates or mmCIF coordinates before sealing",
+          "reason": "coordinates are post-hoc holdout only"
+        },
+        {
+          "blocked_input": "AlphaFold/ESMFold/RoseTTAFold coordinates before sealing",
+          "reason": "predicted coordinates cannot be prediction evidence"
+        },
+        {
+          "blocked_input": "native contact maps or coordinate-derived contacts",
+          "reason": "would leak structure truth"
+        },
+        {
+          "blocked_input": "first_contact_clean_pharmacotopology_layer_run files as biological evidence",
+          "reason": "runtime outputs are audit evidence only"
+        },
+        {
+          "blocked_input": "V33/V34 coordinate-derived KcsA CSVs",
+          "reason": "blocked coordinate-derived contacts"
+        },
+        {
+          "blocked_input": "V42 holdout files before prediction sealing",
+          "reason": "holdout must open only after sealed prediction hash"
+        },
+        {
+          "blocked_input": "answer key or expected class label",
+          "reason": "assignment must use prediction sources only"
+        }
+      ],
+      "contact_metric_required_for_candidate": true,
+      "contact_scorable": true,
+      "panel_group": "multistate_allosteric_metamorphic_binding",
+      "postseal_holdout_types": [
+        "structure_or_region_constraint_scoring",
+        "operator_region_overlap_scoring",
+        "perturbation_effect_scoring"
+      ],
+      "prediction_sources": [
+        {
+          "answer_key_source": false,
+          "coordinate_derived": false,
+          "coordinate_truth_used_before_prediction": false,
+          "evidence_statement": "State-separated or allosteric function annotations support switch grammar.",
+          "feature_tags": [
+            "metamorphic",
+            "two_state",
+            "state_separated"
+          ],
+          "holdout_source": false,
+          "internal_runtime_source": false,
+          "native_metrics_used_for_selection": false,
+          "region_hints": [
+            {
+              "evidence": "state/function text",
+              "region_name": "alpha_state_operator",
+              "span": "state/operator region"
+            },
+            {
+              "evidence": "state/function text",
+              "region_name": "beta_state_operator",
+              "span": "state/operator region"
+            }
+          ],
+          "source_date_or_version": "accessed_2026-06-11",
+          "source_id": "RFAH_CTD_STATE",
+          "source_type": "literature-derived state/function annotations",
+          "source_url_or_citation": "RfaH metamorphic fold-switch literature annotations"
+        }
+      ],
+      "sequence_status": "available",
+      "structural_or_ensemble_holdout_status": "postseal_only",
+      "target_id": "TARGET_021",
+      "target_name": "RfaH_CTD",
+      "v43_panel_source": "/Users/draganamitova/My Projects/pharmacotopology/data/de_novo_mechanism_language/V42/panel/panel_manifest.json"
+    },
+    {
+      "blocked_prediction_inputs": [
+        {
+          "blocked_input": "PDB coordinates or mmCIF coordinates before sealing",
+          "reason": "coordinates are post-hoc holdout only"
+        },
+        {
+          "blocked_input": "AlphaFold/ESMFold/RoseTTAFold coordinates before sealing",
+          "reason": "predicted coordinates cannot be prediction evidence"
+        },
+        {
+          "blocked_input": "native contact maps or coordinate-derived contacts",
+          "reason": "would leak structure truth"
+        },
+        {
+          "blocked_input": "first_contact_clean_pharmacotopology_layer_run files as biological evidence",
+          "reason": "runtime outputs are audit evidence only"
+        },
+        {
+          "blocked_input": "V33/V34 coordinate-derived KcsA CSVs",
+          "reason": "blocked coordinate-derived contacts"
+        },
+        {
+          "blocked_input": "V42 holdout files before prediction sealing",
+          "reason": "holdout must open only after sealed prediction hash"
+        },
+        {
+          "blocked_input": "answer key or expected class label",
+          "reason": "assignment must use prediction sources only"
+        }
+      ],
+      "contact_metric_required_for_candidate": true,
+      "contact_scorable": true,
+      "panel_group": "multistate_allosteric_metamorphic_binding",
+      "postseal_holdout_types": [
+        "structure_or_region_constraint_scoring",
+        "operator_region_overlap_scoring",
+        "perturbation_effect_scoring"
+      ],
+      "prediction_sources": [
+        {
+          "answer_key_source": false,
+          "coordinate_derived": false,
+          "coordinate_truth_used_before_prediction": false,
+          "evidence_statement": "State-separated or allosteric function annotations support switch grammar.",
+          "feature_tags": [
+            "multistate",
+            "conformational_switch",
+            "state_separated"
+          ],
+          "holdout_source": false,
+          "internal_runtime_source": false,
+          "native_metrics_used_for_selection": false,
+          "region_hints": [
+            {
+              "evidence": "state/function text",
+              "region_name": "open_state_region",
+              "span": "state/operator region"
+            },
+            {
+              "evidence": "state/function text",
+              "region_name": "closed_state_region",
+              "span": "state/operator region"
+            }
+          ],
+          "source_date_or_version": "accessed_2026-06-11",
+          "source_id": "MAD2_STATE",
+          "source_type": "literature-derived state/function annotations",
+          "source_url_or_citation": "Mad2 conformational switch literature annotations"
+        }
+      ],
+      "sequence_status": "available",
+      "structural_or_ensemble_holdout_status": "postseal_only",
+      "target_id": "TARGET_022",
+      "target_name": "Mad2",
+      "v43_panel_source": "/Users/draganamitova/My Projects/pharmacotopology/data/de_novo_mechanism_language/V42/panel/panel_manifest.json"
+    },
+    {
+      "blocked_prediction_inputs": [
+        {
+          "blocked_input": "PDB coordinates or mmCIF coordinates before sealing",
+          "reason": "coordinates are post-hoc holdout only"
+        },
+        {
+          "blocked_input": "AlphaFold/ESMFold/RoseTTAFold coordinates before sealing",
+          "reason": "predicted coordinates cannot be prediction evidence"
+        },
+        {
+          "blocked_input": "native contact maps or coordinate-derived contacts",
+          "reason": "would leak structure truth"
+        },
+        {
+          "blocked_input": "first_contact_clean_pharmacotopology_layer_run files as biological evidence",
+          "reason": "runtime outputs are audit evidence only"
+        },
+        {
+          "blocked_input": "V33/V34 coordinate-derived KcsA CSVs",
+          "reason": "blocked coordinate-derived contacts"
+        },
+        {
+          "blocked_input": "V42 holdout files before prediction sealing",
+          "reason": "holdout must open only after sealed prediction hash"
+        },
+        {
+          "blocked_input": "answer key or expected class label",
+          "reason": "assignment must use prediction sources only"
+        }
+      ],
+      "contact_metric_required_for_candidate": true,
+      "contact_scorable": true,
+      "panel_group": "multistate_allosteric_metamorphic_binding",
+      "postseal_holdout_types": [
+        "structure_or_region_constraint_scoring",
+        "operator_region_overlap_scoring",
+        "perturbation_effect_scoring"
+      ],
+      "prediction_sources": [
+        {
+          "answer_key_source": false,
+          "coordinate_derived": false,
+          "coordinate_truth_used_before_prediction": false,
+          "evidence_statement": "State-separated or allosteric function annotations support switch grammar.",
+          "feature_tags": [
+            "metamorphic",
+            "two_state",
+            "state_separated"
+          ],
+          "holdout_source": false,
+          "internal_runtime_source": false,
+          "native_metrics_used_for_selection": false,
+          "region_hints": [
+            {
+              "evidence": "state/function text",
+              "region_name": "ground_state_region",
+              "span": "state/operator region"
+            },
+            {
+              "evidence": "state/function text",
+              "region_name": "fold_switched_region",
+              "span": "state/operator region"
+            }
+          ],
+          "source_date_or_version": "accessed_2026-06-11",
+          "source_id": "KAIB_STATE",
+          "source_type": "literature-derived state/function annotations",
+          "source_url_or_citation": "KaiB fold-switch clock protein literature annotations"
+        }
+      ],
+      "sequence_status": "available",
+      "structural_or_ensemble_holdout_status": "postseal_only",
+      "target_id": "TARGET_023",
+      "target_name": "KaiB",
+      "v43_panel_source": "/Users/draganamitova/My Projects/pharmacotopology/data/de_novo_mechanism_language/V42/panel/panel_manifest.json"
+    },
+    {
+      "blocked_prediction_inputs": [
+        {
+          "blocked_input": "PDB coordinates or mmCIF coordinates before sealing",
+          "reason": "coordinates are post-hoc holdout only"
+        },
+        {
+          "blocked_input": "AlphaFold/ESMFold/RoseTTAFold coordinates before sealing",
+          "reason": "predicted coordinates cannot be prediction evidence"
+        },
+        {
+          "blocked_input": "native contact maps or coordinate-derived contacts",
+          "reason": "would leak structure truth"
+        },
+        {
+          "blocked_input": "first_contact_clean_pharmacotopology_layer_run files as biological evidence",
+          "reason": "runtime outputs are audit evidence only"
+        },
+        {
+          "blocked_input": "V33/V34 coordinate-derived KcsA CSVs",
+          "reason": "blocked coordinate-derived contacts"
+        },
+        {
+          "blocked_input": "V42 holdout files before prediction sealing",
+          "reason": "holdout must open only after sealed prediction hash"
+        },
+        {
+          "blocked_input": "answer key or expected class label",
+          "reason": "assignment must use prediction sources only"
+        }
+      ],
+      "contact_metric_required_for_candidate": true,
+      "contact_scorable": true,
+      "panel_group": "multistate_allosteric_metamorphic_binding",
+      "postseal_holdout_types": [
+        "structure_or_region_constraint_scoring",
+        "operator_region_overlap_scoring",
+        "perturbation_effect_scoring"
+      ],
+      "prediction_sources": [
+        {
+          "answer_key_source": false,
+          "coordinate_derived": false,
+          "coordinate_truth_used_before_prediction": false,
+          "evidence_statement": "State-separated or allosteric function annotations support switch grammar.",
+          "feature_tags": [
+            "multistate",
+            "allosteric",
+            "context_bound_ordering"
+          ],
+          "holdout_source": false,
+          "internal_runtime_source": false,
+          "native_metrics_used_for_selection": false,
+          "region_hints": [
+            {
+              "evidence": "state/function text",
+              "region_name": "EF_hand_lobes",
+              "span": "state/operator region"
+            },
+            {
+              "evidence": "state/function text",
+              "region_name": "target_binding_switch",
+              "span": "state/operator region"
+            }
+          ],
+          "source_date_or_version": "accessed_2026-06-11",
+          "source_id": "CALMODULIN_STATE",
+          "source_type": "literature-derived state/function annotations",
+          "source_url_or_citation": "UniProt/literature calcium-binding allosteric switch annotations"
+        }
+      ],
+      "sequence_status": "available",
+      "structural_or_ensemble_holdout_status": "postseal_only",
+      "target_id": "TARGET_024",
+      "target_name": "calmodulin",
+      "v43_panel_source": "/Users/draganamitova/My Projects/pharmacotopology/data/de_novo_mechanism_language/V42/panel/panel_manifest.json"
+    }
+  ]
+}

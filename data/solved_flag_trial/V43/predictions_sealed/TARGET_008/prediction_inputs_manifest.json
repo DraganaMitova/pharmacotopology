@@ -1,0 +1,41 @@
+{
+  "answer_key_available": false,
+  "coordinates_available_before_sealing": false,
+  "holdout_sources_available": false,
+  "kind": "V43_PREDICTION_INPUTS_MANIFEST_v0",
+  "prediction_sources": [
+    {
+      "answer_key_source": false,
+      "coordinate_derived": false,
+      "coordinate_truth_used_before_prediction": false,
+      "evidence_statement": "ABC transporter/channel with nucleotide-binding domain and membrane-channel context.",
+      "feature_tags": [
+        "membrane",
+        "transport",
+        "nucleotide_binding",
+        "allosteric"
+      ],
+      "holdout_source": false,
+      "internal_runtime_source": false,
+      "native_metrics_used_for_selection": false,
+      "region_hints": [
+        {
+          "evidence": "feature text",
+          "region_name": "NBD1_operator",
+          "span": "NBD1"
+        },
+        {
+          "evidence": "function text",
+          "region_name": "channel_regulatory_context",
+          "span": "ABC/channel context"
+        }
+      ],
+      "source_date_or_version": "accessed_2026-06-11",
+      "source_id": "CFTR_UNIPROT",
+      "source_type": "UniProt feature/function text",
+      "source_url_or_citation": "UniProtKB P13569 CFTR"
+    }
+  ],
+  "target_id": "TARGET_008",
+  "target_name": "CFTR_NBD1"
+}

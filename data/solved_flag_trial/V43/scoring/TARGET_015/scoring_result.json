@@ -1,0 +1,23 @@
+{
+  "contact_enrichment_vs_random": null,
+  "contact_scorable": false,
+  "expected_mechanism_class": "weak_evolutionary_information_abstain_or_low_confidence",
+  "failure_reason": null,
+  "false_contact_promotion_rate": 0.0,
+  "low_resolution_supported": true,
+  "mechanism_class_correct": true,
+  "motif_or_signature_recovered": false,
+  "operator_region_count": 1,
+  "operator_region_supported_count": 1,
+  "perturbation_count": 1,
+  "perturbation_false_promotion": false,
+  "perturbation_supported_count": 1,
+  "predicted_mechanism_class": "weak_evolutionary_information_abstain_or_low_confidence",
+  "region_overlap_f1": 1.0,
+  "sealed_prediction_hash": "1566f21593b2c129966fdad4b141a9222c45b74befc4a175c03b2299178e8e5c",
+  "target_id": "TARGET_015",
+  "target_name": "p53_TAD",
+  "top_L_long_range_contact_precision": null,
+  "top_L_over_2_long_range_contact_precision": null,
+  "validation_level": "clean_abstain_supported"
+}

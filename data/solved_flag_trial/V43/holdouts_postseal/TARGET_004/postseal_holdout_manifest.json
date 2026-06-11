@@ -1,0 +1,37 @@
+{
+  "contact_scorable": true,
+  "contradicts_prediction": false,
+  "expected_mechanism_class": "compact_single_fold_core_closure",
+  "holdout_opened_after_prediction_hash": "75af783c1c68daee04ab8133a2cc39efd86f8a908f6d8fecae56a262a18d193d",
+  "holdout_opened_timestamp": "2026-06-11T16:34:17.379800+00:00",
+  "kind": "V43_POSTSEAL_STRUCTURE_ENSEMBLE_FUNCTION_HOLDOUT_v0",
+  "postseal_contact_metrics": {
+    "contact_auc_or_enrichment": 2.8,
+    "contact_enrichment_vs_random": 2.8,
+    "false_contact_promotion_rate": 0.08,
+    "top_L_long_range_contact_precision": 0.56,
+    "top_L_over_2_long_range_contact_precision": 0.5
+  },
+  "postseal_sources": [
+    {
+      "allowed_use": "post_hoc_scoring_only_after_prediction_hash",
+      "coordinate_derived": true,
+      "source_id": "TARGET_004_V43_POSTSEAL_HOLDOUT",
+      "source_type": "postseal independent structure/ensemble/function scoring summary",
+      "used_before_prediction": false
+    }
+  ],
+  "structure_or_ensemble_holdout_type": "postseal_structure_contact_region_scoring",
+  "supported_low_resolution_structure_or_ensemble": "compact single folded domain expected",
+  "supported_operator_regions": [
+    "P_loop_nucleotide_binding",
+    "lid_closure_region",
+    "adenylate_kinase_core"
+  ],
+  "supported_perturbations": [
+    "disrupt_core_closure_region",
+    "remove_functional_core_annotation"
+  ],
+  "target_id": "TARGET_004",
+  "target_name": "4AKE_adenylate_kinase"
+}

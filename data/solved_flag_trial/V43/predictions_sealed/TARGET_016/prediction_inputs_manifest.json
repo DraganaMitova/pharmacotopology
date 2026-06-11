@@ -1,0 +1,35 @@
+{
+  "answer_key_available": false,
+  "coordinates_available_before_sealing": false,
+  "holdout_sources_available": false,
+  "kind": "V43_PREDICTION_INPUTS_MANIFEST_v0",
+  "prediction_sources": [
+    {
+      "answer_key_source": false,
+      "coordinate_derived": false,
+      "coordinate_truth_used_before_prediction": false,
+      "evidence_statement": "Viral interferon inhibitory domain has limited family depth in this local panel.",
+      "feature_tags": [
+        "weak_evolutionary",
+        "low_confidence",
+        "contextual_binding"
+      ],
+      "holdout_source": false,
+      "internal_runtime_source": false,
+      "native_metrics_used_for_selection": false,
+      "region_hints": [
+        {
+          "evidence": "feature/function text",
+          "region_name": "interferon_inhibitory_domain",
+          "span": "annotated region"
+        }
+      ],
+      "source_date_or_version": "accessed_2026-06-11",
+      "source_id": "EBOLA_VP35_IID_ANNOTATION",
+      "source_type": "UniProt/literature-derived function annotations",
+      "source_url_or_citation": "Ebola_VP35_IID feature/function annotations"
+    }
+  ],
+  "target_id": "TARGET_016",
+  "target_name": "Ebola_VP35_IID"
+}

@@ -1,0 +1,74 @@
+{
+  "answer_key_source_count_for_prediction": 0,
+  "blocked_inputs_manifest": "data/solved_flag_trial/V43/predictions_sealed/TARGET_003/blocked_inputs_manifest.json",
+  "coordinate_derived_source_count_before_prediction": 0,
+  "coordinate_truth_used_before_prediction": false,
+  "failed_checks": [],
+  "falsification_criteria": [
+    "post-seal holdout assigns different mechanism class",
+    "operator regions fail overlap/support scoring",
+    "contact or region constraints fail precision/enrichment scoring where applicable",
+    "low-resolution structure or ensemble class is contradicted",
+    "perturbation effects are unsupported or contradicted"
+  ],
+  "folding_problem_solved": false,
+  "holdout_source_count_before_prediction": 0,
+  "internal_runtime_source_count_for_prediction": 0,
+  "kind": "V43_SEALED_SOLVED_FLAG_TRIAL_PREDICTION_v0",
+  "mechanism_class": "intrinsic_disorder_contextual_ensemble",
+  "mechanism_confidence": "high",
+  "native_metrics_used_before_prediction": false,
+  "no_holdout_access_before_hash": true,
+  "operator_constraints": [
+    {
+      "constraint_type": "predicted_disorder_ensemble_region",
+      "expected_effect": "compact single-fold forcing should fail"
+    },
+    {
+      "constraint_type": "predicted_contextual_ordering_region",
+      "expected_effect": "context-bound order must not become free-state solved fold"
+    }
+  ],
+  "operator_regions": [
+    {
+      "confidence": "high",
+      "evidence_source_id": "T003_DISPROT",
+      "region_name": "acidic_C_terminal_tail",
+      "span": "96-140"
+    },
+    {
+      "confidence": "high",
+      "evidence_source_id": "T003_DISPROT",
+      "region_name": "N_terminal_membrane_binding_region",
+      "span": "1-95"
+    },
+    {
+      "confidence": "high",
+      "evidence_source_id": "T003_LITERATURE",
+      "region_name": "membrane_induced_helix",
+      "span": "N-terminal amphipathic region"
+    }
+  ],
+  "predicted_contact_or_region_constraints": [],
+  "predicted_low_resolution_structure_or_ensemble": "free disorder with context-bound ordering expected",
+  "predicted_perturbation_effects": [
+    {
+      "perturbation": "remove_disorder_evidence",
+      "predicted_effect": "weaken"
+    },
+    {
+      "perturbation": "force_compact_single_fold",
+      "predicted_effect": "block"
+    }
+  ],
+  "prediction_hash": "66ed053acb99737e51e69469861bf44648dab60a21d50b761161e270085d3867",
+  "prediction_inputs_manifest": "data/solved_flag_trial/V43/panel/TARGET_003/prediction_input_manifest.json",
+  "prediction_source_ids": [
+    "T003_DISPROT",
+    "T003_LITERATURE"
+  ],
+  "prediction_timestamp": "2026-06-11T16:34:17.366638+00:00",
+  "protein_folding_solved_candidate": false,
+  "target_id": "TARGET_003",
+  "target_name": "alpha_synuclein_SNCA"
+}

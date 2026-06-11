@@ -1,0 +1,23 @@
+{
+  "contact_enrichment_vs_random": null,
+  "contact_scorable": false,
+  "expected_mechanism_class": "intrinsic_disorder_contextual_ensemble",
+  "failure_reason": null,
+  "false_contact_promotion_rate": 0.0,
+  "low_resolution_supported": true,
+  "mechanism_class_correct": true,
+  "motif_or_signature_recovered": true,
+  "operator_region_count": 1,
+  "operator_region_supported_count": 1,
+  "perturbation_count": 2,
+  "perturbation_false_promotion": false,
+  "perturbation_supported_count": 2,
+  "predicted_mechanism_class": "intrinsic_disorder_contextual_ensemble",
+  "region_overlap_f1": 1.0,
+  "sealed_prediction_hash": "67798a56d61b81650f5a5c405c8fdaad28872416fa0f64dd5ae6edf9ca7737ad",
+  "target_id": "TARGET_019",
+  "target_name": "TDP43_C_terminal_LCD",
+  "top_L_long_range_contact_precision": null,
+  "top_L_over_2_long_range_contact_precision": null,
+  "validation_level": "supported"
+}

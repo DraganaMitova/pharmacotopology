@@ -1,0 +1,7 @@
+{
+  "decision_status": "V43_PROTEIN_FOLDING_SOLVED_CANDIDATE_PASSED_REVIEW_REQUIRED",
+  "folding_problem_solved": false,
+  "kind": "V43_PROTEIN_FOLDING_SOLVED_FLAG_TRIAL_NEXT_DECISION_v0",
+  "next_action": "external_review_or_V44_failure_mode_comparison_before_absolute_solved_claim",
+  "protein_folding_solved_candidate": true
+}

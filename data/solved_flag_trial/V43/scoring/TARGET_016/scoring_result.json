@@ -1,0 +1,23 @@
+{
+  "contact_enrichment_vs_random": null,
+  "contact_scorable": false,
+  "expected_mechanism_class": "weak_evolutionary_information_abstain_or_low_confidence",
+  "failure_reason": null,
+  "false_contact_promotion_rate": 0.0,
+  "low_resolution_supported": true,
+  "mechanism_class_correct": true,
+  "motif_or_signature_recovered": false,
+  "operator_region_count": 1,
+  "operator_region_supported_count": 1,
+  "perturbation_count": 1,
+  "perturbation_false_promotion": false,
+  "perturbation_supported_count": 1,
+  "predicted_mechanism_class": "weak_evolutionary_information_abstain_or_low_confidence",
+  "region_overlap_f1": 1.0,
+  "sealed_prediction_hash": "3899f3d50a2cc4a9bf778a55eb833ca326dd9da3c55a701d5448388577549402",
+  "target_id": "TARGET_016",
+  "target_name": "Ebola_VP35_IID",
+  "top_L_long_range_contact_precision": null,
+  "top_L_over_2_long_range_contact_precision": null,
+  "validation_level": "clean_abstain_supported"
+}

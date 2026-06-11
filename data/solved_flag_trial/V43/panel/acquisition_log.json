@@ -1,0 +1,199 @@
+{
+  "entries": [
+    {
+      "acquisition_status": "v42_panel_imported_for_v43_solved_flag_trial",
+      "contact_scorable": true,
+      "panel_group": "known_anchor",
+      "replacement_reason": null,
+      "target_id": "TARGET_001",
+      "target_name": "KcsA"
+    },
+    {
+      "acquisition_status": "v42_panel_imported_for_v43_solved_flag_trial",
+      "contact_scorable": true,
+      "panel_group": "known_anchor",
+      "replacement_reason": null,
+      "target_id": "TARGET_002",
+      "target_name": "XCL1_lymphotactin"
+    },
+    {
+      "acquisition_status": "v42_panel_imported_for_v43_solved_flag_trial",
+      "contact_scorable": false,
+      "panel_group": "known_anchor",
+      "replacement_reason": null,
+      "target_id": "TARGET_003",
+      "target_name": "alpha_synuclein_SNCA"
+    },
+    {
+      "acquisition_status": "v42_panel_imported_for_v43_solved_flag_trial",
+      "contact_scorable": true,
+      "panel_group": "known_anchor",
+      "replacement_reason": null,
+      "target_id": "TARGET_004",
+      "target_name": "4AKE_adenylate_kinase"
+    },
+    {
+      "acquisition_status": "v42_panel_imported_for_v43_solved_flag_trial",
+      "contact_scorable": true,
+      "panel_group": "membrane_channel_transporter",
+      "replacement_reason": null,
+      "target_id": "TARGET_005",
+      "target_name": "bacteriorhodopsin_BR"
+    },
+    {
+      "acquisition_status": "v42_panel_imported_for_v43_solved_flag_trial",
+      "contact_scorable": true,
+      "panel_group": "membrane_channel_transporter",
+      "replacement_reason": null,
+      "target_id": "TARGET_006",
+      "target_name": "AQP1_aquaporin"
+    },
+    {
+      "acquisition_status": "v42_panel_imported_for_v43_solved_flag_trial",
+      "contact_scorable": true,
+      "panel_group": "membrane_channel_transporter",
+      "replacement_reason": null,
+      "target_id": "TARGET_007",
+      "target_name": "LacY_lactose_permease"
+    },
+    {
+      "acquisition_status": "v42_panel_imported_for_v43_solved_flag_trial",
+      "contact_scorable": true,
+      "panel_group": "membrane_channel_transporter",
+      "replacement_reason": null,
+      "target_id": "TARGET_008",
+      "target_name": "CFTR_NBD1"
+    },
+    {
+      "acquisition_status": "v42_panel_imported_for_v43_solved_flag_trial",
+      "contact_scorable": true,
+      "panel_group": "soluble_compact_single_domain",
+      "replacement_reason": null,
+      "target_id": "TARGET_009",
+      "target_name": "ubiquitin_1UBQ"
+    },
+    {
+      "acquisition_status": "v42_panel_imported_for_v43_solved_flag_trial",
+      "contact_scorable": true,
+      "panel_group": "soluble_compact_single_domain",
+      "replacement_reason": null,
+      "target_id": "TARGET_010",
+      "target_name": "lysozyme_HEWL"
+    },
+    {
+      "acquisition_status": "v42_panel_imported_for_v43_solved_flag_trial",
+      "contact_scorable": true,
+      "panel_group": "soluble_compact_single_domain",
+      "replacement_reason": null,
+      "target_id": "TARGET_011",
+      "target_name": "myoglobin_Mb"
+    },
+    {
+      "acquisition_status": "v42_panel_imported_for_v43_solved_flag_trial",
+      "contact_scorable": true,
+      "panel_group": "soluble_compact_single_domain",
+      "replacement_reason": null,
+      "target_id": "TARGET_012",
+      "target_name": "barnase"
+    },
+    {
+      "acquisition_status": "v42_panel_imported_for_v43_solved_flag_trial",
+      "contact_scorable": false,
+      "panel_group": "weak_or_shallow_evolutionary_information",
+      "replacement_reason": null,
+      "target_id": "TARGET_013",
+      "target_name": "SARS_CoV_2_ORF6"
+    },
+    {
+      "acquisition_status": "v42_panel_imported_for_v43_solved_flag_trial",
+      "contact_scorable": false,
+      "panel_group": "weak_or_shallow_evolutionary_information",
+      "replacement_reason": null,
+      "target_id": "TARGET_014",
+      "target_name": "SARS_CoV_2_ORF8"
+    },
+    {
+      "acquisition_status": "v42_panel_imported_for_v43_solved_flag_trial",
+      "contact_scorable": false,
+      "panel_group": "weak_or_shallow_evolutionary_information",
+      "replacement_reason": null,
+      "target_id": "TARGET_015",
+      "target_name": "p53_TAD"
+    },
+    {
+      "acquisition_status": "v42_panel_imported_for_v43_solved_flag_trial",
+      "contact_scorable": false,
+      "panel_group": "weak_or_shallow_evolutionary_information",
+      "replacement_reason": null,
+      "target_id": "TARGET_016",
+      "target_name": "Ebola_VP35_IID"
+    },
+    {
+      "acquisition_status": "v42_panel_imported_for_v43_solved_flag_trial",
+      "contact_scorable": false,
+      "panel_group": "disordered_or_partially_disordered",
+      "replacement_reason": null,
+      "target_id": "TARGET_017",
+      "target_name": "tau_K18"
+    },
+    {
+      "acquisition_status": "v42_panel_imported_for_v43_solved_flag_trial",
+      "contact_scorable": false,
+      "panel_group": "disordered_or_partially_disordered",
+      "replacement_reason": null,
+      "target_id": "TARGET_018",
+      "target_name": "FUS_low_complexity_domain"
+    },
+    {
+      "acquisition_status": "v42_panel_imported_for_v43_solved_flag_trial",
+      "contact_scorable": false,
+      "panel_group": "disordered_or_partially_disordered",
+      "replacement_reason": null,
+      "target_id": "TARGET_019",
+      "target_name": "TDP43_C_terminal_LCD"
+    },
+    {
+      "acquisition_status": "v42_panel_imported_for_v43_solved_flag_trial",
+      "contact_scorable": false,
+      "panel_group": "disordered_or_partially_disordered",
+      "replacement_reason": null,
+      "target_id": "TARGET_020",
+      "target_name": "hnRNPA1_LCD"
+    },
+    {
+      "acquisition_status": "v42_panel_imported_for_v43_solved_flag_trial",
+      "contact_scorable": true,
+      "panel_group": "multistate_allosteric_metamorphic_binding",
+      "replacement_reason": null,
+      "target_id": "TARGET_021",
+      "target_name": "RfaH_CTD"
+    },
+    {
+      "acquisition_status": "v42_panel_imported_for_v43_solved_flag_trial",
+      "contact_scorable": true,
+      "panel_group": "multistate_allosteric_metamorphic_binding",
+      "replacement_reason": null,
+      "target_id": "TARGET_022",
+      "target_name": "Mad2"
+    },
+    {
+      "acquisition_status": "v42_panel_imported_for_v43_solved_flag_trial",
+      "contact_scorable": true,
+      "panel_group": "multistate_allosteric_metamorphic_binding",
+      "replacement_reason": null,
+      "target_id": "TARGET_023",
+      "target_name": "KaiB"
+    },
+    {
+      "acquisition_status": "v42_panel_imported_for_v43_solved_flag_trial",
+      "contact_scorable": true,
+      "panel_group": "multistate_allosteric_metamorphic_binding",
+      "replacement_reason": null,
+      "target_id": "TARGET_024",
+      "target_name": "calmodulin"
+    }
+  ],
+  "kind": "V43_SOLVED_FLAG_TRIAL_PANEL_ACQUISITION_LOG_v0",
+  "panel_target_count": 24,
+  "replacement_count": 0
+}

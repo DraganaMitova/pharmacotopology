@@ -1,0 +1,35 @@
+{
+  "answer_key_available": false,
+  "coordinates_available_before_sealing": false,
+  "holdout_sources_available": false,
+  "kind": "V43_PREDICTION_INPUTS_MANIFEST_v0",
+  "prediction_sources": [
+    {
+      "answer_key_source": false,
+      "coordinate_derived": false,
+      "coordinate_truth_used_before_prediction": false,
+      "evidence_statement": "Rapidly evolving viral accessory protein with shallow evolutionary context.",
+      "feature_tags": [
+        "weak_evolutionary",
+        "low_confidence",
+        "immune_context"
+      ],
+      "holdout_source": false,
+      "internal_runtime_source": false,
+      "native_metrics_used_for_selection": false,
+      "region_hints": [
+        {
+          "evidence": "feature/function text",
+          "region_name": "accessory_fold_region",
+          "span": "annotated region"
+        }
+      ],
+      "source_date_or_version": "accessed_2026-06-11",
+      "source_id": "SARS_COV_2_ORF8_ANNOTATION",
+      "source_type": "UniProt/literature-derived function annotations",
+      "source_url_or_citation": "SARS_CoV_2_ORF8 feature/function annotations"
+    }
+  ],
+  "target_id": "TARGET_014",
+  "target_name": "SARS_CoV_2_ORF8"
+}

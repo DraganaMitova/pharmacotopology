@@ -1,0 +1,73 @@
+{
+  "blocked_prediction_inputs": [
+    {
+      "blocked_input": "PDB coordinates or mmCIF coordinates before sealing",
+      "reason": "coordinates are post-hoc holdout only"
+    },
+    {
+      "blocked_input": "AlphaFold/ESMFold/RoseTTAFold coordinates before sealing",
+      "reason": "predicted coordinates cannot be prediction evidence"
+    },
+    {
+      "blocked_input": "native contact maps or coordinate-derived contacts",
+      "reason": "would leak structure truth"
+    },
+    {
+      "blocked_input": "first_contact_clean_pharmacotopology_layer_run files as biological evidence",
+      "reason": "runtime outputs are audit evidence only"
+    },
+    {
+      "blocked_input": "V33/V34 coordinate-derived KcsA CSVs",
+      "reason": "blocked coordinate-derived contacts"
+    },
+    {
+      "blocked_input": "V42 holdout files before prediction sealing",
+      "reason": "holdout must open only after sealed prediction hash"
+    },
+    {
+      "blocked_input": "answer key or expected class label",
+      "reason": "assignment must use prediction sources only"
+    }
+  ],
+  "contact_metric_required_for_candidate": false,
+  "contact_scorable": false,
+  "panel_group": "disordered_or_partially_disordered",
+  "postseal_holdout_types": [
+    "ensemble_or_function_scoring",
+    "operator_region_overlap_scoring",
+    "perturbation_effect_scoring"
+  ],
+  "prediction_sources": [
+    {
+      "answer_key_source": false,
+      "coordinate_derived": false,
+      "coordinate_truth_used_before_prediction": false,
+      "evidence_statement": "Disorder/low-complexity annotation supports ensemble grammar.",
+      "feature_tags": [
+        "disorder",
+        "idp",
+        "ensemble",
+        "aggregation_context"
+      ],
+      "holdout_source": false,
+      "internal_runtime_source": false,
+      "native_metrics_used_for_selection": false,
+      "region_hints": [
+        {
+          "evidence": "DisProt/UniProt text",
+          "region_name": "microtubule_binding_repeats",
+          "span": "annotated disordered region"
+        }
+      ],
+      "source_date_or_version": "accessed_2026-06-11",
+      "source_id": "TAU_K18_DISORDER",
+      "source_type": "DisProt disorder annotations",
+      "source_url_or_citation": "DisProt / UniProt tau repeat-region annotations"
+    }
+  ],
+  "sequence_status": "available",
+  "structural_or_ensemble_holdout_status": "postseal_only",
+  "target_id": "TARGET_017",
+  "target_name": "tau_K18",
+  "v43_panel_source": "/Users/draganamitova/My Projects/pharmacotopology/data/de_novo_mechanism_language/V42/panel/panel_manifest.json"
+}

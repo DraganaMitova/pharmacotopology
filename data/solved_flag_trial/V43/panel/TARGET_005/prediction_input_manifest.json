@@ -1,0 +1,102 @@
+{
+  "blocked_prediction_inputs": [
+    {
+      "blocked_input": "PDB coordinates or mmCIF coordinates before sealing",
+      "reason": "coordinates are post-hoc holdout only"
+    },
+    {
+      "blocked_input": "AlphaFold/ESMFold/RoseTTAFold coordinates before sealing",
+      "reason": "predicted coordinates cannot be prediction evidence"
+    },
+    {
+      "blocked_input": "native contact maps or coordinate-derived contacts",
+      "reason": "would leak structure truth"
+    },
+    {
+      "blocked_input": "first_contact_clean_pharmacotopology_layer_run files as biological evidence",
+      "reason": "runtime outputs are audit evidence only"
+    },
+    {
+      "blocked_input": "V33/V34 coordinate-derived KcsA CSVs",
+      "reason": "blocked coordinate-derived contacts"
+    },
+    {
+      "blocked_input": "V42 holdout files before prediction sealing",
+      "reason": "holdout must open only after sealed prediction hash"
+    },
+    {
+      "blocked_input": "answer key or expected class label",
+      "reason": "assignment must use prediction sources only"
+    }
+  ],
+  "contact_metric_required_for_candidate": true,
+  "contact_scorable": true,
+  "panel_group": "membrane_channel_transporter",
+  "postseal_holdout_types": [
+    "structure_or_region_constraint_scoring",
+    "operator_region_overlap_scoring",
+    "perturbation_effect_scoring"
+  ],
+  "prediction_sources": [
+    {
+      "answer_key_source": false,
+      "coordinate_derived": false,
+      "coordinate_truth_used_before_prediction": false,
+      "evidence_statement": "Seven-transmembrane light-driven proton pump with retinal-binding context.",
+      "feature_tags": [
+        "membrane",
+        "transport",
+        "cofactor",
+        "multi_pass"
+      ],
+      "holdout_source": false,
+      "internal_runtime_source": false,
+      "native_metrics_used_for_selection": false,
+      "region_hints": [
+        {
+          "evidence": "function text",
+          "region_name": "retinal_binding_operator",
+          "span": "lysine retinal region"
+        },
+        {
+          "evidence": "topology text",
+          "region_name": "seven_tm_bundle",
+          "span": "multi-pass membrane region"
+        }
+      ],
+      "source_date_or_version": "accessed_2026-06-11",
+      "source_id": "BR_UNIPROT",
+      "source_type": "UniProt feature/function text",
+      "source_url_or_citation": "UniProtKB bacteriorhodopsin annotations"
+    },
+    {
+      "answer_key_source": false,
+      "coordinate_derived": false,
+      "coordinate_truth_used_before_prediction": false,
+      "evidence_statement": "Family signature supports membrane transport grammar.",
+      "feature_tags": [
+        "membrane",
+        "transport"
+      ],
+      "holdout_source": false,
+      "internal_runtime_source": false,
+      "native_metrics_used_for_selection": false,
+      "region_hints": [
+        {
+          "evidence": "InterPro",
+          "region_name": "proton_pump_signature",
+          "span": "family signature"
+        }
+      ],
+      "source_date_or_version": "accessed_2026-06-11",
+      "source_id": "BR_INTERPRO",
+      "source_type": "InterPro/Pfam family signatures",
+      "source_url_or_citation": "InterPro bacteriorhodopsin-like family"
+    }
+  ],
+  "sequence_status": "available",
+  "structural_or_ensemble_holdout_status": "postseal_only",
+  "target_id": "TARGET_005",
+  "target_name": "bacteriorhodopsin_BR",
+  "v43_panel_source": "/Users/draganamitova/My Projects/pharmacotopology/data/de_novo_mechanism_language/V42/panel/panel_manifest.json"
+}

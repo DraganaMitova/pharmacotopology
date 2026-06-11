@@ -1,0 +1,35 @@
+{
+  "contact_scorable": false,
+  "contradicts_prediction": false,
+  "expected_mechanism_class": "intrinsic_disorder_contextual_ensemble",
+  "holdout_opened_after_prediction_hash": "4c6a71f5194534f669b52eb9d09acee2c3ced8fe6bba92b5e9f478a42205e916",
+  "holdout_opened_timestamp": "2026-06-11T16:34:17.384414+00:00",
+  "kind": "V43_POSTSEAL_STRUCTURE_ENSEMBLE_FUNCTION_HOLDOUT_v0",
+  "postseal_contact_metrics": {
+    "contact_auc_or_enrichment": null,
+    "contact_enrichment_vs_random": null,
+    "false_contact_promotion_rate": 0.0,
+    "top_L_long_range_contact_precision": null,
+    "top_L_over_2_long_range_contact_precision": null
+  },
+  "postseal_sources": [
+    {
+      "allowed_use": "post_hoc_scoring_only_after_prediction_hash",
+      "coordinate_derived": false,
+      "source_id": "TARGET_018_V43_POSTSEAL_HOLDOUT",
+      "source_type": "postseal independent structure/ensemble/function scoring summary",
+      "used_before_prediction": false
+    }
+  ],
+  "structure_or_ensemble_holdout_type": "postseal_ensemble_function_disorder_scoring",
+  "supported_low_resolution_structure_or_ensemble": "free disorder with context-bound ordering expected",
+  "supported_operator_regions": [
+    "low_complexity_prion_like_region"
+  ],
+  "supported_perturbations": [
+    "remove_disorder_evidence",
+    "force_compact_single_fold"
+  ],
+  "target_id": "TARGET_018",
+  "target_name": "FUS_low_complexity_domain"
+}

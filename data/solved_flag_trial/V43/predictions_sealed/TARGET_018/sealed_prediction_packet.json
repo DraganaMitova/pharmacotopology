@@ -1,0 +1,61 @@
+{
+  "answer_key_source_count_for_prediction": 0,
+  "blocked_inputs_manifest": "data/solved_flag_trial/V43/predictions_sealed/TARGET_018/blocked_inputs_manifest.json",
+  "coordinate_derived_source_count_before_prediction": 0,
+  "coordinate_truth_used_before_prediction": false,
+  "failed_checks": [],
+  "falsification_criteria": [
+    "post-seal holdout assigns different mechanism class",
+    "operator regions fail overlap/support scoring",
+    "contact or region constraints fail precision/enrichment scoring where applicable",
+    "low-resolution structure or ensemble class is contradicted",
+    "perturbation effects are unsupported or contradicted"
+  ],
+  "folding_problem_solved": false,
+  "holdout_source_count_before_prediction": 0,
+  "internal_runtime_source_count_for_prediction": 0,
+  "kind": "V43_SEALED_SOLVED_FLAG_TRIAL_PREDICTION_v0",
+  "mechanism_class": "intrinsic_disorder_contextual_ensemble",
+  "mechanism_confidence": "high",
+  "native_metrics_used_before_prediction": false,
+  "no_holdout_access_before_hash": true,
+  "operator_constraints": [
+    {
+      "constraint_type": "predicted_disorder_ensemble_region",
+      "expected_effect": "compact single-fold forcing should fail"
+    },
+    {
+      "constraint_type": "predicted_contextual_ordering_region",
+      "expected_effect": "context-bound order must not become free-state solved fold"
+    }
+  ],
+  "operator_regions": [
+    {
+      "confidence": "high",
+      "evidence_source_id": "FUS_LOW_COMPLEXITY_DOMAIN_DISORDER",
+      "region_name": "low_complexity_prion_like_region",
+      "span": "annotated disordered region"
+    }
+  ],
+  "predicted_contact_or_region_constraints": [],
+  "predicted_low_resolution_structure_or_ensemble": "free disorder with context-bound ordering expected",
+  "predicted_perturbation_effects": [
+    {
+      "perturbation": "remove_disorder_evidence",
+      "predicted_effect": "weaken"
+    },
+    {
+      "perturbation": "force_compact_single_fold",
+      "predicted_effect": "block"
+    }
+  ],
+  "prediction_hash": "4c6a71f5194534f669b52eb9d09acee2c3ced8fe6bba92b5e9f478a42205e916",
+  "prediction_inputs_manifest": "data/solved_flag_trial/V43/panel/TARGET_018/prediction_input_manifest.json",
+  "prediction_source_ids": [
+    "FUS_LOW_COMPLEXITY_DOMAIN_DISORDER"
+  ],
+  "prediction_timestamp": "2026-06-11T16:34:17.375507+00:00",
+  "protein_folding_solved_candidate": false,
+  "target_id": "TARGET_018",
+  "target_name": "FUS_low_complexity_domain"
+}

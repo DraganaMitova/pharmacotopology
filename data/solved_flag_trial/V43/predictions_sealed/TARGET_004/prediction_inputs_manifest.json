@@ -1,0 +1,66 @@
+{
+  "answer_key_available": false,
+  "coordinates_available_before_sealing": false,
+  "holdout_sources_available": false,
+  "kind": "V43_PREDICTION_INPUTS_MANIFEST_v0",
+  "prediction_sources": [
+    {
+      "answer_key_source": false,
+      "coordinate_derived": false,
+      "coordinate_truth_used_before_prediction": false,
+      "evidence_statement": "Soluble adenylate kinase has nucleotide-binding function and compact enzyme domain annotation.",
+      "feature_tags": [
+        "compact",
+        "soluble",
+        "single_domain",
+        "closure"
+      ],
+      "holdout_source": false,
+      "internal_runtime_source": false,
+      "native_metrics_used_for_selection": false,
+      "region_hints": [
+        {
+          "evidence": "UniProt feature text",
+          "region_name": "P_loop_nucleotide_binding",
+          "span": "Walker/P-loop region"
+        },
+        {
+          "evidence": "function annotation",
+          "region_name": "lid_closure_region",
+          "span": "mobile lid context"
+        }
+      ],
+      "source_date_or_version": "accessed_2026-06-11",
+      "source_id": "T004_UNIPROT",
+      "source_type": "UniProt feature/function text",
+      "source_url_or_citation": "UniProtKB P69441 adenylate kinase"
+    },
+    {
+      "answer_key_source": false,
+      "coordinate_derived": false,
+      "coordinate_truth_used_before_prediction": false,
+      "evidence_statement": "Family signature supports compact kinase core closure grammar.",
+      "feature_tags": [
+        "compact",
+        "soluble",
+        "enzyme_core"
+      ],
+      "holdout_source": false,
+      "internal_runtime_source": false,
+      "native_metrics_used_for_selection": false,
+      "region_hints": [
+        {
+          "evidence": "InterPro/Pfam",
+          "region_name": "adenylate_kinase_core",
+          "span": "family core"
+        }
+      ],
+      "source_date_or_version": "accessed_2026-06-11",
+      "source_id": "T004_INTERPRO",
+      "source_type": "InterPro/Pfam family signatures",
+      "source_url_or_citation": "InterPro adenylate kinase family signatures"
+    }
+  ],
+  "target_id": "TARGET_004",
+  "target_name": "4AKE_adenylate_kinase"
+}

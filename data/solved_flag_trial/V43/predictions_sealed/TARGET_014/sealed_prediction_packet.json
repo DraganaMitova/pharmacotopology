@@ -1,0 +1,53 @@
+{
+  "answer_key_source_count_for_prediction": 0,
+  "blocked_inputs_manifest": "data/solved_flag_trial/V43/predictions_sealed/TARGET_014/blocked_inputs_manifest.json",
+  "coordinate_derived_source_count_before_prediction": 0,
+  "coordinate_truth_used_before_prediction": false,
+  "failed_checks": [],
+  "falsification_criteria": [
+    "post-seal holdout assigns different mechanism class",
+    "operator regions fail overlap/support scoring",
+    "contact or region constraints fail precision/enrichment scoring where applicable",
+    "low-resolution structure or ensemble class is contradicted",
+    "perturbation effects are unsupported or contradicted"
+  ],
+  "folding_problem_solved": false,
+  "holdout_source_count_before_prediction": 0,
+  "internal_runtime_source_count_for_prediction": 0,
+  "kind": "V43_SEALED_SOLVED_FLAG_TRIAL_PREDICTION_v0",
+  "mechanism_class": "weak_evolutionary_information_abstain_or_low_confidence",
+  "mechanism_confidence": "low",
+  "native_metrics_used_before_prediction": false,
+  "no_holdout_access_before_hash": true,
+  "operator_constraints": [
+    {
+      "constraint_type": "clean_abstain_constraint",
+      "expected_effect": "insufficient or weak evidence should not become hard grammar"
+    }
+  ],
+  "operator_regions": [
+    {
+      "confidence": "low",
+      "evidence_source_id": "SARS_COV_2_ORF8_ANNOTATION",
+      "region_name": "accessory_fold_region",
+      "span": "annotated region"
+    }
+  ],
+  "predicted_contact_or_region_constraints": [],
+  "predicted_low_resolution_structure_or_ensemble": "clean abstain",
+  "predicted_perturbation_effects": [
+    {
+      "perturbation": "add_only_generic_annotation",
+      "predicted_effect": "remain_low_confidence"
+    }
+  ],
+  "prediction_hash": "8f3a037285f4d5e695bf215e90c86bfa9a2e4a1bf659af6e787b11d762525bcc",
+  "prediction_inputs_manifest": "data/solved_flag_trial/V43/panel/TARGET_014/prediction_input_manifest.json",
+  "prediction_source_ids": [
+    "SARS_COV_2_ORF8_ANNOTATION"
+  ],
+  "prediction_timestamp": "2026-06-11T16:34:17.373467+00:00",
+  "protein_folding_solved_candidate": false,
+  "target_id": "TARGET_014",
+  "target_name": "SARS_CoV_2_ORF8"
+}

@@ -1,0 +1,95 @@
+{
+  "answer_key_source_count_for_prediction": 0,
+  "blocked_inputs_manifest": "data/solved_flag_trial/V43/predictions_sealed/TARGET_005/blocked_inputs_manifest.json",
+  "coordinate_derived_source_count_before_prediction": 0,
+  "coordinate_truth_used_before_prediction": false,
+  "failed_checks": [],
+  "falsification_criteria": [
+    "post-seal holdout assigns different mechanism class",
+    "operator regions fail overlap/support scoring",
+    "contact or region constraints fail precision/enrichment scoring where applicable",
+    "low-resolution structure or ensemble class is contradicted",
+    "perturbation effects are unsupported or contradicted"
+  ],
+  "folding_problem_solved": false,
+  "holdout_source_count_before_prediction": 0,
+  "internal_runtime_source_count_for_prediction": 0,
+  "kind": "V43_SEALED_SOLVED_FLAG_TRIAL_PREDICTION_v0",
+  "mechanism_class": "membrane_pore_filter_or_transport",
+  "mechanism_confidence": "high",
+  "native_metrics_used_before_prediction": false,
+  "no_holdout_access_before_hash": true,
+  "operator_constraints": [
+    {
+      "constraint_type": "predicted_membrane_operator_region",
+      "expected_effect": "transport context should require membrane topology evidence"
+    }
+  ],
+  "operator_regions": [
+    {
+      "confidence": "high",
+      "evidence_source_id": "BR_UNIPROT",
+      "region_name": "retinal_binding_operator",
+      "span": "lysine retinal region"
+    },
+    {
+      "confidence": "high",
+      "evidence_source_id": "BR_UNIPROT",
+      "region_name": "seven_tm_bundle",
+      "span": "multi-pass membrane region"
+    },
+    {
+      "confidence": "high",
+      "evidence_source_id": "BR_INTERPRO",
+      "region_name": "proton_pump_signature",
+      "span": "family signature"
+    }
+  ],
+  "predicted_contact_or_region_constraints": [
+    {
+      "confidence": "high",
+      "constraint_id": "TARGET_005_C1",
+      "constraint_type": "long_range_contact_or_region_constraint",
+      "region_a": "retinal_binding_operator",
+      "region_b": "membrane_bundle_or_filter_context",
+      "sequence_separation": "long_range_or_cross_context"
+    },
+    {
+      "confidence": "high",
+      "constraint_id": "TARGET_005_C2",
+      "constraint_type": "long_range_contact_or_region_constraint",
+      "region_a": "seven_tm_bundle",
+      "region_b": "membrane_bundle_or_filter_context",
+      "sequence_separation": "long_range_or_cross_context"
+    },
+    {
+      "confidence": "high",
+      "constraint_id": "TARGET_005_C3",
+      "constraint_type": "long_range_contact_or_region_constraint",
+      "region_a": "proton_pump_signature",
+      "region_b": "membrane_bundle_or_filter_context",
+      "sequence_separation": "long_range_or_cross_context"
+    }
+  ],
+  "predicted_low_resolution_structure_or_ensemble": "membrane-spanning operator expected",
+  "predicted_perturbation_effects": [
+    {
+      "perturbation": "remove_signature_or_transport_motif",
+      "predicted_effect": "break"
+    },
+    {
+      "perturbation": "remove_membrane_topology_context",
+      "predicted_effect": "weaken"
+    }
+  ],
+  "prediction_hash": "19793878009c7f3324ae359ddb03fd55591146e1d18c473acc883900f87ae477",
+  "prediction_inputs_manifest": "data/solved_flag_trial/V43/panel/TARGET_005/prediction_input_manifest.json",
+  "prediction_source_ids": [
+    "BR_UNIPROT",
+    "BR_INTERPRO"
+  ],
+  "prediction_timestamp": "2026-06-11T16:34:17.367543+00:00",
+  "protein_folding_solved_candidate": false,
+  "target_id": "TARGET_005",
+  "target_name": "bacteriorhodopsin_BR"
+}

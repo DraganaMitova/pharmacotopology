@@ -1,0 +1,23 @@
+{
+  "contact_enrichment_vs_random": 2.8,
+  "contact_scorable": true,
+  "expected_mechanism_class": "metamorphic_or_multistate_switch",
+  "failure_reason": null,
+  "false_contact_promotion_rate": 0.08,
+  "low_resolution_supported": true,
+  "mechanism_class_correct": true,
+  "motif_or_signature_recovered": true,
+  "operator_region_count": 2,
+  "operator_region_supported_count": 2,
+  "perturbation_count": 3,
+  "perturbation_false_promotion": false,
+  "perturbation_supported_count": 3,
+  "predicted_mechanism_class": "metamorphic_or_multistate_switch",
+  "region_overlap_f1": 1.0,
+  "sealed_prediction_hash": "7d73f87143898a938334f722c04a0ce8cd477347d1f669694ab65ac9524e74f4",
+  "target_id": "TARGET_022",
+  "target_name": "Mad2",
+  "top_L_long_range_contact_precision": 0.56,
+  "top_L_over_2_long_range_contact_precision": 0.5,
+  "validation_level": "supported"
+}

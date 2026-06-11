@@ -1,0 +1,80 @@
+{
+  "answer_key_source_count_for_prediction": 0,
+  "blocked_inputs_manifest": "data/solved_flag_trial/V43/predictions_sealed/TARGET_007/blocked_inputs_manifest.json",
+  "coordinate_derived_source_count_before_prediction": 0,
+  "coordinate_truth_used_before_prediction": false,
+  "failed_checks": [],
+  "falsification_criteria": [
+    "post-seal holdout assigns different mechanism class",
+    "operator regions fail overlap/support scoring",
+    "contact or region constraints fail precision/enrichment scoring where applicable",
+    "low-resolution structure or ensemble class is contradicted",
+    "perturbation effects are unsupported or contradicted"
+  ],
+  "folding_problem_solved": false,
+  "holdout_source_count_before_prediction": 0,
+  "internal_runtime_source_count_for_prediction": 0,
+  "kind": "V43_SEALED_SOLVED_FLAG_TRIAL_PREDICTION_v0",
+  "mechanism_class": "membrane_pore_filter_or_transport",
+  "mechanism_confidence": "high",
+  "native_metrics_used_before_prediction": false,
+  "no_holdout_access_before_hash": true,
+  "operator_constraints": [
+    {
+      "constraint_type": "predicted_membrane_operator_region",
+      "expected_effect": "transport context should require membrane topology evidence"
+    }
+  ],
+  "operator_regions": [
+    {
+      "confidence": "high",
+      "evidence_source_id": "LACY_UNIPROT",
+      "region_name": "sugar_transport_operator",
+      "span": "MFS core"
+    },
+    {
+      "confidence": "high",
+      "evidence_source_id": "LACY_UNIPROT",
+      "region_name": "transmembrane_bundle",
+      "span": "multi-pass region"
+    }
+  ],
+  "predicted_contact_or_region_constraints": [
+    {
+      "confidence": "high",
+      "constraint_id": "TARGET_007_C1",
+      "constraint_type": "long_range_contact_or_region_constraint",
+      "region_a": "sugar_transport_operator",
+      "region_b": "membrane_bundle_or_filter_context",
+      "sequence_separation": "long_range_or_cross_context"
+    },
+    {
+      "confidence": "high",
+      "constraint_id": "TARGET_007_C2",
+      "constraint_type": "long_range_contact_or_region_constraint",
+      "region_a": "transmembrane_bundle",
+      "region_b": "membrane_bundle_or_filter_context",
+      "sequence_separation": "long_range_or_cross_context"
+    }
+  ],
+  "predicted_low_resolution_structure_or_ensemble": "membrane-spanning operator expected",
+  "predicted_perturbation_effects": [
+    {
+      "perturbation": "remove_signature_or_transport_motif",
+      "predicted_effect": "break"
+    },
+    {
+      "perturbation": "remove_membrane_topology_context",
+      "predicted_effect": "weaken"
+    }
+  ],
+  "prediction_hash": "a68f59d81e3550e0c4ffd809c1187058c5822c796df7797c2b8eca53e7237017",
+  "prediction_inputs_manifest": "data/solved_flag_trial/V43/panel/TARGET_007/prediction_input_manifest.json",
+  "prediction_source_ids": [
+    "LACY_UNIPROT"
+  ],
+  "prediction_timestamp": "2026-06-11T16:34:17.368376+00:00",
+  "protein_folding_solved_candidate": false,
+  "target_id": "TARGET_007",
+  "target_name": "LacY_lactose_permease"
+}

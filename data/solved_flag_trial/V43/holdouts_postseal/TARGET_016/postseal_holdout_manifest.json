@@ -1,0 +1,34 @@
+{
+  "contact_scorable": false,
+  "contradicts_prediction": false,
+  "expected_mechanism_class": "weak_evolutionary_information_abstain_or_low_confidence",
+  "holdout_opened_after_prediction_hash": "3899f3d50a2cc4a9bf778a55eb833ca326dd9da3c55a701d5448388577549402",
+  "holdout_opened_timestamp": "2026-06-11T16:34:17.383655+00:00",
+  "kind": "V43_POSTSEAL_STRUCTURE_ENSEMBLE_FUNCTION_HOLDOUT_v0",
+  "postseal_contact_metrics": {
+    "contact_auc_or_enrichment": null,
+    "contact_enrichment_vs_random": null,
+    "false_contact_promotion_rate": 0.0,
+    "top_L_long_range_contact_precision": null,
+    "top_L_over_2_long_range_contact_precision": null
+  },
+  "postseal_sources": [
+    {
+      "allowed_use": "post_hoc_scoring_only_after_prediction_hash",
+      "coordinate_derived": false,
+      "source_id": "TARGET_016_V43_POSTSEAL_HOLDOUT",
+      "source_type": "postseal independent structure/ensemble/function scoring summary",
+      "used_before_prediction": false
+    }
+  ],
+  "structure_or_ensemble_holdout_type": "postseal_ensemble_function_disorder_scoring",
+  "supported_low_resolution_structure_or_ensemble": "clean abstain",
+  "supported_operator_regions": [
+    "interferon_inhibitory_domain"
+  ],
+  "supported_perturbations": [
+    "add_only_generic_annotation"
+  ],
+  "target_id": "TARGET_016",
+  "target_name": "Ebola_VP35_IID"
+}

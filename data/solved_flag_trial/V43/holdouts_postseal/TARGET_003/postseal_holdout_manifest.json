@@ -1,0 +1,37 @@
+{
+  "contact_scorable": false,
+  "contradicts_prediction": false,
+  "expected_mechanism_class": "intrinsic_disorder_contextual_ensemble",
+  "holdout_opened_after_prediction_hash": "66ed053acb99737e51e69469861bf44648dab60a21d50b761161e270085d3867",
+  "holdout_opened_timestamp": "2026-06-11T16:34:17.379570+00:00",
+  "kind": "V43_POSTSEAL_STRUCTURE_ENSEMBLE_FUNCTION_HOLDOUT_v0",
+  "postseal_contact_metrics": {
+    "contact_auc_or_enrichment": null,
+    "contact_enrichment_vs_random": null,
+    "false_contact_promotion_rate": 0.0,
+    "top_L_long_range_contact_precision": null,
+    "top_L_over_2_long_range_contact_precision": null
+  },
+  "postseal_sources": [
+    {
+      "allowed_use": "post_hoc_scoring_only_after_prediction_hash",
+      "coordinate_derived": false,
+      "source_id": "TARGET_003_V43_POSTSEAL_HOLDOUT",
+      "source_type": "postseal independent structure/ensemble/function scoring summary",
+      "used_before_prediction": false
+    }
+  ],
+  "structure_or_ensemble_holdout_type": "postseal_ensemble_function_disorder_scoring",
+  "supported_low_resolution_structure_or_ensemble": "free disorder with context-bound ordering expected",
+  "supported_operator_regions": [
+    "acidic_C_terminal_tail",
+    "N_terminal_membrane_binding_region",
+    "membrane_induced_helix"
+  ],
+  "supported_perturbations": [
+    "remove_disorder_evidence",
+    "force_compact_single_fold"
+  ],
+  "target_id": "TARGET_003",
+  "target_name": "alpha_synuclein_SNCA"
+}

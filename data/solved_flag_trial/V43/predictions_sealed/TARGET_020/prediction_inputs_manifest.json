@@ -1,0 +1,36 @@
+{
+  "answer_key_available": false,
+  "coordinates_available_before_sealing": false,
+  "holdout_sources_available": false,
+  "kind": "V43_PREDICTION_INPUTS_MANIFEST_v0",
+  "prediction_sources": [
+    {
+      "answer_key_source": false,
+      "coordinate_derived": false,
+      "coordinate_truth_used_before_prediction": false,
+      "evidence_statement": "Disorder/low-complexity annotation supports ensemble grammar.",
+      "feature_tags": [
+        "disorder",
+        "idp",
+        "ensemble",
+        "phase_separation"
+      ],
+      "holdout_source": false,
+      "internal_runtime_source": false,
+      "native_metrics_used_for_selection": false,
+      "region_hints": [
+        {
+          "evidence": "DisProt/UniProt text",
+          "region_name": "low_complexity_RGG_region",
+          "span": "annotated disordered region"
+        }
+      ],
+      "source_date_or_version": "accessed_2026-06-11",
+      "source_id": "HNRNPA1_LCD_DISORDER",
+      "source_type": "DisProt disorder annotations",
+      "source_url_or_citation": "DisProt / literature hnRNPA1 low-complexity annotations"
+    }
+  ],
+  "target_id": "TARGET_020",
+  "target_name": "hnRNPA1_LCD"
+}

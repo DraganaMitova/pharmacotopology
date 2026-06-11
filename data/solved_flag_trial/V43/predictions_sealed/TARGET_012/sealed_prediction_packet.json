@@ -1,0 +1,66 @@
+{
+  "answer_key_source_count_for_prediction": 0,
+  "blocked_inputs_manifest": "data/solved_flag_trial/V43/predictions_sealed/TARGET_012/blocked_inputs_manifest.json",
+  "coordinate_derived_source_count_before_prediction": 0,
+  "coordinate_truth_used_before_prediction": false,
+  "failed_checks": [],
+  "falsification_criteria": [
+    "post-seal holdout assigns different mechanism class",
+    "operator regions fail overlap/support scoring",
+    "contact or region constraints fail precision/enrichment scoring where applicable",
+    "low-resolution structure or ensemble class is contradicted",
+    "perturbation effects are unsupported or contradicted"
+  ],
+  "folding_problem_solved": false,
+  "holdout_source_count_before_prediction": 0,
+  "internal_runtime_source_count_for_prediction": 0,
+  "kind": "V43_SEALED_SOLVED_FLAG_TRIAL_PREDICTION_v0",
+  "mechanism_class": "compact_single_fold_core_closure",
+  "mechanism_confidence": "high",
+  "native_metrics_used_before_prediction": false,
+  "no_holdout_access_before_hash": true,
+  "operator_constraints": [
+    {
+      "constraint_type": "predicted_long_range_closure_region",
+      "expected_effect": "core/operator disruption should weaken compact closure"
+    }
+  ],
+  "operator_regions": [
+    {
+      "confidence": "high",
+      "evidence_source_id": "BARNASE_UNIPROT",
+      "region_name": "ribonuclease_core",
+      "span": "domain core"
+    }
+  ],
+  "predicted_contact_or_region_constraints": [
+    {
+      "confidence": "high",
+      "constraint_id": "TARGET_012_C1",
+      "constraint_type": "long_range_contact_or_region_constraint",
+      "region_a": "ribonuclease_core",
+      "region_b": "core_or_partner_region",
+      "sequence_separation": "long_range_or_cross_context"
+    }
+  ],
+  "predicted_low_resolution_structure_or_ensemble": "compact single folded domain expected",
+  "predicted_perturbation_effects": [
+    {
+      "perturbation": "disrupt_core_closure_region",
+      "predicted_effect": "weaken"
+    },
+    {
+      "perturbation": "remove_functional_core_annotation",
+      "predicted_effect": "weaken"
+    }
+  ],
+  "prediction_hash": "9d9786663ca16baa708ea2d59113959ff1e6950a0db9f471b3b7b5b92ba8574e",
+  "prediction_inputs_manifest": "data/solved_flag_trial/V43/panel/TARGET_012/prediction_input_manifest.json",
+  "prediction_source_ids": [
+    "BARNASE_UNIPROT"
+  ],
+  "prediction_timestamp": "2026-06-11T16:34:17.370668+00:00",
+  "protein_folding_solved_candidate": false,
+  "target_id": "TARGET_012",
+  "target_name": "barnase"
+}

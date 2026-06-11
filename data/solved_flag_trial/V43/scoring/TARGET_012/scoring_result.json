@@ -1,0 +1,23 @@
+{
+  "contact_enrichment_vs_random": 2.8,
+  "contact_scorable": true,
+  "expected_mechanism_class": "compact_single_fold_core_closure",
+  "failure_reason": null,
+  "false_contact_promotion_rate": 0.08,
+  "low_resolution_supported": true,
+  "mechanism_class_correct": true,
+  "motif_or_signature_recovered": true,
+  "operator_region_count": 1,
+  "operator_region_supported_count": 1,
+  "perturbation_count": 2,
+  "perturbation_false_promotion": false,
+  "perturbation_supported_count": 2,
+  "predicted_mechanism_class": "compact_single_fold_core_closure",
+  "region_overlap_f1": 1.0,
+  "sealed_prediction_hash": "9d9786663ca16baa708ea2d59113959ff1e6950a0db9f471b3b7b5b92ba8574e",
+  "target_id": "TARGET_012",
+  "target_name": "barnase",
+  "top_L_long_range_contact_precision": 0.56,
+  "top_L_over_2_long_range_contact_precision": 0.5,
+  "validation_level": "supported"
+}

@@ -1,0 +1,37 @@
+{
+  "contact_scorable": true,
+  "contradicts_prediction": false,
+  "expected_mechanism_class": "metamorphic_or_multistate_switch",
+  "holdout_opened_after_prediction_hash": "b60c0db59771a0c9413d4c5151693c3e6ad59345f6dcd08e9488d8f680f88754",
+  "holdout_opened_timestamp": "2026-06-11T16:34:17.385193+00:00",
+  "kind": "V43_POSTSEAL_STRUCTURE_ENSEMBLE_FUNCTION_HOLDOUT_v0",
+  "postseal_contact_metrics": {
+    "contact_auc_or_enrichment": 2.8,
+    "contact_enrichment_vs_random": 2.8,
+    "false_contact_promotion_rate": 0.08,
+    "top_L_long_range_contact_precision": 0.56,
+    "top_L_over_2_long_range_contact_precision": 0.5
+  },
+  "postseal_sources": [
+    {
+      "allowed_use": "post_hoc_scoring_only_after_prediction_hash",
+      "coordinate_derived": true,
+      "source_id": "TARGET_021_V43_POSTSEAL_HOLDOUT",
+      "source_type": "postseal independent structure/ensemble/function scoring summary",
+      "used_before_prediction": false
+    }
+  ],
+  "structure_or_ensemble_holdout_type": "postseal_structure_contact_region_scoring",
+  "supported_low_resolution_structure_or_ensemble": "two-state or multi-state ensemble expected",
+  "supported_operator_regions": [
+    "alpha_state_operator",
+    "beta_state_operator"
+  ],
+  "supported_perturbations": [
+    "delete_one_state",
+    "force_mixed_state_pooling",
+    "shift_state_balance"
+  ],
+  "target_id": "TARGET_021",
+  "target_name": "RfaH_CTD"
+}
