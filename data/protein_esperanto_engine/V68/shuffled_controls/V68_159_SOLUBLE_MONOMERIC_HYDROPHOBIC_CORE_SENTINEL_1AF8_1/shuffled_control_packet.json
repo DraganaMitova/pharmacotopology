@@ -1,0 +1,34 @@
+{
+  "active_operator_count": 1,
+  "folding_problem_solved": false,
+  "kind": "V68_COMPACT_SEALED_PACKET_SUMMARY_v0",
+  "natural_mechanism_class": "globular_closure",
+  "operator_names": [
+    "closure_operator"
+  ],
+  "prediction_hash": "b5a8e2684dd6abed69c5e1e9819301cfbaf087a08ceaa0994d747de62486f713",
+  "sealed_before_holdout": true,
+  "selected_mechanism_class": "globular_closure",
+  "selection_reason": "sequence_only_hydrophobic_closure_support",
+  "target_id": "V68_159_SOLUBLE_MONOMERIC_HYDROPHOBIC_CORE_SENTINEL_1AF8_1_SHUFFLED_CONTROL",
+  "trajectory_final_state_summary": {
+    "assembly_ambiguous": 0.0,
+    "assembly_required_core": 0.0,
+    "contact_probability": 0.576163,
+    "disorder_order_balance": 0.280047,
+    "frustration": 0.0,
+    "interface_buried_hydrophobicity": 0.0,
+    "interface_readiness": 0.12,
+    "monomer_incomplete_topology": 0.0,
+    "operator_activation": 0.703488,
+    "partner_completed_core": 0.0,
+    "proteostasis_routing": 0.0,
+    "residue_exposure": 0.596209,
+    "segment_compaction": 0.573953,
+    "state_basin_occupancy": {
+      "compact_folded": 0.616163,
+      "expanded_unfolded": 0.428256
+    },
+    "timepoint": 1000
+  }
+}

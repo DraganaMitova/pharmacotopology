@@ -1,0 +1,42 @@
+{
+  "certificate_hash": "a8ef0c8ca847060c1781c2a148bdcdffda35023a64d17d10da7b5ee4f25ed2ce",
+  "claim_allowed": false,
+  "decision_boundary": [
+    "explicit true transmembrane/topology evidence keeps membrane priority",
+    "explicit assembly-required evidence routes to assembly_required_folding",
+    "cofactor/metal/ligand evidence routes to cofactor_stabilized_core when assembly-required evidence is absent",
+    "soluble monomeric core evidence routes to globular_closure",
+    "generic complex alone abstains",
+    "weak competing assembly/topology/cofactor explanations abstain"
+  ],
+  "engine_source_sha256": "c95723c8825d59b97686012af66fdb09ed82d39e1ba185302a92b71e5927db5a",
+  "engine_version": "E65",
+  "failure_mode_addressed": "assembly_required_core_vs_membrane_topology",
+  "kind": "E65_ASSEMBLY_REQUIRED_FOLDING_GRAMMAR_CERTIFICATE_v0",
+  "lineage": [
+    "E60",
+    "E61",
+    "E62",
+    "E63",
+    "E64",
+    "E65"
+  ],
+  "mechanism_class_set_hash": "1a412ca27c8b163197f7ad5b75585b69ee7da99631f17092cfe9e8ddb43001e8",
+  "missing_esperanto_word": "assembly_required_core_vs_topology_provider",
+  "new_mechanism_class": "assembly_required_folding",
+  "new_state_variables": [
+    "assembly_required_core",
+    "partner_completed_core",
+    "interface_buried_hydrophobicity",
+    "monomer_incomplete_topology",
+    "coiled_coil_register_dependency",
+    "domain_swap_candidate",
+    "biological_oligomer_context",
+    "generic_complex_only",
+    "assembly_ambiguous"
+  ],
+  "next_required_batch": "V68_OLIGOMER_ASSEMBLY_PANEL_200",
+  "operator_set_hash": "1421426c696edb0f3ddce7a984c3fc0603e32fea4eb28a9f8acb83bbf07e910a",
+  "source_batch_trigger": "V67_RCSB_NONREDUNDANT_200_DISCOVERY_E64",
+  "timestamp_utc": "2026-06-11T22:07:36.217674+00:00"
+}

@@ -1,0 +1,306 @@
+{
+  "abstain_count": 12,
+  "accept_abstain_posture": "abstaining_more_than_failed_accepting",
+  "accepted_accuracy": 1.0,
+  "accepted_count": 188,
+  "alphafold_used_before_seal": false,
+  "assembly_ambiguous_abstained": 0,
+  "assembly_required_correct": 118,
+  "atomistic_md_executed": false,
+  "baseline_engine_version": "E64",
+  "batch_id": "V68_OLIGOMER_ASSEMBLY_PANEL_200",
+  "batch_mode": "specialist_assembly_panel_200",
+  "campaign_id": "V61_TO_V70_PROTEIN_ESPERANTO_SATURATION_CAMPAIGN",
+  "certificate_hash": "5cb653d941e979e191b2d48079baad56302f5d2d72ddbf574d54637dbf33b790",
+  "claim_allowed": false,
+  "claim_blocked_reason": "V68 is a specialist assembly grammar panel, not a solved-folding claim.",
+  "cofactor_not_called_assembly": 15,
+  "coiled_coil_register_detected": 30,
+  "composition_rule": {
+    "BIOLOGICAL_OLIGOMER_ASSEMBLY_REQUIRED": 40,
+    "COFACTOR_LIGAND_SOLUBLE_SENTINEL": 15,
+    "COILED_COIL_HELIX_BUNDLE_ASSEMBLY": 30,
+    "GENERIC_COMPLEX_NOT_ASSEMBLY_CONTROL": 12,
+    "SOLUBLE_MONOMERIC_HYDROPHOBIC_CORE_SENTINEL": 25,
+    "TRUE_TRANSMEMBRANE_OLIGOMER_CHANNEL": 30,
+    "V67_ASSEMBLY_REQUIRED_REPLAY": 48
+  },
+  "contact_truth_used_before_seal": false,
+  "control_count": 17,
+  "controls": [
+    {
+      "control_id": "target_count_200",
+      "observed": 200,
+      "passed": true,
+      "reason": "V68 must have exactly 200 targets."
+    },
+    {
+      "control_id": "composition_rule",
+      "observed": {
+        "BIOLOGICAL_OLIGOMER_ASSEMBLY_REQUIRED": 40,
+        "COFACTOR_LIGAND_SOLUBLE_SENTINEL": 15,
+        "COILED_COIL_HELIX_BUNDLE_ASSEMBLY": 30,
+        "GENERIC_COMPLEX_NOT_ASSEMBLY_CONTROL": 12,
+        "SOLUBLE_MONOMERIC_HYDROPHOBIC_CORE_SENTINEL": 25,
+        "TRUE_TRANSMEMBRANE_OLIGOMER_CHANNEL": 30,
+        "V67_ASSEMBLY_REQUIRED_REPLAY": 48
+      },
+      "passed": true,
+      "reason": "V68 must match requested specialist panel composition."
+    },
+    {
+      "control_id": "engine_version_declared_e65",
+      "observed": null,
+      "passed": true,
+      "reason": "V68 uses E65."
+    },
+    {
+      "control_id": "assembly_class_available",
+      "observed": null,
+      "passed": true,
+      "reason": "E65 exposes assembly_required_folding as a mechanism class."
+    },
+    {
+      "control_id": "target_selection_manual_false",
+      "observed": null,
+      "passed": true,
+      "reason": "V68 target selection is deterministic from committed artifacts."
+    },
+    {
+      "control_id": "all_sealed_before_holdout",
+      "observed": null,
+      "passed": true,
+      "reason": "Every V68 packet is sealed before holdout."
+    },
+    {
+      "control_id": "holdouts_opened_after_seal",
+      "observed": null,
+      "passed": true,
+      "reason": "Every holdout references sealed prediction hash."
+    },
+    {
+      "control_id": "v67_dominant_failure_reduced_by_half",
+      "observed": {
+        "assembly_ambiguous_abstained": 0,
+        "assembly_required_correct": 118,
+        "cofactor_not_called_assembly": 15,
+        "coiled_coil_register_detected": 30,
+        "domain_swap_candidates_detected": 3,
+        "generic_complex_not_called_assembly": 12,
+        "soluble_hydrophobic_not_called_assembly": 25,
+        "true_TM_preserved": 30,
+        "v67_dominant_failure_reduction_count": 48,
+        "v67_dominant_failure_remaining": 0,
+        "v67_dominant_failure_repaired_by_e65": 48,
+        "v67_dominant_failure_replay_count": 48
+      },
+      "passed": true,
+      "reason": "Minimum useful pass: V67 dominant failure remaining count reduced by at least half."
+    },
+    {
+      "control_id": "sentinels_stable",
+      "observed": {
+        "regressions": [],
+        "sentinel_count": 82
+      },
+      "passed": true,
+      "reason": "True TM, soluble, cofactor, and generic-complex sentinels must stay correct."
+    },
+    {
+      "control_id": "dominant_failure_mode_identified",
+      "observed": [],
+      "passed": true,
+      "reason": "V68 identifies the next dominant failure when failures remain."
+    },
+    {
+      "control_id": "shuffled_sequence_controls_reported",
+      "observed": {
+        "control_count": 200
+      },
+      "passed": true,
+      "reason": "Composition-preserving shuffled controls generated without target metadata."
+    },
+    {
+      "control_id": "coordinate_leakage_control",
+      "observed": {
+        "allowed_initialization_source_ids": [],
+        "blocked_source_ids": [
+          "V68_BAD_COORDINATES"
+        ],
+        "coordinate_derived_source_count_before_prediction": 1,
+        "coordinate_truth_used_before_prediction": true,
+        "holdout_opened_before_seal": false,
+        "internal_runtime_source_count_for_prediction": 0,
+        "internal_runtime_used_as_biological_evidence": false,
+        "kind": "PROTEIN_ESPERANTO_EVIDENCE_BOUNDARY_GATE_v0",
+        "rows": [
+          {
+            "allowed_for_claim": false,
+            "allowed_for_holdout_after_seal": false,
+            "allowed_to_initialize_language_field": false,
+            "blocked_reason": "coordinate_derived_blocked_before_seal",
+            "coordinate_derived": true,
+            "internal_runtime": false,
+            "source_class": "coordinate_derived",
+            "source_id": "V68_BAD_COORDINATES",
+            "source_role": "prediction_input",
+            "spatial_proxy": false
+          }
+        ],
+        "spatial_proxy_untagged_or_misused_count": 0
+      },
+      "passed": true,
+      "reason": "Coordinate-derived source blocks prediction."
+    },
+    {
+      "control_id": "alphafold_leakage_control",
+      "observed": {
+        "allowed_initialization_source_ids": [],
+        "blocked_source_ids": [
+          "V68_BAD_ALPHAFOLD_MODEL"
+        ],
+        "coordinate_derived_source_count_before_prediction": 1,
+        "coordinate_truth_used_before_prediction": true,
+        "holdout_opened_before_seal": false,
+        "internal_runtime_source_count_for_prediction": 0,
+        "internal_runtime_used_as_biological_evidence": false,
+        "kind": "PROTEIN_ESPERANTO_EVIDENCE_BOUNDARY_GATE_v0",
+        "rows": [
+          {
+            "allowed_for_claim": false,
+            "allowed_for_holdout_after_seal": false,
+            "allowed_to_initialize_language_field": false,
+            "blocked_reason": "coordinate_derived_blocked_before_seal",
+            "coordinate_derived": true,
+            "internal_runtime": false,
+            "source_class": "coordinate_derived",
+            "source_id": "V68_BAD_ALPHAFOLD_MODEL",
+            "source_role": "prediction_input",
+            "spatial_proxy": false
+          }
+        ],
+        "spatial_proxy_untagged_or_misused_count": 0
+      },
+      "passed": true,
+      "reason": "AlphaFold-like model blocks prediction."
+    },
+    {
+      "control_id": "holdout_opened_before_seal_control",
+      "observed": {
+        "allowed_initialization_source_ids": [],
+        "blocked_source_ids": [
+          "V68_PRESEAL_HOLDOUT"
+        ],
+        "coordinate_derived_source_count_before_prediction": 0,
+        "coordinate_truth_used_before_prediction": false,
+        "holdout_opened_before_seal": true,
+        "internal_runtime_source_count_for_prediction": 0,
+        "internal_runtime_used_as_biological_evidence": false,
+        "kind": "PROTEIN_ESPERANTO_EVIDENCE_BOUNDARY_GATE_v0",
+        "rows": [
+          {
+            "allowed_for_claim": false,
+            "allowed_for_holdout_after_seal": true,
+            "allowed_to_initialize_language_field": false,
+            "blocked_reason": "holdout_opened_before_seal",
+            "coordinate_derived": true,
+            "internal_runtime": false,
+            "source_class": "coordinate_derived",
+            "source_id": "V68_PRESEAL_HOLDOUT",
+            "source_role": "holdout_validation",
+            "spatial_proxy": false
+          }
+        ],
+        "spatial_proxy_untagged_or_misused_count": 0
+      },
+      "passed": true,
+      "reason": "Holdout validation cannot initialize prediction before sealing."
+    },
+    {
+      "control_id": "internal_runtime_leakage_control",
+      "observed": {
+        "allowed_initialization_source_ids": [],
+        "blocked_source_ids": [
+          "V68_BAD_INTERNAL_RUNTIME"
+        ],
+        "coordinate_derived_source_count_before_prediction": 0,
+        "coordinate_truth_used_before_prediction": false,
+        "holdout_opened_before_seal": false,
+        "internal_runtime_source_count_for_prediction": 1,
+        "internal_runtime_used_as_biological_evidence": true,
+        "kind": "PROTEIN_ESPERANTO_EVIDENCE_BOUNDARY_GATE_v0",
+        "rows": [
+          {
+            "allowed_for_claim": false,
+            "allowed_for_holdout_after_seal": false,
+            "allowed_to_initialize_language_field": false,
+            "blocked_reason": "internal_runtime_never_biological_evidence",
+            "coordinate_derived": false,
+            "internal_runtime": true,
+            "source_class": "internal_runtime",
+            "source_id": "V68_BAD_INTERNAL_RUNTIME",
+            "source_role": "prediction_input",
+            "spatial_proxy": false
+          }
+        ],
+        "spatial_proxy_untagged_or_misused_count": 0
+      },
+      "passed": true,
+      "reason": "Internal runtime cannot become biological evidence."
+    },
+    {
+      "control_id": "random_sequence_control",
+      "observed": null,
+      "passed": true,
+      "reason": "Random sequence without evidence abstains."
+    },
+    {
+      "control_id": "readme_check_skipped_by_user_instruction",
+      "observed": null,
+      "passed": true,
+      "reason": "README check skipped by explicit user instruction."
+    }
+  ],
+  "controls_passed": true,
+  "coordinate_truth_used_before_seal": false,
+  "coverage": 0.94,
+  "domain_swap_candidates_detected": 3,
+  "dominant_failure_count": 0,
+  "dominant_failure_mode": null,
+  "engine_source_last_commit": "1f0acedc27c9a6227ef96f2d67a4ddfc08cdcece",
+  "engine_source_sha256": "c95723c8825d59b97686012af66fdb09ed82d39e1ba185302a92b71e5927db5a",
+  "engine_version_used": "E65",
+  "failed_accepted_count": 0,
+  "failed_controls": [],
+  "failure_modes": {},
+  "folding_problem_solved": false,
+  "generic_complex_not_called_assembly": 12,
+  "kind": "V68_E65_OLIGOMER_ASSEMBLY_PANEL_200_CERTIFICATE_v0",
+  "missing_words_top_10": [],
+  "next_required_batch": "V69_RCSB_NONREDUNDANT_200_DISCOVERY_E65",
+  "passed_control_count": 17,
+  "raw_accuracy": 1.0,
+  "sentinel_regression_count": 0,
+  "sentinel_regressions": [],
+  "soluble_hydrophobic_not_called_assembly": 25,
+  "status": "V68_E65_OLIGOMER_ASSEMBLY_PANEL_PASSED_REVIEW_REQUIRED",
+  "supported_count": 200,
+  "target_selection_manual": false,
+  "targets_total": 200,
+  "timestamp_utc": "2026-06-11T22:07:38.593891+00:00",
+  "true_TM_preserved": 30,
+  "v67_dominant_failure_reduction_count": 48,
+  "v67_dominant_failure_remaining": 0,
+  "v67_dominant_failure_repaired_by_e65": 48,
+  "v67_dominant_failure_replay_count": 48,
+  "v68_questions_answered": {
+    "assembly_ambiguous_abstained": 0,
+    "assembly_required_correct": 118,
+    "cofactor_not_called_assembly": 15,
+    "coiled_coil_register_detected": 30,
+    "domain_swap_candidates_detected": 3,
+    "generic_complex_not_called_assembly": 12,
+    "soluble_hydrophobic_not_called_assembly": 25,
+    "true_TM_preserved": 30
+  }
+}

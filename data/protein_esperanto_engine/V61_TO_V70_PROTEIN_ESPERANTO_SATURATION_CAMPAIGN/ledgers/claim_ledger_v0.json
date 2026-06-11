@@ -156,6 +156,22 @@
         "short_interface_context_missing": 12
       },
       "raw_accuracy": 0.465
+    },
+    {
+      "abstention_rate": 0.06,
+      "accepted_accuracy": 1.0,
+      "batch_id": "V68_OLIGOMER_ASSEMBLY_PANEL_200",
+      "batch_mode": "specialist_assembly_panel_200",
+      "claim_allowed": false,
+      "claim_blocked_reason": "V68 is a specialist assembly grammar panel, not a solved-folding claim.",
+      "clean_abstain_count": 12,
+      "control_pass_rate": 1.0,
+      "coverage": 0.94,
+      "dominant_failure_mode": null,
+      "engine_version_used": "E65",
+      "failure_count": 0,
+      "failure_modes": {},
+      "raw_accuracy": 1.0
     }
   ]
 }

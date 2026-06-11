@@ -1,0 +1,49 @@
+{
+  "acceptance_decision": "accepted",
+  "alphafold_used_before_seal": false,
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "1",
+  "entry_id": "1A1D",
+  "expected_mechanism_class": "globular_closure",
+  "holdout_opened_after_prediction_hash": "190f4b93d476af498481f3a39c113bb459fd55e4dee2b3d2f0f36e544e2080f7",
+  "kind": "V68_E65_OLIGOMER_ASSEMBLY_PANEL_VALIDATION_RESULT_v0",
+  "level1_regime_selection": true,
+  "level2_region_localization_proxy": true,
+  "level3_topology_or_contact_proxy": true,
+  "lineage_source_target": "V63_1A1D_1",
+  "panel_group": "SOLUBLE_MONOMERIC_HYDROPHOBIC_CORE_SENTINEL",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1A1D",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1A1D/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V68_173_SOLUBLE_MONOMERIC_HYDROPHOBIC_CORE_SENTINEL_1A1D_1_V68_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "predicted_mechanism_class": "globular_closure",
+  "protein_id": "1A1D_1",
+  "score_label": "supported",
+  "sealed_prediction_hash": "190f4b93d476af498481f3a39c113bb459fd55e4dee2b3d2f0f36e544e2080f7",
+  "source_family": "V63",
+  "target_id": "V68_173_SOLUBLE_MONOMERIC_HYDROPHOBIC_CORE_SENTINEL_1A1D_1",
+  "validation_checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "globular_closure",
+      "observed": "globular_closure",
+      "passed": true
+    },
+    {
+      "check_id": "compact_or_contact_supported",
+      "comparator": ">=",
+      "metric": "contact_probability",
+      "observed": 0.562534,
+      "passed": true,
+      "threshold": 0.35
+    }
+  ]
+}

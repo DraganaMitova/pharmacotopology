@@ -1,0 +1,36 @@
+{
+  "batch_id": "V68_OLIGOMER_ASSEMBLY_PANEL_200",
+  "engine_version_used": "E65",
+  "entity_id": "1",
+  "entry_id": "1APF",
+  "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "expected_observables": [
+    {
+      "check_id": "proteostasis_routing_supported",
+      "comparator": ">=",
+      "metric": "proteostasis_routing",
+      "threshold": 0.5
+    }
+  ],
+  "holdout_opened_after_prediction_hash": "3db78f2df869840e695d5ffb049c360f86921d04fc85922e2286ab22a1d015a3",
+  "kind": "V68_E65_OLIGOMER_ASSEMBLY_PANEL_POSTSEAL_HOLDOUT_v0",
+  "lineage_source_target": "V63_1APF_1",
+  "panel_group": "TRUE_TRANSMEMBRANE_OLIGOMER_CHANNEL",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1APF",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1APF/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V68_129_TRUE_TRANSMEMBRANE_OLIGOMER_CHANNEL_1APF_1_V68_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "True transmembrane/channel/pore sentinel: E65 must preserve topology priority over assembly grammar."
+  ],
+  "protein_id": "1APF_1",
+  "source_family": "V63",
+  "target_id": "V68_129_TRUE_TRANSMEMBRANE_OLIGOMER_CHANNEL_1APF_1"
+}

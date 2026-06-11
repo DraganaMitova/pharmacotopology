@@ -1,0 +1,36 @@
+{
+  "active_operator_count": 2,
+  "folding_problem_solved": false,
+  "kind": "V68_COMPACT_SEALED_PACKET_SUMMARY_v0",
+  "natural_mechanism_class": "oligomerization_controlled_folding",
+  "operator_names": [
+    "interface_operator",
+    "closure_operator"
+  ],
+  "prediction_hash": "d2cf7275c432514308ed8a581b235baa28dc3951088ce49de97f7ce7c3be3a03",
+  "sealed_before_holdout": true,
+  "selected_mechanism_class": "oligomerization_controlled_folding",
+  "selection_reason": "oligomerization_context",
+  "target_id": "V68_109_COILED_COIL_HELIX_BUNDLE_ASSEMBLY_1B6T_1_SHUFFLED_CONTROL",
+  "trajectory_final_state_summary": {
+    "assembly_ambiguous": 0.0,
+    "assembly_required_core": 0.0,
+    "contact_probability": 0.531077,
+    "disorder_order_balance": 0.300992,
+    "frustration": 0.0,
+    "interface_buried_hydrophobicity": 0.0,
+    "interface_readiness": 0.655713,
+    "monomer_incomplete_topology": 0.0,
+    "operator_activation": 0.634408,
+    "partner_completed_core": 0.0,
+    "proteostasis_routing": 0.0,
+    "residue_exposure": 0.604658,
+    "segment_compaction": 0.533304,
+    "state_basin_occupancy": {
+      "assembly_stabilized_basin": 0.655713,
+      "interface_rejected_basin": 0.1,
+      "monomer_partial_order": 0.423381
+    },
+    "timepoint": 1000
+  }
+}

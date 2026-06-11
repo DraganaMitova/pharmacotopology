@@ -1,0 +1,36 @@
+{
+  "batch_id": "V68_OLIGOMER_ASSEMBLY_PANEL_200",
+  "engine_version_used": "E65",
+  "entity_id": "7",
+  "entry_id": "11YO",
+  "expected_mechanism_class": "cofactor_ligand_assisted_stabilization",
+  "expected_observables": [
+    {
+      "check_id": "cofactor_interface_supported",
+      "comparator": ">=",
+      "metric": "interface_readiness",
+      "threshold": 0.45
+    }
+  ],
+  "holdout_opened_after_prediction_hash": "a281075ab7eb467870f683027605860e4a7915a1cfea57b4d0eefd84e79e36e7",
+  "kind": "V68_E65_OLIGOMER_ASSEMBLY_PANEL_POSTSEAL_HOLDOUT_v0",
+  "lineage_source_target": "V63_11YO_7",
+  "panel_group": "COFACTOR_LIGAND_SOLUBLE_SENTINEL",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/11YO",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/11YO/7",
+      "source_class": "coordinate_derived",
+      "source_id": "V68_176_COFACTOR_LIGAND_SOLUBLE_SENTINEL_11YO_7_V68_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "Cofactor/ligand soluble sentinel: E65 must not convert ligand-stabilized cores into assembly claims."
+  ],
+  "protein_id": "11YO_7",
+  "source_family": "V65",
+  "target_id": "V68_176_COFACTOR_LIGAND_SOLUBLE_SENTINEL_11YO_7"
+}

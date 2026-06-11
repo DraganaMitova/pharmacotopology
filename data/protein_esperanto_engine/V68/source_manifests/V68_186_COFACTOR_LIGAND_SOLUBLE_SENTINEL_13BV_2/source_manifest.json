@@ -1,0 +1,59 @@
+{
+  "alphafold_used_before_seal": false,
+  "batch_id": "V68_OLIGOMER_ASSEMBLY_PANEL_200",
+  "blocked_prediction_inputs": [
+    "PDB/mmCIF coordinates before sealing",
+    "native contacts, residue-residue distances, and coordinate-derived topology",
+    "native biological assembly contacts and ligand geometry before sealing",
+    "AlphaFold, ESMFold, RoseTTAFold, or other structure models before sealing",
+    "post-seal validation annotations before prediction hash",
+    "prior score outcomes as prediction evidence",
+    "internal runtime artifacts as biological evidence"
+  ],
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E65",
+  "entity_id": "2",
+  "entry_id": "13BV",
+  "folding_problem_solved": false,
+  "kind": "V68_E65_OLIGOMER_ASSEMBLY_PANEL_SOURCE_MANIFEST_v0",
+  "lineage_source_target": "V63_13BV_2",
+  "panel_group": "COFACTOR_LIGAND_SOLUBLE_SENTINEL",
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence for the RCSB polymer entity.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V68_186_COFACTOR_LIGAND_SOLUBLE_SENTINEL_13BV_2_RAW_SEQUENCE",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/13BV/2",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "RCSB title: Cryo-EM structure of human PI3KC3-C1 complex. Entity description: Beclin 1-associated autophagy-related key regulator. Entry keywords: IMMUNE SYSTEM Lipid kinase, autophagosome formation, signaling protein, IMMUNE SYSTEM. Polymer composition: heteromeric protein. Sequence-derived non-coordinate summary: hydrophobic_density=0.359756; mean_interface=0.244753; max_segment_membrane_density=0.699736; mean_disorder=0.192014. Coordinates, contacts, native interface geometry, ligand geometry, and post-seal validation labels are unopened before prediction hash.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V68_186_COFACTOR_LIGAND_SOLUBLE_SENTINEL_13BV_2_PUBLIC_METADATA",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/13BV",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "V68 E65 cofactor sentinel source. cofactor_context ligand_context cofactor-stabilized soluble core; components: MG. Not assembly_required_core and no explicit transmembrane topology evidence.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V68_186_COFACTOR_LIGAND_SOLUBLE_SENTINEL_13BV_2_E65_PANEL_CONTEXT",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/13BV",
+      "spatial_proxy": false
+    }
+  ],
+  "protein_id": "13BV_2",
+  "sequence": "MASPSGKGARALEAPGCGPRPLARDLVDSVDDAEGLYVAVERCPLCNTTRRRLTCAKCVQSGDFVYFDGRDRERFIDKKERLSRLKSKQEEFQKEVLKAMEGKWITDQLRWKIMSCKMRIEQLKQTICKGNEEMEKNSEGLLKTKEKNQKLYSRAQRHQEKKEKIQRHNRKLGDLVEKKTIDLRSHYERLANLRRSHILELTSVIFPIEEVKTGVRDPADVSSESDSAMTSSTVSKLAEARRTTYLSGRWVCDDHNGDTSISITGPWISLPNNGDYSAYYSWVEEKKTTQGPDMEQSNPAYTISAALCYATQLVNILSHILDVNLPKKLCNSEFCGENLSKQKFTRAVKKLNANILYLCFSQHVNLDQLQPLHTLRNLMYLVSPSSEHLGRSGPFEVRADLEESMEFVDPGVAGESDESGDERVSDEETDLGTDWENLPSPRFCDIPSQSVEVSQSQSTQASPPIASSSAGGMISSAAASVTSWFKAYTGHR",
+  "sequence_length": 492,
+  "source_family": "V65",
+  "target_id": "V68_186_COFACTOR_LIGAND_SOLUBLE_SENTINEL_13BV_2"
+}

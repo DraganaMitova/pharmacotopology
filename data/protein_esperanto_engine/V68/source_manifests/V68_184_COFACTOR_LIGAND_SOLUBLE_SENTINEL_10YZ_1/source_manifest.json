@@ -1,0 +1,59 @@
+{
+  "alphafold_used_before_seal": false,
+  "batch_id": "V68_OLIGOMER_ASSEMBLY_PANEL_200",
+  "blocked_prediction_inputs": [
+    "PDB/mmCIF coordinates before sealing",
+    "native contacts, residue-residue distances, and coordinate-derived topology",
+    "native biological assembly contacts and ligand geometry before sealing",
+    "AlphaFold, ESMFold, RoseTTAFold, or other structure models before sealing",
+    "post-seal validation annotations before prediction hash",
+    "prior score outcomes as prediction evidence",
+    "internal runtime artifacts as biological evidence"
+  ],
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E65",
+  "entity_id": "1",
+  "entry_id": "10YZ",
+  "folding_problem_solved": false,
+  "kind": "V68_E65_OLIGOMER_ASSEMBLY_PANEL_SOURCE_MANIFEST_v0",
+  "lineage_source_target": "V63_10YZ_1",
+  "panel_group": "COFACTOR_LIGAND_SOLUBLE_SENTINEL",
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence for the RCSB polymer entity.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V68_184_COFACTOR_LIGAND_SOLUBLE_SENTINEL_10YZ_1_RAW_SEQUENCE",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/10YZ/1",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "RCSB title: Crystal structure of mouse DXO in complex with pGGGUU RNA and two magnesium ions. Entity description: Decapping and exoribonuclease protein. Entry keywords: HYDROLASE/RNA dxo, RNA, decapping, exoribonuclease, HYDROLASE, HYDROLASE-RNA complex. Polymer composition: protein/NA. Sequence-derived non-coordinate summary: hydrophobic_density=0.380353; mean_interface=0.260237; max_segment_membrane_density=0.715608; mean_disorder=0.222866. Coordinates, contacts, native interface geometry, ligand geometry, and post-seal validation labels are unopened before prediction hash.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V68_184_COFACTOR_LIGAND_SOLUBLE_SENTINEL_10YZ_1_PUBLIC_METADATA",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/10YZ",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "V68 E65 cofactor sentinel source. cofactor_context ligand_context cofactor-stabilized soluble core; components: MG. Not assembly_required_core and no explicit transmembrane topology evidence.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V68_184_COFACTOR_LIGAND_SOLUBLE_SENTINEL_10YZ_1_E65_PANEL_CONTEXT",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/10YZ",
+      "spatial_proxy": false
+    }
+  ],
+  "protein_id": "10YZ_1",
+  "sequence": "MEPRGTKRKAEKTEVEKPLNKLPRAVPSLRTQPSLYSGPFPFYRRPSELGCFSLDAQRQYHGDARALRYYSPPPINGPGPDFDLRDGYPDRYQPRDEEVQERLDHLLRWVLEHRNQLEGGPGWLAGATVTWRGHLTKLLTTPYERQEGWQLAASRFQGTLYLSEVETPAARAQRLARPPLLRELMYMGYKFEQYMCADKPGGSPDPSGEVNTNVAYCSVLRSRLGNHPLLFSGEVDCLNPQAPCTQPPSCYVELKTSKEMHSPGQWRSFYRHKLLKWWAQSFLPGVPHVVAGFRNPEGFVCSLKTFPTMEMFENVRNDREGWNPSVCMNFCAAFLSFAQSTVVQDDPRLVHLFSWEPGGPVTVSVHRDAPYAFLPSWYVETMTQDLPPLSKTPSPKD",
+  "sequence_length": 397,
+  "source_family": "V65",
+  "target_id": "V68_184_COFACTOR_LIGAND_SOLUBLE_SENTINEL_10YZ_1"
+}

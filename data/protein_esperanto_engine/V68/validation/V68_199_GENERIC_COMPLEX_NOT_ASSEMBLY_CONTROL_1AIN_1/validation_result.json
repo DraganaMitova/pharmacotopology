@@ -1,0 +1,41 @@
+{
+  "acceptance_decision": "abstain_recommended",
+  "alphafold_used_before_seal": false,
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "1",
+  "entry_id": "1AIN",
+  "expected_mechanism_class": "insufficient_evidence_clean_abstain",
+  "holdout_opened_after_prediction_hash": "bd9c298b811da37c60b7b6e000b928ee079053e1ed948b405e41a5ed91115b05",
+  "kind": "V68_E65_OLIGOMER_ASSEMBLY_PANEL_VALIDATION_RESULT_v0",
+  "level1_regime_selection": true,
+  "level2_region_localization_proxy": false,
+  "level3_topology_or_contact_proxy": true,
+  "lineage_source_target": "V63_1AIN_1",
+  "panel_group": "GENERIC_COMPLEX_NOT_ASSEMBLY_CONTROL",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1AIN",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1AIN/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V68_199_GENERIC_COMPLEX_NOT_ASSEMBLY_CONTROL_1AIN_1_V68_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "predicted_mechanism_class": "insufficient_evidence_clean_abstain",
+  "protein_id": "1AIN_1",
+  "score_label": "supported",
+  "sealed_prediction_hash": "bd9c298b811da37c60b7b6e000b928ee079053e1ed948b405e41a5ed91115b05",
+  "source_family": "V63",
+  "target_id": "V68_199_GENERIC_COMPLEX_NOT_ASSEMBLY_CONTROL_1AIN_1",
+  "validation_checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "insufficient_evidence_clean_abstain",
+      "observed": "insufficient_evidence_clean_abstain",
+      "passed": true
+    }
+  ]
+}

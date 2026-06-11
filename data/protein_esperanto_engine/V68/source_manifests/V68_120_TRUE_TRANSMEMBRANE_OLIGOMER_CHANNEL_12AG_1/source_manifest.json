@@ -1,0 +1,59 @@
+{
+  "alphafold_used_before_seal": false,
+  "batch_id": "V68_OLIGOMER_ASSEMBLY_PANEL_200",
+  "blocked_prediction_inputs": [
+    "PDB/mmCIF coordinates before sealing",
+    "native contacts, residue-residue distances, and coordinate-derived topology",
+    "native biological assembly contacts and ligand geometry before sealing",
+    "AlphaFold, ESMFold, RoseTTAFold, or other structure models before sealing",
+    "post-seal validation annotations before prediction hash",
+    "prior score outcomes as prediction evidence",
+    "internal runtime artifacts as biological evidence"
+  ],
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E65",
+  "entity_id": "1",
+  "entry_id": "12AG",
+  "folding_problem_solved": false,
+  "kind": "V68_E65_OLIGOMER_ASSEMBLY_PANEL_SOURCE_MANIFEST_v0",
+  "lineage_source_target": "V63_12AG_1",
+  "panel_group": "TRUE_TRANSMEMBRANE_OLIGOMER_CHANNEL",
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence for the RCSB polymer entity.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V68_120_TRUE_TRANSMEMBRANE_OLIGOMER_CHANNEL_12AG_1_RAW_SEQUENCE",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/12AG/1",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "RCSB title: Spermine-blocked open-state cryo-EM structure of human TRPV6 channel in cNW30 nanodiscs. Entity description: Transient receptor potential cation channel subfamily V member 6. Entry keywords: MEMBRANE PROTEIN polyamine, spermine, cancer, cryo-EM, TRP channels, TRPV6, oncochannel, channel block, MEMBRANE PROTEIN. Polymer composition: homomeric protein. Sequence-derived non-coordinate summary: hydrophobic_density=0.506536; mean_interface=0.307481; max_segment_membrane_density=0.973545; mean_disorder=0.131032. Coordinates, contacts, native interface geometry, ligand geometry, and post-seal validation labels are unopened before prediction hash.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V68_120_TRUE_TRANSMEMBRANE_OLIGOMER_CHANNEL_12AG_1_PUBLIC_METADATA",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/12AG",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "V68 E65 topology sentinel source. membrane_context_strong transmembrane_context topology_evidence transmembrane channel/pore; biological_oligomer_context may be incidental but explicit topology has priority. Coordinates, contacts, and native topology remain post-seal holdout only.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V68_120_TRUE_TRANSMEMBRANE_OLIGOMER_CHANNEL_12AG_1_E65_PANEL_CONTEXT",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/12AG",
+      "spatial_proxy": false
+    }
+  ],
+  "protein_id": "12AG_1",
+  "sequence": "ESWAQSRDEQNLLQQKRIWESPLLLAAKDNDVQALNKLLKYEDCKVHQRGAMGETALHIAALYDNLEAAMVLMEAAPELVFEPMTSELYEGQTALHIAVVNQNMNLVRALLARRASVSARATGTAFRRSPCNLIYFGEHPLSFAACVNSEEIVRLLIEHGADIRAQDSLGNTVLHILILQPNKTFACQMYNLLLSYDRHGDHLQPLDLVPNHQGLTPFKLAGVEGNTVMFQHLMQKRKHTQWTYGPLTSTLYDLTEIDSSGDEQSLLELIITTKKREARQILDQTPVKELVSLKWKRYGRPYFCMLGAIYLLYIICFTMCCIYRPLKPRTNNRTSPRDNTLLQQKLLQEAYMTPKDDIRLVGELVTVIGAIIILLVEVPDIFRMGVTRFFGQTILGGPFHVLIITYAFMVLVTMVMRLISASGEVVPMSFALVLGWCNVMYFARGFQMLGPFTIMIQKMIFGDLMRFCWLMAVVILGFASAFYIIFQTEDPEELGHFYDYPMALFSTFELFLTIIDGPANYNVDLPFMYSITYAAFAIIATLLMLNLLIAMMGDTHWRVAHERDELWRAQIVATTVMLERKLPRCLWPRSGICGREYGLGDRWFLRVEDRQD",
+  "sequence_length": 612,
+  "source_family": "V63",
+  "target_id": "V68_120_TRUE_TRANSMEMBRANE_OLIGOMER_CHANNEL_12AG_1"
+}

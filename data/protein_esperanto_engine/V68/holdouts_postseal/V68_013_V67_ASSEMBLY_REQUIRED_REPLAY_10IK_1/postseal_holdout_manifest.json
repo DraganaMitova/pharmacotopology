@@ -1,0 +1,38 @@
+{
+  "batch_id": "V68_OLIGOMER_ASSEMBLY_PANEL_200",
+  "engine_version_used": "E65",
+  "entity_id": "1",
+  "entry_id": "10IK",
+  "expected_mechanism_class": "assembly_required_folding",
+  "expected_observables": [
+    {
+      "check_id": "partner_completed_core_supported",
+      "comparator": ">=",
+      "metric": "partner_completed_core",
+      "threshold": 0.48
+    }
+  ],
+  "holdout_opened_after_prediction_hash": "6e507cfb46f776a5a3a6625065229fe0a678b781cdd1c0c29ed3762e57f00ed2",
+  "kind": "V68_E65_OLIGOMER_ASSEMBLY_PANEL_POSTSEAL_HOLDOUT_v0",
+  "lineage_source_target": "V67_103_V66_10IK_1",
+  "panel_group": "V67_ASSEMBLY_REQUIRED_REPLAY",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/10IK",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/10IK/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V68_013_V67_ASSEMBLY_REQUIRED_REPLAY_10IK_1_V68_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "V67 dominant failure replayed for E65 assembly-required grammar mining.",
+    "V67 engine thought oligomerization_controlled_folding; V67 reality label was membrane_multidomain_folding_proteostasis.",
+    "E65 retests the missing word assembly_required_core_vs_topology_provider."
+  ],
+  "protein_id": "10IK_1",
+  "source_family": "V67",
+  "target_id": "V68_013_V67_ASSEMBLY_REQUIRED_REPLAY_10IK_1"
+}

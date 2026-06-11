@@ -1,0 +1,49 @@
+{
+  "acceptance_decision": "accepted",
+  "alphafold_used_before_seal": false,
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "3",
+  "entry_id": "1AIS",
+  "expected_mechanism_class": "assembly_required_folding",
+  "holdout_opened_after_prediction_hash": "bee0a63cd00f5a876bc96f42d44c7841e9efd5783b459b382945ed0417ed1495",
+  "kind": "V68_E65_OLIGOMER_ASSEMBLY_PANEL_VALIDATION_RESULT_v0",
+  "level1_regime_selection": true,
+  "level2_region_localization_proxy": true,
+  "level3_topology_or_contact_proxy": true,
+  "lineage_source_target": "V63_1AIS_3",
+  "panel_group": "COILED_COIL_HELIX_BUNDLE_ASSEMBLY",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1AIS",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1AIS/3",
+      "source_class": "coordinate_derived",
+      "source_id": "V68_108_COILED_COIL_HELIX_BUNDLE_ASSEMBLY_1AIS_3_V68_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "predicted_mechanism_class": "assembly_required_folding",
+  "protein_id": "1AIS_3",
+  "score_label": "supported",
+  "sealed_prediction_hash": "bee0a63cd00f5a876bc96f42d44c7841e9efd5783b459b382945ed0417ed1495",
+  "source_family": "V63",
+  "target_id": "V68_108_COILED_COIL_HELIX_BUNDLE_ASSEMBLY_1AIS_3",
+  "validation_checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "assembly_required_folding",
+      "observed": "assembly_required_folding",
+      "passed": true
+    },
+    {
+      "check_id": "partner_completed_core_supported",
+      "comparator": ">=",
+      "metric": "partner_completed_core",
+      "observed": 0.730981,
+      "passed": true,
+      "threshold": 0.48
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "batch_id": "V68_OLIGOMER_ASSEMBLY_PANEL_200",
+  "engine_version_used": "E65",
+  "entity_id": "1",
+  "entry_id": "10KZ",
+  "expected_mechanism_class": "insufficient_evidence_clean_abstain",
+  "expected_observables": [],
+  "holdout_opened_after_prediction_hash": "f1d66d3fee866e555e9c632152cf36f13a83c033cfb410f4e2c8eea6da914773",
+  "kind": "V68_E65_OLIGOMER_ASSEMBLY_PANEL_POSTSEAL_HOLDOUT_v0",
+  "lineage_source_target": "V63_10KZ_1",
+  "panel_group": "GENERIC_COMPLEX_NOT_ASSEMBLY_CONTROL",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/10KZ",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/10KZ/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V68_190_GENERIC_COMPLEX_NOT_ASSEMBLY_CONTROL_10KZ_1_V68_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "Generic complex-only control: complex annotation alone is not obligate assembly evidence."
+  ],
+  "protein_id": "10KZ_1",
+  "source_family": "V63",
+  "target_id": "V68_190_GENERIC_COMPLEX_NOT_ASSEMBLY_CONTROL_10KZ_1"
+}

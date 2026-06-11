@@ -1,0 +1,59 @@
+{
+  "alphafold_used_before_seal": false,
+  "batch_id": "V68_OLIGOMER_ASSEMBLY_PANEL_200",
+  "blocked_prediction_inputs": [
+    "PDB/mmCIF coordinates before sealing",
+    "native contacts, residue-residue distances, and coordinate-derived topology",
+    "native biological assembly contacts and ligand geometry before sealing",
+    "AlphaFold, ESMFold, RoseTTAFold, or other structure models before sealing",
+    "post-seal validation annotations before prediction hash",
+    "prior score outcomes as prediction evidence",
+    "internal runtime artifacts as biological evidence"
+  ],
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E65",
+  "entity_id": "3",
+  "entry_id": "1A31",
+  "folding_problem_solved": false,
+  "kind": "V68_E65_OLIGOMER_ASSEMBLY_PANEL_SOURCE_MANIFEST_v0",
+  "lineage_source_target": "V63_1A31_3",
+  "panel_group": "COILED_COIL_HELIX_BUNDLE_ASSEMBLY",
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence for the RCSB polymer entity.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V68_090_COILED_COIL_HELIX_BUNDLE_ASSEMBLY_1A31_3_RAW_SEQUENCE",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1A31/3",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "RCSB title: HUMAN RECONSTITUTED DNA TOPOISOMERASE I IN COVALENT COMPLEX WITH A 22 BASE PAIR DNA DUPLEX. Entity description: PROTEIN (TOPOISOMERASE I). Entry keywords: ISOMERASE/DNA TOPOISOMERASE I/DNA, DNA, TOPOISOMERASE I, ISOMERASE-DNA COMPLEX. Polymer composition: protein/NA. Sequence-derived non-coordinate summary: hydrophobic_density=0.368866; mean_interface=0.27446; max_segment_membrane_density=0.724868; mean_disorder=0.17456. Coordinates, contacts, native interface geometry, ligand geometry, and post-seal validation labels are unopened before prediction hash.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V68_090_COILED_COIL_HELIX_BUNDLE_ASSEMBLY_1A31_3_PUBLIC_METADATA",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/1A31",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "V68 E65 assembly-required source from allowed sequence/public metadata context. assembly_required_core assembly_required_folding partner_completed_core interface_buried_hydrophobicity monomer_incomplete_topology biological_oligomer_context coiled_coil_register_dependency; polymer instances=3, entity molecule count=1, polymer composition=protein/NA. Generic complex alone would be insufficient, but this panel source marks partner-completed folding context. Coordinates, contacts, ligand geometry, and native assembly contacts are blocked before sealing.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V68_090_COILED_COIL_HELIX_BUNDLE_ASSEMBLY_1A31_3_E65_PANEL_CONTEXT",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/1A31",
+      "spatial_proxy": false
+    }
+  ],
+  "protein_id": "1A31_3",
+  "sequence": "KPKNKDKDKKVPEPDNKKKKPKKEEEQKWKWWEEERYPEGIKWKFLEHKGPVFAPPYEPLPENVKFYYDGKVMKLSPKAEEVATFFAKMLDHEYTTKEIFRKNFFKDWRKEMTNEEKNIITNLSKCDFTQMSQYFKAQTEARKQMSKEEKLKIKEENEKLLKEYGFCIMDNHKERIANFKIEPPGLFRGRGNHPKMGMLKRRIMPEDIIINCSKDAKVPSPPPGHKWKEVRHDNKVTWLVSWTENIQGSIKYIMLNPSSRIKGEKDWQKYETARRLKKCVDKIRNQYREDWKSKEMKVRQRAVALYFIDKLALRAGNEKEEGETADTVGCCSLRVEHINLHPELDGQEYVVEFDFLGKDSIRYYNKVPVEKRVFKNLQLFMENKQPEDDLFDRLNTGILNKHLQDLMEGLTAKVFRTYNASITLQQQLKELTAPDENIPAKILSYNRANRAVAILCNHQRAPPKTFEKSMMNLQTKIDAKKEQLADARRDLKSAKADAKVMKDAKTKKVVESKKKAVQRLEEQLMKLEVQATDREENKQIALGTSKLNYLDPRITVAWCKKWGVPIEKIYNKTQREKFAWAIDMADEDYEF",
+  "sequence_length": 591,
+  "source_family": "V63",
+  "target_id": "V68_090_COILED_COIL_HELIX_BUNDLE_ASSEMBLY_1A31_3"
+}

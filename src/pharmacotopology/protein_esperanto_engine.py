@@ -36,6 +36,7 @@ MECHANISM_CLASSES = [
     "short_region_host_interface_hijacking",
     "fold_upon_binding_disorder",
     "cofactor_ligand_assisted_stabilization",
+    "assembly_required_folding",
     "oligomerization_controlled_folding",
     "insufficient_evidence_clean_abstain",
 ]
@@ -86,6 +87,15 @@ STATE_VARIABLES = [
     "interface_readiness",
     "disorder_order_balance",
     "proteostasis_routing",
+    "assembly_required_core",
+    "partner_completed_core",
+    "interface_buried_hydrophobicity",
+    "monomer_incomplete_topology",
+    "coiled_coil_register_dependency",
+    "domain_swap_candidate",
+    "biological_oligomer_context",
+    "generic_complex_only",
+    "assembly_ambiguous",
 ]
 
 ENVIRONMENTAL_PRESSURES = [
@@ -113,6 +123,56 @@ OLIGOMER_CONTEXT_TOKENS = [
     "partner_copy_context",
     "heteromeric_context",
     "homomeric_context",
+]
+
+ASSEMBLY_REQUIRED_CONTEXT_TOKENS = [
+    "assembly_required_core",
+    "assembly_required_folding",
+    "partner_completed_core",
+    "partner-completed fold",
+    "partner-stabilized fold",
+    "partner stabilized fold",
+    "interface_buried_hydrophobicity",
+    "monomer_incomplete_topology",
+    "coiled_coil_register_dependency",
+    "coiled-coil register",
+    "coiled coil register",
+    "leucine zipper",
+    "domain_swap_candidate",
+    "domain-swapped fold",
+    "domain swapped fold",
+    "obligate assembly",
+    "obligate oligomer",
+    "biological_oligomer_context",
+    "assembly-dependent folding",
+    "assembly dependent folding",
+    "multimer-stabilized basin",
+    "multimer stabilized basin",
+]
+
+NEGATIVE_ASSEMBLY_CONTEXT_TOKENS = [
+    "not assembly_required_core",
+    "not assembly_required_folding",
+    "not assembly required",
+    "not assembly-required",
+    "not obligate assembly",
+    "not partner_completed_core",
+    "not partner-completed",
+    "not biological_oligomer_context",
+]
+
+GENERIC_COMPLEX_ONLY_TOKENS = [
+    "generic_complex_only",
+    "generic complex only",
+    "generic complex_not_assembly",
+    "generic complex not assembly",
+]
+
+ASSEMBLY_AMBIGUITY_TOKENS = [
+    "assembly_ambiguous",
+    "assembly_topology_ambiguous",
+    "weak assembly evidence",
+    "ambiguous assembly evidence",
 ]
 
 STRONG_MEMBRANE_CONTEXT_TOKENS = [
@@ -222,6 +282,20 @@ GRAMMAR_RULES: dict[str, dict[str, Any]] = {
         "testable_effect": "cofactor removal destabilizes the predicted basin",
         "null_control": "generic ligand annotation alone cannot define full grammar",
         "falsification_rule": "ligand-independent stability dominates all conditions",
+    },
+    "assembly_required_folding": {
+        "marks": [
+            "assembly_required_core",
+            "partner_completed_core",
+            "interface_buried_hydrophobicity",
+            "monomer_incomplete_topology",
+        ],
+        "pressures": ["binding_partner", "partner_copy", "concentration"],
+        "operators": ["interface_operator", "closure_operator", "frustration_operator"],
+        "state_change": "monomer-incomplete topology to partner-completed assembly basin",
+        "testable_effect": "partner/interface disruption exposes incomplete monomer topology and weakens the assembled basin",
+        "null_control": "generic complex annotation alone cannot validate assembly-required folding",
+        "falsification_rule": "holdout shows a complete monomeric fold, true membrane topology, or ligand-stabilized core without assembly dependence",
     },
     "oligomerization_controlled_folding": {
         "marks": ["repeat_interface", "oligomer_motif", "burial_surface"],
@@ -608,6 +682,26 @@ def select_mechanism_grammar(
     else:
         text = _allowed_source_text(sources, evidence_manifest)
         metrics = sequence_field["global_metrics"]
+        cofactor_context = _contains_any(text, COFACTOR_CONTEXT_TOKENS)
+        negative_assembly_context = _contains_any(text, NEGATIVE_ASSEMBLY_CONTEXT_TOKENS)
+        explicit_assembly_required_context = _contains_any(text, ASSEMBLY_REQUIRED_CONTEXT_TOKENS) and not negative_assembly_context
+        biological_oligomer_context = _contains_any(text, OLIGOMER_CONTEXT_TOKENS)
+        generic_complex_only_context = _contains_any(text, GENERIC_COMPLEX_ONLY_TOKENS) or (
+            "complex" in text
+            and not explicit_assembly_required_context
+            and not biological_oligomer_context
+            and not cofactor_context
+        )
+        assembly_ambiguity_context = _contains_any(text, ASSEMBLY_AMBIGUITY_TOKENS)
+        soluble_monomeric_core_context = any(
+            token in text
+            for token in [
+                "soluble_monomeric_core_context",
+                "monomeric soluble core",
+                "complete soluble monomer",
+                "standalone soluble fold",
+            ]
+        )
         negative_membrane_topology_context = _contains_any(text, NEGATIVE_MEMBRANE_TOPOLOGY_TOKENS)
         peripheral_membrane_context = _contains_any(text, PERIPHERAL_MEMBRANE_CONTEXT_TOKENS)
         topology_conflict_context = negative_membrane_topology_context or peripheral_membrane_context
@@ -616,7 +710,11 @@ def select_mechanism_grammar(
             token in text
             for token in ["cftr", "f508", "proteostasis", "trafficking", "nbd1", "transmembrane", "membrane"]
         )
-        if any(token in text for token in ["orf6", "rae1", "nup98", "host hijack", "nucleocytoplasmic", "interferon"]):
+        if (
+            any(token in text for token in ["orf6", "rae1", "nup98", "host hijack", "nucleocytoplasmic", "interferon"])
+            and not explicit_membrane_context
+            and not explicit_assembly_required_context
+        ):
             natural = "short_region_host_interface_hijacking"
             reason = "short_region_host_interface_evidence"
         elif any(token in text for token in [
@@ -649,15 +747,33 @@ def select_mechanism_grammar(
             else:
                 natural = "insufficient_evidence_clean_abstain"
                 reason = "generic_membrane_annotation_without_specific_operator"
-        elif _contains_any(text, COFACTOR_CONTEXT_TOKENS):
+        elif explicit_assembly_required_context:
+            natural = "assembly_required_folding"
+            reason = "explicit_assembly_required_core_or_partner_completed_topology_context"
+        elif cofactor_context:
             natural = "cofactor_ligand_assisted_stabilization"
             reason = "explicit_ligand_cofactor_or_metal_context"
-        elif _contains_any(text, OLIGOMER_CONTEXT_TOKENS):
+        elif soluble_monomeric_core_context and metrics["mean_disorder"] < 0.32:
+            natural = "globular_closure"
+            reason = "explicit_soluble_monomeric_core_context"
+        elif biological_oligomer_context and (
+            assembly_ambiguity_context
+            or peripheral_membrane_context
+            or generic_complex_only_context
+            or (membrane_text_context and not topology_conflict_context)
+            or cofactor_context
+        ):
+            natural = "insufficient_evidence_clean_abstain"
+            reason = "assembly_topology_ambiguous_competing_weak_explanations"
+        elif biological_oligomer_context:
             natural = "oligomerization_controlled_folding"
-            reason = "explicit_oligomer_or_assembly_context"
+            reason = "explicit_biological_oligomer_context_without_assembly_required_claim"
         elif topology_conflict_context:
             natural = "insufficient_evidence_clean_abstain"
             reason = "membrane_topology_conflict_or_peripheral_context_requires_abstention"
+        elif generic_complex_only_context:
+            natural = "insufficient_evidence_clean_abstain"
+            reason = "generic_complex_only_is_not_obligate_assembly_evidence"
         elif membrane_text_context:
             if (
                 "f508" in text
@@ -684,8 +800,12 @@ def select_mechanism_grammar(
             natural = "cofactor_ligand_assisted_stabilization"
             reason = "ligand_or_cofactor_context"
         elif any(token in text for token in ["oligomer", "assembly", "multimer"]):
-            natural = "oligomerization_controlled_folding"
-            reason = "oligomerization_context"
+            if "complex" in text or membrane_text_context:
+                natural = "insufficient_evidence_clean_abstain"
+                reason = "assembly_ambiguous_generic_text_requires_abstention"
+            else:
+                natural = "oligomerization_controlled_folding"
+                reason = "oligomerization_context"
         elif any(token in text for token in [
             "folding kinetics",
             "folding-kinetics",
@@ -961,6 +1081,39 @@ def build_operator_field(
                 "segment_compaction",
             ),
         ])
+    elif mechanism_class == "assembly_required_folding":
+        operators.extend([
+            _operator(
+                "interface_operator",
+                ", ".join(_span_from_segment(row) for row in interface_segments),
+                metrics["mean_interface"] + 0.42,
+                evidence,
+                "partner-completed core and biological assembly readiness",
+                "partner/interface disruption exposes incomplete monomer topology",
+                "complete monomer, membrane, or ligand grammar explains the holdout without assembly",
+                "partner_completed_core",
+            ),
+            _operator(
+                "closure_operator",
+                ", ".join(_span_from_segment(row) for row in hydrophobic_segments),
+                metrics["hydrophobic_density"] + 0.16,
+                evidence,
+                "hydrophobic core closure only after assembly context resolves the surface",
+                "assembly-interface mutation lowers partner-completed closure",
+                "monomer-only closure remains stable and complete",
+                "assembly_required_core",
+            ),
+            _operator(
+                "frustration_operator",
+                ", ".join(_span_from_segment(row) for row in membrane_segments),
+                metrics["mean_membrane"] + metrics["mean_interface"] + 0.10,
+                evidence,
+                "unresolved monomer topology rather than clean membrane insertion",
+                "partner completion lowers topological frustration",
+                "true membrane topology or soluble monomer explains the signal directly",
+                "monomer_incomplete_topology",
+            ),
+        ])
     elif mechanism_class == "oligomerization_controlled_folding":
         operators.extend([
             _operator(
@@ -1051,6 +1204,7 @@ def simulate_operator_trajectory(
         proteostasis = strengths["proteostasis_operator"]
         host = strengths["host_hijack_operator"]
         interface = strengths["interface_operator"]
+        frustration_strength = strengths["frustration_operator"]
         if mechanism_class == "intrinsic_disorder_phase_separation":
             basin = {
                 "expanded_disordered": bounded(0.62 - 0.10 * progress + disorder * 0.10),
@@ -1126,6 +1280,27 @@ def simulate_operator_trajectory(
             contact_probability = bounded(0.18 + compact * 0.35 + pocket_ready * 0.18)
             interface_readiness = pocket_ready
             proteostasis_routing = 0.0
+        elif mechanism_class == "assembly_required_folding":
+            interface_disruption = float((perturbation or {}).get("interface_disruption", 0.0))
+            concentration_rescue = float((perturbation or {}).get("concentration_rescue", 0.0))
+            partner_completion = bounded(
+                0.16
+                + interface * 0.58 * progress
+                + closure * 0.18
+                + frustration_strength * 0.08
+                - 0.54 * interface_disruption
+                + 0.24 * concentration_rescue
+            )
+            monomer_gap = bounded(0.52 + frustration_strength * 0.18 - partner_completion * 0.34 + 0.28 * interface_disruption)
+            basin = {
+                "assembly_required_basin": partner_completion,
+                "monomer_incomplete_topology": monomer_gap,
+                "assembly_ambiguous_basin": bounded(0.24 + 0.24 * interface_disruption - 0.16 * partner_completion),
+            }
+            segment_compaction = bounded(0.18 + closure * 0.34 * progress + partner_completion * 0.22)
+            contact_probability = bounded(0.14 + partner_completion * 0.46 + closure * 0.14)
+            interface_readiness = partner_completion
+            proteostasis_routing = 0.0
         elif mechanism_class == "oligomerization_controlled_folding":
             interface_disruption = float((perturbation or {}).get("interface_disruption", 0.0))
             concentration_rescue = float((perturbation or {}).get("concentration_rescue", 0.0))
@@ -1158,6 +1333,23 @@ def simulate_operator_trajectory(
             "interface_readiness": interface_readiness,
             "disorder_order_balance": disorder_order,
             "proteostasis_routing": proteostasis_routing,
+            "assembly_required_core": bounded(segment_compaction if mechanism_class == "assembly_required_folding" else 0.0),
+            "partner_completed_core": bounded(interface_readiness if mechanism_class == "assembly_required_folding" else 0.0),
+            "interface_buried_hydrophobicity": bounded(
+                metrics["hydrophobic_density"] * interface_readiness
+                if mechanism_class == "assembly_required_folding"
+                else 0.0
+            ),
+            "monomer_incomplete_topology": bounded(
+                basin.get("monomer_incomplete_topology", 0.0)
+                if mechanism_class == "assembly_required_folding"
+                else 0.0
+            ),
+            "assembly_ambiguous": bounded(
+                basin.get("assembly_ambiguous_basin", 0.0)
+                if mechanism_class == "assembly_required_folding"
+                else 0.0
+            ),
         })
     final = timepoints[-1]
     return {
@@ -1223,6 +1415,15 @@ def contact_probability_map(sequence_field: dict[str, Any], operator_field: dict
                 "segment_b": "ligand_or_cofactor_pocket",
                 "probability": bounded(0.36 + _operator_strength(operator_field, "interface_operator") * 0.34),
                 "interaction_type": "cofactor_stabilized_interface",
+            })
+    elif mechanism_class == "assembly_required_folding":
+        top = _strong_segments(sequence_field, "interface_density", limit=3)
+        for segment in top:
+            pairs.append({
+                "segment_a": segment["segment_id"],
+                "segment_b": "partner_completed_core_interface",
+                "probability": bounded(0.32 + _operator_strength(operator_field, "interface_operator") * 0.38),
+                "interaction_type": "assembly_required_partner_completion",
             })
     elif mechanism_class == "oligomerization_controlled_folding":
         top = _strong_segments(sequence_field, "interface_density", limit=3)
@@ -1501,6 +1702,10 @@ def sequence_operator_coherence(packet: dict[str, Any]) -> float:
     elif mechanism == "cofactor_ligand_assisted_stabilization":
         local = max((row["interface_density"] for row in segments), default=0.0)
         support = 0.30 * field["hydrophobic_density"] + 0.35 * field["mean_interface"] + 0.35 * local + activation
+    elif mechanism == "assembly_required_folding":
+        local = max((row["interface_density"] for row in segments), default=0.0)
+        membrane_like = max((row["membrane_density"] for row in segments), default=0.0)
+        support = 0.25 * field["hydrophobic_density"] + 0.25 * field["mean_interface"] + 0.30 * local + 0.20 * membrane_like + activation
     elif mechanism == "oligomerization_controlled_folding":
         local = max((row["interface_density"] for row in segments), default=0.0)
         support = 0.30 * field["hydrophobic_density"] + 0.25 * field["mean_interface"] + 0.45 * local + activation

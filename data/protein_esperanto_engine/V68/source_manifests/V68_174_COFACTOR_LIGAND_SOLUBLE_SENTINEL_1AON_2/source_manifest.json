@@ -1,0 +1,59 @@
+{
+  "alphafold_used_before_seal": false,
+  "batch_id": "V68_OLIGOMER_ASSEMBLY_PANEL_200",
+  "blocked_prediction_inputs": [
+    "PDB/mmCIF coordinates before sealing",
+    "native contacts, residue-residue distances, and coordinate-derived topology",
+    "native biological assembly contacts and ligand geometry before sealing",
+    "AlphaFold, ESMFold, RoseTTAFold, or other structure models before sealing",
+    "post-seal validation annotations before prediction hash",
+    "prior score outcomes as prediction evidence",
+    "internal runtime artifacts as biological evidence"
+  ],
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E65",
+  "entity_id": "2",
+  "entry_id": "1AON",
+  "folding_problem_solved": false,
+  "kind": "V68_E65_OLIGOMER_ASSEMBLY_PANEL_SOURCE_MANIFEST_v0",
+  "lineage_source_target": "V63_1AON_2",
+  "panel_group": "COFACTOR_LIGAND_SOLUBLE_SENTINEL",
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence for the RCSB polymer entity.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V68_174_COFACTOR_LIGAND_SOLUBLE_SENTINEL_1AON_2_RAW_SEQUENCE",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1AON/2",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "RCSB title: CRYSTAL STRUCTURE OF THE ASYMMETRIC CHAPERONIN COMPLEX GROEL/GROES/(ADP)7. Entity description: GROEL/GROES COMPLEX. Entry keywords: COMPLEX (GROEL/GROES) COMPLEX (GROEL-GROES), CHAPERONIN ASSISTED PROTEIN FOLDING, COMPLEX (GROEL-GROES) complex. Polymer composition: heteromeric protein. Sequence-derived non-coordinate summary: hydrophobic_density=0.42268; mean_interface=0.259038; max_segment_membrane_density=1.0; mean_disorder=0.16634. Coordinates, contacts, native interface geometry, ligand geometry, and post-seal validation labels are unopened before prediction hash.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V68_174_COFACTOR_LIGAND_SOLUBLE_SENTINEL_1AON_2_PUBLIC_METADATA",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/1AON",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "V68 E65 cofactor sentinel source. cofactor_context ligand_context cofactor-stabilized soluble core; components: ADP MG. Not assembly_required_core and no explicit transmembrane topology evidence.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V68_174_COFACTOR_LIGAND_SOLUBLE_SENTINEL_1AON_2_E65_PANEL_CONTEXT",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/1AON",
+      "spatial_proxy": false
+    }
+  ],
+  "protein_id": "1AON_2",
+  "sequence": "MNIRPLHDRVIVKRKEVETKSAGGIVLTGSAAAKSTRGEVLAVGNGRILENGEVKPLDVKVGDIVIFNDGYGVKSEKIDNEEVLIMSESDILAIVEA",
+  "sequence_length": 97,
+  "source_family": "V65",
+  "target_id": "V68_174_COFACTOR_LIGAND_SOLUBLE_SENTINEL_1AON_2"
+}

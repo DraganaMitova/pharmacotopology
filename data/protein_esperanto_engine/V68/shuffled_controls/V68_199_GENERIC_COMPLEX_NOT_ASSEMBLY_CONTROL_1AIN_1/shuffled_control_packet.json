@@ -1,0 +1,31 @@
+{
+  "active_operator_count": 0,
+  "folding_problem_solved": false,
+  "kind": "V68_COMPACT_SEALED_PACKET_SUMMARY_v0",
+  "natural_mechanism_class": "insufficient_evidence_clean_abstain",
+  "operator_names": [],
+  "prediction_hash": "05861af87f453ad2cbfa660285134c77c5238eb87cabec594efb864bb4968de3",
+  "sealed_before_holdout": true,
+  "selected_mechanism_class": "insufficient_evidence_clean_abstain",
+  "selection_reason": "generic_complex_only_is_not_obligate_assembly_evidence",
+  "target_id": "V68_199_GENERIC_COMPLEX_NOT_ASSEMBLY_CONTROL_1AIN_1_SHUFFLED_CONTROL",
+  "trajectory_final_state_summary": {
+    "assembly_ambiguous": 0.0,
+    "assembly_required_core": 0.0,
+    "contact_probability": 0.0,
+    "disorder_order_balance": 0.45,
+    "frustration": 0.35,
+    "interface_buried_hydrophobicity": 0.0,
+    "interface_readiness": 0.0,
+    "monomer_incomplete_topology": 0.0,
+    "operator_activation": 0.0,
+    "partner_completed_core": 0.0,
+    "proteostasis_routing": 0.0,
+    "residue_exposure": 0.72667,
+    "segment_compaction": 0.0,
+    "state_basin_occupancy": {
+      "clean_abstain": 1.0
+    },
+    "timepoint": 1000
+  }
+}

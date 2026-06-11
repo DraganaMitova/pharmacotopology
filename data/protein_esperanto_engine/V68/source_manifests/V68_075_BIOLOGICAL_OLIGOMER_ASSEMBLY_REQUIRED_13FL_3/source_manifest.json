@@ -1,0 +1,59 @@
+{
+  "alphafold_used_before_seal": false,
+  "batch_id": "V68_OLIGOMER_ASSEMBLY_PANEL_200",
+  "blocked_prediction_inputs": [
+    "PDB/mmCIF coordinates before sealing",
+    "native contacts, residue-residue distances, and coordinate-derived topology",
+    "native biological assembly contacts and ligand geometry before sealing",
+    "AlphaFold, ESMFold, RoseTTAFold, or other structure models before sealing",
+    "post-seal validation annotations before prediction hash",
+    "prior score outcomes as prediction evidence",
+    "internal runtime artifacts as biological evidence"
+  ],
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E65",
+  "entity_id": "3",
+  "entry_id": "13FL",
+  "folding_problem_solved": false,
+  "kind": "V68_E65_OLIGOMER_ASSEMBLY_PANEL_SOURCE_MANIFEST_v0",
+  "lineage_source_target": "V63_13FL_3",
+  "panel_group": "BIOLOGICAL_OLIGOMER_ASSEMBLY_REQUIRED",
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence for the RCSB polymer entity.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V68_075_BIOLOGICAL_OLIGOMER_ASSEMBLY_REQUIRED_13FL_3_RAW_SEQUENCE",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/13FL/3",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "RCSB title: Structure of FabS1CE2_P2a in complex with the N-terminal domain of PD-L1. Entity description: Programmed cell death 1 ligand 1. Entry keywords: IMMUNE SYSTEM high-affinity binding, immune suppression, tumour growth suppressor, cell signalling, PD-L1, IMMUNE SYSTEM. Polymer composition: heteromeric protein. Sequence-derived non-coordinate summary: hydrophobic_density=0.444444; mean_interface=0.289822; max_segment_membrane_density=0.429894; mean_disorder=0.157982. Coordinates, contacts, native interface geometry, ligand geometry, and post-seal validation labels are unopened before prediction hash.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V68_075_BIOLOGICAL_OLIGOMER_ASSEMBLY_REQUIRED_13FL_3_PUBLIC_METADATA",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/13FL",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "V68 E65 assembly-required source from allowed sequence/public metadata context. assembly_required_core assembly_required_folding partner_completed_core interface_buried_hydrophobicity monomer_incomplete_topology biological_oligomer_context; polymer instances=3, entity molecule count=1, polymer composition=heteromeric protein. Generic complex alone would be insufficient, but this panel source marks partner-completed folding context. Coordinates, contacts, ligand geometry, and native assembly contacts are blocked before sealing.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V68_075_BIOLOGICAL_OLIGOMER_ASSEMBLY_REQUIRED_13FL_3_E65_PANEL_CONTEXT",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/13FL",
+      "spatial_proxy": false
+    }
+  ],
+  "protein_id": "13FL_3",
+  "sequence": "FTVTVPKDLYVVEYGSNMTIECKFPVEKQLDLAALIVYWEMEDKNIIQFVHGEEDLKVQHSSYRQRARLLKDQLSLGNAALQITDVKLQDAGVYRCMISYGGADYKRITVKVNALVPRGSHHHHHH",
+  "sequence_length": 126,
+  "source_family": "V63",
+  "target_id": "V68_075_BIOLOGICAL_OLIGOMER_ASSEMBLY_REQUIRED_13FL_3"
+}

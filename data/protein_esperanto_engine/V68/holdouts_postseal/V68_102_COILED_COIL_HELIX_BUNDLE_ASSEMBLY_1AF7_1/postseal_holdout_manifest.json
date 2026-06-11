@@ -1,0 +1,36 @@
+{
+  "batch_id": "V68_OLIGOMER_ASSEMBLY_PANEL_200",
+  "engine_version_used": "E65",
+  "entity_id": "1",
+  "entry_id": "1AF7",
+  "expected_mechanism_class": "assembly_required_folding",
+  "expected_observables": [
+    {
+      "check_id": "partner_completed_core_supported",
+      "comparator": ">=",
+      "metric": "partner_completed_core",
+      "threshold": 0.48
+    }
+  ],
+  "holdout_opened_after_prediction_hash": "6c10528363c4726ef740decb0e1999e57cdf4fb74b9aa683205076544f957686",
+  "kind": "V68_E65_OLIGOMER_ASSEMBLY_PANEL_POSTSEAL_HOLDOUT_v0",
+  "lineage_source_target": "V63_1AF7_1",
+  "panel_group": "COILED_COIL_HELIX_BUNDLE_ASSEMBLY",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1AF7",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1AF7/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V68_102_COILED_COIL_HELIX_BUNDLE_ASSEMBLY_1AF7_1_V68_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "Coiled-coil, helix-bundle, or sequence helix-register candidate for E65 assembly grammar."
+  ],
+  "protein_id": "1AF7_1",
+  "source_family": "V63",
+  "target_id": "V68_102_COILED_COIL_HELIX_BUNDLE_ASSEMBLY_1AF7_1"
+}

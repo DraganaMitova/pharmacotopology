@@ -1,0 +1,12 @@
+{
+  "batch_id": "V68_OLIGOMER_ASSEMBLY_PANEL_200",
+  "dominant_failure_count": 0,
+  "dominant_failure_mode": null,
+  "engine_version_used": "E65",
+  "failure_cases_reported": true,
+  "failure_count": 0,
+  "failure_grammar_rows": [],
+  "failure_modes": {},
+  "kind": "V68_E65_OLIGOMER_ASSEMBLY_PANEL_FAILURE_REPORT_v0",
+  "missing_words_top_10": []
+}

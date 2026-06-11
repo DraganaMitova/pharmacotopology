@@ -1,0 +1,49 @@
+{
+  "acceptance_decision": "accepted",
+  "alphafold_used_before_seal": false,
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "1",
+  "entry_id": "10XD",
+  "expected_mechanism_class": "assembly_required_folding",
+  "holdout_opened_after_prediction_hash": "591471e08e33df995aa72f87473bd13539242badaba82999055829075664278c",
+  "kind": "V68_E65_OLIGOMER_ASSEMBLY_PANEL_VALIDATION_RESULT_v0",
+  "level1_regime_selection": true,
+  "level2_region_localization_proxy": true,
+  "level3_topology_or_contact_proxy": true,
+  "lineage_source_target": "V67_110_V66_10XD_1",
+  "panel_group": "V67_ASSEMBLY_REQUIRED_REPLAY",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/10XD",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/10XD/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V68_017_V67_ASSEMBLY_REQUIRED_REPLAY_10XD_1_V68_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "predicted_mechanism_class": "assembly_required_folding",
+  "protein_id": "10XD_1",
+  "score_label": "supported",
+  "sealed_prediction_hash": "591471e08e33df995aa72f87473bd13539242badaba82999055829075664278c",
+  "source_family": "V67",
+  "target_id": "V68_017_V67_ASSEMBLY_REQUIRED_REPLAY_10XD_1",
+  "validation_checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "assembly_required_folding",
+      "observed": "assembly_required_folding",
+      "passed": true
+    },
+    {
+      "check_id": "partner_completed_core_supported",
+      "comparator": ">=",
+      "metric": "partner_completed_core",
+      "observed": 0.70517,
+      "passed": true,
+      "threshold": 0.48
+    }
+  ]
+}

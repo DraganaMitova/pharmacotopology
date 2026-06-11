@@ -1,0 +1,36 @@
+{
+  "batch_id": "V68_OLIGOMER_ASSEMBLY_PANEL_200",
+  "engine_version_used": "E65",
+  "entity_id": "4",
+  "entry_id": "10YB",
+  "expected_mechanism_class": "assembly_required_folding",
+  "expected_observables": [
+    {
+      "check_id": "partner_completed_core_supported",
+      "comparator": ">=",
+      "metric": "partner_completed_core",
+      "threshold": 0.48
+    }
+  ],
+  "holdout_opened_after_prediction_hash": "6a3667a07d718d6f4d24991f49d90af831eaaa6fe18b7e65d11ad905fccdd675",
+  "kind": "V68_E65_OLIGOMER_ASSEMBLY_PANEL_POSTSEAL_HOLDOUT_v0",
+  "lineage_source_target": "V63_10YB_4",
+  "panel_group": "BIOLOGICAL_OLIGOMER_ASSEMBLY_REQUIRED",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/10YB",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/10YB/4",
+      "source_class": "coordinate_derived",
+      "source_id": "V68_053_BIOLOGICAL_OLIGOMER_ASSEMBLY_REQUIRED_10YB_4_V68_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "Public metadata indicates biological oligomer/assembly dependency candidate for E65."
+  ],
+  "protein_id": "10YB_4",
+  "source_family": "V63",
+  "target_id": "V68_053_BIOLOGICAL_OLIGOMER_ASSEMBLY_REQUIRED_10YB_4"
+}

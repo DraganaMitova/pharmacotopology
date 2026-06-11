@@ -1,0 +1,37 @@
+{
+  "active_operator_count": 3,
+  "folding_problem_solved": false,
+  "kind": "V68_COMPACT_SEALED_PACKET_SUMMARY_v0",
+  "natural_mechanism_class": "assembly_required_folding",
+  "operator_names": [
+    "interface_operator",
+    "closure_operator",
+    "frustration_operator"
+  ],
+  "prediction_hash": "4f86c6ee5f3c86594c1575378ca9cef74839c84733393d6bf688eb1530199914",
+  "sealed_before_holdout": true,
+  "selected_mechanism_class": "assembly_required_folding",
+  "selection_reason": "explicit_assembly_required_core_or_partner_completed_topology_context",
+  "target_id": "V68_095_COILED_COIL_HELIX_BUNDLE_ASSEMBLY_10PW_1",
+  "trajectory_final_state_summary": {
+    "assembly_ambiguous": 0.121325,
+    "assembly_required_core": 0.552829,
+    "contact_probability": 0.567518,
+    "disorder_order_balance": 0.296058,
+    "frustration": 0.565104,
+    "interface_buried_hydrophobicity": 0.338684,
+    "interface_readiness": 0.741719,
+    "monomer_incomplete_topology": 0.369534,
+    "operator_activation": 0.638459,
+    "partner_completed_core": 0.741719,
+    "proteostasis_routing": 0.0,
+    "residue_exposure": 0.605845,
+    "segment_compaction": 0.552829,
+    "state_basin_occupancy": {
+      "assembly_ambiguous_basin": 0.121325,
+      "assembly_required_basin": 0.741719,
+      "monomer_incomplete_topology": 0.369534
+    },
+    "timepoint": 1000
+  }
+}
