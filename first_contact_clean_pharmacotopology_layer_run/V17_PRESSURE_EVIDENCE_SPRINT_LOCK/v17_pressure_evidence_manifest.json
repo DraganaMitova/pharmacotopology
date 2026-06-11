@@ -1,0 +1,94 @@
+{
+  "claim_allowed": false,
+  "fixed_residue_cutoff_used": false,
+  "fixed_threshold_policy": "forbidden",
+  "kind": "V17_PRESSURE_EVIDENCE_MANIFEST_v0",
+  "native_metrics_not_used_for_selection": true,
+  "new_md_allowed": false,
+  "target_specific_threshold_tuning_allowed": false,
+  "targets": [
+    {
+      "claim_allowed": false,
+      "clean_abstain_allowed": true,
+      "forbidden_misclassification": [
+        "isolated_TAD_as_soluble_compact_core",
+        "partner_interface_as_autonomous_fold_claim",
+        "binding_helix_as_universal_p53_fold"
+      ],
+      "next_evidence_test": "p53_TAD_MDM2_PARTNER_INDUCED_EVIDENCE_TEST",
+      "required_evidence": [
+        "partner_bound_complex_context",
+        "interface_or_contact_evidence",
+        "state_label_bound_context",
+        "leakage_guard_autonomous_fold_vs_partner_induced_fold",
+        "isolated_TAD_disorder_or_clean_abstain_context",
+        "external_couplings_if_available"
+      ],
+      "required_for_first_v18_test": [
+        "partner_bound_complex_context",
+        "interface_or_contact_evidence",
+        "state_label_bound_context",
+        "leakage_guard_autonomous_fold_vs_partner_induced_fold"
+      ],
+      "role_class": "disorder_partner_induced_object",
+      "target_id": "p53_TAD_MDM2"
+    },
+    {
+      "claim_allowed": false,
+      "clean_abstain_allowed": true,
+      "forbidden_misclassification": [
+        "membrane_pore_as_soluble_single_domain_compact_core",
+        "ion_filter_geometry_as_whole_fold_claim",
+        "tetramer_interface_as_monomer_autonomous_core"
+      ],
+      "next_evidence_test": "KcsA_MEMBRANE_PORE_ROLE_EVIDENCE_READOUT",
+      "required_evidence": [
+        "KcsA_complex_coordinate_context",
+        "membrane_topology_annotation",
+        "pore_selectivity_filter_annotation",
+        "oligomer_or_tetramer_assembly_context",
+        "chain_and_interface_identity",
+        "transmembrane_helix_roles",
+        "external_couplings_if_available",
+        "leakage_guard_against_soluble_core_misread"
+      ],
+      "required_for_first_v18_test": [
+        "membrane_topology_annotation",
+        "pore_selectivity_filter_annotation",
+        "oligomer_or_tetramer_assembly_context",
+        "chain_and_interface_identity",
+        "transmembrane_helix_roles",
+        "leakage_guard_against_soluble_core_misread"
+      ],
+      "role_class": "membrane_pore_oligomer_object",
+      "target_id": "KcsA"
+    },
+    {
+      "claim_allowed": false,
+      "clean_abstain_allowed": true,
+      "forbidden_misclassification": [
+        "forcing_single_canonical_fold",
+        "mixing_two_states_into_one_false_core",
+        "claiming_fold_switch_without_state_specific_support"
+      ],
+      "next_evidence_test": "XCL1_STATE_SPECIFIC_ROLE_SEPARATION_READOUT",
+      "required_evidence": [
+        "state_A_and_state_B_context_structures",
+        "state_A_and_state_B_labels",
+        "monomer_dimer_context",
+        "condition_labels_if_available",
+        "state_specific_structural_or_contact_evidence",
+        "state_specific_external_couplings_or_constraints_if_available",
+        "leakage_guard_preventing_mixed_state_fake_core"
+      ],
+      "required_for_first_v18_test": [
+        "state_A_and_state_B_labels",
+        "monomer_dimer_context",
+        "state_specific_structural_or_contact_evidence",
+        "leakage_guard_preventing_mixed_state_fake_core"
+      ],
+      "role_class": "metamorphic_switch_object",
+      "target_id": "XCL1_lymphotactin"
+    }
+  ]
+}

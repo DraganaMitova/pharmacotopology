@@ -1,0 +1,421 @@
+{
+  "artifacts": {
+    "certificate": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/v29_mechanism_operator_panel_summary_and_md_readiness_certificate.json",
+    "md_decision": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/v29_md_readiness_decision.json",
+    "operator_panel": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/v29_mechanism_operator_panel_summary.json",
+    "readiness_csv": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/v29_md_readiness_rows.csv",
+    "readiness_rows": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/v29_md_readiness_rows.json",
+    "report": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION_REPORT.md"
+  },
+  "claim_allowed": false,
+  "core_operators_across_all_targets": [
+    "role_detect",
+    "evidence_assign",
+    "pollution_guard"
+  ],
+  "evidence_claim_allowed": false,
+  "fixed_residue_cutoff_used": false,
+  "fixed_threshold_policy": "forbidden",
+  "kind": "V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION_v0",
+  "locked_interpretation": "V29 summarizes the current protein-Esperanto operator panel across six targets and makes an explicit MD-readiness decision. The repeated mechanism is an operator grammar, not a universal folding claim. No MD is recommended until external/state-specific constraints and coupling evidence are acquired.",
+  "md_readiness_decision": {
+    "claim_allowed": false,
+    "decision_status": "V29_NO_NEW_MD_READY_EXTERNAL_CONSTRAINTS_REQUIRED",
+    "kind": "V29_MD_READINESS_DECISION_v0",
+    "md_ready_targets": [],
+    "membrane_MD_recommended": false,
+    "new_MD_allowed": false,
+    "new_MD_recommended": false,
+    "parallel_MD_paths_allowed": false,
+    "positive_folding_evidence_targets": [],
+    "reason": "The operator grammar is coherent, but external/state-specific constraints remain missing. XCL1 needs state-specific external constraints; KcsA needs coupling/interface support and expanded assembly coordinates for any tetramer claim; p53 remains pressure-context evidence without coupling/MSA evidence.",
+    "required_before_any_MD": [
+      "DCA_background_enrichment",
+      "condition_labels_if_available",
+      "cross_target_validation",
+      "expanded_biological_assembly_coordinate_or_author_defined_assembly_model_for_tetramer_claim",
+      "external_couplings_if_available",
+      "external_validation_if_available",
+      "interdomain_hinge_evidence_if_claim_needed",
+      "interdomain_hinge_or_closure_evidence",
+      "pore_filter_coupling_support",
+      "raw_local_external_annotation_files_if_needed",
+      "state_specific_external_couplings_or_constraints_if_available"
+    ],
+    "selected_next_focus": "XCL1_lymphotactin_and_KcsA_constraints_before_any_MD",
+    "selected_next_panel": "V30_EXTERNAL_CONSTRAINT_AND_COUPLING_ACQUISITION_SPRINT"
+  },
+  "md_readiness_decision_status": "V29_NO_NEW_MD_READY_EXTERNAL_CONSTRAINTS_REQUIRED",
+  "md_readiness_rows": [
+    {
+      "claim_allowed": false,
+      "md_blockers": [
+        "external_validation_if_available",
+        "interdomain_hinge_or_closure_evidence"
+      ],
+      "md_readiness": "not_ready_for_MD_external_constraints_or_target_specific_evidence_missing",
+      "missing_next_evidence": [
+        "interdomain_hinge_or_closure_evidence",
+        "external_validation_if_available"
+      ],
+      "new_MD_allowed": false,
+      "new_MD_recommended": false,
+      "operators": [
+        "role_detect",
+        "context_detect",
+        "evidence_assign",
+        "reachability_check",
+        "replica_support",
+        "chemical_confidence",
+        "topology_context",
+        "pollution_guard"
+      ],
+      "pressure_type": "domain_hinge_closure_object",
+      "role_detected": true,
+      "selected_signal": "124-135",
+      "target": "4AKE"
+    },
+    {
+      "claim_allowed": false,
+      "md_blockers": [
+        "DCA_background_enrichment",
+        "cross_target_validation"
+      ],
+      "md_readiness": "not_ready_for_MD_external_constraints_or_target_specific_evidence_missing",
+      "missing_next_evidence": [
+        "cross_target_validation",
+        "DCA_background_enrichment"
+      ],
+      "new_MD_allowed": false,
+      "new_MD_recommended": false,
+      "operators": [
+        "role_detect",
+        "evidence_assign",
+        "replica_support",
+        "chemical_confidence",
+        "pollution_guard"
+      ],
+      "pressure_type": "single_domain_compact_object",
+      "role_detected": true,
+      "selected_signal": "23-48",
+      "target": "1UBQ"
+    },
+    {
+      "claim_allowed": false,
+      "md_blockers": [
+        "interdomain_hinge_evidence_if_claim_needed"
+      ],
+      "md_readiness": "not_ready_for_MD_external_constraints_or_target_specific_evidence_missing",
+      "missing_next_evidence": [
+        "interdomain_hinge_evidence_if_claim_needed"
+      ],
+      "new_MD_allowed": false,
+      "new_MD_recommended": false,
+      "operators": [
+        "role_detect",
+        "context_detect",
+        "evidence_assign",
+        "replica_support",
+        "chemical_confidence",
+        "topology_context",
+        "pollution_guard"
+      ],
+      "pressure_type": "multi_domain_composite_object",
+      "role_detected": true,
+      "selected_signal": "97-133",
+      "target": "1CLL"
+    },
+    {
+      "claim_allowed": false,
+      "md_blockers": [
+        "external_couplings_if_available",
+        "raw_local_external_annotation_files_if_needed"
+      ],
+      "md_readiness": "not_ready_for_MD_external_constraints_or_target_specific_evidence_missing",
+      "missing_next_evidence": [
+        "raw_local_external_annotation_files_if_needed",
+        "external_couplings_if_available"
+      ],
+      "new_MD_allowed": false,
+      "new_MD_recommended": false,
+      "operators": [
+        "role_detect",
+        "context_detect",
+        "evidence_assign",
+        "interface_context",
+        "clean_abstain",
+        "pollution_guard"
+      ],
+      "pressure_type": "disorder_partner_induced_binding_pressure",
+      "role_detected": true,
+      "selected_signal": "isolated_disorder_context + bound_1YCR_interface_helix_proxy",
+      "target": "p53_TAD_MDM2"
+    },
+    {
+      "claim_allowed": false,
+      "md_blockers": [
+        "expanded_biological_assembly_coordinate_or_author_defined_assembly_model_for_tetramer_claim",
+        "external_couplings_if_available",
+        "pore_filter_coupling_support"
+      ],
+      "md_readiness": "not_ready_for_MD_external_constraints_or_target_specific_evidence_missing",
+      "missing_next_evidence": [
+        "expanded_biological_assembly_coordinate_or_author_defined_assembly_model_for_tetramer_claim",
+        "external_couplings_if_available",
+        "pore_filter_coupling_support"
+      ],
+      "new_MD_allowed": false,
+      "new_MD_recommended": false,
+      "operators": [
+        "role_detect",
+        "context_detect",
+        "evidence_assign",
+        "topology_context",
+        "interface_context",
+        "clean_abstain",
+        "pollution_guard"
+      ],
+      "pressure_type": "membrane_pore_oligomer_environment_pressure",
+      "role_detected": true,
+      "selected_signal": "TVGYG + K_plus_shell + TM_scaffold + chain_interface_context",
+      "target": "KcsA"
+    },
+    {
+      "claim_allowed": false,
+      "md_blockers": [
+        "condition_labels_if_available",
+        "state_specific_external_couplings_or_constraints_if_available"
+      ],
+      "md_readiness": "not_ready_for_MD_external_constraints_or_target_specific_evidence_missing",
+      "missing_next_evidence": [
+        "condition_labels_if_available",
+        "state_specific_external_couplings_or_constraints_if_available"
+      ],
+      "new_MD_allowed": false,
+      "new_MD_recommended": false,
+      "operators": [
+        "role_detect",
+        "context_detect",
+        "evidence_assign",
+        "state_separation",
+        "interface_context",
+        "clean_abstain",
+        "pollution_guard"
+      ],
+      "pressure_type": "metamorphic_fold_switching_pressure",
+      "role_detected": true,
+      "selected_signal": "state_A_chemokine_context + state_B_dimer_context_kept_separate",
+      "target": "XCL1_lymphotactin"
+    }
+  ],
+  "mechanism_operator_panel_summary": {
+    "claim_allowed": false,
+    "core_operator_policy": "role_detect_evidence_assign_pollution_guard_must_span_all_targets",
+    "core_operators_across_all_targets": [
+      "role_detect",
+      "evidence_assign",
+      "pollution_guard"
+    ],
+    "kind": "V29_MECHANISM_OPERATOR_PANEL_SUMMARY_v0",
+    "operator_counts": {
+      "chemical_confidence": 3,
+      "clean_abstain": 3,
+      "context_detect": 5,
+      "evidence_assign": 6,
+      "interface_context": 3,
+      "pollution_guard": 6,
+      "reachability_check": 1,
+      "replica_support": 3,
+      "role_detect": 6,
+      "state_separation": 1,
+      "topology_context": 3
+    },
+    "operator_interpretation": "The shared mechanism is not a single threshold or a single fold. It is an operator grammar: role detection, context detection, evidence assignment, guard/pollution control, and target-specific pressure operators.",
+    "positive_folding_evidence_targets": [],
+    "pressure_operator_family": [
+      "context_detect",
+      "interface_context",
+      "state_separation",
+      "clean_abstain",
+      "topology_context"
+    ],
+    "repeated_mechanism_operators": [
+      "chemical_confidence",
+      "clean_abstain",
+      "context_detect",
+      "evidence_assign",
+      "interface_context",
+      "pollution_guard",
+      "replica_support",
+      "role_detect",
+      "topology_context"
+    ],
+    "target_count": 6,
+    "targets": [
+      {
+        "abstain_reason_if_any": null,
+        "claim_allowed": false,
+        "evidence_type": "dynamic_domain_core_role_evidence_from_DCA_trajectory_frequency",
+        "mechanism_operator_used": [
+          "role_detect",
+          "context_detect",
+          "evidence_assign",
+          "reachability_check",
+          "replica_support",
+          "chemical_confidence",
+          "topology_context",
+          "pollution_guard"
+        ],
+        "missing_next_evidence": [
+          "interdomain_hinge_or_closure_evidence",
+          "external_validation_if_available"
+        ],
+        "pressure_type": "domain_hinge_closure_object",
+        "role_detected": true,
+        "selected_signal": "124-135",
+        "target": "4AKE"
+      },
+      {
+        "abstain_reason_if_any": null,
+        "claim_allowed": false,
+        "evidence_type": "compact_core_role_evidence_from_dynamic_V15_grammar",
+        "mechanism_operator_used": [
+          "role_detect",
+          "evidence_assign",
+          "replica_support",
+          "chemical_confidence",
+          "pollution_guard"
+        ],
+        "missing_next_evidence": [
+          "cross_target_validation",
+          "DCA_background_enrichment"
+        ],
+        "pressure_type": "single_domain_compact_object",
+        "role_detected": true,
+        "selected_signal": "23-48",
+        "target": "1UBQ"
+      },
+      {
+        "abstain_reason_if_any": "interdomain_hinge_not_yet_proven",
+        "claim_allowed": false,
+        "evidence_type": "hierarchical_domain_core_role_evidence",
+        "mechanism_operator_used": [
+          "role_detect",
+          "context_detect",
+          "evidence_assign",
+          "replica_support",
+          "chemical_confidence",
+          "topology_context",
+          "pollution_guard"
+        ],
+        "missing_next_evidence": [
+          "interdomain_hinge_evidence_if_claim_needed"
+        ],
+        "pressure_type": "multi_domain_composite_object",
+        "role_detected": true,
+        "selected_signal": "97-133",
+        "target": "1CLL"
+      },
+      {
+        "abstain_reason_if_any": null,
+        "claim_allowed": false,
+        "evidence_type": "external_disorder_reference_plus_partner_bound_interface_evidence",
+        "mechanism_operator_used": [
+          "role_detect",
+          "context_detect",
+          "evidence_assign",
+          "interface_context",
+          "clean_abstain",
+          "pollution_guard"
+        ],
+        "missing_next_evidence": [
+          "raw_local_external_annotation_files_if_needed",
+          "external_couplings_if_available"
+        ],
+        "pressure_type": "disorder_partner_induced_binding_pressure",
+        "role_detected": true,
+        "selected_signal": "isolated_disorder_context + bound_1YCR_interface_helix_proxy",
+        "target": "p53_TAD_MDM2"
+      },
+      {
+        "abstain_reason_if_any": null,
+        "claim_allowed": false,
+        "evidence_type": "pore_filter_TM_ion_shell_interface_annotation_evidence",
+        "mechanism_operator_used": [
+          "role_detect",
+          "context_detect",
+          "evidence_assign",
+          "topology_context",
+          "interface_context",
+          "clean_abstain",
+          "pollution_guard"
+        ],
+        "missing_next_evidence": [
+          "expanded_biological_assembly_coordinate_or_author_defined_assembly_model_for_tetramer_claim",
+          "external_couplings_if_available",
+          "pore_filter_coupling_support"
+        ],
+        "pressure_type": "membrane_pore_oligomer_environment_pressure",
+        "role_detected": true,
+        "selected_signal": "TVGYG + K_plus_shell + TM_scaffold + chain_interface_context",
+        "target": "KcsA"
+      },
+      {
+        "abstain_reason_if_any": null,
+        "claim_allowed": false,
+        "evidence_type": "state_specific_A_B_role_separation_evidence",
+        "mechanism_operator_used": [
+          "role_detect",
+          "context_detect",
+          "evidence_assign",
+          "state_separation",
+          "interface_context",
+          "clean_abstain",
+          "pollution_guard"
+        ],
+        "missing_next_evidence": [
+          "condition_labels_if_available",
+          "state_specific_external_couplings_or_constraints_if_available"
+        ],
+        "pressure_type": "metamorphic_fold_switching_pressure",
+        "role_detected": true,
+        "selected_signal": "state_A_chemokine_context + state_B_dimer_context_kept_separate",
+        "target": "XCL1_lymphotactin"
+      }
+    ],
+    "universal_core_operator_present": true,
+    "xcl1_state_condition_operator_preserved": true
+  },
+  "membrane_md_executed": false,
+  "native_metrics_used_for_selection": false,
+  "new_MD_allowed": false,
+  "new_MD_recommended": false,
+  "new_md_executed": false,
+  "operator_panel_target_count": 6,
+  "positive_folding_evidence_targets": [],
+  "positive_pressure_evidence_targets": [
+    "p53_TAD_MDM2",
+    "KcsA",
+    "XCL1_lymphotactin"
+  ],
+  "repeated_mechanism_operators": [
+    "chemical_confidence",
+    "clean_abstain",
+    "context_detect",
+    "evidence_assign",
+    "interface_context",
+    "pollution_guard",
+    "replica_support",
+    "role_detect",
+    "topology_context"
+  ],
+  "run_mode": "operator_panel_summary_and_md_readiness_no_simulation_no_threshold_tuning",
+  "selected_next_panel": "V30_EXTERNAL_CONSTRAINT_AND_COUPLING_ACQUISITION_SPRINT",
+  "source_v25_status": "V25_FAST_MECHANISM_EVIDENCE_SPRINT_LOCKED",
+  "source_v28_status": "V28_XCL1_STATE_CONDITION_EVIDENCE_CONTRAST_TEST_PASSED_CLAIM_DISABLED",
+  "summary_failed_checks": [],
+  "summary_status": "V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_LOCKED",
+  "target_specific_threshold_tuning_allowed": false,
+  "universal_core_operator_present": true,
+  "xcl1_state_condition_operator_preserved": true
+}

@@ -3,22 +3,22 @@
   "bridge_policy": "do_not_synthesize_4ake_evidence_from_pdb_or_visual_only_artifacts",
   "claim_allowed": false,
   "input_material_candidates": [
-    "/mnt/data/v40_work/pharmacotopology/data/audit_4ake_v13c.json",
-    "/mnt/data/v40_work/pharmacotopology/data/independent_contact_sources/AF-P69441-F1-model_v4.pdb",
-    "/mnt/data/v40_work/pharmacotopology/data/independent_contact_sources/AF-P69441-F1-model_v4.provenance.json",
-    "/mnt/data/v40_work/pharmacotopology/external_msa/4ake_pfam00406/4ake_pfam00406_focus.fasta",
-    "/mnt/data/v40_work/pharmacotopology/external_msa_free_predictors/4ake_esmfold_api.esmfold_api_report.json",
-    "/mnt/data/v40_work/pharmacotopology/external_msa_free_predictors/tryhard_runs_live/4ake_esmfold_api.pdb"
+    "/Users/draganamitova/My Projects/pharmacotopology/data/audit_4ake_v13c.json",
+    "/Users/draganamitova/My Projects/pharmacotopology/data/independent_contact_sources/AF-P69441-F1-model_v4.pdb",
+    "/Users/draganamitova/My Projects/pharmacotopology/data/independent_contact_sources/AF-P69441-F1-model_v4.provenance.json",
+    "/Users/draganamitova/My Projects/pharmacotopology/external_msa/4ake_pfam00406/4ake_pfam00406_focus.fasta",
+    "/Users/draganamitova/My Projects/pharmacotopology/external_msa_free_predictors/4ake_esmfold_api.esmfold_api_report.json",
+    "/Users/draganamitova/My Projects/pharmacotopology/external_msa_free_predictors/tryhard_runs_live/4ake_esmfold_api.pdb"
   ],
   "kind": "V15_4AKE_DYNAMIC_GRAMMAR_BRIDGE_v0",
   "legacy_cert_candidates": [
-    "/mnt/data/v40_work/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/real_coordinate_visual_8_certificate.json",
-    "/mnt/data/v40_work/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/visual_mechanism_12_certificate.json",
-    "/mnt/data/v40_work/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/visual_mechanism_audit_certificate.json"
+    "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/real_coordinate_visual_8_certificate.json",
+    "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/visual_mechanism_12_certificate.json",
+    "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/visual_mechanism_audit_certificate.json"
   ],
-  "legacy_visual_dir": "/mnt/data/v40_work/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/real_coordinate_visuals/coord_007_pdb_4AKE_A_adenylate_kinase",
+  "legacy_visual_dir": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/real_coordinate_visuals/coord_007_pdb_4AKE_A_adenylate_kinase",
   "protein_row": {
-    "artifact_path": "/mnt/data/v40_work/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V15_4AKE_BALANCED_CANDIDATE_READOUT/v15_4ake_balanced_candidate_readout_certificate.json",
+    "artifact_path": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V15_4AKE_BALANCED_CANDIDATE_READOUT/v15_4ake_balanced_candidate_readout_certificate.json",
     "artifact_status": "present_machine_readable_4ake_role_artifact",
     "biological_transfer_claim_allowed": false,
     "chemical_policy": "role_aware_chemical_policy_unknown_or_legacy",
@@ -111,13 +111,13 @@
     "topology_policy": "domain_hinge_closure"
   },
   "role_cert_candidates": [
-    "/mnt/data/v40_work/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V15_4AKE_BALANCED_CANDIDATE_READOUT/v15_4ake_balanced_candidate_readout_certificate.json",
-    "/mnt/data/v40_work/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V15_4AKE_BALANCED_CANDIDATE_READOUT/v15_4ake_balanced_candidate_readout_certificate.json",
-    "/mnt/data/v40_work/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V15_4AKE_CLEAN_DYNAMIC_ROLE_GRAMMAR_REBUILD/openmm_tmd_replicas_v0_certificate.json",
-    "/mnt/data/v40_work/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V13c_4AKE_ADENYLATE_KINASE/openmm_tmd_replicas_v0_certificate.json",
-    "/mnt/data/v40_work/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V13c_4AKE_ADENYLATE_KINASE/v15_4ake_dynamic_grammar_bridge_source.json",
-    "/mnt/data/v40_work/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/comparison_v9/4AKE/garage_role_aware_rescue_selector_v9_certificate.json",
-    "/mnt/data/v40_work/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/comparison_v9/4AKE/role_aware_rescue_selector_v9_certificate.json"
+    "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V15_4AKE_BALANCED_CANDIDATE_READOUT/v15_4ake_balanced_candidate_readout_certificate.json",
+    "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V15_4AKE_BALANCED_CANDIDATE_READOUT/v15_4ake_balanced_candidate_readout_certificate.json",
+    "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V15_4AKE_CLEAN_DYNAMIC_ROLE_GRAMMAR_REBUILD/openmm_tmd_replicas_v0_certificate.json",
+    "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V13c_4AKE_ADENYLATE_KINASE/openmm_tmd_replicas_v0_certificate.json",
+    "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V13c_4AKE_ADENYLATE_KINASE/v15_4ake_dynamic_grammar_bridge_source.json",
+    "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/comparison_v9/4AKE/garage_role_aware_rescue_selector_v9_certificate.json",
+    "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/comparison_v9/4AKE/role_aware_rescue_selector_v9_certificate.json"
   ],
   "run_mode": "postprocess_only_no_new_simulation"
 }

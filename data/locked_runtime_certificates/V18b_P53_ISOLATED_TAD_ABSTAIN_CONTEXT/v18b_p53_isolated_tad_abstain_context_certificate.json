@@ -1,0 +1,49 @@
+{
+  "artifacts": {
+    "certificate": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V18b_P53_ISOLATED_TAD_ABSTAIN_CONTEXT/v18b_p53_isolated_tad_abstain_context_certificate.json",
+    "report": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V18b_P53_ISOLATED_TAD_ABSTAIN_CONTEXT/V18b_P53_ISOLATED_TAD_ABSTAIN_CONTEXT_REPORT.md"
+  },
+  "available_evidence": [
+    "bound_partner_induced_interface_or_helix_evidence",
+    "leakage_guard_autonomous_fold_vs_partner_induced_fold",
+    "isolated_context_clean_abstain_guard"
+  ],
+  "bound_complex_partner_induced_evidence_preserved": true,
+  "claim_allowed": false,
+  "contrast_status": "isolated_TAD_clean_abstain_bound_partner_induced_role_evidence_preserved",
+  "evidence_claim_allowed": false,
+  "failed_checks": [],
+  "fixed_residue_cutoff_used": false,
+  "fixed_threshold_policy": "forbidden",
+  "forbidden_misclassification": [
+    "isolated_TAD_as_soluble_compact_core",
+    "partner_interface_as_autonomous_fold_claim",
+    "binding_helix_as_universal_p53_fold"
+  ],
+  "forbidden_misclassification_violations": [],
+  "isolated_TAD_autonomous_core_selected": false,
+  "isolated_TAD_clean_abstain_valid": true,
+  "isolated_TAD_fold_claim_made": false,
+  "isolated_TAD_material_available": false,
+  "isolated_TAD_status": "clean_abstain_no_isolated_TAD_material_no_autonomous_core_evidence",
+  "kind": "V18b_P53_ISOLATED_TAD_ABSTAIN_CONTEXT_v0",
+  "locked_interpretation": "p53 TAD context contrast is preserved: isolated context clean-abstains from autonomous compact-core/fold claims, while MDM2-bound context preserves partner-induced interface/helix role evidence. This is pressure-context role evidence, not folding evidence.",
+  "missing_evidence": [
+    "isolated_TAD_disorder_prior_or_external_annotation",
+    "external_couplings_if_available"
+  ],
+  "native_metrics_used_for_selection": false,
+  "new_md_executed": false,
+  "next_recommended_panel": "V19_KcsA_MEMBRANE_PORE_EVIDENCE_READOUT_or_XCL1_STATE_SPECIFIC_EVIDENCE_READOUT",
+  "partner_induced_role_evidence_found": true,
+  "positive_folding_evidence_found": false,
+  "positive_pressure_evidence_found": true,
+  "role_class": "disorder_partner_induced_object",
+  "run_mode": "zero_md_isolated_vs_bound_context_contrast_no_simulation_no_threshold_tuning",
+  "selected_core_or_clean_abstain": "isolated_clean_abstain_bound_partner_induced_evidence_preserved",
+  "source_v18_lock_status": "V18_P53_PARTNER_INDUCED_EVIDENCE_LOCKED",
+  "source_v18_status": "V18_P53_TAD_MDM2_PARTNER_INDUCED_EVIDENCE_TEST_PASSED_CLAIM_DISABLED",
+  "target_id": "p53_TAD_MDM2",
+  "target_specific_threshold_tuning_allowed": false,
+  "test_status": "V18b_P53_ISOLATED_TAD_ABSTAIN_CONTEXT_PASSED_CLAIM_DISABLED"
+}

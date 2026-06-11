@@ -1,0 +1,38 @@
+{
+  "claim_allowed": false,
+  "external_membrane_topology_reference_locked": true,
+  "kind": "V24_KcsA_MEMBRANE_TOPOLOGY_ANNOTATION_v0",
+  "membrane_environment_context_present": true,
+  "membrane_md_executed": false,
+  "new_md_executed": false,
+  "soluble_compact_core_misclassification": false,
+  "soluble_core_misclassification_avoided": true,
+  "source_references": [
+    {
+      "kind": "KcsA_integral_membrane_potassium_channel_reference",
+      "source_id": "RCSB_1BL8",
+      "url": "https://www.rcsb.org/structure/1BL8",
+      "use_boundary": "membrane_pore_context_only_no_tetramer_or_MD_claim"
+    },
+    {
+      "kind": "transmembrane_topology_reference",
+      "source_id": "OPM_KcsA",
+      "url": "https://opm.phar.umich.edu/proteins/59",
+      "use_boundary": "topology_annotation_reference_only_no_membrane_MD_claim"
+    }
+  ],
+  "target_id": "KcsA",
+  "target_role": "membrane_pore_oligomer_object",
+  "transmembrane_helix_readout": {
+    "helix_policy": "pdb_helix_records_report_only_no_membrane_MD_claim",
+    "helix_record_count": 10,
+    "helix_records_by_chain": {
+      "A": 4,
+      "B": 3,
+      "C": 3
+    },
+    "selection_threshold_used": false,
+    "transmembrane_helix_scaffold_context_present": true
+  },
+  "transmembrane_helix_scaffold": "present"
+}

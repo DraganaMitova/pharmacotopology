@@ -1,0 +1,16 @@
+{
+  "claim_allowed": false,
+  "decision_status": "V28_CONTRAST_LOCKED_NEXT_EXTERNAL_CONSTRAINT_ACQUISITION",
+  "kind": "V28_XCL1_NEXT_DECISION_v0",
+  "new_MD_allowed": false,
+  "new_MD_allowed_policy": "only_after_state_specific_external_constraints_are_locked_and_false_win_risk_is_low",
+  "new_MD_recommended": false,
+  "parallel_MD_paths_allowed": false,
+  "reason": "XCL1 condition/state contrast is preserved and false-win risk remains controlled; summarize mechanism operators and MD readiness before any simulation",
+  "required_before_any_MD": [
+    "state_specific_external_couplings_or_constraints_if_available",
+    "independent_condition_or_oligomerization_context_if_available",
+    "mixed_state_leakage_guard_preserved"
+  ],
+  "selected_next_panel": "V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION"
+}

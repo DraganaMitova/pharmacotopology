@@ -1,0 +1,299 @@
+{
+  "biological_transfer_claim_allowed": false,
+  "blocked_targets": [],
+  "claim_allowed": false,
+  "data_preflight_executed": true,
+  "data_preflight_status": "V16_TRANSFER_DATA_PREFLIGHT_READY_FOR_ZERO_MD_ROLE_READOUT",
+  "download_attempted_by_this_script": false,
+  "fixed_residue_cutoff_used": false,
+  "fixed_threshold_policy": "forbidden",
+  "interpretation": "This preflight only verifies whether V16 pressure targets have clean target/context material. It does not select folding evidence, does not run MD, does not tune grammar, and does not permit claims.",
+  "kind": "V16_TRANSFER_DATA_PREFLIGHT_v0",
+  "missing_material_by_target": {},
+  "native_metrics_not_used_for_selection": true,
+  "new_md_executed": false,
+  "preflight_failed_checks": [],
+  "ready_targets": [
+    "p53_TAD_MDM2",
+    "KcsA",
+    "XCL1_lymphotactin"
+  ],
+  "run_mode": "data_preflight_only_no_new_simulation_no_threshold_tuning",
+  "source_v15_lock_status": "V15_THREE_PROTEIN_DYNAMIC_GRAMMAR_PANEL_LOCKED",
+  "source_v16_lock_status": "V16_TARGET_MANIFEST_AND_ROLE_EXPECTATION_LOCKED",
+  "target_results": [
+    {
+      "allowed_evidence_roles": [
+        "clean_abstain_no_autonomous_core",
+        "partner_induced_interface_or_helix_signal_found",
+        "binding_stabilized_interface_core",
+        "disorder_signal_report_only"
+      ],
+      "claim_allowed": false,
+      "clean_abstain_allowed": true,
+      "expected_role_class": "disorder_partner_induced_object",
+      "forbidden_misclassification": [
+        "isolated_TAD_as_soluble_compact_core",
+        "partner_interface_as_autonomous_fold_claim",
+        "binding_helix_as_universal_p53_fold"
+      ],
+      "material_results": [
+        {
+          "checks": {
+            "pdb_file_present": true,
+            "pdb_has_ca_atoms": true,
+            "pdb_has_expected_chain_context": true,
+            "provenance_claim_disabled": true,
+            "provenance_pdb_id_matches": true,
+            "provenance_present": true,
+            "provenance_usage_boundary_safe": true,
+            "provenance_valid": true
+          },
+          "failed_checks": [],
+          "kind": "pdb_structure",
+          "material_id": "p53_TAD_MDM2_complex_structure",
+          "material_sanity_floor_not_selection_threshold": {
+            "min_ca_atoms": 20,
+            "min_chains": 2,
+            "selection_threshold": false
+          },
+          "material_status": "present_and_provenanced",
+          "path": "/Users/draganamitova/My Projects/pharmacotopology/data/v16_pressure_targets/p53_TAD_MDM2/1YCR.pdb",
+          "pdb_id": "1YCR",
+          "pdb_summary": {
+            "atom_line_count": 818,
+            "ca_atom_count": 98,
+            "chain_ca_counts": {
+              "A": 85,
+              "B": 13
+            },
+            "chain_count_with_ca": 2,
+            "exists": true,
+            "hetero_atom_line_count": 0,
+            "is_file": true
+          },
+          "provenance_path": "/Users/draganamitova/My Projects/pharmacotopology/data/v16_pressure_targets/p53_TAD_MDM2/1YCR.provenance.json",
+          "provenance_summary": {
+            "claim_disabled": true,
+            "exists": true,
+            "pdb_id_matches": true,
+            "role_use": "partner_induced_interface_or_helix_context",
+            "source": "RCSB PDB public download",
+            "usage_boundary_safe": true,
+            "valid_json": true
+          },
+          "role_use": "partner_induced_interface_or_helix_context"
+        }
+      ],
+      "missing_required_material_ids": [],
+      "optional_or_later_material": [
+        "isolated_TAD_sequence_or_segment",
+        "disorder_annotation_or_disorder_prior",
+        "external_couplings_if_available"
+      ],
+      "pressure_class": "disorder_partner_induced_binding",
+      "target_id": "p53_TAD_MDM2",
+      "target_material_status": "ready_for_zero_md_role_readout",
+      "target_role_preflight_status": "partner_complex_context_present_isolated_disorder_material_later_no_claim"
+    },
+    {
+      "allowed_evidence_roles": [
+        "transmembrane_helix_scaffold",
+        "pore_selectivity_filter_core",
+        "tetramer_interface_support",
+        "membrane_environment_pressure_context",
+        "ion_filter_diagnostic_shell",
+        "clean_abstain_missing_membrane_or_oligomer_context"
+      ],
+      "claim_allowed": false,
+      "clean_abstain_allowed": true,
+      "expected_role_class": "membrane_pore_oligomer_object",
+      "forbidden_misclassification": [
+        "membrane_pore_as_soluble_single_domain_compact_core",
+        "ion_filter_geometry_as_whole_fold_claim",
+        "tetramer_interface_as_monomer_autonomous_core"
+      ],
+      "material_results": [
+        {
+          "checks": {
+            "pdb_file_present": true,
+            "pdb_has_ca_atoms": true,
+            "pdb_has_expected_chain_context": true,
+            "provenance_claim_disabled": true,
+            "provenance_pdb_id_matches": true,
+            "provenance_present": true,
+            "provenance_usage_boundary_safe": true,
+            "provenance_valid": true
+          },
+          "failed_checks": [],
+          "kind": "pdb_structure",
+          "material_id": "KcsA_Fab_complex_structure",
+          "material_sanity_floor_not_selection_threshold": {
+            "min_ca_atoms": 100,
+            "min_chains": 3,
+            "selection_threshold": false
+          },
+          "material_status": "present_and_provenanced",
+          "path": "/Users/draganamitova/My Projects/pharmacotopology/data/v16_pressure_targets/KcsA/1K4C.pdb",
+          "pdb_id": "1K4C",
+          "pdb_summary": {
+            "atom_line_count": 4017,
+            "ca_atom_count": 534,
+            "chain_ca_counts": {
+              "A": 219,
+              "B": 212,
+              "C": 103
+            },
+            "chain_count_with_ca": 3,
+            "exists": true,
+            "hetero_atom_line_count": 517,
+            "is_file": true
+          },
+          "provenance_path": "/Users/draganamitova/My Projects/pharmacotopology/data/v16_pressure_targets/KcsA/1K4C.provenance.json",
+          "provenance_summary": {
+            "claim_disabled": true,
+            "exists": true,
+            "pdb_id_matches": true,
+            "role_use": "membrane_pore_oligomer_context",
+            "source": "RCSB PDB public download",
+            "usage_boundary_safe": true,
+            "valid_json": true
+          },
+          "role_use": "membrane_pore_oligomer_context"
+        }
+      ],
+      "missing_required_material_ids": [],
+      "optional_or_later_material": [
+        "membrane_topology_annotation",
+        "biological_assembly_or_oligomer_annotation",
+        "pore_filter_residue_context",
+        "external_couplings_if_available"
+      ],
+      "pressure_class": "membrane_pore_oligomer_environment",
+      "target_id": "KcsA",
+      "target_material_status": "ready_for_zero_md_role_readout",
+      "target_role_preflight_status": "membrane_pore_oligomer_context_present_membrane_annotation_later_no_claim"
+    },
+    {
+      "allowed_evidence_roles": [
+        "state_A_chemokine_monomer_support",
+        "state_B_beta_sandwich_dimer_support",
+        "shared_local_support",
+        "pressure_condition_switch_context",
+        "clean_state_specific_abstain"
+      ],
+      "claim_allowed": false,
+      "clean_abstain_allowed": true,
+      "expected_role_class": "metamorphic_switch_object",
+      "forbidden_misclassification": [
+        "forcing_single_canonical_fold",
+        "mixing_two_states_into_one_false_core",
+        "claiming_fold_switch_without_state_specific_support"
+      ],
+      "material_results": [
+        {
+          "checks": {
+            "pdb_file_present": true,
+            "pdb_has_ca_atoms": true,
+            "pdb_has_expected_chain_context": true,
+            "provenance_claim_disabled": true,
+            "provenance_pdb_id_matches": true,
+            "provenance_present": true,
+            "provenance_usage_boundary_safe": true,
+            "provenance_valid": true
+          },
+          "failed_checks": [],
+          "kind": "pdb_structure",
+          "material_id": "XCL1_state_A_chemokine_like_structure",
+          "material_sanity_floor_not_selection_threshold": {
+            "min_ca_atoms": 40,
+            "min_chains": 1,
+            "selection_threshold": false
+          },
+          "material_status": "present_and_provenanced",
+          "path": "/Users/draganamitova/My Projects/pharmacotopology/data/v16_pressure_targets/XCL1_lymphotactin/2HDM.pdb",
+          "pdb_id": "2HDM",
+          "pdb_summary": {
+            "atom_line_count": 23700,
+            "ca_atom_count": 1480,
+            "chain_ca_counts": {
+              "A": 1480
+            },
+            "chain_count_with_ca": 1,
+            "exists": true,
+            "hetero_atom_line_count": 0,
+            "is_file": true
+          },
+          "provenance_path": "/Users/draganamitova/My Projects/pharmacotopology/data/v16_pressure_targets/XCL1_lymphotactin/2HDM.provenance.json",
+          "provenance_summary": {
+            "claim_disabled": true,
+            "exists": true,
+            "pdb_id_matches": true,
+            "role_use": "state_A_chemokine_monomer_context",
+            "source": "RCSB PDB public download",
+            "usage_boundary_safe": true,
+            "valid_json": true
+          },
+          "role_use": "state_A_chemokine_monomer_context"
+        },
+        {
+          "checks": {
+            "pdb_file_present": true,
+            "pdb_has_ca_atoms": true,
+            "pdb_has_expected_chain_context": true,
+            "provenance_claim_disabled": true,
+            "provenance_pdb_id_matches": true,
+            "provenance_present": true,
+            "provenance_usage_boundary_safe": true,
+            "provenance_valid": true
+          },
+          "failed_checks": [],
+          "kind": "pdb_structure",
+          "material_id": "XCL1_state_B_alternative_conformation_structure",
+          "material_sanity_floor_not_selection_threshold": {
+            "min_ca_atoms": 40,
+            "min_chains": 1,
+            "selection_threshold": false
+          },
+          "material_status": "present_and_provenanced",
+          "path": "/Users/draganamitova/My Projects/pharmacotopology/data/v16_pressure_targets/XCL1_lymphotactin/2JP1.pdb",
+          "pdb_id": "2JP1",
+          "pdb_summary": {
+            "atom_line_count": 38400,
+            "ca_atom_count": 2400,
+            "chain_ca_counts": {
+              "A": 1200,
+              "B": 1200
+            },
+            "chain_count_with_ca": 2,
+            "exists": true,
+            "hetero_atom_line_count": 0,
+            "is_file": true
+          },
+          "provenance_path": "/Users/draganamitova/My Projects/pharmacotopology/data/v16_pressure_targets/XCL1_lymphotactin/2JP1.provenance.json",
+          "provenance_summary": {
+            "claim_disabled": true,
+            "exists": true,
+            "pdb_id_matches": true,
+            "role_use": "state_B_beta_sandwich_or_alternative_state_context",
+            "source": "RCSB PDB public download",
+            "usage_boundary_safe": true,
+            "valid_json": true
+          },
+          "role_use": "state_B_beta_sandwich_or_alternative_state_context"
+        }
+      ],
+      "missing_required_material_ids": [],
+      "optional_or_later_material": [
+        "condition_or_oligomerization_context",
+        "state_specific_external_couplings_if_available",
+        "state_specific_leakage_guard"
+      ],
+      "pressure_class": "metamorphic_fold_switching",
+      "target_id": "XCL1_lymphotactin",
+      "target_material_status": "ready_for_zero_md_role_readout",
+      "target_role_preflight_status": "two_state_metamorphic_context_present_state_specific_readout_later_no_claim"
+    }
+  ],
+  "target_specific_threshold_tuning_allowed": false
+}

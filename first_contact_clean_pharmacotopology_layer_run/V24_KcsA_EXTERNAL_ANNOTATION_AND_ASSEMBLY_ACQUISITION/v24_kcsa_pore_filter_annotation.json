@@ -1,0 +1,142 @@
+{
+  "K_plus_ion_diagnostic_shell_present": true,
+  "TVGYG_motif_detected": true,
+  "claim_allowed": false,
+  "kind": "V24_KcsA_PORE_FILTER_ANNOTATION_v0",
+  "multi_radius_report_only": true,
+  "pore_filter_annotation_present": true,
+  "pore_filter_readout": {
+    "annotation_probe": {
+      "annotation_policy": "pdb_header_keyword_report_only_no_native_selection",
+      "membrane_annotation": true,
+      "pore_annotation": true,
+      "potassium_channel_annotation": true,
+      "selection_threshold_used": false,
+      "selectivity_filter_annotation": false
+    },
+    "policy": "pore_filter_annotation_or_diagnostic_report_only_no_whole_fold_claim",
+    "potassium_ion_probe": {
+      "ion_filter_diagnostic_shell_present": true,
+      "ion_probe_policy": "ion_context_report_only_no_whole_fold_claim",
+      "potassium_ion_count": 7,
+      "potassium_ion_records_sample": [
+        {
+          "atom_name": "K",
+          "chain": "C",
+          "residue_name": "K",
+          "residue_number": "3001",
+          "xyz": [
+            155.336,
+            155.342,
+            -30.553
+          ]
+        },
+        {
+          "atom_name": "K",
+          "chain": "C",
+          "residue_name": "K",
+          "residue_number": "3002",
+          "xyz": [
+            155.331,
+            155.331,
+            -33.953
+          ]
+        },
+        {
+          "atom_name": "K",
+          "chain": "C",
+          "residue_name": "K",
+          "residue_number": "3003",
+          "xyz": [
+            155.341,
+            155.323,
+            -37.162
+          ]
+        },
+        {
+          "atom_name": "K",
+          "chain": "C",
+          "residue_name": "K",
+          "residue_number": "3004",
+          "xyz": [
+            155.33,
+            155.324,
+            -40.505
+          ]
+        },
+        {
+          "atom_name": "K",
+          "chain": "C",
+          "residue_name": "K",
+          "residue_number": "3005",
+          "xyz": [
+            155.327,
+            155.335,
+            -47.577
+          ]
+        },
+        {
+          "atom_name": "K",
+          "chain": "C",
+          "residue_name": "K",
+          "residue_number": "3006",
+          "xyz": [
+            155.339,
+            155.327,
+            -22.975
+          ]
+        },
+        {
+          "atom_name": "K",
+          "chain": "C",
+          "residue_name": "K",
+          "residue_number": "3007",
+          "xyz": [
+            155.343,
+            155.33,
+            -26.017
+          ]
+        }
+      ],
+      "selection_threshold_used": false
+    },
+    "sequence_motif_probe": {
+      "filter_motif_detected": true,
+      "motif_hits": [
+        {
+          "chain": "C",
+          "index": 53,
+          "motif": "TVGYG",
+          "source": "residue_sequences_by_chain"
+        },
+        {
+          "chain": "C",
+          "index": 53,
+          "motif": "TxxYG_diagnostic",
+          "source": "residue_sequences_by_chain",
+          "window": "TVGYG"
+        },
+        {
+          "chain": "C",
+          "index": 74,
+          "motif": "TVGYG",
+          "source": "seqres_sequences_by_chain"
+        },
+        {
+          "chain": "C",
+          "index": 74,
+          "motif": "TxxYG_diagnostic",
+          "source": "seqres_sequences_by_chain",
+          "window": "TVGYG"
+        }
+      ],
+      "motif_policy": "sequence_or_seqres_report_only_no_single_fixed_success_threshold",
+      "selection_threshold_used": false,
+      "strong_TVGYG_motif_detected": true
+    }
+  },
+  "potassium_ion_count": 7,
+  "selection_threshold_used": false,
+  "selectivity_filter_role": "pore_filter_core",
+  "target_id": "KcsA"
+}

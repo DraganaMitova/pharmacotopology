@@ -1,0 +1,135 @@
+{
+  "claim_allowed": false,
+  "kind": "V22_ANNOTATION_PREFLIGHT_v0",
+  "new_md_executed": false,
+  "ready_for_V23_targets": [
+    "p53_TAD_MDM2"
+  ],
+  "targets": [
+    {
+      "available_evidence": [
+        "bound_partner_induced_interface_or_helix_evidence",
+        "external_annotation_source_references_locked",
+        "interface_or_contact_evidence",
+        "isolated_context_clean_abstain_guard",
+        "leakage_guard_autonomous_fold_vs_partner_induced_fold",
+        "partner_bound_complex_context",
+        "prior_forbidden_misclassification_guard_clean",
+        "prior_zero_md_pressure_evidence_locked",
+        "required_context_structures_present",
+        "state_label_bound_context"
+      ],
+      "claim_allowed": false,
+      "external_annotation_source_references_locked": true,
+      "missing_evidence": [
+        "external_couplings_if_available",
+        "external_couplings_or_msa_files_if_available",
+        "isolated_TAD_disorder_or_clean_abstain_context",
+        "isolated_TAD_disorder_prior_or_external_annotation",
+        "raw_local_external_annotation_files_if_needed"
+      ],
+      "prior_forbidden_misclassification_guard_clean": true,
+      "prior_pressure_evidence_locked": true,
+      "raw_local_external_annotation_files": [],
+      "ready_for_V23": true,
+      "role_class": "disorder_partner_induced_object",
+      "structure_preflight": {
+        "all_required_structures_present": true,
+        "structures": [
+          {
+            "material_id": "p53_TAD_MDM2_complex_structure",
+            "path": "/Users/draganamitova/My Projects/pharmacotopology/data/v16_pressure_targets/p53_TAD_MDM2/1YCR.pdb",
+            "present": true,
+            "size_bytes": 94041
+          }
+        ]
+      },
+      "target_id": "p53_TAD_MDM2"
+    },
+    {
+      "available_evidence": [
+        "KcsA_complex_coordinate_context",
+        "chain_or_interface_context",
+        "external_annotation_source_references_locked",
+        "leakage_guard_against_soluble_core_misread",
+        "membrane_environment_context",
+        "pore_selectivity_filter_annotation_or_diagnostic",
+        "prior_forbidden_misclassification_guard_clean",
+        "prior_zero_md_pressure_evidence_locked",
+        "required_context_structures_present",
+        "transmembrane_helix_scaffold_context"
+      ],
+      "claim_allowed": false,
+      "external_annotation_source_references_locked": true,
+      "missing_evidence": [
+        "biological_tetramer_assembly_annotation_for_tetramer_claim",
+        "external_couplings_if_available",
+        "external_couplings_or_msa_files_if_available",
+        "local_biological_assembly_or_OPM_membrane_annotation_file",
+        "raw_local_external_annotation_files_if_needed"
+      ],
+      "prior_forbidden_misclassification_guard_clean": true,
+      "prior_pressure_evidence_locked": true,
+      "raw_local_external_annotation_files": [],
+      "ready_for_V23": false,
+      "role_class": "membrane_pore_oligomer_object",
+      "structure_preflight": {
+        "all_required_structures_present": true,
+        "structures": [
+          {
+            "material_id": "KcsA_Fab_complex_structure",
+            "path": "/Users/draganamitova/My Projects/pharmacotopology/data/v16_pressure_targets/KcsA/1K4C.pdb",
+            "present": true,
+            "size_bytes": 430677
+          }
+        ]
+      },
+      "target_id": "KcsA"
+    },
+    {
+      "available_evidence": [
+        "external_annotation_source_references_locked",
+        "leakage_guard_preventing_mixed_state_fake_core",
+        "monomer_dimer_context",
+        "prior_forbidden_misclassification_guard_clean",
+        "prior_zero_md_pressure_evidence_locked",
+        "required_context_structures_present",
+        "state_A_and_state_B_context_structures",
+        "state_A_and_state_B_labels",
+        "state_specific_structural_or_contact_evidence"
+      ],
+      "claim_allowed": false,
+      "external_annotation_source_references_locked": true,
+      "missing_evidence": [
+        "condition_labels_if_available",
+        "external_couplings_or_msa_files_if_available",
+        "local_state_condition_or_monomer_dimer_annotation_file",
+        "raw_local_external_annotation_files_if_needed",
+        "state_specific_external_couplings_or_constraints_if_available"
+      ],
+      "prior_forbidden_misclassification_guard_clean": true,
+      "prior_pressure_evidence_locked": true,
+      "raw_local_external_annotation_files": [],
+      "ready_for_V23": false,
+      "role_class": "metamorphic_switch_object",
+      "structure_preflight": {
+        "all_required_structures_present": true,
+        "structures": [
+          {
+            "material_id": "XCL1_state_A_chemokine_like_structure",
+            "path": "/Users/draganamitova/My Projects/pharmacotopology/data/v16_pressure_targets/XCL1_lymphotactin/2HDM.pdb",
+            "present": true,
+            "size_bytes": 1945620
+          },
+          {
+            "material_id": "XCL1_state_B_alternative_conformation_structure",
+            "path": "/Users/draganamitova/My Projects/pharmacotopology/data/v16_pressure_targets/XCL1_lymphotactin/2JP1.pdb",
+            "present": true,
+            "size_bytes": 3143610
+          }
+        ]
+      },
+      "target_id": "XCL1_lymphotactin"
+    }
+  ]
+}

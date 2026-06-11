@@ -1,0 +1,48 @@
+{
+  "annotation_keywords": {
+    "dimer_keyword": true,
+    "lymphotactin_or_xcl1_keyword": true,
+    "metamorphic_or_switch_keyword": true,
+    "monomer_keyword": true
+  },
+  "chain_ca_counts": {
+    "A": 1200,
+    "B": 1200
+  },
+  "chain_count_with_ca": 2,
+  "chain_interface_readout": {
+    "chain_ca_counts": {
+      "A": 1200,
+      "B": 1200
+    },
+    "chain_count_with_ca": 2,
+    "contact_probe_policy": "state_specific_multi_radius_report_only_no_single_fixed_selection_threshold",
+    "interface_pairs_present": [
+      "A-B"
+    ],
+    "min_ca_distance_by_chain_pair": {
+      "A-B": 3.379
+    },
+    "multi_radius_contact_counts_by_chain_pair": {
+      "A-B": {
+        "10.0": 4389,
+        "6.0": 193,
+        "8.0": 1257
+      }
+    },
+    "selection_threshold_used": false
+  },
+  "expected_context": "alternative_state_or_dimer_context",
+  "helix_record_count": 0,
+  "model_count": 20,
+  "path": "/Users/draganamitova/My Projects/pharmacotopology/data/v16_pressure_targets/XCL1_lymphotactin/2JP1.pdb",
+  "pdb_id": "2JP1",
+  "role_context": "alternative_beta_or_dimer_context",
+  "selection_threshold_used": false,
+  "sheet_record_count": 8,
+  "state_label": "state_B",
+  "state_material_present": true,
+  "state_policy": "state_specific_structure_context_only_no_cross_state_pooling_no_single_native_assumption",
+  "state_role_bucket": "state_B_beta_sandwich_dimer_or_alternative_state_support_context",
+  "state_role_evidence_found": true
+}

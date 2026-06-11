@@ -1,0 +1,19 @@
+{
+  "claim_allowed": false,
+  "decision_status": "V26_TARGET_SELECTED",
+  "evidence_readiness_basis": {
+    "KcsA_coupling_available": false,
+    "KcsA_interface_evidence_present": true,
+    "XCL1_state_specific_clean": true,
+    "p53_external_contrast_clean": true
+  },
+  "kind": "V25_NEXT_MECHANISM_TEST_DECISION_v0",
+  "new_MD_allowed": false,
+  "new_MD_allowed_policy": "only_if_external_evidence_ready_and_false_win_risk_low",
+  "new_MD_recommended": false,
+  "parallel_MD_paths_allowed": false,
+  "positive_folding_evidence_targets": [],
+  "reason": "XCL1 has clean state-specific separation with no mixed-state pollution; strongest conceptual mechanism target, but still no MD until condition/coupling evidence is available",
+  "selected_V26_target": "XCL1_lymphotactin",
+  "selected_V26_test": "XCL1_STATE_SEPARATION_OPERATOR_TEST"
+}

@@ -1,0 +1,32 @@
+{
+  "claim_allowed": false,
+  "kind": "V22_COUPLING_AVAILABILITY_SCAN_v0",
+  "new_md_executed": false,
+  "targets": [
+    {
+      "claim_allowed": false,
+      "coupling_required_for_selected_V23": false,
+      "coupling_status": "missing_or_not_yet_acquired",
+      "external_couplings_or_msa_files_present": false,
+      "matching_files": [],
+      "target_id": "p53_TAD_MDM2"
+    },
+    {
+      "claim_allowed": false,
+      "coupling_required_for_selected_V23": true,
+      "coupling_status": "missing_or_not_yet_acquired",
+      "external_couplings_or_msa_files_present": false,
+      "matching_files": [],
+      "target_id": "KcsA"
+    },
+    {
+      "claim_allowed": false,
+      "coupling_required_for_selected_V23": true,
+      "coupling_status": "missing_or_not_yet_acquired",
+      "external_couplings_or_msa_files_present": false,
+      "matching_files": [],
+      "target_id": "XCL1_lymphotactin"
+    }
+  ],
+  "targets_with_couplings_or_msa": []
+}

@@ -1,0 +1,36 @@
+{
+  "available_evidence": [
+    "leakage_guard_preventing_mixed_state_fake_core",
+    "monomer_dimer_context",
+    "state_A_and_state_B_context_structures",
+    "state_A_and_state_B_labels",
+    "state_specific_structural_or_contact_evidence"
+  ],
+  "claim_allowed": false,
+  "fixed_residue_cutoff_used": false,
+  "fold_switch_claim_made": false,
+  "forbidden_misclassification_violations": [],
+  "kind": "V25B_XCL1_STATE_SPECIFIC_READOUT_v0",
+  "missing_evidence": [
+    "condition_labels_if_available",
+    "state_specific_external_couplings_or_constraints_if_available"
+  ],
+  "mixed_state_contact_pooling_used": false,
+  "mixed_state_pollution": false,
+  "native_metrics_used_for_selection": false,
+  "new_md_executed": false,
+  "positive_folding_evidence_found": false,
+  "positive_pressure_evidence_found": true,
+  "readout_status": "V25B_XCL1_STATE_SPECIFIC_EVIDENCE_PRESERVED_CLAIM_DISABLED",
+  "role_class": "metamorphic_switch_object",
+  "run_mode": "zero_md_state_separation_preservation_no_simulation_no_threshold_tuning",
+  "selection_threshold_used": false,
+  "single_fold_claim_made": false,
+  "single_fold_forcing": false,
+  "source_v20_status": "V20_XCL1_STATE_SPECIFIC_EVIDENCE_READOUT_PASSED_CLAIM_DISABLED",
+  "state_A_detected": true,
+  "state_B_detected": true,
+  "state_separation_policy": "state_specific_buckets_no_cross_state_pooling_no_single_native_assumption",
+  "state_specific_role_evidence_found": true,
+  "target_id": "XCL1_lymphotactin"
+}

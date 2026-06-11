@@ -1,0 +1,36 @@
+{
+  "blocked_or_deferred_targets": [
+    "KcsA",
+    "XCL1_lymphotactin"
+  ],
+  "claim_allowed": false,
+  "decision_rows": [
+    {
+      "candidate_next_test": "p53_TAD_MDM2_EXTERNAL_EVIDENCE_CONTRAST_TEST",
+      "decision_reason": "strongest ready external evidence contrast: isolated disorder source-reference lock plus partner-bound interface evidence",
+      "ready_for_V23": true,
+      "target_id": "p53_TAD_MDM2"
+    },
+    {
+      "candidate_next_test": "KcsA_EXTERNAL_ANNOTATION_AND_COUPLING_READOUT",
+      "decision_reason": "deferred until local annotation/coupling acquisition closes remaining gaps",
+      "ready_for_V23": false,
+      "target_id": "KcsA"
+    },
+    {
+      "candidate_next_test": "XCL1_STATE_SPECIFIC_EXTERNAL_EVIDENCE_READOUT",
+      "decision_reason": "deferred until local annotation/coupling acquisition closes remaining gaps",
+      "ready_for_V23": false,
+      "target_id": "XCL1_lymphotactin"
+    }
+  ],
+  "decision_status": "V23_TARGET_SELECTED",
+  "parallel_md_paths_allowed": false,
+  "ready_for_V23_targets": [
+    "p53_TAD_MDM2"
+  ],
+  "reason": "strongest ready external evidence contrast: isolated disorder vs partner-induced bound interface; no MD required for first V23 test",
+  "selected_V23_target": "p53_TAD_MDM2",
+  "selected_V23_test": "p53_TAD_MDM2_EXTERNAL_EVIDENCE_CONTRAST_TEST",
+  "v23_first_run_mode": "zero_md_external_annotation_evidence_contrast_no_MD_no_threshold_tuning"
+}

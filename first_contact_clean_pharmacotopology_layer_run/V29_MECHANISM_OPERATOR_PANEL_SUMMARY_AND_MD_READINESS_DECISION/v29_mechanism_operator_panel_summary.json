@@ -1,0 +1,178 @@
+{
+  "claim_allowed": false,
+  "core_operator_policy": "role_detect_evidence_assign_pollution_guard_must_span_all_targets",
+  "core_operators_across_all_targets": [
+    "role_detect",
+    "evidence_assign",
+    "pollution_guard"
+  ],
+  "kind": "V29_MECHANISM_OPERATOR_PANEL_SUMMARY_v0",
+  "operator_counts": {
+    "chemical_confidence": 3,
+    "clean_abstain": 3,
+    "context_detect": 5,
+    "evidence_assign": 6,
+    "interface_context": 3,
+    "pollution_guard": 6,
+    "reachability_check": 1,
+    "replica_support": 3,
+    "role_detect": 6,
+    "state_separation": 1,
+    "topology_context": 3
+  },
+  "operator_interpretation": "The shared mechanism is not a single threshold or a single fold. It is an operator grammar: role detection, context detection, evidence assignment, guard/pollution control, and target-specific pressure operators.",
+  "positive_folding_evidence_targets": [],
+  "pressure_operator_family": [
+    "context_detect",
+    "interface_context",
+    "state_separation",
+    "clean_abstain",
+    "topology_context"
+  ],
+  "repeated_mechanism_operators": [
+    "chemical_confidence",
+    "clean_abstain",
+    "context_detect",
+    "evidence_assign",
+    "interface_context",
+    "pollution_guard",
+    "replica_support",
+    "role_detect",
+    "topology_context"
+  ],
+  "target_count": 6,
+  "targets": [
+    {
+      "abstain_reason_if_any": null,
+      "claim_allowed": false,
+      "evidence_type": "dynamic_domain_core_role_evidence_from_DCA_trajectory_frequency",
+      "mechanism_operator_used": [
+        "role_detect",
+        "context_detect",
+        "evidence_assign",
+        "reachability_check",
+        "replica_support",
+        "chemical_confidence",
+        "topology_context",
+        "pollution_guard"
+      ],
+      "missing_next_evidence": [
+        "interdomain_hinge_or_closure_evidence",
+        "external_validation_if_available"
+      ],
+      "pressure_type": "domain_hinge_closure_object",
+      "role_detected": true,
+      "selected_signal": "124-135",
+      "target": "4AKE"
+    },
+    {
+      "abstain_reason_if_any": null,
+      "claim_allowed": false,
+      "evidence_type": "compact_core_role_evidence_from_dynamic_V15_grammar",
+      "mechanism_operator_used": [
+        "role_detect",
+        "evidence_assign",
+        "replica_support",
+        "chemical_confidence",
+        "pollution_guard"
+      ],
+      "missing_next_evidence": [
+        "cross_target_validation",
+        "DCA_background_enrichment"
+      ],
+      "pressure_type": "single_domain_compact_object",
+      "role_detected": true,
+      "selected_signal": "23-48",
+      "target": "1UBQ"
+    },
+    {
+      "abstain_reason_if_any": "interdomain_hinge_not_yet_proven",
+      "claim_allowed": false,
+      "evidence_type": "hierarchical_domain_core_role_evidence",
+      "mechanism_operator_used": [
+        "role_detect",
+        "context_detect",
+        "evidence_assign",
+        "replica_support",
+        "chemical_confidence",
+        "topology_context",
+        "pollution_guard"
+      ],
+      "missing_next_evidence": [
+        "interdomain_hinge_evidence_if_claim_needed"
+      ],
+      "pressure_type": "multi_domain_composite_object",
+      "role_detected": true,
+      "selected_signal": "97-133",
+      "target": "1CLL"
+    },
+    {
+      "abstain_reason_if_any": null,
+      "claim_allowed": false,
+      "evidence_type": "external_disorder_reference_plus_partner_bound_interface_evidence",
+      "mechanism_operator_used": [
+        "role_detect",
+        "context_detect",
+        "evidence_assign",
+        "interface_context",
+        "clean_abstain",
+        "pollution_guard"
+      ],
+      "missing_next_evidence": [
+        "raw_local_external_annotation_files_if_needed",
+        "external_couplings_if_available"
+      ],
+      "pressure_type": "disorder_partner_induced_binding_pressure",
+      "role_detected": true,
+      "selected_signal": "isolated_disorder_context + bound_1YCR_interface_helix_proxy",
+      "target": "p53_TAD_MDM2"
+    },
+    {
+      "abstain_reason_if_any": null,
+      "claim_allowed": false,
+      "evidence_type": "pore_filter_TM_ion_shell_interface_annotation_evidence",
+      "mechanism_operator_used": [
+        "role_detect",
+        "context_detect",
+        "evidence_assign",
+        "topology_context",
+        "interface_context",
+        "clean_abstain",
+        "pollution_guard"
+      ],
+      "missing_next_evidence": [
+        "expanded_biological_assembly_coordinate_or_author_defined_assembly_model_for_tetramer_claim",
+        "external_couplings_if_available",
+        "pore_filter_coupling_support"
+      ],
+      "pressure_type": "membrane_pore_oligomer_environment_pressure",
+      "role_detected": true,
+      "selected_signal": "TVGYG + K_plus_shell + TM_scaffold + chain_interface_context",
+      "target": "KcsA"
+    },
+    {
+      "abstain_reason_if_any": null,
+      "claim_allowed": false,
+      "evidence_type": "state_specific_A_B_role_separation_evidence",
+      "mechanism_operator_used": [
+        "role_detect",
+        "context_detect",
+        "evidence_assign",
+        "state_separation",
+        "interface_context",
+        "clean_abstain",
+        "pollution_guard"
+      ],
+      "missing_next_evidence": [
+        "condition_labels_if_available",
+        "state_specific_external_couplings_or_constraints_if_available"
+      ],
+      "pressure_type": "metamorphic_fold_switching_pressure",
+      "role_detected": true,
+      "selected_signal": "state_A_chemokine_context + state_B_dimer_context_kept_separate",
+      "target": "XCL1_lymphotactin"
+    }
+  ],
+  "universal_core_operator_present": true,
+  "xcl1_state_condition_operator_preserved": true
+}

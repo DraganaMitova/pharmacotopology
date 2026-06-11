@@ -1,0 +1,196 @@
+{
+  "blocked_targets": [],
+  "claim_allowed": false,
+  "clean_abstain_targets": [],
+  "data_preflight_executed": true,
+  "fixed_residue_cutoff_used": false,
+  "fixed_threshold_policy": "forbidden",
+  "forbidden_misclassification_violations": {},
+  "interpretation": "This is a zero-MD role-transfer readout. It checks whether the locked V15/V16 grammar can assign or abstain from pressure-class roles without soluble-core misclassification, target-specific threshold tuning, native-metric selection, new MD, or folding-solved claims.",
+  "kind": "V16_ZERO_MD_ROLE_TRANSFER_READOUT_v0",
+  "native_metrics_not_used_for_selection": true,
+  "native_metrics_used_for_selection": false,
+  "new_md_executed": false,
+  "positive_folding_evidence_targets": [],
+  "pressure_role_transfer_passed_targets": [
+    "p53_TAD_MDM2",
+    "KcsA",
+    "XCL1_lymphotactin"
+  ],
+  "readout_failed_checks": [],
+  "role_classification_passed_targets": [
+    "p53_TAD_MDM2",
+    "KcsA",
+    "XCL1_lymphotactin"
+  ],
+  "role_transfer_status": "V16_ZERO_MD_ROLE_TRANSFER_READOUT_COMPLETED_CLAIM_DISABLED",
+  "run_mode": "zero_md_role_transfer_readout_no_simulation_no_threshold_tuning",
+  "selection_policy": "role_context_or_clean_abstain_only_no_native_metric_selection",
+  "source_preflight_status": "V16_TRANSFER_DATA_PREFLIGHT_READY_FOR_ZERO_MD_ROLE_READOUT",
+  "source_v16_lock_status": "V16_TARGET_MANIFEST_AND_ROLE_EXPECTATION_LOCKED",
+  "target_rows": [
+    {
+      "allowed_evidence_roles": [
+        "clean_abstain_no_autonomous_core",
+        "partner_induced_interface_or_helix_signal_found",
+        "binding_stabilized_interface_core",
+        "disorder_signal_report_only"
+      ],
+      "claim_allowed": false,
+      "clean_abstain_allowed": true,
+      "clean_abstain_roles": [
+        "clean_abstain_no_autonomous_isolated_TAD_core_claim"
+      ],
+      "expected_role_class": "disorder_partner_induced_object",
+      "fixed_residue_cutoff_used": false,
+      "fixed_threshold_policy": "forbidden",
+      "forbidden_misclassification": [
+        "isolated_TAD_as_soluble_compact_core",
+        "partner_interface_as_autonomous_fold_claim",
+        "binding_helix_as_universal_p53_fold"
+      ],
+      "forbidden_misclassification_violations": [],
+      "limitations": [
+        "isolated_TAD_material_not_required_at_this_stage",
+        "disorder_prior_and_external_couplings_later",
+        "no_universal_p53_fold_claim"
+      ],
+      "material_observations": {
+        "chain_ca_counts": {
+          "A": 85,
+          "B": 13
+        },
+        "large_chain_ca_count": 85,
+        "partner_complex_context_present": true,
+        "small_chain_ca_count": 13
+      },
+      "monitor_only_roles": [],
+      "native_metrics_used_for_selection": false,
+      "new_md_executed": false,
+      "positive_role_context_found": true,
+      "pressure_class": "disorder_partner_induced_binding",
+      "role_buckets_assigned": [
+        "partner_induced_interface_or_helix_signal_found",
+        "binding_stabilized_interface_core_context"
+      ],
+      "selected_core_or_clean_abstain": "partner_induced_interface_or_helix_signal_found",
+      "target_id": "p53_TAD_MDM2",
+      "target_material_status": "ready_for_zero_md_role_readout",
+      "target_role_preflight_status": "partner_complex_context_present_isolated_disorder_material_later_no_claim",
+      "target_transfer_status": "partner_induced_complex_role_context_detected_no_autonomous_fold_claim"
+    },
+    {
+      "allowed_evidence_roles": [
+        "transmembrane_helix_scaffold",
+        "pore_selectivity_filter_core",
+        "tetramer_interface_support",
+        "membrane_environment_pressure_context",
+        "ion_filter_diagnostic_shell",
+        "clean_abstain_missing_membrane_or_oligomer_context"
+      ],
+      "claim_allowed": false,
+      "clean_abstain_allowed": true,
+      "clean_abstain_roles": [],
+      "expected_role_class": "membrane_pore_oligomer_object",
+      "fixed_residue_cutoff_used": false,
+      "fixed_threshold_policy": "forbidden",
+      "forbidden_misclassification": [
+        "membrane_pore_as_soluble_single_domain_compact_core",
+        "ion_filter_geometry_as_whole_fold_claim",
+        "tetramer_interface_as_monomer_autonomous_core"
+      ],
+      "forbidden_misclassification_violations": [],
+      "limitations": [
+        "biological_assembly_or_oligomer_annotation_later",
+        "membrane_topology_annotation_later",
+        "pore_filter_residue_context_later",
+        "no_heavy_membrane_MD_executed",
+        "no_whole_fold_claim"
+      ],
+      "material_observations": {
+        "biological_tetramer_annotation_present": false,
+        "ca_atom_count": 534,
+        "chain_ca_counts": {
+          "A": 219,
+          "B": 212,
+          "C": 103
+        },
+        "complex_chain_context_present": true,
+        "membrane_topology_annotation_present": false
+      },
+      "monitor_only_roles": [
+        "pore_selectivity_filter_core_later_annotation_required",
+        "tetramer_interface_support_later_biological_assembly_required",
+        "ion_filter_diagnostic_shell_later_annotation_required"
+      ],
+      "native_metrics_used_for_selection": false,
+      "new_md_executed": false,
+      "positive_role_context_found": true,
+      "pressure_class": "membrane_pore_oligomer_environment",
+      "role_buckets_assigned": [
+        "membrane_pore_oligomer_context",
+        "transmembrane_helix_scaffold_context"
+      ],
+      "selected_core_or_clean_abstain": "membrane_pore_roles_detected_without_soluble_core_misclassification",
+      "target_id": "KcsA",
+      "target_material_status": "ready_for_zero_md_role_readout",
+      "target_role_preflight_status": "membrane_pore_oligomer_context_present_membrane_annotation_later_no_claim",
+      "target_transfer_status": "membrane_pore_context_detected_soluble_core_misclassification_avoided_no_tetramer_claim"
+    },
+    {
+      "allowed_evidence_roles": [
+        "state_A_chemokine_monomer_support",
+        "state_B_beta_sandwich_dimer_support",
+        "shared_local_support",
+        "pressure_condition_switch_context",
+        "clean_state_specific_abstain"
+      ],
+      "claim_allowed": false,
+      "clean_abstain_allowed": true,
+      "clean_abstain_roles": [],
+      "expected_role_class": "metamorphic_switch_object",
+      "fixed_residue_cutoff_used": false,
+      "fixed_threshold_policy": "forbidden",
+      "forbidden_misclassification": [
+        "forcing_single_canonical_fold",
+        "mixing_two_states_into_one_false_core",
+        "claiming_fold_switch_without_state_specific_support"
+      ],
+      "forbidden_misclassification_violations": [],
+      "limitations": [
+        "condition_or_oligomerization_context_later",
+        "state_specific_external_couplings_later",
+        "no_fold_switch_claim_without_state_specific_support"
+      ],
+      "material_observations": {
+        "state_A_chain_ca_counts": {
+          "A": 1480
+        },
+        "state_B_chain_ca_counts": {
+          "A": 1200,
+          "B": 1200
+        },
+        "state_specific_external_couplings_present": false,
+        "two_state_context_present": true
+      },
+      "monitor_only_roles": [
+        "shared_local_support_later_coupling_readout_required"
+      ],
+      "native_metrics_used_for_selection": false,
+      "new_md_executed": false,
+      "positive_role_context_found": true,
+      "pressure_class": "metamorphic_fold_switching",
+      "role_buckets_assigned": [
+        "state_A_chemokine_monomer_support_context",
+        "state_B_alternative_or_beta_sandwich_state_support_context",
+        "pressure_condition_switch_context"
+      ],
+      "selected_core_or_clean_abstain": "multiple_state_roles_supported_or_clean_state_specific_abstain",
+      "target_id": "XCL1_lymphotactin",
+      "target_material_status": "ready_for_zero_md_role_readout",
+      "target_role_preflight_status": "two_state_metamorphic_context_present_state_specific_readout_later_no_claim",
+      "target_transfer_status": "metamorphic_two_state_context_detected_single_fold_forcing_avoided_no_switch_claim"
+    }
+  ],
+  "target_specific_threshold_tuning_allowed": false
+}

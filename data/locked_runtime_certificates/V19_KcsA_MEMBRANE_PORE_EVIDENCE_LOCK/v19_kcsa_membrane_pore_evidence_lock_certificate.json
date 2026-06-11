@@ -1,0 +1,233 @@
+{
+  "artifacts": {
+    "certificate": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V19_KcsA_MEMBRANE_PORE_EVIDENCE_LOCK/v19_kcsa_membrane_pore_evidence_lock_certificate.json",
+    "report": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V19_KcsA_MEMBRANE_PORE_EVIDENCE_LOCK/V19_KcsA_MEMBRANE_PORE_EVIDENCE_LOCK_REPORT.md"
+  },
+  "available_evidence": [
+    "KcsA_complex_coordinate_context",
+    "pore_selectivity_filter_annotation_or_diagnostic",
+    "transmembrane_helix_scaffold_context",
+    "chain_or_interface_context",
+    "membrane_environment_context",
+    "leakage_guard_against_soluble_core_misread"
+  ],
+  "chain_interface_readout": {
+    "chain_ca_counts": {
+      "A": 219,
+      "B": 212,
+      "C": 103
+    },
+    "chain_count_with_ca": 3,
+    "contact_probe_policy": "multi_radius_report_only_no_single_fixed_selection_threshold",
+    "contact_probe_radii_angstrom_report_only": [
+      6.0,
+      8.0,
+      10.0
+    ],
+    "interface_context_present": true,
+    "interface_pairs_present": [
+      "A-B",
+      "A-C",
+      "B-C"
+    ],
+    "min_ca_distance_by_chain_pair": {
+      "A-B": 5.046,
+      "A-C": 4.966,
+      "B-C": 4.847
+    },
+    "multi_radius_contact_counts_by_chain_pair": {
+      "A-B": {
+        "10.0": 254,
+        "6.0": 6,
+        "8.0": 69
+      },
+      "A-C": {
+        "10.0": 45,
+        "6.0": 4,
+        "8.0": 12
+      },
+      "B-C": {
+        "10.0": 44,
+        "6.0": 6,
+        "8.0": 21
+      }
+    },
+    "selection_threshold_used": false
+  },
+  "claim_allowed": false,
+  "evidence_claim_allowed": false,
+  "fixed_residue_cutoff_used": false,
+  "fixed_threshold_policy": "forbidden",
+  "forbidden_misclassification_violations": [],
+  "kind": "V19_KcsA_MEMBRANE_PORE_EVIDENCE_LOCK_v0",
+  "lock_failed_checks": [],
+  "lock_status": "V19_KcsA_MEMBRANE_PORE_EVIDENCE_LOCKED",
+  "locked_claim": "positive_membrane_pore_pressure_context_evidence_not_folding_claim",
+  "locked_interpretation": "KcsA shows zero-MD membrane/pore pressure-context evidence: pore/filter diagnostic, potassium-ion shell, transmembrane helix scaffold, and chain/interface context are detected while soluble compact-core, whole-channel fold, tetramer, and membrane-MD claims remain forbidden.",
+  "membrane_md_executed": false,
+  "membrane_pore_role_evidence_found": true,
+  "missing_evidence": [
+    "biological_tetramer_assembly_annotation_for_tetramer_claim",
+    "external_couplings_if_available"
+  ],
+  "native_metrics_used_for_selection": false,
+  "new_md_executed": false,
+  "next_step": "V20_XCL1_STATE_SPECIFIC_EVIDENCE_READOUT",
+  "pore_filter_readout": {
+    "annotation_probe": {
+      "annotation_policy": "pdb_header_keyword_report_only_no_native_selection",
+      "membrane_annotation": true,
+      "pore_annotation": true,
+      "potassium_channel_annotation": true,
+      "selection_threshold_used": false,
+      "selectivity_filter_annotation": false
+    },
+    "policy": "pore_filter_annotation_or_diagnostic_report_only_no_whole_fold_claim",
+    "potassium_ion_probe": {
+      "ion_filter_diagnostic_shell_present": true,
+      "ion_probe_policy": "ion_context_report_only_no_whole_fold_claim",
+      "potassium_ion_count": 7,
+      "potassium_ion_records_sample": [
+        {
+          "atom_name": "K",
+          "chain": "C",
+          "residue_name": "K",
+          "residue_number": "3001",
+          "xyz": [
+            155.336,
+            155.342,
+            -30.553
+          ]
+        },
+        {
+          "atom_name": "K",
+          "chain": "C",
+          "residue_name": "K",
+          "residue_number": "3002",
+          "xyz": [
+            155.331,
+            155.331,
+            -33.953
+          ]
+        },
+        {
+          "atom_name": "K",
+          "chain": "C",
+          "residue_name": "K",
+          "residue_number": "3003",
+          "xyz": [
+            155.341,
+            155.323,
+            -37.162
+          ]
+        },
+        {
+          "atom_name": "K",
+          "chain": "C",
+          "residue_name": "K",
+          "residue_number": "3004",
+          "xyz": [
+            155.33,
+            155.324,
+            -40.505
+          ]
+        },
+        {
+          "atom_name": "K",
+          "chain": "C",
+          "residue_name": "K",
+          "residue_number": "3005",
+          "xyz": [
+            155.327,
+            155.335,
+            -47.577
+          ]
+        },
+        {
+          "atom_name": "K",
+          "chain": "C",
+          "residue_name": "K",
+          "residue_number": "3006",
+          "xyz": [
+            155.339,
+            155.327,
+            -22.975
+          ]
+        },
+        {
+          "atom_name": "K",
+          "chain": "C",
+          "residue_name": "K",
+          "residue_number": "3007",
+          "xyz": [
+            155.343,
+            155.33,
+            -26.017
+          ]
+        }
+      ],
+      "selection_threshold_used": false
+    },
+    "sequence_motif_probe": {
+      "filter_motif_detected": true,
+      "motif_hits": [
+        {
+          "chain": "C",
+          "index": 53,
+          "motif": "TVGYG",
+          "source": "residue_sequences_by_chain"
+        },
+        {
+          "chain": "C",
+          "index": 53,
+          "motif": "TxxYG_diagnostic",
+          "source": "residue_sequences_by_chain",
+          "window": "TVGYG"
+        },
+        {
+          "chain": "C",
+          "index": 74,
+          "motif": "TVGYG",
+          "source": "seqres_sequences_by_chain"
+        },
+        {
+          "chain": "C",
+          "index": 74,
+          "motif": "TxxYG_diagnostic",
+          "source": "seqres_sequences_by_chain",
+          "window": "TVGYG"
+        }
+      ],
+      "motif_policy": "sequence_or_seqres_report_only_no_single_fixed_success_threshold",
+      "selection_threshold_used": false,
+      "strong_TVGYG_motif_detected": true
+    }
+  },
+  "positive_folding_evidence_found": false,
+  "positive_pressure_evidence_found": true,
+  "role_buckets_assigned": [
+    "chain_or_interface_context_support",
+    "ion_filter_diagnostic_shell",
+    "membrane_environment_context",
+    "pore_selectivity_filter_core",
+    "transmembrane_helix_scaffold"
+  ],
+  "role_class": "membrane_pore_oligomer_object",
+  "run_mode": "lock_only_no_new_simulation_no_threshold_tuning",
+  "soluble_core_misclassification_avoided": true,
+  "source_v19_status": "V19_KcsA_MEMBRANE_PORE_EVIDENCE_READOUT_PASSED_CLAIM_DISABLED",
+  "target_id": "KcsA",
+  "tetramer_claim_made": false,
+  "transmembrane_helix_readout": {
+    "helix_policy": "pdb_helix_records_report_only_no_membrane_MD_claim",
+    "helix_record_count": 10,
+    "helix_records_by_chain": {
+      "A": 4,
+      "B": 3,
+      "C": 3
+    },
+    "selection_threshold_used": false,
+    "transmembrane_helix_scaffold_context_present": true
+  },
+  "whole_channel_fold_claim_made": false
+}

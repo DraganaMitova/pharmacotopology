@@ -1,0 +1,10 @@
+{
+  "claim_allowed": false,
+  "coupling_policy": "do_not_synthesize_couplings_missing_is_not_v24_failure",
+  "external_coupling_or_msa_files": [],
+  "external_couplings_present": false,
+  "external_couplings_required_for_V24": false,
+  "external_couplings_required_for_future_MD_or_contact_test": true,
+  "kind": "V24_KcsA_EXTERNAL_COUPLING_AVAILABILITY_v0",
+  "target_id": "KcsA"
+}

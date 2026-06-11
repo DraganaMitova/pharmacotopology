@@ -1,0 +1,132 @@
+{
+  "artifacts": {
+    "certificate": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V23_P53_TAD_MDM2_EXTERNAL_EVIDENCE_CONTRAST_TEST/v23_p53_tad_mdm2_external_evidence_contrast_certificate.json",
+    "report": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V23_P53_TAD_MDM2_EXTERNAL_EVIDENCE_CONTRAST_TEST/V23_P53_TAD_MDM2_EXTERNAL_EVIDENCE_CONTRAST_TEST_REPORT.md"
+  },
+  "available_evidence": [
+    "external_annotation_source_references_locked",
+    "isolated_TAD_disorder_reference_context",
+    "partner_bound_1YCR_interface_reference_context",
+    "partner_bound_interface_or_helix_evidence",
+    "isolated_TAD_clean_abstain_guard",
+    "leakage_guard_autonomous_fold_vs_partner_induced_fold",
+    "state_labels_isolated_vs_bound"
+  ],
+  "bound_complex_partner_induced_evidence_preserved": true,
+  "claim_allowed": false,
+  "contact_probe_policy": "multi_radius_report_only_no_single_fixed_selection_threshold",
+  "contrast_status": "isolated_disorder_reference_context_plus_bound_partner_induced_interface_evidence_preserved",
+  "coupling_status": "missing_or_not_yet_acquired",
+  "evidence_claim_allowed": false,
+  "external_annotation_source_references": [
+    {
+      "kind": "disorder_annotation_reference",
+      "source_id": "DisProt_DP00086",
+      "url": "https://disprot.org/DP00086",
+      "use_boundary": "reference_lock_for_isolated_TAD_disorder_context_not_raw_API_claim"
+    },
+    {
+      "kind": "partner_bound_interface_structure_reference",
+      "source_id": "RCSB_1YCR",
+      "url": "https://www.rcsb.org/structure/1YCR",
+      "use_boundary": "bound_p53_TAD_MDM2_complex_context_only_no_autonomous_fold_claim"
+    }
+  ],
+  "external_couplings_or_msa_files": [],
+  "external_couplings_or_msa_files_present": false,
+  "external_couplings_required_for_this_test": false,
+  "external_disorder_reference_context_found": true,
+  "failed_checks": [],
+  "fixed_residue_cutoff_used": false,
+  "fixed_threshold_policy": "forbidden",
+  "forbidden_misclassification": [
+    "isolated_TAD_as_soluble_compact_core",
+    "partner_interface_as_autonomous_fold_claim",
+    "binding_helix_as_universal_p53_fold"
+  ],
+  "forbidden_misclassification_violations": [],
+  "helix_proxy_policy": "report_only_partner_bound_segment_geometry_no_autonomous_fold_claim",
+  "interface_contact_readout": {
+    "chain_ca_counts": {
+      "A": 85,
+      "B": 13
+    },
+    "chain_pair": "A-B",
+    "contact_probe_policy": "multi_radius_report_only_no_single_fixed_selection_threshold",
+    "contact_probe_radii_angstrom_report_only": [
+      6.0,
+      8.0,
+      10.0
+    ],
+    "interface_contact_evidence_present": true,
+    "large_chain": "A",
+    "min_ca_distance": 4.884,
+    "multi_radius_contact_counts": {
+      "10.0": 96,
+      "6.0": 7,
+      "8.0": 28
+    },
+    "nearest_ca_pair": {
+      "distance_angstrom": 4.884,
+      "large_chain": "A",
+      "large_residue_number": 50,
+      "small_chain": "B",
+      "small_residue_number": 29
+    },
+    "selection_threshold_used": false,
+    "small_chain": "B"
+  },
+  "isolated_TAD_autonomous_core_selected": false,
+  "isolated_TAD_clean_abstain_preserved": true,
+  "isolated_TAD_fold_claim_made": false,
+  "kind": "V23_P53_TAD_MDM2_EXTERNAL_EVIDENCE_CONTRAST_TEST_v0",
+  "locked_interpretation": "V23 locks the p53/MDM2 external-evidence contrast: external disorder-source context supports the isolated TAD abstain guard, while the 1YCR partner-bound complex preserves interface/helix role evidence. This is positive pressure-context evidence, not positive folding evidence.",
+  "missing_evidence": [
+    "raw_local_external_annotation_files_if_needed",
+    "external_couplings_if_available"
+  ],
+  "native_metrics_used_for_selection": false,
+  "new_md_executed": false,
+  "next_recommended_panel": "V24_PRESSURE_EVIDENCE_NEXT_TARGET_DECISION_OR_KcsA_EXTERNAL_ANNOTATION_READOUT",
+  "partner_bound_helix_proxy_readout": {
+    "ca_i_to_i_plus_3_distance_summary": {
+      "count": 10,
+      "max": 9.032,
+      "mean": 6.699,
+      "min": 5.081
+    },
+    "ca_i_to_i_plus_4_distance_summary": {
+      "count": 9,
+      "max": 11.726,
+      "mean": 7.735,
+      "min": 5.898
+    },
+    "helix_proxy_available": true,
+    "helix_proxy_policy": "report_only_partner_bound_segment_geometry_no_autonomous_fold_claim",
+    "selection_threshold_used": false,
+    "small_chain": "B",
+    "small_chain_ca_count": 13
+  },
+  "partner_bound_interface_evidence_preserved": true,
+  "partner_bound_interface_reference_context_found": true,
+  "positive_external_annotation_evidence_found": true,
+  "positive_folding_evidence_found": false,
+  "positive_pressure_evidence_found": true,
+  "pressure_class": "disorder_partner_induced_binding",
+  "raw_local_annotation_file_required_for_this_test": false,
+  "raw_local_external_annotation_files": [],
+  "role_class": "disorder_partner_induced_object",
+  "run_mode": "zero_md_external_annotation_evidence_contrast_no_simulation_no_threshold_tuning",
+  "selected_core_or_clean_abstain": "external_disorder_reference_bound_partner_induced_evidence_contrast_found",
+  "source_v18_status": "V18_P53_TAD_MDM2_PARTNER_INDUCED_EVIDENCE_TEST_PASSED_CLAIM_DISABLED",
+  "source_v18b_status": "V18b_P53_ISOLATED_TAD_ABSTAIN_CONTEXT_PASSED_CLAIM_DISABLED",
+  "source_v22_panel_status": "V22_EXTERNAL_EVIDENCE_AND_ANNOTATION_ACQUISITION_PANEL_LOCKED",
+  "state_labels": {
+    "bound_state": "p53_TAD_MDM2_partner_bound_interface_or_helix_context",
+    "isolated_state": "p53_TAD_disorder_reference_context_no_autonomous_fold_claim",
+    "state_label_policy": "isolated_vs_bound_labels_no_native_metric_selection"
+  },
+  "target_id": "p53_TAD_MDM2",
+  "target_specific_threshold_tuning_allowed": false,
+  "test_status": "V23_P53_TAD_MDM2_EXTERNAL_EVIDENCE_CONTRAST_TEST_PASSED_CLAIM_DISABLED"
+}

@@ -1,0 +1,144 @@
+{
+  "artifacts": {
+    "certificate": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V21_PRESSURE_EVIDENCE_PANEL_SUMMARY/v21_pressure_evidence_panel_summary_certificate.json",
+    "report": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V21_PRESSURE_EVIDENCE_PANEL_SUMMARY/V21_PRESSURE_EVIDENCE_PANEL_SUMMARY_REPORT.md",
+    "table": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V21_PRESSURE_EVIDENCE_PANEL_SUMMARY/v21_pressure_evidence_panel_table.csv"
+  },
+  "claim_allowed": false,
+  "evidence_claim_allowed": false,
+  "fixed_residue_cutoff_used": false,
+  "fixed_threshold_policy": "forbidden",
+  "global_missing_evidence": [
+    "biological_tetramer_assembly_annotation_for_tetramer_claim",
+    "condition_labels_if_available",
+    "external_couplings_if_available",
+    "isolated_TAD_disorder_or_clean_abstain_context",
+    "isolated_TAD_disorder_prior_or_external_annotation",
+    "state_specific_external_couplings_or_constraints_if_available"
+  ],
+  "kind": "V21_PRESSURE_EVIDENCE_PANEL_SUMMARY_v0",
+  "locked_interpretation": "V21 summarizes three zero-MD pressure-context evidence wins: p53/MDM2 disorder-partner pressure, KcsA membrane/pore pressure, and XCL1 metamorphic state-specific pressure. This is not a universal folding claim; positive_folding_evidence_targets remains empty and claim_allowed remains false.",
+  "md_readiness_decision": "no_new_MD_recommended_yet_external_evidence_and_annotations_first",
+  "membrane_md_executed": false,
+  "native_metrics_used_for_selection": false,
+  "new_md_executed": false,
+  "next_recommended_panel": "V22_EXTERNAL_EVIDENCE_AND_ANNOTATION_ACQUISITION_PANEL",
+  "positive_folding_evidence_targets": [],
+  "positive_pressure_evidence_targets": [
+    "p53_TAD_MDM2",
+    "KcsA",
+    "XCL1_lymphotactin"
+  ],
+  "pressure_classes_with_evidence": [
+    "disorder_partner_induced_binding",
+    "membrane_pore_oligomer_environment",
+    "metamorphic_fold_switching"
+  ],
+  "pressure_evidence_count": 3,
+  "run_mode": "summary_lock_only_no_new_simulation_no_threshold_tuning",
+  "summary_failed_checks": [],
+  "summary_status": "V21_PRESSURE_EVIDENCE_PANEL_SUMMARY_LOCKED",
+  "target_rows": [
+    {
+      "available_evidence": [
+        "bound_partner_induced_interface_or_helix_evidence",
+        "interface_or_contact_evidence",
+        "isolated_context_clean_abstain_guard",
+        "leakage_guard_autonomous_fold_vs_partner_induced_fold",
+        "partner_bound_complex_context",
+        "state_label_bound_context"
+      ],
+      "claim_allowed": false,
+      "evidence_summary": "isolated TAD clean-abstains while MDM2-bound TAD preserves partner-induced interface/helix evidence",
+      "forbidden_misclassification_violations": [],
+      "md_readiness": "no_new_MD_recommended_before_missing_external_context",
+      "missing_evidence": [
+        "external_couplings_if_available",
+        "isolated_TAD_disorder_or_clean_abstain_context",
+        "isolated_TAD_disorder_prior_or_external_annotation"
+      ],
+      "new_md_executed": false,
+      "positive_folding_evidence_found": false,
+      "positive_pressure_evidence_found": true,
+      "pressure_class": "disorder_partner_induced_binding",
+      "pressure_evidence_status": "passed",
+      "role_class": "disorder_partner_induced_object",
+      "selected_core_or_clean_abstain": "isolated_clean_abstain_bound_partner_induced_evidence_preserved",
+      "source_artifacts": [
+        "V18_P53_PARTNER_INDUCED_EVIDENCE_LOCK",
+        "V18b_P53_ISOLATED_TAD_ABSTAIN_CONTEXT"
+      ],
+      "stronger_test_requires": [
+        "isolated_TAD_disorder_prior_or_external_annotation",
+        "external_couplings_if_available"
+      ],
+      "target_id": "p53_TAD_MDM2"
+    },
+    {
+      "available_evidence": [
+        "KcsA_complex_coordinate_context",
+        "pore_selectivity_filter_annotation_or_diagnostic",
+        "transmembrane_helix_scaffold_context",
+        "chain_or_interface_context",
+        "membrane_environment_context",
+        "leakage_guard_against_soluble_core_misread"
+      ],
+      "claim_allowed": false,
+      "evidence_summary": "pore/filter diagnostic, potassium-ion shell, TM helix scaffold, and chain/interface context detected without soluble-core misclassification",
+      "forbidden_misclassification_violations": [],
+      "md_readiness": "no_membrane_MD_recommended_before_assembly_and_external_coupling_context",
+      "missing_evidence": [
+        "biological_tetramer_assembly_annotation_for_tetramer_claim",
+        "external_couplings_if_available"
+      ],
+      "new_md_executed": false,
+      "positive_folding_evidence_found": false,
+      "positive_pressure_evidence_found": true,
+      "pressure_class": "membrane_pore_oligomer_environment",
+      "pressure_evidence_status": "passed",
+      "role_class": "membrane_pore_oligomer_object",
+      "selected_core_or_clean_abstain": "membrane_pore_roles_detected_without_soluble_core_misclassification",
+      "source_artifacts": [
+        "V19_KcsA_MEMBRANE_PORE_EVIDENCE_LOCK"
+      ],
+      "stronger_test_requires": [
+        "biological_tetramer_assembly_annotation_for_tetramer_claim",
+        "external_couplings_if_available"
+      ],
+      "target_id": "KcsA"
+    },
+    {
+      "available_evidence": [
+        "leakage_guard_preventing_mixed_state_fake_core",
+        "monomer_dimer_context",
+        "state_A_and_state_B_context_structures",
+        "state_A_and_state_B_labels",
+        "state_specific_structural_or_contact_evidence"
+      ],
+      "claim_allowed": false,
+      "evidence_summary": "state A and state B role evidence kept in separate buckets with no mixed-state fake core or forced single-fold claim",
+      "forbidden_misclassification_violations": [],
+      "md_readiness": "no_MD_recommended_before_state_conditions_and_external_constraints",
+      "missing_evidence": [
+        "condition_labels_if_available",
+        "state_specific_external_couplings_or_constraints_if_available"
+      ],
+      "new_md_executed": false,
+      "positive_folding_evidence_found": false,
+      "positive_pressure_evidence_found": true,
+      "pressure_class": "metamorphic_fold_switching",
+      "pressure_evidence_status": "passed",
+      "role_class": "metamorphic_switch_object",
+      "selected_core_or_clean_abstain": "state_specific_role_separation_evidence_found_no_mixed_state_fake_core",
+      "source_artifacts": [
+        "V20_XCL1_STATE_SPECIFIC_EVIDENCE_READOUT"
+      ],
+      "stronger_test_requires": [
+        "condition_labels_if_available",
+        "state_specific_external_couplings_or_constraints_if_available"
+      ],
+      "target_id": "XCL1_lymphotactin"
+    }
+  ],
+  "target_specific_threshold_tuning_allowed": false
+}

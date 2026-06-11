@@ -1,0 +1,39 @@
+{
+  "claim_allowed": false,
+  "coupling_ready_targets": [
+    "XCL1_lymphotactin",
+    "KcsA",
+    "p53_TAD_MDM2",
+    "4AKE",
+    "1UBQ",
+    "1CLL"
+  ],
+  "decision_status": "V30_EXTERNAL_CONSTRAINT_ACQUISITION_LOCKED_NO_MD_READY",
+  "kind": "V30_NEXT_ACQUISITION_DECISION_v0",
+  "md_ready_targets": [],
+  "membrane_MD_recommended": false,
+  "new_MD_allowed": false,
+  "new_MD_recommended": false,
+  "parallel_MD_paths_allowed": false,
+  "primary_focus": "XCL1_state_specific_constraints_and_KcsA_coupling_interface_support",
+  "reason": "V29 shows coherent mechanism operators but no target is MD-ready. XCL1 needs state-specific external constraints/condition context; KcsA needs coupling/interface support and expanded assembly coordinates. The next sprint should import or build external constraint sources, not run MD.",
+  "required_before_any_MD": [
+    "DCA_background_enrichment",
+    "cross_target_validation",
+    "expanded_biological_assembly_coordinate_or_author_defined_assembly_model_for_tetramer_claim",
+    "external_couplings_if_available",
+    "external_validation_if_available",
+    "independent_condition_or_oligomerization_context_if_available",
+    "interdomain_hinge_evidence_if_claim_needed",
+    "interdomain_hinge_or_closure_evidence",
+    "mixed_state_leakage_guard_preserved",
+    "pore_filter_coupling_support",
+    "raw_local_external_annotation_files_if_needed",
+    "state_specific_external_couplings_or_constraints_if_available"
+  ],
+  "selected_V31_targets": [
+    "XCL1_lymphotactin",
+    "KcsA"
+  ],
+  "selected_next_panel": "V31_CONSTRAINT_BACKED_OPERATOR_READOUT_PREFLIGHT"
+}

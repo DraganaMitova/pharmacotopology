@@ -1,0 +1,15 @@
+{
+  "claim_allowed": false,
+  "decision_status": "V18_TARGET_SELECTED",
+  "fallback_order": [
+    "p53_TAD_MDM2",
+    "KcsA",
+    "XCL1_lymphotactin"
+  ],
+  "new_md_executed": false,
+  "parallel_md_paths_allowed": false,
+  "reason": "fastest clean evidence test for disorder/partner-induced role; no heavy MD needed for first evidence readout",
+  "selected_V18_target": "p53_TAD_MDM2",
+  "selected_V18_test": "p53_TAD_MDM2_PARTNER_INDUCED_EVIDENCE_TEST",
+  "v18_first_run_mode": "zero_md_or_annotation_evidence_readout_first_no_MD_until_ready_decision"
+}

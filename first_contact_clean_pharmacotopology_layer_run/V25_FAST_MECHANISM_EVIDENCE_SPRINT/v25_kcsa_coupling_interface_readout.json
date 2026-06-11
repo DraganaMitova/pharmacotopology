@@ -1,0 +1,40 @@
+{
+  "assembly_context_preserved": true,
+  "available_evidence": [
+    "pore_filter_role",
+    "TM_scaffold_context",
+    "interface_context",
+    "assembly_context_reference",
+    "soluble_core_guard"
+  ],
+  "claim_allowed": false,
+  "coupling_policy": "do_not_synthesize_couplings_missing_is_reported_not_backfilled",
+  "external_coupling_or_msa_files": [],
+  "fixed_residue_cutoff_used": false,
+  "interface_evidence_present": true,
+  "kcsa_coupling_available": false,
+  "kind": "V25A_KcsA_COUPLING_INTERFACE_READOUT_v0",
+  "membrane_context_preserved": true,
+  "membrane_md_executed": false,
+  "missing_evidence": [
+    "external_couplings_if_available",
+    "pore_filter_coupling_support"
+  ],
+  "native_metrics_used_for_selection": false,
+  "new_md_executed": false,
+  "pore_filter_coupling_support": false,
+  "pore_filter_role_preserved": true,
+  "positive_folding_evidence_found": false,
+  "positive_pressure_evidence_found": true,
+  "readout_status": "V25A_KcsA_INTERFACE_CONTEXT_FOUND_COUPLING_MISSING_CLAIM_DISABLED",
+  "role_class": "membrane_pore_oligomer_object",
+  "run_mode": "zero_md_coupling_interface_readout_no_simulation_no_threshold_tuning",
+  "selection_threshold_used": false,
+  "source_v24_status": "V24_KcsA_EXTERNAL_ANNOTATION_AND_ASSEMBLY_ACQUISITION_PASSED_CLAIM_DISABLED",
+  "target_id": "KcsA",
+  "tetramer_claim_allowed": false,
+  "tetramer_claim_made": false,
+  "transmembrane_scaffold_preserved": true,
+  "whole_channel_fold_claim_allowed": false,
+  "whole_channel_fold_claim_made": false
+}

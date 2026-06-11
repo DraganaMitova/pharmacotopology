@@ -1,0 +1,204 @@
+{
+  "biological_transfer_claim_allowed": false,
+  "claim_allowed": false,
+  "data_preflight_executed": false,
+  "fixed_residue_cutoff_used": false,
+  "fixed_threshold_policy": "forbidden",
+  "forbidden_thresholds_found": [],
+  "kind": "V16_TARGET_MANIFEST_AND_ROLE_EXPECTATION_LOCK_v0",
+  "lock_checks": {
+    "all_targets_have_role_expectations": true,
+    "fixed_residue_cutoff_retired": true,
+    "fixed_threshold_policy_forbidden": true,
+    "grammar_changes_forbidden": true,
+    "manifest_claim_disabled": true,
+    "manifest_kind_valid": true,
+    "native_metrics_not_used_for_selection": true,
+    "no_download_in_manifest_lock": true,
+    "no_new_md_in_manifest_lock": true,
+    "no_numeric_target_thresholds": true,
+    "not_folding_solved_claim": true,
+    "not_new_tuning_panel": true,
+    "required_targets_present": true,
+    "v15_claim_disabled": true,
+    "v15_three_protein_panel_locked": true
+  },
+  "lock_failed_checks": [],
+  "lock_status": "V16_TARGET_MANIFEST_AND_ROLE_EXPECTATION_LOCKED",
+  "locked_interpretation": "V16 tests whether the locked V15 dynamic role grammar can transfer from protein object types to new pressure regimes: disorder/binding, membrane/pore/oligomer, and fold-switching. It is not a new tuning panel, does not run MD at lock time, forbids fixed target-specific thresholds, does not use native metrics for selection, and keeps claim_allowed=false.",
+  "locked_targets": [
+    {
+      "allowed_evidence_roles": [
+        "clean_abstain_no_autonomous_core",
+        "partner_induced_interface_or_helix_signal_found",
+        "binding_stabilized_interface_core",
+        "disorder_signal_report_only"
+      ],
+      "claim_allowed": false,
+      "clean_abstain_allowed": true,
+      "expected_role_class": "disorder_partner_induced_object",
+      "forbidden_misclassification": [
+        "isolated_TAD_as_soluble_compact_core",
+        "partner_interface_as_autonomous_fold_claim",
+        "binding_helix_as_universal_p53_fold"
+      ],
+      "pressure_class": "disorder_partner_induced_binding",
+      "reference_hint": {
+        "description": "MDM2 bound to the transactivation domain of p53; used only as target/context hint, not as a solved-fold claim.",
+        "pdb_id": "1YCR"
+      },
+      "required_inputs": [
+        "isolated_TAD_sequence_or_segment",
+        "p53_TAD_MDM2_complex_structure_or_target_context",
+        "external_couplings_if_available",
+        "disorder_annotation_or_disorder_prior",
+        "native_selection_leakage_guard"
+      ],
+      "states": [
+        {
+          "autonomous_compact_core_expected": false,
+          "clean_abstain_allowed": true,
+          "expected_role_class": "disorder_object",
+          "state_id": "isolated_p53_TAD",
+          "valid_pass_status": "clean_abstain_no_autonomous_core"
+        },
+        {
+          "autonomous_compact_core_expected": false,
+          "clean_abstain_allowed": true,
+          "expected_role_class": "partner_induced_helix_interface_object",
+          "state_id": "p53_TAD_MDM2_complex",
+          "valid_pass_status": "partner_induced_interface_or_helix_signal_found"
+        }
+      ],
+      "target_id": "p53_TAD_MDM2"
+    },
+    {
+      "allowed_evidence_roles": [
+        "transmembrane_helix_scaffold",
+        "pore_selectivity_filter_core",
+        "tetramer_interface_support",
+        "membrane_environment_pressure_context",
+        "ion_filter_diagnostic_shell",
+        "clean_abstain_missing_membrane_or_oligomer_context"
+      ],
+      "claim_allowed": false,
+      "clean_abstain_allowed": true,
+      "expected_role_class": "membrane_pore_oligomer_object",
+      "forbidden_misclassification": [
+        "membrane_pore_as_soluble_single_domain_compact_core",
+        "ion_filter_geometry_as_whole_fold_claim",
+        "tetramer_interface_as_monomer_autonomous_core"
+      ],
+      "pressure_class": "membrane_pore_oligomer_environment",
+      "reference_hint": {
+        "description": "KcsA-Fab potassium channel complex with selectivity-filter ion coordination context; used first for role manifest/preflight, not heavy membrane MD.",
+        "pdb_id": "1K4C"
+      },
+      "required_inputs": [
+        "KcsA_sequence_or_target_structure",
+        "oligomer_state_or_assembly_annotation",
+        "membrane_topology_annotation",
+        "pore_filter_residue_context",
+        "external_couplings_if_available",
+        "native_selection_leakage_guard"
+      ],
+      "target_id": "KcsA",
+      "valid_pass_status": "membrane_pore_roles_detected_without_soluble_core_misclassification"
+    },
+    {
+      "allowed_evidence_roles": [
+        "state_A_chemokine_monomer_support",
+        "state_B_beta_sandwich_dimer_support",
+        "shared_local_support",
+        "pressure_condition_switch_context",
+        "clean_state_specific_abstain"
+      ],
+      "claim_allowed": false,
+      "clean_abstain_allowed": true,
+      "expected_role_class": "metamorphic_switch_object",
+      "forbidden_misclassification": [
+        "forcing_single_canonical_fold",
+        "mixing_two_states_into_one_false_core",
+        "claiming_fold_switch_without_state_specific_support"
+      ],
+      "pressure_class": "metamorphic_fold_switching",
+      "reference_hint": {
+        "description": "XCL1/lymphotactin is treated as same-sequence multiple-state role regime, not one canonical solved fold."
+      },
+      "required_inputs": [
+        "sequence",
+        "state_A_reference_or_context",
+        "state_B_reference_or_context",
+        "condition_or_oligomerization_context",
+        "external_couplings_if_available",
+        "state_specific_leakage_guard"
+      ],
+      "states": [
+        {
+          "clean_abstain_allowed": true,
+          "expected_role_class": "canonical_chemokine_monomer_state",
+          "state_id": "state_A_chemokine_monomer"
+        },
+        {
+          "clean_abstain_allowed": true,
+          "expected_role_class": "beta_sandwich_dimer_state",
+          "state_id": "state_B_beta_sandwich_dimer"
+        }
+      ],
+      "target_id": "XCL1_lymphotactin",
+      "valid_pass_status": "multiple_state_roles_supported_or_clean_state_specific_abstain"
+    }
+  ],
+  "native_metrics_not_used_for_selection": true,
+  "new_md_executed": false,
+  "run_mode": "manifest_lock_only_no_data_preflight_no_new_simulation",
+  "shared_transfer_axes": [
+    "target_role_detected_or_clean_abstain",
+    "role_buckets_assigned",
+    "selected_core_or_clean_abstain",
+    "noise_added_reported",
+    "long_range_evidence_polluted_reported",
+    "classification_coverage_ratio_reported",
+    "native_metrics_not_used_for_selection",
+    "fixed_residue_cutoff_used_false",
+    "claim_allowed_false"
+  ],
+  "source_manifest_kind": "V16_LOCKED_GRAMMAR_TRANSFER_TARGET_MANIFEST_v0",
+  "source_manifest_panel_name": "V16_LOCKED_GRAMMAR_TRANSFER_PANEL",
+  "source_v15_lock_status": "V15_THREE_PROTEIN_DYNAMIC_GRAMMAR_PANEL_LOCKED",
+  "source_v15_locked_claim": "unified_role_aware_evidence_grammar_three_protein_panel_locked_not_folding_solved",
+  "target_checks": {
+    "KcsA": {
+      "allowed_evidence_roles_present": true,
+      "claim_disabled": true,
+      "clean_abstain_allowed": true,
+      "expected_role_class_present": true,
+      "forbidden_misclassification_present": true,
+      "pressure_class_present": true,
+      "required_inputs_present": true,
+      "target_id_present": true
+    },
+    "XCL1_lymphotactin": {
+      "allowed_evidence_roles_present": true,
+      "claim_disabled": true,
+      "clean_abstain_allowed": true,
+      "expected_role_class_present": true,
+      "forbidden_misclassification_present": true,
+      "pressure_class_present": true,
+      "required_inputs_present": true,
+      "target_id_present": true
+    },
+    "p53_TAD_MDM2": {
+      "allowed_evidence_roles_present": true,
+      "claim_disabled": true,
+      "clean_abstain_allowed": true,
+      "expected_role_class_present": true,
+      "forbidden_misclassification_present": true,
+      "pressure_class_present": true,
+      "required_inputs_present": true,
+      "target_id_present": true
+    }
+  },
+  "threshold_policy": "purpose_aware_auto_selection_only_after_manifest_lock",
+  "transfer_panel_claim": "locked_transfer_manifest_only_not_new_tuning_not_folding_solved"
+}

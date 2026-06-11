@@ -1,0 +1,12 @@
+{
+  "claim_allowed": false,
+  "coupling_policy": "do_not_synthesize_state_specific_couplings_missing_is_reported_not_backfilled",
+  "external_coupling_or_constraint_files": [],
+  "external_couplings_required_for_V27": false,
+  "external_couplings_required_for_future_MD_or_contact_test": true,
+  "kind": "V27_XCL1_STATE_SPECIFIC_COUPLING_AVAILABILITY_v0",
+  "new_md_executed": false,
+  "state_specific_couplings_present": false,
+  "state_specific_external_constraints_present": false,
+  "target_id": "XCL1_lymphotactin"
+}

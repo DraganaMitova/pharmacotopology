@@ -1,0 +1,53 @@
+{
+  "blocked_or_deferred_targets": [
+    "KcsA",
+    "XCL1_lymphotactin"
+  ],
+  "claim_allowed": false,
+  "kind": "V17_PRESSURE_EVIDENCE_PREFLIGHT_v0",
+  "ready_for_V18_targets": [
+    "p53_TAD_MDM2"
+  ],
+  "run_mode": "evidence_file_preflight_no_simulation_no_threshold_tuning",
+  "target_rows": [
+    {
+      "available_evidence": [
+        "interface_or_contact_evidence",
+        "leakage_guard_autonomous_fold_vs_partner_induced_fold",
+        "partner_bound_complex_context",
+        "state_label_bound_context"
+      ],
+      "missing_for_first_v18_test": [],
+      "ready_for_V18": true,
+      "target_id": "p53_TAD_MDM2"
+    },
+    {
+      "available_evidence": [
+        "KcsA_complex_coordinate_context",
+        "chain_and_interface_identity",
+        "leakage_guard_against_soluble_core_misread"
+      ],
+      "missing_for_first_v18_test": [
+        "membrane_topology_annotation",
+        "pore_selectivity_filter_annotation",
+        "oligomer_or_tetramer_assembly_context",
+        "transmembrane_helix_roles"
+      ],
+      "ready_for_V18": false,
+      "target_id": "KcsA"
+    },
+    {
+      "available_evidence": [
+        "state_A_and_state_B_context_structures"
+      ],
+      "missing_for_first_v18_test": [
+        "state_A_and_state_B_labels",
+        "monomer_dimer_context",
+        "state_specific_structural_or_contact_evidence",
+        "leakage_guard_preventing_mixed_state_fake_core"
+      ],
+      "ready_for_V18": false,
+      "target_id": "XCL1_lymphotactin"
+    }
+  ]
+}

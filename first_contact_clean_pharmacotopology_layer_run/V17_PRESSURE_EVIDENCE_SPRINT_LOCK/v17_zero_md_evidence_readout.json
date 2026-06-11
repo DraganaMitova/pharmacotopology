@@ -1,0 +1,87 @@
+{
+  "claim_allowed": false,
+  "evidence_claim_allowed_targets": [],
+  "kind": "V17_ZERO_MD_EVIDENCE_READOUT_v0",
+  "new_md_executed": false,
+  "positive_folding_evidence_targets": [],
+  "run_mode": "zero_md_evidence_readout_no_simulation_no_threshold_tuning",
+  "target_rows": [
+    {
+      "available_evidence": [
+        "interface_or_contact_evidence",
+        "leakage_guard_autonomous_fold_vs_partner_induced_fold",
+        "partner_bound_complex_context",
+        "state_label_bound_context"
+      ],
+      "material_observations": {
+        "chain_ca_counts": {
+          "A": 85,
+          "B": 13
+        },
+        "partner_chain_contact_probe": {
+          "chain_pair": "A-B",
+          "contact_count": 28,
+          "cutoff_angstrom_report_only": 8.0,
+          "min_ca_distance": 4.884,
+          "selection_threshold": false
+        }
+      },
+      "missing_evidence": [
+        "isolated_TAD_disorder_or_clean_abstain_context",
+        "external_couplings_if_available"
+      ],
+      "ready_for_V18": true,
+      "target_id": "p53_TAD_MDM2",
+      "zero_MD_readout_status": "partner_bound_interface_evidence_context_available_zero_md"
+    },
+    {
+      "available_evidence": [
+        "KcsA_complex_coordinate_context",
+        "chain_and_interface_identity",
+        "leakage_guard_against_soluble_core_misread"
+      ],
+      "material_observations": {
+        "chain_ca_counts": {
+          "A": 219,
+          "B": 212,
+          "C": 103
+        }
+      },
+      "missing_evidence": [
+        "membrane_topology_annotation",
+        "pore_selectivity_filter_annotation",
+        "oligomer_or_tetramer_assembly_context",
+        "transmembrane_helix_roles",
+        "external_couplings_if_available"
+      ],
+      "ready_for_V18": false,
+      "target_id": "KcsA",
+      "zero_MD_readout_status": "membrane_pore_context_only_annotations_missing_zero_md"
+    },
+    {
+      "available_evidence": [
+        "state_A_and_state_B_context_structures"
+      ],
+      "material_observations": {
+        "state_A_chain_ca_counts": {
+          "A": 1480
+        },
+        "state_B_chain_ca_counts": {
+          "A": 1200,
+          "B": 1200
+        }
+      },
+      "missing_evidence": [
+        "state_A_and_state_B_labels",
+        "monomer_dimer_context",
+        "condition_labels_if_available",
+        "state_specific_structural_or_contact_evidence",
+        "state_specific_external_couplings_or_constraints_if_available",
+        "leakage_guard_preventing_mixed_state_fake_core"
+      ],
+      "ready_for_V18": false,
+      "target_id": "XCL1_lymphotactin",
+      "zero_MD_readout_status": "two_state_context_only_state_specific_evidence_guard_missing_zero_md"
+    }
+  ]
+}

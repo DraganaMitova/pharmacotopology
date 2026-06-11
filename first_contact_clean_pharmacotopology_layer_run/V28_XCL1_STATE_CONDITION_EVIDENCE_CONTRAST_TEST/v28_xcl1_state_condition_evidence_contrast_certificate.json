@@ -1,0 +1,113 @@
+{
+  "artifacts": {
+    "certificate": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V28_XCL1_STATE_CONDITION_EVIDENCE_CONTRAST_TEST/v28_xcl1_state_condition_evidence_contrast_certificate.json",
+    "next_decision": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V28_XCL1_STATE_CONDITION_EVIDENCE_CONTRAST_TEST/v28_xcl1_next_decision.json",
+    "report": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V28_XCL1_STATE_CONDITION_EVIDENCE_CONTRAST_TEST/V28_XCL1_STATE_CONDITION_EVIDENCE_CONTRAST_TEST_REPORT.md",
+    "state_condition_contrast_readout": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V28_XCL1_STATE_CONDITION_EVIDENCE_CONTRAST_TEST/v28_xcl1_state_condition_contrast_readout.json"
+  },
+  "available_evidence": [
+    "mixed_state_leakage_guard",
+    "monomer_dimer_context",
+    "state_A_condition_label_context",
+    "state_A_condition_role_evidence",
+    "state_A_state_B_context_structures",
+    "state_B_condition_label_context",
+    "state_B_condition_role_evidence"
+  ],
+  "claim_allowed": false,
+  "condition_label_context_locked": true,
+  "evidence_claim_allowed": false,
+  "external_couplings_required_for_V28": false,
+  "external_couplings_required_for_future_MD_or_contact_test": true,
+  "failed_checks": [],
+  "fixed_residue_cutoff_used": false,
+  "fixed_threshold_policy": "forbidden",
+  "fold_switch_claim_made": false,
+  "forbidden_misclassification_violations": [],
+  "kind": "V28_XCL1_STATE_CONDITION_EVIDENCE_CONTRAST_TEST_v0",
+  "locked_interpretation": "V28 locks the XCL1 state-condition contrast: state A and state B keep separate condition/evidence buckets, no mixed-state fake core is selected, no single canonical fold is forced, and no fold-switch claim is made. This is pressure-context evidence, not positive folding evidence.",
+  "mechanism_operator_tested": "state_condition_separation",
+  "missing_evidence": [
+    "independent_condition_labels_or_experimental_context_if_available",
+    "state_specific_coupling_support_for_future_MD_or_contact_test",
+    "state_specific_external_couplings_or_constraints_if_available"
+  ],
+  "mixed_state_contact_pooling_used": false,
+  "mixed_state_fake_core_selected": false,
+  "mixed_state_pollution": false,
+  "native_metrics_used_for_selection": false,
+  "new_md_executed": false,
+  "next_decision": {
+    "claim_allowed": false,
+    "decision_status": "V28_CONTRAST_LOCKED_NEXT_EXTERNAL_CONSTRAINT_ACQUISITION",
+    "kind": "V28_XCL1_NEXT_DECISION_v0",
+    "new_MD_allowed": false,
+    "new_MD_allowed_policy": "only_after_state_specific_external_constraints_are_locked_and_false_win_risk_is_low",
+    "new_MD_recommended": false,
+    "parallel_MD_paths_allowed": false,
+    "reason": "XCL1 condition/state contrast is preserved and false-win risk remains controlled; summarize mechanism operators and MD readiness before any simulation",
+    "required_before_any_MD": [
+      "state_specific_external_couplings_or_constraints_if_available",
+      "independent_condition_or_oligomerization_context_if_available",
+      "mixed_state_leakage_guard_preserved"
+    ],
+    "selected_next_panel": "V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION"
+  },
+  "positive_folding_evidence_found": false,
+  "positive_pressure_evidence_found": true,
+  "role_class": "metamorphic_switch_object",
+  "run_mode": "zero_md_state_condition_evidence_contrast_no_simulation_no_threshold_tuning",
+  "single_fold_claim_made": false,
+  "single_fold_forcing": false,
+  "source_v20_status": "V20_XCL1_STATE_SPECIFIC_EVIDENCE_READOUT_PASSED_CLAIM_DISABLED",
+  "source_v26_status": "V26_XCL1_STATE_SEPARATION_OPERATOR_TEST_PASSED_CLAIM_DISABLED",
+  "source_v27_status": "V27_XCL1_CONDITION_AND_COUPLING_EVIDENCE_ACQUISITION_PASSED_CLAIM_DISABLED",
+  "state_A_condition_evidence_found": true,
+  "state_B_condition_evidence_found": true,
+  "state_condition_contrast_preserved": true,
+  "state_condition_contrast_readout": {
+    "guard": {
+      "fold_switch_claim_made": false,
+      "guard_policy": "state_condition_buckets_no_cross_state_pooling_no_single_native_assumption_no_fold_switch_claim",
+      "mixed_state_fake_core_selected": false,
+      "selection_threshold_used": false,
+      "single_fold_claim_made": false,
+      "single_native_state_forced": false,
+      "state_A_state_B_contact_pooling_used": false,
+      "state_specific_buckets_preserved": true
+    },
+    "kind": "V28_XCL1_STATE_CONDITION_CONTRAST_READOUT_v0",
+    "state_A": {
+      "chain_ca_counts": {
+        "A": 1480
+      },
+      "condition_role_evidence_found": true,
+      "expected_context": "chemokine_like_or_monomer_context",
+      "label": "state_A_chemokine_like_or_monomer_context",
+      "model_count": 20,
+      "role_bucket": "state_A_chemokine_monomer_support_context",
+      "source_pdb": "2HDM"
+    },
+    "state_B": {
+      "chain_ca_counts": {
+        "A": 1200,
+        "B": 1200
+      },
+      "condition_role_evidence_found": true,
+      "expected_context": "alternative_state_or_dimer_context",
+      "interface_pairs_present": [
+        "A-B"
+      ],
+      "label": "state_B_alternative_beta_sandwich_or_dimer_context",
+      "model_count": 20,
+      "role_bucket": "state_B_beta_sandwich_dimer_or_alternative_state_support_context",
+      "source_pdb": "2JP1"
+    },
+    "target_id": "XCL1_lymphotactin"
+  },
+  "state_specific_buckets_preserved": true,
+  "state_specific_couplings_present": false,
+  "target_id": "XCL1_lymphotactin",
+  "target_specific_threshold_tuning_allowed": false,
+  "test_status": "V28_XCL1_STATE_CONDITION_EVIDENCE_CONTRAST_TEST_PASSED_CLAIM_DISABLED"
+}

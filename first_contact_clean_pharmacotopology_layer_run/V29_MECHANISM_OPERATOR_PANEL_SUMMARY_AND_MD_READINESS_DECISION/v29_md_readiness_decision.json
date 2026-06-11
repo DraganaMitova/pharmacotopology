@@ -1,0 +1,27 @@
+{
+  "claim_allowed": false,
+  "decision_status": "V29_NO_NEW_MD_READY_EXTERNAL_CONSTRAINTS_REQUIRED",
+  "kind": "V29_MD_READINESS_DECISION_v0",
+  "md_ready_targets": [],
+  "membrane_MD_recommended": false,
+  "new_MD_allowed": false,
+  "new_MD_recommended": false,
+  "parallel_MD_paths_allowed": false,
+  "positive_folding_evidence_targets": [],
+  "reason": "The operator grammar is coherent, but external/state-specific constraints remain missing. XCL1 needs state-specific external constraints; KcsA needs coupling/interface support and expanded assembly coordinates for any tetramer claim; p53 remains pressure-context evidence without coupling/MSA evidence.",
+  "required_before_any_MD": [
+    "DCA_background_enrichment",
+    "condition_labels_if_available",
+    "cross_target_validation",
+    "expanded_biological_assembly_coordinate_or_author_defined_assembly_model_for_tetramer_claim",
+    "external_couplings_if_available",
+    "external_validation_if_available",
+    "interdomain_hinge_evidence_if_claim_needed",
+    "interdomain_hinge_or_closure_evidence",
+    "pore_filter_coupling_support",
+    "raw_local_external_annotation_files_if_needed",
+    "state_specific_external_couplings_or_constraints_if_available"
+  ],
+  "selected_next_focus": "XCL1_lymphotactin_and_KcsA_constraints_before_any_MD",
+  "selected_next_panel": "V30_EXTERNAL_CONSTRAINT_AND_COUPLING_ACQUISITION_SPRINT"
+}

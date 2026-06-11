@@ -1,0 +1,173 @@
+{
+  "artifacts": {
+    "certificate": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V20_XCL1_STATE_SPECIFIC_EVIDENCE_READOUT/v20_xcl1_state_specific_evidence_readout_certificate.json",
+    "report": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V20_XCL1_STATE_SPECIFIC_EVIDENCE_READOUT/V20_XCL1_STATE_SPECIFIC_EVIDENCE_READOUT_REPORT.md",
+    "state_a_readout": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V20_XCL1_STATE_SPECIFIC_EVIDENCE_READOUT/v20_xcl1_state_A_readout.json",
+    "state_b_readout": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V20_XCL1_STATE_SPECIFIC_EVIDENCE_READOUT/v20_xcl1_state_B_readout.json",
+    "state_separation_guard": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V20_XCL1_STATE_SPECIFIC_EVIDENCE_READOUT/v20_xcl1_state_separation_guard.json"
+  },
+  "available_evidence": [
+    "leakage_guard_preventing_mixed_state_fake_core",
+    "monomer_dimer_context",
+    "state_A_and_state_B_context_structures",
+    "state_A_and_state_B_labels",
+    "state_specific_structural_or_contact_evidence"
+  ],
+  "claim_allowed": false,
+  "clean_abstain_valid": false,
+  "evidence_claim_allowed": false,
+  "fixed_residue_cutoff_used": false,
+  "fixed_threshold_policy": "forbidden",
+  "fold_switch_claim_made": false,
+  "forbidden_misclassification": [
+    "forcing_single_canonical_fold",
+    "mixing_two_states_into_one_false_core",
+    "claiming_fold_switch_without_state_specific_support"
+  ],
+  "forbidden_misclassification_violations": [],
+  "kind": "V20_XCL1_STATE_SPECIFIC_EVIDENCE_READOUT_v0",
+  "limitations": [
+    "zero_MD_only_no_fold_switch_dynamics_claim",
+    "state_specific_external_couplings_later",
+    "condition_or_oligomerization_context_later",
+    "no_single_canonical_fold_claim"
+  ],
+  "missing_evidence": [
+    "condition_labels_if_available",
+    "state_specific_external_couplings_or_constraints_if_available"
+  ],
+  "missing_for_folding_or_switch_claim": [
+    "state_specific_external_couplings_or_constraints_if_available",
+    "condition_labels_if_available",
+    "independent_state_specific_validation_before_fold_switch_claim"
+  ],
+  "mixed_state_contact_pooling_used": false,
+  "mixed_state_fake_core_forbidden": true,
+  "mixed_state_fake_core_selected": false,
+  "mixed_state_pollution": false,
+  "monomer_dimer_context_present": true,
+  "native_metrics_used_for_selection": false,
+  "new_md_executed": false,
+  "next_recommended_panel": "V21_PRESSURE_EVIDENCE_PANEL_SUMMARY",
+  "positive_folding_evidence_found": false,
+  "positive_pressure_evidence_found": true,
+  "pressure_class": "metamorphic_fold_switching",
+  "role_buckets_assigned": [
+    "mixed_state_fake_core_guard",
+    "state_A_chemokine_monomer_support",
+    "state_B_beta_sandwich_dimer_support",
+    "state_specific_context_separation"
+  ],
+  "role_class": "metamorphic_switch_object",
+  "run_mode": "zero_md_state_specific_evidence_readout_no_simulation_no_threshold_tuning",
+  "selected_core_or_clean_abstain": "state_specific_role_separation_evidence_found_no_mixed_state_fake_core",
+  "selection_policy": "state_specific_role_readout_only_no_native_metric_selection_no_cross_state_pooling",
+  "single_fold_claim_made": false,
+  "single_fold_forcing_forbidden": true,
+  "source_gap_lock_status": "V16_PRESSURE_EVIDENCE_GAP_LOCKED",
+  "source_preflight_status": "V16_TRANSFER_DATA_PREFLIGHT_READY_FOR_ZERO_MD_ROLE_READOUT",
+  "source_zero_md_status": "V16_ZERO_MD_ROLE_TRANSFER_READOUT_COMPLETED_CLAIM_DISABLED",
+  "state_A": "chemokine_like_monomer_context",
+  "state_A_role_evidence_found": true,
+  "state_B": "beta_or_alternative_dimer_context",
+  "state_B_role_evidence_found": true,
+  "state_labels_present": true,
+  "state_separation_guard": {
+    "guard_policy": "state_specific_buckets_no_cross_state_pooling_no_single_native_assumption",
+    "mixed_state_fake_core_selected": false,
+    "selection_threshold_used": false,
+    "single_native_state_forced": false,
+    "state_A_state_B_contact_pooling_used": false
+  },
+  "state_specific_readouts": {
+    "state_A": {
+      "annotation_keywords": {
+        "dimer_keyword": false,
+        "lymphotactin_or_xcl1_keyword": true,
+        "metamorphic_or_switch_keyword": false,
+        "monomer_keyword": true
+      },
+      "chain_ca_counts": {
+        "A": 1480
+      },
+      "chain_count_with_ca": 1,
+      "chain_interface_readout": {
+        "chain_ca_counts": {
+          "A": 1480
+        },
+        "chain_count_with_ca": 1,
+        "contact_probe_policy": "state_specific_multi_radius_report_only_no_single_fixed_selection_threshold",
+        "interface_pairs_present": [],
+        "min_ca_distance_by_chain_pair": {},
+        "multi_radius_contact_counts_by_chain_pair": {},
+        "selection_threshold_used": false
+      },
+      "expected_context": "chemokine_like_or_monomer_context",
+      "helix_record_count": 2,
+      "model_count": 20,
+      "path": "/Users/draganamitova/My Projects/pharmacotopology/data/v16_pressure_targets/XCL1_lymphotactin/2HDM.pdb",
+      "pdb_id": "2HDM",
+      "role_context": "chemokine_like_monomer_context",
+      "selection_threshold_used": false,
+      "sheet_record_count": 3,
+      "state_label": "state_A",
+      "state_material_present": true,
+      "state_policy": "state_specific_structure_context_only_no_cross_state_pooling_no_single_native_assumption",
+      "state_role_bucket": "state_A_chemokine_monomer_support_context",
+      "state_role_evidence_found": true
+    },
+    "state_B": {
+      "annotation_keywords": {
+        "dimer_keyword": true,
+        "lymphotactin_or_xcl1_keyword": true,
+        "metamorphic_or_switch_keyword": true,
+        "monomer_keyword": true
+      },
+      "chain_ca_counts": {
+        "A": 1200,
+        "B": 1200
+      },
+      "chain_count_with_ca": 2,
+      "chain_interface_readout": {
+        "chain_ca_counts": {
+          "A": 1200,
+          "B": 1200
+        },
+        "chain_count_with_ca": 2,
+        "contact_probe_policy": "state_specific_multi_radius_report_only_no_single_fixed_selection_threshold",
+        "interface_pairs_present": [
+          "A-B"
+        ],
+        "min_ca_distance_by_chain_pair": {
+          "A-B": 3.379
+        },
+        "multi_radius_contact_counts_by_chain_pair": {
+          "A-B": {
+            "10.0": 4389,
+            "6.0": 193,
+            "8.0": 1257
+          }
+        },
+        "selection_threshold_used": false
+      },
+      "expected_context": "alternative_state_or_dimer_context",
+      "helix_record_count": 0,
+      "model_count": 20,
+      "path": "/Users/draganamitova/My Projects/pharmacotopology/data/v16_pressure_targets/XCL1_lymphotactin/2JP1.pdb",
+      "pdb_id": "2JP1",
+      "role_context": "alternative_beta_or_dimer_context",
+      "selection_threshold_used": false,
+      "sheet_record_count": 8,
+      "state_label": "state_B",
+      "state_material_present": true,
+      "state_policy": "state_specific_structure_context_only_no_cross_state_pooling_no_single_native_assumption",
+      "state_role_bucket": "state_B_beta_sandwich_dimer_or_alternative_state_support_context",
+      "state_role_evidence_found": true
+    }
+  },
+  "state_specific_role_evidence_found": true,
+  "target_id": "XCL1_lymphotactin",
+  "target_role": "metamorphic_switch_object",
+  "target_specific_threshold_tuning_allowed": false,
+  "test_status": "V20_XCL1_STATE_SPECIFIC_EVIDENCE_READOUT_PASSED_CLAIM_DISABLED"
+}

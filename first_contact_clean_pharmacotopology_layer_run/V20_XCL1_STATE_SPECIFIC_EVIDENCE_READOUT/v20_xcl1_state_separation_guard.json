@@ -1,0 +1,7 @@
+{
+  "guard_policy": "state_specific_buckets_no_cross_state_pooling_no_single_native_assumption",
+  "mixed_state_fake_core_selected": false,
+  "selection_threshold_used": false,
+  "single_native_state_forced": false,
+  "state_A_state_B_contact_pooling_used": false
+}

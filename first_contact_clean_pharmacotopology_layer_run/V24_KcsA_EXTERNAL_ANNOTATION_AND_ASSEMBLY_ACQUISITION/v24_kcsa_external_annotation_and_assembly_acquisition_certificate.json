@@ -1,0 +1,374 @@
+{
+  "K_plus_ion_diagnostic_shell_present": true,
+  "TVGYG_motif_detected": true,
+  "artifacts": {
+    "assembly_preflight": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V24_KcsA_EXTERNAL_ANNOTATION_AND_ASSEMBLY_ACQUISITION/v24_kcsa_assembly_preflight.json",
+    "certificate": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V24_KcsA_EXTERNAL_ANNOTATION_AND_ASSEMBLY_ACQUISITION/v24_kcsa_external_annotation_and_assembly_acquisition_certificate.json",
+    "external_coupling_availability": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V24_KcsA_EXTERNAL_ANNOTATION_AND_ASSEMBLY_ACQUISITION/v24_kcsa_external_coupling_availability.json",
+    "manifest": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V24_KcsA_EXTERNAL_ANNOTATION_AND_ASSEMBLY_ACQUISITION/v24_kcsa_external_annotation_manifest.json",
+    "membrane_topology_annotation": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V24_KcsA_EXTERNAL_ANNOTATION_AND_ASSEMBLY_ACQUISITION/v24_kcsa_membrane_topology_annotation.json",
+    "next_decision": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V24_KcsA_EXTERNAL_ANNOTATION_AND_ASSEMBLY_ACQUISITION/v24_kcsa_next_decision.json",
+    "pore_filter_annotation": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V24_KcsA_EXTERNAL_ANNOTATION_AND_ASSEMBLY_ACQUISITION/v24_kcsa_pore_filter_annotation.json",
+    "report": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V24_KcsA_EXTERNAL_ANNOTATION_AND_ASSEMBLY_ACQUISITION/V24_KcsA_EXTERNAL_ANNOTATION_AND_ASSEMBLY_ACQUISITION_REPORT.md"
+  },
+  "assembly_preflight": {
+    "biological_assembly_context_locked": true,
+    "biological_assembly_source_reference_locked": true,
+    "chain_interface_readout": {
+      "chain_ca_counts": {
+        "A": 219,
+        "B": 212,
+        "C": 103
+      },
+      "chain_count_with_ca": 3,
+      "contact_probe_policy": "multi_radius_report_only_no_single_fixed_selection_threshold",
+      "contact_probe_radii_angstrom_report_only": [
+        6.0,
+        8.0,
+        10.0
+      ],
+      "interface_context_present": true,
+      "interface_pairs_present": [
+        "A-B",
+        "A-C",
+        "B-C"
+      ],
+      "min_ca_distance_by_chain_pair": {
+        "A-B": 5.046,
+        "A-C": 4.966,
+        "B-C": 4.847
+      },
+      "multi_radius_contact_counts_by_chain_pair": {
+        "A-B": {
+          "10.0": 254,
+          "6.0": 6,
+          "8.0": 69
+        },
+        "A-C": {
+          "10.0": 45,
+          "6.0": 4,
+          "8.0": 12
+        },
+        "B-C": {
+          "10.0": 44,
+          "6.0": 6,
+          "8.0": 21
+        }
+      },
+      "selection_threshold_used": false
+    },
+    "claim_allowed": false,
+    "kind": "V24_KcsA_ASSEMBLY_PREFLIGHT_v0",
+    "local_biological_assembly_coordinate_or_annotation_file_present": false,
+    "missing_for_tetramer_claim": [
+      "external_couplings_if_available",
+      "expanded_biological_assembly_coordinate_or_author_defined_assembly_model_for_tetramer_claim"
+    ],
+    "oligomer_or_chain_interface_context_present": true,
+    "target_id": "KcsA",
+    "tetramer_claim_allowed": false,
+    "tetramer_claim_made": false,
+    "tetramer_context_annotation_present": true,
+    "whole_channel_fold_claim_allowed": false,
+    "whole_channel_fold_claim_made": false
+  },
+  "available_evidence": [
+    "KcsA_external_annotation_source_references_locked",
+    "pore_selectivity_filter_annotation_or_diagnostic",
+    "TVGYG_selectivity_filter_motif",
+    "K_plus_ion_diagnostic_shell",
+    "transmembrane_helix_scaffold_context",
+    "membrane_environment_context",
+    "chain_or_interface_context",
+    "biological_assembly_context_reference_locked_for_context_only",
+    "leakage_guard_against_soluble_core_misread"
+  ],
+  "biological_assembly_context_locked": true,
+  "claim_allowed": false,
+  "evidence_claim_allowed": false,
+  "external_annotation_manifest": {
+    "claim_allowed": false,
+    "external_annotation_source_references": [
+      {
+        "kind": "KcsA_Fab_ion_filter_structure_reference",
+        "source_id": "RCSB_1K4C",
+        "url": "https://www.rcsb.org/structure/1K4C",
+        "use_boundary": "pore_filter_ion_context_only_no_whole_channel_fold_claim"
+      },
+      {
+        "kind": "KcsA_integral_membrane_potassium_channel_reference",
+        "source_id": "RCSB_1BL8",
+        "url": "https://www.rcsb.org/structure/1BL8",
+        "use_boundary": "membrane_pore_context_only_no_tetramer_or_MD_claim"
+      },
+      {
+        "kind": "transmembrane_topology_reference",
+        "source_id": "OPM_KcsA",
+        "url": "https://opm.phar.umich.edu/proteins/59",
+        "use_boundary": "topology_annotation_reference_only_no_membrane_MD_claim"
+      }
+    ],
+    "external_annotation_source_references_locked": true,
+    "forbidden_misclassification": [
+      "soluble_single_domain_compact_core",
+      "autonomous_soluble_fold_claim",
+      "whole_channel_fold_solved_claim",
+      "tetramer_solved_claim_without_locked_assembly_evidence"
+    ],
+    "kind": "V24_KcsA_EXTERNAL_ANNOTATION_MANIFEST_v0",
+    "new_md_executed": false,
+    "raw_annotation_summary": {
+      "raw_local_annotation_note": "source references and V19 structural diagnostics are enough for this V24 acquisition layer; raw local annotation files can strengthen future assembly/contact tests",
+      "raw_local_annotation_required_for_V24": false,
+      "raw_local_external_annotation_files": [],
+      "raw_local_external_annotation_files_present": false
+    },
+    "required_roles": [
+      "transmembrane_helix_scaffold",
+      "pore_selectivity_filter_core",
+      "tetramer_or_chain_interface_context_support",
+      "membrane_environment_context",
+      "ion_filter_diagnostic_shell"
+    ],
+    "source_v19_lock_status": "V19_KcsA_MEMBRANE_PORE_EVIDENCE_LOCKED",
+    "source_v19_readout_status": "V19_KcsA_MEMBRANE_PORE_EVIDENCE_READOUT_PASSED_CLAIM_DISABLED",
+    "target_id": "KcsA",
+    "target_role": "membrane_pore_oligomer_object"
+  },
+  "external_coupling_availability": {
+    "claim_allowed": false,
+    "coupling_policy": "do_not_synthesize_couplings_missing_is_not_v24_failure",
+    "external_coupling_or_msa_files": [],
+    "external_couplings_present": false,
+    "external_couplings_required_for_V24": false,
+    "external_couplings_required_for_future_MD_or_contact_test": true,
+    "kind": "V24_KcsA_EXTERNAL_COUPLING_AVAILABILITY_v0",
+    "target_id": "KcsA"
+  },
+  "external_couplings_present": false,
+  "external_couplings_required_for_V24": false,
+  "external_couplings_required_for_future_MD_or_contact_test": true,
+  "fixed_residue_cutoff_used": false,
+  "fixed_threshold_policy": "forbidden",
+  "forbidden_misclassification_violations": [],
+  "kind": "V24_KcsA_EXTERNAL_ANNOTATION_AND_ASSEMBLY_ACQUISITION_v0",
+  "locked_interpretation": "V24 locks KcsA external membrane/pore annotation and assembly-context evidence: pore/filter diagnostic, TVGYG motif, potassium-ion shell, transmembrane helix scaffold, membrane context, and chain/interface context are preserved while soluble-core, tetramer-solved, whole-channel fold, membrane-MD, fixed-threshold, and native-metric claims remain forbidden. External couplings are not required for V24 but are marked as required/conditional for future V25 coupling/contact evidence tests.",
+  "membrane_environment_context_present": true,
+  "membrane_md_executed": false,
+  "membrane_pore_role_evidence_found": true,
+  "membrane_topology_annotation": {
+    "claim_allowed": false,
+    "external_membrane_topology_reference_locked": true,
+    "kind": "V24_KcsA_MEMBRANE_TOPOLOGY_ANNOTATION_v0",
+    "membrane_environment_context_present": true,
+    "membrane_md_executed": false,
+    "new_md_executed": false,
+    "soluble_compact_core_misclassification": false,
+    "soluble_core_misclassification_avoided": true,
+    "source_references": [
+      {
+        "kind": "KcsA_integral_membrane_potassium_channel_reference",
+        "source_id": "RCSB_1BL8",
+        "url": "https://www.rcsb.org/structure/1BL8",
+        "use_boundary": "membrane_pore_context_only_no_tetramer_or_MD_claim"
+      },
+      {
+        "kind": "transmembrane_topology_reference",
+        "source_id": "OPM_KcsA",
+        "url": "https://opm.phar.umich.edu/proteins/59",
+        "use_boundary": "topology_annotation_reference_only_no_membrane_MD_claim"
+      }
+    ],
+    "target_id": "KcsA",
+    "target_role": "membrane_pore_oligomer_object",
+    "transmembrane_helix_readout": {
+      "helix_policy": "pdb_helix_records_report_only_no_membrane_MD_claim",
+      "helix_record_count": 10,
+      "helix_records_by_chain": {
+        "A": 4,
+        "B": 3,
+        "C": 3
+      },
+      "selection_threshold_used": false,
+      "transmembrane_helix_scaffold_context_present": true
+    },
+    "transmembrane_helix_scaffold": "present"
+  },
+  "missing_evidence": [
+    "external_couplings_if_available",
+    "expanded_biological_assembly_coordinate_or_author_defined_assembly_model_for_tetramer_claim"
+  ],
+  "native_metrics_used_for_selection": false,
+  "new_md_executed": false,
+  "next_decision": {
+    "claim_allowed": false,
+    "decision_status": "V25_READY_FOR_KcsA_COUPLING_AND_INTERFACE_EVIDENCE_READOUT",
+    "kind": "V24_KcsA_NEXT_DECISION_v0",
+    "membrane_md_recommended": false,
+    "new_md_recommended": false,
+    "parallel_md_paths_allowed": false,
+    "reason": "KcsA external membrane/pore annotation layer is locked; pore/filter, TM scaffold, ion shell, and chain/interface context are preserved; no tetramer/folding claim allowed",
+    "selected_next_panel": "V25_KcsA_COUPLING_AND_INTERFACE_EVIDENCE_READOUT"
+  },
+  "oligomer_or_chain_interface_context_present": true,
+  "pore_filter_annotation": {
+    "K_plus_ion_diagnostic_shell_present": true,
+    "TVGYG_motif_detected": true,
+    "claim_allowed": false,
+    "kind": "V24_KcsA_PORE_FILTER_ANNOTATION_v0",
+    "multi_radius_report_only": true,
+    "pore_filter_annotation_present": true,
+    "pore_filter_readout": {
+      "annotation_probe": {
+        "annotation_policy": "pdb_header_keyword_report_only_no_native_selection",
+        "membrane_annotation": true,
+        "pore_annotation": true,
+        "potassium_channel_annotation": true,
+        "selection_threshold_used": false,
+        "selectivity_filter_annotation": false
+      },
+      "policy": "pore_filter_annotation_or_diagnostic_report_only_no_whole_fold_claim",
+      "potassium_ion_probe": {
+        "ion_filter_diagnostic_shell_present": true,
+        "ion_probe_policy": "ion_context_report_only_no_whole_fold_claim",
+        "potassium_ion_count": 7,
+        "potassium_ion_records_sample": [
+          {
+            "atom_name": "K",
+            "chain": "C",
+            "residue_name": "K",
+            "residue_number": "3001",
+            "xyz": [
+              155.336,
+              155.342,
+              -30.553
+            ]
+          },
+          {
+            "atom_name": "K",
+            "chain": "C",
+            "residue_name": "K",
+            "residue_number": "3002",
+            "xyz": [
+              155.331,
+              155.331,
+              -33.953
+            ]
+          },
+          {
+            "atom_name": "K",
+            "chain": "C",
+            "residue_name": "K",
+            "residue_number": "3003",
+            "xyz": [
+              155.341,
+              155.323,
+              -37.162
+            ]
+          },
+          {
+            "atom_name": "K",
+            "chain": "C",
+            "residue_name": "K",
+            "residue_number": "3004",
+            "xyz": [
+              155.33,
+              155.324,
+              -40.505
+            ]
+          },
+          {
+            "atom_name": "K",
+            "chain": "C",
+            "residue_name": "K",
+            "residue_number": "3005",
+            "xyz": [
+              155.327,
+              155.335,
+              -47.577
+            ]
+          },
+          {
+            "atom_name": "K",
+            "chain": "C",
+            "residue_name": "K",
+            "residue_number": "3006",
+            "xyz": [
+              155.339,
+              155.327,
+              -22.975
+            ]
+          },
+          {
+            "atom_name": "K",
+            "chain": "C",
+            "residue_name": "K",
+            "residue_number": "3007",
+            "xyz": [
+              155.343,
+              155.33,
+              -26.017
+            ]
+          }
+        ],
+        "selection_threshold_used": false
+      },
+      "sequence_motif_probe": {
+        "filter_motif_detected": true,
+        "motif_hits": [
+          {
+            "chain": "C",
+            "index": 53,
+            "motif": "TVGYG",
+            "source": "residue_sequences_by_chain"
+          },
+          {
+            "chain": "C",
+            "index": 53,
+            "motif": "TxxYG_diagnostic",
+            "source": "residue_sequences_by_chain",
+            "window": "TVGYG"
+          },
+          {
+            "chain": "C",
+            "index": 74,
+            "motif": "TVGYG",
+            "source": "seqres_sequences_by_chain"
+          },
+          {
+            "chain": "C",
+            "index": 74,
+            "motif": "TxxYG_diagnostic",
+            "source": "seqres_sequences_by_chain",
+            "window": "TVGYG"
+          }
+        ],
+        "motif_policy": "sequence_or_seqres_report_only_no_single_fixed_success_threshold",
+        "selection_threshold_used": false,
+        "strong_TVGYG_motif_detected": true
+      }
+    },
+    "potassium_ion_count": 7,
+    "selection_threshold_used": false,
+    "selectivity_filter_role": "pore_filter_core",
+    "target_id": "KcsA"
+  },
+  "pore_filter_annotation_present": true,
+  "positive_folding_evidence_found": false,
+  "positive_pressure_evidence_found": true,
+  "run_mode": "zero_md_external_annotation_assembly_acquisition_no_simulation_no_threshold_tuning",
+  "soluble_core_misclassification_avoided": true,
+  "source_v19_lock_status": "V19_KcsA_MEMBRANE_PORE_EVIDENCE_LOCKED",
+  "source_v19_readout_status": "V19_KcsA_MEMBRANE_PORE_EVIDENCE_READOUT_PASSED_CLAIM_DISABLED",
+  "target_id": "KcsA",
+  "target_role": "membrane_pore_oligomer_object",
+  "target_specific_threshold_tuning_allowed": false,
+  "test_status": "V24_KcsA_EXTERNAL_ANNOTATION_AND_ASSEMBLY_ACQUISITION_PASSED_CLAIM_DISABLED",
+  "tetramer_claim_allowed": false,
+  "tetramer_claim_made": false,
+  "tetramer_context_annotation_present": true,
+  "transmembrane_role_present": true,
+  "v24_failed_checks": [],
+  "whole_channel_fold_claim_allowed": false,
+  "whole_channel_fold_claim_made": false
+}

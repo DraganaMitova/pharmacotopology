@@ -1,0 +1,10 @@
+{
+  "claim_allowed": false,
+  "decision_status": "V25_READY_FOR_KcsA_COUPLING_AND_INTERFACE_EVIDENCE_READOUT",
+  "kind": "V24_KcsA_NEXT_DECISION_v0",
+  "membrane_md_recommended": false,
+  "new_md_recommended": false,
+  "parallel_md_paths_allowed": false,
+  "reason": "KcsA external membrane/pore annotation layer is locked; pore/filter, TM scaffold, ion shell, and chain/interface context are preserved; no tetramer/folding claim allowed",
+  "selected_next_panel": "V25_KcsA_COUPLING_AND_INTERFACE_EVIDENCE_READOUT"
+}

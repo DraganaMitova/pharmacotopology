@@ -1,0 +1,18 @@
+{
+  "claim_allowed": false,
+  "condition_label_context_locked": true,
+  "kind": "V27_XCL1_CONDITION_LABEL_MANIFEST_v0",
+  "mechanism_operator": "state_separation",
+  "monomer_dimer_context_locked": true,
+  "positive_folding_evidence_found": false,
+  "raw_local_condition_annotation_files": [],
+  "raw_local_condition_annotation_files_present": false,
+  "role_class": "metamorphic_switch_object",
+  "state_A_context_label_locked": true,
+  "state_A_label": "state_A_chemokine_like_or_monomer_context",
+  "state_B_context_label_locked": true,
+  "state_B_label": "state_B_alternative_beta_sandwich_or_dimer_context",
+  "state_label_source_policy": "local_state_context_structures_plus_prior_V20_V26_state_buckets_not_fold_switch_claim",
+  "state_labels_locked": true,
+  "target_id": "XCL1_lymphotactin"
+}

@@ -35,7 +35,7 @@
   ],
   "protein_rows": [
     {
-      "artifact_path": "/mnt/data/v40_work/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V15_4AKE_BALANCED_CANDIDATE_READOUT/v15_4ake_balanced_candidate_readout_certificate.json",
+      "artifact_path": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V15_4AKE_BALANCED_CANDIDATE_READOUT/v15_4ake_balanced_candidate_readout_certificate.json",
       "artifact_status": "present_machine_readable_4ake_role_artifact",
       "biological_transfer_claim_allowed": false,
       "chemical_policy": "role_aware_chemical_policy_unknown_or_legacy",
@@ -128,7 +128,7 @@
       "topology_policy": "domain_hinge_closure"
     },
     {
-      "artifact_path": "/mnt/data/v40_work/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V13a_1UBQ_ADAPTIVE_CHEMICAL_POLICY_READOUT/v13a_1ubq_purpose_gate_readout_certificate.json",
+      "artifact_path": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V13a_1UBQ_ADAPTIVE_CHEMICAL_POLICY_READOUT/v13a_1ubq_purpose_gate_readout_certificate.json",
       "artifact_status": "present",
       "biological_transfer_claim_allowed": false,
       "chemical_policy": "adaptive_soft_guard",
@@ -198,7 +198,7 @@
       "target_role": "single_domain_compact"
     },
     {
-      "artifact_path": "/mnt/data/v40_work/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V13b_1CLL_HIERARCHICAL_PURPOSE_TOPOLOGY_READOUT/v13b_1cll_hierarchical_purpose_topology_readout_certificate.json",
+      "artifact_path": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V13b_1CLL_HIERARCHICAL_PURPOSE_TOPOLOGY_READOUT/v13b_1cll_hierarchical_purpose_topology_readout_certificate.json",
       "artifact_status": "present",
       "biological_transfer_claim_allowed": false,
       "chemical_policy": "adaptive_soft_guard",

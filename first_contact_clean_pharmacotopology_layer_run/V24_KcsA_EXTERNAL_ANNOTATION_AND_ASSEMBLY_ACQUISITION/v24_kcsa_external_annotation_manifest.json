@@ -1,0 +1,49 @@
+{
+  "claim_allowed": false,
+  "external_annotation_source_references": [
+    {
+      "kind": "KcsA_Fab_ion_filter_structure_reference",
+      "source_id": "RCSB_1K4C",
+      "url": "https://www.rcsb.org/structure/1K4C",
+      "use_boundary": "pore_filter_ion_context_only_no_whole_channel_fold_claim"
+    },
+    {
+      "kind": "KcsA_integral_membrane_potassium_channel_reference",
+      "source_id": "RCSB_1BL8",
+      "url": "https://www.rcsb.org/structure/1BL8",
+      "use_boundary": "membrane_pore_context_only_no_tetramer_or_MD_claim"
+    },
+    {
+      "kind": "transmembrane_topology_reference",
+      "source_id": "OPM_KcsA",
+      "url": "https://opm.phar.umich.edu/proteins/59",
+      "use_boundary": "topology_annotation_reference_only_no_membrane_MD_claim"
+    }
+  ],
+  "external_annotation_source_references_locked": true,
+  "forbidden_misclassification": [
+    "soluble_single_domain_compact_core",
+    "autonomous_soluble_fold_claim",
+    "whole_channel_fold_solved_claim",
+    "tetramer_solved_claim_without_locked_assembly_evidence"
+  ],
+  "kind": "V24_KcsA_EXTERNAL_ANNOTATION_MANIFEST_v0",
+  "new_md_executed": false,
+  "raw_annotation_summary": {
+    "raw_local_annotation_note": "source references and V19 structural diagnostics are enough for this V24 acquisition layer; raw local annotation files can strengthen future assembly/contact tests",
+    "raw_local_annotation_required_for_V24": false,
+    "raw_local_external_annotation_files": [],
+    "raw_local_external_annotation_files_present": false
+  },
+  "required_roles": [
+    "transmembrane_helix_scaffold",
+    "pore_selectivity_filter_core",
+    "tetramer_or_chain_interface_context_support",
+    "membrane_environment_context",
+    "ion_filter_diagnostic_shell"
+  ],
+  "source_v19_lock_status": "V19_KcsA_MEMBRANE_PORE_EVIDENCE_LOCKED",
+  "source_v19_readout_status": "V19_KcsA_MEMBRANE_PORE_EVIDENCE_READOUT_PASSED_CLAIM_DISABLED",
+  "target_id": "KcsA",
+  "target_role": "membrane_pore_oligomer_object"
+}

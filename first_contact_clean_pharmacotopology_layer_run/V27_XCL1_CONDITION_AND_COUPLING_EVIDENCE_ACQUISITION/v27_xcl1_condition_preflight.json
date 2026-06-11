@@ -1,0 +1,19 @@
+{
+  "claim_allowed": false,
+  "condition_preflight_status": "ready_for_zero_md_condition_contrast",
+  "failed_checks": [],
+  "fold_switch_claim_made": false,
+  "kind": "V27_XCL1_CONDITION_PREFLIGHT_v0",
+  "mixed_state_contact_pooling_used": false,
+  "mixed_state_leakage_guard_preserved": true,
+  "monomer_dimer_context_locked": true,
+  "new_md_executed": false,
+  "single_native_state_forced": false,
+  "source_v16_preflight_status": "V16_TRANSFER_DATA_PREFLIGHT_READY_FOR_ZERO_MD_ROLE_READOUT",
+  "source_v20_status": "V20_XCL1_STATE_SPECIFIC_EVIDENCE_READOUT_PASSED_CLAIM_DISABLED",
+  "source_v26_status": "V26_XCL1_STATE_SEPARATION_OPERATOR_TEST_PASSED_CLAIM_DISABLED",
+  "state_A_context_label_locked": true,
+  "state_B_context_label_locked": true,
+  "state_context_structures_present": true,
+  "target_id": "XCL1_lymphotactin"
+}

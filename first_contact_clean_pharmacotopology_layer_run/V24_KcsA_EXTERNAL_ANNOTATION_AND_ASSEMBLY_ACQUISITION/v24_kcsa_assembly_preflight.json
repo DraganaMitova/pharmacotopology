@@ -1,0 +1,61 @@
+{
+  "biological_assembly_context_locked": true,
+  "biological_assembly_source_reference_locked": true,
+  "chain_interface_readout": {
+    "chain_ca_counts": {
+      "A": 219,
+      "B": 212,
+      "C": 103
+    },
+    "chain_count_with_ca": 3,
+    "contact_probe_policy": "multi_radius_report_only_no_single_fixed_selection_threshold",
+    "contact_probe_radii_angstrom_report_only": [
+      6.0,
+      8.0,
+      10.0
+    ],
+    "interface_context_present": true,
+    "interface_pairs_present": [
+      "A-B",
+      "A-C",
+      "B-C"
+    ],
+    "min_ca_distance_by_chain_pair": {
+      "A-B": 5.046,
+      "A-C": 4.966,
+      "B-C": 4.847
+    },
+    "multi_radius_contact_counts_by_chain_pair": {
+      "A-B": {
+        "10.0": 254,
+        "6.0": 6,
+        "8.0": 69
+      },
+      "A-C": {
+        "10.0": 45,
+        "6.0": 4,
+        "8.0": 12
+      },
+      "B-C": {
+        "10.0": 44,
+        "6.0": 6,
+        "8.0": 21
+      }
+    },
+    "selection_threshold_used": false
+  },
+  "claim_allowed": false,
+  "kind": "V24_KcsA_ASSEMBLY_PREFLIGHT_v0",
+  "local_biological_assembly_coordinate_or_annotation_file_present": false,
+  "missing_for_tetramer_claim": [
+    "external_couplings_if_available",
+    "expanded_biological_assembly_coordinate_or_author_defined_assembly_model_for_tetramer_claim"
+  ],
+  "oligomer_or_chain_interface_context_present": true,
+  "target_id": "KcsA",
+  "tetramer_claim_allowed": false,
+  "tetramer_claim_made": false,
+  "tetramer_context_annotation_present": true,
+  "whole_channel_fold_claim_allowed": false,
+  "whole_channel_fold_claim_made": false
+}

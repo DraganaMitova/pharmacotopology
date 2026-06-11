@@ -1,0 +1,535 @@
+{
+  "artifacts": {
+    "certificate": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V17_PRESSURE_EVIDENCE_SPRINT_LOCK/v17_pressure_evidence_sprint_lock_certificate.json",
+    "decision": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V17_PRESSURE_EVIDENCE_SPRINT_LOCK/v17_next_target_decision.json",
+    "manifest": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V17_PRESSURE_EVIDENCE_SPRINT_LOCK/v17_pressure_evidence_manifest.json",
+    "preflight": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V17_PRESSURE_EVIDENCE_SPRINT_LOCK/v17_pressure_evidence_preflight.json",
+    "report": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V17_PRESSURE_EVIDENCE_SPRINT_LOCK/V17_PRESSURE_EVIDENCE_SPRINT_LOCK_REPORT.md",
+    "zero_md_readout": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V17_PRESSURE_EVIDENCE_SPRINT_LOCK/v17_zero_md_evidence_readout.json"
+  },
+  "blocked_or_deferred_targets": [
+    "KcsA",
+    "XCL1_lymphotactin"
+  ],
+  "claim_allowed": false,
+  "evidence_claim_allowed_targets": [],
+  "evidence_manifest": {
+    "claim_allowed": false,
+    "fixed_residue_cutoff_used": false,
+    "fixed_threshold_policy": "forbidden",
+    "kind": "V17_PRESSURE_EVIDENCE_MANIFEST_v0",
+    "native_metrics_not_used_for_selection": true,
+    "new_md_allowed": false,
+    "target_specific_threshold_tuning_allowed": false,
+    "targets": [
+      {
+        "claim_allowed": false,
+        "clean_abstain_allowed": true,
+        "forbidden_misclassification": [
+          "isolated_TAD_as_soluble_compact_core",
+          "partner_interface_as_autonomous_fold_claim",
+          "binding_helix_as_universal_p53_fold"
+        ],
+        "next_evidence_test": "p53_TAD_MDM2_PARTNER_INDUCED_EVIDENCE_TEST",
+        "required_evidence": [
+          "partner_bound_complex_context",
+          "interface_or_contact_evidence",
+          "state_label_bound_context",
+          "leakage_guard_autonomous_fold_vs_partner_induced_fold",
+          "isolated_TAD_disorder_or_clean_abstain_context",
+          "external_couplings_if_available"
+        ],
+        "required_for_first_v18_test": [
+          "partner_bound_complex_context",
+          "interface_or_contact_evidence",
+          "state_label_bound_context",
+          "leakage_guard_autonomous_fold_vs_partner_induced_fold"
+        ],
+        "role_class": "disorder_partner_induced_object",
+        "target_id": "p53_TAD_MDM2"
+      },
+      {
+        "claim_allowed": false,
+        "clean_abstain_allowed": true,
+        "forbidden_misclassification": [
+          "membrane_pore_as_soluble_single_domain_compact_core",
+          "ion_filter_geometry_as_whole_fold_claim",
+          "tetramer_interface_as_monomer_autonomous_core"
+        ],
+        "next_evidence_test": "KcsA_MEMBRANE_PORE_ROLE_EVIDENCE_READOUT",
+        "required_evidence": [
+          "KcsA_complex_coordinate_context",
+          "membrane_topology_annotation",
+          "pore_selectivity_filter_annotation",
+          "oligomer_or_tetramer_assembly_context",
+          "chain_and_interface_identity",
+          "transmembrane_helix_roles",
+          "external_couplings_if_available",
+          "leakage_guard_against_soluble_core_misread"
+        ],
+        "required_for_first_v18_test": [
+          "membrane_topology_annotation",
+          "pore_selectivity_filter_annotation",
+          "oligomer_or_tetramer_assembly_context",
+          "chain_and_interface_identity",
+          "transmembrane_helix_roles",
+          "leakage_guard_against_soluble_core_misread"
+        ],
+        "role_class": "membrane_pore_oligomer_object",
+        "target_id": "KcsA"
+      },
+      {
+        "claim_allowed": false,
+        "clean_abstain_allowed": true,
+        "forbidden_misclassification": [
+          "forcing_single_canonical_fold",
+          "mixing_two_states_into_one_false_core",
+          "claiming_fold_switch_without_state_specific_support"
+        ],
+        "next_evidence_test": "XCL1_STATE_SPECIFIC_ROLE_SEPARATION_READOUT",
+        "required_evidence": [
+          "state_A_and_state_B_context_structures",
+          "state_A_and_state_B_labels",
+          "monomer_dimer_context",
+          "condition_labels_if_available",
+          "state_specific_structural_or_contact_evidence",
+          "state_specific_external_couplings_or_constraints_if_available",
+          "leakage_guard_preventing_mixed_state_fake_core"
+        ],
+        "required_for_first_v18_test": [
+          "state_A_and_state_B_labels",
+          "monomer_dimer_context",
+          "state_specific_structural_or_contact_evidence",
+          "leakage_guard_preventing_mixed_state_fake_core"
+        ],
+        "role_class": "metamorphic_switch_object",
+        "target_id": "XCL1_lymphotactin"
+      }
+    ]
+  },
+  "evidence_preflight": {
+    "blocked_or_deferred_targets": [
+      "KcsA",
+      "XCL1_lymphotactin"
+    ],
+    "claim_allowed": false,
+    "kind": "V17_PRESSURE_EVIDENCE_PREFLIGHT_v0",
+    "ready_for_V18_targets": [
+      "p53_TAD_MDM2"
+    ],
+    "run_mode": "evidence_file_preflight_no_simulation_no_threshold_tuning",
+    "target_rows": [
+      {
+        "available_evidence": [
+          "interface_or_contact_evidence",
+          "leakage_guard_autonomous_fold_vs_partner_induced_fold",
+          "partner_bound_complex_context",
+          "state_label_bound_context"
+        ],
+        "missing_for_first_v18_test": [],
+        "ready_for_V18": true,
+        "target_id": "p53_TAD_MDM2"
+      },
+      {
+        "available_evidence": [
+          "KcsA_complex_coordinate_context",
+          "chain_and_interface_identity",
+          "leakage_guard_against_soluble_core_misread"
+        ],
+        "missing_for_first_v18_test": [
+          "membrane_topology_annotation",
+          "pore_selectivity_filter_annotation",
+          "oligomer_or_tetramer_assembly_context",
+          "transmembrane_helix_roles"
+        ],
+        "ready_for_V18": false,
+        "target_id": "KcsA"
+      },
+      {
+        "available_evidence": [
+          "state_A_and_state_B_context_structures"
+        ],
+        "missing_for_first_v18_test": [
+          "state_A_and_state_B_labels",
+          "monomer_dimer_context",
+          "state_specific_structural_or_contact_evidence",
+          "leakage_guard_preventing_mixed_state_fake_core"
+        ],
+        "ready_for_V18": false,
+        "target_id": "XCL1_lymphotactin"
+      }
+    ]
+  },
+  "fixed_residue_cutoff_used": false,
+  "fixed_threshold_policy": "forbidden",
+  "kind": "V17_PRESSURE_EVIDENCE_SPRINT_LOCK_v0",
+  "locked_interpretation": "V17 is a one-shot pressure-evidence sprint lock. It combines evidence manifest, file preflight, zero-MD evidence-readiness readout, and one selected V18 target decision. It does not run MD, tune thresholds, use native metrics for selection, or upgrade role classification into folding evidence.",
+  "native_metrics_not_used_for_selection": true,
+  "native_metrics_used_for_selection": false,
+  "new_md_executed": false,
+  "next_target_decision": {
+    "claim_allowed": false,
+    "decision_status": "V18_TARGET_SELECTED",
+    "fallback_order": [
+      "p53_TAD_MDM2",
+      "KcsA",
+      "XCL1_lymphotactin"
+    ],
+    "new_md_executed": false,
+    "parallel_md_paths_allowed": false,
+    "reason": "fastest clean evidence test for disorder/partner-induced role; no heavy MD needed for first evidence readout",
+    "selected_V18_target": "p53_TAD_MDM2",
+    "selected_V18_test": "p53_TAD_MDM2_PARTNER_INDUCED_EVIDENCE_TEST",
+    "v18_first_run_mode": "zero_md_or_annotation_evidence_readout_first_no_MD_until_ready_decision"
+  },
+  "positive_folding_evidence_targets": [],
+  "pressure_role_transfer_passed_targets": [
+    "p53_TAD_MDM2",
+    "KcsA",
+    "XCL1_lymphotactin"
+  ],
+  "ready_for_V18_targets": [
+    "p53_TAD_MDM2"
+  ],
+  "role_classification_passed_targets": [
+    "p53_TAD_MDM2",
+    "KcsA",
+    "XCL1_lymphotactin"
+  ],
+  "run_mode": "one_batch_manifest_preflight_zero_md_readout_v18_decision_no_simulation_no_threshold_tuning",
+  "selected_V18_target": "p53_TAD_MDM2",
+  "selected_V18_test": "p53_TAD_MDM2_PARTNER_INDUCED_EVIDENCE_TEST",
+  "source_gap_lock_status": "V16_PRESSURE_EVIDENCE_GAP_LOCKED",
+  "source_preflight_status": "V16_TRANSFER_DATA_PREFLIGHT_READY_FOR_ZERO_MD_ROLE_READOUT",
+  "source_zero_md_status": "V16_ZERO_MD_ROLE_TRANSFER_READOUT_COMPLETED_CLAIM_DISABLED",
+  "sprint_checks": {
+    "claim_disabled": true,
+    "exactly_one_v18_target_selected_if_any_ready": true,
+    "fixed_residue_cutoff_retired": true,
+    "native_metrics_not_used_for_selection": true,
+    "no_new_md": true,
+    "positive_folding_evidence_targets_empty": true,
+    "preflight_ready_or_gap_known": true,
+    "target_specific_threshold_tuning_forbidden": true,
+    "v16_gap_lock_present": true,
+    "v16_zero_md_is_classification_not_evidence": true
+  },
+  "sprint_failed_checks": [],
+  "sprint_lock_status": "V17_PRESSURE_EVIDENCE_SPRINT_LOCKED",
+  "target_rows": [
+    {
+      "available_evidence": [
+        "interface_or_contact_evidence",
+        "leakage_guard_autonomous_fold_vs_partner_induced_fold",
+        "partner_bound_complex_context",
+        "state_label_bound_context"
+      ],
+      "claim_allowed": false,
+      "clean_abstain_allowed": true,
+      "decision_priority": 1,
+      "decision_reason": "fastest clean evidence test for disorder/partner-induced role; no heavy MD needed for first evidence readout",
+      "evidence_claim_allowed": false,
+      "fixed_residue_cutoff_used": false,
+      "forbidden_misclassification": [
+        "isolated_TAD_as_soluble_compact_core",
+        "partner_interface_as_autonomous_fold_claim",
+        "binding_helix_as_universal_p53_fold"
+      ],
+      "forbidden_misclassification_violations": [],
+      "gap_lock_missing_for_evidence_test": [
+        "isolated_TAD_disorder_or_clean_abstain_context",
+        "partner_bound_complex_context",
+        "interface_or_contact_evidence",
+        "state_labels_isolated_vs_MDM2_bound",
+        "external_couplings_if_available",
+        "leakage_guard_autonomous_fold_vs_partner_induced_fold"
+      ],
+      "material_observations": {
+        "chain_ca_counts": {
+          "A": 85,
+          "B": 13
+        },
+        "partner_chain_contact_probe": {
+          "chain_pair": "A-B",
+          "contact_count": 28,
+          "cutoff_angstrom_report_only": 8.0,
+          "min_ca_distance": 4.884,
+          "selection_threshold": false
+        }
+      },
+      "missing_evidence": [
+        "isolated_TAD_disorder_or_clean_abstain_context",
+        "external_couplings_if_available"
+      ],
+      "missing_for_first_v18_test": [],
+      "native_metrics_used_for_selection": false,
+      "new_md_executed": false,
+      "next_evidence_test": "p53_TAD_MDM2_PARTNER_INDUCED_EVIDENCE_TEST",
+      "positive_folding_evidence_found": false,
+      "pressure_class": "disorder_partner_induced_binding",
+      "ready_for_V18": true,
+      "required_evidence": [
+        "partner_bound_complex_context",
+        "interface_or_contact_evidence",
+        "state_label_bound_context",
+        "leakage_guard_autonomous_fold_vs_partner_induced_fold",
+        "isolated_TAD_disorder_or_clean_abstain_context",
+        "external_couplings_if_available"
+      ],
+      "required_for_first_v18_test": [
+        "partner_bound_complex_context",
+        "interface_or_contact_evidence",
+        "state_label_bound_context",
+        "leakage_guard_autonomous_fold_vs_partner_induced_fold"
+      ],
+      "role_class": "disorder_partner_induced_object",
+      "role_classification_passed": true,
+      "target_id": "p53_TAD_MDM2",
+      "target_specific_threshold_tuning_allowed": false,
+      "zero_MD_readout_status": "partner_bound_interface_evidence_context_available_zero_md",
+      "zero_md_evidence_only_no_simulation": true
+    },
+    {
+      "available_evidence": [
+        "KcsA_complex_coordinate_context",
+        "chain_and_interface_identity",
+        "leakage_guard_against_soluble_core_misread"
+      ],
+      "claim_allowed": false,
+      "clean_abstain_allowed": true,
+      "decision_priority": 2,
+      "decision_reason": "important membrane/pore pressure target, but annotation layer must be completed before evidence readout",
+      "evidence_claim_allowed": false,
+      "fixed_residue_cutoff_used": false,
+      "forbidden_misclassification": [
+        "membrane_pore_as_soluble_single_domain_compact_core",
+        "ion_filter_geometry_as_whole_fold_claim",
+        "tetramer_interface_as_monomer_autonomous_core"
+      ],
+      "forbidden_misclassification_violations": [],
+      "gap_lock_missing_for_evidence_test": [
+        "membrane_topology_annotation",
+        "pore_selectivity_filter_annotation",
+        "oligomer_or_tetramer_assembly_context",
+        "chain_and_interface_identity",
+        "transmembrane_helix_roles",
+        "external_couplings_if_available",
+        "leakage_guard_against_soluble_core_misread"
+      ],
+      "material_observations": {
+        "chain_ca_counts": {
+          "A": 219,
+          "B": 212,
+          "C": 103
+        }
+      },
+      "missing_evidence": [
+        "membrane_topology_annotation",
+        "pore_selectivity_filter_annotation",
+        "oligomer_or_tetramer_assembly_context",
+        "transmembrane_helix_roles",
+        "external_couplings_if_available"
+      ],
+      "missing_for_first_v18_test": [
+        "membrane_topology_annotation",
+        "pore_selectivity_filter_annotation",
+        "oligomer_or_tetramer_assembly_context",
+        "transmembrane_helix_roles"
+      ],
+      "native_metrics_used_for_selection": false,
+      "new_md_executed": false,
+      "next_evidence_test": "KcsA_MEMBRANE_PORE_ROLE_EVIDENCE_READOUT",
+      "positive_folding_evidence_found": false,
+      "pressure_class": "membrane_pore_oligomer_environment",
+      "ready_for_V18": false,
+      "required_evidence": [
+        "KcsA_complex_coordinate_context",
+        "membrane_topology_annotation",
+        "pore_selectivity_filter_annotation",
+        "oligomer_or_tetramer_assembly_context",
+        "chain_and_interface_identity",
+        "transmembrane_helix_roles",
+        "external_couplings_if_available",
+        "leakage_guard_against_soluble_core_misread"
+      ],
+      "required_for_first_v18_test": [
+        "membrane_topology_annotation",
+        "pore_selectivity_filter_annotation",
+        "oligomer_or_tetramer_assembly_context",
+        "chain_and_interface_identity",
+        "transmembrane_helix_roles",
+        "leakage_guard_against_soluble_core_misread"
+      ],
+      "role_class": "membrane_pore_oligomer_object",
+      "role_classification_passed": true,
+      "target_id": "KcsA",
+      "target_specific_threshold_tuning_allowed": false,
+      "zero_MD_readout_status": "membrane_pore_context_only_annotations_missing_zero_md",
+      "zero_md_evidence_only_no_simulation": true
+    },
+    {
+      "available_evidence": [
+        "state_A_and_state_B_context_structures"
+      ],
+      "claim_allowed": false,
+      "clean_abstain_allowed": true,
+      "decision_priority": 3,
+      "decision_reason": "deepest metamorphic target; block until state-specific evidence labels and leakage guard are explicit",
+      "evidence_claim_allowed": false,
+      "fixed_residue_cutoff_used": false,
+      "forbidden_misclassification": [
+        "forcing_single_canonical_fold",
+        "mixing_two_states_into_one_false_core",
+        "claiming_fold_switch_without_state_specific_support"
+      ],
+      "forbidden_misclassification_violations": [],
+      "gap_lock_missing_for_evidence_test": [
+        "state_A_and_state_B_labels",
+        "monomer_dimer_context",
+        "condition_labels_if_available",
+        "state_specific_structural_or_contact_evidence",
+        "state_specific_external_couplings_or_constraints_if_available",
+        "leakage_guard_preventing_mixed_state_fake_core"
+      ],
+      "material_observations": {
+        "state_A_chain_ca_counts": {
+          "A": 1480
+        },
+        "state_B_chain_ca_counts": {
+          "A": 1200,
+          "B": 1200
+        }
+      },
+      "missing_evidence": [
+        "state_A_and_state_B_labels",
+        "monomer_dimer_context",
+        "condition_labels_if_available",
+        "state_specific_structural_or_contact_evidence",
+        "state_specific_external_couplings_or_constraints_if_available",
+        "leakage_guard_preventing_mixed_state_fake_core"
+      ],
+      "missing_for_first_v18_test": [
+        "state_A_and_state_B_labels",
+        "monomer_dimer_context",
+        "state_specific_structural_or_contact_evidence",
+        "leakage_guard_preventing_mixed_state_fake_core"
+      ],
+      "native_metrics_used_for_selection": false,
+      "new_md_executed": false,
+      "next_evidence_test": "XCL1_STATE_SPECIFIC_ROLE_SEPARATION_READOUT",
+      "positive_folding_evidence_found": false,
+      "pressure_class": "metamorphic_fold_switching",
+      "ready_for_V18": false,
+      "required_evidence": [
+        "state_A_and_state_B_context_structures",
+        "state_A_and_state_B_labels",
+        "monomer_dimer_context",
+        "condition_labels_if_available",
+        "state_specific_structural_or_contact_evidence",
+        "state_specific_external_couplings_or_constraints_if_available",
+        "leakage_guard_preventing_mixed_state_fake_core"
+      ],
+      "required_for_first_v18_test": [
+        "state_A_and_state_B_labels",
+        "monomer_dimer_context",
+        "state_specific_structural_or_contact_evidence",
+        "leakage_guard_preventing_mixed_state_fake_core"
+      ],
+      "role_class": "metamorphic_switch_object",
+      "role_classification_passed": true,
+      "target_id": "XCL1_lymphotactin",
+      "target_specific_threshold_tuning_allowed": false,
+      "zero_MD_readout_status": "two_state_context_only_state_specific_evidence_guard_missing_zero_md",
+      "zero_md_evidence_only_no_simulation": true
+    }
+  ],
+  "target_specific_threshold_tuning_allowed": false,
+  "threshold_policy": "purpose_aware_auto_selection_only_after_evidence_sprint_lock",
+  "zero_md_evidence_readout": {
+    "claim_allowed": false,
+    "evidence_claim_allowed_targets": [],
+    "kind": "V17_ZERO_MD_EVIDENCE_READOUT_v0",
+    "new_md_executed": false,
+    "positive_folding_evidence_targets": [],
+    "run_mode": "zero_md_evidence_readout_no_simulation_no_threshold_tuning",
+    "target_rows": [
+      {
+        "available_evidence": [
+          "interface_or_contact_evidence",
+          "leakage_guard_autonomous_fold_vs_partner_induced_fold",
+          "partner_bound_complex_context",
+          "state_label_bound_context"
+        ],
+        "material_observations": {
+          "chain_ca_counts": {
+            "A": 85,
+            "B": 13
+          },
+          "partner_chain_contact_probe": {
+            "chain_pair": "A-B",
+            "contact_count": 28,
+            "cutoff_angstrom_report_only": 8.0,
+            "min_ca_distance": 4.884,
+            "selection_threshold": false
+          }
+        },
+        "missing_evidence": [
+          "isolated_TAD_disorder_or_clean_abstain_context",
+          "external_couplings_if_available"
+        ],
+        "ready_for_V18": true,
+        "target_id": "p53_TAD_MDM2",
+        "zero_MD_readout_status": "partner_bound_interface_evidence_context_available_zero_md"
+      },
+      {
+        "available_evidence": [
+          "KcsA_complex_coordinate_context",
+          "chain_and_interface_identity",
+          "leakage_guard_against_soluble_core_misread"
+        ],
+        "material_observations": {
+          "chain_ca_counts": {
+            "A": 219,
+            "B": 212,
+            "C": 103
+          }
+        },
+        "missing_evidence": [
+          "membrane_topology_annotation",
+          "pore_selectivity_filter_annotation",
+          "oligomer_or_tetramer_assembly_context",
+          "transmembrane_helix_roles",
+          "external_couplings_if_available"
+        ],
+        "ready_for_V18": false,
+        "target_id": "KcsA",
+        "zero_MD_readout_status": "membrane_pore_context_only_annotations_missing_zero_md"
+      },
+      {
+        "available_evidence": [
+          "state_A_and_state_B_context_structures"
+        ],
+        "material_observations": {
+          "state_A_chain_ca_counts": {
+            "A": 1480
+          },
+          "state_B_chain_ca_counts": {
+            "A": 1200,
+            "B": 1200
+          }
+        },
+        "missing_evidence": [
+          "state_A_and_state_B_labels",
+          "monomer_dimer_context",
+          "condition_labels_if_available",
+          "state_specific_structural_or_contact_evidence",
+          "state_specific_external_couplings_or_constraints_if_available",
+          "leakage_guard_preventing_mixed_state_fake_core"
+        ],
+        "ready_for_V18": false,
+        "target_id": "XCL1_lymphotactin",
+        "zero_MD_readout_status": "two_state_context_only_state_specific_evidence_guard_missing_zero_md"
+      }
+    ]
+  }
+}

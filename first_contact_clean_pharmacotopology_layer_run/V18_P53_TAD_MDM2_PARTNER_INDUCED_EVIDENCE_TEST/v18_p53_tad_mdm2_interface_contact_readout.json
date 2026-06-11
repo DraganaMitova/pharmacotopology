@@ -1,0 +1,30 @@
+{
+  "chain_ca_counts": {
+    "A": 85,
+    "B": 13
+  },
+  "chain_pair": "A-B",
+  "contact_probe_policy": "multi_radius_report_only_no_single_fixed_selection_threshold",
+  "contact_probe_radii_angstrom_report_only": [
+    6.0,
+    8.0,
+    10.0
+  ],
+  "interface_contact_evidence_present": true,
+  "large_chain": "A",
+  "min_ca_distance": 4.884,
+  "multi_radius_contact_counts": {
+    "10.0": 96,
+    "6.0": 7,
+    "8.0": 28
+  },
+  "nearest_ca_pair": {
+    "distance_angstrom": 4.884,
+    "large_chain": "A",
+    "large_residue_number": 50,
+    "small_chain": "B",
+    "small_residue_number": 29
+  },
+  "selection_threshold_used": false,
+  "small_chain": "B"
+}

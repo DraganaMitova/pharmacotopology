@@ -1,0 +1,88 @@
+{
+  "artifacts": {
+    "certificate": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V18_P53_PARTNER_INDUCED_EVIDENCE_LOCK/v18_p53_partner_induced_evidence_lock_certificate.json",
+    "report": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V18_P53_PARTNER_INDUCED_EVIDENCE_LOCK/V18_P53_PARTNER_INDUCED_EVIDENCE_LOCK_REPORT.md"
+  },
+  "autonomous_TAD_fold_claim": "forbidden_not_made",
+  "available_evidence": [
+    "partner_bound_complex_context",
+    "interface_or_contact_evidence",
+    "state_label_bound_context",
+    "leakage_guard_autonomous_fold_vs_partner_induced_fold"
+  ],
+  "claim_allowed": false,
+  "evidence_claim_allowed": false,
+  "fixed_residue_cutoff_used": false,
+  "fixed_threshold_policy": "forbidden",
+  "forbidden_misclassification_violations": [],
+  "interface_contact_readout": {
+    "chain_ca_counts": {
+      "A": 85,
+      "B": 13
+    },
+    "chain_pair": "A-B",
+    "contact_probe_policy": "multi_radius_report_only_no_single_fixed_selection_threshold",
+    "contact_probe_radii_angstrom_report_only": [
+      6.0,
+      8.0,
+      10.0
+    ],
+    "interface_contact_evidence_present": true,
+    "large_chain": "A",
+    "min_ca_distance": 4.884,
+    "multi_radius_contact_counts": {
+      "10.0": 96,
+      "6.0": 7,
+      "8.0": 28
+    },
+    "nearest_ca_pair": {
+      "distance_angstrom": 4.884,
+      "large_chain": "A",
+      "large_residue_number": 50,
+      "small_chain": "B",
+      "small_residue_number": 29
+    },
+    "selection_threshold_used": false,
+    "small_chain": "B"
+  },
+  "isolated_TAD_autonomous_fold_status": "clean_abstain_no_isolated_TAD_material_no_autonomous_fold_claim",
+  "kind": "V18_P53_PARTNER_INDUCED_EVIDENCE_LOCK_v0",
+  "lock_failed_checks": [],
+  "lock_status": "V18_P53_PARTNER_INDUCED_EVIDENCE_LOCKED",
+  "locked_claim": "positive_pressure_context_evidence_not_folding_claim",
+  "locked_interpretation": "p53/MDM2 partner-bound complex contains zero-MD partner-induced interface/helix role evidence, while isolated p53 TAD autonomous compact-fold claims remain forbidden. This is pressure evidence, not folding evidence.",
+  "missing_evidence": [
+    "isolated_TAD_disorder_or_clean_abstain_context",
+    "external_couplings_if_available"
+  ],
+  "native_metrics_used_for_selection": false,
+  "new_md_executed": false,
+  "next_step": "V18b_P53_ISOLATED_TAD_ABSTAIN_CONTEXT",
+  "partner_bound_helix_proxy_readout": {
+    "ca_i_to_i_plus_3_distance_summary": {
+      "count": 10,
+      "max": 9.032,
+      "mean": 6.699,
+      "min": 5.081
+    },
+    "ca_i_to_i_plus_4_distance_summary": {
+      "count": 9,
+      "max": 11.726,
+      "mean": 7.735,
+      "min": 5.898
+    },
+    "helix_proxy_available": true,
+    "helix_proxy_policy": "report_only_partner_bound_segment_geometry_no_autonomous_fold_claim",
+    "selection_threshold_used": false,
+    "small_chain": "B",
+    "small_chain_ca_count": 13
+  },
+  "partner_induced_role_evidence_found": true,
+  "positive_folding_evidence_found": false,
+  "positive_pressure_evidence_found": true,
+  "role_class": "disorder_partner_induced_object",
+  "run_mode": "lock_only_no_new_simulation_no_threshold_tuning",
+  "selected_core_or_clean_abstain": "partner_induced_interface_or_helix_signal_found",
+  "source_v18_status": "V18_P53_TAD_MDM2_PARTNER_INDUCED_EVIDENCE_TEST_PASSED_CLAIM_DISABLED",
+  "target_id": "p53_TAD_MDM2"
+}

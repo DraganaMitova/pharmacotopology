@@ -1,0 +1,157 @@
+{
+  "claim_allowed": false,
+  "data_preflight_executed": true,
+  "evidence_claim_allowed_targets": [],
+  "fixed_residue_cutoff_used": false,
+  "fixed_threshold_policy": "forbidden",
+  "gap_lock_checks": {
+    "claim_disabled": true,
+    "fixed_residue_cutoff_retired": true,
+    "forbidden_misclassification_avoided": true,
+    "native_metrics_not_used_for_selection": true,
+    "no_new_md": true,
+    "positive_folding_evidence_targets_empty": true,
+    "required_targets_present": true,
+    "role_classification_passed_all_targets": true,
+    "target_specific_threshold_tuning_forbidden": true,
+    "zero_md_readout_completed": true
+  },
+  "gap_lock_failed_checks": [],
+  "gap_lock_status": "V16_PRESSURE_EVIDENCE_GAP_LOCKED",
+  "global_missing_layer": "evidence_layer_not_grammar_or_role_classification_layer",
+  "kind": "V16_PRESSURE_EVIDENCE_GAP_LOCK_v0",
+  "locked_interpretation": "V16 passed zero-MD pressure-role transfer as role classification, not folding evidence. The gap lock freezes exactly what is missing before each pressure target can become a real folding/contact evidence test. No MD, threshold tuning, native-metric selection, fixed residue cutoff, or claim upgrade is allowed here.",
+  "native_metrics_not_used_for_selection": true,
+  "native_metrics_used_for_selection": false,
+  "new_md_executed": false,
+  "next_panel": "V17_PRESSURE_EVIDENCE_PANEL",
+  "positive_contact_evidence_targets": [],
+  "positive_folding_evidence_targets": [],
+  "pressure_role_transfer_passed_targets": [
+    "KcsA",
+    "XCL1_lymphotactin",
+    "p53_TAD_MDM2"
+  ],
+  "role_classification_passed_targets": [
+    "KcsA",
+    "XCL1_lymphotactin",
+    "p53_TAD_MDM2"
+  ],
+  "run_mode": "gap_lock_only_no_new_simulation_no_threshold_tuning",
+  "source_v16_lock_status": "V16_TARGET_MANIFEST_AND_ROLE_EXPECTATION_LOCKED",
+  "source_zero_md_status": "V16_ZERO_MD_ROLE_TRANSFER_READOUT_COMPLETED_CLAIM_DISABLED",
+  "target_gap_rows": [
+    {
+      "claim_allowed": false,
+      "evidence_claim_forbidden_until": [
+        "membrane_topology_annotation_present",
+        "assembly_or_interface_context_present",
+        "pore_filter_residue_context_present"
+      ],
+      "fixed_residue_cutoff_used": false,
+      "forbidden_misclassification_avoided": true,
+      "forbidden_misclassification_guard": "soluble_single_domain_compact_core",
+      "forbidden_misclassification_violations": [],
+      "missing_for_evidence_test": [
+        "membrane_topology_annotation",
+        "pore_selectivity_filter_annotation",
+        "oligomer_or_tetramer_assembly_context",
+        "chain_and_interface_identity",
+        "transmembrane_helix_roles",
+        "external_couplings_if_available",
+        "leakage_guard_against_soluble_core_misread"
+      ],
+      "native_metrics_used_for_selection": false,
+      "new_md_executed": false,
+      "next_evidence_test": "membrane_pore_role_evidence_readout",
+      "notes": [
+        "zero_MD_pressure_role_transfer_is_classification_not_folding_evidence",
+        "do_not_upgrade_role_context_to_contact_or_fold_claim"
+      ],
+      "positive_folding_evidence_found": false,
+      "pressure_class": "membrane_pore_oligomer_environment",
+      "role_class": "membrane_pore_oligomer_object",
+      "role_classification_passed": true,
+      "role_transfer_status": "membrane_pore_context_detected_soluble_core_misclassification_avoided_no_tetramer_claim",
+      "target_id": "KcsA",
+      "target_specific_threshold_tuning_allowed": false,
+      "v17_readiness": "ready_for_membrane_pore_context_gap_known_not_membrane_MD_claim",
+      "zero_md_classification_only": true
+    },
+    {
+      "claim_allowed": false,
+      "evidence_claim_forbidden_until": [
+        "state_specific_labels_present",
+        "state_specific_evidence_present",
+        "mixed_state_leakage_guard_present"
+      ],
+      "fixed_residue_cutoff_used": false,
+      "forbidden_misclassification_avoided": true,
+      "forbidden_misclassification_guard": "single_fold_forcing",
+      "forbidden_misclassification_violations": [],
+      "missing_for_evidence_test": [
+        "state_A_and_state_B_labels",
+        "monomer_dimer_context",
+        "condition_labels_if_available",
+        "state_specific_structural_or_contact_evidence",
+        "state_specific_external_couplings_or_constraints_if_available",
+        "leakage_guard_preventing_mixed_state_fake_core"
+      ],
+      "native_metrics_used_for_selection": false,
+      "new_md_executed": false,
+      "next_evidence_test": "state_specific_role_separation_readout",
+      "notes": [
+        "zero_MD_pressure_role_transfer_is_classification_not_folding_evidence",
+        "do_not_upgrade_role_context_to_contact_or_fold_claim"
+      ],
+      "positive_folding_evidence_found": false,
+      "pressure_class": "metamorphic_fold_switching",
+      "role_class": "metamorphic_switch_object",
+      "role_classification_passed": true,
+      "role_transfer_status": "metamorphic_two_state_context_detected_single_fold_forcing_avoided_no_switch_claim",
+      "target_id": "XCL1_lymphotactin",
+      "target_specific_threshold_tuning_allowed": false,
+      "v17_readiness": "ready_for_two_state_context_gap_known_not_fold_switch_claim",
+      "zero_md_classification_only": true
+    },
+    {
+      "claim_allowed": false,
+      "evidence_claim_forbidden_until": [
+        "isolated_TAD_abstain_context_present",
+        "interface_contact_evidence_present",
+        "state_label_guard_present"
+      ],
+      "fixed_residue_cutoff_used": false,
+      "forbidden_misclassification_avoided": true,
+      "forbidden_misclassification_guard": "autonomous_TAD_compact_fold",
+      "forbidden_misclassification_violations": [],
+      "missing_for_evidence_test": [
+        "isolated_TAD_disorder_or_clean_abstain_context",
+        "partner_bound_complex_context",
+        "interface_or_contact_evidence",
+        "state_labels_isolated_vs_MDM2_bound",
+        "external_couplings_if_available",
+        "leakage_guard_autonomous_fold_vs_partner_induced_fold"
+      ],
+      "native_metrics_used_for_selection": false,
+      "new_md_executed": false,
+      "next_evidence_test": "partner_induced_interface_or_helix_readout",
+      "notes": [
+        "zero_MD_pressure_role_transfer_is_classification_not_folding_evidence",
+        "do_not_upgrade_role_context_to_contact_or_fold_claim"
+      ],
+      "positive_folding_evidence_found": false,
+      "pressure_class": "disorder_partner_induced_binding",
+      "role_class": "disorder_partner_induced_object",
+      "role_classification_passed": true,
+      "role_transfer_status": "partner_induced_complex_role_context_detected_no_autonomous_fold_claim",
+      "target_id": "p53_TAD_MDM2",
+      "target_specific_threshold_tuning_allowed": false,
+      "v17_readiness": "ready_for_partner_complex_context_gap_known_not_evidence_claim",
+      "zero_md_classification_only": true
+    }
+  ],
+  "target_specific_threshold_tuning_allowed": false,
+  "threshold_policy": "purpose_aware_auto_selection_only_after_evidence_manifest_lock",
+  "zero_md_role_transfer_executed": true
+}

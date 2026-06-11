@@ -1,0 +1,162 @@
+[
+  {
+    "claim_allowed": false,
+    "md_blockers": [
+      "external_validation_if_available",
+      "interdomain_hinge_or_closure_evidence"
+    ],
+    "md_readiness": "not_ready_for_MD_external_constraints_or_target_specific_evidence_missing",
+    "missing_next_evidence": [
+      "interdomain_hinge_or_closure_evidence",
+      "external_validation_if_available"
+    ],
+    "new_MD_allowed": false,
+    "new_MD_recommended": false,
+    "operators": [
+      "role_detect",
+      "context_detect",
+      "evidence_assign",
+      "reachability_check",
+      "replica_support",
+      "chemical_confidence",
+      "topology_context",
+      "pollution_guard"
+    ],
+    "pressure_type": "domain_hinge_closure_object",
+    "role_detected": true,
+    "selected_signal": "124-135",
+    "target": "4AKE"
+  },
+  {
+    "claim_allowed": false,
+    "md_blockers": [
+      "DCA_background_enrichment",
+      "cross_target_validation"
+    ],
+    "md_readiness": "not_ready_for_MD_external_constraints_or_target_specific_evidence_missing",
+    "missing_next_evidence": [
+      "cross_target_validation",
+      "DCA_background_enrichment"
+    ],
+    "new_MD_allowed": false,
+    "new_MD_recommended": false,
+    "operators": [
+      "role_detect",
+      "evidence_assign",
+      "replica_support",
+      "chemical_confidence",
+      "pollution_guard"
+    ],
+    "pressure_type": "single_domain_compact_object",
+    "role_detected": true,
+    "selected_signal": "23-48",
+    "target": "1UBQ"
+  },
+  {
+    "claim_allowed": false,
+    "md_blockers": [
+      "interdomain_hinge_evidence_if_claim_needed"
+    ],
+    "md_readiness": "not_ready_for_MD_external_constraints_or_target_specific_evidence_missing",
+    "missing_next_evidence": [
+      "interdomain_hinge_evidence_if_claim_needed"
+    ],
+    "new_MD_allowed": false,
+    "new_MD_recommended": false,
+    "operators": [
+      "role_detect",
+      "context_detect",
+      "evidence_assign",
+      "replica_support",
+      "chemical_confidence",
+      "topology_context",
+      "pollution_guard"
+    ],
+    "pressure_type": "multi_domain_composite_object",
+    "role_detected": true,
+    "selected_signal": "97-133",
+    "target": "1CLL"
+  },
+  {
+    "claim_allowed": false,
+    "md_blockers": [
+      "external_couplings_if_available",
+      "raw_local_external_annotation_files_if_needed"
+    ],
+    "md_readiness": "not_ready_for_MD_external_constraints_or_target_specific_evidence_missing",
+    "missing_next_evidence": [
+      "raw_local_external_annotation_files_if_needed",
+      "external_couplings_if_available"
+    ],
+    "new_MD_allowed": false,
+    "new_MD_recommended": false,
+    "operators": [
+      "role_detect",
+      "context_detect",
+      "evidence_assign",
+      "interface_context",
+      "clean_abstain",
+      "pollution_guard"
+    ],
+    "pressure_type": "disorder_partner_induced_binding_pressure",
+    "role_detected": true,
+    "selected_signal": "isolated_disorder_context + bound_1YCR_interface_helix_proxy",
+    "target": "p53_TAD_MDM2"
+  },
+  {
+    "claim_allowed": false,
+    "md_blockers": [
+      "expanded_biological_assembly_coordinate_or_author_defined_assembly_model_for_tetramer_claim",
+      "external_couplings_if_available",
+      "pore_filter_coupling_support"
+    ],
+    "md_readiness": "not_ready_for_MD_external_constraints_or_target_specific_evidence_missing",
+    "missing_next_evidence": [
+      "expanded_biological_assembly_coordinate_or_author_defined_assembly_model_for_tetramer_claim",
+      "external_couplings_if_available",
+      "pore_filter_coupling_support"
+    ],
+    "new_MD_allowed": false,
+    "new_MD_recommended": false,
+    "operators": [
+      "role_detect",
+      "context_detect",
+      "evidence_assign",
+      "topology_context",
+      "interface_context",
+      "clean_abstain",
+      "pollution_guard"
+    ],
+    "pressure_type": "membrane_pore_oligomer_environment_pressure",
+    "role_detected": true,
+    "selected_signal": "TVGYG + K_plus_shell + TM_scaffold + chain_interface_context",
+    "target": "KcsA"
+  },
+  {
+    "claim_allowed": false,
+    "md_blockers": [
+      "condition_labels_if_available",
+      "state_specific_external_couplings_or_constraints_if_available"
+    ],
+    "md_readiness": "not_ready_for_MD_external_constraints_or_target_specific_evidence_missing",
+    "missing_next_evidence": [
+      "condition_labels_if_available",
+      "state_specific_external_couplings_or_constraints_if_available"
+    ],
+    "new_MD_allowed": false,
+    "new_MD_recommended": false,
+    "operators": [
+      "role_detect",
+      "context_detect",
+      "evidence_assign",
+      "state_separation",
+      "interface_context",
+      "clean_abstain",
+      "pollution_guard"
+    ],
+    "pressure_type": "metamorphic_fold_switching_pressure",
+    "role_detected": true,
+    "selected_signal": "state_A_chemokine_context + state_B_dimer_context_kept_separate",
+    "target": "XCL1_lymphotactin"
+  }
+]

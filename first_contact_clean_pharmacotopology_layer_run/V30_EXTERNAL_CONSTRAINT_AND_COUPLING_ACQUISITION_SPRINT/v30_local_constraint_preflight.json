@@ -1,0 +1,23 @@
+{
+  "all_targets_have_explicit_status": true,
+  "claim_allowed": false,
+  "kind": "V30_LOCAL_CONSTRAINT_PREFLIGHT_v0",
+  "new_md_executed": false,
+  "targets_ready_for_MD": [],
+  "targets_with_annotation_context_present_or_locked": [
+    "XCL1_lymphotactin",
+    "KcsA",
+    "p53_TAD_MDM2",
+    "4AKE",
+    "1UBQ",
+    "1CLL"
+  ],
+  "targets_with_local_constraints_or_couplings": [
+    "XCL1_lymphotactin",
+    "KcsA",
+    "p53_TAD_MDM2",
+    "4AKE",
+    "1UBQ",
+    "1CLL"
+  ]
+}
