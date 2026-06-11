@@ -1,0 +1,42 @@
+{
+  "bucket_status": {
+    "complete": true,
+    "missing_buckets": [],
+    "present_buckets": [
+      "filter_or_signature_context",
+      "ion_selectivity_context",
+      "membrane_topology_context",
+      "sequence_or_family_identity"
+    ],
+    "required_buckets": [
+      "sequence_or_family_identity",
+      "ion_selectivity_context",
+      "membrane_topology_context",
+      "filter_or_signature_context"
+    ]
+  },
+  "claim_allowed": false,
+  "coordinate_truth_used_before_selection": false,
+  "display_name": "KcsA pH-gated potassium channel",
+  "folding_problem_solved": false,
+  "grammar_focus": "membrane channel pore/filter/interface grammar",
+  "grammar_rules": {
+    "annotation_promoted_to_constraints": false,
+    "coordinate_contact_tables_allowed": false,
+    "native_metrics_before_selection_allowed": false
+  },
+  "kind": "V36_TARGET_EVIDENCE_DOSSIER_v0",
+  "locked_interpretation": "This dossier is target-specific operator grammar evidence only. It does not convert annotations into constraints, does not use native coordinates for selection, does not run MD, and does not make a folding-solved claim.",
+  "native_metrics_used_for_selection": false,
+  "new_MD_allowed": false,
+  "new_md_executed": false,
+  "positive_folding_evidence_found": false,
+  "problem_class": "membrane_pore_filter_oligomeric_interface_problem",
+  "required_buckets": [
+    "sequence_or_family_identity",
+    "ion_selectivity_context",
+    "membrane_topology_context",
+    "filter_or_signature_context"
+  ],
+  "target": "KcsA"
+}

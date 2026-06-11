@@ -1,0 +1,8 @@
+{
+  "claim_allowed": false,
+  "decision_status": "V36_REAL_EVIDENCE_DOSSIERS_READY_CLAIM_DISABLED",
+  "folding_problem_solved": false,
+  "kind": "V36_REAL_EVIDENCE_DOSSIER_GATE_NEXT_DECISION_v0",
+  "new_MD_allowed": false,
+  "next_action": "use_V36_dossiers_to_design_target_specific_operator_grammar_no_claim_no_MD"
+}

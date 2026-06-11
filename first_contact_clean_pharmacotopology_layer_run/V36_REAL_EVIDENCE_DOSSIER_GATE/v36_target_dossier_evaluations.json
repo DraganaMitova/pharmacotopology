@@ -1,0 +1,88 @@
+[
+  {
+    "coordinate_derived_source_count": 0,
+    "failed_checks": [],
+    "internal_runtime_source_count": 0,
+    "missing_buckets": [],
+    "native_metric_source_count": 0,
+    "placeholder_source_count": 0,
+    "present_buckets": [
+      "filter_or_signature_context",
+      "ion_selectivity_context",
+      "membrane_topology_context",
+      "sequence_or_family_identity"
+    ],
+    "required_buckets": [
+      "sequence_or_family_identity",
+      "ion_selectivity_context",
+      "membrane_topology_context",
+      "filter_or_signature_context"
+    ],
+    "source_row_count": 4,
+    "source_types_used": [
+      "UniProt sequence/features/function annotations",
+      "external sequence conservation signatures"
+    ],
+    "target": "KcsA",
+    "target_status": "ready",
+    "trusted_external_source_count": 4
+  },
+  {
+    "coordinate_derived_source_count": 0,
+    "failed_checks": [],
+    "internal_runtime_source_count": 0,
+    "missing_buckets": [],
+    "native_metric_source_count": 0,
+    "placeholder_source_count": 0,
+    "present_buckets": [
+      "metamorphic_two_state_context",
+      "no_mixed_state_pooling_rule",
+      "state_A_function_context",
+      "state_B_function_context"
+    ],
+    "required_buckets": [
+      "state_A_function_context",
+      "state_B_function_context",
+      "metamorphic_two_state_context",
+      "no_mixed_state_pooling_rule"
+    ],
+    "source_row_count": 4,
+    "source_types_used": [
+      "UniProt sequence/features/function annotations",
+      "literature-derived state/function annotations"
+    ],
+    "target": "XCL1_lymphotactin",
+    "target_status": "ready",
+    "trusted_external_source_count": 4
+  },
+  {
+    "coordinate_derived_source_count": 0,
+    "failed_checks": [],
+    "internal_runtime_source_count": 0,
+    "missing_buckets": [],
+    "native_metric_source_count": 0,
+    "placeholder_source_count": 0,
+    "present_buckets": [
+      "disorder_to_order_context",
+      "ensemble_context",
+      "intrinsic_disorder_context",
+      "no_single_native_fold_rule"
+    ],
+    "required_buckets": [
+      "intrinsic_disorder_context",
+      "ensemble_context",
+      "disorder_to_order_context",
+      "no_single_native_fold_rule"
+    ],
+    "source_row_count": 4,
+    "source_types_used": [
+      "DisProt disorder annotations",
+      "UniProt sequence/features/function annotations",
+      "experimentally described motifs/state labels",
+      "literature-derived state/function annotations"
+    ],
+    "target": "alpha_synuclein_SNCA",
+    "target_status": "ready",
+    "trusted_external_source_count": 4
+  }
+]

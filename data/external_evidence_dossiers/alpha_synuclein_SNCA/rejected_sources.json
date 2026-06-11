@@ -1,0 +1,11 @@
+{
+  "kind": "V36_REJECTED_SOURCES_v0",
+  "rows": [
+    {
+      "file_path": null,
+      "rejection_reason": "SNCA is an IDP/ensemble problem; forcing one native-fold grammar is blocked",
+      "source_name": "Single compact native-fold SNCA model"
+    }
+  ],
+  "target": "alpha_synuclein_SNCA"
+}

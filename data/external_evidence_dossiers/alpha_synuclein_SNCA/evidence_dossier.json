@@ -1,0 +1,43 @@
+{
+  "bucket_status": {
+    "complete": true,
+    "missing_buckets": [],
+    "present_buckets": [
+      "disorder_to_order_context",
+      "ensemble_context",
+      "intrinsic_disorder_context",
+      "no_single_native_fold_rule"
+    ],
+    "required_buckets": [
+      "intrinsic_disorder_context",
+      "ensemble_context",
+      "disorder_to_order_context",
+      "no_single_native_fold_rule"
+    ]
+  },
+  "claim_allowed": false,
+  "coordinate_truth_used_before_selection": false,
+  "display_name": "Alpha-synuclein / SNCA",
+  "folding_problem_solved": false,
+  "grammar_focus": "IDP ensemble/disorder-to-order grammar",
+  "grammar_rules": {
+    "aggregation_context_is_not_folding_solved_claim": true,
+    "ensemble_not_single_fold": true,
+    "native_metrics_before_selection_allowed": false,
+    "single_native_fold_model_allowed": false
+  },
+  "kind": "V36_TARGET_EVIDENCE_DOSSIER_v0",
+  "locked_interpretation": "This dossier is target-specific operator grammar evidence only. It does not convert annotations into constraints, does not use native coordinates for selection, does not run MD, and does not make a folding-solved claim.",
+  "native_metrics_used_for_selection": false,
+  "new_MD_allowed": false,
+  "new_md_executed": false,
+  "positive_folding_evidence_found": false,
+  "problem_class": "intrinsically_disordered_ensemble_problem",
+  "required_buckets": [
+    "intrinsic_disorder_context",
+    "ensemble_context",
+    "disorder_to_order_context",
+    "no_single_native_fold_rule"
+  ],
+  "target": "alpha_synuclein_SNCA"
+}

@@ -1,0 +1,317 @@
+{
+  "artifacts": {
+    "certificate": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V36_REAL_EVIDENCE_DOSSIER_GATE/v36_real_evidence_dossier_gate_certificate.json",
+    "decision": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V36_REAL_EVIDENCE_DOSSIER_GATE/v36_real_evidence_dossier_gate_next_decision.json",
+    "report": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V36_REAL_EVIDENCE_DOSSIER_GATE/V36_REAL_EVIDENCE_DOSSIER_GATE_REPORT.md",
+    "target_results": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V36_REAL_EVIDENCE_DOSSIER_GATE/v36_target_dossier_evaluations.json"
+  },
+  "blocked_target_count": 0,
+  "claim_allowed": false,
+  "control_count": 9,
+  "control_status": "V36_REAL_EVIDENCE_DOSSIERS_READY_CLAIM_DISABLED",
+  "controls": [
+    {
+      "control_id": "kcsa_v33_v34_coordinate_csvs_blocked",
+      "expected_failure_contains": "coordinate_or_prediction_leakage",
+      "expected_ready": null,
+      "expected_status": "V36_BLOCKED_COORDINATE_OR_INTERNAL_LEAKAGE",
+      "observed_failed_checks": [
+        "KcsA:row_0:coordinate_or_prediction_leakage",
+        "KcsA:row_0:coordinate_source_type_supplied",
+        "KcsA:row_0:source_url_or_citation_not_stable"
+      ],
+      "observed_ready": [
+        "XCL1_lymphotactin",
+        "alpha_synuclein_SNCA"
+      ],
+      "observed_status": "V36_BLOCKED_COORDINATE_OR_INTERNAL_LEAKAGE",
+      "passed": true,
+      "reason": "KcsA V33/V34 coordinate-derived contact CSVs must be blocked as V36 evidence."
+    },
+    {
+      "control_id": "kcsa_generic_channel_annotation_partial",
+      "expected_failure_contains": "KcsA:missing_bucket:ion_selectivity_context",
+      "expected_ready": [
+        "XCL1_lymphotactin",
+        "alpha_synuclein_SNCA"
+      ],
+      "expected_status": "V36_PARTIAL_EVIDENCE_DOSSIERS_CLEAN_ABSTAIN",
+      "observed_failed_checks": [
+        "KcsA:missing_bucket:filter_or_signature_context",
+        "KcsA:missing_bucket:ion_selectivity_context",
+        "KcsA:missing_bucket:membrane_topology_context"
+      ],
+      "observed_ready": [
+        "XCL1_lymphotactin",
+        "alpha_synuclein_SNCA"
+      ],
+      "observed_status": "V36_PARTIAL_EVIDENCE_DOSSIERS_CLEAN_ABSTAIN",
+      "passed": true,
+      "reason": "A generic channel label is not enough for KcsA readiness."
+    },
+    {
+      "control_id": "xcl1_one_state_only_partial",
+      "expected_failure_contains": "XCL1_lymphotactin:missing_bucket:state_B_function_context",
+      "expected_ready": [
+        "KcsA",
+        "alpha_synuclein_SNCA"
+      ],
+      "expected_status": "V36_PARTIAL_EVIDENCE_DOSSIERS_CLEAN_ABSTAIN",
+      "observed_failed_checks": [
+        "XCL1_lymphotactin:missing_bucket:state_B_function_context"
+      ],
+      "observed_ready": [
+        "KcsA",
+        "alpha_synuclein_SNCA"
+      ],
+      "observed_status": "V36_PARTIAL_EVIDENCE_DOSSIERS_CLEAN_ABSTAIN",
+      "passed": true,
+      "reason": "XCL1 needs both native-state function contexts."
+    },
+    {
+      "control_id": "xcl1_mixed_state_pooling_blocked",
+      "expected_failure_contains": "mixed_state_pooling_forbidden",
+      "expected_ready": null,
+      "expected_status": "V36_BLOCKED_PLACEHOLDER_OR_UNTRUSTED_SOURCES",
+      "observed_failed_checks": [
+        "XCL1_lymphotactin:mixed_state_pooling_forbidden"
+      ],
+      "observed_ready": [
+        "KcsA",
+        "alpha_synuclein_SNCA"
+      ],
+      "observed_status": "V36_BLOCKED_PLACEHOLDER_OR_UNTRUSTED_SOURCES",
+      "passed": true,
+      "reason": "XCL1 state-A/state-B pooling is a blocked grammar error."
+    },
+    {
+      "control_id": "snca_single_fold_grammar_blocked",
+      "expected_failure_contains": "single_native_fold_grammar_forbidden_for_SNCA",
+      "expected_ready": null,
+      "expected_status": "V36_BLOCKED_PLACEHOLDER_OR_UNTRUSTED_SOURCES",
+      "observed_failed_checks": [
+        "alpha_synuclein_SNCA:single_native_fold_grammar_forbidden_for_SNCA"
+      ],
+      "observed_ready": [
+        "KcsA",
+        "XCL1_lymphotactin"
+      ],
+      "observed_status": "V36_BLOCKED_PLACEHOLDER_OR_UNTRUSTED_SOURCES",
+      "passed": true,
+      "reason": "SNCA must remain an IDP/ensemble problem, not a forced single-fold problem."
+    },
+    {
+      "control_id": "snca_without_disorder_evidence_partial",
+      "expected_failure_contains": "alpha_synuclein_SNCA:missing_bucket:intrinsic_disorder_context",
+      "expected_ready": [
+        "KcsA",
+        "XCL1_lymphotactin"
+      ],
+      "expected_status": "V36_PARTIAL_EVIDENCE_DOSSIERS_CLEAN_ABSTAIN",
+      "observed_failed_checks": [
+        "alpha_synuclein_SNCA:missing_bucket:intrinsic_disorder_context"
+      ],
+      "observed_ready": [
+        "KcsA",
+        "XCL1_lymphotactin"
+      ],
+      "observed_status": "V36_PARTIAL_EVIDENCE_DOSSIERS_CLEAN_ABSTAIN",
+      "passed": true,
+      "reason": "SNCA cannot be ready if disorder evidence is removed."
+    },
+    {
+      "control_id": "placeholder_citation_blocked",
+      "expected_failure_contains": "placeholder_or_missing_source_name",
+      "expected_ready": null,
+      "expected_status": "V36_BLOCKED_PLACEHOLDER_OR_UNTRUSTED_SOURCES",
+      "observed_failed_checks": [
+        "KcsA:row_0:placeholder_or_missing_source_name",
+        "KcsA:row_0:placeholder_or_missing_source_url_or_citation",
+        "KcsA:row_0:source_url_or_citation_not_stable"
+      ],
+      "observed_ready": [
+        "XCL1_lymphotactin",
+        "alpha_synuclein_SNCA"
+      ],
+      "observed_status": "V36_BLOCKED_PLACEHOLDER_OR_UNTRUSTED_SOURCES",
+      "passed": true,
+      "reason": "Placeholder source names or citations must be blocked."
+    },
+    {
+      "control_id": "internal_runtime_source_blocked",
+      "expected_failure_contains": "internal_runtime_source_supplied",
+      "expected_ready": null,
+      "expected_status": "V36_BLOCKED_COORDINATE_OR_INTERNAL_LEAKAGE",
+      "observed_failed_checks": [
+        "KcsA:row_0:internal_runtime_source_supplied"
+      ],
+      "observed_ready": [
+        "XCL1_lymphotactin",
+        "alpha_synuclein_SNCA"
+      ],
+      "observed_status": "V36_BLOCKED_COORDINATE_OR_INTERNAL_LEAKAGE",
+      "passed": true,
+      "reason": "Runtime reports under first_contact_clean_pharmacotopology_layer_run are not evidence."
+    },
+    {
+      "control_id": "native_coordinate_metrics_before_selection_blocked",
+      "expected_failure_contains": "native_metrics_used_for_selection",
+      "expected_ready": null,
+      "expected_status": "V36_BLOCKED_COORDINATE_OR_INTERNAL_LEAKAGE",
+      "observed_failed_checks": [
+        "KcsA:row_0:native_metrics_used_for_selection"
+      ],
+      "observed_ready": [
+        "XCL1_lymphotactin",
+        "alpha_synuclein_SNCA"
+      ],
+      "observed_status": "V36_BLOCKED_COORDINATE_OR_INTERNAL_LEAKAGE",
+      "passed": true,
+      "reason": "Native coordinate metrics before selection must be blocked."
+    }
+  ],
+  "coordinate_derived_source_count": 0,
+  "coordinate_truth_used_before_selection": false,
+  "external_source_count": 12,
+  "failed_checks": [],
+  "folding_problem_solved": false,
+  "internal_runtime_source_count": 0,
+  "kind": "V36_REAL_EVIDENCE_DOSSIER_GATE_v0",
+  "locked_interpretation": "V36 readiness means the repo now has real external, non-coordinate dossiers for KcsA, XCL1, and SNCA operator grammar. It is not a folding prediction win, does not run MD, does not use native coordinates for selection, and does not solve protein folding.",
+  "native_metric_source_count": 0,
+  "native_metrics_used_for_selection": false,
+  "new_MD_allowed": false,
+  "new_md_executed": false,
+  "next_action": "use_V36_dossiers_to_design_target_specific_operator_grammar_no_claim_no_MD",
+  "next_decision": {
+    "claim_allowed": false,
+    "decision_status": "V36_REAL_EVIDENCE_DOSSIERS_READY_CLAIM_DISABLED",
+    "folding_problem_solved": false,
+    "kind": "V36_REAL_EVIDENCE_DOSSIER_GATE_NEXT_DECISION_v0",
+    "new_MD_allowed": false,
+    "next_action": "use_V36_dossiers_to_design_target_specific_operator_grammar_no_claim_no_MD"
+  },
+  "partial_target_count": 0,
+  "passed_control_count": 9,
+  "placeholder_source_count": 0,
+  "positive_folding_evidence_found": false,
+  "ready_target_count": 3,
+  "run_mode": "real_external_evidence_dossier_gate_no_coordinates_no_MD_claim_disabled",
+  "source_counts_by_target": {
+    "KcsA": 4,
+    "XCL1_lymphotactin": 4,
+    "alpha_synuclein_SNCA": 4
+  },
+  "source_types_by_target": {
+    "KcsA": [
+      "UniProt sequence/features/function annotations",
+      "external sequence conservation signatures"
+    ],
+    "XCL1_lymphotactin": [
+      "UniProt sequence/features/function annotations",
+      "literature-derived state/function annotations"
+    ],
+    "alpha_synuclein_SNCA": [
+      "DisProt disorder annotations",
+      "UniProt sequence/features/function annotations",
+      "experimentally described motifs/state labels",
+      "literature-derived state/function annotations"
+    ]
+  },
+  "target_count": 3,
+  "target_results": [
+    {
+      "coordinate_derived_source_count": 0,
+      "failed_checks": [],
+      "internal_runtime_source_count": 0,
+      "missing_buckets": [],
+      "native_metric_source_count": 0,
+      "placeholder_source_count": 0,
+      "present_buckets": [
+        "filter_or_signature_context",
+        "ion_selectivity_context",
+        "membrane_topology_context",
+        "sequence_or_family_identity"
+      ],
+      "required_buckets": [
+        "sequence_or_family_identity",
+        "ion_selectivity_context",
+        "membrane_topology_context",
+        "filter_or_signature_context"
+      ],
+      "source_row_count": 4,
+      "source_types_used": [
+        "UniProt sequence/features/function annotations",
+        "external sequence conservation signatures"
+      ],
+      "target": "KcsA",
+      "target_status": "ready",
+      "trusted_external_source_count": 4
+    },
+    {
+      "coordinate_derived_source_count": 0,
+      "failed_checks": [],
+      "internal_runtime_source_count": 0,
+      "missing_buckets": [],
+      "native_metric_source_count": 0,
+      "placeholder_source_count": 0,
+      "present_buckets": [
+        "metamorphic_two_state_context",
+        "no_mixed_state_pooling_rule",
+        "state_A_function_context",
+        "state_B_function_context"
+      ],
+      "required_buckets": [
+        "state_A_function_context",
+        "state_B_function_context",
+        "metamorphic_two_state_context",
+        "no_mixed_state_pooling_rule"
+      ],
+      "source_row_count": 4,
+      "source_types_used": [
+        "UniProt sequence/features/function annotations",
+        "literature-derived state/function annotations"
+      ],
+      "target": "XCL1_lymphotactin",
+      "target_status": "ready",
+      "trusted_external_source_count": 4
+    },
+    {
+      "coordinate_derived_source_count": 0,
+      "failed_checks": [],
+      "internal_runtime_source_count": 0,
+      "missing_buckets": [],
+      "native_metric_source_count": 0,
+      "placeholder_source_count": 0,
+      "present_buckets": [
+        "disorder_to_order_context",
+        "ensemble_context",
+        "intrinsic_disorder_context",
+        "no_single_native_fold_rule"
+      ],
+      "required_buckets": [
+        "intrinsic_disorder_context",
+        "ensemble_context",
+        "disorder_to_order_context",
+        "no_single_native_fold_rule"
+      ],
+      "source_row_count": 4,
+      "source_types_used": [
+        "DisProt disorder annotations",
+        "UniProt sequence/features/function annotations",
+        "experimentally described motifs/state labels",
+        "literature-derived state/function annotations"
+      ],
+      "target": "alpha_synuclein_SNCA",
+      "target_status": "ready",
+      "trusted_external_source_count": 4
+    }
+  ],
+  "targets_blocked": [],
+  "targets_partial": [],
+  "targets_ready": [
+    "KcsA",
+    "XCL1_lymphotactin",
+    "alpha_synuclein_SNCA"
+  ]
+}

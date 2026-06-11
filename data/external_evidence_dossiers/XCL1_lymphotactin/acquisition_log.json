@@ -1,0 +1,18 @@
+{
+  "accessed_date": "2026-06-11",
+  "acquisition_mode": "curated_external_source_dossier_small_auditable_no_large_downloads",
+  "generated_by": "scripts/build_v36_real_evidence_dossiers_v0.py",
+  "kind": "V36_ACQUISITION_LOG_v0",
+  "notes": [
+    "Sources are external annotations/literature/state labels recorded as provenance rows.",
+    "No PDB coordinate contact tables, AlphaFold/ESMFold/RoseTTAFold coordinates, native metrics, internal runtime reports, or MD outputs are used as evidence."
+  ],
+  "source_count": 4,
+  "source_ids": [
+    "XCL1_UNIPROT_P47992_IDENTITY",
+    "XCL1_LTN10_XCR1_FUNCTION",
+    "XCL1_LTN40_GAG_HIV_FUNCTION",
+    "XCL1_NO_MIXED_STATE_POOLING"
+  ],
+  "target": "XCL1_lymphotactin"
+}

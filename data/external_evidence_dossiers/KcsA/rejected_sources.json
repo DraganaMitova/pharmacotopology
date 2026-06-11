@@ -1,0 +1,16 @@
+{
+  "kind": "V36_REJECTED_SOURCES_v0",
+  "rows": [
+    {
+      "file_path": "data/external_constraints/KcsA/pore_filter/kcsa_1bl8_pore_filter_external_contacts.csv",
+      "rejection_reason": "coordinate-derived V33/V34 contact table; not allowed in V36 non-coordinate dossier",
+      "source_name": "KcsA 1BL8 pore/filter contact CSV"
+    },
+    {
+      "file_path": "data/external_constraints/KcsA/assembly_interface/kcsa_1bl8_assembly_interface_external_contacts.csv",
+      "rejection_reason": "coordinate-derived V33/V34 contact table; not allowed in V36 non-coordinate dossier",
+      "source_name": "KcsA 1BL8 assembly/interface contact CSV"
+    }
+  ],
+  "target": "KcsA"
+}

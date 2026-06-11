@@ -1,0 +1,18 @@
+{
+  "accessed_date": "2026-06-11",
+  "acquisition_mode": "curated_external_source_dossier_small_auditable_no_large_downloads",
+  "generated_by": "scripts/build_v36_real_evidence_dossiers_v0.py",
+  "kind": "V36_ACQUISITION_LOG_v0",
+  "notes": [
+    "Sources are external annotations/literature/state labels recorded as provenance rows.",
+    "No PDB coordinate contact tables, AlphaFold/ESMFold/RoseTTAFold coordinates, native metrics, internal runtime reports, or MD outputs are used as evidence."
+  ],
+  "source_count": 4,
+  "source_ids": [
+    "SNCA_UNIPROT_P37840_IDENTITY",
+    "SNCA_DISPROT_DISORDER_FREE_STATE",
+    "SNCA_MEMBRANE_BOUND_HELIX_CONTEXT",
+    "SNCA_NO_SINGLE_NATIVE_FOLD_RULE"
+  ],
+  "target": "alpha_synuclein_SNCA"
+}

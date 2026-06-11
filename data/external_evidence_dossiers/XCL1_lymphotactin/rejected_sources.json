@@ -1,0 +1,11 @@
+{
+  "kind": "V36_REJECTED_SOURCES_v0",
+  "rows": [
+    {
+      "file_path": null,
+      "rejection_reason": "state-A and state-B evidence must remain separated; mixed-state pooling is a blocked grammar error",
+      "source_name": "Mixed XCL1 state pool"
+    }
+  ],
+  "target": "XCL1_lymphotactin"
+}

@@ -1,0 +1,43 @@
+{
+  "bucket_status": {
+    "complete": true,
+    "missing_buckets": [],
+    "present_buckets": [
+      "metamorphic_two_state_context",
+      "no_mixed_state_pooling_rule",
+      "state_A_function_context",
+      "state_B_function_context"
+    ],
+    "required_buckets": [
+      "state_A_function_context",
+      "state_B_function_context",
+      "metamorphic_two_state_context",
+      "no_mixed_state_pooling_rule"
+    ]
+  },
+  "claim_allowed": false,
+  "coordinate_truth_used_before_selection": false,
+  "display_name": "XCL1 / lymphotactin metamorphic chemokine",
+  "folding_problem_solved": false,
+  "grammar_focus": "state-switch grammar with state-specific evidence separation",
+  "grammar_rules": {
+    "mixed_state_pooling_allowed": false,
+    "native_metrics_before_selection_allowed": false,
+    "state_A_label": "chemokine_like_monomer_XCR1_binding_state",
+    "state_B_label": "beta_sandwich_dimer_GAG_HIV_inhibitory_state"
+  },
+  "kind": "V36_TARGET_EVIDENCE_DOSSIER_v0",
+  "locked_interpretation": "This dossier is target-specific operator grammar evidence only. It does not convert annotations into constraints, does not use native coordinates for selection, does not run MD, and does not make a folding-solved claim.",
+  "native_metrics_used_for_selection": false,
+  "new_MD_allowed": false,
+  "new_md_executed": false,
+  "positive_folding_evidence_found": false,
+  "problem_class": "metamorphic_two_fold_state_switch_problem",
+  "required_buckets": [
+    "state_A_function_context",
+    "state_B_function_context",
+    "metamorphic_two_state_context",
+    "no_mixed_state_pooling_rule"
+  ],
+  "target": "XCL1_lymphotactin"
+}
