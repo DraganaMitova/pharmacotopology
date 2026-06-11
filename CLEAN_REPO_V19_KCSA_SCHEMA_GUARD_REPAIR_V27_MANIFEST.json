@@ -1,0 +1,25 @@
+{
+  "clean_repo_variant": "V19_KcsA_schema_guard_repair_v27",
+  "base_variant": "V19_KcsA_MEMBRANE_PORE_EVIDENCE_v26",
+  "purpose": "Repair V19 KcsA evidence readout so it reads V16 zero-MD target_rows schema and correctly carries the soluble-core leakage guard into the KcsA membrane/pore evidence decision.",
+  "science_change": false,
+  "reporting_and_schema_adapter_change": true,
+  "new_md_executed": false,
+  "membrane_md_executed": false,
+  "claim_allowed_default": false,
+  "positive_folding_evidence_allowed": false,
+  "fixed_residue_cutoff_used": false,
+  "native_metrics_used_for_selection": false,
+  "repaired_issue": "V19 saw pore/filter, transmembrane, membrane, and interface evidence, but clean-abstained because it looked for V16 role rows under target_results instead of target_rows. The repair supports both schemas and treats positive_role_context_found/role_classification_passed_targets as the explicit soluble-core misclassification guard when no forbidden violations exist.",
+  "expected_v19_status_after_repair": "V19_KcsA_MEMBRANE_PORE_EVIDENCE_READOUT_PASSED_CLAIM_DISABLED",
+  "new_or_updated_files": [
+    "scripts/run_v19_kcsa_membrane_pore_evidence_readout_v0.py",
+    "tests/test_v19_kcsa_membrane_pore_evidence_readout.py",
+    "V19_KCSA_SCHEMA_GUARD_REPAIR_COMMANDS.md",
+    "CLEAN_REPO_V19_KCSA_SCHEMA_GUARD_REPAIR_V27_MANIFEST.json"
+  ],
+  "test_status": {
+    "focused_v19_tests": "4 passed",
+    "split_full_panel_tests": "58 passed (30 + 28)"
+  }
+}

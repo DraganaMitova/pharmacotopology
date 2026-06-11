@@ -152,3 +152,29 @@ def test_v19_writer_emits_certificate_report_and_readouts(tmp_path: Path) -> Non
     written = json.loads(cpath.read_text(encoding="utf-8"))
     assert written["claim_allowed"] is False
     assert written["positive_folding_evidence_found"] is False
+
+
+def test_v19_reads_v16_zero_md_target_rows_schema_for_soluble_core_guard(tmp_path: Path) -> None:
+    mod = _load_module()
+    pdb = _kcsa_like_pdb(tmp_path)
+    zero_md_target_rows_schema = {
+        "role_transfer_status": "V16_ZERO_MD_ROLE_TRANSFER_READOUT_COMPLETED_CLAIM_DISABLED",
+        "role_classification_passed_targets": ["KcsA"],
+        "pressure_role_transfer_passed_targets": ["KcsA"],
+        "target_rows": [
+            {
+                "target_id": "KcsA",
+                "expected_role_class": "membrane_pore_oligomer_object",
+                "positive_role_context_found": True,
+                "forbidden_misclassification_violations": [],
+                "target_transfer_status": "membrane_pore_context_detected_soluble_core_misclassification_avoided_no_tetramer_claim",
+            }
+        ],
+    }
+    cert = mod.build_evidence(_preflight(pdb), zero_md_target_rows_schema, pdb)
+    assert cert["test_status"] == "V19_KcsA_MEMBRANE_PORE_EVIDENCE_READOUT_PASSED_CLAIM_DISABLED"
+    assert cert["positive_pressure_evidence_found"] is True
+    assert cert["membrane_pore_role_evidence_found"] is True
+    assert cert["soluble_core_misclassification_avoided"] is True
+    assert "leakage_guard_against_soluble_core_misread" in cert["available_evidence"]
+    assert "leakage_guard_against_soluble_core_misread" not in cert["missing_evidence"]

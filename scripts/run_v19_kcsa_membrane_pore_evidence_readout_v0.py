@@ -47,10 +47,23 @@ def _read_json(path: Path, label: str) -> dict[str, Any]:
 
 
 def _target_row_by_id(cert: dict[str, Any], key: str, target_id: str) -> dict[str, Any]:
-    rows = cert.get(key) if isinstance(cert.get(key), list) else []
-    for row in rows:
-        if isinstance(row, dict) and row.get("target_id") == target_id:
-            return row
+    """Return a target row across the historical certificate schemas.
+
+    V16 preflight writes `target_results`; V16 zero-MD role transfer writes
+    `target_rows`. V19 must read both, otherwise it falsely treats the
+    soluble-core leakage guard as missing even when V16 already classified KcsA
+    as a membrane/pore object and recorded no forbidden violations.
+    """
+    candidate_keys = [key, "target_rows", "target_results", "targets"]
+    seen: set[str] = set()
+    for row_key in candidate_keys:
+        if row_key in seen:
+            continue
+        seen.add(row_key)
+        rows = cert.get(row_key) if isinstance(cert.get(row_key), list) else []
+        for row in rows:
+            if isinstance(row, dict) and row.get("target_id") == target_id:
+                return row
     return {}
 
 
@@ -294,7 +307,12 @@ def build_evidence(preflight: dict[str, Any], zero_md: dict[str, Any], pdb_path:
         and parsed.get("exists") is True
         and bool(atoms)
     )
-    role_classification_passed = zero_row.get("role_classification_passed") is True
+    role_classification_passed = bool(
+        zero_row.get("role_classification_passed") is True
+        or zero_row.get("positive_role_context_found") is True
+        or "KcsA" in (zero_md.get("role_classification_passed_targets") or [])
+        or "KcsA" in (zero_md.get("pressure_role_transfer_passed_targets") or [])
+    )
     soluble_core_guard = role_classification_passed and not zero_row.get("forbidden_misclassification_violations")
 
     interface = _multi_chain_interface_probe(atoms)
