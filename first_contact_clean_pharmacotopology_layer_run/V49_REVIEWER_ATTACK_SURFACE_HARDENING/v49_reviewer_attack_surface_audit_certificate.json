@@ -1,0 +1,208 @@
+{
+  "allowed_claim_text": "The repository now makes the evidence boundary, operator scoring rubric, completed V46 cycle, and negative/null controls reviewer-visible. This is not a universal protein-folding solved claim.",
+  "artifacts": {
+    "certificate": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V49_REVIEWER_ATTACK_SURFACE_HARDENING/v49_reviewer_attack_surface_audit_certificate.json",
+    "report": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V49_REVIEWER_ATTACK_SURFACE_HARDENING/V49_REVIEWER_ATTACK_SURFACE_HARDENING_REPORT.md",
+    "v46_certificate": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V46_CFTR_F508DEL_MEMBRANE_MULTIDOMAIN_FOLDING_RESCUE_ATTACK/v46_cftr_f508del_membrane_multidomain_attack_certificate.json",
+    "v46_report": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V46_CFTR_F508DEL_MEMBRANE_MULTIDOMAIN_FOLDING_RESCUE_ATTACK/V46_CFTR_F508DEL_MEMBRANE_MULTIDOMAIN_FOLDING_RESCUE_ATTACK_REPORT.md"
+  },
+  "claim_allowed": true,
+  "control_count": 18,
+  "controls": [
+    {
+      "control_id": "readme_evidence_boundary_section_present",
+      "observed": null,
+      "passed": true,
+      "reason": "README must contain an Evidence Boundary section."
+    },
+    {
+      "control_id": "readme_operator_scoring_section_present",
+      "observed": null,
+      "passed": true,
+      "reason": "README must contain an Operator Scoring section."
+    },
+    {
+      "control_id": "readme_latest_completed_full_cycle_section_present",
+      "observed": null,
+      "passed": true,
+      "reason": "README must contain a Latest Completed Full Cycle section."
+    },
+    {
+      "control_id": "readme_negative_null_controls_section_present",
+      "observed": null,
+      "passed": true,
+      "reason": "README must contain a Negative / Null Controls section."
+    },
+    {
+      "control_id": "readme_distinguishes_pure_from_spatial_proxy",
+      "observed": null,
+      "passed": true,
+      "reason": "README must distinguish pure non-coordinate evidence from spatial-proxy non-coordinate evidence."
+    },
+    {
+      "control_id": "readme_states_spatial_proxy_can_encode_spatial_information",
+      "observed": null,
+      "passed": true,
+      "reason": "README must state that spatial-proxy evidence can encode spatial information."
+    },
+    {
+      "control_id": "readme_coordinate_derived_blocked_before_sealing",
+      "observed": null,
+      "passed": true,
+      "reason": "README must state that coordinate-derived sources are blocked before sealing."
+    },
+    {
+      "control_id": "readme_lists_v46_certificate_and_report_paths",
+      "observed": null,
+      "passed": true,
+      "reason": "README must list V46 certificate and report paths."
+    },
+    {
+      "control_id": "readme_states_v46_completed_full_cycle",
+      "observed": null,
+      "passed": true,
+      "reason": "README must state that V46 completed seal -> holdout -> validation."
+    },
+    {
+      "control_id": "readme_lists_at_least_eight_negative_null_controls",
+      "observed": {
+        "control_count": 10,
+        "control_ids": [
+          "coordinate_leakage_control",
+          "failed_prediction_not_repaired_after_holdout",
+          "forced_wrong_grammar_control",
+          "generic_annotation_only_control",
+          "holdout_opened_before_seal_control",
+          "internal_runtime_leakage_control",
+          "random_sequence_control",
+          "shuffled_sequence_control",
+          "swapped_evidence_control",
+          "wrong_target_control"
+        ]
+      },
+      "passed": true,
+      "reason": "README must list at least eight negative/null controls."
+    },
+    {
+      "control_id": "operator_scoring_rubric_labels_frozen",
+      "observed": null,
+      "passed": true,
+      "reason": "Scoring rubric must contain supported, partially_supported, contradicted, not_testable, and blocked_for_leakage labels."
+    },
+    {
+      "control_id": "evidence_taxonomy_forbids_internal_runtime_as_biological_evidence",
+      "observed": null,
+      "passed": true,
+      "reason": "Evidence taxonomy must forbid internal runtime artifacts as biological evidence."
+    },
+    {
+      "control_id": "readme_keeps_folding_problem_solved_false",
+      "observed": null,
+      "passed": true,
+      "reason": "README must preserve folding_problem_solved = false."
+    },
+    {
+      "control_id": "readme_forbids_universal_protein_folding_solved_claim",
+      "observed": null,
+      "passed": true,
+      "reason": "README must forbid a universal protein folding solved claim."
+    },
+    {
+      "control_id": "evidence_taxonomy_categories_present",
+      "observed": null,
+      "passed": true,
+      "reason": "Evidence taxonomy must define all four evidence classes."
+    },
+    {
+      "control_id": "source_role_fields_frozen",
+      "observed": null,
+      "passed": true,
+      "reason": "Evidence taxonomy must list the required source role fields."
+    },
+    {
+      "control_id": "operator_scoring_fields_frozen",
+      "observed": null,
+      "passed": true,
+      "reason": "Operator scoring rubric must list the required prediction row fields."
+    },
+    {
+      "control_id": "negative_control_inventory_present",
+      "observed": null,
+      "passed": true,
+      "reason": "Negative control inventory must contain the required null-control families."
+    }
+  ],
+  "evidence_taxonomy_present": true,
+  "failed_checks": [],
+  "folding_problem_solved": false,
+  "forbidden_claims": [
+    "universal protein folding is solved",
+    "the project is an AlphaFold replacement",
+    "coordinates were predicted de novo",
+    "spatial-proxy evidence is the same as pure non-coordinate evidence",
+    "internal runtime artifacts are biological evidence",
+    "failed predictions may be repaired after holdout opening"
+  ],
+  "kind": "V49_REVIEWER_ATTACK_SURFACE_HARDENING_CERTIFICATE_v0",
+  "latest_completed_cycle_documented": true,
+  "negative_control_inventory_present": true,
+  "negative_null_control_count": 10,
+  "negative_null_control_ids": [
+    "coordinate_leakage_control",
+    "failed_prediction_not_repaired_after_holdout",
+    "forced_wrong_grammar_control",
+    "generic_annotation_only_control",
+    "holdout_opened_before_seal_control",
+    "internal_runtime_leakage_control",
+    "random_sequence_control",
+    "shuffled_sequence_control",
+    "swapped_evidence_control",
+    "wrong_target_control"
+  ],
+  "next_action": "Use the V49 source-role fields and scoring rubric for the next live packet before opening holdouts.",
+  "operator_scoring_rubric_present": true,
+  "passed_control_count": 18,
+  "plain_english_interpretation": "V49 does not add biology. It makes the reviewer-facing protocol sharper: evidence classes are explicit, spatial proxies are labeled, operator scoring is row-based, V46's full cycle is visible, and negative controls are required.",
+  "readme_claim_boundary_preserved": true,
+  "required_score_fields": [
+    "prediction_id",
+    "target",
+    "mechanism_class",
+    "operator_bucket",
+    "region_or_state",
+    "predicted_effect",
+    "perturbation",
+    "expected_direction",
+    "confidence",
+    "prediction_source_ids",
+    "falsification_criteria",
+    "holdout_evidence_ids",
+    "score_label",
+    "score_reason",
+    "scoring_pre_registered"
+  ],
+  "required_score_labels": [
+    "supported",
+    "partially_supported",
+    "contradicted",
+    "not_testable",
+    "blocked_for_leakage"
+  ],
+  "required_source_role_fields": [
+    "source_class",
+    "source_role",
+    "spatial_proxy",
+    "coordinate_derived",
+    "internal_runtime",
+    "allowed_for_prediction",
+    "allowed_for_holdout",
+    "allowed_for_claim",
+    "leakage_risk",
+    "rationale"
+  ],
+  "run_mode": "reviewer_attack_surface_documentation_and_protocol_audit_no_MD_no_new_target",
+  "spatial_proxy_boundary_present": true,
+  "status": "V49_REVIEWER_ATTACK_SURFACE_HARDENING_PASSED",
+  "timestamp_utc": "2026-06-11T17:53:43.556957+00:00",
+  "v46_full_cycle_visible": true
+}
