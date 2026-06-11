@@ -1,0 +1,18 @@
+{
+  "contains_commands_run_now": true,
+  "contains_run_now_helper": true,
+  "created_for": "V32_to_V33_clean_continuation_no_git_no_full_suite",
+  "excluded": [
+    ".git",
+    ".venv",
+    "__MACOSX",
+    ".DS_Store",
+    "__pycache__",
+    "*.pyc",
+    ".pytest_cache",
+    "*.zip"
+  ],
+  "file_count": 616,
+  "kind": "CLEAN_V33_START_COMMANDS_ZIP_REPORT",
+  "root": "pharmacotopology_clean_v33_start"
+}

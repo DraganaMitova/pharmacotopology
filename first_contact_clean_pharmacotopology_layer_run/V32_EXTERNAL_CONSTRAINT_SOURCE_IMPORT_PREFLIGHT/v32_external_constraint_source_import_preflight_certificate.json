@@ -1,13 +1,13 @@
 {
   "artifacts": {
-    "certificate": "/mnt/data/pharmacotopology_clean_v33_start/first_contact_clean_pharmacotopology_layer_run/V32_EXTERNAL_CONSTRAINT_SOURCE_IMPORT_PREFLIGHT/v32_external_constraint_source_import_preflight_certificate.json",
-    "classified_import_rows": "/mnt/data/pharmacotopology_clean_v33_start/first_contact_clean_pharmacotopology_layer_run/V32_EXTERNAL_CONSTRAINT_SOURCE_IMPORT_PREFLIGHT/v32_classified_import_rows.json",
-    "decision": "/mnt/data/pharmacotopology_clean_v33_start/first_contact_clean_pharmacotopology_layer_run/V32_EXTERNAL_CONSTRAINT_SOURCE_IMPORT_PREFLIGHT/v32_next_constraint_backed_operator_readout_decision.json",
-    "import_requirements": "/mnt/data/pharmacotopology_clean_v33_start/first_contact_clean_pharmacotopology_layer_run/V32_EXTERNAL_CONSTRAINT_SOURCE_IMPORT_PREFLIGHT/v32_external_constraint_import_requirements.json",
-    "import_template": "/mnt/data/pharmacotopology_clean_v33_start/data/external_constraints/v32_external_constraint_source_import_manifest.json",
-    "report": "/mnt/data/pharmacotopology_clean_v33_start/first_contact_clean_pharmacotopology_layer_run/V32_EXTERNAL_CONSTRAINT_SOURCE_IMPORT_PREFLIGHT/V32_EXTERNAL_CONSTRAINT_SOURCE_IMPORT_PREFLIGHT_REPORT.md",
-    "target_rows": "/mnt/data/pharmacotopology_clean_v33_start/first_contact_clean_pharmacotopology_layer_run/V32_EXTERNAL_CONSTRAINT_SOURCE_IMPORT_PREFLIGHT/v32_target_import_preflight_rows.json",
-    "target_rows_csv": "/mnt/data/pharmacotopology_clean_v33_start/first_contact_clean_pharmacotopology_layer_run/V32_EXTERNAL_CONSTRAINT_SOURCE_IMPORT_PREFLIGHT/v32_target_import_preflight_rows.csv"
+    "certificate": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V32_EXTERNAL_CONSTRAINT_SOURCE_IMPORT_PREFLIGHT/v32_external_constraint_source_import_preflight_certificate.json",
+    "classified_import_rows": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V32_EXTERNAL_CONSTRAINT_SOURCE_IMPORT_PREFLIGHT/v32_classified_import_rows.json",
+    "decision": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V32_EXTERNAL_CONSTRAINT_SOURCE_IMPORT_PREFLIGHT/v32_next_constraint_backed_operator_readout_decision.json",
+    "import_requirements": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V32_EXTERNAL_CONSTRAINT_SOURCE_IMPORT_PREFLIGHT/v32_external_constraint_import_requirements.json",
+    "import_template": "/Users/draganamitova/My Projects/pharmacotopology/data/external_constraints/v32_external_constraint_source_import_manifest.json",
+    "report": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V32_EXTERNAL_CONSTRAINT_SOURCE_IMPORT_PREFLIGHT/V32_EXTERNAL_CONSTRAINT_SOURCE_IMPORT_PREFLIGHT_REPORT.md",
+    "target_rows": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V32_EXTERNAL_CONSTRAINT_SOURCE_IMPORT_PREFLIGHT/v32_target_import_preflight_rows.json",
+    "target_rows_csv": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V32_EXTERNAL_CONSTRAINT_SOURCE_IMPORT_PREFLIGHT/v32_target_import_preflight_rows.csv"
   },
   "claim_allowed": false,
   "classified_import_rows": [
