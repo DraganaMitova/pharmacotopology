@@ -1,0 +1,91 @@
+{
+  "alphafold_used_before_seal": false,
+  "baseline_target_id": "V64_10HZ_1",
+  "batch_id": "V66_E63_FAST_MEMBRANE_REPAIR_REPLAY_200",
+  "blocked_prediction_inputs": [
+    "PDB/mmCIF coordinates before sealing",
+    "native contacts, distance maps, residue-residue proximity, and coordinate-derived topology",
+    "ligand coordinates, metal coordination geometry, and bound-state contact geometry",
+    "AlphaFold, ESMFold, RoseTTAFold, or other structure models before sealing",
+    "post-seal validation annotations before prediction hash",
+    "E62 baseline score outcomes as prediction evidence",
+    "internal runtime artifacts as biological evidence"
+  ],
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "e63_context_policy": {
+    "base_v63_context_marks": [
+      "assembly_context",
+      "homomeric_context",
+      "oligomer_context",
+      "partner_copy_context"
+    ],
+    "biological_cofactor_components_seen": [],
+    "context_derivation": "V66 E63 repair replay uses sequence plus public non-coordinate RCSB/V65 panel metadata. It separates provider-backed transmembrane topology from hydrophobic-only, cofactor-pocket, oligomeric-interface, and peripheral/monotopic membrane contexts.",
+    "context_marks": [
+      "assembly_context",
+      "homomeric_context",
+      "oligomer_context",
+      "partner_copy_context"
+    ],
+    "polymer_copy_counts": {
+      "entity_molecule_count": 1,
+      "polymer_composition": "homomeric protein",
+      "polymer_entity_instance_count": 1
+    },
+    "reasons": [
+      "E63 context preserves assembly/interface explanation before membrane ambiguity."
+    ]
+  },
+  "entity_id": "1",
+  "entry_id": "10HZ",
+  "folding_problem_solved": false,
+  "kind": "V66_E63_FAST_REPAIR_SOURCE_MANIFEST_v0",
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence for the RCSB polymer entity.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V66_166_10HZ_1_RAW_SEQUENCE",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/10HZ/1",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "RCSB title: Structure of CHK1 10-pt. mutant complex with macrocyclic LRRK2 inhibitor compound 7 ((10aS,13aS)-3-cyclobutyl-1-methyl-8-(trifluoromethyl)-3,4,10a,11,13a,14-hexahydro-10H,13H-9,5-(azeno)furo[3,4-k]pyrazolo[4,3-b][1,4,6,10]oxatriazacyclotridecine). Entity description: Serine/threonine-protein kinase Chk1. Organism: Homo sapiens. Polymer composition: homomeric protein. Sequence-derived marks: sequence-derived membrane tendency high; sequence-derived low-complexity tendency high; sequence-derived hydrophobic closure tendency. Coordinates, native contacts, residue-residue distances, and validation annotations are unopened before the prediction hash.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V66_166_10HZ_1_PUBLIC_METADATA",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/10HZ",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "V66 E63 replay metadata context marks: assembly_context homomeric_context oligomer_context partner_copy_context. E63 separates true transmembrane topology from hydrophobic-only, peripheral, cofactor-pocket, and oligomer-interface explanations. Coordinates, contacts, ligand geometry, native topology, and post-seal validation labels are blocked before sealing.",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [
+        "assembly_context",
+        "homomeric_context",
+        "oligomer_context",
+        "partner_copy_context"
+      ],
+      "metadata_context_reasons": [
+        "E63 context preserves assembly/interface explanation before membrane ambiguity."
+      ],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V66_166_10HZ_1_E63_METADATA_CONTEXT",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/10HZ",
+      "spatial_proxy": false
+    }
+  ],
+  "protein_id": "10HZ_1",
+  "selection_category": "E61_E62_STABLE_SENTINEL",
+  "sequence": "MAVPFVEDWDLVQTLGEGAYGEVQLAVNRVTEEAVAVKIVDMKRAVDCPENIKKEICILKMLNHENVIKFYGHRREGNIQYLFMELASGGSLFDRIEPDIGMPEPDAQRFFHQLMAGVVYLHGIGITHRDIKPHNLLLDERDNLKIADYSLATVFRYNNRERLLNKMCGTLPYVAPELLKRREFHAEPVDVWSCGIVLTAMLAGELPWDQPSDSCQEYSDWKEKKTYLNPWKKIDSAPLALLHKILVENPSARITIPDIKKDRWYNKPLKKGAKRPRVTSGGVSESPSGHHHHHHHH",
+  "sequence_length": 297,
+  "source_lineage_batch": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+  "target_id": "V66_166_10HZ_1"
+}

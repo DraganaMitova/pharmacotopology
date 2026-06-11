@@ -1,0 +1,66 @@
+{
+  "active_operator_count": 0,
+  "evidence_manifest": {
+    "allowed_initialization_source_ids": [
+      "V66_018_V65_B_04_10XZ_3_RAW_SEQUENCE",
+      "V66_018_V65_B_04_10XZ_3_V65_TOPOLOGY_PANEL_SOURCE"
+    ],
+    "blocked_source_ids": [],
+    "coordinate_derived_source_count_before_prediction": 0,
+    "coordinate_truth_used_before_prediction": false,
+    "holdout_opened_before_seal": false,
+    "internal_runtime_source_count_for_prediction": 0,
+    "internal_runtime_used_as_biological_evidence": false,
+    "kind": "PROTEIN_ESPERANTO_EVIDENCE_BOUNDARY_GATE_v0",
+    "rows": [
+      {
+        "allowed_for_claim": true,
+        "allowed_for_holdout_after_seal": false,
+        "allowed_to_initialize_language_field": true,
+        "blocked_reason": "",
+        "coordinate_derived": false,
+        "internal_runtime": false,
+        "source_class": "pure_non_coordinate",
+        "source_id": "V66_018_V65_B_04_10XZ_3_RAW_SEQUENCE",
+        "source_role": "prediction_input",
+        "spatial_proxy": false
+      },
+      {
+        "allowed_for_claim": true,
+        "allowed_for_holdout_after_seal": false,
+        "allowed_to_initialize_language_field": true,
+        "blocked_reason": "",
+        "coordinate_derived": false,
+        "internal_runtime": false,
+        "source_class": "pure_non_coordinate",
+        "source_id": "V66_018_V65_B_04_10XZ_3_V65_TOPOLOGY_PANEL_SOURCE",
+        "source_role": "prediction_input",
+        "spatial_proxy": false
+      }
+    ],
+    "spatial_proxy_untagged_or_misused_count": 0
+  },
+  "folding_problem_solved": false,
+  "kind": "V66_COMPACT_SEALED_PACKET_SUMMARY_v0",
+  "natural_mechanism_class": "insufficient_evidence_clean_abstain",
+  "operator_names": [],
+  "prediction_hash": "1ea74748a06c46e14fd7eeec392f8b8be6bcee805bb06bcb763d6379b5ea1a62",
+  "sealed_before_holdout": true,
+  "selected_mechanism_class": "insufficient_evidence_clean_abstain",
+  "selection_reason": "membrane_topology_conflict_or_peripheral_context_requires_abstention",
+  "target_id": "V66_018_V65_B_04_10XZ_3",
+  "trajectory_final_state_summary": {
+    "contact_probability": 0.0,
+    "disorder_order_balance": 0.45,
+    "frustration": 0.35,
+    "interface_readiness": 0.0,
+    "operator_activation": 0.0,
+    "proteostasis_routing": 0.0,
+    "residue_exposure": 0.734116,
+    "segment_compaction": 0.0,
+    "state_basin_occupancy": {
+      "clean_abstain": 1.0
+    },
+    "timepoint": 1000
+  }
+}

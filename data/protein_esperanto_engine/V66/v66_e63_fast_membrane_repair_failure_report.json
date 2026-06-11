@@ -1,0 +1,3803 @@
+{
+  "baseline_engine_version": "E62",
+  "batch_id": "V66_E63_FAST_MEMBRANE_REPAIR_REPLAY_200",
+  "engine_version_used": "E63",
+  "failure_cases": [
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_10AY_1",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "1",
+      "entry_id": "10AY",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "77481d4b67114c918289c13c1fa2c3b034782e83ccf4876b1a657522fb086c6d",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_10AY_1",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_071_10AY_1_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "protein_id": "10AY_1",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "77481d4b67114c918289c13c1fa2c3b034782e83ccf4876b1a657522fb086c6d",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_071_10AY_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "cofactor_ligand_assisted_stabilization",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_10IC_3",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "3",
+      "entry_id": "10IC",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "2f51b954c4b6ceaa975ac9d9aa68f2e3b4fd297beb3a4cc3d6117b10eaa8f80c",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_10IC_3",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_072_10IC_3_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "protein_id": "10IC_3",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "2f51b954c4b6ceaa975ac9d9aa68f2e3b4fd297beb3a4cc3d6117b10eaa8f80c",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_072_10IC_3",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "cofactor_ligand_assisted_stabilization",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_10IK_1",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "1",
+      "entry_id": "10IK",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "f14543425faa0af97af998cb9d3b895fb246bf09d8465ca55e5d24be373127d5",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_10IK_1",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_073_10IK_1_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "oligomerization_controlled_folding",
+      "protein_id": "10IK_1",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "f14543425faa0af97af998cb9d3b895fb246bf09d8465ca55e5d24be373127d5",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_073_10IK_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "oligomerization_controlled_folding",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_10JT_1",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "1",
+      "entry_id": "10JT",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "9eb625d2134b1aef5960aa3e6461b5835a0353c4bd27ebf88adcef41ac0f462d",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_10JT_1",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_074_10JT_1_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "protein_id": "10JT_1",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "9eb625d2134b1aef5960aa3e6461b5835a0353c4bd27ebf88adcef41ac0f462d",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_074_10JT_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "cofactor_ligand_assisted_stabilization",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_10MA_3",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "3",
+      "entry_id": "10MA",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "f7d7cd272f53b6f2c6738fabba65e9235ed4df9ab8f74ac0292c00605f5b1c4d",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_10MA_3",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_075_10MA_3_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "protein_id": "10MA_3",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "f7d7cd272f53b6f2c6738fabba65e9235ed4df9ab8f74ac0292c00605f5b1c4d",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_075_10MA_3",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "cofactor_ligand_assisted_stabilization",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_10OP_1",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "1",
+      "entry_id": "10OP",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "fb71321f840e0a5f58a0cd68551fdde75021df40ccd9c030dfff8df8d8aa960a",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_10OP_1",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_076_10OP_1_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "oligomerization_controlled_folding",
+      "protein_id": "10OP_1",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "fb71321f840e0a5f58a0cd68551fdde75021df40ccd9c030dfff8df8d8aa960a",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_076_10OP_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "oligomerization_controlled_folding",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_10OR_2",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "2",
+      "entry_id": "10OR",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "fdf272177e90e2d180326bd16b77e7aeed469e49604d24a0b3d187e699930127",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_10OR_2",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_077_10OR_2_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "oligomerization_controlled_folding",
+      "protein_id": "10OR_2",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "fdf272177e90e2d180326bd16b77e7aeed469e49604d24a0b3d187e699930127",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_077_10OR_2",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "oligomerization_controlled_folding",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_10QG_1",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "1",
+      "entry_id": "10QG",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "2c929421927e0b89036812e881a67b8ad7424523767c93c86381cf4455a4a8a2",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_10QG_1",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_078_10QG_1_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "oligomerization_controlled_folding",
+      "protein_id": "10QG_1",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "2c929421927e0b89036812e881a67b8ad7424523767c93c86381cf4455a4a8a2",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_078_10QG_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "oligomerization_controlled_folding",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_10TZ_1",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "1",
+      "entry_id": "10TZ",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "c0236fd9c8ee801660adfdc943fb42929ccb342b5309b8a88ae79f586d0af049",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_10TZ_1",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_080_10TZ_1_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "protein_id": "10TZ_1",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "c0236fd9c8ee801660adfdc943fb42929ccb342b5309b8a88ae79f586d0af049",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_080_10TZ_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "cofactor_ligand_assisted_stabilization",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_10XD_1",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "1",
+      "entry_id": "10XD",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "3eb0f157b0667ecb89ef728ebd810123d7d7bfe424abdacd61d3126ada72c7bf",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_10XD_1",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_081_10XD_1_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "oligomerization_controlled_folding",
+      "protein_id": "10XD_1",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "3eb0f157b0667ecb89ef728ebd810123d7d7bfe424abdacd61d3126ada72c7bf",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_081_10XD_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "oligomerization_controlled_folding",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_10XF_1",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "1",
+      "entry_id": "10XF",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "bc61025bccc5dc27f49abdb5cc40f5f68a515a17a8f5fe3d975264e7605504cd",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_10XF_1",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_082_10XF_1_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "oligomerization_controlled_folding",
+      "protein_id": "10XF_1",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "bc61025bccc5dc27f49abdb5cc40f5f68a515a17a8f5fe3d975264e7605504cd",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_082_10XF_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "oligomerization_controlled_folding",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_10XH_1",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "1",
+      "entry_id": "10XH",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "85d4f2346650e7fb65c342b0dc0442f127fc5539da793627f11f1e4e344cd345",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_10XH_1",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_083_10XH_1_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "oligomerization_controlled_folding",
+      "protein_id": "10XH_1",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "85d4f2346650e7fb65c342b0dc0442f127fc5539da793627f11f1e4e344cd345",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_083_10XH_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "oligomerization_controlled_folding",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_10XZ_2",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "2",
+      "entry_id": "10XZ",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "112d90b02e2a07b9323fd6aed0157d34f237a3efe6a6920f01a280776dff3f6b",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_10XZ_2",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_084_10XZ_2_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "oligomerization_controlled_folding",
+      "protein_id": "10XZ_2",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "112d90b02e2a07b9323fd6aed0157d34f237a3efe6a6920f01a280776dff3f6b",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_084_10XZ_2",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "oligomerization_controlled_folding",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_11HK_1",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "1",
+      "entry_id": "11HK",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "8213769e82296af275f62364f64f80ad83bb903d7dad9783e17aa9a860aba0d4",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_11HK_1",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_085_11HK_1_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "protein_id": "11HK_1",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "8213769e82296af275f62364f64f80ad83bb903d7dad9783e17aa9a860aba0d4",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_085_11HK_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "cofactor_ligand_assisted_stabilization",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_11OY_1",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "1",
+      "entry_id": "11OY",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "8267d643a9133c381ba50d20d3162d88ff374d99668b7b76c95715a5834e5f45",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_11OY_1",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_087_11OY_1_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "protein_id": "11OY_1",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "8267d643a9133c381ba50d20d3162d88ff374d99668b7b76c95715a5834e5f45",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_087_11OY_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "cofactor_ligand_assisted_stabilization",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_11TA_1",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "1",
+      "entry_id": "11TA",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "8379b32e008221e3c28dd7507bd4e70c4ed456ed75ec111d86c7aeb4dad644d7",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_11TA_1",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_088_11TA_1_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "protein_id": "11TA_1",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "8379b32e008221e3c28dd7507bd4e70c4ed456ed75ec111d86c7aeb4dad644d7",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_088_11TA_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "cofactor_ligand_assisted_stabilization",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_11TA_2",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "2",
+      "entry_id": "11TA",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "8747917bfb14b1d60b516969daba20df05416b98c469be9ddb06ac4b4a2ea037",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_11TA_2",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_089_11TA_2_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "protein_id": "11TA_2",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "8747917bfb14b1d60b516969daba20df05416b98c469be9ddb06ac4b4a2ea037",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_089_11TA_2",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "cofactor_ligand_assisted_stabilization",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_11YO_16",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "16",
+      "entry_id": "11YO",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "01ab9def58ec6c9bb08df67b027d0b0053e444489bbb1cf252c5ec5c88596fe5",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_11YO_16",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_090_11YO_16_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "protein_id": "11YO_16",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "01ab9def58ec6c9bb08df67b027d0b0053e444489bbb1cf252c5ec5c88596fe5",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_090_11YO_16",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "cofactor_ligand_assisted_stabilization",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_12DL_5",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "5",
+      "entry_id": "12DL",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "856325b724465d86247762b620869a127f3915c5c3dccac88d20ebf5b85652f8",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_12DL_5",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_091_12DL_5_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "protein_id": "12DL_5",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "856325b724465d86247762b620869a127f3915c5c3dccac88d20ebf5b85652f8",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_091_12DL_5",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "cofactor_ligand_assisted_stabilization",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_12DL_9",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "9",
+      "entry_id": "12DL",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "0b613d2d989b893b315613ba936b38aee0cc22c2ddcf53525f6397af0db3e320",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_12DL_9",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_092_12DL_9_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "protein_id": "12DL_9",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "0b613d2d989b893b315613ba936b38aee0cc22c2ddcf53525f6397af0db3e320",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_092_12DL_9",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "cofactor_ligand_assisted_stabilization",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_12GB_1",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "1",
+      "entry_id": "12GB",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "64106577fd50d4d495340d839865283460f54be730c6dd7c5461fc80b816f3ae",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_12GB_1",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_093_12GB_1_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "protein_id": "12GB_1",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "64106577fd50d4d495340d839865283460f54be730c6dd7c5461fc80b816f3ae",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_093_12GB_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "cofactor_ligand_assisted_stabilization",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_13FL_3",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "3",
+      "entry_id": "13FL",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "393c0d680870b9af8b06586e9c342f1f36502326f1dd7cb35d0d8390d110ab34",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_13FL_3",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_094_13FL_3_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "protein_id": "13FL_3",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "393c0d680870b9af8b06586e9c342f1f36502326f1dd7cb35d0d8390d110ab34",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_094_13FL_3",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "cofactor_ligand_assisted_stabilization",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_13FR_1",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "1",
+      "entry_id": "13FR",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "73c4276744ead4c44d963cb20c8a446012a13c83960f223abab1075b6b9be0b1",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_13FR_1",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_095_13FR_1_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "oligomerization_controlled_folding",
+      "protein_id": "13FR_1",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "73c4276744ead4c44d963cb20c8a446012a13c83960f223abab1075b6b9be0b1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_095_13FR_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "oligomerization_controlled_folding",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_13SC_1",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "1",
+      "entry_id": "13SC",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "24ee1f30fa47c3d93022a432c19caa10521ea67a3f7d52860c4b935f93076b7e",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_13SC_1",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_096_13SC_1_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "protein_id": "13SC_1",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "24ee1f30fa47c3d93022a432c19caa10521ea67a3f7d52860c4b935f93076b7e",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_096_13SC_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "cofactor_ligand_assisted_stabilization",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_1A00_2",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "2",
+      "entry_id": "1A00",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "cd53b75e412c6b58e2830a1c9e0b2ceb8777a28b79b88580b31e9da99b22a9d3",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_1A00_2",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_098_1A00_2_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "protein_id": "1A00_2",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "cd53b75e412c6b58e2830a1c9e0b2ceb8777a28b79b88580b31e9da99b22a9d3",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_098_1A00_2",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "cofactor_ligand_assisted_stabilization",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_1A0O_2",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "2",
+      "entry_id": "1A0O",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "04c8958da036fa6ba9bba3424240a9a4cf9ac8a2e770734cf87c958ef1e18b2b",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_1A0O_2",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_100_1A0O_2_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "protein_id": "1A0O_2",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "04c8958da036fa6ba9bba3424240a9a4cf9ac8a2e770734cf87c958ef1e18b2b",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_100_1A0O_2",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "cofactor_ligand_assisted_stabilization",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_1A12_1",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "1",
+      "entry_id": "1A12",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "617fd23c6ec7a7238d629636e8e972f84dd57cc1f54744ad1d5f6cc7abdad622",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_1A12_1",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_101_1A12_1_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "protein_id": "1A12_1",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "617fd23c6ec7a7238d629636e8e972f84dd57cc1f54744ad1d5f6cc7abdad622",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_101_1A12_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "cofactor_ligand_assisted_stabilization",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_1A15_1",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "1",
+      "entry_id": "1A15",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "422cf665f4ebbbbe2b8c59ffcea64f1b61f67dc9b5b8db8de768162ed2f5d2e9",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_1A15_1",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_102_1A15_1_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "protein_id": "1A15_1",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "422cf665f4ebbbbe2b8c59ffcea64f1b61f67dc9b5b8db8de768162ed2f5d2e9",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_102_1A15_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "cofactor_ligand_assisted_stabilization",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_1A1M_1",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "1",
+      "entry_id": "1A1M",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "30a480e8d4e0ef2a7c01042951f71f8e332a0a5e8486e7ca11d4ec4b858a113f",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_1A1M_1",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_103_1A1M_1_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "oligomerization_controlled_folding",
+      "protein_id": "1A1M_1",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "30a480e8d4e0ef2a7c01042951f71f8e332a0a5e8486e7ca11d4ec4b858a113f",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_103_1A1M_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "oligomerization_controlled_folding",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_1A1M_2",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "2",
+      "entry_id": "1A1M",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "f66e5b6eec3844399e827788d83faacd5feef7bc0a2adc5e6b986ccd1134c86a",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_1A1M_2",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_104_1A1M_2_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "oligomerization_controlled_folding",
+      "protein_id": "1A1M_2",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "f66e5b6eec3844399e827788d83faacd5feef7bc0a2adc5e6b986ccd1134c86a",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_104_1A1M_2",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "oligomerization_controlled_folding",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_1A1T_2",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "2",
+      "entry_id": "1A1T",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "60e29017bccff00153f547ae74087954ba787a10b38ea1119f790a8e760cda25",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_1A1T_2",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_105_1A1T_2_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "protein_id": "1A1T_2",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "60e29017bccff00153f547ae74087954ba787a10b38ea1119f790a8e760cda25",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_105_1A1T_2",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "cofactor_ligand_assisted_stabilization",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_1A1W_1",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "1",
+      "entry_id": "1A1W",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "2e6839386ce7473049329dd1b0ffe048621fb56c759782a1613a4d23f17e097b",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_1A1W_1",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_106_1A1W_1_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "protein_id": "1A1W_1",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "2e6839386ce7473049329dd1b0ffe048621fb56c759782a1613a4d23f17e097b",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_106_1A1W_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "cofactor_ligand_assisted_stabilization",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_1A29_1",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "1",
+      "entry_id": "1A29",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "2670cc9fb155a73cc0db68db6b846ca988c93906bc4d6dd103fe9add6d52d18f",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_1A29_1",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_107_1A29_1_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "protein_id": "1A29_1",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "2670cc9fb155a73cc0db68db6b846ca988c93906bc4d6dd103fe9add6d52d18f",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_107_1A29_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "cofactor_ligand_assisted_stabilization",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_1A2F_1",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "1",
+      "entry_id": "1A2F",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "7b101a51375f95ba62db39e2109eedf769bf5df3c9d835f13313d3c447766e01",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_1A2F_1",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_109_1A2F_1_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "protein_id": "1A2F_1",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "7b101a51375f95ba62db39e2109eedf769bf5df3c9d835f13313d3c447766e01",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_109_1A2F_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "cofactor_ligand_assisted_stabilization",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_1A2J_1",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "1",
+      "entry_id": "1A2J",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "2b6b564795f163216f869c6f9f5678c8086e1ca131aa68ecc9c14d8d49b83603",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_1A2J_1",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_110_1A2J_1_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "oligomerization_controlled_folding",
+      "protein_id": "1A2J_1",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "2b6b564795f163216f869c6f9f5678c8086e1ca131aa68ecc9c14d8d49b83603",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_110_1A2J_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "oligomerization_controlled_folding",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_1A2U_1",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "1",
+      "entry_id": "1A2U",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "896d778bb08c6b89e8384c822be1101b81a240b7995b98092a1b477c35cf7641",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_1A2U_1",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_111_1A2U_1_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "protein_id": "1A2U_1",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "896d778bb08c6b89e8384c822be1101b81a240b7995b98092a1b477c35cf7641",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_111_1A2U_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "cofactor_ligand_assisted_stabilization",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_1A30_1",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "1",
+      "entry_id": "1A30",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "ccdc18600f3e65917d2ae1c77bbfdeec7acedfb448f6df4f5a63da79364ba2a1",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_1A30_1",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_112_1A30_1_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "oligomerization_controlled_folding",
+      "protein_id": "1A30_1",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "ccdc18600f3e65917d2ae1c77bbfdeec7acedfb448f6df4f5a63da79364ba2a1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_112_1A30_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "oligomerization_controlled_folding",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_1A3E_2",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "2",
+      "entry_id": "1A3E",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "35ea66f30fec09b0717c175f865c71007815cdf5a47b14a6586ed6cf5c974cb5",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_1A3E_2",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_114_1A3E_2_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "protein_id": "1A3E_2",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "35ea66f30fec09b0717c175f865c71007815cdf5a47b14a6586ed6cf5c974cb5",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_114_1A3E_2",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "cofactor_ligand_assisted_stabilization",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "globular_closure",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_1A3K_1",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "1",
+      "entry_id": "1A3K",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "4a51b2a49be3c5a52d649ae16cbd16cc8234c01b6412fd91bf462c311c9dff7f",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_1A3K_1",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_115_1A3K_1_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "protein_id": "1A3K_1",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "4a51b2a49be3c5a52d649ae16cbd16cc8234c01b6412fd91bf462c311c9dff7f",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_115_1A3K_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "cofactor_ligand_assisted_stabilization",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_1A3S_1",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "1",
+      "entry_id": "1A3S",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "346b9adbea8b27c65accb0abb23794c7aad924e3b2cadb0aea99ea135ae89204",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_1A3S_1",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_117_1A3S_1_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "oligomerization_controlled_folding",
+      "protein_id": "1A3S_1",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "346b9adbea8b27c65accb0abb23794c7aad924e3b2cadb0aea99ea135ae89204",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_117_1A3S_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "oligomerization_controlled_folding",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_1A3W_1",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "1",
+      "entry_id": "1A3W",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "bb5f865008fd3caadb3afa9d87f366509a0a0dd32d7188188d94494c0c8b8670",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_1A3W_1",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_118_1A3W_1_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "protein_id": "1A3W_1",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "bb5f865008fd3caadb3afa9d87f366509a0a0dd32d7188188d94494c0c8b8670",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_118_1A3W_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "cofactor_ligand_assisted_stabilization",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_1A4G_1",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "1",
+      "entry_id": "1A4G",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "24841832a8676562d514f764539f729577d0ce7aef12c16280bea7bcdcf82721",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_1A4G_1",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_119_1A4G_1_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "protein_id": "1A4G_1",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "24841832a8676562d514f764539f729577d0ce7aef12c16280bea7bcdcf82721",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_119_1A4G_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "cofactor_ligand_assisted_stabilization",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_1A4H_1",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "1",
+      "entry_id": "1A4H",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "a6661513ff6748c1edfc729065d456485c4ece0e58bf6874e4c1c4312c571219",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_1A4H_1",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_120_1A4H_1_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "oligomerization_controlled_folding",
+      "protein_id": "1A4H_1",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "a6661513ff6748c1edfc729065d456485c4ece0e58bf6874e4c1c4312c571219",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_120_1A4H_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "oligomerization_controlled_folding",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_1A5C_1",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "1",
+      "entry_id": "1A5C",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "44965a560e281861021a40989fd148a4fff17424146f3e0c5d12015d82c6cff4",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_1A5C_1",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_122_1A5C_1_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "oligomerization_controlled_folding",
+      "protein_id": "1A5C_1",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "44965a560e281861021a40989fd148a4fff17424146f3e0c5d12015d82c6cff4",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_122_1A5C_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "oligomerization_controlled_folding",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_1A64_1",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "1",
+      "entry_id": "1A64",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "a4d5d005398f7a137c8da2bfa95a9010738fdffa7f5c993af716f9f83482b7e7",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_1A64_1",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_123_1A64_1_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "oligomerization_controlled_folding",
+      "protein_id": "1A64_1",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "a4d5d005398f7a137c8da2bfa95a9010738fdffa7f5c993af716f9f83482b7e7",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_123_1A64_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "oligomerization_controlled_folding",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_1A69_1",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "1",
+      "entry_id": "1A69",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "1cfe327bad29ab0f1af206610fd3799ef6e0399d13682b25da9c6bb029fe0119",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_1A69_1",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_124_1A69_1_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "oligomerization_controlled_folding",
+      "protein_id": "1A69_1",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "1cfe327bad29ab0f1af206610fd3799ef6e0399d13682b25da9c6bb029fe0119",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_124_1A69_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "oligomerization_controlled_folding",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_1A7C_1",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "1",
+      "entry_id": "1A7C",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "b1996d31829a0f736fdbaca16187da6adf61b6dd4ebdd66bb85643f72aa33661",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_1A7C_1",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_125_1A7C_1_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "oligomerization_controlled_folding",
+      "protein_id": "1A7C_1",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "b1996d31829a0f736fdbaca16187da6adf61b6dd4ebdd66bb85643f72aa33661",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_125_1A7C_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "oligomerization_controlled_folding",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "fold_upon_binding_disorder",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_1A7S_1",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "1",
+      "entry_id": "1A7S",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "86be0d0135ea6e74dde0df9a49b60c011890320e1d27c98c20003ee5af5566bd",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_1A7S_1",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_126_1A7S_1_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "fold_upon_binding_disorder",
+      "protein_id": "1A7S_1",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "86be0d0135ea6e74dde0df9a49b60c011890320e1d27c98c20003ee5af5566bd",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_126_1A7S_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "fold_upon_binding_disorder",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_1A8V_1",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "1",
+      "entry_id": "1A8V",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "fbd2054628b16be5cda8e45cf86a39e89ffe608b5c7b8d003d8cd42f80520018",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_1A8V_1",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_128_1A8V_1_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "protein_id": "1A8V_1",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "fbd2054628b16be5cda8e45cf86a39e89ffe608b5c7b8d003d8cd42f80520018",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_128_1A8V_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "cofactor_ligand_assisted_stabilization",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_1A8Y_1",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "1",
+      "entry_id": "1A8Y",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "d021ebe004ac0a1c7dc5428a794ee781a46869a650e828e9090fc7f0416d136f",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_1A8Y_1",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_129_1A8Y_1_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "oligomerization_controlled_folding",
+      "protein_id": "1A8Y_1",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "d021ebe004ac0a1c7dc5428a794ee781a46869a650e828e9090fc7f0416d136f",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_129_1A8Y_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "oligomerization_controlled_folding",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_1A95_1",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "1",
+      "entry_id": "1A95",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "917a1c045f2fb88d297beaaa0a61de0f7ea670056b764f4c199bec37f9ede95f",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_1A95_1",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_130_1A95_1_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "protein_id": "1A95_1",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "917a1c045f2fb88d297beaaa0a61de0f7ea670056b764f4c199bec37f9ede95f",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_130_1A95_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "cofactor_ligand_assisted_stabilization",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_1AA2_1",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "1",
+      "entry_id": "1AA2",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "42d8fb48840e964a3f760193a09e783f4766ade9aedc98c1b14b018f2b829d43",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_1AA2_1",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_131_1AA2_1_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "oligomerization_controlled_folding",
+      "protein_id": "1AA2_1",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "42d8fb48840e964a3f760193a09e783f4766ade9aedc98c1b14b018f2b829d43",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_131_1AA2_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "oligomerization_controlled_folding",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_1AAB_1",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "1",
+      "entry_id": "1AAB",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "38054c450ae27d7d08e65f0c46cbac315c78c5402c197e0121d0a3ff34fa2042",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_1AAB_1",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_132_1AAB_1_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "protein_id": "1AAB_1",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "38054c450ae27d7d08e65f0c46cbac315c78c5402c197e0121d0a3ff34fa2042",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_132_1AAB_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "cofactor_ligand_assisted_stabilization",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_1AAP_1",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "1",
+      "entry_id": "1AAP",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "74a1d2994756a7b847e65de4d87e7520e43a8abf4d4b11b9641245875730f031",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_1AAP_1",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_133_1AAP_1_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "protein_id": "1AAP_1",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "74a1d2994756a7b847e65de4d87e7520e43a8abf4d4b11b9641245875730f031",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_133_1AAP_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "cofactor_ligand_assisted_stabilization",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_1AAX_1",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "1",
+      "entry_id": "1AAX",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "c1aae193093207b4227addfa2098fc4b48a42df36703a13934b55f104b6b33f8",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_1AAX_1",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_134_1AAX_1_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "protein_id": "1AAX_1",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "c1aae193093207b4227addfa2098fc4b48a42df36703a13934b55f104b6b33f8",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_134_1AAX_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "cofactor_ligand_assisted_stabilization",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_1ACJ_1",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "1",
+      "entry_id": "1ACJ",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "54c1d4dce801870b38071db8d940880191289be29e5f6bbeff64c414b32c8993",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_1ACJ_1",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_135_1ACJ_1_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "protein_id": "1ACJ_1",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "54c1d4dce801870b38071db8d940880191289be29e5f6bbeff64c414b32c8993",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_135_1ACJ_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "cofactor_ligand_assisted_stabilization",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_1ADE_1",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "1",
+      "entry_id": "1ADE",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "928365d26cfe45c9bcc8a829eacc52f01a396e6c68b5d392069f68f4afc3381d",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_1ADE_1",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_136_1ADE_1_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "protein_id": "1ADE_1",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "928365d26cfe45c9bcc8a829eacc52f01a396e6c68b5d392069f68f4afc3381d",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_136_1ADE_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "cofactor_ligand_assisted_stabilization",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_1ADQ_1",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "1",
+      "entry_id": "1ADQ",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "20fc49714ef6281617d165e3edd5173aa3351af2cd4bd1e1f4ec09b2c8c5ae6a",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_1ADQ_1",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_137_1ADQ_1_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "oligomerization_controlled_folding",
+      "protein_id": "1ADQ_1",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "20fc49714ef6281617d165e3edd5173aa3351af2cd4bd1e1f4ec09b2c8c5ae6a",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_137_1ADQ_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "oligomerization_controlled_folding",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_1ADZ_1",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "1",
+      "entry_id": "1ADZ",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "1289bc93c41a4651c9a3d629feb4951aac6dcca55ccf9916519c9befd95cbad9",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_1ADZ_1",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_138_1ADZ_1_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "oligomerization_controlled_folding",
+      "protein_id": "1ADZ_1",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "1289bc93c41a4651c9a3d629feb4951aac6dcca55ccf9916519c9befd95cbad9",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_138_1ADZ_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "oligomerization_controlled_folding",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_1AEY_1",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "1",
+      "entry_id": "1AEY",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "87b6ddd25af35df2cb011d4aa4429b14ecf6ba1a868b15bc697393b2321450d4",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_1AEY_1",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_139_1AEY_1_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "oligomerization_controlled_folding",
+      "protein_id": "1AEY_1",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "87b6ddd25af35df2cb011d4aa4429b14ecf6ba1a868b15bc697393b2321450d4",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_139_1AEY_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "oligomerization_controlled_folding",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_1AF3_1",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "1",
+      "entry_id": "1AF3",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "6eeb6dddcef0a04819c403d6d590f03f5e88533bb94a7397d1e18a22fae57d4f",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_1AF3_1",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_140_1AF3_1_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "protein_id": "1AF3_1",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "6eeb6dddcef0a04819c403d6d590f03f5e88533bb94a7397d1e18a22fae57d4f",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_140_1AF3_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "cofactor_ligand_assisted_stabilization",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_1AIN_1",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "1",
+      "entry_id": "1AIN",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "8afee78cf75335fb5bb3f376cf83cef995b224f8e3b75eb0df9675af4e568f9b",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_1AIN_1",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_142_1AIN_1_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "protein_id": "1AIN_1",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "8afee78cf75335fb5bb3f376cf83cef995b224f8e3b75eb0df9675af4e568f9b",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_142_1AIN_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "cofactor_ligand_assisted_stabilization",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_1AJB_1",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "1",
+      "entry_id": "1AJB",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "51503b852fdcbea41d23b0156d6642a9135cf01bd46243e0c1c5293d08bfbb7a",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_1AJB_1",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_143_1AJB_1_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "protein_id": "1AJB_1",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "51503b852fdcbea41d23b0156d6642a9135cf01bd46243e0c1c5293d08bfbb7a",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_143_1AJB_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "cofactor_ligand_assisted_stabilization",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_1AKK_1",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "1",
+      "entry_id": "1AKK",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "e8eb94fdf636803f9bf1d749413ff16f60eaf3f09b7fe8fb3a576c8e7a4401bc",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_1AKK_1",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_144_1AKK_1_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "protein_id": "1AKK_1",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "e8eb94fdf636803f9bf1d749413ff16f60eaf3f09b7fe8fb3a576c8e7a4401bc",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_144_1AKK_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "cofactor_ligand_assisted_stabilization",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_1ALL_2",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "2",
+      "entry_id": "1ALL",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "2c21cf8a95b85011b140aefd02c7cc6d1c4df13a0ea19a1c7180f230f9097295",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_1ALL_2",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_145_1ALL_2_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "oligomerization_controlled_folding",
+      "protein_id": "1ALL_2",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "2c21cf8a95b85011b140aefd02c7cc6d1c4df13a0ea19a1c7180f230f9097295",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_145_1ALL_2",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "oligomerization_controlled_folding",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_1ALW_1",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "1",
+      "entry_id": "1ALW",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "89d30a5eb4a71f203ea70a6bc73e6d7d21230e62051db23a9415fba54c2a1ec4",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_1ALW_1",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_146_1ALW_1_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "protein_id": "1ALW_1",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "89d30a5eb4a71f203ea70a6bc73e6d7d21230e62051db23a9415fba54c2a1ec4",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_146_1ALW_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "cofactor_ligand_assisted_stabilization",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_1ALY_1",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "1",
+      "entry_id": "1ALY",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "58f99046d2222ff0765d2559432d14bcbc0e17f8fd1bbf5db888640fa7599a2f",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_1ALY_1",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_147_1ALY_1_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "protein_id": "1ALY_1",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "58f99046d2222ff0765d2559432d14bcbc0e17f8fd1bbf5db888640fa7599a2f",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_147_1ALY_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "cofactor_ligand_assisted_stabilization",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_1AMO_1",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "1",
+      "entry_id": "1AMO",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "69d284cf352a66a55558ada0b796f795b9cb20df55f7baf01a5c6d152f193c6d",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_1AMO_1",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_148_1AMO_1_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "protein_id": "1AMO_1",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "69d284cf352a66a55558ada0b796f795b9cb20df55f7baf01a5c6d152f193c6d",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_148_1AMO_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "cofactor_ligand_assisted_stabilization",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_1AN0_1",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "1",
+      "entry_id": "1AN0",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "1f81904e115ca91b2ee4dfe7cde4558ba8cea17a638b65d540df64ed2cf67b1c",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_1AN0_1",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_149_1AN0_1_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "protein_id": "1AN0_1",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "1f81904e115ca91b2ee4dfe7cde4558ba8cea17a638b65d540df64ed2cf67b1c",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_149_1AN0_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "cofactor_ligand_assisted_stabilization",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_engine_version": "E62",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_supported": false,
+      "baseline_target_id": "V64_1ANG_1",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "entity_id": "1",
+      "entry_id": "1ANG",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "holdout_opened_after_prediction_hash": "45509054eaacb10590b1a0fbcb4198f4366c0c559cb757b842e146c1e30f0ee4",
+      "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "panel_group": null,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "lineage_source_target": "V64_1ANG_1",
+          "source_class": "coordinate_derived",
+          "source_id": "V66_150_1ANG_1_V66_REPLAY_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "protein_id": "1ANG_1",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "45509054eaacb10590b1a0fbcb4198f4366c0c559cb757b842e146c1e30f0ee4",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "target_id": "V66_150_1ANG_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "cofactor_ligand_assisted_stabilization",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    }
+  ],
+  "failure_cases_reported": true,
+  "failure_count": 70,
+  "failure_modes": {
+    "membrane_misread": 70
+  },
+  "false_membrane_repair": {
+    "e62_false_membrane_calls": 24,
+    "e62_peripheral_as_tm": 7,
+    "e63_false_membrane_calls": 0,
+    "e63_peripheral_as_tm": 0,
+    "oligomer_regressions_remaining_under_e63": 0,
+    "sentinel_regressions_under_e63": 0,
+    "true_tm_missed_under_e63": 0
+  },
+  "kind": "V66_E63_FAST_MEMBRANE_REPAIR_FAILURE_REPORT_v0",
+  "note": "V66 failures feed the next adaptive 200-target discovery or specialist panel; no broad claim is made."
+}

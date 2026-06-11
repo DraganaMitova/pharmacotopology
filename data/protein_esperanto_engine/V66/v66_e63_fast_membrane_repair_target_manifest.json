@@ -1,0 +1,3888 @@
+{
+  "baseline_engine_version": "E62",
+  "batch_id": "V66_E63_FAST_MEMBRANE_REPAIR_REPLAY_200",
+  "batch_mode": "adaptive_200_repair_replay",
+  "campaign_id": "V61_TO_V70_PROTEIN_ESPERANTO_SATURATION_CAMPAIGN",
+  "composition_rule": {
+    "E61_E62_STABLE_SENTINEL": 47,
+    "V64_E62_OLIGOMER_REGRESSION": 3,
+    "V64_V63_MEMBRANE_MISREAD_FAILURE": 80,
+    "V65_MEMBRANE_TOPOLOGY_PANEL": 70
+  },
+  "engine_version_used": "E63",
+  "kind": "V66_E63_FAST_MEMBRANE_REPAIR_TARGET_MANIFEST_v0",
+  "selected_targets": [
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V65_A_01_1A0S_1",
+      "entity_id": "1",
+      "entry_id": "1A0S",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "panel_group": "A_TRUE_TRANSMEMBRANE_TOPOLOGY",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: A_TRUE_TRANSMEMBRANE_TOPOLOGY"
+      ],
+      "protein_id": "1A0S_1",
+      "protein_key": "1A0S_1",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_001_V65_A_01_1A0S_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V65_A_02_1AIG_1",
+      "entity_id": "1",
+      "entry_id": "1AIG",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "panel_group": "A_TRUE_TRANSMEMBRANE_TOPOLOGY",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: A_TRUE_TRANSMEMBRANE_TOPOLOGY"
+      ],
+      "protein_id": "1AIG_1",
+      "protein_key": "1AIG_1",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_002_V65_A_02_1AIG_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V65_A_03_1AIG_2",
+      "entity_id": "2",
+      "entry_id": "1AIG",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "panel_group": "A_TRUE_TRANSMEMBRANE_TOPOLOGY",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: A_TRUE_TRANSMEMBRANE_TOPOLOGY"
+      ],
+      "protein_id": "1AIG_2",
+      "protein_key": "1AIG_2",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_003_V65_A_03_1AIG_2"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V65_A_04_1AIJ_3",
+      "entity_id": "3",
+      "entry_id": "1AIJ",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "panel_group": "A_TRUE_TRANSMEMBRANE_TOPOLOGY",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: A_TRUE_TRANSMEMBRANE_TOPOLOGY"
+      ],
+      "protein_id": "1AIJ_3",
+      "protein_key": "1AIJ_3",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_004_V65_A_04_1AIJ_3"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V65_A_05_1AR1_1",
+      "entity_id": "1",
+      "entry_id": "1AR1",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "panel_group": "A_TRUE_TRANSMEMBRANE_TOPOLOGY",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: A_TRUE_TRANSMEMBRANE_TOPOLOGY"
+      ],
+      "protein_id": "1AR1_1",
+      "protein_key": "1AR1_1",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_005_V65_A_05_1AR1_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V65_A_06_1ATY_1",
+      "entity_id": "1",
+      "entry_id": "1ATY",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "panel_group": "A_TRUE_TRANSMEMBRANE_TOPOLOGY",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: A_TRUE_TRANSMEMBRANE_TOPOLOGY"
+      ],
+      "protein_id": "1ATY_1",
+      "protein_key": "1ATY_1",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_006_V65_A_06_1ATY_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V65_A_07_1BCC_1",
+      "entity_id": "1",
+      "entry_id": "1BCC",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "panel_group": "A_TRUE_TRANSMEMBRANE_TOPOLOGY",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: A_TRUE_TRANSMEMBRANE_TOPOLOGY"
+      ],
+      "protein_id": "1BCC_1",
+      "protein_key": "1BCC_1",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_007_V65_A_07_1BCC_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V65_A_08_1BCC_2",
+      "entity_id": "2",
+      "entry_id": "1BCC",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "panel_group": "A_TRUE_TRANSMEMBRANE_TOPOLOGY",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: A_TRUE_TRANSMEMBRANE_TOPOLOGY"
+      ],
+      "protein_id": "1BCC_2",
+      "protein_key": "1BCC_2",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_008_V65_A_08_1BCC_2"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V65_A_09_1BCC_4",
+      "entity_id": "4",
+      "entry_id": "1BCC",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "panel_group": "A_TRUE_TRANSMEMBRANE_TOPOLOGY",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: A_TRUE_TRANSMEMBRANE_TOPOLOGY"
+      ],
+      "protein_id": "1BCC_4",
+      "protein_key": "1BCC_4",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_009_V65_A_09_1BCC_4"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V65_A_10_1BCC_6",
+      "entity_id": "6",
+      "entry_id": "1BCC",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "panel_group": "A_TRUE_TRANSMEMBRANE_TOPOLOGY",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: A_TRUE_TRANSMEMBRANE_TOPOLOGY"
+      ],
+      "protein_id": "1BCC_6",
+      "protein_key": "1BCC_6",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_010_V65_A_10_1BCC_6"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V65_A_11_1BCT_1",
+      "entity_id": "1",
+      "entry_id": "1BCT",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "panel_group": "A_TRUE_TRANSMEMBRANE_TOPOLOGY",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: A_TRUE_TRANSMEMBRANE_TOPOLOGY"
+      ],
+      "protein_id": "1BCT_1",
+      "protein_key": "1BCT_1",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_011_V65_A_11_1BCT_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V65_A_12_1BE3_5",
+      "entity_id": "5",
+      "entry_id": "1BE3",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "panel_group": "A_TRUE_TRANSMEMBRANE_TOPOLOGY",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: A_TRUE_TRANSMEMBRANE_TOPOLOGY"
+      ],
+      "protein_id": "1BE3_5",
+      "protein_key": "1BE3_5",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_012_V65_A_12_1BE3_5"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V65_A_13_1BE3_7",
+      "entity_id": "7",
+      "entry_id": "1BE3",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "panel_group": "A_TRUE_TRANSMEMBRANE_TOPOLOGY",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: A_TRUE_TRANSMEMBRANE_TOPOLOGY"
+      ],
+      "protein_id": "1BE3_7",
+      "protein_key": "1BE3_7",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_013_V65_A_13_1BE3_7"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V65_A_14_1BE3_8",
+      "entity_id": "8",
+      "entry_id": "1BE3",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "panel_group": "A_TRUE_TRANSMEMBRANE_TOPOLOGY",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: A_TRUE_TRANSMEMBRANE_TOPOLOGY"
+      ],
+      "protein_id": "1BE3_8",
+      "protein_key": "1BE3_8",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_014_V65_A_14_1BE3_8"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V65_B_01_1B30_1",
+      "entity_id": "1",
+      "entry_id": "1B30",
+      "expected_mechanism_class": "insufficient_evidence_clean_abstain",
+      "panel_group": "B_SOLUBLE_HYDROPHOBIC_NO_TOPOLOGY",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: B_SOLUBLE_HYDROPHOBIC_NO_TOPOLOGY"
+      ],
+      "protein_id": "1B30_1",
+      "protein_key": "1B30_1",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_015_V65_B_01_1B30_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V65_B_02_1AXD_1",
+      "entity_id": "1",
+      "entry_id": "1AXD",
+      "expected_mechanism_class": "insufficient_evidence_clean_abstain",
+      "panel_group": "B_SOLUBLE_HYDROPHOBIC_NO_TOPOLOGY",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: B_SOLUBLE_HYDROPHOBIC_NO_TOPOLOGY"
+      ],
+      "protein_id": "1AXD_1",
+      "protein_key": "1AXD_1",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_016_V65_B_02_1AXD_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V65_B_03_1A06_1",
+      "entity_id": "1",
+      "entry_id": "1A06",
+      "expected_mechanism_class": "insufficient_evidence_clean_abstain",
+      "panel_group": "B_SOLUBLE_HYDROPHOBIC_NO_TOPOLOGY",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: B_SOLUBLE_HYDROPHOBIC_NO_TOPOLOGY"
+      ],
+      "protein_id": "1A06_1",
+      "protein_key": "1A06_1",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_017_V65_B_03_1A06_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V65_B_04_10XZ_3",
+      "entity_id": "3",
+      "entry_id": "10XZ",
+      "expected_mechanism_class": "insufficient_evidence_clean_abstain",
+      "panel_group": "B_SOLUBLE_HYDROPHOBIC_NO_TOPOLOGY",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: B_SOLUBLE_HYDROPHOBIC_NO_TOPOLOGY"
+      ],
+      "protein_id": "10XZ_3",
+      "protein_key": "10XZ_3",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_018_V65_B_04_10XZ_3"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V65_B_05_1A41_1",
+      "entity_id": "1",
+      "entry_id": "1A41",
+      "expected_mechanism_class": "insufficient_evidence_clean_abstain",
+      "panel_group": "B_SOLUBLE_HYDROPHOBIC_NO_TOPOLOGY",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: B_SOLUBLE_HYDROPHOBIC_NO_TOPOLOGY"
+      ],
+      "protein_id": "1A41_1",
+      "protein_key": "1A41_1",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_019_V65_B_05_1A41_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V65_B_06_12OZ_1",
+      "entity_id": "1",
+      "entry_id": "12OZ",
+      "expected_mechanism_class": "insufficient_evidence_clean_abstain",
+      "panel_group": "B_SOLUBLE_HYDROPHOBIC_NO_TOPOLOGY",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: B_SOLUBLE_HYDROPHOBIC_NO_TOPOLOGY"
+      ],
+      "protein_id": "12OZ_1",
+      "protein_key": "12OZ_1",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_020_V65_B_06_12OZ_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V65_B_07_10YN_1",
+      "entity_id": "1",
+      "entry_id": "10YN",
+      "expected_mechanism_class": "insufficient_evidence_clean_abstain",
+      "panel_group": "B_SOLUBLE_HYDROPHOBIC_NO_TOPOLOGY",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: B_SOLUBLE_HYDROPHOBIC_NO_TOPOLOGY"
+      ],
+      "protein_id": "10YN_1",
+      "protein_key": "10YN_1",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_021_V65_B_07_10YN_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V65_B_08_1A2N_1",
+      "entity_id": "1",
+      "entry_id": "1A2N",
+      "expected_mechanism_class": "insufficient_evidence_clean_abstain",
+      "panel_group": "B_SOLUBLE_HYDROPHOBIC_NO_TOPOLOGY",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: B_SOLUBLE_HYDROPHOBIC_NO_TOPOLOGY"
+      ],
+      "protein_id": "1A2N_1",
+      "protein_key": "1A2N_1",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_022_V65_B_08_1A2N_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V65_B_09_13HS_1",
+      "entity_id": "1",
+      "entry_id": "13HS",
+      "expected_mechanism_class": "insufficient_evidence_clean_abstain",
+      "panel_group": "B_SOLUBLE_HYDROPHOBIC_NO_TOPOLOGY",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: B_SOLUBLE_HYDROPHOBIC_NO_TOPOLOGY"
+      ],
+      "protein_id": "13HS_1",
+      "protein_key": "13HS_1",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_023_V65_B_09_13HS_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V65_B_10_10DJ_1",
+      "entity_id": "1",
+      "entry_id": "10DJ",
+      "expected_mechanism_class": "insufficient_evidence_clean_abstain",
+      "panel_group": "B_SOLUBLE_HYDROPHOBIC_NO_TOPOLOGY",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: B_SOLUBLE_HYDROPHOBIC_NO_TOPOLOGY"
+      ],
+      "protein_id": "10DJ_1",
+      "protein_key": "10DJ_1",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_024_V65_B_10_10DJ_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V65_B_11_11OL_1",
+      "entity_id": "1",
+      "entry_id": "11OL",
+      "expected_mechanism_class": "insufficient_evidence_clean_abstain",
+      "panel_group": "B_SOLUBLE_HYDROPHOBIC_NO_TOPOLOGY",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: B_SOLUBLE_HYDROPHOBIC_NO_TOPOLOGY"
+      ],
+      "protein_id": "11OL_1",
+      "protein_key": "11OL_1",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_025_V65_B_11_11OL_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V65_B_12_11ZW_1",
+      "entity_id": "1",
+      "entry_id": "11ZW",
+      "expected_mechanism_class": "insufficient_evidence_clean_abstain",
+      "panel_group": "B_SOLUBLE_HYDROPHOBIC_NO_TOPOLOGY",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: B_SOLUBLE_HYDROPHOBIC_NO_TOPOLOGY"
+      ],
+      "protein_id": "11ZW_1",
+      "protein_key": "11ZW_1",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_026_V65_B_12_11ZW_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V65_B_13_1A3H_1",
+      "entity_id": "1",
+      "entry_id": "1A3H",
+      "expected_mechanism_class": "insufficient_evidence_clean_abstain",
+      "panel_group": "B_SOLUBLE_HYDROPHOBIC_NO_TOPOLOGY",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: B_SOLUBLE_HYDROPHOBIC_NO_TOPOLOGY"
+      ],
+      "protein_id": "1A3H_1",
+      "protein_key": "1A3H_1",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_027_V65_B_13_1A3H_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V65_B_14_1B48_1",
+      "entity_id": "1",
+      "entry_id": "1B48",
+      "expected_mechanism_class": "insufficient_evidence_clean_abstain",
+      "panel_group": "B_SOLUBLE_HYDROPHOBIC_NO_TOPOLOGY",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: B_SOLUBLE_HYDROPHOBIC_NO_TOPOLOGY"
+      ],
+      "protein_id": "1B48_1",
+      "protein_key": "1B48_1",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_028_V65_B_14_1B48_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V65_C_01_1AON_2",
+      "entity_id": "2",
+      "entry_id": "1AON",
+      "expected_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "panel_group": "C_COFACTOR_BOUND_SOLUBLE_HYDROPHOBIC_POCKET",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: C_COFACTOR_BOUND_SOLUBLE_HYDROPHOBIC_POCKET"
+      ],
+      "protein_id": "1AON_2",
+      "protein_key": "1AON_2",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_029_V65_C_01_1AON_2"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V65_C_02_11YO_3",
+      "entity_id": "3",
+      "entry_id": "11YO",
+      "expected_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "panel_group": "C_COFACTOR_BOUND_SOLUBLE_HYDROPHOBIC_POCKET",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: C_COFACTOR_BOUND_SOLUBLE_HYDROPHOBIC_POCKET"
+      ],
+      "protein_id": "11YO_3",
+      "protein_key": "11YO_3",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_030_V65_C_02_11YO_3"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V65_C_03_11YO_7",
+      "entity_id": "7",
+      "entry_id": "11YO",
+      "expected_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "panel_group": "C_COFACTOR_BOUND_SOLUBLE_HYDROPHOBIC_POCKET",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: C_COFACTOR_BOUND_SOLUBLE_HYDROPHOBIC_POCKET"
+      ],
+      "protein_id": "11YO_7",
+      "protein_key": "11YO_7",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_031_V65_C_03_11YO_7"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V65_C_04_11YO_1",
+      "entity_id": "1",
+      "entry_id": "11YO",
+      "expected_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "panel_group": "C_COFACTOR_BOUND_SOLUBLE_HYDROPHOBIC_POCKET",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: C_COFACTOR_BOUND_SOLUBLE_HYDROPHOBIC_POCKET"
+      ],
+      "protein_id": "11YO_1",
+      "protein_key": "11YO_1",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_032_V65_C_04_11YO_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V65_C_05_1A05_1",
+      "entity_id": "1",
+      "entry_id": "1A05",
+      "expected_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "panel_group": "C_COFACTOR_BOUND_SOLUBLE_HYDROPHOBIC_POCKET",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: C_COFACTOR_BOUND_SOLUBLE_HYDROPHOBIC_POCKET"
+      ],
+      "protein_id": "1A05_1",
+      "protein_key": "1A05_1",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_033_V65_C_05_1A05_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V65_C_06_10PX_23",
+      "entity_id": "23",
+      "entry_id": "10PX",
+      "expected_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "panel_group": "C_COFACTOR_BOUND_SOLUBLE_HYDROPHOBIC_POCKET",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: C_COFACTOR_BOUND_SOLUBLE_HYDROPHOBIC_POCKET"
+      ],
+      "protein_id": "10PX_23",
+      "protein_key": "10PX_23",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_034_V65_C_06_10PX_23"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V65_C_07_1A2B_1",
+      "entity_id": "1",
+      "entry_id": "1A2B",
+      "expected_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "panel_group": "C_COFACTOR_BOUND_SOLUBLE_HYDROPHOBIC_POCKET",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: C_COFACTOR_BOUND_SOLUBLE_HYDROPHOBIC_POCKET"
+      ],
+      "protein_id": "1A2B_1",
+      "protein_key": "1A2B_1",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_035_V65_C_07_1A2B_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V65_C_08_13ML_1",
+      "entity_id": "1",
+      "entry_id": "13ML",
+      "expected_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "panel_group": "C_COFACTOR_BOUND_SOLUBLE_HYDROPHOBIC_POCKET",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: C_COFACTOR_BOUND_SOLUBLE_HYDROPHOBIC_POCKET"
+      ],
+      "protein_id": "13ML_1",
+      "protein_key": "13ML_1",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_036_V65_C_08_13ML_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V65_C_09_1AGR_1",
+      "entity_id": "1",
+      "entry_id": "1AGR",
+      "expected_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "panel_group": "C_COFACTOR_BOUND_SOLUBLE_HYDROPHOBIC_POCKET",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: C_COFACTOR_BOUND_SOLUBLE_HYDROPHOBIC_POCKET"
+      ],
+      "protein_id": "1AGR_1",
+      "protein_key": "1AGR_1",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_037_V65_C_09_1AGR_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V65_C_10_1A2Q_1",
+      "entity_id": "1",
+      "entry_id": "1A2Q",
+      "expected_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "panel_group": "C_COFACTOR_BOUND_SOLUBLE_HYDROPHOBIC_POCKET",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: C_COFACTOR_BOUND_SOLUBLE_HYDROPHOBIC_POCKET"
+      ],
+      "protein_id": "1A2Q_1",
+      "protein_key": "1A2Q_1",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_038_V65_C_10_1A2Q_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V65_C_11_10YZ_1",
+      "entity_id": "1",
+      "entry_id": "10YZ",
+      "expected_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "panel_group": "C_COFACTOR_BOUND_SOLUBLE_HYDROPHOBIC_POCKET",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: C_COFACTOR_BOUND_SOLUBLE_HYDROPHOBIC_POCKET"
+      ],
+      "protein_id": "10YZ_1",
+      "protein_key": "10YZ_1",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_039_V65_C_11_10YZ_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V65_C_12_11YO_5",
+      "entity_id": "5",
+      "entry_id": "11YO",
+      "expected_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "panel_group": "C_COFACTOR_BOUND_SOLUBLE_HYDROPHOBIC_POCKET",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: C_COFACTOR_BOUND_SOLUBLE_HYDROPHOBIC_POCKET"
+      ],
+      "protein_id": "11YO_5",
+      "protein_key": "11YO_5",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_040_V65_C_12_11YO_5"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V65_C_13_13BV_2",
+      "entity_id": "2",
+      "entry_id": "13BV",
+      "expected_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "panel_group": "C_COFACTOR_BOUND_SOLUBLE_HYDROPHOBIC_POCKET",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: C_COFACTOR_BOUND_SOLUBLE_HYDROPHOBIC_POCKET"
+      ],
+      "protein_id": "13BV_2",
+      "protein_key": "13BV_2",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_041_V65_C_13_13BV_2"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V65_C_14_11UC_1",
+      "entity_id": "1",
+      "entry_id": "11UC",
+      "expected_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "panel_group": "C_COFACTOR_BOUND_SOLUBLE_HYDROPHOBIC_POCKET",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: C_COFACTOR_BOUND_SOLUBLE_HYDROPHOBIC_POCKET"
+      ],
+      "protein_id": "11UC_1",
+      "protein_key": "11UC_1",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_042_V65_C_14_11UC_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V65_D_01_10TU_1",
+      "entity_id": "1",
+      "entry_id": "10TU",
+      "expected_mechanism_class": "oligomerization_controlled_folding",
+      "panel_group": "D_OLIGOMERIC_SOLUBLE_INTERFACE_HYDROPHOBICITY",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: D_OLIGOMERIC_SOLUBLE_INTERFACE_HYDROPHOBICITY"
+      ],
+      "protein_id": "10TU_1",
+      "protein_key": "10TU_1",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_043_V65_D_01_10TU_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V65_D_02_1A6I_1",
+      "entity_id": "1",
+      "entry_id": "1A6I",
+      "expected_mechanism_class": "oligomerization_controlled_folding",
+      "panel_group": "D_OLIGOMERIC_SOLUBLE_INTERFACE_HYDROPHOBICITY",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: D_OLIGOMERIC_SOLUBLE_INTERFACE_HYDROPHOBICITY"
+      ],
+      "protein_id": "1A6I_1",
+      "protein_key": "1A6I_1",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_044_V65_D_02_1A6I_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V65_D_03_1A7U_1",
+      "entity_id": "1",
+      "entry_id": "1A7U",
+      "expected_mechanism_class": "oligomerization_controlled_folding",
+      "panel_group": "D_OLIGOMERIC_SOLUBLE_INTERFACE_HYDROPHOBICITY",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: D_OLIGOMERIC_SOLUBLE_INTERFACE_HYDROPHOBICITY"
+      ],
+      "protein_id": "1A7U_1",
+      "protein_key": "1A7U_1",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_045_V65_D_03_1A7U_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V65_D_04_1AF8_1",
+      "entity_id": "1",
+      "entry_id": "1AF8",
+      "expected_mechanism_class": "oligomerization_controlled_folding",
+      "panel_group": "D_OLIGOMERIC_SOLUBLE_INTERFACE_HYDROPHOBICITY",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: D_OLIGOMERIC_SOLUBLE_INTERFACE_HYDROPHOBICITY"
+      ],
+      "protein_id": "1AF8_1",
+      "protein_key": "1AF8_1",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_046_V65_D_04_1AF8_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V65_D_05_1AK4_2",
+      "entity_id": "2",
+      "entry_id": "1AK4",
+      "expected_mechanism_class": "oligomerization_controlled_folding",
+      "panel_group": "D_OLIGOMERIC_SOLUBLE_INTERFACE_HYDROPHOBICITY",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: D_OLIGOMERIC_SOLUBLE_INTERFACE_HYDROPHOBICITY"
+      ],
+      "protein_id": "1AK4_2",
+      "protein_key": "1AK4_2",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_047_V65_D_05_1AK4_2"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V65_D_06_1AT0_1",
+      "entity_id": "1",
+      "entry_id": "1AT0",
+      "expected_mechanism_class": "oligomerization_controlled_folding",
+      "panel_group": "D_OLIGOMERIC_SOLUBLE_INTERFACE_HYDROPHOBICITY",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: D_OLIGOMERIC_SOLUBLE_INTERFACE_HYDROPHOBICITY"
+      ],
+      "protein_id": "1AT0_1",
+      "protein_key": "1AT0_1",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_048_V65_D_06_1AT0_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V65_D_07_1B6T_1",
+      "entity_id": "1",
+      "entry_id": "1B6T",
+      "expected_mechanism_class": "oligomerization_controlled_folding",
+      "panel_group": "D_OLIGOMERIC_SOLUBLE_INTERFACE_HYDROPHOBICITY",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: D_OLIGOMERIC_SOLUBLE_INTERFACE_HYDROPHOBICITY"
+      ],
+      "protein_id": "1B6T_1",
+      "protein_key": "1B6T_1",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_049_V65_D_07_1B6T_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V65_D_08_10KT_1",
+      "entity_id": "1",
+      "entry_id": "10KT",
+      "expected_mechanism_class": "oligomerization_controlled_folding",
+      "panel_group": "D_OLIGOMERIC_SOLUBLE_INTERFACE_HYDROPHOBICITY",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: D_OLIGOMERIC_SOLUBLE_INTERFACE_HYDROPHOBICITY"
+      ],
+      "protein_id": "10KT_1",
+      "protein_key": "10KT_1",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_050_V65_D_08_10KT_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V65_D_09_12AG_1",
+      "entity_id": "1",
+      "entry_id": "12AG",
+      "expected_mechanism_class": "oligomerization_controlled_folding",
+      "panel_group": "D_OLIGOMERIC_SOLUBLE_INTERFACE_HYDROPHOBICITY",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: D_OLIGOMERIC_SOLUBLE_INTERFACE_HYDROPHOBICITY"
+      ],
+      "protein_id": "12AG_1",
+      "protein_key": "12AG_1",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_051_V65_D_09_12AG_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V65_D_10_11MX_1",
+      "entity_id": "1",
+      "entry_id": "11MX",
+      "expected_mechanism_class": "oligomerization_controlled_folding",
+      "panel_group": "D_OLIGOMERIC_SOLUBLE_INTERFACE_HYDROPHOBICITY",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: D_OLIGOMERIC_SOLUBLE_INTERFACE_HYDROPHOBICITY"
+      ],
+      "protein_id": "11MX_1",
+      "protein_key": "11MX_1",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_052_V65_D_10_11MX_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V65_D_11_13HR_2",
+      "entity_id": "2",
+      "entry_id": "13HR",
+      "expected_mechanism_class": "oligomerization_controlled_folding",
+      "panel_group": "D_OLIGOMERIC_SOLUBLE_INTERFACE_HYDROPHOBICITY",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: D_OLIGOMERIC_SOLUBLE_INTERFACE_HYDROPHOBICITY"
+      ],
+      "protein_id": "13HR_2",
+      "protein_key": "13HR_2",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_053_V65_D_11_13HR_2"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V65_D_12_10KZ_1",
+      "entity_id": "1",
+      "entry_id": "10KZ",
+      "expected_mechanism_class": "oligomerization_controlled_folding",
+      "panel_group": "D_OLIGOMERIC_SOLUBLE_INTERFACE_HYDROPHOBICITY",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: D_OLIGOMERIC_SOLUBLE_INTERFACE_HYDROPHOBICITY"
+      ],
+      "protein_id": "10KZ_1",
+      "protein_key": "10KZ_1",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_054_V65_D_12_10KZ_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V65_D_13_1A0F_1",
+      "entity_id": "1",
+      "entry_id": "1A0F",
+      "expected_mechanism_class": "oligomerization_controlled_folding",
+      "panel_group": "D_OLIGOMERIC_SOLUBLE_INTERFACE_HYDROPHOBICITY",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: D_OLIGOMERIC_SOLUBLE_INTERFACE_HYDROPHOBICITY"
+      ],
+      "protein_id": "1A0F_1",
+      "protein_key": "1A0F_1",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_055_V65_D_13_1A0F_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V65_D_14_1A9Q_1",
+      "entity_id": "1",
+      "entry_id": "1A9Q",
+      "expected_mechanism_class": "oligomerization_controlled_folding",
+      "panel_group": "D_OLIGOMERIC_SOLUBLE_INTERFACE_HYDROPHOBICITY",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: D_OLIGOMERIC_SOLUBLE_INTERFACE_HYDROPHOBICITY"
+      ],
+      "protein_id": "1A9Q_1",
+      "protein_key": "1A9Q_1",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_056_V65_D_14_1A9Q_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V65_E_01_1A6S_1",
+      "entity_id": "1",
+      "entry_id": "1A6S",
+      "expected_mechanism_class": "insufficient_evidence_clean_abstain",
+      "panel_group": "E_PERIPHERAL_MEMBRANE_ASSOCIATED_NOT_TRANSMEMBRANE",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: E_PERIPHERAL_MEMBRANE_ASSOCIATED_NOT_TRANSMEMBRANE"
+      ],
+      "protein_id": "1A6S_1",
+      "protein_key": "1A6S_1",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_057_V65_E_01_1A6S_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V65_E_02_1A8C_1",
+      "entity_id": "1",
+      "entry_id": "1A8C",
+      "expected_mechanism_class": "insufficient_evidence_clean_abstain",
+      "panel_group": "E_PERIPHERAL_MEMBRANE_ASSOCIATED_NOT_TRANSMEMBRANE",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: E_PERIPHERAL_MEMBRANE_ASSOCIATED_NOT_TRANSMEMBRANE"
+      ],
+      "protein_id": "1A8C_1",
+      "protein_key": "1A8C_1",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_058_V65_E_02_1A8C_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V65_E_03_1AA7_1",
+      "entity_id": "1",
+      "entry_id": "1AA7",
+      "expected_mechanism_class": "insufficient_evidence_clean_abstain",
+      "panel_group": "E_PERIPHERAL_MEMBRANE_ASSOCIATED_NOT_TRANSMEMBRANE",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: E_PERIPHERAL_MEMBRANE_ASSOCIATED_NOT_TRANSMEMBRANE"
+      ],
+      "protein_id": "1AA7_1",
+      "protein_key": "1AA7_1",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_059_V65_E_03_1AA7_1"
+    },
+    {
+      "baseline_acceptance_decision": "abstain_recommended",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "insufficient_evidence_clean_abstain",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V65_E_04_1AGG_1",
+      "entity_id": "1",
+      "entry_id": "1AGG",
+      "expected_mechanism_class": "insufficient_evidence_clean_abstain",
+      "panel_group": "E_PERIPHERAL_MEMBRANE_ASSOCIATED_NOT_TRANSMEMBRANE",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: E_PERIPHERAL_MEMBRANE_ASSOCIATED_NOT_TRANSMEMBRANE"
+      ],
+      "protein_id": "1AGG_1",
+      "protein_key": "1AGG_1",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_060_V65_E_04_1AGG_1"
+    },
+    {
+      "baseline_acceptance_decision": "abstain_recommended",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "insufficient_evidence_clean_abstain",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V65_E_05_1AGQ_1",
+      "entity_id": "1",
+      "entry_id": "1AGQ",
+      "expected_mechanism_class": "insufficient_evidence_clean_abstain",
+      "panel_group": "E_PERIPHERAL_MEMBRANE_ASSOCIATED_NOT_TRANSMEMBRANE",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: E_PERIPHERAL_MEMBRANE_ASSOCIATED_NOT_TRANSMEMBRANE"
+      ],
+      "protein_id": "1AGQ_1",
+      "protein_key": "1AGQ_1",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_061_V65_E_05_1AGQ_1"
+    },
+    {
+      "baseline_acceptance_decision": "abstain_recommended",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "insufficient_evidence_clean_abstain",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V65_E_06_1AOD_1",
+      "entity_id": "1",
+      "entry_id": "1AOD",
+      "expected_mechanism_class": "insufficient_evidence_clean_abstain",
+      "panel_group": "E_PERIPHERAL_MEMBRANE_ASSOCIATED_NOT_TRANSMEMBRANE",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: E_PERIPHERAL_MEMBRANE_ASSOCIATED_NOT_TRANSMEMBRANE"
+      ],
+      "protein_id": "1AOD_1",
+      "protein_key": "1AOD_1",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_062_V65_E_06_1AOD_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V65_E_07_1AQL_1",
+      "entity_id": "1",
+      "entry_id": "1AQL",
+      "expected_mechanism_class": "insufficient_evidence_clean_abstain",
+      "panel_group": "E_PERIPHERAL_MEMBRANE_ASSOCIATED_NOT_TRANSMEMBRANE",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: E_PERIPHERAL_MEMBRANE_ASSOCIATED_NOT_TRANSMEMBRANE"
+      ],
+      "protein_id": "1AQL_1",
+      "protein_key": "1AQL_1",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_063_V65_E_07_1AQL_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V65_E_08_1AUA_1",
+      "entity_id": "1",
+      "entry_id": "1AUA",
+      "expected_mechanism_class": "insufficient_evidence_clean_abstain",
+      "panel_group": "E_PERIPHERAL_MEMBRANE_ASSOCIATED_NOT_TRANSMEMBRANE",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: E_PERIPHERAL_MEMBRANE_ASSOCIATED_NOT_TRANSMEMBRANE"
+      ],
+      "protein_id": "1AUA_1",
+      "protein_key": "1AUA_1",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_064_V65_E_08_1AUA_1"
+    },
+    {
+      "baseline_acceptance_decision": "abstain_recommended",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "insufficient_evidence_clean_abstain",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V65_E_09_1AUN_1",
+      "entity_id": "1",
+      "entry_id": "1AUN",
+      "expected_mechanism_class": "insufficient_evidence_clean_abstain",
+      "panel_group": "E_PERIPHERAL_MEMBRANE_ASSOCIATED_NOT_TRANSMEMBRANE",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: E_PERIPHERAL_MEMBRANE_ASSOCIATED_NOT_TRANSMEMBRANE"
+      ],
+      "protein_id": "1AUN_1",
+      "protein_key": "1AUN_1",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_065_V65_E_09_1AUN_1"
+    },
+    {
+      "baseline_acceptance_decision": "abstain_recommended",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "insufficient_evidence_clean_abstain",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V65_E_10_1AVV_1",
+      "entity_id": "1",
+      "entry_id": "1AVV",
+      "expected_mechanism_class": "insufficient_evidence_clean_abstain",
+      "panel_group": "E_PERIPHERAL_MEMBRANE_ASSOCIATED_NOT_TRANSMEMBRANE",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: E_PERIPHERAL_MEMBRANE_ASSOCIATED_NOT_TRANSMEMBRANE"
+      ],
+      "protein_id": "1AVV_1",
+      "protein_key": "1AVV_1",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_066_V65_E_10_1AVV_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V65_E_11_1AYJ_1",
+      "entity_id": "1",
+      "entry_id": "1AYJ",
+      "expected_mechanism_class": "insufficient_evidence_clean_abstain",
+      "panel_group": "E_PERIPHERAL_MEMBRANE_ASSOCIATED_NOT_TRANSMEMBRANE",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: E_PERIPHERAL_MEMBRANE_ASSOCIATED_NOT_TRANSMEMBRANE"
+      ],
+      "protein_id": "1AYJ_1",
+      "protein_key": "1AYJ_1",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_067_V65_E_11_1AYJ_1"
+    },
+    {
+      "baseline_acceptance_decision": "abstain_recommended",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "insufficient_evidence_clean_abstain",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V65_E_12_1B3C_1",
+      "entity_id": "1",
+      "entry_id": "1B3C",
+      "expected_mechanism_class": "insufficient_evidence_clean_abstain",
+      "panel_group": "E_PERIPHERAL_MEMBRANE_ASSOCIATED_NOT_TRANSMEMBRANE",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: E_PERIPHERAL_MEMBRANE_ASSOCIATED_NOT_TRANSMEMBRANE"
+      ],
+      "protein_id": "1B3C_1",
+      "protein_key": "1B3C_1",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_068_V65_E_12_1B3C_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V65_E_13_1B4V_1",
+      "entity_id": "1",
+      "entry_id": "1B4V",
+      "expected_mechanism_class": "insufficient_evidence_clean_abstain",
+      "panel_group": "E_PERIPHERAL_MEMBRANE_ASSOCIATED_NOT_TRANSMEMBRANE",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: E_PERIPHERAL_MEMBRANE_ASSOCIATED_NOT_TRANSMEMBRANE"
+      ],
+      "protein_id": "1B4V_1",
+      "protein_key": "1B4V_1",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_069_V65_E_13_1B4V_1"
+    },
+    {
+      "baseline_acceptance_decision": "abstain_recommended",
+      "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "baseline_predicted_mechanism_class": "insufficient_evidence_clean_abstain",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V65_E_14_1B8I_4",
+      "entity_id": "4",
+      "entry_id": "1B8I",
+      "expected_mechanism_class": "insufficient_evidence_clean_abstain",
+      "panel_group": "E_PERIPHERAL_MEMBRANE_ASSOCIATED_NOT_TRANSMEMBRANE",
+      "postseal_truth_basis": [
+        "V65 topology panel target replayed with E63.",
+        "Panel group: E_PERIPHERAL_MEMBRANE_ASSOCIATED_NOT_TRANSMEMBRANE"
+      ],
+      "protein_id": "1B8I_4",
+      "protein_key": "1B8I_4",
+      "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+      "source_family": "V65",
+      "target_id": "V66_070_V65_E_14_1B8I_4"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_10AY_1",
+      "entity_id": "1",
+      "entry_id": "10AY",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted cofactor_ligand_assisted_stabilization while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "10AY_1",
+      "protein_key": "10AY_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_071_10AY_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_10IC_3",
+      "entity_id": "3",
+      "entry_id": "10IC",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted cofactor_ligand_assisted_stabilization while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "10IC_3",
+      "protein_key": "10IC_3",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_072_10IC_3"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_10IK_1",
+      "entity_id": "1",
+      "entry_id": "10IK",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "10IK_1",
+      "protein_key": "10IK_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_073_10IK_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_10JT_1",
+      "entity_id": "1",
+      "entry_id": "10JT",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted cofactor_ligand_assisted_stabilization while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "10JT_1",
+      "protein_key": "10JT_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_074_10JT_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_10MA_3",
+      "entity_id": "3",
+      "entry_id": "10MA",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted cofactor_ligand_assisted_stabilization while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "10MA_3",
+      "protein_key": "10MA_3",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_075_10MA_3"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_10OP_1",
+      "entity_id": "1",
+      "entry_id": "10OP",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "10OP_1",
+      "protein_key": "10OP_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_076_10OP_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_10OR_2",
+      "entity_id": "2",
+      "entry_id": "10OR",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "10OR_2",
+      "protein_key": "10OR_2",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_077_10OR_2"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_10QG_1",
+      "entity_id": "1",
+      "entry_id": "10QG",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "10QG_1",
+      "protein_key": "10QG_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_078_10QG_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_10RI_1",
+      "entity_id": "1",
+      "entry_id": "10RI",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted cofactor_ligand_assisted_stabilization while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "10RI_1",
+      "protein_key": "10RI_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_079_10RI_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_10TZ_1",
+      "entity_id": "1",
+      "entry_id": "10TZ",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted cofactor_ligand_assisted_stabilization while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "10TZ_1",
+      "protein_key": "10TZ_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_080_10TZ_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_10XD_1",
+      "entity_id": "1",
+      "entry_id": "10XD",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "10XD_1",
+      "protein_key": "10XD_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_081_10XD_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_10XF_1",
+      "entity_id": "1",
+      "entry_id": "10XF",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "10XF_1",
+      "protein_key": "10XF_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_082_10XF_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_10XH_1",
+      "entity_id": "1",
+      "entry_id": "10XH",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "10XH_1",
+      "protein_key": "10XH_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_083_10XH_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_10XZ_2",
+      "entity_id": "2",
+      "entry_id": "10XZ",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "10XZ_2",
+      "protein_key": "10XZ_2",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_084_10XZ_2"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_11HK_1",
+      "entity_id": "1",
+      "entry_id": "11HK",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "11HK_1",
+      "protein_key": "11HK_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_085_11HK_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_11MR_2",
+      "entity_id": "2",
+      "entry_id": "11MR",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted cofactor_ligand_assisted_stabilization while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "11MR_2",
+      "protein_key": "11MR_2",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_086_11MR_2"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_11OY_1",
+      "entity_id": "1",
+      "entry_id": "11OY",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted cofactor_ligand_assisted_stabilization while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "11OY_1",
+      "protein_key": "11OY_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_087_11OY_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_11TA_1",
+      "entity_id": "1",
+      "entry_id": "11TA",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted cofactor_ligand_assisted_stabilization while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "11TA_1",
+      "protein_key": "11TA_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_088_11TA_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_11TA_2",
+      "entity_id": "2",
+      "entry_id": "11TA",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted cofactor_ligand_assisted_stabilization while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "11TA_2",
+      "protein_key": "11TA_2",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_089_11TA_2"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_11YO_16",
+      "entity_id": "16",
+      "entry_id": "11YO",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted cofactor_ligand_assisted_stabilization while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "11YO_16",
+      "protein_key": "11YO_16",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_090_11YO_16"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_12DL_5",
+      "entity_id": "5",
+      "entry_id": "12DL",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted cofactor_ligand_assisted_stabilization while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "12DL_5",
+      "protein_key": "12DL_5",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_091_12DL_5"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_12DL_9",
+      "entity_id": "9",
+      "entry_id": "12DL",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted cofactor_ligand_assisted_stabilization while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "12DL_9",
+      "protein_key": "12DL_9",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_092_12DL_9"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_12GB_1",
+      "entity_id": "1",
+      "entry_id": "12GB",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "12GB_1",
+      "protein_key": "12GB_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_093_12GB_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_13FL_3",
+      "entity_id": "3",
+      "entry_id": "13FL",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted cofactor_ligand_assisted_stabilization while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "13FL_3",
+      "protein_key": "13FL_3",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_094_13FL_3"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_13FR_1",
+      "entity_id": "1",
+      "entry_id": "13FR",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "13FR_1",
+      "protein_key": "13FR_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_095_13FR_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_13SC_1",
+      "entity_id": "1",
+      "entry_id": "13SC",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted cofactor_ligand_assisted_stabilization while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "13SC_1",
+      "protein_key": "13SC_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_096_13SC_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_13XK_1",
+      "entity_id": "1",
+      "entry_id": "13XK",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted cofactor_ligand_assisted_stabilization while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "13XK_1",
+      "protein_key": "13XK_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_097_13XK_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_1A00_2",
+      "entity_id": "2",
+      "entry_id": "1A00",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted cofactor_ligand_assisted_stabilization while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "1A00_2",
+      "protein_key": "1A00_2",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_098_1A00_2"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_1A0B_1",
+      "entity_id": "1",
+      "entry_id": "1A0B",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted cofactor_ligand_assisted_stabilization while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "1A0B_1",
+      "protein_key": "1A0B_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_099_1A0B_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_1A0O_2",
+      "entity_id": "2",
+      "entry_id": "1A0O",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted cofactor_ligand_assisted_stabilization while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "1A0O_2",
+      "protein_key": "1A0O_2",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_100_1A0O_2"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_1A12_1",
+      "entity_id": "1",
+      "entry_id": "1A12",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted cofactor_ligand_assisted_stabilization while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "1A12_1",
+      "protein_key": "1A12_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_101_1A12_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_1A15_1",
+      "entity_id": "1",
+      "entry_id": "1A15",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "1A15_1",
+      "protein_key": "1A15_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_102_1A15_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_1A1M_1",
+      "entity_id": "1",
+      "entry_id": "1A1M",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "1A1M_1",
+      "protein_key": "1A1M_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_103_1A1M_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_1A1M_2",
+      "entity_id": "2",
+      "entry_id": "1A1M",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "1A1M_2",
+      "protein_key": "1A1M_2",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_104_1A1M_2"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_1A1T_2",
+      "entity_id": "2",
+      "entry_id": "1A1T",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted cofactor_ligand_assisted_stabilization while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "1A1T_2",
+      "protein_key": "1A1T_2",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_105_1A1T_2"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_1A1W_1",
+      "entity_id": "1",
+      "entry_id": "1A1W",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "1A1W_1",
+      "protein_key": "1A1W_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_106_1A1W_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_1A29_1",
+      "entity_id": "1",
+      "entry_id": "1A29",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted cofactor_ligand_assisted_stabilization while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "1A29_1",
+      "protein_key": "1A29_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_107_1A29_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_1A2D_1",
+      "entity_id": "1",
+      "entry_id": "1A2D",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "1A2D_1",
+      "protein_key": "1A2D_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_108_1A2D_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_1A2F_1",
+      "entity_id": "1",
+      "entry_id": "1A2F",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted cofactor_ligand_assisted_stabilization while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "1A2F_1",
+      "protein_key": "1A2F_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_109_1A2F_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_1A2J_1",
+      "entity_id": "1",
+      "entry_id": "1A2J",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "1A2J_1",
+      "protein_key": "1A2J_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_110_1A2J_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_1A2U_1",
+      "entity_id": "1",
+      "entry_id": "1A2U",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted cofactor_ligand_assisted_stabilization while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "1A2U_1",
+      "protein_key": "1A2U_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_111_1A2U_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_1A30_1",
+      "entity_id": "1",
+      "entry_id": "1A30",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "1A30_1",
+      "protein_key": "1A30_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_112_1A30_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_1A37_1",
+      "entity_id": "1",
+      "entry_id": "1A37",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "1A37_1",
+      "protein_key": "1A37_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_113_1A37_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_1A3E_2",
+      "entity_id": "2",
+      "entry_id": "1A3E",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "1A3E_2",
+      "protein_key": "1A3E_2",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_114_1A3E_2"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "globular_closure",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_1A3K_1",
+      "entity_id": "1",
+      "entry_id": "1A3K",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted globular_closure while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "1A3K_1",
+      "protein_key": "1A3K_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_115_1A3K_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_1A3P_1",
+      "entity_id": "1",
+      "entry_id": "1A3P",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "1A3P_1",
+      "protein_key": "1A3P_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_116_1A3P_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_1A3S_1",
+      "entity_id": "1",
+      "entry_id": "1A3S",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "1A3S_1",
+      "protein_key": "1A3S_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_117_1A3S_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_1A3W_1",
+      "entity_id": "1",
+      "entry_id": "1A3W",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted cofactor_ligand_assisted_stabilization while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "1A3W_1",
+      "protein_key": "1A3W_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_118_1A3W_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_1A4G_1",
+      "entity_id": "1",
+      "entry_id": "1A4G",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted cofactor_ligand_assisted_stabilization while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "1A4G_1",
+      "protein_key": "1A4G_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_119_1A4G_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_1A4H_1",
+      "entity_id": "1",
+      "entry_id": "1A4H",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "1A4H_1",
+      "protein_key": "1A4H_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_120_1A4H_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_1A55_1",
+      "entity_id": "1",
+      "entry_id": "1A55",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "1A55_1",
+      "protein_key": "1A55_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_121_1A55_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_1A5C_1",
+      "entity_id": "1",
+      "entry_id": "1A5C",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "1A5C_1",
+      "protein_key": "1A5C_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_122_1A5C_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_1A64_1",
+      "entity_id": "1",
+      "entry_id": "1A64",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "1A64_1",
+      "protein_key": "1A64_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_123_1A64_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_1A69_1",
+      "entity_id": "1",
+      "entry_id": "1A69",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "1A69_1",
+      "protein_key": "1A69_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_124_1A69_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_1A7C_1",
+      "entity_id": "1",
+      "entry_id": "1A7C",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "1A7C_1",
+      "protein_key": "1A7C_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_125_1A7C_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "fold_upon_binding_disorder",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_1A7S_1",
+      "entity_id": "1",
+      "entry_id": "1A7S",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted fold_upon_binding_disorder while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "1A7S_1",
+      "protein_key": "1A7S_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_126_1A7S_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_1A8E_1",
+      "entity_id": "1",
+      "entry_id": "1A8E",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted cofactor_ligand_assisted_stabilization while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "1A8E_1",
+      "protein_key": "1A8E_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_127_1A8E_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_1A8V_1",
+      "entity_id": "1",
+      "entry_id": "1A8V",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted cofactor_ligand_assisted_stabilization while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "1A8V_1",
+      "protein_key": "1A8V_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_128_1A8V_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_1A8Y_1",
+      "entity_id": "1",
+      "entry_id": "1A8Y",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "1A8Y_1",
+      "protein_key": "1A8Y_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_129_1A8Y_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_1A95_1",
+      "entity_id": "1",
+      "entry_id": "1A95",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted cofactor_ligand_assisted_stabilization while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "1A95_1",
+      "protein_key": "1A95_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_130_1A95_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_1AA2_1",
+      "entity_id": "1",
+      "entry_id": "1AA2",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "1AA2_1",
+      "protein_key": "1AA2_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_131_1AA2_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_1AAB_1",
+      "entity_id": "1",
+      "entry_id": "1AAB",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "1AAB_1",
+      "protein_key": "1AAB_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_132_1AAB_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_1AAP_1",
+      "entity_id": "1",
+      "entry_id": "1AAP",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "1AAP_1",
+      "protein_key": "1AAP_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_133_1AAP_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_1AAX_1",
+      "entity_id": "1",
+      "entry_id": "1AAX",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted cofactor_ligand_assisted_stabilization while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "1AAX_1",
+      "protein_key": "1AAX_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_134_1AAX_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_1ACJ_1",
+      "entity_id": "1",
+      "entry_id": "1ACJ",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted cofactor_ligand_assisted_stabilization while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "1ACJ_1",
+      "protein_key": "1ACJ_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_135_1ACJ_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_1ADE_1",
+      "entity_id": "1",
+      "entry_id": "1ADE",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted cofactor_ligand_assisted_stabilization while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "1ADE_1",
+      "protein_key": "1ADE_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_136_1ADE_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_1ADQ_1",
+      "entity_id": "1",
+      "entry_id": "1ADQ",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "1ADQ_1",
+      "protein_key": "1ADQ_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_137_1ADQ_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_1ADZ_1",
+      "entity_id": "1",
+      "entry_id": "1ADZ",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "1ADZ_1",
+      "protein_key": "1ADZ_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_138_1ADZ_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_1AEY_1",
+      "entity_id": "1",
+      "entry_id": "1AEY",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "1AEY_1",
+      "protein_key": "1AEY_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_139_1AEY_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_1AF3_1",
+      "entity_id": "1",
+      "entry_id": "1AF3",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "1AF3_1",
+      "protein_key": "1AF3_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_140_1AF3_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_1AFI_1",
+      "entity_id": "1",
+      "entry_id": "1AFI",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "1AFI_1",
+      "protein_key": "1AFI_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_141_1AFI_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_1AIN_1",
+      "entity_id": "1",
+      "entry_id": "1AIN",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "1AIN_1",
+      "protein_key": "1AIN_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_142_1AIN_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_1AJB_1",
+      "entity_id": "1",
+      "entry_id": "1AJB",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted cofactor_ligand_assisted_stabilization while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "1AJB_1",
+      "protein_key": "1AJB_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_143_1AJB_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_1AKK_1",
+      "entity_id": "1",
+      "entry_id": "1AKK",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted cofactor_ligand_assisted_stabilization while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "1AKK_1",
+      "protein_key": "1AKK_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_144_1AKK_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_1ALL_2",
+      "entity_id": "2",
+      "entry_id": "1ALL",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "1ALL_2",
+      "protein_key": "1ALL_2",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_145_1ALL_2"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_1ALW_1",
+      "entity_id": "1",
+      "entry_id": "1ALW",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted cofactor_ligand_assisted_stabilization while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "1ALW_1",
+      "protein_key": "1ALW_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_146_1ALW_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_1ALY_1",
+      "entity_id": "1",
+      "entry_id": "1ALY",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted cofactor_ligand_assisted_stabilization while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "1ALY_1",
+      "protein_key": "1ALY_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_147_1ALY_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_1AMO_1",
+      "entity_id": "1",
+      "entry_id": "1AMO",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "1AMO_1",
+      "protein_key": "1AMO_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_148_1AMO_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_1AN0_1",
+      "entity_id": "1",
+      "entry_id": "1AN0",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted cofactor_ligand_assisted_stabilization while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "1AN0_1",
+      "protein_key": "1AN0_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_149_1AN0_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_1ANG_1",
+      "entity_id": "1",
+      "entry_id": "1ANG",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "1ANG_1",
+      "protein_key": "1ANG_1",
+      "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+      "source_family": "V64",
+      "target_id": "V66_150_1ANG_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_10LG_1",
+      "entity_id": "1",
+      "entry_id": "10LG",
+      "expected_mechanism_class": "oligomerization_controlled_folding",
+      "postseal_truth_basis": [
+        "V64_E62_OLIGOMER_REGRESSION selected from V64 E62 paired replay.",
+        "Baseline predicted membrane_multidomain_folding_proteostasis while expected oligomerization_controlled_folding."
+      ],
+      "protein_id": "10LG_1",
+      "protein_key": "10LG_1",
+      "selection_category": "V64_E62_OLIGOMER_REGRESSION",
+      "source_family": "V64",
+      "target_id": "V66_151_10LG_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_1AC6_1",
+      "entity_id": "1",
+      "entry_id": "1AC6",
+      "expected_mechanism_class": "oligomerization_controlled_folding",
+      "postseal_truth_basis": [
+        "V64_E62_OLIGOMER_REGRESSION selected from V64 E62 paired replay.",
+        "Baseline predicted membrane_multidomain_folding_proteostasis while expected oligomerization_controlled_folding."
+      ],
+      "protein_id": "1AC6_1",
+      "protein_key": "1AC6_1",
+      "selection_category": "V64_E62_OLIGOMER_REGRESSION",
+      "source_family": "V64",
+      "target_id": "V66_152_1AC6_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "baseline_score_label": "contradicted",
+      "baseline_target_id": "V64_1AF7_1",
+      "entity_id": "1",
+      "entry_id": "1AF7",
+      "expected_mechanism_class": "oligomerization_controlled_folding",
+      "postseal_truth_basis": [
+        "V64_E62_OLIGOMER_REGRESSION selected from V64 E62 paired replay.",
+        "Baseline predicted membrane_multidomain_folding_proteostasis while expected oligomerization_controlled_folding."
+      ],
+      "protein_id": "1AF7_1",
+      "protein_key": "1AF7_1",
+      "selection_category": "V64_E62_OLIGOMER_REGRESSION",
+      "source_family": "V64",
+      "target_id": "V66_153_1AF7_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V64_101M_1",
+      "entity_id": "1",
+      "entry_id": "101M",
+      "expected_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "postseal_truth_basis": [
+        "E61_E62_STABLE_SENTINEL selected from V64 E62 paired replay.",
+        "Baseline predicted cofactor_ligand_assisted_stabilization while expected cofactor_ligand_assisted_stabilization."
+      ],
+      "protein_id": "101M_1",
+      "protein_key": "101M_1",
+      "selection_category": "E61_E62_STABLE_SENTINEL",
+      "source_family": "V64",
+      "target_id": "V66_154_101M_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "globular_closure",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V64_1ACZ_1",
+      "entity_id": "1",
+      "entry_id": "1ACZ",
+      "expected_mechanism_class": "globular_closure",
+      "postseal_truth_basis": [
+        "E61_E62_STABLE_SENTINEL selected from V64 E62 paired replay.",
+        "Baseline predicted globular_closure while expected globular_closure."
+      ],
+      "protein_id": "1ACZ_1",
+      "protein_key": "1ACZ_1",
+      "selection_category": "E61_E62_STABLE_SENTINEL",
+      "source_family": "V64",
+      "target_id": "V66_155_1ACZ_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V64_1AC5_1",
+      "entity_id": "1",
+      "entry_id": "1AC5",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "E61_E62_STABLE_SENTINEL selected from V64 E62 paired replay.",
+        "Baseline predicted membrane_multidomain_folding_proteostasis while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "1AC5_1",
+      "protein_key": "1AC5_1",
+      "selection_category": "E61_E62_STABLE_SENTINEL",
+      "source_family": "V64",
+      "target_id": "V66_156_1AC5_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V64_10EN_3",
+      "entity_id": "3",
+      "entry_id": "10EN",
+      "expected_mechanism_class": "oligomerization_controlled_folding",
+      "postseal_truth_basis": [
+        "E61_E62_STABLE_SENTINEL selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected oligomerization_controlled_folding."
+      ],
+      "protein_id": "10EN_3",
+      "protein_key": "10EN_3",
+      "selection_category": "E61_E62_STABLE_SENTINEL",
+      "source_family": "V64",
+      "target_id": "V66_157_10EN_3"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V64_10AJ_1",
+      "entity_id": "1",
+      "entry_id": "10AJ",
+      "expected_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "postseal_truth_basis": [
+        "E61_E62_STABLE_SENTINEL selected from V64 E62 paired replay.",
+        "Baseline predicted cofactor_ligand_assisted_stabilization while expected cofactor_ligand_assisted_stabilization."
+      ],
+      "protein_id": "10AJ_1",
+      "protein_key": "10AJ_1",
+      "selection_category": "E61_E62_STABLE_SENTINEL",
+      "source_family": "V64",
+      "target_id": "V66_158_10AJ_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V64_1ANF_1",
+      "entity_id": "1",
+      "entry_id": "1ANF",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "postseal_truth_basis": [
+        "E61_E62_STABLE_SENTINEL selected from V64 E62 paired replay.",
+        "Baseline predicted membrane_multidomain_folding_proteostasis while expected membrane_multidomain_folding_proteostasis."
+      ],
+      "protein_id": "1ANF_1",
+      "protein_key": "1ANF_1",
+      "selection_category": "E61_E62_STABLE_SENTINEL",
+      "source_family": "V64",
+      "target_id": "V66_159_1ANF_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V64_10EX_3",
+      "entity_id": "3",
+      "entry_id": "10EX",
+      "expected_mechanism_class": "oligomerization_controlled_folding",
+      "postseal_truth_basis": [
+        "E61_E62_STABLE_SENTINEL selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected oligomerization_controlled_folding."
+      ],
+      "protein_id": "10EX_3",
+      "protein_key": "10EX_3",
+      "selection_category": "E61_E62_STABLE_SENTINEL",
+      "source_family": "V64",
+      "target_id": "V66_160_10EX_3"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V64_10FZ_10",
+      "entity_id": "10",
+      "entry_id": "10FZ",
+      "expected_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "postseal_truth_basis": [
+        "E61_E62_STABLE_SENTINEL selected from V64 E62 paired replay.",
+        "Baseline predicted cofactor_ligand_assisted_stabilization while expected cofactor_ligand_assisted_stabilization."
+      ],
+      "protein_id": "10FZ_10",
+      "protein_key": "10FZ_10",
+      "selection_category": "E61_E62_STABLE_SENTINEL",
+      "source_family": "V64",
+      "target_id": "V66_161_10FZ_10"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V64_10EZ_3",
+      "entity_id": "3",
+      "entry_id": "10EZ",
+      "expected_mechanism_class": "oligomerization_controlled_folding",
+      "postseal_truth_basis": [
+        "E61_E62_STABLE_SENTINEL selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected oligomerization_controlled_folding."
+      ],
+      "protein_id": "10EZ_3",
+      "protein_key": "10EZ_3",
+      "selection_category": "E61_E62_STABLE_SENTINEL",
+      "source_family": "V64",
+      "target_id": "V66_162_10EZ_3"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V64_10FZ_11",
+      "entity_id": "11",
+      "entry_id": "10FZ",
+      "expected_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "postseal_truth_basis": [
+        "E61_E62_STABLE_SENTINEL selected from V64 E62 paired replay.",
+        "Baseline predicted cofactor_ligand_assisted_stabilization while expected cofactor_ligand_assisted_stabilization."
+      ],
+      "protein_id": "10FZ_11",
+      "protein_key": "10FZ_11",
+      "selection_category": "E61_E62_STABLE_SENTINEL",
+      "source_family": "V64",
+      "target_id": "V66_163_10FZ_11"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V64_10FD_4",
+      "entity_id": "4",
+      "entry_id": "10FD",
+      "expected_mechanism_class": "oligomerization_controlled_folding",
+      "postseal_truth_basis": [
+        "E61_E62_STABLE_SENTINEL selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected oligomerization_controlled_folding."
+      ],
+      "protein_id": "10FD_4",
+      "protein_key": "10FD_4",
+      "selection_category": "E61_E62_STABLE_SENTINEL",
+      "source_family": "V64",
+      "target_id": "V66_164_10FD_4"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V64_10FZ_17",
+      "entity_id": "17",
+      "entry_id": "10FZ",
+      "expected_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "postseal_truth_basis": [
+        "E61_E62_STABLE_SENTINEL selected from V64 E62 paired replay.",
+        "Baseline predicted cofactor_ligand_assisted_stabilization while expected cofactor_ligand_assisted_stabilization."
+      ],
+      "protein_id": "10FZ_17",
+      "protein_key": "10FZ_17",
+      "selection_category": "E61_E62_STABLE_SENTINEL",
+      "source_family": "V64",
+      "target_id": "V66_165_10FZ_17"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V64_10HZ_1",
+      "entity_id": "1",
+      "entry_id": "10HZ",
+      "expected_mechanism_class": "oligomerization_controlled_folding",
+      "postseal_truth_basis": [
+        "E61_E62_STABLE_SENTINEL selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected oligomerization_controlled_folding."
+      ],
+      "protein_id": "10HZ_1",
+      "protein_key": "10HZ_1",
+      "selection_category": "E61_E62_STABLE_SENTINEL",
+      "source_family": "V64",
+      "target_id": "V66_166_10HZ_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V64_10FZ_4",
+      "entity_id": "4",
+      "entry_id": "10FZ",
+      "expected_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "postseal_truth_basis": [
+        "E61_E62_STABLE_SENTINEL selected from V64 E62 paired replay.",
+        "Baseline predicted cofactor_ligand_assisted_stabilization while expected cofactor_ligand_assisted_stabilization."
+      ],
+      "protein_id": "10FZ_4",
+      "protein_key": "10FZ_4",
+      "selection_category": "E61_E62_STABLE_SENTINEL",
+      "source_family": "V64",
+      "target_id": "V66_167_10FZ_4"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V64_10JU_1",
+      "entity_id": "1",
+      "entry_id": "10JU",
+      "expected_mechanism_class": "oligomerization_controlled_folding",
+      "postseal_truth_basis": [
+        "E61_E62_STABLE_SENTINEL selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected oligomerization_controlled_folding."
+      ],
+      "protein_id": "10JU_1",
+      "protein_key": "10JU_1",
+      "selection_category": "E61_E62_STABLE_SENTINEL",
+      "source_family": "V64",
+      "target_id": "V66_168_10JU_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V64_10FZ_6",
+      "entity_id": "6",
+      "entry_id": "10FZ",
+      "expected_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "postseal_truth_basis": [
+        "E61_E62_STABLE_SENTINEL selected from V64 E62 paired replay.",
+        "Baseline predicted cofactor_ligand_assisted_stabilization while expected cofactor_ligand_assisted_stabilization."
+      ],
+      "protein_id": "10FZ_6",
+      "protein_key": "10FZ_6",
+      "selection_category": "E61_E62_STABLE_SENTINEL",
+      "source_family": "V64",
+      "target_id": "V66_169_10FZ_6"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V64_10NM_1",
+      "entity_id": "1",
+      "entry_id": "10NM",
+      "expected_mechanism_class": "oligomerization_controlled_folding",
+      "postseal_truth_basis": [
+        "E61_E62_STABLE_SENTINEL selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected oligomerization_controlled_folding."
+      ],
+      "protein_id": "10NM_1",
+      "protein_key": "10NM_1",
+      "selection_category": "E61_E62_STABLE_SENTINEL",
+      "source_family": "V64",
+      "target_id": "V66_170_10NM_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V64_10FZ_7",
+      "entity_id": "7",
+      "entry_id": "10FZ",
+      "expected_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "postseal_truth_basis": [
+        "E61_E62_STABLE_SENTINEL selected from V64 E62 paired replay.",
+        "Baseline predicted cofactor_ligand_assisted_stabilization while expected cofactor_ligand_assisted_stabilization."
+      ],
+      "protein_id": "10FZ_7",
+      "protein_key": "10FZ_7",
+      "selection_category": "E61_E62_STABLE_SENTINEL",
+      "source_family": "V64",
+      "target_id": "V66_171_10FZ_7"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V64_10PW_1",
+      "entity_id": "1",
+      "entry_id": "10PW",
+      "expected_mechanism_class": "oligomerization_controlled_folding",
+      "postseal_truth_basis": [
+        "E61_E62_STABLE_SENTINEL selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected oligomerization_controlled_folding."
+      ],
+      "protein_id": "10PW_1",
+      "protein_key": "10PW_1",
+      "selection_category": "E61_E62_STABLE_SENTINEL",
+      "source_family": "V64",
+      "target_id": "V66_172_10PW_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V64_10FZ_8",
+      "entity_id": "8",
+      "entry_id": "10FZ",
+      "expected_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "postseal_truth_basis": [
+        "E61_E62_STABLE_SENTINEL selected from V64 E62 paired replay.",
+        "Baseline predicted cofactor_ligand_assisted_stabilization while expected cofactor_ligand_assisted_stabilization."
+      ],
+      "protein_id": "10FZ_8",
+      "protein_key": "10FZ_8",
+      "selection_category": "E61_E62_STABLE_SENTINEL",
+      "source_family": "V64",
+      "target_id": "V66_173_10FZ_8"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V64_10SM_1",
+      "entity_id": "1",
+      "entry_id": "10SM",
+      "expected_mechanism_class": "oligomerization_controlled_folding",
+      "postseal_truth_basis": [
+        "E61_E62_STABLE_SENTINEL selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected oligomerization_controlled_folding."
+      ],
+      "protein_id": "10SM_1",
+      "protein_key": "10SM_1",
+      "selection_category": "E61_E62_STABLE_SENTINEL",
+      "source_family": "V64",
+      "target_id": "V66_174_10SM_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V64_10FZ_9",
+      "entity_id": "9",
+      "entry_id": "10FZ",
+      "expected_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "postseal_truth_basis": [
+        "E61_E62_STABLE_SENTINEL selected from V64 E62 paired replay.",
+        "Baseline predicted cofactor_ligand_assisted_stabilization while expected cofactor_ligand_assisted_stabilization."
+      ],
+      "protein_id": "10FZ_9",
+      "protein_key": "10FZ_9",
+      "selection_category": "E61_E62_STABLE_SENTINEL",
+      "source_family": "V64",
+      "target_id": "V66_175_10FZ_9"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V64_10VB_1",
+      "entity_id": "1",
+      "entry_id": "10VB",
+      "expected_mechanism_class": "oligomerization_controlled_folding",
+      "postseal_truth_basis": [
+        "E61_E62_STABLE_SENTINEL selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected oligomerization_controlled_folding."
+      ],
+      "protein_id": "10VB_1",
+      "protein_key": "10VB_1",
+      "selection_category": "E61_E62_STABLE_SENTINEL",
+      "source_family": "V64",
+      "target_id": "V66_176_10VB_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V64_10JX_1",
+      "entity_id": "1",
+      "entry_id": "10JX",
+      "expected_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "postseal_truth_basis": [
+        "E61_E62_STABLE_SENTINEL selected from V64 E62 paired replay.",
+        "Baseline predicted cofactor_ligand_assisted_stabilization while expected cofactor_ligand_assisted_stabilization."
+      ],
+      "protein_id": "10JX_1",
+      "protein_key": "10JX_1",
+      "selection_category": "E61_E62_STABLE_SENTINEL",
+      "source_family": "V64",
+      "target_id": "V66_177_10JX_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V64_10YB_4",
+      "entity_id": "4",
+      "entry_id": "10YB",
+      "expected_mechanism_class": "oligomerization_controlled_folding",
+      "postseal_truth_basis": [
+        "E61_E62_STABLE_SENTINEL selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected oligomerization_controlled_folding."
+      ],
+      "protein_id": "10YB_4",
+      "protein_key": "10YB_4",
+      "selection_category": "E61_E62_STABLE_SENTINEL",
+      "source_family": "V64",
+      "target_id": "V66_178_10YB_4"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V64_10MA_6",
+      "entity_id": "6",
+      "entry_id": "10MA",
+      "expected_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "postseal_truth_basis": [
+        "E61_E62_STABLE_SENTINEL selected from V64 E62 paired replay.",
+        "Baseline predicted cofactor_ligand_assisted_stabilization while expected cofactor_ligand_assisted_stabilization."
+      ],
+      "protein_id": "10MA_6",
+      "protein_key": "10MA_6",
+      "selection_category": "E61_E62_STABLE_SENTINEL",
+      "source_family": "V64",
+      "target_id": "V66_179_10MA_6"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V64_10YE_4",
+      "entity_id": "4",
+      "entry_id": "10YE",
+      "expected_mechanism_class": "oligomerization_controlled_folding",
+      "postseal_truth_basis": [
+        "E61_E62_STABLE_SENTINEL selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected oligomerization_controlled_folding."
+      ],
+      "protein_id": "10YE_4",
+      "protein_key": "10YE_4",
+      "selection_category": "E61_E62_STABLE_SENTINEL",
+      "source_family": "V64",
+      "target_id": "V66_180_10YE_4"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V64_10PA_1",
+      "entity_id": "1",
+      "entry_id": "10PA",
+      "expected_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "postseal_truth_basis": [
+        "E61_E62_STABLE_SENTINEL selected from V64 E62 paired replay.",
+        "Baseline predicted cofactor_ligand_assisted_stabilization while expected cofactor_ligand_assisted_stabilization."
+      ],
+      "protein_id": "10PA_1",
+      "protein_key": "10PA_1",
+      "selection_category": "E61_E62_STABLE_SENTINEL",
+      "source_family": "V64",
+      "target_id": "V66_181_10PA_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V64_10YH_8",
+      "entity_id": "8",
+      "entry_id": "10YH",
+      "expected_mechanism_class": "oligomerization_controlled_folding",
+      "postseal_truth_basis": [
+        "E61_E62_STABLE_SENTINEL selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected oligomerization_controlled_folding."
+      ],
+      "protein_id": "10YH_8",
+      "protein_key": "10YH_8",
+      "selection_category": "E61_E62_STABLE_SENTINEL",
+      "source_family": "V64",
+      "target_id": "V66_182_10YH_8"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V64_10PX_14",
+      "entity_id": "14",
+      "entry_id": "10PX",
+      "expected_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "postseal_truth_basis": [
+        "E61_E62_STABLE_SENTINEL selected from V64 E62 paired replay.",
+        "Baseline predicted cofactor_ligand_assisted_stabilization while expected cofactor_ligand_assisted_stabilization."
+      ],
+      "protein_id": "10PX_14",
+      "protein_key": "10PX_14",
+      "selection_category": "E61_E62_STABLE_SENTINEL",
+      "source_family": "V64",
+      "target_id": "V66_183_10PX_14"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V64_10YY_1",
+      "entity_id": "1",
+      "entry_id": "10YY",
+      "expected_mechanism_class": "oligomerization_controlled_folding",
+      "postseal_truth_basis": [
+        "E61_E62_STABLE_SENTINEL selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected oligomerization_controlled_folding."
+      ],
+      "protein_id": "10YY_1",
+      "protein_key": "10YY_1",
+      "selection_category": "E61_E62_STABLE_SENTINEL",
+      "source_family": "V64",
+      "target_id": "V66_184_10YY_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V64_10PX_15",
+      "entity_id": "15",
+      "entry_id": "10PX",
+      "expected_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "postseal_truth_basis": [
+        "E61_E62_STABLE_SENTINEL selected from V64 E62 paired replay.",
+        "Baseline predicted cofactor_ligand_assisted_stabilization while expected cofactor_ligand_assisted_stabilization."
+      ],
+      "protein_id": "10PX_15",
+      "protein_key": "10PX_15",
+      "selection_category": "E61_E62_STABLE_SENTINEL",
+      "source_family": "V64",
+      "target_id": "V66_185_10PX_15"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V64_11CF_1",
+      "entity_id": "1",
+      "entry_id": "11CF",
+      "expected_mechanism_class": "oligomerization_controlled_folding",
+      "postseal_truth_basis": [
+        "E61_E62_STABLE_SENTINEL selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected oligomerization_controlled_folding."
+      ],
+      "protein_id": "11CF_1",
+      "protein_key": "11CF_1",
+      "selection_category": "E61_E62_STABLE_SENTINEL",
+      "source_family": "V64",
+      "target_id": "V66_186_11CF_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V64_10PX_16",
+      "entity_id": "16",
+      "entry_id": "10PX",
+      "expected_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "postseal_truth_basis": [
+        "E61_E62_STABLE_SENTINEL selected from V64 E62 paired replay.",
+        "Baseline predicted cofactor_ligand_assisted_stabilization while expected cofactor_ligand_assisted_stabilization."
+      ],
+      "protein_id": "10PX_16",
+      "protein_key": "10PX_16",
+      "selection_category": "E61_E62_STABLE_SENTINEL",
+      "source_family": "V64",
+      "target_id": "V66_187_10PX_16"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V64_11FC_1",
+      "entity_id": "1",
+      "entry_id": "11FC",
+      "expected_mechanism_class": "oligomerization_controlled_folding",
+      "postseal_truth_basis": [
+        "E61_E62_STABLE_SENTINEL selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected oligomerization_controlled_folding."
+      ],
+      "protein_id": "11FC_1",
+      "protein_key": "11FC_1",
+      "selection_category": "E61_E62_STABLE_SENTINEL",
+      "source_family": "V64",
+      "target_id": "V66_188_11FC_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V64_10PX_17",
+      "entity_id": "17",
+      "entry_id": "10PX",
+      "expected_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "postseal_truth_basis": [
+        "E61_E62_STABLE_SENTINEL selected from V64 E62 paired replay.",
+        "Baseline predicted cofactor_ligand_assisted_stabilization while expected cofactor_ligand_assisted_stabilization."
+      ],
+      "protein_id": "10PX_17",
+      "protein_key": "10PX_17",
+      "selection_category": "E61_E62_STABLE_SENTINEL",
+      "source_family": "V64",
+      "target_id": "V66_189_10PX_17"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V64_11HY_1",
+      "entity_id": "1",
+      "entry_id": "11HY",
+      "expected_mechanism_class": "oligomerization_controlled_folding",
+      "postseal_truth_basis": [
+        "E61_E62_STABLE_SENTINEL selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected oligomerization_controlled_folding."
+      ],
+      "protein_id": "11HY_1",
+      "protein_key": "11HY_1",
+      "selection_category": "E61_E62_STABLE_SENTINEL",
+      "source_family": "V64",
+      "target_id": "V66_190_11HY_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V64_10PX_18",
+      "entity_id": "18",
+      "entry_id": "10PX",
+      "expected_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "postseal_truth_basis": [
+        "E61_E62_STABLE_SENTINEL selected from V64 E62 paired replay.",
+        "Baseline predicted cofactor_ligand_assisted_stabilization while expected cofactor_ligand_assisted_stabilization."
+      ],
+      "protein_id": "10PX_18",
+      "protein_key": "10PX_18",
+      "selection_category": "E61_E62_STABLE_SENTINEL",
+      "source_family": "V64",
+      "target_id": "V66_191_10PX_18"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V64_11NJ_1",
+      "entity_id": "1",
+      "entry_id": "11NJ",
+      "expected_mechanism_class": "oligomerization_controlled_folding",
+      "postseal_truth_basis": [
+        "E61_E62_STABLE_SENTINEL selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected oligomerization_controlled_folding."
+      ],
+      "protein_id": "11NJ_1",
+      "protein_key": "11NJ_1",
+      "selection_category": "E61_E62_STABLE_SENTINEL",
+      "source_family": "V64",
+      "target_id": "V66_192_11NJ_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V64_10PX_19",
+      "entity_id": "19",
+      "entry_id": "10PX",
+      "expected_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "postseal_truth_basis": [
+        "E61_E62_STABLE_SENTINEL selected from V64 E62 paired replay.",
+        "Baseline predicted cofactor_ligand_assisted_stabilization while expected cofactor_ligand_assisted_stabilization."
+      ],
+      "protein_id": "10PX_19",
+      "protein_key": "10PX_19",
+      "selection_category": "E61_E62_STABLE_SENTINEL",
+      "source_family": "V64",
+      "target_id": "V66_193_10PX_19"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V64_11TE_1",
+      "entity_id": "1",
+      "entry_id": "11TE",
+      "expected_mechanism_class": "oligomerization_controlled_folding",
+      "postseal_truth_basis": [
+        "E61_E62_STABLE_SENTINEL selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected oligomerization_controlled_folding."
+      ],
+      "protein_id": "11TE_1",
+      "protein_key": "11TE_1",
+      "selection_category": "E61_E62_STABLE_SENTINEL",
+      "source_family": "V64",
+      "target_id": "V66_194_11TE_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V64_10PX_20",
+      "entity_id": "20",
+      "entry_id": "10PX",
+      "expected_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "postseal_truth_basis": [
+        "E61_E62_STABLE_SENTINEL selected from V64 E62 paired replay.",
+        "Baseline predicted cofactor_ligand_assisted_stabilization while expected cofactor_ligand_assisted_stabilization."
+      ],
+      "protein_id": "10PX_20",
+      "protein_key": "10PX_20",
+      "selection_category": "E61_E62_STABLE_SENTINEL",
+      "source_family": "V64",
+      "target_id": "V66_195_10PX_20"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V64_11TS_1",
+      "entity_id": "1",
+      "entry_id": "11TS",
+      "expected_mechanism_class": "oligomerization_controlled_folding",
+      "postseal_truth_basis": [
+        "E61_E62_STABLE_SENTINEL selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected oligomerization_controlled_folding."
+      ],
+      "protein_id": "11TS_1",
+      "protein_key": "11TS_1",
+      "selection_category": "E61_E62_STABLE_SENTINEL",
+      "source_family": "V64",
+      "target_id": "V66_196_11TS_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V64_10PX_21",
+      "entity_id": "21",
+      "entry_id": "10PX",
+      "expected_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "postseal_truth_basis": [
+        "E61_E62_STABLE_SENTINEL selected from V64 E62 paired replay.",
+        "Baseline predicted cofactor_ligand_assisted_stabilization while expected cofactor_ligand_assisted_stabilization."
+      ],
+      "protein_id": "10PX_21",
+      "protein_key": "10PX_21",
+      "selection_category": "E61_E62_STABLE_SENTINEL",
+      "source_family": "V64",
+      "target_id": "V66_197_10PX_21"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V64_11WX_1",
+      "entity_id": "1",
+      "entry_id": "11WX",
+      "expected_mechanism_class": "oligomerization_controlled_folding",
+      "postseal_truth_basis": [
+        "E61_E62_STABLE_SENTINEL selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected oligomerization_controlled_folding."
+      ],
+      "protein_id": "11WX_1",
+      "protein_key": "11WX_1",
+      "selection_category": "E61_E62_STABLE_SENTINEL",
+      "source_family": "V64",
+      "target_id": "V66_198_11WX_1"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V64_10PX_22",
+      "entity_id": "22",
+      "entry_id": "10PX",
+      "expected_mechanism_class": "cofactor_ligand_assisted_stabilization",
+      "postseal_truth_basis": [
+        "E61_E62_STABLE_SENTINEL selected from V64 E62 paired replay.",
+        "Baseline predicted cofactor_ligand_assisted_stabilization while expected cofactor_ligand_assisted_stabilization."
+      ],
+      "protein_id": "10PX_22",
+      "protein_key": "10PX_22",
+      "selection_category": "E61_E62_STABLE_SENTINEL",
+      "source_family": "V64",
+      "target_id": "V66_199_10PX_22"
+    },
+    {
+      "baseline_acceptance_decision": "accepted",
+      "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+      "baseline_score_label": "supported",
+      "baseline_target_id": "V64_12AS_1",
+      "entity_id": "1",
+      "entry_id": "12AS",
+      "expected_mechanism_class": "oligomerization_controlled_folding",
+      "postseal_truth_basis": [
+        "E61_E62_STABLE_SENTINEL selected from V64 E62 paired replay.",
+        "Baseline predicted oligomerization_controlled_folding while expected oligomerization_controlled_folding."
+      ],
+      "protein_id": "12AS_1",
+      "protein_key": "12AS_1",
+      "selection_category": "E61_E62_STABLE_SENTINEL",
+      "source_family": "V64",
+      "target_id": "V66_200_12AS_1"
+    }
+  ],
+  "target_count_selected": 200,
+  "target_selection_manual": false
+}

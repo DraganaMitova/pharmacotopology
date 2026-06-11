@@ -1,0 +1,54 @@
+{
+  "acceptance_decision": "accepted",
+  "alphafold_used_before_seal": false,
+  "baseline_acceptance_decision": "accepted",
+  "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+  "baseline_engine_version": "E62",
+  "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+  "baseline_score_label": "contradicted",
+  "baseline_supported": false,
+  "baseline_target_id": "V64_1A0B_1",
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "1",
+  "entry_id": "1A0B",
+  "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "holdout_opened_after_prediction_hash": "b0bd9a2a4976616fd1ed092ac078cb4532f623982398069e224a0919ded19ffd",
+  "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+  "level1_regime_selection": true,
+  "level2_region_localization_proxy": true,
+  "level3_topology_or_contact_proxy": true,
+  "panel_group": null,
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "lineage_source_target": "V64_1A0B_1",
+      "source_class": "coordinate_derived",
+      "source_id": "V66_099_1A0B_1_V66_REPLAY_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "predicted_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "protein_id": "1A0B_1",
+  "score_label": "supported",
+  "sealed_prediction_hash": "b0bd9a2a4976616fd1ed092ac078cb4532f623982398069e224a0919ded19ffd",
+  "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+  "target_id": "V66_099_1A0B_1",
+  "validation_checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "membrane_multidomain_folding_proteostasis",
+      "observed": "membrane_multidomain_folding_proteostasis",
+      "passed": true
+    },
+    {
+      "check_id": "proteostasis_routing_supported",
+      "comparator": ">=",
+      "metric": "proteostasis_routing",
+      "observed": 0.665032,
+      "passed": true,
+      "threshold": 0.5
+    }
+  ]
+}

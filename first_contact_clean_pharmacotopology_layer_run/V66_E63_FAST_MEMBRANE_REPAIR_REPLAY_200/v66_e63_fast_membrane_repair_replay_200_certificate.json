@@ -1,0 +1,273 @@
+{
+  "abstain_count": 28,
+  "accepted_accuracy": 0.5930232558139535,
+  "accepted_count": 172,
+  "alphafold_used_before_seal": false,
+  "atomistic_md_executed": false,
+  "baseline_engine_version": "E62",
+  "baseline_metrics": {
+    "abstain_count": 7,
+    "accepted_accuracy": 0.46113989637305697,
+    "accepted_count": 193,
+    "coverage": 0.965,
+    "failed_accepted_count": 104,
+    "raw_accuracy": 0.48,
+    "supported_count": 96,
+    "targets_total": 200
+  },
+  "batch_id": "V66_E63_FAST_MEMBRANE_REPAIR_REPLAY_200",
+  "batch_mode": "adaptive_200_repair_replay",
+  "campaign_id": "V61_TO_V70_PROTEIN_ESPERANTO_SATURATION_CAMPAIGN",
+  "certificate_hash": "4d274a794e9134cdcaaa36a21aca292fdca0866d5cc8526916718eac6d9f9516",
+  "claim_allowed": false,
+  "claim_blocked_reason": "V66 is an adaptive 200-target repair replay; broad claims require new 200-target discovery shards and specialist panels.",
+  "composition_rule": {
+    "E61_E62_STABLE_SENTINEL": 47,
+    "V64_E62_OLIGOMER_REGRESSION": 3,
+    "V64_V63_MEMBRANE_MISREAD_FAILURE": 80,
+    "V65_MEMBRANE_TOPOLOGY_PANEL": 70
+  },
+  "contact_truth_used_before_seal": false,
+  "control_count": 15,
+  "controls": [
+    {
+      "control_id": "target_count_200",
+      "observed": 200,
+      "passed": true,
+      "reason": "V66 must be exactly 200 targets."
+    },
+    {
+      "control_id": "adaptive_composition_rule",
+      "observed": {
+        "E61_E62_STABLE_SENTINEL": 47,
+        "V64_E62_OLIGOMER_REGRESSION": 3,
+        "V64_V63_MEMBRANE_MISREAD_FAILURE": 80,
+        "V65_MEMBRANE_TOPOLOGY_PANEL": 70
+      },
+      "passed": true,
+      "reason": "V66 composition must match the requested 70/80/3/47 adaptive repair set."
+    },
+    {
+      "control_id": "target_selection_manual_false",
+      "observed": null,
+      "passed": true,
+      "reason": "V66 selection is deterministic from V64/V65 committed artifacts."
+    },
+    {
+      "control_id": "engine_version_declared_e63",
+      "observed": null,
+      "passed": true,
+      "reason": "V66 uses E63."
+    },
+    {
+      "control_id": "engine_modified_during_batch_false",
+      "observed": null,
+      "passed": true,
+      "reason": "No engine mutation occurs inside V66."
+    },
+    {
+      "control_id": "all_sealed_before_holdout",
+      "observed": null,
+      "passed": true,
+      "reason": "Every V66 packet is sealed before holdout."
+    },
+    {
+      "control_id": "holdouts_opened_after_seal",
+      "observed": null,
+      "passed": true,
+      "reason": "Every holdout references the sealed prediction hash."
+    },
+    {
+      "control_id": "false_membrane_repair_measured",
+      "observed": null,
+      "passed": true,
+      "reason": "V66 measures E63 false-membrane movement against E62."
+    },
+    {
+      "control_id": "true_tm_support_preserved",
+      "observed": null,
+      "passed": true,
+      "reason": "E63 preserves true transmembrane support in the V65 true-TM panel."
+    },
+    {
+      "control_id": "coordinate_leakage_control",
+      "observed": {
+        "allowed_initialization_source_ids": [],
+        "blocked_source_ids": [
+          "V66_BAD_COORDINATES"
+        ],
+        "coordinate_derived_source_count_before_prediction": 1,
+        "coordinate_truth_used_before_prediction": true,
+        "holdout_opened_before_seal": false,
+        "internal_runtime_source_count_for_prediction": 0,
+        "internal_runtime_used_as_biological_evidence": false,
+        "kind": "PROTEIN_ESPERANTO_EVIDENCE_BOUNDARY_GATE_v0",
+        "rows": [
+          {
+            "allowed_for_claim": false,
+            "allowed_for_holdout_after_seal": false,
+            "allowed_to_initialize_language_field": false,
+            "blocked_reason": "coordinate_derived_blocked_before_seal",
+            "coordinate_derived": true,
+            "internal_runtime": false,
+            "source_class": "coordinate_derived",
+            "source_id": "V66_BAD_COORDINATES",
+            "source_role": "prediction_input",
+            "spatial_proxy": false
+          }
+        ],
+        "spatial_proxy_untagged_or_misused_count": 0
+      },
+      "passed": true,
+      "reason": "Coordinate-derived source blocks prediction."
+    },
+    {
+      "control_id": "alphafold_leakage_control",
+      "observed": {
+        "allowed_initialization_source_ids": [],
+        "blocked_source_ids": [
+          "V66_BAD_ALPHAFOLD_MODEL"
+        ],
+        "coordinate_derived_source_count_before_prediction": 1,
+        "coordinate_truth_used_before_prediction": true,
+        "holdout_opened_before_seal": false,
+        "internal_runtime_source_count_for_prediction": 0,
+        "internal_runtime_used_as_biological_evidence": false,
+        "kind": "PROTEIN_ESPERANTO_EVIDENCE_BOUNDARY_GATE_v0",
+        "rows": [
+          {
+            "allowed_for_claim": false,
+            "allowed_for_holdout_after_seal": false,
+            "allowed_to_initialize_language_field": false,
+            "blocked_reason": "coordinate_derived_blocked_before_seal",
+            "coordinate_derived": true,
+            "internal_runtime": false,
+            "source_class": "coordinate_derived",
+            "source_id": "V66_BAD_ALPHAFOLD_MODEL",
+            "source_role": "prediction_input",
+            "spatial_proxy": false
+          }
+        ],
+        "spatial_proxy_untagged_or_misused_count": 0
+      },
+      "passed": true,
+      "reason": "AlphaFold-like model blocks prediction."
+    },
+    {
+      "control_id": "holdout_opened_before_seal_control",
+      "observed": {
+        "allowed_initialization_source_ids": [],
+        "blocked_source_ids": [
+          "V66_PRESEAL_HOLDOUT"
+        ],
+        "coordinate_derived_source_count_before_prediction": 0,
+        "coordinate_truth_used_before_prediction": false,
+        "holdout_opened_before_seal": true,
+        "internal_runtime_source_count_for_prediction": 0,
+        "internal_runtime_used_as_biological_evidence": false,
+        "kind": "PROTEIN_ESPERANTO_EVIDENCE_BOUNDARY_GATE_v0",
+        "rows": [
+          {
+            "allowed_for_claim": false,
+            "allowed_for_holdout_after_seal": true,
+            "allowed_to_initialize_language_field": false,
+            "blocked_reason": "holdout_opened_before_seal",
+            "coordinate_derived": true,
+            "internal_runtime": false,
+            "source_class": "coordinate_derived",
+            "source_id": "V66_PRESEAL_HOLDOUT",
+            "source_role": "holdout_validation",
+            "spatial_proxy": false
+          }
+        ],
+        "spatial_proxy_untagged_or_misused_count": 0
+      },
+      "passed": true,
+      "reason": "Holdout validation cannot initialize prediction before sealing."
+    },
+    {
+      "control_id": "internal_runtime_leakage_control",
+      "observed": {
+        "allowed_initialization_source_ids": [],
+        "blocked_source_ids": [
+          "V66_BAD_INTERNAL_RUNTIME"
+        ],
+        "coordinate_derived_source_count_before_prediction": 0,
+        "coordinate_truth_used_before_prediction": false,
+        "holdout_opened_before_seal": false,
+        "internal_runtime_source_count_for_prediction": 1,
+        "internal_runtime_used_as_biological_evidence": true,
+        "kind": "PROTEIN_ESPERANTO_EVIDENCE_BOUNDARY_GATE_v0",
+        "rows": [
+          {
+            "allowed_for_claim": false,
+            "allowed_for_holdout_after_seal": false,
+            "allowed_to_initialize_language_field": false,
+            "blocked_reason": "internal_runtime_never_biological_evidence",
+            "coordinate_derived": false,
+            "internal_runtime": true,
+            "source_class": "internal_runtime",
+            "source_id": "V66_BAD_INTERNAL_RUNTIME",
+            "source_role": "prediction_input",
+            "spatial_proxy": false
+          }
+        ],
+        "spatial_proxy_untagged_or_misused_count": 0
+      },
+      "passed": true,
+      "reason": "Internal runtime cannot become biological evidence."
+    },
+    {
+      "control_id": "random_sequence_control",
+      "observed": null,
+      "passed": true,
+      "reason": "Random sequence without evidence abstains."
+    },
+    {
+      "control_id": "failures_reported",
+      "observed": null,
+      "passed": true,
+      "reason": "Every target has an explicit score row."
+    }
+  ],
+  "controls_passed": true,
+  "coordinate_truth_used_before_seal": false,
+  "coverage": 0.86,
+  "engine_changes_allowed_by_operating_mode": true,
+  "engine_modified_during_batch": false,
+  "engine_source_last_commit": "549700dcf68b84b99441035b2bf855d5311f9923",
+  "engine_source_sha256": "6c3cd837e384ea5107a3b8f88809652d628fb2dad921cac1ac4a9acdd27bbc26",
+  "engine_version_used": "E63",
+  "failed_accepted_count": 70,
+  "failed_controls": [],
+  "failure_modes": {
+    "membrane_misread": 70
+  },
+  "false_membrane_repair": {
+    "e62_false_membrane_calls": 24,
+    "e62_peripheral_as_tm": 7,
+    "e63_false_membrane_calls": 0,
+    "e63_peripheral_as_tm": 0,
+    "oligomer_regressions_remaining_under_e63": 0,
+    "sentinel_regressions_under_e63": 0,
+    "true_tm_missed_under_e63": 0
+  },
+  "folding_problem_solved": false,
+  "kind": "V66_E63_FAST_MEMBRANE_REPAIR_REPLAY_200_CERTIFICATE_v0",
+  "net_changes": {
+    "abstain_delta": 21,
+    "accepted_accuracy_delta": 0.13188335944089657,
+    "coverage_delta": -0.10499999999999998,
+    "failed_accepted_delta": -34,
+    "supported_delta": 34
+  },
+  "next_required_batch": "V67_RCSB_NONREDUNDANT_200_DISCOVERY_E63",
+  "passed_control_count": 15,
+  "raw_accuracy": 0.65,
+  "repair_passed": true,
+  "status": "V66_E63_FAST_MEMBRANE_REPAIR_PASSED_REVIEW_REQUIRED",
+  "supported_count": 130,
+  "target_selection_manual": false,
+  "targets_total": 200,
+  "timestamp_utc": "2026-06-11T21:26:56.686342+00:00"
+}

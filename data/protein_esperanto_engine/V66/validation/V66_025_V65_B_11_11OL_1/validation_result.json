@@ -1,0 +1,46 @@
+{
+  "acceptance_decision": "abstain_recommended",
+  "alphafold_used_before_seal": false,
+  "baseline_acceptance_decision": "accepted",
+  "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+  "baseline_engine_version": "E62",
+  "baseline_predicted_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "baseline_score_label": "contradicted",
+  "baseline_supported": false,
+  "baseline_target_id": "V65_B_11_11OL_1",
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "1",
+  "entry_id": "11OL",
+  "expected_mechanism_class": "insufficient_evidence_clean_abstain",
+  "holdout_opened_after_prediction_hash": "f3e9d8d7039ba142116dc76a79c4e7ade8ca352652a1c7bb68542e5bc11be0bc",
+  "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+  "level1_regime_selection": true,
+  "level2_region_localization_proxy": false,
+  "level3_topology_or_contact_proxy": true,
+  "panel_group": "B_SOLUBLE_HYDROPHOBIC_NO_TOPOLOGY",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "lineage_source_target": "V65_B_11_11OL_1",
+      "source_class": "coordinate_derived",
+      "source_id": "V66_025_V65_B_11_11OL_1_V66_REPLAY_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "predicted_mechanism_class": "insufficient_evidence_clean_abstain",
+  "protein_id": "11OL_1",
+  "score_label": "supported",
+  "sealed_prediction_hash": "f3e9d8d7039ba142116dc76a79c4e7ade8ca352652a1c7bb68542e5bc11be0bc",
+  "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+  "target_id": "V66_025_V65_B_11_11OL_1",
+  "validation_checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "insufficient_evidence_clean_abstain",
+      "observed": "insufficient_evidence_clean_abstain",
+      "passed": true
+    }
+  ]
+}

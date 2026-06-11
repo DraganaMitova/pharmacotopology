@@ -1,0 +1,46 @@
+{
+  "acceptance_decision": "accepted",
+  "alphafold_used_before_seal": false,
+  "baseline_acceptance_decision": "accepted",
+  "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+  "baseline_engine_version": "E62",
+  "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+  "baseline_score_label": "supported",
+  "baseline_supported": true,
+  "baseline_target_id": "V64_10FZ_11",
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "11",
+  "entry_id": "10FZ",
+  "expected_mechanism_class": "cofactor_ligand_assisted_stabilization",
+  "holdout_opened_after_prediction_hash": "3e7936593edfe9a8300fdf7d6dffdbbffc1d1ff156fcb22e5f9de6fc4f41f207",
+  "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+  "level1_regime_selection": true,
+  "level2_region_localization_proxy": true,
+  "level3_topology_or_contact_proxy": true,
+  "panel_group": null,
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "lineage_source_target": "V64_10FZ_11",
+      "source_class": "coordinate_derived",
+      "source_id": "V66_163_10FZ_11_V66_REPLAY_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+  "protein_id": "10FZ_11",
+  "score_label": "supported",
+  "sealed_prediction_hash": "3e7936593edfe9a8300fdf7d6dffdbbffc1d1ff156fcb22e5f9de6fc4f41f207",
+  "selection_category": "E61_E62_STABLE_SENTINEL",
+  "target_id": "V66_163_10FZ_11",
+  "validation_checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "cofactor_ligand_assisted_stabilization",
+      "observed": "cofactor_ligand_assisted_stabilization",
+      "passed": true
+    }
+  ]
+}

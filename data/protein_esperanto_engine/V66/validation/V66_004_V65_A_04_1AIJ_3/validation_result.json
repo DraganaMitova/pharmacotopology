@@ -1,0 +1,54 @@
+{
+  "acceptance_decision": "accepted",
+  "alphafold_used_before_seal": false,
+  "baseline_acceptance_decision": "accepted",
+  "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+  "baseline_engine_version": "E62",
+  "baseline_predicted_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "baseline_score_label": "supported",
+  "baseline_supported": true,
+  "baseline_target_id": "V65_A_04_1AIJ_3",
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "3",
+  "entry_id": "1AIJ",
+  "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "holdout_opened_after_prediction_hash": "d18d47f523872c0eac1f03648983defdbffe5168b17efdcc3f131287f13d9fff",
+  "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+  "level1_regime_selection": true,
+  "level2_region_localization_proxy": true,
+  "level3_topology_or_contact_proxy": true,
+  "panel_group": "A_TRUE_TRANSMEMBRANE_TOPOLOGY",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "lineage_source_target": "V65_A_04_1AIJ_3",
+      "source_class": "coordinate_derived",
+      "source_id": "V66_004_V65_A_04_1AIJ_3_V66_REPLAY_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "predicted_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "protein_id": "1AIJ_3",
+  "score_label": "supported",
+  "sealed_prediction_hash": "d18d47f523872c0eac1f03648983defdbffe5168b17efdcc3f131287f13d9fff",
+  "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+  "target_id": "V66_004_V65_A_04_1AIJ_3",
+  "validation_checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "membrane_multidomain_folding_proteostasis",
+      "observed": "membrane_multidomain_folding_proteostasis",
+      "passed": true
+    },
+    {
+      "check_id": "proteostasis_routing_supported",
+      "comparator": ">=",
+      "metric": "proteostasis_routing",
+      "observed": 0.673333,
+      "passed": true,
+      "threshold": 0.5
+    }
+  ]
+}

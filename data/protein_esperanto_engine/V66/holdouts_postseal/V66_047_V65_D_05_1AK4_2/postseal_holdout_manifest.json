@@ -1,0 +1,32 @@
+{
+  "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+  "baseline_engine_version": "E62",
+  "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+  "baseline_score_label": "supported",
+  "baseline_target_id": "V65_D_05_1AK4_2",
+  "batch_id": "V66_E63_FAST_MEMBRANE_REPAIR_REPLAY_200",
+  "entity_id": "2",
+  "entry_id": "1AK4",
+  "expected_mechanism_class": "oligomerization_controlled_folding",
+  "expected_observables": [],
+  "holdout_opened_after_prediction_hash": "0a328689f87e36da2522dda7c370de0d357975d4802094d93410ee68775ad424",
+  "kind": "V66_E63_FAST_MEMBRANE_REPAIR_POSTSEAL_HOLDOUT_v0",
+  "panel_group": "D_OLIGOMERIC_SOLUBLE_INTERFACE_HYDROPHOBICITY",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "lineage_source_target": "V65_D_05_1AK4_2",
+      "source_class": "coordinate_derived",
+      "source_id": "V66_047_V65_D_05_1AK4_2_V66_REPLAY_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "V65 topology panel target replayed with E63.",
+    "Panel group: D_OLIGOMERIC_SOLUBLE_INTERFACE_HYDROPHOBICITY"
+  ],
+  "protein_id": "1AK4_2",
+  "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+  "target_id": "V66_047_V65_D_05_1AK4_2"
+}

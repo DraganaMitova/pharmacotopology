@@ -1,0 +1,73 @@
+{
+  "active_operator_count": 4,
+  "evidence_manifest": {
+    "allowed_initialization_source_ids": [
+      "V66_003_V65_A_03_1AIG_2_RAW_SEQUENCE",
+      "V66_003_V65_A_03_1AIG_2_V65_TOPOLOGY_PANEL_SOURCE"
+    ],
+    "blocked_source_ids": [],
+    "coordinate_derived_source_count_before_prediction": 0,
+    "coordinate_truth_used_before_prediction": false,
+    "holdout_opened_before_seal": false,
+    "internal_runtime_source_count_for_prediction": 0,
+    "internal_runtime_used_as_biological_evidence": false,
+    "kind": "PROTEIN_ESPERANTO_EVIDENCE_BOUNDARY_GATE_v0",
+    "rows": [
+      {
+        "allowed_for_claim": true,
+        "allowed_for_holdout_after_seal": false,
+        "allowed_to_initialize_language_field": true,
+        "blocked_reason": "",
+        "coordinate_derived": false,
+        "internal_runtime": false,
+        "source_class": "pure_non_coordinate",
+        "source_id": "V66_003_V65_A_03_1AIG_2_RAW_SEQUENCE",
+        "source_role": "prediction_input",
+        "spatial_proxy": false
+      },
+      {
+        "allowed_for_claim": true,
+        "allowed_for_holdout_after_seal": false,
+        "allowed_to_initialize_language_field": true,
+        "blocked_reason": "",
+        "coordinate_derived": false,
+        "internal_runtime": false,
+        "source_class": "pure_non_coordinate",
+        "source_id": "V66_003_V65_A_03_1AIG_2_V65_TOPOLOGY_PANEL_SOURCE",
+        "source_role": "prediction_input",
+        "spatial_proxy": false
+      }
+    ],
+    "spatial_proxy_untagged_or_misused_count": 0
+  },
+  "folding_problem_solved": false,
+  "kind": "V66_COMPACT_SEALED_PACKET_SUMMARY_v0",
+  "natural_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "operator_names": [
+    "membrane_pressure_operator",
+    "closure_operator",
+    "interface_operator",
+    "proteostasis_operator"
+  ],
+  "prediction_hash": "0aa57fcfdadb16548d9af222ee1847ceccb08cd97414bf1ad437a38bfd73b1a3",
+  "sealed_before_holdout": true,
+  "selected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "selection_reason": "strong_membrane_topology_context_prioritized_over_incidental_ligand_or_assembly_context",
+  "target_id": "V66_003_V65_A_03_1AIG_2",
+  "trajectory_final_state_summary": {
+    "contact_probability": 0.48575,
+    "disorder_order_balance": 0.2676,
+    "frustration": 0.0,
+    "interface_readiness": 0.635,
+    "operator_activation": 0.722807,
+    "proteostasis_routing": 0.685523,
+    "residue_exposure": 0.571629,
+    "segment_compaction": 0.704,
+    "state_basin_occupancy": {
+      "mature_membrane_routed": 0.685523,
+      "partial_nbd1_rescue": 0.704,
+      "qc_retained_misfolded": 0.0
+    },
+    "timepoint": 1000
+  }
+}

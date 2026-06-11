@@ -1,0 +1,84 @@
+{
+  "active_operator_count": 2,
+  "evidence_manifest": {
+    "allowed_initialization_source_ids": [
+      "V66_183_10PX_14_RAW_SEQUENCE",
+      "V66_183_10PX_14_PUBLIC_METADATA",
+      "V66_183_10PX_14_E63_METADATA_CONTEXT"
+    ],
+    "blocked_source_ids": [],
+    "coordinate_derived_source_count_before_prediction": 0,
+    "coordinate_truth_used_before_prediction": false,
+    "holdout_opened_before_seal": false,
+    "internal_runtime_source_count_for_prediction": 0,
+    "internal_runtime_used_as_biological_evidence": false,
+    "kind": "PROTEIN_ESPERANTO_EVIDENCE_BOUNDARY_GATE_v0",
+    "rows": [
+      {
+        "allowed_for_claim": true,
+        "allowed_for_holdout_after_seal": false,
+        "allowed_to_initialize_language_field": true,
+        "blocked_reason": "",
+        "coordinate_derived": false,
+        "internal_runtime": false,
+        "source_class": "pure_non_coordinate",
+        "source_id": "V66_183_10PX_14_RAW_SEQUENCE",
+        "source_role": "prediction_input",
+        "spatial_proxy": false
+      },
+      {
+        "allowed_for_claim": true,
+        "allowed_for_holdout_after_seal": false,
+        "allowed_to_initialize_language_field": true,
+        "blocked_reason": "",
+        "coordinate_derived": false,
+        "internal_runtime": false,
+        "source_class": "pure_non_coordinate",
+        "source_id": "V66_183_10PX_14_PUBLIC_METADATA",
+        "source_role": "prediction_input",
+        "spatial_proxy": false
+      },
+      {
+        "allowed_for_claim": true,
+        "allowed_for_holdout_after_seal": false,
+        "allowed_to_initialize_language_field": true,
+        "blocked_reason": "",
+        "coordinate_derived": false,
+        "internal_runtime": false,
+        "source_class": "pure_non_coordinate",
+        "source_id": "V66_183_10PX_14_E63_METADATA_CONTEXT",
+        "source_role": "prediction_input",
+        "spatial_proxy": false
+      }
+    ],
+    "spatial_proxy_untagged_or_misused_count": 0
+  },
+  "folding_problem_solved": false,
+  "kind": "V66_COMPACT_SEALED_PACKET_SUMMARY_v0",
+  "natural_mechanism_class": "cofactor_ligand_assisted_stabilization",
+  "operator_names": [
+    "interface_operator",
+    "closure_operator"
+  ],
+  "prediction_hash": "1daba2f7643403c1a6cce67bbbd22b83fb6c552d09fa22be762e87d70f7ddc88",
+  "sealed_before_holdout": true,
+  "selected_mechanism_class": "cofactor_ligand_assisted_stabilization",
+  "selection_reason": "explicit_ligand_cofactor_or_metal_context",
+  "target_id": "V66_183_10PX_14",
+  "trajectory_final_state_summary": {
+    "contact_probability": 0.499339,
+    "disorder_order_balance": 0.292989,
+    "frustration": 0.0,
+    "interface_readiness": 0.642229,
+    "operator_activation": 0.612384,
+    "proteostasis_routing": 0.0,
+    "residue_exposure": 0.599529,
+    "segment_compaction": 0.582107,
+    "state_basin_occupancy": {
+      "apo_weak_basin": 0.0,
+      "generic_compact_basin": 0.18175,
+      "ligand_stabilized_basin": 0.642229
+    },
+    "timepoint": 1000
+  }
+}

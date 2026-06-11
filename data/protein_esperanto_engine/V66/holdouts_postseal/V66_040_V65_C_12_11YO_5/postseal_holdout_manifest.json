@@ -1,0 +1,32 @@
+{
+  "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+  "baseline_engine_version": "E62",
+  "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+  "baseline_score_label": "supported",
+  "baseline_target_id": "V65_C_12_11YO_5",
+  "batch_id": "V66_E63_FAST_MEMBRANE_REPAIR_REPLAY_200",
+  "entity_id": "5",
+  "entry_id": "11YO",
+  "expected_mechanism_class": "cofactor_ligand_assisted_stabilization",
+  "expected_observables": [],
+  "holdout_opened_after_prediction_hash": "68a020aa570045c5dbb89d9a7411d4c4937681c90273fe2ce39c4ce4adcf6ede",
+  "kind": "V66_E63_FAST_MEMBRANE_REPAIR_POSTSEAL_HOLDOUT_v0",
+  "panel_group": "C_COFACTOR_BOUND_SOLUBLE_HYDROPHOBIC_POCKET",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "lineage_source_target": "V65_C_12_11YO_5",
+      "source_class": "coordinate_derived",
+      "source_id": "V66_040_V65_C_12_11YO_5_V66_REPLAY_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "V65 topology panel target replayed with E63.",
+    "Panel group: C_COFACTOR_BOUND_SOLUBLE_HYDROPHOBIC_POCKET"
+  ],
+  "protein_id": "11YO_5",
+  "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+  "target_id": "V66_040_V65_C_12_11YO_5"
+}

@@ -1,0 +1,46 @@
+{
+  "acceptance_decision": "accepted",
+  "alphafold_used_before_seal": false,
+  "baseline_acceptance_decision": "accepted",
+  "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+  "baseline_engine_version": "E62",
+  "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+  "baseline_score_label": "supported",
+  "baseline_supported": true,
+  "baseline_target_id": "V65_D_11_13HR_2",
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "2",
+  "entry_id": "13HR",
+  "expected_mechanism_class": "oligomerization_controlled_folding",
+  "holdout_opened_after_prediction_hash": "b83872910c6f216a20113576e443c8b110e1b9d34ced3023f88deee0d3218642",
+  "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+  "level1_regime_selection": true,
+  "level2_region_localization_proxy": true,
+  "level3_topology_or_contact_proxy": true,
+  "panel_group": "D_OLIGOMERIC_SOLUBLE_INTERFACE_HYDROPHOBICITY",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "lineage_source_target": "V65_D_11_13HR_2",
+      "source_class": "coordinate_derived",
+      "source_id": "V66_053_V65_D_11_13HR_2_V66_REPLAY_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "predicted_mechanism_class": "oligomerization_controlled_folding",
+  "protein_id": "13HR_2",
+  "score_label": "supported",
+  "sealed_prediction_hash": "b83872910c6f216a20113576e443c8b110e1b9d34ced3023f88deee0d3218642",
+  "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+  "target_id": "V66_053_V65_D_11_13HR_2",
+  "validation_checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "oligomerization_controlled_folding",
+      "observed": "oligomerization_controlled_folding",
+      "passed": true
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+  "baseline_engine_version": "E62",
+  "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+  "baseline_score_label": "contradicted",
+  "baseline_target_id": "V64_1AKK_1",
+  "batch_id": "V66_E63_FAST_MEMBRANE_REPAIR_REPLAY_200",
+  "entity_id": "1",
+  "entry_id": "1AKK",
+  "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "expected_observables": [
+    {
+      "check_id": "proteostasis_routing_supported",
+      "comparator": ">=",
+      "metric": "proteostasis_routing",
+      "threshold": 0.5
+    }
+  ],
+  "holdout_opened_after_prediction_hash": "e8eb94fdf636803f9bf1d749413ff16f60eaf3f09b7fe8fb3a576c8e7a4401bc",
+  "kind": "V66_E63_FAST_MEMBRANE_REPAIR_POSTSEAL_HOLDOUT_v0",
+  "panel_group": null,
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "lineage_source_target": "V64_1AKK_1",
+      "source_class": "coordinate_derived",
+      "source_id": "V66_144_1AKK_1_V66_REPLAY_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "V64_V63_MEMBRANE_MISREAD_FAILURE selected from V64 E62 paired replay.",
+    "Baseline predicted cofactor_ligand_assisted_stabilization while expected membrane_multidomain_folding_proteostasis."
+  ],
+  "protein_id": "1AKK_1",
+  "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+  "target_id": "V66_144_1AKK_1"
+}

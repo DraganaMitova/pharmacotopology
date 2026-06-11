@@ -1,0 +1,39 @@
+{
+  "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+  "baseline_engine_version": "E62",
+  "baseline_predicted_mechanism_class": "globular_closure",
+  "baseline_score_label": "supported",
+  "baseline_target_id": "V64_1ACZ_1",
+  "batch_id": "V66_E63_FAST_MEMBRANE_REPAIR_REPLAY_200",
+  "entity_id": "1",
+  "entry_id": "1ACZ",
+  "expected_mechanism_class": "globular_closure",
+  "expected_observables": [
+    {
+      "check_id": "compact_or_contact_supported",
+      "comparator": ">=",
+      "metric": "contact_probability",
+      "threshold": 0.35
+    }
+  ],
+  "holdout_opened_after_prediction_hash": "358fe57a5d1509ce9d2a3e8492f8599b66da6719baaffeb4ee1228246d189557",
+  "kind": "V66_E63_FAST_MEMBRANE_REPAIR_POSTSEAL_HOLDOUT_v0",
+  "panel_group": null,
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "lineage_source_target": "V64_1ACZ_1",
+      "source_class": "coordinate_derived",
+      "source_id": "V66_155_1ACZ_1_V66_REPLAY_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "E61_E62_STABLE_SENTINEL selected from V64 E62 paired replay.",
+    "Baseline predicted globular_closure while expected globular_closure."
+  ],
+  "protein_id": "1ACZ_1",
+  "selection_category": "E61_E62_STABLE_SENTINEL",
+  "target_id": "V66_155_1ACZ_1"
+}

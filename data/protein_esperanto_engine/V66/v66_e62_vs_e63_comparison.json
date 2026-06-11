@@ -1,0 +1,86 @@
+{
+  "baseline": {
+    "abstain_count": 7,
+    "accepted_accuracy": 0.46113989637305697,
+    "accepted_count": 193,
+    "coverage": 0.965,
+    "failed_accepted_count": 104,
+    "raw_accuracy": 0.48,
+    "supported_count": 96,
+    "targets_total": 200
+  },
+  "baseline_engine_version": "E62",
+  "batch_id": "V66_E63_FAST_MEMBRANE_REPAIR_REPLAY_200",
+  "claim_allowed": false,
+  "claim_boundary": "V66 is an adaptive 200-target repair replay, not a broad saturation claim.",
+  "e63": {
+    "abstain_count": 28,
+    "accepted_accuracy": 0.5930232558139535,
+    "accepted_count": 172,
+    "coverage": 0.86,
+    "failed_accepted_count": 70,
+    "raw_accuracy": 0.65,
+    "supported_count": 130,
+    "targets_total": 200
+  },
+  "e63_failure_modes": {
+    "membrane_misread": 70
+  },
+  "engine_version_used": "E63",
+  "failure_mode_distribution_change": {
+    "membrane_misread": {
+      "delta": -10,
+      "e62": 80,
+      "e63": 70
+    },
+    "peripheral_misread_as_transmembrane": {
+      "delta": -7,
+      "e62": 7,
+      "e63": 0
+    },
+    "soluble_hydrophobic_false_membrane": {
+      "delta": -17,
+      "e62": 17,
+      "e63": 0
+    }
+  },
+  "false_membrane_repair": {
+    "e62_false_membrane_calls": 24,
+    "e62_peripheral_as_tm": 7,
+    "e63_false_membrane_calls": 0,
+    "e63_peripheral_as_tm": 0,
+    "oligomer_regressions_remaining_under_e63": 0,
+    "sentinel_regressions_under_e63": 0,
+    "true_tm_missed_under_e63": 0
+  },
+  "kind": "V66_E62_VS_E63_FAST_MEMBRANE_REPAIR_COMPARISON_v0",
+  "net_changes": {
+    "abstain_delta": 21,
+    "accepted_accuracy_delta": 0.13188335944089657,
+    "coverage_delta": -0.10499999999999998,
+    "failed_accepted_delta": -34,
+    "supported_delta": 34
+  },
+  "repair_passed": true,
+  "score_labels_by_category": {
+    "E61_E62_STABLE_SENTINEL": {
+      "supported": 47
+    },
+    "V64_E62_OLIGOMER_REGRESSION": {
+      "supported": 3
+    },
+    "V64_V63_MEMBRANE_MISREAD_FAILURE": {
+      "contradicted": 70,
+      "supported": 10
+    },
+    "V65_MEMBRANE_TOPOLOGY_PANEL": {
+      "supported": 70
+    }
+  },
+  "selection_category_counts": {
+    "E61_E62_STABLE_SENTINEL": 47,
+    "V64_E62_OLIGOMER_REGRESSION": 3,
+    "V64_V63_MEMBRANE_MISREAD_FAILURE": 80,
+    "V65_MEMBRANE_TOPOLOGY_PANEL": 70
+  }
+}

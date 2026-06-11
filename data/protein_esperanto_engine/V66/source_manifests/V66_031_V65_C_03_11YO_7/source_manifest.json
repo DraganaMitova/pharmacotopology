@@ -1,0 +1,49 @@
+{
+  "alphafold_used_before_seal": false,
+  "baseline_target_id": "V65_C_03_11YO_7",
+  "batch_id": "V66_E63_FAST_MEMBRANE_REPAIR_REPLAY_200",
+  "blocked_prediction_inputs": [
+    "PDB/mmCIF coordinates before sealing",
+    "native contacts, distance maps, residue-residue proximity, and coordinate-derived topology",
+    "ligand coordinates, metal coordination geometry, and bound-state contact geometry",
+    "AlphaFold, ESMFold, RoseTTAFold, or other structure models before sealing",
+    "post-seal validation annotations before prediction hash",
+    "E62 baseline score outcomes as prediction evidence",
+    "internal runtime artifacts as biological evidence"
+  ],
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "7",
+  "entry_id": "11YO",
+  "folding_problem_solved": false,
+  "kind": "V66_E63_FAST_REPAIR_SOURCE_MANIFEST_v0",
+  "panel_group": "C_COFACTOR_BOUND_SOLUBLE_HYDROPHOBIC_POCKET",
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence for the RCSB polymer entity.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V66_031_V65_C_03_11YO_7_RAW_SEQUENCE",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/11YO/7",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "V65 soluble cofactor decoy. cofactor_context ligand_context cofactor-buried hydrophobic pocket; biological cofactors/components: CLA HEC. No membrane topology evidence is provided for prediction.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V66_031_V65_C_03_11YO_7_V65_TOPOLOGY_PANEL_SOURCE",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/11YO",
+      "spatial_proxy": false
+    }
+  ],
+  "protein_id": "11YO_7",
+  "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+  "sequence": "MARRTWLGDILRPLNSEYGKVAPGWGTTPLMAVFMGLFLVFLLIILEIYNSTLILDGVNVSWKALG",
+  "sequence_length": 66,
+  "source_lineage_batch": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+  "target_id": "V66_031_V65_C_03_11YO_7"
+}

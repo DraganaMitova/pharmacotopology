@@ -1,0 +1,54 @@
+{
+  "acceptance_decision": "accepted",
+  "alphafold_used_before_seal": false,
+  "baseline_acceptance_decision": "accepted",
+  "baseline_batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+  "baseline_engine_version": "E62",
+  "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+  "baseline_score_label": "contradicted",
+  "baseline_supported": false,
+  "baseline_target_id": "V64_1AAB_1",
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "1",
+  "entry_id": "1AAB",
+  "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "holdout_opened_after_prediction_hash": "38054c450ae27d7d08e65f0c46cbac315c78c5402c197e0121d0a3ff34fa2042",
+  "kind": "V66_E63_FAST_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+  "level1_regime_selection": false,
+  "level2_region_localization_proxy": true,
+  "level3_topology_or_contact_proxy": false,
+  "panel_group": null,
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "lineage_source_target": "V64_1AAB_1",
+      "source_class": "coordinate_derived",
+      "source_id": "V66_132_1AAB_1_V66_REPLAY_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+  "protein_id": "1AAB_1",
+  "score_label": "contradicted",
+  "sealed_prediction_hash": "38054c450ae27d7d08e65f0c46cbac315c78c5402c197e0121d0a3ff34fa2042",
+  "selection_category": "V64_V63_MEMBRANE_MISREAD_FAILURE",
+  "target_id": "V66_132_1AAB_1",
+  "validation_checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "membrane_multidomain_folding_proteostasis",
+      "observed": "cofactor_ligand_assisted_stabilization",
+      "passed": false
+    },
+    {
+      "check_id": "proteostasis_routing_supported",
+      "comparator": ">=",
+      "metric": "proteostasis_routing",
+      "observed": 0.0,
+      "passed": false,
+      "threshold": 0.5
+    }
+  ]
+}

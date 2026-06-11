@@ -1,0 +1,32 @@
+{
+  "baseline_batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+  "baseline_engine_version": "E62",
+  "baseline_predicted_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "baseline_score_label": "contradicted",
+  "baseline_target_id": "V65_B_02_1AXD_1",
+  "batch_id": "V66_E63_FAST_MEMBRANE_REPAIR_REPLAY_200",
+  "entity_id": "1",
+  "entry_id": "1AXD",
+  "expected_mechanism_class": "insufficient_evidence_clean_abstain",
+  "expected_observables": [],
+  "holdout_opened_after_prediction_hash": "c44abffa64b817a85d9d99d5cb3d2ae2b1183828eca8eeb186ecbdb3bf78bc0f",
+  "kind": "V66_E63_FAST_MEMBRANE_REPAIR_POSTSEAL_HOLDOUT_v0",
+  "panel_group": "B_SOLUBLE_HYDROPHOBIC_NO_TOPOLOGY",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "lineage_source_target": "V65_B_02_1AXD_1",
+      "source_class": "coordinate_derived",
+      "source_id": "V66_016_V65_B_02_1AXD_1_V66_REPLAY_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "V65 topology panel target replayed with E63.",
+    "Panel group: B_SOLUBLE_HYDROPHOBIC_NO_TOPOLOGY"
+  ],
+  "protein_id": "1AXD_1",
+  "selection_category": "V65_MEMBRANE_TOPOLOGY_PANEL",
+  "target_id": "V66_016_V65_B_02_1AXD_1"
+}

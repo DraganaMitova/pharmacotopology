@@ -107,6 +107,33 @@
         "soluble_hydrophobic_false_membrane": 14
       },
       "raw_accuracy": 0.7
+    },
+    {
+      "abstention_rate": 0.14,
+      "accepted_accuracy": 0.5930232558139535,
+      "baseline_engine_version": "E62",
+      "batch_id": "V66_E63_FAST_MEMBRANE_REPAIR_REPLAY_200",
+      "batch_mode": "adaptive_200_repair_replay",
+      "claim_allowed": false,
+      "claim_blocked_reason": "V66 is an adaptive 200-target repair replay; broad claims require new 200-target discovery shards and specialist panels.",
+      "control_pass_rate": 1.0,
+      "coverage": 0.86,
+      "engine_version_used": "E63",
+      "failure_count": 98,
+      "failure_modes": {
+        "membrane_misread": 70
+      },
+      "false_membrane_repair": {
+        "e62_false_membrane_calls": 24,
+        "e62_peripheral_as_tm": 7,
+        "e63_false_membrane_calls": 0,
+        "e63_peripheral_as_tm": 0,
+        "oligomer_regressions_remaining_under_e63": 0,
+        "sentinel_regressions_under_e63": 0,
+        "true_tm_missed_under_e63": 0
+      },
+      "raw_accuracy": 0.65,
+      "repair_passed": true
     }
   ]
 }

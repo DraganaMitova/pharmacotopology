@@ -131,7 +131,6 @@ NEGATIVE_MEMBRANE_TOPOLOGY_TOKENS = [
     "no bilayer-spanning",
     "no bilayer spanning",
     "hydrophobicity-alone",
-    "hydrophobicity alone",
     "soluble_hydrophobic_core_context",
     "cofactor-buried hydrophobic pocket",
     "oligomeric interface hydrophobicity",
