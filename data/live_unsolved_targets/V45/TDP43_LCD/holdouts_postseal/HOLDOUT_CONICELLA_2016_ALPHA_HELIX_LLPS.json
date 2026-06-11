@@ -1,0 +1,22 @@
+{
+  "coordinate_derived": false,
+  "evidence_statement": "ALS mutations disrupt phase separation mediated by an alpha-helical segment in the low-complexity CTD.",
+  "internal_runtime_source": false,
+  "opened_after_prediction_hash": "8fc4b23a760fdd71512bc7988a5fc3eb13fa7e80a6c82c425b068906694e2c19",
+  "opened_timestamp": "2026-06-11T17:04:49.223395+00:00",
+  "source_class": "alpha_helical_LLPS_segment_support",
+  "source_id": "HOLDOUT_CONICELLA_2016_ALPHA_HELIX_LLPS",
+  "source_url_or_citation": "PubMed 27545621, Conicella et al. Structure 2016",
+  "supports_context_switches": [
+    "ALS-linked CTD mutations"
+  ],
+  "supports_operator_buckets": [
+    "alpha_helical_llps_segment_operator",
+    "disease_mutation_modulation_operator"
+  ],
+  "supports_perturbation_ids": [
+    "V45_PERT_003",
+    "V45_PERT_005"
+  ],
+  "used_before_prediction": false
+}

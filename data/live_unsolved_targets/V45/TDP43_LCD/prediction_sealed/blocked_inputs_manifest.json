@@ -1,0 +1,33 @@
+{
+  "blocked_prediction_inputs": [
+    {
+      "blocked_input": "PDB coordinates or mmCIF coordinates before sealing",
+      "reason": "coordinates are validation/structure truth and not prediction evidence"
+    },
+    {
+      "blocked_input": "coordinate-derived contacts or native contact maps",
+      "reason": "would leak structure truth into the live solution packet"
+    },
+    {
+      "blocked_input": "AlphaFold/ESMFold/RoseTTAFold coordinates before sealing",
+      "reason": "predicted coordinate models are blocked as evidence"
+    },
+    {
+      "blocked_input": "first_contact_clean_pharmacotopology_layer_run files as biological evidence",
+      "reason": "runtime artifacts are audit outputs only"
+    },
+    {
+      "blocked_input": "validation holdouts before prediction sealing",
+      "reason": "holdouts open only after sealed prediction hash exists"
+    },
+    {
+      "blocked_input": "answer key/class labels during prediction",
+      "reason": "class assignment must use source-separated allowed evidence"
+    },
+    {
+      "blocked_input": "FUS-LC answer transfer",
+      "reason": "TDP-43 LCD must be solved as a distinct sparse-aromatic/prion-like grammar"
+    }
+  ],
+  "kind": "V45_TDP43_LCD_BLOCKED_INPUTS_MANIFEST_v0"
+}

@@ -1,0 +1,24 @@
+{
+  "coordinate_derived": false,
+  "evidence_statement": "TDP-43 CTD LLPS is mediated by only a few aromatic residues.",
+  "internal_runtime_source": false,
+  "opened_after_prediction_hash": "8fc4b23a760fdd71512bc7988a5fc3eb13fa7e80a6c82c425b068906694e2c19",
+  "opened_timestamp": "2026-06-11T17:04:49.223395+00:00",
+  "source_class": "sparse_aromatic_LLPS_support",
+  "source_id": "HOLDOUT_LI_2018_AROMATIC_LLPS",
+  "source_url_or_citation": "PubMed 29511089, Li et al. J Biol Chem 2018",
+  "supports_context_switches": [
+    "higher protein concentration",
+    "temperature, salt, crowding, or hexanediol-like perturbation"
+  ],
+  "supports_operator_buckets": [
+    "sparse_aromatic_sticker_operator",
+    "LLPS_self_association_operator"
+  ],
+  "supports_perturbation_ids": [
+    "V45_PERT_001",
+    "V45_PERT_002",
+    "V45_PERT_010"
+  ],
+  "used_before_prediction": false
+}

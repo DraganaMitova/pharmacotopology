@@ -1,0 +1,157 @@
+{
+  "holdout_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "TDP-43 CTD/LCD is annotated as disordered and low-complexity rather than a compact native domain.",
+      "internal_runtime_source": false,
+      "opened_after_prediction_hash": "8fc4b23a760fdd71512bc7988a5fc3eb13fa7e80a6c82c425b068906694e2c19",
+      "opened_timestamp": "2026-06-11T17:04:49.223395+00:00",
+      "source_class": "disorder_low_complexity_support",
+      "source_id": "HOLDOUT_DISPROT_DP01108_DISORDER_LC",
+      "source_url_or_citation": "DisProt DP01108/Q13148 disorder annotations and UniProt non-coordinate features",
+      "supports_context_switches": [],
+      "supports_operator_buckets": [
+        "low_complexity_disorder_operator",
+        "glycine_rich_prion_like_lcd_operator"
+      ],
+      "supports_perturbation_ids": [
+        "V45_PERT_004",
+        "V45_PERT_009"
+      ],
+      "used_before_prediction": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "TDP-43 CTD LLPS is mediated by only a few aromatic residues.",
+      "internal_runtime_source": false,
+      "opened_after_prediction_hash": "8fc4b23a760fdd71512bc7988a5fc3eb13fa7e80a6c82c425b068906694e2c19",
+      "opened_timestamp": "2026-06-11T17:04:49.223395+00:00",
+      "source_class": "sparse_aromatic_LLPS_support",
+      "source_id": "HOLDOUT_LI_2018_AROMATIC_LLPS",
+      "source_url_or_citation": "PubMed 29511089, Li et al. J Biol Chem 2018",
+      "supports_context_switches": [
+        "higher protein concentration",
+        "temperature, salt, crowding, or hexanediol-like perturbation"
+      ],
+      "supports_operator_buckets": [
+        "sparse_aromatic_sticker_operator",
+        "LLPS_self_association_operator"
+      ],
+      "supports_perturbation_ids": [
+        "V45_PERT_001",
+        "V45_PERT_002",
+        "V45_PERT_010"
+      ],
+      "used_before_prediction": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "ALS mutations disrupt phase separation mediated by an alpha-helical segment in the low-complexity CTD.",
+      "internal_runtime_source": false,
+      "opened_after_prediction_hash": "8fc4b23a760fdd71512bc7988a5fc3eb13fa7e80a6c82c425b068906694e2c19",
+      "opened_timestamp": "2026-06-11T17:04:49.223395+00:00",
+      "source_class": "alpha_helical_LLPS_segment_support",
+      "source_id": "HOLDOUT_CONICELLA_2016_ALPHA_HELIX_LLPS",
+      "source_url_or_citation": "PubMed 27545621, Conicella et al. Structure 2016",
+      "supports_context_switches": [
+        "ALS-linked CTD mutations"
+      ],
+      "supports_operator_buckets": [
+        "alpha_helical_llps_segment_operator",
+        "disease_mutation_modulation_operator"
+      ],
+      "supports_perturbation_ids": [
+        "V45_PERT_003",
+        "V45_PERT_005"
+      ],
+      "used_before_prediction": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "The prion-like domain self-assembles, binds nucleic acid, and can undergo disorder-to-order transitions.",
+      "internal_runtime_source": false,
+      "opened_after_prediction_hash": "8fc4b23a760fdd71512bc7988a5fc3eb13fa7e80a6c82c425b068906694e2c19",
+      "opened_timestamp": "2026-06-11T17:04:49.223395+00:00",
+      "source_class": "prion_like_amyloid_nucleic_acid_support",
+      "source_id": "HOLDOUT_LIM_2016_PRION_LIKE_SELF_ASSEMBLY",
+      "source_url_or_citation": "PubMed 26735904, Lim et al. PLoS Biol 2016",
+      "supports_context_switches": [
+        "RNA/DNA or multidomain TDP-43 context present"
+      ],
+      "supports_operator_buckets": [
+        "amyloid_or_solid_state_maturation_operator",
+        "nucleic_acid_context_switch_operator",
+        "glycine_rich_prion_like_lcd_operator"
+      ],
+      "supports_perturbation_ids": [
+        "V45_PERT_007",
+        "V45_PERT_008"
+      ],
+      "used_before_prediction": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Physical-force evidence supports CTD self-association and phase-separation modulation.",
+      "internal_runtime_source": false,
+      "opened_after_prediction_hash": "8fc4b23a760fdd71512bc7988a5fc3eb13fa7e80a6c82c425b068906694e2c19",
+      "opened_timestamp": "2026-06-11T17:04:49.223395+00:00",
+      "source_class": "physical_forces_self_association_support",
+      "source_id": "HOLDOUT_LI_2018_PHYSICAL_FORCES_SELF_ASSOCIATION",
+      "source_url_or_citation": "PubMed 28988034, Li et al. BBA Proteins Proteom 2018",
+      "supports_context_switches": [
+        "temperature, salt, crowding, or hexanediol-like perturbation"
+      ],
+      "supports_operator_buckets": [
+        "LLPS_self_association_operator",
+        "methionine_hydrophobic_cluster_operator"
+      ],
+      "supports_perturbation_ids": [
+        "V45_PERT_011"
+      ],
+      "used_before_prediction": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "PTM/pathology context supports phosphorylation as a material-state and aggregation readout shift, not as a native-fold solution.",
+      "internal_runtime_source": false,
+      "opened_after_prediction_hash": "8fc4b23a760fdd71512bc7988a5fc3eb13fa7e80a6c82c425b068906694e2c19",
+      "opened_timestamp": "2026-06-11T17:04:49.223395+00:00",
+      "source_class": "phosphorylation_pathology_support",
+      "source_id": "HOLDOUT_TDP43_PATHOLOGY_PHOSPHORYLATION_CONTEXT",
+      "source_url_or_citation": "UniProt Q13148 PTM/pathology context plus TDP-43 proteinopathy literature",
+      "supports_context_switches": [
+        "CTD phosphorylation or phosphomimetic stress-pathology state"
+      ],
+      "supports_operator_buckets": [
+        "phosphorylation_pathology_shift_operator"
+      ],
+      "supports_perturbation_ids": [
+        "V45_PERT_006"
+      ],
+      "used_before_prediction": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "RNA and multidomain context modulate TDP-43 condensate interactions and viscoelasticity.",
+      "internal_runtime_source": false,
+      "opened_after_prediction_hash": "8fc4b23a760fdd71512bc7988a5fc3eb13fa7e80a6c82c425b068906694e2c19",
+      "opened_timestamp": "2026-06-11T17:04:49.223395+00:00",
+      "source_class": "RNA_multidomain_context_support",
+      "source_id": "HOLDOUT_MATSUSHITA_2025_MULTIDOMAIN_RNA_CONTEXT",
+      "source_url_or_citation": "https://arxiv.org/abs/2504.19790",
+      "supports_context_switches": [
+        "RNA/DNA or multidomain TDP-43 context present"
+      ],
+      "supports_operator_buckets": [
+        "nucleic_acid_context_switch_operator"
+      ],
+      "supports_perturbation_ids": [
+        "V45_PERT_007"
+      ],
+      "used_before_prediction": false
+    }
+  ],
+  "kind": "V45_TDP43_LCD_POSTSEAL_HOLDOUT_MANIFEST_v0",
+  "opened_after_prediction_hash": "8fc4b23a760fdd71512bc7988a5fc3eb13fa7e80a6c82c425b068906694e2c19",
+  "target_id": "V45_TDP43_LCD"
+}

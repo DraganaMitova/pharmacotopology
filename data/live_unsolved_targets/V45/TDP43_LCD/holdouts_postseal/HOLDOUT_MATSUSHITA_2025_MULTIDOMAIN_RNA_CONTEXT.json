@@ -1,0 +1,20 @@
+{
+  "coordinate_derived": false,
+  "evidence_statement": "RNA and multidomain context modulate TDP-43 condensate interactions and viscoelasticity.",
+  "internal_runtime_source": false,
+  "opened_after_prediction_hash": "8fc4b23a760fdd71512bc7988a5fc3eb13fa7e80a6c82c425b068906694e2c19",
+  "opened_timestamp": "2026-06-11T17:04:49.223395+00:00",
+  "source_class": "RNA_multidomain_context_support",
+  "source_id": "HOLDOUT_MATSUSHITA_2025_MULTIDOMAIN_RNA_CONTEXT",
+  "source_url_or_citation": "https://arxiv.org/abs/2504.19790",
+  "supports_context_switches": [
+    "RNA/DNA or multidomain TDP-43 context present"
+  ],
+  "supports_operator_buckets": [
+    "nucleic_acid_context_switch_operator"
+  ],
+  "supports_perturbation_ids": [
+    "V45_PERT_007"
+  ],
+  "used_before_prediction": false
+}

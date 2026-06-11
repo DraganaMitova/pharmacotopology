@@ -1,0 +1,48 @@
+{
+  "accession": "Q13148",
+  "allowed_use": "prediction_input_before_sealing",
+  "answer_key_source": false,
+  "coordinate_derived": false,
+  "disprot_id": "DP01108",
+  "holdout_source": false,
+  "internal_runtime_source": false,
+  "native_metrics_used_for_selection": false,
+  "regions_excluded_until_holdout": [
+    "molecular condensate scaffold activity",
+    "amyloid fibril formation",
+    "disorder-to-order transition",
+    "DNA/RNA/nucleic-acid binding context",
+    "alpha-helical LLPS segment literature",
+    "aromatic-residue mutational evidence"
+  ],
+  "regions_used": [
+    {
+      "end": 414,
+      "namespace": "Structural state",
+      "reference_id": "29511089",
+      "region_id": "DP01108r001",
+      "start": 266,
+      "term": "disorder"
+    },
+    {
+      "end": 414,
+      "namespace": "Structural state",
+      "reference_id": "27545621",
+      "region_id": "DP01108r005",
+      "start": 267,
+      "term": "disorder"
+    },
+    {
+      "end": 414,
+      "namespace": "Structural state",
+      "reference_id": "26735904",
+      "region_id": "DP01108r013",
+      "start": 263,
+      "term": "disorder"
+    }
+  ],
+  "retrieved_or_checked": "2026-06-11",
+  "source_id": "DISPROT_DP01108_DISORDER_ONLY_NONCOORDINATE",
+  "source_type": "DisProt disorder annotation subset",
+  "source_url_or_citation": "https://disprot.org/api/Q13148"
+}

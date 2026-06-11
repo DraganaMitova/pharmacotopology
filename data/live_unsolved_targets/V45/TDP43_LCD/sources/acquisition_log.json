@@ -1,0 +1,35 @@
+{
+  "coordinate_derived_source_count_before_prediction": 0,
+  "entries": [
+    {
+      "allowed_use": "prediction_input_before_sealing",
+      "source_id": "UNIPROT_Q13148_SEQUENCE_FEATURES_NONCOORDINATE"
+    },
+    {
+      "allowed_use": "prediction_input_before_sealing",
+      "source_id": "DISPROT_DP01108_DISORDER_ONLY_NONCOORDINATE"
+    },
+    {
+      "allowed_use": "prediction_input_before_sealing",
+      "source_id": "TDP43_LCD_SEQUENCE_PATTERN_FEATURES_DERIVED_FROM_ALLOWED_INPUTS"
+    },
+    {
+      "allowed_use": "postseal_holdout_validation_only",
+      "source_id": "DISPROT_DP01108_FULL_REGION_HOLDOUT_INDEX"
+    },
+    {
+      "allowed_use": "postseal_holdout_validation_only",
+      "source_id": "TDP43_AROMATIC_LLPS_PUBMED_29511089"
+    },
+    {
+      "allowed_use": "postseal_holdout_validation_only",
+      "source_id": "TDP43_ALPHA_HELIX_LLPS_PUBMED_27545621"
+    }
+  ],
+  "external_noncoordinate_source_count": 6,
+  "holdout_source_count_before_prediction": 0,
+  "internal_runtime_source_count_for_prediction": 0,
+  "kind": "V45_TDP43_LCD_SOURCE_ACQUISITION_LOG_v0",
+  "prediction_input_source_count": 3,
+  "target_id": "V45_TDP43_LCD"
+}

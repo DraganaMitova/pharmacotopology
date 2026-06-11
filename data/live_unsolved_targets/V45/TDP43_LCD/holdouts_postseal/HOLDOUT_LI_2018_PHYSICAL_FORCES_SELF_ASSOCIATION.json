@@ -1,0 +1,21 @@
+{
+  "coordinate_derived": false,
+  "evidence_statement": "Physical-force evidence supports CTD self-association and phase-separation modulation.",
+  "internal_runtime_source": false,
+  "opened_after_prediction_hash": "8fc4b23a760fdd71512bc7988a5fc3eb13fa7e80a6c82c425b068906694e2c19",
+  "opened_timestamp": "2026-06-11T17:04:49.223395+00:00",
+  "source_class": "physical_forces_self_association_support",
+  "source_id": "HOLDOUT_LI_2018_PHYSICAL_FORCES_SELF_ASSOCIATION",
+  "source_url_or_citation": "PubMed 28988034, Li et al. BBA Proteins Proteom 2018",
+  "supports_context_switches": [
+    "temperature, salt, crowding, or hexanediol-like perturbation"
+  ],
+  "supports_operator_buckets": [
+    "LLPS_self_association_operator",
+    "methionine_hydrophobic_cluster_operator"
+  ],
+  "supports_perturbation_ids": [
+    "V45_PERT_011"
+  ],
+  "used_before_prediction": false
+}

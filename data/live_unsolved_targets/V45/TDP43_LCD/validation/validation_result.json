@@ -1,0 +1,169 @@
+{
+  "context_shift_support_rate": 1.0,
+  "context_shift_validation": [
+    {
+      "context": "higher protein concentration",
+      "predicted_shift": "increases CTD self-association and condensate formation",
+      "support_level": "supported"
+    },
+    {
+      "context": "temperature, salt, crowding, or hexanediol-like perturbation",
+      "predicted_shift": "shifts reversible liquid condensates versus aggregates",
+      "support_level": "supported"
+    },
+    {
+      "context": "RNA/DNA or multidomain TDP-43 context present",
+      "predicted_shift": "changes viscoelasticity and competes with CTD self-association",
+      "support_level": "supported"
+    },
+    {
+      "context": "CTD phosphorylation or phosphomimetic stress-pathology state",
+      "predicted_shift": "shifts aggregation/condensate readouts and pathology-associated material state",
+      "support_level": "supported"
+    },
+    {
+      "context": "ALS-linked CTD mutations",
+      "predicted_shift": "perturbs helix/aromatic/prion-like grammar and can bias solid-like maturation",
+      "support_level": "supported"
+    }
+  ],
+  "contradicted_prediction_count": 0,
+  "contradicted_predictions": [],
+  "falsifiable_prediction_count": 11,
+  "forbidden_single_fold_rejection_passed": true,
+  "fus_transfer_rejection_passed": true,
+  "holdout_source_classes": [
+    "RNA_multidomain_context_support",
+    "alpha_helical_LLPS_segment_support",
+    "disorder_low_complexity_support",
+    "phosphorylation_pathology_support",
+    "physical_forces_self_association_support",
+    "prion_like_amyloid_nucleic_acid_support",
+    "sparse_aromatic_LLPS_support"
+  ],
+  "holdout_source_count": 7,
+  "kind": "V45_TDP43_LCD_POSTSEAL_VALIDATION_v0",
+  "operator_support_rate": 1.0,
+  "operator_validation": [
+    {
+      "bucket": "low_complexity_disorder_operator",
+      "region_name": "TDP43_CTD_disordered_LC_matrix",
+      "support_level": "supported"
+    },
+    {
+      "bucket": "glycine_rich_prion_like_lcd_operator",
+      "region_name": "glycine_asparagine_glutamine_prion_like_field",
+      "support_level": "supported"
+    },
+    {
+      "bucket": "sparse_aromatic_sticker_operator",
+      "region_name": "few_aromatic_residue_LLPS_switches",
+      "support_level": "supported"
+    },
+    {
+      "bucket": "methionine_hydrophobic_cluster_operator",
+      "region_name": "methionine_rich_mid_CTD_material_shift",
+      "support_level": "supported"
+    },
+    {
+      "bucket": "alpha_helical_llps_segment_operator",
+      "region_name": "helix_prone_mid_CTD_self_association_segment",
+      "support_level": "supported"
+    },
+    {
+      "bucket": "phosphorylation_pathology_shift_operator",
+      "region_name": "serine_charge_and_pathology_shift_cluster",
+      "support_level": "supported"
+    },
+    {
+      "bucket": "LLPS_self_association_operator",
+      "region_name": "TDP43_LCD_self_association_condensate_field",
+      "support_level": "supported"
+    },
+    {
+      "bucket": "amyloid_or_solid_state_maturation_operator",
+      "region_name": "prion_like_disorder_to_order_branch",
+      "support_level": "supported"
+    },
+    {
+      "bucket": "nucleic_acid_context_switch_operator",
+      "region_name": "RNA_DNA_context_rebalanced_ensemble",
+      "support_level": "supported"
+    },
+    {
+      "bucket": "disease_mutation_modulation_operator",
+      "region_name": "ALS_mutation_dense_CTD_modulation_field",
+      "support_level": "supported"
+    }
+  ],
+  "perturbation_support_rate": 1.0,
+  "perturbation_validation": [
+    {
+      "perturbation": "mutate sparse W/F/Y aromatic stickers",
+      "predicted_effect": "weakens LLPS/self-association more than a generic composition-preserving shuffle",
+      "prediction_id": "V45_PERT_001",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "disrupt W334-centered and F-rich sticker neighborhoods",
+      "predicted_effect": "reduces condensate formation and changes local NMR/ensemble signatures",
+      "prediction_id": "V45_PERT_002",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "mutate or break the 321-343 helix-prone CTD segment",
+      "predicted_effect": "disrupts TDP-43-specific phase separation without requiring a FUS-like tyrosine ladder",
+      "prediction_id": "V45_PERT_003",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "remove glycine-rich/prion-like low-complexity identity",
+      "predicted_effect": "collapses the TDP-43 LCD grammar and blocks the proper LLPS-to-aggregation state model",
+      "prediction_id": "V45_PERT_004",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "introduce ALS-linked CTD mutations near 287-393",
+      "predicted_effect": "shifts phase behavior, aggregation, or interaction readouts in mutation-specific directions",
+      "prediction_id": "V45_PERT_005",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "increase phosphorylation or phosphomimetic charge in the CTD/LCD",
+      "predicted_effect": "alters condensate/aggregate/pathology readouts rather than creating one folded state",
+      "prediction_id": "V45_PERT_006",
+      "support_level": "partially_supported"
+    },
+    {
+      "perturbation": "add RNA/DNA or restore multidomain nucleic-acid-binding context",
+      "predicted_effect": "rebalance CTD self-association, viscoelasticity, and aggregation tendency",
+      "prediction_id": "V45_PERT_007",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "isolate C-terminal fragments or extend stress exposure",
+      "predicted_effect": "increases amyloid/solid-like maturation relative to the soluble disordered CTD ensemble",
+      "prediction_id": "V45_PERT_008",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "force compact single-native-fold grammar",
+      "predicted_effect": "must be rejected; the LCD is an ensemble/phase/prion-like transition problem",
+      "prediction_id": "V45_PERT_009",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "transfer FUS-LC dense tyrosine-ladder grammar onto TDP-43 LCD",
+      "predicted_effect": "must fail as an overfit transfer because TDP-43 uses sparse aromatics plus helix/prion-like CTD grammar",
+      "prediction_id": "V45_PERT_010",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "alter methionine-rich mid-CTD and C-terminal tail clusters",
+      "predicted_effect": "shifts material-state balance and partner/context sensitivity",
+      "prediction_id": "V45_PERT_011",
+      "support_level": "partially_supported"
+    }
+  ],
+  "validated_prediction_count": 11
+}

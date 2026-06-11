@@ -1,0 +1,23 @@
+{
+  "coordinate_derived": false,
+  "evidence_statement": "The prion-like domain self-assembles, binds nucleic acid, and can undergo disorder-to-order transitions.",
+  "internal_runtime_source": false,
+  "opened_after_prediction_hash": "8fc4b23a760fdd71512bc7988a5fc3eb13fa7e80a6c82c425b068906694e2c19",
+  "opened_timestamp": "2026-06-11T17:04:49.223395+00:00",
+  "source_class": "prion_like_amyloid_nucleic_acid_support",
+  "source_id": "HOLDOUT_LIM_2016_PRION_LIKE_SELF_ASSEMBLY",
+  "source_url_or_citation": "PubMed 26735904, Lim et al. PLoS Biol 2016",
+  "supports_context_switches": [
+    "RNA/DNA or multidomain TDP-43 context present"
+  ],
+  "supports_operator_buckets": [
+    "amyloid_or_solid_state_maturation_operator",
+    "nucleic_acid_context_switch_operator",
+    "glycine_rich_prion_like_lcd_operator"
+  ],
+  "supports_perturbation_ids": [
+    "V45_PERT_007",
+    "V45_PERT_008"
+  ],
+  "used_before_prediction": false
+}

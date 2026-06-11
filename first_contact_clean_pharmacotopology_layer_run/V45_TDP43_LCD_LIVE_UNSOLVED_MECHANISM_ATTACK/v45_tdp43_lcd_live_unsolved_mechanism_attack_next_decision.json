@@ -1,0 +1,7 @@
+{
+  "decision_status": "V45_TDP43_LCD_LIVE_UNSOLVED_SOLUTION_PACKET_PASSED_REVIEW_REQUIRED",
+  "folding_problem_solved": false,
+  "kind": "V45_TDP43_LCD_LIVE_UNSOLVED_NEXT_DECISION_v0",
+  "live_unsolved_target_solution_packet": true,
+  "next_action": "external review and direct TDP-43 LCD perturbation experiments before strengthening beyond live solution packet wording"
+}

@@ -1,0 +1,20 @@
+{
+  "coordinate_derived": false,
+  "evidence_statement": "PTM/pathology context supports phosphorylation as a material-state and aggregation readout shift, not as a native-fold solution.",
+  "internal_runtime_source": false,
+  "opened_after_prediction_hash": "8fc4b23a760fdd71512bc7988a5fc3eb13fa7e80a6c82c425b068906694e2c19",
+  "opened_timestamp": "2026-06-11T17:04:49.223395+00:00",
+  "source_class": "phosphorylation_pathology_support",
+  "source_id": "HOLDOUT_TDP43_PATHOLOGY_PHOSPHORYLATION_CONTEXT",
+  "source_url_or_citation": "UniProt Q13148 PTM/pathology context plus TDP-43 proteinopathy literature",
+  "supports_context_switches": [
+    "CTD phosphorylation or phosphomimetic stress-pathology state"
+  ],
+  "supports_operator_buckets": [
+    "phosphorylation_pathology_shift_operator"
+  ],
+  "supports_perturbation_ids": [
+    "V45_PERT_006"
+  ],
+  "used_before_prediction": false
+}

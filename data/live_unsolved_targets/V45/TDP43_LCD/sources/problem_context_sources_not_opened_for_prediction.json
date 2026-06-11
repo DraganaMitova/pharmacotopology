@@ -1,0 +1,41 @@
+{
+  "sources": [
+    {
+      "allowed_use": "postseal_holdout_validation_only",
+      "coordinate_derived": false,
+      "holdout_source": true,
+      "internal_runtime_source": false,
+      "notes": [
+        "Full DisProt region/function annotations are kept out of prediction packet construction.",
+        "Only disorder-only records are available before sealing."
+      ],
+      "source_id": "DISPROT_DP01108_FULL_REGION_HOLDOUT_INDEX",
+      "source_type": "DisProt post-seal region/function holdout index",
+      "source_url_or_citation": "https://disprot.org/api/Q13148"
+    },
+    {
+      "allowed_use": "postseal_holdout_validation_only",
+      "coordinate_derived": false,
+      "holdout_source": true,
+      "internal_runtime_source": false,
+      "notes": [
+        "TDP-43 CTD LLPS is mediated by a small number of aromatic residues."
+      ],
+      "source_id": "TDP43_AROMATIC_LLPS_PUBMED_29511089",
+      "source_type": "post-seal literature context",
+      "source_url_or_citation": "https://pubmed.ncbi.nlm.nih.gov/29511089/"
+    },
+    {
+      "allowed_use": "postseal_holdout_validation_only",
+      "coordinate_derived": false,
+      "holdout_source": true,
+      "internal_runtime_source": false,
+      "notes": [
+        "ALS mutations disrupt phase separation mediated by an alpha-helical structure in the low-complexity CTD."
+      ],
+      "source_id": "TDP43_ALPHA_HELIX_LLPS_PUBMED_27545621",
+      "source_type": "post-seal literature context",
+      "source_url_or_citation": "https://pubmed.ncbi.nlm.nih.gov/27545621/"
+    }
+  ]
+}

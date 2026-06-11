@@ -1,0 +1,430 @@
+{
+  "answer_key_available": false,
+  "coordinates_available_before_sealing": false,
+  "holdout_sources_available": false,
+  "kind": "V45_TDP43_LCD_PREDICTION_INPUTS_MANIFEST_v0",
+  "prediction_sources": [
+    {
+      "accession": "Q13148",
+      "allowed_use": "prediction_input_before_sealing",
+      "answer_key_source": false,
+      "coordinate_derived": false,
+      "features_excluded_before_prediction": [
+        "PDB/mmCIF coordinate records",
+        "coordinate-derived contacts",
+        "native contact maps",
+        "UniProt beta strand/helix records when coordinate-derived",
+        "AlphaFold/ESMFold/RoseTTAFold coordinates"
+      ],
+      "features_used": [
+        {
+          "description": "Disordered",
+          "end": 303,
+          "start": 261,
+          "type": "Region"
+        },
+        {
+          "description": "Disordered",
+          "end": 373,
+          "start": 341,
+          "type": "Region"
+        },
+        {
+          "description": "Gly residues",
+          "end": 303,
+          "start": 275,
+          "type": "Compositional bias"
+        },
+        {
+          "description": "Low complexity",
+          "end": 358,
+          "start": 342,
+          "type": "Compositional bias"
+        },
+        {
+          "description": "Interaction with UBQLN2",
+          "end": 414,
+          "start": 216,
+          "type": "Region"
+        },
+        {
+          "description": "Phosphoserine",
+          "end": 292,
+          "start": 292,
+          "type": "Modified residue"
+        },
+        {
+          "description": "Omega-N-methylarginine",
+          "end": 293,
+          "start": 293,
+          "type": "Modified residue"
+        }
+      ],
+      "holdout_source": false,
+      "internal_runtime_source": false,
+      "native_metrics_used_for_selection": false,
+      "retrieved_or_checked": "2026-06-11",
+      "sequence_region_scope": {
+        "full_length": 414,
+        "protein": "human TDP-43 / TAR DNA-binding protein 43",
+        "region": "TDP-43 LCD/CTD residues 274-414",
+        "region_end": 414,
+        "region_start": 274,
+        "sequence": "GRFGGNPGGFGNQGGFGNSRGGGAGLGNNQGSNMGGGMNFGAFSINPAMMAAAQAALQSSWGMMGMLASQQNQSGPSGNNQNQGNMQREPNQAFGSGNNSYSGSNSGAAIGWGSASNAGSGSGFNGGFGSSMDSKSSGWGM"
+      },
+      "source_id": "UNIPROT_Q13148_SEQUENCE_FEATURES_NONCOORDINATE",
+      "source_type": "UniProtKB sequence and non-coordinate feature annotation",
+      "source_url_or_citation": "https://rest.uniprot.org/uniprotkb/Q13148.json"
+    },
+    {
+      "accession": "Q13148",
+      "allowed_use": "prediction_input_before_sealing",
+      "answer_key_source": false,
+      "coordinate_derived": false,
+      "disprot_id": "DP01108",
+      "holdout_source": false,
+      "internal_runtime_source": false,
+      "native_metrics_used_for_selection": false,
+      "regions_excluded_until_holdout": [
+        "molecular condensate scaffold activity",
+        "amyloid fibril formation",
+        "disorder-to-order transition",
+        "DNA/RNA/nucleic-acid binding context",
+        "alpha-helical LLPS segment literature",
+        "aromatic-residue mutational evidence"
+      ],
+      "regions_used": [
+        {
+          "end": 414,
+          "namespace": "Structural state",
+          "reference_id": "29511089",
+          "region_id": "DP01108r001",
+          "start": 266,
+          "term": "disorder"
+        },
+        {
+          "end": 414,
+          "namespace": "Structural state",
+          "reference_id": "27545621",
+          "region_id": "DP01108r005",
+          "start": 267,
+          "term": "disorder"
+        },
+        {
+          "end": 414,
+          "namespace": "Structural state",
+          "reference_id": "26735904",
+          "region_id": "DP01108r013",
+          "start": 263,
+          "term": "disorder"
+        }
+      ],
+      "retrieved_or_checked": "2026-06-11",
+      "source_id": "DISPROT_DP01108_DISORDER_ONLY_NONCOORDINATE",
+      "source_type": "DisProt disorder annotation subset",
+      "source_url_or_citation": "https://disprot.org/api/Q13148"
+    },
+    {
+      "allowed_use": "prediction_input_before_sealing",
+      "answer_key_source": false,
+      "composition": {
+        "aromatic_positions": [
+          {
+            "position": 276,
+            "residue": "F"
+          },
+          {
+            "position": 283,
+            "residue": "F"
+          },
+          {
+            "position": 289,
+            "residue": "F"
+          },
+          {
+            "position": 313,
+            "residue": "F"
+          },
+          {
+            "position": 316,
+            "residue": "F"
+          },
+          {
+            "position": 334,
+            "residue": "W"
+          },
+          {
+            "position": 367,
+            "residue": "F"
+          },
+          {
+            "position": 374,
+            "residue": "Y"
+          },
+          {
+            "position": 385,
+            "residue": "W"
+          },
+          {
+            "position": 397,
+            "residue": "F"
+          },
+          {
+            "position": 401,
+            "residue": "F"
+          },
+          {
+            "position": 412,
+            "residue": "W"
+          }
+        ],
+        "counts": {
+          "A": 14,
+          "D": 1,
+          "E": 1,
+          "F": 8,
+          "G": 38,
+          "I": 2,
+          "K": 1,
+          "L": 3,
+          "M": 10,
+          "N": 19,
+          "P": 4,
+          "Q": 11,
+          "R": 3,
+          "S": 22,
+          "W": 3,
+          "Y": 1
+        },
+        "fractions": {
+          "A": 0.09929078014184398,
+          "D": 0.0070921985815602835,
+          "E": 0.0070921985815602835,
+          "F": 0.05673758865248227,
+          "G": 0.2695035460992908,
+          "I": 0.014184397163120567,
+          "K": 0.0070921985815602835,
+          "L": 0.02127659574468085,
+          "M": 0.07092198581560284,
+          "N": 0.1347517730496454,
+          "P": 0.028368794326241134,
+          "Q": 0.07801418439716312,
+          "R": 0.02127659574468085,
+          "S": 0.15602836879432624,
+          "W": 0.02127659574468085,
+          "Y": 0.0070921985815602835
+        },
+        "glycine_fraction": 0.2695035460992908,
+        "gnqsyfm_count": 109,
+        "gnqsyfm_fraction": 0.7730496453900709,
+        "length": 141,
+        "methionine_positions": [
+          {
+            "position": 307,
+            "residue": "M"
+          },
+          {
+            "position": 311,
+            "residue": "M"
+          },
+          {
+            "position": 322,
+            "residue": "M"
+          },
+          {
+            "position": 323,
+            "residue": "M"
+          },
+          {
+            "position": 336,
+            "residue": "M"
+          },
+          {
+            "position": 337,
+            "residue": "M"
+          },
+          {
+            "position": 339,
+            "residue": "M"
+          },
+          {
+            "position": 359,
+            "residue": "M"
+          },
+          {
+            "position": 405,
+            "residue": "M"
+          },
+          {
+            "position": 414,
+            "residue": "M"
+          }
+        ],
+        "qn_fraction": 0.2127659574468085,
+        "serine_positions": [
+          {
+            "position": 292,
+            "residue": "S"
+          },
+          {
+            "position": 305,
+            "residue": "S"
+          },
+          {
+            "position": 317,
+            "residue": "S"
+          },
+          {
+            "position": 332,
+            "residue": "S"
+          },
+          {
+            "position": 333,
+            "residue": "S"
+          },
+          {
+            "position": 342,
+            "residue": "S"
+          },
+          {
+            "position": 347,
+            "residue": "S"
+          },
+          {
+            "position": 350,
+            "residue": "S"
+          },
+          {
+            "position": 369,
+            "residue": "S"
+          },
+          {
+            "position": 373,
+            "residue": "S"
+          },
+          {
+            "position": 375,
+            "residue": "S"
+          },
+          {
+            "position": 377,
+            "residue": "S"
+          },
+          {
+            "position": 379,
+            "residue": "S"
+          },
+          {
+            "position": 387,
+            "residue": "S"
+          },
+          {
+            "position": 389,
+            "residue": "S"
+          },
+          {
+            "position": 393,
+            "residue": "S"
+          },
+          {
+            "position": 395,
+            "residue": "S"
+          },
+          {
+            "position": 403,
+            "residue": "S"
+          },
+          {
+            "position": 404,
+            "residue": "S"
+          },
+          {
+            "position": 407,
+            "residue": "S"
+          },
+          {
+            "position": 409,
+            "residue": "S"
+          },
+          {
+            "position": 410,
+            "residue": "S"
+          }
+        ]
+      },
+      "coordinate_derived": false,
+      "derived_from_source_ids": [
+        "UNIPROT_Q13148_SEQUENCE_FEATURES_NONCOORDINATE"
+      ],
+      "holdout_source": false,
+      "internal_runtime_source": false,
+      "native_metrics_used_for_selection": false,
+      "sequence_windows": [
+        {
+          "aromatic_count": 3,
+          "glycine_fraction": 0.4666666666666667,
+          "length": 30,
+          "methionine_count": 0,
+          "qn_fraction": 0.23333333333333334,
+          "sequence_pattern_note": "sequence-derived TDP-43 CTD/LCD operator window",
+          "serine_count": 1,
+          "span": "274-303"
+        },
+        {
+          "aromatic_count": 3,
+          "glycine_fraction": 0.175,
+          "length": 40,
+          "methionine_count": 7,
+          "qn_fraction": 0.15,
+          "sequence_pattern_note": "sequence-derived TDP-43 CTD/LCD operator window",
+          "serine_count": 5,
+          "span": "304-343"
+        },
+        {
+          "aromatic_count": 1,
+          "glycine_fraction": 0.08695652173913043,
+          "length": 23,
+          "methionine_count": 5,
+          "qn_fraction": 0.13043478260869565,
+          "sequence_pattern_note": "sequence-derived TDP-43 CTD/LCD operator window",
+          "serine_count": 3,
+          "span": "321-343"
+        },
+        {
+          "aromatic_count": 0,
+          "glycine_fraction": 0.13043478260869565,
+          "length": 23,
+          "methionine_count": 1,
+          "qn_fraction": 0.5217391304347826,
+          "sequence_pattern_note": "sequence-derived TDP-43 CTD/LCD operator window",
+          "serine_count": 2,
+          "span": "344-366"
+        },
+        {
+          "aromatic_count": 6,
+          "glycine_fraction": 0.2916666666666667,
+          "length": 48,
+          "methionine_count": 2,
+          "qn_fraction": 0.10416666666666667,
+          "sequence_pattern_note": "sequence-derived TDP-43 CTD/LCD operator window",
+          "serine_count": 14,
+          "span": "367-414"
+        },
+        {
+          "aromatic_count": 1,
+          "glycine_fraction": 0.16666666666666666,
+          "length": 12,
+          "methionine_count": 2,
+          "qn_fraction": 0.0,
+          "sequence_pattern_note": "sequence-derived TDP-43 CTD/LCD operator window",
+          "serine_count": 5,
+          "span": "403-414"
+        }
+      ],
+      "source_id": "TDP43_LCD_SEQUENCE_PATTERN_FEATURES_DERIVED_FROM_ALLOWED_INPUTS",
+      "source_type": "derived sequence-composition and sparse-sticker features",
+      "source_url_or_citation": "derived from UniProt Q13148 residues 274-414 sequence"
+    }
+  ],
+  "target_id": "V45_TDP43_LCD"
+}

@@ -1,0 +1,264 @@
+{
+  "blocked_inputs_manifest": "/Users/draganamitova/My Projects/pharmacotopology/data/live_unsolved_targets/V45/TDP43_LCD/prediction_sealed/blocked_inputs_manifest.json",
+  "claim_boundary": {
+    "allowed": "sealed live solution packet for TDP-43 LCD mechanism language, pending external review",
+    "not_allowed": "universal protein-folding solved claim, TDP-43 atomic-coordinate solved claim, or FUS-specific grammar transfer claim"
+  },
+  "coordinate_derived_source_count_before_prediction": 0,
+  "coordinate_truth_used_before_prediction": false,
+  "falsification_criteria": [
+    "TDP-43 LCD residues 274-414 reproducibly adopt one compact single native fold under ordinary conditions",
+    "W/F/Y aromatic sticker mutations do not alter phase behavior or self-association",
+    "321-343 helix-prone segment perturbation has no effect on LLPS or ensemble signatures",
+    "nucleic-acid or multidomain context does not shift TDP-43 condensate material properties when binding/context is present",
+    "ALS-linked CTD mutations do not perturb LLPS or aggregation readouts in any reproducible direction",
+    "FUS-LC dense tyrosine-ladder grammar validates TDP-43 LCD predictions without TDP-specific evidence",
+    "independent holdouts contradict more than two explicit perturbation predictions"
+  ],
+  "folding_problem_solved": false,
+  "forbidden_operator_buckets_rejected": [
+    "compact_single_native_fold_operator",
+    "solved_atomic_structure_operator",
+    "de_novo_global_coordinate_solution_operator",
+    "AlphaFold_confidence_proxy_operator",
+    "coordinate_contact_operator",
+    "fus_lc_tyrosine_ladder_transfer_operator"
+  ],
+  "full_solution_packet_allowed_by_inputs": true,
+  "holdout_leakage_detected": false,
+  "internal_runtime_source_count_for_prediction": 0,
+  "kind": "V45_TDP43_LCD_SEALED_LIVE_UNSOLVED_SOLUTION_PACKET_v0",
+  "live_unsolved_target_solution_packet": false,
+  "low_resolution_ensemble_prediction": {
+    "ensemble_type": "glycine-rich prion-like IDP ensemble with sparse-sticker LLPS and disorder-to-order maturation",
+    "fibril_or_solid_boundary": "state/context-dependent CTD ordering, not a whole-domain native fold",
+    "single_native_fold_expected": false,
+    "state_model": "soluble CTD disorder <-> reversible LLPS condensate <-> mutation/stress shifted amyloid or solid-like branch, modulated by RNA/DNA and phosphorylation/pathology state"
+  },
+  "mechanism_class": "intrinsic_disorder_prion_like_phase_separation_contextual_ensemble",
+  "mechanism_confidence": "high_for_live_solution_packet_review_required",
+  "native_metrics_used_before_prediction": false,
+  "no_holdout_access_before_hash": true,
+  "operator_region_rationale": {
+    "LLPS_self_association_operator": "Low-complexity disorder plus sparse stickers predict concentration-sensitive condensate formation.",
+    "alpha_helical_llps_segment_operator": "The 321-343 window is enriched for hydrophobic, methionine, glutamine, asparagine, and sparse aromatic patterning.",
+    "amyloid_or_solid_state_maturation_operator": "The prion-like CTD should branch from liquid-like states toward amyloid/solid-like maturation under stress or mutation.",
+    "disease_mutation_modulation_operator": "UniProt disease variants concentrate in the CTD/LCD, predicting mutation-dependent phase/aggregation modulation.",
+    "glycine_rich_prion_like_lcd_operator": "The LCD is glycine-rich with Q/N-rich and low-complexity windows rather than a hydrophobic core.",
+    "low_complexity_disorder_operator": "Q13148 residues 274-414 overlap UniProt/DisProt disorder and low-complexity annotations.",
+    "methionine_hydrophobic_cluster_operator": "Methionines cluster at [{'position': 307, 'residue': 'M'}, {'position': 311, 'residue': 'M'}, {'position': 322, 'residue': 'M'}, {'position': 323, 'residue': 'M'}, {'position': 336, 'residue': 'M'}, {'position': 337, 'residue': 'M'}, {'position': 339, 'residue': 'M'}, {'position': 359, 'residue': 'M'}, {'position': 405, 'residue': 'M'}, {'position': 414, 'residue': 'M'}], predicting material-state and partner-sensitive modulation.",
+    "nucleic_acid_context_switch_operator": "TDP-43 is a nucleic-acid-binding protein; RNA/DNA context should shift CTD self-association and material properties.",
+    "phosphorylation_pathology_shift_operator": "UniProt annotates phosphoserine 292 and the LCD contains serines at [{'position': 292, 'residue': 'S'}, {'position': 305, 'residue': 'S'}, {'position': 317, 'residue': 'S'}, {'position': 332, 'residue': 'S'}, {'position': 333, 'residue': 'S'}, {'position': 342, 'residue': 'S'}, {'position': 347, 'residue': 'S'}, {'position': 350, 'residue': 'S'}, {'position': 369, 'residue': 'S'}, {'position': 373, 'residue': 'S'}, {'position': 375, 'residue': 'S'}, {'position': 377, 'residue': 'S'}, {'position': 379, 'residue': 'S'}, {'position': 387, 'residue': 'S'}, {'position': 389, 'residue': 'S'}, {'position': 393, 'residue': 'S'}, {'position': 395, 'residue': 'S'}, {'position': 403, 'residue': 'S'}, {'position': 404, 'residue': 'S'}, {'position': 407, 'residue': 'S'}, {'position': 409, 'residue': 'S'}, {'position': 410, 'residue': 'S'}].",
+    "sparse_aromatic_sticker_operator": "The LCD has sparse aromatic stickers at [{'position': 276, 'residue': 'F'}, {'position': 283, 'residue': 'F'}, {'position': 289, 'residue': 'F'}, {'position': 313, 'residue': 'F'}, {'position': 316, 'residue': 'F'}, {'position': 334, 'residue': 'W'}, {'position': 367, 'residue': 'F'}, {'position': 374, 'residue': 'Y'}, {'position': 385, 'residue': 'W'}, {'position': 397, 'residue': 'F'}, {'position': 401, 'residue': 'F'}, {'position': 412, 'residue': 'W'}], unlike the dense FUS-LC tyrosine ladder."
+  },
+  "operator_regions": [
+    {
+      "bucket": "low_complexity_disorder_operator",
+      "confidence": "high",
+      "rationale": "Q13148 residues 274-414 overlap UniProt/DisProt disorder and low-complexity annotations.",
+      "region_name": "TDP43_CTD_disordered_LC_matrix",
+      "span": "274-414"
+    },
+    {
+      "bucket": "glycine_rich_prion_like_lcd_operator",
+      "confidence": "high",
+      "rationale": "The LCD is glycine-rich with Q/N-rich and low-complexity windows rather than a hydrophobic core.",
+      "region_name": "glycine_asparagine_glutamine_prion_like_field",
+      "span": "274-414"
+    },
+    {
+      "bucket": "sparse_aromatic_sticker_operator",
+      "confidence": "medium_high",
+      "rationale": "The LCD has sparse aromatic stickers at [{'position': 276, 'residue': 'F'}, {'position': 283, 'residue': 'F'}, {'position': 289, 'residue': 'F'}, {'position': 313, 'residue': 'F'}, {'position': 316, 'residue': 'F'}, {'position': 334, 'residue': 'W'}, {'position': 367, 'residue': 'F'}, {'position': 374, 'residue': 'Y'}, {'position': 385, 'residue': 'W'}, {'position': 397, 'residue': 'F'}, {'position': 401, 'residue': 'F'}, {'position': 412, 'residue': 'W'}], unlike the dense FUS-LC tyrosine ladder.",
+      "region_name": "few_aromatic_residue_LLPS_switches",
+      "span": "274-414"
+    },
+    {
+      "bucket": "methionine_hydrophobic_cluster_operator",
+      "confidence": "medium",
+      "rationale": "Methionines cluster at [{'position': 307, 'residue': 'M'}, {'position': 311, 'residue': 'M'}, {'position': 322, 'residue': 'M'}, {'position': 323, 'residue': 'M'}, {'position': 336, 'residue': 'M'}, {'position': 337, 'residue': 'M'}, {'position': 339, 'residue': 'M'}, {'position': 359, 'residue': 'M'}, {'position': 405, 'residue': 'M'}, {'position': 414, 'residue': 'M'}], predicting material-state and partner-sensitive modulation.",
+      "region_name": "methionine_rich_mid_CTD_material_shift",
+      "span": "304-343 and 403-414"
+    },
+    {
+      "bucket": "alpha_helical_llps_segment_operator",
+      "confidence": "medium_high",
+      "rationale": "The 321-343 window is enriched for hydrophobic, methionine, glutamine, asparagine, and sparse aromatic patterning.",
+      "region_name": "helix_prone_mid_CTD_self_association_segment",
+      "span": "321-343"
+    },
+    {
+      "bucket": "phosphorylation_pathology_shift_operator",
+      "confidence": "medium",
+      "rationale": "UniProt annotates phosphoserine 292 and the LCD contains serines at [{'position': 292, 'residue': 'S'}, {'position': 305, 'residue': 'S'}, {'position': 317, 'residue': 'S'}, {'position': 332, 'residue': 'S'}, {'position': 333, 'residue': 'S'}, {'position': 342, 'residue': 'S'}, {'position': 347, 'residue': 'S'}, {'position': 350, 'residue': 'S'}, {'position': 369, 'residue': 'S'}, {'position': 373, 'residue': 'S'}, {'position': 375, 'residue': 'S'}, {'position': 377, 'residue': 'S'}, {'position': 379, 'residue': 'S'}, {'position': 387, 'residue': 'S'}, {'position': 389, 'residue': 'S'}, {'position': 393, 'residue': 'S'}, {'position': 395, 'residue': 'S'}, {'position': 403, 'residue': 'S'}, {'position': 404, 'residue': 'S'}, {'position': 407, 'residue': 'S'}, {'position': 409, 'residue': 'S'}, {'position': 410, 'residue': 'S'}].",
+      "region_name": "serine_charge_and_pathology_shift_cluster",
+      "span": "292 plus serine-rich 369-410 tail"
+    },
+    {
+      "bucket": "LLPS_self_association_operator",
+      "confidence": "high",
+      "rationale": "Low-complexity disorder plus sparse stickers predict concentration-sensitive condensate formation.",
+      "region_name": "TDP43_LCD_self_association_condensate_field",
+      "span": "274-414"
+    },
+    {
+      "bucket": "amyloid_or_solid_state_maturation_operator",
+      "confidence": "medium_high",
+      "rationale": "The prion-like CTD should branch from liquid-like states toward amyloid/solid-like maturation under stress or mutation.",
+      "region_name": "prion_like_disorder_to_order_branch",
+      "span": "263-414 with core-prone 304-343 and 344-366 windows"
+    },
+    {
+      "bucket": "nucleic_acid_context_switch_operator",
+      "confidence": "medium",
+      "rationale": "TDP-43 is a nucleic-acid-binding protein; RNA/DNA context should shift CTD self-association and material properties.",
+      "region_name": "RNA_DNA_context_rebalanced_ensemble",
+      "span": "full-length/RRM context plus CTD 274-414"
+    },
+    {
+      "bucket": "disease_mutation_modulation_operator",
+      "confidence": "medium_high",
+      "rationale": "UniProt disease variants concentrate in the CTD/LCD, predicting mutation-dependent phase/aggregation modulation.",
+      "region_name": "ALS_mutation_dense_CTD_modulation_field",
+      "span": "287-393"
+    }
+  ],
+  "perturbation_predictions": [
+    {
+      "operator_bucket": "sparse_aromatic_sticker_operator",
+      "perturbation": "mutate sparse W/F/Y aromatic stickers",
+      "predicted_effect": "weakens LLPS/self-association more than a generic composition-preserving shuffle",
+      "prediction_id": "V45_PERT_001"
+    },
+    {
+      "operator_bucket": "sparse_aromatic_sticker_operator",
+      "perturbation": "disrupt W334-centered and F-rich sticker neighborhoods",
+      "predicted_effect": "reduces condensate formation and changes local NMR/ensemble signatures",
+      "prediction_id": "V45_PERT_002"
+    },
+    {
+      "operator_bucket": "alpha_helical_llps_segment_operator",
+      "perturbation": "mutate or break the 321-343 helix-prone CTD segment",
+      "predicted_effect": "disrupts TDP-43-specific phase separation without requiring a FUS-like tyrosine ladder",
+      "prediction_id": "V45_PERT_003"
+    },
+    {
+      "operator_bucket": "glycine_rich_prion_like_lcd_operator",
+      "perturbation": "remove glycine-rich/prion-like low-complexity identity",
+      "predicted_effect": "collapses the TDP-43 LCD grammar and blocks the proper LLPS-to-aggregation state model",
+      "prediction_id": "V45_PERT_004"
+    },
+    {
+      "operator_bucket": "disease_mutation_modulation_operator",
+      "perturbation": "introduce ALS-linked CTD mutations near 287-393",
+      "predicted_effect": "shifts phase behavior, aggregation, or interaction readouts in mutation-specific directions",
+      "prediction_id": "V45_PERT_005"
+    },
+    {
+      "operator_bucket": "phosphorylation_pathology_shift_operator",
+      "perturbation": "increase phosphorylation or phosphomimetic charge in the CTD/LCD",
+      "predicted_effect": "alters condensate/aggregate/pathology readouts rather than creating one folded state",
+      "prediction_id": "V45_PERT_006"
+    },
+    {
+      "operator_bucket": "nucleic_acid_context_switch_operator",
+      "perturbation": "add RNA/DNA or restore multidomain nucleic-acid-binding context",
+      "predicted_effect": "rebalance CTD self-association, viscoelasticity, and aggregation tendency",
+      "prediction_id": "V45_PERT_007"
+    },
+    {
+      "operator_bucket": "amyloid_or_solid_state_maturation_operator",
+      "perturbation": "isolate C-terminal fragments or extend stress exposure",
+      "predicted_effect": "increases amyloid/solid-like maturation relative to the soluble disordered CTD ensemble",
+      "prediction_id": "V45_PERT_008"
+    },
+    {
+      "operator_bucket": "low_complexity_disorder_operator",
+      "perturbation": "force compact single-native-fold grammar",
+      "predicted_effect": "must be rejected; the LCD is an ensemble/phase/prion-like transition problem",
+      "prediction_id": "V45_PERT_009"
+    },
+    {
+      "operator_bucket": "sparse_aromatic_sticker_operator",
+      "perturbation": "transfer FUS-LC dense tyrosine-ladder grammar onto TDP-43 LCD",
+      "predicted_effect": "must fail as an overfit transfer because TDP-43 uses sparse aromatics plus helix/prion-like CTD grammar",
+      "prediction_id": "V45_PERT_010"
+    },
+    {
+      "operator_bucket": "methionine_hydrophobic_cluster_operator",
+      "perturbation": "alter methionine-rich mid-CTD and C-terminal tail clusters",
+      "predicted_effect": "shifts material-state balance and partner/context sensitivity",
+      "prediction_id": "V45_PERT_011"
+    }
+  ],
+  "predicted_context_switches": [
+    {
+      "context": "higher protein concentration",
+      "predicted_shift": "increases CTD self-association and condensate formation"
+    },
+    {
+      "context": "temperature, salt, crowding, or hexanediol-like perturbation",
+      "predicted_shift": "shifts reversible liquid condensates versus aggregates"
+    },
+    {
+      "context": "RNA/DNA or multidomain TDP-43 context present",
+      "predicted_shift": "changes viscoelasticity and competes with CTD self-association"
+    },
+    {
+      "context": "CTD phosphorylation or phosphomimetic stress-pathology state",
+      "predicted_shift": "shifts aggregation/condensate readouts and pathology-associated material state"
+    },
+    {
+      "context": "ALS-linked CTD mutations",
+      "predicted_shift": "perturbs helix/aromatic/prion-like grammar and can bias solid-like maturation"
+    }
+  ],
+  "predicted_state_grammar": [
+    {
+      "grammar": "heterogeneous glycine-rich prion-like ensemble without one native fold",
+      "state": "soluble_disordered_CTD"
+    },
+    {
+      "grammar": "few aromatic stickers and helix-prone CTD contacts nucleate condensates",
+      "state": "reversible_LLPS_condensate"
+    },
+    {
+      "grammar": "disorder-to-order conversion emerges in selected CTD windows",
+      "state": "aged_solid_or_amyloid_branch"
+    },
+    {
+      "grammar": "ALS-linked CTD substitutions alter LLPS and aggregation balance",
+      "state": "mutation_shifted_material_state"
+    },
+    {
+      "grammar": "nucleic acid and folded-domain context rebalances CTD self-association",
+      "state": "RNA_or_DNA_context_shift"
+    }
+  ],
+  "prediction_hash": "8fc4b23a760fdd71512bc7988a5fc3eb13fa7e80a6c82c425b068906694e2c19",
+  "prediction_inputs_manifest": "/Users/draganamitova/My Projects/pharmacotopology/data/live_unsolved_targets/V45/TDP43_LCD/prediction_sealed/prediction_inputs_manifest.json",
+  "prediction_source_ids": [
+    "UNIPROT_Q13148_SEQUENCE_FEATURES_NONCOORDINATE",
+    "DISPROT_DP01108_DISORDER_ONLY_NONCOORDINATE",
+    "TDP43_LCD_SEQUENCE_PATTERN_FEATURES_DERIVED_FROM_ALLOWED_INPUTS"
+  ],
+  "prediction_timestamp": "2026-06-11T17:04:49.222531+00:00",
+  "proposed_experimental_tests": [
+    "mutate W/F/Y stickers, especially W334 and nearby F-rich neighborhoods, and measure turbidity, microscopy, FRAP, and NMR shifts",
+    "break the 321-343 helix-prone CTD segment and compare phase behavior to wild type",
+    "compare ALS-linked CTD mutants across LLPS, aggregation, and nucleic-acid-binding contexts",
+    "test phosphomimetic and phospho-null variants in CTD condensate and aggregate assays",
+    "add RNA/DNA or restore multidomain context and quantify viscosity, elasticity, recruitment, and self-association shifts",
+    "compare full CTD 274-414 to C-terminal fragments under aging/stress for amyloid or solid-like maturation"
+  ],
+  "protein_folding_solved_candidate_strengthened": false,
+  "sequence_region_scope": {
+    "end": 414,
+    "label": "TDP-43 Q13148 residues 274-414",
+    "sequence": "GRFGGNPGGFGNQGGFGNSRGGGAGLGNNQGSNMGGGMNFGAFSINPAMMAAAQAALQSSWGMMGMLASQQNQSGPSGNNQNQGNMQREPNQAFGSGNNSYSGSNSGAAIGWGSASNAGSGSGFNGGFGSSMDSKSSGWGM",
+    "start": 274
+  },
+  "target": "human TDP-43 low-complexity C-terminal domain",
+  "target_id": "V45_TDP43_LCD",
+  "uniprot_accession": "Q13148"
+}
