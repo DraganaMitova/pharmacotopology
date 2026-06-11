@@ -1,0 +1,41 @@
+{
+  "sources": [
+    {
+      "allowed_use": "postseal_holdout_validation_only",
+      "coordinate_derived": false,
+      "holdout_source": true,
+      "internal_runtime_source": false,
+      "notes": [
+        "Efficient correction of F508del-CFTR requires more than a local mutation fix.",
+        "NBD1 stability and domain/interface effects are part of the rescue grammar."
+      ],
+      "source_id": "CFTR_F508DEL_CORRECTION_REQUIREMENTS_PMC3266553",
+      "source_type": "post-seal review/experimental literature context",
+      "source_url_or_citation": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3266553/"
+    },
+    {
+      "allowed_use": "postseal_holdout_validation_only",
+      "coordinate_derived": false,
+      "holdout_source": true,
+      "internal_runtime_source": false,
+      "notes": [
+        "F508del lowers NBD1 folding competence/stability and causes maturation defects."
+      ],
+      "source_id": "CFTR_F508DEL_NBD1_STABILITY_LITERATURE_HOLDOUT",
+      "source_type": "post-seal literature context",
+      "source_url_or_citation": "PubMed literature on F508del NBD1 folding/stability defects"
+    },
+    {
+      "allowed_use": "postseal_holdout_validation_only",
+      "coordinate_derived": false,
+      "holdout_source": true,
+      "internal_runtime_source": false,
+      "notes": [
+        "Corrector action maps to multidomain folding, interface, and proteostasis rescue rather than one-site repair."
+      ],
+      "source_id": "CFTR_F508DEL_CORRECTOR_RESCUE_CONTEXT_HOLDOUT",
+      "source_type": "post-seal corrector/rescue literature context",
+      "source_url_or_citation": "CFTR corrector/rescue literature; VX-809/lumacaftor and combination corrector logic"
+    }
+  ]
+}

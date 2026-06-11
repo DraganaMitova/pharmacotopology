@@ -1,0 +1,162 @@
+{
+  "holdout_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "F508del impairs folding/stability, maturation, trafficking, degradation routing, and channel opening frequency.",
+      "internal_runtime_source": false,
+      "opened_after_prediction_hash": "b797ea5d5a20a63d9f88cf93ac2239fb86c2f64f5992c80773729b78113373ad",
+      "opened_timestamp": "2026-06-11T17:16:25.910390+00:00",
+      "source_class": "F508del_folding_processing_defect_support",
+      "source_id": "HOLDOUT_UNIPROT_F508DEL_PROCESSING_DEFECT",
+      "source_url_or_citation": "UniProt P13569 F508del variant annotation",
+      "supports_interdomain_ids": [],
+      "supports_operator_buckets": [
+        "F508del_local_destabilization_operator",
+        "trafficking_quality_control_operator",
+        "channel_function_context_operator"
+      ],
+      "supports_perturbation_ids": [
+        "V46_PERT_001",
+        "V46_PERT_002",
+        "V46_PERT_010",
+        "V46_PERT_011"
+      ],
+      "supports_rescue_ids": [],
+      "used_before_prediction": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "NBD1 stabilization is a real but incomplete axis of F508del correction.",
+      "internal_runtime_source": false,
+      "opened_after_prediction_hash": "b797ea5d5a20a63d9f88cf93ac2239fb86c2f64f5992c80773729b78113373ad",
+      "opened_timestamp": "2026-06-11T17:16:25.910390+00:00",
+      "source_class": "NBD1_stability_support",
+      "source_id": "HOLDOUT_NBD1_STABILITY_LITERATURE",
+      "source_url_or_citation": "Post-seal F508del NBD1 folding/stability literature",
+      "supports_interdomain_ids": [],
+      "supports_operator_buckets": [
+        "NBD1_stability_operator",
+        "F508del_local_destabilization_operator"
+      ],
+      "supports_perturbation_ids": [
+        "V46_PERT_001",
+        "V46_PERT_003",
+        "V46_PERT_009"
+      ],
+      "supports_rescue_ids": [
+        "V46_PERT_003"
+      ],
+      "used_before_prediction": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "F508del correction requires interdomain/interface coupling beyond local NBD1 stabilization.",
+      "internal_runtime_source": false,
+      "opened_after_prediction_hash": "b797ea5d5a20a63d9f88cf93ac2239fb86c2f64f5992c80773729b78113373ad",
+      "opened_timestamp": "2026-06-11T17:16:25.910390+00:00",
+      "source_class": "interdomain_interface_coupling_support",
+      "source_id": "HOLDOUT_INTERDOMAIN_INTERFACE_COUPLING",
+      "source_url_or_citation": "Post-seal CFTR NBD1-MSD/ICL interface-coupling literature",
+      "supports_interdomain_ids": [
+        "V46_PERT_004",
+        "V46_PERT_008",
+        "V46_PERT_012"
+      ],
+      "supports_operator_buckets": [
+        "interdomain_interface_coupling_operator",
+        "multidomain_assembly_operator"
+      ],
+      "supports_perturbation_ids": [
+        "V46_PERT_004",
+        "V46_PERT_008",
+        "V46_PERT_012"
+      ],
+      "supports_rescue_ids": [
+        "V46_PERT_004",
+        "V46_PERT_012"
+      ],
+      "used_before_prediction": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Efficient correction maps to multiple rescue axes and is not a single local-site repair.",
+      "internal_runtime_source": false,
+      "opened_after_prediction_hash": "b797ea5d5a20a63d9f88cf93ac2239fb86c2f64f5992c80773729b78113373ad",
+      "opened_timestamp": "2026-06-11T17:16:25.910390+00:00",
+      "source_class": "corrector_rescue_logic_support",
+      "source_id": "HOLDOUT_CORRECTOR_RESCUE_REQUIREMENTS",
+      "source_url_or_citation": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3266553/",
+      "supports_interdomain_ids": [
+        "V46_PERT_004",
+        "V46_PERT_012"
+      ],
+      "supports_operator_buckets": [
+        "corrector_or_rescue_context_operator",
+        "interdomain_interface_coupling_operator",
+        "NBD1_stability_operator"
+      ],
+      "supports_perturbation_ids": [
+        "V46_PERT_003",
+        "V46_PERT_004",
+        "V46_PERT_005",
+        "V46_PERT_012"
+      ],
+      "supports_rescue_ids": [
+        "V46_PERT_003",
+        "V46_PERT_004",
+        "V46_PERT_005",
+        "V46_PERT_012"
+      ],
+      "used_before_prediction": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Maturation and trafficking are functional folding-context readouts, not atomic-fold proof.",
+      "internal_runtime_source": false,
+      "opened_after_prediction_hash": "b797ea5d5a20a63d9f88cf93ac2239fb86c2f64f5992c80773729b78113373ad",
+      "opened_timestamp": "2026-06-11T17:16:25.910390+00:00",
+      "source_class": "trafficking_proteostasis_support",
+      "source_id": "HOLDOUT_TRAFFICKING_PROTEOSTASIS_QC",
+      "source_url_or_citation": "Post-seal CFTR maturation, glycan processing, ER quality-control, and proteostasis literature",
+      "supports_interdomain_ids": [],
+      "supports_operator_buckets": [
+        "trafficking_quality_control_operator",
+        "corrector_or_rescue_context_operator"
+      ],
+      "supports_perturbation_ids": [
+        "V46_PERT_002",
+        "V46_PERT_005",
+        "V46_PERT_010"
+      ],
+      "supports_rescue_ids": [
+        "V46_PERT_005"
+      ],
+      "used_before_prediction": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "CFTR F508del requires membrane multidomain/proteostasis grammar, not a generic channel or compact soluble domain label.",
+      "internal_runtime_source": false,
+      "opened_after_prediction_hash": "b797ea5d5a20a63d9f88cf93ac2239fb86c2f64f5992c80773729b78113373ad",
+      "opened_timestamp": "2026-06-11T17:16:25.910390+00:00",
+      "source_class": "forbidden_grammar_rejection_support",
+      "source_id": "HOLDOUT_GENERIC_CHANNEL_AND_SINGLE_LOCAL_REJECTION",
+      "source_url_or_citation": "Post-seal negative controls against generic channel and single-local explanations",
+      "supports_interdomain_ids": [],
+      "supports_operator_buckets": [
+        "membrane_domain_operator",
+        "multidomain_assembly_operator",
+        "channel_function_context_operator"
+      ],
+      "supports_perturbation_ids": [
+        "V46_PERT_006",
+        "V46_PERT_007"
+      ],
+      "supports_rescue_ids": [],
+      "used_before_prediction": false
+    }
+  ],
+  "kind": "V46_CFTR_F508DEL_POSTSEAL_HOLDOUT_MANIFEST_v0",
+  "opened_after_prediction_hash": "b797ea5d5a20a63d9f88cf93ac2239fb86c2f64f5992c80773729b78113373ad",
+  "target_id": "V46_CFTR_F508DEL"
+}

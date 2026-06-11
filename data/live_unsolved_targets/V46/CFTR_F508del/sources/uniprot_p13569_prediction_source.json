@@ -1,0 +1,126 @@
+{
+  "accession": "P13569",
+  "allowed_use": "prediction_input_before_sealing",
+  "answer_key_source": false,
+  "coordinate_derived": false,
+  "domain_architecture_used": [
+    {
+      "domain": "MSD1",
+      "end": 365,
+      "feature_type": "ABC transmembrane type-1 1",
+      "start": 81
+    },
+    {
+      "domain": "NBD1",
+      "end": 646,
+      "feature_type": "ABC transporter 1",
+      "start": 423
+    },
+    {
+      "domain": "R_region",
+      "end": 831,
+      "feature_type": "Disordered regulatory region",
+      "start": 654
+    },
+    {
+      "domain": "MSD2",
+      "end": 1155,
+      "feature_type": "ABC transmembrane type-1 2",
+      "start": 859
+    },
+    {
+      "domain": "NBD2",
+      "end": 1443,
+      "feature_type": "ABC transporter 2",
+      "start": 1210
+    }
+  ],
+  "features_excluded_before_prediction": [
+    "PDB/mmCIF coordinate records",
+    "coordinate-derived contacts",
+    "native contact maps",
+    "AlphaFold/ESMFold/RoseTTAFold coordinates"
+  ],
+  "function_annotations_used": [
+    "epithelial chloride channel / ABC transporter family context",
+    "ATP-dependent channel regulation and R-region phosphorylation context",
+    "cell-surface trafficking and membrane localization context"
+  ],
+  "holdout_source": false,
+  "internal_runtime_source": false,
+  "native_metrics_used_for_selection": false,
+  "retrieved_or_checked": "2026-06-11",
+  "sequence_region_scope": {
+    "f508_context": "ISFCSQFSWIMPGTIKENIIFGVSYDEYRYRSVIKACQLEE",
+    "f508_position": 508,
+    "full_length": 1480,
+    "protein": "human CFTR / cystic fibrosis transmembrane conductance regulator",
+    "region": "full-length CFTR with F508del focus in NBD1",
+    "sequence": "MQRSPLEKASVVSKLFFSWTRPILRKGYRQRLELSDIYQIPSVDSADNLSEKLEREWDRELASKKNPKLINALRRCFFWRFMFYGIFLYLGEVTKAVQPLLLGRIIASYDPDNKEERSIAIYLGIGLCLLFIVRTLLLHPAIFGLHHIGMQMRIAMFSLIYKKTLKLSSRVLDKISIGQLVSLLSNNLNKFDEGLALAHFVWIAPLQVALLMGLIWELLQASAFCGLGFLIVLALFQAGLGRMMMKYRDQRAGKISERLVITSEMIENIQSVKAYCWEEAMEKMIENLRQTELKLTRKAAYVRYFNSSAFFFSGFFVVFLSVLPYALIKGIILRKIFTTISFCIVLRMAVTRQFPWAVQTWYDSLGAINKIQDFLQKQEYKTLEYNLTTTEVVMENVTAFWEEGFGELFEKAKQNNNNRKTSNGDDSLFFSNFSLLGTPVLKDINFKIERGQLLAVAGSTGAGKTSLLMVIMGELEPSEGKIKHSGRISFCSQFSWIMPGTIKENIIFGVSYDEYRYRSVIKACQLEEDISKFAEKDNIVLGEGGITLSGGQRARISLARAVYKDADLYLLDSPFGYLDVLTEKEIFESCVCKLMANKTRILVTSKMEHLKKADKILILHEGSSYFYGTFSELQNLQPDFSSKLMGCDSFDQFSAERRNSILTETLHRFSLEGDAPVSWTETKKQSFKQTGEFGEKRKNSILNPINSIRKFSIVQKTPLQMNGIEEDSDEPLERRLSLVPDSEQGEAILPRISVISTGPTLQARRRQSVLNLMTHSVNQGQNIHRKTTASTRKVSLAPQANLTELDIYSRRLSQETGLEISEEINEEDLKECFFDDMESIPAVTTWNTYLRYITVHKSLIFVLIWCLVIFLAEVAASLVVLWLLGNTPLQDKGNSTHSRNNSYAVIITSTSSYYVFYIYVGVADTLLAMGFFRGLPLVHTLITVSKILHHKMLHSVLQAPMSTLNTLKAGGILNRFSKDIAILDDLLPLTIFDFIQLLLIVIGAIAVVAVLQPYIFVATVPVIVAFIMLRAYFLQTSQQLKQLESEGRSPIFTHLVTSLKGLWTLRAFGRQPYFETLFHKALNLHTANWFLYLSTLRWFQMRIEMIFVIFFIAVTFISILTTGEGEGRVGIILTLAMNIMSTLQWAVNSSIDVDSLMRSVSRVFKFIDMPTEGKPTKSTKPYKNGQLSKVMIIENSHVKKDDIWPSGGQMTVKDLTAKYTEGGNAILENISFSISPGQRVGLLGRTGSGKSTLLSAFLRLLNTEGEIQIDGVSWDSITLQQWRKAFGVIPQKVFIFSGTFRKNLDPYEQWSDQEIWKVADEVGLRSVIEQFPGKLDFVLVDGGCVLSHGHKQLMCLARSVLSKAKILLLDEPSAHLDPVTYQIIRRTLKQAFADCTVILCEHRIEAMLECQQFLVIEENKVRQYDSIQKLLNERSLFRQAISPSDRVKLFPHRNSSKCKSKPQIAALKEETEEEVQDTRL"
+  },
+  "source_id": "UNIPROT_P13569_SEQUENCE_FEATURES_NONCOORDINATE",
+  "source_type": "UniProtKB sequence, topology, domain, function, and non-coordinate feature annotation",
+  "source_url_or_citation": "https://rest.uniprot.org/uniprotkb/P13569.json",
+  "transmembrane_segments_used": [
+    {
+      "end": 98,
+      "segment": 1,
+      "start": 78
+    },
+    {
+      "end": 146,
+      "segment": 2,
+      "start": 123
+    },
+    {
+      "end": 216,
+      "segment": 3,
+      "start": 196
+    },
+    {
+      "end": 243,
+      "segment": 4,
+      "start": 223
+    },
+    {
+      "end": 319,
+      "segment": 5,
+      "start": 299
+    },
+    {
+      "end": 358,
+      "segment": 6,
+      "start": 340
+    },
+    {
+      "end": 879,
+      "segment": 7,
+      "start": 859
+    },
+    {
+      "end": 939,
+      "segment": 8,
+      "start": 919
+    },
+    {
+      "end": 1011,
+      "segment": 9,
+      "start": 991
+    },
+    {
+      "end": 1034,
+      "segment": 10,
+      "start": 1014
+    },
+    {
+      "end": 1116,
+      "segment": 11,
+      "start": 1096
+    },
+    {
+      "end": 1151,
+      "segment": 12,
+      "start": 1131
+    }
+  ]
+}

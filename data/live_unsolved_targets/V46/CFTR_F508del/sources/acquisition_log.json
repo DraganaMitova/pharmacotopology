@@ -1,0 +1,35 @@
+{
+  "coordinate_derived_source_count_before_prediction": 0,
+  "entries": [
+    {
+      "allowed_use": "prediction_input_before_sealing",
+      "source_id": "UNIPROT_P13569_SEQUENCE_FEATURES_NONCOORDINATE"
+    },
+    {
+      "allowed_use": "prediction_input_before_sealing",
+      "source_id": "UNIPROT_P13569_F508DEL_VARIANT_NONCOORDINATE"
+    },
+    {
+      "allowed_use": "prediction_input_before_sealing",
+      "source_id": "CFTR_DOMAIN_PATTERN_FEATURES_DERIVED_FROM_ALLOWED_INPUTS"
+    },
+    {
+      "allowed_use": "postseal_holdout_validation_only",
+      "source_id": "CFTR_F508DEL_CORRECTION_REQUIREMENTS_PMC3266553"
+    },
+    {
+      "allowed_use": "postseal_holdout_validation_only",
+      "source_id": "CFTR_F508DEL_NBD1_STABILITY_LITERATURE_HOLDOUT"
+    },
+    {
+      "allowed_use": "postseal_holdout_validation_only",
+      "source_id": "CFTR_F508DEL_CORRECTOR_RESCUE_CONTEXT_HOLDOUT"
+    }
+  ],
+  "external_noncoordinate_source_count": 6,
+  "holdout_source_count_before_prediction": 0,
+  "internal_runtime_source_count_for_prediction": 0,
+  "kind": "V46_CFTR_F508DEL_SOURCE_ACQUISITION_LOG_v0",
+  "prediction_input_source_count": 3,
+  "target_id": "V46_CFTR_F508DEL"
+}

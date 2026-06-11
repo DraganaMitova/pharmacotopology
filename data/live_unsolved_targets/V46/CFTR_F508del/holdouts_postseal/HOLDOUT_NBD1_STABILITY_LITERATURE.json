@@ -1,0 +1,24 @@
+{
+  "coordinate_derived": false,
+  "evidence_statement": "NBD1 stabilization is a real but incomplete axis of F508del correction.",
+  "internal_runtime_source": false,
+  "opened_after_prediction_hash": "b797ea5d5a20a63d9f88cf93ac2239fb86c2f64f5992c80773729b78113373ad",
+  "opened_timestamp": "2026-06-11T17:16:25.910390+00:00",
+  "source_class": "NBD1_stability_support",
+  "source_id": "HOLDOUT_NBD1_STABILITY_LITERATURE",
+  "source_url_or_citation": "Post-seal F508del NBD1 folding/stability literature",
+  "supports_interdomain_ids": [],
+  "supports_operator_buckets": [
+    "NBD1_stability_operator",
+    "F508del_local_destabilization_operator"
+  ],
+  "supports_perturbation_ids": [
+    "V46_PERT_001",
+    "V46_PERT_003",
+    "V46_PERT_009"
+  ],
+  "supports_rescue_ids": [
+    "V46_PERT_003"
+  ],
+  "used_before_prediction": false
+}

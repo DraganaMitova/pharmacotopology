@@ -1,0 +1,156 @@
+{
+  "allowed_use": "prediction_input_before_sealing",
+  "answer_key_source": false,
+  "composition": {
+    "MSD1_81_365": {
+      "charged_fraction": 0.18596491228070175,
+      "counts": {
+        "A": 22,
+        "C": 4,
+        "D": 6,
+        "E": 13,
+        "F": 21,
+        "G": 17,
+        "H": 4,
+        "I": 27,
+        "K": 15,
+        "L": 44,
+        "M": 12,
+        "N": 7,
+        "P": 6,
+        "Q": 11,
+        "R": 15,
+        "S": 18,
+        "T": 10,
+        "V": 17,
+        "W": 5,
+        "Y": 11
+      },
+      "hydrophobic_fraction": 0.5578947368421052,
+      "length": 285
+    },
+    "NBD1_423_646": {
+      "charged_fraction": 0.2544642857142857,
+      "counts": {
+        "A": 11,
+        "C": 4,
+        "D": 12,
+        "E": 16,
+        "F": 13,
+        "G": 20,
+        "H": 3,
+        "I": 18,
+        "K": 18,
+        "L": 26,
+        "M": 6,
+        "N": 7,
+        "P": 5,
+        "Q": 6,
+        "R": 8,
+        "S": 23,
+        "T": 9,
+        "V": 10,
+        "W": 1,
+        "Y": 8
+      },
+      "hydrophobic_fraction": 0.41517857142857145,
+      "length": 224
+    },
+    "R_region_654_831": {
+      "charged_fraction": 0.30337078651685395,
+      "counts": {
+        "A": 7,
+        "D": 6,
+        "E": 20,
+        "F": 4,
+        "G": 8,
+        "H": 3,
+        "I": 13,
+        "K": 10,
+        "L": 18,
+        "M": 2,
+        "N": 10,
+        "P": 8,
+        "Q": 11,
+        "R": 15,
+        "S": 20,
+        "T": 14,
+        "V": 7,
+        "W": 1,
+        "Y": 1
+      },
+      "hydrophobic_fraction": 0.29775280898876405,
+      "length": 178
+    },
+    "full_length": {
+      "charged_fraction": 0.23378378378378378,
+      "counts": {
+        "A": 83,
+        "C": 18,
+        "D": 58,
+        "E": 93,
+        "F": 85,
+        "G": 84,
+        "H": 25,
+        "I": 119,
+        "K": 92,
+        "L": 183,
+        "M": 37,
+        "N": 54,
+        "P": 45,
+        "Q": 67,
+        "R": 78,
+        "S": 123,
+        "T": 83,
+        "V": 90,
+        "W": 23,
+        "Y": 40
+      },
+      "hydrophobic_fraction": 0.44594594594594594,
+      "length": 1480
+    }
+  },
+  "coordinate_derived": false,
+  "derived_from_source_ids": [
+    "UNIPROT_P13569_SEQUENCE_FEATURES_NONCOORDINATE"
+  ],
+  "domain_architecture": [
+    {
+      "domain": "MSD1",
+      "end": 365,
+      "feature_type": "ABC transmembrane type-1 1",
+      "start": 81
+    },
+    {
+      "domain": "NBD1",
+      "end": 646,
+      "feature_type": "ABC transporter 1",
+      "start": 423
+    },
+    {
+      "domain": "R_region",
+      "end": 831,
+      "feature_type": "Disordered regulatory region",
+      "start": 654
+    },
+    {
+      "domain": "MSD2",
+      "end": 1155,
+      "feature_type": "ABC transmembrane type-1 2",
+      "start": 859
+    },
+    {
+      "domain": "NBD2",
+      "end": 1443,
+      "feature_type": "ABC transporter 2",
+      "start": 1210
+    }
+  ],
+  "holdout_source": false,
+  "internal_runtime_source": false,
+  "native_metrics_used_for_selection": false,
+  "source_id": "CFTR_DOMAIN_PATTERN_FEATURES_DERIVED_FROM_ALLOWED_INPUTS",
+  "source_type": "derived non-coordinate domain/topology composition features",
+  "source_url_or_citation": "derived from UniProt P13569 sequence and domain annotations",
+  "transmembrane_segment_count": 12
+}

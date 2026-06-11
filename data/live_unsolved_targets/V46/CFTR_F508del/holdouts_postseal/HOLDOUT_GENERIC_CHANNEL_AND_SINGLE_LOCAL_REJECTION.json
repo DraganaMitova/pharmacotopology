@@ -1,0 +1,22 @@
+{
+  "coordinate_derived": false,
+  "evidence_statement": "CFTR F508del requires membrane multidomain/proteostasis grammar, not a generic channel or compact soluble domain label.",
+  "internal_runtime_source": false,
+  "opened_after_prediction_hash": "b797ea5d5a20a63d9f88cf93ac2239fb86c2f64f5992c80773729b78113373ad",
+  "opened_timestamp": "2026-06-11T17:16:25.910390+00:00",
+  "source_class": "forbidden_grammar_rejection_support",
+  "source_id": "HOLDOUT_GENERIC_CHANNEL_AND_SINGLE_LOCAL_REJECTION",
+  "source_url_or_citation": "Post-seal negative controls against generic channel and single-local explanations",
+  "supports_interdomain_ids": [],
+  "supports_operator_buckets": [
+    "membrane_domain_operator",
+    "multidomain_assembly_operator",
+    "channel_function_context_operator"
+  ],
+  "supports_perturbation_ids": [
+    "V46_PERT_006",
+    "V46_PERT_007"
+  ],
+  "supports_rescue_ids": [],
+  "used_before_prediction": false
+}

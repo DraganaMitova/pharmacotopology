@@ -1,0 +1,7 @@
+{
+  "decision_status": "V46_CFTR_F508DEL_MEMBRANE_MULTIDOMAIN_SOLUTION_PACKET_PASSED_REVIEW_REQUIRED",
+  "folding_problem_solved": false,
+  "kind": "V46_CFTR_F508DEL_MEMBRANE_MULTIDOMAIN_NEXT_DECISION_v0",
+  "live_membrane_solution_packet": true,
+  "next_action": "external review and direct CFTR F508del rescue/ablation testing before strengthening beyond live membrane solution packet wording"
+}

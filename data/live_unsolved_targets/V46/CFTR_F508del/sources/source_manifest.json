@@ -1,0 +1,400 @@
+{
+  "answer_key_available_to_prediction": false,
+  "blocked_prediction_inputs": [
+    {
+      "blocked_input": "PDB coordinates or mmCIF coordinates before sealing",
+      "reason": "coordinates are validation/structure truth and not prediction evidence"
+    },
+    {
+      "blocked_input": "PDB-derived contacts or native contact maps",
+      "reason": "would leak structure/interface truth into prediction"
+    },
+    {
+      "blocked_input": "AlphaFold/ESMFold/RoseTTAFold coordinates before sealing",
+      "reason": "predicted coordinate models are blocked as evidence"
+    },
+    {
+      "blocked_input": "CFTR coordinate models as prediction evidence",
+      "reason": "V46 tests mechanism grammar, not coordinate lookup"
+    },
+    {
+      "blocked_input": "internal runtime reports as biological evidence",
+      "reason": "runtime artifacts are audit outputs only"
+    },
+    {
+      "blocked_input": "validation holdouts before prediction sealing",
+      "reason": "holdouts open only after sealed prediction hash exists"
+    },
+    {
+      "blocked_input": "answer key/class labels during prediction",
+      "reason": "assignment must use source-separated allowed evidence"
+    },
+    {
+      "blocked_input": "generic channel annotation only",
+      "reason": "channel identity alone cannot explain F508del folding rescue"
+    },
+    {
+      "blocked_input": "single local F508 deletion explanation only",
+      "reason": "V46 must model NBD1 plus interface plus proteostasis/maturation grammar"
+    }
+  ],
+  "coordinate_sources_available_before_prediction": false,
+  "folding_problem_solved": false,
+  "holdouts_created": false,
+  "internal_runtime_sources_available_to_prediction": false,
+  "kind": "V46_CFTR_F508DEL_SOURCE_MANIFEST_v0",
+  "live_membrane_solution_packet": false,
+  "prediction_input_source_count": 3,
+  "prediction_inputs_separated_from_validation_holdouts": true,
+  "prediction_sources": [
+    {
+      "accession": "P13569",
+      "allowed_use": "prediction_input_before_sealing",
+      "answer_key_source": false,
+      "coordinate_derived": false,
+      "domain_architecture_used": [
+        {
+          "domain": "MSD1",
+          "end": 365,
+          "feature_type": "ABC transmembrane type-1 1",
+          "start": 81
+        },
+        {
+          "domain": "NBD1",
+          "end": 646,
+          "feature_type": "ABC transporter 1",
+          "start": 423
+        },
+        {
+          "domain": "R_region",
+          "end": 831,
+          "feature_type": "Disordered regulatory region",
+          "start": 654
+        },
+        {
+          "domain": "MSD2",
+          "end": 1155,
+          "feature_type": "ABC transmembrane type-1 2",
+          "start": 859
+        },
+        {
+          "domain": "NBD2",
+          "end": 1443,
+          "feature_type": "ABC transporter 2",
+          "start": 1210
+        }
+      ],
+      "features_excluded_before_prediction": [
+        "PDB/mmCIF coordinate records",
+        "coordinate-derived contacts",
+        "native contact maps",
+        "AlphaFold/ESMFold/RoseTTAFold coordinates"
+      ],
+      "function_annotations_used": [
+        "epithelial chloride channel / ABC transporter family context",
+        "ATP-dependent channel regulation and R-region phosphorylation context",
+        "cell-surface trafficking and membrane localization context"
+      ],
+      "holdout_source": false,
+      "internal_runtime_source": false,
+      "native_metrics_used_for_selection": false,
+      "retrieved_or_checked": "2026-06-11",
+      "sequence_region_scope": {
+        "f508_context": "ISFCSQFSWIMPGTIKENIIFGVSYDEYRYRSVIKACQLEE",
+        "f508_position": 508,
+        "full_length": 1480,
+        "protein": "human CFTR / cystic fibrosis transmembrane conductance regulator",
+        "region": "full-length CFTR with F508del focus in NBD1",
+        "sequence": "MQRSPLEKASVVSKLFFSWTRPILRKGYRQRLELSDIYQIPSVDSADNLSEKLEREWDRELASKKNPKLINALRRCFFWRFMFYGIFLYLGEVTKAVQPLLLGRIIASYDPDNKEERSIAIYLGIGLCLLFIVRTLLLHPAIFGLHHIGMQMRIAMFSLIYKKTLKLSSRVLDKISIGQLVSLLSNNLNKFDEGLALAHFVWIAPLQVALLMGLIWELLQASAFCGLGFLIVLALFQAGLGRMMMKYRDQRAGKISERLVITSEMIENIQSVKAYCWEEAMEKMIENLRQTELKLTRKAAYVRYFNSSAFFFSGFFVVFLSVLPYALIKGIILRKIFTTISFCIVLRMAVTRQFPWAVQTWYDSLGAINKIQDFLQKQEYKTLEYNLTTTEVVMENVTAFWEEGFGELFEKAKQNNNNRKTSNGDDSLFFSNFSLLGTPVLKDINFKIERGQLLAVAGSTGAGKTSLLMVIMGELEPSEGKIKHSGRISFCSQFSWIMPGTIKENIIFGVSYDEYRYRSVIKACQLEEDISKFAEKDNIVLGEGGITLSGGQRARISLARAVYKDADLYLLDSPFGYLDVLTEKEIFESCVCKLMANKTRILVTSKMEHLKKADKILILHEGSSYFYGTFSELQNLQPDFSSKLMGCDSFDQFSAERRNSILTETLHRFSLEGDAPVSWTETKKQSFKQTGEFGEKRKNSILNPINSIRKFSIVQKTPLQMNGIEEDSDEPLERRLSLVPDSEQGEAILPRISVISTGPTLQARRRQSVLNLMTHSVNQGQNIHRKTTASTRKVSLAPQANLTELDIYSRRLSQETGLEISEEINEEDLKECFFDDMESIPAVTTWNTYLRYITVHKSLIFVLIWCLVIFLAEVAASLVVLWLLGNTPLQDKGNSTHSRNNSYAVIITSTSSYYVFYIYVGVADTLLAMGFFRGLPLVHTLITVSKILHHKMLHSVLQAPMSTLNTLKAGGILNRFSKDIAILDDLLPLTIFDFIQLLLIVIGAIAVVAVLQPYIFVATVPVIVAFIMLRAYFLQTSQQLKQLESEGRSPIFTHLVTSLKGLWTLRAFGRQPYFETLFHKALNLHTANWFLYLSTLRWFQMRIEMIFVIFFIAVTFISILTTGEGEGRVGIILTLAMNIMSTLQWAVNSSIDVDSLMRSVSRVFKFIDMPTEGKPTKSTKPYKNGQLSKVMIIENSHVKKDDIWPSGGQMTVKDLTAKYTEGGNAILENISFSISPGQRVGLLGRTGSGKSTLLSAFLRLLNTEGEIQIDGVSWDSITLQQWRKAFGVIPQKVFIFSGTFRKNLDPYEQWSDQEIWKVADEVGLRSVIEQFPGKLDFVLVDGGCVLSHGHKQLMCLARSVLSKAKILLLDEPSAHLDPVTYQIIRRTLKQAFADCTVILCEHRIEAMLECQQFLVIEENKVRQYDSIQKLLNERSLFRQAISPSDRVKLFPHRNSSKCKSKPQIAALKEETEEEVQDTRL"
+      },
+      "source_id": "UNIPROT_P13569_SEQUENCE_FEATURES_NONCOORDINATE",
+      "source_type": "UniProtKB sequence, topology, domain, function, and non-coordinate feature annotation",
+      "source_url_or_citation": "https://rest.uniprot.org/uniprotkb/P13569.json",
+      "transmembrane_segments_used": [
+        {
+          "end": 98,
+          "segment": 1,
+          "start": 78
+        },
+        {
+          "end": 146,
+          "segment": 2,
+          "start": 123
+        },
+        {
+          "end": 216,
+          "segment": 3,
+          "start": 196
+        },
+        {
+          "end": 243,
+          "segment": 4,
+          "start": 223
+        },
+        {
+          "end": 319,
+          "segment": 5,
+          "start": 299
+        },
+        {
+          "end": 358,
+          "segment": 6,
+          "start": 340
+        },
+        {
+          "end": 879,
+          "segment": 7,
+          "start": 859
+        },
+        {
+          "end": 939,
+          "segment": 8,
+          "start": 919
+        },
+        {
+          "end": 1011,
+          "segment": 9,
+          "start": 991
+        },
+        {
+          "end": 1034,
+          "segment": 10,
+          "start": 1014
+        },
+        {
+          "end": 1116,
+          "segment": 11,
+          "start": 1096
+        },
+        {
+          "end": 1151,
+          "segment": 12,
+          "start": 1131
+        }
+      ]
+    },
+    {
+      "allowed_use": "prediction_input_before_sealing",
+      "answer_key_source": false,
+      "coordinate_derived": false,
+      "holdout_source": false,
+      "internal_runtime_source": false,
+      "native_metrics_used_for_selection": false,
+      "source_id": "UNIPROT_P13569_F508DEL_VARIANT_NONCOORDINATE",
+      "source_type": "UniProtKB disease-variant annotation",
+      "source_url_or_citation": "https://rest.uniprot.org/uniprotkb/P13569.json",
+      "variant": {
+        "domain_context": "NBD1 / ABC transporter 1 domain",
+        "label": "F508del / deletion of phenylalanine 508",
+        "noncoordinate_annotation": [
+          "impairs protein folding and stability",
+          "causes local changes to a surface mediating interactions between domains",
+          "impairs maturation and trafficking to the cell membrane",
+          "primes degradation through a proteasome-linked pathway",
+          "decreases frequency of channel opening in vitro"
+        ],
+        "position": 508,
+        "wild_type_residue": "F"
+      }
+    },
+    {
+      "allowed_use": "prediction_input_before_sealing",
+      "answer_key_source": false,
+      "composition": {
+        "MSD1_81_365": {
+          "charged_fraction": 0.18596491228070175,
+          "counts": {
+            "A": 22,
+            "C": 4,
+            "D": 6,
+            "E": 13,
+            "F": 21,
+            "G": 17,
+            "H": 4,
+            "I": 27,
+            "K": 15,
+            "L": 44,
+            "M": 12,
+            "N": 7,
+            "P": 6,
+            "Q": 11,
+            "R": 15,
+            "S": 18,
+            "T": 10,
+            "V": 17,
+            "W": 5,
+            "Y": 11
+          },
+          "hydrophobic_fraction": 0.5578947368421052,
+          "length": 285
+        },
+        "NBD1_423_646": {
+          "charged_fraction": 0.2544642857142857,
+          "counts": {
+            "A": 11,
+            "C": 4,
+            "D": 12,
+            "E": 16,
+            "F": 13,
+            "G": 20,
+            "H": 3,
+            "I": 18,
+            "K": 18,
+            "L": 26,
+            "M": 6,
+            "N": 7,
+            "P": 5,
+            "Q": 6,
+            "R": 8,
+            "S": 23,
+            "T": 9,
+            "V": 10,
+            "W": 1,
+            "Y": 8
+          },
+          "hydrophobic_fraction": 0.41517857142857145,
+          "length": 224
+        },
+        "R_region_654_831": {
+          "charged_fraction": 0.30337078651685395,
+          "counts": {
+            "A": 7,
+            "D": 6,
+            "E": 20,
+            "F": 4,
+            "G": 8,
+            "H": 3,
+            "I": 13,
+            "K": 10,
+            "L": 18,
+            "M": 2,
+            "N": 10,
+            "P": 8,
+            "Q": 11,
+            "R": 15,
+            "S": 20,
+            "T": 14,
+            "V": 7,
+            "W": 1,
+            "Y": 1
+          },
+          "hydrophobic_fraction": 0.29775280898876405,
+          "length": 178
+        },
+        "full_length": {
+          "charged_fraction": 0.23378378378378378,
+          "counts": {
+            "A": 83,
+            "C": 18,
+            "D": 58,
+            "E": 93,
+            "F": 85,
+            "G": 84,
+            "H": 25,
+            "I": 119,
+            "K": 92,
+            "L": 183,
+            "M": 37,
+            "N": 54,
+            "P": 45,
+            "Q": 67,
+            "R": 78,
+            "S": 123,
+            "T": 83,
+            "V": 90,
+            "W": 23,
+            "Y": 40
+          },
+          "hydrophobic_fraction": 0.44594594594594594,
+          "length": 1480
+        }
+      },
+      "coordinate_derived": false,
+      "derived_from_source_ids": [
+        "UNIPROT_P13569_SEQUENCE_FEATURES_NONCOORDINATE"
+      ],
+      "domain_architecture": [
+        {
+          "domain": "MSD1",
+          "end": 365,
+          "feature_type": "ABC transmembrane type-1 1",
+          "start": 81
+        },
+        {
+          "domain": "NBD1",
+          "end": 646,
+          "feature_type": "ABC transporter 1",
+          "start": 423
+        },
+        {
+          "domain": "R_region",
+          "end": 831,
+          "feature_type": "Disordered regulatory region",
+          "start": 654
+        },
+        {
+          "domain": "MSD2",
+          "end": 1155,
+          "feature_type": "ABC transmembrane type-1 2",
+          "start": 859
+        },
+        {
+          "domain": "NBD2",
+          "end": 1443,
+          "feature_type": "ABC transporter 2",
+          "start": 1210
+        }
+      ],
+      "holdout_source": false,
+      "internal_runtime_source": false,
+      "native_metrics_used_for_selection": false,
+      "source_id": "CFTR_DOMAIN_PATTERN_FEATURES_DERIVED_FROM_ALLOWED_INPUTS",
+      "source_type": "derived non-coordinate domain/topology composition features",
+      "source_url_or_citation": "derived from UniProt P13569 sequence and domain annotations",
+      "transmembrane_segment_count": 12
+    }
+  ],
+  "problem_context_sources_not_opened_for_prediction": [
+    {
+      "allowed_use": "postseal_holdout_validation_only",
+      "coordinate_derived": false,
+      "holdout_source": true,
+      "internal_runtime_source": false,
+      "notes": [
+        "Efficient correction of F508del-CFTR requires more than a local mutation fix.",
+        "NBD1 stability and domain/interface effects are part of the rescue grammar."
+      ],
+      "source_id": "CFTR_F508DEL_CORRECTION_REQUIREMENTS_PMC3266553",
+      "source_type": "post-seal review/experimental literature context",
+      "source_url_or_citation": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3266553/"
+    },
+    {
+      "allowed_use": "postseal_holdout_validation_only",
+      "coordinate_derived": false,
+      "holdout_source": true,
+      "internal_runtime_source": false,
+      "notes": [
+        "F508del lowers NBD1 folding competence/stability and causes maturation defects."
+      ],
+      "source_id": "CFTR_F508DEL_NBD1_STABILITY_LITERATURE_HOLDOUT",
+      "source_type": "post-seal literature context",
+      "source_url_or_citation": "PubMed literature on F508del NBD1 folding/stability defects"
+    },
+    {
+      "allowed_use": "postseal_holdout_validation_only",
+      "coordinate_derived": false,
+      "holdout_source": true,
+      "internal_runtime_source": false,
+      "notes": [
+        "Corrector action maps to multidomain folding, interface, and proteostasis rescue rather than one-site repair."
+      ],
+      "source_id": "CFTR_F508DEL_CORRECTOR_RESCUE_CONTEXT_HOLDOUT",
+      "source_type": "post-seal corrector/rescue literature context",
+      "source_url_or_citation": "CFTR corrector/rescue literature; VX-809/lumacaftor and combination corrector logic"
+    }
+  ],
+  "sequence_region_scope": "full-length CFTR P13569 with F508del focus in NBD1",
+  "target": "human CFTR F508del membrane multidomain folding defect",
+  "target_id": "V46_CFTR_F508DEL",
+  "uniprot_accession": "P13569"
+}

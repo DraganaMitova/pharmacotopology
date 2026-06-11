@@ -1,0 +1,605 @@
+{
+  "allowed_claim_text": "We have a sealed live solution packet for CFTR F508del as a membrane multidomain folding, assembly, trafficking, and rescue problem. This is not a universal protein-folding solved claim or an atomic-coordinate claim.",
+  "artifacts": {
+    "certificate": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V46_CFTR_F508DEL_MEMBRANE_MULTIDOMAIN_FOLDING_RESCUE_ATTACK/v46_cftr_f508del_membrane_multidomain_attack_certificate.json",
+    "decision": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V46_CFTR_F508DEL_MEMBRANE_MULTIDOMAIN_FOLDING_RESCUE_ATTACK/v46_cftr_f508del_membrane_multidomain_attack_next_decision.json",
+    "report": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V46_CFTR_F508DEL_MEMBRANE_MULTIDOMAIN_FOLDING_RESCUE_ATTACK/V46_CFTR_F508DEL_MEMBRANE_MULTIDOMAIN_FOLDING_RESCUE_ATTACK_REPORT.md"
+  },
+  "claim_allowed": true,
+  "contradicted_prediction_count": 0,
+  "contradicted_predictions": [],
+  "control_count": 17,
+  "control_status": "V46_CFTR_F508DEL_MEMBRANE_MULTIDOMAIN_SOLUTION_PACKET_PASSED_REVIEW_REQUIRED",
+  "controls": [
+    {
+      "control_id": "prediction_sealed_before_holdout_validation",
+      "observed": null,
+      "passed": true,
+      "reason": "Prediction must be sealed before holdout validation."
+    },
+    {
+      "control_id": "holdout_files_unavailable_to_prediction_function",
+      "observed": null,
+      "passed": true,
+      "reason": "Holdout files must be unavailable to prediction function."
+    },
+    {
+      "control_id": "pdb_coordinates_before_sealing_blocked",
+      "observed": null,
+      "passed": true,
+      "reason": "PDB coordinates before sealing are blocked."
+    },
+    {
+      "control_id": "alphafold_esmfold_coordinates_before_sealing_blocked",
+      "observed": null,
+      "passed": true,
+      "reason": "AlphaFold/ESMFold coordinates before sealing are blocked."
+    },
+    {
+      "control_id": "internal_runtime_source_as_evidence_blocked",
+      "observed": null,
+      "passed": true,
+      "reason": "Internal runtime reports as biological evidence are blocked."
+    },
+    {
+      "control_id": "target_name_only_assignment_blocked",
+      "observed": null,
+      "passed": true,
+      "reason": "Target-name-only assignment is blocked."
+    },
+    {
+      "control_id": "generic_channel_annotation_alone_cannot_make_full_packet",
+      "observed": null,
+      "passed": true,
+      "reason": "Generic channel annotation alone cannot create a full solution packet."
+    },
+    {
+      "control_id": "single_local_mutation_only_explanation_blocked",
+      "observed": null,
+      "passed": true,
+      "reason": "Single-local F508del explanation is blocked."
+    },
+    {
+      "control_id": "compact_soluble_single_domain_forcing_blocked",
+      "observed": null,
+      "passed": true,
+      "reason": "Compact soluble single-domain forcing is blocked."
+    },
+    {
+      "control_id": "nbd1_stability_evidence_removed_weakens_support",
+      "observed": {
+        "with": 12,
+        "without": 11
+      },
+      "passed": true,
+      "reason": "Removing NBD1 stability evidence weakens support."
+    },
+    {
+      "control_id": "interface_domain_coupling_evidence_removed_weakens_support",
+      "observed": {
+        "with": 1.0,
+        "without": 0.0
+      },
+      "passed": true,
+      "reason": "Removing interface/domain-coupling evidence weakens support."
+    },
+    {
+      "control_id": "trafficking_proteostasis_evidence_removed_weakens_maturation_grammar",
+      "observed": {
+        "with": 12,
+        "without": 9
+      },
+      "passed": true,
+      "reason": "Removing trafficking/proteostasis evidence weakens maturation grammar."
+    },
+    {
+      "control_id": "swapped_kcsa_cftr_evidence_does_not_validate_specific_predictions",
+      "observed": null,
+      "passed": true,
+      "reason": "Swapped KcsA or unrelated channel evidence cannot validate CFTR F508del-specific predictions."
+    },
+    {
+      "control_id": "failed_predictions_remain_failed_not_repaired",
+      "observed": null,
+      "passed": true,
+      "reason": "Failed predictions remain failed and are not repaired after holdout."
+    },
+    {
+      "control_id": "fewer_than_four_holdout_classes_status_partial",
+      "observed": null,
+      "passed": true,
+      "reason": "If fewer than four independent holdout classes exist, status is partial."
+    },
+    {
+      "control_id": "all_generic_membrane_channel_claims_status_fails",
+      "observed": null,
+      "passed": true,
+      "reason": "If all predictions are generic membrane/channel claims, status fails."
+    },
+    {
+      "control_id": "claim_boundary_remains_honest",
+      "observed": null,
+      "passed": true,
+      "reason": "Claim boundary remains honest."
+    }
+  ],
+  "coordinate_derived_source_count_before_prediction": 0,
+  "coordinate_truth_used_before_prediction": false,
+  "failed_checks": [],
+  "falsification_criteria": [
+    "F508del is fully explained by one local residue deletion with no NBD1 stability effect",
+    "F508del correction is complete with NBD1 stabilization alone in all relevant maturation/function assays",
+    "interdomain/interface evidence does not affect correction or maturation readouts",
+    "trafficking/proteostasis readouts do not change despite folding/maturation rescue",
+    "generic channel annotation alone predicts the F508del rescue logic",
+    "coordinate evidence before sealing is required for the mechanism packet",
+    "independent holdouts contradict more than two explicit perturbation predictions"
+  ],
+  "folding_problem_solved": false,
+  "forbidden_claims": [
+    "we solved the universal protein-folding problem",
+    "F508del-CFTR is explained by one local deletion only",
+    "CFTR coordinates were predicted de novo",
+    "generic channel annotation solves CFTR F508del",
+    "external review is unnecessary"
+  ],
+  "forbidden_generic_channel_rejection_passed": true,
+  "forbidden_single_local_explanation_rejection_passed": true,
+  "holdout_leakage_detected": false,
+  "holdout_source_classes": [
+    "F508del_folding_processing_defect_support",
+    "NBD1_stability_support",
+    "corrector_rescue_logic_support",
+    "forbidden_grammar_rejection_support",
+    "interdomain_interface_coupling_support",
+    "trafficking_proteostasis_support"
+  ],
+  "holdout_source_count": 6,
+  "holdout_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "F508del impairs folding/stability, maturation, trafficking, degradation routing, and channel opening frequency.",
+      "internal_runtime_source": false,
+      "opened_after_prediction_hash": "b797ea5d5a20a63d9f88cf93ac2239fb86c2f64f5992c80773729b78113373ad",
+      "opened_timestamp": "2026-06-11T17:16:25.910390+00:00",
+      "source_class": "F508del_folding_processing_defect_support",
+      "source_id": "HOLDOUT_UNIPROT_F508DEL_PROCESSING_DEFECT",
+      "source_url_or_citation": "UniProt P13569 F508del variant annotation",
+      "supports_interdomain_ids": [],
+      "supports_operator_buckets": [
+        "F508del_local_destabilization_operator",
+        "trafficking_quality_control_operator",
+        "channel_function_context_operator"
+      ],
+      "supports_perturbation_ids": [
+        "V46_PERT_001",
+        "V46_PERT_002",
+        "V46_PERT_010",
+        "V46_PERT_011"
+      ],
+      "supports_rescue_ids": [],
+      "used_before_prediction": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "NBD1 stabilization is a real but incomplete axis of F508del correction.",
+      "internal_runtime_source": false,
+      "opened_after_prediction_hash": "b797ea5d5a20a63d9f88cf93ac2239fb86c2f64f5992c80773729b78113373ad",
+      "opened_timestamp": "2026-06-11T17:16:25.910390+00:00",
+      "source_class": "NBD1_stability_support",
+      "source_id": "HOLDOUT_NBD1_STABILITY_LITERATURE",
+      "source_url_or_citation": "Post-seal F508del NBD1 folding/stability literature",
+      "supports_interdomain_ids": [],
+      "supports_operator_buckets": [
+        "NBD1_stability_operator",
+        "F508del_local_destabilization_operator"
+      ],
+      "supports_perturbation_ids": [
+        "V46_PERT_001",
+        "V46_PERT_003",
+        "V46_PERT_009"
+      ],
+      "supports_rescue_ids": [
+        "V46_PERT_003"
+      ],
+      "used_before_prediction": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "F508del correction requires interdomain/interface coupling beyond local NBD1 stabilization.",
+      "internal_runtime_source": false,
+      "opened_after_prediction_hash": "b797ea5d5a20a63d9f88cf93ac2239fb86c2f64f5992c80773729b78113373ad",
+      "opened_timestamp": "2026-06-11T17:16:25.910390+00:00",
+      "source_class": "interdomain_interface_coupling_support",
+      "source_id": "HOLDOUT_INTERDOMAIN_INTERFACE_COUPLING",
+      "source_url_or_citation": "Post-seal CFTR NBD1-MSD/ICL interface-coupling literature",
+      "supports_interdomain_ids": [
+        "V46_PERT_004",
+        "V46_PERT_008",
+        "V46_PERT_012"
+      ],
+      "supports_operator_buckets": [
+        "interdomain_interface_coupling_operator",
+        "multidomain_assembly_operator"
+      ],
+      "supports_perturbation_ids": [
+        "V46_PERT_004",
+        "V46_PERT_008",
+        "V46_PERT_012"
+      ],
+      "supports_rescue_ids": [
+        "V46_PERT_004",
+        "V46_PERT_012"
+      ],
+      "used_before_prediction": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Efficient correction maps to multiple rescue axes and is not a single local-site repair.",
+      "internal_runtime_source": false,
+      "opened_after_prediction_hash": "b797ea5d5a20a63d9f88cf93ac2239fb86c2f64f5992c80773729b78113373ad",
+      "opened_timestamp": "2026-06-11T17:16:25.910390+00:00",
+      "source_class": "corrector_rescue_logic_support",
+      "source_id": "HOLDOUT_CORRECTOR_RESCUE_REQUIREMENTS",
+      "source_url_or_citation": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3266553/",
+      "supports_interdomain_ids": [
+        "V46_PERT_004",
+        "V46_PERT_012"
+      ],
+      "supports_operator_buckets": [
+        "corrector_or_rescue_context_operator",
+        "interdomain_interface_coupling_operator",
+        "NBD1_stability_operator"
+      ],
+      "supports_perturbation_ids": [
+        "V46_PERT_003",
+        "V46_PERT_004",
+        "V46_PERT_005",
+        "V46_PERT_012"
+      ],
+      "supports_rescue_ids": [
+        "V46_PERT_003",
+        "V46_PERT_004",
+        "V46_PERT_005",
+        "V46_PERT_012"
+      ],
+      "used_before_prediction": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Maturation and trafficking are functional folding-context readouts, not atomic-fold proof.",
+      "internal_runtime_source": false,
+      "opened_after_prediction_hash": "b797ea5d5a20a63d9f88cf93ac2239fb86c2f64f5992c80773729b78113373ad",
+      "opened_timestamp": "2026-06-11T17:16:25.910390+00:00",
+      "source_class": "trafficking_proteostasis_support",
+      "source_id": "HOLDOUT_TRAFFICKING_PROTEOSTASIS_QC",
+      "source_url_or_citation": "Post-seal CFTR maturation, glycan processing, ER quality-control, and proteostasis literature",
+      "supports_interdomain_ids": [],
+      "supports_operator_buckets": [
+        "trafficking_quality_control_operator",
+        "corrector_or_rescue_context_operator"
+      ],
+      "supports_perturbation_ids": [
+        "V46_PERT_002",
+        "V46_PERT_005",
+        "V46_PERT_010"
+      ],
+      "supports_rescue_ids": [
+        "V46_PERT_005"
+      ],
+      "used_before_prediction": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "CFTR F508del requires membrane multidomain/proteostasis grammar, not a generic channel or compact soluble domain label.",
+      "internal_runtime_source": false,
+      "opened_after_prediction_hash": "b797ea5d5a20a63d9f88cf93ac2239fb86c2f64f5992c80773729b78113373ad",
+      "opened_timestamp": "2026-06-11T17:16:25.910390+00:00",
+      "source_class": "forbidden_grammar_rejection_support",
+      "source_id": "HOLDOUT_GENERIC_CHANNEL_AND_SINGLE_LOCAL_REJECTION",
+      "source_url_or_citation": "Post-seal negative controls against generic channel and single-local explanations",
+      "supports_interdomain_ids": [],
+      "supports_operator_buckets": [
+        "membrane_domain_operator",
+        "multidomain_assembly_operator",
+        "channel_function_context_operator"
+      ],
+      "supports_perturbation_ids": [
+        "V46_PERT_006",
+        "V46_PERT_007"
+      ],
+      "supports_rescue_ids": [],
+      "used_before_prediction": false
+    }
+  ],
+  "interdomain_coupling_support_rate": 1.0,
+  "internal_runtime_source_count_for_prediction": 0,
+  "kind": "V46_CFTR_F508DEL_MEMBRANE_MULTIDOMAIN_FOLDING_RESCUE_CERTIFICATE_v0",
+  "leakage_status": {
+    "coordinate_derived_source_count_before_prediction": 0,
+    "coordinate_truth_used_before_prediction": false,
+    "holdout_leakage_detected": false,
+    "internal_runtime_source_count_for_prediction": 0,
+    "native_metrics_used_before_prediction": false
+  },
+  "live_membrane_solution_packet": true,
+  "low_resolution_structure_or_ensemble_prediction": {
+    "architecture": "full-length multidomain membrane ABC channel with MSD1/NBD1/R/MSD2/NBD2 assembly",
+    "atomic_claim": "blocked; no coordinate solution is claimed",
+    "defect_model": "F508del causes a coupled NBD1 stability, domain-interface assembly, trafficking/proteostasis, and channel-function defect",
+    "single_native_fold_expected": false
+  },
+  "mechanism_class": "membrane_multidomain_folding_assembly_proteostasis_defect",
+  "native_metrics_used_before_prediction": false,
+  "next_action": "external review and direct CFTR F508del rescue/ablation testing before strengthening beyond live membrane solution packet wording",
+  "next_decision": {
+    "decision_status": "V46_CFTR_F508DEL_MEMBRANE_MULTIDOMAIN_SOLUTION_PACKET_PASSED_REVIEW_REQUIRED",
+    "folding_problem_solved": false,
+    "kind": "V46_CFTR_F508DEL_MEMBRANE_MULTIDOMAIN_NEXT_DECISION_v0",
+    "live_membrane_solution_packet": true,
+    "next_action": "external review and direct CFTR F508del rescue/ablation testing before strengthening beyond live membrane solution packet wording"
+  },
+  "operator_bucket_count": 8,
+  "operator_buckets": [
+    "membrane_domain_operator",
+    "NBD1_stability_operator",
+    "F508del_local_destabilization_operator",
+    "interdomain_interface_coupling_operator",
+    "trafficking_quality_control_operator",
+    "corrector_or_rescue_context_operator",
+    "multidomain_assembly_operator",
+    "channel_function_context_operator"
+  ],
+  "operator_support_rate": 1.0,
+  "operator_validation": [
+    {
+      "bucket": "membrane_domain_operator",
+      "region_name": "MSD1_MSD2_12_TM_membrane_channel_scaffold",
+      "support_level": "supported"
+    },
+    {
+      "bucket": "NBD1_stability_operator",
+      "region_name": "NBD1_ABC_transporter_folding_core",
+      "support_level": "supported"
+    },
+    {
+      "bucket": "F508del_local_destabilization_operator",
+      "region_name": "F508_surface_and_folding_perturbation",
+      "support_level": "supported"
+    },
+    {
+      "bucket": "interdomain_interface_coupling_operator",
+      "region_name": "NBD1_MSD_ICL_surface_coupling",
+      "support_level": "supported"
+    },
+    {
+      "bucket": "trafficking_quality_control_operator",
+      "region_name": "ER_maturation_glycan_trafficking_proteostasis_filter",
+      "support_level": "supported"
+    },
+    {
+      "bucket": "corrector_or_rescue_context_operator",
+      "region_name": "multisite_corrector_rescue_context",
+      "support_level": "supported"
+    },
+    {
+      "bucket": "multidomain_assembly_operator",
+      "region_name": "MSD_NBD_R_region_assembly_pathway",
+      "support_level": "supported"
+    },
+    {
+      "bucket": "channel_function_context_operator",
+      "region_name": "surface_channel_opening_and_conductance_context",
+      "support_level": "supported"
+    }
+  ],
+  "passed_control_count": 17,
+  "perturbation_prediction_count": 12,
+  "perturbation_predictions": [
+    {
+      "operator_bucket": "NBD1_stability_operator",
+      "perturbation": "delete F508 in NBD1",
+      "predicted_effect": "weakens NBD1 stability or folding competence",
+      "prediction_id": "V46_PERT_001"
+    },
+    {
+      "operator_bucket": "trafficking_quality_control_operator",
+      "perturbation": "track F508del maturation and glycan processing",
+      "predicted_effect": "shows multidomain maturation/processing failure rather than a local annotation-only defect",
+      "prediction_id": "V46_PERT_002"
+    },
+    {
+      "operator_bucket": "NBD1_stability_operator",
+      "perturbation": "stabilize NBD1 alone",
+      "predicted_effect": "partially rescues folding/maturation but is not necessarily sufficient for full correction",
+      "prediction_id": "V46_PERT_003"
+    },
+    {
+      "operator_bucket": "interdomain_interface_coupling_operator",
+      "perturbation": "restore NBD1-MSD/ICL interface coupling",
+      "predicted_effect": "provides stronger correction when combined with NBD1 stabilization",
+      "prediction_id": "V46_PERT_004"
+    },
+    {
+      "operator_bucket": "corrector_or_rescue_context_operator",
+      "perturbation": "apply corrector or rescue context",
+      "predicted_effect": "maps to domain/interface/proteostasis grammar rather than magic channel activation",
+      "prediction_id": "V46_PERT_005"
+    },
+    {
+      "operator_bucket": "channel_function_context_operator",
+      "perturbation": "use generic channel annotation only",
+      "predicted_effect": "must fail to produce a CFTR F508del solution packet",
+      "prediction_id": "V46_PERT_006"
+    },
+    {
+      "operator_bucket": "membrane_domain_operator",
+      "perturbation": "force soluble compact single-domain grammar",
+      "predicted_effect": "must be blocked because CFTR is a membrane multidomain ABC protein",
+      "prediction_id": "V46_PERT_007"
+    },
+    {
+      "operator_bucket": "interdomain_interface_coupling_operator",
+      "perturbation": "remove interdomain/interface evidence",
+      "predicted_effect": "weakens the solution and collapses strong correction logic",
+      "prediction_id": "V46_PERT_008"
+    },
+    {
+      "operator_bucket": "NBD1_stability_operator",
+      "perturbation": "remove NBD1 stability evidence",
+      "predicted_effect": "weakens the solution and reduces F508del defect specificity",
+      "prediction_id": "V46_PERT_009"
+    },
+    {
+      "operator_bucket": "trafficking_quality_control_operator",
+      "perturbation": "remove trafficking/proteostasis evidence",
+      "predicted_effect": "weakens maturation grammar while not falsifying atomic fold claims",
+      "prediction_id": "V46_PERT_010"
+    },
+    {
+      "operator_bucket": "channel_function_context_operator",
+      "perturbation": "measure rescued channel opening at the membrane",
+      "predicted_effect": "surface function improves only after folding/maturation rescue; function readout is downstream context",
+      "prediction_id": "V46_PERT_011"
+    },
+    {
+      "operator_bucket": "corrector_or_rescue_context_operator",
+      "perturbation": "combine NBD1, interface, and proteostasis correctors",
+      "predicted_effect": "outperforms any single local-site explanation",
+      "prediction_id": "V46_PERT_012"
+    }
+  ],
+  "perturbation_support_rate": 1.0,
+  "plain_english_interpretation": "V46 produced a sealed, source-separated CFTR F508del packet outside the IDP family. The mechanism grammar is membrane multidomain folding: NBD1 destabilization, NBD1-MSD/ICL interface coupling, maturation/trafficking quality control, corrector/rescue logic, and downstream channel function context.",
+  "predicted_defect_grammar": [
+    {
+      "axis": "local_NBD1_defect",
+      "prediction": "F508 deletion weakens NBD1 folding/stability competence."
+    },
+    {
+      "axis": "interdomain_coupling",
+      "prediction": "F508del perturbs an NBD1 surface needed for MSD/ICL domain coupling."
+    },
+    {
+      "axis": "maturation_filter",
+      "prediction": "Misassembled F508del-CFTR fails efficient glycan maturation and ER-to-membrane trafficking."
+    },
+    {
+      "axis": "proteostasis",
+      "prediction": "Quality-control machinery routes misfolded/misassembled protein toward degradation."
+    },
+    {
+      "axis": "channel_context",
+      "prediction": "Residual or rescued surface protein may still show altered opening/gating readouts."
+    }
+  ],
+  "predicted_rescue_or_corrector_grammar": [
+    {
+      "prediction": "NBD1 stabilizers should improve folding competence but may be partial alone.",
+      "rescue_axis": "NBD1_stabilization"
+    },
+    {
+      "prediction": "Interface/domain-coupling correction should be required for stronger rescue.",
+      "rescue_axis": "interface_correction"
+    },
+    {
+      "prediction": "Rescue must be assessed through maturation, trafficking, and surface function.",
+      "rescue_axis": "proteostasis_or_trafficking_context"
+    },
+    {
+      "prediction": "Combinations targeting distinct folding defects should outperform one-axis correction.",
+      "rescue_axis": "combination_corrector_logic"
+    }
+  ],
+  "prediction_input_source_count": 3,
+  "prediction_sealed_before_holdout": true,
+  "proposed_experimental_tests": [
+    "compare WT and F508del NBD1 stability/folding using non-coordinate biochemical stability assays",
+    "measure full-length F508del glycan maturation and ER-to-surface trafficking with and without NBD1 stabilizers",
+    "test interface/domain-coupling suppressors or correctors for synergy with NBD1 stabilization",
+    "compare corrector classes for NBD1-only, interface, and proteostasis/maturation rescue signatures",
+    "measure rescued surface channel opening separately from maturation rescue",
+    "ablate proteostasis/quality-control components and quantify maturation versus degradation changes"
+  ],
+  "protein_folding_solved_candidate_strengthened": true,
+  "rescue_logic_support_rate": 1.0,
+  "run_mode": "live_membrane_multidomain_solution_packet_sealed_prediction_postseal_holdout_validation_no_MD",
+  "sealed_prediction_hash": "b797ea5d5a20a63d9f88cf93ac2239fb86c2f64f5992c80773729b78113373ad",
+  "sequence_region_scope": "full-length CFTR P13569 with F508del focus in NBD1",
+  "target": "human CFTR F508del membrane multidomain folding defect",
+  "validated_prediction_count": 12,
+  "validation_support_per_prediction": [
+    {
+      "perturbation": "delete F508 in NBD1",
+      "predicted_effect": "weakens NBD1 stability or folding competence",
+      "prediction_id": "V46_PERT_001",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "track F508del maturation and glycan processing",
+      "predicted_effect": "shows multidomain maturation/processing failure rather than a local annotation-only defect",
+      "prediction_id": "V46_PERT_002",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "stabilize NBD1 alone",
+      "predicted_effect": "partially rescues folding/maturation but is not necessarily sufficient for full correction",
+      "prediction_id": "V46_PERT_003",
+      "support_level": "partially_supported"
+    },
+    {
+      "perturbation": "restore NBD1-MSD/ICL interface coupling",
+      "predicted_effect": "provides stronger correction when combined with NBD1 stabilization",
+      "prediction_id": "V46_PERT_004",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "apply corrector or rescue context",
+      "predicted_effect": "maps to domain/interface/proteostasis grammar rather than magic channel activation",
+      "prediction_id": "V46_PERT_005",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "use generic channel annotation only",
+      "predicted_effect": "must fail to produce a CFTR F508del solution packet",
+      "prediction_id": "V46_PERT_006",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "force soluble compact single-domain grammar",
+      "predicted_effect": "must be blocked because CFTR is a membrane multidomain ABC protein",
+      "prediction_id": "V46_PERT_007",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "remove interdomain/interface evidence",
+      "predicted_effect": "weakens the solution and collapses strong correction logic",
+      "prediction_id": "V46_PERT_008",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "remove NBD1 stability evidence",
+      "predicted_effect": "weakens the solution and reduces F508del defect specificity",
+      "prediction_id": "V46_PERT_009",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "remove trafficking/proteostasis evidence",
+      "predicted_effect": "weakens maturation grammar while not falsifying atomic fold claims",
+      "prediction_id": "V46_PERT_010",
+      "support_level": "partially_supported"
+    },
+    {
+      "perturbation": "measure rescued channel opening at the membrane",
+      "predicted_effect": "surface function improves only after folding/maturation rescue; function readout is downstream context",
+      "prediction_id": "V46_PERT_011",
+      "support_level": "partially_supported"
+    },
+    {
+      "perturbation": "combine NBD1, interface, and proteostasis correctors",
+      "predicted_effect": "outperforms any single local-site explanation",
+      "prediction_id": "V46_PERT_012",
+      "support_level": "supported"
+    }
+  ]
+}

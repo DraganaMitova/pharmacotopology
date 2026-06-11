@@ -1,0 +1,24 @@
+{
+  "allowed_use": "prediction_input_before_sealing",
+  "answer_key_source": false,
+  "coordinate_derived": false,
+  "holdout_source": false,
+  "internal_runtime_source": false,
+  "native_metrics_used_for_selection": false,
+  "source_id": "UNIPROT_P13569_F508DEL_VARIANT_NONCOORDINATE",
+  "source_type": "UniProtKB disease-variant annotation",
+  "source_url_or_citation": "https://rest.uniprot.org/uniprotkb/P13569.json",
+  "variant": {
+    "domain_context": "NBD1 / ABC transporter 1 domain",
+    "label": "F508del / deletion of phenylalanine 508",
+    "noncoordinate_annotation": [
+      "impairs protein folding and stability",
+      "causes local changes to a surface mediating interactions between domains",
+      "impairs maturation and trafficking to the cell membrane",
+      "primes degradation through a proteasome-linked pathway",
+      "decreases frequency of channel opening in vitro"
+    ],
+    "position": 508,
+    "wild_type_residue": "F"
+  }
+}

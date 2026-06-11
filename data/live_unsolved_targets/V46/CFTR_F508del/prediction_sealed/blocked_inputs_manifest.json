@@ -1,0 +1,41 @@
+{
+  "blocked_prediction_inputs": [
+    {
+      "blocked_input": "PDB coordinates or mmCIF coordinates before sealing",
+      "reason": "coordinates are validation/structure truth and not prediction evidence"
+    },
+    {
+      "blocked_input": "PDB-derived contacts or native contact maps",
+      "reason": "would leak structure/interface truth into prediction"
+    },
+    {
+      "blocked_input": "AlphaFold/ESMFold/RoseTTAFold coordinates before sealing",
+      "reason": "predicted coordinate models are blocked as evidence"
+    },
+    {
+      "blocked_input": "CFTR coordinate models as prediction evidence",
+      "reason": "V46 tests mechanism grammar, not coordinate lookup"
+    },
+    {
+      "blocked_input": "internal runtime reports as biological evidence",
+      "reason": "runtime artifacts are audit outputs only"
+    },
+    {
+      "blocked_input": "validation holdouts before prediction sealing",
+      "reason": "holdouts open only after sealed prediction hash exists"
+    },
+    {
+      "blocked_input": "answer key/class labels during prediction",
+      "reason": "assignment must use source-separated allowed evidence"
+    },
+    {
+      "blocked_input": "generic channel annotation only",
+      "reason": "channel identity alone cannot explain F508del folding rescue"
+    },
+    {
+      "blocked_input": "single local F508 deletion explanation only",
+      "reason": "V46 must model NBD1 plus interface plus proteostasis/maturation grammar"
+    }
+  ],
+  "kind": "V46_CFTR_F508DEL_BLOCKED_INPUTS_MANIFEST_v0"
+}
