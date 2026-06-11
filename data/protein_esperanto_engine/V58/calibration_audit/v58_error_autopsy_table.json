@@ -1,0 +1,858 @@
+{
+  "kind": "V58_ERROR_AUTOPSY_TABLE_v0",
+  "rows": [
+    {
+      "confidence_signal": "self_consistent",
+      "decision_reason": "prediction passed and internal evidence was self-consistent",
+      "entity_id": "10QM_4",
+      "entry_id": "10QM",
+      "expected_regime_postseal": "globular_closure",
+      "failure_bucket": "none",
+      "level_4_process_replication": "not_claimed_v59_required",
+      "pass_level_1": true,
+      "pass_level_2": true,
+      "pass_level_3": true,
+      "post_autopsy_decision": "accepted",
+      "second_best_grammar": "none",
+      "selected_regime": "globular_closure",
+      "sequence_only_selected_regime": "globular_closure",
+      "target_id": "V58_10QM_4",
+      "top_grammar_candidates": [
+        "globular_closure"
+      ],
+      "vote_counts": {
+        "globular_closure": 4,
+        "intrinsic_disorder_phase_separation": 0,
+        "membrane_multidomain_folding_proteostasis": 0,
+        "metamorphic_fold_switching": 0,
+        "oligomerization_controlled_folding": 0,
+        "short_region_host_interface_hijacking": 0
+      },
+      "vote_reasons": {
+        "globular_closure": [
+          "strongest_relative_sequence_signal",
+          "metadata_tokens:protein",
+          "operator_field_constructed_for_selected_grammar",
+          "engine_selected_pre_holdout"
+        ],
+        "intrinsic_disorder_phase_separation": [],
+        "membrane_multidomain_folding_proteostasis": [],
+        "metamorphic_fold_switching": [],
+        "oligomerization_controlled_folding": [],
+        "short_region_host_interface_hijacking": []
+      },
+      "would_abstention_have_been_correct": false
+    },
+    {
+      "confidence_signal": "self_consistent",
+      "decision_reason": "prediction passed and internal evidence was self-consistent",
+      "entity_id": "28ZU_37",
+      "entry_id": "28ZU",
+      "expected_regime_postseal": "globular_closure",
+      "failure_bucket": "none",
+      "level_4_process_replication": "not_claimed_v59_required",
+      "pass_level_1": true,
+      "pass_level_2": true,
+      "pass_level_3": true,
+      "post_autopsy_decision": "accepted",
+      "second_best_grammar": "none",
+      "selected_regime": "globular_closure",
+      "sequence_only_selected_regime": "globular_closure",
+      "target_id": "V58_28ZU_37",
+      "top_grammar_candidates": [
+        "globular_closure"
+      ],
+      "vote_counts": {
+        "globular_closure": 3,
+        "intrinsic_disorder_phase_separation": 0,
+        "membrane_multidomain_folding_proteostasis": 0,
+        "metamorphic_fold_switching": 0,
+        "oligomerization_controlled_folding": 0,
+        "short_region_host_interface_hijacking": 0
+      },
+      "vote_reasons": {
+        "globular_closure": [
+          "strongest_relative_sequence_signal",
+          "operator_field_constructed_for_selected_grammar",
+          "engine_selected_pre_holdout"
+        ],
+        "intrinsic_disorder_phase_separation": [],
+        "membrane_multidomain_folding_proteostasis": [],
+        "metamorphic_fold_switching": [],
+        "oligomerization_controlled_folding": [],
+        "short_region_host_interface_hijacking": []
+      },
+      "would_abstention_have_been_correct": false
+    },
+    {
+      "confidence_signal": "contested_top_signal",
+      "decision_reason": "prediction passed but internal evidence was not fully self-consistent",
+      "entity_id": "10QM_8",
+      "entry_id": "10QM",
+      "expected_regime_postseal": "membrane_multidomain_folding_proteostasis",
+      "failure_bucket": "none",
+      "level_4_process_replication": "not_claimed_v59_required",
+      "pass_level_1": true,
+      "pass_level_2": true,
+      "pass_level_3": true,
+      "post_autopsy_decision": "accepted_with_caution",
+      "second_best_grammar": "none",
+      "selected_regime": "membrane_multidomain_folding_proteostasis",
+      "sequence_only_selected_regime": "globular_closure",
+      "target_id": "V58_10QM_8",
+      "top_grammar_candidates": [
+        "globular_closure",
+        "membrane_multidomain_folding_proteostasis"
+      ],
+      "vote_counts": {
+        "globular_closure": 2,
+        "intrinsic_disorder_phase_separation": 0,
+        "membrane_multidomain_folding_proteostasis": 2,
+        "metamorphic_fold_switching": 0,
+        "oligomerization_controlled_folding": 0,
+        "short_region_host_interface_hijacking": 0
+      },
+      "vote_reasons": {
+        "globular_closure": [
+          "strongest_relative_sequence_signal",
+          "metadata_tokens:protein"
+        ],
+        "intrinsic_disorder_phase_separation": [],
+        "membrane_multidomain_folding_proteostasis": [
+          "operator_field_constructed_for_selected_grammar",
+          "engine_selected_pre_holdout"
+        ],
+        "metamorphic_fold_switching": [],
+        "oligomerization_controlled_folding": [],
+        "short_region_host_interface_hijacking": []
+      },
+      "would_abstention_have_been_correct": false
+    },
+    {
+      "confidence_signal": "self_consistent",
+      "decision_reason": "globular_vs_interface_or_oligomer_ambiguity",
+      "entity_id": "10PJ_1",
+      "entry_id": "10PJ",
+      "expected_regime_postseal": "globular_closure",
+      "failure_bucket": "globular_vs_interface_or_oligomer_ambiguity",
+      "level_4_process_replication": "not_claimed_v59_required",
+      "pass_level_1": false,
+      "pass_level_2": true,
+      "pass_level_3": false,
+      "post_autopsy_decision": "abstain_recommended",
+      "second_best_grammar": "globular_closure",
+      "selected_regime": "oligomerization_controlled_folding",
+      "sequence_only_selected_regime": "globular_closure",
+      "target_id": "V58_10PJ_1",
+      "top_grammar_candidates": [
+        "oligomerization_controlled_folding"
+      ],
+      "vote_counts": {
+        "globular_closure": 1,
+        "intrinsic_disorder_phase_separation": 0,
+        "membrane_multidomain_folding_proteostasis": 0,
+        "metamorphic_fold_switching": 0,
+        "oligomerization_controlled_folding": 4,
+        "short_region_host_interface_hijacking": 0
+      },
+      "vote_reasons": {
+        "globular_closure": [
+          "metadata_tokens:domain,protein"
+        ],
+        "intrinsic_disorder_phase_separation": [],
+        "membrane_multidomain_folding_proteostasis": [],
+        "metamorphic_fold_switching": [],
+        "oligomerization_controlled_folding": [
+          "strongest_relative_sequence_signal",
+          "metadata_tokens:complex",
+          "operator_field_constructed_for_selected_grammar",
+          "engine_selected_pre_holdout"
+        ],
+        "short_region_host_interface_hijacking": []
+      },
+      "would_abstention_have_been_correct": true
+    },
+    {
+      "confidence_signal": "self_consistent",
+      "decision_reason": "prediction passed and internal evidence was self-consistent",
+      "entity_id": "10BT_2",
+      "entry_id": "10BT",
+      "expected_regime_postseal": "intrinsic_disorder_phase_separation",
+      "failure_bucket": "none",
+      "level_4_process_replication": "not_claimed_v59_required",
+      "pass_level_1": true,
+      "pass_level_2": true,
+      "pass_level_3": true,
+      "post_autopsy_decision": "accepted",
+      "second_best_grammar": "oligomerization_controlled_folding",
+      "selected_regime": "intrinsic_disorder_phase_separation",
+      "sequence_only_selected_regime": "insufficient_evidence_clean_abstain",
+      "target_id": "V58_10BT_2",
+      "top_grammar_candidates": [
+        "intrinsic_disorder_phase_separation"
+      ],
+      "vote_counts": {
+        "globular_closure": 0,
+        "intrinsic_disorder_phase_separation": 2,
+        "membrane_multidomain_folding_proteostasis": 0,
+        "metamorphic_fold_switching": 0,
+        "oligomerization_controlled_folding": 1,
+        "short_region_host_interface_hijacking": 0
+      },
+      "vote_reasons": {
+        "globular_closure": [],
+        "intrinsic_disorder_phase_separation": [
+          "operator_field_constructed_for_selected_grammar",
+          "engine_selected_pre_holdout"
+        ],
+        "membrane_multidomain_folding_proteostasis": [],
+        "metamorphic_fold_switching": [],
+        "oligomerization_controlled_folding": [
+          "strongest_relative_sequence_signal"
+        ],
+        "short_region_host_interface_hijacking": []
+      },
+      "would_abstention_have_been_correct": false
+    },
+    {
+      "confidence_signal": "self_consistent",
+      "decision_reason": "prediction passed and internal evidence was self-consistent",
+      "entity_id": "10QM_6",
+      "entry_id": "10QM",
+      "expected_regime_postseal": "globular_closure",
+      "failure_bucket": "none",
+      "level_4_process_replication": "not_claimed_v59_required",
+      "pass_level_1": true,
+      "pass_level_2": true,
+      "pass_level_3": true,
+      "post_autopsy_decision": "accepted",
+      "second_best_grammar": "none",
+      "selected_regime": "globular_closure",
+      "sequence_only_selected_regime": "globular_closure",
+      "target_id": "V58_10QM_6",
+      "top_grammar_candidates": [
+        "globular_closure"
+      ],
+      "vote_counts": {
+        "globular_closure": 4,
+        "intrinsic_disorder_phase_separation": 0,
+        "membrane_multidomain_folding_proteostasis": 0,
+        "metamorphic_fold_switching": 0,
+        "oligomerization_controlled_folding": 0,
+        "short_region_host_interface_hijacking": 0
+      },
+      "vote_reasons": {
+        "globular_closure": [
+          "strongest_relative_sequence_signal",
+          "metadata_tokens:protein",
+          "operator_field_constructed_for_selected_grammar",
+          "engine_selected_pre_holdout"
+        ],
+        "intrinsic_disorder_phase_separation": [],
+        "membrane_multidomain_folding_proteostasis": [],
+        "metamorphic_fold_switching": [],
+        "oligomerization_controlled_folding": [],
+        "short_region_host_interface_hijacking": []
+      },
+      "would_abstention_have_been_correct": false
+    },
+    {
+      "confidence_signal": "self_consistent",
+      "decision_reason": "prediction passed and internal evidence was self-consistent",
+      "entity_id": "28ZX_47",
+      "entry_id": "28ZX",
+      "expected_regime_postseal": "globular_closure",
+      "failure_bucket": "none",
+      "level_4_process_replication": "not_claimed_v59_required",
+      "pass_level_1": true,
+      "pass_level_2": true,
+      "pass_level_3": true,
+      "post_autopsy_decision": "accepted",
+      "second_best_grammar": "none",
+      "selected_regime": "globular_closure",
+      "sequence_only_selected_regime": "globular_closure",
+      "target_id": "V58_28ZX_47",
+      "top_grammar_candidates": [
+        "globular_closure"
+      ],
+      "vote_counts": {
+        "globular_closure": 3,
+        "intrinsic_disorder_phase_separation": 0,
+        "membrane_multidomain_folding_proteostasis": 0,
+        "metamorphic_fold_switching": 0,
+        "oligomerization_controlled_folding": 0,
+        "short_region_host_interface_hijacking": 0
+      },
+      "vote_reasons": {
+        "globular_closure": [
+          "strongest_relative_sequence_signal",
+          "operator_field_constructed_for_selected_grammar",
+          "engine_selected_pre_holdout"
+        ],
+        "intrinsic_disorder_phase_separation": [],
+        "membrane_multidomain_folding_proteostasis": [],
+        "metamorphic_fold_switching": [],
+        "oligomerization_controlled_folding": [],
+        "short_region_host_interface_hijacking": []
+      },
+      "would_abstention_have_been_correct": false
+    },
+    {
+      "confidence_signal": "contested_top_signal",
+      "decision_reason": "prediction passed but internal evidence was not fully self-consistent",
+      "entity_id": "10QM_17",
+      "entry_id": "10QM",
+      "expected_regime_postseal": "membrane_multidomain_folding_proteostasis",
+      "failure_bucket": "none",
+      "level_4_process_replication": "not_claimed_v59_required",
+      "pass_level_1": true,
+      "pass_level_2": true,
+      "pass_level_3": true,
+      "post_autopsy_decision": "accepted_with_caution",
+      "second_best_grammar": "none",
+      "selected_regime": "membrane_multidomain_folding_proteostasis",
+      "sequence_only_selected_regime": "globular_closure",
+      "target_id": "V58_10QM_17",
+      "top_grammar_candidates": [
+        "globular_closure",
+        "membrane_multidomain_folding_proteostasis"
+      ],
+      "vote_counts": {
+        "globular_closure": 2,
+        "intrinsic_disorder_phase_separation": 0,
+        "membrane_multidomain_folding_proteostasis": 2,
+        "metamorphic_fold_switching": 0,
+        "oligomerization_controlled_folding": 0,
+        "short_region_host_interface_hijacking": 0
+      },
+      "vote_reasons": {
+        "globular_closure": [
+          "strongest_relative_sequence_signal",
+          "metadata_tokens:protein"
+        ],
+        "intrinsic_disorder_phase_separation": [],
+        "membrane_multidomain_folding_proteostasis": [
+          "operator_field_constructed_for_selected_grammar",
+          "engine_selected_pre_holdout"
+        ],
+        "metamorphic_fold_switching": [],
+        "oligomerization_controlled_folding": [],
+        "short_region_host_interface_hijacking": []
+      },
+      "would_abstention_have_been_correct": false
+    },
+    {
+      "confidence_signal": "self_consistent",
+      "decision_reason": "globular_vs_interface_or_oligomer_ambiguity",
+      "entity_id": "12ZJ_1",
+      "entry_id": "12ZJ",
+      "expected_regime_postseal": "globular_closure",
+      "failure_bucket": "globular_vs_interface_or_oligomer_ambiguity",
+      "level_4_process_replication": "not_claimed_v59_required",
+      "pass_level_1": false,
+      "pass_level_2": true,
+      "pass_level_3": false,
+      "post_autopsy_decision": "abstain_recommended",
+      "second_best_grammar": "globular_closure",
+      "selected_regime": "oligomerization_controlled_folding",
+      "sequence_only_selected_regime": "globular_closure",
+      "target_id": "V58_12ZJ_1",
+      "top_grammar_candidates": [
+        "oligomerization_controlled_folding"
+      ],
+      "vote_counts": {
+        "globular_closure": 1,
+        "intrinsic_disorder_phase_separation": 0,
+        "membrane_multidomain_folding_proteostasis": 0,
+        "metamorphic_fold_switching": 0,
+        "oligomerization_controlled_folding": 4,
+        "short_region_host_interface_hijacking": 0
+      },
+      "vote_reasons": {
+        "globular_closure": [
+          "metadata_tokens:domain"
+        ],
+        "intrinsic_disorder_phase_separation": [],
+        "membrane_multidomain_folding_proteostasis": [],
+        "metamorphic_fold_switching": [],
+        "oligomerization_controlled_folding": [
+          "strongest_relative_sequence_signal",
+          "metadata_tokens:complex",
+          "operator_field_constructed_for_selected_grammar",
+          "engine_selected_pre_holdout"
+        ],
+        "short_region_host_interface_hijacking": []
+      },
+      "would_abstention_have_been_correct": true
+    },
+    {
+      "confidence_signal": "self_consistent",
+      "decision_reason": "prediction passed and internal evidence was self-consistent",
+      "entity_id": "10BT_1",
+      "entry_id": "10BT",
+      "expected_regime_postseal": "intrinsic_disorder_phase_separation",
+      "failure_bucket": "none",
+      "level_4_process_replication": "not_claimed_v59_required",
+      "pass_level_1": true,
+      "pass_level_2": true,
+      "pass_level_3": true,
+      "post_autopsy_decision": "accepted",
+      "second_best_grammar": "oligomerization_controlled_folding",
+      "selected_regime": "intrinsic_disorder_phase_separation",
+      "sequence_only_selected_regime": "insufficient_evidence_clean_abstain",
+      "target_id": "V58_10BT_1",
+      "top_grammar_candidates": [
+        "intrinsic_disorder_phase_separation"
+      ],
+      "vote_counts": {
+        "globular_closure": 0,
+        "intrinsic_disorder_phase_separation": 2,
+        "membrane_multidomain_folding_proteostasis": 0,
+        "metamorphic_fold_switching": 0,
+        "oligomerization_controlled_folding": 1,
+        "short_region_host_interface_hijacking": 0
+      },
+      "vote_reasons": {
+        "globular_closure": [],
+        "intrinsic_disorder_phase_separation": [
+          "operator_field_constructed_for_selected_grammar",
+          "engine_selected_pre_holdout"
+        ],
+        "membrane_multidomain_folding_proteostasis": [],
+        "metamorphic_fold_switching": [],
+        "oligomerization_controlled_folding": [
+          "strongest_relative_sequence_signal"
+        ],
+        "short_region_host_interface_hijacking": []
+      },
+      "would_abstention_have_been_correct": false
+    },
+    {
+      "confidence_signal": "self_consistent",
+      "decision_reason": "prediction passed and internal evidence was self-consistent",
+      "entity_id": "10QM_7",
+      "entry_id": "10QM",
+      "expected_regime_postseal": "globular_closure",
+      "failure_bucket": "none",
+      "level_4_process_replication": "not_claimed_v59_required",
+      "pass_level_1": true,
+      "pass_level_2": true,
+      "pass_level_3": true,
+      "post_autopsy_decision": "accepted",
+      "second_best_grammar": "none",
+      "selected_regime": "globular_closure",
+      "sequence_only_selected_regime": "globular_closure",
+      "target_id": "V58_10QM_7",
+      "top_grammar_candidates": [
+        "globular_closure"
+      ],
+      "vote_counts": {
+        "globular_closure": 4,
+        "intrinsic_disorder_phase_separation": 0,
+        "membrane_multidomain_folding_proteostasis": 0,
+        "metamorphic_fold_switching": 0,
+        "oligomerization_controlled_folding": 0,
+        "short_region_host_interface_hijacking": 0
+      },
+      "vote_reasons": {
+        "globular_closure": [
+          "strongest_relative_sequence_signal",
+          "metadata_tokens:protein",
+          "operator_field_constructed_for_selected_grammar",
+          "engine_selected_pre_holdout"
+        ],
+        "intrinsic_disorder_phase_separation": [],
+        "membrane_multidomain_folding_proteostasis": [],
+        "metamorphic_fold_switching": [],
+        "oligomerization_controlled_folding": [],
+        "short_region_host_interface_hijacking": []
+      },
+      "would_abstention_have_been_correct": false
+    },
+    {
+      "confidence_signal": "contested_top_signal",
+      "decision_reason": "prediction passed but internal evidence was not fully self-consistent",
+      "entity_id": "10QM_30",
+      "entry_id": "10QM",
+      "expected_regime_postseal": "membrane_multidomain_folding_proteostasis",
+      "failure_bucket": "none",
+      "level_4_process_replication": "not_claimed_v59_required",
+      "pass_level_1": true,
+      "pass_level_2": true,
+      "pass_level_3": true,
+      "post_autopsy_decision": "accepted_with_caution",
+      "second_best_grammar": "none",
+      "selected_regime": "membrane_multidomain_folding_proteostasis",
+      "sequence_only_selected_regime": "globular_closure",
+      "target_id": "V58_10QM_30",
+      "top_grammar_candidates": [
+        "globular_closure",
+        "membrane_multidomain_folding_proteostasis"
+      ],
+      "vote_counts": {
+        "globular_closure": 2,
+        "intrinsic_disorder_phase_separation": 0,
+        "membrane_multidomain_folding_proteostasis": 2,
+        "metamorphic_fold_switching": 0,
+        "oligomerization_controlled_folding": 0,
+        "short_region_host_interface_hijacking": 0
+      },
+      "vote_reasons": {
+        "globular_closure": [
+          "strongest_relative_sequence_signal",
+          "metadata_tokens:protein"
+        ],
+        "intrinsic_disorder_phase_separation": [],
+        "membrane_multidomain_folding_proteostasis": [
+          "operator_field_constructed_for_selected_grammar",
+          "engine_selected_pre_holdout"
+        ],
+        "metamorphic_fold_switching": [],
+        "oligomerization_controlled_folding": [],
+        "short_region_host_interface_hijacking": []
+      },
+      "would_abstention_have_been_correct": false
+    },
+    {
+      "confidence_signal": "self_consistent",
+      "decision_reason": "globular_vs_interface_or_oligomer_ambiguity",
+      "entity_id": "24JD_1",
+      "entry_id": "24JD",
+      "expected_regime_postseal": "globular_closure",
+      "failure_bucket": "globular_vs_interface_or_oligomer_ambiguity",
+      "level_4_process_replication": "not_claimed_v59_required",
+      "pass_level_1": false,
+      "pass_level_2": true,
+      "pass_level_3": false,
+      "post_autopsy_decision": "abstain_recommended",
+      "second_best_grammar": "none",
+      "selected_regime": "oligomerization_controlled_folding",
+      "sequence_only_selected_regime": "globular_closure",
+      "target_id": "V58_24JD_1",
+      "top_grammar_candidates": [
+        "oligomerization_controlled_folding"
+      ],
+      "vote_counts": {
+        "globular_closure": 0,
+        "intrinsic_disorder_phase_separation": 0,
+        "membrane_multidomain_folding_proteostasis": 0,
+        "metamorphic_fold_switching": 0,
+        "oligomerization_controlled_folding": 4,
+        "short_region_host_interface_hijacking": 0
+      },
+      "vote_reasons": {
+        "globular_closure": [],
+        "intrinsic_disorder_phase_separation": [],
+        "membrane_multidomain_folding_proteostasis": [],
+        "metamorphic_fold_switching": [],
+        "oligomerization_controlled_folding": [
+          "strongest_relative_sequence_signal",
+          "metadata_tokens:trimer",
+          "operator_field_constructed_for_selected_grammar",
+          "engine_selected_pre_holdout"
+        ],
+        "short_region_host_interface_hijacking": []
+      },
+      "would_abstention_have_been_correct": true
+    },
+    {
+      "confidence_signal": "contested_top_signal",
+      "decision_reason": "prediction passed but internal evidence was not fully self-consistent",
+      "entity_id": "10QM_3",
+      "entry_id": "10QM",
+      "expected_regime_postseal": "intrinsic_disorder_phase_separation",
+      "failure_bucket": "none",
+      "level_4_process_replication": "not_claimed_v59_required",
+      "pass_level_1": true,
+      "pass_level_2": true,
+      "pass_level_3": true,
+      "post_autopsy_decision": "accepted_with_caution",
+      "second_best_grammar": "none",
+      "selected_regime": "intrinsic_disorder_phase_separation",
+      "sequence_only_selected_regime": "insufficient_evidence_clean_abstain",
+      "target_id": "V58_10QM_3",
+      "top_grammar_candidates": [
+        "globular_closure",
+        "intrinsic_disorder_phase_separation"
+      ],
+      "vote_counts": {
+        "globular_closure": 2,
+        "intrinsic_disorder_phase_separation": 2,
+        "membrane_multidomain_folding_proteostasis": 0,
+        "metamorphic_fold_switching": 0,
+        "oligomerization_controlled_folding": 0,
+        "short_region_host_interface_hijacking": 0
+      },
+      "vote_reasons": {
+        "globular_closure": [
+          "strongest_relative_sequence_signal",
+          "metadata_tokens:protein"
+        ],
+        "intrinsic_disorder_phase_separation": [
+          "operator_field_constructed_for_selected_grammar",
+          "engine_selected_pre_holdout"
+        ],
+        "membrane_multidomain_folding_proteostasis": [],
+        "metamorphic_fold_switching": [],
+        "oligomerization_controlled_folding": [],
+        "short_region_host_interface_hijacking": []
+      },
+      "would_abstention_have_been_correct": false
+    },
+    {
+      "confidence_signal": "self_consistent",
+      "decision_reason": "prediction passed and internal evidence was self-consistent",
+      "entity_id": "10QM_10",
+      "entry_id": "10QM",
+      "expected_regime_postseal": "globular_closure",
+      "failure_bucket": "none",
+      "level_4_process_replication": "not_claimed_v59_required",
+      "pass_level_1": true,
+      "pass_level_2": true,
+      "pass_level_3": true,
+      "post_autopsy_decision": "accepted",
+      "second_best_grammar": "none",
+      "selected_regime": "globular_closure",
+      "sequence_only_selected_regime": "globular_closure",
+      "target_id": "V58_10QM_10",
+      "top_grammar_candidates": [
+        "globular_closure"
+      ],
+      "vote_counts": {
+        "globular_closure": 4,
+        "intrinsic_disorder_phase_separation": 0,
+        "membrane_multidomain_folding_proteostasis": 0,
+        "metamorphic_fold_switching": 0,
+        "oligomerization_controlled_folding": 0,
+        "short_region_host_interface_hijacking": 0
+      },
+      "vote_reasons": {
+        "globular_closure": [
+          "strongest_relative_sequence_signal",
+          "metadata_tokens:protein",
+          "operator_field_constructed_for_selected_grammar",
+          "engine_selected_pre_holdout"
+        ],
+        "intrinsic_disorder_phase_separation": [],
+        "membrane_multidomain_folding_proteostasis": [],
+        "metamorphic_fold_switching": [],
+        "oligomerization_controlled_folding": [],
+        "short_region_host_interface_hijacking": []
+      },
+      "would_abstention_have_been_correct": false
+    },
+    {
+      "confidence_signal": "contested_top_signal",
+      "decision_reason": "prediction passed but internal evidence was not fully self-consistent",
+      "entity_id": "10QM_5",
+      "entry_id": "10QM",
+      "expected_regime_postseal": "membrane_multidomain_folding_proteostasis",
+      "failure_bucket": "none",
+      "level_4_process_replication": "not_claimed_v59_required",
+      "pass_level_1": true,
+      "pass_level_2": true,
+      "pass_level_3": true,
+      "post_autopsy_decision": "accepted_with_caution",
+      "second_best_grammar": "none",
+      "selected_regime": "membrane_multidomain_folding_proteostasis",
+      "sequence_only_selected_regime": "globular_closure",
+      "target_id": "V58_10QM_5",
+      "top_grammar_candidates": [
+        "globular_closure",
+        "membrane_multidomain_folding_proteostasis"
+      ],
+      "vote_counts": {
+        "globular_closure": 2,
+        "intrinsic_disorder_phase_separation": 0,
+        "membrane_multidomain_folding_proteostasis": 2,
+        "metamorphic_fold_switching": 0,
+        "oligomerization_controlled_folding": 0,
+        "short_region_host_interface_hijacking": 0
+      },
+      "vote_reasons": {
+        "globular_closure": [
+          "strongest_relative_sequence_signal",
+          "metadata_tokens:protein"
+        ],
+        "intrinsic_disorder_phase_separation": [],
+        "membrane_multidomain_folding_proteostasis": [
+          "operator_field_constructed_for_selected_grammar",
+          "engine_selected_pre_holdout"
+        ],
+        "metamorphic_fold_switching": [],
+        "oligomerization_controlled_folding": [],
+        "short_region_host_interface_hijacking": []
+      },
+      "would_abstention_have_been_correct": false
+    },
+    {
+      "confidence_signal": "self_consistent",
+      "decision_reason": "globular_vs_switch_ambiguity",
+      "entity_id": "24SW_2",
+      "entry_id": "24SW",
+      "expected_regime_postseal": "globular_closure",
+      "failure_bucket": "globular_vs_switch_ambiguity",
+      "level_4_process_replication": "not_claimed_v59_required",
+      "pass_level_1": false,
+      "pass_level_2": true,
+      "pass_level_3": false,
+      "post_autopsy_decision": "abstain_recommended",
+      "second_best_grammar": "oligomerization_controlled_folding",
+      "selected_regime": "metamorphic_fold_switching",
+      "sequence_only_selected_regime": "globular_closure",
+      "target_id": "V58_24SW_2",
+      "top_grammar_candidates": [
+        "metamorphic_fold_switching"
+      ],
+      "vote_counts": {
+        "globular_closure": 0,
+        "intrinsic_disorder_phase_separation": 0,
+        "membrane_multidomain_folding_proteostasis": 0,
+        "metamorphic_fold_switching": 2,
+        "oligomerization_controlled_folding": 1,
+        "short_region_host_interface_hijacking": 0
+      },
+      "vote_reasons": {
+        "globular_closure": [],
+        "intrinsic_disorder_phase_separation": [],
+        "membrane_multidomain_folding_proteostasis": [],
+        "metamorphic_fold_switching": [
+          "operator_field_constructed_for_selected_grammar",
+          "engine_selected_pre_holdout"
+        ],
+        "oligomerization_controlled_folding": [
+          "strongest_relative_sequence_signal"
+        ],
+        "short_region_host_interface_hijacking": []
+      },
+      "would_abstention_have_been_correct": true
+    },
+    {
+      "confidence_signal": "self_abstained",
+      "decision_reason": "insufficient_evidence_or_missing_context",
+      "entity_id": "10QM_9",
+      "entry_id": "10QM",
+      "expected_regime_postseal": "intrinsic_disorder_phase_separation",
+      "failure_bucket": "insufficient_evidence_or_missing_context",
+      "level_4_process_replication": "not_claimed_v59_required",
+      "pass_level_1": false,
+      "pass_level_2": false,
+      "pass_level_3": false,
+      "post_autopsy_decision": "abstain_recommended",
+      "second_best_grammar": "none",
+      "selected_regime": "insufficient_evidence_clean_abstain",
+      "sequence_only_selected_regime": "globular_closure",
+      "target_id": "V58_10QM_9",
+      "top_grammar_candidates": [
+        "globular_closure"
+      ],
+      "vote_counts": {
+        "globular_closure": 2,
+        "intrinsic_disorder_phase_separation": 0,
+        "membrane_multidomain_folding_proteostasis": 0,
+        "metamorphic_fold_switching": 0,
+        "oligomerization_controlled_folding": 0,
+        "short_region_host_interface_hijacking": 0
+      },
+      "vote_reasons": {
+        "globular_closure": [
+          "strongest_relative_sequence_signal",
+          "metadata_tokens:protein"
+        ],
+        "intrinsic_disorder_phase_separation": [],
+        "membrane_multidomain_folding_proteostasis": [],
+        "metamorphic_fold_switching": [],
+        "oligomerization_controlled_folding": [],
+        "short_region_host_interface_hijacking": []
+      },
+      "would_abstention_have_been_correct": true
+    },
+    {
+      "confidence_signal": "self_consistent",
+      "decision_reason": "prediction passed and internal evidence was self-consistent",
+      "entity_id": "10QM_11",
+      "entry_id": "10QM",
+      "expected_regime_postseal": "globular_closure",
+      "failure_bucket": "none",
+      "level_4_process_replication": "not_claimed_v59_required",
+      "pass_level_1": true,
+      "pass_level_2": true,
+      "pass_level_3": true,
+      "post_autopsy_decision": "accepted",
+      "second_best_grammar": "none",
+      "selected_regime": "globular_closure",
+      "sequence_only_selected_regime": "globular_closure",
+      "target_id": "V58_10QM_11",
+      "top_grammar_candidates": [
+        "globular_closure"
+      ],
+      "vote_counts": {
+        "globular_closure": 4,
+        "intrinsic_disorder_phase_separation": 0,
+        "membrane_multidomain_folding_proteostasis": 0,
+        "metamorphic_fold_switching": 0,
+        "oligomerization_controlled_folding": 0,
+        "short_region_host_interface_hijacking": 0
+      },
+      "vote_reasons": {
+        "globular_closure": [
+          "strongest_relative_sequence_signal",
+          "metadata_tokens:protein",
+          "operator_field_constructed_for_selected_grammar",
+          "engine_selected_pre_holdout"
+        ],
+        "intrinsic_disorder_phase_separation": [],
+        "membrane_multidomain_folding_proteostasis": [],
+        "metamorphic_fold_switching": [],
+        "oligomerization_controlled_folding": [],
+        "short_region_host_interface_hijacking": []
+      },
+      "would_abstention_have_been_correct": false
+    },
+    {
+      "confidence_signal": "self_abstained",
+      "decision_reason": "insufficient_evidence_or_missing_context",
+      "entity_id": "10YZ_1",
+      "entry_id": "10YZ",
+      "expected_regime_postseal": "membrane_multidomain_folding_proteostasis",
+      "failure_bucket": "insufficient_evidence_or_missing_context",
+      "level_4_process_replication": "not_claimed_v59_required",
+      "pass_level_1": false,
+      "pass_level_2": false,
+      "pass_level_3": false,
+      "post_autopsy_decision": "abstain_recommended",
+      "second_best_grammar": "none",
+      "selected_regime": "insufficient_evidence_clean_abstain",
+      "sequence_only_selected_regime": "insufficient_evidence_clean_abstain",
+      "target_id": "V58_10YZ_1",
+      "top_grammar_candidates": [
+        "globular_closure",
+        "intrinsic_disorder_phase_separation",
+        "oligomerization_controlled_folding"
+      ],
+      "vote_counts": {
+        "globular_closure": 1,
+        "intrinsic_disorder_phase_separation": 1,
+        "membrane_multidomain_folding_proteostasis": 0,
+        "metamorphic_fold_switching": 0,
+        "oligomerization_controlled_folding": 1,
+        "short_region_host_interface_hijacking": 0
+      },
+      "vote_reasons": {
+        "globular_closure": [
+          "metadata_tokens:protein"
+        ],
+        "intrinsic_disorder_phase_separation": [
+          "strongest_relative_sequence_signal"
+        ],
+        "membrane_multidomain_folding_proteostasis": [],
+        "metamorphic_fold_switching": [],
+        "oligomerization_controlled_folding": [
+          "metadata_tokens:complex"
+        ],
+        "short_region_host_interface_hijacking": []
+      },
+      "would_abstention_have_been_correct": true
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "abstain_recommended_count": 6,
+  "abstention_rate": 0.3,
+  "accepted_accuracy": 1.0,
+  "accepted_count": 14,
+  "allowed_claim_text": "V58 failures were preserved and converted into a calibration map: accepted predictions remain correct, while failed or ambiguous cases are abstain-recommended for future prospective gates.",
+  "atomistic_md_executed": false,
+  "calibration_logic": "No biological operators, mechanism classes, scoring controls, or engine weights were changed. The audit uses self-consistency, ambiguity labels, and failure buckets instead of tuning predictions toward universal acceptance.",
+  "certificate_hash": "08bd98ac599c6c19ec3529648b6eb7cdc9442953cc2b0a2f0fff4befc3d8a23b",
+  "could_failures_have_been_avoided_by_abstention": true,
+  "engine_biology_modified": false,
+  "engine_source_sha256": "31c7234a6ac7f0f78fa67ff1040cd20a4c91768a7e6bf6e11c2deff18dcc27e5",
+  "failure_bucket_counts": {
+    "globular_vs_interface_or_oligomer_ambiguity": 3,
+    "globular_vs_switch_ambiguity": 1,
+    "insufficient_evidence_or_missing_context": 2
+  },
+  "failure_preserved": true,
+  "folding_problem_solved": false,
+  "forbidden_claims": [
+    "V58.1 solved all real-sequence folding.",
+    "The six failures were repaired.",
+    "The engine biology was tuned.",
+    "Abstention is equivalent to a correct biological prediction.",
+    "Process replication was proven."
+  ],
+  "kind": "V58_ERROR_AUTOPSY_AND_CALIBRATION_AUDIT_CERTIFICATE_v0",
+  "overall_accuracy": 0.7,
+  "raw_failure_count": 6,
+  "raw_supported_count": 14,
+  "readme_touched": false,
+  "status": "V58_ERROR_AUTOPSY_AND_CALIBRATION_AUDIT_COMPLETED_REVIEW_REQUIRED",
+  "strict_accepted_accuracy": 1.0,
+  "strict_accepted_count": 9,
+  "target_count": 20,
+  "timestamp_utc": "2026-06-11T19:08:01.765209+00:00"
+}

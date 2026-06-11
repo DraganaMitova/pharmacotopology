@@ -1,0 +1,31 @@
+{
+  "alphafold_used_before_seal": false,
+  "blocked_prediction_inputs": [
+    "PDB/mmCIF coordinates before sealing",
+    "native contacts and coordinate-derived topology",
+    "AlphaFold, ESMFold, RoseTTAFold models before sealing",
+    "PDB-derived interface contacts",
+    "post-seal validation papers or metadata before hash",
+    "internal previous reports as biological evidence"
+  ],
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "24SW_2",
+  "entry_id": "24SW",
+  "folding_problem_solved": false,
+  "kind": "V58_TARGET_SOURCE_MANIFEST_v0",
+  "mode": "sequence_only",
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence only. Coordinates, native contacts, AlphaFold-style models, and post-seal validation metadata are blocked.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V58_24SW_2_RAW_SEQUENCE_ONLY",
+      "source_role": "prediction_input",
+      "spatial_proxy": false
+    }
+  ],
+  "sequence": "MAGEVVVVAVGQAGNQIADQFWQLIAQEHKIGLDGMPTNGEPTGRTDVFFRKVSNRYVPRAVLVDLEPAVLKSVSDDAKPNFYDPKNKVHGADGAGNNFAVGHTEMGAQYLEQVIGKIKNEVEKTDSLGGFIVTHSVGGGTGSGFGTLIMQNIRKEYPNTPLLSFSIYPSPRISDVLTEPYNAIFSSYRLVRDTSCSIIYDNDALYTICQNLGIAEPTYSDLNKLISQSMVNITAGMRFVGTLNLDLRKLITNLVPHPRLHFLMTSTAPLVESGGFDSQSIEKTAEVLFEKSNIQAQVNTEDGAYISTTVLFRGNVNPADMDTALRAMKQKLKFVSFIPTGFKTGLSATAPNNMEFAAALVANHTGITQVFKRILGQFDKLWSRKAFSHWYTDSGLTEEDIVNARNDIAKLVEEYEETLKFKSKDKSGEEVAAAEIAENK",
+  "sequence_length": 440,
+  "target_id": "V58_24SW_2"
+}

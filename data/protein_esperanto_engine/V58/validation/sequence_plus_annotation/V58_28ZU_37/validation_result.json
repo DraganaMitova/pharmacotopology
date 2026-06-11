@@ -1,0 +1,29 @@
+{
+  "entity_id": "28ZU_37",
+  "entry_id": "28ZU",
+  "expected_mechanism_class": "globular_closure",
+  "level1_regime_selection": true,
+  "level2_region_localization_proxy": true,
+  "level3_topology_or_observable": true,
+  "level4_process_replication": "not_claimed_v59_required",
+  "predicted_mechanism_class": "globular_closure",
+  "score_label": "supported",
+  "sealed_prediction_hash": "fba87d05c5534fd18307cf00d9dfd70b79e5d5ff85b5e4b8db7c239b1d5a9de5",
+  "target_id": "V58_28ZU_37",
+  "validation_checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "globular_closure",
+      "observed": "globular_closure",
+      "passed": true
+    },
+    {
+      "check_id": "compact_or_contact_supported",
+      "comparator": ">=",
+      "metric": "contact_probability",
+      "observed": 0.55481,
+      "passed": true,
+      "threshold": 0.35
+    }
+  ]
+}

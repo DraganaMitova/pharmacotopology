@@ -1,0 +1,29 @@
+{
+  "entity_id": "10QM_8",
+  "entry_id": "10QM",
+  "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "expected_observables": [
+    {
+      "check_id": "proteostasis_routing_supported",
+      "comparator": ">=",
+      "metric": "proteostasis_routing",
+      "threshold": 0.5
+    }
+  ],
+  "experimental_method": "ELECTRON MICROSCOPY",
+  "holdout_opened_after_prediction_hash": "916eacddd23b56830a1e6ee0b7bac6935def25b4761b382ef5fdf9ab37144d83",
+  "kind": "V58_POSTSEAL_REAL_SEQUENCE_HOLDOUT_v0",
+  "postseal_sources": [
+    {
+      "rcsb_entry_url": "https://data.rcsb.org/rest/v1/core/entry/10QM",
+      "rcsb_polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/10QM/8",
+      "source_class": "coordinate_derived",
+      "source_id": "V58_10QM_8_RCSB_POSTSEAL_TRUTH",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_source": "RCSB metadata and sequence-derived validation labels opened after sealed prediction hash; no coordinate contacts used for pre-seal prediction.",
+  "release_date": "2026-06-10T00:00:00Z",
+  "target_id": "V58_10QM_8"
+}

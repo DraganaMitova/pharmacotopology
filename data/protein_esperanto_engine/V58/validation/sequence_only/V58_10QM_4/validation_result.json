@@ -1,0 +1,29 @@
+{
+  "entity_id": "10QM_4",
+  "entry_id": "10QM",
+  "expected_mechanism_class": "globular_closure",
+  "level1_regime_selection": true,
+  "level2_region_localization_proxy": true,
+  "level3_topology_or_observable": true,
+  "level4_process_replication": "not_claimed_v59_required",
+  "predicted_mechanism_class": "globular_closure",
+  "score_label": "supported",
+  "sealed_prediction_hash": "3bfcbcf47c7deaced1aca481db8ced86917034bb8b4770766a51b9aa4c4c713f",
+  "target_id": "V58_10QM_4",
+  "validation_checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "globular_closure",
+      "observed": "globular_closure",
+      "passed": true
+    },
+    {
+      "check_id": "compact_or_contact_supported",
+      "comparator": ">=",
+      "metric": "contact_probability",
+      "observed": 0.535287,
+      "passed": true,
+      "threshold": 0.35
+    }
+  ]
+}

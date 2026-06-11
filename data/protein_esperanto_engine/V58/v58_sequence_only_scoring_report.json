@@ -1,0 +1,585 @@
+{
+  "kind": "V58_SEQUENCE_ONLY_SCORING_REPORT_v0",
+  "rows": [
+    {
+      "entity_id": "10QM_4",
+      "entry_id": "10QM",
+      "expected_mechanism_class": "globular_closure",
+      "level1_regime_selection": true,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_observable": true,
+      "level4_process_replication": "not_claimed_v59_required",
+      "predicted_mechanism_class": "globular_closure",
+      "score_label": "supported",
+      "sealed_prediction_hash": "3bfcbcf47c7deaced1aca481db8ced86917034bb8b4770766a51b9aa4c4c713f",
+      "target_id": "V58_10QM_4",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "globular_closure",
+          "observed": "globular_closure",
+          "passed": true
+        },
+        {
+          "check_id": "compact_or_contact_supported",
+          "comparator": ">=",
+          "metric": "contact_probability",
+          "observed": 0.535287,
+          "passed": true,
+          "threshold": 0.35
+        }
+      ]
+    },
+    {
+      "entity_id": "28ZU_37",
+      "entry_id": "28ZU",
+      "expected_mechanism_class": "globular_closure",
+      "level1_regime_selection": true,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_observable": true,
+      "level4_process_replication": "not_claimed_v59_required",
+      "predicted_mechanism_class": "globular_closure",
+      "score_label": "supported",
+      "sealed_prediction_hash": "c9770d9ed379e6b691f395a8ac74818d6e47893c7b9bfeac4d49947d26ca2879",
+      "target_id": "V58_28ZU_37",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "globular_closure",
+          "observed": "globular_closure",
+          "passed": true
+        },
+        {
+          "check_id": "compact_or_contact_supported",
+          "comparator": ">=",
+          "metric": "contact_probability",
+          "observed": 0.55481,
+          "passed": true,
+          "threshold": 0.35
+        }
+      ]
+    },
+    {
+      "entity_id": "10QM_8",
+      "entry_id": "10QM",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_observable": false,
+      "level4_process_replication": "not_claimed_v59_required",
+      "predicted_mechanism_class": "globular_closure",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "f00c85fdd82aee6f225ede20677c94e7237e0f7b67241673d3e1ba9dd7700c76",
+      "target_id": "V58_10QM_8",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "globular_closure",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "entity_id": "10PJ_1",
+      "entry_id": "10PJ",
+      "expected_mechanism_class": "globular_closure",
+      "level1_regime_selection": true,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_observable": true,
+      "level4_process_replication": "not_claimed_v59_required",
+      "predicted_mechanism_class": "globular_closure",
+      "score_label": "supported",
+      "sealed_prediction_hash": "821e1d838c2fbf86595ad2dfeb70bfd3205ec4bcb86f2a56003fe97d625fa5b5",
+      "target_id": "V58_10PJ_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "globular_closure",
+          "observed": "globular_closure",
+          "passed": true
+        },
+        {
+          "check_id": "compact_or_contact_supported",
+          "comparator": ">=",
+          "metric": "contact_probability",
+          "observed": 0.536329,
+          "passed": true,
+          "threshold": 0.35
+        }
+      ]
+    },
+    {
+      "entity_id": "10BT_2",
+      "entry_id": "10BT",
+      "expected_mechanism_class": "intrinsic_disorder_phase_separation",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": false,
+      "level3_topology_or_observable": false,
+      "level4_process_replication": "not_claimed_v59_required",
+      "predicted_mechanism_class": "insufficient_evidence_clean_abstain",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "06077312e3f20f07ee569770668909464a3c79f534509baeab2ac1e40e49cee1",
+      "target_id": "V58_10BT_2",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "intrinsic_disorder_phase_separation",
+          "observed": "insufficient_evidence_clean_abstain",
+          "passed": false
+        },
+        {
+          "check_id": "compact_single_fold_rejected",
+          "comparator": "<=",
+          "metric": "basin:compact_single_fold",
+          "observed": 0.0,
+          "passed": true,
+          "threshold": 0.12
+        }
+      ]
+    },
+    {
+      "entity_id": "10QM_6",
+      "entry_id": "10QM",
+      "expected_mechanism_class": "globular_closure",
+      "level1_regime_selection": true,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_observable": true,
+      "level4_process_replication": "not_claimed_v59_required",
+      "predicted_mechanism_class": "globular_closure",
+      "score_label": "supported",
+      "sealed_prediction_hash": "5e8c45b9a0afdcce2ee5894bc01a530e2925796ad07fcb2c67cb40661baadd34",
+      "target_id": "V58_10QM_6",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "globular_closure",
+          "observed": "globular_closure",
+          "passed": true
+        },
+        {
+          "check_id": "compact_or_contact_supported",
+          "comparator": ">=",
+          "metric": "contact_probability",
+          "observed": 0.568631,
+          "passed": true,
+          "threshold": 0.35
+        }
+      ]
+    },
+    {
+      "entity_id": "28ZX_47",
+      "entry_id": "28ZX",
+      "expected_mechanism_class": "globular_closure",
+      "level1_regime_selection": true,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_observable": true,
+      "level4_process_replication": "not_claimed_v59_required",
+      "predicted_mechanism_class": "globular_closure",
+      "score_label": "supported",
+      "sealed_prediction_hash": "99f4723338383a35e31b2fd11fc527e1d5802ba6d5692508880b3205c0da79e5",
+      "target_id": "V58_28ZX_47",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "globular_closure",
+          "observed": "globular_closure",
+          "passed": true
+        },
+        {
+          "check_id": "compact_or_contact_supported",
+          "comparator": ">=",
+          "metric": "contact_probability",
+          "observed": 0.575161,
+          "passed": true,
+          "threshold": 0.35
+        }
+      ]
+    },
+    {
+      "entity_id": "10QM_17",
+      "entry_id": "10QM",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_observable": false,
+      "level4_process_replication": "not_claimed_v59_required",
+      "predicted_mechanism_class": "globular_closure",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "05869dc49796ac34818a86254329f58a7ab04e729a303a0c94513fd7ed94ad94",
+      "target_id": "V58_10QM_17",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "globular_closure",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "entity_id": "12ZJ_1",
+      "entry_id": "12ZJ",
+      "expected_mechanism_class": "globular_closure",
+      "level1_regime_selection": true,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_observable": true,
+      "level4_process_replication": "not_claimed_v59_required",
+      "predicted_mechanism_class": "globular_closure",
+      "score_label": "supported",
+      "sealed_prediction_hash": "537f4a8c4cb7d0b822bba0cf09602b15bddd7f135ee055eed3d773b57313d7ca",
+      "target_id": "V58_12ZJ_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "globular_closure",
+          "observed": "globular_closure",
+          "passed": true
+        },
+        {
+          "check_id": "compact_or_contact_supported",
+          "comparator": ">=",
+          "metric": "contact_probability",
+          "observed": 0.547276,
+          "passed": true,
+          "threshold": 0.35
+        }
+      ]
+    },
+    {
+      "entity_id": "10BT_1",
+      "entry_id": "10BT",
+      "expected_mechanism_class": "intrinsic_disorder_phase_separation",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": false,
+      "level3_topology_or_observable": false,
+      "level4_process_replication": "not_claimed_v59_required",
+      "predicted_mechanism_class": "insufficient_evidence_clean_abstain",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "1e8b2d9729087a2cf9839a298e19b7a570877e71ae26802e39a7d9acb955e449",
+      "target_id": "V58_10BT_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "intrinsic_disorder_phase_separation",
+          "observed": "insufficient_evidence_clean_abstain",
+          "passed": false
+        },
+        {
+          "check_id": "compact_single_fold_rejected",
+          "comparator": "<=",
+          "metric": "basin:compact_single_fold",
+          "observed": 0.0,
+          "passed": true,
+          "threshold": 0.12
+        }
+      ]
+    },
+    {
+      "entity_id": "10QM_7",
+      "entry_id": "10QM",
+      "expected_mechanism_class": "globular_closure",
+      "level1_regime_selection": true,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_observable": true,
+      "level4_process_replication": "not_claimed_v59_required",
+      "predicted_mechanism_class": "globular_closure",
+      "score_label": "supported",
+      "sealed_prediction_hash": "c60a753f7eabc5930524cc2ee15ddf7e7cd3ba454faa861a398b6a8e1b002a52",
+      "target_id": "V58_10QM_7",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "globular_closure",
+          "observed": "globular_closure",
+          "passed": true
+        },
+        {
+          "check_id": "compact_or_contact_supported",
+          "comparator": ">=",
+          "metric": "contact_probability",
+          "observed": 0.554209,
+          "passed": true,
+          "threshold": 0.35
+        }
+      ]
+    },
+    {
+      "entity_id": "10QM_30",
+      "entry_id": "10QM",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_observable": false,
+      "level4_process_replication": "not_claimed_v59_required",
+      "predicted_mechanism_class": "globular_closure",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "8c6ad8332bdbc5b083971faea624af90cf0af5960c2fe9364dfb77be815871bd",
+      "target_id": "V58_10QM_30",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "globular_closure",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "entity_id": "24JD_1",
+      "entry_id": "24JD",
+      "expected_mechanism_class": "globular_closure",
+      "level1_regime_selection": true,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_observable": true,
+      "level4_process_replication": "not_claimed_v59_required",
+      "predicted_mechanism_class": "globular_closure",
+      "score_label": "supported",
+      "sealed_prediction_hash": "ad53740aaf26fbf8e0ed50022a2b58251b11593ca5015fa66583889e142c8a1a",
+      "target_id": "V58_24JD_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "globular_closure",
+          "observed": "globular_closure",
+          "passed": true
+        },
+        {
+          "check_id": "compact_or_contact_supported",
+          "comparator": ">=",
+          "metric": "contact_probability",
+          "observed": 0.574123,
+          "passed": true,
+          "threshold": 0.35
+        }
+      ]
+    },
+    {
+      "entity_id": "10QM_3",
+      "entry_id": "10QM",
+      "expected_mechanism_class": "intrinsic_disorder_phase_separation",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": false,
+      "level3_topology_or_observable": false,
+      "level4_process_replication": "not_claimed_v59_required",
+      "predicted_mechanism_class": "insufficient_evidence_clean_abstain",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "5da9c162889e36101ca1a47ddb9dc27ea3cede7b5159fe018150f39be19527ed",
+      "target_id": "V58_10QM_3",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "intrinsic_disorder_phase_separation",
+          "observed": "insufficient_evidence_clean_abstain",
+          "passed": false
+        },
+        {
+          "check_id": "compact_single_fold_rejected",
+          "comparator": "<=",
+          "metric": "basin:compact_single_fold",
+          "observed": 0.0,
+          "passed": true,
+          "threshold": 0.12
+        }
+      ]
+    },
+    {
+      "entity_id": "10QM_10",
+      "entry_id": "10QM",
+      "expected_mechanism_class": "globular_closure",
+      "level1_regime_selection": true,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_observable": true,
+      "level4_process_replication": "not_claimed_v59_required",
+      "predicted_mechanism_class": "globular_closure",
+      "score_label": "supported",
+      "sealed_prediction_hash": "7e121a9c1096826fc35e94f266e9fa38fde797d8fe7e49628f28e8233997e858",
+      "target_id": "V58_10QM_10",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "globular_closure",
+          "observed": "globular_closure",
+          "passed": true
+        },
+        {
+          "check_id": "compact_or_contact_supported",
+          "comparator": ">=",
+          "metric": "contact_probability",
+          "observed": 0.543873,
+          "passed": true,
+          "threshold": 0.35
+        }
+      ]
+    },
+    {
+      "entity_id": "10QM_5",
+      "entry_id": "10QM",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_observable": false,
+      "level4_process_replication": "not_claimed_v59_required",
+      "predicted_mechanism_class": "globular_closure",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "342f6230b0c63da12750f3e7f43fb77695a5acbf3b80422b4b8f878b59442b80",
+      "target_id": "V58_10QM_5",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "globular_closure",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    },
+    {
+      "entity_id": "24SW_2",
+      "entry_id": "24SW",
+      "expected_mechanism_class": "globular_closure",
+      "level1_regime_selection": true,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_observable": true,
+      "level4_process_replication": "not_claimed_v59_required",
+      "predicted_mechanism_class": "globular_closure",
+      "score_label": "supported",
+      "sealed_prediction_hash": "edec1cdc48a795e6dd3e05b1807e8464d10d1683b6023ab3c71a7314e68546f8",
+      "target_id": "V58_24SW_2",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "globular_closure",
+          "observed": "globular_closure",
+          "passed": true
+        },
+        {
+          "check_id": "compact_or_contact_supported",
+          "comparator": ">=",
+          "metric": "contact_probability",
+          "observed": 0.551454,
+          "passed": true,
+          "threshold": 0.35
+        }
+      ]
+    },
+    {
+      "entity_id": "10QM_9",
+      "entry_id": "10QM",
+      "expected_mechanism_class": "intrinsic_disorder_phase_separation",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_observable": false,
+      "level4_process_replication": "not_claimed_v59_required",
+      "predicted_mechanism_class": "globular_closure",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "a55fee573fed2d819d9d313bde29e918e76f574233c7150db7288bd27c901211",
+      "target_id": "V58_10QM_9",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "intrinsic_disorder_phase_separation",
+          "observed": "globular_closure",
+          "passed": false
+        },
+        {
+          "check_id": "compact_single_fold_rejected",
+          "comparator": "<=",
+          "metric": "basin:compact_single_fold",
+          "observed": 0.0,
+          "passed": true,
+          "threshold": 0.12
+        }
+      ]
+    },
+    {
+      "entity_id": "10QM_11",
+      "entry_id": "10QM",
+      "expected_mechanism_class": "globular_closure",
+      "level1_regime_selection": true,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_observable": true,
+      "level4_process_replication": "not_claimed_v59_required",
+      "predicted_mechanism_class": "globular_closure",
+      "score_label": "supported",
+      "sealed_prediction_hash": "da25cf1f16f7c303a7e1f3932a0ccdafe0bda74d4e1751ced3902d9c215fe4cd",
+      "target_id": "V58_10QM_11",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "globular_closure",
+          "observed": "globular_closure",
+          "passed": true
+        },
+        {
+          "check_id": "compact_or_contact_supported",
+          "comparator": ">=",
+          "metric": "contact_probability",
+          "observed": 0.552073,
+          "passed": true,
+          "threshold": 0.35
+        }
+      ]
+    },
+    {
+      "entity_id": "10YZ_1",
+      "entry_id": "10YZ",
+      "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": false,
+      "level3_topology_or_observable": false,
+      "level4_process_replication": "not_claimed_v59_required",
+      "predicted_mechanism_class": "insufficient_evidence_clean_abstain",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "b0d0741f9c086445fe7327f7a505327938d067c45b11fdcccabb82b13f21a1cb",
+      "target_id": "V58_10YZ_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "insufficient_evidence_clean_abstain",
+          "passed": false
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.5
+        }
+      ]
+    }
+  ]
+}

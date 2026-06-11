@@ -1,0 +1,29 @@
+{
+  "entity_id": "10BT_2",
+  "entry_id": "10BT",
+  "expected_mechanism_class": "intrinsic_disorder_phase_separation",
+  "level1_regime_selection": false,
+  "level2_region_localization_proxy": false,
+  "level3_topology_or_observable": false,
+  "level4_process_replication": "not_claimed_v59_required",
+  "predicted_mechanism_class": "insufficient_evidence_clean_abstain",
+  "score_label": "contradicted",
+  "sealed_prediction_hash": "06077312e3f20f07ee569770668909464a3c79f534509baeab2ac1e40e49cee1",
+  "target_id": "V58_10BT_2",
+  "validation_checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "intrinsic_disorder_phase_separation",
+      "observed": "insufficient_evidence_clean_abstain",
+      "passed": false
+    },
+    {
+      "check_id": "compact_single_fold_rejected",
+      "comparator": "<=",
+      "metric": "basin:compact_single_fold",
+      "observed": 0.0,
+      "passed": true,
+      "threshold": 0.12
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "entity_id": "10QM_17",
+  "entry_id": "10QM",
+  "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "level1_regime_selection": true,
+  "level2_region_localization_proxy": true,
+  "level3_topology_or_observable": true,
+  "level4_process_replication": "not_claimed_v59_required",
+  "predicted_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "score_label": "supported",
+  "sealed_prediction_hash": "afed619195aeba29f7536e4f9538b1c7c7b070c6cdba5f76f06e993b20a87bfb",
+  "target_id": "V58_10QM_17",
+  "validation_checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "membrane_multidomain_folding_proteostasis",
+      "observed": "membrane_multidomain_folding_proteostasis",
+      "passed": true
+    },
+    {
+      "check_id": "proteostasis_routing_supported",
+      "comparator": ">=",
+      "metric": "proteostasis_routing",
+      "observed": 0.679766,
+      "passed": true,
+      "threshold": 0.5
+    }
+  ]
+}

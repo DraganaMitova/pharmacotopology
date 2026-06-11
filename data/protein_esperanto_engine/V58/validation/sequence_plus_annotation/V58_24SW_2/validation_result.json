@@ -1,0 +1,29 @@
+{
+  "entity_id": "24SW_2",
+  "entry_id": "24SW",
+  "expected_mechanism_class": "globular_closure",
+  "level1_regime_selection": false,
+  "level2_region_localization_proxy": true,
+  "level3_topology_or_observable": false,
+  "level4_process_replication": "not_claimed_v59_required",
+  "predicted_mechanism_class": "metamorphic_fold_switching",
+  "score_label": "contradicted",
+  "sealed_prediction_hash": "4670fe1d247fc435024b422248378450c0aebb09d9496470b88b008e48642d6c",
+  "target_id": "V58_24SW_2",
+  "validation_checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "globular_closure",
+      "observed": "metamorphic_fold_switching",
+      "passed": false
+    },
+    {
+      "check_id": "compact_or_contact_supported",
+      "comparator": ">=",
+      "metric": "contact_probability",
+      "observed": 0.3832,
+      "passed": true,
+      "threshold": 0.35
+    }
+  ]
+}

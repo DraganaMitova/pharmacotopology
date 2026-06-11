@@ -1,0 +1,29 @@
+{
+  "entity_id": "10QM_3",
+  "entry_id": "10QM",
+  "expected_mechanism_class": "intrinsic_disorder_phase_separation",
+  "expected_observables": [
+    {
+      "check_id": "compact_single_fold_rejected",
+      "comparator": "<=",
+      "metric": "basin:compact_single_fold",
+      "threshold": 0.12
+    }
+  ],
+  "experimental_method": "ELECTRON MICROSCOPY",
+  "holdout_opened_after_prediction_hash": "5da9c162889e36101ca1a47ddb9dc27ea3cede7b5159fe018150f39be19527ed",
+  "kind": "V58_POSTSEAL_REAL_SEQUENCE_HOLDOUT_v0",
+  "postseal_sources": [
+    {
+      "rcsb_entry_url": "https://data.rcsb.org/rest/v1/core/entry/10QM",
+      "rcsb_polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/10QM/3",
+      "source_class": "coordinate_derived",
+      "source_id": "V58_10QM_3_RCSB_POSTSEAL_TRUTH",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_source": "RCSB metadata and sequence-derived validation labels opened after sealed prediction hash; no coordinate contacts used for pre-seal prediction.",
+  "release_date": "2026-06-10T00:00:00Z",
+  "target_id": "V58_10QM_3"
+}

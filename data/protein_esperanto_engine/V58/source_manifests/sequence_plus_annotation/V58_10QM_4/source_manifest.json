@@ -1,0 +1,40 @@
+{
+  "alphafold_used_before_seal": false,
+  "blocked_prediction_inputs": [
+    "PDB/mmCIF coordinates before sealing",
+    "native contacts and coordinate-derived topology",
+    "AlphaFold, ESMFold, RoseTTAFold models before sealing",
+    "PDB-derived interface contacts",
+    "post-seal validation papers or metadata before hash",
+    "internal previous reports as biological evidence"
+  ],
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "10QM_4",
+  "entry_id": "10QM",
+  "folding_problem_solved": false,
+  "kind": "V58_TARGET_SOURCE_MANIFEST_v0",
+  "mode": "sequence_plus_annotation",
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence only. Coordinates, native contacts, AlphaFold-style models, and post-seal validation metadata are blocked.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V58_10QM_4_RAW_SEQUENCE_ONLY",
+      "source_role": "prediction_input",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "RCSB pure metadata title: E.coli 50S ribosomal subunit bound to compound 48a. Entity description: 50S ribosomal protein L3. Organism/taxonomy: Escherichia coli. Sequence-derived marks: sequence-derived globular closure hydrophobic core tendency",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V58_10QM_4_PURE_METADATA_AND_SEQUENCE_MARKS",
+      "source_role": "prediction_input",
+      "spatial_proxy": false
+    }
+  ],
+  "sequence": "MIGLVGKKVGMTRIFTEDGVSIPVTVIEVEANRVTQVKDLANDGYRAIQVTTGAKKANRVTKPEAGHFAKAGVEAGRGLWEFRLAEGEEFTVGQSISVELFADVKKVDVTGTSKGKGFAGTVKRWNFRTQDATHGNSLSHRVPGSIGQNQTPGKVFKGKKMAGQMGNERVTVQSLDVVRVDAERNLLLVKGAVPGATGSDLIVKPAVKA",
+  "sequence_length": 209,
+  "target_id": "V58_10QM_4"
+}

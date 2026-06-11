@@ -1,0 +1,29 @@
+{
+  "entity_id": "10QM_9",
+  "entry_id": "10QM",
+  "expected_mechanism_class": "intrinsic_disorder_phase_separation",
+  "level1_regime_selection": false,
+  "level2_region_localization_proxy": false,
+  "level3_topology_or_observable": false,
+  "level4_process_replication": "not_claimed_v59_required",
+  "predicted_mechanism_class": "insufficient_evidence_clean_abstain",
+  "score_label": "contradicted",
+  "sealed_prediction_hash": "26c55c3a87854347b18a73eabb5877231cada3b45116677baf3f8a7b1ae592ba",
+  "target_id": "V58_10QM_9",
+  "validation_checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "intrinsic_disorder_phase_separation",
+      "observed": "insufficient_evidence_clean_abstain",
+      "passed": false
+    },
+    {
+      "check_id": "compact_single_fold_rejected",
+      "comparator": "<=",
+      "metric": "basin:compact_single_fold",
+      "observed": 0.0,
+      "passed": true,
+      "threshold": 0.12
+    }
+  ]
+}

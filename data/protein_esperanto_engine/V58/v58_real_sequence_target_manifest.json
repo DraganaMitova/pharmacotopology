@@ -1,0 +1,795 @@
+{
+  "available_strata_counts_after_selection": {
+    "compact_globular": 49,
+    "long_or_multidomain": 0,
+    "low_complexity_or_disorder": 47,
+    "membrane_or_transport": 49,
+    "oligomer_or_interface": 58
+  },
+  "kind": "V58_REAL_SEQUENCE_AUTOMATIC_TARGET_SELECTION_v0",
+  "selected_targets": [
+    {
+      "entity_description": "50S ribosomal protein L3",
+      "entity_id": "10QM_4",
+      "entry_id": "10QM",
+      "experimental_method": "ELECTRON MICROSCOPY",
+      "formula_weight_kda": 22.278,
+      "instance_count": 1,
+      "organisms": [
+        "Escherichia coli"
+      ],
+      "polymer_entity_instances": [
+        "10QM.D"
+      ],
+      "release_date": "2026-06-10T00:00:00Z",
+      "selection_stratum": "compact_globular",
+      "sequence": "MIGLVGKKVGMTRIFTEDGVSIPVTVIEVEANRVTQVKDLANDGYRAIQVTTGAKKANRVTKPEAGHFAKAGVEAGRGLWEFRLAEGEEFTVGQSISVELFADVKKVDVTGTSKGKGFAGTVKRWNFRTQDATHGNSLSHRVPGSIGQNQTPGKVFKGKKMAGQMGNERVTVQSLDVVRVDAERNLLLVKGAVPGATGSDLIVKPAVKA",
+      "sequence_length": 209,
+      "sequence_metrics": {
+        "aromatic_density": 0.052632,
+        "coordinate_truth_used": false,
+        "hydrophobic_density": 0.38756,
+        "length": 209,
+        "low_complexity_density": 0.066986,
+        "max_segment_interface_density": 0.325,
+        "max_segment_low_complexity_density": 0.666667,
+        "max_segment_membrane_density": 0.407483,
+        "mean_disorder": 0.179618,
+        "mean_interface": 0.244876,
+        "mean_membrane": 0.077786,
+        "net_charge_per_residue": 0.062201
+      },
+      "source_urls": {
+        "entry": "https://data.rcsb.org/rest/v1/core/entry/10QM",
+        "polymer_entity": "https://data.rcsb.org/rest/v1/core/polymer_entity/10QM/4"
+      },
+      "target_id": "10QM_4",
+      "title": "E.coli 50S ribosomal subunit bound to compound 48a"
+    },
+    {
+      "entity_description": "Eukaryotic translation initiation factor 2 subunit 1",
+      "entity_id": "28ZU_37",
+      "entry_id": "28ZU",
+      "experimental_method": "ELECTRON MICROSCOPY",
+      "formula_weight_kda": 36.161,
+      "instance_count": 1,
+      "organisms": [
+        "Homo sapiens"
+      ],
+      "polymer_entity_instances": [
+        "28ZU.KA"
+      ],
+      "release_date": "2026-06-10T00:00:00Z",
+      "selection_stratum": "long_or_multidomain",
+      "sequence": "MPGLSCRFYQHKFPEVEDVVMVNVRSIAEMGAYVSLLEYNNIEGMILLSELSRRRIRSINKLIRIGRNECVVVIRVDKEKGYIDLSKRRVSPEEAIKCEDKFTKSKTVYSILRHVAEVLEYTKDEQLESLFQRTAWVFDDKYKRPGYGAYDAFKHAVSDPSILDSLDLNEDEREVLINNINRRLTPQAVKIRADIEVACYGYEGIDAVKEALRAGLNCSTENMPIKINLIAPPRYVMTTTTLERTEGLSVLSQAMAVIKEKIEEKRGVFNVQMEPKVVTDTDETELARQMERLERENAEVDGDDDAEEMEAKAED",
+      "sequence_length": 315,
+      "sequence_metrics": {
+        "aromatic_density": 0.063492,
+        "coordinate_truth_used": false,
+        "hydrophobic_density": 0.419048,
+        "length": 315,
+        "low_complexity_density": 0.060317,
+        "max_segment_interface_density": 0.380555,
+        "max_segment_low_complexity_density": 0.416667,
+        "max_segment_membrane_density": 0.46164,
+        "mean_disorder": 0.149096,
+        "mean_interface": 0.279485,
+        "mean_membrane": 0.122147,
+        "net_charge_per_residue": -0.031746
+      },
+      "source_urls": {
+        "entry": "https://data.rcsb.org/rest/v1/core/entry/28ZU",
+        "polymer_entity": "https://data.rcsb.org/rest/v1/core/polymer_entity/28ZU/37"
+      },
+      "target_id": "28ZU_37",
+      "title": "human 48S PIC with Kozak mRNA and eIF1A W70A mutant"
+    },
+    {
+      "entity_description": "Large ribosomal subunit protein bL9",
+      "entity_id": "10QM_8",
+      "entry_id": "10QM",
+      "experimental_method": "ELECTRON MICROSCOPY",
+      "formula_weight_kda": 15.789,
+      "instance_count": 1,
+      "organisms": [
+        "Escherichia coli"
+      ],
+      "polymer_entity_instances": [
+        "10QM.H"
+      ],
+      "release_date": "2026-06-10T00:00:00Z",
+      "selection_stratum": "membrane_or_transport",
+      "sequence": "MQVILLDKVANLGSLGDQVNVKAGYARNFLVPQGKAVPATKKNIEFFEARRAELEAKLAEVLAAANARAEKINALETVTIASKAGDEGKLFGSIGTRDIADAVTAAGVEVAKSEVRLPNGVLRTTGEHEVSFQVHSEVFAKVIVNVVAE",
+      "sequence_length": 149,
+      "sequence_metrics": {
+        "aromatic_density": 0.04698,
+        "coordinate_truth_used": false,
+        "hydrophobic_density": 0.47651,
+        "length": 149,
+        "low_complexity_density": 0.04698,
+        "max_segment_interface_density": 0.352778,
+        "max_segment_low_complexity_density": 0.333333,
+        "max_segment_membrane_density": 0.655782,
+        "mean_disorder": 0.125298,
+        "mean_interface": 0.283407,
+        "mean_membrane": 0.213236,
+        "net_charge_per_residue": 0.006711
+      },
+      "source_urls": {
+        "entry": "https://data.rcsb.org/rest/v1/core/entry/10QM",
+        "polymer_entity": "https://data.rcsb.org/rest/v1/core/polymer_entity/10QM/8"
+      },
+      "target_id": "10QM_8",
+      "title": "E.coli 50S ribosomal subunit bound to compound 48a"
+    },
+    {
+      "entity_description": "Tyrosine-protein kinase JAK2",
+      "entity_id": "10PJ_1",
+      "entry_id": "10PJ",
+      "experimental_method": "X-RAY DIFFRACTION",
+      "formula_weight_kda": 37.268,
+      "instance_count": 2,
+      "organisms": [
+        "Homo sapiens"
+      ],
+      "polymer_entity_instances": [
+        "10PJ.A",
+        "10PJ.B"
+      ],
+      "release_date": "2026-06-10T00:00:00Z",
+      "selection_stratum": "oligomer_or_interface",
+      "sequence": "MHHHHHHSSGVDLGTENLYFQSMDPTQFEERHLKFLQQLGKGNFGSVEMCRYDPLQDNTGEVVAVKKLQHSTEEHLRDFEREIEILKSLQHDNIVKYKGVCYSAGRRNLKLIMEYLPYGSLRDYLQKHKERIDHIKLLQYTSQICKGMEYLGTKRYIHRDLATRNILVENENRVKIGDFGLTKVLPQDKEYYKVKEPGESPIFWYAPESLTESKFSVASDVWSFGVVLYELFTYIEKSKSPPAEFMRMIGNDKQGQMIVFHLIELLKNNGRLPRPDGCPDEIYMIMTECWNNNVNQRPSFRDLALRVDQIRDNMAG",
+      "sequence_length": 316,
+      "sequence_metrics": {
+        "aromatic_density": 0.101266,
+        "coordinate_truth_used": false,
+        "hydrophobic_density": 0.389241,
+        "length": 316,
+        "low_complexity_density": 0.126582,
+        "max_segment_interface_density": 0.383333,
+        "max_segment_low_complexity_density": 0.583333,
+        "max_segment_membrane_density": 0.46164,
+        "mean_disorder": 0.192328,
+        "mean_interface": 0.273682,
+        "mean_membrane": 0.095087,
+        "net_charge_per_residue": 0.037975
+      },
+      "source_urls": {
+        "entry": "https://data.rcsb.org/rest/v1/core/entry/10PJ",
+        "polymer_entity": "https://data.rcsb.org/rest/v1/core/polymer_entity/10PJ/1"
+      },
+      "target_id": "10PJ_1",
+      "title": "JAK2 kinase (JH1 domain) in complex with povorcitinib"
+    },
+    {
+      "entity_description": "Antibody Light Chain",
+      "entity_id": "10BT_2",
+      "entry_id": "10BT",
+      "experimental_method": "X-RAY DIFFRACTION",
+      "formula_weight_kda": 23.627,
+      "instance_count": 4,
+      "organisms": [
+        "Homo sapiens"
+      ],
+      "polymer_entity_instances": [
+        "10BT.E",
+        "10BT.F",
+        "10BT.G",
+        "10BT.H"
+      ],
+      "release_date": "2026-06-10T00:00:00Z",
+      "selection_stratum": "low_complexity_or_disorder",
+      "sequence": "DIQMTQSPSSLSASLGGKVTITCKANQDINKYIAWYQHKPGQGPRLLIHYASALQPGIPSRFSGSGSGRDYSFSISNLEPEDIATYYCLQYDNLYTFGGGTKLEIKRARTVAAPSVFIFPPSDEQLKSGTASVVCLLNNFYPREAKVQWKVDNALQSGNSQESVTEQDSKDSTYSLSSTLTLSKADYEKHKVYACEVTHQGLSSPVTKSFNRGEC",
+      "sequence_length": 215,
+      "sequence_metrics": {
+        "aromatic_density": 0.097674,
+        "coordinate_truth_used": false,
+        "hydrophobic_density": 0.367442,
+        "length": 215,
+        "low_complexity_density": 0.348837,
+        "max_segment_interface_density": 0.388426,
+        "max_segment_low_complexity_density": 1.0,
+        "max_segment_membrane_density": 0.411376,
+        "mean_disorder": 0.220234,
+        "mean_interface": 0.240821,
+        "mean_membrane": 0.097158,
+        "net_charge_per_residue": 0.023256
+      },
+      "source_urls": {
+        "entry": "https://data.rcsb.org/rest/v1/core/entry/10BT",
+        "polymer_entity": "https://data.rcsb.org/rest/v1/core/polymer_entity/10BT/2"
+      },
+      "target_id": "10BT_2",
+      "title": "X-ray Crystal Structure of A High-Affinity Monoclonal Antibody Sequesters Xylazine"
+    },
+    {
+      "entity_description": "Large ribosomal subunit protein uL5",
+      "entity_id": "10QM_6",
+      "entry_id": "10QM",
+      "experimental_method": "ELECTRON MICROSCOPY",
+      "formula_weight_kda": 20.334,
+      "instance_count": 1,
+      "organisms": [
+        "Escherichia coli"
+      ],
+      "polymer_entity_instances": [
+        "10QM.F"
+      ],
+      "release_date": "2026-06-10T00:00:00Z",
+      "selection_stratum": "compact_globular",
+      "sequence": "MAKLHDYYKDEVVKKLMTEFNYNSVMQVPRVEKITLNMGVGEAIADKKLLDNAAADLAAISGQKPLITKARKSVAGFKIRQGYPIGCKVTLRGERMWEFFERLITIAVPRIRDFRGLSAKSFDGRGNYSMGVREQIIFPEIDYDKVDRVRGLDITITTTAKSDEEGRALLAAFDFPFRK",
+      "sequence_length": 179,
+      "sequence_metrics": {
+        "aromatic_density": 0.094972,
+        "coordinate_truth_used": false,
+        "hydrophobic_density": 0.441341,
+        "length": 179,
+        "low_complexity_density": 0.111732,
+        "max_segment_interface_density": 0.427155,
+        "max_segment_low_complexity_density": 0.666667,
+        "max_segment_membrane_density": 0.464647,
+        "mean_disorder": 0.149036,
+        "mean_interface": 0.294781,
+        "mean_membrane": 0.11336,
+        "net_charge_per_residue": 0.044693
+      },
+      "source_urls": {
+        "entry": "https://data.rcsb.org/rest/v1/core/entry/10QM",
+        "polymer_entity": "https://data.rcsb.org/rest/v1/core/polymer_entity/10QM/6"
+      },
+      "target_id": "10QM_6",
+      "title": "E.coli 50S ribosomal subunit bound to compound 48a"
+    },
+    {
+      "entity_description": "Eukaryotic translation initiation factor 3 subunit M",
+      "entity_id": "28ZX_47",
+      "entry_id": "28ZX",
+      "experimental_method": "ELECTRON MICROSCOPY",
+      "formula_weight_kda": 42.556,
+      "instance_count": 1,
+      "organisms": [
+        "Homo sapiens"
+      ],
+      "polymer_entity_instances": [
+        "28ZX.UA"
+      ],
+      "release_date": "2026-06-10T00:00:00Z",
+      "selection_stratum": "long_or_multidomain",
+      "sequence": "MSVPAFIDISEEDQAAELRAYLKSKGAEISEENSEGGLHVDLAQIIEACDVCLKEDDKDVESVMNSVVSLLLILEPDKQEALIESLCEKLVKFREGERPSLRLQLLSNLFHGMDKNTPVRYTVYCSLIKVAASCGAIQYIPTELDQVRKWISDWNLTTEKKHTLLRLLYEALVDCKKSDAASKVMVELLGSYTEDNASQARVDAHRCIVRALKDPNAFLFDHLLTLKPVKFLEGELIHDLLTIFVSAKLASYVKFYQNNKDFIDSLGLLHEQNMAKMRLLTFMGMAVENKEISFDTMQQELQIGADDVEAFVIDAVRTKMVYCKIDQTQRKVVVSHSTHRTFGKQQWQQLYDTLNAWKQNLNKVKNSLLSLSDT",
+      "sequence_length": 374,
+      "sequence_metrics": {
+        "aromatic_density": 0.072193,
+        "coordinate_truth_used": false,
+        "hydrophobic_density": 0.451872,
+        "length": 374,
+        "low_complexity_density": 0.040107,
+        "max_segment_interface_density": 0.375,
+        "max_segment_low_complexity_density": 0.333333,
+        "max_segment_membrane_density": 0.619048,
+        "mean_disorder": 0.129883,
+        "mean_interface": 0.286721,
+        "mean_membrane": 0.187678,
+        "net_charge_per_residue": -0.005348
+      },
+      "source_urls": {
+        "entry": "https://data.rcsb.org/rest/v1/core/entry/28ZX",
+        "polymer_entity": "https://data.rcsb.org/rest/v1/core/polymer_entity/28ZX/47"
+      },
+      "target_id": "28ZX_47",
+      "title": "human 48S PIC with mRNA (Kozak_1)"
+    },
+    {
+      "entity_description": "50S ribosomal protein L20",
+      "entity_id": "10QM_17",
+      "entry_id": "10QM",
+      "experimental_method": "ELECTRON MICROSCOPY",
+      "formula_weight_kda": 13.528,
+      "instance_count": 1,
+      "organisms": [
+        "Escherichia coli"
+      ],
+      "polymer_entity_instances": [
+        "10QM.Q"
+      ],
+      "release_date": "2026-06-10T00:00:00Z",
+      "selection_stratum": "membrane_or_transport",
+      "sequence": "MARVKRGVIARARHKKILKQAKGYYGARSRVYRVAFQAVIKAGQYAYRDRRQRKRQFRQLWIARINAAARQNGISYSKFINGLKKASVEIDRKILADIAVFDKVAFTALVEKAKAALA",
+      "sequence_length": 118,
+      "sequence_metrics": {
+        "aromatic_density": 0.101695,
+        "coordinate_truth_used": false,
+        "hydrophobic_density": 0.508475,
+        "length": 118,
+        "low_complexity_density": 0.169492,
+        "max_segment_interface_density": 0.414352,
+        "max_segment_low_complexity_density": 0.583333,
+        "max_segment_membrane_density": 0.698413,
+        "mean_disorder": 0.126368,
+        "mean_interface": 0.325867,
+        "mean_membrane": 0.263663,
+        "net_charge_per_residue": 0.211864
+      },
+      "source_urls": {
+        "entry": "https://data.rcsb.org/rest/v1/core/entry/10QM",
+        "polymer_entity": "https://data.rcsb.org/rest/v1/core/polymer_entity/10QM/17"
+      },
+      "target_id": "10QM_17",
+      "title": "E.coli 50S ribosomal subunit bound to compound 48a"
+    },
+    {
+      "entity_description": "Ubiquitin carboxyl-terminal hydrolase 7",
+      "entity_id": "12ZJ_1",
+      "entry_id": "12ZJ",
+      "experimental_method": "X-RAY DIFFRACTION",
+      "formula_weight_kda": 16.987,
+      "instance_count": 3,
+      "organisms": [
+        "Homo sapiens"
+      ],
+      "polymer_entity_instances": [
+        "12ZJ.C",
+        "12ZJ.E",
+        "12ZJ.A"
+      ],
+      "release_date": "2026-06-10T00:00:00Z",
+      "selection_stratum": "oligomer_or_interface",
+      "sequence": "GDTSWRSEATFQFTVERFSRLSESVLSPPCFVRNLPWKIMVMPRFYPDRPHQKSVGFFLQCNAESDSTSWSCHAQAVLKIINYRDDEKSFSRRISHLFFHKENDWGFSNFMAWSEVTDPEKGFIDDDKVTFEVFVQADAPHGVAW",
+      "sequence_length": 145,
+      "sequence_metrics": {
+        "aromatic_density": 0.158621,
+        "coordinate_truth_used": false,
+        "hydrophobic_density": 0.406897,
+        "length": 145,
+        "low_complexity_density": 0.02069,
+        "max_segment_interface_density": 0.38,
+        "max_segment_low_complexity_density": 0.166667,
+        "max_segment_membrane_density": 0.428571,
+        "mean_disorder": 0.164453,
+        "mean_interface": 0.294657,
+        "mean_membrane": 0.129596,
+        "net_charge_per_residue": 0.006897
+      },
+      "source_urls": {
+        "entry": "https://data.rcsb.org/rest/v1/core/entry/12ZJ",
+        "polymer_entity": "https://data.rcsb.org/rest/v1/core/polymer_entity/12ZJ/1"
+      },
+      "target_id": "12ZJ_1",
+      "title": "Crystal structure of USP7 TRAF domain in complex with MAGEL2 peptide (968-980)"
+    },
+    {
+      "entity_description": "Antibody Heavy Chain",
+      "entity_id": "10BT_1",
+      "entry_id": "10BT",
+      "experimental_method": "X-RAY DIFFRACTION",
+      "formula_weight_kda": 25.435,
+      "instance_count": 4,
+      "organisms": [
+        "Homo sapiens"
+      ],
+      "polymer_entity_instances": [
+        "10BT.A",
+        "10BT.B",
+        "10BT.C",
+        "10BT.D"
+      ],
+      "release_date": "2026-06-10T00:00:00Z",
+      "selection_stratum": "low_complexity_or_disorder",
+      "sequence": "EVKLEESGGGLVQPGGSMRLSCVASGFTFSNYWMNWVRQSPEKGLEWVAEIRLKSNNYATHYAESVKGRFTISRDDSTSSGYLQMNNLRTEDTGIHYCTLTLITDYDVMEYWGQGTSVTVSSASTKGPSVFPLAPSSKSTSGGTAALGCLVKDYFPEPVTVSWNSGALTSGVHTFPAVLQSSGLYSLSSVVTVPSSSLGTQTYICNVNHKPSNTKVDKKVEPKSCDKTHHHHHH",
+      "sequence_length": 234,
+      "sequence_metrics": {
+        "aromatic_density": 0.089744,
+        "coordinate_truth_used": false,
+        "hydrophobic_density": 0.354701,
+        "length": 234,
+        "low_complexity_density": 0.307692,
+        "max_segment_interface_density": 0.370371,
+        "max_segment_low_complexity_density": 0.833333,
+        "max_segment_membrane_density": 0.333333,
+        "mean_disorder": 0.213188,
+        "mean_interface": 0.231893,
+        "mean_membrane": 0.07014,
+        "net_charge_per_residue": 0.042735
+      },
+      "source_urls": {
+        "entry": "https://data.rcsb.org/rest/v1/core/entry/10BT",
+        "polymer_entity": "https://data.rcsb.org/rest/v1/core/polymer_entity/10BT/1"
+      },
+      "target_id": "10BT_1",
+      "title": "X-ray Crystal Structure of A High-Affinity Monoclonal Antibody Sequesters Xylazine"
+    },
+    {
+      "entity_description": "Large ribosomal subunit protein uL6",
+      "entity_id": "10QM_7",
+      "entry_id": "10QM",
+      "experimental_method": "ELECTRON MICROSCOPY",
+      "formula_weight_kda": 18.933,
+      "instance_count": 1,
+      "organisms": [
+        "Escherichia coli"
+      ],
+      "polymer_entity_instances": [
+        "10QM.G"
+      ],
+      "release_date": "2026-06-10T00:00:00Z",
+      "selection_stratum": "compact_globular",
+      "sequence": "MSRVAKAPVVVPAGVDVKINGQVITIKGKNGELTRTLNDAVEVKHADNTLTFGPRDGYADGWAQAGTARALLNSMVIGVTEGFTKKLQLVGVGYRAAVKGNVINLSLGFSHPVDHQLPAGITAECPTQTEIVLKGADKQVIGQVAADLRAYRRPEPYKGKGVRYADEVVRTKEAKKK",
+      "sequence_length": 177,
+      "sequence_metrics": {
+        "aromatic_density": 0.050847,
+        "coordinate_truth_used": false,
+        "hydrophobic_density": 0.418079,
+        "length": 177,
+        "low_complexity_density": 0.056497,
+        "max_segment_interface_density": 0.313426,
+        "max_segment_low_complexity_density": 0.25,
+        "max_segment_membrane_density": 0.395314,
+        "mean_disorder": 0.174639,
+        "mean_interface": 0.258201,
+        "mean_membrane": 0.112892,
+        "net_charge_per_residue": 0.067797
+      },
+      "source_urls": {
+        "entry": "https://data.rcsb.org/rest/v1/core/entry/10QM",
+        "polymer_entity": "https://data.rcsb.org/rest/v1/core/polymer_entity/10QM/7"
+      },
+      "target_id": "10QM_7",
+      "title": "E.coli 50S ribosomal subunit bound to compound 48a"
+    },
+    {
+      "entity_description": "Large ribosomal subunit protein bL35",
+      "entity_id": "10QM_30",
+      "entry_id": "10QM",
+      "experimental_method": "ELECTRON MICROSCOPY",
+      "formula_weight_kda": 7.182,
+      "instance_count": 1,
+      "organisms": [
+        "Escherichia coli"
+      ],
+      "polymer_entity_instances": [
+        "10QM.DA"
+      ],
+      "release_date": "2026-06-10T00:00:00Z",
+      "selection_stratum": "membrane_or_transport",
+      "sequence": "PKIKTVRGAAKRFKKTGKGGFKHKHANLRHILTKKATKRKRHLRPKAMVSKGDLGLVIACLPYA",
+      "sequence_length": 64,
+      "sequence_metrics": {
+        "aromatic_density": 0.046875,
+        "coordinate_truth_used": false,
+        "hydrophobic_density": 0.375,
+        "length": 64,
+        "low_complexity_density": 0.0625,
+        "max_segment_interface_density": 0.434137,
+        "max_segment_low_complexity_density": 0.25,
+        "max_segment_membrane_density": 1.0,
+        "mean_disorder": 0.163543,
+        "mean_interface": 0.263151,
+        "mean_membrane": 0.136409,
+        "net_charge_per_residue": 0.359375
+      },
+      "source_urls": {
+        "entry": "https://data.rcsb.org/rest/v1/core/entry/10QM",
+        "polymer_entity": "https://data.rcsb.org/rest/v1/core/polymer_entity/10QM/30"
+      },
+      "target_id": "10QM_30",
+      "title": "E.coli 50S ribosomal subunit bound to compound 48a"
+    },
+    {
+      "entity_description": "DNA polymerase sliding clamp 2",
+      "entity_id": "24JD_1",
+      "entry_id": "24JD",
+      "experimental_method": "X-RAY DIFFRACTION",
+      "formula_weight_kda": 28.649,
+      "instance_count": 4,
+      "organisms": [
+        "Aeropyrum pernix"
+      ],
+      "polymer_entity_instances": [
+        "24JD.A",
+        "24JD.B",
+        "24JD.C",
+        "24JD.D"
+      ],
+      "release_date": "2026-06-10T00:00:00Z",
+      "selection_stratum": "oligomer_or_interface",
+      "sequence": "MFRLVYTASSKFKYIAQTLAKINDEGVFEFSLDGLRAWIMSPDKTSLAILEMPSLSFEEYMVEEEMRVVLRTDELNKISKRATRNDDIIFQWNAEEQALEVELRDRKLGFSRKFLVPATSVGAEEMRRLKLEPTVSFTILTDDLKAMIQDVKVVGDFAEFEASEGQVVVRSQAEEKEYEWVMKPGDVLLSLEVEEDAKSIYSRQVLEIATKPVGAAESVKVSFASDYPMKIEYTFPNGERMELYMAPSLAG",
+      "sequence_length": 251,
+      "sequence_metrics": {
+        "aromatic_density": 0.095618,
+        "coordinate_truth_used": false,
+        "hydrophobic_density": 0.450199,
+        "length": 251,
+        "low_complexity_density": 0.015936,
+        "max_segment_interface_density": 0.388009,
+        "max_segment_low_complexity_density": 0.166667,
+        "max_segment_membrane_density": 0.428005,
+        "mean_disorder": 0.137234,
+        "mean_interface": 0.296498,
+        "mean_membrane": 0.112624,
+        "net_charge_per_residue": -0.055777
+      },
+      "source_urls": {
+        "entry": "https://data.rcsb.org/rest/v1/core/entry/24JD",
+        "polymer_entity": "https://data.rcsb.org/rest/v1/core/polymer_entity/24JD/1"
+      },
+      "target_id": "24JD_1",
+      "title": "Crystal structure of the Aeropyrum pernix PCNA2 homotrimer"
+    },
+    {
+      "entity_description": "50S ribosomal protein L2",
+      "entity_id": "10QM_3",
+      "entry_id": "10QM",
+      "experimental_method": "ELECTRON MICROSCOPY",
+      "formula_weight_kda": 29.924,
+      "instance_count": 1,
+      "organisms": [
+        "Escherichia coli"
+      ],
+      "polymer_entity_instances": [
+        "10QM.C"
+      ],
+      "release_date": "2026-06-10T00:00:00Z",
+      "selection_stratum": "low_complexity_or_disorder",
+      "sequence": "MAVVKCKPTSPGRRHVVKVVNPELHKGKPFAPLLEKNSKSGGRNNNGRITTRHIGGGHKQAYRIVDFKRNKDGIPAVVERLEYDPNRSANIALVLYKDGERRYILAPKGLKAGDQIQSGVDAAIKPGNTLPMRNIPVGSTVHNVEMKPGKGGQLARSAGTYVQIVARDGAYVTLRLRSGEMRKVEADCRATLGEVGNAEHMLRVLGKAGAARWRGVRPTVRGTAMNPVDHPHGGGEGRNFGKHPVTPWGVQTKGKKTRSNKRTDKFIVRRRSK",
+      "sequence_length": 273,
+      "sequence_metrics": {
+        "aromatic_density": 0.043956,
+        "coordinate_truth_used": false,
+        "hydrophobic_density": 0.340659,
+        "length": 273,
+        "low_complexity_density": 0.117216,
+        "max_segment_interface_density": 0.319445,
+        "max_segment_low_complexity_density": 0.75,
+        "max_segment_membrane_density": 0.361111,
+        "mean_disorder": 0.227666,
+        "mean_interface": 0.230251,
+        "mean_membrane": 0.070997,
+        "net_charge_per_residue": 0.153846
+      },
+      "source_urls": {
+        "entry": "https://data.rcsb.org/rest/v1/core/entry/10QM",
+        "polymer_entity": "https://data.rcsb.org/rest/v1/core/polymer_entity/10QM/3"
+      },
+      "target_id": "10QM_3",
+      "title": "E.coli 50S ribosomal subunit bound to compound 48a"
+    },
+    {
+      "entity_description": "Large ribosomal subunit protein uL13",
+      "entity_id": "10QM_10",
+      "entry_id": "10QM",
+      "experimental_method": "ELECTRON MICROSCOPY",
+      "formula_weight_kda": 16.051,
+      "instance_count": 1,
+      "organisms": [
+        "Escherichia coli"
+      ],
+      "polymer_entity_instances": [
+        "10QM.J"
+      ],
+      "release_date": "2026-06-10T00:00:00Z",
+      "selection_stratum": "compact_globular",
+      "sequence": "MKTFTAKPETVKRDWYVVDATGKTLGRLATELARRLRGKHKAEYTPHVDTGDYIIVLNADKVAVTGNKRTDKVYYHHTGHIGGIKQATFEEMIARRPERVIEIAVKGMLPKGPLGRAMFRKLKVYAGNEHNHAAQQPQVLDI",
+      "sequence_length": 142,
+      "sequence_metrics": {
+        "aromatic_density": 0.070423,
+        "coordinate_truth_used": false,
+        "hydrophobic_density": 0.401408,
+        "length": 142,
+        "low_complexity_density": 0.028169,
+        "max_segment_interface_density": 0.325463,
+        "max_segment_low_complexity_density": 0.2,
+        "max_segment_membrane_density": 0.384921,
+        "mean_disorder": 0.163549,
+        "mean_interface": 0.270441,
+        "mean_membrane": 0.09535,
+        "net_charge_per_residue": 0.119718
+      },
+      "source_urls": {
+        "entry": "https://data.rcsb.org/rest/v1/core/entry/10QM",
+        "polymer_entity": "https://data.rcsb.org/rest/v1/core/polymer_entity/10QM/10"
+      },
+      "target_id": "10QM_10",
+      "title": "E.coli 50S ribosomal subunit bound to compound 48a"
+    },
+    {
+      "entity_description": "Large ribosomal subunit protein uL4",
+      "entity_id": "10QM_5",
+      "entry_id": "10QM",
+      "experimental_method": "ELECTRON MICROSCOPY",
+      "formula_weight_kda": 22.122,
+      "instance_count": 1,
+      "organisms": [
+        "Escherichia coli"
+      ],
+      "polymer_entity_instances": [
+        "10QM.E"
+      ],
+      "release_date": "2026-06-10T00:00:00Z",
+      "selection_stratum": "membrane_or_transport",
+      "sequence": "MELVLKDAQSALTVSETTFGRDFNEALVHQVVVAYAAGARQGTRAQKTRAEVTGSGKKPWRQKGTGRARSGSIKSPIWRSGGVTFAARPQDHSQKVNKKMYRGALKSILSELVRQDRLIVVEKFSVEAPKTKLLAQKLKDMALEDVLIITGELDENLFLAARNLHKVDVRDATGIDPVSLIAFDKVVMTADAVKQVEEMLA",
+      "sequence_length": 201,
+      "sequence_metrics": {
+        "aromatic_density": 0.049751,
+        "coordinate_truth_used": false,
+        "hydrophobic_density": 0.427861,
+        "length": 201,
+        "low_complexity_density": 0.044776,
+        "max_segment_interface_density": 0.370833,
+        "max_segment_low_complexity_density": 0.333333,
+        "max_segment_membrane_density": 0.653439,
+        "mean_disorder": 0.142265,
+        "mean_interface": 0.268198,
+        "mean_membrane": 0.165381,
+        "net_charge_per_residue": 0.054726
+      },
+      "source_urls": {
+        "entry": "https://data.rcsb.org/rest/v1/core/entry/10QM",
+        "polymer_entity": "https://data.rcsb.org/rest/v1/core/polymer_entity/10QM/5"
+      },
+      "target_id": "10QM_5",
+      "title": "E.coli 50S ribosomal subunit bound to compound 48a"
+    },
+    {
+      "entity_description": "Heim-beta-tubulin",
+      "entity_id": "24SW_2",
+      "entry_id": "24SW",
+      "experimental_method": "ELECTRON MICROSCOPY",
+      "formula_weight_kda": 48.32,
+      "instance_count": 8,
+      "organisms": [
+        "Candidatus Heimdallarchaeaceae"
+      ],
+      "polymer_entity_instances": [
+        "24SW.P",
+        "24SW.N",
+        "24SW.L",
+        "24SW.J",
+        "24SW.H",
+        "24SW.F",
+        "24SW.D",
+        "24SW.B"
+      ],
+      "release_date": "2026-06-10T00:00:00Z",
+      "selection_stratum": "oligomer_or_interface",
+      "sequence": "MAGEVVVVAVGQAGNQIADQFWQLIAQEHKIGLDGMPTNGEPTGRTDVFFRKVSNRYVPRAVLVDLEPAVLKSVSDDAKPNFYDPKNKVHGADGAGNNFAVGHTEMGAQYLEQVIGKIKNEVEKTDSLGGFIVTHSVGGGTGSGFGTLIMQNIRKEYPNTPLLSFSIYPSPRISDVLTEPYNAIFSSYRLVRDTSCSIIYDNDALYTICQNLGIAEPTYSDLNKLISQSMVNITAGMRFVGTLNLDLRKLITNLVPHPRLHFLMTSTAPLVESGGFDSQSIEKTAEVLFEKSNIQAQVNTEDGAYISTTVLFRGNVNPADMDTALRAMKQKLKFVSFIPTGFKTGLSATAPNNMEFAAALVANHTGITQVFKRILGQFDKLWSRKAFSHWYTDSGLTEEDIVNARNDIAKLVEEYEETLKFKSKDKSGEEVAAAEIAENK",
+      "sequence_length": 440,
+      "sequence_metrics": {
+        "aromatic_density": 0.086364,
+        "coordinate_truth_used": false,
+        "hydrophobic_density": 0.413636,
+        "length": 440,
+        "low_complexity_density": 0.113636,
+        "max_segment_interface_density": 0.332407,
+        "max_segment_low_complexity_density": 0.583333,
+        "max_segment_membrane_density": 0.635677,
+        "mean_disorder": 0.172811,
+        "mean_interface": 0.262967,
+        "mean_membrane": 0.100273,
+        "net_charge_per_residue": 0.0
+      },
+      "source_urls": {
+        "entry": "https://data.rcsb.org/rest/v1/core/entry/24SW",
+        "polymer_entity": "https://data.rcsb.org/rest/v1/core/polymer_entity/24SW/2"
+      },
+      "target_id": "24SW_2",
+      "title": "Heimdallarchaeales alpha/beta tubulin microtubule with three seams"
+    },
+    {
+      "entity_description": "Large ribosomal subunit protein uL11",
+      "entity_id": "10QM_9",
+      "entry_id": "10QM",
+      "experimental_method": "ELECTRON MICROSCOPY",
+      "formula_weight_kda": 14.02,
+      "instance_count": 1,
+      "organisms": [
+        "Escherichia coli"
+      ],
+      "polymer_entity_instances": [
+        "10QM.I"
+      ],
+      "release_date": "2026-06-10T00:00:00Z",
+      "selection_stratum": "low_complexity_or_disorder",
+      "sequence": "YVKLQVAAGMANPSPPVGPALGQQGVNIMEFCKAFNAKTDSIEKGLPIPVVITVYADRSFTFVTKTPPAAVLLKKAAGIKSGSGKPNKDKVGKISRAQLQEIAQTKAADMTGADIEAMTRSIEGTARSMGLVVE",
+      "sequence_length": 134,
+      "sequence_metrics": {
+        "aromatic_density": 0.044776,
+        "coordinate_truth_used": false,
+        "hydrophobic_density": 0.432836,
+        "length": 134,
+        "low_complexity_density": 0.179104,
+        "max_segment_interface_density": 0.349537,
+        "max_segment_low_complexity_density": 1.0,
+        "max_segment_membrane_density": 0.52381,
+        "mean_disorder": 0.173135,
+        "mean_interface": 0.250653,
+        "mean_membrane": 0.161861,
+        "net_charge_per_residue": 0.044776
+      },
+      "source_urls": {
+        "entry": "https://data.rcsb.org/rest/v1/core/entry/10QM",
+        "polymer_entity": "https://data.rcsb.org/rest/v1/core/polymer_entity/10QM/9"
+      },
+      "target_id": "10QM_9",
+      "title": "E.coli 50S ribosomal subunit bound to compound 48a"
+    },
+    {
+      "entity_description": "Large ribosomal subunit protein uL14",
+      "entity_id": "10QM_11",
+      "entry_id": "10QM",
+      "experimental_method": "ELECTRON MICROSCOPY",
+      "formula_weight_kda": 13.565,
+      "instance_count": 1,
+      "organisms": [
+        "Escherichia coli"
+      ],
+      "polymer_entity_instances": [
+        "10QM.K"
+      ],
+      "release_date": "2026-06-10T00:00:00Z",
+      "selection_stratum": "compact_globular",
+      "sequence": "MIQEQTMLNVADNSGARRVMCIKVLGGSHRRYAGVGDIIKITIKEAIPRGKVKKGDVLKAVVVRTKKGVRRPDGSVIRFDGNACVLLNNNSEQPIGTRIFGPVTRELRSEKFMKIISLAPEVL",
+      "sequence_length": 123,
+      "sequence_metrics": {
+        "aromatic_density": 0.03252,
+        "coordinate_truth_used": false,
+        "hydrophobic_density": 0.414634,
+        "length": 123,
+        "low_complexity_density": 0.056911,
+        "max_segment_interface_density": 0.323206,
+        "max_segment_low_complexity_density": 0.5,
+        "max_segment_membrane_density": 0.464853,
+        "mean_disorder": 0.173753,
+        "mean_interface": 0.253379,
+        "mean_membrane": 0.123417,
+        "net_charge_per_residue": 0.105691
+      },
+      "source_urls": {
+        "entry": "https://data.rcsb.org/rest/v1/core/entry/10QM",
+        "polymer_entity": "https://data.rcsb.org/rest/v1/core/polymer_entity/10QM/11"
+      },
+      "target_id": "10QM_11",
+      "title": "E.coli 50S ribosomal subunit bound to compound 48a"
+    },
+    {
+      "entity_description": "Decapping and exoribonuclease protein",
+      "entity_id": "10YZ_1",
+      "entry_id": "10YZ",
+      "experimental_method": "X-RAY DIFFRACTION",
+      "formula_weight_kda": 45.336,
+      "instance_count": 1,
+      "organisms": [
+        "Mus musculus"
+      ],
+      "polymer_entity_instances": [
+        "10YZ.A"
+      ],
+      "release_date": "2026-06-10T00:00:00Z",
+      "selection_stratum": "membrane_or_transport",
+      "sequence": "MEPRGTKRKAEKTEVEKPLNKLPRAVPSLRTQPSLYSGPFPFYRRPSELGCFSLDAQRQYHGDARALRYYSPPPINGPGPDFDLRDGYPDRYQPRDEEVQERLDHLLRWVLEHRNQLEGGPGWLAGATVTWRGHLTKLLTTPYERQEGWQLAASRFQGTLYLSEVETPAARAQRLARPPLLRELMYMGYKFEQYMCADKPGGSPDPSGEVNTNVAYCSVLRSRLGNHPLLFSGEVDCLNPQAPCTQPPSCYVELKTSKEMHSPGQWRSFYRHKLLKWWAQSFLPGVPHVVAGFRNPEGFVCSLKTFPTMEMFENVRNDREGWNPSVCMNFCAAFLSFAQSTVVQDDPRLVHLFSWEPGGPVTVSVHRDAPYAFLPSWYVETMTQDLPPLSKTPSPKD",
+      "sequence_length": 397,
+      "sequence_metrics": {
+        "aromatic_density": 0.11335,
+        "coordinate_truth_used": false,
+        "hydrophobic_density": 0.380353,
+        "length": 397,
+        "low_complexity_density": 0.201511,
+        "max_segment_interface_density": 0.399074,
+        "max_segment_low_complexity_density": 1.0,
+        "max_segment_membrane_density": 0.715608,
+        "mean_disorder": 0.222866,
+        "mean_interface": 0.260237,
+        "mean_membrane": 0.092999,
+        "net_charge_per_residue": 0.032746
+      },
+      "source_urls": {
+        "entry": "https://data.rcsb.org/rest/v1/core/entry/10YZ",
+        "polymer_entity": "https://data.rcsb.org/rest/v1/core/polymer_entity/10YZ/1"
+      },
+      "target_id": "10YZ_1",
+      "title": "Crystal structure of mouse DXO in complex with pGGGUU RNA and two magnesium ions"
+    }
+  ],
+  "selection_rule": "RCSB recent-release entries since 2025-01-01; protein polymer entities; 40-700 aa; unique sequence; deterministic cyclic fill across sequence/metadata strata.",
+  "target_count_requested": 20,
+  "target_count_selected": 20,
+  "target_selection_manual": false
+}

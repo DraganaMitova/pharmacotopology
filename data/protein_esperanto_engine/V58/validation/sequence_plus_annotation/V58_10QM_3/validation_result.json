@@ -1,0 +1,29 @@
+{
+  "entity_id": "10QM_3",
+  "entry_id": "10QM",
+  "expected_mechanism_class": "intrinsic_disorder_phase_separation",
+  "level1_regime_selection": true,
+  "level2_region_localization_proxy": true,
+  "level3_topology_or_observable": true,
+  "level4_process_replication": "not_claimed_v59_required",
+  "predicted_mechanism_class": "intrinsic_disorder_phase_separation",
+  "score_label": "supported",
+  "sealed_prediction_hash": "42e45cc6b46425216d09e8caf3fd293c9210dc9b1d04f72d8ee79700527a1558",
+  "target_id": "V58_10QM_3",
+  "validation_checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "intrinsic_disorder_phase_separation",
+      "observed": "intrinsic_disorder_phase_separation",
+      "passed": true
+    },
+    {
+      "check_id": "compact_single_fold_rejected",
+      "comparator": "<=",
+      "metric": "basin:compact_single_fold",
+      "observed": 0.04,
+      "passed": true,
+      "threshold": 0.12
+    }
+  ]
+}

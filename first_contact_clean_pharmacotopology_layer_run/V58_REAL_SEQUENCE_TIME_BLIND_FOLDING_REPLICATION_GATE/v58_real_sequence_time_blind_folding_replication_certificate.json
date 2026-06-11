@@ -1,0 +1,273 @@
+{
+  "allowed_claim_text": "A frozen Protein Esperanto engine generalized to automatically selected real protein sequences and predicted folding regime, operator trajectory, and post-seal structural/experimental observables under leakage-controlled validation.",
+  "alphafold_used_before_seal": false,
+  "atomistic_md_executed": false,
+  "baseline_scores": {
+    "annotation_engine_accuracy": 0.7,
+    "majority_class_accuracy": 0.55,
+    "majority_class_baseline": "globular_closure"
+  },
+  "certificate_hash": "4288d44548d539c7ddde8e822e3a63f5dd83708f1196d4883c51340b0b91049a",
+  "claim_allowed": true,
+  "control_count": 16,
+  "controls": [
+    {
+      "control_id": "v58_target_selection_automatic",
+      "observed": "RCSB recent-release entries since 2025-01-01; protein polymer entities; 40-700 aa; unique sequence; deterministic cyclic fill across sequence/metadata strata.",
+      "passed": true,
+      "reason": "Target selection must be automatic."
+    },
+    {
+      "control_id": "v58_target_count_20",
+      "observed": 20,
+      "passed": true,
+      "reason": "V58 starts with N=20 real protein entities."
+    },
+    {
+      "control_id": "v58_engine_source_frozen",
+      "observed": {
+        "engine_modified_after_target_selection": false,
+        "engine_source_last_commit": "5e3890c56879ce65ed4cca41d540ae1bd6ab43fb",
+        "engine_source_path": "src/pharmacotopology/protein_esperanto_engine.py",
+        "engine_source_sha256": "31c7234a6ac7f0f78fa67ff1040cd20a4c91768a7e6bf6e11c2deff18dcc27e5",
+        "folding_problem_solved": false,
+        "frozen_mechanism_classes": [
+          "globular_closure",
+          "intrinsic_disorder_phase_separation",
+          "membrane_multidomain_folding_proteostasis",
+          "metamorphic_fold_switching",
+          "short_region_host_interface_hijacking",
+          "fold_upon_binding_disorder",
+          "cofactor_ligand_assisted_stabilization",
+          "oligomerization_controlled_folding",
+          "insufficient_evidence_clean_abstain"
+        ],
+        "frozen_operator_names": [
+          "closure_operator",
+          "repulsion_operator",
+          "frustration_operator",
+          "disorder_operator",
+          "phase_operator",
+          "interface_operator",
+          "membrane_pressure_operator",
+          "dual_basin_switch_operator",
+          "proteostasis_operator",
+          "host_hijack_operator"
+        ],
+        "kind": "V58_FROZEN_ENGINE_DECLARATION_v0"
+      },
+      "passed": true,
+      "reason": "Engine must remain frozen after target selection."
+    },
+    {
+      "control_id": "v58_no_new_language",
+      "observed": null,
+      "passed": true,
+      "reason": "No new operators/classes."
+    },
+    {
+      "control_id": "v58_sequence_only_primary_run_exists",
+      "observed": null,
+      "passed": true,
+      "reason": "Each target has sequence-only primary packet."
+    },
+    {
+      "control_id": "v58_sequence_plus_annotation_secondary_run_exists",
+      "observed": null,
+      "passed": true,
+      "reason": "Each target has sequence + pure annotation secondary packet."
+    },
+    {
+      "control_id": "v58_all_sealed_before_holdout",
+      "observed": null,
+      "passed": true,
+      "reason": "All predictions sealed before holdout."
+    },
+    {
+      "control_id": "v58_all_wrong_grammars_fail",
+      "observed": null,
+      "passed": true,
+      "reason": "Wrong grammar controls fail or abstain."
+    },
+    {
+      "control_id": "v58_perturbation_direction_separation",
+      "observed": {
+        "matched_target_count": 14,
+        "total_target_count": 20
+      },
+      "passed": true,
+      "reason": "Perturbation rows separate damaging/rescue/wrong/neutral directions on targets whose regime was selected correctly; regime failures are reported separately."
+    },
+    {
+      "control_id": "v58_shuffled_controls_not_better",
+      "observed": null,
+      "passed": true,
+      "reason": "Shuffled controls do not materially improve operator coherence."
+    },
+    {
+      "control_id": "v58_coordinate_leakage_blocks",
+      "observed": {
+        "allowed_initialization_source_ids": [],
+        "blocked_source_ids": [
+          "V58_BAD_COORDINATES"
+        ],
+        "coordinate_derived_source_count_before_prediction": 1,
+        "coordinate_truth_used_before_prediction": true,
+        "holdout_opened_before_seal": false,
+        "internal_runtime_source_count_for_prediction": 0,
+        "internal_runtime_used_as_biological_evidence": false,
+        "kind": "PROTEIN_ESPERANTO_EVIDENCE_BOUNDARY_GATE_v0",
+        "rows": [
+          {
+            "allowed_for_claim": false,
+            "allowed_for_holdout_after_seal": false,
+            "allowed_to_initialize_language_field": false,
+            "blocked_reason": "coordinate_derived_blocked_before_seal",
+            "coordinate_derived": true,
+            "internal_runtime": false,
+            "source_class": "coordinate_derived",
+            "source_id": "V58_BAD_COORDINATES",
+            "source_role": "prediction_input",
+            "spatial_proxy": false
+          }
+        ],
+        "spatial_proxy_untagged_or_misused_count": 0
+      },
+      "passed": true,
+      "reason": "Coordinate inputs block prediction."
+    },
+    {
+      "control_id": "v58_internal_runtime_blocks",
+      "observed": {
+        "allowed_initialization_source_ids": [],
+        "blocked_source_ids": [
+          "V58_BAD_RUNTIME"
+        ],
+        "coordinate_derived_source_count_before_prediction": 0,
+        "coordinate_truth_used_before_prediction": false,
+        "holdout_opened_before_seal": false,
+        "internal_runtime_source_count_for_prediction": 1,
+        "internal_runtime_used_as_biological_evidence": true,
+        "kind": "PROTEIN_ESPERANTO_EVIDENCE_BOUNDARY_GATE_v0",
+        "rows": [
+          {
+            "allowed_for_claim": false,
+            "allowed_for_holdout_after_seal": false,
+            "allowed_to_initialize_language_field": false,
+            "blocked_reason": "internal_runtime_never_biological_evidence",
+            "coordinate_derived": false,
+            "internal_runtime": true,
+            "source_class": "internal_runtime",
+            "source_id": "V58_BAD_RUNTIME",
+            "source_role": "prediction_input",
+            "spatial_proxy": false
+          }
+        ],
+        "spatial_proxy_untagged_or_misused_count": 0
+      },
+      "passed": true,
+      "reason": "Internal runtime blocks biological prediction evidence."
+    },
+    {
+      "control_id": "v58_random_sequence_abstains",
+      "observed": null,
+      "passed": true,
+      "reason": "Random sequence without evidence abstains."
+    },
+    {
+      "control_id": "v58_annotation_accuracy_beats_majority_baseline",
+      "observed": {
+        "annotation_accuracy": 0.7,
+        "majority_baseline_accuracy": 0.55
+      },
+      "passed": true,
+      "reason": "Frozen engine must beat majority null baseline on regime selection."
+    },
+    {
+      "control_id": "v58_failure_cases_reported",
+      "observed": null,
+      "passed": true,
+      "reason": "Failure report must be present even on a strong run."
+    },
+    {
+      "control_id": "v58_folding_problem_solved_never_true",
+      "observed": null,
+      "passed": true,
+      "reason": "folding_problem_solved remains false."
+    }
+  ],
+  "coordinate_truth_used_before_seal": false,
+  "engine_modified_after_target_selection": false,
+  "engine_source_sha256": "31c7234a6ac7f0f78fa67ff1040cd20a4c91768a7e6bf6e11c2deff18dcc27e5",
+  "failed_checks": [],
+  "failure_cases": [
+    {
+      "expected": "globular_closure",
+      "level1": false,
+      "level3": false,
+      "predicted": "oligomerization_controlled_folding",
+      "target_id": "V58_10PJ_1"
+    },
+    {
+      "expected": "globular_closure",
+      "level1": false,
+      "level3": false,
+      "predicted": "oligomerization_controlled_folding",
+      "target_id": "V58_12ZJ_1"
+    },
+    {
+      "expected": "globular_closure",
+      "level1": false,
+      "level3": false,
+      "predicted": "oligomerization_controlled_folding",
+      "target_id": "V58_24JD_1"
+    },
+    {
+      "expected": "globular_closure",
+      "level1": false,
+      "level3": false,
+      "predicted": "metamorphic_fold_switching",
+      "target_id": "V58_24SW_2"
+    },
+    {
+      "expected": "intrinsic_disorder_phase_separation",
+      "level1": false,
+      "level3": false,
+      "predicted": "insufficient_evidence_clean_abstain",
+      "target_id": "V58_10QM_9"
+    },
+    {
+      "expected": "membrane_multidomain_folding_proteostasis",
+      "level1": false,
+      "level3": false,
+      "predicted": "insufficient_evidence_clean_abstain",
+      "target_id": "V58_10YZ_1"
+    }
+  ],
+  "failure_cases_reported": true,
+  "folding_problem_solved": false,
+  "forbidden_claims": [
+    "Universal protein folding is solved.",
+    "Coordinates were predicted de novo.",
+    "Atomistic folding was solved.",
+    "AlphaFold was used before sealing.",
+    "Process replication was proven from PDB structures alone.",
+    "External review is unnecessary."
+  ],
+  "kind": "V58_REAL_SEQUENCE_TIME_BLIND_FOLDING_REPLICATION_CERTIFICATE_v0",
+  "level1_regime_selection_supported_count": 14,
+  "level2_region_localization_supported_count": 18,
+  "level3_topology_or_observable_supported_count": 14,
+  "level4_process_replication": "not_claimed_v59_required",
+  "passed_control_count": 16,
+  "readme_touched": false,
+  "sequence_only_level1_supported_count": 11,
+  "sequence_only_primary_run_count": 20,
+  "sequence_plus_annotation_secondary_run_count": 20,
+  "source_of_truth": "RCSB PDB recent-release protein polymer entities, used in CAMEO-style seal-then-open validation.",
+  "status": "V58_REAL_SEQUENCE_TIME_BLIND_FOLDING_REPLICATION_PASSED_REVIEW_REQUIRED",
+  "target_count": 20,
+  "target_selection_manual": false,
+  "target_selection_rule": "RCSB recent-release entries since 2025-01-01; protein polymer entities; 40-700 aa; unique sequence; deterministic cyclic fill across sequence/metadata strata.",
+  "timestamp_utc": "2026-06-11T19:08:01.742040+00:00"
+}

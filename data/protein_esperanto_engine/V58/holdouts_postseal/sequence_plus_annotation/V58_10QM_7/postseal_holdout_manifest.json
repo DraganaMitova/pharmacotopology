@@ -1,0 +1,29 @@
+{
+  "entity_id": "10QM_7",
+  "entry_id": "10QM",
+  "expected_mechanism_class": "globular_closure",
+  "expected_observables": [
+    {
+      "check_id": "compact_or_contact_supported",
+      "comparator": ">=",
+      "metric": "contact_probability",
+      "threshold": 0.35
+    }
+  ],
+  "experimental_method": "ELECTRON MICROSCOPY",
+  "holdout_opened_after_prediction_hash": "e4f4af9bb2dc9737164177d0e0316dbbc581c84c3b6aa7620e12090e3c6d9f9d",
+  "kind": "V58_POSTSEAL_REAL_SEQUENCE_HOLDOUT_v0",
+  "postseal_sources": [
+    {
+      "rcsb_entry_url": "https://data.rcsb.org/rest/v1/core/entry/10QM",
+      "rcsb_polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/10QM/7",
+      "source_class": "coordinate_derived",
+      "source_id": "V58_10QM_7_RCSB_POSTSEAL_TRUTH",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_source": "RCSB metadata and sequence-derived validation labels opened after sealed prediction hash; no coordinate contacts used for pre-seal prediction.",
+  "release_date": "2026-06-10T00:00:00Z",
+  "target_id": "V58_10QM_7"
+}

@@ -1,0 +1,48 @@
+{
+  "failure_cases": [
+    {
+      "expected": "globular_closure",
+      "level1": false,
+      "level3": false,
+      "predicted": "oligomerization_controlled_folding",
+      "target_id": "V58_10PJ_1"
+    },
+    {
+      "expected": "globular_closure",
+      "level1": false,
+      "level3": false,
+      "predicted": "oligomerization_controlled_folding",
+      "target_id": "V58_12ZJ_1"
+    },
+    {
+      "expected": "globular_closure",
+      "level1": false,
+      "level3": false,
+      "predicted": "oligomerization_controlled_folding",
+      "target_id": "V58_24JD_1"
+    },
+    {
+      "expected": "globular_closure",
+      "level1": false,
+      "level3": false,
+      "predicted": "metamorphic_fold_switching",
+      "target_id": "V58_24SW_2"
+    },
+    {
+      "expected": "intrinsic_disorder_phase_separation",
+      "level1": false,
+      "level3": false,
+      "predicted": "insufficient_evidence_clean_abstain",
+      "target_id": "V58_10QM_9"
+    },
+    {
+      "expected": "membrane_multidomain_folding_proteostasis",
+      "level1": false,
+      "level3": false,
+      "predicted": "insufficient_evidence_clean_abstain",
+      "target_id": "V58_10YZ_1"
+    }
+  ],
+  "failure_cases_reported": true,
+  "kind": "V58_FAILURE_REPORT_v0"
+}

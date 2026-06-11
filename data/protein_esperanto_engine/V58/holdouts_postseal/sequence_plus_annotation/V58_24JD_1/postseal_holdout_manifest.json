@@ -1,0 +1,29 @@
+{
+  "entity_id": "24JD_1",
+  "entry_id": "24JD",
+  "expected_mechanism_class": "globular_closure",
+  "expected_observables": [
+    {
+      "check_id": "compact_or_contact_supported",
+      "comparator": ">=",
+      "metric": "contact_probability",
+      "threshold": 0.35
+    }
+  ],
+  "experimental_method": "X-RAY DIFFRACTION",
+  "holdout_opened_after_prediction_hash": "cfe6fc4b7a2e67cce8102351ded0c6ef350a3a286a6f2e62424dc4d2a5686793",
+  "kind": "V58_POSTSEAL_REAL_SEQUENCE_HOLDOUT_v0",
+  "postseal_sources": [
+    {
+      "rcsb_entry_url": "https://data.rcsb.org/rest/v1/core/entry/24JD",
+      "rcsb_polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/24JD/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V58_24JD_1_RCSB_POSTSEAL_TRUTH",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_source": "RCSB metadata and sequence-derived validation labels opened after sealed prediction hash; no coordinate contacts used for pre-seal prediction.",
+  "release_date": "2026-06-10T00:00:00Z",
+  "target_id": "V58_24JD_1"
+}
