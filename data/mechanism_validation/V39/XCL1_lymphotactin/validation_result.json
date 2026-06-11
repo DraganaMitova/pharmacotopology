@@ -1,0 +1,22 @@
+{
+  "answer_key_source_count": 0,
+  "coordinate_derived_source_count": 0,
+  "failed_checks": [],
+  "holdout_source_count": 5,
+  "internal_runtime_source_count": 0,
+  "mechanism_class": "metamorphic_two_state_fold_switch",
+  "missing_holdout_buckets": [],
+  "missing_required_prediction_buckets": [],
+  "placeholder_source_count": 0,
+  "prediction_count": 5,
+  "prediction_source_count": 2,
+  "supported_prediction_buckets": [
+    "metamorphic_two_state_holdout",
+    "perturbation_holdout",
+    "pooling_rule_holdout",
+    "state_A_state_B_holdout",
+    "state_function_holdout"
+  ],
+  "target": "XCL1_lymphotactin",
+  "validation_level": "supported_by_independent_holdout"
+}

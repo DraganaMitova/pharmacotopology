@@ -1,0 +1,5 @@
+prediction_id,operator,prediction,expected_holdout_bucket,falsifiable_if
+KCSA_P1_FILTER,filter_signature_required_for_K_selectivity,A filter/signature operator should be required for K+ selectivity grammar.,filter_or_signature_holdout,independent holdout lacks potassium-channel filter/signature evidence
+KCSA_P2_MEMBRANE,membrane_topology_required,The mechanism should require membrane/topology context rather than soluble-core grammar.,membrane_topology_holdout,independent holdout supports soluble-only context
+KCSA_P3_OLIGOMER,oligomer_context_without_whole_fold_claim,"Oligomer/interface context may matter, but must not become a whole-fold claim.",oligomer_or_interface_holdout,holdout contradicts oligomer/interface context or requires whole-fold claim
+KCSA_P4_PERTURB_FILTER,filter_ion_evidence_removal_breaks_hard_grammar,Removing filter/ion-selectivity evidence should make KcsA hard grammar partial or invalid.,perturbation_holdout,filter/ion evidence can be removed without changing mechanism grammar

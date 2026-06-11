@@ -1,0 +1,84 @@
+{
+  "answer_key_used_for_prediction": false,
+  "claim_allowed": false,
+  "coordinate_truth_used_before_selection": false,
+  "falsifiable_predictions": [
+    {
+      "expected_holdout_bucket": "disorder_holdout",
+      "falsifiable_if": "holdout supports compact single native fold for free protein",
+      "operator": "free_state_disorder_ensemble",
+      "prediction": "Free protein should be represented as disorder/ensemble, not a single native fold.",
+      "prediction_id": "SNCA_P1_DISORDER"
+    },
+    {
+      "expected_holdout_bucket": "context_bound_holdout",
+      "falsifiable_if": "holdout treats bound helix as solved free-state fold",
+      "operator": "context_bound_structure_only",
+      "prediction": "Context-bound structure may be allowed only as conditional state.",
+      "prediction_id": "SNCA_P2_CONTEXT_BOUND"
+    },
+    {
+      "expected_holdout_bucket": "disorder_to_order_holdout",
+      "falsifiable_if": "holdout lacks context dependence",
+      "operator": "disorder_to_order_contextual",
+      "prediction": "Disorder-to-order or membrane-bound helix context should be contextual.",
+      "prediction_id": "SNCA_P3_DISORDER_TO_ORDER"
+    },
+    {
+      "expected_holdout_bucket": "single_fold_block_holdout",
+      "falsifiable_if": "single compact native fold grammar is supported",
+      "operator": "compact_single_fold_forbidden",
+      "prediction": "Forcing compact single-fold grammar should be blocked.",
+      "prediction_id": "SNCA_P4_BLOCK_SINGLE"
+    },
+    {
+      "expected_holdout_bucket": "perturbation_holdout",
+      "falsifiable_if": "removing disorder evidence leaves high-confidence IDP grammar",
+      "operator": "disorder_removal_breaks_mechanism",
+      "prediction": "Removing disorder evidence should make the mechanism partial or invalid.",
+      "prediction_id": "SNCA_P5_REMOVE_DISORDER"
+    }
+  ],
+  "folding_problem_solved": false,
+  "kind": "V39_MECHANISM_PREDICTION_PACKET_v0",
+  "mechanism_class": "intrinsic_disorder_contextual_ensemble",
+  "native_metrics_used_for_selection": false,
+  "new_MD_allowed": false,
+  "new_md_executed": false,
+  "positive_folding_evidence_found": false,
+  "prediction_source_evidence": [
+    {
+      "allowed_use": "V39_holdout_validation_or_prediction_source_no_coordinates_no_MD",
+      "answer_key_source": false,
+      "claim_allowed": false,
+      "coordinate_derived": false,
+      "coordinate_truth_used_before_selection": false,
+      "evidence_bucket": "prediction_source",
+      "evidence_statement": "Non-coordinate disorder/ensemble dossier evidence.",
+      "internal_runtime_source": false,
+      "native_metrics_used_for_selection": false,
+      "source_date_or_version": "accessed_2026-06-11",
+      "source_id": "SNCA_PRED_V36_DOSSIER",
+      "source_name": "SNCA V36 evidence dossier",
+      "source_type": "V36 evidence dossier",
+      "source_url_or_citation": "data/external_evidence_dossiers/alpha_synuclein_SNCA/evidence_dossier.json"
+    },
+    {
+      "allowed_use": "V39_holdout_validation_or_prediction_source_no_coordinates_no_MD",
+      "answer_key_source": false,
+      "claim_allowed": false,
+      "coordinate_derived": false,
+      "coordinate_truth_used_before_selection": false,
+      "evidence_bucket": "prediction_source",
+      "evidence_statement": "Mechanism-class map generated from non-coordinate evidence.",
+      "internal_runtime_source": false,
+      "native_metrics_used_for_selection": false,
+      "source_date_or_version": "accessed_2026-06-11",
+      "source_id": "SNCA_PRED_V37_MAP",
+      "source_name": "SNCA V37 mechanism question map",
+      "source_type": "V37 mechanism map",
+      "source_url_or_citation": "data/mechanism_maps/V37/alpha_synuclein_SNCA_mechanism_question_map.json"
+    }
+  ],
+  "target": "alpha_synuclein_SNCA"
+}

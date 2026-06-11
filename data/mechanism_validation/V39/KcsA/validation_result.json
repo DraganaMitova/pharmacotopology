@@ -1,0 +1,21 @@
+{
+  "answer_key_source_count": 0,
+  "coordinate_derived_source_count": 0,
+  "failed_checks": [],
+  "holdout_source_count": 4,
+  "internal_runtime_source_count": 0,
+  "mechanism_class": "membrane_pore_filter_oligomeric_ion_selectivity",
+  "missing_holdout_buckets": [],
+  "missing_required_prediction_buckets": [],
+  "placeholder_source_count": 0,
+  "prediction_count": 4,
+  "prediction_source_count": 2,
+  "supported_prediction_buckets": [
+    "filter_or_signature_holdout",
+    "membrane_topology_holdout",
+    "oligomer_or_interface_holdout",
+    "perturbation_holdout"
+  ],
+  "target": "KcsA",
+  "validation_level": "supported_by_independent_holdout"
+}

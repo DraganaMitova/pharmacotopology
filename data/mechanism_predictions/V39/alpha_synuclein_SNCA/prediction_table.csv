@@ -1,0 +1,6 @@
+prediction_id,operator,prediction,expected_holdout_bucket,falsifiable_if
+SNCA_P1_DISORDER,free_state_disorder_ensemble,"Free protein should be represented as disorder/ensemble, not a single native fold.",disorder_holdout,holdout supports compact single native fold for free protein
+SNCA_P2_CONTEXT_BOUND,context_bound_structure_only,Context-bound structure may be allowed only as conditional state.,context_bound_holdout,holdout treats bound helix as solved free-state fold
+SNCA_P3_DISORDER_TO_ORDER,disorder_to_order_contextual,Disorder-to-order or membrane-bound helix context should be contextual.,disorder_to_order_holdout,holdout lacks context dependence
+SNCA_P4_BLOCK_SINGLE,compact_single_fold_forbidden,Forcing compact single-fold grammar should be blocked.,single_fold_block_holdout,single compact native fold grammar is supported
+SNCA_P5_REMOVE_DISORDER,disorder_removal_breaks_mechanism,Removing disorder evidence should make the mechanism partial or invalid.,perturbation_holdout,removing disorder evidence leaves high-confidence IDP grammar

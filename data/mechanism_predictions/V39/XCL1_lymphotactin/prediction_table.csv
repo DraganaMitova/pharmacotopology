@@ -1,0 +1,6 @@
+prediction_id,operator,prediction,expected_holdout_bucket,falsifiable_if
+XCL1_P1_NO_CONSENSUS,no_single_consensus_fold,XCL1 should not be represented as one consensus fold.,metamorphic_two_state_holdout,independent holdout supports only a single consensus fold
+XCL1_P2_TWO_STATES,two_state_specific_buckets_required,There must be two state-specific evidence buckets.,state_A_state_B_holdout,one state explains all holdout evidence
+XCL1_P3_DISTINCT_FUNCTION,state_specific_function_labels_distinct,State A and state B should have distinct function/context labels.,state_function_holdout,holdout merges state functions into one label
+XCL1_P4_NO_POOLING,mixed_state_pooling_forbidden,Mixed-state pooling should be explicitly forbidden.,pooling_rule_holdout,mixed-state pooling is valid in holdout evidence
+XCL1_P5_REMOVE_STATE,one_state_removal_breaks_mechanism,Removing one state should make the mechanism partial or invalid.,perturbation_holdout,one-state dossier remains high-confidence metamorphic grammar

@@ -1,0 +1,84 @@
+{
+  "answer_key_used_for_prediction": false,
+  "claim_allowed": false,
+  "coordinate_truth_used_before_selection": false,
+  "falsifiable_predictions": [
+    {
+      "expected_holdout_bucket": "metamorphic_two_state_holdout",
+      "falsifiable_if": "independent holdout supports only a single consensus fold",
+      "operator": "no_single_consensus_fold",
+      "prediction": "XCL1 should not be represented as one consensus fold.",
+      "prediction_id": "XCL1_P1_NO_CONSENSUS"
+    },
+    {
+      "expected_holdout_bucket": "state_A_state_B_holdout",
+      "falsifiable_if": "one state explains all holdout evidence",
+      "operator": "two_state_specific_buckets_required",
+      "prediction": "There must be two state-specific evidence buckets.",
+      "prediction_id": "XCL1_P2_TWO_STATES"
+    },
+    {
+      "expected_holdout_bucket": "state_function_holdout",
+      "falsifiable_if": "holdout merges state functions into one label",
+      "operator": "state_specific_function_labels_distinct",
+      "prediction": "State A and state B should have distinct function/context labels.",
+      "prediction_id": "XCL1_P3_DISTINCT_FUNCTION"
+    },
+    {
+      "expected_holdout_bucket": "pooling_rule_holdout",
+      "falsifiable_if": "mixed-state pooling is valid in holdout evidence",
+      "operator": "mixed_state_pooling_forbidden",
+      "prediction": "Mixed-state pooling should be explicitly forbidden.",
+      "prediction_id": "XCL1_P4_NO_POOLING"
+    },
+    {
+      "expected_holdout_bucket": "perturbation_holdout",
+      "falsifiable_if": "one-state dossier remains high-confidence metamorphic grammar",
+      "operator": "one_state_removal_breaks_mechanism",
+      "prediction": "Removing one state should make the mechanism partial or invalid.",
+      "prediction_id": "XCL1_P5_REMOVE_STATE"
+    }
+  ],
+  "folding_problem_solved": false,
+  "kind": "V39_MECHANISM_PREDICTION_PACKET_v0",
+  "mechanism_class": "metamorphic_two_state_fold_switch",
+  "native_metrics_used_for_selection": false,
+  "new_MD_allowed": false,
+  "new_md_executed": false,
+  "positive_folding_evidence_found": false,
+  "prediction_source_evidence": [
+    {
+      "allowed_use": "V39_holdout_validation_or_prediction_source_no_coordinates_no_MD",
+      "answer_key_source": false,
+      "claim_allowed": false,
+      "coordinate_derived": false,
+      "coordinate_truth_used_before_selection": false,
+      "evidence_bucket": "prediction_source",
+      "evidence_statement": "Non-coordinate two-state dossier evidence.",
+      "internal_runtime_source": false,
+      "native_metrics_used_for_selection": false,
+      "source_date_or_version": "accessed_2026-06-11",
+      "source_id": "XCL1_PRED_V36_DOSSIER",
+      "source_name": "XCL1 V36 evidence dossier",
+      "source_type": "V36 evidence dossier",
+      "source_url_or_citation": "data/external_evidence_dossiers/XCL1_lymphotactin/evidence_dossier.json"
+    },
+    {
+      "allowed_use": "V39_holdout_validation_or_prediction_source_no_coordinates_no_MD",
+      "answer_key_source": false,
+      "claim_allowed": false,
+      "coordinate_derived": false,
+      "coordinate_truth_used_before_selection": false,
+      "evidence_bucket": "prediction_source",
+      "evidence_statement": "Mechanism-class map generated from non-coordinate evidence.",
+      "internal_runtime_source": false,
+      "native_metrics_used_for_selection": false,
+      "source_date_or_version": "accessed_2026-06-11",
+      "source_id": "XCL1_PRED_V37_MAP",
+      "source_name": "XCL1 V37 mechanism question map",
+      "source_type": "V37 mechanism map",
+      "source_url_or_citation": "data/mechanism_maps/V37/XCL1_lymphotactin_mechanism_question_map.json"
+    }
+  ],
+  "target": "XCL1_lymphotactin"
+}

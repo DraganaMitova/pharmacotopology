@@ -1,0 +1,22 @@
+{
+  "answer_key_source_count": 0,
+  "coordinate_derived_source_count": 0,
+  "failed_checks": [],
+  "holdout_source_count": 5,
+  "internal_runtime_source_count": 0,
+  "mechanism_class": "intrinsic_disorder_contextual_ensemble",
+  "missing_holdout_buckets": [],
+  "missing_required_prediction_buckets": [],
+  "placeholder_source_count": 0,
+  "prediction_count": 5,
+  "prediction_source_count": 2,
+  "supported_prediction_buckets": [
+    "context_bound_holdout",
+    "disorder_holdout",
+    "disorder_to_order_holdout",
+    "perturbation_holdout",
+    "single_fold_block_holdout"
+  ],
+  "target": "alpha_synuclein_SNCA",
+  "validation_level": "supported_by_independent_holdout"
+}

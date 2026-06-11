@@ -1,0 +1,315 @@
+{
+  "answer_key_used_for_prediction": false,
+  "artifacts": {
+    "certificate": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V39_MECHANISM_TO_FALSIFIABLE_PREDICTION_VALIDATION/v39_mechanism_to_falsifiable_prediction_validation_certificate.json",
+    "decision": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V39_MECHANISM_TO_FALSIFIABLE_PREDICTION_VALIDATION/v39_mechanism_to_falsifiable_prediction_validation_next_decision.json",
+    "report": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V39_MECHANISM_TO_FALSIFIABLE_PREDICTION_VALIDATION/V39_MECHANISM_TO_FALSIFIABLE_PREDICTION_VALIDATION_REPORT.md"
+  },
+  "blocked_target_count": 0,
+  "claim_allowed": false,
+  "contradicted_target_count": 0,
+  "control_count": 12,
+  "control_status": "V39_MECHANISM_PREDICTIONS_VALIDATED_CLAIM_DISABLED",
+  "controls": [
+    {
+      "control_id": "prediction_generation_uses_no_coordinate_sources",
+      "observed": {
+        "coordinate_derived_source_count": 0
+      },
+      "passed": true,
+      "reason": "Prediction sources must be coordinate-free."
+    },
+    {
+      "control_id": "holdout_validation_uses_no_coordinate_sources",
+      "observed": {
+        "validation_levels": {
+          "KcsA": "supported_by_independent_holdout",
+          "XCL1_lymphotactin": "supported_by_independent_holdout",
+          "alpha_synuclein_SNCA": "supported_by_independent_holdout"
+        }
+      },
+      "passed": true,
+      "reason": "Holdout sources must be coordinate-free."
+    },
+    {
+      "control_id": "internal_runtime_reports_blocked_as_evidence",
+      "observed": {
+        "answer_key_source_count": 0,
+        "coordinate_derived_source_count": 0,
+        "internal_runtime_source_count": 1,
+        "missing_holdout_buckets": [],
+        "missing_required_prediction_buckets": [],
+        "placeholder_source_count": 1,
+        "target": "KcsA",
+        "validation_level": "blocked_for_leakage"
+      },
+      "passed": true,
+      "reason": "Internal runtime evidence must block."
+    },
+    {
+      "control_id": "v38_answer_key_leakage_attempt_blocked",
+      "observed": {
+        "answer_key_source_count": 1,
+        "coordinate_derived_source_count": 0,
+        "internal_runtime_source_count": 0,
+        "missing_holdout_buckets": [],
+        "missing_required_prediction_buckets": [],
+        "placeholder_source_count": 0,
+        "target": "KcsA",
+        "validation_level": "blocked_for_leakage"
+      },
+      "passed": true,
+      "reason": "Answer-key leakage must block."
+    },
+    {
+      "control_id": "generic_only_evidence_not_high_confidence",
+      "observed": {
+        "answer_key_source_count": 0,
+        "coordinate_derived_source_count": 0,
+        "internal_runtime_source_count": 0,
+        "missing_holdout_buckets": [
+          "generic"
+        ],
+        "missing_required_prediction_buckets": [
+          "filter_or_signature_holdout",
+          "membrane_topology_holdout",
+          "oligomer_or_interface_holdout",
+          "perturbation_holdout"
+        ],
+        "placeholder_source_count": 0,
+        "target": "KcsA",
+        "validation_level": "contradicted_or_failed"
+      },
+      "passed": true,
+      "reason": "Generic-only evidence cannot validate high-confidence prediction."
+    },
+    {
+      "control_id": "kcsa_filter_ion_removed_partial_or_invalid",
+      "observed": {
+        "answer_key_source_count": 0,
+        "coordinate_derived_source_count": 0,
+        "internal_runtime_source_count": 0,
+        "missing_holdout_buckets": [],
+        "missing_required_prediction_buckets": [
+          "filter_or_signature_holdout"
+        ],
+        "placeholder_source_count": 0,
+        "target": "KcsA",
+        "validation_level": "partially_supported_clean_abstain"
+      },
+      "passed": true,
+      "reason": "Removing KcsA filter prediction must force partial/invalid status."
+    },
+    {
+      "control_id": "xcl1_one_state_only_partial_or_invalid",
+      "observed": {
+        "answer_key_source_count": 0,
+        "coordinate_derived_source_count": 0,
+        "internal_runtime_source_count": 0,
+        "missing_holdout_buckets": [],
+        "missing_required_prediction_buckets": [
+          "state_A_state_B_holdout"
+        ],
+        "placeholder_source_count": 0,
+        "target": "XCL1_lymphotactin",
+        "validation_level": "partially_supported_clean_abstain"
+      },
+      "passed": true,
+      "reason": "Removing one XCL1 state must force partial/invalid status."
+    },
+    {
+      "control_id": "xcl1_mixed_state_pooling_forced_blocked",
+      "observed": {
+        "answer_key_source_count": 0,
+        "coordinate_derived_source_count": 0,
+        "internal_runtime_source_count": 0,
+        "missing_holdout_buckets": [
+          "mixed_pooling_allowed"
+        ],
+        "missing_required_prediction_buckets": [],
+        "placeholder_source_count": 0,
+        "target": "XCL1_lymphotactin",
+        "validation_level": "partially_supported_clean_abstain"
+      },
+      "passed": true,
+      "reason": "Forced mixed pooling lacks holdout support."
+    },
+    {
+      "control_id": "snca_disorder_removed_partial_or_invalid",
+      "observed": {
+        "answer_key_source_count": 0,
+        "coordinate_derived_source_count": 0,
+        "internal_runtime_source_count": 0,
+        "missing_holdout_buckets": [],
+        "missing_required_prediction_buckets": [
+          "disorder_holdout"
+        ],
+        "placeholder_source_count": 0,
+        "target": "alpha_synuclein_SNCA",
+        "validation_level": "partially_supported_clean_abstain"
+      },
+      "passed": true,
+      "reason": "Removing SNCA disorder prediction must force partial/invalid status."
+    },
+    {
+      "control_id": "snca_forced_compact_single_fold_blocked",
+      "observed": {
+        "answer_key_source_count": 0,
+        "coordinate_derived_source_count": 0,
+        "internal_runtime_source_count": 0,
+        "missing_holdout_buckets": [
+          "compact_single_fold_holdout"
+        ],
+        "missing_required_prediction_buckets": [],
+        "placeholder_source_count": 0,
+        "target": "alpha_synuclein_SNCA",
+        "validation_level": "partially_supported_clean_abstain"
+      },
+      "passed": true,
+      "reason": "Forced SNCA compact fold lacks support."
+    },
+    {
+      "control_id": "swapped_holdout_evidence_fails_validation",
+      "observed": {
+        "answer_key_source_count": 0,
+        "coordinate_derived_source_count": 0,
+        "internal_runtime_source_count": 0,
+        "missing_holdout_buckets": [
+          "filter_or_signature_holdout",
+          "membrane_topology_holdout",
+          "oligomer_or_interface_holdout"
+        ],
+        "missing_required_prediction_buckets": [],
+        "placeholder_source_count": 0,
+        "target": "KcsA",
+        "validation_level": "partially_supported_clean_abstain"
+      },
+      "passed": true,
+      "reason": "Swapped SNCA holdout must not validate KcsA predictions."
+    },
+    {
+      "control_id": "placeholder_citations_blocked",
+      "observed": {
+        "answer_key_source_count": 0,
+        "coordinate_derived_source_count": 0,
+        "internal_runtime_source_count": 0,
+        "missing_holdout_buckets": [],
+        "missing_required_prediction_buckets": [],
+        "placeholder_source_count": 3,
+        "target": "KcsA",
+        "validation_level": "blocked_for_leakage"
+      },
+      "passed": true,
+      "reason": "Placeholder citations must block."
+    }
+  ],
+  "coordinate_derived_source_count": 0,
+  "coordinate_truth_used_before_selection": false,
+  "failed_checks": [],
+  "folding_problem_solved": false,
+  "holdout_source_count": 14,
+  "holdout_source_count_by_target": {
+    "KcsA": 4,
+    "XCL1_lymphotactin": 5,
+    "alpha_synuclein_SNCA": 5
+  },
+  "internal_runtime_source_count": 0,
+  "kind": "V39_MECHANISM_TO_FALSIFIABLE_PREDICTION_VALIDATION_v0",
+  "locked_interpretation": "V39 passing means non-coordinate mechanism grammar produced falsifiable operator-level predictions for KcsA, XCL1, and SNCA, and independent holdout evidence supported them without coordinates, runtime evidence, answer-key leakage, MD, or any folding-solved claim.",
+  "native_metrics_used_for_selection": false,
+  "new_MD_allowed": false,
+  "new_md_executed": false,
+  "next_action": "design_independent_experimental_readouts_from_validated_mechanism_predictions_no_claim_no_MD",
+  "next_decision": {
+    "claim_allowed": false,
+    "decision_status": "V39_MECHANISM_PREDICTIONS_VALIDATED_CLAIM_DISABLED",
+    "folding_problem_solved": false,
+    "kind": "V39_MECHANISM_TO_FALSIFIABLE_PREDICTION_VALIDATION_NEXT_DECISION_v0",
+    "new_MD_allowed": false,
+    "next_action": "design_independent_experimental_readouts_from_validated_mechanism_predictions_no_claim_no_MD"
+  },
+  "partial_target_count": 0,
+  "passed_control_count": 12,
+  "positive_folding_evidence_found": false,
+  "prediction_packet_count": 3,
+  "prediction_source_count_by_target": {
+    "KcsA": 2,
+    "XCL1_lymphotactin": 2,
+    "alpha_synuclein_SNCA": 2
+  },
+  "run_mode": "mechanism_prediction_to_independent_holdout_validation_no_coordinates_no_MD_claim_disabled",
+  "target_count": 3,
+  "target_validation_results": [
+    {
+      "answer_key_source_count": 0,
+      "coordinate_derived_source_count": 0,
+      "failed_checks": [],
+      "holdout_source_count": 4,
+      "internal_runtime_source_count": 0,
+      "mechanism_class": "membrane_pore_filter_oligomeric_ion_selectivity",
+      "missing_holdout_buckets": [],
+      "missing_required_prediction_buckets": [],
+      "placeholder_source_count": 0,
+      "prediction_count": 4,
+      "prediction_source_count": 2,
+      "supported_prediction_buckets": [
+        "filter_or_signature_holdout",
+        "membrane_topology_holdout",
+        "oligomer_or_interface_holdout",
+        "perturbation_holdout"
+      ],
+      "target": "KcsA",
+      "validation_level": "supported_by_independent_holdout"
+    },
+    {
+      "answer_key_source_count": 0,
+      "coordinate_derived_source_count": 0,
+      "failed_checks": [],
+      "holdout_source_count": 5,
+      "internal_runtime_source_count": 0,
+      "mechanism_class": "metamorphic_two_state_fold_switch",
+      "missing_holdout_buckets": [],
+      "missing_required_prediction_buckets": [],
+      "placeholder_source_count": 0,
+      "prediction_count": 5,
+      "prediction_source_count": 2,
+      "supported_prediction_buckets": [
+        "metamorphic_two_state_holdout",
+        "perturbation_holdout",
+        "pooling_rule_holdout",
+        "state_A_state_B_holdout",
+        "state_function_holdout"
+      ],
+      "target": "XCL1_lymphotactin",
+      "validation_level": "supported_by_independent_holdout"
+    },
+    {
+      "answer_key_source_count": 0,
+      "coordinate_derived_source_count": 0,
+      "failed_checks": [],
+      "holdout_source_count": 5,
+      "internal_runtime_source_count": 0,
+      "mechanism_class": "intrinsic_disorder_contextual_ensemble",
+      "missing_holdout_buckets": [],
+      "missing_required_prediction_buckets": [],
+      "placeholder_source_count": 0,
+      "prediction_count": 5,
+      "prediction_source_count": 2,
+      "supported_prediction_buckets": [
+        "context_bound_holdout",
+        "disorder_holdout",
+        "disorder_to_order_holdout",
+        "perturbation_holdout",
+        "single_fold_block_holdout"
+      ],
+      "target": "alpha_synuclein_SNCA",
+      "validation_level": "supported_by_independent_holdout"
+    }
+  ],
+  "validated_target_count": 3,
+  "validation_level_by_target": {
+    "KcsA": "supported_by_independent_holdout",
+    "XCL1_lymphotactin": "supported_by_independent_holdout",
+    "alpha_synuclein_SNCA": "supported_by_independent_holdout"
+  }
+}

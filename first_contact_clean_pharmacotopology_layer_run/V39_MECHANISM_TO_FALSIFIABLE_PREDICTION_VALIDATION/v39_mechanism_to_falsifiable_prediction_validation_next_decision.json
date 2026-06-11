@@ -1,0 +1,8 @@
+{
+  "claim_allowed": false,
+  "decision_status": "V39_MECHANISM_PREDICTIONS_VALIDATED_CLAIM_DISABLED",
+  "folding_problem_solved": false,
+  "kind": "V39_MECHANISM_TO_FALSIFIABLE_PREDICTION_VALIDATION_NEXT_DECISION_v0",
+  "new_MD_allowed": false,
+  "next_action": "design_independent_experimental_readouts_from_validated_mechanism_predictions_no_claim_no_MD"
+}
