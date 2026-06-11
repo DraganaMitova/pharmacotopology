@@ -1,0 +1,70 @@
+{
+  "assembly_interface_chain_pair_count": 6,
+  "assembly_interface_chain_pairs_sample": [
+    "A-B",
+    "A-C",
+    "A-D",
+    "B-C",
+    "B-D",
+    "C-D"
+  ],
+  "assembly_interface_constraint_classes": [
+    "assembly_interface_heavy_atom_contact"
+  ],
+  "assembly_interface_distance_summary": {
+    "count": 186,
+    "distance_values_present": true,
+    "max_distance_angstrom": 4.454,
+    "median_distance_angstrom": 3.607,
+    "min_distance_angstrom": 2.604,
+    "policy": "descriptive_only_no_threshold_selection"
+  },
+  "assembly_interface_row_count": 186,
+  "assembly_interface_source_file_count": 1,
+  "claim_allowed": false,
+  "constraint_backed_operator_readout_found": true,
+  "fixed_residue_cutoff_used": false,
+  "missing_operator_evidence": [],
+  "native_metrics_used_for_selection": false,
+  "new_MD_allowed": false,
+  "operator_buckets_assigned": [
+    "pore_filter_operator",
+    "assembly_interface_operator",
+    "membrane_pore_oligomer_constraint_context"
+  ],
+  "pore_filter_chains": [
+    "A",
+    "B",
+    "C",
+    "D"
+  ],
+  "pore_filter_constraint_classes": [
+    "pore_filter_potassium_coordination_contact"
+  ],
+  "pore_filter_distance_summary": {
+    "count": 20,
+    "distance_values_present": true,
+    "max_distance_angstrom": 3.472,
+    "median_distance_angstrom": 3.149,
+    "min_distance_angstrom": 2.933,
+    "policy": "descriptive_only_no_threshold_selection"
+  },
+  "pore_filter_ion_names": [
+    "K"
+  ],
+  "pore_filter_motif_labels": [
+    "TVGYG"
+  ],
+  "pore_filter_residue_numbers_or_indices": [
+    "75",
+    "76",
+    "77",
+    "78"
+  ],
+  "pore_filter_row_count": 20,
+  "pore_filter_source_file_count": 1,
+  "readout_type": "constraint_backed_operator_readout_no_MD",
+  "selection_threshold_used": false,
+  "source_boundary": "external_coordinate_derived_source_import_readout_only_not_de_novo_folding_prediction",
+  "target": "KcsA"
+}

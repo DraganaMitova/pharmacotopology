@@ -1,0 +1,9 @@
+{
+  "claim_allowed": false,
+  "decision_status": "V33_CONSTRAINT_BACKED_OPERATOR_READOUT_PASSED_CLAIM_DISABLED",
+  "folding_problem_solved": false,
+  "kind": "V33_NEXT_DECISION_v0",
+  "new_MD_allowed": false,
+  "next_action": "run_V33_negative_controls_before_any_claim_or_MD",
+  "selected_target": "KcsA"
+}

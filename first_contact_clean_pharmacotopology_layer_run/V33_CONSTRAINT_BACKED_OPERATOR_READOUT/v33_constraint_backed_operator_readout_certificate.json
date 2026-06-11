@@ -1,0 +1,154 @@
+{
+  "artifacts": {
+    "certificate": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V33_CONSTRAINT_BACKED_OPERATOR_READOUT/v33_constraint_backed_operator_readout_certificate.json",
+    "decision": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V33_CONSTRAINT_BACKED_OPERATOR_READOUT/v33_next_decision.json",
+    "readout": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V33_CONSTRAINT_BACKED_OPERATOR_READOUT/v33_constraint_backed_operator_readout.json",
+    "report": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V33_CONSTRAINT_BACKED_OPERATOR_READOUT/V33_CONSTRAINT_BACKED_OPERATOR_READOUT_REPORT.md"
+  },
+  "available_evidence": [
+    "pore_filter_external_constraints",
+    "assembly_interface_external_constraints",
+    "constraint_backed_kcsa_operator_buckets"
+  ],
+  "claim_allowed": false,
+  "constraint_backed_operator_readout": {
+    "assembly_interface_chain_pair_count": 6,
+    "assembly_interface_chain_pairs_sample": [
+      "A-B",
+      "A-C",
+      "A-D",
+      "B-C",
+      "B-D",
+      "C-D"
+    ],
+    "assembly_interface_constraint_classes": [
+      "assembly_interface_heavy_atom_contact"
+    ],
+    "assembly_interface_distance_summary": {
+      "count": 186,
+      "distance_values_present": true,
+      "max_distance_angstrom": 4.454,
+      "median_distance_angstrom": 3.607,
+      "min_distance_angstrom": 2.604,
+      "policy": "descriptive_only_no_threshold_selection"
+    },
+    "assembly_interface_row_count": 186,
+    "assembly_interface_source_file_count": 1,
+    "claim_allowed": false,
+    "constraint_backed_operator_readout_found": true,
+    "fixed_residue_cutoff_used": false,
+    "missing_operator_evidence": [],
+    "native_metrics_used_for_selection": false,
+    "new_MD_allowed": false,
+    "operator_buckets_assigned": [
+      "pore_filter_operator",
+      "assembly_interface_operator",
+      "membrane_pore_oligomer_constraint_context"
+    ],
+    "pore_filter_chains": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "pore_filter_constraint_classes": [
+      "pore_filter_potassium_coordination_contact"
+    ],
+    "pore_filter_distance_summary": {
+      "count": 20,
+      "distance_values_present": true,
+      "max_distance_angstrom": 3.472,
+      "median_distance_angstrom": 3.149,
+      "min_distance_angstrom": 2.933,
+      "policy": "descriptive_only_no_threshold_selection"
+    },
+    "pore_filter_ion_names": [
+      "K"
+    ],
+    "pore_filter_motif_labels": [
+      "TVGYG"
+    ],
+    "pore_filter_residue_numbers_or_indices": [
+      "75",
+      "76",
+      "77",
+      "78"
+    ],
+    "pore_filter_row_count": 20,
+    "pore_filter_source_file_count": 1,
+    "readout_type": "constraint_backed_operator_readout_no_MD",
+    "selection_threshold_used": false,
+    "source_boundary": "external_coordinate_derived_source_import_readout_only_not_de_novo_folding_prediction",
+    "target": "KcsA"
+  },
+  "evidence_claim_allowed": false,
+  "failed_checks": [],
+  "fixed_residue_cutoff_used": false,
+  "fixed_threshold_policy": "forbidden",
+  "folding_problem_solved": false,
+  "kind": "V33_CONSTRAINT_BACKED_OPERATOR_READOUT_v0",
+  "locked_interpretation": "V33 is a claim-disabled operator readout over V32-imported real external constraint files. For KcsA it can read pore/filter and assembly/interface buckets, but it is not a de novo folding prediction, not a whole-channel fold claim, and not a universal protein-folding solution.",
+  "membrane_md_executed": false,
+  "missing_files": [],
+  "missing_operator_evidence": [],
+  "native_metrics_used_for_selection": false,
+  "new_MD_allowed": false,
+  "new_MD_recommended": false,
+  "new_md_executed": false,
+  "next_decision": {
+    "claim_allowed": false,
+    "decision_status": "V33_CONSTRAINT_BACKED_OPERATOR_READOUT_PASSED_CLAIM_DISABLED",
+    "folding_problem_solved": false,
+    "kind": "V33_NEXT_DECISION_v0",
+    "new_MD_allowed": false,
+    "next_action": "run_V33_negative_controls_before_any_claim_or_MD",
+    "selected_target": "KcsA"
+  },
+  "operator_readout_found": true,
+  "positive_folding_evidence_found": false,
+  "provenance_clean": true,
+  "readout_status": "V33_CONSTRAINT_BACKED_OPERATOR_READOUT_PASSED_CLAIM_DISABLED",
+  "run_mode": "constraint_backed_operator_readout_no_MD_no_threshold_tuning_claim_disabled",
+  "selected_V33_panel": "V33_CONSTRAINT_BACKED_OPERATOR_READOUT",
+  "selected_V33_target": "KcsA",
+  "selected_target_import_rows": [
+    {
+      "allowed_use": "allowed_for_constraint_backed_operator_readout",
+      "claim_allowed": false,
+      "counts_as_real_external_constraint": true,
+      "evidence_source_class": "real_external_constraint_or_coupling",
+      "evidence_type": "pore_filter_coupling",
+      "file_exists": true,
+      "file_path": "data/external_constraints/KcsA/pore_filter/kcsa_1bl8_pore_filter_external_contacts.csv",
+      "in_selected_V31_scope": true,
+      "provenance_notes": "Real external RCSB PDB coordinate-derived pore/filter contact file. Claim-disabled source import only; not internal runtime report.",
+      "source_date_or_version": "accessed_2026-06-11",
+      "source_name": "RCSB PDB 1BL8 / Doyle et al. Science 1998",
+      "source_url_or_citation": "RCSB PDB 1BL8; Doyle DA et al. Science 280:69-77 (1998), DOI:10.1126/science.280.5360.69",
+      "state_or_context": "TVGYG_selectivity_filter_or_pore_filter_external_coordinate_contact",
+      "target": "KcsA",
+      "valid_import_row": true,
+      "validation_errors": []
+    },
+    {
+      "allowed_use": "allowed_for_constraint_backed_operator_readout",
+      "claim_allowed": false,
+      "counts_as_real_external_constraint": true,
+      "evidence_source_class": "real_external_constraint_or_coupling",
+      "evidence_type": "assembly_interface_constraint",
+      "file_exists": true,
+      "file_path": "data/external_constraints/KcsA/assembly_interface/kcsa_1bl8_assembly_interface_external_contacts.csv",
+      "in_selected_V31_scope": true,
+      "provenance_notes": "Real external RCSB PDB coordinate-derived assembly/interface contact file. Claim-disabled source import only; not internal runtime report.",
+      "source_date_or_version": "accessed_2026-06-11",
+      "source_name": "RCSB PDB 1BL8 / Doyle et al. Science 1998",
+      "source_url_or_citation": "RCSB PDB 1BL8; Doyle DA et al. Science 280:69-77 (1998), DOI:10.1126/science.280.5360.69",
+      "state_or_context": "tetramer_chain_interface_context_external_coordinate_contact",
+      "target": "KcsA",
+      "valid_import_row": true,
+      "validation_errors": []
+    }
+  ],
+  "source_v32_status": "V32_EXTERNAL_CONSTRAINT_SOURCE_IMPORT_PREFLIGHT_READY_FOR_V33_CLAIM_DISABLED",
+  "target_specific_threshold_tuning_allowed": false
+}
