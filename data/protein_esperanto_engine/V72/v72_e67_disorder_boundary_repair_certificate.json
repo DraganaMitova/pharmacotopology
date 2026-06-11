@@ -1,0 +1,406 @@
+{
+  "accepted_accuracy": 0.85,
+  "accepted_count": 200,
+  "accepted_supported": 170,
+  "alphafold_used_before_seal": false,
+  "assembly_required_preserved": 14,
+  "atomistic_md_executed": false,
+  "baseline_engine_version": "E66",
+  "batch_id": "V72_E67_DISORDER_BOUNDARY_REPAIR_PANEL_200",
+  "batch_mode": "disorder_boundary_repair_panel_200",
+  "campaign_id": "V61_TO_V72_PROTEIN_ESPERANTO_SATURATION_CAMPAIGN",
+  "certificate_hash": "0578068467cb94521cd933e95b4891e39eb2dda256842a5ece27a0db19a134ee",
+  "claim_allowed": false,
+  "claim_blocked_reason": "V72 is an E67 repair panel, not a broad solved-folding claim.",
+  "clean_abstain": 0,
+  "clean_abstain_supported": 0,
+  "closed_beta_tracking_remaining": 30,
+  "composition_rule": {
+    "ASSEMBLY_REQUIRED_DISORDER_PRIORITY_SENTINEL": 14,
+    "DISORDER_BOUNDARY_POSITIVE_EXPANSION": 60,
+    "GENERIC_OLIGOMER_CONTROL": 25,
+    "METAL_LIGAND_DISORDER_CONFLICT_SENTINEL": 20,
+    "TRUE_TM_DISORDER_CONFLICT_SENTINEL": 20,
+    "V71_CLOSED_BETA_TRACKING": 30,
+    "V71_DISORDER_FAILURE_REPLAY": 31
+  },
+  "contact_truth_used_before_seal": false,
+  "control_count": 15,
+  "controls": [
+    {
+      "control_id": "target_count_200",
+      "observed": 200,
+      "passed": true,
+      "reason": "V72 must have exactly 200 targets."
+    },
+    {
+      "control_id": "composition_rule",
+      "observed": {
+        "ASSEMBLY_REQUIRED_DISORDER_PRIORITY_SENTINEL": 14,
+        "DISORDER_BOUNDARY_POSITIVE_EXPANSION": 60,
+        "GENERIC_OLIGOMER_CONTROL": 25,
+        "METAL_LIGAND_DISORDER_CONFLICT_SENTINEL": 20,
+        "TRUE_TM_DISORDER_CONFLICT_SENTINEL": 20,
+        "V71_CLOSED_BETA_TRACKING": 30,
+        "V71_DISORDER_FAILURE_REPLAY": 31
+      },
+      "passed": true,
+      "reason": "V72 must match requested repair composition."
+    },
+    {
+      "control_id": "engine_version_declared_e67",
+      "observed": null,
+      "passed": true,
+      "reason": "V72 uses E67."
+    },
+    {
+      "control_id": "e67_class_available",
+      "observed": null,
+      "passed": true,
+      "reason": "E67 exposes disorder_boundary_and_fold_upon_binding."
+    },
+    {
+      "control_id": "all_sealed_before_holdout",
+      "observed": null,
+      "passed": true,
+      "reason": "Every V72 packet is sealed before holdout."
+    },
+    {
+      "control_id": "holdouts_opened_after_seal",
+      "observed": null,
+      "passed": true,
+      "reason": "Every holdout references sealed prediction hash."
+    },
+    {
+      "control_id": "v71_disorder_failures_repaired",
+      "observed": null,
+      "passed": true,
+      "reason": "All V71 disorder_misread failed-accepted rows repaired."
+    },
+    {
+      "control_id": "disorder_expansion_supported",
+      "observed": null,
+      "passed": true,
+      "reason": "E67 disorder-boundary expansion rows supported."
+    },
+    {
+      "control_id": "sentinels_stable",
+      "observed": 0,
+      "passed": true,
+      "reason": "V72 priority sentinels remain stable."
+    },
+    {
+      "control_id": "shuffled_sequence_controls_reported",
+      "observed": {
+        "control_count": 200
+      },
+      "passed": true,
+      "reason": "Composition-preserving shuffled controls generated without target metadata."
+    },
+    {
+      "control_id": "coordinate_leakage_control",
+      "observed": {
+        "allowed_initialization_source_ids": [],
+        "blocked_source_ids": [
+          "V72_BAD_COORDINATES"
+        ],
+        "coordinate_derived_source_count_before_prediction": 1,
+        "coordinate_truth_used_before_prediction": true,
+        "holdout_opened_before_seal": false,
+        "internal_runtime_source_count_for_prediction": 0,
+        "internal_runtime_used_as_biological_evidence": false,
+        "kind": "PROTEIN_ESPERANTO_EVIDENCE_BOUNDARY_GATE_v0",
+        "rows": [
+          {
+            "allowed_for_claim": false,
+            "allowed_for_holdout_after_seal": false,
+            "allowed_to_initialize_language_field": false,
+            "blocked_reason": "coordinate_derived_blocked_before_seal",
+            "coordinate_derived": true,
+            "internal_runtime": false,
+            "source_class": "coordinate_derived",
+            "source_id": "V72_BAD_COORDINATES",
+            "source_role": "prediction_input",
+            "spatial_proxy": false
+          }
+        ],
+        "spatial_proxy_untagged_or_misused_count": 0
+      },
+      "passed": true,
+      "reason": "Coordinate-derived source blocks prediction."
+    },
+    {
+      "control_id": "alphafold_leakage_control",
+      "observed": {
+        "allowed_initialization_source_ids": [],
+        "blocked_source_ids": [
+          "V72_BAD_ALPHAFOLD_MODEL"
+        ],
+        "coordinate_derived_source_count_before_prediction": 1,
+        "coordinate_truth_used_before_prediction": true,
+        "holdout_opened_before_seal": false,
+        "internal_runtime_source_count_for_prediction": 0,
+        "internal_runtime_used_as_biological_evidence": false,
+        "kind": "PROTEIN_ESPERANTO_EVIDENCE_BOUNDARY_GATE_v0",
+        "rows": [
+          {
+            "allowed_for_claim": false,
+            "allowed_for_holdout_after_seal": false,
+            "allowed_to_initialize_language_field": false,
+            "blocked_reason": "coordinate_derived_blocked_before_seal",
+            "coordinate_derived": true,
+            "internal_runtime": false,
+            "source_class": "coordinate_derived",
+            "source_id": "V72_BAD_ALPHAFOLD_MODEL",
+            "source_role": "prediction_input",
+            "spatial_proxy": false
+          }
+        ],
+        "spatial_proxy_untagged_or_misused_count": 0
+      },
+      "passed": true,
+      "reason": "AlphaFold-like model blocks prediction."
+    },
+    {
+      "control_id": "holdout_opened_before_seal_control",
+      "observed": {
+        "allowed_initialization_source_ids": [],
+        "blocked_source_ids": [
+          "V72_PRESEAL_HOLDOUT"
+        ],
+        "coordinate_derived_source_count_before_prediction": 0,
+        "coordinate_truth_used_before_prediction": false,
+        "holdout_opened_before_seal": true,
+        "internal_runtime_source_count_for_prediction": 0,
+        "internal_runtime_used_as_biological_evidence": false,
+        "kind": "PROTEIN_ESPERANTO_EVIDENCE_BOUNDARY_GATE_v0",
+        "rows": [
+          {
+            "allowed_for_claim": false,
+            "allowed_for_holdout_after_seal": true,
+            "allowed_to_initialize_language_field": false,
+            "blocked_reason": "holdout_opened_before_seal",
+            "coordinate_derived": true,
+            "internal_runtime": false,
+            "source_class": "coordinate_derived",
+            "source_id": "V72_PRESEAL_HOLDOUT",
+            "source_role": "holdout_validation",
+            "spatial_proxy": false
+          }
+        ],
+        "spatial_proxy_untagged_or_misused_count": 0
+      },
+      "passed": true,
+      "reason": "Holdout validation cannot initialize prediction before sealing."
+    },
+    {
+      "control_id": "internal_runtime_leakage_control",
+      "observed": {
+        "allowed_initialization_source_ids": [],
+        "blocked_source_ids": [
+          "V72_BAD_INTERNAL_RUNTIME"
+        ],
+        "coordinate_derived_source_count_before_prediction": 0,
+        "coordinate_truth_used_before_prediction": false,
+        "holdout_opened_before_seal": false,
+        "internal_runtime_source_count_for_prediction": 1,
+        "internal_runtime_used_as_biological_evidence": true,
+        "kind": "PROTEIN_ESPERANTO_EVIDENCE_BOUNDARY_GATE_v0",
+        "rows": [
+          {
+            "allowed_for_claim": false,
+            "allowed_for_holdout_after_seal": false,
+            "allowed_to_initialize_language_field": false,
+            "blocked_reason": "internal_runtime_never_biological_evidence",
+            "coordinate_derived": false,
+            "internal_runtime": true,
+            "source_class": "internal_runtime",
+            "source_id": "V72_BAD_INTERNAL_RUNTIME",
+            "source_role": "prediction_input",
+            "spatial_proxy": false
+          }
+        ],
+        "spatial_proxy_untagged_or_misused_count": 0
+      },
+      "passed": true,
+      "reason": "Internal runtime cannot become biological evidence."
+    },
+    {
+      "control_id": "random_sequence_control",
+      "observed": null,
+      "passed": true,
+      "reason": "Random sequence without evidence abstains."
+    }
+  ],
+  "controls_passed": true,
+  "coordinate_truth_used_before_seal": false,
+  "coverage": 1.0,
+  "dashboard": {
+    "ASSEMBLY_REQUIRED_DISORDER_PRIORITY_SENTINEL": {
+      "accepted_accuracy": 1.0,
+      "accepted_count": 14,
+      "accepted_supported": 14,
+      "clean_abstain": 0,
+      "clean_abstain_supported": 0,
+      "controls_passed": true,
+      "coverage": 1.0,
+      "failed_accepted": 0,
+      "failed_accepted_by_failure_mode": {},
+      "failed_accepted_count": 0,
+      "raw_accuracy": 1.0,
+      "sentinel_regressions": 0,
+      "supported_count": 14,
+      "targets_total": 14,
+      "top_failure_mode": null
+    },
+    "DISORDER_BOUNDARY_POSITIVE_EXPANSION": {
+      "accepted_accuracy": 1.0,
+      "accepted_count": 60,
+      "accepted_supported": 60,
+      "clean_abstain": 0,
+      "clean_abstain_supported": 0,
+      "controls_passed": true,
+      "coverage": 1.0,
+      "failed_accepted": 0,
+      "failed_accepted_by_failure_mode": {},
+      "failed_accepted_count": 0,
+      "raw_accuracy": 1.0,
+      "sentinel_regressions": 0,
+      "supported_count": 60,
+      "targets_total": 60,
+      "top_failure_mode": null
+    },
+    "GENERIC_OLIGOMER_CONTROL": {
+      "accepted_accuracy": 1.0,
+      "accepted_count": 25,
+      "accepted_supported": 25,
+      "clean_abstain": 0,
+      "clean_abstain_supported": 0,
+      "controls_passed": true,
+      "coverage": 1.0,
+      "failed_accepted": 0,
+      "failed_accepted_by_failure_mode": {},
+      "failed_accepted_count": 0,
+      "raw_accuracy": 1.0,
+      "sentinel_regressions": 0,
+      "supported_count": 25,
+      "targets_total": 25,
+      "top_failure_mode": null
+    },
+    "METAL_LIGAND_DISORDER_CONFLICT_SENTINEL": {
+      "accepted_accuracy": 1.0,
+      "accepted_count": 20,
+      "accepted_supported": 20,
+      "clean_abstain": 0,
+      "clean_abstain_supported": 0,
+      "controls_passed": true,
+      "coverage": 1.0,
+      "failed_accepted": 0,
+      "failed_accepted_by_failure_mode": {},
+      "failed_accepted_count": 0,
+      "raw_accuracy": 1.0,
+      "sentinel_regressions": 0,
+      "supported_count": 20,
+      "targets_total": 20,
+      "top_failure_mode": null
+    },
+    "TOTAL": {
+      "accepted_accuracy": 0.85,
+      "accepted_count": 200,
+      "accepted_supported": 170,
+      "clean_abstain": 0,
+      "clean_abstain_supported": 0,
+      "controls_passed": true,
+      "coverage": 1.0,
+      "failed_accepted": 30,
+      "failed_accepted_by_failure_mode": {
+        "closed_beta_tracking_remaining": 30
+      },
+      "failed_accepted_count": 30,
+      "raw_accuracy": 0.85,
+      "sentinel_regressions": 0,
+      "supported_count": 170,
+      "targets_total": 200,
+      "top_failure_mode": "closed_beta_tracking_remaining"
+    },
+    "TRUE_TM_DISORDER_CONFLICT_SENTINEL": {
+      "accepted_accuracy": 1.0,
+      "accepted_count": 20,
+      "accepted_supported": 20,
+      "clean_abstain": 0,
+      "clean_abstain_supported": 0,
+      "controls_passed": true,
+      "coverage": 1.0,
+      "failed_accepted": 0,
+      "failed_accepted_by_failure_mode": {},
+      "failed_accepted_count": 0,
+      "raw_accuracy": 1.0,
+      "sentinel_regressions": 0,
+      "supported_count": 20,
+      "targets_total": 20,
+      "top_failure_mode": null
+    },
+    "V71_CLOSED_BETA_TRACKING": {
+      "accepted_accuracy": 0.0,
+      "accepted_count": 30,
+      "accepted_supported": 0,
+      "clean_abstain": 0,
+      "clean_abstain_supported": 0,
+      "controls_passed": true,
+      "coverage": 1.0,
+      "failed_accepted": 30,
+      "failed_accepted_by_failure_mode": {
+        "closed_beta_tracking_remaining": 30
+      },
+      "failed_accepted_count": 30,
+      "raw_accuracy": 0.0,
+      "sentinel_regressions": 0,
+      "supported_count": 0,
+      "targets_total": 30,
+      "top_failure_mode": "closed_beta_tracking_remaining"
+    },
+    "V71_DISORDER_FAILURE_REPLAY": {
+      "accepted_accuracy": 1.0,
+      "accepted_count": 31,
+      "accepted_supported": 31,
+      "clean_abstain": 0,
+      "clean_abstain_supported": 0,
+      "controls_passed": true,
+      "coverage": 1.0,
+      "failed_accepted": 0,
+      "failed_accepted_by_failure_mode": {},
+      "failed_accepted_count": 0,
+      "raw_accuracy": 1.0,
+      "sentinel_regressions": 0,
+      "supported_count": 31,
+      "targets_total": 31,
+      "top_failure_mode": null
+    }
+  },
+  "disorder_expansion_supported": 60,
+  "engine_source_last_commit": "95791fe1d5abc7b9433fd56653cb0b1f99c456a1",
+  "engine_source_sha256": "c3612ccb36306ba625963a2204140aa71d14b458e0c845a2b5681d8e7e6ee3c1",
+  "engine_version_used": "E67",
+  "failed_accepted": 30,
+  "failed_accepted_by_failure_mode": {
+    "closed_beta_tracking_remaining": 30
+  },
+  "failed_accepted_count": 30,
+  "failed_controls": [],
+  "folding_problem_solved": false,
+  "generic_oligomer_controls_preserved": 25,
+  "kind": "V72_E67_DISORDER_BOUNDARY_REPAIR_PANEL_CERTIFICATE_v0",
+  "metal_ligand_preserved": 20,
+  "next_required_batch": "V73_BETA_CLOSURE_TOPOLOGY_REPAIR_PANEL_200",
+  "passed_control_count": 15,
+  "raw_accuracy": 0.85,
+  "sentinel_regression_count": 0,
+  "status": "V72_E67_DISORDER_BOUNDARY_REPAIR_PANEL_PASSED_REVIEW_REQUIRED",
+  "supported_count": 170,
+  "target_selection_manual": false,
+  "targeted_failed_accepted_count": 0,
+  "targets_total": 200,
+  "timestamp_utc": "2026-06-11T23:13:56.984100+00:00",
+  "true_TM_preserved": 20,
+  "v71_disorder_failures_repaired": 31
+}

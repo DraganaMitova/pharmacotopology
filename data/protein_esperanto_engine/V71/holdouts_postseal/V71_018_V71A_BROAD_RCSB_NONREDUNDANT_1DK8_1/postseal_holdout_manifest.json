@@ -1,0 +1,37 @@
+{
+  "batch_id": "V71_RCSB_NONREDUNDANT_200_DISCOVERY_E66",
+  "engine_version_used": "E66",
+  "entity_id": "1",
+  "entry_id": "1DK8",
+  "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "expected_observables": [
+    {
+      "check_id": "proteostasis_routing_supported",
+      "comparator": ">=",
+      "metric": "proteostasis_routing",
+      "threshold": 0.5
+    }
+  ],
+  "experimental_method": "X-RAY DIFFRACTION",
+  "holdout_opened_after_prediction_hash": "222062af5e3245ecc0ae44e3b5dbcac9d71bb34160a0a9bfcc1323ac06efa734",
+  "kind": "V71_E66_RCSB_NONREDUNDANT_DISCOVERY_POSTSEAL_HOLDOUT_v0",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1DK8",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1DK8/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V71_018_V71A_BROAD_RCSB_NONREDUNDANT_1DK8_1_V71_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "postseal public annotation/text indicates explicit membrane, channel, pore, transporter, or topology evidence"
+  ],
+  "protein_id": "1DK8_1",
+  "release_date": "2000-07-12T00:00:00.000+00:00",
+  "required_esperanto_word": null,
+  "shard": "V71A_BROAD_RCSB_NONREDUNDANT",
+  "target_id": "V71_018_V71A_BROAD_RCSB_NONREDUNDANT_1DK8_1"
+}

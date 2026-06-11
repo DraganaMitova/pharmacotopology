@@ -1,0 +1,37 @@
+{
+  "batch_id": "V71_RCSB_NONREDUNDANT_200_DISCOVERY_E66",
+  "engine_version_used": "E66",
+  "entity_id": "1",
+  "entry_id": "1C8B",
+  "expected_mechanism_class": "oligomerization_controlled_folding",
+  "expected_observables": [
+    {
+      "check_id": "interface_readiness_supported",
+      "comparator": ">=",
+      "metric": "interface_readiness",
+      "threshold": 0.4
+    }
+  ],
+  "experimental_method": "X-RAY DIFFRACTION",
+  "holdout_opened_after_prediction_hash": "37f801fe9a882f9365e79b651151920496f5f360fa96bce0584232b4d32efd4d",
+  "kind": "V71_E66_RCSB_NONREDUNDANT_DISCOVERY_POSTSEAL_HOLDOUT_v0",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1C8B",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1C8B/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V71_159_V71D_COILED_COIL_HELIX_BUNDLE_MULTIDOMAIN_ENRICHED_1C8B_1_V71_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "postseal public metadata indicates biological oligomer, assembly, copy-count, or complex context"
+  ],
+  "protein_id": "1C8B_1",
+  "release_date": "2001-05-03T00:00:00.000+00:00",
+  "required_esperanto_word": null,
+  "shard": "V71D_COILED_COIL_HELIX_BUNDLE_MULTIDOMAIN_ENRICHED",
+  "target_id": "V71_159_V71D_COILED_COIL_HELIX_BUNDLE_MULTIDOMAIN_ENRICHED_1C8B_1"
+}

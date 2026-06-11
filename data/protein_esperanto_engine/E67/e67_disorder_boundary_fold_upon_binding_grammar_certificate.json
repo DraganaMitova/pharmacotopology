@@ -1,0 +1,27 @@
+{
+  "baseline_engine_version": "E66",
+  "certificate_hash": "553589d7ca93df010bb6abb8993a0715ee48db67c31df8d5349eb2fe0a8ab5ca",
+  "claim_allowed": false,
+  "engine_revision": "E67",
+  "kind": "E67_DISORDER_BOUNDARY_AND_FOLD_UPON_BINDING_GRAMMAR_CERTIFICATE_v0",
+  "lineage_note": "E67 repairs V71 disorder-boundary failures and leaves closed_beta_topology queued for the next repair cycle.",
+  "new_mechanism_class": "disorder_boundary_and_fold_upon_binding",
+  "new_words": [
+    "IDR_boundary",
+    "structured_domain_plus_IDR_tail",
+    "fold_upon_binding_region",
+    "phase_prone_low_complexity",
+    "flexible_loop_not_disorder",
+    "disorder_with_local_motif"
+  ],
+  "repair_batch": "V72_E67_DISORDER_BOUNDARY_REPAIR_PANEL_200",
+  "repair_status": "V72_E67_DISORDER_BOUNDARY_REPAIR_PANEL_PASSED_REVIEW_REQUIRED",
+  "sentinel_regression_count": 0,
+  "status": "E67_DISORDER_BOUNDARY_AND_FOLD_UPON_BINDING_GRAMMAR_ADDED_REVIEW_REQUIRED",
+  "targeted_failed_accepted_count": 0,
+  "trigger_batch": "V71_RCSB_NONREDUNDANT_200_DISCOVERY_E66",
+  "trigger_failure_count": 31,
+  "trigger_failure_mode": "disorder_misread",
+  "trigger_missing_word": "disorder_misread",
+  "v71_disorder_failures_repaired": 31
+}

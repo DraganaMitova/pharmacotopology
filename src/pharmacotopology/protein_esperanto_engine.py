@@ -31,6 +31,7 @@ EVIDENCE_CLASSES = [
 MECHANISM_CLASSES = [
     "globular_closure",
     "intrinsic_disorder_phase_separation",
+    "disorder_boundary_and_fold_upon_binding",
     "membrane_multidomain_folding_proteostasis",
     "metamorphic_fold_switching",
     "short_region_host_interface_hijacking",
@@ -47,6 +48,7 @@ PROCESS_CLASSES = [
     "intermediate_bearing",
     "multi_basin",
     "disorder_biased",
+    "disorder_boundary",
     "fold_upon_binding",
 ]
 
@@ -103,6 +105,12 @@ STATE_VARIABLES = [
     "apo_holo_basin_shift",
     "generic_ligand_only",
     "metal_ligand_ambiguous",
+    "IDR_boundary",
+    "structured_domain_plus_IDR_tail",
+    "fold_upon_binding_region",
+    "phase_prone_low_complexity",
+    "flexible_loop_not_disorder",
+    "disorder_with_local_motif",
 ]
 
 ENVIRONMENTAL_PRESSURES = [
@@ -147,6 +155,24 @@ LIGAND_LOCKED_CONTEXT_TOKENS = [
     "substrate-bound",
     "substrate bound",
     "apo_holo_basin_shift",
+]
+
+DISORDER_BOUNDARY_CONTEXT_TOKENS = [
+    "disorder_context",
+    "IDR_boundary",
+    "idr boundary",
+    "structured_domain_plus_IDR_tail",
+    "structured domain plus idr tail",
+    "fold_upon_binding_region",
+    "fold-upon-binding region",
+    "phase_prone_low_complexity",
+    "phase-prone low complexity",
+    "flexible_loop_not_disorder",
+    "flexible loop not disorder",
+    "disorder_with_local_motif",
+    "disorder with local motif",
+    "disordered region tendency",
+    "low complexity tendency",
 ]
 
 OLIGOMER_CONTEXT_TOKENS = [
@@ -269,6 +295,21 @@ GRAMMAR_RULES: dict[str, dict[str, Any]] = {
         "testable_effect": "aromatic/charge or condition perturbations shift condensation tendency",
         "null_control": "forcing compact single-fold grammar fails",
         "falsification_rule": "holdout shows condition-independent stable globular dominance",
+    },
+    "disorder_boundary_and_fold_upon_binding": {
+        "marks": [
+            "IDR_boundary",
+            "structured_domain_plus_IDR_tail",
+            "fold_upon_binding_region",
+            "phase_prone_low_complexity",
+            "disorder_with_local_motif",
+        ],
+        "pressures": ["binding_partner", "concentration", "salt"],
+        "operators": ["disorder_operator", "interface_operator", "phase_operator"],
+        "state_change": "generic oligomer or compact-fold readout to explicit disorder-boundary ensemble with partner-conditioned local order",
+        "testable_effect": "boundary, local motif, or partner perturbation changes ordering without promoting a whole-chain solved fold",
+        "null_control": "generic oligomer copy metadata cannot override explicit IDR/low-complexity boundary evidence",
+        "falsification_rule": "holdout shows a complete stable globular or assembly-required fold without persistent disorder boundary",
     },
     "membrane_multidomain_folding_proteostasis": {
         "marks": ["membrane_segment", "domain_boundary", "mutation_site", "interface"],
@@ -726,6 +767,7 @@ def select_mechanism_grammar(
         cofactor_context = _contains_any(text, COFACTOR_CONTEXT_TOKENS)
         metal_cluster_context = _contains_any(text, METAL_CLUSTER_CONTEXT_TOKENS)
         ligand_locked_context = _contains_any(text, LIGAND_LOCKED_CONTEXT_TOKENS)
+        disorder_boundary_context = _contains_any(text, DISORDER_BOUNDARY_CONTEXT_TOKENS)
         negative_assembly_context = _contains_any(text, NEGATIVE_ASSEMBLY_CONTEXT_TOKENS)
         explicit_assembly_required_context = _contains_any(text, ASSEMBLY_REQUIRED_CONTEXT_TOKENS) and not negative_assembly_context
         biological_oligomer_context = _contains_any(text, OLIGOMER_CONTEXT_TOKENS)
@@ -798,6 +840,9 @@ def select_mechanism_grammar(
         elif metal_cluster_context or ligand_locked_context:
             natural = "metal_cluster_and_ligand_locked_basin"
             reason = "explicit_metal_cluster_geometry_or_ligand_locked_basin_context"
+        elif disorder_boundary_context:
+            natural = "disorder_boundary_and_fold_upon_binding"
+            reason = "explicit_disorder_boundary_or_fold_upon_binding_context_prioritized_over_generic_oligomer"
         elif cofactor_context:
             natural = "cofactor_ligand_assisted_stabilization"
             reason = "explicit_ligand_cofactor_or_metal_context"
@@ -991,6 +1036,39 @@ def build_operator_field(
                 "charge screening changes ensemble size",
                 "charge/salt manipulations have no directional effect",
                 "residue_exposure",
+            ),
+        ])
+    elif mechanism_class == "disorder_boundary_and_fold_upon_binding":
+        operators.extend([
+            _operator(
+                "disorder_operator",
+                ", ".join(_span_from_segment(row) for row in disorder_segments),
+                metrics["mean_disorder"] + metrics["low_complexity_density"] + 0.18,
+                evidence,
+                "persistent IDR boundary and structured-domain/tail separation",
+                "boundary truncation or charge/proline/glycine edits shift disorder persistence",
+                "generic oligomer interface explains the holdout without an IDR boundary",
+                "IDR_boundary",
+            ),
+            _operator(
+                "interface_operator",
+                ", ".join(_span_from_segment(row) for row in interface_segments),
+                metrics["mean_interface"] + metrics["mean_disorder"] + 0.20,
+                evidence,
+                "local fold-upon-binding motif readiness without whole-chain compaction",
+                "partner or motif removal weakens local ordering",
+                "partner context has no directional effect on the predicted local motif",
+                "fold_upon_binding_region",
+            ),
+            _operator(
+                "phase_operator",
+                ", ".join(_span_from_segment(row) for row in phase_segments),
+                metrics["low_complexity_density"] + metrics["aromatic_density"] + 0.22,
+                evidence,
+                "phase-prone low-complexity pressure bounded by local motif or domain context",
+                "sticker/charge/salt perturbations shift phase-prone basin",
+                "low-complexity context behaves as an ordinary compact loop",
+                "phase_prone_low_complexity",
             ),
         ])
     elif mechanism_class == "membrane_multidomain_folding_proteostasis":
@@ -1296,6 +1374,22 @@ def simulate_operator_trajectory(
             contact_probability = bounded(0.08 + phase * 0.16 * progress + noise)
             interface_readiness = bounded(0.10 + interface * 0.15)
             proteostasis_routing = 0.0
+        elif mechanism_class == "disorder_boundary_and_fold_upon_binding":
+            partner_loss = float((perturbation or {}).get("partner_loss", 0.0))
+            motif_damage = float((perturbation or {}).get("motif_damage", 0.0))
+            idr_boundary = bounded(0.34 + disorder * 0.42 + phase * 0.12 - 0.26 * motif_damage)
+            local_order = bounded(0.18 + interface * 0.44 * progress + disorder * 0.14 - 0.44 * partner_loss - 0.32 * motif_damage)
+            low_complexity_basin = bounded(0.22 + phase * 0.38 * progress + disorder * 0.10)
+            basin = {
+                "disorder_boundary_ensemble": idr_boundary,
+                "fold_upon_binding_basin": local_order,
+                "phase_prone_low_complexity": low_complexity_basin,
+                "compact_single_fold": bounded(0.05 + closure * 0.04),
+            }
+            segment_compaction = bounded(0.10 + local_order * 0.18 + closure * 0.04 + noise)
+            contact_probability = bounded(0.10 + local_order * 0.32 + phase * 0.08)
+            interface_readiness = local_order
+            proteostasis_routing = 0.0
         elif mechanism_class == "membrane_multidomain_folding_proteostasis":
             damage = float((perturbation or {}).get("damage", 0.0))
             rescue = float((perturbation or {}).get("rescue", 0.0))
@@ -1480,6 +1574,34 @@ def simulate_operator_trajectory(
                 else 0.0
             ),
             "metal_ligand_ambiguous": 0.0,
+            "IDR_boundary": bounded(
+                basin.get("disorder_boundary_ensemble", 0.0)
+                if mechanism_class == "disorder_boundary_and_fold_upon_binding"
+                else 0.0
+            ),
+            "structured_domain_plus_IDR_tail": bounded(
+                basin.get("disorder_boundary_ensemble", 0.0) * (1.0 - basin.get("compact_single_fold", 0.0))
+                if mechanism_class == "disorder_boundary_and_fold_upon_binding"
+                else 0.0
+            ),
+            "fold_upon_binding_region": bounded(
+                basin.get("fold_upon_binding_basin", 0.0)
+                if mechanism_class == "disorder_boundary_and_fold_upon_binding"
+                else 0.0
+            ),
+            "phase_prone_low_complexity": bounded(
+                basin.get("phase_prone_low_complexity", 0.0)
+                if mechanism_class == "disorder_boundary_and_fold_upon_binding"
+                else 0.0
+            ),
+            "flexible_loop_not_disorder": bounded(
+                0.0 if mechanism_class == "disorder_boundary_and_fold_upon_binding" else max(0.0, 0.22 - metrics["mean_disorder"])
+            ),
+            "disorder_with_local_motif": bounded(
+                min(basin.get("disorder_boundary_ensemble", 0.0), basin.get("fold_upon_binding_basin", 0.0))
+                if mechanism_class == "disorder_boundary_and_fold_upon_binding"
+                else 0.0
+            ),
         })
     final = timepoints[-1]
     return {
@@ -1511,6 +1633,19 @@ def contact_probability_map(sequence_field: dict[str, Any], operator_field: dict
                     "segment_b": right["segment_id"],
                     "probability": bounded(0.12 + 0.25 * (left["aromatic_density"] + right["aromatic_density"])),
                     "interaction_type": "weak_multivalent_phase_contact",
+                })
+    elif mechanism_class == "disorder_boundary_and_fold_upon_binding":
+        disorder_top = _strong_segments(sequence_field, "disorder_density", limit=2)
+        interface_top = _strong_segments(sequence_field, "interface_density", limit=2)
+        for left in disorder_top:
+            for right in interface_top:
+                if left["segment_id"] == right["segment_id"]:
+                    continue
+                pairs.append({
+                    "segment_a": left["segment_id"],
+                    "segment_b": right["segment_id"],
+                    "probability": bounded(0.18 + _operator_strength(operator_field, "interface_operator") * 0.28),
+                    "interaction_type": "idr_boundary_fold_upon_binding_contact",
                 })
     elif mechanism_class == "short_region_host_interface_hijacking":
         cterm = segments[-1]
@@ -1829,6 +1964,15 @@ def sequence_operator_coherence(packet: dict[str, Any]) -> float:
             default=0.0,
         )
         support = 0.35 * (field["low_complexity_density"] + field["aromatic_density"] + field["mean_disorder"]) + 0.65 * local
+    elif mechanism == "disorder_boundary_and_fold_upon_binding":
+        local_disorder = max((row["low_complexity_density"] + row["disorder_density"] for row in segments), default=0.0)
+        local_interface = max((row["interface_density"] for row in segments), default=0.0)
+        support = (
+            0.30 * (field["low_complexity_density"] + field["mean_disorder"])
+            + 0.35 * local_disorder
+            + 0.20 * local_interface
+            + 0.15 * activation
+        )
     elif mechanism == "membrane_multidomain_folding_proteostasis":
         local = max((row["membrane_density"] for row in segments), default=0.0)
         support = 0.50 * field["mean_membrane"] + 0.50 * local + activation

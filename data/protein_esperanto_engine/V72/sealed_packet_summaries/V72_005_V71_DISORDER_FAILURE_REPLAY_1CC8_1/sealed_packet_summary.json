@@ -1,0 +1,49 @@
+{
+  "active_operator_count": 3,
+  "folding_problem_solved": false,
+  "kind": "V72_COMPACT_SEALED_PACKET_SUMMARY_v0",
+  "natural_mechanism_class": "disorder_boundary_and_fold_upon_binding",
+  "operator_names": [
+    "disorder_operator",
+    "interface_operator",
+    "phase_operator"
+  ],
+  "prediction_hash": "2024ce3656f49ec6cdfc232653401fab3395d8a508ef2ef4e15f72fb75992343",
+  "sealed_before_holdout": true,
+  "selected_mechanism_class": "disorder_boundary_and_fold_upon_binding",
+  "selection_reason": "explicit_disorder_boundary_or_fold_upon_binding_context_prioritized_over_generic_oligomer",
+  "target_id": "V72_005_V71_DISORDER_FAILURE_REPLAY_1CC8_1",
+  "trajectory_final_state_summary": {
+    "IDR_boundary": 0.536935,
+    "apo_holo_basin_shift": 0.0,
+    "assembly_ambiguous": 0.0,
+    "assembly_required_core": 0.0,
+    "contact_probability": 0.288673,
+    "coordination_shell_integrity": 0.0,
+    "disorder_order_balance": 0.561023,
+    "disorder_with_local_motif": 0.507205,
+    "flexible_loop_not_disorder": 0.0,
+    "fold_upon_binding_region": 0.507205,
+    "frustration": 0.061327,
+    "interface_buried_hydrophobicity": 0.0,
+    "interface_readiness": 0.507205,
+    "ligand_locked_basin": 0.0,
+    "metal_cluster_geometry": 0.0,
+    "metal_ligand_ambiguous": 0.0,
+    "monomer_incomplete_topology": 0.0,
+    "operator_activation": 0.44291,
+    "partner_completed_core": 0.0,
+    "phase_prone_low_complexity": 0.382716,
+    "proteostasis_routing": 0.0,
+    "residue_exposure": 0.683367,
+    "segment_compaction": 0.201302,
+    "state_basin_occupancy": {
+      "compact_single_fold": 0.05,
+      "disorder_boundary_ensemble": 0.536935,
+      "fold_upon_binding_basin": 0.507205,
+      "phase_prone_low_complexity": 0.382716
+    },
+    "structured_domain_plus_IDR_tail": 0.510088,
+    "timepoint": 1000
+  }
+}

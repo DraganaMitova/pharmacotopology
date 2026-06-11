@@ -1,0 +1,49 @@
+{
+  "acceptance_decision": "abstain_recommended",
+  "alphafold_used_before_seal": false,
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "3",
+  "entry_id": "1D5M",
+  "expected_mechanism_class": "globular_closure",
+  "holdout_opened_after_prediction_hash": "580effbcdb9f4ecffd04a4582a846a1fab23dce72565416e376b94c37936cef7",
+  "kind": "V71_E66_RCSB_NONREDUNDANT_DISCOVERY_VALIDATION_RESULT_v0",
+  "level1_regime_selection": false,
+  "level2_region_localization_proxy": false,
+  "level3_topology_or_contact_proxy": false,
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1D5M",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1D5M/3",
+      "source_class": "coordinate_derived",
+      "source_id": "V71_141_V71C_BETA_BARREL_PROPELLER_REPEAT_SOLENOID_ENRICHED_1D5M_3_V71_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "predicted_mechanism_class": "insufficient_evidence_clean_abstain",
+  "protein_id": "1D5M_3",
+  "required_esperanto_word": "closed_beta_topology",
+  "required_esperanto_word_supported": false,
+  "score_label": "supported",
+  "sealed_prediction_hash": "580effbcdb9f4ecffd04a4582a846a1fab23dce72565416e376b94c37936cef7",
+  "shard": "V71C_BETA_BARREL_PROPELLER_REPEAT_SOLENOID_ENRICHED",
+  "target_id": "V71_141_V71C_BETA_BARREL_PROPELLER_REPEAT_SOLENOID_ENRICHED_1D5M_3",
+  "validation_checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "globular_closure",
+      "observed": "insufficient_evidence_clean_abstain",
+      "passed": false
+    },
+    {
+      "check_id": "compact_or_contact_supported",
+      "comparator": ">=",
+      "metric": "contact_probability",
+      "observed": 0.0,
+      "passed": false,
+      "threshold": 0.35
+    }
+  ]
+}

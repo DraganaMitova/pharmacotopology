@@ -1,0 +1,37 @@
+{
+  "batch_id": "V71_RCSB_NONREDUNDANT_200_DISCOVERY_E66",
+  "engine_version_used": "E66",
+  "entity_id": "1",
+  "entry_id": "1C3N",
+  "expected_mechanism_class": "globular_closure",
+  "expected_observables": [
+    {
+      "check_id": "compact_or_contact_supported",
+      "comparator": ">=",
+      "metric": "contact_probability",
+      "threshold": 0.35
+    }
+  ],
+  "experimental_method": "X-RAY DIFFRACTION",
+  "holdout_opened_after_prediction_hash": "b4f2021484932170c76a93305e4f66dc701045c9636763aefa5a1d6b54b6fe25",
+  "kind": "V71_E66_RCSB_NONREDUNDANT_DISCOVERY_POSTSEAL_HOLDOUT_v0",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1C3N",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1C3N/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V71_106_V71C_BETA_BARREL_PROPELLER_REPEAT_SOLENOID_ENRICHED_1C3N_1_V71_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "postseal public annotation/text indicates beta/repeat closure word closed_beta_topology"
+  ],
+  "protein_id": "1C3N_1",
+  "release_date": "2000-01-10T00:00:00.000+00:00",
+  "required_esperanto_word": "closed_beta_topology",
+  "shard": "V71C_BETA_BARREL_PROPELLER_REPEAT_SOLENOID_ENRICHED",
+  "target_id": "V71_106_V71C_BETA_BARREL_PROPELLER_REPEAT_SOLENOID_ENRICHED_1C3N_1"
+}

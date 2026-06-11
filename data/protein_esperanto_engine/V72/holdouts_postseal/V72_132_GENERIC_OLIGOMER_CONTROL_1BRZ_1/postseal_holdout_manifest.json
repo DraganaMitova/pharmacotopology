@@ -1,0 +1,38 @@
+{
+  "batch_id": "V72_E67_DISORDER_BOUNDARY_REPAIR_PANEL_200",
+  "engine_version_used": "E67",
+  "entity_id": "1",
+  "entry_id": "1BRZ",
+  "expected_mechanism_class": "oligomerization_controlled_folding",
+  "expected_observables": [
+    {
+      "check_id": "interface_readiness_supported",
+      "comparator": ">=",
+      "metric": "interface_readiness",
+      "threshold": 0.4
+    }
+  ],
+  "holdout_opened_after_prediction_hash": "65f698f31d27c361062b9ba5f6357be37ab9c8f41a4f271fc8f739d4940f8d48",
+  "kind": "V72_E67_DISORDER_BOUNDARY_REPAIR_POSTSEAL_HOLDOUT_v0",
+  "panel_group": "GENERIC_OLIGOMER_CONTROL",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1BRZ",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1BRZ/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V72_132_GENERIC_OLIGOMER_CONTROL_1BRZ_1_V72_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "V72 E67 repair panel group GENERIC_OLIGOMER_CONTROL.",
+    "Required E67 word: none.",
+    "Coordinates, contacts, native topology, and post-seal validation labels are blocked before sealing."
+  ],
+  "protein_id": "1BRZ_1",
+  "required_esperanto_word": null,
+  "target_id": "V72_132_GENERIC_OLIGOMER_CONTROL_1BRZ_1",
+  "tracking_only": false
+}

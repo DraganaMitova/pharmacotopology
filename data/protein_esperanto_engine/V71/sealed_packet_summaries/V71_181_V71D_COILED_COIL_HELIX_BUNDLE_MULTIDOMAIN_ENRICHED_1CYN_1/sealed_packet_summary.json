@@ -1,0 +1,43 @@
+{
+  "active_operator_count": 4,
+  "folding_problem_solved": false,
+  "kind": "V71_COMPACT_SEALED_PACKET_SUMMARY_v0",
+  "natural_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "operator_names": [
+    "membrane_pressure_operator",
+    "closure_operator",
+    "interface_operator",
+    "proteostasis_operator"
+  ],
+  "prediction_hash": "b59a7e595e32a4f5d8b3dac112d5c547f3c5c508bf364ffb0038a0b75e461a01",
+  "sealed_before_holdout": true,
+  "selected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "selection_reason": "strong_membrane_topology_context_prioritized_over_incidental_ligand_or_assembly_context",
+  "target_id": "V71_181_V71D_COILED_COIL_HELIX_BUNDLE_MULTIDOMAIN_ENRICHED_1CYN_1",
+  "trajectory_final_state_summary": {
+    "apo_holo_basin_shift": 0.0,
+    "assembly_ambiguous": 0.0,
+    "assembly_required_core": 0.0,
+    "contact_probability": 0.48575,
+    "coordination_shell_integrity": 0.0,
+    "disorder_order_balance": 0.2676,
+    "frustration": 0.0,
+    "interface_buried_hydrophobicity": 0.0,
+    "interface_readiness": 0.635,
+    "ligand_locked_basin": 0.0,
+    "metal_cluster_geometry": 0.0,
+    "metal_ligand_ambiguous": 0.0,
+    "monomer_incomplete_topology": 0.0,
+    "operator_activation": 0.668536,
+    "partner_completed_core": 0.0,
+    "proteostasis_routing": 0.663814,
+    "residue_exposure": 0.57851,
+    "segment_compaction": 0.704,
+    "state_basin_occupancy": {
+      "mature_membrane_routed": 0.663814,
+      "partial_nbd1_rescue": 0.704,
+      "qc_retained_misfolded": 0.0
+    },
+    "timepoint": 1000
+  }
+}

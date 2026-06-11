@@ -1,0 +1,50 @@
+{
+  "acceptance_decision": "accepted",
+  "alphafold_used_before_seal": false,
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "3",
+  "entry_id": "1D66",
+  "expected_mechanism_class": "assembly_required_folding",
+  "holdout_opened_after_prediction_hash": "44d815359719a406c2e26e4aa74876c3045a05653bb65b12257fff40eb881fe9",
+  "kind": "V72_E67_DISORDER_BOUNDARY_REPAIR_VALIDATION_RESULT_v0",
+  "level1_regime_selection": true,
+  "level2_region_localization_proxy": true,
+  "level3_topology_or_contact_proxy": true,
+  "panel_group": "ASSEMBLY_REQUIRED_DISORDER_PRIORITY_SENTINEL",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1D66",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1D66/3",
+      "source_class": "coordinate_derived",
+      "source_id": "V72_170_ASSEMBLY_REQUIRED_DISORDER_PRIORITY_SENTINEL_1D66_3_V72_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "predicted_mechanism_class": "assembly_required_folding",
+  "protein_id": "1D66_3",
+  "required_esperanto_word": null,
+  "required_esperanto_word_supported": true,
+  "score_label": "supported",
+  "sealed_prediction_hash": "44d815359719a406c2e26e4aa74876c3045a05653bb65b12257fff40eb881fe9",
+  "target_id": "V72_170_ASSEMBLY_REQUIRED_DISORDER_PRIORITY_SENTINEL_1D66_3",
+  "tracking_only": false,
+  "validation_checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "assembly_required_folding",
+      "observed": "assembly_required_folding",
+      "passed": true
+    },
+    {
+      "check_id": "partner_completed_core_supported",
+      "comparator": ">=",
+      "metric": "partner_completed_core",
+      "observed": 0.685963,
+      "passed": true,
+      "threshold": 0.48
+    }
+  ]
+}

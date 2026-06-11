@@ -1,0 +1,50 @@
+{
+  "acceptance_decision": "accepted",
+  "alphafold_used_before_seal": false,
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "1",
+  "entry_id": "1C3B",
+  "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "holdout_opened_after_prediction_hash": "6580a967086122b00be4b01578d93467439e49d34c1f39f506e522aa3bb5fbe5",
+  "kind": "V72_E67_DISORDER_BOUNDARY_REPAIR_VALIDATION_RESULT_v0",
+  "level1_regime_selection": true,
+  "level2_region_localization_proxy": true,
+  "level3_topology_or_contact_proxy": true,
+  "panel_group": "TRUE_TM_DISORDER_CONFLICT_SENTINEL",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1C3B",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1C3B/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V72_163_TRUE_TM_DISORDER_CONFLICT_SENTINEL_1C3B_1_V72_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "predicted_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "protein_id": "1C3B_1",
+  "required_esperanto_word": null,
+  "required_esperanto_word_supported": true,
+  "score_label": "supported",
+  "sealed_prediction_hash": "6580a967086122b00be4b01578d93467439e49d34c1f39f506e522aa3bb5fbe5",
+  "target_id": "V72_163_TRUE_TM_DISORDER_CONFLICT_SENTINEL_1C3B_1",
+  "tracking_only": false,
+  "validation_checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "membrane_multidomain_folding_proteostasis",
+      "observed": "membrane_multidomain_folding_proteostasis",
+      "passed": true
+    },
+    {
+      "check_id": "proteostasis_routing_supported",
+      "comparator": ">=",
+      "metric": "proteostasis_routing",
+      "observed": 0.664969,
+      "passed": true,
+      "threshold": 0.5
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "batch_id": "V71_RCSB_NONREDUNDANT_200_DISCOVERY_E66",
+  "engine_version_used": "E66",
+  "entity_id": "1",
+  "entry_id": "1E0U",
+  "expected_mechanism_class": "globular_closure",
+  "expected_observables": [
+    {
+      "check_id": "compact_or_contact_supported",
+      "comparator": ">=",
+      "metric": "contact_probability",
+      "threshold": 0.35
+    }
+  ],
+  "experimental_method": "X-RAY DIFFRACTION",
+  "holdout_opened_after_prediction_hash": "96f55b163ad21ed5dcc843f8497582e2edb80f7144d9585d14470ab4c71732d4",
+  "kind": "V71_E66_RCSB_NONREDUNDANT_DISCOVERY_POSTSEAL_HOLDOUT_v0",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1E0U",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1E0U/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V71_200_V71D_COILED_COIL_HELIX_BUNDLE_MULTIDOMAIN_ENRICHED_1E0U_1_V71_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "postseal public annotation/text indicates helix-bundle or multidomain topology word multidomain_allostery"
+  ],
+  "protein_id": "1E0U_1",
+  "release_date": "2000-04-11T00:00:00.000+00:00",
+  "required_esperanto_word": "multidomain_allostery",
+  "shard": "V71D_COILED_COIL_HELIX_BUNDLE_MULTIDOMAIN_ENRICHED",
+  "target_id": "V71_200_V71D_COILED_COIL_HELIX_BUNDLE_MULTIDOMAIN_ENRICHED_1E0U_1"
+}

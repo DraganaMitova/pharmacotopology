@@ -1,0 +1,37 @@
+{
+  "batch_id": "V71_RCSB_NONREDUNDANT_200_DISCOVERY_E66",
+  "engine_version_used": "E66",
+  "entity_id": "1",
+  "entry_id": "1E2D",
+  "expected_mechanism_class": "metal_cluster_and_ligand_locked_basin",
+  "expected_observables": [
+    {
+      "check_id": "metal_or_ligand_basin_supported",
+      "comparator": ">=",
+      "metric": "ligand_locked_basin",
+      "threshold": 0.42
+    }
+  ],
+  "experimental_method": "X-RAY DIFFRACTION",
+  "holdout_opened_after_prediction_hash": "2de6cd49a61845911f266b4f4a81b0b6d92825dab2677d1d4b92fa52cb74222c",
+  "kind": "V71_E66_RCSB_NONREDUNDANT_DISCOVERY_POSTSEAL_HOLDOUT_v0",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1E2D",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1E2D/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V71_041_V71A_BROAD_RCSB_NONREDUNDANT_1E2D_1_V71_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "postseal public component/text indicates E66 metal-cluster or ligand-locked basin context"
+  ],
+  "protein_id": "1E2D_1",
+  "release_date": "2001-05-17T00:00:00.000+00:00",
+  "required_esperanto_word": "metal_cluster_geometry",
+  "shard": "V71A_BROAD_RCSB_NONREDUNDANT",
+  "target_id": "V71_041_V71A_BROAD_RCSB_NONREDUNDANT_1E2D_1"
+}

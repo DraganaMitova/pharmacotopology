@@ -1,0 +1,47 @@
+{
+  "active_operator_count": 2,
+  "folding_problem_solved": false,
+  "kind": "V72_COMPACT_SEALED_PACKET_SUMMARY_v0",
+  "natural_mechanism_class": "oligomerization_controlled_folding",
+  "operator_names": [
+    "interface_operator",
+    "closure_operator"
+  ],
+  "prediction_hash": "5914e80ec48ea37bf74c63f91c29e68e8d7e1940f7c887c8f1ef6ce4fbf2b2aa",
+  "sealed_before_holdout": true,
+  "selected_mechanism_class": "oligomerization_controlled_folding",
+  "selection_reason": "oligomerization_context",
+  "target_id": "V72_145_GENERIC_OLIGOMER_CONTROL_1C3Y_1_SHUFFLED_CONTROL",
+  "trajectory_final_state_summary": {
+    "IDR_boundary": 0.0,
+    "apo_holo_basin_shift": 0.0,
+    "assembly_ambiguous": 0.0,
+    "assembly_required_core": 0.0,
+    "contact_probability": 0.487542,
+    "coordination_shell_integrity": 0.0,
+    "disorder_order_balance": 0.33372,
+    "disorder_with_local_motif": 0.0,
+    "flexible_loop_not_disorder": 0.041864,
+    "fold_upon_binding_region": 0.0,
+    "frustration": 0.0,
+    "interface_buried_hydrophobicity": 0.0,
+    "interface_readiness": 0.614219,
+    "ligand_locked_basin": 0.0,
+    "metal_cluster_geometry": 0.0,
+    "metal_ligand_ambiguous": 0.0,
+    "monomer_incomplete_topology": 0.0,
+    "operator_activation": 0.532518,
+    "partner_completed_core": 0.0,
+    "phase_prone_low_complexity": 0.0,
+    "proteostasis_routing": 0.0,
+    "residue_exposure": 0.629304,
+    "segment_compaction": 0.467093,
+    "state_basin_occupancy": {
+      "assembly_stabilized_basin": 0.614219,
+      "interface_rejected_basin": 0.1,
+      "monomer_partial_order": 0.403139
+    },
+    "structured_domain_plus_IDR_tail": 0.0,
+    "timepoint": 1000
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "alphafold_used_before_seal": false,
+  "batch_id": "V72_E67_DISORDER_BOUNDARY_REPAIR_PANEL_200",
+  "blocked_prediction_inputs": [
+    "PDB/mmCIF coordinates before sealing",
+    "native contacts, distance maps, residue-residue proximity, and coordinate-derived topology",
+    "native biological assembly contacts and ligand/metal coordination geometry before sealing",
+    "AlphaFold, ESMFold, RoseTTAFold, or other structure models before sealing",
+    "post-seal validation annotations before prediction hash",
+    "prior score outcomes as prediction evidence",
+    "internal runtime artifacts as biological evidence"
+  ],
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E67",
+  "entity_id": "1",
+  "entry_id": "1BJ4",
+  "folding_problem_solved": false,
+  "kind": "V72_E67_DISORDER_BOUNDARY_REPAIR_SOURCE_MANIFEST_v0",
+  "panel_group": "METAL_LIGAND_DISORDER_CONFLICT_SENTINEL",
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence for the RCSB polymer entity.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V72_184_METAL_LIGAND_DISORDER_CONFLICT_SENTINEL_1BJ4_1_RAW_SEQUENCE",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1BJ4/1",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "RCSB title: RECOMBINANT SERINE HYDROXYMETHYLTRANSFERASE (HUMAN). Entity description: Serine hydroxymethyltransferase, cytosolic. V72 panel group: METAL_LIGAND_DISORDER_CONFLICT_SENTINEL. Sequence-derived low complexity and disordered region signals are evidence only when E67 context marks are present. Coordinates, contacts, distance maps, native topology, and post-seal validation labels are unopened before prediction hash.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V72_184_METAL_LIGAND_DISORDER_CONFLICT_SENTINEL_1BJ4_1_PUBLIC_METADATA",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/1BJ4",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "V72 E67 metadata context marks: disorder_context ligand_locked_basin. True TM, assembly-required, and metal/ligand marks retain priority over disorder-boundary context. Beta-closure tracking labels are withheld.",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [
+        "disorder_context",
+        "ligand_locked_basin"
+      ],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V72_184_METAL_LIGAND_DISORDER_CONFLICT_SENTINEL_1BJ4_1_E67_METADATA_CONTEXT",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/1BJ4",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "protein_id": "1BJ4_1",
+  "sequence": "DADLWSSHDKMLAQPLKDSDVEVYNIIKKESNRQRVGLELIASENFASRAVLEALGSCLNNKYSEGYPGQRYYGGTEFIDELETLCQKRALQAYKLDPQCWGVNVQPYSGSPANFAVYTALVEPHGRIMGLDLPDGGHLTHGFMTDKKKISATSIFFESMPYKVNPDTGYINYDQLEENARLFHPKLIIAGTSCYSRNLEYARLRKIADENGAYLMADMAHISGLVAAGVVPSPFEHCHVVTTTTHKTLRGCRAGMIFYRKGVKSVDPKTGKEILYNLESLINSAVFPGLQGGPHNHAIAGVAVALKQAMTLEFKVYQHQVVANCRALSEALTELGYKIVTGGSDNHLILVDLRSKGTDGGRAEKVLEACSIACNKNTCPGDRSALRPSGLRLGTPALTSRGLLEKDFQKVAHFIHRGIELTLQIQSDTGVRATLKEFKERLAGDKYQAAVQALREEVESFASLFPLPGL",
+  "sequence_length": 470,
+  "target_id": "V72_184_METAL_LIGAND_DISORDER_CONFLICT_SENTINEL_1BJ4_1",
+  "v72_context_policy": {
+    "context_derivation": "V72 uses E67 repair words for disorder-boundary targets, priority-conflict marks for sentinels, and withholds beta-closure tracking words.",
+    "context_marks": [
+      "disorder_context",
+      "ligand_locked_basin"
+    ],
+    "withheld_context_marks": []
+  }
+}

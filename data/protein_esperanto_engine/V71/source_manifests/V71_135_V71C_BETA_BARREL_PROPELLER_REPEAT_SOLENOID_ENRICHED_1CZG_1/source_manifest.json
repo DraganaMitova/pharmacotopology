@@ -1,0 +1,90 @@
+{
+  "alphafold_used_before_seal": false,
+  "batch_id": "V71_RCSB_NONREDUNDANT_200_DISCOVERY_E66",
+  "blocked_prediction_inputs": [
+    "PDB/mmCIF coordinates before sealing",
+    "native contacts, distance maps, residue-residue proximity, and coordinate-derived topology",
+    "native biological assembly contacts and ligand/metal coordination geometry before sealing",
+    "AlphaFold, ESMFold, RoseTTAFold, or other structure models before sealing",
+    "post-seal validation annotations before prediction hash",
+    "prior score outcomes as prediction evidence",
+    "internal runtime artifacts as biological evidence"
+  ],
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E66",
+  "entity_id": "1",
+  "entry_id": "1CZG",
+  "folding_problem_solved": false,
+  "kind": "V71_E66_RCSB_NONREDUNDANT_DISCOVERY_SOURCE_MANIFEST_v0",
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence for the RCSB polymer entity.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V71_135_V71C_BETA_BARREL_PROPELLER_REPEAT_SOLENOID_ENRICHED_1CZG_1_RAW_SEQUENCE",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1CZG/1",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "RCSB title: STRUCTURE OF THE G62T MUTANT OF SHIGA-LIKE TOXIN I B SUBUNIT. Entity description: SHIGA TOXIN B-CHAIN. Organism: Phage h30. Polymer composition: homomeric protein. V71 shard: V71C_BETA_BARREL_PROPELLER_REPEAT_SOLENOID_ENRICHED. Sequence-derived marks: sequence-derived hydrophobic closure tendency; public metadata indicates multiple polymer instances or molecule copies; withheld discovery hints: v71_candidate_missing_word:closed_beta_topology. Coordinates, contacts, distance maps, ligand geometry, native topology, and post-seal validation labels are unopened before the prediction hash.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V71_135_V71C_BETA_BARREL_PROPELLER_REPEAT_SOLENOID_ENRICHED_1CZG_1_PUBLIC_METADATA",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/1CZG",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "V71 E66 metadata context marks: assembly_context oligomer_context partner_copy_context. Known E66 words are allowed; candidate E67 labels are withheld from prediction. Coordinates, contacts, ligand geometry, native topology, and post-seal validation labels are blocked before sealing.",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [
+        "assembly_context",
+        "oligomer_context",
+        "partner_copy_context"
+      ],
+      "metadata_context_reasons": [
+        "public metadata indicates biological copy/oligomer/assembly context",
+        "V71 withholds candidate new word closed_beta_topology before seal"
+      ],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V71_135_V71C_BETA_BARREL_PROPELLER_REPEAT_SOLENOID_ENRICHED_1CZG_1_E66_METADATA_CONTEXT",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/1CZG",
+      "spatial_proxy": false,
+      "withheld_context_marks": [
+        "v71_candidate_missing_word:closed_beta_topology"
+      ]
+    }
+  ],
+  "protein_id": "1CZG_1",
+  "sequence": "TPDCVTGKVEYTKYNDDDTFTVKVGDKELFTNRWNLQSLLLSAQITGMTVTIKTNACHNGGTFSEVIFR",
+  "sequence_length": 69,
+  "shard": "V71C_BETA_BARREL_PROPELLER_REPEAT_SOLENOID_ENRICHED",
+  "target_id": "V71_135_V71C_BETA_BARREL_PROPELLER_REPEAT_SOLENOID_ENRICHED_1CZG_1",
+  "v71_context_policy": {
+    "biological_cofactor_components_seen": [],
+    "context_derivation": "V71 E66 uses sequence plus public non-coordinate RCSB metadata only. E66-known words are allowed; candidate E67 words are withheld from prediction context so V71 can discover them.",
+    "context_marks": [
+      "assembly_context",
+      "oligomer_context",
+      "partner_copy_context"
+    ],
+    "polymer_copy_counts": {
+      "entity_molecule_count": 5,
+      "polymer_composition": "homomeric protein",
+      "polymer_entity_instance_count": 5
+    },
+    "reasons": [
+      "public metadata indicates biological copy/oligomer/assembly context",
+      "V71 withholds candidate new word closed_beta_topology before seal"
+    ],
+    "withheld_context_marks": [
+      "v71_candidate_missing_word:closed_beta_topology"
+    ]
+  }
+}

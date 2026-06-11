@@ -1,0 +1,50 @@
+{
+  "acceptance_decision": "accepted",
+  "alphafold_used_before_seal": false,
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "1",
+  "entry_id": "1BJO",
+  "expected_mechanism_class": "metal_cluster_and_ligand_locked_basin",
+  "holdout_opened_after_prediction_hash": "a4d180ce5fdc28fc0a4954d08cd2cc05d0b5aedd7acef62e407e9456fb1c33a5",
+  "kind": "V72_E67_DISORDER_BOUNDARY_REPAIR_VALIDATION_RESULT_v0",
+  "level1_regime_selection": true,
+  "level2_region_localization_proxy": true,
+  "level3_topology_or_contact_proxy": true,
+  "panel_group": "METAL_LIGAND_DISORDER_CONFLICT_SENTINEL",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1BJO",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1BJO/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V72_186_METAL_LIGAND_DISORDER_CONFLICT_SENTINEL_1BJO_1_V72_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "predicted_mechanism_class": "metal_cluster_and_ligand_locked_basin",
+  "protein_id": "1BJO_1",
+  "required_esperanto_word": "ligand_locked_basin",
+  "required_esperanto_word_supported": true,
+  "score_label": "supported",
+  "sealed_prediction_hash": "a4d180ce5fdc28fc0a4954d08cd2cc05d0b5aedd7acef62e407e9456fb1c33a5",
+  "target_id": "V72_186_METAL_LIGAND_DISORDER_CONFLICT_SENTINEL_1BJO_1",
+  "tracking_only": false,
+  "validation_checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "metal_cluster_and_ligand_locked_basin",
+      "observed": "metal_cluster_and_ligand_locked_basin",
+      "passed": true
+    },
+    {
+      "check_id": "ligand_locked_basin_supported",
+      "comparator": ">=",
+      "metric": "ligand_locked_basin",
+      "observed": 0.636895,
+      "passed": true,
+      "threshold": 0.42
+    }
+  ]
+}

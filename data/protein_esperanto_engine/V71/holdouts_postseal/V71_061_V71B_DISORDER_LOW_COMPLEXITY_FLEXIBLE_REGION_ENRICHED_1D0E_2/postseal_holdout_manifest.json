@@ -1,0 +1,37 @@
+{
+  "batch_id": "V71_RCSB_NONREDUNDANT_200_DISCOVERY_E66",
+  "engine_version_used": "E66",
+  "entity_id": "2",
+  "entry_id": "1D0E",
+  "expected_mechanism_class": "intrinsic_disorder_phase_separation",
+  "expected_observables": [
+    {
+      "check_id": "compact_single_fold_rejected",
+      "comparator": "<=",
+      "metric": "basin:compact_single_fold",
+      "threshold": 0.12
+    }
+  ],
+  "experimental_method": "X-RAY DIFFRACTION",
+  "holdout_opened_after_prediction_hash": "5f398b4f8637499bc3dfaff0ee657b98b5f694022418409ab171b2a47905b9fe",
+  "kind": "V71_E66_RCSB_NONREDUNDANT_DISCOVERY_POSTSEAL_HOLDOUT_v0",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1D0E",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1D0E/2",
+      "source_class": "coordinate_derived",
+      "source_id": "V71_061_V71B_DISORDER_LOW_COMPLEXITY_FLEXIBLE_REGION_ENRICHED_1D0E_2_V71_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "postseal sequence/text indicates disorder, low-complexity, or flexible-region pressure"
+  ],
+  "protein_id": "1D0E_2",
+  "release_date": "2000-04-04T00:00:00.000+00:00",
+  "required_esperanto_word": null,
+  "shard": "V71B_DISORDER_LOW_COMPLEXITY_FLEXIBLE_REGION_ENRICHED",
+  "target_id": "V71_061_V71B_DISORDER_LOW_COMPLEXITY_FLEXIBLE_REGION_ENRICHED_1D0E_2"
+}

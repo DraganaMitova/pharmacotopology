@@ -1,0 +1,44 @@
+{
+  "batch_id": "V72_E67_DISORDER_BOUNDARY_REPAIR_PANEL_200",
+  "engine_version_used": "E67",
+  "entity_id": "1",
+  "entry_id": "1CWN",
+  "expected_mechanism_class": "disorder_boundary_and_fold_upon_binding",
+  "expected_observables": [
+    {
+      "check_id": "idr_boundary_supported",
+      "comparator": ">=",
+      "metric": "IDR_boundary",
+      "threshold": 0.3
+    },
+    {
+      "check_id": "compact_single_fold_rejected",
+      "comparator": "<=",
+      "metric": "basin:compact_single_fold",
+      "threshold": 0.12
+    }
+  ],
+  "holdout_opened_after_prediction_hash": "c5c982e529672985ce09737642f1a89182ed553f5b36336a5d2da9418d03f622",
+  "kind": "V72_E67_DISORDER_BOUNDARY_REPAIR_POSTSEAL_HOLDOUT_v0",
+  "panel_group": "DISORDER_BOUNDARY_POSITIVE_EXPANSION",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1CWN",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1CWN/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V72_108_DISORDER_BOUNDARY_POSITIVE_EXPANSION_1CWN_1_V72_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "V72 E67 repair panel group DISORDER_BOUNDARY_POSITIVE_EXPANSION.",
+    "Required E67 word: phase_prone_low_complexity.",
+    "Coordinates, contacts, native topology, and post-seal validation labels are blocked before sealing."
+  ],
+  "protein_id": "1CWN_1",
+  "required_esperanto_word": "phase_prone_low_complexity",
+  "target_id": "V72_108_DISORDER_BOUNDARY_POSITIVE_EXPANSION_1CWN_1",
+  "tracking_only": false
+}

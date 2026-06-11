@@ -1,0 +1,74 @@
+{
+  "alphafold_used_before_seal": false,
+  "batch_id": "V72_E67_DISORDER_BOUNDARY_REPAIR_PANEL_200",
+  "blocked_prediction_inputs": [
+    "PDB/mmCIF coordinates before sealing",
+    "native contacts, distance maps, residue-residue proximity, and coordinate-derived topology",
+    "native biological assembly contacts and ligand/metal coordination geometry before sealing",
+    "AlphaFold, ESMFold, RoseTTAFold, or other structure models before sealing",
+    "post-seal validation annotations before prediction hash",
+    "prior score outcomes as prediction evidence",
+    "internal runtime artifacts as biological evidence"
+  ],
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E67",
+  "entity_id": "1",
+  "entry_id": "1C3B",
+  "folding_problem_solved": false,
+  "kind": "V72_E67_DISORDER_BOUNDARY_REPAIR_SOURCE_MANIFEST_v0",
+  "panel_group": "TRUE_TM_DISORDER_CONFLICT_SENTINEL",
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence for the RCSB polymer entity.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V72_163_TRUE_TM_DISORDER_CONFLICT_SENTINEL_1C3B_1_RAW_SEQUENCE",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1C3B/1",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "RCSB title: AMPC BETA-LACTAMASE FROM E. COLI COMPLEXED WITH INHIBITOR, BENZO(B)THIOPHENE-2-BORONIC ACID (BZB). Entity description: CEPHALOSPORINASE. V72 panel group: TRUE_TM_DISORDER_CONFLICT_SENTINEL. Sequence-derived low complexity and disordered region signals are evidence only when E67 context marks are present. Coordinates, contacts, distance maps, native topology, and post-seal validation labels are unopened before prediction hash.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V72_163_TRUE_TM_DISORDER_CONFLICT_SENTINEL_1C3B_1_PUBLIC_METADATA",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/1C3B",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "V72 E67 metadata context marks: disorder_context membrane_context_strong topology_evidence transmembrane_context. True TM, assembly-required, and metal/ligand marks retain priority over disorder-boundary context. Beta-closure tracking labels are withheld.",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [
+        "disorder_context",
+        "membrane_context_strong",
+        "topology_evidence",
+        "transmembrane_context"
+      ],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V72_163_TRUE_TM_DISORDER_CONFLICT_SENTINEL_1C3B_1_E67_METADATA_CONTEXT",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/1C3B",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "protein_id": "1C3B_1",
+  "sequence": "APQQINDIVHRTITPLIEQQKIPGMAVAVIYQGKPYYFTWGYADIAKKQPVTQQTLFELGSVSKTFTGVLGGDAIARGEIKLSDPTTKYWPELTAKQWNGITLLHLATYTAGGLPLQVPDEVKSSSDLLRFYQNWQPAWAPGTQRLYANSSIGLFGALAVKPSGLSFEQAMQTRVFQPLKLNHTWINVPPAEEKNYAWGYREGKAVHVSPGALDAEAYGVKSTIEDMARWVQSNLKPLDINEKTLQQGIQLAQSRYWQTGDMYQGLGWEMLDWPVNPDSIINGSDNKIALAARPVKAITPPTPAVRASWVHKTGATGGFGSYVAFIPEKELGIVMLANKNYPNPARVDAAWQILNALQ",
+  "sequence_length": 358,
+  "target_id": "V72_163_TRUE_TM_DISORDER_CONFLICT_SENTINEL_1C3B_1",
+  "v72_context_policy": {
+    "context_derivation": "V72 uses E67 repair words for disorder-boundary targets, priority-conflict marks for sentinels, and withholds beta-closure tracking words.",
+    "context_marks": [
+      "disorder_context",
+      "membrane_context_strong",
+      "topology_evidence",
+      "transmembrane_context"
+    ],
+    "withheld_context_marks": []
+  }
+}

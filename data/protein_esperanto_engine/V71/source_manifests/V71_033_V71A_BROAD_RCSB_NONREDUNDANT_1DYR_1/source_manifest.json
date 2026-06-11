@@ -1,0 +1,84 @@
+{
+  "alphafold_used_before_seal": false,
+  "batch_id": "V71_RCSB_NONREDUNDANT_200_DISCOVERY_E66",
+  "blocked_prediction_inputs": [
+    "PDB/mmCIF coordinates before sealing",
+    "native contacts, distance maps, residue-residue proximity, and coordinate-derived topology",
+    "native biological assembly contacts and ligand/metal coordination geometry before sealing",
+    "AlphaFold, ESMFold, RoseTTAFold, or other structure models before sealing",
+    "post-seal validation annotations before prediction hash",
+    "prior score outcomes as prediction evidence",
+    "internal runtime artifacts as biological evidence"
+  ],
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E66",
+  "entity_id": "1",
+  "entry_id": "1DYR",
+  "folding_problem_solved": false,
+  "kind": "V71_E66_RCSB_NONREDUNDANT_DISCOVERY_SOURCE_MANIFEST_v0",
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence for the RCSB polymer entity.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V71_033_V71A_BROAD_RCSB_NONREDUNDANT_1DYR_1_RAW_SEQUENCE",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1DYR/1",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "RCSB title: THE STRUCTURE OF PNEUMOCYSTIS CARINII DIHYDROFOLATE REDUCTASE TO 1.9 ANGSTROMS RESOLUTION. Entity description: DIHYDROFOLATE REDUCTASE. Organism: Pneumocystis carinii. Polymer composition: homomeric protein. V71 shard: V71A_BROAD_RCSB_NONREDUNDANT. Sequence-derived marks: sequence-derived low complexity tendency high; sequence-derived hydrophobic closure tendency. Coordinates, contacts, distance maps, ligand geometry, native topology, and post-seal validation labels are unopened before the prediction hash.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V71_033_V71A_BROAD_RCSB_NONREDUNDANT_1DYR_1_PUBLIC_METADATA",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/1DYR",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "V71 E66 metadata context marks: assembly_context oligomer_context partner_copy_context. Known E66 words are allowed; candidate E67 labels are withheld from prediction. Coordinates, contacts, ligand geometry, native topology, and post-seal validation labels are blocked before sealing.",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [
+        "assembly_context",
+        "oligomer_context",
+        "partner_copy_context"
+      ],
+      "metadata_context_reasons": [
+        "public metadata indicates biological copy/oligomer/assembly context"
+      ],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V71_033_V71A_BROAD_RCSB_NONREDUNDANT_1DYR_1_E66_METADATA_CONTEXT",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/1DYR",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "protein_id": "1DYR_1",
+  "sequence": "MNQQKSLTLIVALTTSYGIGRSNSLPWKLKKEISYFKRVTSFVPTFDSFESMNVVLMGRKTWESIPLQFRPLKGRINVVITRNESLDLGNGIHSAKSLDHALELLYRTYGSESSVQINRIFVIGGAQLYKAAMDHPKLDRIMATIIYKDIHCDVFFPLKFRDKEWSSVWKKEKHSDLESWVGTKVPHGKINEDGFDYEFEMWTRDL",
+  "sequence_length": 206,
+  "shard": "V71A_BROAD_RCSB_NONREDUNDANT",
+  "target_id": "V71_033_V71A_BROAD_RCSB_NONREDUNDANT_1DYR_1",
+  "v71_context_policy": {
+    "biological_cofactor_components_seen": [],
+    "context_derivation": "V71 E66 uses sequence plus public non-coordinate RCSB metadata only. E66-known words are allowed; candidate E67 words are withheld from prediction context so V71 can discover them.",
+    "context_marks": [
+      "assembly_context",
+      "oligomer_context",
+      "partner_copy_context"
+    ],
+    "polymer_copy_counts": {
+      "entity_molecule_count": 1,
+      "polymer_composition": "homomeric protein",
+      "polymer_entity_instance_count": 1
+    },
+    "reasons": [
+      "public metadata indicates biological copy/oligomer/assembly context"
+    ],
+    "withheld_context_marks": []
+  }
+}

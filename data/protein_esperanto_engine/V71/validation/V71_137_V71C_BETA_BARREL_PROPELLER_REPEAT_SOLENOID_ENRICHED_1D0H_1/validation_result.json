@@ -1,0 +1,49 @@
+{
+  "acceptance_decision": "accepted",
+  "alphafold_used_before_seal": false,
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "1",
+  "entry_id": "1D0H",
+  "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "holdout_opened_after_prediction_hash": "dcb4f9fbc365e696ef13f831ba0dc325be5e8515df8d9b82f4c0039eb4c30c9c",
+  "kind": "V71_E66_RCSB_NONREDUNDANT_DISCOVERY_VALIDATION_RESULT_v0",
+  "level1_regime_selection": true,
+  "level2_region_localization_proxy": true,
+  "level3_topology_or_contact_proxy": true,
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1D0H",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1D0H/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V71_137_V71C_BETA_BARREL_PROPELLER_REPEAT_SOLENOID_ENRICHED_1D0H_1_V71_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "predicted_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "protein_id": "1D0H_1",
+  "required_esperanto_word": null,
+  "required_esperanto_word_supported": true,
+  "score_label": "supported",
+  "sealed_prediction_hash": "dcb4f9fbc365e696ef13f831ba0dc325be5e8515df8d9b82f4c0039eb4c30c9c",
+  "shard": "V71C_BETA_BARREL_PROPELLER_REPEAT_SOLENOID_ENRICHED",
+  "target_id": "V71_137_V71C_BETA_BARREL_PROPELLER_REPEAT_SOLENOID_ENRICHED_1D0H_1",
+  "validation_checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "membrane_multidomain_folding_proteostasis",
+      "observed": "membrane_multidomain_folding_proteostasis",
+      "passed": true
+    },
+    {
+      "check_id": "proteostasis_routing_supported",
+      "comparator": ">=",
+      "metric": "proteostasis_routing",
+      "observed": 0.663147,
+      "passed": true,
+      "threshold": 0.5
+    }
+  ]
+}

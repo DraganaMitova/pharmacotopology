@@ -1,0 +1,56 @@
+{
+  "baseline_engine_version": "E66",
+  "batch_head_commit": "95791fe1d5abc7b9433fd56653cb0b1f99c456a1",
+  "engine_lineage": [
+    "E60",
+    "E61",
+    "E62",
+    "E63",
+    "E64",
+    "E65",
+    "E66",
+    "E67"
+  ],
+  "engine_modified_during_batch": false,
+  "engine_source_last_commit": "95791fe1d5abc7b9433fd56653cb0b1f99c456a1",
+  "engine_source_path": "src/pharmacotopology/protein_esperanto_engine.py",
+  "engine_source_sha256": "c3612ccb36306ba625963a2204140aa71d14b458e0c845a2b5681d8e7e6ee3c1",
+  "engine_version_used": "E67",
+  "folding_problem_solved": false,
+  "kind": "V72_E67_ENGINE_DECLARATION_v0",
+  "mechanism_classes": [
+    "globular_closure",
+    "intrinsic_disorder_phase_separation",
+    "disorder_boundary_and_fold_upon_binding",
+    "membrane_multidomain_folding_proteostasis",
+    "metamorphic_fold_switching",
+    "short_region_host_interface_hijacking",
+    "fold_upon_binding_disorder",
+    "cofactor_ligand_assisted_stabilization",
+    "metal_cluster_and_ligand_locked_basin",
+    "assembly_required_folding",
+    "oligomerization_controlled_folding",
+    "insufficient_evidence_clean_abstain"
+  ],
+  "new_mechanism_class": "disorder_boundary_and_fold_upon_binding",
+  "new_words": [
+    "IDR_boundary",
+    "structured_domain_plus_IDR_tail",
+    "fold_upon_binding_region",
+    "phase_prone_low_complexity",
+    "flexible_loop_not_disorder",
+    "disorder_with_local_motif"
+  ],
+  "operator_names": [
+    "closure_operator",
+    "repulsion_operator",
+    "frustration_operator",
+    "disorder_operator",
+    "phase_operator",
+    "interface_operator",
+    "membrane_pressure_operator",
+    "dual_basin_switch_operator",
+    "proteostasis_operator",
+    "host_hijack_operator"
+  ]
+}

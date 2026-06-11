@@ -1,0 +1,49 @@
+{
+  "acceptance_decision": "accepted",
+  "alphafold_used_before_seal": false,
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "1",
+  "entry_id": "1C8O",
+  "expected_mechanism_class": "short_region_host_interface_hijacking",
+  "holdout_opened_after_prediction_hash": "59249cd42fc3a5a2053335c86ecdfefc7ae29d9e55f6a3c454674139edf8c041",
+  "kind": "V71_E66_RCSB_NONREDUNDANT_DISCOVERY_VALIDATION_RESULT_v0",
+  "level1_regime_selection": false,
+  "level2_region_localization_proxy": true,
+  "level3_topology_or_contact_proxy": false,
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1C8O",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1C8O/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V71_160_V71D_COILED_COIL_HELIX_BUNDLE_MULTIDOMAIN_ENRICHED_1C8O_1_V71_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "predicted_mechanism_class": "oligomerization_controlled_folding",
+  "protein_id": "1C8O_1",
+  "required_esperanto_word": null,
+  "required_esperanto_word_supported": true,
+  "score_label": "contradicted",
+  "sealed_prediction_hash": "59249cd42fc3a5a2053335c86ecdfefc7ae29d9e55f6a3c454674139edf8c041",
+  "shard": "V71D_COILED_COIL_HELIX_BUNDLE_MULTIDOMAIN_ENRICHED",
+  "target_id": "V71_160_V71D_COILED_COIL_HELIX_BUNDLE_MULTIDOMAIN_ENRICHED_1C8O_1",
+  "validation_checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "short_region_host_interface_hijacking",
+      "observed": "oligomerization_controlled_folding",
+      "passed": false
+    },
+    {
+      "check_id": "host_interface_present",
+      "comparator": ">=",
+      "metric": "basin:host_interface_engaged",
+      "observed": 0.0,
+      "passed": false,
+      "threshold": 0.55
+    }
+  ]
+}

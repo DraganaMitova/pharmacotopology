@@ -1,0 +1,36 @@
+{
+  "active_operator_count": 0,
+  "folding_problem_solved": false,
+  "kind": "V71_COMPACT_SEALED_PACKET_SUMMARY_v0",
+  "natural_mechanism_class": "insufficient_evidence_clean_abstain",
+  "operator_names": [],
+  "prediction_hash": "5727de88fcd402079d1a67bd9c2ea56fb37ba481cdd0fb86a70130db828da0c4",
+  "sealed_before_holdout": true,
+  "selected_mechanism_class": "insufficient_evidence_clean_abstain",
+  "selection_reason": "insufficient_specific_operator_evidence",
+  "target_id": "V71_138_V71C_BETA_BARREL_PROPELLER_REPEAT_SOLENOID_ENRICHED_1D1R_1_SHUFFLED_CONTROL",
+  "trajectory_final_state_summary": {
+    "apo_holo_basin_shift": 0.0,
+    "assembly_ambiguous": 0.0,
+    "assembly_required_core": 0.0,
+    "contact_probability": 0.0,
+    "coordination_shell_integrity": 0.0,
+    "disorder_order_balance": 0.45,
+    "frustration": 0.35,
+    "interface_buried_hydrophobicity": 0.0,
+    "interface_readiness": 0.0,
+    "ligand_locked_basin": 0.0,
+    "metal_cluster_geometry": 0.0,
+    "metal_ligand_ambiguous": 0.0,
+    "monomer_incomplete_topology": 0.0,
+    "operator_activation": 0.0,
+    "partner_completed_core": 0.0,
+    "proteostasis_routing": 0.0,
+    "residue_exposure": 0.736177,
+    "segment_compaction": 0.0,
+    "state_basin_occupancy": {
+      "clean_abstain": 1.0
+    },
+    "timepoint": 1000
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "acceptance_decision": "accepted",
+  "alphafold_used_before_seal": false,
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "1",
+  "entry_id": "1CIY",
+  "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "holdout_opened_after_prediction_hash": "2eb10f802c07477e58960dcab2118cd4acc4ec1210b08699b0f7cf5c4e5f6235",
+  "kind": "V71_E66_RCSB_NONREDUNDANT_DISCOVERY_VALIDATION_RESULT_v0",
+  "level1_regime_selection": true,
+  "level2_region_localization_proxy": true,
+  "level3_topology_or_contact_proxy": true,
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1CIY",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1CIY/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V71_057_V71B_DISORDER_LOW_COMPLEXITY_FLEXIBLE_REGION_ENRICHED_1CIY_1_V71_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "predicted_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "protein_id": "1CIY_1",
+  "required_esperanto_word": null,
+  "required_esperanto_word_supported": true,
+  "score_label": "supported",
+  "sealed_prediction_hash": "2eb10f802c07477e58960dcab2118cd4acc4ec1210b08699b0f7cf5c4e5f6235",
+  "shard": "V71B_DISORDER_LOW_COMPLEXITY_FLEXIBLE_REGION_ENRICHED",
+  "target_id": "V71_057_V71B_DISORDER_LOW_COMPLEXITY_FLEXIBLE_REGION_ENRICHED_1CIY_1",
+  "validation_checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "membrane_multidomain_folding_proteostasis",
+      "observed": "membrane_multidomain_folding_proteostasis",
+      "passed": true
+    },
+    {
+      "check_id": "proteostasis_routing_supported",
+      "comparator": ">=",
+      "metric": "proteostasis_routing",
+      "observed": 0.663779,
+      "passed": true,
+      "threshold": 0.5
+    }
+  ]
+}

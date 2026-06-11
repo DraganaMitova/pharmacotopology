@@ -1,0 +1,49 @@
+{
+  "acceptance_decision": "abstain_recommended",
+  "alphafold_used_before_seal": false,
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "3",
+  "entry_id": "1DIZ",
+  "expected_mechanism_class": "oligomerization_controlled_folding",
+  "holdout_opened_after_prediction_hash": "6e990489387071dc808ab0592fa6c355f6872bc57e77b72fea09b8788b3a8c72",
+  "kind": "V71_E66_RCSB_NONREDUNDANT_DISCOVERY_VALIDATION_RESULT_v0",
+  "level1_regime_selection": false,
+  "level2_region_localization_proxy": false,
+  "level3_topology_or_contact_proxy": false,
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1DIZ",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1DIZ/3",
+      "source_class": "coordinate_derived",
+      "source_id": "V71_016_V71A_BROAD_RCSB_NONREDUNDANT_1DIZ_3_V71_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "predicted_mechanism_class": "insufficient_evidence_clean_abstain",
+  "protein_id": "1DIZ_3",
+  "required_esperanto_word": null,
+  "required_esperanto_word_supported": true,
+  "score_label": "supported",
+  "sealed_prediction_hash": "6e990489387071dc808ab0592fa6c355f6872bc57e77b72fea09b8788b3a8c72",
+  "shard": "V71A_BROAD_RCSB_NONREDUNDANT",
+  "target_id": "V71_016_V71A_BROAD_RCSB_NONREDUNDANT_1DIZ_3",
+  "validation_checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "oligomerization_controlled_folding",
+      "observed": "insufficient_evidence_clean_abstain",
+      "passed": false
+    },
+    {
+      "check_id": "interface_readiness_supported",
+      "comparator": ">=",
+      "metric": "interface_readiness",
+      "observed": 0.0,
+      "passed": false,
+      "threshold": 0.4
+    }
+  ]
+}

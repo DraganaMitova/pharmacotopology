@@ -1,0 +1,39 @@
+{
+  "active_operator_count": 1,
+  "folding_problem_solved": false,
+  "kind": "V71_COMPACT_SEALED_PACKET_SUMMARY_v0",
+  "natural_mechanism_class": "globular_closure",
+  "operator_names": [
+    "closure_operator"
+  ],
+  "prediction_hash": "dcd3bcb956de62f58d09d4e9a24b19dab9c8ac09d22c2a1209a0a2b5bec4e5ae",
+  "sealed_before_holdout": true,
+  "selected_mechanism_class": "globular_closure",
+  "selection_reason": "sequence_only_hydrophobic_closure_support",
+  "target_id": "V71_148_V71C_BETA_BARREL_PROPELLER_REPEAT_SOLENOID_ENRICHED_1DD1_1_SHUFFLED_CONTROL",
+  "trajectory_final_state_summary": {
+    "apo_holo_basin_shift": 0.0,
+    "assembly_ambiguous": 0.0,
+    "assembly_required_core": 0.0,
+    "contact_probability": 0.567985,
+    "coordination_shell_integrity": 0.0,
+    "disorder_order_balance": 0.282895,
+    "frustration": 0.0,
+    "interface_buried_hydrophobicity": 0.0,
+    "interface_readiness": 0.12,
+    "ligand_locked_basin": 0.0,
+    "metal_cluster_geometry": 0.0,
+    "metal_ligand_ambiguous": 0.0,
+    "monomer_incomplete_topology": 0.0,
+    "operator_activation": 0.690299,
+    "partner_completed_core": 0.0,
+    "proteostasis_routing": 0.0,
+    "residue_exposure": 0.610999,
+    "segment_compaction": 0.566567,
+    "state_basin_occupancy": {
+      "compact_folded": 0.607985,
+      "expanded_unfolded": 0.434851
+    },
+    "timepoint": 1000
+  }
+}

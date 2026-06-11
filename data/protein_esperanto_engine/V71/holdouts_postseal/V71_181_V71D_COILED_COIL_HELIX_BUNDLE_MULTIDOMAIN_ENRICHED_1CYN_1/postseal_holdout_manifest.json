@@ -1,0 +1,37 @@
+{
+  "batch_id": "V71_RCSB_NONREDUNDANT_200_DISCOVERY_E66",
+  "engine_version_used": "E66",
+  "entity_id": "1",
+  "entry_id": "1CYN",
+  "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "expected_observables": [
+    {
+      "check_id": "proteostasis_routing_supported",
+      "comparator": ">=",
+      "metric": "proteostasis_routing",
+      "threshold": 0.5
+    }
+  ],
+  "experimental_method": "X-RAY DIFFRACTION",
+  "holdout_opened_after_prediction_hash": "b59a7e595e32a4f5d8b3dac112d5c547f3c5c508bf364ffb0038a0b75e461a01",
+  "kind": "V71_E66_RCSB_NONREDUNDANT_DISCOVERY_POSTSEAL_HOLDOUT_v0",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1CYN",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1CYN/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V71_181_V71D_COILED_COIL_HELIX_BUNDLE_MULTIDOMAIN_ENRICHED_1CYN_1_V71_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "postseal public annotation/text indicates explicit membrane, channel, pore, transporter, or topology evidence"
+  ],
+  "protein_id": "1CYN_1",
+  "release_date": "1996-01-29T00:00:00.000+00:00",
+  "required_esperanto_word": null,
+  "shard": "V71D_COILED_COIL_HELIX_BUNDLE_MULTIDOMAIN_ENRICHED",
+  "target_id": "V71_181_V71D_COILED_COIL_HELIX_BUNDLE_MULTIDOMAIN_ENRICHED_1CYN_1"
+}

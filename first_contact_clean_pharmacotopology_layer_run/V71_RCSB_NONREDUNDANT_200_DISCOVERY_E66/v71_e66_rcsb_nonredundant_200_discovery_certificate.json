@@ -1,0 +1,464 @@
+{
+  "accepted_accuracy": 0.6132596685082873,
+  "accepted_count": 181,
+  "accepted_supported": 111,
+  "alphafold_used_before_seal": false,
+  "atomistic_md_executed": false,
+  "baseline_engine_version": "E66",
+  "batch_id": "V71_RCSB_NONREDUNDANT_200_DISCOVERY_E66",
+  "batch_mode": "fresh_four_shard_discovery_200",
+  "campaign_id": "V61_TO_V72_PROTEIN_ESPERANTO_SATURATION_CAMPAIGN",
+  "certificate_hash": "f727e27e6bc9bafaa4df3c76e3bef8022f99f6c1b5f3f3bb3d9f85bef8009a63",
+  "claim_allowed": false,
+  "claim_blocked_reason": "V71 is a fresh discovery batch for mining the next missing Esperanto word; it is not a solved-folding claim.",
+  "clean_abstain": 19,
+  "clean_abstain_supported": 19,
+  "composition_rule": {
+    "V71A_BROAD_RCSB_NONREDUNDANT": 50,
+    "V71B_DISORDER_LOW_COMPLEXITY_FLEXIBLE_REGION_ENRICHED": 50,
+    "V71C_BETA_BARREL_PROPELLER_REPEAT_SOLENOID_ENRICHED": 50,
+    "V71D_COILED_COIL_HELIX_BUNDLE_MULTIDOMAIN_ENRICHED": 50
+  },
+  "contact_truth_used_before_seal": false,
+  "control_count": 18,
+  "controls": [
+    {
+      "control_id": "target_count_200",
+      "observed": 200,
+      "passed": true,
+      "reason": "V71 must have exactly 200 targets."
+    },
+    {
+      "control_id": "composition_rule",
+      "observed": {
+        "V71A_BROAD_RCSB_NONREDUNDANT": 50,
+        "V71B_DISORDER_LOW_COMPLEXITY_FLEXIBLE_REGION_ENRICHED": 50,
+        "V71C_BETA_BARREL_PROPELLER_REPEAT_SOLENOID_ENRICHED": 50,
+        "V71D_COILED_COIL_HELIX_BUNDLE_MULTIDOMAIN_ENRICHED": 50
+      },
+      "passed": true,
+      "reason": "V71 must match four-shard 50/50/50/50 composition."
+    },
+    {
+      "control_id": "fresh_targets_only",
+      "observed": {},
+      "passed": true,
+      "reason": "V71 targets must be fresh relative to V61/V62/V63/V64/V65/V66/V67/V68/V69/V70 and unique within V71."
+    },
+    {
+      "control_id": "sequence_cluster_representative_selection",
+      "observed": {
+        "cutoff": 30,
+        "unique_clusters": 200
+      },
+      "passed": true,
+      "reason": "Every target is a unique 30% sequence-cluster representative within V71."
+    },
+    {
+      "control_id": "rcsb_experimental_protein_entities_only",
+      "observed": null,
+      "passed": true,
+      "reason": "All V71 targets are RCSB protein entities in the length window."
+    },
+    {
+      "control_id": "engine_version_declared_e66",
+      "observed": null,
+      "passed": true,
+      "reason": "V71 uses E66."
+    },
+    {
+      "control_id": "engine_modified_during_batch_false",
+      "observed": null,
+      "passed": true,
+      "reason": "No engine mutation occurs inside V71."
+    },
+    {
+      "control_id": "dashboard_has_all_shards",
+      "observed": null,
+      "passed": true,
+      "reason": "V71 dashboard reports each shard and total."
+    },
+    {
+      "control_id": "all_sealed_before_holdout",
+      "observed": null,
+      "passed": true,
+      "reason": "Every V71 packet is sealed before holdout."
+    },
+    {
+      "control_id": "holdouts_opened_after_seal",
+      "observed": null,
+      "passed": true,
+      "reason": "Every holdout references sealed prediction hash."
+    },
+    {
+      "control_id": "shuffled_sequence_controls_reported",
+      "observed": {
+        "control_count": 200
+      },
+      "passed": true,
+      "reason": "Composition-preserving shuffled controls generated without target metadata."
+    },
+    {
+      "control_id": "coordinate_leakage_control",
+      "observed": {
+        "allowed_initialization_source_ids": [],
+        "blocked_source_ids": [
+          "V71_BAD_COORDINATES"
+        ],
+        "coordinate_derived_source_count_before_prediction": 1,
+        "coordinate_truth_used_before_prediction": true,
+        "holdout_opened_before_seal": false,
+        "internal_runtime_source_count_for_prediction": 0,
+        "internal_runtime_used_as_biological_evidence": false,
+        "kind": "PROTEIN_ESPERANTO_EVIDENCE_BOUNDARY_GATE_v0",
+        "rows": [
+          {
+            "allowed_for_claim": false,
+            "allowed_for_holdout_after_seal": false,
+            "allowed_to_initialize_language_field": false,
+            "blocked_reason": "coordinate_derived_blocked_before_seal",
+            "coordinate_derived": true,
+            "internal_runtime": false,
+            "source_class": "coordinate_derived",
+            "source_id": "V71_BAD_COORDINATES",
+            "source_role": "prediction_input",
+            "spatial_proxy": false
+          }
+        ],
+        "spatial_proxy_untagged_or_misused_count": 0
+      },
+      "passed": true,
+      "reason": "Coordinate-derived source blocks prediction."
+    },
+    {
+      "control_id": "alphafold_leakage_control",
+      "observed": {
+        "allowed_initialization_source_ids": [],
+        "blocked_source_ids": [
+          "V71_BAD_ALPHAFOLD_MODEL"
+        ],
+        "coordinate_derived_source_count_before_prediction": 1,
+        "coordinate_truth_used_before_prediction": true,
+        "holdout_opened_before_seal": false,
+        "internal_runtime_source_count_for_prediction": 0,
+        "internal_runtime_used_as_biological_evidence": false,
+        "kind": "PROTEIN_ESPERANTO_EVIDENCE_BOUNDARY_GATE_v0",
+        "rows": [
+          {
+            "allowed_for_claim": false,
+            "allowed_for_holdout_after_seal": false,
+            "allowed_to_initialize_language_field": false,
+            "blocked_reason": "coordinate_derived_blocked_before_seal",
+            "coordinate_derived": true,
+            "internal_runtime": false,
+            "source_class": "coordinate_derived",
+            "source_id": "V71_BAD_ALPHAFOLD_MODEL",
+            "source_role": "prediction_input",
+            "spatial_proxy": false
+          }
+        ],
+        "spatial_proxy_untagged_or_misused_count": 0
+      },
+      "passed": true,
+      "reason": "AlphaFold-like model blocks prediction."
+    },
+    {
+      "control_id": "holdout_opened_before_seal_control",
+      "observed": {
+        "allowed_initialization_source_ids": [],
+        "blocked_source_ids": [
+          "V71_PRESEAL_HOLDOUT"
+        ],
+        "coordinate_derived_source_count_before_prediction": 0,
+        "coordinate_truth_used_before_prediction": false,
+        "holdout_opened_before_seal": true,
+        "internal_runtime_source_count_for_prediction": 0,
+        "internal_runtime_used_as_biological_evidence": false,
+        "kind": "PROTEIN_ESPERANTO_EVIDENCE_BOUNDARY_GATE_v0",
+        "rows": [
+          {
+            "allowed_for_claim": false,
+            "allowed_for_holdout_after_seal": true,
+            "allowed_to_initialize_language_field": false,
+            "blocked_reason": "holdout_opened_before_seal",
+            "coordinate_derived": true,
+            "internal_runtime": false,
+            "source_class": "coordinate_derived",
+            "source_id": "V71_PRESEAL_HOLDOUT",
+            "source_role": "holdout_validation",
+            "spatial_proxy": false
+          }
+        ],
+        "spatial_proxy_untagged_or_misused_count": 0
+      },
+      "passed": true,
+      "reason": "Holdout validation cannot initialize prediction before sealing."
+    },
+    {
+      "control_id": "internal_runtime_leakage_control",
+      "observed": {
+        "allowed_initialization_source_ids": [],
+        "blocked_source_ids": [
+          "V71_BAD_INTERNAL_RUNTIME"
+        ],
+        "coordinate_derived_source_count_before_prediction": 0,
+        "coordinate_truth_used_before_prediction": false,
+        "holdout_opened_before_seal": false,
+        "internal_runtime_source_count_for_prediction": 1,
+        "internal_runtime_used_as_biological_evidence": true,
+        "kind": "PROTEIN_ESPERANTO_EVIDENCE_BOUNDARY_GATE_v0",
+        "rows": [
+          {
+            "allowed_for_claim": false,
+            "allowed_for_holdout_after_seal": false,
+            "allowed_to_initialize_language_field": false,
+            "blocked_reason": "internal_runtime_never_biological_evidence",
+            "coordinate_derived": false,
+            "internal_runtime": true,
+            "source_class": "internal_runtime",
+            "source_id": "V71_BAD_INTERNAL_RUNTIME",
+            "source_role": "prediction_input",
+            "spatial_proxy": false
+          }
+        ],
+        "spatial_proxy_untagged_or_misused_count": 0
+      },
+      "passed": true,
+      "reason": "Internal runtime cannot become biological evidence."
+    },
+    {
+      "control_id": "random_sequence_control",
+      "observed": null,
+      "passed": true,
+      "reason": "Random sequence without evidence abstains."
+    },
+    {
+      "control_id": "sentinel_regressions_not_applicable",
+      "observed": 0,
+      "passed": true,
+      "reason": "V71 is fresh discovery and contains no sentinel shard."
+    },
+    {
+      "control_id": "manual_owned_readme_not_checked",
+      "observed": null,
+      "passed": true,
+      "reason": "Manual-owned README files were not checked by explicit user instruction."
+    }
+  ],
+  "controls_passed": true,
+  "coordinate_truth_used_before_seal": false,
+  "coverage": 0.905,
+  "dashboard": {
+    "TOTAL": {
+      "accepted_accuracy": 0.6132596685082873,
+      "accepted_count": 181,
+      "accepted_supported": 111,
+      "clean_abstain": 19,
+      "clean_abstain_supported": 19,
+      "controls_passed": true,
+      "coverage": 0.905,
+      "failed_accepted": 70,
+      "failed_accepted_by_failure_mode": {
+        "closed_beta_topology": 30,
+        "disorder_misread": 31,
+        "membrane_topology_missed_or_misread": 5,
+        "multidomain_allostery": 1,
+        "other": 3
+      },
+      "failed_accepted_by_missing_word": {
+        "closed_beta_topology": 30,
+        "disorder_misread": 31,
+        "membrane_topology_missed_or_misread": 5,
+        "multidomain_allostery": 1,
+        "other": 3
+      },
+      "failed_accepted_count": 70,
+      "raw_accuracy": 0.65,
+      "sentinel_regressions": 0,
+      "supported_count": 130,
+      "targets_total": 200,
+      "top_failure_mode": "disorder_misread",
+      "top_missing_esperanto_word": "disorder_misread"
+    },
+    "V71A_BROAD_RCSB_NONREDUNDANT": {
+      "accepted_accuracy": 0.9333333333333333,
+      "accepted_count": 45,
+      "accepted_supported": 42,
+      "clean_abstain": 5,
+      "clean_abstain_supported": 5,
+      "controls_passed": true,
+      "coverage": 0.9,
+      "failed_accepted": 3,
+      "failed_accepted_by_failure_mode": {
+        "membrane_topology_missed_or_misread": 2,
+        "other": 1
+      },
+      "failed_accepted_by_missing_word": {
+        "membrane_topology_missed_or_misread": 2,
+        "other": 1
+      },
+      "failed_accepted_count": 3,
+      "raw_accuracy": 0.94,
+      "sentinel_regressions": 0,
+      "supported_count": 47,
+      "targets_total": 50,
+      "top_failure_mode": "membrane_topology_missed_or_misread",
+      "top_missing_esperanto_word": "membrane_topology_missed_or_misread"
+    },
+    "V71B_DISORDER_LOW_COMPLEXITY_FLEXIBLE_REGION_ENRICHED": {
+      "accepted_accuracy": 0.28888888888888886,
+      "accepted_count": 45,
+      "accepted_supported": 13,
+      "clean_abstain": 5,
+      "clean_abstain_supported": 5,
+      "controls_passed": true,
+      "coverage": 0.9,
+      "failed_accepted": 32,
+      "failed_accepted_by_failure_mode": {
+        "disorder_misread": 31,
+        "membrane_topology_missed_or_misread": 1
+      },
+      "failed_accepted_by_missing_word": {
+        "disorder_misread": 31,
+        "membrane_topology_missed_or_misread": 1
+      },
+      "failed_accepted_count": 32,
+      "raw_accuracy": 0.36,
+      "sentinel_regressions": 0,
+      "supported_count": 18,
+      "targets_total": 50,
+      "top_failure_mode": "disorder_misread",
+      "top_missing_esperanto_word": "disorder_misread"
+    },
+    "V71C_BETA_BARREL_PROPELLER_REPEAT_SOLENOID_ENRICHED": {
+      "accepted_accuracy": 0.2727272727272727,
+      "accepted_count": 44,
+      "accepted_supported": 12,
+      "clean_abstain": 6,
+      "clean_abstain_supported": 6,
+      "controls_passed": true,
+      "coverage": 0.88,
+      "failed_accepted": 32,
+      "failed_accepted_by_failure_mode": {
+        "closed_beta_topology": 30,
+        "membrane_topology_missed_or_misread": 2
+      },
+      "failed_accepted_by_missing_word": {
+        "closed_beta_topology": 30,
+        "membrane_topology_missed_or_misread": 2
+      },
+      "failed_accepted_count": 32,
+      "raw_accuracy": 0.36,
+      "sentinel_regressions": 0,
+      "supported_count": 18,
+      "targets_total": 50,
+      "top_failure_mode": "closed_beta_topology",
+      "top_missing_esperanto_word": "closed_beta_topology"
+    },
+    "V71D_COILED_COIL_HELIX_BUNDLE_MULTIDOMAIN_ENRICHED": {
+      "accepted_accuracy": 0.9361702127659575,
+      "accepted_count": 47,
+      "accepted_supported": 44,
+      "clean_abstain": 3,
+      "clean_abstain_supported": 3,
+      "controls_passed": true,
+      "coverage": 0.94,
+      "failed_accepted": 3,
+      "failed_accepted_by_failure_mode": {
+        "multidomain_allostery": 1,
+        "other": 2
+      },
+      "failed_accepted_by_missing_word": {
+        "multidomain_allostery": 1,
+        "other": 2
+      },
+      "failed_accepted_count": 3,
+      "raw_accuracy": 0.94,
+      "sentinel_regressions": 0,
+      "supported_count": 47,
+      "targets_total": 50,
+      "top_failure_mode": "other",
+      "top_missing_esperanto_word": "other"
+    }
+  },
+  "dominant_failure_count": 31,
+  "dominant_failure_mode": "disorder_misread",
+  "engine_source_last_commit": "95791fe1d5abc7b9433fd56653cb0b1f99c456a1",
+  "engine_source_sha256": "9563c24a1597ae015466bff440f2a679119c759aa4f7684d3c8fd4d0f42c5b1e",
+  "engine_version_used": "E66",
+  "failed_accepted": 70,
+  "failed_accepted_by_failure_mode": {
+    "closed_beta_topology": 30,
+    "disorder_misread": 31,
+    "membrane_topology_missed_or_misread": 5,
+    "multidomain_allostery": 1,
+    "other": 3
+  },
+  "failed_accepted_by_missing_word": {
+    "closed_beta_topology": 30,
+    "disorder_misread": 31,
+    "membrane_topology_missed_or_misread": 5,
+    "multidomain_allostery": 1,
+    "other": 3
+  },
+  "failed_accepted_count": 70,
+  "failed_controls": [],
+  "failure_modes_top_10": [
+    {
+      "count": 31,
+      "failure_mode": "disorder_misread"
+    },
+    {
+      "count": 30,
+      "failure_mode": "closed_beta_topology"
+    },
+    {
+      "count": 5,
+      "failure_mode": "membrane_topology_missed_or_misread"
+    },
+    {
+      "count": 3,
+      "failure_mode": "other"
+    },
+    {
+      "count": 1,
+      "failure_mode": "multidomain_allostery"
+    }
+  ],
+  "folding_problem_solved": false,
+  "kind": "V71_E66_RCSB_NONREDUNDANT_200_DISCOVERY_CERTIFICATE_v0",
+  "missing_words_top_10": [
+    {
+      "count": 31,
+      "missing_esperanto_word": "disorder_misread"
+    },
+    {
+      "count": 30,
+      "missing_esperanto_word": "closed_beta_topology"
+    },
+    {
+      "count": 5,
+      "missing_esperanto_word": "membrane_topology_missed_or_misread"
+    },
+    {
+      "count": 3,
+      "missing_esperanto_word": "other"
+    },
+    {
+      "count": 1,
+      "missing_esperanto_word": "multidomain_allostery"
+    }
+  ],
+  "next_required_batch": "E67_AND_V72_REPAIR_PANEL",
+  "passed_control_count": 18,
+  "raw_accuracy": 0.65,
+  "recommended_next_engine_revision": "E67_DISORDER_BOUNDARY_AND_FOLD_UPON_BINDING_GRAMMAR",
+  "sentinel_regressions": 0,
+  "status": "V71_E66_RCSB_NONREDUNDANT_200_DISCOVERY_FAILURES_MINED_REVIEW_REQUIRED",
+  "supported_count": 130,
+  "target_selection_manual": false,
+  "targets_total": 200,
+  "timestamp_utc": "2026-06-11T23:04:16.302239+00:00",
+  "top_missing_esperanto_word": "disorder_misread",
+  "top_missing_esperanto_word_count": 31
+}

@@ -1,0 +1,58 @@
+{
+  "acceptance_decision": "accepted",
+  "alphafold_used_before_seal": false,
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "1",
+  "entry_id": "1DZL",
+  "expected_mechanism_class": "disorder_boundary_and_fold_upon_binding",
+  "holdout_opened_after_prediction_hash": "5cd4743b958ccac4b7b8d83f387896f1f857e0b6add743d77cc8e642fbfdf589",
+  "kind": "V72_E67_DISORDER_BOUNDARY_REPAIR_VALIDATION_RESULT_v0",
+  "level1_regime_selection": true,
+  "level2_region_localization_proxy": true,
+  "level3_topology_or_contact_proxy": true,
+  "panel_group": "V71_DISORDER_FAILURE_REPLAY",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1DZL",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1DZL/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V72_022_V71_DISORDER_FAILURE_REPLAY_1DZL_1_V72_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "predicted_mechanism_class": "disorder_boundary_and_fold_upon_binding",
+  "protein_id": "1DZL_1",
+  "required_esperanto_word": "phase_prone_low_complexity",
+  "required_esperanto_word_supported": true,
+  "score_label": "supported",
+  "sealed_prediction_hash": "5cd4743b958ccac4b7b8d83f387896f1f857e0b6add743d77cc8e642fbfdf589",
+  "target_id": "V72_022_V71_DISORDER_FAILURE_REPLAY_1DZL_1",
+  "tracking_only": false,
+  "validation_checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "disorder_boundary_and_fold_upon_binding",
+      "observed": "disorder_boundary_and_fold_upon_binding",
+      "passed": true
+    },
+    {
+      "check_id": "idr_boundary_supported",
+      "comparator": ">=",
+      "metric": "IDR_boundary",
+      "observed": 0.629993,
+      "passed": true,
+      "threshold": 0.3
+    },
+    {
+      "check_id": "compact_single_fold_rejected",
+      "comparator": "<=",
+      "metric": "basin:compact_single_fold",
+      "observed": 0.05,
+      "passed": true,
+      "threshold": 0.12
+    }
+  ]
+}

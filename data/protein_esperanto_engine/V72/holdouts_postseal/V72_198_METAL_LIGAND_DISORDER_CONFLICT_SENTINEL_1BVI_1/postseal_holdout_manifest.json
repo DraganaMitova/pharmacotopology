@@ -1,0 +1,38 @@
+{
+  "batch_id": "V72_E67_DISORDER_BOUNDARY_REPAIR_PANEL_200",
+  "engine_version_used": "E67",
+  "entity_id": "1",
+  "entry_id": "1BVI",
+  "expected_mechanism_class": "metal_cluster_and_ligand_locked_basin",
+  "expected_observables": [
+    {
+      "check_id": "ligand_locked_basin_supported",
+      "comparator": ">=",
+      "metric": "ligand_locked_basin",
+      "threshold": 0.42
+    }
+  ],
+  "holdout_opened_after_prediction_hash": "9305871181a0cb012e7e90dda15764a4f903eca8329923fb62df18882565d57d",
+  "kind": "V72_E67_DISORDER_BOUNDARY_REPAIR_POSTSEAL_HOLDOUT_v0",
+  "panel_group": "METAL_LIGAND_DISORDER_CONFLICT_SENTINEL",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1BVI",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1BVI/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V72_198_METAL_LIGAND_DISORDER_CONFLICT_SENTINEL_1BVI_1_V72_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "V72 E67 repair panel group METAL_LIGAND_DISORDER_CONFLICT_SENTINEL.",
+    "Required E67 word: metal_cluster_geometry.",
+    "Coordinates, contacts, native topology, and post-seal validation labels are blocked before sealing."
+  ],
+  "protein_id": "1BVI_1",
+  "required_esperanto_word": "metal_cluster_geometry",
+  "target_id": "V72_198_METAL_LIGAND_DISORDER_CONFLICT_SENTINEL_1BVI_1",
+  "tracking_only": false
+}

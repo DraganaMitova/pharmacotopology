@@ -1,0 +1,138 @@
+{
+  "batch_id": "V71_RCSB_NONREDUNDANT_200_DISCOVERY_E66",
+  "engine_version_used": "E66",
+  "kind": "V71_E66_RCSB_NONREDUNDANT_200_DISCOVERY_DASHBOARD_v0",
+  "shards": {
+    "TOTAL": {
+      "accepted_accuracy": 0.6132596685082873,
+      "accepted_count": 181,
+      "accepted_supported": 111,
+      "clean_abstain": 19,
+      "clean_abstain_supported": 19,
+      "controls_passed": true,
+      "coverage": 0.905,
+      "failed_accepted": 70,
+      "failed_accepted_by_failure_mode": {
+        "closed_beta_topology": 30,
+        "disorder_misread": 31,
+        "membrane_topology_missed_or_misread": 5,
+        "multidomain_allostery": 1,
+        "other": 3
+      },
+      "failed_accepted_by_missing_word": {
+        "closed_beta_topology": 30,
+        "disorder_misread": 31,
+        "membrane_topology_missed_or_misread": 5,
+        "multidomain_allostery": 1,
+        "other": 3
+      },
+      "failed_accepted_count": 70,
+      "raw_accuracy": 0.65,
+      "sentinel_regressions": 0,
+      "supported_count": 130,
+      "targets_total": 200,
+      "top_failure_mode": "disorder_misread",
+      "top_missing_esperanto_word": "disorder_misread"
+    },
+    "V71A_BROAD_RCSB_NONREDUNDANT": {
+      "accepted_accuracy": 0.9333333333333333,
+      "accepted_count": 45,
+      "accepted_supported": 42,
+      "clean_abstain": 5,
+      "clean_abstain_supported": 5,
+      "controls_passed": true,
+      "coverage": 0.9,
+      "failed_accepted": 3,
+      "failed_accepted_by_failure_mode": {
+        "membrane_topology_missed_or_misread": 2,
+        "other": 1
+      },
+      "failed_accepted_by_missing_word": {
+        "membrane_topology_missed_or_misread": 2,
+        "other": 1
+      },
+      "failed_accepted_count": 3,
+      "raw_accuracy": 0.94,
+      "sentinel_regressions": 0,
+      "supported_count": 47,
+      "targets_total": 50,
+      "top_failure_mode": "membrane_topology_missed_or_misread",
+      "top_missing_esperanto_word": "membrane_topology_missed_or_misread"
+    },
+    "V71B_DISORDER_LOW_COMPLEXITY_FLEXIBLE_REGION_ENRICHED": {
+      "accepted_accuracy": 0.28888888888888886,
+      "accepted_count": 45,
+      "accepted_supported": 13,
+      "clean_abstain": 5,
+      "clean_abstain_supported": 5,
+      "controls_passed": true,
+      "coverage": 0.9,
+      "failed_accepted": 32,
+      "failed_accepted_by_failure_mode": {
+        "disorder_misread": 31,
+        "membrane_topology_missed_or_misread": 1
+      },
+      "failed_accepted_by_missing_word": {
+        "disorder_misread": 31,
+        "membrane_topology_missed_or_misread": 1
+      },
+      "failed_accepted_count": 32,
+      "raw_accuracy": 0.36,
+      "sentinel_regressions": 0,
+      "supported_count": 18,
+      "targets_total": 50,
+      "top_failure_mode": "disorder_misread",
+      "top_missing_esperanto_word": "disorder_misread"
+    },
+    "V71C_BETA_BARREL_PROPELLER_REPEAT_SOLENOID_ENRICHED": {
+      "accepted_accuracy": 0.2727272727272727,
+      "accepted_count": 44,
+      "accepted_supported": 12,
+      "clean_abstain": 6,
+      "clean_abstain_supported": 6,
+      "controls_passed": true,
+      "coverage": 0.88,
+      "failed_accepted": 32,
+      "failed_accepted_by_failure_mode": {
+        "closed_beta_topology": 30,
+        "membrane_topology_missed_or_misread": 2
+      },
+      "failed_accepted_by_missing_word": {
+        "closed_beta_topology": 30,
+        "membrane_topology_missed_or_misread": 2
+      },
+      "failed_accepted_count": 32,
+      "raw_accuracy": 0.36,
+      "sentinel_regressions": 0,
+      "supported_count": 18,
+      "targets_total": 50,
+      "top_failure_mode": "closed_beta_topology",
+      "top_missing_esperanto_word": "closed_beta_topology"
+    },
+    "V71D_COILED_COIL_HELIX_BUNDLE_MULTIDOMAIN_ENRICHED": {
+      "accepted_accuracy": 0.9361702127659575,
+      "accepted_count": 47,
+      "accepted_supported": 44,
+      "clean_abstain": 3,
+      "clean_abstain_supported": 3,
+      "controls_passed": true,
+      "coverage": 0.94,
+      "failed_accepted": 3,
+      "failed_accepted_by_failure_mode": {
+        "multidomain_allostery": 1,
+        "other": 2
+      },
+      "failed_accepted_by_missing_word": {
+        "multidomain_allostery": 1,
+        "other": 2
+      },
+      "failed_accepted_count": 3,
+      "raw_accuracy": 0.94,
+      "sentinel_regressions": 0,
+      "supported_count": 47,
+      "targets_total": 50,
+      "top_failure_mode": "other",
+      "top_missing_esperanto_word": "other"
+    }
+  }
+}

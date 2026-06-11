@@ -1,0 +1,37 @@
+{
+  "batch_id": "V71_RCSB_NONREDUNDANT_200_DISCOVERY_E66",
+  "engine_version_used": "E66",
+  "entity_id": "1",
+  "entry_id": "1C3Y",
+  "expected_mechanism_class": "oligomerization_controlled_folding",
+  "expected_observables": [
+    {
+      "check_id": "interface_readiness_supported",
+      "comparator": ">=",
+      "metric": "interface_readiness",
+      "threshold": 0.4
+    }
+  ],
+  "experimental_method": "SOLUTION NMR",
+  "holdout_opened_after_prediction_hash": "a24ba17e9b939774cc581e3be62059a6c0fda752b9b66f5c2dcba49eeea708ea",
+  "kind": "V71_E66_RCSB_NONREDUNDANT_DISCOVERY_POSTSEAL_HOLDOUT_v0",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1C3Y",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1C3Y/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V71_002_V71A_BROAD_RCSB_NONREDUNDANT_1C3Y_1_V71_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "postseal public metadata indicates biological oligomer, assembly, copy-count, or complex context"
+  ],
+  "protein_id": "1C3Y_1",
+  "release_date": "1999-11-10T00:00:00.000+00:00",
+  "required_esperanto_word": null,
+  "shard": "V71A_BROAD_RCSB_NONREDUNDANT",
+  "target_id": "V71_002_V71A_BROAD_RCSB_NONREDUNDANT_1C3Y_1"
+}

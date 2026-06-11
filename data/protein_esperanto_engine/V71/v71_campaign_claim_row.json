@@ -1,0 +1,30 @@
+{
+  "abstention_rate": 0.095,
+  "accepted_accuracy": 0.6132596685082873,
+  "batch_id": "V71_RCSB_NONREDUNDANT_200_DISCOVERY_E66",
+  "batch_mode": "fresh_four_shard_discovery_200",
+  "claim_allowed": false,
+  "claim_blocked_reason": "V71 is a fresh discovery batch for mining the next missing Esperanto word; it is not a solved-folding claim.",
+  "clean_abstain_count": 19,
+  "control_pass_rate": 1.0,
+  "coverage": 0.905,
+  "dominant_failure_mode": "disorder_misread",
+  "engine_version_used": "E66",
+  "failure_count": 70,
+  "failure_modes": {
+    "closed_beta_topology": 30,
+    "disorder_misread": 31,
+    "membrane_topology_missed_or_misread": 5,
+    "multidomain_allostery": 1,
+    "other": 3
+  },
+  "missing_words": {
+    "closed_beta_topology": 30,
+    "disorder_misread": 31,
+    "membrane_topology_missed_or_misread": 5,
+    "multidomain_allostery": 1,
+    "other": 3
+  },
+  "raw_accuracy": 0.65,
+  "top_missing_esperanto_word": "disorder_misread"
+}
