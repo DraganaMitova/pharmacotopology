@@ -1,0 +1,42 @@
+{
+  "acceptance_decision": "accepted",
+  "alphafold_used_before_seal": false,
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "1",
+  "entry_id": "13JG",
+  "expected_mechanism_class": "oligomerization_controlled_folding",
+  "holdout_opened_after_prediction_hash": "c50776a83e8f064c664e8b97c6bd7e35986340b9d5a97e1fb6633882859073bc",
+  "kind": "V67_E64_MIXED_FAST_DISCOVERY_VALIDATION_RESULT_v0",
+  "level1_regime_selection": true,
+  "level2_region_localization_proxy": true,
+  "level3_topology_or_contact_proxy": true,
+  "lineage_source_target": "V63_13JG_1",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/13JG",
+      "lineage_source_target": "V63_13JG_1",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/13JG/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V67_075_NEW_13JG_1_V67_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "predicted_mechanism_class": "oligomerization_controlled_folding",
+  "protein_id": "13JG_1",
+  "score_label": "supported",
+  "sealed_prediction_hash": "c50776a83e8f064c664e8b97c6bd7e35986340b9d5a97e1fb6633882859073bc",
+  "selection_category": "NEW_RCSB_NONREDUNDANT_E64_DISCOVERY",
+  "source_family": "V63",
+  "target_id": "V67_075_NEW_13JG_1",
+  "validation_checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "oligomerization_controlled_folding",
+      "observed": "oligomerization_controlled_folding",
+      "passed": true
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "batch_id": "V67_RCSB_NONREDUNDANT_200_DISCOVERY_E64",
+  "engine_version_used": "E64",
+  "entity_id": "1",
+  "entry_id": "10JT",
+  "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "expected_observables": [
+    {
+      "check_id": "proteostasis_routing_supported",
+      "comparator": ">=",
+      "metric": "proteostasis_routing",
+      "threshold": 0.5
+    }
+  ],
+  "holdout_opened_after_prediction_hash": "6fd010892813be523975bc53a091e6ad47b0f61232c221f2c276ea6101bafd9f",
+  "kind": "V67_E64_MIXED_FAST_DISCOVERY_POSTSEAL_HOLDOUT_v0",
+  "lineage_source_target": "V66_074_10JT_1",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/10JT",
+      "lineage_source_target": "V66_074_10JT_1",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/10JT/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V67_104_V66_10JT_1_V67_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "V66 failed-accepted target replayed under E64.",
+    "V66 thought cofactor_ligand_assisted_stabilization; holdout reality was membrane_multidomain_folding_proteostasis."
+  ],
+  "protein_id": "10JT_1",
+  "selection_category": "V66_FAILED_ACCEPTED_REPLAY",
+  "source_family": "V66",
+  "target_id": "V67_104_V66_10JT_1"
+}

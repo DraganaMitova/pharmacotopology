@@ -1,0 +1,31 @@
+{
+  "batch_id": "V67_RCSB_NONREDUNDANT_200_DISCOVERY_E64",
+  "engine_version_used": "E64",
+  "entity_id": "49",
+  "entry_id": "10PX",
+  "expected_mechanism_class": "cofactor_ligand_assisted_stabilization",
+  "expected_observables": [],
+  "holdout_opened_after_prediction_hash": "9fb15e94ff41e28f40af7cb8a56104c4daa2f2f07f8e2ad28a65fc1c56339b2f",
+  "kind": "V67_E64_MIXED_FAST_DISCOVERY_POSTSEAL_HOLDOUT_v0",
+  "lineage_source_target": "V63_10PX_49",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/10PX",
+      "lineage_source_target": "V63_10PX_49",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/10PX/49",
+      "source_class": "coordinate_derived",
+      "source_id": "V67_014_NEW_10PX_49_V67_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "New V67 RCSB nonredundant target from V63 intake.",
+    "postseal RCSB entry contains biological ligand/cofactor/metal components"
+  ],
+  "protein_id": "10PX_49",
+  "selection_category": "NEW_RCSB_NONREDUNDANT_E64_DISCOVERY",
+  "source_family": "V63",
+  "target_id": "V67_014_NEW_10PX_49"
+}

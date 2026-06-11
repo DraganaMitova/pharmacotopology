@@ -1,0 +1,50 @@
+{
+  "acceptance_decision": "accepted",
+  "alphafold_used_before_seal": false,
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "3",
+  "entry_id": "1A31",
+  "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "holdout_opened_after_prediction_hash": "86ebb92f9e6d479f27e170c14e18565327c3f0c78a28b12c5af6cd49a457bfb9",
+  "kind": "V67_E64_MIXED_FAST_DISCOVERY_VALIDATION_RESULT_v0",
+  "level1_regime_selection": false,
+  "level2_region_localization_proxy": true,
+  "level3_topology_or_contact_proxy": false,
+  "lineage_source_target": "V63_1A31_3",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1A31",
+      "lineage_source_target": "V63_1A31_3",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1A31/3",
+      "source_class": "coordinate_derived",
+      "source_id": "V67_093_NEW_1A31_3_V67_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "predicted_mechanism_class": "oligomerization_controlled_folding",
+  "protein_id": "1A31_3",
+  "score_label": "contradicted",
+  "sealed_prediction_hash": "86ebb92f9e6d479f27e170c14e18565327c3f0c78a28b12c5af6cd49a457bfb9",
+  "selection_category": "NEW_RCSB_NONREDUNDANT_E64_DISCOVERY",
+  "source_family": "V63",
+  "target_id": "V67_093_NEW_1A31_3",
+  "validation_checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "membrane_multidomain_folding_proteostasis",
+      "observed": "oligomerization_controlled_folding",
+      "passed": false
+    },
+    {
+      "check_id": "proteostasis_routing_supported",
+      "comparator": ">=",
+      "metric": "proteostasis_routing",
+      "observed": 0.0,
+      "passed": false,
+      "threshold": 0.5
+    }
+  ]
+}

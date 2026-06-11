@@ -89,4 +89,4 @@ def test_v66_preserves_claim_boundary_and_points_to_v67() -> None:
     )
     assert cert["claim_allowed"] is False
     assert cert["folding_problem_solved"] is False
-    assert cert["next_required_batch"] == "V67_RCSB_NONREDUNDANT_200_DISCOVERY_E63"
+    assert cert["next_required_batch"] == "V67_RCSB_NONREDUNDANT_200_DISCOVERY_E64"

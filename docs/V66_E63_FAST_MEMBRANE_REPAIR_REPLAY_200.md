@@ -67,4 +67,4 @@ Remaining failure mode:
 V66 passes the fast membrane repair replay. It also shows the next remaining
 positive grammar gap: true membrane targets without enough topology evidence
 still fail as membrane_misread. The next batch is the adaptive discovery shard
-`V67_RCSB_NONREDUNDANT_200_DISCOVERY_E63`.
+`V67_RCSB_NONREDUNDANT_200_DISCOVERY_E64`.

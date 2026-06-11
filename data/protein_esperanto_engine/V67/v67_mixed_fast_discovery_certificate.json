@@ -1,0 +1,427 @@
+{
+  "abstain_count": 1,
+  "accept_abstain_posture": "over_accepting_relative_to_abstention",
+  "accepted_accuracy": 0.46733668341708545,
+  "accepted_count": 199,
+  "alphafold_used_before_seal": false,
+  "atomistic_md_executed": false,
+  "baseline_engine_version": "E63",
+  "batch_id": "V67_RCSB_NONREDUNDANT_200_DISCOVERY_E64",
+  "batch_mode": "mixed_fast_discovery_shard",
+  "campaign_id": "V61_TO_V70_PROTEIN_ESPERANTO_SATURATION_CAMPAIGN",
+  "certificate_hash": "12fdc4f48a8ac3cbee3b2f320b2129125a44bfe2da7268d87f9552d120e4137f",
+  "claim_allowed": false,
+  "claim_blocked_reason": "V67 is a mixed fast discovery shard for E65 mining, not a solved-folding claim.",
+  "composition_rule": {
+    "NEW_RCSB_NONREDUNDANT_E64_DISCOVERY": 100,
+    "SENTINEL_STABILITY_REPLAY": 30,
+    "V66_FAILED_ACCEPTED_REPLAY": 70
+  },
+  "contact_truth_used_before_seal": false,
+  "control_count": 18,
+  "controls": [
+    {
+      "control_id": "target_count_200",
+      "observed": 200,
+      "passed": true,
+      "reason": "V67 must have exactly 200 targets."
+    },
+    {
+      "control_id": "mixed_composition_rule",
+      "observed": {
+        "NEW_RCSB_NONREDUNDANT_E64_DISCOVERY": 100,
+        "SENTINEL_STABILITY_REPLAY": 30,
+        "V66_FAILED_ACCEPTED_REPLAY": 70
+      },
+      "passed": true,
+      "reason": "V67 composition must be 100 new, 70 old failures, 30 sentinels."
+    },
+    {
+      "control_id": "target_selection_manual_false",
+      "observed": null,
+      "passed": true,
+      "reason": "V67 target selection is deterministic from committed artifacts."
+    },
+    {
+      "control_id": "engine_version_declared_e64",
+      "observed": null,
+      "passed": true,
+      "reason": "V67 uses E64."
+    },
+    {
+      "control_id": "engine_modified_during_batch_false",
+      "observed": null,
+      "passed": true,
+      "reason": "No engine mutation occurs inside V67."
+    },
+    {
+      "control_id": "all_sealed_before_holdout",
+      "observed": null,
+      "passed": true,
+      "reason": "Every V67 packet is sealed before holdout."
+    },
+    {
+      "control_id": "holdouts_opened_after_seal",
+      "observed": null,
+      "passed": true,
+      "reason": "Every holdout references the sealed prediction hash."
+    },
+    {
+      "control_id": "old_v66_failure_question_answered",
+      "observed": {
+        "batch_id": "V67_RCSB_NONREDUNDANT_200_DISCOVERY_E64",
+        "engine_version_used": "E64",
+        "kind": "V67_OLD_V66_FAILURE_REPAIR_REPORT_v0",
+        "old_v66_failure_count": 70,
+        "old_v66_failures_remaining": 69,
+        "old_v66_failures_repaired_by_e64": 1,
+        "question_answer": "E64 repaired 1 of the 70 V66 failed-accepted targets; 69 remain for failure grammar mining.",
+        "remaining_target_ids": [
+          "V67_101_V66_10AY_1",
+          "V67_102_V66_10IC_3",
+          "V67_103_V66_10IK_1",
+          "V67_104_V66_10JT_1",
+          "V67_105_V66_10MA_3",
+          "V67_106_V66_10OP_1",
+          "V67_107_V66_10OR_2",
+          "V67_108_V66_10QG_1",
+          "V67_109_V66_10TZ_1",
+          "V67_110_V66_10XD_1",
+          "V67_111_V66_10XF_1",
+          "V67_112_V66_10XH_1",
+          "V67_113_V66_10XZ_2",
+          "V67_114_V66_11HK_1",
+          "V67_115_V66_11OY_1",
+          "V67_116_V66_11TA_1",
+          "V67_117_V66_11TA_2",
+          "V67_118_V66_11YO_16",
+          "V67_119_V66_12DL_5",
+          "V67_120_V66_12DL_9",
+          "V67_121_V66_12GB_1",
+          "V67_122_V66_13FL_3",
+          "V67_123_V66_13FR_1",
+          "V67_124_V66_13SC_1",
+          "V67_125_V66_1A00_2",
+          "V67_126_V66_1A0O_2",
+          "V67_127_V66_1A12_1",
+          "V67_128_V66_1A15_1",
+          "V67_129_V66_1A1M_1",
+          "V67_130_V66_1A1M_2",
+          "V67_131_V66_1A1T_2",
+          "V67_132_V66_1A1W_1",
+          "V67_133_V66_1A29_1",
+          "V67_134_V66_1A2F_1",
+          "V67_135_V66_1A2J_1",
+          "V67_136_V66_1A2U_1",
+          "V67_137_V66_1A30_1",
+          "V67_138_V66_1A3E_2",
+          "V67_139_V66_1A3K_1",
+          "V67_140_V66_1A3S_1",
+          "V67_141_V66_1A3W_1",
+          "V67_142_V66_1A4G_1",
+          "V67_143_V66_1A4H_1",
+          "V67_144_V66_1A5C_1",
+          "V67_145_V66_1A64_1",
+          "V67_146_V66_1A69_1",
+          "V67_147_V66_1A7C_1",
+          "V67_149_V66_1A8V_1",
+          "V67_150_V66_1A8Y_1",
+          "V67_151_V66_1A95_1",
+          "V67_152_V66_1AA2_1",
+          "V67_153_V66_1AAB_1",
+          "V67_154_V66_1AAP_1",
+          "V67_155_V66_1AAX_1",
+          "V67_156_V66_1ACJ_1",
+          "V67_157_V66_1ADE_1",
+          "V67_158_V66_1ADQ_1",
+          "V67_159_V66_1ADZ_1",
+          "V67_160_V66_1AEY_1",
+          "V67_161_V66_1AF3_1",
+          "V67_162_V66_1AIN_1",
+          "V67_163_V66_1AJB_1",
+          "V67_164_V66_1AKK_1",
+          "V67_165_V66_1ALL_2",
+          "V67_166_V66_1ALW_1",
+          "V67_167_V66_1ALY_1",
+          "V67_168_V66_1AMO_1",
+          "V67_169_V66_1AN0_1",
+          "V67_170_V66_1ANG_1"
+        ],
+        "repaired_target_ids": [
+          "V67_148_V66_1A7S_1"
+        ]
+      },
+      "passed": true,
+      "reason": "V67 answers whether E64 repaired the 70 V66 failures."
+    },
+    {
+      "control_id": "dominant_failure_mode_identified",
+      "observed": [
+        {
+          "count": 48,
+          "failure_mode": "assembly_required_core_vs_membrane_topology"
+        },
+        {
+          "count": 33,
+          "failure_mode": "cofactor_locked_basin_vs_membrane_topology"
+        },
+        {
+          "count": 12,
+          "failure_mode": "short_interface_context_missing"
+        },
+        {
+          "count": 12,
+          "failure_mode": "disorder_or_low_complexity_context"
+        },
+        {
+          "count": 1,
+          "failure_mode": "assembly_required_core"
+        },
+        {
+          "count": 1,
+          "failure_mode": "over_abstain_membrane_multidomain_folding_proteostasis"
+        }
+      ],
+      "passed": true,
+      "reason": "V67 identifies the dominant failure mode when failures exist."
+    },
+    {
+      "control_id": "sentinels_stable",
+      "observed": {
+        "regressions": [],
+        "sentinel_count": 30
+      },
+      "passed": true,
+      "reason": "Sentinel targets must remain supported."
+    },
+    {
+      "control_id": "failure_autopsy_fields_present",
+      "observed": null,
+      "passed": true,
+      "reason": "Every failure autopsy says what the engine thought, what reality showed, and the missing word."
+    },
+    {
+      "control_id": "shuffled_sequence_controls_reported",
+      "observed": {
+        "control_count": 200,
+        "shuffled_higher_by_more_than_margin_count": 140
+      },
+      "passed": true,
+      "reason": "Composition-preserving shuffled controls are generated with target metadata withheld."
+    },
+    {
+      "control_id": "coordinate_leakage_control",
+      "observed": {
+        "allowed_initialization_source_ids": [],
+        "blocked_source_ids": [
+          "V67_BAD_COORDINATES"
+        ],
+        "coordinate_derived_source_count_before_prediction": 1,
+        "coordinate_truth_used_before_prediction": true,
+        "holdout_opened_before_seal": false,
+        "internal_runtime_source_count_for_prediction": 0,
+        "internal_runtime_used_as_biological_evidence": false,
+        "kind": "PROTEIN_ESPERANTO_EVIDENCE_BOUNDARY_GATE_v0",
+        "rows": [
+          {
+            "allowed_for_claim": false,
+            "allowed_for_holdout_after_seal": false,
+            "allowed_to_initialize_language_field": false,
+            "blocked_reason": "coordinate_derived_blocked_before_seal",
+            "coordinate_derived": true,
+            "internal_runtime": false,
+            "source_class": "coordinate_derived",
+            "source_id": "V67_BAD_COORDINATES",
+            "source_role": "prediction_input",
+            "spatial_proxy": false
+          }
+        ],
+        "spatial_proxy_untagged_or_misused_count": 0
+      },
+      "passed": true,
+      "reason": "Coordinate-derived source blocks prediction."
+    },
+    {
+      "control_id": "alphafold_leakage_control",
+      "observed": {
+        "allowed_initialization_source_ids": [],
+        "blocked_source_ids": [
+          "V67_BAD_ALPHAFOLD_MODEL"
+        ],
+        "coordinate_derived_source_count_before_prediction": 1,
+        "coordinate_truth_used_before_prediction": true,
+        "holdout_opened_before_seal": false,
+        "internal_runtime_source_count_for_prediction": 0,
+        "internal_runtime_used_as_biological_evidence": false,
+        "kind": "PROTEIN_ESPERANTO_EVIDENCE_BOUNDARY_GATE_v0",
+        "rows": [
+          {
+            "allowed_for_claim": false,
+            "allowed_for_holdout_after_seal": false,
+            "allowed_to_initialize_language_field": false,
+            "blocked_reason": "coordinate_derived_blocked_before_seal",
+            "coordinate_derived": true,
+            "internal_runtime": false,
+            "source_class": "coordinate_derived",
+            "source_id": "V67_BAD_ALPHAFOLD_MODEL",
+            "source_role": "prediction_input",
+            "spatial_proxy": false
+          }
+        ],
+        "spatial_proxy_untagged_or_misused_count": 0
+      },
+      "passed": true,
+      "reason": "AlphaFold-like model blocks prediction."
+    },
+    {
+      "control_id": "holdout_opened_before_seal_control",
+      "observed": {
+        "allowed_initialization_source_ids": [],
+        "blocked_source_ids": [
+          "V67_PRESEAL_HOLDOUT"
+        ],
+        "coordinate_derived_source_count_before_prediction": 0,
+        "coordinate_truth_used_before_prediction": false,
+        "holdout_opened_before_seal": true,
+        "internal_runtime_source_count_for_prediction": 0,
+        "internal_runtime_used_as_biological_evidence": false,
+        "kind": "PROTEIN_ESPERANTO_EVIDENCE_BOUNDARY_GATE_v0",
+        "rows": [
+          {
+            "allowed_for_claim": false,
+            "allowed_for_holdout_after_seal": true,
+            "allowed_to_initialize_language_field": false,
+            "blocked_reason": "holdout_opened_before_seal",
+            "coordinate_derived": true,
+            "internal_runtime": false,
+            "source_class": "coordinate_derived",
+            "source_id": "V67_PRESEAL_HOLDOUT",
+            "source_role": "holdout_validation",
+            "spatial_proxy": false
+          }
+        ],
+        "spatial_proxy_untagged_or_misused_count": 0
+      },
+      "passed": true,
+      "reason": "Holdout validation cannot initialize prediction before sealing."
+    },
+    {
+      "control_id": "internal_runtime_leakage_control",
+      "observed": {
+        "allowed_initialization_source_ids": [],
+        "blocked_source_ids": [
+          "V67_BAD_INTERNAL_RUNTIME"
+        ],
+        "coordinate_derived_source_count_before_prediction": 0,
+        "coordinate_truth_used_before_prediction": false,
+        "holdout_opened_before_seal": false,
+        "internal_runtime_source_count_for_prediction": 1,
+        "internal_runtime_used_as_biological_evidence": true,
+        "kind": "PROTEIN_ESPERANTO_EVIDENCE_BOUNDARY_GATE_v0",
+        "rows": [
+          {
+            "allowed_for_claim": false,
+            "allowed_for_holdout_after_seal": false,
+            "allowed_to_initialize_language_field": false,
+            "blocked_reason": "internal_runtime_never_biological_evidence",
+            "coordinate_derived": false,
+            "internal_runtime": true,
+            "source_class": "internal_runtime",
+            "source_id": "V67_BAD_INTERNAL_RUNTIME",
+            "source_role": "prediction_input",
+            "spatial_proxy": false
+          }
+        ],
+        "spatial_proxy_untagged_or_misused_count": 0
+      },
+      "passed": true,
+      "reason": "Internal runtime cannot become biological evidence."
+    },
+    {
+      "control_id": "random_sequence_control",
+      "observed": null,
+      "passed": true,
+      "reason": "Random sequence without evidence abstains."
+    },
+    {
+      "control_id": "readme_check_skipped_by_user_instruction",
+      "observed": null,
+      "passed": true,
+      "reason": "README check skipped by explicit user instruction."
+    }
+  ],
+  "controls_passed": true,
+  "coordinate_truth_used_before_seal": false,
+  "coverage": 0.995,
+  "dominant_failure_count": 48,
+  "dominant_failure_mode": "assembly_required_core_vs_membrane_topology",
+  "engine_source_last_commit": "1f0acedc27c9a6227ef96f2d67a4ddfc08cdcece",
+  "engine_source_sha256": "6c3cd837e384ea5107a3b8f88809652d628fb2dad921cac1ac4a9acdd27bbc26",
+  "engine_version_used": "E64",
+  "failed_accepted_count": 106,
+  "failed_controls": [],
+  "failure_modes": {
+    "assembly_required_core": 1,
+    "assembly_required_core_vs_membrane_topology": 48,
+    "cofactor_locked_basin_vs_membrane_topology": 33,
+    "disorder_or_low_complexity_context": 12,
+    "over_abstain_membrane_multidomain_folding_proteostasis": 1,
+    "short_interface_context_missing": 12
+  },
+  "folding_problem_solved": false,
+  "forbidden_claims": [
+    "Universal protein folding is solved.",
+    "E64 has saturated broad RCSB protein space.",
+    "V67 failures may be hidden.",
+    "Coordinates, contacts, ligand geometry, or native topology were used before sealing."
+  ],
+  "kind": "V67_E64_MIXED_FAST_DISCOVERY_200_CERTIFICATE_v0",
+  "missing_words_top_10": [
+    {
+      "count": 48,
+      "failure_mode": "assembly_required_core_vs_membrane_topology"
+    },
+    {
+      "count": 33,
+      "failure_mode": "cofactor_locked_basin_vs_membrane_topology"
+    },
+    {
+      "count": 12,
+      "failure_mode": "short_interface_context_missing"
+    },
+    {
+      "count": 12,
+      "failure_mode": "disorder_or_low_complexity_context"
+    },
+    {
+      "count": 1,
+      "failure_mode": "assembly_required_core"
+    },
+    {
+      "count": 1,
+      "failure_mode": "over_abstain_membrane_multidomain_folding_proteostasis"
+    }
+  ],
+  "next_required_step": "Extract E65 from the dominant V67 failure mode.",
+  "old_v66_failure_repair": {
+    "old_v66_failure_count": 70,
+    "old_v66_failures_remaining": 69,
+    "old_v66_failures_repaired_by_e64": 1,
+    "question_answer": "E64 repaired 1 of the 70 V66 failed-accepted targets; 69 remain for failure grammar mining."
+  },
+  "passed_control_count": 18,
+  "raw_accuracy": 0.465,
+  "sentinel_regression_count": 0,
+  "sentinel_regressions": [],
+  "status": "V67_E64_MIXED_FAST_DISCOVERY_FAILURES_MINED_REVIEW_REQUIRED",
+  "supported_count": 93,
+  "target_selection_manual": false,
+  "targets_total": 200,
+  "timestamp_utc": "2026-06-11T21:46:16.166544+00:00",
+  "v67_questions_answered": {
+    "did_e64_create_regressions": "0 sentinel regressions.",
+    "did_e64_repair_old_v66_failures": "E64 repaired 1 of the 70 V66 failed-accepted targets; 69 remain for failure grammar mining.",
+    "is_engine_over_accepting_or_abstaining": "over_accepting_relative_to_abstention",
+    "new_dominant_failure_mode": "assembly_required_core_vs_membrane_topology"
+  }
+}

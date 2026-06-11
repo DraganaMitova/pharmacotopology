@@ -1,0 +1,93 @@
+{
+  "alphafold_used_before_seal": false,
+  "batch_id": "V67_RCSB_NONREDUNDANT_200_DISCOVERY_E64",
+  "blocked_prediction_inputs": [
+    "PDB/mmCIF coordinates before sealing",
+    "native contacts, distance maps, residue-residue proximity, and coordinate-derived topology",
+    "ligand coordinates, metal coordination geometry, and bound-state contact geometry",
+    "AlphaFold, ESMFold, RoseTTAFold, or other structure models before sealing",
+    "post-seal validation annotations before prediction hash",
+    "prior score outcomes as prediction evidence",
+    "internal runtime artifacts as biological evidence"
+  ],
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "e64_context_policy": {
+    "biological_cofactor_components_seen": [],
+    "context_derivation": "V67 E64 uses sequence plus public non-coordinate metadata. Explicit transmembrane/topology-provider evidence may initialize membrane grammar; hydrophobicity-only and generic membrane mentions do not. Generic 'complex' wording is not oligomer evidence by itself.",
+    "context_marks": [
+      "assembly_context",
+      "homomeric_context",
+      "oligomer_context",
+      "partner_copy_context"
+    ],
+    "polymer_copy_counts": {
+      "entity_molecule_count": 8,
+      "polymer_composition": "homomeric protein",
+      "polymer_entity_instance_count": 8
+    },
+    "reasons": [
+      "public metadata indicates multiple copies or specific oligomer/assembly context",
+      "E64 treats generic membrane or hydrophobicity-only signal as insufficient topology evidence"
+    ],
+    "withheld_context_marks": [
+      "generic_membrane_without_explicit_topology"
+    ]
+  },
+  "engine_version_used": "E64",
+  "entity_id": "1",
+  "entry_id": "12HP",
+  "folding_problem_solved": false,
+  "kind": "V67_E64_MIXED_FAST_DISCOVERY_SOURCE_MANIFEST_v0",
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence for the RCSB polymer entity.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V67_068_NEW_12HP_1_RAW_SEQUENCE",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/12HP/1",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "RCSB title: Crystal structure of the CD7 ectodomain. Entity description: T-cell antigen CD7. Organism: Homo sapiens. Polymer composition: homomeric protein. Sequence-derived marks: sequence-derived hydrophobic closure tendency; public metadata indicates multiple polymer instances or molecule copies. Coordinates, native contacts, residue-residue distances, ligand geometry, and validation annotations are unopened before the prediction hash.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V67_068_NEW_12HP_1_PUBLIC_METADATA",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/12HP",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "V67 E64 metadata context marks: assembly_context homomeric_context oligomer_context partner_copy_context. E64 uses explicit transmembrane/topology evidence and ignores generic complex wording as oligomer evidence. no membrane topology; hydrophobicity-alone or generic membrane signal is ambiguous. Coordinates, contacts, ligand geometry, native topology, and post-seal validation labels are blocked before sealing.",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [
+        "assembly_context",
+        "homomeric_context",
+        "oligomer_context",
+        "partner_copy_context"
+      ],
+      "metadata_context_reasons": [
+        "public metadata indicates multiple copies or specific oligomer/assembly context",
+        "E64 treats generic membrane or hydrophobicity-only signal as insufficient topology evidence"
+      ],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V67_068_NEW_12HP_1_E64_METADATA_CONTEXT",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/12HP",
+      "spatial_proxy": false,
+      "withheld_context_marks": [
+        "generic_membrane_without_explicit_topology"
+      ]
+    }
+  ],
+  "protein_id": "12HP_1",
+  "selection_category": "NEW_RCSB_NONREDUNDANT_E64_DISCOVERY",
+  "sequence": "AQEVQQSPHCTTVPVGASVNITCSTSGGLRGIYLRQLGPQPQDIIYYEDGVVPTTDRRFRGRIDFSGSQDNLTITMHRLQLSDTGTYTCQAITEVNVYGSGTLVLVTEEQSQGWHRCSDA",
+  "sequence_length": 120,
+  "source_family": "V63",
+  "target_id": "V67_068_NEW_12HP_1"
+}

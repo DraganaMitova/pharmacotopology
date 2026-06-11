@@ -938,7 +938,7 @@ def _aggregate_certificate(
         "folding_problem_solved": False,
         "claim_allowed": False,
         "claim_blocked_reason": "V66 is an adaptive 200-target repair replay; broad claims require new 200-target discovery shards and specialist panels.",
-        "next_required_batch": "V67_RCSB_NONREDUNDANT_200_DISCOVERY_E63",
+        "next_required_batch": "V67_RCSB_NONREDUNDANT_200_DISCOVERY_E64",
     }
     cert["certificate_hash"] = stable_hash({key: value for key, value in cert.items() if key != "certificate_hash"})
     return cert

@@ -1,0 +1,38 @@
+{
+  "batch_id": "V67_RCSB_NONREDUNDANT_200_DISCOVERY_E64",
+  "engine_version_used": "E64",
+  "entity_id": "1",
+  "entry_id": "1A0S",
+  "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "expected_observables": [
+    {
+      "check_id": "proteostasis_routing_supported",
+      "comparator": ">=",
+      "metric": "proteostasis_routing",
+      "threshold": 0.5
+    }
+  ],
+  "holdout_opened_after_prediction_hash": "907f801a9353c3fe289bb1e938d5f34a898ba0413ffe58c2e7523475010804ad",
+  "kind": "V67_E64_MIXED_FAST_DISCOVERY_POSTSEAL_HOLDOUT_v0",
+  "lineage_source_target": "V65_A_01_1A0S_1",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "",
+      "lineage_source_target": "V65_A_01_1A0S_1",
+      "polymer_entity_url": "",
+      "source_class": "coordinate_derived",
+      "source_id": "V67_187_SENT_V65_1A0S_1_V67_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "V65 supported topology sentinel replayed under E64.",
+    "Prior target: V65_A_01_1A0S_1"
+  ],
+  "protein_id": "1A0S_1",
+  "selection_category": "SENTINEL_STABILITY_REPLAY",
+  "source_family": "V65",
+  "target_id": "V67_187_SENT_V65_1A0S_1"
+}

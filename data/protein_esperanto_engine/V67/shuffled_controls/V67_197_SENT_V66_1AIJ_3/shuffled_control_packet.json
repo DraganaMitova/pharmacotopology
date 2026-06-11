@@ -1,0 +1,56 @@
+{
+  "active_operator_count": 1,
+  "evidence_manifest": {
+    "allowed_initialization_source_ids": [
+      "V67_197_SENT_V66_1AIJ_3_SHUFFLED_SEQUENCE_ONLY"
+    ],
+    "blocked_source_ids": [],
+    "coordinate_derived_source_count_before_prediction": 0,
+    "coordinate_truth_used_before_prediction": false,
+    "holdout_opened_before_seal": false,
+    "internal_runtime_source_count_for_prediction": 0,
+    "internal_runtime_used_as_biological_evidence": false,
+    "kind": "PROTEIN_ESPERANTO_EVIDENCE_BOUNDARY_GATE_v0",
+    "rows": [
+      {
+        "allowed_for_claim": true,
+        "allowed_for_holdout_after_seal": false,
+        "allowed_to_initialize_language_field": true,
+        "blocked_reason": "",
+        "coordinate_derived": false,
+        "internal_runtime": false,
+        "source_class": "pure_non_coordinate",
+        "source_id": "V67_197_SENT_V66_1AIJ_3_SHUFFLED_SEQUENCE_ONLY",
+        "source_role": "prediction_input",
+        "spatial_proxy": false
+      }
+    ],
+    "spatial_proxy_untagged_or_misused_count": 0
+  },
+  "folding_problem_solved": false,
+  "kind": "V67_COMPACT_SEALED_PACKET_SUMMARY_v0",
+  "natural_mechanism_class": "globular_closure",
+  "operator_names": [
+    "closure_operator"
+  ],
+  "prediction_hash": "ec017f2b16fc1d0f7fee68420d64ff0b28f458d06b2c3a833fe0c946268c5ae8",
+  "sealed_before_holdout": true,
+  "selected_mechanism_class": "globular_closure",
+  "selection_reason": "sequence_only_hydrophobic_closure_support",
+  "target_id": "V67_197_SENT_V66_1AIJ_3_SHUFFLED_CONTROL",
+  "trajectory_final_state_summary": {
+    "contact_probability": 0.569231,
+    "disorder_order_balance": 0.282462,
+    "frustration": 0.0,
+    "interface_readiness": 0.12,
+    "operator_activation": 0.692308,
+    "proteostasis_routing": 0.0,
+    "residue_exposure": 0.608885,
+    "segment_compaction": 0.567692,
+    "state_basin_occupancy": {
+      "compact_folded": 0.609231,
+      "expanded_unfolded": 0.433846
+    },
+    "timepoint": 1000
+  }
+}

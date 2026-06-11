@@ -1,0 +1,43 @@
+{
+  "acceptance_decision": "accepted",
+  "alphafold_used_before_seal": false,
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "3",
+  "entry_id": "10EZ",
+  "expected_mechanism_class": "oligomerization_controlled_folding",
+  "holdout_opened_after_prediction_hash": "8cbe86ce6a124c202f22614b9993d7e5140656f4135c115fdacf87c0654d53af",
+  "kind": "V67_E64_MIXED_FAST_DISCOVERY_VALIDATION_RESULT_v0",
+  "level1_regime_selection": true,
+  "level2_region_localization_proxy": true,
+  "level3_topology_or_contact_proxy": true,
+  "lineage_source_target": "V62_10EZ_3",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/10EZ",
+      "lineage_source_target": "V62_10EZ_3",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/10EZ/3",
+      "source_class": "coordinate_derived",
+      "source_id": "V67_175_SENTINEL_10EZ_3_V67_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "predicted_mechanism_class": "oligomerization_controlled_folding",
+  "protein_id": "10EZ_3",
+  "score_label": "supported",
+  "sealed_prediction_hash": "8cbe86ce6a124c202f22614b9993d7e5140656f4135c115fdacf87c0654d53af",
+  "selection_category": "SENTINEL_STABILITY_REPLAY",
+  "sentinel_regressed": false,
+  "source_family": "V62",
+  "target_id": "V67_175_SENTINEL_10EZ_3",
+  "validation_checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "oligomerization_controlled_folding",
+      "observed": "oligomerization_controlled_folding",
+      "passed": true
+    }
+  ]
+}

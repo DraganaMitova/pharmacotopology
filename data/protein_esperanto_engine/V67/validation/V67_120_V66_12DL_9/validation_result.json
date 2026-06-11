@@ -1,0 +1,55 @@
+{
+  "acceptance_decision": "accepted",
+  "alphafold_used_before_seal": false,
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "9",
+  "entry_id": "12DL",
+  "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "holdout_opened_after_prediction_hash": "0efb005fe0889ca71fd72c6c6199c6a10c026787acc13ccc884d3e8073dfc28b",
+  "kind": "V67_E64_MIXED_FAST_DISCOVERY_VALIDATION_RESULT_v0",
+  "level1_regime_selection": false,
+  "level2_region_localization_proxy": true,
+  "level3_topology_or_contact_proxy": false,
+  "lineage_source_target": "V66_092_12DL_9",
+  "old_v66_failure_repaired_by_e64": false,
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/12DL",
+      "lineage_source_target": "V66_092_12DL_9",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/12DL/9",
+      "source_class": "coordinate_derived",
+      "source_id": "V67_120_V66_12DL_9_V67_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+  "protein_id": "12DL_9",
+  "score_label": "contradicted",
+  "sealed_prediction_hash": "0efb005fe0889ca71fd72c6c6199c6a10c026787acc13ccc884d3e8073dfc28b",
+  "selection_category": "V66_FAILED_ACCEPTED_REPLAY",
+  "source_family": "V66",
+  "target_id": "V67_120_V66_12DL_9",
+  "v66_prior_expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "v66_prior_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+  "v66_prior_score_label": "contradicted",
+  "v66_prior_target_id": "V66_092_12DL_9",
+  "validation_checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "membrane_multidomain_folding_proteostasis",
+      "observed": "cofactor_ligand_assisted_stabilization",
+      "passed": false
+    },
+    {
+      "check_id": "proteostasis_routing_supported",
+      "comparator": ">=",
+      "metric": "proteostasis_routing",
+      "observed": 0.0,
+      "passed": false,
+      "threshold": 0.5
+    }
+  ]
+}

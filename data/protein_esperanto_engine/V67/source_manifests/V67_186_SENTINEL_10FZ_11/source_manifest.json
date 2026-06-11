@@ -1,0 +1,95 @@
+{
+  "alphafold_used_before_seal": false,
+  "batch_id": "V67_RCSB_NONREDUNDANT_200_DISCOVERY_E64",
+  "blocked_prediction_inputs": [
+    "PDB/mmCIF coordinates before sealing",
+    "native contacts, distance maps, residue-residue proximity, and coordinate-derived topology",
+    "ligand coordinates, metal coordination geometry, and bound-state contact geometry",
+    "AlphaFold, ESMFold, RoseTTAFold, or other structure models before sealing",
+    "post-seal validation annotations before prediction hash",
+    "prior score outcomes as prediction evidence",
+    "internal runtime artifacts as biological evidence"
+  ],
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "e64_context_policy": {
+    "biological_cofactor_components_seen": [
+      "MG"
+    ],
+    "context_derivation": "V67 E64 uses sequence plus public non-coordinate metadata. Explicit transmembrane/topology-provider evidence may initialize membrane grammar; hydrophobicity-only and generic membrane mentions do not. Generic 'complex' wording is not oligomer evidence by itself.",
+    "context_marks": [
+      "assembly_context",
+      "cofactor_context",
+      "ligand_context",
+      "metal_context",
+      "oligomer_context",
+      "partner_copy_context"
+    ],
+    "polymer_copy_counts": {
+      "entity_molecule_count": 1,
+      "polymer_composition": "protein/NA",
+      "polymer_entity_instance_count": 21
+    },
+    "reasons": [
+      "public non-coordinate component list contains biological cofactor candidates: ['MG']",
+      "public metadata indicates multiple copies or specific oligomer/assembly context"
+    ],
+    "withheld_context_marks": []
+  },
+  "engine_version_used": "E64",
+  "entity_id": "11",
+  "entry_id": "10FZ",
+  "folding_problem_solved": false,
+  "kind": "V67_E64_MIXED_FAST_DISCOVERY_SOURCE_MANIFEST_v0",
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence for the RCSB polymer entity.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V67_186_SENTINEL_10FZ_11_RAW_SEQUENCE",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/10FZ/11",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "RCSB title: 30S ribosomal subunit from E. coli missing the gene encoding for the 16S rRNA 2'-O-methyltransferase RsmI. Entity description: Small ribosomal subunit protein bS18. Organism: Escherichia coli BW25113. Polymer composition: protein/NA. Sequence-derived marks: sequence-derived hydrophobic closure tendency; public metadata indicates multiple polymer instances or molecule copies. Coordinates, native contacts, residue-residue distances, ligand geometry, and validation annotations are unopened before the prediction hash.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V67_186_SENTINEL_10FZ_11_PUBLIC_METADATA",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/10FZ",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "V67 E64 metadata context marks: assembly_context cofactor_context ligand_context metal_context oligomer_context partner_copy_context. E64 uses explicit transmembrane/topology evidence and ignores generic complex wording as oligomer evidence. Coordinates, contacts, ligand geometry, native topology, and post-seal validation labels are blocked before sealing.",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [
+        "assembly_context",
+        "cofactor_context",
+        "ligand_context",
+        "metal_context",
+        "oligomer_context",
+        "partner_copy_context"
+      ],
+      "metadata_context_reasons": [
+        "public non-coordinate component list contains biological cofactor candidates: ['MG']",
+        "public metadata indicates multiple copies or specific oligomer/assembly context"
+      ],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V67_186_SENTINEL_10FZ_11_E64_METADATA_CONTEXT",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/10FZ",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "protein_id": "10FZ_11",
+  "selection_category": "SENTINEL_STABILITY_REPLAY",
+  "sequence": "ARYFRRRKFCRFTAEGVQEIDYKDIATLKNYITESGKIVPSRITGTRAKYQRQLARAIKRARYLSLLPYTDRHQ",
+  "sequence_length": 74,
+  "source_family": "V64",
+  "target_id": "V67_186_SENTINEL_10FZ_11"
+}

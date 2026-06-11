@@ -1,0 +1,26 @@
+{
+  "certificate_hash": "6323a46cfcb8a83afd25d0cb45792d3e33599965de956e4157d1b6306a356157",
+  "claim_allowed": false,
+  "claim_blocked_reason": "E64 is a lineage revision for discovery and regression, not a solved-folding claim.",
+  "engine_source_last_commit": "1f0acedc27c9a6227ef96f2d67a4ddfc08cdcece",
+  "engine_source_sha256": "6c3cd837e384ea5107a3b8f88809652d628fb2dad921cac1ac4a9acdd27bbc26",
+  "engine_version": "E64",
+  "kind": "E64_EXPLICIT_TM_AND_COMPLEX_CLEANUP_ENGINE_REVISION_CERTIFICATE_v0",
+  "lineage": [
+    "E60",
+    "E61",
+    "E62",
+    "E63",
+    "E64"
+  ],
+  "mechanism_class_set_hash": "c088ecef4efacdd6de1b451237e717fa4b5149ca8f3be5bf46666ff567f1eb29",
+  "next_required_batch": "V67_RCSB_NONREDUNDANT_200_DISCOVERY_E64",
+  "operator_set_hash": "1421426c696edb0f3ddce7a984c3fc0603e32fea4eb28a9f8acb83bbf07e910a",
+  "revision_summary": [
+    "Explicit transmembrane/topology-provider evidence is carried forward as E64.",
+    "Generic 'complex' wording is not oligomer evidence unless copy/assembly/oligomer evidence is present.",
+    "The broad spaced negative token 'hydrophobicity alone' is not used as a membrane-topology conflict trigger; the exact hyphenated hydrophobicity-alone sentinel remains."
+  ],
+  "source_batch_trigger": "V66_E63_FAST_MEMBRANE_REPAIR_REPLAY_200",
+  "timestamp_utc": "2026-06-11T21:46:13.777324+00:00"
+}

@@ -1,0 +1,38 @@
+{
+  "batch_id": "V67_RCSB_NONREDUNDANT_200_DISCOVERY_E64",
+  "engine_version_used": "E64",
+  "entity_id": "2",
+  "entry_id": "10OZ",
+  "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "expected_observables": [
+    {
+      "check_id": "proteostasis_routing_supported",
+      "comparator": ">=",
+      "metric": "proteostasis_routing",
+      "threshold": 0.5
+    }
+  ],
+  "holdout_opened_after_prediction_hash": "a297538680161127672e6c41c3c41dfdef29ae07b0fca707b5ecbe7d07c384be",
+  "kind": "V67_E64_MIXED_FAST_DISCOVERY_POSTSEAL_HOLDOUT_v0",
+  "lineage_source_target": "V63_10OZ_2",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/10OZ",
+      "lineage_source_target": "V63_10OZ_2",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/10OZ/2",
+      "source_class": "coordinate_derived",
+      "source_id": "V67_005_NEW_10OZ_2_V67_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "New V67 RCSB nonredundant target from V63 intake.",
+    "postseal text/annotation indicates membrane or transport pressure"
+  ],
+  "protein_id": "10OZ_2",
+  "selection_category": "NEW_RCSB_NONREDUNDANT_E64_DISCOVERY",
+  "source_family": "V63",
+  "target_id": "V67_005_NEW_10OZ_2"
+}

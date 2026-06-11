@@ -1,0 +1,38 @@
+{
+  "batch_id": "V67_RCSB_NONREDUNDANT_200_DISCOVERY_E64",
+  "engine_version_used": "E64",
+  "entity_id": "1",
+  "entry_id": "11BE",
+  "expected_mechanism_class": "intrinsic_disorder_phase_separation",
+  "expected_observables": [
+    {
+      "check_id": "compact_single_fold_rejected",
+      "comparator": "<=",
+      "metric": "basin:compact_single_fold",
+      "threshold": 0.12
+    }
+  ],
+  "holdout_opened_after_prediction_hash": "5d565f13717c54b0b09e2a79a0bb891bd6937fcb0c0af7fd1ccd731df7371663",
+  "kind": "V67_E64_MIXED_FAST_DISCOVERY_POSTSEAL_HOLDOUT_v0",
+  "lineage_source_target": "V63_11BE_1",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/11BE",
+      "lineage_source_target": "V63_11BE_1",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/11BE/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V67_032_NEW_11BE_1_V67_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "New V67 RCSB nonredundant target from V63 intake.",
+    "postseal annotation/feature indicates disorder or low-complexity behavior"
+  ],
+  "protein_id": "11BE_1",
+  "selection_category": "NEW_RCSB_NONREDUNDANT_E64_DISCOVERY",
+  "source_family": "V63",
+  "target_id": "V67_032_NEW_11BE_1"
+}

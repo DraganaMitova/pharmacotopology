@@ -1,0 +1,31 @@
+{
+  "batch_id": "V67_RCSB_NONREDUNDANT_200_DISCOVERY_E64",
+  "engine_version_used": "E64",
+  "entity_id": "1",
+  "entry_id": "1A45",
+  "expected_mechanism_class": "oligomerization_controlled_folding",
+  "expected_observables": [],
+  "holdout_opened_after_prediction_hash": "461b37a2885c43d28e1168c10f3c9d3846f0d0a83638c242972b89d41f9970d9",
+  "kind": "V67_E64_MIXED_FAST_DISCOVERY_POSTSEAL_HOLDOUT_v0",
+  "lineage_source_target": "V63_1A45_1",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1A45",
+      "lineage_source_target": "V63_1A45_1",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1A45/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V67_098_NEW_1A45_1_V67_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "New V67 RCSB nonredundant target from V63 intake.",
+    "postseal entry/entity metadata indicates oligomer or assembly context"
+  ],
+  "protein_id": "1A45_1",
+  "selection_category": "NEW_RCSB_NONREDUNDANT_E64_DISCOVERY",
+  "source_family": "V63",
+  "target_id": "V67_098_NEW_1A45_1"
+}

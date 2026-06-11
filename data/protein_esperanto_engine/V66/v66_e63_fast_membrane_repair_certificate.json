@@ -261,7 +261,7 @@
     "failed_accepted_delta": -34,
     "supported_delta": 34
   },
-  "next_required_batch": "V67_RCSB_NONREDUNDANT_200_DISCOVERY_E63",
+  "next_required_batch": "V67_RCSB_NONREDUNDANT_200_DISCOVERY_E64",
   "passed_control_count": 15,
   "raw_accuracy": 0.65,
   "repair_passed": true,

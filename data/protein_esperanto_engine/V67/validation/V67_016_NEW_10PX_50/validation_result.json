@@ -1,0 +1,42 @@
+{
+  "acceptance_decision": "accepted",
+  "alphafold_used_before_seal": false,
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "50",
+  "entry_id": "10PX",
+  "expected_mechanism_class": "cofactor_ligand_assisted_stabilization",
+  "holdout_opened_after_prediction_hash": "a89f8512774bd47842cd0fc6fa4ffa6eec9a7ac94cbcdb3bb0a2a12ec23255cb",
+  "kind": "V67_E64_MIXED_FAST_DISCOVERY_VALIDATION_RESULT_v0",
+  "level1_regime_selection": true,
+  "level2_region_localization_proxy": true,
+  "level3_topology_or_contact_proxy": true,
+  "lineage_source_target": "V63_10PX_50",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/10PX",
+      "lineage_source_target": "V63_10PX_50",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/10PX/50",
+      "source_class": "coordinate_derived",
+      "source_id": "V67_016_NEW_10PX_50_V67_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+  "protein_id": "10PX_50",
+  "score_label": "supported",
+  "sealed_prediction_hash": "a89f8512774bd47842cd0fc6fa4ffa6eec9a7ac94cbcdb3bb0a2a12ec23255cb",
+  "selection_category": "NEW_RCSB_NONREDUNDANT_E64_DISCOVERY",
+  "source_family": "V63",
+  "target_id": "V67_016_NEW_10PX_50",
+  "validation_checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "cofactor_ligand_assisted_stabilization",
+      "observed": "cofactor_ligand_assisted_stabilization",
+      "passed": true
+    }
+  ]
+}

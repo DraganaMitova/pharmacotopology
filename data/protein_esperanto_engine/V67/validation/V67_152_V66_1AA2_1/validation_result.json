@@ -1,0 +1,55 @@
+{
+  "acceptance_decision": "accepted",
+  "alphafold_used_before_seal": false,
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "1",
+  "entry_id": "1AA2",
+  "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "holdout_opened_after_prediction_hash": "7f7c50467b79fe6a95c9ad817143638564dd90f08efe506a06df5a9cc68e783c",
+  "kind": "V67_E64_MIXED_FAST_DISCOVERY_VALIDATION_RESULT_v0",
+  "level1_regime_selection": false,
+  "level2_region_localization_proxy": true,
+  "level3_topology_or_contact_proxy": false,
+  "lineage_source_target": "V66_131_1AA2_1",
+  "old_v66_failure_repaired_by_e64": false,
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1AA2",
+      "lineage_source_target": "V66_131_1AA2_1",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1AA2/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V67_152_V66_1AA2_1_V67_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "predicted_mechanism_class": "oligomerization_controlled_folding",
+  "protein_id": "1AA2_1",
+  "score_label": "contradicted",
+  "sealed_prediction_hash": "7f7c50467b79fe6a95c9ad817143638564dd90f08efe506a06df5a9cc68e783c",
+  "selection_category": "V66_FAILED_ACCEPTED_REPLAY",
+  "source_family": "V66",
+  "target_id": "V67_152_V66_1AA2_1",
+  "v66_prior_expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "v66_prior_predicted_mechanism_class": "oligomerization_controlled_folding",
+  "v66_prior_score_label": "contradicted",
+  "v66_prior_target_id": "V66_131_1AA2_1",
+  "validation_checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "membrane_multidomain_folding_proteostasis",
+      "observed": "oligomerization_controlled_folding",
+      "passed": false
+    },
+    {
+      "check_id": "proteostasis_routing_supported",
+      "comparator": ">=",
+      "metric": "proteostasis_routing",
+      "observed": 0.0,
+      "passed": false,
+      "threshold": 0.5
+    }
+  ]
+}

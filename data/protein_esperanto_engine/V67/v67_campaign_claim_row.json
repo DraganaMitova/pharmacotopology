@@ -1,0 +1,22 @@
+{
+  "abstention_rate": 0.005,
+  "accepted_accuracy": 0.46733668341708545,
+  "batch_id": "V67_RCSB_NONREDUNDANT_200_DISCOVERY_E64",
+  "batch_mode": "mixed_fast_discovery_shard",
+  "claim_allowed": false,
+  "claim_blocked_reason": "V67 is a mixed fast discovery shard for E65 mining, not a solved-folding claim.",
+  "control_pass_rate": 1.0,
+  "coverage": 0.995,
+  "dominant_failure_mode": "assembly_required_core_vs_membrane_topology",
+  "engine_version_used": "E64",
+  "failure_count": 107,
+  "failure_modes": {
+    "assembly_required_core": 1,
+    "assembly_required_core_vs_membrane_topology": 48,
+    "cofactor_locked_basin_vs_membrane_topology": 33,
+    "disorder_or_low_complexity_context": 12,
+    "over_abstain_membrane_multidomain_folding_proteostasis": 1,
+    "short_interface_context_missing": 12
+  },
+  "raw_accuracy": 0.465
+}

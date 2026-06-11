@@ -1,0 +1,31 @@
+{
+  "batch_id": "V67_RCSB_NONREDUNDANT_200_DISCOVERY_E64",
+  "engine_version_used": "E64",
+  "entity_id": "3",
+  "entry_id": "10EX",
+  "expected_mechanism_class": "oligomerization_controlled_folding",
+  "expected_observables": [],
+  "holdout_opened_after_prediction_hash": "aca4831f69dc791c65da4a27b97909575d7502c44f890c9a8b362918a317d040",
+  "kind": "V67_E64_MIXED_FAST_DISCOVERY_POSTSEAL_HOLDOUT_v0",
+  "lineage_source_target": "V62_10EX_3",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/10EX",
+      "lineage_source_target": "V62_10EX_3",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/10EX/3",
+      "source_class": "coordinate_derived",
+      "source_id": "V67_174_SENTINEL_10EX_3_V67_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "V62 supported sentinel replayed under E64.",
+    "Prior target: V62_10EX_3"
+  ],
+  "protein_id": "10EX_3",
+  "selection_category": "SENTINEL_STABILITY_REPLAY",
+  "source_family": "V62",
+  "target_id": "V67_174_SENTINEL_10EX_3"
+}

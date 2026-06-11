@@ -1,0 +1,62 @@
+{
+  "alphafold_used_before_seal": false,
+  "batch_id": "V67_RCSB_NONREDUNDANT_200_DISCOVERY_E64",
+  "blocked_prediction_inputs": [
+    "PDB/mmCIF coordinates before sealing",
+    "native contacts, distance maps, residue-residue proximity, and coordinate-derived topology",
+    "ligand coordinates, metal coordination geometry, and bound-state contact geometry",
+    "AlphaFold, ESMFold, RoseTTAFold, or other structure models before sealing",
+    "post-seal validation annotations before prediction hash",
+    "prior score outcomes as prediction evidence",
+    "internal runtime artifacts as biological evidence"
+  ],
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E64",
+  "entity_id": "1",
+  "entry_id": "1AR1",
+  "folding_problem_solved": false,
+  "kind": "V67_E64_MIXED_FAST_DISCOVERY_SOURCE_MANIFEST_v0",
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence for the RCSB polymer entity.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V67_198_SENT_V66_1AR1_1_REPLAY_SOURCE_01",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1AR1/1",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "V67 topology source from OPM/PDBTM/MemProtMD annotations. membrane_context_strong transmembrane_context topology_evidence transmembrane helix; pore-facing versus lipid-facing residues and inside/outside topology must be treated as topology evidence, not hydrophobicity alone.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V67_198_SENT_V66_1AR1_1_REPLAY_SOURCE_02",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/1AR1",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "V67 E64 replay lineage context: explicit transmembrane evidence is preserved, generic complex alone is ignored as oligomer evidence, and hydrophobic-only signals without topology are ambiguous. Coordinates, contacts, ligand geometry, native topology, and post-seal validation labels are blocked before sealing.",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [
+        "e64_lineage_context"
+      ],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V67_198_SENT_V66_1AR1_1_E64_LINEAGE_CONTEXT",
+      "source_role": "prediction_input",
+      "spatial_proxy": false
+    }
+  ],
+  "protein_id": "1AR1_1",
+  "selection_category": "SENTINEL_STABILITY_REPLAY",
+  "sequence": "MADAAVHGHGDHHDTRGFFTRWFMSTNHKDIGILYLFTAGIVGLISVCFTVYMRMELQHPGVQYMCLEGARLIADASAECTPNGHLWNVMITYHGVLMMFFVVIPALFGGFGNYFMPLHIGAPDMAFPRLNNLSYWMYVCGVALGVASLLAPGGNDQMGSGVGWVLYPPLSTTEAGYSMDLAIFAVHVSGASSILGAINIITTFLNMRAPGMTLFKVPLFAWSVFITAWLILLSLPVLAGAITMLLMDRNFGTQFFDPAGGGDPVLYQHILWFFGHPEVYIIILPGFGIISHVISTFAKKPIFGYLPMVLAMAAIGILGFVVWAHHMYTAGMSLTQQAYFMLATMTIAVPTGIKVFSWIATMWGGSIEFKTPMLWAFGFLFLFTVGGVTGVVLSQAPLDRVYHDTYYVVAHFHYVMSLGAVFGIFAGVYYWIGKMSGRQYPEWAGQLHFWMMFIGSNLIFFPQHFLGRQGMPRRYIDYPVEFAYWNNISSIGAYISFASFLFFIGIVFYTLFAGKRVNVPNYWNEHADTLEWTLPSPPPEHTFETLPKREDWDRAHAH",
+  "sequence_length": 558,
+  "source_family": "V66",
+  "source_lineage_batch": "V66_E63_FAST_MEMBRANE_REPAIR_REPLAY_200",
+  "source_lineage_target": "V66_005_V65_A_05_1AR1_1",
+  "target_id": "V67_198_SENT_V66_1AR1_1"
+}
