@@ -1,0 +1,21 @@
+{
+  "claim_allowed": false,
+  "decision_status": "V31_CLEAN_ABSTAIN_NO_REAL_EXTERNAL_CONSTRAINTS_FOR_SELECTED_TARGETS",
+  "kind": "V31_NEXT_OPERATOR_READOUT_DECISION_v0",
+  "new_MD_allowed": false,
+  "new_MD_recommended": false,
+  "next_action": "acquire_or_import_real_external_constraints_for_XCL1_or_KcsA_before_constraint_backed_readout",
+  "real_external_constraint_targets_all": [
+    "4AKE",
+    "1UBQ",
+    "1CLL"
+  ],
+  "real_external_constraint_targets_in_selected_scope": [],
+  "reason": "V31 separates real external constraints/couplings from annotation context and generated internal reports. Only selected-scope targets with real external constraint/coupling files can enter V32 as constraint-backed readouts.",
+  "selected_V31_targets": [
+    "XCL1_lymphotactin",
+    "KcsA"
+  ],
+  "selected_V32_panel": null,
+  "selected_V32_target": null
+}

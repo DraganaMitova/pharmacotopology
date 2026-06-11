@@ -1,0 +1,15 @@
+{
+  "allowed_use_matrix": {
+    "annotation_only_external_context": "allowed_for_role_context_only",
+    "external_structure_source": "allowed_for_structure_context_or_validation_only",
+    "generated_internal_report": "allowed_for_audit_only",
+    "model_prediction_or_msa_free_artifact": "allowed_for_audit_only",
+    "real_external_alignment_source": "allowed_for_constraint_derivation_preflight_only",
+    "real_external_constraint_or_coupling": "allowed_for_constraint_backed_operator_readout",
+    "unusable_or_unclassified": "excluded",
+    "unverified_annotation_like_file": "excluded",
+    "unverified_constraint_like_file": "excluded"
+  },
+  "claim_allowed": false,
+  "kind": "V31_ALLOWED_USE_MATRIX_v0"
+}

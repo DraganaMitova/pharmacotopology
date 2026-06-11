@@ -1,0 +1,2145 @@
+[
+  {
+    "allowed_use": "not_allowed_for_constraint_backed_operator_readout",
+    "allowed_use_counts": {
+      "allowed_for_audit_only": 57
+    },
+    "annotation_context_files": [],
+    "candidate_file_count": 57,
+    "claim_allowed": false,
+    "classified_candidate_files": [
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V16_PRESSURE_EVIDENCE_GAP_LOCK/V16_PRESSURE_EVIDENCE_GAP_LOCK_REPORT.md"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V16_PRESSURE_EVIDENCE_GAP_LOCK/v16_pressure_evidence_gap_lock_certificate.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V16_TARGET_MANIFEST_AND_ROLE_EXPECTATION_LOCK/V16_TARGET_MANIFEST_AND_ROLE_EXPECTATION_LOCK_REPORT.md"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V16_TARGET_MANIFEST_AND_ROLE_EXPECTATION_LOCK/v16_target_manifest_and_role_expectation_lock_certificate.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V16_TRANSFER_DATA_PREFLIGHT/V16_TRANSFER_DATA_PREFLIGHT_REPORT.md"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V16_TRANSFER_DATA_PREFLIGHT/v16_transfer_data_preflight_certificate.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V16_ZERO_MD_ROLE_TRANSFER_READOUT/V16_ZERO_MD_ROLE_TRANSFER_READOUT_REPORT.md"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V16_ZERO_MD_ROLE_TRANSFER_READOUT/v16_zero_md_role_transfer_readout_certificate.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V17_PRESSURE_EVIDENCE_SPRINT_LOCK/V17_PRESSURE_EVIDENCE_SPRINT_LOCK_REPORT.md"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V17_PRESSURE_EVIDENCE_SPRINT_LOCK/v17_next_target_decision.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V17_PRESSURE_EVIDENCE_SPRINT_LOCK/v17_pressure_evidence_manifest.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V17_PRESSURE_EVIDENCE_SPRINT_LOCK/v17_pressure_evidence_preflight.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V17_PRESSURE_EVIDENCE_SPRINT_LOCK/v17_pressure_evidence_sprint_lock_certificate.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V17_PRESSURE_EVIDENCE_SPRINT_LOCK/v17_zero_md_evidence_readout.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V18b_P53_ISOLATED_TAD_ABSTAIN_CONTEXT/v18b_p53_isolated_tad_abstain_context_certificate.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V19_KcsA_MEMBRANE_PORE_EVIDENCE_LOCK/v19_kcsa_membrane_pore_evidence_lock_certificate.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V19_KcsA_MEMBRANE_PORE_EVIDENCE_READOUT/v19_kcsa_membrane_pore_evidence_readout_certificate.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V20_XCL1_STATE_SPECIFIC_EVIDENCE_READOUT/V20_XCL1_STATE_SPECIFIC_EVIDENCE_READOUT_REPORT.md"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V20_XCL1_STATE_SPECIFIC_EVIDENCE_READOUT/v20_xcl1_state_A_readout.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V20_XCL1_STATE_SPECIFIC_EVIDENCE_READOUT/v20_xcl1_state_B_readout.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V20_XCL1_STATE_SPECIFIC_EVIDENCE_READOUT/v20_xcl1_state_separation_guard.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V20_XCL1_STATE_SPECIFIC_EVIDENCE_READOUT/v20_xcl1_state_specific_evidence_readout_certificate.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V21_PRESSURE_EVIDENCE_PANEL_SUMMARY/V21_PRESSURE_EVIDENCE_PANEL_SUMMARY_REPORT.md"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V21_PRESSURE_EVIDENCE_PANEL_SUMMARY/v21_pressure_evidence_panel_summary_certificate.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V21_PRESSURE_EVIDENCE_PANEL_SUMMARY/v21_pressure_evidence_panel_table.csv"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V22_EXTERNAL_EVIDENCE_AND_ANNOTATION_ACQUISITION_PANEL/V22_EXTERNAL_EVIDENCE_AND_ANNOTATION_ACQUISITION_PANEL_REPORT.md"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V22_EXTERNAL_EVIDENCE_AND_ANNOTATION_ACQUISITION_PANEL/v22_annotation_preflight.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V22_EXTERNAL_EVIDENCE_AND_ANNOTATION_ACQUISITION_PANEL/v22_coupling_availability_scan.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V22_EXTERNAL_EVIDENCE_AND_ANNOTATION_ACQUISITION_PANEL/v22_external_evidence_and_annotation_acquisition_panel_certificate.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V22_EXTERNAL_EVIDENCE_AND_ANNOTATION_ACQUISITION_PANEL/v22_external_evidence_manifest.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V22_EXTERNAL_EVIDENCE_AND_ANNOTATION_ACQUISITION_PANEL/v22_next_target_decision.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V25_FAST_MECHANISM_EVIDENCE_SPRINT/V25_FAST_MECHANISM_EVIDENCE_SPRINT_REPORT.md"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V25_FAST_MECHANISM_EVIDENCE_SPRINT/v25_fast_mechanism_evidence_sprint_certificate.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V25_FAST_MECHANISM_EVIDENCE_SPRINT/v25_next_mechanism_test_decision.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V25_FAST_MECHANISM_EVIDENCE_SPRINT/v25_unified_mechanism_operator_table.csv"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V25_FAST_MECHANISM_EVIDENCE_SPRINT/v25_unified_mechanism_operator_table.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V25_FAST_MECHANISM_EVIDENCE_SPRINT/v25_xcl1_state_specific_readout.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V26_XCL1_STATE_SEPARATION_OPERATOR_TEST/V26_XCL1_STATE_SEPARATION_OPERATOR_TEST_REPORT.md"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V26_XCL1_STATE_SEPARATION_OPERATOR_TEST/v26_next_mechanism_decision.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V26_XCL1_STATE_SEPARATION_OPERATOR_TEST/v26_xcl1_state_separation_operator_readout.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V26_XCL1_STATE_SEPARATION_OPERATOR_TEST/v26_xcl1_state_separation_operator_test_certificate.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V27_XCL1_CONDITION_AND_COUPLING_EVIDENCE_ACQUISITION/V27_XCL1_CONDITION_AND_COUPLING_EVIDENCE_ACQUISITION_REPORT.md"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V27_XCL1_CONDITION_AND_COUPLING_EVIDENCE_ACQUISITION/v27_xcl1_condition_and_coupling_evidence_acquisition_certificate.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V27_XCL1_CONDITION_AND_COUPLING_EVIDENCE_ACQUISITION/v27_xcl1_condition_label_manifest.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V27_XCL1_CONDITION_AND_COUPLING_EVIDENCE_ACQUISITION/v27_xcl1_condition_preflight.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V27_XCL1_CONDITION_AND_COUPLING_EVIDENCE_ACQUISITION/v27_xcl1_next_decision.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V27_XCL1_CONDITION_AND_COUPLING_EVIDENCE_ACQUISITION/v27_xcl1_state_specific_coupling_availability.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V28_XCL1_STATE_CONDITION_EVIDENCE_CONTRAST_TEST/V28_XCL1_STATE_CONDITION_EVIDENCE_CONTRAST_TEST_REPORT.md"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V28_XCL1_STATE_CONDITION_EVIDENCE_CONTRAST_TEST/v28_xcl1_next_decision.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V28_XCL1_STATE_CONDITION_EVIDENCE_CONTRAST_TEST/v28_xcl1_state_condition_contrast_readout.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V28_XCL1_STATE_CONDITION_EVIDENCE_CONTRAST_TEST/v28_xcl1_state_condition_evidence_contrast_certificate.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION_REPORT.md"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/v29_md_readiness_decision.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/v29_md_readiness_rows.csv"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/v29_md_readiness_rows.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/v29_mechanism_operator_panel_summary.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/v29_mechanism_operator_panel_summary_and_md_readiness_certificate.json"
+      }
+    ],
+    "constraint_backed_operator_readout_allowed": false,
+    "constraint_derivation_only_files": [],
+    "evidence_source_class_counts": {
+      "generated_internal_report": 57
+    },
+    "excluded_files": [],
+    "generated_internal_report_files": [
+      "first_contact_clean_pharmacotopology_layer_run/V16_PRESSURE_EVIDENCE_GAP_LOCK/V16_PRESSURE_EVIDENCE_GAP_LOCK_REPORT.md",
+      "first_contact_clean_pharmacotopology_layer_run/V16_PRESSURE_EVIDENCE_GAP_LOCK/v16_pressure_evidence_gap_lock_certificate.json",
+      "first_contact_clean_pharmacotopology_layer_run/V16_TARGET_MANIFEST_AND_ROLE_EXPECTATION_LOCK/V16_TARGET_MANIFEST_AND_ROLE_EXPECTATION_LOCK_REPORT.md",
+      "first_contact_clean_pharmacotopology_layer_run/V16_TARGET_MANIFEST_AND_ROLE_EXPECTATION_LOCK/v16_target_manifest_and_role_expectation_lock_certificate.json",
+      "first_contact_clean_pharmacotopology_layer_run/V16_TRANSFER_DATA_PREFLIGHT/V16_TRANSFER_DATA_PREFLIGHT_REPORT.md",
+      "first_contact_clean_pharmacotopology_layer_run/V16_TRANSFER_DATA_PREFLIGHT/v16_transfer_data_preflight_certificate.json",
+      "first_contact_clean_pharmacotopology_layer_run/V16_ZERO_MD_ROLE_TRANSFER_READOUT/V16_ZERO_MD_ROLE_TRANSFER_READOUT_REPORT.md",
+      "first_contact_clean_pharmacotopology_layer_run/V16_ZERO_MD_ROLE_TRANSFER_READOUT/v16_zero_md_role_transfer_readout_certificate.json",
+      "first_contact_clean_pharmacotopology_layer_run/V17_PRESSURE_EVIDENCE_SPRINT_LOCK/V17_PRESSURE_EVIDENCE_SPRINT_LOCK_REPORT.md",
+      "first_contact_clean_pharmacotopology_layer_run/V17_PRESSURE_EVIDENCE_SPRINT_LOCK/v17_next_target_decision.json",
+      "first_contact_clean_pharmacotopology_layer_run/V17_PRESSURE_EVIDENCE_SPRINT_LOCK/v17_pressure_evidence_manifest.json",
+      "first_contact_clean_pharmacotopology_layer_run/V17_PRESSURE_EVIDENCE_SPRINT_LOCK/v17_pressure_evidence_preflight.json",
+      "first_contact_clean_pharmacotopology_layer_run/V17_PRESSURE_EVIDENCE_SPRINT_LOCK/v17_pressure_evidence_sprint_lock_certificate.json",
+      "first_contact_clean_pharmacotopology_layer_run/V17_PRESSURE_EVIDENCE_SPRINT_LOCK/v17_zero_md_evidence_readout.json",
+      "first_contact_clean_pharmacotopology_layer_run/V18b_P53_ISOLATED_TAD_ABSTAIN_CONTEXT/v18b_p53_isolated_tad_abstain_context_certificate.json",
+      "first_contact_clean_pharmacotopology_layer_run/V19_KcsA_MEMBRANE_PORE_EVIDENCE_LOCK/v19_kcsa_membrane_pore_evidence_lock_certificate.json",
+      "first_contact_clean_pharmacotopology_layer_run/V19_KcsA_MEMBRANE_PORE_EVIDENCE_READOUT/v19_kcsa_membrane_pore_evidence_readout_certificate.json",
+      "first_contact_clean_pharmacotopology_layer_run/V20_XCL1_STATE_SPECIFIC_EVIDENCE_READOUT/V20_XCL1_STATE_SPECIFIC_EVIDENCE_READOUT_REPORT.md",
+      "first_contact_clean_pharmacotopology_layer_run/V20_XCL1_STATE_SPECIFIC_EVIDENCE_READOUT/v20_xcl1_state_A_readout.json",
+      "first_contact_clean_pharmacotopology_layer_run/V20_XCL1_STATE_SPECIFIC_EVIDENCE_READOUT/v20_xcl1_state_B_readout.json",
+      "first_contact_clean_pharmacotopology_layer_run/V20_XCL1_STATE_SPECIFIC_EVIDENCE_READOUT/v20_xcl1_state_separation_guard.json",
+      "first_contact_clean_pharmacotopology_layer_run/V20_XCL1_STATE_SPECIFIC_EVIDENCE_READOUT/v20_xcl1_state_specific_evidence_readout_certificate.json",
+      "first_contact_clean_pharmacotopology_layer_run/V21_PRESSURE_EVIDENCE_PANEL_SUMMARY/V21_PRESSURE_EVIDENCE_PANEL_SUMMARY_REPORT.md",
+      "first_contact_clean_pharmacotopology_layer_run/V21_PRESSURE_EVIDENCE_PANEL_SUMMARY/v21_pressure_evidence_panel_summary_certificate.json",
+      "first_contact_clean_pharmacotopology_layer_run/V21_PRESSURE_EVIDENCE_PANEL_SUMMARY/v21_pressure_evidence_panel_table.csv",
+      "first_contact_clean_pharmacotopology_layer_run/V22_EXTERNAL_EVIDENCE_AND_ANNOTATION_ACQUISITION_PANEL/V22_EXTERNAL_EVIDENCE_AND_ANNOTATION_ACQUISITION_PANEL_REPORT.md",
+      "first_contact_clean_pharmacotopology_layer_run/V22_EXTERNAL_EVIDENCE_AND_ANNOTATION_ACQUISITION_PANEL/v22_annotation_preflight.json",
+      "first_contact_clean_pharmacotopology_layer_run/V22_EXTERNAL_EVIDENCE_AND_ANNOTATION_ACQUISITION_PANEL/v22_coupling_availability_scan.json",
+      "first_contact_clean_pharmacotopology_layer_run/V22_EXTERNAL_EVIDENCE_AND_ANNOTATION_ACQUISITION_PANEL/v22_external_evidence_and_annotation_acquisition_panel_certificate.json",
+      "first_contact_clean_pharmacotopology_layer_run/V22_EXTERNAL_EVIDENCE_AND_ANNOTATION_ACQUISITION_PANEL/v22_external_evidence_manifest.json",
+      "first_contact_clean_pharmacotopology_layer_run/V22_EXTERNAL_EVIDENCE_AND_ANNOTATION_ACQUISITION_PANEL/v22_next_target_decision.json",
+      "first_contact_clean_pharmacotopology_layer_run/V25_FAST_MECHANISM_EVIDENCE_SPRINT/V25_FAST_MECHANISM_EVIDENCE_SPRINT_REPORT.md",
+      "first_contact_clean_pharmacotopology_layer_run/V25_FAST_MECHANISM_EVIDENCE_SPRINT/v25_fast_mechanism_evidence_sprint_certificate.json",
+      "first_contact_clean_pharmacotopology_layer_run/V25_FAST_MECHANISM_EVIDENCE_SPRINT/v25_next_mechanism_test_decision.json",
+      "first_contact_clean_pharmacotopology_layer_run/V25_FAST_MECHANISM_EVIDENCE_SPRINT/v25_unified_mechanism_operator_table.csv",
+      "first_contact_clean_pharmacotopology_layer_run/V25_FAST_MECHANISM_EVIDENCE_SPRINT/v25_unified_mechanism_operator_table.json",
+      "first_contact_clean_pharmacotopology_layer_run/V25_FAST_MECHANISM_EVIDENCE_SPRINT/v25_xcl1_state_specific_readout.json",
+      "first_contact_clean_pharmacotopology_layer_run/V26_XCL1_STATE_SEPARATION_OPERATOR_TEST/V26_XCL1_STATE_SEPARATION_OPERATOR_TEST_REPORT.md",
+      "first_contact_clean_pharmacotopology_layer_run/V26_XCL1_STATE_SEPARATION_OPERATOR_TEST/v26_next_mechanism_decision.json",
+      "first_contact_clean_pharmacotopology_layer_run/V26_XCL1_STATE_SEPARATION_OPERATOR_TEST/v26_xcl1_state_separation_operator_readout.json",
+      "first_contact_clean_pharmacotopology_layer_run/V26_XCL1_STATE_SEPARATION_OPERATOR_TEST/v26_xcl1_state_separation_operator_test_certificate.json",
+      "first_contact_clean_pharmacotopology_layer_run/V27_XCL1_CONDITION_AND_COUPLING_EVIDENCE_ACQUISITION/V27_XCL1_CONDITION_AND_COUPLING_EVIDENCE_ACQUISITION_REPORT.md",
+      "first_contact_clean_pharmacotopology_layer_run/V27_XCL1_CONDITION_AND_COUPLING_EVIDENCE_ACQUISITION/v27_xcl1_condition_and_coupling_evidence_acquisition_certificate.json",
+      "first_contact_clean_pharmacotopology_layer_run/V27_XCL1_CONDITION_AND_COUPLING_EVIDENCE_ACQUISITION/v27_xcl1_condition_label_manifest.json",
+      "first_contact_clean_pharmacotopology_layer_run/V27_XCL1_CONDITION_AND_COUPLING_EVIDENCE_ACQUISITION/v27_xcl1_condition_preflight.json",
+      "first_contact_clean_pharmacotopology_layer_run/V27_XCL1_CONDITION_AND_COUPLING_EVIDENCE_ACQUISITION/v27_xcl1_next_decision.json",
+      "first_contact_clean_pharmacotopology_layer_run/V27_XCL1_CONDITION_AND_COUPLING_EVIDENCE_ACQUISITION/v27_xcl1_state_specific_coupling_availability.json",
+      "first_contact_clean_pharmacotopology_layer_run/V28_XCL1_STATE_CONDITION_EVIDENCE_CONTRAST_TEST/V28_XCL1_STATE_CONDITION_EVIDENCE_CONTRAST_TEST_REPORT.md",
+      "first_contact_clean_pharmacotopology_layer_run/V28_XCL1_STATE_CONDITION_EVIDENCE_CONTRAST_TEST/v28_xcl1_next_decision.json",
+      "first_contact_clean_pharmacotopology_layer_run/V28_XCL1_STATE_CONDITION_EVIDENCE_CONTRAST_TEST/v28_xcl1_state_condition_contrast_readout.json",
+      "first_contact_clean_pharmacotopology_layer_run/V28_XCL1_STATE_CONDITION_EVIDENCE_CONTRAST_TEST/v28_xcl1_state_condition_evidence_contrast_certificate.json",
+      "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION_REPORT.md",
+      "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/v29_md_readiness_decision.json",
+      "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/v29_md_readiness_rows.csv",
+      "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/v29_md_readiness_rows.json",
+      "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/v29_mechanism_operator_panel_summary.json",
+      "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/v29_mechanism_operator_panel_summary_and_md_readiness_certificate.json"
+    ],
+    "in_selected_V31_scope": true,
+    "new_MD_allowed": false,
+    "new_MD_recommended": false,
+    "preflight_status": "no_real_external_constraint_for_constraint_backed_readout",
+    "pressure_type": "metamorphic_fold_switching_pressure",
+    "ready_for_MD": false,
+    "real_external_constraint_or_coupling_files": [],
+    "selected_signal": "state_A_chemokine_context + state_B_dimer_context_kept_separate",
+    "target": "XCL1_lymphotactin",
+    "v30_acquisition_status": "local_constraint_or_coupling_files_present_ready_for_next_readout_preflight"
+  },
+  {
+    "allowed_use": "not_allowed_for_constraint_backed_operator_readout",
+    "allowed_use_counts": {
+      "allowed_for_audit_only": 51
+    },
+    "annotation_context_files": [],
+    "candidate_file_count": 51,
+    "claim_allowed": false,
+    "classified_candidate_files": [
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V16_PRESSURE_EVIDENCE_GAP_LOCK/V16_PRESSURE_EVIDENCE_GAP_LOCK_REPORT.md"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V16_PRESSURE_EVIDENCE_GAP_LOCK/v16_pressure_evidence_gap_lock_certificate.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V16_TARGET_MANIFEST_AND_ROLE_EXPECTATION_LOCK/V16_TARGET_MANIFEST_AND_ROLE_EXPECTATION_LOCK_REPORT.md"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V16_TARGET_MANIFEST_AND_ROLE_EXPECTATION_LOCK/v16_target_manifest_and_role_expectation_lock_certificate.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V16_TRANSFER_DATA_PREFLIGHT/V16_TRANSFER_DATA_PREFLIGHT_REPORT.md"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V16_TRANSFER_DATA_PREFLIGHT/v16_transfer_data_preflight_certificate.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V16_ZERO_MD_ROLE_TRANSFER_READOUT/V16_ZERO_MD_ROLE_TRANSFER_READOUT_REPORT.md"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V16_ZERO_MD_ROLE_TRANSFER_READOUT/v16_zero_md_role_transfer_readout_certificate.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V17_PRESSURE_EVIDENCE_SPRINT_LOCK/V17_PRESSURE_EVIDENCE_SPRINT_LOCK_REPORT.md"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V17_PRESSURE_EVIDENCE_SPRINT_LOCK/v17_next_target_decision.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V17_PRESSURE_EVIDENCE_SPRINT_LOCK/v17_pressure_evidence_manifest.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V17_PRESSURE_EVIDENCE_SPRINT_LOCK/v17_pressure_evidence_preflight.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V17_PRESSURE_EVIDENCE_SPRINT_LOCK/v17_pressure_evidence_sprint_lock_certificate.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V17_PRESSURE_EVIDENCE_SPRINT_LOCK/v17_zero_md_evidence_readout.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V18b_P53_ISOLATED_TAD_ABSTAIN_CONTEXT/v18b_p53_isolated_tad_abstain_context_certificate.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V19_KcsA_MEMBRANE_PORE_EVIDENCE_LOCK/V19_KcsA_MEMBRANE_PORE_EVIDENCE_LOCK_REPORT.md"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V19_KcsA_MEMBRANE_PORE_EVIDENCE_LOCK/v19_kcsa_membrane_pore_evidence_lock_certificate.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V19_KcsA_MEMBRANE_PORE_EVIDENCE_READOUT/V19_KcsA_MEMBRANE_PORE_EVIDENCE_READOUT_REPORT.md"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V19_KcsA_MEMBRANE_PORE_EVIDENCE_READOUT/v19_kcsa_chain_interface_readout.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V19_KcsA_MEMBRANE_PORE_EVIDENCE_READOUT/v19_kcsa_membrane_pore_evidence_readout_certificate.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V19_KcsA_MEMBRANE_PORE_EVIDENCE_READOUT/v19_kcsa_pore_filter_readout.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V21_PRESSURE_EVIDENCE_PANEL_SUMMARY/V21_PRESSURE_EVIDENCE_PANEL_SUMMARY_REPORT.md"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V21_PRESSURE_EVIDENCE_PANEL_SUMMARY/v21_pressure_evidence_panel_summary_certificate.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V21_PRESSURE_EVIDENCE_PANEL_SUMMARY/v21_pressure_evidence_panel_table.csv"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V22_EXTERNAL_EVIDENCE_AND_ANNOTATION_ACQUISITION_PANEL/V22_EXTERNAL_EVIDENCE_AND_ANNOTATION_ACQUISITION_PANEL_REPORT.md"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V22_EXTERNAL_EVIDENCE_AND_ANNOTATION_ACQUISITION_PANEL/v22_annotation_preflight.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V22_EXTERNAL_EVIDENCE_AND_ANNOTATION_ACQUISITION_PANEL/v22_coupling_availability_scan.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V22_EXTERNAL_EVIDENCE_AND_ANNOTATION_ACQUISITION_PANEL/v22_external_evidence_and_annotation_acquisition_panel_certificate.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V22_EXTERNAL_EVIDENCE_AND_ANNOTATION_ACQUISITION_PANEL/v22_external_evidence_manifest.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V22_EXTERNAL_EVIDENCE_AND_ANNOTATION_ACQUISITION_PANEL/v22_next_target_decision.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V23_P53_TAD_MDM2_EXTERNAL_EVIDENCE_CONTRAST_TEST/v23_p53_tad_mdm2_external_evidence_contrast_certificate.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V24_KcsA_EXTERNAL_ANNOTATION_AND_ASSEMBLY_ACQUISITION/V24_KcsA_EXTERNAL_ANNOTATION_AND_ASSEMBLY_ACQUISITION_REPORT.md"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V24_KcsA_EXTERNAL_ANNOTATION_AND_ASSEMBLY_ACQUISITION/v24_kcsa_assembly_preflight.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V24_KcsA_EXTERNAL_ANNOTATION_AND_ASSEMBLY_ACQUISITION/v24_kcsa_external_annotation_and_assembly_acquisition_certificate.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V24_KcsA_EXTERNAL_ANNOTATION_AND_ASSEMBLY_ACQUISITION/v24_kcsa_external_annotation_manifest.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V24_KcsA_EXTERNAL_ANNOTATION_AND_ASSEMBLY_ACQUISITION/v24_kcsa_external_coupling_availability.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V24_KcsA_EXTERNAL_ANNOTATION_AND_ASSEMBLY_ACQUISITION/v24_kcsa_membrane_topology_annotation.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V24_KcsA_EXTERNAL_ANNOTATION_AND_ASSEMBLY_ACQUISITION/v24_kcsa_next_decision.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V24_KcsA_EXTERNAL_ANNOTATION_AND_ASSEMBLY_ACQUISITION/v24_kcsa_pore_filter_annotation.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V25_FAST_MECHANISM_EVIDENCE_SPRINT/V25_FAST_MECHANISM_EVIDENCE_SPRINT_REPORT.md"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V25_FAST_MECHANISM_EVIDENCE_SPRINT/v25_fast_mechanism_evidence_sprint_certificate.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V25_FAST_MECHANISM_EVIDENCE_SPRINT/v25_kcsa_coupling_interface_readout.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V25_FAST_MECHANISM_EVIDENCE_SPRINT/v25_next_mechanism_test_decision.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V25_FAST_MECHANISM_EVIDENCE_SPRINT/v25_unified_mechanism_operator_table.csv"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V25_FAST_MECHANISM_EVIDENCE_SPRINT/v25_unified_mechanism_operator_table.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION_REPORT.md"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/v29_md_readiness_decision.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/v29_md_readiness_rows.csv"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/v29_md_readiness_rows.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/v29_mechanism_operator_panel_summary.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/v29_mechanism_operator_panel_summary_and_md_readiness_certificate.json"
+      }
+    ],
+    "constraint_backed_operator_readout_allowed": false,
+    "constraint_derivation_only_files": [],
+    "evidence_source_class_counts": {
+      "generated_internal_report": 51
+    },
+    "excluded_files": [],
+    "generated_internal_report_files": [
+      "first_contact_clean_pharmacotopology_layer_run/V16_PRESSURE_EVIDENCE_GAP_LOCK/V16_PRESSURE_EVIDENCE_GAP_LOCK_REPORT.md",
+      "first_contact_clean_pharmacotopology_layer_run/V16_PRESSURE_EVIDENCE_GAP_LOCK/v16_pressure_evidence_gap_lock_certificate.json",
+      "first_contact_clean_pharmacotopology_layer_run/V16_TARGET_MANIFEST_AND_ROLE_EXPECTATION_LOCK/V16_TARGET_MANIFEST_AND_ROLE_EXPECTATION_LOCK_REPORT.md",
+      "first_contact_clean_pharmacotopology_layer_run/V16_TARGET_MANIFEST_AND_ROLE_EXPECTATION_LOCK/v16_target_manifest_and_role_expectation_lock_certificate.json",
+      "first_contact_clean_pharmacotopology_layer_run/V16_TRANSFER_DATA_PREFLIGHT/V16_TRANSFER_DATA_PREFLIGHT_REPORT.md",
+      "first_contact_clean_pharmacotopology_layer_run/V16_TRANSFER_DATA_PREFLIGHT/v16_transfer_data_preflight_certificate.json",
+      "first_contact_clean_pharmacotopology_layer_run/V16_ZERO_MD_ROLE_TRANSFER_READOUT/V16_ZERO_MD_ROLE_TRANSFER_READOUT_REPORT.md",
+      "first_contact_clean_pharmacotopology_layer_run/V16_ZERO_MD_ROLE_TRANSFER_READOUT/v16_zero_md_role_transfer_readout_certificate.json",
+      "first_contact_clean_pharmacotopology_layer_run/V17_PRESSURE_EVIDENCE_SPRINT_LOCK/V17_PRESSURE_EVIDENCE_SPRINT_LOCK_REPORT.md",
+      "first_contact_clean_pharmacotopology_layer_run/V17_PRESSURE_EVIDENCE_SPRINT_LOCK/v17_next_target_decision.json",
+      "first_contact_clean_pharmacotopology_layer_run/V17_PRESSURE_EVIDENCE_SPRINT_LOCK/v17_pressure_evidence_manifest.json",
+      "first_contact_clean_pharmacotopology_layer_run/V17_PRESSURE_EVIDENCE_SPRINT_LOCK/v17_pressure_evidence_preflight.json",
+      "first_contact_clean_pharmacotopology_layer_run/V17_PRESSURE_EVIDENCE_SPRINT_LOCK/v17_pressure_evidence_sprint_lock_certificate.json",
+      "first_contact_clean_pharmacotopology_layer_run/V17_PRESSURE_EVIDENCE_SPRINT_LOCK/v17_zero_md_evidence_readout.json",
+      "first_contact_clean_pharmacotopology_layer_run/V18b_P53_ISOLATED_TAD_ABSTAIN_CONTEXT/v18b_p53_isolated_tad_abstain_context_certificate.json",
+      "first_contact_clean_pharmacotopology_layer_run/V19_KcsA_MEMBRANE_PORE_EVIDENCE_LOCK/V19_KcsA_MEMBRANE_PORE_EVIDENCE_LOCK_REPORT.md",
+      "first_contact_clean_pharmacotopology_layer_run/V19_KcsA_MEMBRANE_PORE_EVIDENCE_LOCK/v19_kcsa_membrane_pore_evidence_lock_certificate.json",
+      "first_contact_clean_pharmacotopology_layer_run/V19_KcsA_MEMBRANE_PORE_EVIDENCE_READOUT/V19_KcsA_MEMBRANE_PORE_EVIDENCE_READOUT_REPORT.md",
+      "first_contact_clean_pharmacotopology_layer_run/V19_KcsA_MEMBRANE_PORE_EVIDENCE_READOUT/v19_kcsa_chain_interface_readout.json",
+      "first_contact_clean_pharmacotopology_layer_run/V19_KcsA_MEMBRANE_PORE_EVIDENCE_READOUT/v19_kcsa_membrane_pore_evidence_readout_certificate.json",
+      "first_contact_clean_pharmacotopology_layer_run/V19_KcsA_MEMBRANE_PORE_EVIDENCE_READOUT/v19_kcsa_pore_filter_readout.json",
+      "first_contact_clean_pharmacotopology_layer_run/V21_PRESSURE_EVIDENCE_PANEL_SUMMARY/V21_PRESSURE_EVIDENCE_PANEL_SUMMARY_REPORT.md",
+      "first_contact_clean_pharmacotopology_layer_run/V21_PRESSURE_EVIDENCE_PANEL_SUMMARY/v21_pressure_evidence_panel_summary_certificate.json",
+      "first_contact_clean_pharmacotopology_layer_run/V21_PRESSURE_EVIDENCE_PANEL_SUMMARY/v21_pressure_evidence_panel_table.csv",
+      "first_contact_clean_pharmacotopology_layer_run/V22_EXTERNAL_EVIDENCE_AND_ANNOTATION_ACQUISITION_PANEL/V22_EXTERNAL_EVIDENCE_AND_ANNOTATION_ACQUISITION_PANEL_REPORT.md",
+      "first_contact_clean_pharmacotopology_layer_run/V22_EXTERNAL_EVIDENCE_AND_ANNOTATION_ACQUISITION_PANEL/v22_annotation_preflight.json",
+      "first_contact_clean_pharmacotopology_layer_run/V22_EXTERNAL_EVIDENCE_AND_ANNOTATION_ACQUISITION_PANEL/v22_coupling_availability_scan.json",
+      "first_contact_clean_pharmacotopology_layer_run/V22_EXTERNAL_EVIDENCE_AND_ANNOTATION_ACQUISITION_PANEL/v22_external_evidence_and_annotation_acquisition_panel_certificate.json",
+      "first_contact_clean_pharmacotopology_layer_run/V22_EXTERNAL_EVIDENCE_AND_ANNOTATION_ACQUISITION_PANEL/v22_external_evidence_manifest.json",
+      "first_contact_clean_pharmacotopology_layer_run/V22_EXTERNAL_EVIDENCE_AND_ANNOTATION_ACQUISITION_PANEL/v22_next_target_decision.json",
+      "first_contact_clean_pharmacotopology_layer_run/V23_P53_TAD_MDM2_EXTERNAL_EVIDENCE_CONTRAST_TEST/v23_p53_tad_mdm2_external_evidence_contrast_certificate.json",
+      "first_contact_clean_pharmacotopology_layer_run/V24_KcsA_EXTERNAL_ANNOTATION_AND_ASSEMBLY_ACQUISITION/V24_KcsA_EXTERNAL_ANNOTATION_AND_ASSEMBLY_ACQUISITION_REPORT.md",
+      "first_contact_clean_pharmacotopology_layer_run/V24_KcsA_EXTERNAL_ANNOTATION_AND_ASSEMBLY_ACQUISITION/v24_kcsa_assembly_preflight.json",
+      "first_contact_clean_pharmacotopology_layer_run/V24_KcsA_EXTERNAL_ANNOTATION_AND_ASSEMBLY_ACQUISITION/v24_kcsa_external_annotation_and_assembly_acquisition_certificate.json",
+      "first_contact_clean_pharmacotopology_layer_run/V24_KcsA_EXTERNAL_ANNOTATION_AND_ASSEMBLY_ACQUISITION/v24_kcsa_external_annotation_manifest.json",
+      "first_contact_clean_pharmacotopology_layer_run/V24_KcsA_EXTERNAL_ANNOTATION_AND_ASSEMBLY_ACQUISITION/v24_kcsa_external_coupling_availability.json",
+      "first_contact_clean_pharmacotopology_layer_run/V24_KcsA_EXTERNAL_ANNOTATION_AND_ASSEMBLY_ACQUISITION/v24_kcsa_membrane_topology_annotation.json",
+      "first_contact_clean_pharmacotopology_layer_run/V24_KcsA_EXTERNAL_ANNOTATION_AND_ASSEMBLY_ACQUISITION/v24_kcsa_next_decision.json",
+      "first_contact_clean_pharmacotopology_layer_run/V24_KcsA_EXTERNAL_ANNOTATION_AND_ASSEMBLY_ACQUISITION/v24_kcsa_pore_filter_annotation.json",
+      "first_contact_clean_pharmacotopology_layer_run/V25_FAST_MECHANISM_EVIDENCE_SPRINT/V25_FAST_MECHANISM_EVIDENCE_SPRINT_REPORT.md",
+      "first_contact_clean_pharmacotopology_layer_run/V25_FAST_MECHANISM_EVIDENCE_SPRINT/v25_fast_mechanism_evidence_sprint_certificate.json",
+      "first_contact_clean_pharmacotopology_layer_run/V25_FAST_MECHANISM_EVIDENCE_SPRINT/v25_kcsa_coupling_interface_readout.json",
+      "first_contact_clean_pharmacotopology_layer_run/V25_FAST_MECHANISM_EVIDENCE_SPRINT/v25_next_mechanism_test_decision.json",
+      "first_contact_clean_pharmacotopology_layer_run/V25_FAST_MECHANISM_EVIDENCE_SPRINT/v25_unified_mechanism_operator_table.csv",
+      "first_contact_clean_pharmacotopology_layer_run/V25_FAST_MECHANISM_EVIDENCE_SPRINT/v25_unified_mechanism_operator_table.json",
+      "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION_REPORT.md",
+      "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/v29_md_readiness_decision.json",
+      "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/v29_md_readiness_rows.csv",
+      "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/v29_md_readiness_rows.json",
+      "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/v29_mechanism_operator_panel_summary.json",
+      "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/v29_mechanism_operator_panel_summary_and_md_readiness_certificate.json"
+    ],
+    "in_selected_V31_scope": true,
+    "new_MD_allowed": false,
+    "new_MD_recommended": false,
+    "preflight_status": "no_real_external_constraint_for_constraint_backed_readout",
+    "pressure_type": "membrane_pore_oligomer_environment_pressure",
+    "ready_for_MD": false,
+    "real_external_constraint_or_coupling_files": [],
+    "selected_signal": "TVGYG + K_plus_shell + TM_scaffold + chain_interface_context",
+    "target": "KcsA",
+    "v30_acquisition_status": "local_constraint_or_coupling_files_present_ready_for_next_readout_preflight"
+  },
+  {
+    "allowed_use": "not_allowed_for_constraint_backed_operator_readout",
+    "allowed_use_counts": {
+      "allowed_for_audit_only": 43
+    },
+    "annotation_context_files": [],
+    "candidate_file_count": 43,
+    "claim_allowed": false,
+    "classified_candidate_files": [
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V16_PRESSURE_EVIDENCE_GAP_LOCK/V16_PRESSURE_EVIDENCE_GAP_LOCK_REPORT.md"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V16_PRESSURE_EVIDENCE_GAP_LOCK/v16_pressure_evidence_gap_lock_certificate.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V16_TARGET_MANIFEST_AND_ROLE_EXPECTATION_LOCK/V16_TARGET_MANIFEST_AND_ROLE_EXPECTATION_LOCK_REPORT.md"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V16_TARGET_MANIFEST_AND_ROLE_EXPECTATION_LOCK/v16_target_manifest_and_role_expectation_lock_certificate.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V16_TRANSFER_DATA_PREFLIGHT/V16_TRANSFER_DATA_PREFLIGHT_REPORT.md"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V16_TRANSFER_DATA_PREFLIGHT/v16_transfer_data_preflight_certificate.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V16_ZERO_MD_ROLE_TRANSFER_READOUT/V16_ZERO_MD_ROLE_TRANSFER_READOUT_REPORT.md"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V16_ZERO_MD_ROLE_TRANSFER_READOUT/v16_zero_md_role_transfer_readout_certificate.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V17_PRESSURE_EVIDENCE_SPRINT_LOCK/V17_PRESSURE_EVIDENCE_SPRINT_LOCK_REPORT.md"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V17_PRESSURE_EVIDENCE_SPRINT_LOCK/v17_next_target_decision.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V17_PRESSURE_EVIDENCE_SPRINT_LOCK/v17_pressure_evidence_manifest.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V17_PRESSURE_EVIDENCE_SPRINT_LOCK/v17_pressure_evidence_preflight.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V17_PRESSURE_EVIDENCE_SPRINT_LOCK/v17_pressure_evidence_sprint_lock_certificate.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V17_PRESSURE_EVIDENCE_SPRINT_LOCK/v17_zero_md_evidence_readout.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V18_P53_PARTNER_INDUCED_EVIDENCE_LOCK/V18_P53_PARTNER_INDUCED_EVIDENCE_LOCK_REPORT.md"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V18_P53_PARTNER_INDUCED_EVIDENCE_LOCK/v18_p53_partner_induced_evidence_lock_certificate.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V18_P53_TAD_MDM2_PARTNER_INDUCED_EVIDENCE_TEST/V18_P53_TAD_MDM2_PARTNER_INDUCED_EVIDENCE_TEST_REPORT.md"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V18_P53_TAD_MDM2_PARTNER_INDUCED_EVIDENCE_TEST/v18_p53_tad_mdm2_interface_contact_readout.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V18_P53_TAD_MDM2_PARTNER_INDUCED_EVIDENCE_TEST/v18_p53_tad_mdm2_partner_induced_evidence_certificate.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V18b_P53_ISOLATED_TAD_ABSTAIN_CONTEXT/V18b_P53_ISOLATED_TAD_ABSTAIN_CONTEXT_REPORT.md"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V18b_P53_ISOLATED_TAD_ABSTAIN_CONTEXT/v18b_p53_isolated_tad_abstain_context_certificate.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V21_PRESSURE_EVIDENCE_PANEL_SUMMARY/V21_PRESSURE_EVIDENCE_PANEL_SUMMARY_REPORT.md"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V21_PRESSURE_EVIDENCE_PANEL_SUMMARY/v21_pressure_evidence_panel_summary_certificate.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V21_PRESSURE_EVIDENCE_PANEL_SUMMARY/v21_pressure_evidence_panel_table.csv"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V22_EXTERNAL_EVIDENCE_AND_ANNOTATION_ACQUISITION_PANEL/V22_EXTERNAL_EVIDENCE_AND_ANNOTATION_ACQUISITION_PANEL_REPORT.md"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V22_EXTERNAL_EVIDENCE_AND_ANNOTATION_ACQUISITION_PANEL/v22_annotation_preflight.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V22_EXTERNAL_EVIDENCE_AND_ANNOTATION_ACQUISITION_PANEL/v22_coupling_availability_scan.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V22_EXTERNAL_EVIDENCE_AND_ANNOTATION_ACQUISITION_PANEL/v22_external_evidence_and_annotation_acquisition_panel_certificate.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V22_EXTERNAL_EVIDENCE_AND_ANNOTATION_ACQUISITION_PANEL/v22_external_evidence_manifest.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V22_EXTERNAL_EVIDENCE_AND_ANNOTATION_ACQUISITION_PANEL/v22_next_target_decision.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V23_P53_TAD_MDM2_EXTERNAL_EVIDENCE_CONTRAST_TEST/V23_P53_TAD_MDM2_EXTERNAL_EVIDENCE_CONTRAST_TEST_REPORT.md"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V23_P53_TAD_MDM2_EXTERNAL_EVIDENCE_CONTRAST_TEST/v23_p53_tad_mdm2_external_evidence_contrast_certificate.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V25_FAST_MECHANISM_EVIDENCE_SPRINT/V25_FAST_MECHANISM_EVIDENCE_SPRINT_REPORT.md"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V25_FAST_MECHANISM_EVIDENCE_SPRINT/v25_fast_mechanism_evidence_sprint_certificate.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V25_FAST_MECHANISM_EVIDENCE_SPRINT/v25_next_mechanism_test_decision.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V25_FAST_MECHANISM_EVIDENCE_SPRINT/v25_unified_mechanism_operator_table.csv"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V25_FAST_MECHANISM_EVIDENCE_SPRINT/v25_unified_mechanism_operator_table.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION_REPORT.md"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/v29_md_readiness_decision.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/v29_md_readiness_rows.csv"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/v29_md_readiness_rows.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/v29_mechanism_operator_panel_summary.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/v29_mechanism_operator_panel_summary_and_md_readiness_certificate.json"
+      }
+    ],
+    "constraint_backed_operator_readout_allowed": false,
+    "constraint_derivation_only_files": [],
+    "evidence_source_class_counts": {
+      "generated_internal_report": 43
+    },
+    "excluded_files": [],
+    "generated_internal_report_files": [
+      "first_contact_clean_pharmacotopology_layer_run/V16_PRESSURE_EVIDENCE_GAP_LOCK/V16_PRESSURE_EVIDENCE_GAP_LOCK_REPORT.md",
+      "first_contact_clean_pharmacotopology_layer_run/V16_PRESSURE_EVIDENCE_GAP_LOCK/v16_pressure_evidence_gap_lock_certificate.json",
+      "first_contact_clean_pharmacotopology_layer_run/V16_TARGET_MANIFEST_AND_ROLE_EXPECTATION_LOCK/V16_TARGET_MANIFEST_AND_ROLE_EXPECTATION_LOCK_REPORT.md",
+      "first_contact_clean_pharmacotopology_layer_run/V16_TARGET_MANIFEST_AND_ROLE_EXPECTATION_LOCK/v16_target_manifest_and_role_expectation_lock_certificate.json",
+      "first_contact_clean_pharmacotopology_layer_run/V16_TRANSFER_DATA_PREFLIGHT/V16_TRANSFER_DATA_PREFLIGHT_REPORT.md",
+      "first_contact_clean_pharmacotopology_layer_run/V16_TRANSFER_DATA_PREFLIGHT/v16_transfer_data_preflight_certificate.json",
+      "first_contact_clean_pharmacotopology_layer_run/V16_ZERO_MD_ROLE_TRANSFER_READOUT/V16_ZERO_MD_ROLE_TRANSFER_READOUT_REPORT.md",
+      "first_contact_clean_pharmacotopology_layer_run/V16_ZERO_MD_ROLE_TRANSFER_READOUT/v16_zero_md_role_transfer_readout_certificate.json",
+      "first_contact_clean_pharmacotopology_layer_run/V17_PRESSURE_EVIDENCE_SPRINT_LOCK/V17_PRESSURE_EVIDENCE_SPRINT_LOCK_REPORT.md",
+      "first_contact_clean_pharmacotopology_layer_run/V17_PRESSURE_EVIDENCE_SPRINT_LOCK/v17_next_target_decision.json",
+      "first_contact_clean_pharmacotopology_layer_run/V17_PRESSURE_EVIDENCE_SPRINT_LOCK/v17_pressure_evidence_manifest.json",
+      "first_contact_clean_pharmacotopology_layer_run/V17_PRESSURE_EVIDENCE_SPRINT_LOCK/v17_pressure_evidence_preflight.json",
+      "first_contact_clean_pharmacotopology_layer_run/V17_PRESSURE_EVIDENCE_SPRINT_LOCK/v17_pressure_evidence_sprint_lock_certificate.json",
+      "first_contact_clean_pharmacotopology_layer_run/V17_PRESSURE_EVIDENCE_SPRINT_LOCK/v17_zero_md_evidence_readout.json",
+      "first_contact_clean_pharmacotopology_layer_run/V18_P53_PARTNER_INDUCED_EVIDENCE_LOCK/V18_P53_PARTNER_INDUCED_EVIDENCE_LOCK_REPORT.md",
+      "first_contact_clean_pharmacotopology_layer_run/V18_P53_PARTNER_INDUCED_EVIDENCE_LOCK/v18_p53_partner_induced_evidence_lock_certificate.json",
+      "first_contact_clean_pharmacotopology_layer_run/V18_P53_TAD_MDM2_PARTNER_INDUCED_EVIDENCE_TEST/V18_P53_TAD_MDM2_PARTNER_INDUCED_EVIDENCE_TEST_REPORT.md",
+      "first_contact_clean_pharmacotopology_layer_run/V18_P53_TAD_MDM2_PARTNER_INDUCED_EVIDENCE_TEST/v18_p53_tad_mdm2_interface_contact_readout.json",
+      "first_contact_clean_pharmacotopology_layer_run/V18_P53_TAD_MDM2_PARTNER_INDUCED_EVIDENCE_TEST/v18_p53_tad_mdm2_partner_induced_evidence_certificate.json",
+      "first_contact_clean_pharmacotopology_layer_run/V18b_P53_ISOLATED_TAD_ABSTAIN_CONTEXT/V18b_P53_ISOLATED_TAD_ABSTAIN_CONTEXT_REPORT.md",
+      "first_contact_clean_pharmacotopology_layer_run/V18b_P53_ISOLATED_TAD_ABSTAIN_CONTEXT/v18b_p53_isolated_tad_abstain_context_certificate.json",
+      "first_contact_clean_pharmacotopology_layer_run/V21_PRESSURE_EVIDENCE_PANEL_SUMMARY/V21_PRESSURE_EVIDENCE_PANEL_SUMMARY_REPORT.md",
+      "first_contact_clean_pharmacotopology_layer_run/V21_PRESSURE_EVIDENCE_PANEL_SUMMARY/v21_pressure_evidence_panel_summary_certificate.json",
+      "first_contact_clean_pharmacotopology_layer_run/V21_PRESSURE_EVIDENCE_PANEL_SUMMARY/v21_pressure_evidence_panel_table.csv",
+      "first_contact_clean_pharmacotopology_layer_run/V22_EXTERNAL_EVIDENCE_AND_ANNOTATION_ACQUISITION_PANEL/V22_EXTERNAL_EVIDENCE_AND_ANNOTATION_ACQUISITION_PANEL_REPORT.md",
+      "first_contact_clean_pharmacotopology_layer_run/V22_EXTERNAL_EVIDENCE_AND_ANNOTATION_ACQUISITION_PANEL/v22_annotation_preflight.json",
+      "first_contact_clean_pharmacotopology_layer_run/V22_EXTERNAL_EVIDENCE_AND_ANNOTATION_ACQUISITION_PANEL/v22_coupling_availability_scan.json",
+      "first_contact_clean_pharmacotopology_layer_run/V22_EXTERNAL_EVIDENCE_AND_ANNOTATION_ACQUISITION_PANEL/v22_external_evidence_and_annotation_acquisition_panel_certificate.json",
+      "first_contact_clean_pharmacotopology_layer_run/V22_EXTERNAL_EVIDENCE_AND_ANNOTATION_ACQUISITION_PANEL/v22_external_evidence_manifest.json",
+      "first_contact_clean_pharmacotopology_layer_run/V22_EXTERNAL_EVIDENCE_AND_ANNOTATION_ACQUISITION_PANEL/v22_next_target_decision.json",
+      "first_contact_clean_pharmacotopology_layer_run/V23_P53_TAD_MDM2_EXTERNAL_EVIDENCE_CONTRAST_TEST/V23_P53_TAD_MDM2_EXTERNAL_EVIDENCE_CONTRAST_TEST_REPORT.md",
+      "first_contact_clean_pharmacotopology_layer_run/V23_P53_TAD_MDM2_EXTERNAL_EVIDENCE_CONTRAST_TEST/v23_p53_tad_mdm2_external_evidence_contrast_certificate.json",
+      "first_contact_clean_pharmacotopology_layer_run/V25_FAST_MECHANISM_EVIDENCE_SPRINT/V25_FAST_MECHANISM_EVIDENCE_SPRINT_REPORT.md",
+      "first_contact_clean_pharmacotopology_layer_run/V25_FAST_MECHANISM_EVIDENCE_SPRINT/v25_fast_mechanism_evidence_sprint_certificate.json",
+      "first_contact_clean_pharmacotopology_layer_run/V25_FAST_MECHANISM_EVIDENCE_SPRINT/v25_next_mechanism_test_decision.json",
+      "first_contact_clean_pharmacotopology_layer_run/V25_FAST_MECHANISM_EVIDENCE_SPRINT/v25_unified_mechanism_operator_table.csv",
+      "first_contact_clean_pharmacotopology_layer_run/V25_FAST_MECHANISM_EVIDENCE_SPRINT/v25_unified_mechanism_operator_table.json",
+      "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION_REPORT.md",
+      "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/v29_md_readiness_decision.json",
+      "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/v29_md_readiness_rows.csv",
+      "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/v29_md_readiness_rows.json",
+      "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/v29_mechanism_operator_panel_summary.json",
+      "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/v29_mechanism_operator_panel_summary_and_md_readiness_certificate.json"
+    ],
+    "in_selected_V31_scope": false,
+    "new_MD_allowed": false,
+    "new_MD_recommended": false,
+    "preflight_status": "no_real_external_constraint_for_constraint_backed_readout",
+    "pressure_type": "disorder_partner_induced_binding_pressure",
+    "ready_for_MD": false,
+    "real_external_constraint_or_coupling_files": [],
+    "selected_signal": "isolated_disorder_context + bound_1YCR_interface_helix_proxy",
+    "target": "p53_TAD_MDM2",
+    "v30_acquisition_status": "local_constraint_or_coupling_files_present_ready_for_next_readout_preflight"
+  },
+  {
+    "allowed_use": "allowed_for_constraint_backed_operator_readout",
+    "allowed_use_counts": {
+      "allowed_for_audit_only": 22,
+      "allowed_for_constraint_backed_operator_readout": 4,
+      "allowed_for_constraint_derivation_preflight_only": 2
+    },
+    "annotation_context_files": [],
+    "candidate_file_count": 28,
+    "claim_allowed": false,
+    "classified_candidate_files": [
+      {
+        "allowed_use": "allowed_for_constraint_backed_operator_readout",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": true,
+        "evidence_source_class": "real_external_constraint_or_coupling",
+        "exclusion_reason": null,
+        "path": "data/all_locked_real_external_coupling_holdout_manifest_v0.locked.json"
+      },
+      {
+        "allowed_use": "allowed_for_constraint_backed_operator_readout",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": true,
+        "evidence_source_class": "real_external_constraint_or_coupling",
+        "exclusion_reason": null,
+        "path": "data/external_coupling_target_manifest_v0.locked.json"
+      },
+      {
+        "allowed_use": "allowed_for_constraint_backed_operator_readout",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": true,
+        "evidence_source_class": "real_external_constraint_or_coupling",
+        "exclusion_reason": null,
+        "path": "data/folding_real_coordinate_visual_8_couplings.locked.json"
+      },
+      {
+        "allowed_use": "allowed_for_constraint_backed_operator_readout",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": true,
+        "evidence_source_class": "real_external_constraint_or_coupling",
+        "exclusion_reason": null,
+        "path": "data/folding_real_coordinate_visual_8_external_couplings.v0.locked.json"
+      },
+      {
+        "allowed_use": "allowed_for_constraint_derivation_preflight_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "real_external_alignment_source",
+        "exclusion_reason": null,
+        "path": "external_msa/4ake_pfam00406/4ake_pfam00406_focus.fasta"
+      },
+      {
+        "allowed_use": "allowed_for_constraint_derivation_preflight_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "real_external_alignment_source",
+        "exclusion_reason": null,
+        "path": "external_msa/4ake_pfam00406/PF00406_full.sto"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "model_prediction_or_msa_free_artifact",
+        "exclusion_reason": "model_prediction_not_external_constraint_or_coupling",
+        "path": "external_msa_free_predictors/4ake.fasta"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "model_prediction_or_msa_free_artifact",
+        "exclusion_reason": "model_prediction_not_external_constraint_or_coupling",
+        "path": "external_msa_free_predictors/4ake_esmfold_api.esmfold_api_report.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "model_prediction_or_msa_free_artifact",
+        "exclusion_reason": "model_prediction_not_external_constraint_or_coupling",
+        "path": "external_msa_free_predictors/ESMFOLD2_AND_SPIRED_NEXT.md"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "model_prediction_or_msa_free_artifact",
+        "exclusion_reason": "model_prediction_not_external_constraint_or_coupling",
+        "path": "external_msa_free_predictors/README.md"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "model_prediction_or_msa_free_artifact",
+        "exclusion_reason": "model_prediction_not_external_constraint_or_coupling",
+        "path": "external_msa_free_predictors/run_all_4ake_msa_free_tryhard.sh"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "model_prediction_or_msa_free_artifact",
+        "exclusion_reason": "model_prediction_not_external_constraint_or_coupling",
+        "path": "external_msa_free_predictors/tryhard_runs_live/4ake_esmfold_api.pdb"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V15_4AKE_BALANCED_CANDIDATE_READOUT/v15_4ake_balanced_candidate_readout_certificate.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V15_4AKE_DYNAMIC_GRAMMAR_BRIDGE/V15_4AKE_DYNAMIC_GRAMMAR_BRIDGE_REPORT.md"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V15_4AKE_DYNAMIC_GRAMMAR_BRIDGE/v15_4ake_dynamic_grammar_bridge_certificate.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V15_DYNAMIC_ROLE_GRAMMAR_PANEL_LOCKED/V15_DYNAMIC_ROLE_GRAMMAR_PANEL_LOCKED_REPORT.md"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V15_DYNAMIC_ROLE_GRAMMAR_PANEL_LOCKED/v15_dynamic_role_grammar_panel_locked_certificate.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V15_DYNAMIC_SEPARATION_GRAMMAR_READOUT/V15_DYNAMIC_SEPARATION_GRAMMAR_REPORT.md"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V15_DYNAMIC_SEPARATION_GRAMMAR_READOUT/v15_dynamic_separation_grammar_readout_certificate.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V15_DYNAMIC_SEPARATION_GRAMMAR_READOUT/v15_dynamic_separation_grammar_table.csv"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V25_FAST_MECHANISM_EVIDENCE_SPRINT/V25_FAST_MECHANISM_EVIDENCE_SPRINT_REPORT.md"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V25_FAST_MECHANISM_EVIDENCE_SPRINT/v25_fast_mechanism_evidence_sprint_certificate.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V25_FAST_MECHANISM_EVIDENCE_SPRINT/v25_unified_mechanism_operator_table.csv"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V25_FAST_MECHANISM_EVIDENCE_SPRINT/v25_unified_mechanism_operator_table.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/v29_md_readiness_rows.csv"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/v29_md_readiness_rows.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/v29_mechanism_operator_panel_summary.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/v29_mechanism_operator_panel_summary_and_md_readiness_certificate.json"
+      }
+    ],
+    "constraint_backed_operator_readout_allowed": true,
+    "constraint_derivation_only_files": [
+      "external_msa/4ake_pfam00406/4ake_pfam00406_focus.fasta",
+      "external_msa/4ake_pfam00406/PF00406_full.sto"
+    ],
+    "evidence_source_class_counts": {
+      "generated_internal_report": 16,
+      "model_prediction_or_msa_free_artifact": 6,
+      "real_external_alignment_source": 2,
+      "real_external_constraint_or_coupling": 4
+    },
+    "excluded_files": [],
+    "generated_internal_report_files": [
+      "first_contact_clean_pharmacotopology_layer_run/V15_4AKE_BALANCED_CANDIDATE_READOUT/v15_4ake_balanced_candidate_readout_certificate.json",
+      "first_contact_clean_pharmacotopology_layer_run/V15_4AKE_DYNAMIC_GRAMMAR_BRIDGE/V15_4AKE_DYNAMIC_GRAMMAR_BRIDGE_REPORT.md",
+      "first_contact_clean_pharmacotopology_layer_run/V15_4AKE_DYNAMIC_GRAMMAR_BRIDGE/v15_4ake_dynamic_grammar_bridge_certificate.json",
+      "first_contact_clean_pharmacotopology_layer_run/V15_DYNAMIC_ROLE_GRAMMAR_PANEL_LOCKED/V15_DYNAMIC_ROLE_GRAMMAR_PANEL_LOCKED_REPORT.md",
+      "first_contact_clean_pharmacotopology_layer_run/V15_DYNAMIC_ROLE_GRAMMAR_PANEL_LOCKED/v15_dynamic_role_grammar_panel_locked_certificate.json",
+      "first_contact_clean_pharmacotopology_layer_run/V15_DYNAMIC_SEPARATION_GRAMMAR_READOUT/V15_DYNAMIC_SEPARATION_GRAMMAR_REPORT.md",
+      "first_contact_clean_pharmacotopology_layer_run/V15_DYNAMIC_SEPARATION_GRAMMAR_READOUT/v15_dynamic_separation_grammar_readout_certificate.json",
+      "first_contact_clean_pharmacotopology_layer_run/V15_DYNAMIC_SEPARATION_GRAMMAR_READOUT/v15_dynamic_separation_grammar_table.csv",
+      "first_contact_clean_pharmacotopology_layer_run/V25_FAST_MECHANISM_EVIDENCE_SPRINT/V25_FAST_MECHANISM_EVIDENCE_SPRINT_REPORT.md",
+      "first_contact_clean_pharmacotopology_layer_run/V25_FAST_MECHANISM_EVIDENCE_SPRINT/v25_fast_mechanism_evidence_sprint_certificate.json",
+      "first_contact_clean_pharmacotopology_layer_run/V25_FAST_MECHANISM_EVIDENCE_SPRINT/v25_unified_mechanism_operator_table.csv",
+      "first_contact_clean_pharmacotopology_layer_run/V25_FAST_MECHANISM_EVIDENCE_SPRINT/v25_unified_mechanism_operator_table.json",
+      "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/v29_md_readiness_rows.csv",
+      "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/v29_md_readiness_rows.json",
+      "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/v29_mechanism_operator_panel_summary.json",
+      "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/v29_mechanism_operator_panel_summary_and_md_readiness_certificate.json"
+    ],
+    "in_selected_V31_scope": false,
+    "new_MD_allowed": false,
+    "new_MD_recommended": false,
+    "preflight_status": "real_external_constraint_available_for_v32_preflight",
+    "pressure_type": "domain_hinge_closure_object",
+    "ready_for_MD": false,
+    "real_external_constraint_or_coupling_files": [
+      "data/all_locked_real_external_coupling_holdout_manifest_v0.locked.json",
+      "data/external_coupling_target_manifest_v0.locked.json",
+      "data/folding_real_coordinate_visual_8_couplings.locked.json",
+      "data/folding_real_coordinate_visual_8_external_couplings.v0.locked.json"
+    ],
+    "selected_signal": "124-135",
+    "target": "4AKE",
+    "v30_acquisition_status": "local_constraint_or_coupling_files_present_ready_for_next_readout_preflight"
+  },
+  {
+    "allowed_use": "allowed_for_constraint_backed_operator_readout",
+    "allowed_use_counts": {
+      "allowed_for_audit_only": 14,
+      "allowed_for_constraint_backed_operator_readout": 6
+    },
+    "annotation_context_files": [],
+    "candidate_file_count": 20,
+    "claim_allowed": false,
+    "classified_candidate_files": [
+      {
+        "allowed_use": "allowed_for_constraint_backed_operator_readout",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": true,
+        "evidence_source_class": "real_external_constraint_or_coupling",
+        "exclusion_reason": null,
+        "path": "data/all_locked_real_external_coupling_holdout_manifest_v0.locked.json"
+      },
+      {
+        "allowed_use": "allowed_for_constraint_backed_operator_readout",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": true,
+        "evidence_source_class": "real_external_constraint_or_coupling",
+        "exclusion_reason": null,
+        "path": "data/blind_holdout_manifest_10af_plmc_v0.locked.json"
+      },
+      {
+        "allowed_use": "allowed_for_constraint_backed_operator_readout",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": true,
+        "evidence_source_class": "real_external_constraint_or_coupling",
+        "exclusion_reason": null,
+        "path": "data/blind_holdout_manifest_10dc_plmc_v0.locked.json"
+      },
+      {
+        "allowed_use": "allowed_for_constraint_backed_operator_readout",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": true,
+        "evidence_source_class": "real_external_constraint_or_coupling",
+        "exclusion_reason": null,
+        "path": "data/blind_holdout_manifest_two_target_plmc_v0.locked.json"
+      },
+      {
+        "allowed_use": "allowed_for_constraint_backed_operator_readout",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": true,
+        "evidence_source_class": "real_external_constraint_or_coupling",
+        "exclusion_reason": null,
+        "path": "data/folding_real_coordinate_holdout_1ubq_external_couplings.v0.locked.json"
+      },
+      {
+        "allowed_use": "allowed_for_constraint_backed_operator_readout",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": true,
+        "evidence_source_class": "real_external_constraint_or_coupling",
+        "exclusion_reason": null,
+        "path": "data/folding_real_coordinate_holdout_1ubq_query_centered_apc_external_couplings.v0.locked.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V13a_1UBQ_ADAPTIVE_CHEMICAL_POLICY_READOUT/v13a_1ubq_purpose_gate_readout_certificate.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V15_DYNAMIC_ROLE_GRAMMAR_PANEL_LOCKED/V15_DYNAMIC_ROLE_GRAMMAR_PANEL_LOCKED_REPORT.md"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V15_DYNAMIC_ROLE_GRAMMAR_PANEL_LOCKED/v15_dynamic_role_grammar_panel_locked_certificate.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V15_DYNAMIC_SEPARATION_GRAMMAR_READOUT/V15_DYNAMIC_SEPARATION_GRAMMAR_REPORT.md"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V15_DYNAMIC_SEPARATION_GRAMMAR_READOUT/v15_dynamic_separation_grammar_readout_certificate.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V15_DYNAMIC_SEPARATION_GRAMMAR_READOUT/v15_dynamic_separation_grammar_table.csv"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V25_FAST_MECHANISM_EVIDENCE_SPRINT/V25_FAST_MECHANISM_EVIDENCE_SPRINT_REPORT.md"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V25_FAST_MECHANISM_EVIDENCE_SPRINT/v25_fast_mechanism_evidence_sprint_certificate.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V25_FAST_MECHANISM_EVIDENCE_SPRINT/v25_unified_mechanism_operator_table.csv"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V25_FAST_MECHANISM_EVIDENCE_SPRINT/v25_unified_mechanism_operator_table.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/v29_md_readiness_rows.csv"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/v29_md_readiness_rows.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/v29_mechanism_operator_panel_summary.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/v29_mechanism_operator_panel_summary_and_md_readiness_certificate.json"
+      }
+    ],
+    "constraint_backed_operator_readout_allowed": true,
+    "constraint_derivation_only_files": [],
+    "evidence_source_class_counts": {
+      "generated_internal_report": 14,
+      "real_external_constraint_or_coupling": 6
+    },
+    "excluded_files": [],
+    "generated_internal_report_files": [
+      "first_contact_clean_pharmacotopology_layer_run/V13a_1UBQ_ADAPTIVE_CHEMICAL_POLICY_READOUT/v13a_1ubq_purpose_gate_readout_certificate.json",
+      "first_contact_clean_pharmacotopology_layer_run/V15_DYNAMIC_ROLE_GRAMMAR_PANEL_LOCKED/V15_DYNAMIC_ROLE_GRAMMAR_PANEL_LOCKED_REPORT.md",
+      "first_contact_clean_pharmacotopology_layer_run/V15_DYNAMIC_ROLE_GRAMMAR_PANEL_LOCKED/v15_dynamic_role_grammar_panel_locked_certificate.json",
+      "first_contact_clean_pharmacotopology_layer_run/V15_DYNAMIC_SEPARATION_GRAMMAR_READOUT/V15_DYNAMIC_SEPARATION_GRAMMAR_REPORT.md",
+      "first_contact_clean_pharmacotopology_layer_run/V15_DYNAMIC_SEPARATION_GRAMMAR_READOUT/v15_dynamic_separation_grammar_readout_certificate.json",
+      "first_contact_clean_pharmacotopology_layer_run/V15_DYNAMIC_SEPARATION_GRAMMAR_READOUT/v15_dynamic_separation_grammar_table.csv",
+      "first_contact_clean_pharmacotopology_layer_run/V25_FAST_MECHANISM_EVIDENCE_SPRINT/V25_FAST_MECHANISM_EVIDENCE_SPRINT_REPORT.md",
+      "first_contact_clean_pharmacotopology_layer_run/V25_FAST_MECHANISM_EVIDENCE_SPRINT/v25_fast_mechanism_evidence_sprint_certificate.json",
+      "first_contact_clean_pharmacotopology_layer_run/V25_FAST_MECHANISM_EVIDENCE_SPRINT/v25_unified_mechanism_operator_table.csv",
+      "first_contact_clean_pharmacotopology_layer_run/V25_FAST_MECHANISM_EVIDENCE_SPRINT/v25_unified_mechanism_operator_table.json",
+      "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/v29_md_readiness_rows.csv",
+      "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/v29_md_readiness_rows.json",
+      "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/v29_mechanism_operator_panel_summary.json",
+      "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/v29_mechanism_operator_panel_summary_and_md_readiness_certificate.json"
+    ],
+    "in_selected_V31_scope": false,
+    "new_MD_allowed": false,
+    "new_MD_recommended": false,
+    "preflight_status": "real_external_constraint_available_for_v32_preflight",
+    "pressure_type": "single_domain_compact_object",
+    "ready_for_MD": false,
+    "real_external_constraint_or_coupling_files": [
+      "data/all_locked_real_external_coupling_holdout_manifest_v0.locked.json",
+      "data/blind_holdout_manifest_10af_plmc_v0.locked.json",
+      "data/blind_holdout_manifest_10dc_plmc_v0.locked.json",
+      "data/blind_holdout_manifest_two_target_plmc_v0.locked.json",
+      "data/folding_real_coordinate_holdout_1ubq_external_couplings.v0.locked.json",
+      "data/folding_real_coordinate_holdout_1ubq_query_centered_apc_external_couplings.v0.locked.json"
+    ],
+    "selected_signal": "23-48",
+    "target": "1UBQ",
+    "v30_acquisition_status": "local_constraint_or_coupling_files_present_ready_for_next_readout_preflight"
+  },
+  {
+    "allowed_use": "allowed_for_constraint_backed_operator_readout",
+    "allowed_use_counts": {
+      "allowed_for_audit_only": 15,
+      "allowed_for_constraint_backed_operator_readout": 4
+    },
+    "annotation_context_files": [],
+    "candidate_file_count": 19,
+    "claim_allowed": false,
+    "classified_candidate_files": [
+      {
+        "allowed_use": "allowed_for_constraint_backed_operator_readout",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": true,
+        "evidence_source_class": "real_external_constraint_or_coupling",
+        "exclusion_reason": null,
+        "path": "data/all_locked_real_external_coupling_holdout_manifest_v0.locked.json"
+      },
+      {
+        "allowed_use": "allowed_for_constraint_backed_operator_readout",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": true,
+        "evidence_source_class": "real_external_constraint_or_coupling",
+        "exclusion_reason": null,
+        "path": "data/external_coupling_target_manifest_v0.locked.json"
+      },
+      {
+        "allowed_use": "allowed_for_constraint_backed_operator_readout",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": true,
+        "evidence_source_class": "real_external_constraint_or_coupling",
+        "exclusion_reason": null,
+        "path": "data/folding_real_coordinate_visual_8_couplings.locked.json"
+      },
+      {
+        "allowed_use": "allowed_for_constraint_backed_operator_readout",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": true,
+        "evidence_source_class": "real_external_constraint_or_coupling",
+        "exclusion_reason": null,
+        "path": "data/folding_real_coordinate_visual_8_external_couplings.v0.locked.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "data/locked_runtime_certificates/V15_RECOVERED_SOURCE_SNAPSHOTS/V13b_1CLL_HIERARCHICAL_PURPOSE_TOPOLOGY_READOUT/v13b_1cll_hierarchical_purpose_topology_readout_certificate.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V13b_1CLL_HIERARCHICAL_PURPOSE_TOPOLOGY_READOUT/v13b_1cll_hierarchical_purpose_topology_readout_certificate.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V15_DYNAMIC_ROLE_GRAMMAR_PANEL_LOCKED/V15_DYNAMIC_ROLE_GRAMMAR_PANEL_LOCKED_REPORT.md"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V15_DYNAMIC_ROLE_GRAMMAR_PANEL_LOCKED/v15_dynamic_role_grammar_panel_locked_certificate.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V15_DYNAMIC_SEPARATION_GRAMMAR_READOUT/V15_DYNAMIC_SEPARATION_GRAMMAR_REPORT.md"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V15_DYNAMIC_SEPARATION_GRAMMAR_READOUT/v15_dynamic_separation_grammar_readout_certificate.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V15_DYNAMIC_SEPARATION_GRAMMAR_READOUT/v15_dynamic_separation_grammar_table.csv"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V25_FAST_MECHANISM_EVIDENCE_SPRINT/V25_FAST_MECHANISM_EVIDENCE_SPRINT_REPORT.md"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V25_FAST_MECHANISM_EVIDENCE_SPRINT/v25_fast_mechanism_evidence_sprint_certificate.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V25_FAST_MECHANISM_EVIDENCE_SPRINT/v25_unified_mechanism_operator_table.csv"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V25_FAST_MECHANISM_EVIDENCE_SPRINT/v25_unified_mechanism_operator_table.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/v29_md_readiness_rows.csv"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/v29_md_readiness_rows.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/v29_mechanism_operator_panel_summary.json"
+      },
+      {
+        "allowed_use": "allowed_for_audit_only",
+        "counts_as_annotation_context": false,
+        "counts_as_real_external_constraint": false,
+        "evidence_source_class": "generated_internal_report",
+        "exclusion_reason": "runtime_or_exported_internal_artifact_not_external_evidence",
+        "path": "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/v29_mechanism_operator_panel_summary_and_md_readiness_certificate.json"
+      }
+    ],
+    "constraint_backed_operator_readout_allowed": true,
+    "constraint_derivation_only_files": [],
+    "evidence_source_class_counts": {
+      "generated_internal_report": 15,
+      "real_external_constraint_or_coupling": 4
+    },
+    "excluded_files": [],
+    "generated_internal_report_files": [
+      "data/locked_runtime_certificates/V15_RECOVERED_SOURCE_SNAPSHOTS/V13b_1CLL_HIERARCHICAL_PURPOSE_TOPOLOGY_READOUT/v13b_1cll_hierarchical_purpose_topology_readout_certificate.json",
+      "first_contact_clean_pharmacotopology_layer_run/V13b_1CLL_HIERARCHICAL_PURPOSE_TOPOLOGY_READOUT/v13b_1cll_hierarchical_purpose_topology_readout_certificate.json",
+      "first_contact_clean_pharmacotopology_layer_run/V15_DYNAMIC_ROLE_GRAMMAR_PANEL_LOCKED/V15_DYNAMIC_ROLE_GRAMMAR_PANEL_LOCKED_REPORT.md",
+      "first_contact_clean_pharmacotopology_layer_run/V15_DYNAMIC_ROLE_GRAMMAR_PANEL_LOCKED/v15_dynamic_role_grammar_panel_locked_certificate.json",
+      "first_contact_clean_pharmacotopology_layer_run/V15_DYNAMIC_SEPARATION_GRAMMAR_READOUT/V15_DYNAMIC_SEPARATION_GRAMMAR_REPORT.md",
+      "first_contact_clean_pharmacotopology_layer_run/V15_DYNAMIC_SEPARATION_GRAMMAR_READOUT/v15_dynamic_separation_grammar_readout_certificate.json",
+      "first_contact_clean_pharmacotopology_layer_run/V15_DYNAMIC_SEPARATION_GRAMMAR_READOUT/v15_dynamic_separation_grammar_table.csv",
+      "first_contact_clean_pharmacotopology_layer_run/V25_FAST_MECHANISM_EVIDENCE_SPRINT/V25_FAST_MECHANISM_EVIDENCE_SPRINT_REPORT.md",
+      "first_contact_clean_pharmacotopology_layer_run/V25_FAST_MECHANISM_EVIDENCE_SPRINT/v25_fast_mechanism_evidence_sprint_certificate.json",
+      "first_contact_clean_pharmacotopology_layer_run/V25_FAST_MECHANISM_EVIDENCE_SPRINT/v25_unified_mechanism_operator_table.csv",
+      "first_contact_clean_pharmacotopology_layer_run/V25_FAST_MECHANISM_EVIDENCE_SPRINT/v25_unified_mechanism_operator_table.json",
+      "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/v29_md_readiness_rows.csv",
+      "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/v29_md_readiness_rows.json",
+      "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/v29_mechanism_operator_panel_summary.json",
+      "first_contact_clean_pharmacotopology_layer_run/V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION/v29_mechanism_operator_panel_summary_and_md_readiness_certificate.json"
+    ],
+    "in_selected_V31_scope": false,
+    "new_MD_allowed": false,
+    "new_MD_recommended": false,
+    "preflight_status": "real_external_constraint_available_for_v32_preflight",
+    "pressure_type": "multi_domain_composite_object",
+    "ready_for_MD": false,
+    "real_external_constraint_or_coupling_files": [
+      "data/all_locked_real_external_coupling_holdout_manifest_v0.locked.json",
+      "data/external_coupling_target_manifest_v0.locked.json",
+      "data/folding_real_coordinate_visual_8_couplings.locked.json",
+      "data/folding_real_coordinate_visual_8_external_couplings.v0.locked.json"
+    ],
+    "selected_signal": "97-133",
+    "target": "1CLL",
+    "v30_acquisition_status": "local_constraint_or_coupling_files_present_ready_for_next_readout_preflight"
+  }
+]
