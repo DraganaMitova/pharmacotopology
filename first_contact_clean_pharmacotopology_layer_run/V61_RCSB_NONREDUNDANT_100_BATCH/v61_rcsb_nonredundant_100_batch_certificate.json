@@ -1,0 +1,1924 @@
+{
+  "abstain_count": 19,
+  "accepted_accuracy": 0.09876543209876543,
+  "accepted_count": 81,
+  "alphafold_used_before_seal": false,
+  "atomistic_md_executed": false,
+  "batch_id": "V61_RCSB_NONREDUNDANT_100_BATCH",
+  "campaign_id": "V61_TO_V70_PROTEIN_ESPERANTO_SATURATION_CAMPAIGN",
+  "certificate_hash": "88d30add8bcea0ff1febe074207213e391881c96c40fd3570eef65b35c1ad782",
+  "claim_allowed": false,
+  "claim_blocked_reason": "accepted failures or failed controls remain in V61 discovery ledger",
+  "contact_truth_used_before_seal": false,
+  "control_count": 19,
+  "controls": [
+    {
+      "control_id": "target_selection_manual_false",
+      "observed": null,
+      "passed": true,
+      "reason": "V61 selection must be automatic."
+    },
+    {
+      "control_id": "targets_total_100",
+      "observed": 100,
+      "passed": true,
+      "reason": "V61 N must be exactly 100."
+    },
+    {
+      "control_id": "rcsb_experimental_protein_entities_only",
+      "observed": null,
+      "passed": true,
+      "reason": "All targets are RCSB experimental protein entities."
+    },
+    {
+      "control_id": "sequence_cluster_representative_selection",
+      "observed": {
+        "cutoff": 30,
+        "unique_clusters": 100
+      },
+      "passed": true,
+      "reason": "Each target is a unique 30% sequence-cluster representative."
+    },
+    {
+      "control_id": "length_filter_40_800",
+      "observed": null,
+      "passed": true,
+      "reason": "All targets satisfy the requested length filter."
+    },
+    {
+      "control_id": "engine_starts_as_d927781",
+      "observed": "d9277817bb5c7908f72dd0272148ed7cf223dd1d",
+      "passed": true,
+      "reason": "Engine source last commit is the requested E60 starting commit."
+    },
+    {
+      "control_id": "engine_modified_during_batch_false",
+      "observed": null,
+      "passed": true,
+      "reason": "No engine modification inside V61."
+    },
+    {
+      "control_id": "engine_language_sets_frozen",
+      "observed": null,
+      "passed": true,
+      "reason": "Operator and mechanism sets are frozen."
+    },
+    {
+      "control_id": "all_sealed_before_holdout",
+      "observed": null,
+      "passed": true,
+      "reason": "Every packet is sealed before holdout."
+    },
+    {
+      "control_id": "holdouts_opened_after_seal",
+      "observed": null,
+      "passed": true,
+      "reason": "Every holdout references the sealed prediction hash."
+    },
+    {
+      "control_id": "wrong_grammar_controls",
+      "observed": null,
+      "passed": true,
+      "reason": "Forced wrong grammars are rejected or routed to abstention."
+    },
+    {
+      "control_id": "shuffled_sequence_controls_reported",
+      "observed": {
+        "control_count": 100,
+        "rows": [
+          {
+            "original_coherence": 0.931547,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.95238,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_101M_1"
+          },
+          {
+            "original_coherence": 0.954546,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.996212,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_102L_1"
+          },
+          {
+            "original_coherence": 0.952797,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.931963,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10AJ_1"
+          },
+          {
+            "original_coherence": 0.936698,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.936698,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10AY_1"
+          },
+          {
+            "original_coherence": 0.912239,
+            "original_mechanism": "membrane_multidomain_folding_proteostasis",
+            "shuffled_coherence": 0.970744,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10DJ_1"
+          },
+          {
+            "original_coherence": 0.0,
+            "original_mechanism": "insufficient_evidence_clean_abstain",
+            "shuffled_coherence": 0.0,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "insufficient_evidence_clean_abstain",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10EN_3"
+          },
+          {
+            "original_coherence": 0.0,
+            "original_mechanism": "insufficient_evidence_clean_abstain",
+            "shuffled_coherence": 0.0,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "insufficient_evidence_clean_abstain",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10EX_3"
+          },
+          {
+            "original_coherence": 0.0,
+            "original_mechanism": "insufficient_evidence_clean_abstain",
+            "shuffled_coherence": 0.0,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "insufficient_evidence_clean_abstain",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10EZ_3"
+          },
+          {
+            "original_coherence": 0.893714,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.893714,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10FD_4"
+          },
+          {
+            "original_coherence": 0.906079,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.892821,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10FZ_10"
+          },
+          {
+            "original_coherence": 0.881756,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.881756,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10FZ_11"
+          },
+          {
+            "original_coherence": 0.840116,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.840116,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10FZ_17"
+          },
+          {
+            "original_coherence": 0.877314,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.898148,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10FZ_4"
+          },
+          {
+            "original_coherence": 0.885417,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.864583,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10FZ_6"
+          },
+          {
+            "original_coherence": 0.0,
+            "original_mechanism": "insufficient_evidence_clean_abstain",
+            "shuffled_coherence": 0.0,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "insufficient_evidence_clean_abstain",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10FZ_7"
+          },
+          {
+            "original_coherence": 0.859317,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.913484,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10FZ_8"
+          },
+          {
+            "original_coherence": 0.94878,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.965447,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10FZ_9"
+          },
+          {
+            "original_coherence": 0.889429,
+            "original_mechanism": "membrane_multidomain_folding_proteostasis",
+            "shuffled_coherence": 0.938552,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10HZ_1"
+          },
+          {
+            "original_coherence": 0.958228,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 1.0,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10IC_3"
+          },
+          {
+            "original_coherence": 0.0,
+            "original_mechanism": "insufficient_evidence_clean_abstain",
+            "shuffled_coherence": 0.0,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "insufficient_evidence_clean_abstain",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10IK_1"
+          },
+          {
+            "original_coherence": 0.882752,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.861919,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10JT_1"
+          },
+          {
+            "original_coherence": 0.917242,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.917242,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10JU_1"
+          },
+          {
+            "original_coherence": 0.96839,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 1.0,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10JX_1"
+          },
+          {
+            "original_coherence": 1.0,
+            "original_mechanism": "membrane_multidomain_folding_proteostasis",
+            "shuffled_coherence": 1.0,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10KT_1"
+          },
+          {
+            "original_coherence": 0.928495,
+            "original_mechanism": "membrane_multidomain_folding_proteostasis",
+            "shuffled_coherence": 0.946932,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10KZ_1"
+          },
+          {
+            "original_coherence": 0.992078,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.992078,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10LG_1"
+          },
+          {
+            "original_coherence": 0.904952,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.925785,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10MA_3"
+          },
+          {
+            "original_coherence": 0.924908,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.945741,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10MA_6"
+          },
+          {
+            "original_coherence": 0.933299,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.933299,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10NM_1"
+          },
+          {
+            "original_coherence": 0.945217,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.96605,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10OO_1"
+          },
+          {
+            "original_coherence": 0.864931,
+            "original_mechanism": "membrane_multidomain_folding_proteostasis",
+            "shuffled_coherence": 0.0,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "insufficient_evidence_clean_abstain",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10OP_1"
+          },
+          {
+            "original_coherence": 0.0,
+            "original_mechanism": "insufficient_evidence_clean_abstain",
+            "shuffled_coherence": 0.0,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "insufficient_evidence_clean_abstain",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10OP_3"
+          },
+          {
+            "original_coherence": 0.0,
+            "original_mechanism": "insufficient_evidence_clean_abstain",
+            "shuffled_coherence": 0.0,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "insufficient_evidence_clean_abstain",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10OP_4"
+          },
+          {
+            "original_coherence": 1.0,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.969946,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10OR_2"
+          },
+          {
+            "original_coherence": 0.0,
+            "original_mechanism": "insufficient_evidence_clean_abstain",
+            "shuffled_coherence": 0.0,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "insufficient_evidence_clean_abstain",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10OZ_2"
+          },
+          {
+            "original_coherence": 0.855334,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.876168,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10PA_1"
+          },
+          {
+            "original_coherence": 0.96661,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 1.0,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10PW_1"
+          },
+          {
+            "original_coherence": 0.0,
+            "original_mechanism": "insufficient_evidence_clean_abstain",
+            "shuffled_coherence": 0.0,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "insufficient_evidence_clean_abstain",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10PX_11"
+          },
+          {
+            "original_coherence": 0.942708,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.942708,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10PX_14"
+          },
+          {
+            "original_coherence": 0.828767,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.870434,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10PX_15"
+          },
+          {
+            "original_coherence": 0.956921,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.956921,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10PX_16"
+          },
+          {
+            "original_coherence": 0.882426,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.924093,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10PX_17"
+          },
+          {
+            "original_coherence": 0.991888,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 1.0,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10PX_18"
+          },
+          {
+            "original_coherence": 0.976563,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 1.0,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10PX_19"
+          },
+          {
+            "original_coherence": 0.907197,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.92803,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10PX_20"
+          },
+          {
+            "original_coherence": 0.938512,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.938512,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10PX_21"
+          },
+          {
+            "original_coherence": 0.0,
+            "original_mechanism": "insufficient_evidence_clean_abstain",
+            "shuffled_coherence": 0.0,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "insufficient_evidence_clean_abstain",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10PX_22"
+          },
+          {
+            "original_coherence": 0.0,
+            "original_mechanism": "insufficient_evidence_clean_abstain",
+            "shuffled_coherence": 0.875851,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": true,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10PX_23"
+          },
+          {
+            "original_coherence": 0.0,
+            "original_mechanism": "insufficient_evidence_clean_abstain",
+            "shuffled_coherence": 0.0,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "insufficient_evidence_clean_abstain",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10PX_35"
+          },
+          {
+            "original_coherence": 0.943673,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.943673,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10PX_36"
+          },
+          {
+            "original_coherence": 0.961538,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.940704,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10PX_38"
+          },
+          {
+            "original_coherence": 0.947463,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.92663,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10PX_39"
+          },
+          {
+            "original_coherence": 0.0,
+            "original_mechanism": "insufficient_evidence_clean_abstain",
+            "shuffled_coherence": 0.0,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "insufficient_evidence_clean_abstain",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10PX_4"
+          },
+          {
+            "original_coherence": 0.803571,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.803571,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10PX_41"
+          },
+          {
+            "original_coherence": 0.872023,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.91369,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10PX_44"
+          },
+          {
+            "original_coherence": 0.815341,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.836174,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10PX_49"
+          },
+          {
+            "original_coherence": 0.964286,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.964286,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10PX_5"
+          },
+          {
+            "original_coherence": 0.831989,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.831989,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10PX_50"
+          },
+          {
+            "original_coherence": 0.972985,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 1.0,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10PX_6"
+          },
+          {
+            "original_coherence": 0.0,
+            "original_mechanism": "insufficient_evidence_clean_abstain",
+            "shuffled_coherence": 0.0,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "insufficient_evidence_clean_abstain",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10PX_7"
+          },
+          {
+            "original_coherence": 0.0,
+            "original_mechanism": "insufficient_evidence_clean_abstain",
+            "shuffled_coherence": 0.0,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "insufficient_evidence_clean_abstain",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10QG_1"
+          },
+          {
+            "original_coherence": 0.904668,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.907644,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10QM_14"
+          },
+          {
+            "original_coherence": 0.872573,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.893406,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10QM_18"
+          },
+          {
+            "original_coherence": 0.9,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.941667,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10QM_20"
+          },
+          {
+            "original_coherence": 0.920212,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.961879,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10QM_22"
+          },
+          {
+            "original_coherence": 0.829545,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.854545,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10QM_24"
+          },
+          {
+            "original_coherence": 0.89569,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.912357,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10QM_26"
+          },
+          {
+            "original_coherence": 0.740942,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.761776,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10QM_29"
+          },
+          {
+            "original_coherence": 0.88445,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.880283,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10QM_4"
+          },
+          {
+            "original_coherence": 0.823809,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.823809,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10RI_1"
+          },
+          {
+            "original_coherence": 0.854167,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.854167,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10SM_1"
+          },
+          {
+            "original_coherence": 1.0,
+            "original_mechanism": "membrane_multidomain_folding_proteostasis",
+            "shuffled_coherence": 1.0,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10TU_1"
+          },
+          {
+            "original_coherence": 0.931922,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.890256,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10TZ_1"
+          },
+          {
+            "original_coherence": 0.867117,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.0,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "insufficient_evidence_clean_abstain",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10VB_1"
+          },
+          {
+            "original_coherence": 0.956642,
+            "original_mechanism": "membrane_multidomain_folding_proteostasis",
+            "shuffled_coherence": 1.0,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10VB_2"
+          },
+          {
+            "original_coherence": 0.933468,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.933468,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10XD_1"
+          },
+          {
+            "original_coherence": 0.970791,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.970791,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10XF_1"
+          },
+          {
+            "original_coherence": 0.967742,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.967742,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10XH_1"
+          },
+          {
+            "original_coherence": 0.907408,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.886574,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10XZ_1"
+          },
+          {
+            "original_coherence": 0.0,
+            "original_mechanism": "insufficient_evidence_clean_abstain",
+            "shuffled_coherence": 0.0,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "insufficient_evidence_clean_abstain",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10XZ_2"
+          },
+          {
+            "original_coherence": 0.920001,
+            "original_mechanism": "membrane_multidomain_folding_proteostasis",
+            "shuffled_coherence": 0.931686,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10XZ_3"
+          },
+          {
+            "original_coherence": 0.846667,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.846667,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10YB_4"
+          },
+          {
+            "original_coherence": 0.872311,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.893145,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10YE_4"
+          },
+          {
+            "original_coherence": 0.969552,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.990385,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10YH_8"
+          },
+          {
+            "original_coherence": 0.92438,
+            "original_mechanism": "membrane_multidomain_folding_proteostasis",
+            "shuffled_coherence": 0.966049,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10YN_1"
+          },
+          {
+            "original_coherence": 0.912849,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.912849,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10YY_1"
+          },
+          {
+            "original_coherence": 0.0,
+            "original_mechanism": "insufficient_evidence_clean_abstain",
+            "shuffled_coherence": 0.0,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "insufficient_evidence_clean_abstain",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10YZ_1"
+          },
+          {
+            "original_coherence": 0.904308,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.904308,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_10ZO_1"
+          },
+          {
+            "original_coherence": 0.885343,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.885343,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_117E_1"
+          },
+          {
+            "original_coherence": 0.217286,
+            "original_mechanism": "fold_upon_binding_disorder",
+            "shuffled_coherence": 0.849462,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": true,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_11BA_1"
+          },
+          {
+            "original_coherence": 0.0,
+            "original_mechanism": "insufficient_evidence_clean_abstain",
+            "shuffled_coherence": 0.0,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "insufficient_evidence_clean_abstain",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_11BE_1"
+          },
+          {
+            "original_coherence": 0.806819,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.824676,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_11BQ_1"
+          },
+          {
+            "original_coherence": 0.829519,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.838989,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_11BQ_27"
+          },
+          {
+            "original_coherence": 0.87676,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.897593,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_11BQ_36"
+          },
+          {
+            "original_coherence": 0.853261,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.894928,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_11BQ_42"
+          },
+          {
+            "original_coherence": 0.876602,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.855769,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_11BQ_47"
+          },
+          {
+            "original_coherence": 0.926323,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.90549,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_11BQ_9"
+          },
+          {
+            "original_coherence": 0.0,
+            "original_mechanism": "insufficient_evidence_clean_abstain",
+            "shuffled_coherence": 0.0,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "insufficient_evidence_clean_abstain",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_11CF_1"
+          },
+          {
+            "original_coherence": 0.934304,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.975971,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_11CQ_2"
+          },
+          {
+            "original_coherence": 0.962644,
+            "original_mechanism": "globular_closure",
+            "shuffled_coherence": 0.941811,
+            "shuffled_coordinate_sources": 0,
+            "shuffled_higher_by_more_than_margin": false,
+            "shuffled_mechanism": "globular_closure",
+            "shuffled_runtime_sources": 0,
+            "target_id": "V61_11DG_26"
+          }
+        ],
+        "shuffled_higher_by_more_than_margin_count": 2
+      },
+      "passed": true,
+      "reason": "Composition-preserving shuffled controls are generated with target metadata withheld; stronger shuffled coherence cases are reported rather than used as validation support."
+    },
+    {
+      "control_id": "coordinate_leakage_control",
+      "observed": {
+        "allowed_initialization_source_ids": [],
+        "blocked_source_ids": [
+          "V61_BAD_COORDINATES"
+        ],
+        "coordinate_derived_source_count_before_prediction": 1,
+        "coordinate_truth_used_before_prediction": true,
+        "holdout_opened_before_seal": false,
+        "internal_runtime_source_count_for_prediction": 0,
+        "internal_runtime_used_as_biological_evidence": false,
+        "kind": "PROTEIN_ESPERANTO_EVIDENCE_BOUNDARY_GATE_v0",
+        "rows": [
+          {
+            "allowed_for_claim": false,
+            "allowed_for_holdout_after_seal": false,
+            "allowed_to_initialize_language_field": false,
+            "blocked_reason": "coordinate_derived_blocked_before_seal",
+            "coordinate_derived": true,
+            "internal_runtime": false,
+            "source_class": "coordinate_derived",
+            "source_id": "V61_BAD_COORDINATES",
+            "source_role": "prediction_input",
+            "spatial_proxy": false
+          }
+        ],
+        "spatial_proxy_untagged_or_misused_count": 0
+      },
+      "passed": true,
+      "reason": "Coordinate-derived source blocks prediction."
+    },
+    {
+      "control_id": "alphafold_leakage_control",
+      "observed": {
+        "allowed_initialization_source_ids": [],
+        "blocked_source_ids": [
+          "V61_BAD_ALPHAFOLD_MODEL"
+        ],
+        "coordinate_derived_source_count_before_prediction": 1,
+        "coordinate_truth_used_before_prediction": true,
+        "holdout_opened_before_seal": false,
+        "internal_runtime_source_count_for_prediction": 0,
+        "internal_runtime_used_as_biological_evidence": false,
+        "kind": "PROTEIN_ESPERANTO_EVIDENCE_BOUNDARY_GATE_v0",
+        "rows": [
+          {
+            "allowed_for_claim": false,
+            "allowed_for_holdout_after_seal": false,
+            "allowed_to_initialize_language_field": false,
+            "blocked_reason": "coordinate_derived_blocked_before_seal",
+            "coordinate_derived": true,
+            "internal_runtime": false,
+            "source_class": "coordinate_derived",
+            "source_id": "V61_BAD_ALPHAFOLD_MODEL",
+            "source_role": "prediction_input",
+            "spatial_proxy": false
+          }
+        ],
+        "spatial_proxy_untagged_or_misused_count": 0
+      },
+      "passed": true,
+      "reason": "AlphaFold-like model blocks prediction."
+    },
+    {
+      "control_id": "holdout_opened_before_seal_control",
+      "observed": {
+        "allowed_initialization_source_ids": [],
+        "blocked_source_ids": [
+          "V61_PRESEAL_HOLDOUT"
+        ],
+        "coordinate_derived_source_count_before_prediction": 0,
+        "coordinate_truth_used_before_prediction": false,
+        "holdout_opened_before_seal": true,
+        "internal_runtime_source_count_for_prediction": 0,
+        "internal_runtime_used_as_biological_evidence": false,
+        "kind": "PROTEIN_ESPERANTO_EVIDENCE_BOUNDARY_GATE_v0",
+        "rows": [
+          {
+            "allowed_for_claim": false,
+            "allowed_for_holdout_after_seal": true,
+            "allowed_to_initialize_language_field": false,
+            "blocked_reason": "holdout_opened_before_seal",
+            "coordinate_derived": true,
+            "internal_runtime": false,
+            "source_class": "coordinate_derived",
+            "source_id": "V61_PRESEAL_HOLDOUT",
+            "source_role": "holdout_validation",
+            "spatial_proxy": false
+          }
+        ],
+        "spatial_proxy_untagged_or_misused_count": 0
+      },
+      "passed": true,
+      "reason": "Holdout validation cannot initialize prediction before sealing."
+    },
+    {
+      "control_id": "internal_runtime_leakage_control",
+      "observed": {
+        "allowed_initialization_source_ids": [],
+        "blocked_source_ids": [
+          "V61_BAD_INTERNAL_RUNTIME"
+        ],
+        "coordinate_derived_source_count_before_prediction": 0,
+        "coordinate_truth_used_before_prediction": false,
+        "holdout_opened_before_seal": false,
+        "internal_runtime_source_count_for_prediction": 1,
+        "internal_runtime_used_as_biological_evidence": true,
+        "kind": "PROTEIN_ESPERANTO_EVIDENCE_BOUNDARY_GATE_v0",
+        "rows": [
+          {
+            "allowed_for_claim": false,
+            "allowed_for_holdout_after_seal": false,
+            "allowed_to_initialize_language_field": false,
+            "blocked_reason": "internal_runtime_never_biological_evidence",
+            "coordinate_derived": false,
+            "internal_runtime": true,
+            "source_class": "internal_runtime",
+            "source_id": "V61_BAD_INTERNAL_RUNTIME",
+            "source_role": "prediction_input",
+            "spatial_proxy": false
+          }
+        ],
+        "spatial_proxy_untagged_or_misused_count": 0
+      },
+      "passed": true,
+      "reason": "Internal runtime cannot become biological evidence."
+    },
+    {
+      "control_id": "random_sequence_control",
+      "observed": null,
+      "passed": true,
+      "reason": "Random sequence without evidence abstains."
+    },
+    {
+      "control_id": "failures_reported",
+      "observed": null,
+      "passed": true,
+      "reason": "Every target has an explicit score row."
+    },
+    {
+      "control_id": "readme_modified_false",
+      "observed": {
+        "diff_length": 0
+      },
+      "passed": true,
+      "reason": "README is manual-owned and must remain untouched."
+    }
+  ],
+  "controls_passed": true,
+  "coordinate_truth_used_before_seal": false,
+  "coverage": 0.81,
+  "engine_modified_during_batch": false,
+  "engine_source_last_commit": "d9277817bb5c7908f72dd0272148ed7cf223dd1d",
+  "engine_start_commit": "d927781",
+  "engine_version_used": "E60",
+  "failed_accepted_count": 73,
+  "failed_controls": [],
+  "failure_modes": {
+    "cofactor_ligand_missing": 43,
+    "disorder_misread": 4,
+    "membrane_misread": 11,
+    "oligomer_state_misread": 13,
+    "weak_sequence_signal": 19,
+    "wrong_regime": 2
+  },
+  "folding_problem_solved": false,
+  "forbidden_claims": [
+    "Universal protein folding is solved.",
+    "All protein classes are saturated.",
+    "Coordinates or contacts were predicted de novo.",
+    "Engine changes were made during V61.",
+    "Failures may be hidden or repaired after holdout."
+  ],
+  "kind": "V61_RCSB_NONREDUNDANT_100_BATCH_CERTIFICATE_v0",
+  "missing_esperanto_candidates": [
+    {
+      "failure_type": "cofactor_ligand_missing",
+      "missing_esperanto_rule": "cofactor/metal-ligand stabilization mark",
+      "proposed_new_operator": "interface_operator",
+      "proposed_new_pressure": "ligand_or_cofactor pressure",
+      "target_id": "V61_101M_1"
+    },
+    {
+      "failure_type": "wrong_regime",
+      "missing_esperanto_rule": "regime separation mark",
+      "proposed_new_operator": "frustration_operator",
+      "proposed_new_pressure": "context separation pressure",
+      "target_id": "V61_102L_1"
+    },
+    {
+      "failure_type": "cofactor_ligand_missing",
+      "missing_esperanto_rule": "cofactor/metal-ligand stabilization mark",
+      "proposed_new_operator": "interface_operator",
+      "proposed_new_pressure": "ligand_or_cofactor pressure",
+      "target_id": "V61_10AJ_1"
+    },
+    {
+      "failure_type": "membrane_misread",
+      "missing_esperanto_rule": "membrane topology/context mark",
+      "proposed_new_operator": "membrane_pressure_operator",
+      "proposed_new_pressure": "membrane insertion pressure",
+      "target_id": "V61_10AY_1"
+    },
+    {
+      "failure_type": "weak_sequence_signal",
+      "missing_esperanto_rule": "confidence/self-evidence mark",
+      "proposed_new_operator": "none",
+      "proposed_new_pressure": "none",
+      "target_id": "V61_10EN_3"
+    },
+    {
+      "failure_type": "weak_sequence_signal",
+      "missing_esperanto_rule": "confidence/self-evidence mark",
+      "proposed_new_operator": "none",
+      "proposed_new_pressure": "none",
+      "target_id": "V61_10EX_3"
+    },
+    {
+      "failure_type": "weak_sequence_signal",
+      "missing_esperanto_rule": "confidence/self-evidence mark",
+      "proposed_new_operator": "none",
+      "proposed_new_pressure": "none",
+      "target_id": "V61_10EZ_3"
+    },
+    {
+      "failure_type": "oligomer_state_misread",
+      "missing_esperanto_rule": "obligate assembly/context mark",
+      "proposed_new_operator": "interface_operator",
+      "proposed_new_pressure": "partner-copy concentration pressure",
+      "target_id": "V61_10FD_4"
+    },
+    {
+      "failure_type": "cofactor_ligand_missing",
+      "missing_esperanto_rule": "cofactor/metal-ligand stabilization mark",
+      "proposed_new_operator": "interface_operator",
+      "proposed_new_pressure": "ligand_or_cofactor pressure",
+      "target_id": "V61_10FZ_10"
+    },
+    {
+      "failure_type": "cofactor_ligand_missing",
+      "missing_esperanto_rule": "cofactor/metal-ligand stabilization mark",
+      "proposed_new_operator": "interface_operator",
+      "proposed_new_pressure": "ligand_or_cofactor pressure",
+      "target_id": "V61_10FZ_11"
+    },
+    {
+      "failure_type": "cofactor_ligand_missing",
+      "missing_esperanto_rule": "cofactor/metal-ligand stabilization mark",
+      "proposed_new_operator": "interface_operator",
+      "proposed_new_pressure": "ligand_or_cofactor pressure",
+      "target_id": "V61_10FZ_17"
+    },
+    {
+      "failure_type": "cofactor_ligand_missing",
+      "missing_esperanto_rule": "cofactor/metal-ligand stabilization mark",
+      "proposed_new_operator": "interface_operator",
+      "proposed_new_pressure": "ligand_or_cofactor pressure",
+      "target_id": "V61_10FZ_4"
+    },
+    {
+      "failure_type": "cofactor_ligand_missing",
+      "missing_esperanto_rule": "cofactor/metal-ligand stabilization mark",
+      "proposed_new_operator": "interface_operator",
+      "proposed_new_pressure": "ligand_or_cofactor pressure",
+      "target_id": "V61_10FZ_6"
+    },
+    {
+      "failure_type": "weak_sequence_signal",
+      "missing_esperanto_rule": "confidence/self-evidence mark",
+      "proposed_new_operator": "none",
+      "proposed_new_pressure": "none",
+      "target_id": "V61_10FZ_7"
+    },
+    {
+      "failure_type": "cofactor_ligand_missing",
+      "missing_esperanto_rule": "cofactor/metal-ligand stabilization mark",
+      "proposed_new_operator": "interface_operator",
+      "proposed_new_pressure": "ligand_or_cofactor pressure",
+      "target_id": "V61_10FZ_8"
+    },
+    {
+      "failure_type": "cofactor_ligand_missing",
+      "missing_esperanto_rule": "cofactor/metal-ligand stabilization mark",
+      "proposed_new_operator": "interface_operator",
+      "proposed_new_pressure": "ligand_or_cofactor pressure",
+      "target_id": "V61_10FZ_9"
+    },
+    {
+      "failure_type": "oligomer_state_misread",
+      "missing_esperanto_rule": "obligate assembly/context mark",
+      "proposed_new_operator": "interface_operator",
+      "proposed_new_pressure": "partner-copy concentration pressure",
+      "target_id": "V61_10HZ_1"
+    },
+    {
+      "failure_type": "membrane_misread",
+      "missing_esperanto_rule": "membrane topology/context mark",
+      "proposed_new_operator": "membrane_pressure_operator",
+      "proposed_new_pressure": "membrane insertion pressure",
+      "target_id": "V61_10IC_3"
+    },
+    {
+      "failure_type": "weak_sequence_signal",
+      "missing_esperanto_rule": "confidence/self-evidence mark",
+      "proposed_new_operator": "none",
+      "proposed_new_pressure": "none",
+      "target_id": "V61_10IK_1"
+    },
+    {
+      "failure_type": "membrane_misread",
+      "missing_esperanto_rule": "membrane topology/context mark",
+      "proposed_new_operator": "membrane_pressure_operator",
+      "proposed_new_pressure": "membrane insertion pressure",
+      "target_id": "V61_10JT_1"
+    },
+    {
+      "failure_type": "oligomer_state_misread",
+      "missing_esperanto_rule": "obligate assembly/context mark",
+      "proposed_new_operator": "interface_operator",
+      "proposed_new_pressure": "partner-copy concentration pressure",
+      "target_id": "V61_10JU_1"
+    },
+    {
+      "failure_type": "cofactor_ligand_missing",
+      "missing_esperanto_rule": "cofactor/metal-ligand stabilization mark",
+      "proposed_new_operator": "interface_operator",
+      "proposed_new_pressure": "ligand_or_cofactor pressure",
+      "target_id": "V61_10JX_1"
+    },
+    {
+      "failure_type": "oligomer_state_misread",
+      "missing_esperanto_rule": "obligate assembly/context mark",
+      "proposed_new_operator": "interface_operator",
+      "proposed_new_pressure": "partner-copy concentration pressure",
+      "target_id": "V61_10LG_1"
+    },
+    {
+      "failure_type": "membrane_misread",
+      "missing_esperanto_rule": "membrane topology/context mark",
+      "proposed_new_operator": "membrane_pressure_operator",
+      "proposed_new_pressure": "membrane insertion pressure",
+      "target_id": "V61_10MA_3"
+    },
+    {
+      "failure_type": "cofactor_ligand_missing",
+      "missing_esperanto_rule": "cofactor/metal-ligand stabilization mark",
+      "proposed_new_operator": "interface_operator",
+      "proposed_new_pressure": "ligand_or_cofactor pressure",
+      "target_id": "V61_10MA_6"
+    },
+    {
+      "failure_type": "oligomer_state_misread",
+      "missing_esperanto_rule": "obligate assembly/context mark",
+      "proposed_new_operator": "interface_operator",
+      "proposed_new_pressure": "partner-copy concentration pressure",
+      "target_id": "V61_10NM_1"
+    },
+    {
+      "failure_type": "membrane_misread",
+      "missing_esperanto_rule": "membrane topology/context mark",
+      "proposed_new_operator": "membrane_pressure_operator",
+      "proposed_new_pressure": "membrane insertion pressure",
+      "target_id": "V61_10OO_1"
+    },
+    {
+      "failure_type": "weak_sequence_signal",
+      "missing_esperanto_rule": "confidence/self-evidence mark",
+      "proposed_new_operator": "none",
+      "proposed_new_pressure": "none",
+      "target_id": "V61_10OP_3"
+    },
+    {
+      "failure_type": "weak_sequence_signal",
+      "missing_esperanto_rule": "confidence/self-evidence mark",
+      "proposed_new_operator": "none",
+      "proposed_new_pressure": "none",
+      "target_id": "V61_10OP_4"
+    },
+    {
+      "failure_type": "membrane_misread",
+      "missing_esperanto_rule": "membrane topology/context mark",
+      "proposed_new_operator": "membrane_pressure_operator",
+      "proposed_new_pressure": "membrane insertion pressure",
+      "target_id": "V61_10OR_2"
+    },
+    {
+      "failure_type": "weak_sequence_signal",
+      "missing_esperanto_rule": "confidence/self-evidence mark",
+      "proposed_new_operator": "none",
+      "proposed_new_pressure": "none",
+      "target_id": "V61_10OZ_2"
+    },
+    {
+      "failure_type": "cofactor_ligand_missing",
+      "missing_esperanto_rule": "cofactor/metal-ligand stabilization mark",
+      "proposed_new_operator": "interface_operator",
+      "proposed_new_pressure": "ligand_or_cofactor pressure",
+      "target_id": "V61_10PA_1"
+    },
+    {
+      "failure_type": "oligomer_state_misread",
+      "missing_esperanto_rule": "obligate assembly/context mark",
+      "proposed_new_operator": "interface_operator",
+      "proposed_new_pressure": "partner-copy concentration pressure",
+      "target_id": "V61_10PW_1"
+    },
+    {
+      "failure_type": "weak_sequence_signal",
+      "missing_esperanto_rule": "confidence/self-evidence mark",
+      "proposed_new_operator": "none",
+      "proposed_new_pressure": "none",
+      "target_id": "V61_10PX_11"
+    },
+    {
+      "failure_type": "cofactor_ligand_missing",
+      "missing_esperanto_rule": "cofactor/metal-ligand stabilization mark",
+      "proposed_new_operator": "interface_operator",
+      "proposed_new_pressure": "ligand_or_cofactor pressure",
+      "target_id": "V61_10PX_14"
+    },
+    {
+      "failure_type": "cofactor_ligand_missing",
+      "missing_esperanto_rule": "cofactor/metal-ligand stabilization mark",
+      "proposed_new_operator": "interface_operator",
+      "proposed_new_pressure": "ligand_or_cofactor pressure",
+      "target_id": "V61_10PX_15"
+    },
+    {
+      "failure_type": "cofactor_ligand_missing",
+      "missing_esperanto_rule": "cofactor/metal-ligand stabilization mark",
+      "proposed_new_operator": "interface_operator",
+      "proposed_new_pressure": "ligand_or_cofactor pressure",
+      "target_id": "V61_10PX_16"
+    },
+    {
+      "failure_type": "cofactor_ligand_missing",
+      "missing_esperanto_rule": "cofactor/metal-ligand stabilization mark",
+      "proposed_new_operator": "interface_operator",
+      "proposed_new_pressure": "ligand_or_cofactor pressure",
+      "target_id": "V61_10PX_17"
+    },
+    {
+      "failure_type": "cofactor_ligand_missing",
+      "missing_esperanto_rule": "cofactor/metal-ligand stabilization mark",
+      "proposed_new_operator": "interface_operator",
+      "proposed_new_pressure": "ligand_or_cofactor pressure",
+      "target_id": "V61_10PX_18"
+    },
+    {
+      "failure_type": "cofactor_ligand_missing",
+      "missing_esperanto_rule": "cofactor/metal-ligand stabilization mark",
+      "proposed_new_operator": "interface_operator",
+      "proposed_new_pressure": "ligand_or_cofactor pressure",
+      "target_id": "V61_10PX_19"
+    },
+    {
+      "failure_type": "cofactor_ligand_missing",
+      "missing_esperanto_rule": "cofactor/metal-ligand stabilization mark",
+      "proposed_new_operator": "interface_operator",
+      "proposed_new_pressure": "ligand_or_cofactor pressure",
+      "target_id": "V61_10PX_20"
+    },
+    {
+      "failure_type": "cofactor_ligand_missing",
+      "missing_esperanto_rule": "cofactor/metal-ligand stabilization mark",
+      "proposed_new_operator": "interface_operator",
+      "proposed_new_pressure": "ligand_or_cofactor pressure",
+      "target_id": "V61_10PX_21"
+    },
+    {
+      "failure_type": "weak_sequence_signal",
+      "missing_esperanto_rule": "confidence/self-evidence mark",
+      "proposed_new_operator": "none",
+      "proposed_new_pressure": "none",
+      "target_id": "V61_10PX_22"
+    },
+    {
+      "failure_type": "weak_sequence_signal",
+      "missing_esperanto_rule": "confidence/self-evidence mark",
+      "proposed_new_operator": "none",
+      "proposed_new_pressure": "none",
+      "target_id": "V61_10PX_23"
+    },
+    {
+      "failure_type": "weak_sequence_signal",
+      "missing_esperanto_rule": "confidence/self-evidence mark",
+      "proposed_new_operator": "none",
+      "proposed_new_pressure": "none",
+      "target_id": "V61_10PX_35"
+    },
+    {
+      "failure_type": "cofactor_ligand_missing",
+      "missing_esperanto_rule": "cofactor/metal-ligand stabilization mark",
+      "proposed_new_operator": "interface_operator",
+      "proposed_new_pressure": "ligand_or_cofactor pressure",
+      "target_id": "V61_10PX_36"
+    },
+    {
+      "failure_type": "cofactor_ligand_missing",
+      "missing_esperanto_rule": "cofactor/metal-ligand stabilization mark",
+      "proposed_new_operator": "interface_operator",
+      "proposed_new_pressure": "ligand_or_cofactor pressure",
+      "target_id": "V61_10PX_38"
+    },
+    {
+      "failure_type": "cofactor_ligand_missing",
+      "missing_esperanto_rule": "cofactor/metal-ligand stabilization mark",
+      "proposed_new_operator": "interface_operator",
+      "proposed_new_pressure": "ligand_or_cofactor pressure",
+      "target_id": "V61_10PX_39"
+    },
+    {
+      "failure_type": "weak_sequence_signal",
+      "missing_esperanto_rule": "confidence/self-evidence mark",
+      "proposed_new_operator": "none",
+      "proposed_new_pressure": "none",
+      "target_id": "V61_10PX_4"
+    },
+    {
+      "failure_type": "cofactor_ligand_missing",
+      "missing_esperanto_rule": "cofactor/metal-ligand stabilization mark",
+      "proposed_new_operator": "interface_operator",
+      "proposed_new_pressure": "ligand_or_cofactor pressure",
+      "target_id": "V61_10PX_41"
+    },
+    {
+      "failure_type": "cofactor_ligand_missing",
+      "missing_esperanto_rule": "cofactor/metal-ligand stabilization mark",
+      "proposed_new_operator": "interface_operator",
+      "proposed_new_pressure": "ligand_or_cofactor pressure",
+      "target_id": "V61_10PX_44"
+    },
+    {
+      "failure_type": "cofactor_ligand_missing",
+      "missing_esperanto_rule": "cofactor/metal-ligand stabilization mark",
+      "proposed_new_operator": "interface_operator",
+      "proposed_new_pressure": "ligand_or_cofactor pressure",
+      "target_id": "V61_10PX_49"
+    },
+    {
+      "failure_type": "cofactor_ligand_missing",
+      "missing_esperanto_rule": "cofactor/metal-ligand stabilization mark",
+      "proposed_new_operator": "interface_operator",
+      "proposed_new_pressure": "ligand_or_cofactor pressure",
+      "target_id": "V61_10PX_5"
+    },
+    {
+      "failure_type": "cofactor_ligand_missing",
+      "missing_esperanto_rule": "cofactor/metal-ligand stabilization mark",
+      "proposed_new_operator": "interface_operator",
+      "proposed_new_pressure": "ligand_or_cofactor pressure",
+      "target_id": "V61_10PX_50"
+    },
+    {
+      "failure_type": "cofactor_ligand_missing",
+      "missing_esperanto_rule": "cofactor/metal-ligand stabilization mark",
+      "proposed_new_operator": "interface_operator",
+      "proposed_new_pressure": "ligand_or_cofactor pressure",
+      "target_id": "V61_10PX_6"
+    },
+    {
+      "failure_type": "weak_sequence_signal",
+      "missing_esperanto_rule": "confidence/self-evidence mark",
+      "proposed_new_operator": "none",
+      "proposed_new_pressure": "none",
+      "target_id": "V61_10PX_7"
+    },
+    {
+      "failure_type": "weak_sequence_signal",
+      "missing_esperanto_rule": "confidence/self-evidence mark",
+      "proposed_new_operator": "none",
+      "proposed_new_pressure": "none",
+      "target_id": "V61_10QG_1"
+    },
+    {
+      "failure_type": "cofactor_ligand_missing",
+      "missing_esperanto_rule": "cofactor/metal-ligand stabilization mark",
+      "proposed_new_operator": "interface_operator",
+      "proposed_new_pressure": "ligand_or_cofactor pressure",
+      "target_id": "V61_10QM_14"
+    },
+    {
+      "failure_type": "cofactor_ligand_missing",
+      "missing_esperanto_rule": "cofactor/metal-ligand stabilization mark",
+      "proposed_new_operator": "interface_operator",
+      "proposed_new_pressure": "ligand_or_cofactor pressure",
+      "target_id": "V61_10QM_18"
+    },
+    {
+      "failure_type": "cofactor_ligand_missing",
+      "missing_esperanto_rule": "cofactor/metal-ligand stabilization mark",
+      "proposed_new_operator": "interface_operator",
+      "proposed_new_pressure": "ligand_or_cofactor pressure",
+      "target_id": "V61_10QM_20"
+    },
+    {
+      "failure_type": "cofactor_ligand_missing",
+      "missing_esperanto_rule": "cofactor/metal-ligand stabilization mark",
+      "proposed_new_operator": "interface_operator",
+      "proposed_new_pressure": "ligand_or_cofactor pressure",
+      "target_id": "V61_10QM_22"
+    },
+    {
+      "failure_type": "cofactor_ligand_missing",
+      "missing_esperanto_rule": "cofactor/metal-ligand stabilization mark",
+      "proposed_new_operator": "interface_operator",
+      "proposed_new_pressure": "ligand_or_cofactor pressure",
+      "target_id": "V61_10QM_24"
+    },
+    {
+      "failure_type": "cofactor_ligand_missing",
+      "missing_esperanto_rule": "cofactor/metal-ligand stabilization mark",
+      "proposed_new_operator": "interface_operator",
+      "proposed_new_pressure": "ligand_or_cofactor pressure",
+      "target_id": "V61_10QM_26"
+    },
+    {
+      "failure_type": "disorder_misread",
+      "missing_esperanto_rule": "IDR/low-complexity persistence mark",
+      "proposed_new_operator": "disorder_operator",
+      "proposed_new_pressure": "entropy/phase pressure",
+      "target_id": "V61_10QM_29"
+    },
+    {
+      "failure_type": "cofactor_ligand_missing",
+      "missing_esperanto_rule": "cofactor/metal-ligand stabilization mark",
+      "proposed_new_operator": "interface_operator",
+      "proposed_new_pressure": "ligand_or_cofactor pressure",
+      "target_id": "V61_10QM_4"
+    },
+    {
+      "failure_type": "membrane_misread",
+      "missing_esperanto_rule": "membrane topology/context mark",
+      "proposed_new_operator": "membrane_pressure_operator",
+      "proposed_new_pressure": "membrane insertion pressure",
+      "target_id": "V61_10RI_1"
+    },
+    {
+      "failure_type": "oligomer_state_misread",
+      "missing_esperanto_rule": "obligate assembly/context mark",
+      "proposed_new_operator": "interface_operator",
+      "proposed_new_pressure": "partner-copy concentration pressure",
+      "target_id": "V61_10SM_1"
+    },
+    {
+      "failure_type": "membrane_misread",
+      "missing_esperanto_rule": "membrane topology/context mark",
+      "proposed_new_operator": "membrane_pressure_operator",
+      "proposed_new_pressure": "membrane insertion pressure",
+      "target_id": "V61_10TZ_1"
+    },
+    {
+      "failure_type": "oligomer_state_misread",
+      "missing_esperanto_rule": "obligate assembly/context mark",
+      "proposed_new_operator": "interface_operator",
+      "proposed_new_pressure": "partner-copy concentration pressure",
+      "target_id": "V61_10VB_1"
+    },
+    {
+      "failure_type": "membrane_misread",
+      "missing_esperanto_rule": "membrane topology/context mark",
+      "proposed_new_operator": "membrane_pressure_operator",
+      "proposed_new_pressure": "membrane insertion pressure",
+      "target_id": "V61_10XD_1"
+    },
+    {
+      "failure_type": "membrane_misread",
+      "missing_esperanto_rule": "membrane topology/context mark",
+      "proposed_new_operator": "membrane_pressure_operator",
+      "proposed_new_pressure": "membrane insertion pressure",
+      "target_id": "V61_10XF_1"
+    },
+    {
+      "failure_type": "membrane_misread",
+      "missing_esperanto_rule": "membrane topology/context mark",
+      "proposed_new_operator": "membrane_pressure_operator",
+      "proposed_new_pressure": "membrane insertion pressure",
+      "target_id": "V61_10XH_1"
+    },
+    {
+      "failure_type": "disorder_misread",
+      "missing_esperanto_rule": "IDR/low-complexity persistence mark",
+      "proposed_new_operator": "disorder_operator",
+      "proposed_new_pressure": "entropy/phase pressure",
+      "target_id": "V61_10XZ_1"
+    },
+    {
+      "failure_type": "weak_sequence_signal",
+      "missing_esperanto_rule": "confidence/self-evidence mark",
+      "proposed_new_operator": "none",
+      "proposed_new_pressure": "none",
+      "target_id": "V61_10XZ_2"
+    },
+    {
+      "failure_type": "oligomer_state_misread",
+      "missing_esperanto_rule": "obligate assembly/context mark",
+      "proposed_new_operator": "interface_operator",
+      "proposed_new_pressure": "partner-copy concentration pressure",
+      "target_id": "V61_10YB_4"
+    },
+    {
+      "failure_type": "oligomer_state_misread",
+      "missing_esperanto_rule": "obligate assembly/context mark",
+      "proposed_new_operator": "interface_operator",
+      "proposed_new_pressure": "partner-copy concentration pressure",
+      "target_id": "V61_10YE_4"
+    },
+    {
+      "failure_type": "oligomer_state_misread",
+      "missing_esperanto_rule": "obligate assembly/context mark",
+      "proposed_new_operator": "interface_operator",
+      "proposed_new_pressure": "partner-copy concentration pressure",
+      "target_id": "V61_10YH_8"
+    },
+    {
+      "failure_type": "oligomer_state_misread",
+      "missing_esperanto_rule": "obligate assembly/context mark",
+      "proposed_new_operator": "interface_operator",
+      "proposed_new_pressure": "partner-copy concentration pressure",
+      "target_id": "V61_10YY_1"
+    },
+    {
+      "failure_type": "weak_sequence_signal",
+      "missing_esperanto_rule": "confidence/self-evidence mark",
+      "proposed_new_operator": "none",
+      "proposed_new_pressure": "none",
+      "target_id": "V61_10YZ_1"
+    },
+    {
+      "failure_type": "wrong_regime",
+      "missing_esperanto_rule": "regime separation mark",
+      "proposed_new_operator": "frustration_operator",
+      "proposed_new_pressure": "context separation pressure",
+      "target_id": "V61_10ZO_1"
+    },
+    {
+      "failure_type": "cofactor_ligand_missing",
+      "missing_esperanto_rule": "cofactor/metal-ligand stabilization mark",
+      "proposed_new_operator": "interface_operator",
+      "proposed_new_pressure": "ligand_or_cofactor pressure",
+      "target_id": "V61_117E_1"
+    },
+    {
+      "failure_type": "oligomer_state_misread",
+      "missing_esperanto_rule": "obligate assembly/context mark",
+      "proposed_new_operator": "interface_operator",
+      "proposed_new_pressure": "partner-copy concentration pressure",
+      "target_id": "V61_11BA_1"
+    },
+    {
+      "failure_type": "weak_sequence_signal",
+      "missing_esperanto_rule": "confidence/self-evidence mark",
+      "proposed_new_operator": "none",
+      "proposed_new_pressure": "none",
+      "target_id": "V61_11BE_1"
+    },
+    {
+      "failure_type": "cofactor_ligand_missing",
+      "missing_esperanto_rule": "cofactor/metal-ligand stabilization mark",
+      "proposed_new_operator": "interface_operator",
+      "proposed_new_pressure": "ligand_or_cofactor pressure",
+      "target_id": "V61_11BQ_1"
+    },
+    {
+      "failure_type": "disorder_misread",
+      "missing_esperanto_rule": "IDR/low-complexity persistence mark",
+      "proposed_new_operator": "disorder_operator",
+      "proposed_new_pressure": "entropy/phase pressure",
+      "target_id": "V61_11BQ_27"
+    },
+    {
+      "failure_type": "cofactor_ligand_missing",
+      "missing_esperanto_rule": "cofactor/metal-ligand stabilization mark",
+      "proposed_new_operator": "interface_operator",
+      "proposed_new_pressure": "ligand_or_cofactor pressure",
+      "target_id": "V61_11BQ_36"
+    },
+    {
+      "failure_type": "cofactor_ligand_missing",
+      "missing_esperanto_rule": "cofactor/metal-ligand stabilization mark",
+      "proposed_new_operator": "interface_operator",
+      "proposed_new_pressure": "ligand_or_cofactor pressure",
+      "target_id": "V61_11BQ_42"
+    },
+    {
+      "failure_type": "cofactor_ligand_missing",
+      "missing_esperanto_rule": "cofactor/metal-ligand stabilization mark",
+      "proposed_new_operator": "interface_operator",
+      "proposed_new_pressure": "ligand_or_cofactor pressure",
+      "target_id": "V61_11BQ_47"
+    },
+    {
+      "failure_type": "cofactor_ligand_missing",
+      "missing_esperanto_rule": "cofactor/metal-ligand stabilization mark",
+      "proposed_new_operator": "interface_operator",
+      "proposed_new_pressure": "ligand_or_cofactor pressure",
+      "target_id": "V61_11BQ_9"
+    },
+    {
+      "failure_type": "weak_sequence_signal",
+      "missing_esperanto_rule": "confidence/self-evidence mark",
+      "proposed_new_operator": "none",
+      "proposed_new_pressure": "none",
+      "target_id": "V61_11CF_1"
+    },
+    {
+      "failure_type": "cofactor_ligand_missing",
+      "missing_esperanto_rule": "cofactor/metal-ligand stabilization mark",
+      "proposed_new_operator": "interface_operator",
+      "proposed_new_pressure": "ligand_or_cofactor pressure",
+      "target_id": "V61_11CQ_2"
+    },
+    {
+      "failure_type": "disorder_misread",
+      "missing_esperanto_rule": "IDR/low-complexity persistence mark",
+      "proposed_new_operator": "disorder_operator",
+      "proposed_new_pressure": "entropy/phase pressure",
+      "target_id": "V61_11DG_26"
+    }
+  ],
+  "passed_control_count": 19,
+  "raw_accuracy": 0.08,
+  "readme_modified": false,
+  "status": "V61_RCSB_NONREDUNDANT_100_DISCOVERY_FAILURES_REVIEW_REQUIRED",
+  "supported_count": 8,
+  "target_selection_manual": false,
+  "targets_total": 100,
+  "timestamp_utc": "2026-06-11T20:01:50.275425+00:00"
+}

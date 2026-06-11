@@ -1,0 +1,29 @@
+{
+  "campaign_id": "V61_TO_V70_PROTEIN_ESPERANTO_SATURATION_CAMPAIGN",
+  "kind": "V61_ENGINE_VERSION_LEDGER_v0",
+  "versions": [
+    {
+      "batch_id": "V61_RCSB_NONREDUNDANT_100_BATCH",
+      "change_summary": "Frozen E60 engine from V59/V60; V61 runner and ledgers added without changing engine biology.",
+      "commit": "d9277817bb5c7908f72dd0272148ed7cf223dd1d",
+      "engine_modified_during_batch": false,
+      "engine_source_sha256": "a105a2fca530ed38acfb5dc5922b23ed9bed9a77904158a5779624dc88e4a006",
+      "engine_version": "E60",
+      "mechanism_class_set_hash": "c088ecef4efacdd6de1b451237e717fa4b5149ca8f3be5bf46666ff567f1eb29",
+      "operator_set_hash": "1421426c696edb0f3ddce7a984c3fc0603e32fea4eb28a9f8acb83bbf07e910a",
+      "required_start_commit": "d927781"
+    },
+    {
+      "batch_id": "E61_FAILURE_DRIVEN_ENGINE_REVISION",
+      "change_summary": "Post-V61 failure-driven engine revision: added explicit cofactor/ligand/metal, oligomer/assembly, and strong membrane context marks plus operator/trajectory support for cofactor_ligand_assisted_stabilization and oligomerization_controlled_folding.",
+      "commit": "this_commit",
+      "engine_modified_during_batch": true,
+      "engine_source_sha256": "1eb6e19bfdda03be759484976540fa25ca9822871dec085d9a97d0ac989da85e",
+      "engine_version": "E61",
+      "fresh_frozen_replication_required": true,
+      "mechanism_class_set_hash": "c088ecef4efacdd6de1b451237e717fa4b5149ca8f3be5bf46666ff567f1eb29",
+      "operator_set_hash": "1421426c696edb0f3ddce7a984c3fc0603e32fea4eb28a9f8acb83bbf07e910a",
+      "required_start_commit": "after_V61_discovery_batch"
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "abstention_correctness": "abstain_too_conservative",
+  "acceptance_decision": "abstain_recommended",
+  "alphafold_used_before_seal": false,
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "2",
+  "entry_id": "10XZ",
+  "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "failures_repaired_after_holdout": false,
+  "holdout_opened_after_prediction_hash": "b704844796f4ae129e272b097495c2d2420d58ae791674e08fb70ae5c3a15d89",
+  "kind": "V61_RCSB_NONREDUNDANT_VALIDATION_RESULT_v0",
+  "level1_regime_selection": false,
+  "level2_region_localization_proxy": false,
+  "level3_topology_or_contact_proxy": false,
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/10XZ",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/10XZ/2",
+      "source_class": "coordinate_derived",
+      "source_id": "V61_10XZ_2_RCSB_DATA_API_POSTSEAL",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "predicted_mechanism_class": "insufficient_evidence_clean_abstain",
+  "protein_id": "10XZ_2",
+  "score_label": "abstained",
+  "sealed_prediction_hash": "b704844796f4ae129e272b097495c2d2420d58ae791674e08fb70ae5c3a15d89",
+  "target_id": "V61_10XZ_2",
+  "validation_checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "membrane_multidomain_folding_proteostasis",
+      "observed": "insufficient_evidence_clean_abstain",
+      "passed": false
+    },
+    {
+      "check_id": "proteostasis_routing_supported",
+      "comparator": ">=",
+      "metric": "proteostasis_routing",
+      "observed": 0.0,
+      "passed": false,
+      "threshold": 0.5
+    }
+  ]
+}

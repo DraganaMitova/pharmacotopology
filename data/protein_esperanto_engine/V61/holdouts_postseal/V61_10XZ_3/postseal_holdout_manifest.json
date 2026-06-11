@@ -1,0 +1,34 @@
+{
+  "batch_id": "V61_RCSB_NONREDUNDANT_100_BATCH",
+  "entity_id": "3",
+  "entry_id": "10XZ",
+  "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "expected_observables": [
+    {
+      "check_id": "proteostasis_routing_supported",
+      "comparator": ">=",
+      "metric": "proteostasis_routing",
+      "threshold": 0.5
+    }
+  ],
+  "experimental_method": "ELECTRON MICROSCOPY",
+  "holdout_opened_after_prediction_hash": "b442c4781153767ab91ccf026d6dbc3a4a599f8c03633dfed5a0103b6b4b5937",
+  "kind": "V61_RCSB_POSTSEAL_HOLDOUT_v0",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/10XZ",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/10XZ/3",
+      "source_class": "coordinate_derived",
+      "source_id": "V61_10XZ_3_RCSB_DATA_API_POSTSEAL",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "postseal sequence-field membrane density is high"
+  ],
+  "protein_id": "10XZ_3",
+  "release_date": "2026-03-18T00:00:00.000+00:00",
+  "target_id": "V61_10XZ_3"
+}

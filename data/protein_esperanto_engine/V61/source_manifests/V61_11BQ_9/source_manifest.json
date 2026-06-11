@@ -1,0 +1,46 @@
+{
+  "alphafold_used_before_seal": false,
+  "batch_id": "V61_RCSB_NONREDUNDANT_100_BATCH",
+  "blocked_prediction_inputs": [
+    "PDB/mmCIF coordinates before sealing",
+    "native contacts, distance maps, residue-residue proximity, and coordinate-derived topology",
+    "AlphaFold, ESMFold, RoseTTAFold, or other structure models before sealing",
+    "post-seal RCSB annotations and coordinate validation before prediction hash",
+    "internal runtime artifacts as biological evidence"
+  ],
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "9",
+  "entry_id": "11BQ",
+  "folding_problem_solved": false,
+  "kind": "V61_RCSB_NONREDUNDANT_SOURCE_MANIFEST_v0",
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence for the RCSB polymer entity. No coordinates, contacts, AlphaFold-style models, or post-seal validation annotations are allowed.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V61_11BQ_9_RAW_SEQUENCE",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/11BQ/9",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "RCSB title: Escherichia coli 70S ribosome containing an evolved 16S rRNA (EC-S3.5). Entity description: 30S ribosomal protein S3. Organism: Escherichia coli. Polymer composition: protein/NA. Sequence-derived marks: sequence-derived hydrophobic closure tendency; public metadata indicates multiple polymer instances or molecule copies. Coordinates, native contacts, residue-residue distances, and validation annotations are unopened before the prediction hash.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V61_11BQ_9_PURE_METADATA",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/11BQ",
+      "spatial_proxy": false
+    }
+  ],
+  "protein_id": "11BQ_9",
+  "sequence": "MGQKVHPNGIRLGIVKPWNSTWFANTKEFADNLDSDFKVRQYLTKELAKASVSRIVIERPAKSIRVTIHTARPGIVIGKKGEDVEKLRKVVADIAGVPAQINIAEVRKPELDAKLVADSITSQLERRVMFRRAMKRAVQNAMRLGAKGIKVEVSGRLGGAEIARTEWYREGRVPLHTLRADIDYNTSEAHTTYGVIGVKVWIFKGEILGGMAAVEQPEKPAAQPKKQQRKGRK",
+  "sequence_cluster_30_id": "37",
+  "sequence_cluster_identity_cutoff": 30,
+  "sequence_length": 233,
+  "target_id": "V61_11BQ_9",
+  "target_selection_manual": false
+}

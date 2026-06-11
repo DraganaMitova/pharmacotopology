@@ -1,0 +1,40 @@
+{
+  "abstention_correctness": "not_applicable",
+  "acceptance_decision": "accepted",
+  "alphafold_used_before_seal": false,
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "2",
+  "entry_id": "11CQ",
+  "expected_mechanism_class": "cofactor_ligand_assisted_stabilization",
+  "failures_repaired_after_holdout": false,
+  "holdout_opened_after_prediction_hash": "3e9cc9c2951d068c28689020a49bf21959bc6913910fe04ad307b30ee9841239",
+  "kind": "V61_RCSB_NONREDUNDANT_VALIDATION_RESULT_v0",
+  "level1_regime_selection": false,
+  "level2_region_localization_proxy": true,
+  "level3_topology_or_contact_proxy": false,
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/11CQ",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/11CQ/2",
+      "source_class": "coordinate_derived",
+      "source_id": "V61_11CQ_2_RCSB_DATA_API_POSTSEAL",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "predicted_mechanism_class": "globular_closure",
+  "protein_id": "11CQ_2",
+  "score_label": "contradicted",
+  "sealed_prediction_hash": "3e9cc9c2951d068c28689020a49bf21959bc6913910fe04ad307b30ee9841239",
+  "target_id": "V61_11CQ_2",
+  "validation_checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "cofactor_ligand_assisted_stabilization",
+      "observed": "globular_closure",
+      "passed": false
+    }
+  ]
+}

@@ -99,6 +99,30 @@ ENVIRONMENTAL_PRESSURES = [
     "release_or_activation_context",
 ]
 
+COFACTOR_CONTEXT_TOKENS = [
+    "cofactor_context",
+    "ligand_context",
+    "metal_context",
+    "heme_context",
+    "nucleotide_context",
+]
+
+OLIGOMER_CONTEXT_TOKENS = [
+    "oligomer_context",
+    "assembly_context",
+    "partner_copy_context",
+    "heteromeric_context",
+    "homomeric_context",
+]
+
+STRONG_MEMBRANE_CONTEXT_TOKENS = [
+    "membrane_context_strong",
+    "transmembrane_context",
+    "channel_context",
+    "transporter_context",
+    "receptor_membrane_context",
+]
+
 HYDROPHOBIC = frozenset("AILMFWVYC")
 AROMATIC = frozenset("FWY")
 POSITIVE = frozenset("KRH")
@@ -542,6 +566,10 @@ def _allowed_source_text(sources: list[dict[str, Any]], gate: dict[str, Any]) ->
     return " ".join(selected).lower()
 
 
+def _contains_any(text: str, tokens: list[str]) -> bool:
+    return any(token in text for token in tokens)
+
+
 def select_mechanism_grammar(
     *,
     sequence_field: dict[str, Any],
@@ -575,8 +603,20 @@ def select_mechanism_grammar(
         ]):
             natural = "metamorphic_fold_switching"
             reason = "state_separated_partner_context_evidence"
-        elif any(token in text for token in ["cftr", "f508", "proteostasis", "trafficking", "nbd1", "transmembrane", "membrane"]):
-            if "f508" in text or "proteostasis" in text or "trafficking" in text or metrics["mean_membrane"] >= 0.10:
+        elif _contains_any(text, COFACTOR_CONTEXT_TOKENS):
+            natural = "cofactor_ligand_assisted_stabilization"
+            reason = "explicit_ligand_cofactor_or_metal_context"
+        elif _contains_any(text, OLIGOMER_CONTEXT_TOKENS):
+            natural = "oligomerization_controlled_folding"
+            reason = "explicit_oligomer_or_assembly_context"
+        elif any(token in text for token in ["cftr", "f508", "proteostasis", "trafficking", "nbd1", "transmembrane", "membrane"]) or _contains_any(text, STRONG_MEMBRANE_CONTEXT_TOKENS):
+            if (
+                "f508" in text
+                or "proteostasis" in text
+                or "trafficking" in text
+                or metrics["mean_membrane"] >= 0.10
+                or _contains_any(text, STRONG_MEMBRANE_CONTEXT_TOKENS)
+            ):
                 natural = "membrane_multidomain_folding_proteostasis"
                 reason = "membrane_multidomain_mutation_interface_evidence"
             else:
@@ -850,6 +890,52 @@ def build_operator_field(
                 "residue_exposure",
             ),
         ])
+    elif mechanism_class == "cofactor_ligand_assisted_stabilization":
+        operators.extend([
+            _operator(
+                "interface_operator",
+                ", ".join(_span_from_segment(row) for row in interface_segments),
+                metrics["mean_interface"] + 0.32,
+                evidence,
+                "ligand/cofactor pocket readiness and local stabilization",
+                "cofactor removal or pocket disruption weakens the stabilized basin",
+                "apo and ligand-bound contexts are indistinguishable",
+                "interface_readiness",
+            ),
+            _operator(
+                "closure_operator",
+                ", ".join(_span_from_segment(row) for row in hydrophobic_segments),
+                metrics["hydrophobic_density"] + 0.18,
+                evidence,
+                "cofactor-assisted compaction of a weak apo basin",
+                "cofactor pocket perturbation reduces compaction",
+                "ligand context has no directional effect on stability",
+                "segment_compaction",
+            ),
+        ])
+    elif mechanism_class == "oligomerization_controlled_folding":
+        operators.extend([
+            _operator(
+                "interface_operator",
+                ", ".join(_span_from_segment(row) for row in interface_segments),
+                metrics["mean_interface"] + 0.38,
+                evidence,
+                "partner-copy interface readiness and assembly-stabilized folding",
+                "interface or concentration perturbation weakens the assembled basin",
+                "monomer-only grammar explains the holdout equally well",
+                "interface_readiness",
+            ),
+            _operator(
+                "closure_operator",
+                ", ".join(_span_from_segment(row) for row in hydrophobic_segments),
+                metrics["hydrophobic_density"] + 0.12,
+                evidence,
+                "local closure coupled to oligomeric surface burial",
+                "assembly-interface mutation lowers closure support",
+                "folding is independent of oligomeric context",
+                "segment_compaction",
+            ),
+        ])
     elif mechanism_class != "insufficient_evidence_clean_abstain":
         operators.append(_operator(
             "interface_operator",
@@ -978,6 +1064,33 @@ def simulate_operator_trajectory(
             contact_probability = bounded(0.14 + closure * 0.62 * progress)
             interface_readiness = bounded(0.12 + interface * 0.18)
             proteostasis_routing = 0.0
+        elif mechanism_class == "cofactor_ligand_assisted_stabilization":
+            cofactor_loss = float((perturbation or {}).get("cofactor_loss", 0.0))
+            rescue = float((perturbation or {}).get("rescue", 0.0))
+            pocket_ready = bounded(0.24 + interface * 0.52 * progress + closure * 0.14 - 0.45 * cofactor_loss + 0.22 * rescue)
+            compact = bounded(0.22 + closure * 0.42 * progress + pocket_ready * 0.16 - 0.24 * cofactor_loss)
+            basin = {
+                "ligand_stabilized_basin": pocket_ready,
+                "apo_weak_basin": bounded(0.62 - pocket_ready + 0.28 * cofactor_loss - 0.10 * rescue),
+                "generic_compact_basin": bounded(0.12 + closure * 0.10),
+            }
+            segment_compaction = compact
+            contact_probability = bounded(0.18 + compact * 0.35 + pocket_ready * 0.18)
+            interface_readiness = pocket_ready
+            proteostasis_routing = 0.0
+        elif mechanism_class == "oligomerization_controlled_folding":
+            interface_disruption = float((perturbation or {}).get("interface_disruption", 0.0))
+            concentration_rescue = float((perturbation or {}).get("concentration_rescue", 0.0))
+            assembly_ready = bounded(0.18 + interface * 0.62 * progress + closure * 0.10 - 0.48 * interface_disruption + 0.22 * concentration_rescue)
+            basin = {
+                "assembly_stabilized_basin": assembly_ready,
+                "monomer_partial_order": bounded(0.46 + closure * 0.18 - assembly_ready * 0.22),
+                "interface_rejected_basin": bounded(0.10 + 0.35 * interface_disruption),
+            }
+            segment_compaction = bounded(0.20 + closure * 0.36 * progress + assembly_ready * 0.18)
+            contact_probability = bounded(0.16 + assembly_ready * 0.42 + closure * 0.16)
+            interface_readiness = assembly_ready
+            proteostasis_routing = 0.0
         else:
             basin = {"clean_abstain": 1.0}
             segment_compaction = 0.0
@@ -1053,6 +1166,24 @@ def contact_probability_map(sequence_field: dict[str, Any], operator_field: dict
                 "segment_b": segment["segment_id"],
                 "probability": bounded(0.34 + _operator_strength(operator_field, "interface_operator") * 0.28),
                 "interaction_type": "interdomain_membrane_interface",
+            })
+    elif mechanism_class == "cofactor_ligand_assisted_stabilization":
+        top = _strong_segments(sequence_field, "interface_density", limit=3)
+        for segment in top:
+            pairs.append({
+                "segment_a": segment["segment_id"],
+                "segment_b": "ligand_or_cofactor_pocket",
+                "probability": bounded(0.36 + _operator_strength(operator_field, "interface_operator") * 0.34),
+                "interaction_type": "cofactor_stabilized_interface",
+            })
+    elif mechanism_class == "oligomerization_controlled_folding":
+        top = _strong_segments(sequence_field, "interface_density", limit=3)
+        for segment in top:
+            pairs.append({
+                "segment_a": segment["segment_id"],
+                "segment_b": "partner_copy_interface",
+                "probability": bounded(0.34 + _operator_strength(operator_field, "interface_operator") * 0.36),
+                "interaction_type": "assembly_stabilized_interface",
             })
     else:
         top = _strong_segments(sequence_field, "hydrophobic_density", limit=4)
@@ -1319,6 +1450,12 @@ def sequence_operator_coherence(packet: dict[str, Any]) -> float:
         cterminal = segments[-2:] if len(segments) >= 2 else segments
         local = _avg(row["interface_density"] for row in cterminal)
         support = 0.35 * field["mean_interface"] + 0.65 * local + activation
+    elif mechanism == "cofactor_ligand_assisted_stabilization":
+        local = max((row["interface_density"] for row in segments), default=0.0)
+        support = 0.30 * field["hydrophobic_density"] + 0.35 * field["mean_interface"] + 0.35 * local + activation
+    elif mechanism == "oligomerization_controlled_folding":
+        local = max((row["interface_density"] for row in segments), default=0.0)
+        support = 0.30 * field["hydrophobic_density"] + 0.25 * field["mean_interface"] + 0.45 * local + activation
     elif mechanism == "globular_closure":
         local = max((row["hydrophobic_density"] for row in segments), default=0.0)
         support = 0.50 * field["hydrophobic_density"] + 0.50 * local + activation

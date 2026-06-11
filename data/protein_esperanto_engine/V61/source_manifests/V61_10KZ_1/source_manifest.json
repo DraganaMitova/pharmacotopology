@@ -1,0 +1,46 @@
+{
+  "alphafold_used_before_seal": false,
+  "batch_id": "V61_RCSB_NONREDUNDANT_100_BATCH",
+  "blocked_prediction_inputs": [
+    "PDB/mmCIF coordinates before sealing",
+    "native contacts, distance maps, residue-residue proximity, and coordinate-derived topology",
+    "AlphaFold, ESMFold, RoseTTAFold, or other structure models before sealing",
+    "post-seal RCSB annotations and coordinate validation before prediction hash",
+    "internal runtime artifacts as biological evidence"
+  ],
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "1",
+  "entry_id": "10KZ",
+  "folding_problem_solved": false,
+  "kind": "V61_RCSB_NONREDUNDANT_SOURCE_MANIFEST_v0",
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence for the RCSB polymer entity. No coordinates, contacts, AlphaFold-style models, or post-seal validation annotations are allowed.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V61_10KZ_1_RAW_SEQUENCE",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/10KZ/1",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "RCSB title: N-Alkyl & N-Aryl Aminopyrazole Spirocarbamates: A Two-Pronged Lead Optimization Strategy to Identify Orally Bioavailable Plasma Kallikrein Inhibitors. Entity description: Plasma kallikrein. Organism: Homo sapiens. Polymer composition: homomeric protein. Sequence-derived marks: sequence-derived membrane tendency high; sequence-derived low-complexity tendency high; sequence-derived hydrophobic closure tendency. Coordinates, native contacts, residue-residue distances, and validation annotations are unopened before the prediction hash.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V61_10KZ_1_PURE_METADATA",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/10KZ",
+      "spatial_proxy": false
+    }
+  ],
+  "protein_id": "10KZ_1",
+  "sequence": "MLLVNDSHQGFNKEHTSKMVSAIVLYVLLAAAAHSAFANTGDNSVSTTKTSTRIVGGTESSWGEWPWQVSLQVKLTAQRHLCGGSLIGHQWVLTAAHCFDGLPLQDVWRIYSGILELSDITKDTPFSQIKEIIIHQNYKVSEGNHDIALIKLQAPLEYTEFQKPISLPSKGDTSTIYTNCWVTGWGFSKEKGEIQNILQKVNIPLVTNEECQKRYQDYKITQRMVCAGYKEGGKDACKGDSGGPLVCKHNGMWRLVGITSWGEGCARREQPGVYTKVAEYMDWILEKTQSSDGKAQMQSPAHHHHHH",
+  "sequence_cluster_30_id": "1261",
+  "sequence_cluster_identity_cutoff": 30,
+  "sequence_length": 307,
+  "target_id": "V61_10KZ_1",
+  "target_selection_manual": false
+}

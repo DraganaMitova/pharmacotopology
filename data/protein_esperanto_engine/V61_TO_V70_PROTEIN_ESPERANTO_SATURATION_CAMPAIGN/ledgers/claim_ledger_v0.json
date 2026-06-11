@@ -1,0 +1,26 @@
+{
+  "campaign_id": "V61_TO_V70_PROTEIN_ESPERANTO_SATURATION_CAMPAIGN",
+  "kind": "V61_CLAIM_LEDGER_v0",
+  "rows": [
+    {
+      "abstention_rate": 0.19,
+      "accepted_accuracy": 0.09876543209876543,
+      "batch_id": "V61_RCSB_NONREDUNDANT_100_BATCH",
+      "claim_allowed": false,
+      "claim_blocked_reason": "accepted failures or failed controls remain in V61 discovery ledger",
+      "control_pass_rate": 1.0,
+      "coverage": 0.81,
+      "engine_version_used": "E60",
+      "failure_count": 92,
+      "failure_modes": {
+        "cofactor_ligand_missing": 43,
+        "disorder_misread": 4,
+        "membrane_misread": 11,
+        "oligomer_state_misread": 13,
+        "weak_sequence_signal": 19,
+        "wrong_regime": 2
+      },
+      "raw_accuracy": 0.08
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "alphafold_used_before_seal": false,
+  "batch_id": "V61_RCSB_NONREDUNDANT_100_BATCH",
+  "blocked_prediction_inputs": [
+    "PDB/mmCIF coordinates before sealing",
+    "native contacts, distance maps, residue-residue proximity, and coordinate-derived topology",
+    "AlphaFold, ESMFold, RoseTTAFold, or other structure models before sealing",
+    "post-seal RCSB annotations and coordinate validation before prediction hash",
+    "internal runtime artifacts as biological evidence"
+  ],
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "1",
+  "entry_id": "10TZ",
+  "folding_problem_solved": false,
+  "kind": "V61_RCSB_NONREDUNDANT_SOURCE_MANIFEST_v0",
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence for the RCSB polymer entity. No coordinates, contacts, AlphaFold-style models, or post-seal validation annotations are allowed.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V61_10TZ_1_RAW_SEQUENCE",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/10TZ/1",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "RCSB title: Tissue Non-specific Alkaline Phosphatase -S110A bound to ATP. Entity description: Alkaline phosphatase, tissue-nonspecific isozyme. Organism: Mus musculus. Polymer composition: protein/oligosaccharide. Sequence-derived marks: sequence-derived low-complexity tendency high; sequence-derived hydrophobic closure tendency; public metadata indicates multiple polymer instances or molecule copies. Coordinates, native contacts, residue-residue distances, and validation annotations are unopened before the prediction hash.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V61_10TZ_1_PURE_METADATA",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/10TZ",
+      "spatial_proxy": false
+    }
+  ],
+  "protein_id": "10TZ_1",
+  "sequence": "DGSFVPEKERDPSYWRQQAQETLKNALKLQKLNTNVAKNVIMFLGDGMGVSTVTAARILKGQLHHNTGEETRLEMDKFPFVALSKTYNTNAQVPDAAGTATAYLCGVKANEGTVGVSAATERTRCNTTQGNEVTSILRWAKDAGKSVGIVTTTRVNHATPSAAYAHSADRDWYSDNEMPPEALSQGCKDIAYQLMHNIKDIDVIMGGGRKYMYPKNRTDVEYELDEKARGTRLDGLDLISIWKSFKPRHKHSHYVWNRTELLALDPSRVDYLLGLFEPGDMQYELNRNNLTDPSLSEMVEVALRILTKNLKGFFLLVEGGRIDHGHHEGKAKQALHEAVEMDQAIGKAGAMTSQKDTLTVVTADHSHVFTFGGYTPRGNSIFGLAPMVSDTDKKPFTAILYGNGPGYKVVDGERENVSMVDYAHNNYQAQSAVPLRHETHGGEDVAVFAKGPMAHLLHGVHEQNYIPHVMAYASCIGANLDHCAWAGHHHHHH",
+  "sequence_cluster_30_id": "3519",
+  "sequence_cluster_identity_cutoff": 30,
+  "sequence_length": 493,
+  "target_id": "V61_10TZ_1",
+  "target_selection_manual": false
+}
