@@ -1,0 +1,39 @@
+{
+  "batch_id": "V70_E66_METAL_CLUSTER_LIGAND_REPAIR_PANEL_200",
+  "engine_version_used": "E66",
+  "entity_id": "1",
+  "entry_id": "1BKC",
+  "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "expected_observables": [
+    {
+      "check_id": "proteostasis_routing_supported",
+      "comparator": ">=",
+      "metric": "proteostasis_routing",
+      "threshold": 0.5
+    }
+  ],
+  "holdout_opened_after_prediction_hash": "ac61be0e86c9580a7bd5116a975f916a94155101b350623484e2f73e889015b7",
+  "kind": "V70_E66_METAL_LIGAND_REPAIR_POSTSEAL_HOLDOUT_v0",
+  "lineage_source_target": null,
+  "panel_group": "TRUE_TM_METAL_CONFLICT_SENTINEL",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1BKC",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1BKC/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V70_146_TRUE_TM_METAL_CONFLICT_SENTINEL_1BKC_1_V70_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "V70 E66 repair panel group TRUE_TM_METAL_CONFLICT_SENTINEL.",
+    "Required E66 word: metal_cluster_geometry.",
+    "Coordinates, contacts, native ligand geometry, and post-seal validation labels are blocked before sealing."
+  ],
+  "protein_id": "1BKC_1",
+  "required_esperanto_word": "metal_cluster_geometry",
+  "source_family": "V69_RAW",
+  "target_id": "V70_146_TRUE_TM_METAL_CONFLICT_SENTINEL_1BKC_1"
+}

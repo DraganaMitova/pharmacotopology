@@ -1,0 +1,98 @@
+{
+  "alphafold_used_before_seal": false,
+  "batch_id": "V69_RCSB_NONREDUNDANT_200_DISCOVERY_E65",
+  "blocked_prediction_inputs": [
+    "PDB/mmCIF coordinates before sealing",
+    "native contacts, distance maps, residue-residue proximity, and coordinate-derived topology",
+    "native biological assembly contacts and ligand/metal coordination geometry before sealing",
+    "AlphaFold, ESMFold, RoseTTAFold, or other structure models before sealing",
+    "post-seal validation annotations before prediction hash",
+    "prior score outcomes as prediction evidence",
+    "internal runtime artifacts as biological evidence"
+  ],
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E65",
+  "entity_id": "1",
+  "entry_id": "1DZ7",
+  "folding_problem_solved": false,
+  "kind": "V69_E65_RCSB_NONREDUNDANT_DISCOVERY_SOURCE_MANIFEST_v0",
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence for the RCSB polymer entity.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V69_194_V69D_HARD_TOPOLOGY_ENRICHED_1DZ7_1_RAW_SEQUENCE",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1DZ7/1",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "RCSB title: Solution structure of the a-subunit of human chorionic gonadotropin [modeled without carbohydrate residues]. Entity description: CHORIONIC GONADOTROPIN. Organism: HOMO SAPIENS; Homo sapiens. Polymer composition: homomeric protein. Sequence-derived marks: sequence-derived low-complexity tendency high; sequence-derived hydrophobic closure tendency; withheld discovery hints: hard_topology_word_withheld:knotted_topology. Coordinates, contacts, distance maps, ligand geometry, native topology, and post-seal validation labels are unopened before the prediction hash.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V69_194_V69D_HARD_TOPOLOGY_ENRICHED_1DZ7_1_PUBLIC_METADATA",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/1DZ7",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "V69 E65 metadata context marks: assembly_context membrane_context_strong oligomer_context partner_copy_context topology_evidence transmembrane_context. Known E65 marks are allowed; hard-topology discovery labels are withheld from prediction. Coordinates, contacts, ligand geometry, native topology, and post-seal validation labels are blocked before sealing.",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [
+        "assembly_context",
+        "membrane_context_strong",
+        "oligomer_context",
+        "partner_copy_context",
+        "topology_evidence",
+        "transmembrane_context"
+      ],
+      "metadata_context_reasons": [
+        "public metadata indicates explicit transmembrane/topology-provider context",
+        "public metadata indicates biological copy/oligomer/assembly context",
+        "hard topology hint knotted_topology is recorded for postseal mining, not handed to E65 as a solved word"
+      ],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V69_194_V69D_HARD_TOPOLOGY_ENRICHED_1DZ7_1_E65_METADATA_CONTEXT",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/1DZ7",
+      "spatial_proxy": false,
+      "withheld_context_marks": [
+        "hard_topology_word_withheld:knotted_topology"
+      ]
+    }
+  ],
+  "protein_id": "1DZ7_1",
+  "sequence": "APDVQDCPECTLQENPFFSQPGAPILQCMGCCFSRAYPTPLRSKKTMLVQKNVTSESTCCVAKSYNRVTVMGGFKVENHTACHCSTCYYHKS",
+  "sequence_length": 92,
+  "shard": "V69D_HARD_TOPOLOGY_ENRICHED",
+  "target_id": "V69_194_V69D_HARD_TOPOLOGY_ENRICHED_1DZ7_1",
+  "v69_context_policy": {
+    "biological_cofactor_components_seen": [],
+    "context_derivation": "V69 E65 uses sequence plus public non-coordinate RCSB metadata only. It carries established E65 marks but withholds hard-topology missing-word labels from prediction context so V69 can discover them.",
+    "context_marks": [
+      "assembly_context",
+      "membrane_context_strong",
+      "oligomer_context",
+      "partner_copy_context",
+      "topology_evidence",
+      "transmembrane_context"
+    ],
+    "polymer_copy_counts": {
+      "entity_molecule_count": 1,
+      "polymer_composition": "homomeric protein",
+      "polymer_entity_instance_count": 1
+    },
+    "reasons": [
+      "public metadata indicates explicit transmembrane/topology-provider context",
+      "public metadata indicates biological copy/oligomer/assembly context",
+      "hard topology hint knotted_topology is recorded for postseal mining, not handed to E65 as a solved word"
+    ],
+    "withheld_context_marks": [
+      "hard_topology_word_withheld:knotted_topology"
+    ]
+  }
+}

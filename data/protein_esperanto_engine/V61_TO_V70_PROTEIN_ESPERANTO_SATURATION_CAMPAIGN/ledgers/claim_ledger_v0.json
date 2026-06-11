@@ -172,6 +172,49 @@
       "failure_count": 0,
       "failure_modes": {},
       "raw_accuracy": 1.0
+    },
+    {
+      "abstention_rate": 0.135,
+      "accepted_accuracy": 0.4682080924855491,
+      "batch_id": "V69_RCSB_NONREDUNDANT_200_DISCOVERY_E65",
+      "batch_mode": "fresh_four_shard_discovery_200",
+      "claim_allowed": false,
+      "claim_blocked_reason": "V69 is a fresh discovery batch for mining the next missing Esperanto word; it is not a solved-folding claim.",
+      "clean_abstain_count": 27,
+      "control_pass_rate": 1.0,
+      "coverage": 0.865,
+      "dominant_failure_mode": "metal_cluster_geometry",
+      "engine_version_used": "E65",
+      "failure_count": 92,
+      "failure_modes": {
+        "coiled_coil_register": 4,
+        "disorder_misread": 7,
+        "ligand_locked_basin": 14,
+        "membrane_topology_missed_or_misread": 7,
+        "metal_cluster_geometry": 49,
+        "soluble_beta_barrel_vs_membrane_barrel": 4,
+        "wrong_regime": 7
+      },
+      "raw_accuracy": 0.54,
+      "top_missing_esperanto_word": "metal_cluster_geometry"
+    },
+    {
+      "abstention_rate": 0.025,
+      "accepted_accuracy": 0.9897435897435898,
+      "batch_id": "V70_E66_METAL_CLUSTER_LIGAND_REPAIR_PANEL_200",
+      "batch_mode": "metal_cluster_ligand_repair_panel_200",
+      "claim_allowed": false,
+      "claim_blocked_reason": "V70 is an E66 repair panel, not a broad solved-folding claim.",
+      "clean_abstain_count": 5,
+      "control_pass_rate": 1.0,
+      "coverage": 0.975,
+      "dominant_failure_mode": "non_metal_tracking_remaining",
+      "engine_version_used": "E66",
+      "failure_count": 2,
+      "failure_modes": {
+        "non_metal_tracking_remaining": 7
+      },
+      "raw_accuracy": 0.965
     }
   ]
 }

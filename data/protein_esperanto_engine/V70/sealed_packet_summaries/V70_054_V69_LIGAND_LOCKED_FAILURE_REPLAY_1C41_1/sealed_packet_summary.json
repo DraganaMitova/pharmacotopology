@@ -1,0 +1,42 @@
+{
+  "active_operator_count": 3,
+  "folding_problem_solved": false,
+  "kind": "V70_COMPACT_SEALED_PACKET_SUMMARY_v0",
+  "natural_mechanism_class": "metal_cluster_and_ligand_locked_basin",
+  "operator_names": [
+    "interface_operator",
+    "closure_operator",
+    "frustration_operator"
+  ],
+  "prediction_hash": "5925c37f65c8d5d45784345a1e481c7fef1c495cc52c05f260c1e56f10845a9a",
+  "sealed_before_holdout": true,
+  "selected_mechanism_class": "metal_cluster_and_ligand_locked_basin",
+  "selection_reason": "explicit_metal_cluster_geometry_or_ligand_locked_basin_context",
+  "target_id": "V70_054_V69_LIGAND_LOCKED_FAILURE_REPLAY_1C41_1",
+  "trajectory_final_state_summary": {
+    "apo_holo_basin_shift": 0.034503,
+    "assembly_ambiguous": 0.0,
+    "assembly_required_core": 0.0,
+    "contact_probability": 0.474989,
+    "coordination_shell_integrity": 0.582638,
+    "disorder_order_balance": 0.297899,
+    "frustration": 0.447179,
+    "interface_buried_hydrophobicity": 0.0,
+    "interface_readiness": 0.582638,
+    "ligand_locked_basin": 0.605497,
+    "metal_cluster_geometry": 0.582638,
+    "metal_ligand_ambiguous": 0.0,
+    "monomer_incomplete_topology": 0.0,
+    "operator_activation": 0.573119,
+    "partner_completed_core": 0.0,
+    "proteostasis_routing": 0.0,
+    "residue_exposure": 0.61183,
+    "segment_compaction": 0.545009,
+    "state_basin_occupancy": {
+      "apo_unlocked_basin": 0.034503,
+      "ligand_locked_basin": 0.605497,
+      "metal_cluster_locked_basin": 0.582638
+    },
+    "timepoint": 1000
+  }
+}

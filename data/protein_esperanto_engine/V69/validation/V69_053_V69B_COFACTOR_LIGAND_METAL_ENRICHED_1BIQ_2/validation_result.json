@@ -1,0 +1,49 @@
+{
+  "acceptance_decision": "accepted",
+  "alphafold_used_before_seal": false,
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "2",
+  "entry_id": "1BIQ",
+  "expected_mechanism_class": "cofactor_ligand_assisted_stabilization",
+  "holdout_opened_after_prediction_hash": "20073f0d65a67eeb573dc5eb0da2fc2f365f9cb4d1d9a0ddfbd00d68b7c928dc",
+  "kind": "V69_E65_RCSB_NONREDUNDANT_DISCOVERY_VALIDATION_RESULT_v0",
+  "level1_regime_selection": true,
+  "level2_region_localization_proxy": true,
+  "level3_topology_or_contact_proxy": false,
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1BIQ",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1BIQ/2",
+      "source_class": "coordinate_derived",
+      "source_id": "V69_053_V69B_COFACTOR_LIGAND_METAL_ENRICHED_1BIQ_2_V69_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+  "protein_id": "1BIQ_2",
+  "required_esperanto_word": "metal_cluster_geometry",
+  "required_esperanto_word_supported": false,
+  "score_label": "contradicted",
+  "sealed_prediction_hash": "20073f0d65a67eeb573dc5eb0da2fc2f365f9cb4d1d9a0ddfbd00d68b7c928dc",
+  "shard": "V69B_COFACTOR_LIGAND_METAL_ENRICHED",
+  "target_id": "V69_053_V69B_COFACTOR_LIGAND_METAL_ENRICHED_1BIQ_2",
+  "validation_checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "cofactor_ligand_assisted_stabilization",
+      "observed": "cofactor_ligand_assisted_stabilization",
+      "passed": true
+    },
+    {
+      "check_id": "cofactor_interface_supported",
+      "comparator": ">=",
+      "metric": "interface_readiness",
+      "observed": 0.643251,
+      "passed": true,
+      "threshold": 0.45
+    }
+  ]
+}

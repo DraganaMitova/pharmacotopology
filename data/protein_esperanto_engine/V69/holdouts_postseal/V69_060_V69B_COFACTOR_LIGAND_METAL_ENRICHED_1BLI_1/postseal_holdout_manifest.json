@@ -1,0 +1,37 @@
+{
+  "batch_id": "V69_RCSB_NONREDUNDANT_200_DISCOVERY_E65",
+  "engine_version_used": "E65",
+  "entity_id": "1",
+  "entry_id": "1BLI",
+  "expected_mechanism_class": "cofactor_ligand_assisted_stabilization",
+  "expected_observables": [
+    {
+      "check_id": "cofactor_interface_supported",
+      "comparator": ">=",
+      "metric": "interface_readiness",
+      "threshold": 0.45
+    }
+  ],
+  "experimental_method": "X-RAY DIFFRACTION",
+  "holdout_opened_after_prediction_hash": "124a551254d7696e7f2f89d6568cb8afd94a34ae8c2d86fe83c976b22aed39ba",
+  "kind": "V69_E65_RCSB_NONREDUNDANT_DISCOVERY_POSTSEAL_HOLDOUT_v0",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1BLI",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1BLI/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V69_060_V69B_COFACTOR_LIGAND_METAL_ENRICHED_1BLI_1_V69_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "postseal public component/text indicates ligand, cofactor, heme, nucleotide, or metal stabilization"
+  ],
+  "protein_id": "1BLI_1",
+  "release_date": "1999-03-23T00:00:00.000+00:00",
+  "required_esperanto_word": "metal_cluster_geometry",
+  "shard": "V69B_COFACTOR_LIGAND_METAL_ENRICHED",
+  "target_id": "V69_060_V69B_COFACTOR_LIGAND_METAL_ENRICHED_1BLI_1"
+}

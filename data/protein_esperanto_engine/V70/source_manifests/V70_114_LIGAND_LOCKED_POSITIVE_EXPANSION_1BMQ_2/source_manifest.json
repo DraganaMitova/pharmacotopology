@@ -1,0 +1,65 @@
+{
+  "alphafold_used_before_seal": false,
+  "batch_id": "V70_E66_METAL_CLUSTER_LIGAND_REPAIR_PANEL_200",
+  "blocked_prediction_inputs": [
+    "PDB/mmCIF coordinates before sealing",
+    "native contacts, distance maps, residue-residue proximity, and coordinate-derived topology",
+    "native ligand/metal coordination geometry before sealing",
+    "AlphaFold, ESMFold, RoseTTAFold, or other structure models before sealing",
+    "post-seal validation annotations before prediction hash",
+    "prior score outcomes as prediction evidence",
+    "internal runtime artifacts as biological evidence"
+  ],
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E66",
+  "entity_id": "2",
+  "entry_id": "1BMQ",
+  "folding_problem_solved": false,
+  "kind": "V70_E66_METAL_LIGAND_REPAIR_SOURCE_MANIFEST_v0",
+  "lineage_source_target": null,
+  "panel_group": "LIGAND_LOCKED_POSITIVE_EXPANSION",
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence for the RCSB polymer entity.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V70_114_LIGAND_LOCKED_POSITIVE_EXPANSION_1BMQ_2_RAW_SEQUENCE",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1BMQ/2",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "RCSB title: CRYSTAL STRUCTURE OF THE COMPLEX OF INTERLEUKIN-1BETA CONVERTING ENZYME (ICE) WITH A PEPTIDE BASED INHIBITOR, (3S )-N-METHANESULFONYL-3-({1-[N-(2-NAPHTOYL)-L-VALYL]-L-PROLYL }AMINO)-4-OXOBUTANAMIDE. Entity description: PROTEIN (INTERLEUKIN-1 BETA CONVERTASE). Polymer composition: heteromeric protein. hydrophobic_density=0.420455. mean_interface=0.294103. max_segment_membrane_density=0.247449",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V70_114_LIGAND_LOCKED_POSITIVE_EXPANSION_1BMQ_2_PUBLIC_METADATA",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/1BMQ",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "V70 E66 repair context marks: apo_holo_basin_shift cofactor_context ligand_context ligand_locked_basin. These are non-coordinate repair-panel words mined from V69 failure taxonomy and public metadata; native coordinates, ligand geometry, contacts, and post-seal validation labels remain blocked before sealing.",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [
+        "apo_holo_basin_shift",
+        "cofactor_context",
+        "ligand_context",
+        "ligand_locked_basin"
+      ],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V70_114_LIGAND_LOCKED_POSITIVE_EXPANSION_1BMQ_2_E66_REPAIR_CONTEXT",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/1BMQ",
+      "spatial_proxy": false
+    }
+  ],
+  "protein_id": "1BMQ_2",
+  "sequence": "AIKKAHIEKDFIAFCSSTPDNVSWRHPTMGSVFIGRLIEHMQEYACSCDVEEIFRKVRFSFEQPDGRAQMPTTERVTLTRCFYLFPGH",
+  "sequence_length": 88,
+  "source_family": "V69_RAW",
+  "target_id": "V70_114_LIGAND_LOCKED_POSITIVE_EXPANSION_1BMQ_2"
+}

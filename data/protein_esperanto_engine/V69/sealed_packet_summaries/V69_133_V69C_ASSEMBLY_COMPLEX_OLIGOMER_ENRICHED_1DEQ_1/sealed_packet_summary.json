@@ -1,0 +1,36 @@
+{
+  "active_operator_count": 2,
+  "folding_problem_solved": false,
+  "kind": "V69_COMPACT_SEALED_PACKET_SUMMARY_v0",
+  "natural_mechanism_class": "oligomerization_controlled_folding",
+  "operator_names": [
+    "interface_operator",
+    "closure_operator"
+  ],
+  "prediction_hash": "34b4ece777f84d1424f65d631e0694acea2aed6c60f474e01bb69380e9aeaf8a",
+  "sealed_before_holdout": true,
+  "selected_mechanism_class": "oligomerization_controlled_folding",
+  "selection_reason": "explicit_biological_oligomer_context_without_assembly_required_claim",
+  "target_id": "V69_133_V69C_ASSEMBLY_COMPLEX_OLIGOMER_ENRICHED_1DEQ_1",
+  "trajectory_final_state_summary": {
+    "assembly_ambiguous": 0.0,
+    "assembly_required_core": 0.0,
+    "contact_probability": 0.467071,
+    "disorder_order_balance": 0.34128,
+    "frustration": 0.0,
+    "interface_buried_hydrophobicity": 0.0,
+    "interface_readiness": 0.578937,
+    "monomer_incomplete_topology": 0.0,
+    "operator_activation": 0.489251,
+    "partner_completed_core": 0.0,
+    "proteostasis_routing": 0.0,
+    "residue_exposure": 0.650264,
+    "segment_compaction": 0.448024,
+    "state_basin_occupancy": {
+      "assembly_stabilized_basin": 0.578937,
+      "interface_rejected_basin": 0.1,
+      "monomer_partial_order": 0.404542
+    },
+    "timepoint": 1000
+  }
+}

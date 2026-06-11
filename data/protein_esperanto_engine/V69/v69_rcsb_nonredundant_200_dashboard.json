@@ -1,0 +1,130 @@
+{
+  "batch_id": "V69_RCSB_NONREDUNDANT_200_DISCOVERY_E65",
+  "engine_version_used": "E65",
+  "kind": "V69_E65_RCSB_NONREDUNDANT_200_DISCOVERY_DASHBOARD_v0",
+  "shards": {
+    "TOTAL": {
+      "accepted_accuracy": 0.4682080924855491,
+      "accepted_count": 173,
+      "accepted_supported": 81,
+      "clean_abstain": 27,
+      "clean_abstain_supported": 27,
+      "controls_passed": true,
+      "coverage": 0.865,
+      "failed_accepted": 92,
+      "failed_accepted_by_failure_mode": {
+        "coiled_coil_register": 4,
+        "disorder_misread": 7,
+        "ligand_locked_basin": 14,
+        "membrane_topology_missed_or_misread": 7,
+        "metal_cluster_geometry": 49,
+        "soluble_beta_barrel_vs_membrane_barrel": 4,
+        "wrong_regime": 7
+      },
+      "failed_accepted_count": 92,
+      "raw_accuracy": 0.54,
+      "sentinel_regressions": 0,
+      "supported_count": 108,
+      "targets_total": 200,
+      "top_failure_mode": "metal_cluster_geometry",
+      "top_missing_esperanto_word": "metal_cluster_geometry"
+    },
+    "V69A_BROAD_RCSB_NONREDUNDANT": {
+      "accepted_accuracy": 0.825,
+      "accepted_count": 40,
+      "accepted_supported": 33,
+      "clean_abstain": 10,
+      "clean_abstain_supported": 10,
+      "controls_passed": true,
+      "coverage": 0.8,
+      "failed_accepted": 7,
+      "failed_accepted_by_failure_mode": {
+        "disorder_misread": 1,
+        "ligand_locked_basin": 3,
+        "membrane_topology_missed_or_misread": 1,
+        "soluble_beta_barrel_vs_membrane_barrel": 1,
+        "wrong_regime": 1
+      },
+      "failed_accepted_count": 7,
+      "raw_accuracy": 0.86,
+      "sentinel_regressions": 0,
+      "supported_count": 43,
+      "targets_total": 50,
+      "top_failure_mode": "ligand_locked_basin",
+      "top_missing_esperanto_word": "ligand_locked_basin"
+    },
+    "V69B_COFACTOR_LIGAND_METAL_ENRICHED": {
+      "accepted_accuracy": 0.16,
+      "accepted_count": 50,
+      "accepted_supported": 8,
+      "clean_abstain": 0,
+      "clean_abstain_supported": 0,
+      "controls_passed": true,
+      "coverage": 1.0,
+      "failed_accepted": 42,
+      "failed_accepted_by_failure_mode": {
+        "disorder_misread": 2,
+        "metal_cluster_geometry": 38,
+        "soluble_beta_barrel_vs_membrane_barrel": 1,
+        "wrong_regime": 1
+      },
+      "failed_accepted_count": 42,
+      "raw_accuracy": 0.16,
+      "sentinel_regressions": 0,
+      "supported_count": 8,
+      "targets_total": 50,
+      "top_failure_mode": "metal_cluster_geometry",
+      "top_missing_esperanto_word": "metal_cluster_geometry"
+    },
+    "V69C_ASSEMBLY_COMPLEX_OLIGOMER_ENRICHED": {
+      "accepted_accuracy": 0.3333333333333333,
+      "accepted_count": 39,
+      "accepted_supported": 13,
+      "clean_abstain": 11,
+      "clean_abstain_supported": 11,
+      "controls_passed": true,
+      "coverage": 0.78,
+      "failed_accepted": 26,
+      "failed_accepted_by_failure_mode": {
+        "coiled_coil_register": 4,
+        "disorder_misread": 3,
+        "ligand_locked_basin": 5,
+        "membrane_topology_missed_or_misread": 3,
+        "metal_cluster_geometry": 5,
+        "soluble_beta_barrel_vs_membrane_barrel": 2,
+        "wrong_regime": 4
+      },
+      "failed_accepted_count": 26,
+      "raw_accuracy": 0.48,
+      "sentinel_regressions": 0,
+      "supported_count": 24,
+      "targets_total": 50,
+      "top_failure_mode": "ligand_locked_basin",
+      "top_missing_esperanto_word": "ligand_locked_basin"
+    },
+    "V69D_HARD_TOPOLOGY_ENRICHED": {
+      "accepted_accuracy": 0.6136363636363636,
+      "accepted_count": 44,
+      "accepted_supported": 27,
+      "clean_abstain": 6,
+      "clean_abstain_supported": 6,
+      "controls_passed": true,
+      "coverage": 0.88,
+      "failed_accepted": 17,
+      "failed_accepted_by_failure_mode": {
+        "disorder_misread": 1,
+        "ligand_locked_basin": 6,
+        "membrane_topology_missed_or_misread": 3,
+        "metal_cluster_geometry": 6,
+        "wrong_regime": 1
+      },
+      "failed_accepted_count": 17,
+      "raw_accuracy": 0.66,
+      "sentinel_regressions": 0,
+      "supported_count": 33,
+      "targets_total": 50,
+      "top_failure_mode": "ligand_locked_basin",
+      "top_missing_esperanto_word": "ligand_locked_basin"
+    }
+  }
+}

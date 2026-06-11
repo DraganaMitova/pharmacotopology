@@ -1,0 +1,49 @@
+{
+  "acceptance_decision": "accepted",
+  "alphafold_used_before_seal": false,
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "3",
+  "entry_id": "1BL0",
+  "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "holdout_opened_after_prediction_hash": "e18b08918e8644dad03bec5e79d4393e232a73df738de5c9b347ec23d71b09e9",
+  "kind": "V69_E65_RCSB_NONREDUNDANT_DISCOVERY_VALIDATION_RESULT_v0",
+  "level1_regime_selection": true,
+  "level2_region_localization_proxy": true,
+  "level3_topology_or_contact_proxy": false,
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1BL0",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1BL0/3",
+      "source_class": "coordinate_derived",
+      "source_id": "V69_018_V69A_BROAD_RCSB_NONREDUNDANT_1BL0_3_V69_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "predicted_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "protein_id": "1BL0_3",
+  "required_esperanto_word": "soluble_beta_barrel_vs_membrane_barrel",
+  "required_esperanto_word_supported": false,
+  "score_label": "contradicted",
+  "sealed_prediction_hash": "e18b08918e8644dad03bec5e79d4393e232a73df738de5c9b347ec23d71b09e9",
+  "shard": "V69A_BROAD_RCSB_NONREDUNDANT",
+  "target_id": "V69_018_V69A_BROAD_RCSB_NONREDUNDANT_1BL0_3",
+  "validation_checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "membrane_multidomain_folding_proteostasis",
+      "observed": "membrane_multidomain_folding_proteostasis",
+      "passed": true
+    },
+    {
+      "check_id": "proteostasis_routing_supported",
+      "comparator": ">=",
+      "metric": "proteostasis_routing",
+      "observed": 0.657178,
+      "passed": true,
+      "threshold": 0.5
+    }
+  ]
+}

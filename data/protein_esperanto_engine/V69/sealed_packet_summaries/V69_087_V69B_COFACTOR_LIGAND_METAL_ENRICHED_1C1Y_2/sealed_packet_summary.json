@@ -1,0 +1,38 @@
+{
+  "active_operator_count": 4,
+  "folding_problem_solved": false,
+  "kind": "V69_COMPACT_SEALED_PACKET_SUMMARY_v0",
+  "natural_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "operator_names": [
+    "membrane_pressure_operator",
+    "closure_operator",
+    "interface_operator",
+    "proteostasis_operator"
+  ],
+  "prediction_hash": "9573bd8b53ce5ee60a11f66585f9b0913c191af936d55945e5ee4d0e869485b7",
+  "sealed_before_holdout": true,
+  "selected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "selection_reason": "strong_membrane_topology_context_prioritized_over_incidental_ligand_or_assembly_context",
+  "target_id": "V69_087_V69B_COFACTOR_LIGAND_METAL_ENRICHED_1C1Y_2",
+  "trajectory_final_state_summary": {
+    "assembly_ambiguous": 0.0,
+    "assembly_required_core": 0.0,
+    "contact_probability": 0.48575,
+    "disorder_order_balance": 0.2676,
+    "frustration": 0.0,
+    "interface_buried_hydrophobicity": 0.0,
+    "interface_readiness": 0.635,
+    "monomer_incomplete_topology": 0.0,
+    "operator_activation": 0.676867,
+    "partner_completed_core": 0.0,
+    "proteostasis_routing": 0.667147,
+    "residue_exposure": 0.569073,
+    "segment_compaction": 0.704,
+    "state_basin_occupancy": {
+      "mature_membrane_routed": 0.667147,
+      "partial_nbd1_rescue": 0.704,
+      "qc_retained_misfolded": 0.0
+    },
+    "timepoint": 1000
+  }
+}

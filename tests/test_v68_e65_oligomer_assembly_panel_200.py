@@ -83,6 +83,9 @@ def test_v68_reports_required_panel_metrics() -> None:
     assert cert["domain_swap_candidates_detected"] == 3
     assert cert["abstain_count"] == 12
     assert cert["accepted_count"] == 188
+    assert cert["accepted_supported"] == 188
+    assert cert["clean_abstain_supported"] == 12
+    assert cert["failed_accepted"] == 0
     assert cert["accepted_accuracy"] == pytest.approx(1.0)
     assert cert["raw_accuracy"] == pytest.approx(1.0)
     assert cert["coverage"] == pytest.approx(0.94)

@@ -1,0 +1,39 @@
+{
+  "batch_id": "V70_E66_METAL_CLUSTER_LIGAND_REPAIR_PANEL_200",
+  "engine_version_used": "E66",
+  "entity_id": "1",
+  "entry_id": "1DT0",
+  "expected_mechanism_class": "assembly_required_folding",
+  "expected_observables": [
+    {
+      "check_id": "partner_completed_core_supported",
+      "comparator": ">=",
+      "metric": "partner_completed_core",
+      "threshold": 0.48
+    }
+  ],
+  "holdout_opened_after_prediction_hash": "5a135a384be420f20f5c2d4bc7320e20839ce05c8e47d8b65faa87baeae11175",
+  "kind": "V70_E66_METAL_LIGAND_REPAIR_POSTSEAL_HOLDOUT_v0",
+  "lineage_source_target": null,
+  "panel_group": "ASSEMBLY_REQUIRED_METAL_CONFLICT_SENTINEL",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1DT0",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1DT0/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V70_179_ASSEMBLY_REQUIRED_METAL_CONFLICT_SENTINEL_1DT0_1_V70_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "V70 E66 repair panel group ASSEMBLY_REQUIRED_METAL_CONFLICT_SENTINEL.",
+    "Required E66 word: metal_cluster_geometry.",
+    "Coordinates, contacts, native ligand geometry, and post-seal validation labels are blocked before sealing."
+  ],
+  "protein_id": "1DT0_1",
+  "required_esperanto_word": "metal_cluster_geometry",
+  "source_family": "V69_RAW",
+  "target_id": "V70_179_ASSEMBLY_REQUIRED_METAL_CONFLICT_SENTINEL_1DT0_1"
+}

@@ -1,0 +1,37 @@
+{
+  "batch_id": "V69_RCSB_NONREDUNDANT_200_DISCOVERY_E65",
+  "engine_version_used": "E65",
+  "entity_id": "1",
+  "entry_id": "1BSH",
+  "expected_mechanism_class": "oligomerization_controlled_folding",
+  "expected_observables": [
+    {
+      "check_id": "interface_readiness_supported",
+      "comparator": ">=",
+      "metric": "interface_readiness",
+      "threshold": 0.4
+    }
+  ],
+  "experimental_method": "SOLUTION NMR",
+  "holdout_opened_after_prediction_hash": "083f9418cd32332c0c2f2199a5448b11a99d22831b5a034f5d185e989014b660",
+  "kind": "V69_E65_RCSB_NONREDUNDANT_DISCOVERY_POSTSEAL_HOLDOUT_v0",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1BSH",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1BSH/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V69_038_V69A_BROAD_RCSB_NONREDUNDANT_1BSH_1_V69_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "postseal public metadata indicates biological oligomer, assembly, copy-count, or complex context"
+  ],
+  "protein_id": "1BSH_1",
+  "release_date": "1998-09-02T00:00:00.000+00:00",
+  "required_esperanto_word": null,
+  "shard": "V69A_BROAD_RCSB_NONREDUNDANT",
+  "target_id": "V69_038_V69A_BROAD_RCSB_NONREDUNDANT_1BSH_1"
+}

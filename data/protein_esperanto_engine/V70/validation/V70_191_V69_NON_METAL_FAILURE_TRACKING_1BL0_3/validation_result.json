@@ -1,0 +1,50 @@
+{
+  "acceptance_decision": "accepted",
+  "alphafold_used_before_seal": false,
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "3",
+  "entry_id": "1BL0",
+  "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "holdout_opened_after_prediction_hash": "b3fe786ec459dc98b4d290c474c7eeb464af805a0394097ca406d9f86d130854",
+  "kind": "V70_E66_METAL_LIGAND_REPAIR_VALIDATION_RESULT_v0",
+  "level1_regime_selection": true,
+  "level2_region_localization_proxy": true,
+  "level3_topology_or_contact_proxy": true,
+  "lineage_source_target": "V69_018_V69A_BROAD_RCSB_NONREDUNDANT_1BL0_3",
+  "panel_group": "V69_NON_METAL_FAILURE_TRACKING",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1BL0",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1BL0/3",
+      "source_class": "coordinate_derived",
+      "source_id": "V70_191_V69_NON_METAL_FAILURE_TRACKING_1BL0_3_V70_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "predicted_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "protein_id": "1BL0_3",
+  "required_esperanto_word": "soluble_beta_barrel_vs_membrane_barrel",
+  "score_label": "supported",
+  "sealed_prediction_hash": "b3fe786ec459dc98b4d290c474c7eeb464af805a0394097ca406d9f86d130854",
+  "source_family": "V69",
+  "target_id": "V70_191_V69_NON_METAL_FAILURE_TRACKING_1BL0_3",
+  "validation_checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "membrane_multidomain_folding_proteostasis",
+      "observed": "membrane_multidomain_folding_proteostasis",
+      "passed": true
+    },
+    {
+      "check_id": "proteostasis_routing_supported",
+      "comparator": ">=",
+      "metric": "proteostasis_routing",
+      "observed": 0.657178,
+      "passed": true,
+      "threshold": 0.5
+    }
+  ]
+}

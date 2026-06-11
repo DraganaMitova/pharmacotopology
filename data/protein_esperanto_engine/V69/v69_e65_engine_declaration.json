@@ -1,0 +1,48 @@
+{
+  "batch_head_commit": "424a76e43f875dd389581e719cde72179cdeef0b",
+  "engine_biology_modified_during_batch": false,
+  "engine_changes_allowed_by_operating_mode": true,
+  "engine_lineage": [
+    "E60",
+    "E61",
+    "E62",
+    "E63",
+    "E64",
+    "E65"
+  ],
+  "engine_modified_during_batch": false,
+  "engine_source_last_commit": "424a76e43f875dd389581e719cde72179cdeef0b",
+  "engine_source_path": "src/pharmacotopology/protein_esperanto_engine.py",
+  "engine_source_sha256": "c95723c8825d59b97686012af66fdb09ed82d39e1ba185302a92b71e5927db5a",
+  "engine_version_used": "E65",
+  "folding_problem_solved": false,
+  "kind": "V69_E65_ENGINE_DECLARATION_v0",
+  "lineage_note": "V69 runs fresh discovery with E65 fixed; engine revision waits until V69 exposes the next dominant missing word.",
+  "mechanism_class_set_hash": "1a412ca27c8b163197f7ad5b75585b69ee7da99631f17092cfe9e8ddb43001e8",
+  "mechanism_classes": [
+    "globular_closure",
+    "intrinsic_disorder_phase_separation",
+    "membrane_multidomain_folding_proteostasis",
+    "metamorphic_fold_switching",
+    "short_region_host_interface_hijacking",
+    "fold_upon_binding_disorder",
+    "cofactor_ligand_assisted_stabilization",
+    "assembly_required_folding",
+    "oligomerization_controlled_folding",
+    "insufficient_evidence_clean_abstain"
+  ],
+  "operator_names": [
+    "closure_operator",
+    "repulsion_operator",
+    "frustration_operator",
+    "disorder_operator",
+    "phase_operator",
+    "interface_operator",
+    "membrane_pressure_operator",
+    "dual_basin_switch_operator",
+    "proteostasis_operator",
+    "host_hijack_operator"
+  ],
+  "operator_set_hash": "1421426c696edb0f3ddce7a984c3fc0603e32fea4eb28a9f8acb83bbf07e910a",
+  "target_selection_manual": false
+}

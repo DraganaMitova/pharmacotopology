@@ -1,0 +1,39 @@
+{
+  "batch_id": "V70_E66_METAL_CLUSTER_LIGAND_REPAIR_PANEL_200",
+  "engine_version_used": "E66",
+  "entity_id": "1",
+  "entry_id": "1BVI",
+  "expected_mechanism_class": "metal_cluster_and_ligand_locked_basin",
+  "expected_observables": [
+    {
+      "check_id": "metal_cluster_geometry_supported",
+      "comparator": ">=",
+      "metric": "metal_cluster_geometry",
+      "threshold": 0.45
+    }
+  ],
+  "holdout_opened_after_prediction_hash": "0c9dedf30ac0347237f15612e8a27e7acd80de7b2729bd7b04cb6d42bc140b03",
+  "kind": "V70_E66_METAL_LIGAND_REPAIR_POSTSEAL_HOLDOUT_v0",
+  "lineage_source_target": "V69_079_V69B_COFACTOR_LIGAND_METAL_ENRICHED_1BVI_1",
+  "panel_group": "V69_METAL_CLUSTER_FAILURE_REPLAY",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1BVI",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1BVI/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V70_024_V69_METAL_CLUSTER_FAILURE_REPLAY_1BVI_1_V70_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "V70 E66 repair panel group V69_METAL_CLUSTER_FAILURE_REPLAY.",
+    "Required E66 word: metal_cluster_geometry.",
+    "Coordinates, contacts, native ligand geometry, and post-seal validation labels are blocked before sealing."
+  ],
+  "protein_id": "1BVI_1",
+  "required_esperanto_word": "metal_cluster_geometry",
+  "source_family": "V69",
+  "target_id": "V70_024_V69_METAL_CLUSTER_FAILURE_REPLAY_1BVI_1"
+}

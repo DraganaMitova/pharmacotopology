@@ -1,0 +1,286 @@
+{
+  "accepted_accuracy": 0.9897435897435898,
+  "accepted_count": 195,
+  "accepted_supported": 193,
+  "alphafold_used_before_seal": false,
+  "assembly_required_preserved": 20,
+  "atomistic_md_executed": false,
+  "baseline_engine_version": "E65",
+  "batch_id": "V70_E66_METAL_CLUSTER_LIGAND_REPAIR_PANEL_200",
+  "batch_mode": "metal_cluster_ligand_repair_panel_200",
+  "campaign_id": "V61_TO_V70_PROTEIN_ESPERANTO_SATURATION_CAMPAIGN",
+  "certificate_hash": "8400e62fb5057a32a4f1411d5fdfb4f3befac58651e02c8dc25b0d9d03c55bb8",
+  "claim_allowed": false,
+  "claim_blocked_reason": "V70 is an E66 repair panel, not a broad solved-folding claim.",
+  "clean_abstain": 5,
+  "clean_abstain_supported": 0,
+  "composition_rule": {
+    "ASSEMBLY_REQUIRED_METAL_CONFLICT_SENTINEL": 20,
+    "LIGAND_LOCKED_POSITIVE_EXPANSION": 30,
+    "METAL_CLUSTER_POSITIVE_EXPANSION": 50,
+    "TRUE_TM_METAL_CONFLICT_SENTINEL": 25,
+    "V69_LIGAND_LOCKED_FAILURE_REPLAY": 14,
+    "V69_METAL_CLUSTER_FAILURE_REPLAY": 49,
+    "V69_NON_METAL_FAILURE_TRACKING": 12
+  },
+  "contact_truth_used_before_seal": false,
+  "control_count": 17,
+  "controls": [
+    {
+      "control_id": "target_count_200",
+      "observed": 200,
+      "passed": true,
+      "reason": "V70 must have exactly 200 targets."
+    },
+    {
+      "control_id": "composition_rule",
+      "observed": {
+        "ASSEMBLY_REQUIRED_METAL_CONFLICT_SENTINEL": 20,
+        "LIGAND_LOCKED_POSITIVE_EXPANSION": 30,
+        "METAL_CLUSTER_POSITIVE_EXPANSION": 50,
+        "TRUE_TM_METAL_CONFLICT_SENTINEL": 25,
+        "V69_LIGAND_LOCKED_FAILURE_REPLAY": 14,
+        "V69_METAL_CLUSTER_FAILURE_REPLAY": 49,
+        "V69_NON_METAL_FAILURE_TRACKING": 12
+      },
+      "passed": true,
+      "reason": "V70 must match requested repair composition."
+    },
+    {
+      "control_id": "engine_version_declared_e66",
+      "observed": null,
+      "passed": true,
+      "reason": "V70 uses E66."
+    },
+    {
+      "control_id": "e66_class_available",
+      "observed": null,
+      "passed": true,
+      "reason": "E66 exposes metal_cluster_and_ligand_locked_basin."
+    },
+    {
+      "control_id": "target_selection_manual_false",
+      "observed": null,
+      "passed": true,
+      "reason": "V70 target selection is deterministic from committed V69 artifacts."
+    },
+    {
+      "control_id": "all_sealed_before_holdout",
+      "observed": null,
+      "passed": true,
+      "reason": "Every V70 packet is sealed before holdout."
+    },
+    {
+      "control_id": "holdouts_opened_after_seal",
+      "observed": null,
+      "passed": true,
+      "reason": "Every holdout references sealed prediction hash."
+    },
+    {
+      "control_id": "v69_metal_failures_repaired",
+      "observed": 49,
+      "passed": true,
+      "reason": "All V69 metal-cluster failed accepted rows repaired."
+    },
+    {
+      "control_id": "v69_ligand_failures_repaired",
+      "observed": 14,
+      "passed": true,
+      "reason": "All V69 ligand-locked failed accepted rows repaired."
+    },
+    {
+      "control_id": "sentinels_stable",
+      "observed": [],
+      "passed": true,
+      "reason": "V70 membrane and assembly sentinels remain stable."
+    },
+    {
+      "control_id": "shuffled_sequence_controls_reported",
+      "observed": {
+        "control_count": 200
+      },
+      "passed": true,
+      "reason": "Composition-preserving shuffled controls generated without target metadata."
+    },
+    {
+      "control_id": "coordinate_leakage_control",
+      "observed": {
+        "allowed_initialization_source_ids": [],
+        "blocked_source_ids": [
+          "V70_BAD_COORDINATES"
+        ],
+        "coordinate_derived_source_count_before_prediction": 1,
+        "coordinate_truth_used_before_prediction": true,
+        "holdout_opened_before_seal": false,
+        "internal_runtime_source_count_for_prediction": 0,
+        "internal_runtime_used_as_biological_evidence": false,
+        "kind": "PROTEIN_ESPERANTO_EVIDENCE_BOUNDARY_GATE_v0",
+        "rows": [
+          {
+            "allowed_for_claim": false,
+            "allowed_for_holdout_after_seal": false,
+            "allowed_to_initialize_language_field": false,
+            "blocked_reason": "coordinate_derived_blocked_before_seal",
+            "coordinate_derived": true,
+            "internal_runtime": false,
+            "source_class": "coordinate_derived",
+            "source_id": "V70_BAD_COORDINATES",
+            "source_role": "prediction_input",
+            "spatial_proxy": false
+          }
+        ],
+        "spatial_proxy_untagged_or_misused_count": 0
+      },
+      "passed": true,
+      "reason": "Coordinate-derived source blocks prediction."
+    },
+    {
+      "control_id": "alphafold_leakage_control",
+      "observed": {
+        "allowed_initialization_source_ids": [],
+        "blocked_source_ids": [
+          "V70_BAD_ALPHAFOLD_MODEL"
+        ],
+        "coordinate_derived_source_count_before_prediction": 1,
+        "coordinate_truth_used_before_prediction": true,
+        "holdout_opened_before_seal": false,
+        "internal_runtime_source_count_for_prediction": 0,
+        "internal_runtime_used_as_biological_evidence": false,
+        "kind": "PROTEIN_ESPERANTO_EVIDENCE_BOUNDARY_GATE_v0",
+        "rows": [
+          {
+            "allowed_for_claim": false,
+            "allowed_for_holdout_after_seal": false,
+            "allowed_to_initialize_language_field": false,
+            "blocked_reason": "coordinate_derived_blocked_before_seal",
+            "coordinate_derived": true,
+            "internal_runtime": false,
+            "source_class": "coordinate_derived",
+            "source_id": "V70_BAD_ALPHAFOLD_MODEL",
+            "source_role": "prediction_input",
+            "spatial_proxy": false
+          }
+        ],
+        "spatial_proxy_untagged_or_misused_count": 0
+      },
+      "passed": true,
+      "reason": "AlphaFold-like model blocks prediction."
+    },
+    {
+      "control_id": "holdout_opened_before_seal_control",
+      "observed": {
+        "allowed_initialization_source_ids": [],
+        "blocked_source_ids": [
+          "V70_PRESEAL_HOLDOUT"
+        ],
+        "coordinate_derived_source_count_before_prediction": 0,
+        "coordinate_truth_used_before_prediction": false,
+        "holdout_opened_before_seal": true,
+        "internal_runtime_source_count_for_prediction": 0,
+        "internal_runtime_used_as_biological_evidence": false,
+        "kind": "PROTEIN_ESPERANTO_EVIDENCE_BOUNDARY_GATE_v0",
+        "rows": [
+          {
+            "allowed_for_claim": false,
+            "allowed_for_holdout_after_seal": true,
+            "allowed_to_initialize_language_field": false,
+            "blocked_reason": "holdout_opened_before_seal",
+            "coordinate_derived": true,
+            "internal_runtime": false,
+            "source_class": "coordinate_derived",
+            "source_id": "V70_PRESEAL_HOLDOUT",
+            "source_role": "holdout_validation",
+            "spatial_proxy": false
+          }
+        ],
+        "spatial_proxy_untagged_or_misused_count": 0
+      },
+      "passed": true,
+      "reason": "Holdout validation cannot initialize prediction before sealing."
+    },
+    {
+      "control_id": "internal_runtime_leakage_control",
+      "observed": {
+        "allowed_initialization_source_ids": [],
+        "blocked_source_ids": [
+          "V70_BAD_INTERNAL_RUNTIME"
+        ],
+        "coordinate_derived_source_count_before_prediction": 0,
+        "coordinate_truth_used_before_prediction": false,
+        "holdout_opened_before_seal": false,
+        "internal_runtime_source_count_for_prediction": 1,
+        "internal_runtime_used_as_biological_evidence": true,
+        "kind": "PROTEIN_ESPERANTO_EVIDENCE_BOUNDARY_GATE_v0",
+        "rows": [
+          {
+            "allowed_for_claim": false,
+            "allowed_for_holdout_after_seal": false,
+            "allowed_to_initialize_language_field": false,
+            "blocked_reason": "internal_runtime_never_biological_evidence",
+            "coordinate_derived": false,
+            "internal_runtime": true,
+            "source_class": "internal_runtime",
+            "source_id": "V70_BAD_INTERNAL_RUNTIME",
+            "source_role": "prediction_input",
+            "spatial_proxy": false
+          }
+        ],
+        "spatial_proxy_untagged_or_misused_count": 0
+      },
+      "passed": true,
+      "reason": "Internal runtime cannot become biological evidence."
+    },
+    {
+      "control_id": "random_sequence_control",
+      "observed": null,
+      "passed": true,
+      "reason": "Random sequence without evidence abstains."
+    },
+    {
+      "control_id": "readme_check_skipped_by_user_instruction",
+      "observed": null,
+      "passed": true,
+      "reason": "README check skipped by explicit user instruction."
+    }
+  ],
+  "controls_passed": true,
+  "coordinate_truth_used_before_seal": false,
+  "coverage": 0.975,
+  "dominant_failure_count": 7,
+  "dominant_failure_mode": "non_metal_tracking_remaining",
+  "engine_source_last_commit": "424a76e43f875dd389581e719cde72179cdeef0b",
+  "engine_source_sha256": "9563c24a1597ae015466bff440f2a679119c759aa4f7684d3c8fd4d0f42c5b1e",
+  "engine_version_used": "E66",
+  "failed_accepted": 2,
+  "failed_accepted_count": 2,
+  "failed_controls": [],
+  "failure_modes": {
+    "non_metal_tracking_remaining": 7
+  },
+  "folding_problem_solved": false,
+  "kind": "V70_E66_METAL_LIGAND_REPAIR_PANEL_200_CERTIFICATE_v0",
+  "ligand_locked_positive_supported": 30,
+  "metal_cluster_positive_supported": 50,
+  "missing_words_top_10": [
+    {
+      "count": 7,
+      "failure_mode": "non_metal_tracking_remaining"
+    }
+  ],
+  "next_required_batch": "V71_RCSB_NONREDUNDANT_200_DISCOVERY_E66",
+  "non_metal_tracking_remaining": 7,
+  "non_metal_tracking_supported": 5,
+  "passed_control_count": 17,
+  "raw_accuracy": 0.965,
+  "sentinel_regression_count": 0,
+  "sentinel_regressions": [],
+  "status": "V70_E66_METAL_CLUSTER_LIGAND_REPAIR_PANEL_PASSED_REVIEW_REQUIRED",
+  "supported_count": 193,
+  "target_selection_manual": false,
+  "targeted_failed_accepted_count": 0,
+  "targets_total": 200,
+  "timestamp_utc": "2026-06-11T22:48:25.027183+00:00",
+  "true_TM_preserved": 25,
+  "v69_ligand_locked_failures_repaired": 14,
+  "v69_metal_cluster_failures_repaired": 49
+}

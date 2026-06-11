@@ -1,0 +1,42 @@
+{
+  "active_operator_count": 3,
+  "folding_problem_solved": false,
+  "kind": "V70_COMPACT_SEALED_PACKET_SUMMARY_v0",
+  "natural_mechanism_class": "assembly_required_folding",
+  "operator_names": [
+    "interface_operator",
+    "closure_operator",
+    "frustration_operator"
+  ],
+  "prediction_hash": "e16476ff8ad70cbe86bf7cda8a4f3791a57bba7ad2451c874f6a89b691639a11",
+  "sealed_before_holdout": true,
+  "selected_mechanism_class": "assembly_required_folding",
+  "selection_reason": "explicit_assembly_required_core_or_partner_completed_topology_context",
+  "target_id": "V70_172_ASSEMBLY_REQUIRED_METAL_CONFLICT_SENTINEL_1DO8_1",
+  "trajectory_final_state_summary": {
+    "apo_holo_basin_shift": 0.0,
+    "assembly_ambiguous": 0.125139,
+    "assembly_required_core": 0.543044,
+    "contact_probability": 0.554683,
+    "coordination_shell_integrity": 0.0,
+    "disorder_order_balance": 0.299174,
+    "frustration": 0.532947,
+    "interface_buried_hydrophobicity": 0.318211,
+    "interface_readiness": 0.717884,
+    "ligand_locked_basin": 0.0,
+    "metal_cluster_geometry": 0.0,
+    "metal_ligand_ambiguous": 0.0,
+    "monomer_incomplete_topology": 0.37185,
+    "operator_activation": 0.61245,
+    "partner_completed_core": 0.717884,
+    "proteostasis_routing": 0.0,
+    "residue_exposure": 0.611165,
+    "segment_compaction": 0.543044,
+    "state_basin_occupancy": {
+      "assembly_ambiguous_basin": 0.125139,
+      "assembly_required_basin": 0.717884,
+      "monomer_incomplete_topology": 0.37185
+    },
+    "timepoint": 1000
+  }
+}

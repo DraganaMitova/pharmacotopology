@@ -3,6 +3,8 @@
 Status: `V68_E65_OLIGOMER_ASSEMBLY_PANEL_PASSED_REVIEW_REQUIRED`
 Targets total: `200`
 Supported: `200`
+Accepted supported: `188`
+Clean abstain supported: `12`
 Failed accepted: `0`
 Abstain: `12`
 Accepted accuracy: `1.0`

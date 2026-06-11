@@ -1,0 +1,37 @@
+{
+  "batch_id": "V69_RCSB_NONREDUNDANT_200_DISCOVERY_E65",
+  "engine_version_used": "E65",
+  "entity_id": "1",
+  "entry_id": "1BFS",
+  "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "expected_observables": [
+    {
+      "check_id": "proteostasis_routing_supported",
+      "comparator": ">=",
+      "metric": "proteostasis_routing",
+      "threshold": 0.5
+    }
+  ],
+  "experimental_method": "X-RAY DIFFRACTION",
+  "holdout_opened_after_prediction_hash": "9ed3f8a3e9570e3f6385ce25d0b85c273f74cf95efe8fe8c8b154e6d271a9c6b",
+  "kind": "V69_E65_RCSB_NONREDUNDANT_DISCOVERY_POSTSEAL_HOLDOUT_v0",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1BFS",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1BFS/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V69_151_V69D_HARD_TOPOLOGY_ENRICHED_1BFS_1_V69_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "postseal public annotation/text indicates explicit membrane, channel, pore, transporter, or topology evidence"
+  ],
+  "protein_id": "1BFS_1",
+  "release_date": "1998-01-28T00:00:00.000+00:00",
+  "required_esperanto_word": null,
+  "shard": "V69D_HARD_TOPOLOGY_ENRICHED",
+  "target_id": "V69_151_V69D_HARD_TOPOLOGY_ENRICHED_1BFS_1"
+}

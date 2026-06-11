@@ -1,0 +1,18 @@
+{
+  "abstention_rate": 0.025,
+  "accepted_accuracy": 0.9897435897435898,
+  "batch_id": "V70_E66_METAL_CLUSTER_LIGAND_REPAIR_PANEL_200",
+  "batch_mode": "metal_cluster_ligand_repair_panel_200",
+  "claim_allowed": false,
+  "claim_blocked_reason": "V70 is an E66 repair panel, not a broad solved-folding claim.",
+  "clean_abstain_count": 5,
+  "control_pass_rate": 1.0,
+  "coverage": 0.975,
+  "dominant_failure_mode": "non_metal_tracking_remaining",
+  "engine_version_used": "E66",
+  "failure_count": 2,
+  "failure_modes": {
+    "non_metal_tracking_remaining": 7
+  },
+  "raw_accuracy": 0.965
+}

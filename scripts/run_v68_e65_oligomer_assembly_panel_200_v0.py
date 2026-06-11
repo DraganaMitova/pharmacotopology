@@ -824,10 +824,14 @@ def _metrics(rows: list[dict[str, Any]]) -> dict[str, Any]:
     failed_accepted = [row for row in accepted if row["score_label"] != "supported"]
     abstained = [row for row in rows if row["acceptance_decision"] == "abstain_recommended"]
     accepted_supported = [row for row in accepted if row["score_label"] == "supported"]
+    clean_abstain_supported = [row for row in abstained if row["score_label"] == "supported"]
     return {
         "targets_total": len(rows),
         "accepted_count": len(accepted),
         "supported_count": len(supported),
+        "accepted_supported": len(accepted_supported),
+        "clean_abstain_supported": len(clean_abstain_supported),
+        "failed_accepted": len(failed_accepted),
         "failed_accepted_count": len(failed_accepted),
         "abstain_count": len(abstained),
         "accepted_accuracy": len(accepted_supported) / len(accepted) if accepted else None,
@@ -1108,6 +1112,8 @@ def _write_report(path: Path, cert: dict[str, Any], failure_report: dict[str, An
         f"Status: `{cert['status']}`",
         f"Targets total: `{cert['targets_total']}`",
         f"Supported: `{cert['supported_count']}`",
+        f"Accepted supported: `{cert['accepted_supported']}`",
+        f"Clean abstain supported: `{cert['clean_abstain_supported']}`",
         f"Failed accepted: `{cert['failed_accepted_count']}`",
         f"Abstain: `{cert['abstain_count']}`",
         f"Accepted accuracy: `{cert['accepted_accuracy']}`",

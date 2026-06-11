@@ -1,0 +1,104 @@
+{
+  "batch_id": "V70_E66_METAL_CLUSTER_LIGAND_REPAIR_PANEL_200",
+  "dominant_failure_count": 7,
+  "dominant_failure_mode": "non_metal_tracking_remaining",
+  "engine_version_used": "E66",
+  "failure_cases_reported": true,
+  "failure_count": 7,
+  "failure_grammar_rows": [
+    {
+      "acceptance_decision": "accepted",
+      "engine_thought": "membrane_multidomain_folding_proteostasis",
+      "failure_mode": "non_metal_tracking_remaining",
+      "missing_esperanto_word": "non_metal_tracking_remaining",
+      "panel_group": "V69_NON_METAL_FAILURE_TRACKING",
+      "protein_id": "1BH9_2",
+      "reality_showed": "short_region_host_interface_hijacking",
+      "required_esperanto_word": null,
+      "score_label": "contradicted",
+      "target_id": "V70_189_V69_NON_METAL_FAILURE_TRACKING_1BH9_2"
+    },
+    {
+      "acceptance_decision": "abstain_recommended",
+      "engine_thought": "insufficient_evidence_clean_abstain",
+      "failure_mode": "non_metal_tracking_remaining",
+      "missing_esperanto_word": "non_metal_tracking_remaining",
+      "panel_group": "V69_NON_METAL_FAILURE_TRACKING",
+      "protein_id": "1BW6_1",
+      "reality_showed": "intrinsic_disorder_phase_separation",
+      "required_esperanto_word": null,
+      "score_label": "abstained",
+      "target_id": "V70_192_V69_NON_METAL_FAILURE_TRACKING_1BW6_1"
+    },
+    {
+      "acceptance_decision": "abstain_recommended",
+      "engine_thought": "insufficient_evidence_clean_abstain",
+      "failure_mode": "non_metal_tracking_remaining",
+      "missing_esperanto_word": "non_metal_tracking_remaining",
+      "panel_group": "V69_NON_METAL_FAILURE_TRACKING",
+      "protein_id": "1BXI_1",
+      "reality_showed": "intrinsic_disorder_phase_separation",
+      "required_esperanto_word": null,
+      "score_label": "abstained",
+      "target_id": "V70_193_V69_NON_METAL_FAILURE_TRACKING_1BXI_1"
+    },
+    {
+      "acceptance_decision": "abstain_recommended",
+      "engine_thought": "insufficient_evidence_clean_abstain",
+      "failure_mode": "non_metal_tracking_remaining",
+      "missing_esperanto_word": "non_metal_tracking_remaining",
+      "panel_group": "V69_NON_METAL_FAILURE_TRACKING",
+      "protein_id": "1C7V_1",
+      "reality_showed": "intrinsic_disorder_phase_separation",
+      "required_esperanto_word": null,
+      "score_label": "abstained",
+      "target_id": "V70_195_V69_NON_METAL_FAILURE_TRACKING_1C7V_1"
+    },
+    {
+      "acceptance_decision": "abstain_recommended",
+      "engine_thought": "insufficient_evidence_clean_abstain",
+      "failure_mode": "non_metal_tracking_remaining",
+      "missing_esperanto_word": "non_metal_tracking_remaining",
+      "panel_group": "V69_NON_METAL_FAILURE_TRACKING",
+      "protein_id": "1C8F_1",
+      "reality_showed": "short_region_host_interface_hijacking",
+      "required_esperanto_word": null,
+      "score_label": "abstained",
+      "target_id": "V70_196_V69_NON_METAL_FAILURE_TRACKING_1C8F_1"
+    },
+    {
+      "acceptance_decision": "accepted",
+      "engine_thought": "membrane_multidomain_folding_proteostasis",
+      "failure_mode": "non_metal_tracking_remaining",
+      "missing_esperanto_word": "non_metal_tracking_remaining",
+      "panel_group": "V69_NON_METAL_FAILURE_TRACKING",
+      "protein_id": "1C04_5",
+      "reality_showed": "intrinsic_disorder_phase_separation",
+      "required_esperanto_word": null,
+      "score_label": "contradicted",
+      "target_id": "V70_198_V69_NON_METAL_FAILURE_TRACKING_1C04_5"
+    },
+    {
+      "acceptance_decision": "abstain_recommended",
+      "engine_thought": "insufficient_evidence_clean_abstain",
+      "failure_mode": "non_metal_tracking_remaining",
+      "missing_esperanto_word": "non_metal_tracking_remaining",
+      "panel_group": "V69_NON_METAL_FAILURE_TRACKING",
+      "protein_id": "1CN3_1",
+      "reality_showed": "short_region_host_interface_hijacking",
+      "required_esperanto_word": null,
+      "score_label": "abstained",
+      "target_id": "V70_200_V69_NON_METAL_FAILURE_TRACKING_1CN3_1"
+    }
+  ],
+  "failure_modes": {
+    "non_metal_tracking_remaining": 7
+  },
+  "kind": "V70_E66_METAL_LIGAND_REPAIR_FAILURE_REPORT_v0",
+  "missing_words_top_10": [
+    {
+      "count": 7,
+      "failure_mode": "non_metal_tracking_remaining"
+    }
+  ]
+}

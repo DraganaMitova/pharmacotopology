@@ -36,6 +36,7 @@ MECHANISM_CLASSES = [
     "short_region_host_interface_hijacking",
     "fold_upon_binding_disorder",
     "cofactor_ligand_assisted_stabilization",
+    "metal_cluster_and_ligand_locked_basin",
     "assembly_required_folding",
     "oligomerization_controlled_folding",
     "insufficient_evidence_clean_abstain",
@@ -96,6 +97,12 @@ STATE_VARIABLES = [
     "biological_oligomer_context",
     "generic_complex_only",
     "assembly_ambiguous",
+    "metal_cluster_geometry",
+    "coordination_shell_integrity",
+    "ligand_locked_basin",
+    "apo_holo_basin_shift",
+    "generic_ligand_only",
+    "metal_ligand_ambiguous",
 ]
 
 ENVIRONMENTAL_PRESSURES = [
@@ -115,6 +122,31 @@ COFACTOR_CONTEXT_TOKENS = [
     "metal_context",
     "heme_context",
     "nucleotide_context",
+]
+
+METAL_CLUSTER_CONTEXT_TOKENS = [
+    "metal_cluster_geometry",
+    "metal cluster",
+    "metal-cluster",
+    "iron-sulfur",
+    "iron sulfur",
+    "fe-s",
+    "metalloprotein",
+    "metal-binding",
+    "metal binding",
+    "coordination_shell_integrity",
+]
+
+LIGAND_LOCKED_CONTEXT_TOKENS = [
+    "ligand_locked_basin",
+    "ligand-locked basin",
+    "cofactor_locked_basin",
+    "cofactor-locked basin",
+    "nucleotide_context",
+    "flavin",
+    "substrate-bound",
+    "substrate bound",
+    "apo_holo_basin_shift",
 ]
 
 OLIGOMER_CONTEXT_TOKENS = [
@@ -282,6 +314,15 @@ GRAMMAR_RULES: dict[str, dict[str, Any]] = {
         "testable_effect": "cofactor removal destabilizes the predicted basin",
         "null_control": "generic ligand annotation alone cannot define full grammar",
         "falsification_rule": "ligand-independent stability dominates all conditions",
+    },
+    "metal_cluster_and_ligand_locked_basin": {
+        "marks": ["metal_cluster_geometry", "coordination_shell_integrity", "ligand_locked_basin"],
+        "pressures": ["ligand_or_cofactor", "redox_or_coordination_context"],
+        "operators": ["interface_operator", "closure_operator", "frustration_operator"],
+        "state_change": "generic cofactor basin to metal/ligand-locked basin with apo-holo separation",
+        "testable_effect": "metal/cofactor removal or coordination-shell disruption unlocks the basin and increases frustration",
+        "null_control": "generic cofactor annotation without metal, heme, nucleotide, or ligand-lock evidence remains generic cofactor",
+        "falsification_rule": "holdout shows ligand-independent folding or no geometry-locked basin effect",
     },
     "assembly_required_folding": {
         "marks": [
@@ -683,6 +724,8 @@ def select_mechanism_grammar(
         text = _allowed_source_text(sources, evidence_manifest)
         metrics = sequence_field["global_metrics"]
         cofactor_context = _contains_any(text, COFACTOR_CONTEXT_TOKENS)
+        metal_cluster_context = _contains_any(text, METAL_CLUSTER_CONTEXT_TOKENS)
+        ligand_locked_context = _contains_any(text, LIGAND_LOCKED_CONTEXT_TOKENS)
         negative_assembly_context = _contains_any(text, NEGATIVE_ASSEMBLY_CONTEXT_TOKENS)
         explicit_assembly_required_context = _contains_any(text, ASSEMBLY_REQUIRED_CONTEXT_TOKENS) and not negative_assembly_context
         biological_oligomer_context = _contains_any(text, OLIGOMER_CONTEXT_TOKENS)
@@ -714,6 +757,8 @@ def select_mechanism_grammar(
             any(token in text for token in ["orf6", "rae1", "nup98", "host hijack", "nucleocytoplasmic", "interferon"])
             and not explicit_membrane_context
             and not explicit_assembly_required_context
+            and not metal_cluster_context
+            and not ligand_locked_context
         ):
             natural = "short_region_host_interface_hijacking"
             reason = "short_region_host_interface_evidence"
@@ -750,6 +795,9 @@ def select_mechanism_grammar(
         elif explicit_assembly_required_context:
             natural = "assembly_required_folding"
             reason = "explicit_assembly_required_core_or_partner_completed_topology_context"
+        elif metal_cluster_context or ligand_locked_context:
+            natural = "metal_cluster_and_ligand_locked_basin"
+            reason = "explicit_metal_cluster_geometry_or_ligand_locked_basin_context"
         elif cofactor_context:
             natural = "cofactor_ligand_assisted_stabilization"
             reason = "explicit_ligand_cofactor_or_metal_context"
@@ -1081,6 +1129,39 @@ def build_operator_field(
                 "segment_compaction",
             ),
         ])
+    elif mechanism_class == "metal_cluster_and_ligand_locked_basin":
+        operators.extend([
+            _operator(
+                "interface_operator",
+                ", ".join(_span_from_segment(row) for row in interface_segments),
+                metrics["mean_interface"] + 0.42,
+                evidence,
+                "coordination shell and ligand pocket complete the locked basin",
+                "metal/cofactor removal or coordinating-side-chain disruption unlocks the basin",
+                "generic cofactor annotation explains the holdout without a geometry-locked basin",
+                "coordination_shell_integrity",
+            ),
+            _operator(
+                "closure_operator",
+                ", ".join(_span_from_segment(row) for row in hydrophobic_segments),
+                metrics["hydrophobic_density"] + 0.20,
+                evidence,
+                "ligand-locked compaction rather than free apo closure",
+                "apo conversion lowers basin occupancy and compaction",
+                "ligand-free closure remains equally stable",
+                "ligand_locked_basin",
+            ),
+            _operator(
+                "frustration_operator",
+                ", ".join(_span_from_segment(row) for row in interface_segments[:2]),
+                metrics["mean_interface"] + metrics["aromatic_density"] + 0.16,
+                evidence,
+                "apo/holo separation and coordination geometry resolve local frustration",
+                "coordination loss increases frustration and shifts basin occupancy",
+                "metal or ligand context has no directional effect",
+                "apo_holo_basin_shift",
+            ),
+        ])
     elif mechanism_class == "assembly_required_folding":
         operators.extend([
             _operator(
@@ -1280,6 +1361,34 @@ def simulate_operator_trajectory(
             contact_probability = bounded(0.18 + compact * 0.35 + pocket_ready * 0.18)
             interface_readiness = pocket_ready
             proteostasis_routing = 0.0
+        elif mechanism_class == "metal_cluster_and_ligand_locked_basin":
+            cofactor_loss = float((perturbation or {}).get("cofactor_loss", 0.0))
+            coordination_damage = float((perturbation or {}).get("coordination_damage", 0.0))
+            rescue = float((perturbation or {}).get("rescue", 0.0))
+            coordination_shell = bounded(
+                0.18
+                + interface * 0.50 * progress
+                + frustration_strength * 0.16
+                - 0.50 * coordination_damage
+                - 0.34 * cofactor_loss
+                + 0.20 * rescue
+            )
+            locked_basin = bounded(
+                0.20
+                + closure * 0.34 * progress
+                + coordination_shell * 0.34
+                - 0.42 * cofactor_loss
+                + 0.16 * rescue
+            )
+            basin = {
+                "metal_cluster_locked_basin": coordination_shell,
+                "ligand_locked_basin": locked_basin,
+                "apo_unlocked_basin": bounded(0.64 - locked_basin + 0.26 * cofactor_loss + 0.22 * coordination_damage),
+            }
+            segment_compaction = bounded(0.18 + closure * 0.38 * progress + locked_basin * 0.22)
+            contact_probability = bounded(0.16 + segment_compaction * 0.30 + coordination_shell * 0.26)
+            interface_readiness = coordination_shell
+            proteostasis_routing = 0.0
         elif mechanism_class == "assembly_required_folding":
             interface_disruption = float((perturbation or {}).get("interface_disruption", 0.0))
             concentration_rescue = float((perturbation or {}).get("concentration_rescue", 0.0))
@@ -1350,6 +1459,27 @@ def simulate_operator_trajectory(
                 if mechanism_class == "assembly_required_folding"
                 else 0.0
             ),
+            "metal_cluster_geometry": bounded(
+                basin.get("metal_cluster_locked_basin", 0.0)
+                if mechanism_class == "metal_cluster_and_ligand_locked_basin"
+                else 0.0
+            ),
+            "coordination_shell_integrity": bounded(
+                interface_readiness
+                if mechanism_class == "metal_cluster_and_ligand_locked_basin"
+                else 0.0
+            ),
+            "ligand_locked_basin": bounded(
+                basin.get("ligand_locked_basin", 0.0)
+                if mechanism_class == "metal_cluster_and_ligand_locked_basin"
+                else 0.0
+            ),
+            "apo_holo_basin_shift": bounded(
+                basin.get("apo_unlocked_basin", 0.0)
+                if mechanism_class == "metal_cluster_and_ligand_locked_basin"
+                else 0.0
+            ),
+            "metal_ligand_ambiguous": 0.0,
         })
     final = timepoints[-1]
     return {
@@ -1415,6 +1545,15 @@ def contact_probability_map(sequence_field: dict[str, Any], operator_field: dict
                 "segment_b": "ligand_or_cofactor_pocket",
                 "probability": bounded(0.36 + _operator_strength(operator_field, "interface_operator") * 0.34),
                 "interaction_type": "cofactor_stabilized_interface",
+            })
+    elif mechanism_class == "metal_cluster_and_ligand_locked_basin":
+        top = _strong_segments(sequence_field, "interface_density", limit=3)
+        for segment in top:
+            pairs.append({
+                "segment_a": segment["segment_id"],
+                "segment_b": "metal_cluster_or_ligand_locked_pocket",
+                "probability": bounded(0.38 + _operator_strength(operator_field, "interface_operator") * 0.36),
+                "interaction_type": "coordination_shell_locked_interface",
             })
     elif mechanism_class == "assembly_required_folding":
         top = _strong_segments(sequence_field, "interface_density", limit=3)
@@ -1702,6 +1841,9 @@ def sequence_operator_coherence(packet: dict[str, Any]) -> float:
     elif mechanism == "cofactor_ligand_assisted_stabilization":
         local = max((row["interface_density"] for row in segments), default=0.0)
         support = 0.30 * field["hydrophobic_density"] + 0.35 * field["mean_interface"] + 0.35 * local + activation
+    elif mechanism == "metal_cluster_and_ligand_locked_basin":
+        local = max((row["interface_density"] + row["aromatic_density"] for row in segments), default=0.0)
+        support = 0.24 * field["hydrophobic_density"] + 0.36 * field["mean_interface"] + 0.40 * local + activation
     elif mechanism == "assembly_required_folding":
         local = max((row["interface_density"] for row in segments), default=0.0)
         membrane_like = max((row["membrane_density"] for row in segments), default=0.0)

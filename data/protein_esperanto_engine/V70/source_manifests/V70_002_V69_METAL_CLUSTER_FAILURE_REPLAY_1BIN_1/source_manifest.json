@@ -1,0 +1,66 @@
+{
+  "alphafold_used_before_seal": false,
+  "batch_id": "V70_E66_METAL_CLUSTER_LIGAND_REPAIR_PANEL_200",
+  "blocked_prediction_inputs": [
+    "PDB/mmCIF coordinates before sealing",
+    "native contacts, distance maps, residue-residue proximity, and coordinate-derived topology",
+    "native ligand/metal coordination geometry before sealing",
+    "AlphaFold, ESMFold, RoseTTAFold, or other structure models before sealing",
+    "post-seal validation annotations before prediction hash",
+    "prior score outcomes as prediction evidence",
+    "internal runtime artifacts as biological evidence"
+  ],
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E66",
+  "entity_id": "1",
+  "entry_id": "1BIN",
+  "folding_problem_solved": false,
+  "kind": "V70_E66_METAL_LIGAND_REPAIR_SOURCE_MANIFEST_v0",
+  "lineage_source_target": "V69_052_V69B_COFACTOR_LIGAND_METAL_ENRICHED_1BIN_1",
+  "panel_group": "V69_METAL_CLUSTER_FAILURE_REPLAY",
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence for the RCSB polymer entity.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V70_002_V69_METAL_CLUSTER_FAILURE_REPLAY_1BIN_1_RAW_SEQUENCE",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1BIN/1",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "RCSB title: LEGHEMOGLOBIN A (ACETOMET). Entity description: LEGHEMOGLOBIN A. Polymer composition: homomeric protein. hydrophobic_density=0.496503. mean_interface=0.303498. max_segment_membrane_density=0.664605",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V70_002_V69_METAL_CLUSTER_FAILURE_REPLAY_1BIN_1_PUBLIC_METADATA",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/1BIN",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "V70 E66 repair context marks: cofactor_context coordination_shell_integrity ligand_context metal_cluster_geometry metal_context. These are non-coordinate repair-panel words mined from V69 failure taxonomy and public metadata; native coordinates, ligand geometry, contacts, and post-seal validation labels remain blocked before sealing.",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [
+        "cofactor_context",
+        "coordination_shell_integrity",
+        "ligand_context",
+        "metal_cluster_geometry",
+        "metal_context"
+      ],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V70_002_V69_METAL_CLUSTER_FAILURE_REPLAY_1BIN_1_E66_REPAIR_CONTEXT",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/1BIN",
+      "spatial_proxy": false
+    }
+  ],
+  "protein_id": "1BIN_1",
+  "sequence": "VAFTEKQDALVSSSFEAFKANIPQYSVVFYTSILEKAPAAKDLFSFLANGVDPTNPKLTGHAEKLFALVRDSAGQLKASGTVVADAALGSVHAQKAVTDPQFVVVKEALLKTIKAAVGDKWSDELSRAWEVAYDELAAAIKKA",
+  "sequence_length": 143,
+  "source_family": "V69",
+  "target_id": "V70_002_V69_METAL_CLUSTER_FAILURE_REPLAY_1BIN_1"
+}

@@ -1,0 +1,36 @@
+{
+  "active_operator_count": 2,
+  "folding_problem_solved": false,
+  "kind": "V69_COMPACT_SEALED_PACKET_SUMMARY_v0",
+  "natural_mechanism_class": "cofactor_ligand_assisted_stabilization",
+  "operator_names": [
+    "interface_operator",
+    "closure_operator"
+  ],
+  "prediction_hash": "133c5412d24c499d1d9f48097c3754a78cfc003c7bbdd9d561d4eb619a96d4ab",
+  "sealed_before_holdout": true,
+  "selected_mechanism_class": "cofactor_ligand_assisted_stabilization",
+  "selection_reason": "explicit_ligand_cofactor_or_metal_context",
+  "target_id": "V69_076_V69B_COFACTOR_LIGAND_METAL_ENRICHED_1BS4_1",
+  "trajectory_final_state_summary": {
+    "assembly_ambiguous": 0.0,
+    "assembly_required_core": 0.0,
+    "contact_probability": 0.496369,
+    "disorder_order_balance": 0.294905,
+    "frustration": 0.0,
+    "interface_buried_hydrophobicity": 0.0,
+    "interface_readiness": 0.635209,
+    "monomer_incomplete_topology": 0.0,
+    "operator_activation": 0.602372,
+    "partner_completed_core": 0.0,
+    "proteostasis_routing": 0.0,
+    "residue_exposure": 0.598939,
+    "segment_compaction": 0.577233,
+    "state_basin_occupancy": {
+      "apo_weak_basin": 0.0,
+      "generic_compact_basin": 0.180857,
+      "ligand_stabilized_basin": 0.635209
+    },
+    "timepoint": 1000
+  }
+}

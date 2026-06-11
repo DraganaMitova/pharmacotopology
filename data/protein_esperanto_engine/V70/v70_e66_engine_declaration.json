@@ -1,0 +1,50 @@
+{
+  "batch_head_commit": "424a76e43f875dd389581e719cde72179cdeef0b",
+  "engine_biology_modified_during_batch": false,
+  "engine_changes_allowed_by_operating_mode": true,
+  "engine_lineage": [
+    "E60",
+    "E61",
+    "E62",
+    "E63",
+    "E64",
+    "E65",
+    "E66"
+  ],
+  "engine_modified_during_batch": false,
+  "engine_source_last_commit": "424a76e43f875dd389581e719cde72179cdeef0b",
+  "engine_source_path": "src/pharmacotopology/protein_esperanto_engine.py",
+  "engine_source_sha256": "9563c24a1597ae015466bff440f2a679119c759aa4f7684d3c8fd4d0f42c5b1e",
+  "engine_version_used": "E66",
+  "folding_problem_solved": false,
+  "kind": "V70_E66_ENGINE_DECLARATION_v0",
+  "lineage_note": "E66 adds metal_cluster_and_ligand_locked_basin after V69 exposed metal_cluster_geometry.",
+  "mechanism_class_set_hash": "d56c54c9a01c30fd3a1c50e3c916b45489cf31a782d295bc3de2911c493d7c0b",
+  "mechanism_classes": [
+    "globular_closure",
+    "intrinsic_disorder_phase_separation",
+    "membrane_multidomain_folding_proteostasis",
+    "metamorphic_fold_switching",
+    "short_region_host_interface_hijacking",
+    "fold_upon_binding_disorder",
+    "cofactor_ligand_assisted_stabilization",
+    "metal_cluster_and_ligand_locked_basin",
+    "assembly_required_folding",
+    "oligomerization_controlled_folding",
+    "insufficient_evidence_clean_abstain"
+  ],
+  "operator_names": [
+    "closure_operator",
+    "repulsion_operator",
+    "frustration_operator",
+    "disorder_operator",
+    "phase_operator",
+    "interface_operator",
+    "membrane_pressure_operator",
+    "dual_basin_switch_operator",
+    "proteostasis_operator",
+    "host_hijack_operator"
+  ],
+  "operator_set_hash": "1421426c696edb0f3ddce7a984c3fc0603e32fea4eb28a9f8acb83bbf07e910a",
+  "target_selection_manual": false
+}

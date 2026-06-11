@@ -1,0 +1,103 @@
+{
+  "alphafold_used_before_seal": false,
+  "batch_id": "V69_RCSB_NONREDUNDANT_200_DISCOVERY_E65",
+  "blocked_prediction_inputs": [
+    "PDB/mmCIF coordinates before sealing",
+    "native contacts, distance maps, residue-residue proximity, and coordinate-derived topology",
+    "native biological assembly contacts and ligand/metal coordination geometry before sealing",
+    "AlphaFold, ESMFold, RoseTTAFold, or other structure models before sealing",
+    "post-seal validation annotations before prediction hash",
+    "prior score outcomes as prediction evidence",
+    "internal runtime artifacts as biological evidence"
+  ],
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E65",
+  "entity_id": "2",
+  "entry_id": "1E1Q",
+  "folding_problem_solved": false,
+  "kind": "V69_E65_RCSB_NONREDUNDANT_DISCOVERY_SOURCE_MANIFEST_v0",
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence for the RCSB polymer entity.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V69_144_V69C_ASSEMBLY_COMPLEX_OLIGOMER_ENRICHED_1E1Q_2_RAW_SEQUENCE",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1E1Q/2",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "RCSB title: BOVINE MITOCHONDRIAL F1-ATPASE AT 100K. Entity description: BOVINE MITOCHONDRIAL F1-ATPASE. Organism: BOS TAURUS; Bos taurus. Polymer composition: heteromeric protein. Sequence-derived marks: sequence-derived hydrophobic closure tendency; public metadata indicates multiple polymer instances or molecule copies; withheld discovery hints: hard_topology_word_withheld:soluble_beta_barrel_vs_membrane_barrel. Coordinates, contacts, distance maps, ligand geometry, native topology, and post-seal validation labels are unopened before the prediction hash.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V69_144_V69C_ASSEMBLY_COMPLEX_OLIGOMER_ENRICHED_1E1Q_2_PUBLIC_METADATA",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/1E1Q",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "V69 E65 metadata context marks: assembly_context cofactor_context ligand_context metal_context nucleotide_context oligomer_context partner_copy_context. Known E65 marks are allowed; hard-topology discovery labels are withheld from prediction. Coordinates, contacts, ligand geometry, native topology, and post-seal validation labels are blocked before sealing.",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [
+        "assembly_context",
+        "cofactor_context",
+        "ligand_context",
+        "metal_context",
+        "nucleotide_context",
+        "oligomer_context",
+        "partner_copy_context"
+      ],
+      "metadata_context_reasons": [
+        "public component list contains biological cofactor candidates: ['ADP', 'MG']",
+        "public metadata indicates biological copy/oligomer/assembly context",
+        "hard topology hint soluble_beta_barrel_vs_membrane_barrel is recorded for postseal mining, not handed to E65 as a solved word"
+      ],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V69_144_V69C_ASSEMBLY_COMPLEX_OLIGOMER_ENRICHED_1E1Q_2_E65_METADATA_CONTEXT",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/1E1Q",
+      "spatial_proxy": false,
+      "withheld_context_marks": [
+        "hard_topology_word_withheld:soluble_beta_barrel_vs_membrane_barrel"
+      ]
+    }
+  ],
+  "protein_id": "1E1Q_2",
+  "sequence": "AAQASPSPKAGATTGRIVAVIGAVVDVQFDEGLPPILNALEVQGRETRLVLEVAQHLGESTVRTIAMDGTEGLVRGQKVLDSGAPIRIPVGPETLGRIMNVIGEPIDERGPIKTKQFAAIHAEAPEFVEMSVEQEILVTGIKVVDLLAPYAKGGKIGLFGGAGVGKTVLIMELINNVAKAHGGYSVFAGVGERTREGNDLYHEMIESGVINLKDATSKVALVYGQMNEPPGARARVALTGLTVAEYFRDQEGQDVLLFIDNIFRFTQAGSEVSALLGRIPSAVGYQPTLATDMGTMQERITTTKKGSITSVQAIYVPADDLTDPAPATTFAHLDATTVLSRAIAELGIYPAVDPLDSTSRIMDPNIVGSEHYDVARGVQKILQDYKSLQDIIAILGMDELSEEDKLTVSRARKIQRFLSQPFQVAEVFTGHLGKLVPLKETIKGFQQILAGEYDHLPEQAFYMVGPIEEAVAKADKLAEEHS",
+  "sequence_length": 482,
+  "shard": "V69C_ASSEMBLY_COMPLEX_OLIGOMER_ENRICHED",
+  "target_id": "V69_144_V69C_ASSEMBLY_COMPLEX_OLIGOMER_ENRICHED_1E1Q_2",
+  "v69_context_policy": {
+    "biological_cofactor_components_seen": [
+      "ADP",
+      "MG"
+    ],
+    "context_derivation": "V69 E65 uses sequence plus public non-coordinate RCSB metadata only. It carries established E65 marks but withholds hard-topology missing-word labels from prediction context so V69 can discover them.",
+    "context_marks": [
+      "assembly_context",
+      "cofactor_context",
+      "ligand_context",
+      "metal_context",
+      "nucleotide_context",
+      "oligomer_context",
+      "partner_copy_context"
+    ],
+    "polymer_copy_counts": {
+      "entity_molecule_count": 3,
+      "polymer_composition": "heteromeric protein",
+      "polymer_entity_instance_count": 7
+    },
+    "reasons": [
+      "public component list contains biological cofactor candidates: ['ADP', 'MG']",
+      "public metadata indicates biological copy/oligomer/assembly context",
+      "hard topology hint soluble_beta_barrel_vs_membrane_barrel is recorded for postseal mining, not handed to E65 as a solved word"
+    ],
+    "withheld_context_marks": [
+      "hard_topology_word_withheld:soluble_beta_barrel_vs_membrane_barrel"
+    ]
+  }
+}

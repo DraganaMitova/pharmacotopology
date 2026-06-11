@@ -1,0 +1,37 @@
+{
+  "batch_id": "V69_RCSB_NONREDUNDANT_200_DISCOVERY_E65",
+  "engine_version_used": "E65",
+  "entity_id": "1",
+  "entry_id": "1DML",
+  "expected_mechanism_class": "short_region_host_interface_hijacking",
+  "expected_observables": [
+    {
+      "check_id": "host_interface_present",
+      "comparator": ">=",
+      "metric": "basin:host_interface_engaged",
+      "threshold": 0.55
+    }
+  ],
+  "experimental_method": "X-RAY DIFFRACTION",
+  "holdout_opened_after_prediction_hash": "3cf4ef9600f2d13d45825e37389262d63c1f32fbaa4c87519e1d4f515b22ec97",
+  "kind": "V69_E65_RCSB_NONREDUNDANT_DISCOVERY_POSTSEAL_HOLDOUT_v0",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1DML",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1DML/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V69_136_V69C_ASSEMBLY_COMPLEX_OLIGOMER_ENRICHED_1DML_1_V69_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "postseal public annotation/text indicates host-interface hijacking behavior"
+  ],
+  "protein_id": "1DML_1",
+  "release_date": "2000-03-15T00:00:00.000+00:00",
+  "required_esperanto_word": null,
+  "shard": "V69C_ASSEMBLY_COMPLEX_OLIGOMER_ENRICHED",
+  "target_id": "V69_136_V69C_ASSEMBLY_COMPLEX_OLIGOMER_ENRICHED_1DML_1"
+}

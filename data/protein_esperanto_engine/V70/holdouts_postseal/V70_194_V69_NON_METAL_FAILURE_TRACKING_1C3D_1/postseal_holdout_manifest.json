@@ -1,0 +1,39 @@
+{
+  "batch_id": "V70_E66_METAL_CLUSTER_LIGAND_REPAIR_PANEL_200",
+  "engine_version_used": "E66",
+  "entity_id": "1",
+  "entry_id": "1C3D",
+  "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "expected_observables": [
+    {
+      "check_id": "proteostasis_routing_supported",
+      "comparator": ">=",
+      "metric": "proteostasis_routing",
+      "threshold": 0.5
+    }
+  ],
+  "holdout_opened_after_prediction_hash": "cd1e6dd3fcfcf3b8539c9b12fb950829251e1be9cab088d371ed5f4c8d8efb7b",
+  "kind": "V70_E66_METAL_LIGAND_REPAIR_POSTSEAL_HOLDOUT_v0",
+  "lineage_source_target": "V69_089_V69B_COFACTOR_LIGAND_METAL_ENRICHED_1C3D_1",
+  "panel_group": "V69_NON_METAL_FAILURE_TRACKING",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1C3D",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1C3D/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V70_194_V69_NON_METAL_FAILURE_TRACKING_1C3D_1_V70_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "V70 E66 repair panel group V69_NON_METAL_FAILURE_TRACKING.",
+    "Required E66 word: soluble_beta_barrel_vs_membrane_barrel.",
+    "Coordinates, contacts, native ligand geometry, and post-seal validation labels are blocked before sealing."
+  ],
+  "protein_id": "1C3D_1",
+  "required_esperanto_word": "soluble_beta_barrel_vs_membrane_barrel",
+  "source_family": "V69",
+  "target_id": "V70_194_V69_NON_METAL_FAILURE_TRACKING_1C3D_1"
+}

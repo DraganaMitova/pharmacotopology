@@ -1,0 +1,50 @@
+{
+  "acceptance_decision": "abstain_recommended",
+  "alphafold_used_before_seal": false,
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "1",
+  "entry_id": "1C7V",
+  "expected_mechanism_class": "intrinsic_disorder_phase_separation",
+  "holdout_opened_after_prediction_hash": "2829d30d9129871bdeb4ece26a0abc1e9892b26863c970eb96b8721a09aa64cb",
+  "kind": "V70_E66_METAL_LIGAND_REPAIR_VALIDATION_RESULT_v0",
+  "level1_regime_selection": false,
+  "level2_region_localization_proxy": false,
+  "level3_topology_or_contact_proxy": false,
+  "lineage_source_target": "V69_095_V69B_COFACTOR_LIGAND_METAL_ENRICHED_1C7V_1",
+  "panel_group": "V69_NON_METAL_FAILURE_TRACKING",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1C7V",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1C7V/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V70_195_V69_NON_METAL_FAILURE_TRACKING_1C7V_1_V70_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "predicted_mechanism_class": "insufficient_evidence_clean_abstain",
+  "protein_id": "1C7V_1",
+  "required_esperanto_word": null,
+  "score_label": "abstained",
+  "sealed_prediction_hash": "2829d30d9129871bdeb4ece26a0abc1e9892b26863c970eb96b8721a09aa64cb",
+  "source_family": "V69",
+  "target_id": "V70_195_V69_NON_METAL_FAILURE_TRACKING_1C7V_1",
+  "validation_checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "intrinsic_disorder_phase_separation",
+      "observed": "insufficient_evidence_clean_abstain",
+      "passed": false
+    },
+    {
+      "check_id": "compact_single_fold_rejected",
+      "comparator": "<=",
+      "metric": "basin:compact_single_fold",
+      "observed": 0.0,
+      "passed": true,
+      "threshold": 0.12
+    }
+  ]
+}

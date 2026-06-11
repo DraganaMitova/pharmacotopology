@@ -1,0 +1,49 @@
+{
+  "acceptance_decision": "accepted",
+  "alphafold_used_before_seal": false,
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "1",
+  "entry_id": "1CL4",
+  "expected_mechanism_class": "short_region_host_interface_hijacking",
+  "holdout_opened_after_prediction_hash": "7cbcbd077b28e5a9e9767fa8a66bb829839b309c49cae71c6c1f3a64efed8b51",
+  "kind": "V69_E65_RCSB_NONREDUNDANT_DISCOVERY_VALIDATION_RESULT_v0",
+  "level1_regime_selection": false,
+  "level2_region_localization_proxy": true,
+  "level3_topology_or_contact_proxy": false,
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1CL4",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1CL4/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V69_171_V69D_HARD_TOPOLOGY_ENRICHED_1CL4_1_V69_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+  "protein_id": "1CL4_1",
+  "required_esperanto_word": null,
+  "required_esperanto_word_supported": true,
+  "score_label": "contradicted",
+  "sealed_prediction_hash": "7cbcbd077b28e5a9e9767fa8a66bb829839b309c49cae71c6c1f3a64efed8b51",
+  "shard": "V69D_HARD_TOPOLOGY_ENRICHED",
+  "target_id": "V69_171_V69D_HARD_TOPOLOGY_ENRICHED_1CL4_1",
+  "validation_checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "short_region_host_interface_hijacking",
+      "observed": "cofactor_ligand_assisted_stabilization",
+      "passed": false
+    },
+    {
+      "check_id": "host_interface_present",
+      "comparator": ">=",
+      "metric": "basin:host_interface_engaged",
+      "observed": 0.0,
+      "passed": false,
+      "threshold": 0.55
+    }
+  ]
+}

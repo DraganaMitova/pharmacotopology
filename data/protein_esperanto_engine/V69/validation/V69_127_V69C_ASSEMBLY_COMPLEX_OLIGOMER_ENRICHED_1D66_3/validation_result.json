@@ -1,0 +1,49 @@
+{
+  "acceptance_decision": "abstain_recommended",
+  "alphafold_used_before_seal": false,
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "3",
+  "entry_id": "1D66",
+  "expected_mechanism_class": "assembly_required_folding",
+  "holdout_opened_after_prediction_hash": "7435a87e4210fbe411b648e1f091d1d7f62be4e719a0b3c99ce517f98153694b",
+  "kind": "V69_E65_RCSB_NONREDUNDANT_DISCOVERY_VALIDATION_RESULT_v0",
+  "level1_regime_selection": false,
+  "level2_region_localization_proxy": false,
+  "level3_topology_or_contact_proxy": false,
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1D66",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1D66/3",
+      "source_class": "coordinate_derived",
+      "source_id": "V69_127_V69C_ASSEMBLY_COMPLEX_OLIGOMER_ENRICHED_1D66_3_V69_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "predicted_mechanism_class": "insufficient_evidence_clean_abstain",
+  "protein_id": "1D66_3",
+  "required_esperanto_word": "coiled_coil_register",
+  "required_esperanto_word_supported": false,
+  "score_label": "supported",
+  "sealed_prediction_hash": "7435a87e4210fbe411b648e1f091d1d7f62be4e719a0b3c99ce517f98153694b",
+  "shard": "V69C_ASSEMBLY_COMPLEX_OLIGOMER_ENRICHED",
+  "target_id": "V69_127_V69C_ASSEMBLY_COMPLEX_OLIGOMER_ENRICHED_1D66_3",
+  "validation_checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "assembly_required_folding",
+      "observed": "insufficient_evidence_clean_abstain",
+      "passed": false
+    },
+    {
+      "check_id": "partner_completed_core_supported",
+      "comparator": ">=",
+      "metric": "partner_completed_core",
+      "observed": 0.0,
+      "passed": false,
+      "threshold": 0.48
+    }
+  ]
+}

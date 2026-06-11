@@ -1,0 +1,37 @@
+{
+  "batch_id": "V69_RCSB_NONREDUNDANT_200_DISCOVERY_E65",
+  "engine_version_used": "E65",
+  "entity_id": "1",
+  "entry_id": "1DBZ",
+  "expected_mechanism_class": "oligomerization_controlled_folding",
+  "expected_observables": [
+    {
+      "check_id": "interface_readiness_supported",
+      "comparator": ">=",
+      "metric": "interface_readiness",
+      "threshold": 0.4
+    }
+  ],
+  "experimental_method": "X-RAY DIFFRACTION",
+  "holdout_opened_after_prediction_hash": "372f0e47c9339289eb509e22e258e3fd6f2be70588c61fcc5cf86dcd6d89fbf3",
+  "kind": "V69_E65_RCSB_NONREDUNDANT_DISCOVERY_POSTSEAL_HOLDOUT_v0",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1DBZ",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1DBZ/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V69_181_V69D_HARD_TOPOLOGY_ENRICHED_1DBZ_1_V69_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "postseal public metadata indicates biological oligomer, assembly, copy-count, or complex context"
+  ],
+  "protein_id": "1DBZ_1",
+  "release_date": "1999-12-03T00:00:00.000+00:00",
+  "required_esperanto_word": null,
+  "shard": "V69D_HARD_TOPOLOGY_ENRICHED",
+  "target_id": "V69_181_V69D_HARD_TOPOLOGY_ENRICHED_1DBZ_1"
+}

@@ -1,0 +1,37 @@
+{
+  "batch_id": "V69_RCSB_NONREDUNDANT_200_DISCOVERY_E65",
+  "engine_version_used": "E65",
+  "entity_id": "1",
+  "entry_id": "1BJO",
+  "expected_mechanism_class": "cofactor_ligand_assisted_stabilization",
+  "expected_observables": [
+    {
+      "check_id": "cofactor_interface_supported",
+      "comparator": ">=",
+      "metric": "interface_readiness",
+      "threshold": 0.45
+    }
+  ],
+  "experimental_method": "X-RAY DIFFRACTION",
+  "holdout_opened_after_prediction_hash": "5fd5c8b7ce6366ba2f05a71e96c28c0f88bb29a5a861db76a8ae21b5090679cd",
+  "kind": "V69_E65_RCSB_NONREDUNDANT_DISCOVERY_POSTSEAL_HOLDOUT_v0",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1BJO",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1BJO/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V69_014_V69A_BROAD_RCSB_NONREDUNDANT_1BJO_1_V69_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "postseal public component/text indicates ligand, cofactor, heme, nucleotide, or metal stabilization"
+  ],
+  "protein_id": "1BJO_1",
+  "release_date": "1998-11-04T00:00:00.000+00:00",
+  "required_esperanto_word": "ligand_locked_basin",
+  "shard": "V69A_BROAD_RCSB_NONREDUNDANT",
+  "target_id": "V69_014_V69A_BROAD_RCSB_NONREDUNDANT_1BJO_1"
+}

@@ -1,0 +1,50 @@
+{
+  "acceptance_decision": "accepted",
+  "alphafold_used_before_seal": false,
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "1",
+  "entry_id": "1BN8",
+  "expected_mechanism_class": "metal_cluster_and_ligand_locked_basin",
+  "holdout_opened_after_prediction_hash": "49b74847ede846f76f809000c3519b72e8530bdd71e3ac5b843878e2473053a0",
+  "kind": "V70_E66_METAL_LIGAND_REPAIR_VALIDATION_RESULT_v0",
+  "level1_regime_selection": true,
+  "level2_region_localization_proxy": true,
+  "level3_topology_or_contact_proxy": true,
+  "lineage_source_target": "V69_064_V69B_COFACTOR_LIGAND_METAL_ENRICHED_1BN8_1",
+  "panel_group": "V69_METAL_CLUSTER_FAILURE_REPLAY",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1BN8",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1BN8/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V70_012_V69_METAL_CLUSTER_FAILURE_REPLAY_1BN8_1_V70_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "predicted_mechanism_class": "metal_cluster_and_ligand_locked_basin",
+  "protein_id": "1BN8_1",
+  "required_esperanto_word": "metal_cluster_geometry",
+  "score_label": "supported",
+  "sealed_prediction_hash": "49b74847ede846f76f809000c3519b72e8530bdd71e3ac5b843878e2473053a0",
+  "source_family": "V69",
+  "target_id": "V70_012_V69_METAL_CLUSTER_FAILURE_REPLAY_1BN8_1",
+  "validation_checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "metal_cluster_and_ligand_locked_basin",
+      "observed": "metal_cluster_and_ligand_locked_basin",
+      "passed": true
+    },
+    {
+      "check_id": "metal_cluster_geometry_supported",
+      "comparator": ">=",
+      "metric": "metal_cluster_geometry",
+      "observed": 0.584469,
+      "passed": true,
+      "threshold": 0.45
+    }
+  ]
+}

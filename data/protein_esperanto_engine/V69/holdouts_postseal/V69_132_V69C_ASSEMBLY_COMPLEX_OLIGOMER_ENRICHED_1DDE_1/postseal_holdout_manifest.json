@@ -1,0 +1,37 @@
+{
+  "batch_id": "V69_RCSB_NONREDUNDANT_200_DISCOVERY_E65",
+  "engine_version_used": "E65",
+  "entity_id": "1",
+  "entry_id": "1DDE",
+  "expected_mechanism_class": "assembly_required_folding",
+  "expected_observables": [
+    {
+      "check_id": "partner_completed_core_supported",
+      "comparator": ">=",
+      "metric": "partner_completed_core",
+      "threshold": 0.48
+    }
+  ],
+  "experimental_method": "X-RAY DIFFRACTION",
+  "holdout_opened_after_prediction_hash": "540d7e4191f9dde065bf9e2f2ed5bc265b4062eaee2521a8b32762d42dfb5455",
+  "kind": "V69_E65_RCSB_NONREDUNDANT_DISCOVERY_POSTSEAL_HOLDOUT_v0",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1DDE",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1DDE/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V69_132_V69C_ASSEMBLY_COMPLEX_OLIGOMER_ENRICHED_1DDE_1_V69_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "postseal public annotation/text indicates assembly-required, coiled-coil, domain-swapped, or obligate partner-stabilized topology"
+  ],
+  "protein_id": "1DDE_1",
+  "release_date": "2000-04-07T00:00:00.000+00:00",
+  "required_esperanto_word": "coiled_coil_register",
+  "shard": "V69C_ASSEMBLY_COMPLEX_OLIGOMER_ENRICHED",
+  "target_id": "V69_132_V69C_ASSEMBLY_COMPLEX_OLIGOMER_ENRICHED_1DDE_1"
+}

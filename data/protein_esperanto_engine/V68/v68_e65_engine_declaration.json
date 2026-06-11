@@ -1,5 +1,5 @@
 {
-  "batch_head_commit": "5781eded1e0dee8e9c94e07f539743c59e3ecc39",
+  "batch_head_commit": "424a76e43f875dd389581e719cde72179cdeef0b",
   "engine_biology_modified_during_batch": false,
   "engine_changes_allowed_by_operating_mode": true,
   "engine_lineage": [
@@ -11,7 +11,7 @@
     "E65"
   ],
   "engine_modified_during_batch": false,
-  "engine_source_last_commit": "1f0acedc27c9a6227ef96f2d67a4ddfc08cdcece",
+  "engine_source_last_commit": "424a76e43f875dd389581e719cde72179cdeef0b",
   "engine_source_path": "src/pharmacotopology/protein_esperanto_engine.py",
   "engine_source_sha256": "c95723c8825d59b97686012af66fdb09ed82d39e1ba185302a92b71e5927db5a",
   "engine_version_used": "E65",

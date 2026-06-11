@@ -1,0 +1,49 @@
+{
+  "acceptance_decision": "accepted",
+  "alphafold_used_before_seal": false,
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "1",
+  "entry_id": "1BQ4",
+  "expected_mechanism_class": "oligomerization_controlled_folding",
+  "holdout_opened_after_prediction_hash": "bcd4cff35e67ee17f95cd95a2a5f286e51d97624d4dc208cd109a4f45f8731d9",
+  "kind": "V69_E65_RCSB_NONREDUNDANT_DISCOVERY_VALIDATION_RESULT_v0",
+  "level1_regime_selection": true,
+  "level2_region_localization_proxy": true,
+  "level3_topology_or_contact_proxy": true,
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1BQ4",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1BQ4/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V69_032_V69A_BROAD_RCSB_NONREDUNDANT_1BQ4_1_V69_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "predicted_mechanism_class": "oligomerization_controlled_folding",
+  "protein_id": "1BQ4_1",
+  "required_esperanto_word": null,
+  "required_esperanto_word_supported": true,
+  "score_label": "supported",
+  "sealed_prediction_hash": "bcd4cff35e67ee17f95cd95a2a5f286e51d97624d4dc208cd109a4f45f8731d9",
+  "shard": "V69A_BROAD_RCSB_NONREDUNDANT",
+  "target_id": "V69_032_V69A_BROAD_RCSB_NONREDUNDANT_1BQ4_1",
+  "validation_checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "oligomerization_controlled_folding",
+      "observed": "oligomerization_controlled_folding",
+      "passed": true
+    },
+    {
+      "check_id": "interface_readiness_supported",
+      "comparator": ">=",
+      "metric": "interface_readiness",
+      "observed": 0.636427,
+      "passed": true,
+      "threshold": 0.4
+    }
+  ]
+}

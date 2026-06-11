@@ -1,0 +1,39 @@
+{
+  "active_operator_count": 1,
+  "folding_problem_solved": false,
+  "kind": "V70_COMPACT_SEALED_PACKET_SUMMARY_v0",
+  "natural_mechanism_class": "globular_closure",
+  "operator_names": [
+    "closure_operator"
+  ],
+  "prediction_hash": "41d63e89d911ebffb994e5ca2d1f03d9671a309393a17b1f36aa44b7d4c24357",
+  "sealed_before_holdout": true,
+  "selected_mechanism_class": "globular_closure",
+  "selection_reason": "sequence_only_hydrophobic_closure_support",
+  "target_id": "V70_026_V69_METAL_CLUSTER_FAILURE_REPLAY_1BXU_1_SHUFFLED_CONTROL",
+  "trajectory_final_state_summary": {
+    "apo_holo_basin_shift": 0.0,
+    "assembly_ambiguous": 0.0,
+    "assembly_required_core": 0.0,
+    "contact_probability": 0.547088,
+    "coordination_shell_integrity": 0.0,
+    "disorder_order_balance": 0.290176,
+    "frustration": 0.0,
+    "interface_buried_hydrophobicity": 0.0,
+    "interface_readiness": 0.12,
+    "ligand_locked_basin": 0.0,
+    "metal_cluster_geometry": 0.0,
+    "metal_ligand_ambiguous": 0.0,
+    "monomer_incomplete_topology": 0.0,
+    "operator_activation": 0.656593,
+    "partner_completed_core": 0.0,
+    "proteostasis_routing": 0.0,
+    "residue_exposure": 0.614531,
+    "segment_compaction": 0.547692,
+    "state_basin_occupancy": {
+      "compact_folded": 0.587088,
+      "expanded_unfolded": 0.451704
+    },
+    "timepoint": 1000
+  }
+}

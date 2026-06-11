@@ -1,0 +1,49 @@
+{
+  "acceptance_decision": "accepted",
+  "alphafold_used_before_seal": false,
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "1",
+  "entry_id": "1BQT",
+  "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "holdout_opened_after_prediction_hash": "c8380e685e371bff32623f43f8cbb7a90fe7793bc42e42975077d69ea07fb9c3",
+  "kind": "V69_E65_RCSB_NONREDUNDANT_DISCOVERY_VALIDATION_RESULT_v0",
+  "level1_regime_selection": true,
+  "level2_region_localization_proxy": true,
+  "level3_topology_or_contact_proxy": true,
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1BQT",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1BQT/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V69_158_V69D_HARD_TOPOLOGY_ENRICHED_1BQT_1_V69_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "predicted_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "protein_id": "1BQT_1",
+  "required_esperanto_word": null,
+  "required_esperanto_word_supported": true,
+  "score_label": "supported",
+  "sealed_prediction_hash": "c8380e685e371bff32623f43f8cbb7a90fe7793bc42e42975077d69ea07fb9c3",
+  "shard": "V69D_HARD_TOPOLOGY_ENRICHED",
+  "target_id": "V69_158_V69D_HARD_TOPOLOGY_ENRICHED_1BQT_1",
+  "validation_checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "membrane_multidomain_folding_proteostasis",
+      "observed": "membrane_multidomain_folding_proteostasis",
+      "passed": true
+    },
+    {
+      "check_id": "proteostasis_routing_supported",
+      "comparator": ">=",
+      "metric": "proteostasis_routing",
+      "observed": 0.670452,
+      "passed": true,
+      "threshold": 0.5
+    }
+  ]
+}
