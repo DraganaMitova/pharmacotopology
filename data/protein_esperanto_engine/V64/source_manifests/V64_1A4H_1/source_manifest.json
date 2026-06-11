@@ -1,0 +1,85 @@
+{
+  "alphafold_used_before_seal": false,
+  "baseline_batch_id": "V63_RCSB_500_DISCOVERY_BATCH",
+  "batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+  "blocked_prediction_inputs": [
+    "PDB/mmCIF coordinates before sealing",
+    "native contacts, distance maps, residue-residue proximity, and coordinate-derived topology",
+    "ligand coordinates, metal coordination geometry, and bound-state contact geometry",
+    "AlphaFold, ESMFold, RoseTTAFold, or other structure models before sealing",
+    "post-seal validation annotations before prediction hash",
+    "V63 expected labels and V63 score outcomes as prediction evidence",
+    "internal runtime artifacts as biological evidence"
+  ],
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "1",
+  "entry_id": "1A4H",
+  "folding_problem_solved": false,
+  "kind": "V64_E62_MEMBRANE_REPAIR_SOURCE_MANIFEST_v0",
+  "paired_repair_replay": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence for the RCSB polymer entity.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V64_1A4H_1_RAW_SEQUENCE",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1A4H/1",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "RCSB title: STRUCTURE OF THE N-TERMINAL DOMAIN OF THE YEAST HSP90 CHAPERONE IN COMPLEX WITH GELDANAMYCIN. Entity description: HEAT SHOCK PROTEIN 90. Organism: Saccharomyces cerevisiae. Polymer composition: homomeric protein. Sequence-derived marks: sequence-derived hydrophobic closure tendency. Coordinates, native contacts, residue-residue distances, and validation annotations are unopened before the prediction hash.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V64_1A4H_1_PUBLIC_METADATA",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/1A4H",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "V64 E62 replay metadata context marks: assembly_context homomeric_context oligomer_context partner_copy_context. E62 tests whether strong membrane/topology context outranks incidental ligand/cofactor or oligomer/assembly context. Coordinates, contacts, distance maps, ligand geometry, native topology, and post-seal validation labels are blocked before sealing.",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [
+        "assembly_context",
+        "homomeric_context",
+        "oligomer_context",
+        "partner_copy_context"
+      ],
+      "metadata_context_reasons": [
+        "RCSB public metadata indicates multiple copies or assembly context"
+      ],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V64_1A4H_1_E62_METADATA_CONTEXT",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/1A4H",
+      "spatial_proxy": false
+    }
+  ],
+  "protein_id": "1A4H_1",
+  "repair_context_policy": {
+    "biological_cofactor_components_seen": [],
+    "context_derivation": "V63 discovery uses sequence plus public non-coordinate RCSB metadata only; V61/V62 labels and post-seal holdout classes are not used for prediction context",
+    "context_marks": [
+      "assembly_context",
+      "homomeric_context",
+      "oligomer_context",
+      "partner_copy_context"
+    ],
+    "polymer_copy_counts": {
+      "entity_molecule_count": 1,
+      "polymer_composition": "homomeric protein",
+      "polymer_entity_instance_count": 1
+    },
+    "reasons": [
+      "RCSB public metadata indicates multiple copies or assembly context"
+    ]
+  },
+  "same_target_as_v63": true,
+  "sequence": "MRGSHHHHHHMASETFEFQAEITQLMSLIINTVYSNKEIFLRELISNASDALDKIRYKSLSDPKQLETEPDLFIRITPKPEQKVLEIRDSGIGMTKAELINNLGTIAKSGTKAFMEALSAGADVSMIGQFGVGFYSLFLVADRVQVISKSNDDEQYIWESNAGGSFTVTLDEVNERIGRGTILRLFLKDDQLEYLEEKRIKEVIKRHSEFVAYPIQLVVTKEVEKEVPIP",
+  "sequence_length": 230,
+  "target_id": "V64_1A4H_1"
+}

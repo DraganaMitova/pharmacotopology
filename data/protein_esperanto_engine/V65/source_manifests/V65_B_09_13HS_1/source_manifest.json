@@ -1,0 +1,52 @@
+{
+  "alphafold_used_before_seal": false,
+  "batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+  "blocked_prediction_inputs": [
+    "PDB/mmCIF coordinates before sealing",
+    "native contacts, distance maps, residue-residue proximity, and coordinate-derived topology",
+    "ligand coordinates, metal coordination geometry, and bound-state contact geometry",
+    "AlphaFold, ESMFold, RoseTTAFold, or other structure models before sealing",
+    "post-seal validation annotations before prediction hash",
+    "V64 score outcomes as prediction evidence",
+    "internal runtime artifacts as biological evidence"
+  ],
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "1",
+  "entry_id": "13HS",
+  "folding_problem_solved": false,
+  "kind": "V65_MEMBRANE_TOPOLOGY_SOURCE_MANIFEST_v0",
+  "panel_group": "B_SOLUBLE_HYDROPHOBIC_NO_TOPOLOGY",
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence for the RCSB polymer entity.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V65_B_09_13HS_1_RAW_SEQUENCE",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/13HS/1",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "V65 soluble hydrophobic decoy. soluble_hydrophobic_core_context hydrophobicity-alone signal; no membrane topology evidence, no OPM/PDBTM/MemProtMD transmembrane assignment, and no bilayer-spanning topology source.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V65_B_09_13HS_1_V65_TOPOLOGY_PANEL_SOURCE",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/13HS",
+      "spatial_proxy": false
+    }
+  ],
+  "protein_id": "13HS_1",
+  "sequence": "MRLALRPLRRLSLAAGLAALATLGACSILPEAQVLQVYLLPVHNPPASAAARPVDWSLRIARPRTSLVLESPRIAVRPHGDEISVYQGARWSDPAPSLLRDRLMQAFQADGRVRGLSSDDSNLQADFELGGDLRAFQTEYPNGQASALIRYDARLVRTDDKRVVASRRFEVSQPVDGKKVAAVVSAFGKAGDTLSAQVLDWTLRQASAQPAVQP",
+  "sequence_length": 214,
+  "target_id": "V65_B_09_13HS_1",
+  "topology_source_policy": {
+    "dangerous_confusion_tested": "hydrophobicity alone must not become membrane topology",
+    "expected_panel_distinction": "hydrophobicity alone -> clean abstain",
+    "provider_names_seen_in_v63_annotations": [],
+    "uses_membrane_specific_provider_names": false
+  }
+}

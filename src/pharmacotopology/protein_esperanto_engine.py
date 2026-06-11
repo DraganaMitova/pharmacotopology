@@ -123,6 +123,32 @@ STRONG_MEMBRANE_CONTEXT_TOKENS = [
     "receptor_membrane_context",
 ]
 
+NEGATIVE_MEMBRANE_TOPOLOGY_TOKENS = [
+    "no membrane topology",
+    "no transmembrane",
+    "not transmembrane",
+    "without transmembrane",
+    "no bilayer-spanning",
+    "no bilayer spanning",
+    "hydrophobicity-alone",
+    "hydrophobicity alone",
+    "soluble_hydrophobic_core_context",
+    "cofactor-buried hydrophobic pocket",
+    "oligomeric interface hydrophobicity",
+    "no opm/pdbtm/memprotmd transmembrane assignment",
+]
+
+PERIPHERAL_MEMBRANE_CONTEXT_TOKENS = [
+    "peripheral membrane",
+    "membrane-associated",
+    "membrane associated",
+    "monotopic/peripheral",
+    "monotopic",
+    "amphipathic peripheral helix",
+    "lipid anchor",
+    "lipid-facing surface",
+]
+
 HYDROPHOBIC = frozenset("AILMFWVYC")
 AROMATIC = frozenset("FWY")
 POSITIVE = frozenset("KRH")
@@ -583,7 +609,10 @@ def select_mechanism_grammar(
     else:
         text = _allowed_source_text(sources, evidence_manifest)
         metrics = sequence_field["global_metrics"]
-        explicit_membrane_context = _contains_any(text, STRONG_MEMBRANE_CONTEXT_TOKENS)
+        negative_membrane_topology_context = _contains_any(text, NEGATIVE_MEMBRANE_TOPOLOGY_TOKENS)
+        peripheral_membrane_context = _contains_any(text, PERIPHERAL_MEMBRANE_CONTEXT_TOKENS)
+        topology_conflict_context = negative_membrane_topology_context or peripheral_membrane_context
+        explicit_membrane_context = _contains_any(text, STRONG_MEMBRANE_CONTEXT_TOKENS) and not topology_conflict_context
         membrane_text_context = any(
             token in text
             for token in ["cftr", "f508", "proteostasis", "trafficking", "nbd1", "transmembrane", "membrane"]
@@ -627,6 +656,9 @@ def select_mechanism_grammar(
         elif _contains_any(text, OLIGOMER_CONTEXT_TOKENS):
             natural = "oligomerization_controlled_folding"
             reason = "explicit_oligomer_or_assembly_context"
+        elif topology_conflict_context:
+            natural = "insufficient_evidence_clean_abstain"
+            reason = "membrane_topology_conflict_or_peripheral_context_requires_abstention"
         elif membrane_text_context:
             if (
                 "f508" in text

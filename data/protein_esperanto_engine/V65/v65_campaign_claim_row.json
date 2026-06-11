@@ -1,0 +1,18 @@
+{
+  "abstention_rate": 0.1,
+  "accepted_accuracy": 0.6666666666666666,
+  "batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+  "batch_mode": "membrane_topology_panel",
+  "claim_allowed": false,
+  "claim_blocked_reason": "V65 is a membrane topology panel and grammar-mining gate; broad claims require a repaired engine and later expansion.",
+  "control_pass_rate": 1.0,
+  "coverage": 0.9,
+  "engine_revision_required": true,
+  "engine_version_used": "E62",
+  "failure_count": 28,
+  "failure_modes": {
+    "peripheral_misread_as_transmembrane": 7,
+    "soluble_hydrophobic_false_membrane": 14
+  },
+  "raw_accuracy": 0.7
+}

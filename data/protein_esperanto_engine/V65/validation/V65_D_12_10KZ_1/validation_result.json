@@ -1,0 +1,39 @@
+{
+  "acceptance_decision": "accepted",
+  "alphafold_used_before_seal": false,
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "1",
+  "entry_id": "10KZ",
+  "expected_mechanism_class": "oligomerization_controlled_folding",
+  "holdout_opened_after_prediction_hash": "99295f9b4d4e363ef64c73cc46618370bd880ebb82deb36d96e6f2497931994b",
+  "kind": "V65_MEMBRANE_TOPOLOGY_VALIDATION_RESULT_v0",
+  "level1_regime_selection": true,
+  "level2_region_localization_proxy": true,
+  "level3_topology_or_contact_proxy": true,
+  "panel_group": "D_OLIGOMERIC_SOLUBLE_INTERFACE_HYDROPHOBICITY",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/10KZ",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/10KZ/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V65_D_12_10KZ_1_V65_PANEL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "predicted_mechanism_class": "oligomerization_controlled_folding",
+  "protein_id": "10KZ_1",
+  "score_label": "supported",
+  "sealed_prediction_hash": "99295f9b4d4e363ef64c73cc46618370bd880ebb82deb36d96e6f2497931994b",
+  "target_id": "V65_D_12_10KZ_1",
+  "validation_checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "oligomerization_controlled_folding",
+      "observed": "oligomerization_controlled_folding",
+      "passed": true
+    }
+  ]
+}

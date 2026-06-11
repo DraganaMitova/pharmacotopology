@@ -1,0 +1,27 @@
+{
+  "batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+  "entity_id": "2",
+  "entry_id": "1AON",
+  "expected_mechanism_class": "cofactor_ligand_assisted_stabilization",
+  "expected_observables": [],
+  "holdout_opened_after_prediction_hash": "6909a3161a1aa1bbf55d3a2552dd89676b2570b1ae9477ffcbf431eec6e14740",
+  "kind": "V65_MEMBRANE_TOPOLOGY_POSTSEAL_HOLDOUT_v0",
+  "panel_group": "C_COFACTOR_BOUND_SOLUBLE_HYDROPHOBIC_POCKET",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1AON",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1AON/2",
+      "source_class": "coordinate_derived",
+      "source_id": "V65_C_01_1AON_2_V65_PANEL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "cofactor pocket explains hydrophobicity -> cofactor grammar",
+    "cofactor-buried hydrophobicity must not become membrane topology"
+  ],
+  "protein_id": "1AON_2",
+  "target_id": "V65_C_01_1AON_2"
+}

@@ -1,0 +1,30 @@
+{
+  "baseline_batch_id": "V63_RCSB_500_DISCOVERY_BATCH",
+  "baseline_v63_prediction_hash": "75c759b2c6d5ac5be49cb8d56a5c38f2dbdaf9e116624198109457daf62219ee",
+  "baseline_v63_target_id": "V63_1B6S_1",
+  "batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+  "entity_id": "1",
+  "entry_id": "1B6S",
+  "expected_mechanism_class": "cofactor_ligand_assisted_stabilization",
+  "expected_observables": [],
+  "experimental_method": "X-RAY DIFFRACTION",
+  "holdout_opened_after_prediction_hash": "fdaf4b53290c0d83d23924e50a6cccb0a33bf0b522959f20326c877fb2797437",
+  "kind": "V64_RCSB_500_POSTSEAL_HOLDOUT_v0",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1B6S",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1B6S/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V64_1B6S_1_RCSB_DATA_API_POSTSEAL",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "postseal RCSB entry contains biological ligand/cofactor/metal components"
+  ],
+  "protein_id": "1B6S_1",
+  "release_date": "1999-11-30T00:00:00.000+00:00",
+  "target_id": "V64_1B6S_1"
+}

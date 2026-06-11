@@ -1,0 +1,84 @@
+{
+  "active_operator_count": 2,
+  "evidence_manifest": {
+    "allowed_initialization_source_ids": [
+      "V64_1A1D_1_RAW_SEQUENCE",
+      "V64_1A1D_1_PUBLIC_METADATA",
+      "V64_1A1D_1_E62_METADATA_CONTEXT"
+    ],
+    "blocked_source_ids": [],
+    "coordinate_derived_source_count_before_prediction": 0,
+    "coordinate_truth_used_before_prediction": false,
+    "holdout_opened_before_seal": false,
+    "internal_runtime_source_count_for_prediction": 0,
+    "internal_runtime_used_as_biological_evidence": false,
+    "kind": "PROTEIN_ESPERANTO_EVIDENCE_BOUNDARY_GATE_v0",
+    "rows": [
+      {
+        "allowed_for_claim": true,
+        "allowed_for_holdout_after_seal": false,
+        "allowed_to_initialize_language_field": true,
+        "blocked_reason": "",
+        "coordinate_derived": false,
+        "internal_runtime": false,
+        "source_class": "pure_non_coordinate",
+        "source_id": "V64_1A1D_1_RAW_SEQUENCE",
+        "source_role": "prediction_input",
+        "spatial_proxy": false
+      },
+      {
+        "allowed_for_claim": true,
+        "allowed_for_holdout_after_seal": false,
+        "allowed_to_initialize_language_field": true,
+        "blocked_reason": "",
+        "coordinate_derived": false,
+        "internal_runtime": false,
+        "source_class": "pure_non_coordinate",
+        "source_id": "V64_1A1D_1_PUBLIC_METADATA",
+        "source_role": "prediction_input",
+        "spatial_proxy": false
+      },
+      {
+        "allowed_for_claim": true,
+        "allowed_for_holdout_after_seal": false,
+        "allowed_to_initialize_language_field": true,
+        "blocked_reason": "",
+        "coordinate_derived": false,
+        "internal_runtime": false,
+        "source_class": "pure_non_coordinate",
+        "source_id": "V64_1A1D_1_E62_METADATA_CONTEXT",
+        "source_role": "prediction_input",
+        "spatial_proxy": false
+      }
+    ],
+    "spatial_proxy_untagged_or_misused_count": 0
+  },
+  "folding_problem_solved": false,
+  "kind": "V64_COMPACT_SEALED_PACKET_SUMMARY_v0",
+  "natural_mechanism_class": "oligomerization_controlled_folding",
+  "operator_names": [
+    "interface_operator",
+    "closure_operator"
+  ],
+  "prediction_hash": "5889e999f841a4f94facd4563dacd182e13244213de93ed3706abc0e3bf124d4",
+  "sealed_before_holdout": true,
+  "selected_mechanism_class": "oligomerization_controlled_folding",
+  "selection_reason": "explicit_oligomer_or_assembly_context",
+  "target_id": "V64_1A1D_1",
+  "trajectory_final_state_summary": {
+    "contact_probability": 0.518712,
+    "disorder_order_balance": 0.310313,
+    "frustration": 0.0,
+    "interface_readiness": 0.643979,
+    "operator_activation": 0.605454,
+    "proteostasis_routing": 0.0,
+    "residue_exposure": 0.616439,
+    "segment_compaction": 0.514459,
+    "state_basin_occupancy": {
+      "assembly_stabilized_basin": 0.643979,
+      "interface_rejected_basin": 0.1,
+      "monomer_partial_order": 0.417596
+    },
+    "timepoint": 1000
+  }
+}

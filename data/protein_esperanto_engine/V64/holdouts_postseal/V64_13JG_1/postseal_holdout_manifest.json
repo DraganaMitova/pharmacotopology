@@ -1,0 +1,30 @@
+{
+  "baseline_batch_id": "V63_RCSB_500_DISCOVERY_BATCH",
+  "baseline_v63_prediction_hash": "4089602fa9918ad1592d7e65aab92b4b933b58dac3e9b2229a1fb38eb4d3cd68",
+  "baseline_v63_target_id": "V63_13JG_1",
+  "batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+  "entity_id": "1",
+  "entry_id": "13JG",
+  "expected_mechanism_class": "oligomerization_controlled_folding",
+  "expected_observables": [],
+  "experimental_method": "X-RAY DIFFRACTION",
+  "holdout_opened_after_prediction_hash": "c707436697e4e99b7aaeb28112373253bdc6d340115c52f46170ed935d7edb24",
+  "kind": "V64_RCSB_500_POSTSEAL_HOLDOUT_v0",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/13JG",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/13JG/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V64_13JG_1_RCSB_DATA_API_POSTSEAL",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "postseal entry/entity metadata indicates oligomer or assembly context"
+  ],
+  "protein_id": "13JG_1",
+  "release_date": "2026-05-27T00:00:00.000+00:00",
+  "target_id": "V64_13JG_1"
+}

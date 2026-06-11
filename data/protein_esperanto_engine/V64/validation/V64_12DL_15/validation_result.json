@@ -1,0 +1,47 @@
+{
+  "abstention_correctness": "not_applicable",
+  "acceptance_decision": "accepted",
+  "alphafold_used_before_seal": false,
+  "baseline_acceptance_decision": "accepted",
+  "baseline_batch_id": "V63_RCSB_500_DISCOVERY_BATCH",
+  "baseline_engine_version": "E61",
+  "baseline_predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+  "baseline_score_label": "supported",
+  "baseline_supported": true,
+  "baseline_target_id": "V63_12DL_15",
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "15",
+  "entry_id": "12DL",
+  "expected_mechanism_class": "cofactor_ligand_assisted_stabilization",
+  "failures_repaired_after_holdout": false,
+  "holdout_opened_after_prediction_hash": "4469791ccd11e0de062837fdfeafdd5550e8d3c7b3970a016b3341f43a685903",
+  "kind": "V64_E62_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+  "level1_regime_selection": true,
+  "level2_region_localization_proxy": true,
+  "level3_topology_or_contact_proxy": true,
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/12DL",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/12DL/15",
+      "source_class": "coordinate_derived",
+      "source_id": "V64_12DL_15_RCSB_DATA_API_POSTSEAL",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+  "protein_id": "12DL_15",
+  "score_label": "supported",
+  "sealed_prediction_hash": "4469791ccd11e0de062837fdfeafdd5550e8d3c7b3970a016b3341f43a685903",
+  "target_id": "V64_12DL_15",
+  "validation_checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "cofactor_ligand_assisted_stabilization",
+      "observed": "cofactor_ligand_assisted_stabilization",
+      "passed": true
+    }
+  ]
+}

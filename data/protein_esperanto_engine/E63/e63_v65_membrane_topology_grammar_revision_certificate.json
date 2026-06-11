@@ -1,0 +1,44 @@
+{
+  "kind": "E63_V65_MEMBRANE_TOPOLOGY_GRAMMAR_REVISION_CERTIFICATE_v0",
+  "engine_version": "E63",
+  "commit": "this_commit",
+  "commit_pointer_policy": "A commit cannot contain its own final hash; this value denotes the commit that introduces E63.",
+  "derived_from_batch": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+  "v65_engine_version_used": "E62",
+  "v65_status": "V65_MEMBRANE_TOPOLOGY_PANEL_FAILURES_REVIEW_REQUIRED",
+  "engine_modified_after_v65": true,
+  "engine_modified_during_v65": false,
+  "engine_source_sha256": "bf0b4c58fedca388d4c523207d876978496af5ea74dd33186d4d87a4e3a35a67",
+  "operator_set_hash": "1421426c696edb0f3ddce7a984c3fc0603e32fea4eb28a9f8acb83bbf07e910a",
+  "mechanism_class_set_hash": "c088ecef4efacdd6de1b451237e717fa4b5149ca8f3be5bf46666ff567f1eb29",
+  "mechanism_classes_added": [],
+  "operators_added": [],
+  "grammar_priority_changes": [
+    "negative membrane-topology evidence and hydrophobicity-only context now block generic membrane promotion",
+    "monotopic/peripheral membrane association now abstains unless a separate cofactor or oligomer explanation is explicit",
+    "cofactor and oligomer context can explain hydrophobic pockets or interfaces before topology-conflict abstention",
+    "strong explicit transmembrane/topology context remains sufficient for membrane grammar"
+  ],
+  "failure_modes_addressed": [
+    "soluble_hydrophobic_false_membrane",
+    "peripheral_misread_as_transmembrane"
+  ],
+  "v65_failure_evidence": {
+    "targets_total": 70,
+    "supported_count": 49,
+    "failed_accepted_count": 21,
+    "false_membrane_call_count": 21,
+    "peripheral_false_transmembrane_count": 7,
+    "true_transmembrane_missed_count": 0,
+    "failure_modes": {
+      "peripheral_misread_as_transmembrane": 7,
+      "soluble_hydrophobic_false_membrane": 14
+    }
+  },
+  "claim_boundary": {
+    "v65_rewritten": false,
+    "universal_folding_solved": false,
+    "protein_esperanto_saturation_claim_allowed": false,
+    "next_required_batch": "E63 replay of V65 topology panel before V66 expansion"
+  }
+}

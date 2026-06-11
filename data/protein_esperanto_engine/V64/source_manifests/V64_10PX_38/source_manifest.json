@@ -1,0 +1,94 @@
+{
+  "alphafold_used_before_seal": false,
+  "baseline_batch_id": "V63_RCSB_500_DISCOVERY_BATCH",
+  "batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+  "blocked_prediction_inputs": [
+    "PDB/mmCIF coordinates before sealing",
+    "native contacts, distance maps, residue-residue proximity, and coordinate-derived topology",
+    "ligand coordinates, metal coordination geometry, and bound-state contact geometry",
+    "AlphaFold, ESMFold, RoseTTAFold, or other structure models before sealing",
+    "post-seal validation annotations before prediction hash",
+    "V63 expected labels and V63 score outcomes as prediction evidence",
+    "internal runtime artifacts as biological evidence"
+  ],
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "38",
+  "entry_id": "10PX",
+  "folding_problem_solved": false,
+  "kind": "V64_E62_MEMBRANE_REPAIR_SOURCE_MANIFEST_v0",
+  "paired_repair_replay": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence for the RCSB polymer entity.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V64_10PX_38_RAW_SEQUENCE",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/10PX/38",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "RCSB title: Crystal structure of the wild-type Thermus thermophilus 70S ribosome in complex with benzoxaborole derivative of azithromycin (AZI-BB2), mRNA, aminoacylated A-site Phe-tRNAphe, aminoacylated P-site fMet-tRNAmet, and deacylated E-site tRNAphe at 2.45A resolution. Entity description: 30S ribosomal protein S7. Organism: Thermus thermophilus HB8. Polymer composition: protein/NA. Sequence-derived marks: sequence-derived hydrophobic closure tendency; public metadata indicates multiple polymer instances or molecule copies. Coordinates, native contacts, residue-residue distances, and validation annotations are unopened before the prediction hash.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V64_10PX_38_PUBLIC_METADATA",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/10PX",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "V64 E62 replay metadata context marks: assembly_context cofactor_context ligand_context metal_context oligomer_context partner_copy_context. E62 tests whether strong membrane/topology context outranks incidental ligand/cofactor or oligomer/assembly context. Coordinates, contacts, distance maps, ligand geometry, native topology, and post-seal validation labels are blocked before sealing.",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [
+        "assembly_context",
+        "cofactor_context",
+        "ligand_context",
+        "metal_context",
+        "oligomer_context",
+        "partner_copy_context"
+      ],
+      "metadata_context_reasons": [
+        "RCSB public non-coordinate component list contains biological cofactor candidates: ['MG', 'ZN']",
+        "RCSB public metadata indicates multiple copies or assembly context"
+      ],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V64_10PX_38_E62_METADATA_CONTEXT",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/10PX",
+      "spatial_proxy": false
+    }
+  ],
+  "protein_id": "10PX_38",
+  "repair_context_policy": {
+    "biological_cofactor_components_seen": [
+      "MG",
+      "ZN"
+    ],
+    "context_derivation": "V63 discovery uses sequence plus public non-coordinate RCSB metadata only; V61/V62 labels and post-seal holdout classes are not used for prediction context",
+    "context_marks": [
+      "assembly_context",
+      "cofactor_context",
+      "ligand_context",
+      "metal_context",
+      "oligomer_context",
+      "partner_copy_context"
+    ],
+    "polymer_copy_counts": {
+      "entity_molecule_count": 2,
+      "polymer_composition": "protein/NA",
+      "polymer_entity_instance_count": 112
+    },
+    "reasons": [
+      "RCSB public non-coordinate component list contains biological cofactor candidates: ['MG', 'ZN']",
+      "RCSB public metadata indicates multiple copies or assembly context"
+    ]
+  },
+  "same_target_as_v63": true,
+  "sequence": "MARRRRAEVRQLQPDLVYGDVLVTAFINKIMRDGKKNLAARIFYDACKIIQEKTGQEPLKVFKQAVENVKPRMEVRSRRVGGANYQVPMEVSPRRQQSLALRWLVQAANQRPERRAAVRIAHELMDAAEGKGGAVKKKEDVERMAEANRAYAHYRW",
+  "sequence_length": 156,
+  "target_id": "V64_10PX_38"
+}

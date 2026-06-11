@@ -1,0 +1,27 @@
+{
+  "batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+  "entity_id": "1",
+  "entry_id": "11ZW",
+  "expected_mechanism_class": "insufficient_evidence_clean_abstain",
+  "expected_observables": [],
+  "holdout_opened_after_prediction_hash": "d040f0002a0867d95147269f10a83b8546252c41a3ca59e4b83d425d8931bb7b",
+  "kind": "V65_MEMBRANE_TOPOLOGY_POSTSEAL_HOLDOUT_v0",
+  "panel_group": "B_SOLUBLE_HYDROPHOBIC_NO_TOPOLOGY",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/11ZW",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/11ZW/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V65_B_12_11ZW_1_V65_PANEL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "hydrophobicity alone -> clean abstain",
+    "hydrophobicity alone must not become membrane topology"
+  ],
+  "protein_id": "11ZW_1",
+  "target_id": "V65_B_12_11ZW_1"
+}

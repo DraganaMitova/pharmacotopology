@@ -1,0 +1,30 @@
+{
+  "baseline_batch_id": "V63_RCSB_500_DISCOVERY_BATCH",
+  "baseline_v63_prediction_hash": "137f09f340d3e3d12916155c56f132191cd1aafbc461de7487e633e5cb78478e",
+  "baseline_v63_target_id": "V63_12DL_11",
+  "batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+  "entity_id": "11",
+  "entry_id": "12DL",
+  "expected_mechanism_class": "cofactor_ligand_assisted_stabilization",
+  "expected_observables": [],
+  "experimental_method": "ELECTRON MICROSCOPY",
+  "holdout_opened_after_prediction_hash": "00677ebfb146761dd7227e09b1ed6fe8ce9c18a85a82378520fe626e07a75ba6",
+  "kind": "V64_RCSB_500_POSTSEAL_HOLDOUT_v0",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/12DL",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/12DL/11",
+      "source_class": "coordinate_derived",
+      "source_id": "V64_12DL_11_RCSB_DATA_API_POSTSEAL",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "postseal RCSB entry contains biological ligand/cofactor/metal components"
+  ],
+  "protein_id": "12DL_11",
+  "release_date": "2026-04-08T00:00:00.000+00:00",
+  "target_id": "V64_12DL_11"
+}

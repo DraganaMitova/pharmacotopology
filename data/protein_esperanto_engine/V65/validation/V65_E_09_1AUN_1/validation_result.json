@@ -1,0 +1,39 @@
+{
+  "acceptance_decision": "abstain_recommended",
+  "alphafold_used_before_seal": false,
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "1",
+  "entry_id": "1AUN",
+  "expected_mechanism_class": "insufficient_evidence_clean_abstain",
+  "holdout_opened_after_prediction_hash": "d4f439c7dda029d9fcadca70b4abebac0b6c7058093e429897b8b986507d7883",
+  "kind": "V65_MEMBRANE_TOPOLOGY_VALIDATION_RESULT_v0",
+  "level1_regime_selection": true,
+  "level2_region_localization_proxy": false,
+  "level3_topology_or_contact_proxy": true,
+  "panel_group": "E_PERIPHERAL_MEMBRANE_ASSOCIATED_NOT_TRANSMEMBRANE",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1AUN",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1AUN/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V65_E_09_1AUN_1_V65_PANEL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "predicted_mechanism_class": "insufficient_evidence_clean_abstain",
+  "protein_id": "1AUN_1",
+  "score_label": "supported",
+  "sealed_prediction_hash": "d4f439c7dda029d9fcadca70b4abebac0b6c7058093e429897b8b986507d7883",
+  "target_id": "V65_E_09_1AUN_1",
+  "validation_checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "insufficient_evidence_clean_abstain",
+      "observed": "insufficient_evidence_clean_abstain",
+      "passed": true
+    }
+  ]
+}

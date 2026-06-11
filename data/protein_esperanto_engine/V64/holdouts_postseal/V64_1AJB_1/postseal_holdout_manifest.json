@@ -1,0 +1,37 @@
+{
+  "baseline_batch_id": "V63_RCSB_500_DISCOVERY_BATCH",
+  "baseline_v63_prediction_hash": "aad4fe97dcadea3cde4ca0081246901fdbe5d9ed6ec0b929b41213c8111f8377",
+  "baseline_v63_target_id": "V63_1AJB_1",
+  "batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+  "entity_id": "1",
+  "entry_id": "1AJB",
+  "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "expected_observables": [
+    {
+      "check_id": "proteostasis_routing_supported",
+      "comparator": ">=",
+      "metric": "proteostasis_routing",
+      "threshold": 0.5
+    }
+  ],
+  "experimental_method": "X-RAY DIFFRACTION",
+  "holdout_opened_after_prediction_hash": "732c8f0b1d677e3871f8a206cd6b41637708ff4e91b485042186f1d40540335f",
+  "kind": "V64_RCSB_500_POSTSEAL_HOLDOUT_v0",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1AJB",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1AJB/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V64_1AJB_1_RCSB_DATA_API_POSTSEAL",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "postseal text/annotation indicates membrane or transport pressure"
+  ],
+  "protein_id": "1AJB_1",
+  "release_date": "1995-11-14T00:00:00.000+00:00",
+  "target_id": "V64_1AJB_1"
+}

@@ -1,0 +1,39 @@
+{
+  "acceptance_decision": "accepted",
+  "alphafold_used_before_seal": false,
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "1",
+  "entry_id": "1A2N",
+  "expected_mechanism_class": "insufficient_evidence_clean_abstain",
+  "holdout_opened_after_prediction_hash": "bc096f523da7f1dcfadc1c9d621ea7363d8d6a513205e743a20890699913febf",
+  "kind": "V65_MEMBRANE_TOPOLOGY_VALIDATION_RESULT_v0",
+  "level1_regime_selection": false,
+  "level2_region_localization_proxy": true,
+  "level3_topology_or_contact_proxy": false,
+  "panel_group": "B_SOLUBLE_HYDROPHOBIC_NO_TOPOLOGY",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1A2N",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1A2N/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V65_B_08_1A2N_1_V65_PANEL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "predicted_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "protein_id": "1A2N_1",
+  "score_label": "contradicted",
+  "sealed_prediction_hash": "bc096f523da7f1dcfadc1c9d621ea7363d8d6a513205e743a20890699913febf",
+  "target_id": "V65_B_08_1A2N_1",
+  "validation_checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "insufficient_evidence_clean_abstain",
+      "observed": "membrane_multidomain_folding_proteostasis",
+      "passed": false
+    }
+  ]
+}

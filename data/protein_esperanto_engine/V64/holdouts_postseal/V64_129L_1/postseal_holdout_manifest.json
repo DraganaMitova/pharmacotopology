@@ -1,0 +1,37 @@
+{
+  "baseline_batch_id": "V63_RCSB_500_DISCOVERY_BATCH",
+  "baseline_v63_prediction_hash": "27143190c7321b855f31f02671ee3c148b9a9f7b57e4518c933947d074be2fd4",
+  "baseline_v63_target_id": "V63_129L_1",
+  "batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+  "entity_id": "1",
+  "entry_id": "129L",
+  "expected_mechanism_class": "short_region_host_interface_hijacking",
+  "expected_observables": [
+    {
+      "check_id": "host_interface_present",
+      "comparator": ">=",
+      "metric": "basin:host_interface_engaged",
+      "threshold": 0.55
+    }
+  ],
+  "experimental_method": "X-RAY DIFFRACTION",
+  "holdout_opened_after_prediction_hash": "86cba14d71c37d7f58a69f175402f2b0157a106027c75d8bed8c95ee6c12c653",
+  "kind": "V64_RCSB_500_POSTSEAL_HOLDOUT_v0",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/129L",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/129L/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V64_129L_1_RCSB_DATA_API_POSTSEAL",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "postseal text indicates short host-interface behavior"
+  ],
+  "protein_id": "129L_1",
+  "release_date": "1994-01-31T00:00:00.000+00:00",
+  "target_id": "V64_129L_1"
+}

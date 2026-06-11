@@ -1,0 +1,84 @@
+{
+  "active_operator_count": 2,
+  "evidence_manifest": {
+    "allowed_initialization_source_ids": [
+      "V64_1A7T_1_RAW_SEQUENCE",
+      "V64_1A7T_1_PUBLIC_METADATA",
+      "V64_1A7T_1_E62_METADATA_CONTEXT"
+    ],
+    "blocked_source_ids": [],
+    "coordinate_derived_source_count_before_prediction": 0,
+    "coordinate_truth_used_before_prediction": false,
+    "holdout_opened_before_seal": false,
+    "internal_runtime_source_count_for_prediction": 0,
+    "internal_runtime_used_as_biological_evidence": false,
+    "kind": "PROTEIN_ESPERANTO_EVIDENCE_BOUNDARY_GATE_v0",
+    "rows": [
+      {
+        "allowed_for_claim": true,
+        "allowed_for_holdout_after_seal": false,
+        "allowed_to_initialize_language_field": true,
+        "blocked_reason": "",
+        "coordinate_derived": false,
+        "internal_runtime": false,
+        "source_class": "pure_non_coordinate",
+        "source_id": "V64_1A7T_1_RAW_SEQUENCE",
+        "source_role": "prediction_input",
+        "spatial_proxy": false
+      },
+      {
+        "allowed_for_claim": true,
+        "allowed_for_holdout_after_seal": false,
+        "allowed_to_initialize_language_field": true,
+        "blocked_reason": "",
+        "coordinate_derived": false,
+        "internal_runtime": false,
+        "source_class": "pure_non_coordinate",
+        "source_id": "V64_1A7T_1_PUBLIC_METADATA",
+        "source_role": "prediction_input",
+        "spatial_proxy": false
+      },
+      {
+        "allowed_for_claim": true,
+        "allowed_for_holdout_after_seal": false,
+        "allowed_to_initialize_language_field": true,
+        "blocked_reason": "",
+        "coordinate_derived": false,
+        "internal_runtime": false,
+        "source_class": "pure_non_coordinate",
+        "source_id": "V64_1A7T_1_E62_METADATA_CONTEXT",
+        "source_role": "prediction_input",
+        "spatial_proxy": false
+      }
+    ],
+    "spatial_proxy_untagged_or_misused_count": 0
+  },
+  "folding_problem_solved": false,
+  "kind": "V64_COMPACT_SEALED_PACKET_SUMMARY_v0",
+  "natural_mechanism_class": "cofactor_ligand_assisted_stabilization",
+  "operator_names": [
+    "interface_operator",
+    "closure_operator"
+  ],
+  "prediction_hash": "9c793e3662025f89884d828942c0f4e9e1ed13620d20b29bb1cbbe68a811a9e6",
+  "sealed_before_holdout": true,
+  "selected_mechanism_class": "cofactor_ligand_assisted_stabilization",
+  "selection_reason": "explicit_ligand_cofactor_or_metal_context",
+  "target_id": "V64_1A7T_1",
+  "trajectory_final_state_summary": {
+    "contact_probability": 0.489066,
+    "disorder_order_balance": 0.299894,
+    "frustration": 0.0,
+    "interface_readiness": 0.618836,
+    "operator_activation": 0.578078,
+    "proteostasis_routing": 0.0,
+    "residue_exposure": 0.609435,
+    "segment_compaction": 0.564786,
+    "state_basin_occupancy": {
+      "apo_weak_basin": 0.001164,
+      "generic_compact_basin": 0.178517,
+      "ligand_stabilized_basin": 0.618836
+    },
+    "timepoint": 1000
+  }
+}

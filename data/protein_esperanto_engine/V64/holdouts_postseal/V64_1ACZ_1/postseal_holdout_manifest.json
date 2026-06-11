@@ -1,0 +1,37 @@
+{
+  "baseline_batch_id": "V63_RCSB_500_DISCOVERY_BATCH",
+  "baseline_v63_prediction_hash": "24bb32a676e08ecafcb4ecba8e464a4057a92debc90030af6fcceb02ae15fb8b",
+  "baseline_v63_target_id": "V63_1ACZ_1",
+  "batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+  "entity_id": "1",
+  "entry_id": "1ACZ",
+  "expected_mechanism_class": "globular_closure",
+  "expected_observables": [
+    {
+      "check_id": "compact_or_contact_supported",
+      "comparator": ">=",
+      "metric": "contact_probability",
+      "threshold": 0.35
+    }
+  ],
+  "experimental_method": "SOLUTION NMR",
+  "holdout_opened_after_prediction_hash": "9cddef3987d5df6f5532b07b091af8139935a6baf89e5be77076454f210740e5",
+  "kind": "V64_RCSB_500_POSTSEAL_HOLDOUT_v0",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1ACZ",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1ACZ/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V64_1ACZ_1_RCSB_DATA_API_POSTSEAL",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "postseal validation supports ordinary compact/globular closure class"
+  ],
+  "protein_id": "1ACZ_1",
+  "release_date": "1997-07-07T00:00:00.000+00:00",
+  "target_id": "V64_1ACZ_1"
+}

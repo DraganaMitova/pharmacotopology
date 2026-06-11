@@ -1,0 +1,247 @@
+{
+  "abstain_count": 7,
+  "accepted_accuracy": 0.6666666666666666,
+  "accepted_count": 63,
+  "alphafold_used_before_seal": false,
+  "atomistic_md_executed": false,
+  "batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+  "batch_mode": "membrane_topology_panel",
+  "campaign_id": "V61_TO_V70_PROTEIN_ESPERANTO_SATURATION_CAMPAIGN",
+  "certificate_hash": "3895e4feeb3a9b57ba7f456f17aa670cfb1180f1e036d81c521ff03ac8a68f14",
+  "claim_allowed": false,
+  "claim_blocked_reason": "V65 is a membrane topology panel and grammar-mining gate; broad claims require a repaired engine and later expansion.",
+  "contact_truth_used_before_seal": false,
+  "control_count": 13,
+  "controls": [
+    {
+      "control_id": "panel_groups_present",
+      "observed": {
+        "A_TRUE_TRANSMEMBRANE_TOPOLOGY": 14,
+        "B_SOLUBLE_HYDROPHOBIC_NO_TOPOLOGY": 14,
+        "C_COFACTOR_BOUND_SOLUBLE_HYDROPHOBIC_POCKET": 14,
+        "D_OLIGOMERIC_SOLUBLE_INTERFACE_HYDROPHOBICITY": 14,
+        "E_PERIPHERAL_MEMBRANE_ASSOCIATED_NOT_TRANSMEMBRANE": 14
+      },
+      "passed": true,
+      "reason": "V65 must split the panel into the five requested groups."
+    },
+    {
+      "control_id": "target_selection_manual_false",
+      "observed": null,
+      "passed": true,
+      "reason": "V65 target split is deterministic from V63 annotations and sequence-field metrics."
+    },
+    {
+      "control_id": "provider_specific_topology_sources_present",
+      "observed": null,
+      "passed": true,
+      "reason": "True and peripheral membrane groups use OPM/PDBTM/MemProtMD provider names from the V63 intake."
+    },
+    {
+      "control_id": "esperanto_distinctions_enumerated",
+      "observed": null,
+      "passed": true,
+      "reason": "V65 records the membrane grammar distinctions required before broad expansion."
+    },
+    {
+      "control_id": "engine_version_declared_e62",
+      "observed": null,
+      "passed": true,
+      "reason": "V65 uses E62."
+    },
+    {
+      "control_id": "engine_modified_during_batch_false",
+      "observed": null,
+      "passed": true,
+      "reason": "No engine mutation occurs inside V65."
+    },
+    {
+      "control_id": "all_sealed_before_holdout",
+      "observed": null,
+      "passed": true,
+      "reason": "Every V65 packet is sealed before holdout."
+    },
+    {
+      "control_id": "holdouts_opened_after_seal",
+      "observed": null,
+      "passed": true,
+      "reason": "Every holdout references the sealed prediction hash."
+    },
+    {
+      "control_id": "coordinate_leakage_control",
+      "observed": {
+        "allowed_initialization_source_ids": [],
+        "blocked_source_ids": [
+          "V65_BAD_COORDINATES"
+        ],
+        "coordinate_derived_source_count_before_prediction": 1,
+        "coordinate_truth_used_before_prediction": true,
+        "holdout_opened_before_seal": false,
+        "internal_runtime_source_count_for_prediction": 0,
+        "internal_runtime_used_as_biological_evidence": false,
+        "kind": "PROTEIN_ESPERANTO_EVIDENCE_BOUNDARY_GATE_v0",
+        "rows": [
+          {
+            "allowed_for_claim": false,
+            "allowed_for_holdout_after_seal": false,
+            "allowed_to_initialize_language_field": false,
+            "blocked_reason": "coordinate_derived_blocked_before_seal",
+            "coordinate_derived": true,
+            "internal_runtime": false,
+            "source_class": "coordinate_derived",
+            "source_id": "V65_BAD_COORDINATES",
+            "source_role": "prediction_input",
+            "spatial_proxy": false
+          }
+        ],
+        "spatial_proxy_untagged_or_misused_count": 0
+      },
+      "passed": true,
+      "reason": "Coordinate-derived source blocks prediction."
+    },
+    {
+      "control_id": "holdout_opened_before_seal_control",
+      "observed": {
+        "allowed_initialization_source_ids": [],
+        "blocked_source_ids": [
+          "V65_PRESEAL_HOLDOUT"
+        ],
+        "coordinate_derived_source_count_before_prediction": 0,
+        "coordinate_truth_used_before_prediction": false,
+        "holdout_opened_before_seal": true,
+        "internal_runtime_source_count_for_prediction": 0,
+        "internal_runtime_used_as_biological_evidence": false,
+        "kind": "PROTEIN_ESPERANTO_EVIDENCE_BOUNDARY_GATE_v0",
+        "rows": [
+          {
+            "allowed_for_claim": false,
+            "allowed_for_holdout_after_seal": true,
+            "allowed_to_initialize_language_field": false,
+            "blocked_reason": "holdout_opened_before_seal",
+            "coordinate_derived": true,
+            "internal_runtime": false,
+            "source_class": "coordinate_derived",
+            "source_id": "V65_PRESEAL_HOLDOUT",
+            "source_role": "holdout_validation",
+            "spatial_proxy": false
+          }
+        ],
+        "spatial_proxy_untagged_or_misused_count": 0
+      },
+      "passed": true,
+      "reason": "Holdout validation cannot initialize prediction before sealing."
+    },
+    {
+      "control_id": "internal_runtime_leakage_control",
+      "observed": {
+        "allowed_initialization_source_ids": [],
+        "blocked_source_ids": [
+          "V65_BAD_INTERNAL_RUNTIME"
+        ],
+        "coordinate_derived_source_count_before_prediction": 0,
+        "coordinate_truth_used_before_prediction": false,
+        "holdout_opened_before_seal": false,
+        "internal_runtime_source_count_for_prediction": 1,
+        "internal_runtime_used_as_biological_evidence": true,
+        "kind": "PROTEIN_ESPERANTO_EVIDENCE_BOUNDARY_GATE_v0",
+        "rows": [
+          {
+            "allowed_for_claim": false,
+            "allowed_for_holdout_after_seal": false,
+            "allowed_to_initialize_language_field": false,
+            "blocked_reason": "internal_runtime_never_biological_evidence",
+            "coordinate_derived": false,
+            "internal_runtime": true,
+            "source_class": "internal_runtime",
+            "source_id": "V65_BAD_INTERNAL_RUNTIME",
+            "source_role": "prediction_input",
+            "spatial_proxy": false
+          }
+        ],
+        "spatial_proxy_untagged_or_misused_count": 0
+      },
+      "passed": true,
+      "reason": "Internal runtime cannot become biological evidence."
+    },
+    {
+      "control_id": "random_sequence_control",
+      "observed": null,
+      "passed": true,
+      "reason": "Random sequence without evidence abstains."
+    },
+    {
+      "control_id": "failures_reported",
+      "observed": null,
+      "passed": true,
+      "reason": "Every V65 target has an explicit score row."
+    }
+  ],
+  "controls_passed": true,
+  "coordinate_truth_used_before_seal": false,
+  "coverage": 0.9,
+  "engine_changes_allowed_by_operating_mode": true,
+  "engine_modified_during_batch": false,
+  "engine_revision_recommended": "E63_MEMBRANE_TOPOLOGY_GRAMMAR_REVISION",
+  "engine_revision_required": true,
+  "engine_source_last_commit": "a8af81be17e0fc2ce6a74af27ee9357df42e7b72",
+  "engine_source_sha256": "483c8b85cf0bfeae867f02d5f2b097841f726bf6bec694d4905efb19c4b432ef",
+  "engine_version_used": "E62",
+  "failed_accepted_count": 21,
+  "failed_controls": [],
+  "failure_modes": {
+    "peripheral_misread_as_transmembrane": 7,
+    "soluble_hydrophobic_false_membrane": 14
+  },
+  "false_membrane_call_count": 21,
+  "folding_problem_solved": false,
+  "kind": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL_CERTIFICATE_v0",
+  "panel_groups": {
+    "A_TRUE_TRANSMEMBRANE_TOPOLOGY": 14,
+    "B_SOLUBLE_HYDROPHOBIC_NO_TOPOLOGY": 14,
+    "C_COFACTOR_BOUND_SOLUBLE_HYDROPHOBIC_POCKET": 14,
+    "D_OLIGOMERIC_SOLUBLE_INTERFACE_HYDROPHOBICITY": 14,
+    "E_PERIPHERAL_MEMBRANE_ASSOCIATED_NOT_TRANSMEMBRANE": 14
+  },
+  "passed_control_count": 13,
+  "peripheral_false_transmembrane_count": 7,
+  "raw_accuracy": 0.7,
+  "score_labels_by_group": {
+    "A_TRUE_TRANSMEMBRANE_TOPOLOGY": {
+      "supported": 14
+    },
+    "B_SOLUBLE_HYDROPHOBIC_NO_TOPOLOGY": {
+      "contradicted": 14
+    },
+    "C_COFACTOR_BOUND_SOLUBLE_HYDROPHOBIC_POCKET": {
+      "supported": 14
+    },
+    "D_OLIGOMERIC_SOLUBLE_INTERFACE_HYDROPHOBICITY": {
+      "supported": 14
+    },
+    "E_PERIPHERAL_MEMBRANE_ASSOCIATED_NOT_TRANSMEMBRANE": {
+      "contradicted": 7,
+      "supported": 7
+    }
+  },
+  "status": "V65_MEMBRANE_TOPOLOGY_PANEL_FAILURES_REVIEW_REQUIRED",
+  "supported_count": 49,
+  "target_selection_manual": false,
+  "targets_total": 70,
+  "timestamp_utc": "2026-06-11T21:09:13.727259+00:00",
+  "topology_confusion_matrix": {
+    "cofactor_ligand_assisted_stabilization": {
+      "cofactor_ligand_assisted_stabilization": 14
+    },
+    "insufficient_evidence_clean_abstain": {
+      "insufficient_evidence_clean_abstain": 7,
+      "membrane_multidomain_folding_proteostasis": 21
+    },
+    "membrane_multidomain_folding_proteostasis": {
+      "membrane_multidomain_folding_proteostasis": 14
+    },
+    "oligomerization_controlled_folding": {
+      "oligomerization_controlled_folding": 14
+    }
+  },
+  "true_transmembrane_missed_count": 0
+}

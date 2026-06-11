@@ -1,0 +1,475 @@
+{
+  "baseline_batch_id": "V63_RCSB_500_DISCOVERY_BATCH",
+  "batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+  "claim_allowed": false,
+  "claim_boundary": "V64 is same-target paired repair measurement, not a broad saturation claim.",
+  "directional_repair": true,
+  "e61": {
+    "abstain_count": 0,
+    "accepted_accuracy": 0.476,
+    "accepted_count": 500,
+    "coverage": 1.0,
+    "failed_accepted_count": 262,
+    "failure_modes": {
+      "disorder_misread": 15,
+      "membrane_misread": 216,
+      "oligomer_state_misread": 2,
+      "wrong_regime": 29
+    },
+    "raw_accuracy": 0.476,
+    "supported_count": 238
+  },
+  "e62": {
+    "abstain_count": 0,
+    "accepted_accuracy": 0.656,
+    "accepted_count": 500,
+    "coverage": 1.0,
+    "failed_accepted_count": 172,
+    "failure_modes": {
+      "disorder_misread": 15,
+      "membrane_misread": 123,
+      "oligomer_state_misread": 5,
+      "wrong_regime": 29
+    },
+    "raw_accuracy": 0.656,
+    "supported_count": 328,
+    "targets_total": 500
+  },
+  "e62_failure_modes_not_seen_in_e61": {},
+  "failure_mode_distribution_change": {
+    "disorder_misread": {
+      "delta": 0,
+      "e61": 15,
+      "e62": 15
+    },
+    "membrane_misread": {
+      "delta": -93,
+      "e61": 216,
+      "e62": 123
+    },
+    "oligomer_state_misread": {
+      "delta": 3,
+      "e61": 2,
+      "e62": 5
+    },
+    "wrong_regime": {
+      "delta": 0,
+      "e61": 29,
+      "e62": 29
+    }
+  },
+  "kind": "V64_E61_VS_E62_MEMBRANE_REPAIR_COMPARISON_v0",
+  "membrane_repair": {
+    "cofactor_or_oligomer_regression_count": 3,
+    "e61_membrane_misread": 216,
+    "e62_membrane_misread": 123,
+    "membrane_misread_persistent": 123,
+    "membrane_misread_repaired": 93,
+    "soluble_false_membrane_call_count": 3
+  },
+  "membrane_still_fails": true,
+  "net_changes": {
+    "abstain_delta": 0,
+    "accepted_accuracy_delta": 0.18000000000000005,
+    "coverage_delta": 0.0,
+    "failed_accepted_delta": -90,
+    "membrane_misread_delta": -93,
+    "supported_delta": 90
+  },
+  "new_failure_modes_from_regressions": {
+    "oligomer_state_misread": 3
+  },
+  "persistent_failure_modes": {
+    "disorder_misread": 15,
+    "membrane_misread": 123,
+    "oligomer_state_misread": 2,
+    "wrong_regime": 29
+  },
+  "repair_categories": {
+    "new_failure": 3,
+    "persistent_failure": 169,
+    "repaired": 93,
+    "stable_supported": 235
+  },
+  "repaired_failure_modes": {
+    "membrane_misread": 93
+  },
+  "sample_rows": {
+    "new_failure": [
+      {
+        "baseline_predicted": "oligomerization_controlled_folding",
+        "expected": "oligomerization_controlled_folding",
+        "predicted": "membrane_multidomain_folding_proteostasis",
+        "protein_id": "10LG_1",
+        "score_label": "contradicted",
+        "target_id": "V64_10LG_1"
+      },
+      {
+        "baseline_predicted": "oligomerization_controlled_folding",
+        "expected": "oligomerization_controlled_folding",
+        "predicted": "membrane_multidomain_folding_proteostasis",
+        "protein_id": "1AC6_1",
+        "score_label": "contradicted",
+        "target_id": "V64_1AC6_1"
+      },
+      {
+        "baseline_predicted": "oligomerization_controlled_folding",
+        "expected": "oligomerization_controlled_folding",
+        "predicted": "membrane_multidomain_folding_proteostasis",
+        "protein_id": "1AF7_1",
+        "score_label": "contradicted",
+        "target_id": "V64_1AF7_1"
+      }
+    ],
+    "persistent_failure": [
+      {
+        "baseline_predicted": "oligomerization_controlled_folding",
+        "expected": "short_region_host_interface_hijacking",
+        "predicted": "oligomerization_controlled_folding",
+        "protein_id": "102L_1",
+        "score_label": "contradicted",
+        "target_id": "V64_102L_1"
+      },
+      {
+        "baseline_predicted": "cofactor_ligand_assisted_stabilization",
+        "expected": "membrane_multidomain_folding_proteostasis",
+        "predicted": "cofactor_ligand_assisted_stabilization",
+        "protein_id": "10AY_1",
+        "score_label": "contradicted",
+        "target_id": "V64_10AY_1"
+      },
+      {
+        "baseline_predicted": "cofactor_ligand_assisted_stabilization",
+        "expected": "membrane_multidomain_folding_proteostasis",
+        "predicted": "cofactor_ligand_assisted_stabilization",
+        "protein_id": "10IC_3",
+        "score_label": "contradicted",
+        "target_id": "V64_10IC_3"
+      },
+      {
+        "baseline_predicted": "oligomerization_controlled_folding",
+        "expected": "membrane_multidomain_folding_proteostasis",
+        "predicted": "oligomerization_controlled_folding",
+        "protein_id": "10IK_1",
+        "score_label": "contradicted",
+        "target_id": "V64_10IK_1"
+      },
+      {
+        "baseline_predicted": "cofactor_ligand_assisted_stabilization",
+        "expected": "membrane_multidomain_folding_proteostasis",
+        "predicted": "cofactor_ligand_assisted_stabilization",
+        "protein_id": "10JT_1",
+        "score_label": "contradicted",
+        "target_id": "V64_10JT_1"
+      },
+      {
+        "baseline_predicted": "cofactor_ligand_assisted_stabilization",
+        "expected": "membrane_multidomain_folding_proteostasis",
+        "predicted": "cofactor_ligand_assisted_stabilization",
+        "protein_id": "10MA_3",
+        "score_label": "contradicted",
+        "target_id": "V64_10MA_3"
+      },
+      {
+        "baseline_predicted": "oligomerization_controlled_folding",
+        "expected": "membrane_multidomain_folding_proteostasis",
+        "predicted": "oligomerization_controlled_folding",
+        "protein_id": "10OP_1",
+        "score_label": "contradicted",
+        "target_id": "V64_10OP_1"
+      },
+      {
+        "baseline_predicted": "oligomerization_controlled_folding",
+        "expected": "short_region_host_interface_hijacking",
+        "predicted": "oligomerization_controlled_folding",
+        "protein_id": "10OP_3",
+        "score_label": "contradicted",
+        "target_id": "V64_10OP_3"
+      },
+      {
+        "baseline_predicted": "oligomerization_controlled_folding",
+        "expected": "short_region_host_interface_hijacking",
+        "predicted": "oligomerization_controlled_folding",
+        "protein_id": "10OP_4",
+        "score_label": "contradicted",
+        "target_id": "V64_10OP_4"
+      },
+      {
+        "baseline_predicted": "oligomerization_controlled_folding",
+        "expected": "membrane_multidomain_folding_proteostasis",
+        "predicted": "oligomerization_controlled_folding",
+        "protein_id": "10OR_2",
+        "score_label": "contradicted",
+        "target_id": "V64_10OR_2"
+      },
+      {
+        "baseline_predicted": "cofactor_ligand_assisted_stabilization",
+        "expected": "intrinsic_disorder_phase_separation",
+        "predicted": "cofactor_ligand_assisted_stabilization",
+        "protein_id": "10PX_11",
+        "score_label": "contradicted",
+        "target_id": "V64_10PX_11"
+      },
+      {
+        "baseline_predicted": "oligomerization_controlled_folding",
+        "expected": "membrane_multidomain_folding_proteostasis",
+        "predicted": "oligomerization_controlled_folding",
+        "protein_id": "10QG_1",
+        "score_label": "contradicted",
+        "target_id": "V64_10QG_1"
+      },
+      {
+        "baseline_predicted": "cofactor_ligand_assisted_stabilization",
+        "expected": "intrinsic_disorder_phase_separation",
+        "predicted": "cofactor_ligand_assisted_stabilization",
+        "protein_id": "10QM_29",
+        "score_label": "contradicted",
+        "target_id": "V64_10QM_29"
+      },
+      {
+        "baseline_predicted": "cofactor_ligand_assisted_stabilization",
+        "expected": "membrane_multidomain_folding_proteostasis",
+        "predicted": "cofactor_ligand_assisted_stabilization",
+        "protein_id": "10RI_1",
+        "score_label": "contradicted",
+        "target_id": "V64_10RI_1"
+      },
+      {
+        "baseline_predicted": "cofactor_ligand_assisted_stabilization",
+        "expected": "membrane_multidomain_folding_proteostasis",
+        "predicted": "cofactor_ligand_assisted_stabilization",
+        "protein_id": "10TZ_1",
+        "score_label": "contradicted",
+        "target_id": "V64_10TZ_1"
+      },
+      {
+        "baseline_predicted": "oligomerization_controlled_folding",
+        "expected": "membrane_multidomain_folding_proteostasis",
+        "predicted": "oligomerization_controlled_folding",
+        "protein_id": "10XD_1",
+        "score_label": "contradicted",
+        "target_id": "V64_10XD_1"
+      },
+      {
+        "baseline_predicted": "oligomerization_controlled_folding",
+        "expected": "membrane_multidomain_folding_proteostasis",
+        "predicted": "oligomerization_controlled_folding",
+        "protein_id": "10XF_1",
+        "score_label": "contradicted",
+        "target_id": "V64_10XF_1"
+      },
+      {
+        "baseline_predicted": "oligomerization_controlled_folding",
+        "expected": "membrane_multidomain_folding_proteostasis",
+        "predicted": "oligomerization_controlled_folding",
+        "protein_id": "10XH_1",
+        "score_label": "contradicted",
+        "target_id": "V64_10XH_1"
+      },
+      {
+        "baseline_predicted": "oligomerization_controlled_folding",
+        "expected": "intrinsic_disorder_phase_separation",
+        "predicted": "oligomerization_controlled_folding",
+        "protein_id": "10XZ_1",
+        "score_label": "contradicted",
+        "target_id": "V64_10XZ_1"
+      },
+      {
+        "baseline_predicted": "oligomerization_controlled_folding",
+        "expected": "membrane_multidomain_folding_proteostasis",
+        "predicted": "oligomerization_controlled_folding",
+        "protein_id": "10XZ_2",
+        "score_label": "contradicted",
+        "target_id": "V64_10XZ_2"
+      }
+    ],
+    "repaired": [
+      {
+        "baseline_predicted": "oligomerization_controlled_folding",
+        "expected": "membrane_multidomain_folding_proteostasis",
+        "predicted": "membrane_multidomain_folding_proteostasis",
+        "protein_id": "10DJ_1",
+        "score_label": "supported",
+        "target_id": "V64_10DJ_1"
+      },
+      {
+        "baseline_predicted": "oligomerization_controlled_folding",
+        "expected": "membrane_multidomain_folding_proteostasis",
+        "predicted": "membrane_multidomain_folding_proteostasis",
+        "protein_id": "10KT_1",
+        "score_label": "supported",
+        "target_id": "V64_10KT_1"
+      },
+      {
+        "baseline_predicted": "oligomerization_controlled_folding",
+        "expected": "membrane_multidomain_folding_proteostasis",
+        "predicted": "membrane_multidomain_folding_proteostasis",
+        "protein_id": "10KZ_1",
+        "score_label": "supported",
+        "target_id": "V64_10KZ_1"
+      },
+      {
+        "baseline_predicted": "oligomerization_controlled_folding",
+        "expected": "membrane_multidomain_folding_proteostasis",
+        "predicted": "membrane_multidomain_folding_proteostasis",
+        "protein_id": "10OO_1",
+        "score_label": "supported",
+        "target_id": "V64_10OO_1"
+      },
+      {
+        "baseline_predicted": "cofactor_ligand_assisted_stabilization",
+        "expected": "membrane_multidomain_folding_proteostasis",
+        "predicted": "membrane_multidomain_folding_proteostasis",
+        "protein_id": "10OZ_2",
+        "score_label": "supported",
+        "target_id": "V64_10OZ_2"
+      },
+      {
+        "baseline_predicted": "cofactor_ligand_assisted_stabilization",
+        "expected": "membrane_multidomain_folding_proteostasis",
+        "predicted": "membrane_multidomain_folding_proteostasis",
+        "protein_id": "10PX_23",
+        "score_label": "supported",
+        "target_id": "V64_10PX_23"
+      },
+      {
+        "baseline_predicted": "oligomerization_controlled_folding",
+        "expected": "membrane_multidomain_folding_proteostasis",
+        "predicted": "membrane_multidomain_folding_proteostasis",
+        "protein_id": "10TU_1",
+        "score_label": "supported",
+        "target_id": "V64_10TU_1"
+      },
+      {
+        "baseline_predicted": "oligomerization_controlled_folding",
+        "expected": "membrane_multidomain_folding_proteostasis",
+        "predicted": "membrane_multidomain_folding_proteostasis",
+        "protein_id": "10VB_2",
+        "score_label": "supported",
+        "target_id": "V64_10VB_2"
+      },
+      {
+        "baseline_predicted": "oligomerization_controlled_folding",
+        "expected": "membrane_multidomain_folding_proteostasis",
+        "predicted": "membrane_multidomain_folding_proteostasis",
+        "protein_id": "10XZ_3",
+        "score_label": "supported",
+        "target_id": "V64_10XZ_3"
+      },
+      {
+        "baseline_predicted": "oligomerization_controlled_folding",
+        "expected": "membrane_multidomain_folding_proteostasis",
+        "predicted": "membrane_multidomain_folding_proteostasis",
+        "protein_id": "10YN_1",
+        "score_label": "supported",
+        "target_id": "V64_10YN_1"
+      },
+      {
+        "baseline_predicted": "oligomerization_controlled_folding",
+        "expected": "membrane_multidomain_folding_proteostasis",
+        "predicted": "membrane_multidomain_folding_proteostasis",
+        "protein_id": "11HQ_1",
+        "score_label": "supported",
+        "target_id": "V64_11HQ_1"
+      },
+      {
+        "baseline_predicted": "oligomerization_controlled_folding",
+        "expected": "membrane_multidomain_folding_proteostasis",
+        "predicted": "membrane_multidomain_folding_proteostasis",
+        "protein_id": "11KC_2",
+        "score_label": "supported",
+        "target_id": "V64_11KC_2"
+      },
+      {
+        "baseline_predicted": "oligomerization_controlled_folding",
+        "expected": "membrane_multidomain_folding_proteostasis",
+        "predicted": "membrane_multidomain_folding_proteostasis",
+        "protein_id": "11MT_1",
+        "score_label": "supported",
+        "target_id": "V64_11MT_1"
+      },
+      {
+        "baseline_predicted": "oligomerization_controlled_folding",
+        "expected": "membrane_multidomain_folding_proteostasis",
+        "predicted": "membrane_multidomain_folding_proteostasis",
+        "protein_id": "11MX_1",
+        "score_label": "supported",
+        "target_id": "V64_11MX_1"
+      },
+      {
+        "baseline_predicted": "oligomerization_controlled_folding",
+        "expected": "membrane_multidomain_folding_proteostasis",
+        "predicted": "membrane_multidomain_folding_proteostasis",
+        "protein_id": "11OL_1",
+        "score_label": "supported",
+        "target_id": "V64_11OL_1"
+      },
+      {
+        "baseline_predicted": "cofactor_ligand_assisted_stabilization",
+        "expected": "membrane_multidomain_folding_proteostasis",
+        "predicted": "membrane_multidomain_folding_proteostasis",
+        "protein_id": "11YO_1",
+        "score_label": "supported",
+        "target_id": "V64_11YO_1"
+      },
+      {
+        "baseline_predicted": "cofactor_ligand_assisted_stabilization",
+        "expected": "membrane_multidomain_folding_proteostasis",
+        "predicted": "membrane_multidomain_folding_proteostasis",
+        "protein_id": "11YO_3",
+        "score_label": "supported",
+        "target_id": "V64_11YO_3"
+      },
+      {
+        "baseline_predicted": "cofactor_ligand_assisted_stabilization",
+        "expected": "membrane_multidomain_folding_proteostasis",
+        "predicted": "membrane_multidomain_folding_proteostasis",
+        "protein_id": "11YO_7",
+        "score_label": "supported",
+        "target_id": "V64_11YO_7"
+      },
+      {
+        "baseline_predicted": "oligomerization_controlled_folding",
+        "expected": "membrane_multidomain_folding_proteostasis",
+        "predicted": "membrane_multidomain_folding_proteostasis",
+        "protein_id": "11ZW_1",
+        "score_label": "supported",
+        "target_id": "V64_11ZW_1"
+      },
+      {
+        "baseline_predicted": "oligomerization_controlled_folding",
+        "expected": "membrane_multidomain_folding_proteostasis",
+        "predicted": "membrane_multidomain_folding_proteostasis",
+        "protein_id": "12AG_1",
+        "score_label": "supported",
+        "target_id": "V64_12AG_1"
+      }
+    ],
+    "soluble_false_membrane": [
+      {
+        "baseline_predicted": "oligomerization_controlled_folding",
+        "expected": "oligomerization_controlled_folding",
+        "predicted": "membrane_multidomain_folding_proteostasis",
+        "protein_id": "10LG_1",
+        "score_label": "contradicted",
+        "target_id": "V64_10LG_1"
+      },
+      {
+        "baseline_predicted": "oligomerization_controlled_folding",
+        "expected": "oligomerization_controlled_folding",
+        "predicted": "membrane_multidomain_folding_proteostasis",
+        "protein_id": "1AC6_1",
+        "score_label": "contradicted",
+        "target_id": "V64_1AC6_1"
+      },
+      {
+        "baseline_predicted": "oligomerization_controlled_folding",
+        "expected": "oligomerization_controlled_folding",
+        "predicted": "membrane_multidomain_folding_proteostasis",
+        "protein_id": "1AF7_1",
+        "score_label": "contradicted",
+        "target_id": "V64_1AF7_1"
+      }
+    ]
+  }
+}

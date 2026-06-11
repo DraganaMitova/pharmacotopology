@@ -1,0 +1,37 @@
+{
+  "baseline_batch_id": "V63_RCSB_500_DISCOVERY_BATCH",
+  "baseline_v63_prediction_hash": "fda61c2450172e7efac37b0a9ac874b07792a58a85ad814c1456430bc542b114",
+  "baseline_v63_target_id": "V63_12OZ_1",
+  "batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+  "entity_id": "1",
+  "entry_id": "12OZ",
+  "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "expected_observables": [
+    {
+      "check_id": "proteostasis_routing_supported",
+      "comparator": ">=",
+      "metric": "proteostasis_routing",
+      "threshold": 0.5
+    }
+  ],
+  "experimental_method": "ELECTRON MICROSCOPY",
+  "holdout_opened_after_prediction_hash": "6259d4d79d9d96203eed9e32df41fa4df9a1656be252a1de0b2421d31b4adebc",
+  "kind": "V64_RCSB_500_POSTSEAL_HOLDOUT_v0",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/12OZ",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/12OZ/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V64_12OZ_1_RCSB_DATA_API_POSTSEAL",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "postseal text/annotation indicates membrane or transport pressure"
+  ],
+  "protein_id": "12OZ_1",
+  "release_date": "2026-05-13T00:00:00.000+00:00",
+  "target_id": "V64_12OZ_1"
+}

@@ -1,0 +1,37 @@
+{
+  "baseline_batch_id": "V63_RCSB_500_DISCOVERY_BATCH",
+  "baseline_v63_prediction_hash": "3cc96e391a3ebe32d318bb107f6862403d7d97db5295dbedbdd328ecc3b48e0a",
+  "baseline_v63_target_id": "V63_10PX_11",
+  "batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+  "entity_id": "11",
+  "entry_id": "10PX",
+  "expected_mechanism_class": "intrinsic_disorder_phase_separation",
+  "expected_observables": [
+    {
+      "check_id": "compact_single_fold_rejected",
+      "comparator": "<=",
+      "metric": "basin:compact_single_fold",
+      "threshold": 0.12
+    }
+  ],
+  "experimental_method": "X-RAY DIFFRACTION",
+  "holdout_opened_after_prediction_hash": "be5e90dd35ea70a4ab6ded1f694fb7310a2a0229b86d1151777331d9954798f0",
+  "kind": "V64_RCSB_500_POSTSEAL_HOLDOUT_v0",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/10PX",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/10PX/11",
+      "source_class": "coordinate_derived",
+      "source_id": "V64_10PX_11_RCSB_DATA_API_POSTSEAL",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "postseal annotation/feature indicates disorder or low-complexity behavior"
+  ],
+  "protein_id": "10PX_11",
+  "release_date": "2026-03-11T00:00:00.000+00:00",
+  "target_id": "V64_10PX_11"
+}

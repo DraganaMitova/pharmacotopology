@@ -1,0 +1,27 @@
+{
+  "batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+  "entity_id": "2",
+  "entry_id": "13BV",
+  "expected_mechanism_class": "cofactor_ligand_assisted_stabilization",
+  "expected_observables": [],
+  "holdout_opened_after_prediction_hash": "653a7412e2b67363b835884b623b6160ed2d51c6577632425de454254ef2e920",
+  "kind": "V65_MEMBRANE_TOPOLOGY_POSTSEAL_HOLDOUT_v0",
+  "panel_group": "C_COFACTOR_BOUND_SOLUBLE_HYDROPHOBIC_POCKET",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/13BV",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/13BV/2",
+      "source_class": "coordinate_derived",
+      "source_id": "V65_C_13_13BV_2_V65_PANEL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "cofactor pocket explains hydrophobicity -> cofactor grammar",
+    "cofactor-buried hydrophobicity must not become membrane topology"
+  ],
+  "protein_id": "13BV_2",
+  "target_id": "V65_C_13_13BV_2"
+}

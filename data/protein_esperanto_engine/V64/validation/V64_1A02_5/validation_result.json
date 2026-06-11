@@ -1,0 +1,55 @@
+{
+  "abstention_correctness": "not_applicable",
+  "acceptance_decision": "accepted",
+  "alphafold_used_before_seal": false,
+  "baseline_acceptance_decision": "accepted",
+  "baseline_batch_id": "V63_RCSB_500_DISCOVERY_BATCH",
+  "baseline_engine_version": "E61",
+  "baseline_predicted_mechanism_class": "oligomerization_controlled_folding",
+  "baseline_score_label": "contradicted",
+  "baseline_supported": false,
+  "baseline_target_id": "V63_1A02_5",
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "5",
+  "entry_id": "1A02",
+  "expected_mechanism_class": "intrinsic_disorder_phase_separation",
+  "failures_repaired_after_holdout": false,
+  "holdout_opened_after_prediction_hash": "c0cc3ed130b589763eb5bbc1da6de474add9c58079cbf574a481b5465a648097",
+  "kind": "V64_E62_MEMBRANE_REPAIR_VALIDATION_RESULT_v0",
+  "level1_regime_selection": false,
+  "level2_region_localization_proxy": true,
+  "level3_topology_or_contact_proxy": false,
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1A02",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1A02/5",
+      "source_class": "coordinate_derived",
+      "source_id": "V64_1A02_5_RCSB_DATA_API_POSTSEAL",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "predicted_mechanism_class": "oligomerization_controlled_folding",
+  "protein_id": "1A02_5",
+  "score_label": "contradicted",
+  "sealed_prediction_hash": "c0cc3ed130b589763eb5bbc1da6de474add9c58079cbf574a481b5465a648097",
+  "target_id": "V64_1A02_5",
+  "validation_checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "intrinsic_disorder_phase_separation",
+      "observed": "oligomerization_controlled_folding",
+      "passed": false
+    },
+    {
+      "check_id": "compact_single_fold_rejected",
+      "comparator": "<=",
+      "metric": "basin:compact_single_fold",
+      "observed": 0.0,
+      "passed": true,
+      "threshold": 0.12
+    }
+  ]
+}

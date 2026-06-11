@@ -1,0 +1,27 @@
+{
+  "batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+  "entity_id": "1",
+  "entry_id": "10KT",
+  "expected_mechanism_class": "oligomerization_controlled_folding",
+  "expected_observables": [],
+  "holdout_opened_after_prediction_hash": "d827c47b9490844f4243a7b6eb0d6f99562c009e02a143af7b5513314e362358",
+  "kind": "V65_MEMBRANE_TOPOLOGY_POSTSEAL_HOLDOUT_v0",
+  "panel_group": "D_OLIGOMERIC_SOLUBLE_INTERFACE_HYDROPHOBICITY",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/10KT",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/10KT/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V65_D_08_10KT_1_V65_PANEL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "interface explains hydrophobicity -> oligomer grammar",
+    "oligomeric interface hydrophobicity must not become membrane topology"
+  ],
+  "protein_id": "10KT_1",
+  "target_id": "V65_D_08_10KT_1"
+}

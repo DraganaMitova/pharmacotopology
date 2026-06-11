@@ -1,0 +1,73 @@
+{
+  "active_operator_count": 4,
+  "evidence_manifest": {
+    "allowed_initialization_source_ids": [
+      "V65_B_09_13HS_1_RAW_SEQUENCE",
+      "V65_B_09_13HS_1_V65_TOPOLOGY_PANEL_SOURCE"
+    ],
+    "blocked_source_ids": [],
+    "coordinate_derived_source_count_before_prediction": 0,
+    "coordinate_truth_used_before_prediction": false,
+    "holdout_opened_before_seal": false,
+    "internal_runtime_source_count_for_prediction": 0,
+    "internal_runtime_used_as_biological_evidence": false,
+    "kind": "PROTEIN_ESPERANTO_EVIDENCE_BOUNDARY_GATE_v0",
+    "rows": [
+      {
+        "allowed_for_claim": true,
+        "allowed_for_holdout_after_seal": false,
+        "allowed_to_initialize_language_field": true,
+        "blocked_reason": "",
+        "coordinate_derived": false,
+        "internal_runtime": false,
+        "source_class": "pure_non_coordinate",
+        "source_id": "V65_B_09_13HS_1_RAW_SEQUENCE",
+        "source_role": "prediction_input",
+        "spatial_proxy": false
+      },
+      {
+        "allowed_for_claim": true,
+        "allowed_for_holdout_after_seal": false,
+        "allowed_to_initialize_language_field": true,
+        "blocked_reason": "",
+        "coordinate_derived": false,
+        "internal_runtime": false,
+        "source_class": "pure_non_coordinate",
+        "source_id": "V65_B_09_13HS_1_V65_TOPOLOGY_PANEL_SOURCE",
+        "source_role": "prediction_input",
+        "spatial_proxy": false
+      }
+    ],
+    "spatial_proxy_untagged_or_misused_count": 0
+  },
+  "folding_problem_solved": false,
+  "kind": "V65_COMPACT_SEALED_PACKET_SUMMARY_v0",
+  "natural_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "operator_names": [
+    "membrane_pressure_operator",
+    "closure_operator",
+    "interface_operator",
+    "proteostasis_operator"
+  ],
+  "prediction_hash": "a23ec9c876c0b71fd5d2479d68f6b176e502d755c6c555746b2c8eb96022edfe",
+  "sealed_before_holdout": true,
+  "selected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "selection_reason": "membrane_multidomain_mutation_interface_evidence",
+  "target_id": "V65_B_09_13HS_1",
+  "trajectory_final_state_summary": {
+    "contact_probability": 0.48575,
+    "disorder_order_balance": 0.2676,
+    "frustration": 0.0,
+    "interface_readiness": 0.635,
+    "operator_activation": 0.683469,
+    "proteostasis_routing": 0.669788,
+    "residue_exposure": 0.575029,
+    "segment_compaction": 0.704,
+    "state_basin_occupancy": {
+      "mature_membrane_routed": 0.669788,
+      "partial_nbd1_rescue": 0.704,
+      "qc_retained_misfolded": 0.0
+    },
+    "timepoint": 1000
+  }
+}

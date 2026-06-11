@@ -1,0 +1,27 @@
+{
+  "batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+  "entity_id": "1",
+  "entry_id": "1AVV",
+  "expected_mechanism_class": "insufficient_evidence_clean_abstain",
+  "expected_observables": [],
+  "holdout_opened_after_prediction_hash": "1b066a1d6fb98f35a9337d42b87f9a0e9c6a61dedbe314bf9266294666611750",
+  "kind": "V65_MEMBRANE_TOPOLOGY_POSTSEAL_HOLDOUT_v0",
+  "panel_group": "E_PERIPHERAL_MEMBRANE_ASSOCIATED_NOT_TRANSMEMBRANE",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1AVV",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1AVV/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V65_E_10_1AVV_1_V65_PANEL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "peripheral/monotopic association -> clean abstain until a peripheral class exists",
+    "peripheral membrane association must not become transmembrane grammar"
+  ],
+  "protein_id": "1AVV_1",
+  "target_id": "V65_E_10_1AVV_1"
+}

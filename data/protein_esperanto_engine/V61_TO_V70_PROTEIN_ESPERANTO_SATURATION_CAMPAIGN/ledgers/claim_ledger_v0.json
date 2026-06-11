@@ -60,6 +60,53 @@
         "wrong_regime": 29
       },
       "raw_accuracy": 0.476
+    },
+    {
+      "abstention_rate": 0.0,
+      "accepted_accuracy": 0.656,
+      "baseline_engine_version": "E61",
+      "batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+      "batch_mode": "paired_repair_replay",
+      "claim_allowed": false,
+      "claim_blocked_reason": "V64 is a same-target E62 repair replay against V63; broad claims require V65 topology panel and later expansion.",
+      "control_pass_rate": 1.0,
+      "coverage": 1.0,
+      "directional_repair": true,
+      "engine_version_used": "E62",
+      "failure_count": 172,
+      "failure_modes": {
+        "disorder_misread": 15,
+        "membrane_misread": 123,
+        "oligomer_state_misread": 5,
+        "wrong_regime": 29
+      },
+      "membrane_repair": {
+        "cofactor_or_oligomer_regression_count": 3,
+        "e61_membrane_misread": 216,
+        "e62_membrane_misread": 123,
+        "membrane_misread_persistent": 123,
+        "membrane_misread_repaired": 93,
+        "soluble_false_membrane_call_count": 3
+      },
+      "raw_accuracy": 0.656
+    },
+    {
+      "abstention_rate": 0.1,
+      "accepted_accuracy": 0.6666666666666666,
+      "batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+      "batch_mode": "membrane_topology_panel",
+      "claim_allowed": false,
+      "claim_blocked_reason": "V65 is a membrane topology panel and grammar-mining gate; broad claims require a repaired engine and later expansion.",
+      "control_pass_rate": 1.0,
+      "coverage": 0.9,
+      "engine_revision_required": true,
+      "engine_version_used": "E62",
+      "failure_count": 28,
+      "failure_modes": {
+        "peripheral_misread_as_transmembrane": 7,
+        "soluble_hydrophobic_false_membrane": 14
+      },
+      "raw_accuracy": 0.7
     }
   ]
 }

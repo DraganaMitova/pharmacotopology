@@ -1,0 +1,37 @@
+{
+  "baseline_batch_id": "V63_RCSB_500_DISCOVERY_BATCH",
+  "baseline_v63_prediction_hash": "d03b4006161b90cc06df0268c8054fbb1265662f51e88771d207f01f440c36ff",
+  "baseline_v63_target_id": "V63_1A41_1",
+  "batch_id": "V64_E62_RCSB_500_MEMBRANE_REPAIR_REPLAY",
+  "entity_id": "1",
+  "entry_id": "1A41",
+  "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "expected_observables": [
+    {
+      "check_id": "proteostasis_routing_supported",
+      "comparator": ">=",
+      "metric": "proteostasis_routing",
+      "threshold": 0.5
+    }
+  ],
+  "experimental_method": "X-RAY DIFFRACTION",
+  "holdout_opened_after_prediction_hash": "5f8474cb9aaa16a852452817ee70b0299b69f9c6348c54754b259ad034c9faea",
+  "kind": "V64_RCSB_500_POSTSEAL_HOLDOUT_v0",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1A41",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1A41/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V64_1A41_1_RCSB_DATA_API_POSTSEAL",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "postseal sequence-field membrane density is high"
+  ],
+  "protein_id": "1A41_1",
+  "release_date": "1999-06-01T00:00:00.000+00:00",
+  "target_id": "V64_1A41_1"
+}

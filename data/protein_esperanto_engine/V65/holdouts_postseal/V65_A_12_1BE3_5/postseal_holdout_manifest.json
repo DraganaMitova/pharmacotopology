@@ -1,0 +1,34 @@
+{
+  "batch_id": "V65_MEMBRANE_TOPOLOGY_ESPERANTO_PANEL",
+  "entity_id": "5",
+  "entry_id": "1BE3",
+  "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "expected_observables": [
+    {
+      "check_id": "proteostasis_routing_supported",
+      "comparator": ">=",
+      "metric": "proteostasis_routing",
+      "threshold": 0.5
+    }
+  ],
+  "holdout_opened_after_prediction_hash": "82a574d44df7a2ed480dcccff5c9e0a98f6c341a21eda0d888dad43e3f685fbd",
+  "kind": "V65_MEMBRANE_TOPOLOGY_POSTSEAL_HOLDOUT_v0",
+  "panel_group": "A_TRUE_TRANSMEMBRANE_TOPOLOGY",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1BE3",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1BE3/5",
+      "source_class": "coordinate_derived",
+      "source_id": "V65_A_12_1BE3_5_V65_PANEL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "explicit topology evidence -> membrane grammar",
+    "true membrane topology should not be hidden by cofactor/oligomer context"
+  ],
+  "protein_id": "1BE3_5",
+  "target_id": "V65_A_12_1BE3_5"
+}
