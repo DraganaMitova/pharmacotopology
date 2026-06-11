@@ -1,0 +1,9 @@
+{
+  "claim_allowed": false,
+  "decision_status": "V35_CLEAN_ABSTAIN_NO_NONCOORDINATE_EXTERNAL_EVIDENCE",
+  "folding_problem_solved": false,
+  "kind": "V35_NONCOORDINATE_EVOLUTIONARY_HOLDOUT_NEXT_DECISION_v0",
+  "new_MD_allowed": false,
+  "next_action": "acquire_real_noncoordinate_external_evolutionary_source_before_any_claim_or_MD",
+  "source_status": "V35_CLEAN_ABSTAIN_NO_NONCOORDINATE_EXTERNAL_EVIDENCE"
+}

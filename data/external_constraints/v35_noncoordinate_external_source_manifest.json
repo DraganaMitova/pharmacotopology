@@ -1,0 +1,10 @@
+{
+  "claim_allowed": false,
+  "instructions": [
+    "V35 accepts only real local external non-coordinate evolutionary evidence with stable provenance.",
+    "No V35 evidence rows have been acquired locally yet, so the correct default outcome is a clean abstain.",
+    "Do not add PDB/native-coordinate-derived contacts, internal runtime reports, annotation-only claims, or generated summaries as V35 evidence."
+  ],
+  "kind": "V35_NONCOORDINATE_EXTERNAL_SOURCE_MANIFEST_v0",
+  "rows": []
+}
