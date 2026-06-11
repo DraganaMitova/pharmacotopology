@@ -70,6 +70,27 @@ def main() -> None:
                     "mean_frequency",
                     "chemical_score",
                     "dca_score",
+                    "tail_frequency_min",
+                    "tail_frequency_max",
+                    "tail_presence_count_at_0_50",
+                    "separation_filter_applied",
+                    "fixed_residue_cutoff_used",
+                ]:
+                    print(f"      {role_key}:", role.get(role_key))
+        monitors = row.get("monitor_only_interdomain_closure_candidates") or {}
+        if monitors:
+            print("  monitor_only_interdomain_closure_candidates:")
+            for pair, role in sorted(monitors.items()):
+                print(f"    {pair}:")
+                for role_key in [
+                    "domain_relation",
+                    "role_decision",
+                    "monitor_status",
+                    "tail_frequency_mean",
+                    "tail_frequency_min",
+                    "tail_frequency_max",
+                    "chemical_score",
+                    "dca_score",
                     "separation_filter_applied",
                     "fixed_residue_cutoff_used",
                 ]:

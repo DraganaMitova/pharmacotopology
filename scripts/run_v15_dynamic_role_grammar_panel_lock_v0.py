@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
-"""Lock the V15 partial dynamic role grammar panel as a milestone.
+"""Lock the V15 dynamic role grammar panel as a milestone.
 
-This is postprocess-only. It freezes the V15 readout as a claim-disabled
-milestone before any 4AKE bridge work is attempted.
+This is postprocess-only. It can lock either the earlier partial panel or the
+three-protein panel after 4AKE has a machine-readable role artifact.  In all
+cases the lock remains claim-disabled.
 """
 
 import argparse
@@ -31,7 +32,7 @@ def _write_report(path: Path, cert: dict[str, Any]) -> None:
     lines = [
         "# V15 Dynamic Role Grammar Panel Locked",
         "",
-        "This milestone is claim-disabled. It freezes the partial dynamic grammar panel before any 4AKE bridge work.",
+        "This milestone is claim-disabled. It freezes the current dynamic grammar panel without claiming universal protein folding.",
         "",
         f"Lock status: `{cert['lock_status']}`",
         f"Source global status: `{cert['source_global_status']}`",
@@ -39,7 +40,7 @@ def _write_report(path: Path, cert: dict[str, Any]) -> None:
         "",
         "## Locked interpretation",
         "",
-        "V15 removed fixed sequence separation as a decision rule. Protein evidence is assigned by dynamic role context, not residue-distance cutoff.",
+        str(cert.get("locked_interpretation")),
         "",
         "## Locked rows",
     ]
@@ -74,9 +75,29 @@ def main() -> None:
         "1ubq_positive": "1UBQ" in positive,
         "1cll_positive": "1CLL" in positive,
         "4ake_not_required_for_lock": True,
+        "4ake_positive_when_present": ("4AKE" in positive) or ("4AKE" in missing) or bool(checks.get("bridge_pending_artifacts")),
     }
     failed = [name for name, ok in lock_checks.items() if not ok]
-    lock_status = "V15_DYNAMIC_ROLE_GRAMMAR_PANEL_LOCKED" if not failed else "V15_DYNAMIC_ROLE_GRAMMAR_PANEL_LOCK_BLOCKED"
+    all_three_positive = all(name in positive for name in ["4AKE", "1UBQ", "1CLL"]) and not missing
+    lock_status = (
+        "V15_THREE_PROTEIN_DYNAMIC_GRAMMAR_PANEL_LOCKED"
+        if all_three_positive and not failed
+        else "V15_DYNAMIC_ROLE_GRAMMAR_PANEL_LOCKED"
+        if not failed
+        else "V15_DYNAMIC_ROLE_GRAMMAR_PANEL_LOCK_BLOCKED"
+    )
+    locked_claim = (
+        "unified_role_aware_evidence_grammar_three_protein_panel_locked_not_folding_solved"
+        if all_three_positive
+        else "unified_role_aware_evidence_grammar_partial_panel_locked_not_folding_solved"
+    )
+    locked_interpretation = (
+        "V15 demonstrates a unified, dynamic, role-aware evidence grammar across three protein object types: "
+        "single-domain compact, multi-domain composite, and domain-hinge closure. It does not claim universal protein folding, "
+        "does not claim full hinge/closure recovery for 4AKE or 1CLL, does not use a fixed residue-distance cutoff, and keeps claim_allowed=false."
+        if all_three_positive
+        else "V15 successfully removed fixed sequence-separation cutoff as a decision rule. Protein evidence is assigned by dynamic role context, not residue-distance cutoff. 4AKE machine-readable bridge remains pending or claim-disabled."
+    )
 
     cert = {
         "kind": "V15_DYNAMIC_ROLE_GRAMMAR_PANEL_LOCKED_v0",
@@ -87,12 +108,8 @@ def main() -> None:
         "source_global_status": source.get("global_status"),
         "claim_allowed": False,
         "biological_transfer_claim_allowed": False,
-        "locked_claim": "unified_role_aware_evidence_grammar_partial_panel_locked_not_folding_solved",
-        "locked_interpretation": (
-            "V15 successfully removed fixed sequence-separation cutoff as a decision rule. "
-            "Protein evidence is assigned by dynamic role context, not residue-distance cutoff. "
-            "4AKE machine-readable bridge remains pending."
-        ),
+        "locked_claim": locked_claim,
+        "locked_interpretation": locked_interpretation,
         "lock_checks": lock_checks,
         "positive_evidence_proteins": positive,
         "missing_artifacts": missing,

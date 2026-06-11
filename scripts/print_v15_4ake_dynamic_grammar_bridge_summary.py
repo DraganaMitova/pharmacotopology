@@ -25,6 +25,42 @@ def main() -> None:
     print("claim_lock_failed_checks:", row.get("claim_lock_failed_checks"))
     print("final_status:", row.get("final_status"))
     print("claim_allowed:", row.get("claim_allowed"))
+    roles = row.get("dynamic_pair_roles") or {}
+    if roles:
+        print("dynamic_pair_roles:")
+        for pair, role in sorted(roles.items()):
+            print(f"  {pair}:")
+            for key in [
+                "sequence_separation",
+                "normalized_sequence_separation",
+                "domain_relation",
+                "role_decision",
+                "evidence_class",
+                "support",
+                "mean_frequency",
+                "chemical_score",
+                "dca_score",
+                "tail_frequency_min",
+                "tail_frequency_max",
+                "tail_presence_count_at_0_50",
+                "fixed_residue_cutoff_used",
+            ]:
+                print(f"    {key}:", role.get(key))
+    monitors = row.get("monitor_only_interdomain_closure_candidates") or {}
+    if monitors:
+        print("monitor_only_interdomain_closure_candidates:")
+        for pair, role in sorted(monitors.items()):
+            print(f"  {pair}:")
+            for key in [
+                "domain_relation",
+                "role_decision",
+                "monitor_status",
+                "tail_frequency_mean",
+                "chemical_score",
+                "dca_score",
+                "fixed_residue_cutoff_used",
+            ]:
+                print(f"    {key}:", role.get(key))
     print("legacy_visual_files_count:", len(row.get("legacy_visual_files") or []))
     print("legacy_global_certificates_present:", row.get("legacy_global_certificates_present"))
     print("input_material_present:", row.get("input_material_present"))

@@ -77,20 +77,38 @@ def _pairs_to_keys(value: Any) -> list[str]:
 
 
 def _normalize_role_cert(path: Path, payload: dict[str, Any]) -> dict[str, Any]:
-    """Best-effort normalizer for a future/restored 4AKE machine-readable artifact."""
+    """Normalize a machine-readable 4AKE role artifact without inventing evidence.
+
+    V17 introduced a richer balanced-candidate readout.  This bridge now
+    preserves its selected-pair details and near-miss monitor candidates instead
+    of flattening 4AKE to a generic selected-pair list.
+    """
     selected_strict = _pairs_to_keys(payload.get("selected_strict_scaffold") or [])
     selected_balanced = _pairs_to_keys(payload.get("selected_balanced_core") or [])
     selected_rescue = _pairs_to_keys(payload.get("selected_border_rescue") or [])
     selected_hinge = _pairs_to_keys(payload.get("selected_hinge_or_interdomain") or payload.get("selected_interdomain_hinge") or [])
     selected_local = _pairs_to_keys(payload.get("selected_local_support") or [])
     runtime_pairs = _pairs_to_keys(payload.get("runtime_v10_selected_pairs") or [])
+    explicit_selected = _pairs_to_keys(payload.get("selected_pairs") or [])
 
-    selected_pairs = sorted(set(selected_strict + selected_balanced + selected_rescue + selected_hinge + selected_local + runtime_pairs))
+    selected_pairs = sorted(set(selected_strict + selected_balanced + selected_rescue + selected_hinge + selected_local + runtime_pairs + explicit_selected))
     positive = bool(selected_pairs)
+
+    support_by_pair = payload.get("support_by_selected_pair") if isinstance(payload.get("support_by_selected_pair"), dict) else {}
+    mean_frequency_by_pair = payload.get("mean_frequency_by_selected_pair") if isinstance(payload.get("mean_frequency_by_selected_pair"), dict) else {}
+    chemical_by_pair = payload.get("chemical_score_by_selected_pair") if isinstance(payload.get("chemical_score_by_selected_pair"), dict) else {}
+    dca_by_pair = payload.get("dca_score_by_selected_pair") if isinstance(payload.get("dca_score_by_selected_pair"), dict) else {}
+    source_roles = payload.get("dynamic_pair_roles") if isinstance(payload.get("dynamic_pair_roles"), dict) else {}
+    candidate_roles = payload.get("candidate_pair_roles") if isinstance(payload.get("candidate_pair_roles"), dict) else {}
 
     dynamic_pair_roles: dict[str, dict[str, Any]] = {}
     for pair in selected_pairs:
-        if pair in selected_strict:
+        source_role = source_roles.get(pair) if isinstance(source_roles.get(pair), dict) else {}
+        candidate_role = candidate_roles.get(pair) if isinstance(candidate_roles.get(pair), dict) else {}
+        if source_role:
+            role = str(source_role.get("role_decision") or "balanced_domain_hinge_core_candidate")
+            evidence = str(source_role.get("evidence_class") or "domain_hinge_balanced_core_evidence")
+        elif pair in selected_strict:
             role = "strict_scaffold"
             evidence = "domain_hinge_strict_scaffold_evidence"
         elif pair in selected_hinge:
@@ -99,20 +117,54 @@ def _normalize_role_cert(path: Path, payload: dict[str, Any]) -> dict[str, Any]:
         elif pair in selected_rescue:
             role = "border_rescue_or_closure_support"
             evidence = "domain_hinge_rescue_evidence"
-        elif pair in selected_balanced:
-            role = "balanced_domain_hinge_core_candidate"
-            evidence = "domain_hinge_balanced_core_evidence"
+        elif pair in selected_balanced or pair in explicit_selected:
+            role = str(candidate_role.get("role_decision") or "balanced_domain_hinge_core_candidate")
+            evidence = str(candidate_role.get("evidence_class") or "domain_hinge_balanced_core_evidence")
         elif pair in selected_local:
             role = "local_support"
             evidence = "local_support"
         else:
             role = "runtime_role_aware_selected_pair"
             evidence = "role_aware_runtime_evidence"
+
         dynamic_pair_roles[pair] = {
-            "domain_relation": "domain_hinge_context",
+            "sequence_separation": source_role.get("sequence_separation", candidate_role.get("sequence_separation")),
+            "normalized_sequence_separation": source_role.get("normalized_sequence_separation", candidate_role.get("normalized_sequence_separation")),
+            "domain_relation": source_role.get("domain_relation", candidate_role.get("domain_relation", "domain_hinge_context")),
             "role_decision": role,
             "evidence_class": evidence,
             "selected": True,
+            "support": support_by_pair.get(pair),
+            "mean_frequency": mean_frequency_by_pair.get(pair),
+            "chemical_score": chemical_by_pair.get(pair, candidate_role.get("chemical_score")),
+            "dca_score": dca_by_pair.get(pair, candidate_role.get("dca_score")),
+            "tail_frequency_min": source_role.get("tail_frequency_min", candidate_role.get("tail_frequency_min")),
+            "tail_frequency_max": source_role.get("tail_frequency_max", candidate_role.get("tail_frequency_max")),
+            "tail_presence_count_at_0_50": source_role.get("tail_presence_count_at_0_50", candidate_role.get("tail_presence_count_at_0_50")),
+            "separation_filter_applied": False,
+            "fixed_residue_cutoff_used": False,
+        }
+
+    # Preserve interdomain closure near-misses as monitor-only candidates.
+    monitor_candidates: dict[str, dict[str, Any]] = {}
+    for pair, details in candidate_roles.items():
+        if not isinstance(details, dict) or pair in selected_pairs:
+            continue
+        role = str(details.get("role_decision", ""))
+        if "interdomain" not in role:
+            continue
+        monitor_candidates[pair] = {
+            "domain_relation": details.get("domain_relation"),
+            "role_decision": role,
+            "evidence_class": details.get("evidence_class"),
+            "selected": False,
+            "monitor_status": "monitor_only_interdomain_closure_candidate",
+            "tail_frequency_mean": details.get("tail_frequency_mean"),
+            "tail_frequency_min": details.get("tail_frequency_min"),
+            "tail_frequency_max": details.get("tail_frequency_max"),
+            "tail_presence_count_at_0_50": details.get("tail_presence_count_at_0_50"),
+            "chemical_score": details.get("chemical_score"),
+            "dca_score": details.get("dca_score"),
             "separation_filter_applied": False,
             "fixed_residue_cutoff_used": False,
         }
@@ -129,12 +181,16 @@ def _normalize_role_cert(path: Path, payload: dict[str, Any]) -> dict[str, Any]:
         "fixed_residue_cutoff_used": False,
         "selected_pairs": selected_pairs,
         "selected_strict_scaffold": selected_strict,
-        "selected_balanced_core": selected_balanced,
+        "selected_balanced_core": selected_balanced or explicit_selected,
         "selected_hinge_or_interdomain": selected_hinge,
         "selected_border_rescue": selected_rescue,
         "selected_local_support": selected_local,
+        "monitor_only_interdomain_closure_candidates": monitor_candidates,
         "dynamic_pair_roles": dynamic_pair_roles,
-        "replica_support": payload.get("support_by_selected_pair") or payload.get("lane_vote_support") or {},
+        "replica_support": support_by_pair or payload.get("lane_vote_support") or {},
+        "mean_frequency_by_selected_pair": mean_frequency_by_pair,
+        "chemical_score_by_selected_pair": chemical_by_pair,
+        "dca_score_by_selected_pair": dca_by_pair,
         "noise_added": payload.get("noise_added"),
         "long_range_evidence_polluted": payload.get("long_range_evidence_polluted"),
         "classification_coverage_ratio": payload.get("classification_coverage_ratio"),

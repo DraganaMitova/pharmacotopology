@@ -61,3 +61,57 @@ def test_v15_global_status_tracks_4ake_bridge_pending() -> None:
         normalize_1cll_dynamic({"selected_frequency_band": {"selected_pair_count": 1, "selected_C_domain_core": [[97, 133]]}}),
     ]
     assert _global_status(rows) == "dynamic_separation_grammar_positive_on_1UBQ_1CLL_4AKE_bridge_pending_claim_disabled"
+
+
+def test_4ake_bridge_preserves_balanced_candidate_details(tmp_path: Path) -> None:
+    role_cert = tmp_path / "balanced.json"
+    role_cert.write_text(
+        '{'
+        '"selected_pairs": ["124-135"],'
+        '"selected_balanced_core": [[124, 135]],'
+        '"support_by_selected_pair": {"124-135": 7},'
+        '"mean_frequency_by_selected_pair": {"124-135": 0.768},'
+        '"chemical_score_by_selected_pair": {"124-135": 0.1},'
+        '"dca_score_by_selected_pair": {"124-135": 0.866565},'
+        '"dynamic_pair_roles": {'
+        '  "124-135": {'
+        '    "sequence_separation": 11,'
+        '    "normalized_sequence_separation": 0.051643,'
+        '    "domain_relation": "intradomain_D4",'
+        '    "role_decision": "D4_domain_compact_core_candidate",'
+        '    "evidence_class": "domain_core_evidence",'
+        '    "tail_frequency_min": 0.74,'
+        '    "tail_frequency_max": 0.8,'
+        '    "tail_presence_count_at_0_50": 10'
+        '  }'
+        '},'
+        '"candidate_pair_roles": {'
+        '  "113-136": {'
+        '    "domain_relation": "interdomain_D3_D4",'
+        '    "role_decision": "domain_hinge_or_interdomain_closure_candidate",'
+        '    "evidence_class": "domain_hinge_or_interdomain_evidence",'
+        '    "tail_frequency_mean": 0.746,'
+        '    "chemical_score": 0.9,'
+        '    "dca_score": 0.738199'
+        '  }'
+        '},'
+        '"noise_added": 0,'
+        '"long_range_evidence_polluted": false,'
+        '"classification_coverage_ratio": 1.0'
+        '}'
+    )
+    bridge = build_bridge(
+        role_cert_paths=[role_cert],
+        legacy_visual_dir=tmp_path / "none",
+        legacy_cert_paths=[],
+        input_material_paths=[],
+    )
+    row = bridge["protein_row"]
+    assert row["selected_pairs"] == ["124-135"]
+    assert row["replica_support"] == {"124-135": 7}
+    role = row["dynamic_pair_roles"]["124-135"]
+    assert role["mean_frequency"] == 0.768
+    assert role["chemical_score"] == 0.1
+    assert role["dca_score"] == 0.866565
+    assert role["domain_relation"] == "intradomain_D4"
+    assert row["monitor_only_interdomain_closure_candidates"]["113-136"]["monitor_status"] == "monitor_only_interdomain_closure_candidate"
