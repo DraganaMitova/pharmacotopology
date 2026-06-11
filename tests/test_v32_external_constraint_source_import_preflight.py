@@ -165,3 +165,32 @@ def test_v32_writes_template_and_outputs(tmp_path: Path) -> None:
     assert len(template["rows"]) >= 4
     written = json.loads(paths["certificate"].read_text())
     assert written["artifacts"]["decision"] == str(paths["decision"])
+
+
+def test_v32_kcsa_interface_only_does_not_satisfy_pore_bucket(tmp_path: Path) -> None:
+    mod = _load_module()
+    mod.REPO_ROOT = tmp_path
+    f1 = tmp_path / "data" / "external_constraints" / "KcsA" / "assembly_interface" / "kcsa_interface_only.csv"
+    f1.parent.mkdir(parents=True, exist_ok=True)
+    f1.write_text("constraint_id,chain_a,residue_i,chain_b,residue_j,min_distance_angstrom,constraint_class\nI1,A,10,B,10,3.7,assembly_interface_heavy_atom_contact\n", encoding="utf-8")
+    manifest = {
+        "manifest_present": True,
+        "rows": [
+            {
+                "target": "KcsA",
+                "file_path": "data/external_constraints/KcsA/assembly_interface/kcsa_interface_only.csv",
+                "evidence_type": "assembly_interface_constraint",
+                "state_or_context": "tetramer_chain_interface_context_external_coordinate_contact",
+                "source_name": "unit_test_external_source",
+                "source_url_or_citation": "unit-test-citation",
+                "source_date_or_version": "test",
+            }
+        ],
+    }
+    cert = mod.build_v32(_v31_clean_abstain(), manifest)
+    assert cert["preflight_status"] == "V32_CLEAN_ABSTAIN_REAL_EXTERNAL_CONSTRAINT_IMPORT_REQUIRED"
+    assert cert["selected_V33_target"] is None
+    krow = next(row for row in cert["target_rows"] if row["target"] == "KcsA")
+    assert krow["target_ready_for_V33"] is False
+    assert "pore_filter_or_external_coupling_constraint" in krow["missing_for_V33"]
+    assert "assembly_or_chain_interface_constraint" not in krow["missing_for_V33"]

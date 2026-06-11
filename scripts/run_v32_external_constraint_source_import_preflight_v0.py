@@ -140,9 +140,20 @@ def _target_import_status(target: str, valid_real: list[dict[str, Any]], role_co
         ready = not missing
         return ("target_ready_for_V33_constraint_backed_readout" if ready else "partial_or_missing_state_specific_external_constraints"), ready, missing
     if target == "KcsA":
-        contexts = " ".join((str(row.get("state_or_context", "")) + " " + str(row.get("evidence_type", ""))).lower() for row in valid_real)
-        has_filter_or_coupling = any(token in contexts for token in ["pore", "filter", "tvgyg", "selectivity", "coupling", "contact"])
-        has_interface_or_assembly = any(token in contexts for token in ["interface", "assembly", "tetramer", "chain"])
+        def row_text(row: dict[str, Any]) -> str:
+            return (str(row.get("state_or_context", "")) + " " + str(row.get("evidence_type", ""))).lower()
+
+        # KcsA requires two separate operator buckets. Do not let a generic
+        # coordinate/contact word inside an assembly row satisfy the pore/filter
+        # bucket; that would promote interface-only evidence into a pore claim.
+        has_filter_or_coupling = any(
+            any(token in row_text(row) for token in ["pore", "filter", "tvgyg", "selectivity", "coupling"])
+            for row in valid_real
+        )
+        has_interface_or_assembly = any(
+            any(token in row_text(row) for token in ["interface", "assembly", "tetramer", "chain"])
+            for row in valid_real
+        )
         if not has_filter_or_coupling:
             missing.append("pore_filter_or_external_coupling_constraint")
         if not has_interface_or_assembly:
