@@ -1,0 +1,382 @@
+{
+  "answer_key_available": false,
+  "coordinates_available_before_sealing": false,
+  "holdout_sources_available": false,
+  "kind": "V47_RFAH_CTD_PREDICTION_INPUTS_MANIFEST_v0",
+  "prediction_sources": [
+    {
+      "accession": "P0AFW0",
+      "allowed_use": "prediction_input_before_sealing",
+      "answer_key_source": false,
+      "coordinate_derived": false,
+      "coordinate_truth_used_before_prediction": false,
+      "features_excluded_before_prediction": [
+        "UniProt PDB cross-references",
+        "UniProt secondary-structure features with PDB evidence",
+        "PDB/mmCIF coordinate files",
+        "coordinate-derived contacts",
+        "native contact maps",
+        "AlphaFoldDB coordinates"
+      ],
+      "holdout_source": false,
+      "internal_runtime_source": false,
+      "native_metrics_used_for_selection": false,
+      "noncoordinate_annotations_used": [
+        "RfaH is a transcription antitermination protein recruited to RNAP complexes by the ops element.",
+        "RfaH suppresses pausing and termination in specialized long operons.",
+        "RfaH interacts with nontemplate DNA and RNAP.",
+        "UniProt GO records include translation activator activity and positive regulation of translation.",
+        "The N-terminal domain cavity is described as buried by the C-terminal domain and unmasked in activation context."
+      ],
+      "retrieved_or_checked": "2026-06-11",
+      "sequence_region_scope": {
+        "ctd_end": 162,
+        "ctd_sequence": "PKDIVDPATPYPGDKVIITEGAFEGFQAIFTEPDGEARSMLLLNLINKEIKHSVKNTEFRKL",
+        "ctd_start": 101,
+        "full_length": 162,
+        "full_sequence": "MQSWYLLYCKRGQLQRAQEHLERQAVNCLAPMITLEKIVRGKRTAVSEPLFPNYLFVEFDPEVIHTTTINATRGVSHFVRFGASPAIVPSAVIHQLSVYKPKDIVDPATPYPGDKVIITEGAFEGFQAIFTEPDGEARSMLLLNLINKEIKHSVKNTEFRKL",
+        "protein": "Escherichia coli K-12 transcription antitermination protein RfaH"
+      },
+      "source_id": "UNIPROT_P0AFW0_SEQUENCE_FUNCTION_NONCOORDINATE",
+      "source_type": "UniProtKB reviewed sequence, function, interaction, and GO annotation with coordinate records excluded",
+      "source_url_or_citation": "https://rest.uniprot.org/uniprotkb/P0AFW0.json",
+      "uniprot_id": "RFAH_ECOLI"
+    },
+    {
+      "allowed_use": "prediction_input_before_sealing",
+      "answer_key_source": false,
+      "coordinate_derived": false,
+      "coordinate_material_blocked": [
+        "PDB IDs and atomic coordinates from the paper are not opened before sealing",
+        "no native contacts or coordinate-derived distances are imported",
+        "state labels are used as mechanism annotations, not as coordinate truth"
+      ],
+      "coordinate_truth_used_before_prediction": false,
+      "holdout_source": false,
+      "internal_runtime_source": false,
+      "native_metrics_used_for_selection": false,
+      "source_id": "RFAH_CTD_ALPHA_BETA_SWITCH_CELL_2012_NONCOORDINATE",
+      "source_type": "literature-derived state/function labels with structural coordinates excluded",
+      "source_url_or_citation": "Burmann et al. Cell 2012, PMID 22817892, PMCID PMC3430373, DOI 10.1016/j.cell.2012.05.042",
+      "state_labels_used": [
+        "RfaH-CTD alpha-helical hairpin state",
+        "RfaH-CTD beta-barrel or beta-roll state",
+        "transcription-factor state",
+        "translation-factor state",
+        "context-dependent refolding"
+      ]
+    },
+    {
+      "allowed_use": "prediction_input_before_sealing",
+      "answer_key_source": false,
+      "context_labels_used": [
+        "NTD-bound autoinhibition",
+        "CTD release",
+        "NTD active role in fold switching",
+        "partner/context-dependent refolding"
+      ],
+      "coordinate_derived": false,
+      "coordinate_material_blocked": [
+        "molecular models, PDB structures, and transition coordinates are excluded before sealing",
+        "only text-level mechanism labels are available to prediction"
+      ],
+      "coordinate_truth_used_before_prediction": false,
+      "holdout_source": false,
+      "internal_runtime_source": false,
+      "native_metrics_used_for_selection": false,
+      "source_id": "RFAH_NTD_PARTNER_CONTEXT_FOLD_SWITCH_2021_NONCOORDINATE",
+      "source_type": "literature-derived NTD/partner-context mechanism annotation without coordinates",
+      "source_url_or_citation": "Galaz-Davison et al. PLoS Comput Biol 2021, PMID 34478435, PMCID PMC8454952, DOI 10.1371/journal.pcbi.1008882"
+    },
+    {
+      "allowed_use": "prediction_input_before_sealing",
+      "answer_key_source": false,
+      "composition": {
+        "ctd_101_162": {
+          "aromatic_positions": [
+            {
+              "position": 111,
+              "residue": "Y"
+            },
+            {
+              "position": 123,
+              "residue": "F"
+            },
+            {
+              "position": 126,
+              "residue": "F"
+            },
+            {
+              "position": 130,
+              "residue": "F"
+            },
+            {
+              "position": 159,
+              "residue": "F"
+            }
+          ],
+          "charged_fraction": 0.3064516129032258,
+          "counts": {
+            "A": 4,
+            "D": 4,
+            "E": 6,
+            "F": 4,
+            "G": 4,
+            "H": 1,
+            "I": 6,
+            "K": 6,
+            "L": 5,
+            "M": 1,
+            "N": 3,
+            "P": 5,
+            "Q": 1,
+            "R": 2,
+            "S": 2,
+            "T": 4,
+            "V": 3,
+            "Y": 1
+          },
+          "glycine_positions": [
+            {
+              "position": 113,
+              "residue": "G"
+            },
+            {
+              "position": 121,
+              "residue": "G"
+            },
+            {
+              "position": 125,
+              "residue": "G"
+            },
+            {
+              "position": 135,
+              "residue": "G"
+            }
+          ],
+          "hydrophobic_fraction": 0.3870967741935484,
+          "length": 62,
+          "polar_fraction": 0.16129032258064516,
+          "proline_positions": [
+            {
+              "position": 101,
+              "residue": "P"
+            },
+            {
+              "position": 107,
+              "residue": "P"
+            },
+            {
+              "position": 110,
+              "residue": "P"
+            },
+            {
+              "position": 112,
+              "residue": "P"
+            },
+            {
+              "position": 133,
+              "residue": "P"
+            }
+          ]
+        },
+        "full_length": {
+          "aromatic_positions": [
+            {
+              "position": 4,
+              "residue": "W"
+            },
+            {
+              "position": 5,
+              "residue": "Y"
+            },
+            {
+              "position": 8,
+              "residue": "Y"
+            },
+            {
+              "position": 51,
+              "residue": "F"
+            },
+            {
+              "position": 54,
+              "residue": "Y"
+            },
+            {
+              "position": 56,
+              "residue": "F"
+            },
+            {
+              "position": 59,
+              "residue": "F"
+            },
+            {
+              "position": 78,
+              "residue": "F"
+            },
+            {
+              "position": 81,
+              "residue": "F"
+            },
+            {
+              "position": 99,
+              "residue": "Y"
+            },
+            {
+              "position": 111,
+              "residue": "Y"
+            },
+            {
+              "position": 123,
+              "residue": "F"
+            },
+            {
+              "position": 126,
+              "residue": "F"
+            },
+            {
+              "position": 130,
+              "residue": "F"
+            },
+            {
+              "position": 159,
+              "residue": "F"
+            }
+          ],
+          "charged_fraction": 0.25308641975308643,
+          "counts": {
+            "A": 12,
+            "C": 2,
+            "D": 5,
+            "E": 12,
+            "F": 9,
+            "G": 8,
+            "H": 5,
+            "I": 12,
+            "K": 10,
+            "L": 14,
+            "M": 3,
+            "N": 6,
+            "P": 11,
+            "Q": 7,
+            "R": 9,
+            "S": 8,
+            "T": 10,
+            "V": 13,
+            "W": 1,
+            "Y": 5
+          },
+          "glycine_positions": [
+            {
+              "position": 12,
+              "residue": "G"
+            },
+            {
+              "position": 41,
+              "residue": "G"
+            },
+            {
+              "position": 74,
+              "residue": "G"
+            },
+            {
+              "position": 82,
+              "residue": "G"
+            },
+            {
+              "position": 113,
+              "residue": "G"
+            },
+            {
+              "position": 121,
+              "residue": "G"
+            },
+            {
+              "position": 125,
+              "residue": "G"
+            },
+            {
+              "position": 135,
+              "residue": "G"
+            }
+          ],
+          "hydrophobic_fraction": 0.42592592592592593,
+          "length": 162,
+          "polar_fraction": 0.19135802469135801,
+          "proline_positions": [
+            {
+              "position": 31,
+              "residue": "P"
+            },
+            {
+              "position": 49,
+              "residue": "P"
+            },
+            {
+              "position": 52,
+              "residue": "P"
+            },
+            {
+              "position": 61,
+              "residue": "P"
+            },
+            {
+              "position": 85,
+              "residue": "P"
+            },
+            {
+              "position": 89,
+              "residue": "P"
+            },
+            {
+              "position": 101,
+              "residue": "P"
+            },
+            {
+              "position": 107,
+              "residue": "P"
+            },
+            {
+              "position": 110,
+              "residue": "P"
+            },
+            {
+              "position": 112,
+              "residue": "P"
+            },
+            {
+              "position": 133,
+              "residue": "P"
+            }
+          ]
+        }
+      },
+      "coordinate_derived": false,
+      "coordinate_truth_used_before_prediction": false,
+      "derived_from_source_ids": [
+        "UNIPROT_P0AFW0_SEQUENCE_FUNCTION_NONCOORDINATE"
+      ],
+      "domain_architecture": [
+        {
+          "annotation_basis": "UniProt sequence/function/domain text; no coordinate records used",
+          "domain": "RfaH_NTD_NGN_like_transcription_domain",
+          "end": 100,
+          "start": 1
+        },
+        {
+          "annotation_basis": "RfaH fold-switch literature state labels; no PDB/mmCIF coordinates used",
+          "domain": "RfaH_CTD_metamorphic_fold_switch_domain",
+          "end": 162,
+          "start": 101
+        }
+      ],
+      "holdout_source": false,
+      "internal_runtime_source": false,
+      "native_metrics_used_for_selection": false,
+      "source_id": "RFAH_CTD_SEQUENCE_PATTERN_FEATURES_DERIVED_FROM_ALLOWED_INPUTS",
+      "source_type": "derived non-coordinate CTD sequence and domain-scope features",
+      "source_url_or_citation": "derived from UniProt P0AFW0 sequence residues 101-162"
+    }
+  ],
+  "target_id": "V47_RFAH_CTD"
+}

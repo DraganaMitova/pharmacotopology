@@ -1,0 +1,7 @@
+{
+  "decision_status": "V47_RFAH_CTD_METAMORPHIC_FOLD_SWITCH_PASSED_REVIEW_REQUIRED",
+  "folding_problem_solved": false,
+  "kind": "V47_RFAH_CTD_METAMORPHIC_NEXT_DECISION_v0",
+  "live_fold_switch_solution_packet": true,
+  "next_action": "external review and direct RfaH-CTD alpha/beta switch perturbation tests before committing V47 or strengthening beyond live fold-switch packet wording"
+}

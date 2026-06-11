@@ -1,0 +1,53 @@
+{
+  "sources": [
+    {
+      "allowed_use": "postseal_holdout_validation_only",
+      "coordinate_derived": false,
+      "holdout_source": true,
+      "internal_runtime_source": false,
+      "notes": [
+        "RfaH-CTD is described as switching from an alpha-helical hairpin to a beta-barrel-like translation-factor state.",
+        "The holdout is opened only after the sealed packet hash exists."
+      ],
+      "source_id": "RFAH_ALPHA_BETA_SWITCH_CELL_2012_HOLDOUT",
+      "source_type": "post-seal alpha/beta fold-switch literature holdout",
+      "source_url_or_citation": "https://europepmc.org/article/MED/22817892"
+    },
+    {
+      "allowed_use": "postseal_holdout_validation_only",
+      "coordinate_derived": false,
+      "holdout_source": true,
+      "internal_runtime_source": false,
+      "notes": [
+        "The N-terminal domain is treated as an active contributor to the RfaH fold-switch mechanism."
+      ],
+      "source_id": "RFAH_NTD_ACTIVE_ROLE_2021_HOLDOUT",
+      "source_type": "post-seal NTD/context fold-switch mechanism holdout",
+      "source_url_or_citation": "https://europepmc.org/article/MED/34478435"
+    },
+    {
+      "allowed_use": "postseal_holdout_validation_only",
+      "coordinate_derived": false,
+      "holdout_source": true,
+      "internal_runtime_source": false,
+      "notes": [
+        "Recent work still tests interdomain residues controlling the RfaH fold switch."
+      ],
+      "source_id": "RFAH_INTERDOMAIN_RESIDUES_2025_HOLDOUT",
+      "source_type": "post-seal interdomain residue and transition-mechanism holdout",
+      "source_url_or_citation": "https://europepmc.org/article/MED/40522227"
+    },
+    {
+      "allowed_use": "postseal_holdout_validation_only",
+      "coordinate_derived": false,
+      "holdout_source": true,
+      "internal_runtime_source": false,
+      "notes": [
+        "RfaH is linked to transcription antitermination and translation activation/coupling contexts."
+      ],
+      "source_id": "RFAH_TRANSCRIPTION_TRANSLATION_COUPLING_HOLDOUT",
+      "source_type": "post-seal functional context holdout",
+      "source_url_or_citation": "UniProt P0AFW0 GO/function evidence including PMID 22817892 and transcription/translation coupling reviews"
+    }
+  ]
+}

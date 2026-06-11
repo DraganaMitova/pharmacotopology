@@ -1,0 +1,30 @@
+{
+  "coordinate_derived": false,
+  "evidence_statement": "Released RfaH-CTD supports a beta-state translation-coupling grammar.",
+  "internal_runtime_source": false,
+  "opened_after_prediction_hash": "6eff0e1f283a2964b8278cd36b7306707a572aec1001f94223b8ef7ae989d72b",
+  "opened_timestamp": "2026-06-11T17:31:43.740267+00:00",
+  "source_class": "beta_state_translation_support",
+  "source_id": "HOLDOUT_RFAH_BETA_STATE_TRANSLATION_CONTEXT",
+  "source_url_or_citation": "https://europepmc.org/article/MED/22817892",
+  "supports_operator_buckets": [
+    "beta_barrel_or_beta_roll_state_operator",
+    "CTD_release_switch_operator",
+    "translation_coupling_context_operator"
+  ],
+  "supports_partner_context_ids": [
+    "V47_PERT_002",
+    "V47_PERT_011"
+  ],
+  "supports_perturbation_ids": [
+    "V47_PERT_002",
+    "V47_PERT_004",
+    "V47_PERT_011"
+  ],
+  "supports_state_separation_ids": [
+    "V47_PERT_002",
+    "V47_PERT_003",
+    "V47_PERT_004"
+  ],
+  "used_before_prediction": false
+}

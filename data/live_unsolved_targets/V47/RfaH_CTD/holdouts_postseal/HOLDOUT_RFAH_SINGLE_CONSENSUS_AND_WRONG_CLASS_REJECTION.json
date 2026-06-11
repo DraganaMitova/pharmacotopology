@@ -1,0 +1,24 @@
+{
+  "coordinate_derived": false,
+  "evidence_statement": "RfaH-CTD should reject single-consensus-fold, generic two-state-only, IDP phase-separation, and membrane-pore grammars.",
+  "internal_runtime_source": false,
+  "opened_after_prediction_hash": "6eff0e1f283a2964b8278cd36b7306707a572aec1001f94223b8ef7ae989d72b",
+  "opened_timestamp": "2026-06-11T17:31:43.740267+00:00",
+  "source_class": "forbidden_grammar_rejection_support",
+  "source_id": "HOLDOUT_RFAH_SINGLE_CONSENSUS_AND_WRONG_CLASS_REJECTION",
+  "source_url_or_citation": "RfaH fold-switch literature and UniProt non-membrane, non-IDP function annotations",
+  "supports_operator_buckets": [
+    "no_single_consensus_fold_operator"
+  ],
+  "supports_partner_context_ids": [],
+  "supports_perturbation_ids": [
+    "V47_PERT_003",
+    "V47_PERT_007",
+    "V47_PERT_008",
+    "V47_PERT_009"
+  ],
+  "supports_state_separation_ids": [
+    "V47_PERT_003"
+  ],
+  "used_before_prediction": false
+}

@@ -1,0 +1,24 @@
+{
+  "allowed_use": "prediction_input_before_sealing",
+  "answer_key_source": false,
+  "coordinate_derived": false,
+  "coordinate_material_blocked": [
+    "PDB IDs and atomic coordinates from the paper are not opened before sealing",
+    "no native contacts or coordinate-derived distances are imported",
+    "state labels are used as mechanism annotations, not as coordinate truth"
+  ],
+  "coordinate_truth_used_before_prediction": false,
+  "holdout_source": false,
+  "internal_runtime_source": false,
+  "native_metrics_used_for_selection": false,
+  "source_id": "RFAH_CTD_ALPHA_BETA_SWITCH_CELL_2012_NONCOORDINATE",
+  "source_type": "literature-derived state/function labels with structural coordinates excluded",
+  "source_url_or_citation": "Burmann et al. Cell 2012, PMID 22817892, PMCID PMC3430373, DOI 10.1016/j.cell.2012.05.042",
+  "state_labels_used": [
+    "RfaH-CTD alpha-helical hairpin state",
+    "RfaH-CTD beta-barrel or beta-roll state",
+    "transcription-factor state",
+    "translation-factor state",
+    "context-dependent refolding"
+  ]
+}

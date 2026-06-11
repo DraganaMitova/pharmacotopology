@@ -1,0 +1,22 @@
+{
+  "allowed_use": "prediction_input_before_sealing",
+  "answer_key_source": false,
+  "context_labels_used": [
+    "NTD-bound autoinhibition",
+    "CTD release",
+    "NTD active role in fold switching",
+    "partner/context-dependent refolding"
+  ],
+  "coordinate_derived": false,
+  "coordinate_material_blocked": [
+    "molecular models, PDB structures, and transition coordinates are excluded before sealing",
+    "only text-level mechanism labels are available to prediction"
+  ],
+  "coordinate_truth_used_before_prediction": false,
+  "holdout_source": false,
+  "internal_runtime_source": false,
+  "native_metrics_used_for_selection": false,
+  "source_id": "RFAH_NTD_PARTNER_CONTEXT_FOLD_SWITCH_2021_NONCOORDINATE",
+  "source_type": "literature-derived NTD/partner-context mechanism annotation without coordinates",
+  "source_url_or_citation": "Galaz-Davison et al. PLoS Comput Biol 2021, PMID 34478435, PMCID PMC8454952, DOI 10.1371/journal.pcbi.1008882"
+}

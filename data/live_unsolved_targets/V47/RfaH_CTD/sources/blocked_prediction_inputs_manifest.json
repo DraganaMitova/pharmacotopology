@@ -1,0 +1,49 @@
+{
+  "blocked_prediction_inputs": [
+    {
+      "blocked_input": "PDB coordinates or mmCIF coordinates before sealing",
+      "reason": "coordinates would leak state-specific structural truth"
+    },
+    {
+      "blocked_input": "coordinate-derived contacts, distances, or native contact maps",
+      "reason": "V47 tests mechanism grammar, not contact lookup"
+    },
+    {
+      "blocked_input": "AlphaFold/ESMFold/RoseTTAFold coordinates before sealing",
+      "reason": "predicted coordinate models are blocked as evidence"
+    },
+    {
+      "blocked_input": "UniProt PDB-derived secondary-structure features before sealing",
+      "reason": "helix/beta records with PDB evidence are coordinate-adjacent and excluded"
+    },
+    {
+      "blocked_input": "first_contact_clean_pharmacotopology_layer_run files as biological evidence",
+      "reason": "runtime artifacts are audit outputs only"
+    },
+    {
+      "blocked_input": "validation holdouts before prediction sealing",
+      "reason": "holdouts open only after sealed prediction hash exists"
+    },
+    {
+      "blocked_input": "answer key or pass/fail status during prediction",
+      "reason": "classification must use source-separated allowed evidence"
+    },
+    {
+      "blocked_input": "target name only",
+      "reason": "RfaH label alone cannot create a full fold-switch packet"
+    },
+    {
+      "blocked_input": "generic transcription-factor annotation only",
+      "reason": "generic function cannot explain CTD alpha/beta metamorphic switching"
+    },
+    {
+      "blocked_input": "single consensus fold forcing",
+      "reason": "V47 must reject one-state overpromotion"
+    },
+    {
+      "blocked_input": "swapped XCL1/KaiB/Mad2 fold-switch evidence",
+      "reason": "non-RfaH metamorphic examples cannot validate RfaH-specific predictions"
+    }
+  ],
+  "kind": "V47_BLOCKED_PREDICTION_INPUTS_MANIFEST_v0"
+}

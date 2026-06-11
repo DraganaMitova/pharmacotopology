@@ -1,0 +1,32 @@
+{
+  "coordinate_derived": false,
+  "evidence_statement": "The NTD is an active context variable in the RfaH fold switch.",
+  "internal_runtime_source": false,
+  "opened_after_prediction_hash": "6eff0e1f283a2964b8278cd36b7306707a572aec1001f94223b8ef7ae989d72b",
+  "opened_timestamp": "2026-06-11T17:31:43.740267+00:00",
+  "source_class": "NTD_partner_context_support",
+  "source_id": "HOLDOUT_RFAH_NTD_ACTIVE_ROLE_FOLD_SWITCH",
+  "source_url_or_citation": "https://europepmc.org/article/MED/34478435",
+  "supports_operator_buckets": [
+    "NTD_bound_autoinhibition_operator",
+    "CTD_release_switch_operator",
+    "partner_context_refolding_operator"
+  ],
+  "supports_partner_context_ids": [
+    "V47_PERT_001",
+    "V47_PERT_006",
+    "V47_PERT_012"
+  ],
+  "supports_perturbation_ids": [
+    "V47_PERT_001",
+    "V47_PERT_006",
+    "V47_PERT_010",
+    "V47_PERT_012"
+  ],
+  "supports_state_separation_ids": [
+    "V47_PERT_001",
+    "V47_PERT_010",
+    "V47_PERT_012"
+  ],
+  "used_before_prediction": false
+}

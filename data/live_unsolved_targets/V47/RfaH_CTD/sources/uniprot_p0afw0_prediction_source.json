@@ -1,0 +1,38 @@
+{
+  "accession": "P0AFW0",
+  "allowed_use": "prediction_input_before_sealing",
+  "answer_key_source": false,
+  "coordinate_derived": false,
+  "coordinate_truth_used_before_prediction": false,
+  "features_excluded_before_prediction": [
+    "UniProt PDB cross-references",
+    "UniProt secondary-structure features with PDB evidence",
+    "PDB/mmCIF coordinate files",
+    "coordinate-derived contacts",
+    "native contact maps",
+    "AlphaFoldDB coordinates"
+  ],
+  "holdout_source": false,
+  "internal_runtime_source": false,
+  "native_metrics_used_for_selection": false,
+  "noncoordinate_annotations_used": [
+    "RfaH is a transcription antitermination protein recruited to RNAP complexes by the ops element.",
+    "RfaH suppresses pausing and termination in specialized long operons.",
+    "RfaH interacts with nontemplate DNA and RNAP.",
+    "UniProt GO records include translation activator activity and positive regulation of translation.",
+    "The N-terminal domain cavity is described as buried by the C-terminal domain and unmasked in activation context."
+  ],
+  "retrieved_or_checked": "2026-06-11",
+  "sequence_region_scope": {
+    "ctd_end": 162,
+    "ctd_sequence": "PKDIVDPATPYPGDKVIITEGAFEGFQAIFTEPDGEARSMLLLNLINKEIKHSVKNTEFRKL",
+    "ctd_start": 101,
+    "full_length": 162,
+    "full_sequence": "MQSWYLLYCKRGQLQRAQEHLERQAVNCLAPMITLEKIVRGKRTAVSEPLFPNYLFVEFDPEVIHTTTINATRGVSHFVRFGASPAIVPSAVIHQLSVYKPKDIVDPATPYPGDKVIITEGAFEGFQAIFTEPDGEARSMLLLNLINKEIKHSVKNTEFRKL",
+    "protein": "Escherichia coli K-12 transcription antitermination protein RfaH"
+  },
+  "source_id": "UNIPROT_P0AFW0_SEQUENCE_FUNCTION_NONCOORDINATE",
+  "source_type": "UniProtKB reviewed sequence, function, interaction, and GO annotation with coordinate records excluded",
+  "source_url_or_citation": "https://rest.uniprot.org/uniprotkb/P0AFW0.json",
+  "uniprot_id": "RFAH_ECOLI"
+}

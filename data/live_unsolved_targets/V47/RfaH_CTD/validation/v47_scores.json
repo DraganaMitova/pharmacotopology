@@ -1,0 +1,633 @@
+{
+  "allowed_claim_text": "We have a sealed live fold-switch solution packet for RfaH-CTD as a context-dependent alpha/beta metamorphic mechanism. This is not a universal protein-folding solved claim or an atomic transition-pathway claim.",
+  "artifacts": {
+    "certificate": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V47_RFAH_CTD_METAMORPHIC_FOLD_SWITCH_ATTACK/v47_rfah_ctd_metamorphic_fold_switch_attack_certificate.json",
+    "decision": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V47_RFAH_CTD_METAMORPHIC_FOLD_SWITCH_ATTACK/v47_rfah_ctd_metamorphic_fold_switch_attack_next_decision.json",
+    "report": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V47_RFAH_CTD_METAMORPHIC_FOLD_SWITCH_ATTACK/V47_RFAH_CTD_METAMORPHIC_FOLD_SWITCH_ATTACK_REPORT.md"
+  },
+  "claim_allowed": true,
+  "contradicted_prediction_count": 0,
+  "contradicted_predictions": [],
+  "control_count": 17,
+  "control_status": "V47_RFAH_CTD_METAMORPHIC_FOLD_SWITCH_PASSED_REVIEW_REQUIRED",
+  "controls": [
+    {
+      "control_id": "prediction_sealed_before_holdout_validation",
+      "observed": null,
+      "passed": true,
+      "reason": "Prediction must be sealed before holdout validation."
+    },
+    {
+      "control_id": "holdout_files_unavailable_to_prediction_function",
+      "observed": null,
+      "passed": true,
+      "reason": "Holdout files must be unavailable to prediction function."
+    },
+    {
+      "control_id": "pdb_coordinates_before_sealing_blocked",
+      "observed": null,
+      "passed": true,
+      "reason": "PDB coordinates before sealing are blocked."
+    },
+    {
+      "control_id": "alphafold_esmfold_coordinates_before_sealing_blocked",
+      "observed": null,
+      "passed": true,
+      "reason": "AlphaFold/ESMFold coordinates before sealing are blocked."
+    },
+    {
+      "control_id": "internal_runtime_source_as_evidence_blocked",
+      "observed": null,
+      "passed": true,
+      "reason": "Internal runtime reports as biological evidence are blocked."
+    },
+    {
+      "control_id": "target_name_only_assignment_blocked",
+      "observed": null,
+      "passed": true,
+      "reason": "Target-name-only assignment is blocked."
+    },
+    {
+      "control_id": "generic_transcription_factor_annotation_alone_cannot_make_full_packet",
+      "observed": null,
+      "passed": true,
+      "reason": "Generic transcription-factor annotation alone cannot create a full fold-switch packet."
+    },
+    {
+      "control_id": "one_state_only_rfah_evidence_becomes_partial_or_invalid",
+      "observed": null,
+      "passed": true,
+      "reason": "One-state-only RfaH evidence is invalid for the full switch packet."
+    },
+    {
+      "control_id": "single_consensus_fold_forcing_blocked",
+      "observed": null,
+      "passed": true,
+      "reason": "Single-consensus-fold forcing is blocked."
+    },
+    {
+      "control_id": "removing_alpha_state_evidence_weakens_support",
+      "observed": {
+        "with": 1.0,
+        "without": 0.8571428571428571
+      },
+      "passed": true,
+      "reason": "Removing alpha-state evidence weakens state-separation support."
+    },
+    {
+      "control_id": "removing_beta_state_evidence_weakens_support",
+      "observed": {
+        "with": 1.0,
+        "without": 0.8571428571428571
+      },
+      "passed": true,
+      "reason": "Removing beta-state evidence weakens state-separation support."
+    },
+    {
+      "control_id": "removing_ntd_partner_context_weakens_switch_grammar",
+      "observed": {
+        "with": 1.0,
+        "without": 0.8
+      },
+      "passed": true,
+      "reason": "Removing NTD/partner context weakens switch grammar."
+    },
+    {
+      "control_id": "swapped_xcl1_kaib_mad2_evidence_does_not_validate_rfah_specific_predictions",
+      "observed": null,
+      "passed": true,
+      "reason": "Swapped XCL1/KaiB/Mad2 evidence cannot validate RfaH-specific predictions."
+    },
+    {
+      "control_id": "failed_predictions_remain_failed_not_repaired",
+      "observed": null,
+      "passed": true,
+      "reason": "Failed predictions remain failed and are not repaired after holdout."
+    },
+    {
+      "control_id": "fewer_than_four_holdout_classes_status_partial",
+      "observed": null,
+      "passed": true,
+      "reason": "If fewer than four independent holdout classes exist, status is partial."
+    },
+    {
+      "control_id": "all_generic_metamorphic_claims_status_fails",
+      "observed": null,
+      "passed": true,
+      "reason": "If all predictions are generic metamorphic claims, status fails."
+    },
+    {
+      "control_id": "claim_boundary_remains_honest",
+      "observed": null,
+      "passed": true,
+      "reason": "Claim boundary remains honest."
+    }
+  ],
+  "coordinate_derived_source_count_before_prediction": 0,
+  "coordinate_truth_used_before_prediction": false,
+  "failed_checks": [],
+  "falsification_criteria": [
+    "RfaH-CTD reproducibly has one context-independent consensus fold across NTD-bound and released contexts",
+    "removing NTD-bound context does not change alpha-hairpin/autoinhibition grammar",
+    "released CTD context does not support beta-state or translation-coupling grammar",
+    "generic transcription-factor annotation alone predicts the full RfaH packet",
+    "IDP phase-separation or membrane-channel grammar explains the packet better than fold switching",
+    "coordinate evidence before sealing is required for the packet",
+    "independent holdouts contradict more than two explicit perturbation predictions"
+  ],
+  "folding_problem_solved": false,
+  "forbidden_claims": [
+    "we solved the universal protein-folding problem",
+    "RfaH-CTD has one solved consensus fold for all contexts",
+    "RfaH-CTD atomic transition coordinates were predicted de novo",
+    "generic two-state annotation solves RfaH",
+    "external review is unnecessary"
+  ],
+  "forbidden_single_fold_rejection_passed": true,
+  "forbidden_wrong_class_rejection_passed": true,
+  "holdout_leakage_detected": false,
+  "holdout_source_classes": [
+    "NTD_partner_context_support",
+    "alpha_state_support",
+    "beta_state_translation_support",
+    "forbidden_grammar_rejection_support",
+    "functional_switch_support",
+    "transition_kinetics_support"
+  ],
+  "holdout_source_count": 6,
+  "holdout_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "RfaH-CTD has an NTD-bound alpha-hairpin/autoinhibited context rather than one context-free CTD fold.",
+      "internal_runtime_source": false,
+      "opened_after_prediction_hash": "6eff0e1f283a2964b8278cd36b7306707a572aec1001f94223b8ef7ae989d72b",
+      "opened_timestamp": "2026-06-11T17:31:43.740267+00:00",
+      "source_class": "alpha_state_support",
+      "source_id": "HOLDOUT_RFAH_ALPHA_STATE_NTD_BOUND_CONTEXT",
+      "source_url_or_citation": "https://europepmc.org/article/MED/22817892",
+      "supports_operator_buckets": [
+        "alpha_helical_hairpin_state_operator",
+        "NTD_bound_autoinhibition_operator",
+        "partner_context_refolding_operator"
+      ],
+      "supports_partner_context_ids": [
+        "V47_PERT_001",
+        "V47_PERT_012"
+      ],
+      "supports_perturbation_ids": [
+        "V47_PERT_001",
+        "V47_PERT_005",
+        "V47_PERT_012"
+      ],
+      "supports_state_separation_ids": [
+        "V47_PERT_001",
+        "V47_PERT_003",
+        "V47_PERT_005",
+        "V47_PERT_012"
+      ],
+      "used_before_prediction": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Released RfaH-CTD supports a beta-state translation-coupling grammar.",
+      "internal_runtime_source": false,
+      "opened_after_prediction_hash": "6eff0e1f283a2964b8278cd36b7306707a572aec1001f94223b8ef7ae989d72b",
+      "opened_timestamp": "2026-06-11T17:31:43.740267+00:00",
+      "source_class": "beta_state_translation_support",
+      "source_id": "HOLDOUT_RFAH_BETA_STATE_TRANSLATION_CONTEXT",
+      "source_url_or_citation": "https://europepmc.org/article/MED/22817892",
+      "supports_operator_buckets": [
+        "beta_barrel_or_beta_roll_state_operator",
+        "CTD_release_switch_operator",
+        "translation_coupling_context_operator"
+      ],
+      "supports_partner_context_ids": [
+        "V47_PERT_002",
+        "V47_PERT_011"
+      ],
+      "supports_perturbation_ids": [
+        "V47_PERT_002",
+        "V47_PERT_004",
+        "V47_PERT_011"
+      ],
+      "supports_state_separation_ids": [
+        "V47_PERT_002",
+        "V47_PERT_003",
+        "V47_PERT_004"
+      ],
+      "used_before_prediction": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "The NTD is an active context variable in the RfaH fold switch.",
+      "internal_runtime_source": false,
+      "opened_after_prediction_hash": "6eff0e1f283a2964b8278cd36b7306707a572aec1001f94223b8ef7ae989d72b",
+      "opened_timestamp": "2026-06-11T17:31:43.740267+00:00",
+      "source_class": "NTD_partner_context_support",
+      "source_id": "HOLDOUT_RFAH_NTD_ACTIVE_ROLE_FOLD_SWITCH",
+      "source_url_or_citation": "https://europepmc.org/article/MED/34478435",
+      "supports_operator_buckets": [
+        "NTD_bound_autoinhibition_operator",
+        "CTD_release_switch_operator",
+        "partner_context_refolding_operator"
+      ],
+      "supports_partner_context_ids": [
+        "V47_PERT_001",
+        "V47_PERT_006",
+        "V47_PERT_012"
+      ],
+      "supports_perturbation_ids": [
+        "V47_PERT_001",
+        "V47_PERT_006",
+        "V47_PERT_010",
+        "V47_PERT_012"
+      ],
+      "supports_state_separation_ids": [
+        "V47_PERT_001",
+        "V47_PERT_010",
+        "V47_PERT_012"
+      ],
+      "used_before_prediction": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "RfaH connects transcription antitermination with translation activation/coupling contexts.",
+      "internal_runtime_source": false,
+      "opened_after_prediction_hash": "6eff0e1f283a2964b8278cd36b7306707a572aec1001f94223b8ef7ae989d72b",
+      "opened_timestamp": "2026-06-11T17:31:43.740267+00:00",
+      "source_class": "functional_switch_support",
+      "source_id": "HOLDOUT_RFAH_FUNCTIONAL_TRANSCRIPTION_TRANSLATION_SWITCH",
+      "source_url_or_citation": "UniProt P0AFW0 GO/function evidence plus PMID 22817892",
+      "supports_operator_buckets": [
+        "transcription_activation_context_operator",
+        "translation_coupling_context_operator",
+        "partner_context_refolding_operator"
+      ],
+      "supports_partner_context_ids": [
+        "V47_PERT_002",
+        "V47_PERT_011"
+      ],
+      "supports_perturbation_ids": [
+        "V47_PERT_002",
+        "V47_PERT_007",
+        "V47_PERT_011"
+      ],
+      "supports_state_separation_ids": [
+        "V47_PERT_002"
+      ],
+      "used_before_prediction": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "RfaH-CTD should reject single-consensus-fold, generic two-state-only, IDP phase-separation, and membrane-pore grammars.",
+      "internal_runtime_source": false,
+      "opened_after_prediction_hash": "6eff0e1f283a2964b8278cd36b7306707a572aec1001f94223b8ef7ae989d72b",
+      "opened_timestamp": "2026-06-11T17:31:43.740267+00:00",
+      "source_class": "forbidden_grammar_rejection_support",
+      "source_id": "HOLDOUT_RFAH_SINGLE_CONSENSUS_AND_WRONG_CLASS_REJECTION",
+      "source_url_or_citation": "RfaH fold-switch literature and UniProt non-membrane, non-IDP function annotations",
+      "supports_operator_buckets": [
+        "no_single_consensus_fold_operator"
+      ],
+      "supports_partner_context_ids": [],
+      "supports_perturbation_ids": [
+        "V47_PERT_003",
+        "V47_PERT_007",
+        "V47_PERT_008",
+        "V47_PERT_009"
+      ],
+      "supports_state_separation_ids": [
+        "V47_PERT_003"
+      ],
+      "used_before_prediction": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Recent interdomain-residue work supports a switch-path mechanism question without validating atomic pathway solved wording.",
+      "internal_runtime_source": false,
+      "opened_after_prediction_hash": "6eff0e1f283a2964b8278cd36b7306707a572aec1001f94223b8ef7ae989d72b",
+      "opened_timestamp": "2026-06-11T17:31:43.740267+00:00",
+      "source_class": "transition_kinetics_support",
+      "source_id": "HOLDOUT_RFAH_INTERDOMAIN_RESIDUES_KINETICS_TRANSITION",
+      "source_url_or_citation": "https://europepmc.org/article/MED/40522227",
+      "supports_operator_buckets": [
+        "CTD_release_switch_operator",
+        "partner_context_refolding_operator"
+      ],
+      "supports_partner_context_ids": [
+        "V47_PERT_006",
+        "V47_PERT_012"
+      ],
+      "supports_perturbation_ids": [
+        "V47_PERT_006",
+        "V47_PERT_010",
+        "V47_PERT_012"
+      ],
+      "supports_state_separation_ids": [
+        "V47_PERT_010",
+        "V47_PERT_012"
+      ],
+      "used_before_prediction": false
+    }
+  ],
+  "internal_runtime_source_count_for_prediction": 0,
+  "kind": "V47_RFAH_CTD_METAMORPHIC_FOLD_SWITCH_CERTIFICATE_v0",
+  "leakage_status": {
+    "coordinate_derived_source_count_before_prediction": 0,
+    "coordinate_truth_used_before_prediction": false,
+    "holdout_leakage_detected": false,
+    "internal_runtime_source_count_for_prediction": 0,
+    "native_metrics_used_before_prediction": false
+  },
+  "live_fold_switch_solution_packet": true,
+  "low_resolution_structure_or_ensemble_prediction": {
+    "alpha_state": "NTD-bound RfaH-CTD alpha-helical hairpin/autoinhibited grammar",
+    "atomic_claim": "blocked; no coordinate or atomic pathway solution is claimed",
+    "beta_state": "released RfaH-CTD beta-barrel or beta-roll translation-coupling grammar",
+    "single_native_fold_expected": false,
+    "state_separation_required": true,
+    "transition_model": "context-dependent refolding pathway with NTD and partner control; atomic transition coordinates are not claimed"
+  },
+  "mechanism_class": "metamorphic_context_dependent_alpha_beta_fold_switch",
+  "native_metrics_used_before_prediction": false,
+  "next_action": "external review and direct RfaH-CTD alpha/beta switch perturbation tests before committing V47 or strengthening beyond live fold-switch packet wording",
+  "next_decision": {
+    "decision_status": "V47_RFAH_CTD_METAMORPHIC_FOLD_SWITCH_PASSED_REVIEW_REQUIRED",
+    "folding_problem_solved": false,
+    "kind": "V47_RFAH_CTD_METAMORPHIC_NEXT_DECISION_v0",
+    "live_fold_switch_solution_packet": true,
+    "next_action": "external review and direct RfaH-CTD alpha/beta switch perturbation tests before committing V47 or strengthening beyond live fold-switch packet wording"
+  },
+  "operator_bucket_count": 8,
+  "operator_buckets": [
+    "alpha_helical_hairpin_state_operator",
+    "beta_barrel_or_beta_roll_state_operator",
+    "NTD_bound_autoinhibition_operator",
+    "CTD_release_switch_operator",
+    "transcription_activation_context_operator",
+    "translation_coupling_context_operator",
+    "partner_context_refolding_operator",
+    "no_single_consensus_fold_operator"
+  ],
+  "operator_support_rate": 1.0,
+  "operator_validation": [
+    {
+      "bucket": "alpha_helical_hairpin_state_operator",
+      "region_name": "RfaH_CTD_NTD_bound_alpha_hairpin_state",
+      "support_level": "supported"
+    },
+    {
+      "bucket": "beta_barrel_or_beta_roll_state_operator",
+      "region_name": "RfaH_CTD_released_beta_state",
+      "support_level": "supported"
+    },
+    {
+      "bucket": "NTD_bound_autoinhibition_operator",
+      "region_name": "NTD_CTD_autoinhibited_interface",
+      "support_level": "supported"
+    },
+    {
+      "bucket": "CTD_release_switch_operator",
+      "region_name": "CTD_release_after_RNAP_ops_activation",
+      "support_level": "supported"
+    },
+    {
+      "bucket": "transcription_activation_context_operator",
+      "region_name": "ops_RNAP_transcription_antitermination_context",
+      "support_level": "supported"
+    },
+    {
+      "bucket": "translation_coupling_context_operator",
+      "region_name": "released_CTD_S10_ribosome_translation_context",
+      "support_level": "supported"
+    },
+    {
+      "bucket": "partner_context_refolding_operator",
+      "region_name": "NTD_vs_RNAP_vs_S10_partner_context_switch",
+      "support_level": "supported"
+    },
+    {
+      "bucket": "no_single_consensus_fold_operator",
+      "region_name": "metamorphic_CTD_no_consensus_fold_guard",
+      "support_level": "supported"
+    }
+  ],
+  "partner_context_support_rate": 1.0,
+  "passed_control_count": 17,
+  "perturbation_prediction_count": 12,
+  "perturbation_predictions": [
+    {
+      "operator_bucket": "NTD_bound_autoinhibition_operator",
+      "perturbation": "remove or weaken NTD-bound context",
+      "predicted_effect": "destabilizes the alpha-hairpin/autoinhibited grammar",
+      "prediction_id": "V47_PERT_001"
+    },
+    {
+      "operator_bucket": "CTD_release_switch_operator",
+      "perturbation": "release CTD from NTD context",
+      "predicted_effect": "favors beta-barrel/beta-roll and translation-coupling grammar",
+      "prediction_id": "V47_PERT_002"
+    },
+    {
+      "operator_bucket": "no_single_consensus_fold_operator",
+      "perturbation": "force one consensus CTD fold",
+      "predicted_effect": "must be rejected because RfaH-CTD is a context-dependent fold switcher",
+      "prediction_id": "V47_PERT_003"
+    },
+    {
+      "operator_bucket": "beta_barrel_or_beta_roll_state_operator",
+      "perturbation": "remove beta-state evidence",
+      "predicted_effect": "makes the mechanism partial or invalid",
+      "prediction_id": "V47_PERT_004"
+    },
+    {
+      "operator_bucket": "alpha_helical_hairpin_state_operator",
+      "perturbation": "remove alpha-state evidence",
+      "predicted_effect": "makes the mechanism partial or invalid",
+      "prediction_id": "V47_PERT_005"
+    },
+    {
+      "operator_bucket": "partner_context_refolding_operator",
+      "perturbation": "remove partner/context evidence",
+      "predicted_effect": "weakens the full switch packet and can collapse it to a generic two-state label",
+      "prediction_id": "V47_PERT_006"
+    },
+    {
+      "operator_bucket": "transcription_activation_context_operator",
+      "perturbation": "use generic transcription-factor annotation alone",
+      "predicted_effect": "must not produce a full RfaH fold-switch packet",
+      "prediction_id": "V47_PERT_007"
+    },
+    {
+      "operator_bucket": "no_single_consensus_fold_operator",
+      "perturbation": "treat RfaH-CTD as an IDP phase-separation target",
+      "predicted_effect": "must be rejected as a wrong mechanism class",
+      "prediction_id": "V47_PERT_008"
+    },
+    {
+      "operator_bucket": "no_single_consensus_fold_operator",
+      "perturbation": "treat RfaH-CTD as a membrane-pore target",
+      "predicted_effect": "must be rejected as a wrong mechanism class",
+      "prediction_id": "V47_PERT_009"
+    },
+    {
+      "operator_bucket": "CTD_release_switch_operator",
+      "perturbation": "add transition or intermediate evidence",
+      "predicted_effect": "supports switch-path grammar but not an atomic pathway-solved claim",
+      "prediction_id": "V47_PERT_010"
+    },
+    {
+      "operator_bucket": "translation_coupling_context_operator",
+      "perturbation": "disrupt released-CTD S10/ribosome partner context",
+      "predicted_effect": "weakens translation-coupling grammar without erasing transcription antitermination context",
+      "prediction_id": "V47_PERT_011"
+    },
+    {
+      "operator_bucket": "partner_context_refolding_operator",
+      "perturbation": "stabilize the NTD-CTD interface",
+      "predicted_effect": "biases toward alpha/autoinhibited grammar and delays or reduces beta-state release",
+      "prediction_id": "V47_PERT_012"
+    }
+  ],
+  "perturbation_support_rate": 1.0,
+  "plain_english_interpretation": "V47 produced a sealed, source-separated RfaH-CTD packet in a third hard folding class: metamorphic alpha/beta fold switching. The packet separates NTD-bound alpha-hairpin/autoinhibition, CTD release, beta-state translation-coupling, partner-context refolding, and single-consensus-fold rejection without using coordinates before sealing.",
+  "predicted_context_switches": [
+    {
+      "context": "NTD-bound closed RfaH",
+      "predicted_shift": "alpha-helical hairpin/autoinhibition grammar dominates"
+    },
+    {
+      "context": "ops/RNAP transcription activation",
+      "predicted_shift": "CTD release becomes available; transcription antitermination grammar is active"
+    },
+    {
+      "context": "released CTD with S10/ribosome context",
+      "predicted_shift": "beta-barrel or beta-roll translation-coupling grammar dominates"
+    },
+    {
+      "context": "generic transcription-factor label only",
+      "predicted_shift": "insufficient; full fold-switch packet must abstain"
+    },
+    {
+      "context": "forced one-consensus-fold model",
+      "predicted_shift": "blocked because it destroys state separation"
+    }
+  ],
+  "predicted_fold_switch_grammar": [
+    {
+      "axis": "autoinhibited_transcription_factor_state",
+      "prediction": "NTD-bound RfaH favors an alpha-hairpin CTD grammar that masks or stabilizes the autoinhibited interface."
+    },
+    {
+      "axis": "released_translation_factor_state",
+      "prediction": "Release of the CTD favors a beta-barrel/beta-roll grammar compatible with translation-coupling partner context."
+    },
+    {
+      "axis": "context_trigger",
+      "prediction": "The ops/RNAP activation context shifts the NTD/CTD interface and gates access to the released CTD state."
+    },
+    {
+      "axis": "partner_rewrite",
+      "prediction": "Partner labels are causal inputs: NTD-bound, RNAP/ops-bound, and S10/ribosome contexts should not collapse to the same grammar."
+    },
+    {
+      "axis": "transition_boundary",
+      "prediction": "Intermediate evidence can support a switch-path model but cannot justify an atomic pathway-solved claim."
+    }
+  ],
+  "prediction_input_source_count": 4,
+  "prediction_sealed_before_holdout": true,
+  "proposed_experimental_tests": [
+    "compare CTD secondary-structure signatures in isolated, NTD-bound, and released/partner contexts using non-coordinate spectroscopy",
+    "mutate or weaken NTD-CTD interface residues and measure alpha-state loss versus beta-state gain",
+    "test released CTD binding to S10/ribosome-context partners and measure translation-coupling readouts",
+    "force alpha- or beta-stabilizing substitutions and verify context-dependent functional tradeoffs",
+    "measure kinetic intermediates after CTD release without using them as atomic-pathway proof",
+    "run negative controls with generic transcription-factor and membrane-channel annotations only"
+  ],
+  "protein_folding_solved_candidate_strengthened": true,
+  "run_mode": "live_fold_switch_solution_packet_sealed_prediction_postseal_holdout_validation_no_MD",
+  "sealed_prediction_hash": "6eff0e1f283a2964b8278cd36b7306707a572aec1001f94223b8ef7ae989d72b",
+  "sequence_region_scope": "RfaH P0AFW0 CTD residues 101-162",
+  "state_separation_support_rate": 1.0,
+  "target": "Escherichia coli RfaH C-terminal domain",
+  "v46_commit_hash": "6a9ae65be5ed300158d6a9cc119541a7260fc218",
+  "v46_commit_short_hash": "6a9ae65",
+  "v46_committed": true,
+  "v47_committed": false,
+  "validated_prediction_count": 12,
+  "validation_support_per_prediction": [
+    {
+      "perturbation": "remove or weaken NTD-bound context",
+      "predicted_effect": "destabilizes the alpha-hairpin/autoinhibited grammar",
+      "prediction_id": "V47_PERT_001",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "release CTD from NTD context",
+      "predicted_effect": "favors beta-barrel/beta-roll and translation-coupling grammar",
+      "prediction_id": "V47_PERT_002",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "force one consensus CTD fold",
+      "predicted_effect": "must be rejected because RfaH-CTD is a context-dependent fold switcher",
+      "prediction_id": "V47_PERT_003",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "remove beta-state evidence",
+      "predicted_effect": "makes the mechanism partial or invalid",
+      "prediction_id": "V47_PERT_004",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "remove alpha-state evidence",
+      "predicted_effect": "makes the mechanism partial or invalid",
+      "prediction_id": "V47_PERT_005",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "remove partner/context evidence",
+      "predicted_effect": "weakens the full switch packet and can collapse it to a generic two-state label",
+      "prediction_id": "V47_PERT_006",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "use generic transcription-factor annotation alone",
+      "predicted_effect": "must not produce a full RfaH fold-switch packet",
+      "prediction_id": "V47_PERT_007",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "treat RfaH-CTD as an IDP phase-separation target",
+      "predicted_effect": "must be rejected as a wrong mechanism class",
+      "prediction_id": "V47_PERT_008",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "treat RfaH-CTD as a membrane-pore target",
+      "predicted_effect": "must be rejected as a wrong mechanism class",
+      "prediction_id": "V47_PERT_009",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "add transition or intermediate evidence",
+      "predicted_effect": "supports switch-path grammar but not an atomic pathway-solved claim",
+      "prediction_id": "V47_PERT_010",
+      "support_level": "partially_supported"
+    },
+    {
+      "perturbation": "disrupt released-CTD S10/ribosome partner context",
+      "predicted_effect": "weakens translation-coupling grammar without erasing transcription antitermination context",
+      "prediction_id": "V47_PERT_011",
+      "support_level": "partially_supported"
+    },
+    {
+      "perturbation": "stabilize the NTD-CTD interface",
+      "predicted_effect": "biases toward alpha/autoinhibited grammar and delays or reduces beta-state release",
+      "prediction_id": "V47_PERT_012",
+      "support_level": "supported"
+    }
+  ]
+}

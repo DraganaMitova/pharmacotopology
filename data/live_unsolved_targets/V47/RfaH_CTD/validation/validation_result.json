@@ -1,0 +1,138 @@
+{
+  "contradicted_prediction_count": 0,
+  "contradicted_predictions": [],
+  "falsifiable_prediction_count": 12,
+  "forbidden_single_fold_rejection_passed": true,
+  "forbidden_wrong_class_rejection_passed": true,
+  "holdout_source_classes": [
+    "NTD_partner_context_support",
+    "alpha_state_support",
+    "beta_state_translation_support",
+    "forbidden_grammar_rejection_support",
+    "functional_switch_support",
+    "transition_kinetics_support"
+  ],
+  "holdout_source_count": 6,
+  "kind": "V47_RFAH_CTD_POSTSEAL_VALIDATION_v0",
+  "operator_support_rate": 1.0,
+  "operator_validation": [
+    {
+      "bucket": "alpha_helical_hairpin_state_operator",
+      "region_name": "RfaH_CTD_NTD_bound_alpha_hairpin_state",
+      "support_level": "supported"
+    },
+    {
+      "bucket": "beta_barrel_or_beta_roll_state_operator",
+      "region_name": "RfaH_CTD_released_beta_state",
+      "support_level": "supported"
+    },
+    {
+      "bucket": "NTD_bound_autoinhibition_operator",
+      "region_name": "NTD_CTD_autoinhibited_interface",
+      "support_level": "supported"
+    },
+    {
+      "bucket": "CTD_release_switch_operator",
+      "region_name": "CTD_release_after_RNAP_ops_activation",
+      "support_level": "supported"
+    },
+    {
+      "bucket": "transcription_activation_context_operator",
+      "region_name": "ops_RNAP_transcription_antitermination_context",
+      "support_level": "supported"
+    },
+    {
+      "bucket": "translation_coupling_context_operator",
+      "region_name": "released_CTD_S10_ribosome_translation_context",
+      "support_level": "supported"
+    },
+    {
+      "bucket": "partner_context_refolding_operator",
+      "region_name": "NTD_vs_RNAP_vs_S10_partner_context_switch",
+      "support_level": "supported"
+    },
+    {
+      "bucket": "no_single_consensus_fold_operator",
+      "region_name": "metamorphic_CTD_no_consensus_fold_guard",
+      "support_level": "supported"
+    }
+  ],
+  "partner_context_support_rate": 1.0,
+  "perturbation_support_rate": 1.0,
+  "perturbation_validation": [
+    {
+      "perturbation": "remove or weaken NTD-bound context",
+      "predicted_effect": "destabilizes the alpha-hairpin/autoinhibited grammar",
+      "prediction_id": "V47_PERT_001",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "release CTD from NTD context",
+      "predicted_effect": "favors beta-barrel/beta-roll and translation-coupling grammar",
+      "prediction_id": "V47_PERT_002",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "force one consensus CTD fold",
+      "predicted_effect": "must be rejected because RfaH-CTD is a context-dependent fold switcher",
+      "prediction_id": "V47_PERT_003",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "remove beta-state evidence",
+      "predicted_effect": "makes the mechanism partial or invalid",
+      "prediction_id": "V47_PERT_004",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "remove alpha-state evidence",
+      "predicted_effect": "makes the mechanism partial or invalid",
+      "prediction_id": "V47_PERT_005",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "remove partner/context evidence",
+      "predicted_effect": "weakens the full switch packet and can collapse it to a generic two-state label",
+      "prediction_id": "V47_PERT_006",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "use generic transcription-factor annotation alone",
+      "predicted_effect": "must not produce a full RfaH fold-switch packet",
+      "prediction_id": "V47_PERT_007",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "treat RfaH-CTD as an IDP phase-separation target",
+      "predicted_effect": "must be rejected as a wrong mechanism class",
+      "prediction_id": "V47_PERT_008",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "treat RfaH-CTD as a membrane-pore target",
+      "predicted_effect": "must be rejected as a wrong mechanism class",
+      "prediction_id": "V47_PERT_009",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "add transition or intermediate evidence",
+      "predicted_effect": "supports switch-path grammar but not an atomic pathway-solved claim",
+      "prediction_id": "V47_PERT_010",
+      "support_level": "partially_supported"
+    },
+    {
+      "perturbation": "disrupt released-CTD S10/ribosome partner context",
+      "predicted_effect": "weakens translation-coupling grammar without erasing transcription antitermination context",
+      "prediction_id": "V47_PERT_011",
+      "support_level": "partially_supported"
+    },
+    {
+      "perturbation": "stabilize the NTD-CTD interface",
+      "predicted_effect": "biases toward alpha/autoinhibited grammar and delays or reduces beta-state release",
+      "prediction_id": "V47_PERT_012",
+      "support_level": "supported"
+    }
+  ],
+  "state_separation_support_rate": 1.0,
+  "validated_prediction_count": 12
+}
