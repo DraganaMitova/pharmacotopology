@@ -1,0 +1,291 @@
+{
+  "allowed_public_claim": "We have a claim-disabled, coordinate-free mechanism-grammar prototype that classifies hard protein-folding regimes and predicts perturbation-sensitive operator constraints for KcsA, XCL1, and alpha-synuclein, with masked-target and decoy controls, no MD, and no coordinate leakage. This is not solved protein folding, is not a de novo protein-structure predictor, and does not solve protein folding.",
+  "artifacts": {
+    "allowed_claim_text": "/Users/draganamitova/My Projects/pharmacotopology/data/claim_gate/V41/allowed_claim_text.md",
+    "certificate": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V41_PROTEIN_FOLDING_CLAIM_GATE/v41_protein_folding_claim_gate_certificate.json",
+    "claim_ladder": "/Users/draganamitova/My Projects/pharmacotopology/data/claim_gate/V41/claim_ladder.json",
+    "decision": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V41_PROTEIN_FOLDING_CLAIM_GATE/v41_protein_folding_claim_gate_next_decision.json",
+    "evidence_to_claim_matrix": "/Users/draganamitova/My Projects/pharmacotopology/data/claim_gate/V41/evidence_to_claim_matrix.csv",
+    "forbidden_claim_text": "/Users/draganamitova/My Projects/pharmacotopology/data/claim_gate/V41/forbidden_claim_text.md",
+    "report": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V41_PROTEIN_FOLDING_CLAIM_GATE/V41_PROTEIN_FOLDING_CLAIM_GATE_REPORT.md",
+    "scientist_attack_surface": "/Users/draganamitova/My Projects/pharmacotopology/data/claim_gate/V41/scientist_attack_surface.md"
+  },
+  "c5_claim_allowed": false,
+  "claim_allowed": false,
+  "control_count": 21,
+  "control_status": "V41_MECHANISM_CLAIM_ALLOWED_C5_BLOCKED",
+  "controls": [
+    {
+      "control_id": "v32_external_source_import_preflight_passed_or_abstained",
+      "observed": {
+        "status": "V32_EXTERNAL_CONSTRAINT_SOURCE_IMPORT_PREFLIGHT_READY_FOR_V33_CLAIM_DISABLED"
+      },
+      "passed": true,
+      "reason": "V32 must pass or cleanly abstain before downstream claim use."
+    },
+    {
+      "control_id": "v33_operator_readout_passed_claim_disabled",
+      "observed": {
+        "claim_allowed": false,
+        "kind": "V33_CONSTRAINT_BACKED_OPERATOR_READOUT_v0"
+      },
+      "passed": true,
+      "reason": "V33 operator readout must exist and remain claim-disabled."
+    },
+    {
+      "control_id": "v33_negative_controls_passed",
+      "observed": {
+        "passed": 9,
+        "total": 9
+      },
+      "passed": true,
+      "reason": "V33 negative controls must pass."
+    },
+    {
+      "control_id": "v34_discriminative_content_controls_passed",
+      "observed": {
+        "status": "V34_KCSA_DISCRIMINATIVE_CONTENT_CONTROLS_PASSED_CLAIM_DISABLED"
+      },
+      "passed": true,
+      "reason": "V34 discriminative content controls must pass claim-disabled."
+    },
+    {
+      "control_id": "v35_clean_abstain_not_positive_evidence",
+      "observed": {
+        "status": "V35_CLEAN_ABSTAIN_NO_NONCOORDINATE_EXTERNAL_EVIDENCE"
+      },
+      "passed": true,
+      "reason": "V35 clean abstain must remain a guardrail, not positive evidence."
+    },
+    {
+      "control_id": "v36_real_noncoordinate_dossiers_built",
+      "observed": {
+        "status": "V36_REAL_EVIDENCE_DOSSIERS_READY_CLAIM_DISABLED"
+      },
+      "passed": true,
+      "reason": "V36 must build real non-coordinate dossiers."
+    },
+    {
+      "control_id": "v37_mechanism_classes_and_masking_passed",
+      "observed": {
+        "status": "V37_MECHANISM_QUESTION_PROBES_PASSED_CLAIM_DISABLED"
+      },
+      "passed": true,
+      "reason": "V37 must assign mechanism classes under target-name masking."
+    },
+    {
+      "control_id": "v38_blind_masked_generalization_decoys_passed",
+      "observed": {
+        "status": "V38_BLIND_MECHANISM_GENERALIZATION_PASSED_CLAIM_DISABLED"
+      },
+      "passed": true,
+      "reason": "V38 must pass masked assignment and decoy pressure."
+    },
+    {
+      "control_id": "v39_falsifiable_mechanism_predictions_passed",
+      "observed": {
+        "status": "V39_MECHANISM_PREDICTIONS_VALIDATED_CLAIM_DISABLED"
+      },
+      "passed": true,
+      "reason": "V39 must generate falsifiable mechanism predictions."
+    },
+    {
+      "control_id": "v40_perturbation_pressure_predictions_passed",
+      "observed": {
+        "status": "V40_MECHANISM_PERTURBATION_PRESSURE_PASSED_CLAIM_DISABLED"
+      },
+      "passed": true,
+      "reason": "V40 must generate perturbation-pressure predictions."
+    },
+    {
+      "control_id": "all_prior_claim_allowed_flags_false",
+      "observed": null,
+      "passed": true,
+      "reason": "If any earlier certificate has claim_allowed=true, V41 blocks."
+    },
+    {
+      "control_id": "all_prior_folding_problem_solved_flags_false",
+      "observed": null,
+      "passed": true,
+      "reason": "If folding_problem_solved=true appears anywhere, V41 blocks."
+    },
+    {
+      "control_id": "no_md_used_as_claim_evidence",
+      "observed": null,
+      "passed": true,
+      "reason": "MD must not be used as claim evidence."
+    },
+    {
+      "control_id": "no_coordinate_derived_sources_for_noncoordinate_claims",
+      "observed": {
+        "coordinate_derived_source_count_for_claim": 0
+      },
+      "passed": true,
+      "reason": "Coordinate-derived evidence must not support the non-coordinate claim."
+    },
+    {
+      "control_id": "no_internal_runtime_reports_as_biological_evidence",
+      "observed": {
+        "internal_runtime_source_count_for_claim": 0
+      },
+      "passed": true,
+      "reason": "Internal runtime reports must remain audit evidence only."
+    },
+    {
+      "control_id": "v38_answer_key_not_used_for_assignment",
+      "observed": {
+        "answer_key_used_for_assignment": false
+      },
+      "passed": true,
+      "reason": "V38 answer key must not be used for assignment."
+    },
+    {
+      "control_id": "c5_blocked_without_de_novo_structure_ensemble_validation",
+      "observed": {
+        "c5_claim_allowed": false,
+        "missing_evidence": [
+          "broad prospective blind panel",
+          "de novo coordinate or ensemble predictions",
+          "independent experimental structure/function validation",
+          "quantitative comparison against strong baselines",
+          "failure modes documented across broad protein classes",
+          "reproducibility certificate",
+          "external review-ready report"
+        ]
+      },
+      "passed": true,
+      "reason": "C5 cannot be allowed without de novo structure/ensemble validation and broad independent benchmarks."
+    },
+    {
+      "control_id": "allowed_claim_text_mentions_not_solved_protein_folding",
+      "observed": {
+        "allowed_public_claim": "We have a claim-disabled, coordinate-free mechanism-grammar prototype that classifies hard protein-folding regimes and predicts perturbation-sensitive operator constraints for KcsA, XCL1, and alpha-synuclein, with masked-target and decoy controls, no MD, and no coordinate leakage. This is not solved protein folding, is not a de novo protein-structure predictor, and does not solve protein folding."
+      },
+      "passed": true,
+      "reason": "Allowed claim text must explicitly state not solved protein folding."
+    },
+    {
+      "control_id": "forbidden_claims_include_we_solved_protein_folding",
+      "observed": {
+        "forbidden_public_claims": [
+          "we solved protein folding",
+          "we can predict every protein",
+          "we can predict de novo 3D structure from sequence",
+          "we outperform AlphaFold",
+          "KcsA/XCL1/SNCA prove universal folding",
+          "coordinates were not needed to solve structure",
+          "this is a validated drug-discovery engine"
+        ]
+      },
+      "passed": true,
+      "reason": "Forbidden claims must explicitly include we solved protein folding."
+    },
+    {
+      "control_id": "scientist_attack_surface_nonempty",
+      "observed": {
+        "scientist_attack_surface_count": 8
+      },
+      "passed": true,
+      "reason": "Scientist attack surface must not be empty."
+    },
+    {
+      "control_id": "max_claim_not_below_c2_with_v36_to_v40_passing",
+      "observed": {
+        "max_claim_floor": "C2_MECHANISM_GRAMMAR_CLASSIFICATION"
+      },
+      "passed": true,
+      "reason": "Max claim must not fall below C2 when V36-V40 pass."
+    }
+  ],
+  "coordinate_derived_source_count_for_claim": 0,
+  "evaluated_versions": [
+    "V32",
+    "V33_READOUT",
+    "V33_NEGATIVE",
+    "V34",
+    "V35",
+    "V36",
+    "V37",
+    "V38",
+    "V39",
+    "V40"
+  ],
+  "evidence_missing_for_c5": [
+    "broad prospective blind panel",
+    "de novo coordinate or ensemble predictions",
+    "independent experimental structure/function validation",
+    "quantitative comparison against strong baselines",
+    "failure modes documented across broad protein classes",
+    "reproducibility certificate",
+    "external review-ready report"
+  ],
+  "evidence_supporting_claim": [
+    {
+      "status": "V36_REAL_EVIDENCE_DOSSIERS_READY_CLAIM_DISABLED",
+      "supports": "real non-coordinate dossiers for KcsA, XCL1, and alpha-synuclein",
+      "version": "V36"
+    },
+    {
+      "status": "V37_MECHANISM_QUESTION_PROBES_PASSED_CLAIM_DISABLED",
+      "supports": "mechanism-class grammar assignment from V36 dossiers under masking controls",
+      "version": "V37"
+    },
+    {
+      "status": "V38_BLIND_MECHANISM_GENERALIZATION_PASSED_CLAIM_DISABLED",
+      "supports": "masked-target and decoy-pressure generalization audit, not C5 prospective structure validation",
+      "version": "V38"
+    },
+    {
+      "status": "V39_MECHANISM_PREDICTIONS_VALIDATED_CLAIM_DISABLED",
+      "supports": "falsifiable mechanism predictions with independent non-coordinate holdouts",
+      "version": "V39"
+    },
+    {
+      "status": "V40_MECHANISM_PERTURBATION_PRESSURE_PASSED_CLAIM_DISABLED",
+      "supports": "perturbation-sensitive operator constraints supported by non-coordinate holdouts",
+      "version": "V40"
+    }
+  ],
+  "failed_checks": [],
+  "folding_problem_solved": false,
+  "forbidden_public_claims": [
+    "we solved protein folding",
+    "we can predict every protein",
+    "we can predict de novo 3D structure from sequence",
+    "we outperform AlphaFold",
+    "KcsA/XCL1/SNCA prove universal folding",
+    "coordinates were not needed to solve structure",
+    "this is a validated drug-discovery engine"
+  ],
+  "internal_runtime_source_count_for_claim": 0,
+  "kind": "V41_PROTEIN_FOLDING_CLAIM_GATE_v0",
+  "locked_interpretation": "V41 allows a bounded C3 mechanism-grammar claim and blocks C5. The project can say it has a coordinate-free, claim-disabled mechanism grammar with falsifiable perturbation-sensitive operators for the three audited regimes; it cannot say protein folding is solved, cannot claim de novo 3D structure prediction, and cannot claim superiority to AlphaFold.",
+  "max_allowed_claim_level": "C3_FALSIFIABLE_OPERATOR_MECHANISM",
+  "max_allowed_claim_name": "The system generates falsifiable, perturbation-sensitive operator-level mechanism predictions supported by independent non-coordinate holdouts.",
+  "md_used_for_claim": false,
+  "mechanism_claim_allowed": true,
+  "native_metrics_used_for_claim": false,
+  "next_action": "run_V42_baseline_failure_mode_comparison_or_V41_review_before_any_public_claim",
+  "next_decision": {
+    "decision_status": "V41_MECHANISM_CLAIM_ALLOWED_C5_BLOCKED",
+    "kind": "V41_PROTEIN_FOLDING_CLAIM_GATE_NEXT_DECISION_v0",
+    "max_allowed_claim_level": "C3_FALSIFIABLE_OPERATOR_MECHANISM",
+    "next_action": "run_V42_baseline_failure_mode_comparison_or_V41_review_before_any_public_claim",
+    "protein_folding_solved_claim_allowed": false
+  },
+  "passed_control_count": 21,
+  "positive_folding_evidence_found": false,
+  "protein_folding_solved_claim_allowed": false,
+  "run_mode": "claim_boundary_audit_no_coordinates_no_MD_c5_blocked",
+  "scientist_attack_surface": [
+    "Only three focal mechanism exemplars are supported at C3: KcsA, XCL1, and alpha-synuclein.",
+    "V38 is masked and decoy-controlled, but V41 does not add a new prospective unseen panel.",
+    "The claim is coordinate-free mechanism grammar, not de novo 3D coordinate prediction.",
+    "Static structure, folding pathway, dynamics, membrane context, and ensemble prediction remain distinct claims.",
+    "External benchmark comparison against AlphaFold/ESMFold/RoseTTAFold is not present in V41.",
+    "Perturbation pressure is literature/annotation-supported, not newly experimentally validated here.",
+    "Drug-discovery utility, therapeutic validation, and clinical relevance are not established.",
+    "C5 requires external blind validation and broad reproducibility evidence that is not present."
+  ],
+  "scientist_attack_surface_count": 8
+}

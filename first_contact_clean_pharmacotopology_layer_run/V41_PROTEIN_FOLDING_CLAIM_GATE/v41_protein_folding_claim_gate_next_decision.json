@@ -1,0 +1,7 @@
+{
+  "decision_status": "V41_MECHANISM_CLAIM_ALLOWED_C5_BLOCKED",
+  "kind": "V41_PROTEIN_FOLDING_CLAIM_GATE_NEXT_DECISION_v0",
+  "max_allowed_claim_level": "C3_FALSIFIABLE_OPERATOR_MECHANISM",
+  "next_action": "run_V42_baseline_failure_mode_comparison_or_V41_review_before_any_public_claim",
+  "protein_folding_solved_claim_allowed": false
+}

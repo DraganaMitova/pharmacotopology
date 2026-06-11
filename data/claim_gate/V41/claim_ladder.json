@@ -1,0 +1,31 @@
+{
+  "c5_claim_allowed": false,
+  "claim_levels": [
+    {
+      "level": "C0_NO_CLAIM",
+      "name": "No scientific claim beyond code execution."
+    },
+    {
+      "level": "C1_CLEAN_EVIDENCE_PIPELINE",
+      "name": "The system cleanly imports external evidence and blocks leakage."
+    },
+    {
+      "level": "C2_MECHANISM_GRAMMAR_CLASSIFICATION",
+      "name": "The system classifies folding-problem grammar from non-coordinate evidence."
+    },
+    {
+      "level": "C3_FALSIFIABLE_OPERATOR_MECHANISM",
+      "name": "The system generates falsifiable, perturbation-sensitive operator-level mechanism predictions supported by independent non-coordinate holdouts."
+    },
+    {
+      "level": "C4_PROSPECTIVE_MECHANISM_GENERALIZATION",
+      "name": "The system generalizes prospectively to unseen targets under masking, decoy pressure, source separation, and independent holdout validation."
+    },
+    {
+      "level": "C5_PROTEIN_FOLDING_SOLVED",
+      "name": "The system can predict de novo 3D folds / functional conformational ensembles across broad protein classes with independent blind validation comparable to structure-prediction benchmarks."
+    }
+  ],
+  "kind": "V41_CLAIM_LADDER_v0",
+  "max_allowed_claim_level": "C3_FALSIFIABLE_OPERATOR_MECHANISM"
+}
