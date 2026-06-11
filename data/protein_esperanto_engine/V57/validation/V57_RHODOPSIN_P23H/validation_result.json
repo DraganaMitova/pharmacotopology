@@ -1,0 +1,42 @@
+{
+  "checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "membrane_multidomain_folding_proteostasis",
+      "observed": "membrane_multidomain_folding_proteostasis",
+      "passed": true
+    },
+    {
+      "check_id": "proteostasis_routing_supported",
+      "comparator": ">=",
+      "metric": "proteostasis_routing",
+      "observed": 0.689504,
+      "passed": true,
+      "threshold": 0.55
+    },
+    {
+      "check_id": "interface_readiness_supported",
+      "comparator": ">=",
+      "metric": "interface_readiness",
+      "observed": 0.635,
+      "passed": true,
+      "threshold": 0.55
+    }
+  ],
+  "coordinate_derived_sources_used_before_prediction": 0,
+  "holdout_opened_after_prediction_hash": "470c2f7ccbaf79dbd8003aff11e4a11680f11327f44e51850e63e2ddb0f22bc9",
+  "internal_runtime_sources_used_for_prediction": 0,
+  "kind": "PROTEIN_ESPERANTO_POST_SEAL_VALIDATION_v0",
+  "postseal_sources": [
+    {
+      "rationale": "Post-seal validation summary for pre-registered mechanism class, trajectory type, and perturbation direction.",
+      "source_class": "spatial_proxy_non_coordinate",
+      "source_id": "V57_RHODOPSIN_P23H_V57_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "score_label": "supported",
+  "sealed_prediction_hash": "470c2f7ccbaf79dbd8003aff11e4a11680f11327f44e51850e63e2ddb0f22bc9",
+  "target_id": "V57_RHODOPSIN_P23H"
+}

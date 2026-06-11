@@ -1,0 +1,546 @@
+{
+  "kind": "V57_PERTURBATION_RESPONSE_TABLE_v0",
+  "targets": [
+    {
+      "rows": [
+        {
+          "baseline_value": 0.5275,
+          "direction_passed": true,
+          "expected_direction": "decrease",
+          "metric": "contact_probability",
+          "observed_direction": "decrease",
+          "perturbation": "damage hydrophobic closure-core chemistry",
+          "perturbation_id": "GB1_CORE_HYDROPHOBIC_DAMAGE",
+          "perturbed_value": 0.314375,
+          "trajectory_final_state": {
+            "contact_probability": 0.314375,
+            "disorder_order_balance": 0.37125,
+            "frustration": 0.035625,
+            "interface_readiness": 0.12,
+            "operator_activation": 0.28125,
+            "proteostasis_routing": 0.0,
+            "residue_exposure": 0.649478,
+            "segment_compaction": 0.3375,
+            "state_basin_occupancy": {
+              "compact_folded": 0.354375,
+              "expanded_unfolded": 0.639375
+            },
+            "timepoint": 1000
+          }
+        },
+        {
+          "baseline_value": 0.5275,
+          "direction_passed": true,
+          "expected_direction": "increase",
+          "metric": "contact_probability",
+          "observed_direction": "increase",
+          "perturbation": "stabilize closure-core packing context",
+          "perturbation_id": "GB1_CORE_STABILIZING_CONTEXT",
+          "perturbed_value": 0.64375,
+          "trajectory_final_state": {
+            "contact_probability": 0.64375,
+            "disorder_order_balance": 0.2565,
+            "frustration": 0.0,
+            "interface_readiness": 0.12,
+            "operator_activation": 0.8125,
+            "proteostasis_routing": 0.0,
+            "residue_exposure": 0.584028,
+            "segment_compaction": 0.635,
+            "state_basin_occupancy": {
+              "compact_folded": 0.68375,
+              "expanded_unfolded": 0.37375
+            },
+            "timepoint": 1000
+          }
+        },
+        {
+          "baseline_value": 0.5275,
+          "direction_passed": true,
+          "expected_direction": "unchanged",
+          "metric": "contact_probability",
+          "observed_direction": "unchanged",
+          "perturbation": "force unrelated host-hijack interface perturbation",
+          "perturbation_id": "GB1_WRONG_HOST_INTERFACE_CONTROL",
+          "perturbed_value": 0.5275,
+          "trajectory_final_state": {
+            "contact_probability": 0.5275,
+            "disorder_order_balance": 0.297,
+            "frustration": 0.0,
+            "interface_readiness": 0.12,
+            "operator_activation": 0.625,
+            "proteostasis_routing": 0.0,
+            "residue_exposure": 0.607128,
+            "segment_compaction": 0.53,
+            "state_basin_occupancy": {
+              "compact_folded": 0.5675,
+              "expanded_unfolded": 0.4675
+            },
+            "timepoint": 1000
+          }
+        },
+        {
+          "baseline_value": 0.5275,
+          "direction_passed": true,
+          "expected_direction": "unchanged",
+          "metric": "contact_probability",
+          "observed_direction": "unchanged",
+          "perturbation": "neutral condition with no operator change",
+          "perturbation_id": "GB1_NEUTRAL_CONTROL",
+          "perturbed_value": 0.5275,
+          "trajectory_final_state": {
+            "contact_probability": 0.5275,
+            "disorder_order_balance": 0.297,
+            "frustration": 0.0,
+            "interface_readiness": 0.12,
+            "operator_activation": 0.625,
+            "proteostasis_routing": 0.0,
+            "residue_exposure": 0.607128,
+            "segment_compaction": 0.53,
+            "state_basin_occupancy": {
+              "compact_folded": 0.5675,
+              "expanded_unfolded": 0.4675
+            },
+            "timepoint": 1000
+          }
+        }
+      ],
+      "target_id": "V57_GB1_DOMAIN"
+    },
+    {
+      "rows": [
+        {
+          "baseline_value": 0.58,
+          "direction_passed": true,
+          "expected_direction": "decrease",
+          "metric": "basin:phase_prone_dynamic",
+          "observed_direction": "decrease",
+          "perturbation": "weaken aromatic sticker contribution in the LCD",
+          "perturbation_id": "HNRNPA1_AROMATIC_STICKER_DAMAGE",
+          "perturbed_value": 0.382,
+          "trajectory_final_state": {
+            "contact_probability": 0.15201,
+            "disorder_order_balance": 0.781899,
+            "frustration": 0.19799,
+            "interface_readiness": 0.1,
+            "operator_activation": 0.58,
+            "proteostasis_routing": 0.0,
+            "residue_exposure": 0.749816,
+            "segment_compaction": 0.18101,
+            "state_basin_occupancy": {
+              "compact_single_fold": 0.04,
+              "expanded_disordered": 0.62,
+              "phase_prone_dynamic": 0.382
+            },
+            "timepoint": 1000
+          }
+        },
+        {
+          "baseline_value": 0.771207,
+          "direction_passed": true,
+          "expected_direction": "decrease",
+          "metric": "disorder_order_balance",
+          "observed_direction": "decrease",
+          "perturbation": "screen charge/concentration pressure to dissolve the condensate-prone ensemble",
+          "perturbation_id": "HNRNPA1_DISSOLVING_CONDITION",
+          "perturbed_value": 0.619731,
+          "trajectory_final_state": {
+            "contact_probability": 0.195688,
+            "disorder_order_balance": 0.619731,
+            "frustration": 0.154312,
+            "interface_readiness": 0.1,
+            "operator_activation": 0.48,
+            "proteostasis_routing": 0.0,
+            "residue_exposure": 0.739547,
+            "segment_compaction": 0.227688,
+            "state_basin_occupancy": {
+              "compact_single_fold": 0.04,
+              "expanded_disordered": 0.575,
+              "phase_prone_dynamic": 0.436
+            },
+            "timepoint": 1000
+          }
+        },
+        {
+          "baseline_value": 0.58,
+          "direction_passed": true,
+          "expected_direction": "unchanged",
+          "metric": "basin:phase_prone_dynamic",
+          "observed_direction": "unchanged",
+          "perturbation": "apply unrelated membrane/proteostasis perturbation",
+          "perturbation_id": "HNRNPA1_WRONG_MEMBRANE_CONTROL",
+          "perturbed_value": 0.58,
+          "trajectory_final_state": {
+            "contact_probability": 0.253818,
+            "disorder_order_balance": 0.770618,
+            "frustration": 0.096182,
+            "interface_readiness": 0.1,
+            "operator_activation": 0.763333,
+            "proteostasis_routing": 0.0,
+            "residue_exposure": 0.724999,
+            "segment_compaction": 0.293818,
+            "state_basin_occupancy": {
+              "compact_single_fold": 0.04,
+              "expanded_disordered": 0.62,
+              "phase_prone_dynamic": 0.58
+            },
+            "timepoint": 1000
+          }
+        },
+        {
+          "baseline_value": 0.58,
+          "direction_passed": true,
+          "expected_direction": "unchanged",
+          "metric": "basin:phase_prone_dynamic",
+          "observed_direction": "unchanged",
+          "perturbation": "neutral condition with no operator change",
+          "perturbation_id": "HNRNPA1_NEUTRAL_CONTROL",
+          "perturbed_value": 0.58,
+          "trajectory_final_state": {
+            "contact_probability": 0.24251,
+            "disorder_order_balance": 0.771749,
+            "frustration": 0.10749,
+            "interface_readiness": 0.1,
+            "operator_activation": 0.763333,
+            "proteostasis_routing": 0.0,
+            "residue_exposure": 0.727486,
+            "segment_compaction": 0.28251,
+            "state_basin_occupancy": {
+              "compact_single_fold": 0.04,
+              "expanded_disordered": 0.62,
+              "phase_prone_dynamic": 0.58
+            },
+            "timepoint": 1000
+          }
+        }
+      ],
+      "target_id": "V57_HNRNPA1_LCD"
+    },
+    {
+      "rows": [
+        {
+          "baseline_value": 0.689504,
+          "direction_passed": true,
+          "expected_direction": "decrease",
+          "metric": "proteostasis_routing",
+          "observed_direction": "decrease",
+          "perturbation": "introduce P23H-like local folding damage",
+          "perturbation_id": "RHO_P23H_DAMAGE",
+          "perturbed_value": 0.426224,
+          "trajectory_final_state": {
+            "contact_probability": 0.399665,
+            "disorder_order_balance": 0.33506,
+            "frustration": 0.0,
+            "interface_readiness": 0.4437,
+            "operator_activation": 0.50471,
+            "proteostasis_routing": 0.426224,
+            "residue_exposure": 0.618912,
+            "segment_compaction": 0.4774,
+            "state_basin_occupancy": {
+              "mature_membrane_routed": 0.426224,
+              "partial_nbd1_rescue": 0.4774,
+              "qc_retained_misfolded": 0.358776
+            },
+            "timepoint": 1000
+          }
+        },
+        {
+          "baseline_value": 0.689504,
+          "direction_passed": true,
+          "expected_direction": "increase",
+          "metric": "proteostasis_routing",
+          "observed_direction": "increase",
+          "perturbation": "apply proteostasis/chaperone rescue context",
+          "perturbation_id": "RHO_CHAPERONE_RESCUE_CONTEXT",
+          "perturbed_value": 0.870104,
+          "trajectory_final_state": {
+            "contact_probability": 0.539435,
+            "disorder_order_balance": 0.2592,
+            "frustration": 0.0,
+            "interface_readiness": 0.7543,
+            "operator_activation": 0.80001,
+            "proteostasis_routing": 0.870104,
+            "residue_exposure": 0.55058,
+            "segment_compaction": 0.788,
+            "state_basin_occupancy": {
+              "mature_membrane_routed": 0.870104,
+              "partial_nbd1_rescue": 0.788,
+              "qc_retained_misfolded": 0.0
+            },
+            "timepoint": 1000
+          }
+        },
+        {
+          "baseline_value": 0.689504,
+          "direction_passed": true,
+          "expected_direction": "unchanged",
+          "metric": "proteostasis_routing",
+          "observed_direction": "unchanged",
+          "perturbation": "apply unrelated host-hijack short-interface perturbation",
+          "perturbation_id": "RHO_WRONG_HOST_HIJACK_CONTROL",
+          "perturbed_value": 0.689504,
+          "trajectory_final_state": {
+            "contact_probability": 0.48575,
+            "disorder_order_balance": 0.2676,
+            "frustration": 0.0,
+            "interface_readiness": 0.635,
+            "operator_activation": 0.73276,
+            "proteostasis_routing": 0.689504,
+            "residue_exposure": 0.56906,
+            "segment_compaction": 0.704,
+            "state_basin_occupancy": {
+              "mature_membrane_routed": 0.689504,
+              "partial_nbd1_rescue": 0.704,
+              "qc_retained_misfolded": 0.0
+            },
+            "timepoint": 1000
+          }
+        },
+        {
+          "baseline_value": 0.689504,
+          "direction_passed": true,
+          "expected_direction": "unchanged",
+          "metric": "proteostasis_routing",
+          "observed_direction": "unchanged",
+          "perturbation": "neutral condition with no operator change",
+          "perturbation_id": "RHO_NEUTRAL_CONTROL",
+          "perturbed_value": 0.689504,
+          "trajectory_final_state": {
+            "contact_probability": 0.48575,
+            "disorder_order_balance": 0.2676,
+            "frustration": 0.0,
+            "interface_readiness": 0.635,
+            "operator_activation": 0.73276,
+            "proteostasis_routing": 0.689504,
+            "residue_exposure": 0.56906,
+            "segment_compaction": 0.704,
+            "state_basin_occupancy": {
+              "mature_membrane_routed": 0.689504,
+              "partial_nbd1_rescue": 0.704,
+              "qc_retained_misfolded": 0.0
+            },
+            "timepoint": 1000
+          }
+        }
+      ],
+      "target_id": "V57_RHODOPSIN_P23H"
+    },
+    {
+      "rows": [
+        {
+          "baseline_value": 0.4264,
+          "direction_passed": true,
+          "expected_direction": "increase",
+          "metric": "basin:beta_released_basin",
+          "observed_direction": "increase",
+          "perturbation": "shift context toward released/beta-like basin",
+          "perturbation_id": "XCL1_RELEASE_OR_DIMER_CONTEXT",
+          "perturbed_value": 0.56736,
+          "trajectory_final_state": {
+            "contact_probability": 0.39868,
+            "disorder_order_balance": 0.40411,
+            "frustration": 0.68,
+            "interface_readiness": 0.566,
+            "operator_activation": 0.796333,
+            "proteostasis_routing": 0.0,
+            "residue_exposure": 0.627128,
+            "segment_compaction": 0.4589,
+            "state_basin_occupancy": {
+              "alpha_context_basin": 0.30264,
+              "averaged_single_fold": 0.06066,
+              "beta_released_basin": 0.56736
+            },
+            "timepoint": 1000
+          }
+        },
+        {
+          "baseline_value": 0.4336,
+          "direction_passed": true,
+          "expected_direction": "increase",
+          "metric": "basin:alpha_context_basin",
+          "observed_direction": "increase",
+          "perturbation": "stabilize alpha/chemokine-like basin",
+          "perturbation_id": "XCL1_ALPHA_STABILIZING_CONTEXT",
+          "perturbed_value": 0.526,
+          "trajectory_final_state": {
+            "contact_probability": 0.3832,
+            "disorder_order_balance": 0.4054,
+            "frustration": 0.68,
+            "interface_readiness": 0.566,
+            "operator_activation": 0.753333,
+            "proteostasis_routing": 0.0,
+            "residue_exposure": 0.629966,
+            "segment_compaction": 0.446,
+            "state_basin_occupancy": {
+              "alpha_context_basin": 0.526,
+              "averaged_single_fold": 0.0684,
+              "beta_released_basin": 0.4264
+            },
+            "timepoint": 1000
+          }
+        },
+        {
+          "baseline_value": 0.4264,
+          "direction_passed": true,
+          "expected_direction": "unchanged",
+          "metric": "basin:beta_released_basin",
+          "observed_direction": "unchanged",
+          "perturbation": "apply unrelated phase-separation perturbation",
+          "perturbation_id": "XCL1_WRONG_PHASE_CONTROL",
+          "perturbed_value": 0.4264,
+          "trajectory_final_state": {
+            "contact_probability": 0.3832,
+            "disorder_order_balance": 0.4054,
+            "frustration": 0.68,
+            "interface_readiness": 0.566,
+            "operator_activation": 0.753333,
+            "proteostasis_routing": 0.0,
+            "residue_exposure": 0.629966,
+            "segment_compaction": 0.446,
+            "state_basin_occupancy": {
+              "alpha_context_basin": 0.4336,
+              "averaged_single_fold": 0.0684,
+              "beta_released_basin": 0.4264
+            },
+            "timepoint": 1000
+          }
+        },
+        {
+          "baseline_value": 0.4264,
+          "direction_passed": true,
+          "expected_direction": "unchanged",
+          "metric": "basin:beta_released_basin",
+          "observed_direction": "unchanged",
+          "perturbation": "neutral condition with no operator change",
+          "perturbation_id": "XCL1_NEUTRAL_CONTROL",
+          "perturbed_value": 0.4264,
+          "trajectory_final_state": {
+            "contact_probability": 0.3832,
+            "disorder_order_balance": 0.4054,
+            "frustration": 0.68,
+            "interface_readiness": 0.566,
+            "operator_activation": 0.753333,
+            "proteostasis_routing": 0.0,
+            "residue_exposure": 0.629966,
+            "segment_compaction": 0.446,
+            "state_basin_occupancy": {
+              "alpha_context_basin": 0.4336,
+              "averaged_single_fold": 0.0684,
+              "beta_released_basin": 0.4264
+            },
+            "timepoint": 1000
+          }
+        }
+      ],
+      "target_id": "V57_XCL1_SWITCH"
+    },
+    {
+      "rows": [
+        {
+          "baseline_value": 0.941,
+          "direction_passed": true,
+          "expected_direction": "decrease",
+          "metric": "basin:host_interface_engaged",
+          "observed_direction": "decrease",
+          "perturbation": "disrupt basic host-interface motif",
+          "perturbation_id": "TAT_BASIC_REGION_DAMAGE",
+          "perturbed_value": 0.13395,
+          "trajectory_final_state": {
+            "contact_probability": 0.189654,
+            "disorder_order_balance": 0.5645,
+            "frustration": 0.160346,
+            "interface_readiness": 0.13395,
+            "operator_activation": 0.338667,
+            "proteostasis_routing": 0.0,
+            "residue_exposure": 0.728608,
+            "segment_compaction": 0.08,
+            "state_basin_occupancy": {
+              "compact_single_fold": 0.04,
+              "exposed_short_region": 0.496,
+              "host_interface_engaged": 0.13395
+            },
+            "timepoint": 1000
+          }
+        },
+        {
+          "baseline_value": 0.941,
+          "direction_passed": true,
+          "expected_direction": "decrease",
+          "metric": "interface_readiness",
+          "observed_direction": "decrease",
+          "perturbation": "remove host partner context",
+          "perturbation_id": "TAT_HOST_PARTNER_REMOVAL",
+          "perturbed_value": 0.3542,
+          "trajectory_final_state": {
+            "contact_probability": 0.304184,
+            "disorder_order_balance": 0.5645,
+            "frustration": 0.045816,
+            "interface_readiness": 0.3542,
+            "operator_activation": 0.502667,
+            "proteostasis_routing": 0.0,
+            "residue_exposure": 0.728608,
+            "segment_compaction": 0.08,
+            "state_basin_occupancy": {
+              "compact_single_fold": 0.04,
+              "exposed_short_region": 0.53,
+              "host_interface_engaged": 0.3542
+            },
+            "timepoint": 1000
+          }
+        },
+        {
+          "baseline_value": 0.941,
+          "direction_passed": true,
+          "expected_direction": "unchanged",
+          "metric": "basin:host_interface_engaged",
+          "observed_direction": "unchanged",
+          "perturbation": "apply unrelated membrane/proteostasis perturbation",
+          "perturbation_id": "TAT_WRONG_MEMBRANE_CONTROL",
+          "perturbed_value": 0.941,
+          "trajectory_final_state": {
+            "contact_probability": 0.60932,
+            "disorder_order_balance": 0.5645,
+            "frustration": 0.0,
+            "interface_readiness": 0.941,
+            "operator_activation": 0.676667,
+            "proteostasis_routing": 0.0,
+            "residue_exposure": 0.728608,
+            "segment_compaction": 0.08,
+            "state_basin_occupancy": {
+              "compact_single_fold": 0.04,
+              "exposed_short_region": 0.62,
+              "host_interface_engaged": 0.941
+            },
+            "timepoint": 1000
+          }
+        },
+        {
+          "baseline_value": 0.941,
+          "direction_passed": true,
+          "expected_direction": "unchanged",
+          "metric": "basin:host_interface_engaged",
+          "observed_direction": "unchanged",
+          "perturbation": "neutral condition with no operator change",
+          "perturbation_id": "TAT_NEUTRAL_CONTROL",
+          "perturbed_value": 0.941,
+          "trajectory_final_state": {
+            "contact_probability": 0.60932,
+            "disorder_order_balance": 0.5645,
+            "frustration": 0.0,
+            "interface_readiness": 0.941,
+            "operator_activation": 0.676667,
+            "proteostasis_routing": 0.0,
+            "residue_exposure": 0.728608,
+            "segment_compaction": 0.08,
+            "state_basin_occupancy": {
+              "compact_single_fold": 0.04,
+              "exposed_short_region": 0.62,
+              "host_interface_engaged": 0.941
+            },
+            "timepoint": 1000
+          }
+        }
+      ],
+      "target_id": "V57_HIV_TAT"
+    }
+  ]
+}

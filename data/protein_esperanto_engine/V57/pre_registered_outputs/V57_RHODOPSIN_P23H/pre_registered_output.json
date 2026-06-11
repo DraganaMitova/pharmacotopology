@@ -1,0 +1,53 @@
+{
+  "abstention_criteria": [
+    "coordinate leakage before seal",
+    "holdout opened before seal",
+    "only generic target name or generic annotation remains",
+    "forced wrong grammar is required for prediction"
+  ],
+  "dominant_regions": [
+    "157-168, 205-216, 253-264",
+    "NBD1/local deletion focus 508",
+    "NBD1-MSD/interdomain correction axis",
+    "folding quality-control and trafficking route"
+  ],
+  "falsification_criteria": [
+    "membrane context irrelevant to holdout rescue logic",
+    "NBD1 stability evidence fails to track F508del",
+    "interface/proteostasis correction has no added effect",
+    "maturation defect absent despite local destabilization"
+  ],
+  "operator_field": [
+    "membrane_pressure_operator",
+    "closure_operator",
+    "interface_operator",
+    "proteostasis_operator"
+  ],
+  "predicted_perturbation_directions": [
+    {
+      "expected_direction": "decrease",
+      "metric": "proteostasis_routing",
+      "perturbation_id": "RHO_P23H_DAMAGE"
+    },
+    {
+      "expected_direction": "increase",
+      "metric": "proteostasis_routing",
+      "perturbation_id": "RHO_CHAPERONE_RESCUE_CONTEXT"
+    },
+    {
+      "expected_direction": "unchanged",
+      "metric": "proteostasis_routing",
+      "perturbation_id": "RHO_WRONG_HOST_HIJACK_CONTROL"
+    },
+    {
+      "expected_direction": "unchanged",
+      "metric": "proteostasis_routing",
+      "perturbation_id": "RHO_NEUTRAL_CONTROL"
+    }
+  ],
+  "prediction_hash": "470c2f7ccbaf79dbd8003aff11e4a11680f11327f44e51850e63e2ddb0f22bc9",
+  "selected_grammar": "membrane_multidomain_folding_proteostasis",
+  "target_id": "V57_RHODOPSIN_P23H",
+  "target_name": "Human rhodopsin P23H membrane/proteostasis gate",
+  "trajectory_type": "membrane_multidomain_folding_proteostasis"
+}

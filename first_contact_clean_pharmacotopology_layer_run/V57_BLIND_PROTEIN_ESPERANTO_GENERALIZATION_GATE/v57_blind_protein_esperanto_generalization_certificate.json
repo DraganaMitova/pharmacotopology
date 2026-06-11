@@ -1,0 +1,1123 @@
+{
+  "abstained_targets": [],
+  "abstention_count": 0,
+  "allowed_claim_text": "The frozen Protein Esperanto engine generalized to fresh targets across multiple regimes under leakage-controlled blind validation.",
+  "atomistic_md_executed": false,
+  "certificate_hash": "b0bdfd2f991d5586ff85c1cd7a7937f99eba98a7fb26d121f5bb075426833db0",
+  "claim_allowed": true,
+  "control_count": 34,
+  "controls": [
+    {
+      "control_id": "V57_GB1_DOMAIN_selected_expected_grammar",
+      "observed": "globular_closure",
+      "passed": true,
+      "reason": "Frozen engine must select expected grammar before holdout."
+    },
+    {
+      "control_id": "V57_GB1_DOMAIN_wrong_grammar_fails_or_abstains",
+      "observed": {
+        "available_mechanism_classes": [
+          "globular_closure",
+          "intrinsic_disorder_phase_separation",
+          "membrane_multidomain_folding_proteostasis",
+          "metamorphic_fold_switching",
+          "short_region_host_interface_hijacking",
+          "fold_upon_binding_disorder",
+          "cofactor_ligand_assisted_stabilization",
+          "oligomerization_controlled_folding",
+          "insufficient_evidence_clean_abstain"
+        ],
+        "folding_problem_solved": false,
+        "forced_grammar": "short_region_host_interface_hijacking",
+        "forced_grammar_rejected": true,
+        "grammar_rule": null,
+        "kind": "PROTEIN_ESPERANTO_MECHANISM_CLASSIFIER_v0",
+        "mechanism_class": "insufficient_evidence_clean_abstain",
+        "natural_mechanism_class": "globular_closure",
+        "selection_reason": "forced_wrong_grammar_rejected"
+      },
+      "passed": true,
+      "reason": "Forced wrong grammar must fail or abstain."
+    },
+    {
+      "control_id": "V57_GB1_DOMAIN_perturbation_direction_separation",
+      "observed": {
+        "controls": [
+          {
+            "baseline_value": 0.5275,
+            "direction_passed": true,
+            "expected_direction": "unchanged",
+            "metric": "contact_probability",
+            "observed_direction": "unchanged",
+            "perturbation": "force unrelated host-hijack interface perturbation",
+            "perturbation_id": "GB1_WRONG_HOST_INTERFACE_CONTROL",
+            "perturbed_value": 0.5275,
+            "trajectory_final_state": {
+              "contact_probability": 0.5275,
+              "disorder_order_balance": 0.297,
+              "frustration": 0.0,
+              "interface_readiness": 0.12,
+              "operator_activation": 0.625,
+              "proteostasis_routing": 0.0,
+              "residue_exposure": 0.607128,
+              "segment_compaction": 0.53,
+              "state_basin_occupancy": {
+                "compact_folded": 0.5675,
+                "expanded_unfolded": 0.4675
+              },
+              "timepoint": 1000
+            }
+          },
+          {
+            "baseline_value": 0.5275,
+            "direction_passed": true,
+            "expected_direction": "unchanged",
+            "metric": "contact_probability",
+            "observed_direction": "unchanged",
+            "perturbation": "neutral condition with no operator change",
+            "perturbation_id": "GB1_NEUTRAL_CONTROL",
+            "perturbed_value": 0.5275,
+            "trajectory_final_state": {
+              "contact_probability": 0.5275,
+              "disorder_order_balance": 0.297,
+              "frustration": 0.0,
+              "interface_readiness": 0.12,
+              "operator_activation": 0.625,
+              "proteostasis_routing": 0.0,
+              "residue_exposure": 0.607128,
+              "segment_compaction": 0.53,
+              "state_basin_occupancy": {
+                "compact_folded": 0.5675,
+                "expanded_unfolded": 0.4675
+              },
+              "timepoint": 1000
+            }
+          }
+        ],
+        "directional": [
+          {
+            "baseline_value": 0.5275,
+            "direction_passed": true,
+            "expected_direction": "decrease",
+            "metric": "contact_probability",
+            "observed_direction": "decrease",
+            "perturbation": "damage hydrophobic closure-core chemistry",
+            "perturbation_id": "GB1_CORE_HYDROPHOBIC_DAMAGE",
+            "perturbed_value": 0.314375,
+            "trajectory_final_state": {
+              "contact_probability": 0.314375,
+              "disorder_order_balance": 0.37125,
+              "frustration": 0.035625,
+              "interface_readiness": 0.12,
+              "operator_activation": 0.28125,
+              "proteostasis_routing": 0.0,
+              "residue_exposure": 0.649478,
+              "segment_compaction": 0.3375,
+              "state_basin_occupancy": {
+                "compact_folded": 0.354375,
+                "expanded_unfolded": 0.639375
+              },
+              "timepoint": 1000
+            }
+          },
+          {
+            "baseline_value": 0.5275,
+            "direction_passed": true,
+            "expected_direction": "increase",
+            "metric": "contact_probability",
+            "observed_direction": "increase",
+            "perturbation": "stabilize closure-core packing context",
+            "perturbation_id": "GB1_CORE_STABILIZING_CONTEXT",
+            "perturbed_value": 0.64375,
+            "trajectory_final_state": {
+              "contact_probability": 0.64375,
+              "disorder_order_balance": 0.2565,
+              "frustration": 0.0,
+              "interface_readiness": 0.12,
+              "operator_activation": 0.8125,
+              "proteostasis_routing": 0.0,
+              "residue_exposure": 0.584028,
+              "segment_compaction": 0.635,
+              "state_basin_occupancy": {
+                "compact_folded": 0.68375,
+                "expanded_unfolded": 0.37375
+              },
+              "timepoint": 1000
+            }
+          }
+        ]
+      },
+      "passed": true,
+      "reason": "Correct perturbations move in the expected direction; wrong/neutral controls do not look equally correct."
+    },
+    {
+      "control_id": "V57_GB1_DOMAIN_shuffled_or_neutral_control_not_better",
+      "observed": {
+        "original_coherence": 0.84375,
+        "shuffled_coherence": 0.875
+      },
+      "passed": true,
+      "reason": "Shuffled sequence control must not improve operator coherence materially."
+    },
+    {
+      "control_id": "V57_GB1_DOMAIN_postseal_validation_supported",
+      "observed": "supported",
+      "passed": true,
+      "reason": "Post-seal validation must support the sealed packet."
+    },
+    {
+      "control_id": "V57_HNRNPA1_LCD_selected_expected_grammar",
+      "observed": "intrinsic_disorder_phase_separation",
+      "passed": true,
+      "reason": "Frozen engine must select expected grammar before holdout."
+    },
+    {
+      "control_id": "V57_HNRNPA1_LCD_wrong_grammar_fails_or_abstains",
+      "observed": {
+        "available_mechanism_classes": [
+          "globular_closure",
+          "intrinsic_disorder_phase_separation",
+          "membrane_multidomain_folding_proteostasis",
+          "metamorphic_fold_switching",
+          "short_region_host_interface_hijacking",
+          "fold_upon_binding_disorder",
+          "cofactor_ligand_assisted_stabilization",
+          "oligomerization_controlled_folding",
+          "insufficient_evidence_clean_abstain"
+        ],
+        "folding_problem_solved": false,
+        "forced_grammar": "globular_closure",
+        "forced_grammar_rejected": true,
+        "grammar_rule": null,
+        "kind": "PROTEIN_ESPERANTO_MECHANISM_CLASSIFIER_v0",
+        "mechanism_class": "insufficient_evidence_clean_abstain",
+        "natural_mechanism_class": "intrinsic_disorder_phase_separation",
+        "selection_reason": "forced_wrong_grammar_rejected"
+      },
+      "passed": true,
+      "reason": "Forced wrong grammar must fail or abstain."
+    },
+    {
+      "control_id": "V57_HNRNPA1_LCD_perturbation_direction_separation",
+      "observed": {
+        "controls": [
+          {
+            "baseline_value": 0.58,
+            "direction_passed": true,
+            "expected_direction": "unchanged",
+            "metric": "basin:phase_prone_dynamic",
+            "observed_direction": "unchanged",
+            "perturbation": "apply unrelated membrane/proteostasis perturbation",
+            "perturbation_id": "HNRNPA1_WRONG_MEMBRANE_CONTROL",
+            "perturbed_value": 0.58,
+            "trajectory_final_state": {
+              "contact_probability": 0.253818,
+              "disorder_order_balance": 0.770618,
+              "frustration": 0.096182,
+              "interface_readiness": 0.1,
+              "operator_activation": 0.763333,
+              "proteostasis_routing": 0.0,
+              "residue_exposure": 0.724999,
+              "segment_compaction": 0.293818,
+              "state_basin_occupancy": {
+                "compact_single_fold": 0.04,
+                "expanded_disordered": 0.62,
+                "phase_prone_dynamic": 0.58
+              },
+              "timepoint": 1000
+            }
+          },
+          {
+            "baseline_value": 0.58,
+            "direction_passed": true,
+            "expected_direction": "unchanged",
+            "metric": "basin:phase_prone_dynamic",
+            "observed_direction": "unchanged",
+            "perturbation": "neutral condition with no operator change",
+            "perturbation_id": "HNRNPA1_NEUTRAL_CONTROL",
+            "perturbed_value": 0.58,
+            "trajectory_final_state": {
+              "contact_probability": 0.24251,
+              "disorder_order_balance": 0.771749,
+              "frustration": 0.10749,
+              "interface_readiness": 0.1,
+              "operator_activation": 0.763333,
+              "proteostasis_routing": 0.0,
+              "residue_exposure": 0.727486,
+              "segment_compaction": 0.28251,
+              "state_basin_occupancy": {
+                "compact_single_fold": 0.04,
+                "expanded_disordered": 0.62,
+                "phase_prone_dynamic": 0.58
+              },
+              "timepoint": 1000
+            }
+          }
+        ],
+        "directional": [
+          {
+            "baseline_value": 0.58,
+            "direction_passed": true,
+            "expected_direction": "decrease",
+            "metric": "basin:phase_prone_dynamic",
+            "observed_direction": "decrease",
+            "perturbation": "weaken aromatic sticker contribution in the LCD",
+            "perturbation_id": "HNRNPA1_AROMATIC_STICKER_DAMAGE",
+            "perturbed_value": 0.382,
+            "trajectory_final_state": {
+              "contact_probability": 0.15201,
+              "disorder_order_balance": 0.781899,
+              "frustration": 0.19799,
+              "interface_readiness": 0.1,
+              "operator_activation": 0.58,
+              "proteostasis_routing": 0.0,
+              "residue_exposure": 0.749816,
+              "segment_compaction": 0.18101,
+              "state_basin_occupancy": {
+                "compact_single_fold": 0.04,
+                "expanded_disordered": 0.62,
+                "phase_prone_dynamic": 0.382
+              },
+              "timepoint": 1000
+            }
+          },
+          {
+            "baseline_value": 0.771207,
+            "direction_passed": true,
+            "expected_direction": "decrease",
+            "metric": "disorder_order_balance",
+            "observed_direction": "decrease",
+            "perturbation": "screen charge/concentration pressure to dissolve the condensate-prone ensemble",
+            "perturbation_id": "HNRNPA1_DISSOLVING_CONDITION",
+            "perturbed_value": 0.619731,
+            "trajectory_final_state": {
+              "contact_probability": 0.195688,
+              "disorder_order_balance": 0.619731,
+              "frustration": 0.154312,
+              "interface_readiness": 0.1,
+              "operator_activation": 0.48,
+              "proteostasis_routing": 0.0,
+              "residue_exposure": 0.739547,
+              "segment_compaction": 0.227688,
+              "state_basin_occupancy": {
+                "compact_single_fold": 0.04,
+                "expanded_disordered": 0.575,
+                "phase_prone_dynamic": 0.436
+              },
+              "timepoint": 1000
+            }
+          }
+        ]
+      },
+      "passed": true,
+      "reason": "Correct perturbations move in the expected direction; wrong/neutral controls do not look equally correct."
+    },
+    {
+      "control_id": "V57_HNRNPA1_LCD_shuffled_or_neutral_control_not_better",
+      "observed": {
+        "original_coherence": 1.0,
+        "shuffled_coherence": 1.0
+      },
+      "passed": true,
+      "reason": "Shuffled sequence control must not improve operator coherence materially."
+    },
+    {
+      "control_id": "V57_HNRNPA1_LCD_postseal_validation_supported",
+      "observed": "supported",
+      "passed": true,
+      "reason": "Post-seal validation must support the sealed packet."
+    },
+    {
+      "control_id": "V57_RHODOPSIN_P23H_selected_expected_grammar",
+      "observed": "membrane_multidomain_folding_proteostasis",
+      "passed": true,
+      "reason": "Frozen engine must select expected grammar before holdout."
+    },
+    {
+      "control_id": "V57_RHODOPSIN_P23H_wrong_grammar_fails_or_abstains",
+      "observed": {
+        "available_mechanism_classes": [
+          "globular_closure",
+          "intrinsic_disorder_phase_separation",
+          "membrane_multidomain_folding_proteostasis",
+          "metamorphic_fold_switching",
+          "short_region_host_interface_hijacking",
+          "fold_upon_binding_disorder",
+          "cofactor_ligand_assisted_stabilization",
+          "oligomerization_controlled_folding",
+          "insufficient_evidence_clean_abstain"
+        ],
+        "folding_problem_solved": false,
+        "forced_grammar": "intrinsic_disorder_phase_separation",
+        "forced_grammar_rejected": true,
+        "grammar_rule": null,
+        "kind": "PROTEIN_ESPERANTO_MECHANISM_CLASSIFIER_v0",
+        "mechanism_class": "insufficient_evidence_clean_abstain",
+        "natural_mechanism_class": "membrane_multidomain_folding_proteostasis",
+        "selection_reason": "forced_wrong_grammar_rejected"
+      },
+      "passed": true,
+      "reason": "Forced wrong grammar must fail or abstain."
+    },
+    {
+      "control_id": "V57_RHODOPSIN_P23H_perturbation_direction_separation",
+      "observed": {
+        "controls": [
+          {
+            "baseline_value": 0.689504,
+            "direction_passed": true,
+            "expected_direction": "unchanged",
+            "metric": "proteostasis_routing",
+            "observed_direction": "unchanged",
+            "perturbation": "apply unrelated host-hijack short-interface perturbation",
+            "perturbation_id": "RHO_WRONG_HOST_HIJACK_CONTROL",
+            "perturbed_value": 0.689504,
+            "trajectory_final_state": {
+              "contact_probability": 0.48575,
+              "disorder_order_balance": 0.2676,
+              "frustration": 0.0,
+              "interface_readiness": 0.635,
+              "operator_activation": 0.73276,
+              "proteostasis_routing": 0.689504,
+              "residue_exposure": 0.56906,
+              "segment_compaction": 0.704,
+              "state_basin_occupancy": {
+                "mature_membrane_routed": 0.689504,
+                "partial_nbd1_rescue": 0.704,
+                "qc_retained_misfolded": 0.0
+              },
+              "timepoint": 1000
+            }
+          },
+          {
+            "baseline_value": 0.689504,
+            "direction_passed": true,
+            "expected_direction": "unchanged",
+            "metric": "proteostasis_routing",
+            "observed_direction": "unchanged",
+            "perturbation": "neutral condition with no operator change",
+            "perturbation_id": "RHO_NEUTRAL_CONTROL",
+            "perturbed_value": 0.689504,
+            "trajectory_final_state": {
+              "contact_probability": 0.48575,
+              "disorder_order_balance": 0.2676,
+              "frustration": 0.0,
+              "interface_readiness": 0.635,
+              "operator_activation": 0.73276,
+              "proteostasis_routing": 0.689504,
+              "residue_exposure": 0.56906,
+              "segment_compaction": 0.704,
+              "state_basin_occupancy": {
+                "mature_membrane_routed": 0.689504,
+                "partial_nbd1_rescue": 0.704,
+                "qc_retained_misfolded": 0.0
+              },
+              "timepoint": 1000
+            }
+          }
+        ],
+        "directional": [
+          {
+            "baseline_value": 0.689504,
+            "direction_passed": true,
+            "expected_direction": "decrease",
+            "metric": "proteostasis_routing",
+            "observed_direction": "decrease",
+            "perturbation": "introduce P23H-like local folding damage",
+            "perturbation_id": "RHO_P23H_DAMAGE",
+            "perturbed_value": 0.426224,
+            "trajectory_final_state": {
+              "contact_probability": 0.399665,
+              "disorder_order_balance": 0.33506,
+              "frustration": 0.0,
+              "interface_readiness": 0.4437,
+              "operator_activation": 0.50471,
+              "proteostasis_routing": 0.426224,
+              "residue_exposure": 0.618912,
+              "segment_compaction": 0.4774,
+              "state_basin_occupancy": {
+                "mature_membrane_routed": 0.426224,
+                "partial_nbd1_rescue": 0.4774,
+                "qc_retained_misfolded": 0.358776
+              },
+              "timepoint": 1000
+            }
+          },
+          {
+            "baseline_value": 0.689504,
+            "direction_passed": true,
+            "expected_direction": "increase",
+            "metric": "proteostasis_routing",
+            "observed_direction": "increase",
+            "perturbation": "apply proteostasis/chaperone rescue context",
+            "perturbation_id": "RHO_CHAPERONE_RESCUE_CONTEXT",
+            "perturbed_value": 0.870104,
+            "trajectory_final_state": {
+              "contact_probability": 0.539435,
+              "disorder_order_balance": 0.2592,
+              "frustration": 0.0,
+              "interface_readiness": 0.7543,
+              "operator_activation": 0.80001,
+              "proteostasis_routing": 0.870104,
+              "residue_exposure": 0.55058,
+              "segment_compaction": 0.788,
+              "state_basin_occupancy": {
+                "mature_membrane_routed": 0.870104,
+                "partial_nbd1_rescue": 0.788,
+                "qc_retained_misfolded": 0.0
+              },
+              "timepoint": 1000
+            }
+          }
+        ]
+      },
+      "passed": true,
+      "reason": "Correct perturbations move in the expected direction; wrong/neutral controls do not look equally correct."
+    },
+    {
+      "control_id": "V57_RHODOPSIN_P23H_shuffled_or_neutral_control_not_better",
+      "observed": {
+        "original_coherence": 1.0,
+        "shuffled_coherence": 1.0
+      },
+      "passed": true,
+      "reason": "Shuffled sequence control must not improve operator coherence materially."
+    },
+    {
+      "control_id": "V57_RHODOPSIN_P23H_postseal_validation_supported",
+      "observed": "supported",
+      "passed": true,
+      "reason": "Post-seal validation must support the sealed packet."
+    },
+    {
+      "control_id": "V57_XCL1_SWITCH_selected_expected_grammar",
+      "observed": "metamorphic_fold_switching",
+      "passed": true,
+      "reason": "Frozen engine must select expected grammar before holdout."
+    },
+    {
+      "control_id": "V57_XCL1_SWITCH_wrong_grammar_fails_or_abstains",
+      "observed": {
+        "available_mechanism_classes": [
+          "globular_closure",
+          "intrinsic_disorder_phase_separation",
+          "membrane_multidomain_folding_proteostasis",
+          "metamorphic_fold_switching",
+          "short_region_host_interface_hijacking",
+          "fold_upon_binding_disorder",
+          "cofactor_ligand_assisted_stabilization",
+          "oligomerization_controlled_folding",
+          "insufficient_evidence_clean_abstain"
+        ],
+        "folding_problem_solved": false,
+        "forced_grammar": "globular_closure",
+        "forced_grammar_rejected": true,
+        "grammar_rule": null,
+        "kind": "PROTEIN_ESPERANTO_MECHANISM_CLASSIFIER_v0",
+        "mechanism_class": "insufficient_evidence_clean_abstain",
+        "natural_mechanism_class": "metamorphic_fold_switching",
+        "selection_reason": "forced_wrong_grammar_rejected"
+      },
+      "passed": true,
+      "reason": "Forced wrong grammar must fail or abstain."
+    },
+    {
+      "control_id": "V57_XCL1_SWITCH_perturbation_direction_separation",
+      "observed": {
+        "controls": [
+          {
+            "baseline_value": 0.4264,
+            "direction_passed": true,
+            "expected_direction": "unchanged",
+            "metric": "basin:beta_released_basin",
+            "observed_direction": "unchanged",
+            "perturbation": "apply unrelated phase-separation perturbation",
+            "perturbation_id": "XCL1_WRONG_PHASE_CONTROL",
+            "perturbed_value": 0.4264,
+            "trajectory_final_state": {
+              "contact_probability": 0.3832,
+              "disorder_order_balance": 0.4054,
+              "frustration": 0.68,
+              "interface_readiness": 0.566,
+              "operator_activation": 0.753333,
+              "proteostasis_routing": 0.0,
+              "residue_exposure": 0.629966,
+              "segment_compaction": 0.446,
+              "state_basin_occupancy": {
+                "alpha_context_basin": 0.4336,
+                "averaged_single_fold": 0.0684,
+                "beta_released_basin": 0.4264
+              },
+              "timepoint": 1000
+            }
+          },
+          {
+            "baseline_value": 0.4264,
+            "direction_passed": true,
+            "expected_direction": "unchanged",
+            "metric": "basin:beta_released_basin",
+            "observed_direction": "unchanged",
+            "perturbation": "neutral condition with no operator change",
+            "perturbation_id": "XCL1_NEUTRAL_CONTROL",
+            "perturbed_value": 0.4264,
+            "trajectory_final_state": {
+              "contact_probability": 0.3832,
+              "disorder_order_balance": 0.4054,
+              "frustration": 0.68,
+              "interface_readiness": 0.566,
+              "operator_activation": 0.753333,
+              "proteostasis_routing": 0.0,
+              "residue_exposure": 0.629966,
+              "segment_compaction": 0.446,
+              "state_basin_occupancy": {
+                "alpha_context_basin": 0.4336,
+                "averaged_single_fold": 0.0684,
+                "beta_released_basin": 0.4264
+              },
+              "timepoint": 1000
+            }
+          }
+        ],
+        "directional": [
+          {
+            "baseline_value": 0.4264,
+            "direction_passed": true,
+            "expected_direction": "increase",
+            "metric": "basin:beta_released_basin",
+            "observed_direction": "increase",
+            "perturbation": "shift context toward released/beta-like basin",
+            "perturbation_id": "XCL1_RELEASE_OR_DIMER_CONTEXT",
+            "perturbed_value": 0.56736,
+            "trajectory_final_state": {
+              "contact_probability": 0.39868,
+              "disorder_order_balance": 0.40411,
+              "frustration": 0.68,
+              "interface_readiness": 0.566,
+              "operator_activation": 0.796333,
+              "proteostasis_routing": 0.0,
+              "residue_exposure": 0.627128,
+              "segment_compaction": 0.4589,
+              "state_basin_occupancy": {
+                "alpha_context_basin": 0.30264,
+                "averaged_single_fold": 0.06066,
+                "beta_released_basin": 0.56736
+              },
+              "timepoint": 1000
+            }
+          },
+          {
+            "baseline_value": 0.4336,
+            "direction_passed": true,
+            "expected_direction": "increase",
+            "metric": "basin:alpha_context_basin",
+            "observed_direction": "increase",
+            "perturbation": "stabilize alpha/chemokine-like basin",
+            "perturbation_id": "XCL1_ALPHA_STABILIZING_CONTEXT",
+            "perturbed_value": 0.526,
+            "trajectory_final_state": {
+              "contact_probability": 0.3832,
+              "disorder_order_balance": 0.4054,
+              "frustration": 0.68,
+              "interface_readiness": 0.566,
+              "operator_activation": 0.753333,
+              "proteostasis_routing": 0.0,
+              "residue_exposure": 0.629966,
+              "segment_compaction": 0.446,
+              "state_basin_occupancy": {
+                "alpha_context_basin": 0.526,
+                "averaged_single_fold": 0.0684,
+                "beta_released_basin": 0.4264
+              },
+              "timepoint": 1000
+            }
+          }
+        ]
+      },
+      "passed": true,
+      "reason": "Correct perturbations move in the expected direction; wrong/neutral controls do not look equally correct."
+    },
+    {
+      "control_id": "V57_XCL1_SWITCH_shuffled_or_neutral_control_not_better",
+      "observed": {
+        "original_coherence": 0.753333,
+        "shuffled_coherence": 0.753333
+      },
+      "passed": true,
+      "reason": "Shuffled sequence control must not improve operator coherence materially."
+    },
+    {
+      "control_id": "V57_XCL1_SWITCH_postseal_validation_supported",
+      "observed": "supported",
+      "passed": true,
+      "reason": "Post-seal validation must support the sealed packet."
+    },
+    {
+      "control_id": "V57_HIV_TAT_selected_expected_grammar",
+      "observed": "short_region_host_interface_hijacking",
+      "passed": true,
+      "reason": "Frozen engine must select expected grammar before holdout."
+    },
+    {
+      "control_id": "V57_HIV_TAT_wrong_grammar_fails_or_abstains",
+      "observed": {
+        "available_mechanism_classes": [
+          "globular_closure",
+          "intrinsic_disorder_phase_separation",
+          "membrane_multidomain_folding_proteostasis",
+          "metamorphic_fold_switching",
+          "short_region_host_interface_hijacking",
+          "fold_upon_binding_disorder",
+          "cofactor_ligand_assisted_stabilization",
+          "oligomerization_controlled_folding",
+          "insufficient_evidence_clean_abstain"
+        ],
+        "folding_problem_solved": false,
+        "forced_grammar": "globular_closure",
+        "forced_grammar_rejected": true,
+        "grammar_rule": null,
+        "kind": "PROTEIN_ESPERANTO_MECHANISM_CLASSIFIER_v0",
+        "mechanism_class": "insufficient_evidence_clean_abstain",
+        "natural_mechanism_class": "short_region_host_interface_hijacking",
+        "selection_reason": "forced_wrong_grammar_rejected"
+      },
+      "passed": true,
+      "reason": "Forced wrong grammar must fail or abstain."
+    },
+    {
+      "control_id": "V57_HIV_TAT_perturbation_direction_separation",
+      "observed": {
+        "controls": [
+          {
+            "baseline_value": 0.941,
+            "direction_passed": true,
+            "expected_direction": "unchanged",
+            "metric": "basin:host_interface_engaged",
+            "observed_direction": "unchanged",
+            "perturbation": "apply unrelated membrane/proteostasis perturbation",
+            "perturbation_id": "TAT_WRONG_MEMBRANE_CONTROL",
+            "perturbed_value": 0.941,
+            "trajectory_final_state": {
+              "contact_probability": 0.60932,
+              "disorder_order_balance": 0.5645,
+              "frustration": 0.0,
+              "interface_readiness": 0.941,
+              "operator_activation": 0.676667,
+              "proteostasis_routing": 0.0,
+              "residue_exposure": 0.728608,
+              "segment_compaction": 0.08,
+              "state_basin_occupancy": {
+                "compact_single_fold": 0.04,
+                "exposed_short_region": 0.62,
+                "host_interface_engaged": 0.941
+              },
+              "timepoint": 1000
+            }
+          },
+          {
+            "baseline_value": 0.941,
+            "direction_passed": true,
+            "expected_direction": "unchanged",
+            "metric": "basin:host_interface_engaged",
+            "observed_direction": "unchanged",
+            "perturbation": "neutral condition with no operator change",
+            "perturbation_id": "TAT_NEUTRAL_CONTROL",
+            "perturbed_value": 0.941,
+            "trajectory_final_state": {
+              "contact_probability": 0.60932,
+              "disorder_order_balance": 0.5645,
+              "frustration": 0.0,
+              "interface_readiness": 0.941,
+              "operator_activation": 0.676667,
+              "proteostasis_routing": 0.0,
+              "residue_exposure": 0.728608,
+              "segment_compaction": 0.08,
+              "state_basin_occupancy": {
+                "compact_single_fold": 0.04,
+                "exposed_short_region": 0.62,
+                "host_interface_engaged": 0.941
+              },
+              "timepoint": 1000
+            }
+          }
+        ],
+        "directional": [
+          {
+            "baseline_value": 0.941,
+            "direction_passed": true,
+            "expected_direction": "decrease",
+            "metric": "basin:host_interface_engaged",
+            "observed_direction": "decrease",
+            "perturbation": "disrupt basic host-interface motif",
+            "perturbation_id": "TAT_BASIC_REGION_DAMAGE",
+            "perturbed_value": 0.13395,
+            "trajectory_final_state": {
+              "contact_probability": 0.189654,
+              "disorder_order_balance": 0.5645,
+              "frustration": 0.160346,
+              "interface_readiness": 0.13395,
+              "operator_activation": 0.338667,
+              "proteostasis_routing": 0.0,
+              "residue_exposure": 0.728608,
+              "segment_compaction": 0.08,
+              "state_basin_occupancy": {
+                "compact_single_fold": 0.04,
+                "exposed_short_region": 0.496,
+                "host_interface_engaged": 0.13395
+              },
+              "timepoint": 1000
+            }
+          },
+          {
+            "baseline_value": 0.941,
+            "direction_passed": true,
+            "expected_direction": "decrease",
+            "metric": "interface_readiness",
+            "observed_direction": "decrease",
+            "perturbation": "remove host partner context",
+            "perturbation_id": "TAT_HOST_PARTNER_REMOVAL",
+            "perturbed_value": 0.3542,
+            "trajectory_final_state": {
+              "contact_probability": 0.304184,
+              "disorder_order_balance": 0.5645,
+              "frustration": 0.045816,
+              "interface_readiness": 0.3542,
+              "operator_activation": 0.502667,
+              "proteostasis_routing": 0.0,
+              "residue_exposure": 0.728608,
+              "segment_compaction": 0.08,
+              "state_basin_occupancy": {
+                "compact_single_fold": 0.04,
+                "exposed_short_region": 0.53,
+                "host_interface_engaged": 0.3542
+              },
+              "timepoint": 1000
+            }
+          }
+        ]
+      },
+      "passed": true,
+      "reason": "Correct perturbations move in the expected direction; wrong/neutral controls do not look equally correct."
+    },
+    {
+      "control_id": "V57_HIV_TAT_shuffled_or_neutral_control_not_better",
+      "observed": {
+        "original_coherence": 0.733923,
+        "shuffled_coherence": 0.764724
+      },
+      "passed": true,
+      "reason": "Shuffled sequence control must not improve operator coherence materially."
+    },
+    {
+      "control_id": "V57_HIV_TAT_postseal_validation_supported",
+      "observed": "supported",
+      "passed": true,
+      "reason": "Post-seal validation must support the sealed packet."
+    },
+    {
+      "control_id": "v57_engine_source_frozen",
+      "observed": {
+        "allowed_v57_changes": [
+          "new target manifests",
+          "new source manifests",
+          "new holdout manifests",
+          "new reports",
+          "new certificates",
+          "new tests"
+        ],
+        "disallowed_v57_changes": [
+          "new operators",
+          "new mechanism classes",
+          "new scoring rules",
+          "new control definitions",
+          "README updates",
+          "post-result tuning"
+        ],
+        "engine_modified_for_v57": false,
+        "engine_source_last_commit": "5e3890c56879ce65ed4cca41d540ae1bd6ab43fb",
+        "engine_source_path": "src/pharmacotopology/protein_esperanto_engine.py",
+        "engine_source_sha256": "31c7234a6ac7f0f78fa67ff1040cd20a4c91768a7e6bf6e11c2deff18dcc27e5",
+        "folding_problem_solved": false,
+        "frozen_mechanism_classes": [
+          "globular_closure",
+          "intrinsic_disorder_phase_separation",
+          "membrane_multidomain_folding_proteostasis",
+          "metamorphic_fold_switching",
+          "short_region_host_interface_hijacking",
+          "fold_upon_binding_disorder",
+          "cofactor_ligand_assisted_stabilization",
+          "oligomerization_controlled_folding",
+          "insufficient_evidence_clean_abstain"
+        ],
+        "frozen_operator_names": [
+          "closure_operator",
+          "repulsion_operator",
+          "frustration_operator",
+          "disorder_operator",
+          "phase_operator",
+          "interface_operator",
+          "membrane_pressure_operator",
+          "dual_basin_switch_operator",
+          "proteostasis_operator",
+          "host_hijack_operator"
+        ],
+        "kind": "V57_FROZEN_ENGINE_DECLARATION_v0"
+      },
+      "passed": true,
+      "reason": "V57 must not modify the V50-V56 engine."
+    },
+    {
+      "control_id": "v57_no_new_operators_or_mechanism_classes",
+      "observed": null,
+      "passed": true,
+      "reason": "V57 must use frozen operators and mechanism classes."
+    },
+    {
+      "control_id": "v57_at_least_three_fresh_regimes",
+      "observed": [
+        "globular_closure",
+        "intrinsic_disorder_phase_separation",
+        "membrane_multidomain_folding_proteostasis",
+        "metamorphic_fold_switching",
+        "short_region_host_interface_hijacking"
+      ],
+      "passed": true,
+      "reason": "Blind gate must cover at least three fresh regimes."
+    },
+    {
+      "control_id": "v57_all_wrong_grammars_fail",
+      "observed": [
+        {
+          "available_mechanism_classes": [
+            "globular_closure",
+            "intrinsic_disorder_phase_separation",
+            "membrane_multidomain_folding_proteostasis",
+            "metamorphic_fold_switching",
+            "short_region_host_interface_hijacking",
+            "fold_upon_binding_disorder",
+            "cofactor_ligand_assisted_stabilization",
+            "oligomerization_controlled_folding",
+            "insufficient_evidence_clean_abstain"
+          ],
+          "folding_problem_solved": false,
+          "forced_grammar": "short_region_host_interface_hijacking",
+          "forced_grammar_rejected": true,
+          "grammar_rule": null,
+          "kind": "PROTEIN_ESPERANTO_MECHANISM_CLASSIFIER_v0",
+          "mechanism_class": "insufficient_evidence_clean_abstain",
+          "natural_mechanism_class": "globular_closure",
+          "selection_reason": "forced_wrong_grammar_rejected"
+        },
+        {
+          "available_mechanism_classes": [
+            "globular_closure",
+            "intrinsic_disorder_phase_separation",
+            "membrane_multidomain_folding_proteostasis",
+            "metamorphic_fold_switching",
+            "short_region_host_interface_hijacking",
+            "fold_upon_binding_disorder",
+            "cofactor_ligand_assisted_stabilization",
+            "oligomerization_controlled_folding",
+            "insufficient_evidence_clean_abstain"
+          ],
+          "folding_problem_solved": false,
+          "forced_grammar": "globular_closure",
+          "forced_grammar_rejected": true,
+          "grammar_rule": null,
+          "kind": "PROTEIN_ESPERANTO_MECHANISM_CLASSIFIER_v0",
+          "mechanism_class": "insufficient_evidence_clean_abstain",
+          "natural_mechanism_class": "intrinsic_disorder_phase_separation",
+          "selection_reason": "forced_wrong_grammar_rejected"
+        },
+        {
+          "available_mechanism_classes": [
+            "globular_closure",
+            "intrinsic_disorder_phase_separation",
+            "membrane_multidomain_folding_proteostasis",
+            "metamorphic_fold_switching",
+            "short_region_host_interface_hijacking",
+            "fold_upon_binding_disorder",
+            "cofactor_ligand_assisted_stabilization",
+            "oligomerization_controlled_folding",
+            "insufficient_evidence_clean_abstain"
+          ],
+          "folding_problem_solved": false,
+          "forced_grammar": "intrinsic_disorder_phase_separation",
+          "forced_grammar_rejected": true,
+          "grammar_rule": null,
+          "kind": "PROTEIN_ESPERANTO_MECHANISM_CLASSIFIER_v0",
+          "mechanism_class": "insufficient_evidence_clean_abstain",
+          "natural_mechanism_class": "membrane_multidomain_folding_proteostasis",
+          "selection_reason": "forced_wrong_grammar_rejected"
+        },
+        {
+          "available_mechanism_classes": [
+            "globular_closure",
+            "intrinsic_disorder_phase_separation",
+            "membrane_multidomain_folding_proteostasis",
+            "metamorphic_fold_switching",
+            "short_region_host_interface_hijacking",
+            "fold_upon_binding_disorder",
+            "cofactor_ligand_assisted_stabilization",
+            "oligomerization_controlled_folding",
+            "insufficient_evidence_clean_abstain"
+          ],
+          "folding_problem_solved": false,
+          "forced_grammar": "globular_closure",
+          "forced_grammar_rejected": true,
+          "grammar_rule": null,
+          "kind": "PROTEIN_ESPERANTO_MECHANISM_CLASSIFIER_v0",
+          "mechanism_class": "insufficient_evidence_clean_abstain",
+          "natural_mechanism_class": "metamorphic_fold_switching",
+          "selection_reason": "forced_wrong_grammar_rejected"
+        },
+        {
+          "available_mechanism_classes": [
+            "globular_closure",
+            "intrinsic_disorder_phase_separation",
+            "membrane_multidomain_folding_proteostasis",
+            "metamorphic_fold_switching",
+            "short_region_host_interface_hijacking",
+            "fold_upon_binding_disorder",
+            "cofactor_ligand_assisted_stabilization",
+            "oligomerization_controlled_folding",
+            "insufficient_evidence_clean_abstain"
+          ],
+          "folding_problem_solved": false,
+          "forced_grammar": "globular_closure",
+          "forced_grammar_rejected": true,
+          "grammar_rule": null,
+          "kind": "PROTEIN_ESPERANTO_MECHANISM_CLASSIFIER_v0",
+          "mechanism_class": "insufficient_evidence_clean_abstain",
+          "natural_mechanism_class": "short_region_host_interface_hijacking",
+          "selection_reason": "forced_wrong_grammar_rejected"
+        }
+      ],
+      "passed": true,
+      "reason": "Every target must reject a forced wrong grammar."
+    },
+    {
+      "control_id": "v57_random_sequence_abstains",
+      "observed": {
+        "available_mechanism_classes": [
+          "globular_closure",
+          "intrinsic_disorder_phase_separation",
+          "membrane_multidomain_folding_proteostasis",
+          "metamorphic_fold_switching",
+          "short_region_host_interface_hijacking",
+          "fold_upon_binding_disorder",
+          "cofactor_ligand_assisted_stabilization",
+          "oligomerization_controlled_folding",
+          "insufficient_evidence_clean_abstain"
+        ],
+        "folding_problem_solved": false,
+        "forced_grammar": null,
+        "forced_grammar_rejected": false,
+        "grammar_rule": null,
+        "kind": "PROTEIN_ESPERANTO_MECHANISM_CLASSIFIER_v0",
+        "mechanism_class": "insufficient_evidence_clean_abstain",
+        "natural_mechanism_class": "insufficient_evidence_clean_abstain",
+        "selection_reason": "no_allowed_prediction_evidence"
+      },
+      "passed": true,
+      "reason": "Random sequence without allowed evidence must abstain."
+    },
+    {
+      "control_id": "v57_coordinate_leakage_blocks",
+      "observed": {
+        "allowed_initialization_source_ids": [],
+        "blocked_source_ids": [
+          "V57_BAD_COORDINATES"
+        ],
+        "coordinate_derived_source_count_before_prediction": 1,
+        "coordinate_truth_used_before_prediction": true,
+        "holdout_opened_before_seal": false,
+        "internal_runtime_source_count_for_prediction": 0,
+        "internal_runtime_used_as_biological_evidence": false,
+        "kind": "PROTEIN_ESPERANTO_EVIDENCE_BOUNDARY_GATE_v0",
+        "rows": [
+          {
+            "allowed_for_claim": false,
+            "allowed_for_holdout_after_seal": false,
+            "allowed_to_initialize_language_field": false,
+            "blocked_reason": "coordinate_derived_blocked_before_seal",
+            "coordinate_derived": true,
+            "internal_runtime": false,
+            "source_class": "coordinate_derived",
+            "source_id": "V57_BAD_COORDINATES",
+            "source_role": "prediction_input",
+            "spatial_proxy": false
+          }
+        ],
+        "spatial_proxy_untagged_or_misused_count": 0
+      },
+      "passed": true,
+      "reason": "Coordinate-derived prediction evidence must block."
+    },
+    {
+      "control_id": "v57_holdout_before_seal_blocks",
+      "observed": {
+        "allowed_initialization_source_ids": [],
+        "blocked_source_ids": [
+          "V57_PREOPENED_HOLDOUT"
+        ],
+        "coordinate_derived_source_count_before_prediction": 0,
+        "coordinate_truth_used_before_prediction": false,
+        "holdout_opened_before_seal": true,
+        "internal_runtime_source_count_for_prediction": 0,
+        "internal_runtime_used_as_biological_evidence": false,
+        "kind": "PROTEIN_ESPERANTO_EVIDENCE_BOUNDARY_GATE_v0",
+        "rows": [
+          {
+            "allowed_for_claim": false,
+            "allowed_for_holdout_after_seal": true,
+            "allowed_to_initialize_language_field": false,
+            "blocked_reason": "holdout_opened_before_seal",
+            "coordinate_derived": false,
+            "internal_runtime": false,
+            "source_class": "spatial_proxy_non_coordinate",
+            "source_id": "V57_PREOPENED_HOLDOUT",
+            "source_role": "holdout_validation",
+            "spatial_proxy": true
+          }
+        ],
+        "spatial_proxy_untagged_or_misused_count": 0
+      },
+      "passed": true,
+      "reason": "Holdout opened before seal must block."
+    },
+    {
+      "control_id": "v57_all_holdouts_reference_hash",
+      "observed": null,
+      "passed": true,
+      "reason": "Each post-seal validation must reference the sealed hash."
+    },
+    {
+      "control_id": "v57_folding_problem_solved_never_true",
+      "observed": null,
+      "passed": true,
+      "reason": "V57 must preserve folding_problem_solved=false."
+    }
+  ],
+  "coordinate_derived_source_count_before_prediction": 0,
+  "engine_modified_for_v57": false,
+  "engine_source_last_commit": "5e3890c56879ce65ed4cca41d540ae1bd6ab43fb",
+  "engine_source_sha256": "31c7234a6ac7f0f78fa67ff1040cd20a4c91768a7e6bf6e11c2deff18dcc27e5",
+  "failed_checks": [],
+  "folding_problem_solved": false,
+  "forbidden_claims": [
+    "Universal protein folding is solved.",
+    "Coordinates were predicted de novo.",
+    "Atomistic folding was solved.",
+    "External review is unnecessary."
+  ],
+  "fresh_regime_count": 5,
+  "internal_runtime_source_count_for_prediction": 0,
+  "kind": "V57_BLIND_PROTEIN_ESPERANTO_GENERALIZATION_CERTIFICATE_v0",
+  "passed_control_count": 34,
+  "readme_touched": false,
+  "sealed_prediction_count": 5,
+  "status": "V57_BLIND_GENERALIZATION_PASSED_REVIEW_REQUIRED",
+  "supported_validation_count": 5,
+  "target_count": 5,
+  "timestamp_utc": "2026-06-11T18:35:14.976533+00:00"
+}

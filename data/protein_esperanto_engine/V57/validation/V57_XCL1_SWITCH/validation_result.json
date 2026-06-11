@@ -1,0 +1,50 @@
+{
+  "checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "metamorphic_fold_switching",
+      "observed": "metamorphic_fold_switching",
+      "passed": true
+    },
+    {
+      "check_id": "alpha_basin_present",
+      "comparator": ">=",
+      "metric": "basin:alpha_context_basin",
+      "observed": 0.4336,
+      "passed": true,
+      "threshold": 0.3
+    },
+    {
+      "check_id": "beta_basin_present",
+      "comparator": ">=",
+      "metric": "basin:beta_released_basin",
+      "observed": 0.4264,
+      "passed": true,
+      "threshold": 0.3
+    },
+    {
+      "check_id": "averaged_single_fold_rejected",
+      "comparator": "<=",
+      "metric": "basin:averaged_single_fold",
+      "observed": 0.0684,
+      "passed": true,
+      "threshold": 0.15
+    }
+  ],
+  "coordinate_derived_sources_used_before_prediction": 0,
+  "holdout_opened_after_prediction_hash": "bd770c2c6027ad293535f5aa18b9e8e6ab61f0b8b966eed8cbd0e5f47d7073a2",
+  "internal_runtime_sources_used_for_prediction": 0,
+  "kind": "PROTEIN_ESPERANTO_POST_SEAL_VALIDATION_v0",
+  "postseal_sources": [
+    {
+      "rationale": "Post-seal validation summary for pre-registered mechanism class, trajectory type, and perturbation direction.",
+      "source_class": "spatial_proxy_non_coordinate",
+      "source_id": "V57_XCL1_SWITCH_V57_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "score_label": "supported",
+  "sealed_prediction_hash": "bd770c2c6027ad293535f5aa18b9e8e6ab61f0b8b966eed8cbd0e5f47d7073a2",
+  "target_id": "V57_XCL1_SWITCH"
+}

@@ -1,0 +1,30 @@
+{
+  "expected_mechanism_class": "globular_closure",
+  "expected_observables": [
+    {
+      "check_id": "compact_basin_supported",
+      "comparator": ">=",
+      "metric": "basin:compact_folded",
+      "threshold": 0.5
+    },
+    {
+      "check_id": "contact_probability_supported",
+      "comparator": ">=",
+      "metric": "contact_probability",
+      "threshold": 0.45
+    }
+  ],
+  "holdout_opened_after_prediction_hash": "31755635897538b6257432ddb3a4327bb081baed24ee8483ae71c88812695096",
+  "kind": "V57_POSTSEAL_BLIND_GENERALIZATION_HOLDOUT_v0",
+  "postseal_sources": [
+    {
+      "rationale": "Post-seal validation summary for pre-registered mechanism class, trajectory type, and perturbation direction.",
+      "source_class": "spatial_proxy_non_coordinate",
+      "source_id": "V57_GB1_DOMAIN_V57_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "target_id": "V57_GB1_DOMAIN",
+  "target_name": "Streptococcal protein G B1 domain"
+}

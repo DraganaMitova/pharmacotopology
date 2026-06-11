@@ -1,0 +1,42 @@
+{
+  "checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "short_region_host_interface_hijacking",
+      "observed": "short_region_host_interface_hijacking",
+      "passed": true
+    },
+    {
+      "check_id": "host_interface_engaged",
+      "comparator": ">=",
+      "metric": "basin:host_interface_engaged",
+      "observed": 0.941,
+      "passed": true,
+      "threshold": 0.6
+    },
+    {
+      "check_id": "compact_globular_shortcut_rejected",
+      "comparator": "<=",
+      "metric": "basin:compact_single_fold",
+      "observed": 0.04,
+      "passed": true,
+      "threshold": 0.1
+    }
+  ],
+  "coordinate_derived_sources_used_before_prediction": 0,
+  "holdout_opened_after_prediction_hash": "17c4fa74ee2a57ec399bf4ab64b4c4bc83a36da498acf32ddb754fe70f5fb187",
+  "internal_runtime_sources_used_for_prediction": 0,
+  "kind": "PROTEIN_ESPERANTO_POST_SEAL_VALIDATION_v0",
+  "postseal_sources": [
+    {
+      "rationale": "Post-seal validation summary for pre-registered mechanism class, trajectory type, and perturbation direction.",
+      "source_class": "spatial_proxy_non_coordinate",
+      "source_id": "V57_HIV_TAT_V57_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "score_label": "supported",
+  "sealed_prediction_hash": "17c4fa74ee2a57ec399bf4ab64b4c4bc83a36da498acf32ddb754fe70f5fb187",
+  "target_id": "V57_HIV_TAT"
+}

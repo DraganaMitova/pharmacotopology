@@ -1,0 +1,50 @@
+{
+  "abstention_criteria": [
+    "coordinate leakage before seal",
+    "holdout opened before seal",
+    "only generic target name or generic annotation remains",
+    "forced wrong grammar is required for prediction"
+  ],
+  "dominant_regions": [
+    "state-separated CTD/core region",
+    "partner-context interface",
+    "secondary-structure conflict region"
+  ],
+  "falsification_criteria": [
+    "only one stable state under all contexts",
+    "partner context has no directional effect",
+    "one averaged state explains all holdouts"
+  ],
+  "operator_field": [
+    "dual_basin_switch_operator",
+    "interface_operator",
+    "frustration_operator"
+  ],
+  "predicted_perturbation_directions": [
+    {
+      "expected_direction": "increase",
+      "metric": "basin:beta_released_basin",
+      "perturbation_id": "XCL1_RELEASE_OR_DIMER_CONTEXT"
+    },
+    {
+      "expected_direction": "increase",
+      "metric": "basin:alpha_context_basin",
+      "perturbation_id": "XCL1_ALPHA_STABILIZING_CONTEXT"
+    },
+    {
+      "expected_direction": "unchanged",
+      "metric": "basin:beta_released_basin",
+      "perturbation_id": "XCL1_WRONG_PHASE_CONTROL"
+    },
+    {
+      "expected_direction": "unchanged",
+      "metric": "basin:beta_released_basin",
+      "perturbation_id": "XCL1_NEUTRAL_CONTROL"
+    }
+  ],
+  "prediction_hash": "bd770c2c6027ad293535f5aa18b9e8e6ab61f0b8b966eed8cbd0e5f47d7073a2",
+  "selected_grammar": "metamorphic_fold_switching",
+  "target_id": "V57_XCL1_SWITCH",
+  "target_name": "XCL1 lymphotactin fold-switch gate",
+  "trajectory_type": "metamorphic_fold_switching"
+}

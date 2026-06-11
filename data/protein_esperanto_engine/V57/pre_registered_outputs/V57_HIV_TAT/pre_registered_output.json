@@ -1,0 +1,50 @@
+{
+  "abstention_criteria": [
+    "coordinate leakage before seal",
+    "holdout opened before seal",
+    "only generic target name or generic annotation remains",
+    "forced wrong grammar is required for prediction"
+  ],
+  "dominant_regions": [
+    "C-terminal host-interface region 63-86",
+    "short linear motif/interface window 63-86",
+    "short exposed accessory protein context"
+  ],
+  "falsification_criteria": [
+    "wrong-region perturbations dominate while C-terminus is inert",
+    "host partner evidence does not localize to predicted region",
+    "global stable fold is required for function"
+  ],
+  "operator_field": [
+    "host_hijack_operator",
+    "interface_operator",
+    "disorder_operator"
+  ],
+  "predicted_perturbation_directions": [
+    {
+      "expected_direction": "decrease",
+      "metric": "basin:host_interface_engaged",
+      "perturbation_id": "TAT_BASIC_REGION_DAMAGE"
+    },
+    {
+      "expected_direction": "decrease",
+      "metric": "interface_readiness",
+      "perturbation_id": "TAT_HOST_PARTNER_REMOVAL"
+    },
+    {
+      "expected_direction": "unchanged",
+      "metric": "basin:host_interface_engaged",
+      "perturbation_id": "TAT_WRONG_MEMBRANE_CONTROL"
+    },
+    {
+      "expected_direction": "unchanged",
+      "metric": "basin:host_interface_engaged",
+      "perturbation_id": "TAT_NEUTRAL_CONTROL"
+    }
+  ],
+  "prediction_hash": "17c4fa74ee2a57ec399bf4ab64b4c4bc83a36da498acf32ddb754fe70f5fb187",
+  "selected_grammar": "short_region_host_interface_hijacking",
+  "target_id": "V57_HIV_TAT",
+  "target_name": "HIV-1 Tat short host-interface gate",
+  "trajectory_type": "short_region_host_interface_hijacking"
+}

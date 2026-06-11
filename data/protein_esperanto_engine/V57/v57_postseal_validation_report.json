@@ -1,0 +1,224 @@
+{
+  "kind": "V57_POSTSEAL_VALIDATION_REPORT_v0",
+  "supported_validation_count": 5,
+  "validations": [
+    {
+      "checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "globular_closure",
+          "observed": "globular_closure",
+          "passed": true
+        },
+        {
+          "check_id": "compact_basin_supported",
+          "comparator": ">=",
+          "metric": "basin:compact_folded",
+          "observed": 0.5675,
+          "passed": true,
+          "threshold": 0.5
+        },
+        {
+          "check_id": "contact_probability_supported",
+          "comparator": ">=",
+          "metric": "contact_probability",
+          "observed": 0.5275,
+          "passed": true,
+          "threshold": 0.45
+        }
+      ],
+      "coordinate_derived_sources_used_before_prediction": 0,
+      "holdout_opened_after_prediction_hash": "31755635897538b6257432ddb3a4327bb081baed24ee8483ae71c88812695096",
+      "internal_runtime_sources_used_for_prediction": 0,
+      "kind": "PROTEIN_ESPERANTO_POST_SEAL_VALIDATION_v0",
+      "postseal_sources": [
+        {
+          "rationale": "Post-seal validation summary for pre-registered mechanism class, trajectory type, and perturbation direction.",
+          "source_class": "spatial_proxy_non_coordinate",
+          "source_id": "V57_GB1_DOMAIN_V57_POSTSEAL_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "score_label": "supported",
+      "sealed_prediction_hash": "31755635897538b6257432ddb3a4327bb081baed24ee8483ae71c88812695096",
+      "target_id": "V57_GB1_DOMAIN"
+    },
+    {
+      "checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "intrinsic_disorder_phase_separation",
+          "observed": "intrinsic_disorder_phase_separation",
+          "passed": true
+        },
+        {
+          "check_id": "phase_prone_dynamic_supported",
+          "comparator": ">=",
+          "metric": "basin:phase_prone_dynamic",
+          "observed": 0.58,
+          "passed": true,
+          "threshold": 0.25
+        },
+        {
+          "check_id": "compact_single_fold_rejected",
+          "comparator": "<=",
+          "metric": "basin:compact_single_fold",
+          "observed": 0.04,
+          "passed": true,
+          "threshold": 0.12
+        }
+      ],
+      "coordinate_derived_sources_used_before_prediction": 0,
+      "holdout_opened_after_prediction_hash": "eac940b3b10d68923ef841a93e153dbe10c930363707df3fe5411498ca5e60cd",
+      "internal_runtime_sources_used_for_prediction": 0,
+      "kind": "PROTEIN_ESPERANTO_POST_SEAL_VALIDATION_v0",
+      "postseal_sources": [
+        {
+          "rationale": "Post-seal validation summary for pre-registered mechanism class, trajectory type, and perturbation direction.",
+          "source_class": "spatial_proxy_non_coordinate",
+          "source_id": "V57_HNRNPA1_LCD_V57_POSTSEAL_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "score_label": "supported",
+      "sealed_prediction_hash": "eac940b3b10d68923ef841a93e153dbe10c930363707df3fe5411498ca5e60cd",
+      "target_id": "V57_HNRNPA1_LCD"
+    },
+    {
+      "checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "membrane_multidomain_folding_proteostasis",
+          "passed": true
+        },
+        {
+          "check_id": "proteostasis_routing_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.689504,
+          "passed": true,
+          "threshold": 0.55
+        },
+        {
+          "check_id": "interface_readiness_supported",
+          "comparator": ">=",
+          "metric": "interface_readiness",
+          "observed": 0.635,
+          "passed": true,
+          "threshold": 0.55
+        }
+      ],
+      "coordinate_derived_sources_used_before_prediction": 0,
+      "holdout_opened_after_prediction_hash": "470c2f7ccbaf79dbd8003aff11e4a11680f11327f44e51850e63e2ddb0f22bc9",
+      "internal_runtime_sources_used_for_prediction": 0,
+      "kind": "PROTEIN_ESPERANTO_POST_SEAL_VALIDATION_v0",
+      "postseal_sources": [
+        {
+          "rationale": "Post-seal validation summary for pre-registered mechanism class, trajectory type, and perturbation direction.",
+          "source_class": "spatial_proxy_non_coordinate",
+          "source_id": "V57_RHODOPSIN_P23H_V57_POSTSEAL_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "score_label": "supported",
+      "sealed_prediction_hash": "470c2f7ccbaf79dbd8003aff11e4a11680f11327f44e51850e63e2ddb0f22bc9",
+      "target_id": "V57_RHODOPSIN_P23H"
+    },
+    {
+      "checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "metamorphic_fold_switching",
+          "observed": "metamorphic_fold_switching",
+          "passed": true
+        },
+        {
+          "check_id": "alpha_basin_present",
+          "comparator": ">=",
+          "metric": "basin:alpha_context_basin",
+          "observed": 0.4336,
+          "passed": true,
+          "threshold": 0.3
+        },
+        {
+          "check_id": "beta_basin_present",
+          "comparator": ">=",
+          "metric": "basin:beta_released_basin",
+          "observed": 0.4264,
+          "passed": true,
+          "threshold": 0.3
+        },
+        {
+          "check_id": "averaged_single_fold_rejected",
+          "comparator": "<=",
+          "metric": "basin:averaged_single_fold",
+          "observed": 0.0684,
+          "passed": true,
+          "threshold": 0.15
+        }
+      ],
+      "coordinate_derived_sources_used_before_prediction": 0,
+      "holdout_opened_after_prediction_hash": "bd770c2c6027ad293535f5aa18b9e8e6ab61f0b8b966eed8cbd0e5f47d7073a2",
+      "internal_runtime_sources_used_for_prediction": 0,
+      "kind": "PROTEIN_ESPERANTO_POST_SEAL_VALIDATION_v0",
+      "postseal_sources": [
+        {
+          "rationale": "Post-seal validation summary for pre-registered mechanism class, trajectory type, and perturbation direction.",
+          "source_class": "spatial_proxy_non_coordinate",
+          "source_id": "V57_XCL1_SWITCH_V57_POSTSEAL_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "score_label": "supported",
+      "sealed_prediction_hash": "bd770c2c6027ad293535f5aa18b9e8e6ab61f0b8b966eed8cbd0e5f47d7073a2",
+      "target_id": "V57_XCL1_SWITCH"
+    },
+    {
+      "checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "short_region_host_interface_hijacking",
+          "observed": "short_region_host_interface_hijacking",
+          "passed": true
+        },
+        {
+          "check_id": "host_interface_engaged",
+          "comparator": ">=",
+          "metric": "basin:host_interface_engaged",
+          "observed": 0.941,
+          "passed": true,
+          "threshold": 0.6
+        },
+        {
+          "check_id": "compact_globular_shortcut_rejected",
+          "comparator": "<=",
+          "metric": "basin:compact_single_fold",
+          "observed": 0.04,
+          "passed": true,
+          "threshold": 0.1
+        }
+      ],
+      "coordinate_derived_sources_used_before_prediction": 0,
+      "holdout_opened_after_prediction_hash": "17c4fa74ee2a57ec399bf4ab64b4c4bc83a36da498acf32ddb754fe70f5fb187",
+      "internal_runtime_sources_used_for_prediction": 0,
+      "kind": "PROTEIN_ESPERANTO_POST_SEAL_VALIDATION_v0",
+      "postseal_sources": [
+        {
+          "rationale": "Post-seal validation summary for pre-registered mechanism class, trajectory type, and perturbation direction.",
+          "source_class": "spatial_proxy_non_coordinate",
+          "source_id": "V57_HIV_TAT_V57_POSTSEAL_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "score_label": "supported",
+      "sealed_prediction_hash": "17c4fa74ee2a57ec399bf4ab64b4c4bc83a36da498acf32ddb754fe70f5fb187",
+      "target_id": "V57_HIV_TAT"
+    }
+  ]
+}

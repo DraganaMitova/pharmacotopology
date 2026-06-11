@@ -1,0 +1,30 @@
+{
+  "expected_mechanism_class": "short_region_host_interface_hijacking",
+  "expected_observables": [
+    {
+      "check_id": "host_interface_engaged",
+      "comparator": ">=",
+      "metric": "basin:host_interface_engaged",
+      "threshold": 0.6
+    },
+    {
+      "check_id": "compact_globular_shortcut_rejected",
+      "comparator": "<=",
+      "metric": "basin:compact_single_fold",
+      "threshold": 0.1
+    }
+  ],
+  "holdout_opened_after_prediction_hash": "17c4fa74ee2a57ec399bf4ab64b4c4bc83a36da498acf32ddb754fe70f5fb187",
+  "kind": "V57_POSTSEAL_BLIND_GENERALIZATION_HOLDOUT_v0",
+  "postseal_sources": [
+    {
+      "rationale": "Post-seal validation summary for pre-registered mechanism class, trajectory type, and perturbation direction.",
+      "source_class": "spatial_proxy_non_coordinate",
+      "source_id": "V57_HIV_TAT_V57_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "target_id": "V57_HIV_TAT",
+  "target_name": "HIV-1 Tat short host-interface gate"
+}

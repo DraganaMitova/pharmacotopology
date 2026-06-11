@@ -1,0 +1,41 @@
+{
+  "answer_key_available_to_prediction": false,
+  "blocked_prediction_inputs": [
+    "PDB/mmCIF coordinates before sealing",
+    "coordinate-derived contacts or native contact maps",
+    "AlphaFold/ESMFold/RoseTTAFold coordinates before sealing",
+    "internal runtime artifacts as biological evidence",
+    "validation holdouts before prediction sealing",
+    "answer key/class labels during prediction",
+    "post-result tuning of V50-V56 engine"
+  ],
+  "coordinate_sources_available_before_prediction": false,
+  "folding_problem_solved": false,
+  "holdouts_created": false,
+  "internal_runtime_sources_available_to_prediction": false,
+  "kind": "V57_TARGET_SOURCE_MANIFEST_v0",
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Rhodopsin is a membrane GPCR with multiple transmembrane segments; P23H is framed as a membrane protein folding, trafficking, and proteostasis stress case.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "RHO_P23H_SEQUENCE_MEMBRANE_NONCOORDINATE",
+      "source_role": "prediction_input",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Expected mechanism involves membrane pressure, local mutation stress, maturation routing, and quality-control trafficking rather than a soluble single-domain shortcut.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "RHO_PROTEOSTASIS_CONTEXT_NONCOORDINATE",
+      "source_role": "prediction_input",
+      "spatial_proxy": false
+    }
+  ],
+  "regime_slot": "membrane_proteostasis",
+  "sequence": "MNGTEGPNFYVPFSNKTGVVRSPFEAPQYYLAEPWQFSMLAAYMFLLIMLGFPINFLTLYVTVQHKKLRTPLNYILLNLAVADLFMVFGGFTTTLYTSLHGYFVFGPTGCNLEGFFATLGGEIALWSLVVLAIERYVVVCKPMSNFRFGENHAIMGVAFTWVMALACAAPPLVGWSRYIPEGMQCSCGIDYYTLKPEVNNESFVIYMFVVHFIIPLIVIFFCYGQLVFTVKEAAAQQQESATTQKAEKEVTRMVIIMVIAFLICWVPYASTVQGVSQLLRTAKARVYNPVIYIMMNKQFRNCMLTTICCGKNPLGDDEASTTVSKTETSQVAPA",
+  "target_id": "V57_RHODOPSIN_P23H",
+  "target_name": "Human rhodopsin P23H membrane/proteostasis gate"
+}

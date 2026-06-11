@@ -1,0 +1,36 @@
+{
+  "expected_mechanism_class": "metamorphic_fold_switching",
+  "expected_observables": [
+    {
+      "check_id": "alpha_basin_present",
+      "comparator": ">=",
+      "metric": "basin:alpha_context_basin",
+      "threshold": 0.3
+    },
+    {
+      "check_id": "beta_basin_present",
+      "comparator": ">=",
+      "metric": "basin:beta_released_basin",
+      "threshold": 0.3
+    },
+    {
+      "check_id": "averaged_single_fold_rejected",
+      "comparator": "<=",
+      "metric": "basin:averaged_single_fold",
+      "threshold": 0.15
+    }
+  ],
+  "holdout_opened_after_prediction_hash": "bd770c2c6027ad293535f5aa18b9e8e6ab61f0b8b966eed8cbd0e5f47d7073a2",
+  "kind": "V57_POSTSEAL_BLIND_GENERALIZATION_HOLDOUT_v0",
+  "postseal_sources": [
+    {
+      "rationale": "Post-seal validation summary for pre-registered mechanism class, trajectory type, and perturbation direction.",
+      "source_class": "spatial_proxy_non_coordinate",
+      "source_id": "V57_XCL1_SWITCH_V57_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "target_id": "V57_XCL1_SWITCH",
+  "target_name": "XCL1 lymphotactin fold-switch gate"
+}

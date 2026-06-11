@@ -1,0 +1,30 @@
+{
+  "expected_mechanism_class": "intrinsic_disorder_phase_separation",
+  "expected_observables": [
+    {
+      "check_id": "phase_prone_dynamic_supported",
+      "comparator": ">=",
+      "metric": "basin:phase_prone_dynamic",
+      "threshold": 0.25
+    },
+    {
+      "check_id": "compact_single_fold_rejected",
+      "comparator": "<=",
+      "metric": "basin:compact_single_fold",
+      "threshold": 0.12
+    }
+  ],
+  "holdout_opened_after_prediction_hash": "eac940b3b10d68923ef841a93e153dbe10c930363707df3fe5411498ca5e60cd",
+  "kind": "V57_POSTSEAL_BLIND_GENERALIZATION_HOLDOUT_v0",
+  "postseal_sources": [
+    {
+      "rationale": "Post-seal validation summary for pre-registered mechanism class, trajectory type, and perturbation direction.",
+      "source_class": "spatial_proxy_non_coordinate",
+      "source_id": "V57_HNRNPA1_LCD_V57_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "target_id": "V57_HNRNPA1_LCD",
+  "target_name": "hnRNPA1-like prion LCD"
+}

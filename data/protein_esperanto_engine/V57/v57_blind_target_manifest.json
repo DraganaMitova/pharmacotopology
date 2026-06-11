@@ -1,0 +1,50 @@
+{
+  "answer_key_available_to_prediction": false,
+  "freshness_rule": "Targets are not V44-FUS, V45-TDP43, V46-CFTR, V47-RfaH, or V48-ORF6 extraction targets.",
+  "holdouts_available_before_seal": false,
+  "kind": "V57_BLIND_TARGET_MANIFEST_v0",
+  "readme_update_allowed": false,
+  "target_count": 5,
+  "targets": [
+    {
+      "expected_mechanism_class_hidden_until_holdout": true,
+      "prediction_source_manifest": "data/protein_esperanto_engine/V57/source_manifests/V57_GB1_DOMAIN/source_manifest.json",
+      "regime_slot": "globular_closure",
+      "sequence_length": 56,
+      "target_id": "V57_GB1_DOMAIN",
+      "target_name": "Streptococcal protein G B1 domain"
+    },
+    {
+      "expected_mechanism_class_hidden_until_holdout": true,
+      "prediction_source_manifest": "data/protein_esperanto_engine/V57/source_manifests/V57_HNRNPA1_LCD/source_manifest.json",
+      "regime_slot": "idp_phase_or_disorder",
+      "sequence_length": 75,
+      "target_id": "V57_HNRNPA1_LCD",
+      "target_name": "hnRNPA1-like prion LCD"
+    },
+    {
+      "expected_mechanism_class_hidden_until_holdout": true,
+      "prediction_source_manifest": "data/protein_esperanto_engine/V57/source_manifests/V57_RHODOPSIN_P23H/source_manifest.json",
+      "regime_slot": "membrane_proteostasis",
+      "sequence_length": 334,
+      "target_id": "V57_RHODOPSIN_P23H",
+      "target_name": "Human rhodopsin P23H membrane/proteostasis gate"
+    },
+    {
+      "expected_mechanism_class_hidden_until_holdout": true,
+      "prediction_source_manifest": "data/protein_esperanto_engine/V57/source_manifests/V57_XCL1_SWITCH/source_manifest.json",
+      "regime_slot": "metamorphic_switch",
+      "sequence_length": 93,
+      "target_id": "V57_XCL1_SWITCH",
+      "target_name": "XCL1 lymphotactin fold-switch gate"
+    },
+    {
+      "expected_mechanism_class_hidden_until_holdout": true,
+      "prediction_source_manifest": "data/protein_esperanto_engine/V57/source_manifests/V57_HIV_TAT/source_manifest.json",
+      "regime_slot": "short_interface_hijacking",
+      "sequence_length": 86,
+      "target_id": "V57_HIV_TAT",
+      "target_name": "HIV-1 Tat short host-interface gate"
+    }
+  ]
+}

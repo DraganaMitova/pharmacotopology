@@ -1,0 +1,44 @@
+{
+  "abstention_criteria": [
+    "coordinate leakage before seal",
+    "holdout opened before seal",
+    "only generic target name or generic annotation remains",
+    "forced wrong grammar is required for prediction"
+  ],
+  "dominant_regions": [
+    "1-12, 25-36, 13-24"
+  ],
+  "falsification_criteria": [
+    "no compaction under independent SAXS/FRET/crosslink/structure holdout"
+  ],
+  "operator_field": [
+    "closure_operator"
+  ],
+  "predicted_perturbation_directions": [
+    {
+      "expected_direction": "decrease",
+      "metric": "contact_probability",
+      "perturbation_id": "GB1_CORE_HYDROPHOBIC_DAMAGE"
+    },
+    {
+      "expected_direction": "increase",
+      "metric": "contact_probability",
+      "perturbation_id": "GB1_CORE_STABILIZING_CONTEXT"
+    },
+    {
+      "expected_direction": "unchanged",
+      "metric": "contact_probability",
+      "perturbation_id": "GB1_WRONG_HOST_INTERFACE_CONTROL"
+    },
+    {
+      "expected_direction": "unchanged",
+      "metric": "contact_probability",
+      "perturbation_id": "GB1_NEUTRAL_CONTROL"
+    }
+  ],
+  "prediction_hash": "31755635897538b6257432ddb3a4327bb081baed24ee8483ae71c88812695096",
+  "selected_grammar": "globular_closure",
+  "target_id": "V57_GB1_DOMAIN",
+  "target_name": "Streptococcal protein G B1 domain",
+  "trajectory_type": "globular_closure"
+}

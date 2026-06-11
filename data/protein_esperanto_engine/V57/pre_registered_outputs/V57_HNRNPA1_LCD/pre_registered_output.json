@@ -1,0 +1,50 @@
+{
+  "abstention_criteria": [
+    "coordinate leakage before seal",
+    "holdout opened before seal",
+    "only generic target name or generic annotation remains",
+    "forced wrong grammar is required for prediction"
+  ],
+  "dominant_regions": [
+    "73-75, 49-60, 61-72",
+    "37-48, 73-75, 49-60",
+    "charged low-complexity windows"
+  ],
+  "falsification_criteria": [
+    "stable globular fold dominates without condition dependence",
+    "phase behavior unaffected by predicted stickers or conditions",
+    "charge/salt manipulations have no directional effect"
+  ],
+  "operator_field": [
+    "disorder_operator",
+    "phase_operator",
+    "repulsion_operator"
+  ],
+  "predicted_perturbation_directions": [
+    {
+      "expected_direction": "decrease",
+      "metric": "basin:phase_prone_dynamic",
+      "perturbation_id": "HNRNPA1_AROMATIC_STICKER_DAMAGE"
+    },
+    {
+      "expected_direction": "decrease",
+      "metric": "disorder_order_balance",
+      "perturbation_id": "HNRNPA1_DISSOLVING_CONDITION"
+    },
+    {
+      "expected_direction": "unchanged",
+      "metric": "basin:phase_prone_dynamic",
+      "perturbation_id": "HNRNPA1_WRONG_MEMBRANE_CONTROL"
+    },
+    {
+      "expected_direction": "unchanged",
+      "metric": "basin:phase_prone_dynamic",
+      "perturbation_id": "HNRNPA1_NEUTRAL_CONTROL"
+    }
+  ],
+  "prediction_hash": "eac940b3b10d68923ef841a93e153dbe10c930363707df3fe5411498ca5e60cd",
+  "selected_grammar": "intrinsic_disorder_phase_separation",
+  "target_id": "V57_HNRNPA1_LCD",
+  "target_name": "hnRNPA1-like prion LCD",
+  "trajectory_type": "intrinsic_disorder_phase_separation"
+}

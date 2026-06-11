@@ -1,0 +1,47 @@
+{
+  "allowed_v57_changes": [
+    "new target manifests",
+    "new source manifests",
+    "new holdout manifests",
+    "new reports",
+    "new certificates",
+    "new tests"
+  ],
+  "disallowed_v57_changes": [
+    "new operators",
+    "new mechanism classes",
+    "new scoring rules",
+    "new control definitions",
+    "README updates",
+    "post-result tuning"
+  ],
+  "engine_modified_for_v57": false,
+  "engine_source_last_commit": "5e3890c56879ce65ed4cca41d540ae1bd6ab43fb",
+  "engine_source_path": "src/pharmacotopology/protein_esperanto_engine.py",
+  "engine_source_sha256": "31c7234a6ac7f0f78fa67ff1040cd20a4c91768a7e6bf6e11c2deff18dcc27e5",
+  "folding_problem_solved": false,
+  "frozen_mechanism_classes": [
+    "globular_closure",
+    "intrinsic_disorder_phase_separation",
+    "membrane_multidomain_folding_proteostasis",
+    "metamorphic_fold_switching",
+    "short_region_host_interface_hijacking",
+    "fold_upon_binding_disorder",
+    "cofactor_ligand_assisted_stabilization",
+    "oligomerization_controlled_folding",
+    "insufficient_evidence_clean_abstain"
+  ],
+  "frozen_operator_names": [
+    "closure_operator",
+    "repulsion_operator",
+    "frustration_operator",
+    "disorder_operator",
+    "phase_operator",
+    "interface_operator",
+    "membrane_pressure_operator",
+    "dual_basin_switch_operator",
+    "proteostasis_operator",
+    "host_hijack_operator"
+  ],
+  "kind": "V57_FROZEN_ENGINE_DECLARATION_v0"
+}

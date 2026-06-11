@@ -1,0 +1,30 @@
+{
+  "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "expected_observables": [
+    {
+      "check_id": "proteostasis_routing_supported",
+      "comparator": ">=",
+      "metric": "proteostasis_routing",
+      "threshold": 0.55
+    },
+    {
+      "check_id": "interface_readiness_supported",
+      "comparator": ">=",
+      "metric": "interface_readiness",
+      "threshold": 0.55
+    }
+  ],
+  "holdout_opened_after_prediction_hash": "470c2f7ccbaf79dbd8003aff11e4a11680f11327f44e51850e63e2ddb0f22bc9",
+  "kind": "V57_POSTSEAL_BLIND_GENERALIZATION_HOLDOUT_v0",
+  "postseal_sources": [
+    {
+      "rationale": "Post-seal validation summary for pre-registered mechanism class, trajectory type, and perturbation direction.",
+      "source_class": "spatial_proxy_non_coordinate",
+      "source_id": "V57_RHODOPSIN_P23H_V57_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "target_id": "V57_RHODOPSIN_P23H",
+  "target_name": "Human rhodopsin P23H membrane/proteostasis gate"
+}
