@@ -1,0 +1,416 @@
+{
+  "answer_key_used_for_prediction": false,
+  "artifacts": {
+    "certificate": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V40_MECHANISM_PERTURBATION_PRESSURE_TESTS/v40_mechanism_perturbation_pressure_tests_certificate.json",
+    "decision": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V40_MECHANISM_PERTURBATION_PRESSURE_TESTS/v40_mechanism_perturbation_pressure_tests_next_decision.json",
+    "report": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V40_MECHANISM_PERTURBATION_PRESSURE_TESTS/V40_MECHANISM_PERTURBATION_PRESSURE_TESTS_REPORT.md"
+  },
+  "blocked_target_count": 0,
+  "claim_allowed": false,
+  "contradicted_target_count": 0,
+  "control_count": 14,
+  "control_status": "V40_MECHANISM_PERTURBATION_PRESSURE_PASSED_CLAIM_DISABLED",
+  "controls": [
+    {
+      "control_id": "prediction_perturbations_use_no_coordinate_sources",
+      "observed": {
+        "coordinate_derived_source_count": 0
+      },
+      "passed": true,
+      "reason": "Prediction perturbations must use no coordinate-derived evidence."
+    },
+    {
+      "control_id": "validation_holdouts_use_no_coordinate_sources",
+      "observed": {
+        "validation_levels": {
+          "KcsA": "perturbation_supported_by_holdout",
+          "XCL1_lymphotactin": "perturbation_supported_by_holdout",
+          "alpha_synuclein_SNCA": "perturbation_supported_by_holdout"
+        }
+      },
+      "passed": true,
+      "reason": "Validation holdouts must use no coordinate-derived evidence."
+    },
+    {
+      "control_id": "internal_runtime_sources_are_blocked",
+      "observed": {
+        "answer_key_source_count": 0,
+        "coordinate_derived_source_count": 0,
+        "internal_runtime_source_count": 1,
+        "missing_holdout_buckets": [],
+        "missing_required_perturbation_buckets": [],
+        "placeholder_source_count": 0,
+        "supported_perturbation_buckets": [
+          "filter_signature_perturbation",
+          "ion_selectivity_perturbation",
+          "membrane_topology_context_perturbation",
+          "oligomer_interface_context_perturbation"
+        ],
+        "target": "KcsA",
+        "validation_level": "blocked_for_leakage"
+      },
+      "passed": true,
+      "reason": "Internal runtime sources must block validation."
+    },
+    {
+      "control_id": "v38_answer_key_leakage_attempt_is_blocked",
+      "observed": {
+        "answer_key_source_count": 1,
+        "coordinate_derived_source_count": 0,
+        "internal_runtime_source_count": 0,
+        "missing_holdout_buckets": [],
+        "missing_required_perturbation_buckets": [],
+        "placeholder_source_count": 0,
+        "supported_perturbation_buckets": [
+          "filter_signature_perturbation",
+          "ion_selectivity_perturbation",
+          "membrane_topology_context_perturbation",
+          "oligomer_interface_context_perturbation"
+        ],
+        "target": "KcsA",
+        "validation_level": "blocked_for_leakage"
+      },
+      "passed": true,
+      "reason": "V38 answer-key leakage must block validation."
+    },
+    {
+      "control_id": "kcsa_generic_channel_only_does_not_preserve_hard_grammar",
+      "observed": {
+        "answer_key_source_count": 0,
+        "coordinate_derived_source_count": 0,
+        "internal_runtime_source_count": 0,
+        "missing_holdout_buckets": [
+          "generic_channel_annotation_only"
+        ],
+        "missing_required_perturbation_buckets": [
+          "filter_signature_perturbation",
+          "ion_selectivity_perturbation",
+          "membrane_topology_context_perturbation",
+          "oligomer_interface_context_perturbation"
+        ],
+        "placeholder_source_count": 0,
+        "supported_perturbation_buckets": [],
+        "target": "KcsA",
+        "validation_level": "perturbation_contradicted_or_failed"
+      },
+      "passed": true,
+      "reason": "Generic channel annotation alone must not preserve hard KcsA grammar."
+    },
+    {
+      "control_id": "kcsa_filter_ion_selectivity_removed_weakens_or_invalidates",
+      "observed": {
+        "answer_key_source_count": 0,
+        "coordinate_derived_source_count": 0,
+        "internal_runtime_source_count": 0,
+        "missing_holdout_buckets": [],
+        "missing_required_perturbation_buckets": [
+          "filter_signature_perturbation",
+          "ion_selectivity_perturbation"
+        ],
+        "placeholder_source_count": 0,
+        "supported_perturbation_buckets": [
+          "membrane_topology_context_perturbation",
+          "oligomer_interface_context_perturbation"
+        ],
+        "target": "KcsA",
+        "validation_level": "perturbation_contradicted_or_failed"
+      },
+      "passed": true,
+      "reason": "Removing KcsA filter/ion-selectivity perturbations must weaken or invalidate hard grammar."
+    },
+    {
+      "control_id": "xcl1_state_a_removed_becomes_partial_or_invalid",
+      "observed": {
+        "answer_key_source_count": 0,
+        "coordinate_derived_source_count": 0,
+        "internal_runtime_source_count": 0,
+        "missing_holdout_buckets": [],
+        "missing_required_perturbation_buckets": [
+          "state_A_loss_or_weakening"
+        ],
+        "placeholder_source_count": 0,
+        "supported_perturbation_buckets": [
+          "mixed_state_pooling_error",
+          "state_B_loss_or_weakening",
+          "state_function_decoupling",
+          "two_state_balance_shift"
+        ],
+        "target": "XCL1_lymphotactin",
+        "validation_level": "perturbation_partially_supported_clean_abstain"
+      },
+      "passed": true,
+      "reason": "Removing XCL1 state A must become partial/invalid."
+    },
+    {
+      "control_id": "xcl1_state_b_removed_becomes_partial_or_invalid",
+      "observed": {
+        "answer_key_source_count": 0,
+        "coordinate_derived_source_count": 0,
+        "internal_runtime_source_count": 0,
+        "missing_holdout_buckets": [],
+        "missing_required_perturbation_buckets": [
+          "state_B_loss_or_weakening"
+        ],
+        "placeholder_source_count": 0,
+        "supported_perturbation_buckets": [
+          "mixed_state_pooling_error",
+          "state_A_loss_or_weakening",
+          "state_function_decoupling",
+          "two_state_balance_shift"
+        ],
+        "target": "XCL1_lymphotactin",
+        "validation_level": "perturbation_partially_supported_clean_abstain"
+      },
+      "passed": true,
+      "reason": "Removing XCL1 state B must become partial/invalid."
+    },
+    {
+      "control_id": "xcl1_mixed_state_pooling_forced_is_blocked",
+      "observed": {
+        "answer_key_source_count": 0,
+        "coordinate_derived_source_count": 0,
+        "internal_runtime_source_count": 0,
+        "missing_holdout_buckets": [
+          "mixed_state_pooling_allowed"
+        ],
+        "missing_required_perturbation_buckets": [],
+        "placeholder_source_count": 0,
+        "supported_perturbation_buckets": [
+          "mixed_state_pooling_error",
+          "state_A_loss_or_weakening",
+          "state_B_loss_or_weakening",
+          "state_function_decoupling",
+          "two_state_balance_shift"
+        ],
+        "target": "XCL1_lymphotactin",
+        "validation_level": "perturbation_partially_supported_clean_abstain"
+      },
+      "passed": true,
+      "reason": "Forced mixed-state pooling must be blocked."
+    },
+    {
+      "control_id": "snca_disorder_evidence_removed_becomes_partial_or_invalid",
+      "observed": {
+        "answer_key_source_count": 0,
+        "coordinate_derived_source_count": 0,
+        "internal_runtime_source_count": 0,
+        "missing_holdout_buckets": [],
+        "missing_required_perturbation_buckets": [
+          "disorder_evidence_loss"
+        ],
+        "placeholder_source_count": 0,
+        "supported_perturbation_buckets": [
+          "aggregation_context_overpromotion",
+          "context_bound_helix_overpromotion",
+          "disorder_to_order_context_shift",
+          "ensemble_to_single_fold_forcing"
+        ],
+        "target": "alpha_synuclein_SNCA",
+        "validation_level": "perturbation_partially_supported_clean_abstain"
+      },
+      "passed": true,
+      "reason": "Removing SNCA disorder evidence must become partial/invalid."
+    },
+    {
+      "control_id": "snca_compact_single_fold_forcing_is_blocked",
+      "observed": {
+        "answer_key_source_count": 0,
+        "coordinate_derived_source_count": 0,
+        "internal_runtime_source_count": 0,
+        "missing_holdout_buckets": [
+          "compact_single_fold_native_claim"
+        ],
+        "missing_required_perturbation_buckets": [],
+        "placeholder_source_count": 0,
+        "supported_perturbation_buckets": [
+          "aggregation_context_overpromotion",
+          "context_bound_helix_overpromotion",
+          "disorder_evidence_loss",
+          "disorder_to_order_context_shift",
+          "ensemble_to_single_fold_forcing"
+        ],
+        "target": "alpha_synuclein_SNCA",
+        "validation_level": "perturbation_partially_supported_clean_abstain"
+      },
+      "passed": true,
+      "reason": "SNCA compact single-fold forcing must be blocked."
+    },
+    {
+      "control_id": "snca_aggregation_context_overpromoted_to_native_fold_is_blocked",
+      "observed": {
+        "answer_key_source_count": 0,
+        "coordinate_derived_source_count": 0,
+        "internal_runtime_source_count": 0,
+        "missing_holdout_buckets": [
+          "aggregation_native_fold_claim"
+        ],
+        "missing_required_perturbation_buckets": [],
+        "placeholder_source_count": 0,
+        "supported_perturbation_buckets": [
+          "aggregation_context_overpromotion",
+          "context_bound_helix_overpromotion",
+          "disorder_evidence_loss",
+          "disorder_to_order_context_shift",
+          "ensemble_to_single_fold_forcing"
+        ],
+        "target": "alpha_synuclein_SNCA",
+        "validation_level": "perturbation_partially_supported_clean_abstain"
+      },
+      "passed": true,
+      "reason": "SNCA aggregation context must not become a native-fold claim."
+    },
+    {
+      "control_id": "swapped_perturbation_holdouts_fail_validation",
+      "observed": {
+        "answer_key_source_count": 0,
+        "coordinate_derived_source_count": 0,
+        "internal_runtime_source_count": 0,
+        "missing_holdout_buckets": [
+          "filter_signature_perturbation",
+          "ion_selectivity_perturbation",
+          "membrane_topology_context_perturbation",
+          "oligomer_interface_context_perturbation"
+        ],
+        "missing_required_perturbation_buckets": [],
+        "placeholder_source_count": 0,
+        "supported_perturbation_buckets": [],
+        "target": "KcsA",
+        "validation_level": "perturbation_contradicted_or_failed"
+      },
+      "passed": true,
+      "reason": "Swapped perturbation holdouts must be detected or fail validation."
+    },
+    {
+      "control_id": "placeholder_citations_source_rows_are_blocked",
+      "observed": {
+        "answer_key_source_count": 0,
+        "coordinate_derived_source_count": 0,
+        "internal_runtime_source_count": 0,
+        "missing_holdout_buckets": [],
+        "missing_required_perturbation_buckets": [],
+        "placeholder_source_count": 2,
+        "supported_perturbation_buckets": [
+          "filter_signature_perturbation",
+          "ion_selectivity_perturbation",
+          "membrane_topology_context_perturbation",
+          "oligomer_interface_context_perturbation"
+        ],
+        "target": "KcsA",
+        "validation_level": "blocked_for_leakage"
+      },
+      "passed": true,
+      "reason": "Placeholder citations/source rows must block validation."
+    }
+  ],
+  "coordinate_derived_source_count": 0,
+  "coordinate_truth_used_before_selection": false,
+  "failed_checks": [],
+  "folding_problem_solved": false,
+  "internal_runtime_source_count": 0,
+  "kind": "V40_MECHANISM_PERTURBATION_PRESSURE_TESTS_v0",
+  "locked_interpretation": "V40 passing means the non-coordinate mechanism grammar identifies causal perturbation pressure for KcsA, XCL1, and SNCA: which operators should break, weaken, shift, or block the mechanism, while keeping coordinates, MD, answer-key leakage, and folding-solved claims disabled.",
+  "native_metrics_used_for_selection": false,
+  "new_MD_allowed": false,
+  "new_md_executed": false,
+  "next_action": "advance_to_unseen_target_perturbation_grammar_no_claim_no_MD",
+  "next_decision": {
+    "claim_allowed": false,
+    "decision_status": "V40_MECHANISM_PERTURBATION_PRESSURE_PASSED_CLAIM_DISABLED",
+    "folding_problem_solved": false,
+    "kind": "V40_MECHANISM_PERTURBATION_PRESSURE_TESTS_NEXT_DECISION_v0",
+    "new_MD_allowed": false,
+    "next_action": "advance_to_unseen_target_perturbation_grammar_no_claim_no_MD"
+  },
+  "partial_target_count": 0,
+  "passed_control_count": 14,
+  "perturbation_count_by_target": {
+    "KcsA": 4,
+    "XCL1_lymphotactin": 5,
+    "alpha_synuclein_SNCA": 5
+  },
+  "perturbation_packet_count": 3,
+  "positive_folding_evidence_found": false,
+  "run_mode": "mechanism_perturbation_pressure_no_coordinates_no_MD_claim_disabled",
+  "supported_target_count": 3,
+  "target_count": 3,
+  "target_validation_results": [
+    {
+      "answer_key_source_count": 0,
+      "coordinate_derived_source_count": 0,
+      "failed_checks": [],
+      "internal_runtime_source_count": 0,
+      "mechanism_class": "membrane_pore_filter_oligomeric_ion_selectivity",
+      "missing_holdout_buckets": [],
+      "missing_required_perturbation_buckets": [],
+      "perturbation_count": 4,
+      "placeholder_source_count": 0,
+      "prediction_source_count": 4,
+      "scientist_question": "Can the grammar identify that perturbations affecting filter/ion-selectivity evidence should matter more than generic channel annotation?",
+      "supported_perturbation_buckets": [
+        "filter_signature_perturbation",
+        "ion_selectivity_perturbation",
+        "membrane_topology_context_perturbation",
+        "oligomer_interface_context_perturbation"
+      ],
+      "target": "KcsA",
+      "validation_holdout_source_count": 4,
+      "validation_level": "perturbation_supported_by_holdout"
+    },
+    {
+      "answer_key_source_count": 0,
+      "coordinate_derived_source_count": 0,
+      "failed_checks": [],
+      "internal_runtime_source_count": 0,
+      "mechanism_class": "metamorphic_two_state_fold_switch",
+      "missing_holdout_buckets": [],
+      "missing_required_perturbation_buckets": [],
+      "perturbation_count": 5,
+      "placeholder_source_count": 0,
+      "prediction_source_count": 4,
+      "scientist_question": "Can the grammar identify that perturbing state separation or deleting one state destroys the mechanism?",
+      "supported_perturbation_buckets": [
+        "mixed_state_pooling_error",
+        "state_A_loss_or_weakening",
+        "state_B_loss_or_weakening",
+        "state_function_decoupling",
+        "two_state_balance_shift"
+      ],
+      "target": "XCL1_lymphotactin",
+      "validation_holdout_source_count": 5,
+      "validation_level": "perturbation_supported_by_holdout"
+    },
+    {
+      "answer_key_source_count": 0,
+      "coordinate_derived_source_count": 0,
+      "failed_checks": [],
+      "internal_runtime_source_count": 0,
+      "mechanism_class": "intrinsic_disorder_contextual_ensemble",
+      "missing_holdout_buckets": [],
+      "missing_required_perturbation_buckets": [],
+      "perturbation_count": 5,
+      "placeholder_source_count": 0,
+      "prediction_source_count": 4,
+      "scientist_question": "Can the grammar identify that forcing SNCA into one compact fold is wrong, and that removing disorder evidence weakens the mechanism?",
+      "supported_perturbation_buckets": [
+        "aggregation_context_overpromotion",
+        "context_bound_helix_overpromotion",
+        "disorder_evidence_loss",
+        "disorder_to_order_context_shift",
+        "ensemble_to_single_fold_forcing"
+      ],
+      "target": "alpha_synuclein_SNCA",
+      "validation_holdout_source_count": 5,
+      "validation_level": "perturbation_supported_by_holdout"
+    }
+  ],
+  "validated_perturbation_count_by_target": {
+    "KcsA": 4,
+    "XCL1_lymphotactin": 5,
+    "alpha_synuclein_SNCA": 5
+  },
+  "validation_level_by_target": {
+    "KcsA": "perturbation_supported_by_holdout",
+    "XCL1_lymphotactin": "perturbation_supported_by_holdout",
+    "alpha_synuclein_SNCA": "perturbation_supported_by_holdout"
+  }
+}

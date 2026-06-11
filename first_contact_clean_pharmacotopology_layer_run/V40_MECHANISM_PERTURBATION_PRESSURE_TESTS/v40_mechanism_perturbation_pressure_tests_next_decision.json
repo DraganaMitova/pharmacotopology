@@ -1,0 +1,8 @@
+{
+  "claim_allowed": false,
+  "decision_status": "V40_MECHANISM_PERTURBATION_PRESSURE_PASSED_CLAIM_DISABLED",
+  "folding_problem_solved": false,
+  "kind": "V40_MECHANISM_PERTURBATION_PRESSURE_TESTS_NEXT_DECISION_v0",
+  "new_MD_allowed": false,
+  "next_action": "advance_to_unseen_target_perturbation_grammar_no_claim_no_MD"
+}

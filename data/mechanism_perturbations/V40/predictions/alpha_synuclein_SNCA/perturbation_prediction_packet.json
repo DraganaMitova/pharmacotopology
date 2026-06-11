@@ -1,0 +1,61 @@
+{
+  "answer_key_used_for_prediction": false,
+  "claim_allowed": false,
+  "coordinate_truth_used_before_selection": false,
+  "folding_problem_solved": false,
+  "kind": "V40_MECHANISM_PERTURBATION_PREDICTION_PACKET_v0",
+  "mechanism_class": "intrinsic_disorder_contextual_ensemble",
+  "native_metrics_used_for_selection": false,
+  "new_MD_allowed": false,
+  "new_md_executed": false,
+  "perturbation_predictions": [
+    {
+      "expected_behavior": "Removing disorder evidence makes the mechanism partial or invalid.",
+      "expected_validation_bucket": "disorder_evidence_loss",
+      "falsifiable_if": "free SNCA remains high-confidence IDP grammar without disorder evidence",
+      "operator": "remove_disorder_evidence",
+      "perturbation_bucket": "disorder_evidence_loss",
+      "perturbation_id": "SNCA_V40_P1_DISORDER_LOSS",
+      "predicted_pressure": "weaken"
+    },
+    {
+      "expected_behavior": "Forcing compact single-fold grammar must be blocked.",
+      "expected_validation_bucket": "ensemble_to_single_fold_forcing",
+      "falsifiable_if": "compact single-fold grammar validates free SNCA",
+      "operator": "force_compact_single_fold",
+      "perturbation_bucket": "ensemble_to_single_fold_forcing",
+      "perturbation_id": "SNCA_V40_P2_SINGLE_FOLD",
+      "predicted_pressure": "block"
+    },
+    {
+      "expected_behavior": "Membrane-bound helix evidence can be conditional only, not a solved free fold.",
+      "expected_validation_bucket": "context_bound_helix_overpromotion",
+      "falsifiable_if": "bound helix is promoted to solved free-state fold",
+      "operator": "overpromote_context_bound_helix",
+      "perturbation_bucket": "context_bound_helix_overpromotion",
+      "perturbation_id": "SNCA_V40_P3_BOUND_HELIX",
+      "predicted_pressure": "block"
+    },
+    {
+      "expected_behavior": "Aggregation or amyloid context must not become a native-fold claim.",
+      "expected_validation_bucket": "aggregation_context_overpromotion",
+      "falsifiable_if": "aggregation context is treated as native-fold evidence",
+      "operator": "overpromote_aggregation_context",
+      "perturbation_bucket": "aggregation_context_overpromotion",
+      "perturbation_id": "SNCA_V40_P4_AGGREGATION_NATIVE",
+      "predicted_pressure": "block"
+    },
+    {
+      "expected_behavior": "Disorder-to-order shifts should remain context-dependent.",
+      "expected_validation_bucket": "disorder_to_order_context_shift",
+      "falsifiable_if": "context dependence is ignored",
+      "operator": "shift_disorder_to_order_context",
+      "perturbation_bucket": "disorder_to_order_context_shift",
+      "perturbation_id": "SNCA_V40_P5_CONTEXT_SHIFT",
+      "predicted_pressure": "shift"
+    }
+  ],
+  "positive_folding_evidence_found": false,
+  "scientist_question": "Can the grammar identify that forcing SNCA into one compact fold is wrong, and that removing disorder evidence weakens the mechanism?",
+  "target": "alpha_synuclein_SNCA"
+}

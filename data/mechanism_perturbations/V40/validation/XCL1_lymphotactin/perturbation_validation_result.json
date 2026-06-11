@@ -1,0 +1,23 @@
+{
+  "answer_key_source_count": 0,
+  "coordinate_derived_source_count": 0,
+  "failed_checks": [],
+  "internal_runtime_source_count": 0,
+  "mechanism_class": "metamorphic_two_state_fold_switch",
+  "missing_holdout_buckets": [],
+  "missing_required_perturbation_buckets": [],
+  "perturbation_count": 5,
+  "placeholder_source_count": 0,
+  "prediction_source_count": 4,
+  "scientist_question": "Can the grammar identify that perturbing state separation or deleting one state destroys the mechanism?",
+  "supported_perturbation_buckets": [
+    "mixed_state_pooling_error",
+    "state_A_loss_or_weakening",
+    "state_B_loss_or_weakening",
+    "state_function_decoupling",
+    "two_state_balance_shift"
+  ],
+  "target": "XCL1_lymphotactin",
+  "validation_holdout_source_count": 5,
+  "validation_level": "perturbation_supported_by_holdout"
+}

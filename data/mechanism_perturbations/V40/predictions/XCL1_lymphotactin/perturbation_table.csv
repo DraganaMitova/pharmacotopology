@@ -1,0 +1,6 @@
+perturbation_id,operator,perturbation_bucket,expected_validation_bucket,predicted_pressure,expected_behavior,falsifiable_if
+XCL1_V40_P1_STATE_A_LOSS,remove_state_A_bucket,state_A_loss_or_weakening,state_A_loss_or_weakening,break,Removing state A makes the metamorphic mechanism partial or invalid.,one state explains all XCL1 behavior
+XCL1_V40_P2_STATE_B_LOSS,remove_state_B_bucket,state_B_loss_or_weakening,state_B_loss_or_weakening,break,Removing state B makes the metamorphic mechanism partial or invalid.,one state explains all XCL1 behavior
+XCL1_V40_P3_MIXED_POOLING,force_mixed_state_pooling,mixed_state_pooling_error,mixed_state_pooling_error,block,Mixed-state pooling must be blocked.,pooled state evidence remains high-confidence
+XCL1_V40_P4_FUNCTION_DECOUPLING,merge_state_function_labels,state_function_decoupling,state_function_decoupling,weaken,State-specific function labels must remain separated.,state functions can be merged without weakening the mechanism
+XCL1_V40_P5_BALANCE_SHIFT,shift_two_state_balance,two_state_balance_shift,two_state_balance_shift,shift,Perturbations that shift the balance between states should change mechanism support.,balance shifts leave the two-state mechanism unchanged

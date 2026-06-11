@@ -1,0 +1,23 @@
+{
+  "answer_key_source_count": 0,
+  "coordinate_derived_source_count": 0,
+  "failed_checks": [],
+  "internal_runtime_source_count": 0,
+  "mechanism_class": "intrinsic_disorder_contextual_ensemble",
+  "missing_holdout_buckets": [],
+  "missing_required_perturbation_buckets": [],
+  "perturbation_count": 5,
+  "placeholder_source_count": 0,
+  "prediction_source_count": 4,
+  "scientist_question": "Can the grammar identify that forcing SNCA into one compact fold is wrong, and that removing disorder evidence weakens the mechanism?",
+  "supported_perturbation_buckets": [
+    "aggregation_context_overpromotion",
+    "context_bound_helix_overpromotion",
+    "disorder_evidence_loss",
+    "disorder_to_order_context_shift",
+    "ensemble_to_single_fold_forcing"
+  ],
+  "target": "alpha_synuclein_SNCA",
+  "validation_holdout_source_count": 5,
+  "validation_level": "perturbation_supported_by_holdout"
+}

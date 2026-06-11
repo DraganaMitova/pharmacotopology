@@ -1,0 +1,22 @@
+{
+  "answer_key_source_count": 0,
+  "coordinate_derived_source_count": 0,
+  "failed_checks": [],
+  "internal_runtime_source_count": 0,
+  "mechanism_class": "membrane_pore_filter_oligomeric_ion_selectivity",
+  "missing_holdout_buckets": [],
+  "missing_required_perturbation_buckets": [],
+  "perturbation_count": 4,
+  "placeholder_source_count": 0,
+  "prediction_source_count": 4,
+  "scientist_question": "Can the grammar identify that perturbations affecting filter/ion-selectivity evidence should matter more than generic channel annotation?",
+  "supported_perturbation_buckets": [
+    "filter_signature_perturbation",
+    "ion_selectivity_perturbation",
+    "membrane_topology_context_perturbation",
+    "oligomer_interface_context_perturbation"
+  ],
+  "target": "KcsA",
+  "validation_holdout_source_count": 4,
+  "validation_level": "perturbation_supported_by_holdout"
+}

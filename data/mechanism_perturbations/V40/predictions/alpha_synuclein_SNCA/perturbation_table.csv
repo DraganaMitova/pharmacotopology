@@ -1,0 +1,6 @@
+perturbation_id,operator,perturbation_bucket,expected_validation_bucket,predicted_pressure,expected_behavior,falsifiable_if
+SNCA_V40_P1_DISORDER_LOSS,remove_disorder_evidence,disorder_evidence_loss,disorder_evidence_loss,weaken,Removing disorder evidence makes the mechanism partial or invalid.,free SNCA remains high-confidence IDP grammar without disorder evidence
+SNCA_V40_P2_SINGLE_FOLD,force_compact_single_fold,ensemble_to_single_fold_forcing,ensemble_to_single_fold_forcing,block,Forcing compact single-fold grammar must be blocked.,compact single-fold grammar validates free SNCA
+SNCA_V40_P3_BOUND_HELIX,overpromote_context_bound_helix,context_bound_helix_overpromotion,context_bound_helix_overpromotion,block,"Membrane-bound helix evidence can be conditional only, not a solved free fold.",bound helix is promoted to solved free-state fold
+SNCA_V40_P4_AGGREGATION_NATIVE,overpromote_aggregation_context,aggregation_context_overpromotion,aggregation_context_overpromotion,block,Aggregation or amyloid context must not become a native-fold claim.,aggregation context is treated as native-fold evidence
+SNCA_V40_P5_CONTEXT_SHIFT,shift_disorder_to_order_context,disorder_to_order_context_shift,disorder_to_order_context_shift,shift,Disorder-to-order shifts should remain context-dependent.,context dependence is ignored
