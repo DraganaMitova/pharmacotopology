@@ -1,0 +1,50 @@
+{
+  "evidence_summary": "WW-domain phi-value modeling supports alternative beta-hairpin transition-state conformations rather than one single fixed early structure.",
+  "expected_early_forming_region": {
+    "family": "alternative_beta_hairpin",
+    "label": "holdout early-forming process region",
+    "span": [
+      7,
+      30
+    ]
+  },
+  "expected_folding_nucleus_decision": "distributed_or_alternative_nucleus",
+  "expected_late_forming_region": {
+    "family": "sheet_locking",
+    "label": "holdout late-forming process region",
+    "span": [
+      28,
+      38
+    ]
+  },
+  "expected_mutation_sensitive_region_families": [
+    "aromatic_beta_core",
+    "alternative_beta_hairpin"
+  ],
+  "expected_process_class": "multi_basin",
+  "holdout_opened_after_prediction_hash": "0184e10d883441c86412f8265d82de907757cf5d4718d9065a05be8bf08a5d6f",
+  "kind": "V59_POSTSEAL_PROCESS_HOLDOUT_v0",
+  "pdb_id": "1E0L",
+  "postseal_sources": [
+    {
+      "coordinate_derived": false,
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V59_FBP_WW_PROCESS_SOURCE_1",
+      "source_role": "holdout_validation",
+      "url": "https://arxiv.org/abs/0709.3359",
+      "used_before_prediction": false
+    },
+    {
+      "coordinate_derived": false,
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V59_FBP_WW_PROCESS_SOURCE_2",
+      "source_role": "holdout_validation",
+      "url": "https://www.rcsb.org/structure/1E0L",
+      "used_before_prediction": false
+    }
+  ],
+  "target_id": "V59_FBP_WW",
+  "target_name": "Formin-binding protein WW domain"
+}

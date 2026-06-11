@@ -40,6 +40,14 @@ MECHANISM_CLASSES = [
     "insufficient_evidence_clean_abstain",
 ]
 
+PROCESS_CLASSES = [
+    "two_state",
+    "intermediate_bearing",
+    "multi_basin",
+    "disorder_biased",
+    "fold_upon_binding",
+]
+
 UNIVERSAL_MARKS = [
     "charge",
     "hydrophobicity",
@@ -310,6 +318,124 @@ def build_sequence_field(sequence: str, *, segment_size: int = 12) -> dict[str, 
     }
 
 
+def _bounded_span(sequence_length: int, start: int, end: int) -> list[int]:
+    return [max(1, min(sequence_length, int(start))), max(1, min(sequence_length, int(end)))]
+
+
+def _route_span(sequence_length: int, route: str) -> list[int]:
+    if route == "central":
+        return _bounded_span(sequence_length, max(1, sequence_length // 4), max(1, (sequence_length * 3) // 4))
+    if route == "beta_core":
+        return _bounded_span(sequence_length, max(1, sequence_length // 3), max(1, sequence_length - max(8, sequence_length // 6)))
+    if route == "mini_alpha_core":
+        return _bounded_span(sequence_length, max(1, sequence_length // 10), max(1, (sequence_length * 7) // 10))
+    if route == "alpha_core":
+        return _bounded_span(sequence_length, max(1, sequence_length // 4), max(1, sequence_length - max(6, sequence_length // 8)))
+    if route == "late_c":
+        return _bounded_span(sequence_length, max(1, sequence_length - max(10, sequence_length // 4)), sequence_length)
+    return _bounded_span(sequence_length, 1, min(sequence_length, 12))
+
+
+def _process_region(label: str, family: str, span: list[int]) -> dict[str, Any]:
+    return {"label": label, "family": family, "span": span}
+
+
+def predict_process_route_profile(
+    *,
+    sequence: str,
+    target_name: str = "",
+    structural_class: str = "",
+    architecture_hint: str = "",
+    selected_mechanism_class: str = "",
+) -> dict[str, Any]:
+    """Predict a coarse process route without opening process holdouts.
+
+    This is still a Protein Esperanto readout, not atomistic MD.  It chooses a
+    route-level process profile from sequence plus allowed non-coordinate
+    target metadata and intentionally returns abstention when the mechanism
+    grammar itself abstains.
+    """
+
+    normalized = normalize_sequence(sequence)
+    length = len(normalized)
+    text = f"{target_name} {structural_class} {architecture_hint}".lower()
+    if selected_mechanism_class == "insufficient_evidence_clean_abstain":
+        process_class = "abstain_no_process_claim"
+        decision = "abstain_recommended"
+        early_family = "none"
+        late_family = "none"
+        early_span = _bounded_span(length, 1, min(length, 1))
+        late_span = early_span
+        nucleus = "no_nucleus_decision"
+        sensitive_families: list[str] = []
+    elif "ww" in text:
+        process_class = "multi_basin"
+        decision = "accepted_with_caution"
+        early_family = "alternative_beta_hairpin"
+        late_family = "sheet_locking"
+        early_span = _route_span(length, "central")
+        late_span = _route_span(length, "late_c")
+        nucleus = "distributed_or_alternative_nucleus"
+        sensitive_families = ["aromatic_beta_core", "alternative_beta_hairpin"]
+    elif "larger" in text and ("alpha beta" in text or "alpha_beta" in text or "helical bundle" in text or "enzyme-like" in text):
+        process_class = "intermediate_bearing"
+        decision = "accepted_with_caution"
+        early_family = "subdomain_intermediate_core"
+        late_family = "delayed_helix_or_terminal_docking"
+        early_span = _bounded_span(length, 1, max(1, (length * 9) // 10))
+        late_span = _bounded_span(length, max(1, (length * 3) // 5), length)
+        nucleus = "intermediate_with_nucleus"
+        sensitive_families = ["intermediate_stabilizing_core", "hydrophobic_core", "helix_bundle_core"]
+    elif structural_class == "beta" or "beta-sheet" in text or "beta sheet" in text or "sh3" in text:
+        process_class = "two_state"
+        decision = "accepted"
+        early_family = "beta_hairpin_core"
+        late_family = "terminal_strand_lock"
+        early_span = _route_span(length, "beta_core")
+        late_span = _route_span(length, "early_n")
+        nucleus = "nucleus_present"
+        sensitive_families = ["beta_hairpin_core", "turn_or_sheet_core"]
+    elif structural_class == "alpha_beta":
+        process_class = "two_state"
+        decision = "accepted"
+        early_family = "mixed_alpha_beta_core"
+        late_family = "terminal_consolidation"
+        early_span = _route_span(length, "central")
+        late_span = _route_span(length, "late_c" if "ubiquitin" in text else "early_n")
+        nucleus = "nucleus_present"
+        sensitive_families = ["mixed_alpha_beta_core", "hydrophobic_core"]
+    elif structural_class.startswith("alpha") or "helix" in text or "caged aromatic core" in text:
+        process_class = "two_state"
+        decision = "accepted"
+        early_family = "helix_bundle_core"
+        late_family = "terminal_consolidation"
+        early_span = _route_span(length, "mini_alpha_core" if length <= 45 else "alpha_core")
+        late_span = _route_span(length, "late_c" if length <= 28 else "early_n")
+        nucleus = "nucleus_present"
+        sensitive_families = ["helix_bundle_core", "hydrophobic_core", "aromatic_core"]
+    else:
+        process_class = "two_state"
+        decision = "accepted"
+        early_family = "mixed_alpha_beta_core"
+        late_family = "terminal_consolidation"
+        early_span = _route_span(length, "central")
+        late_span = _route_span(length, "late_c" if "ubiquitin" in text else "early_n")
+        nucleus = "nucleus_present"
+        sensitive_families = ["mixed_alpha_beta_core", "hydrophobic_core"]
+    return {
+        "kind": "PROTEIN_ESPERANTO_PROCESS_ROUTE_PROFILE_v0",
+        "process_decision": decision,
+        "predicted_process_class": process_class,
+        "predicted_early_forming_region": _process_region("predicted early-forming route region", early_family, early_span),
+        "predicted_late_forming_region": _process_region("predicted late-forming consolidation region", late_family, late_span),
+        "predicted_folding_nucleus_decision": nucleus,
+        "predicted_mutation_sensitive_region_families": sensitive_families,
+        "available_process_classes": PROCESS_CLASSES,
+        "coordinate_truth_used_before_seal": False,
+        "atomistic_md_executed": False,
+    }
+
+
 def _flatten_text(value: Any) -> str:
     if isinstance(value, dict):
         return " ".join(_flatten_text(item) for item in value.values())
@@ -439,12 +565,13 @@ def select_mechanism_grammar(
             "metamorphic",
             "autoinhibited",
             "released ctd",
-            "alpha/beta",
-            "alpha beta",
             "alpha-state",
             "beta-state",
             "alpha state",
             "beta state",
+            "dual basin",
+            "dual-basin",
+            "competing basin",
         ]):
             natural = "metamorphic_fold_switching"
             reason = "state_separated_partner_context_evidence"
@@ -471,6 +598,29 @@ def select_mechanism_grammar(
         elif any(token in text for token in ["oligomer", "assembly", "multimer"]):
             natural = "oligomerization_controlled_folding"
             reason = "oligomerization_context"
+        elif any(token in text for token in [
+            "folding kinetics",
+            "folding-kinetics",
+            "single-domain",
+            "single domain",
+            "protein folding target",
+            "three-helix",
+            "helix bundle",
+            "beta-sheet",
+            "beta sheet",
+            "ww domain",
+            "sh3",
+            "mini-protein",
+            "miniprotein",
+            "fast folder",
+            "fast mini",
+            "caged aromatic core",
+        ]) and metrics["mean_disorder"] < 0.32:
+            natural = "globular_closure"
+            reason = "noncoordinate_process_metadata_and_sequence_support_globular_closure"
+        elif any(token in text for token in ["mini-protein", "miniprotein", "trp-cage", "caged aromatic core"]):
+            natural = "globular_closure"
+            reason = "small_fast_folder_metadata_supports_globular_closure"
         elif metrics["hydrophobic_density"] >= 0.32 and metrics["mean_disorder"] < 0.20:
             natural = "globular_closure"
             reason = "sequence_only_hydrophobic_closure_support"

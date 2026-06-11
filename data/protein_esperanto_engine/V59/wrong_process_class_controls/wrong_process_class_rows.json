@@ -1,0 +1,65 @@
+{
+  "kind": "V59_WRONG_PROCESS_CLASS_CONTROLS_v0",
+  "rows": [
+    {
+      "expected_process_class": "two_state",
+      "forced_wrong_process_class": "intermediate_bearing",
+      "target_id": "V59_CI2",
+      "wrong_process_class_failed": true
+    },
+    {
+      "expected_process_class": "two_state",
+      "forced_wrong_process_class": "intermediate_bearing",
+      "target_id": "V59_PROTEIN_L",
+      "wrong_process_class_failed": true
+    },
+    {
+      "expected_process_class": "two_state",
+      "forced_wrong_process_class": "intermediate_bearing",
+      "target_id": "V59_PROTEIN_A_B",
+      "wrong_process_class_failed": true
+    },
+    {
+      "expected_process_class": "two_state",
+      "forced_wrong_process_class": "intermediate_bearing",
+      "target_id": "V59_SRC_SH3",
+      "wrong_process_class_failed": true
+    },
+    {
+      "expected_process_class": "multi_basin",
+      "forced_wrong_process_class": "two_state",
+      "target_id": "V59_FBP_WW",
+      "wrong_process_class_failed": true
+    },
+    {
+      "expected_process_class": "intermediate_bearing",
+      "forced_wrong_process_class": "two_state",
+      "target_id": "V59_BARNASE",
+      "wrong_process_class_failed": true
+    },
+    {
+      "expected_process_class": "two_state",
+      "forced_wrong_process_class": "intermediate_bearing",
+      "target_id": "V59_UBIQUITIN",
+      "wrong_process_class_failed": true
+    },
+    {
+      "expected_process_class": "two_state",
+      "forced_wrong_process_class": "intermediate_bearing",
+      "target_id": "V59_VILLIN_HP35",
+      "wrong_process_class_failed": true
+    },
+    {
+      "expected_process_class": "two_state",
+      "forced_wrong_process_class": "intermediate_bearing",
+      "target_id": "V59_TRP_CAGE",
+      "wrong_process_class_failed": true
+    },
+    {
+      "expected_process_class": "intermediate_bearing",
+      "forced_wrong_process_class": "two_state",
+      "target_id": "V59_IM7",
+      "wrong_process_class_failed": true
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "alphafold_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "expected_process_class": "multi_basin",
+  "failures_repaired_after_holdout": false,
+  "holdout_opened_after_prediction_hash": "0184e10d883441c86412f8265d82de907757cf5d4718d9065a05be8bf08a5d6f",
+  "kind": "V59_PROCESS_VALIDATION_RESULT_v0",
+  "p1_process_class": true,
+  "p2_early_late_ordering": true,
+  "p3_mutation_sensitivity": true,
+  "p4_calibrated_reliability": null,
+  "postseal_sources": [
+    {
+      "coordinate_derived": false,
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V59_FBP_WW_PROCESS_SOURCE_1",
+      "source_role": "holdout_validation",
+      "url": "https://arxiv.org/abs/0709.3359",
+      "used_before_prediction": false
+    },
+    {
+      "coordinate_derived": false,
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V59_FBP_WW_PROCESS_SOURCE_2",
+      "source_role": "holdout_validation",
+      "url": "https://www.rcsb.org/structure/1E0L",
+      "used_before_prediction": false
+    }
+  ],
+  "predicted_process_class": "multi_basin",
+  "process_decision": "accepted_with_caution",
+  "score_label": "supported",
+  "sealed_prediction_hash": "0184e10d883441c86412f8265d82de907757cf5d4718d9065a05be8bf08a5d6f",
+  "target_id": "V59_FBP_WW"
+}

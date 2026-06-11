@@ -1,0 +1,44 @@
+{
+  "engine_biology_modified": true,
+  "engine_mechanism_class_set_modified": false,
+  "engine_operator_set_modified": false,
+  "engine_revision_reason": [
+    "The pre-revision V59 run blocked because generic alpha_beta metadata was routed as metamorphic switching.",
+    "The pre-revision V59 run also abstained on small real helix/mini-protein folding-kinetics targets."
+  ],
+  "engine_revision_required_by_v59": true,
+  "engine_revision_scope": [
+    "hardened mechanism grammar selection for generic alpha/beta versus explicit metamorphic switch evidence",
+    "added engine-level coarse process-route profile readout",
+    "added small fast-folder/process-metadata globular closure support"
+  ],
+  "engine_source_last_commit": "5e3890c56879ce65ed4cca41d540ae1bd6ab43fb",
+  "engine_source_path": "src/pharmacotopology/protein_esperanto_engine.py",
+  "engine_source_sha256": "a105a2fca530ed38acfb5dc5922b23ed9bed9a77904158a5779624dc88e4a006",
+  "folding_problem_solved": false,
+  "frozen_after_v59_revision": true,
+  "frozen_mechanism_classes": [
+    "globular_closure",
+    "intrinsic_disorder_phase_separation",
+    "membrane_multidomain_folding_proteostasis",
+    "metamorphic_fold_switching",
+    "short_region_host_interface_hijacking",
+    "fold_upon_binding_disorder",
+    "cofactor_ligand_assisted_stabilization",
+    "oligomerization_controlled_folding",
+    "insufficient_evidence_clean_abstain"
+  ],
+  "frozen_operator_names": [
+    "closure_operator",
+    "repulsion_operator",
+    "frustration_operator",
+    "disorder_operator",
+    "phase_operator",
+    "interface_operator",
+    "membrane_pressure_operator",
+    "dual_basin_switch_operator",
+    "proteostasis_operator",
+    "host_hijack_operator"
+  ],
+  "kind": "V59_FROZEN_ENGINE_DECLARATION_v0"
+}

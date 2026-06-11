@@ -1,0 +1,96 @@
+{
+  "kind": "V59_WRONG_REGION_MUTATION_CONTROLS_v0",
+  "rows": [
+    {
+      "expected_sensitive_families": [
+        "hydrophobic_core",
+        "mixed_alpha_beta_core"
+      ],
+      "target_id": "V59_CI2",
+      "wrong_region_family": "unrelated_terminal_or_solvent_exposed_region",
+      "wrong_region_mutation_control_passed": true
+    },
+    {
+      "expected_sensitive_families": [
+        "beta_hairpin_core",
+        "turn_or_sheet_core"
+      ],
+      "target_id": "V59_PROTEIN_L",
+      "wrong_region_family": "unrelated_terminal_or_solvent_exposed_region",
+      "wrong_region_mutation_control_passed": true
+    },
+    {
+      "expected_sensitive_families": [
+        "helix_bundle_core",
+        "hydrophobic_core"
+      ],
+      "target_id": "V59_PROTEIN_A_B",
+      "wrong_region_family": "unrelated_terminal_or_solvent_exposed_region",
+      "wrong_region_mutation_control_passed": true
+    },
+    {
+      "expected_sensitive_families": [
+        "beta_hairpin_core",
+        "turn_or_sheet_core"
+      ],
+      "target_id": "V59_SRC_SH3",
+      "wrong_region_family": "unrelated_terminal_or_solvent_exposed_region",
+      "wrong_region_mutation_control_passed": true
+    },
+    {
+      "expected_sensitive_families": [
+        "aromatic_beta_core",
+        "alternative_beta_hairpin"
+      ],
+      "target_id": "V59_FBP_WW",
+      "wrong_region_family": "unrelated_terminal_or_solvent_exposed_region",
+      "wrong_region_mutation_control_passed": true
+    },
+    {
+      "expected_sensitive_families": [
+        "intermediate_stabilizing_core",
+        "hydrophobic_core"
+      ],
+      "target_id": "V59_BARNASE",
+      "wrong_region_family": "unrelated_terminal_or_solvent_exposed_region",
+      "wrong_region_mutation_control_passed": true
+    },
+    {
+      "expected_sensitive_families": [
+        "mixed_alpha_beta_core",
+        "hydrophobic_core"
+      ],
+      "target_id": "V59_UBIQUITIN",
+      "wrong_region_family": "unrelated_terminal_or_solvent_exposed_region",
+      "wrong_region_mutation_control_passed": true
+    },
+    {
+      "expected_sensitive_families": [
+        "helix_bundle_core",
+        "hydrophobic_core"
+      ],
+      "target_id": "V59_VILLIN_HP35",
+      "wrong_region_family": "unrelated_terminal_or_solvent_exposed_region",
+      "wrong_region_mutation_control_passed": true
+    },
+    {
+      "expected_sensitive_families": [
+        "helix_bundle_core",
+        "hydrophobic_core",
+        "aromatic_core"
+      ],
+      "target_id": "V59_TRP_CAGE",
+      "wrong_region_family": "unrelated_terminal_or_solvent_exposed_region",
+      "wrong_region_mutation_control_passed": true
+    },
+    {
+      "expected_sensitive_families": [
+        "intermediate_stabilizing_core",
+        "helix_bundle_core"
+      ],
+      "target_id": "V59_IM7",
+      "wrong_region_family": "unrelated_terminal_or_solvent_exposed_region",
+      "wrong_region_mutation_control_passed": true
+    }
+  ]
+}

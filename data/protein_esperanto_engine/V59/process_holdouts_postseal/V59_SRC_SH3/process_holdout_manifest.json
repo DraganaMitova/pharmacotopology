@@ -1,0 +1,50 @@
+{
+  "evidence_summary": "SH3 domains are common phi-value/process targets with beta-sheet/loop transition-state organization rather than a final-coordinate-only claim.",
+  "expected_early_forming_region": {
+    "family": "beta_hairpin_core",
+    "label": "holdout early-forming process region",
+    "span": [
+      21,
+      52
+    ]
+  },
+  "expected_folding_nucleus_decision": "nucleus_present",
+  "expected_late_forming_region": {
+    "family": "terminal_strand_lock",
+    "label": "holdout late-forming process region",
+    "span": [
+      1,
+      10
+    ]
+  },
+  "expected_mutation_sensitive_region_families": [
+    "beta_hairpin_core",
+    "turn_or_sheet_core"
+  ],
+  "expected_process_class": "two_state",
+  "holdout_opened_after_prediction_hash": "f6a10356d3c118e747b64290166ed9abebfbec4aa453ff8637457e8d3a1ad3ef",
+  "kind": "V59_POSTSEAL_PROCESS_HOLDOUT_v0",
+  "pdb_id": "1SHG",
+  "postseal_sources": [
+    {
+      "coordinate_derived": false,
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V59_SRC_SH3_PROCESS_SOURCE_1",
+      "source_role": "holdout_validation",
+      "url": "https://kineticdb.ivankovlab.ru/",
+      "used_before_prediction": false
+    },
+    {
+      "coordinate_derived": false,
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V59_SRC_SH3_PROCESS_SOURCE_2",
+      "source_role": "holdout_validation",
+      "url": "https://arxiv.org/abs/q-bio/0311004",
+      "used_before_prediction": false
+    }
+  ],
+  "target_id": "V59_SRC_SH3",
+  "target_name": "Alpha-spectrin SH3 domain"
+}

@@ -1,0 +1,50 @@
+{
+  "evidence_summary": "Protein A B-domain folding kinetics and phi-value interpretation localize the transition-state signal to the helix-bundle core.",
+  "expected_early_forming_region": {
+    "family": "helix_bundle_core",
+    "label": "holdout early-forming process region",
+    "span": [
+      17,
+      55
+    ]
+  },
+  "expected_folding_nucleus_decision": "nucleus_present",
+  "expected_late_forming_region": {
+    "family": "terminal_consolidation",
+    "label": "holdout late-forming process region",
+    "span": [
+      1,
+      12
+    ]
+  },
+  "expected_mutation_sensitive_region_families": [
+    "helix_bundle_core",
+    "hydrophobic_core"
+  ],
+  "expected_process_class": "two_state",
+  "holdout_opened_after_prediction_hash": "3648f0ec03d24c6b6a156fbe7a9904ed82b65b06b23af46ef18ddbaa54df671c",
+  "kind": "V59_POSTSEAL_PROCESS_HOLDOUT_v0",
+  "pdb_id": "1BDD",
+  "postseal_sources": [
+    {
+      "coordinate_derived": false,
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V59_PROTEIN_A_B_PROCESS_SOURCE_1",
+      "source_role": "holdout_validation",
+      "url": "https://doi.org/10.1073/pnas.0306433101",
+      "used_before_prediction": false
+    },
+    {
+      "coordinate_derived": false,
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V59_PROTEIN_A_B_PROCESS_SOURCE_2",
+      "source_role": "holdout_validation",
+      "url": "https://arxiv.org/abs/q-bio/0605048",
+      "used_before_prediction": false
+    }
+  ],
+  "target_id": "V59_PROTEIN_A_B",
+  "target_name": "Staphylococcal protein A B domain"
+}

@@ -1,0 +1,50 @@
+{
+  "evidence_summary": "Im7 folding is a standard intermediate-bearing helical-bundle process case, with early subdomain formation and delayed helix/docking consolidation.",
+  "expected_early_forming_region": {
+    "family": "subdomain_intermediate_core",
+    "label": "holdout early-forming process region",
+    "span": [
+      1,
+      78
+    ]
+  },
+  "expected_folding_nucleus_decision": "intermediate_with_nucleus",
+  "expected_late_forming_region": {
+    "family": "delayed_helix_or_terminal_docking",
+    "label": "holdout late-forming process region",
+    "span": [
+      50,
+      87
+    ]
+  },
+  "expected_mutation_sensitive_region_families": [
+    "intermediate_stabilizing_core",
+    "helix_bundle_core"
+  ],
+  "expected_process_class": "intermediate_bearing",
+  "holdout_opened_after_prediction_hash": "f72a43b362271019e4621bf91c07e2cc9ee584693173410231b88883f26a3b0b",
+  "kind": "V59_POSTSEAL_PROCESS_HOLDOUT_v0",
+  "pdb_id": "1AYI",
+  "postseal_sources": [
+    {
+      "coordinate_derived": false,
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V59_IM7_PROCESS_SOURCE_1",
+      "source_role": "holdout_validation",
+      "url": "https://www.rcsb.org/structure/1AYI",
+      "used_before_prediction": false
+    },
+    {
+      "coordinate_derived": false,
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V59_IM7_PROCESS_SOURCE_2",
+      "source_role": "holdout_validation",
+      "url": "https://kineticdb.ivankovlab.ru/",
+      "used_before_prediction": false
+    }
+  ],
+  "target_id": "V59_IM7",
+  "target_name": "Colicin E7 immunity protein Im7"
+}

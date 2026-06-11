@@ -1,0 +1,405 @@
+{
+  "created_timestamp_utc": "2026-06-11T19:30:06.639394+00:00",
+  "excluded_prior_grammar_targets": [
+    "p53_TAD_MDM2",
+    "KcsA",
+    "XCL1",
+    "SNCA",
+    "FUS_LC",
+    "TDP43_LCD",
+    "CFTR_F508DEL",
+    "RFAH_CTD",
+    "SARS2_ORF6",
+    "GB1_DOMAIN",
+    "HNRNPA1_LCD",
+    "RHODOPSIN_P23H"
+  ],
+  "kind": "V59_REAL_PROCESS_EVIDENCE_TARGET_CATALOG_v0",
+  "selection_rule": "Deterministic panel of 8-12 proteins with public sequence plus at least one process-level observable from folding kinetics, phi-value, mutation kinetics, HDX/NMR/intermediate, or ensemble-shift literature; targets used to build V50-V58 grammar are excluded.",
+  "source_bases": [
+    {
+      "role": "folding kinetics source base",
+      "source": "KineticDB",
+      "url": "https://kineticdb.ivankovlab.ru/"
+    },
+    {
+      "role": "standardized two-state / non-two-state folding-kinetics source base",
+      "source": "PFDB",
+      "url": "https://www.nature.com/articles/s41598-018-36992-y"
+    },
+    {
+      "role": "public sequence source; coordinates not used before sealing",
+      "source": "RCSB FASTA",
+      "url": "https://www.rcsb.org/"
+    }
+  ],
+  "target_count": 10,
+  "targets": [
+    {
+      "architecture_hint": "small mixed alpha beta single-domain folding-kinetics target",
+      "pdb_id": "2CI2",
+      "process_evidence_channels": [
+        "phi_value_analysis",
+        "folding_kinetics"
+      ],
+      "process_holdout": {
+        "early_region_family": "mixed_alpha_beta_core",
+        "early_span": [
+          20,
+          55
+        ],
+        "evidence_summary": "CI2 is a classic phi-value target with a compact transition-state nucleus in the central helix/core and terminal consolidation later in the route.",
+        "expected_process_class": "two_state",
+        "folding_nucleus_decision": "nucleus_present",
+        "late_region_family": "terminal_consolidation",
+        "late_span": [
+          1,
+          12
+        ],
+        "mutation_sensitive_region_families": [
+          "hydrophobic_core",
+          "mixed_alpha_beta_core"
+        ],
+        "process_sources": [
+          "https://doi.org/10.1038/340122a0",
+          "https://arxiv.org/abs/q-bio/0605048",
+          "https://kineticdb.ivankovlab.ru/"
+        ]
+      },
+      "sequence": "SSVEKKPEGVNTGAGDRHNLKTEWPELVGKSVEEAKKVILQDKPEAQIIVLPVGTIVTMEYRIDRVRLFVDKLDNIAEVPRVG",
+      "sequence_source": "https://www.rcsb.org/fasta/entry/2CI2/display",
+      "structural_class": "alpha_beta",
+      "target_id": "V59_CI2",
+      "target_name": "Chymotrypsin inhibitor 2"
+    },
+    {
+      "architecture_hint": "small beta-sheet single-domain folding-kinetics target",
+      "pdb_id": "1HZ6",
+      "process_evidence_channels": [
+        "phi_value_analysis",
+        "folding_kinetics"
+      ],
+      "process_holdout": {
+        "early_region_family": "beta_hairpin_core",
+        "early_span": [
+          18,
+          54
+        ],
+        "evidence_summary": "Protein L is represented in phi-value modeling and folding-kinetics work as a small two-state beta-domain with hairpin/sheet transition-state structure.",
+        "expected_process_class": "two_state",
+        "folding_nucleus_decision": "nucleus_present",
+        "late_region_family": "terminal_strand_lock",
+        "late_span": [
+          1,
+          12
+        ],
+        "mutation_sensitive_region_families": [
+          "beta_hairpin_core",
+          "turn_or_sheet_core"
+        ],
+        "process_sources": [
+          "https://arxiv.org/abs/q-bio/0605048",
+          "https://kineticdb.ivankovlab.ru/"
+        ]
+      },
+      "sequence": "MHHHHHHAMEEVTIKANLIFANGSTQTAEFKGTFEKATSEAYAYADTLKKDNGEWTVDVADKGYTLNIKFAG",
+      "sequence_source": "https://www.rcsb.org/fasta/entry/1HZ6/display",
+      "structural_class": "beta",
+      "target_id": "V59_PROTEIN_L",
+      "target_name": "Protein L B1 domain"
+    },
+    {
+      "architecture_hint": "small three-helix bundle folding-kinetics target",
+      "pdb_id": "1BDD",
+      "process_evidence_channels": [
+        "phi_value_analysis",
+        "temperature_jump_kinetics"
+      ],
+      "process_holdout": {
+        "early_region_family": "helix_bundle_core",
+        "early_span": [
+          17,
+          55
+        ],
+        "evidence_summary": "Protein A B-domain folding kinetics and phi-value interpretation localize the transition-state signal to the helix-bundle core.",
+        "expected_process_class": "two_state",
+        "folding_nucleus_decision": "nucleus_present",
+        "late_region_family": "terminal_consolidation",
+        "late_span": [
+          1,
+          12
+        ],
+        "mutation_sensitive_region_families": [
+          "helix_bundle_core",
+          "hydrophobic_core"
+        ],
+        "process_sources": [
+          "https://doi.org/10.1073/pnas.0306433101",
+          "https://arxiv.org/abs/q-bio/0605048"
+        ]
+      },
+      "sequence": "TADNKFNKEQQNAFYEILHLPNLNEEQRNGFIQSLKDDPSQSANLLAEAKKLNDAQAPKA",
+      "sequence_source": "https://www.rcsb.org/fasta/entry/1BDD/display",
+      "structural_class": "alpha",
+      "target_id": "V59_PROTEIN_A_B",
+      "target_name": "Staphylococcal protein A B domain"
+    },
+    {
+      "architecture_hint": "small beta-sheet SH3 folding-kinetics target",
+      "pdb_id": "1SHG",
+      "process_evidence_channels": [
+        "phi_value_analysis",
+        "folding_kinetics"
+      ],
+      "process_holdout": {
+        "early_region_family": "beta_hairpin_core",
+        "early_span": [
+          21,
+          52
+        ],
+        "evidence_summary": "SH3 domains are common phi-value/process targets with beta-sheet/loop transition-state organization rather than a final-coordinate-only claim.",
+        "expected_process_class": "two_state",
+        "folding_nucleus_decision": "nucleus_present",
+        "late_region_family": "terminal_strand_lock",
+        "late_span": [
+          1,
+          10
+        ],
+        "mutation_sensitive_region_families": [
+          "beta_hairpin_core",
+          "turn_or_sheet_core"
+        ],
+        "process_sources": [
+          "https://kineticdb.ivankovlab.ru/",
+          "https://arxiv.org/abs/q-bio/0311004"
+        ]
+      },
+      "sequence": "MDETGKELVLALYDYQEKSPREVTMKKGDILTLLNSTNKDWWKVEVNDRQGFVPAAYVKKLD",
+      "sequence_source": "https://www.rcsb.org/fasta/entry/1SHG/display",
+      "structural_class": "beta",
+      "target_id": "V59_SRC_SH3",
+      "target_name": "Alpha-spectrin SH3 domain"
+    },
+    {
+      "architecture_hint": "ultrashort WW beta-sheet domain folding-kinetics target",
+      "pdb_id": "1E0L",
+      "process_evidence_channels": [
+        "phi_value_analysis",
+        "folding_kinetics"
+      ],
+      "process_holdout": {
+        "early_region_family": "alternative_beta_hairpin",
+        "early_span": [
+          7,
+          30
+        ],
+        "evidence_summary": "WW-domain phi-value modeling supports alternative beta-hairpin transition-state conformations rather than one single fixed early structure.",
+        "expected_process_class": "multi_basin",
+        "folding_nucleus_decision": "distributed_or_alternative_nucleus",
+        "late_region_family": "sheet_locking",
+        "late_span": [
+          28,
+          38
+        ],
+        "mutation_sensitive_region_families": [
+          "aromatic_beta_core",
+          "alternative_beta_hairpin"
+        ],
+        "process_sources": [
+          "https://arxiv.org/abs/0709.3359",
+          "https://www.rcsb.org/structure/1E0L"
+        ]
+      },
+      "sequence": "GATAVSEWTEYKTADGKTYYYNNRTLESTWEKPQELK",
+      "sequence_source": "https://www.rcsb.org/fasta/entry/1E0L/display",
+      "structural_class": "beta",
+      "target_id": "V59_FBP_WW",
+      "target_name": "Formin-binding protein WW domain"
+    },
+    {
+      "architecture_hint": "larger mixed alpha beta enzyme-like folding-kinetics target",
+      "pdb_id": "1BNR",
+      "process_evidence_channels": [
+        "phi_value_analysis",
+        "folding_intermediate",
+        "amide_exchange"
+      ],
+      "process_holdout": {
+        "early_region_family": "subdomain_intermediate_core",
+        "early_span": [
+          10,
+          76
+        ],
+        "evidence_summary": "Barnase has extensive phi-value and intermediate work; process evidence includes transient/intermediate structure rather than only a two-state endpoint.",
+        "expected_process_class": "intermediate_bearing",
+        "folding_nucleus_decision": "intermediate_with_nucleus",
+        "late_region_family": "delayed_helix_or_terminal_docking",
+        "late_span": [
+          78,
+          110
+        ],
+        "mutation_sensitive_region_families": [
+          "intermediate_stabilizing_core",
+          "hydrophobic_core"
+        ],
+        "process_sources": [
+          "https://doi.org/10.1006/jmbi.1997.1547",
+          "https://doi.org/10.1038/340122a0",
+          "https://kineticdb.ivankovlab.ru/"
+        ]
+      },
+      "sequence": "AQVINTFDGVADYLQTYHKLPDNYITKSEAQALGWVASKGNLADVAPGKSIGGDIFSNREGKLPGKSGRTWREADINYTSGFRNSDRILYSSDWLIYKTTDHYQTFTKIR",
+      "sequence_source": "https://www.rcsb.org/fasta/entry/1BNR/display",
+      "structural_class": "alpha_beta",
+      "target_id": "V59_BARNASE",
+      "target_name": "Barnase"
+    },
+    {
+      "architecture_hint": "small mixed alpha beta single-domain folding-kinetics target",
+      "pdb_id": "1UBQ",
+      "process_evidence_channels": [
+        "phi_value_analysis",
+        "psi_value_analysis",
+        "folding_kinetics"
+      ],
+      "process_holdout": {
+        "early_region_family": "mixed_alpha_beta_core",
+        "early_span": [
+          1,
+          45
+        ],
+        "evidence_summary": "Ubiquitin process studies use kinetic perturbation / phi-psi style evidence to localize a heterogeneous but bounded transition-state core.",
+        "expected_process_class": "two_state",
+        "folding_nucleus_decision": "nucleus_present",
+        "late_region_family": "terminal_consolidation",
+        "late_span": [
+          64,
+          76
+        ],
+        "mutation_sensitive_region_families": [
+          "mixed_alpha_beta_core",
+          "hydrophobic_core"
+        ],
+        "process_sources": [
+          "https://doi.org/10.1073/pnas.97.12.6527",
+          "https://www.rcsb.org/structure/1UBQ"
+        ]
+      },
+      "sequence": "MQIFVKTLTGKTITLEVEPSDTIENVKAKIQDKEGIPPDQQRLIFAGKQLEDGRTLSDYNIQKESTLHLVLRLRGG",
+      "sequence_source": "https://www.rcsb.org/fasta/entry/1UBQ/display",
+      "structural_class": "alpha_beta",
+      "target_id": "V59_UBIQUITIN",
+      "target_name": "Human ubiquitin"
+    },
+    {
+      "architecture_hint": "small fast alpha-helical folder",
+      "pdb_id": "1VII",
+      "process_evidence_channels": [
+        "folding_kinetics",
+        "fast_folder_temperature_jump"
+      ],
+      "process_holdout": {
+        "early_region_family": "helix_bundle_core",
+        "early_span": [
+          10,
+          34
+        ],
+        "evidence_summary": "Villin HP35 is a small fast folder whose folding-process signal centers on the helical hydrophobic core before final terminal consolidation.",
+        "expected_process_class": "two_state",
+        "folding_nucleus_decision": "nucleus_present",
+        "late_region_family": "terminal_consolidation",
+        "late_span": [
+          1,
+          9
+        ],
+        "mutation_sensitive_region_families": [
+          "helix_bundle_core",
+          "hydrophobic_core"
+        ],
+        "process_sources": [
+          "https://www.rcsb.org/structure/1VII",
+          "https://kineticdb.ivankovlab.ru/"
+        ]
+      },
+      "sequence": "MLSDEDFKAVFGMTRSAFANLPLWKQQNLKKEKGLF",
+      "sequence_source": "https://www.rcsb.org/fasta/entry/1VII/display",
+      "structural_class": "alpha",
+      "target_id": "V59_VILLIN_HP35",
+      "target_name": "Villin headpiece HP35"
+    },
+    {
+      "architecture_hint": "ultrashort fast mini-protein with caged aromatic core",
+      "pdb_id": "1L2Y",
+      "process_evidence_channels": [
+        "fast_folder_kinetics",
+        "ensemble_shift"
+      ],
+      "process_holdout": {
+        "early_region_family": "helix_bundle_core",
+        "early_span": [
+          2,
+          14
+        ],
+        "evidence_summary": "Trp-cage is an ultrafast mini-protein where aromatic cage / helix formation precedes final proline-tail packing.",
+        "expected_process_class": "two_state",
+        "folding_nucleus_decision": "nucleus_present",
+        "late_region_family": "terminal_consolidation",
+        "late_span": [
+          15,
+          20
+        ],
+        "mutation_sensitive_region_families": [
+          "helix_bundle_core",
+          "hydrophobic_core",
+          "aromatic_core"
+        ],
+        "process_sources": [
+          "https://www.rcsb.org/structure/1L2Y",
+          "https://kineticdb.ivankovlab.ru/"
+        ]
+      },
+      "sequence": "NLYIQWLKDGGPSSGRPPPS",
+      "sequence_source": "https://www.rcsb.org/fasta/entry/1L2Y/display",
+      "structural_class": "alpha_mini",
+      "target_id": "V59_TRP_CAGE",
+      "target_name": "Trp-cage TC5b"
+    },
+    {
+      "architecture_hint": "larger helical bundle folding-kinetics target",
+      "pdb_id": "1AYI",
+      "process_evidence_channels": [
+        "folding_intermediate",
+        "folding_kinetics",
+        "mutation_kinetics"
+      ],
+      "process_holdout": {
+        "early_region_family": "subdomain_intermediate_core",
+        "early_span": [
+          1,
+          78
+        ],
+        "evidence_summary": "Im7 folding is a standard intermediate-bearing helical-bundle process case, with early subdomain formation and delayed helix/docking consolidation.",
+        "expected_process_class": "intermediate_bearing",
+        "folding_nucleus_decision": "intermediate_with_nucleus",
+        "late_region_family": "delayed_helix_or_terminal_docking",
+        "late_span": [
+          50,
+          87
+        ],
+        "mutation_sensitive_region_families": [
+          "intermediate_stabilizing_core",
+          "helix_bundle_core"
+        ],
+        "process_sources": [
+          "https://www.rcsb.org/structure/1AYI",
+          "https://kineticdb.ivankovlab.ru/"
+        ]
+      },
+      "sequence": "MELKNSISDYTEAEFVQLLKEIEKENVAATDDVLDVLLEHFVKITEHPDGTDLIYYPSDNRDDSPEGIVKEIKEWRAANGKPGFKQG",
+      "sequence_source": "https://www.rcsb.org/fasta/entry/1AYI/display",
+      "structural_class": "alpha",
+      "target_id": "V59_IM7",
+      "target_name": "Colicin E7 immunity protein Im7"
+    }
+  ]
+}

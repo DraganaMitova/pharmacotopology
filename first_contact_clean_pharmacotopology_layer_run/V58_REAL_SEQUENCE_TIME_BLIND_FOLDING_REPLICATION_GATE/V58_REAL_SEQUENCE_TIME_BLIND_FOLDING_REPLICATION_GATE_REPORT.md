@@ -27,7 +27,7 @@ folding_problem_solved: `False`
 - `V58_10QM_3` predicted `intrinsic_disorder_phase_separation` expected `intrinsic_disorder_phase_separation` L1 `True` L3 `True`
 - `V58_10QM_10` predicted `globular_closure` expected `globular_closure` L1 `True` L3 `True`
 - `V58_10QM_5` predicted `membrane_multidomain_folding_proteostasis` expected `membrane_multidomain_folding_proteostasis` L1 `True` L3 `True`
-- `V58_24SW_2` predicted `metamorphic_fold_switching` expected `globular_closure` L1 `False` L3 `False`
+- `V58_24SW_2` predicted `oligomerization_controlled_folding` expected `globular_closure` L1 `False` L3 `False`
 - `V58_10QM_9` predicted `insufficient_evidence_clean_abstain` expected `intrinsic_disorder_phase_separation` L1 `False` L3 `False`
 - `V58_10QM_11` predicted `globular_closure` expected `globular_closure` L1 `True` L3 `True`
 - `V58_10YZ_1` predicted `insufficient_evidence_clean_abstain` expected `membrane_multidomain_folding_proteostasis` L1 `False` L3 `False`
@@ -36,7 +36,7 @@ folding_problem_solved: `False`
 - `V58_10PJ_1` predicted `oligomerization_controlled_folding` expected `globular_closure`
 - `V58_12ZJ_1` predicted `oligomerization_controlled_folding` expected `globular_closure`
 - `V58_24JD_1` predicted `oligomerization_controlled_folding` expected `globular_closure`
-- `V58_24SW_2` predicted `metamorphic_fold_switching` expected `globular_closure`
+- `V58_24SW_2` predicted `oligomerization_controlled_folding` expected `globular_closure`
 - `V58_10QM_9` predicted `insufficient_evidence_clean_abstain` expected `intrinsic_disorder_phase_separation`
 - `V58_10YZ_1` predicted `insufficient_evidence_clean_abstain` expected `membrane_multidomain_folding_proteostasis`
 

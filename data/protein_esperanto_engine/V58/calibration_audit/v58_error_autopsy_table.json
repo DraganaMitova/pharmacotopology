@@ -687,41 +687,40 @@
     },
     {
       "confidence_signal": "self_consistent",
-      "decision_reason": "globular_vs_switch_ambiguity",
+      "decision_reason": "globular_vs_interface_or_oligomer_ambiguity",
       "entity_id": "24SW_2",
       "entry_id": "24SW",
       "expected_regime_postseal": "globular_closure",
-      "failure_bucket": "globular_vs_switch_ambiguity",
+      "failure_bucket": "globular_vs_interface_or_oligomer_ambiguity",
       "level_4_process_replication": "not_claimed_v59_required",
       "pass_level_1": false,
       "pass_level_2": true,
       "pass_level_3": false,
       "post_autopsy_decision": "abstain_recommended",
-      "second_best_grammar": "oligomerization_controlled_folding",
-      "selected_regime": "metamorphic_fold_switching",
+      "second_best_grammar": "none",
+      "selected_regime": "oligomerization_controlled_folding",
       "sequence_only_selected_regime": "globular_closure",
       "target_id": "V58_24SW_2",
       "top_grammar_candidates": [
-        "metamorphic_fold_switching"
+        "oligomerization_controlled_folding"
       ],
       "vote_counts": {
         "globular_closure": 0,
         "intrinsic_disorder_phase_separation": 0,
         "membrane_multidomain_folding_proteostasis": 0,
-        "metamorphic_fold_switching": 2,
-        "oligomerization_controlled_folding": 1,
+        "metamorphic_fold_switching": 0,
+        "oligomerization_controlled_folding": 3,
         "short_region_host_interface_hijacking": 0
       },
       "vote_reasons": {
         "globular_closure": [],
         "intrinsic_disorder_phase_separation": [],
         "membrane_multidomain_folding_proteostasis": [],
-        "metamorphic_fold_switching": [
+        "metamorphic_fold_switching": [],
+        "oligomerization_controlled_folding": [
+          "strongest_relative_sequence_signal",
           "operator_field_constructed_for_selected_grammar",
           "engine_selected_pre_holdout"
-        ],
-        "oligomerization_controlled_folding": [
-          "strongest_relative_sequence_signal"
         ],
         "short_region_host_interface_hijacking": []
       },

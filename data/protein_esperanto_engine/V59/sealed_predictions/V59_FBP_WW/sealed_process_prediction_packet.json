@@ -1,0 +1,127 @@
+{
+  "alphafold_used_before_seal": false,
+  "atomistic_md_executed": false,
+  "coordinate_truth_used_before_seal": false,
+  "engine_operator_field": {
+    "active_operator_count": 1,
+    "coordinate_truth_used": false,
+    "kind": "PROTEIN_ESPERANTO_OPERATOR_FIELD_v0",
+    "mechanism_class": "fold_upon_binding_disorder",
+    "operator_names": [
+      "interface_operator"
+    ],
+    "operators": [
+      {
+        "activated_by_evidence_ids": [
+          "V59_FBP_WW_RAW_SEQUENCE",
+          "V59_FBP_WW_NONCOORDINATE_METADATA"
+        ],
+        "activation_strength": 0.462042,
+        "acts_on": "13-24, 1-12, 25-36",
+        "falsified_by": "context has no directional effect",
+        "operator": "interface_operator",
+        "perturbation_should": "context perturbation shifts mechanism",
+        "pushes_toward": "context-conditioned interaction readiness",
+        "state_variable": "interface_readiness"
+      }
+    ]
+  },
+  "engine_packet_hash": "20fdc3287b2218a3ff0e8a286973af15174044b38ae0b8767571fe777f56e0a4",
+  "engine_selected_mechanism_grammar": {
+    "available_mechanism_classes": [
+      "globular_closure",
+      "intrinsic_disorder_phase_separation",
+      "membrane_multidomain_folding_proteostasis",
+      "metamorphic_fold_switching",
+      "short_region_host_interface_hijacking",
+      "fold_upon_binding_disorder",
+      "cofactor_ligand_assisted_stabilization",
+      "oligomerization_controlled_folding",
+      "insufficient_evidence_clean_abstain"
+    ],
+    "folding_problem_solved": false,
+    "forced_grammar": null,
+    "forced_grammar_rejected": false,
+    "grammar_rule": {
+      "falsification_rule": "free-state holdout shows stable standalone fold",
+      "marks": [
+        "disorder_tendency",
+        "partner_motif",
+        "amphipathic_segment"
+      ],
+      "null_control": "bound-state order cannot be promoted to free-state solved fold",
+      "operators": [
+        "disorder_operator",
+        "interface_operator",
+        "closure_operator"
+      ],
+      "pressures": [
+        "binding_partner"
+      ],
+      "state_change": "free disorder to partner-conditioned local ordering",
+      "testable_effect": "partner removal restores disorder and weakens interface readiness"
+    },
+    "kind": "PROTEIN_ESPERANTO_MECHANISM_CLASSIFIER_v0",
+    "mechanism_class": "fold_upon_binding_disorder",
+    "natural_mechanism_class": "fold_upon_binding_disorder",
+    "selection_reason": "partner_conditioned_disorder_evidence"
+  },
+  "engine_trajectory_final_state": {
+    "contact_probability": 0.0,
+    "disorder_order_balance": 0.45,
+    "frustration": 0.35,
+    "interface_readiness": 0.0,
+    "operator_activation": 0.462042,
+    "proteostasis_routing": 0.0,
+    "residue_exposure": 0.735308,
+    "segment_compaction": 0.0,
+    "state_basin_occupancy": {
+      "clean_abstain": 1.0
+    },
+    "timepoint": 1000
+  },
+  "folding_problem_solved": false,
+  "kind": "V59_SEALED_ENGINE_AND_PROCESS_PACKET_v0",
+  "prediction_hash": "0184e10d883441c86412f8265d82de907757cf5d4718d9065a05be8bf08a5d6f",
+  "process_prediction": {
+    "alphafold_used_before_seal": false,
+    "coordinate_truth_used_before_seal": false,
+    "falsification_criteria": [
+      "process class differs after process holdout opens",
+      "early/late ordering is reversed or localizes to an unrelated region family",
+      "mutation-sensitive regions do not overlap kinetic/phi-value-sensitive families",
+      "wrong process class explains the target equally well"
+    ],
+    "kind": "V59_SEALED_PROCESS_TRAJECTORY_PREDICTION_v0",
+    "predicted_early_forming_region": {
+      "family": "alternative_beta_hairpin",
+      "label": "predicted early-forming route region",
+      "span": [
+        9,
+        27
+      ]
+    },
+    "predicted_folding_nucleus_decision": "distributed_or_alternative_nucleus",
+    "predicted_late_forming_region": {
+      "family": "sheet_locking",
+      "label": "predicted late-forming consolidation region",
+      "span": [
+        27,
+        37
+      ]
+    },
+    "predicted_mutation_sensitive_region_families": [
+      "aromatic_beta_core",
+      "alternative_beta_hairpin"
+    ],
+    "predicted_process_class": "multi_basin",
+    "predicted_topology_observable_support": "fold_upon_binding_disorder",
+    "process_decision": "accepted_with_caution",
+    "sealed_before_process_holdout": true,
+    "target_id": "V59_FBP_WW"
+  },
+  "sealed_before_process_holdout": true,
+  "target_id": "V59_FBP_WW",
+  "target_name": "Formin-binding protein WW domain",
+  "universal_folding_solved": false
+}

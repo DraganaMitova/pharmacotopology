@@ -1,0 +1,129 @@
+{
+  "alphafold_used_before_seal": false,
+  "atomistic_md_executed": false,
+  "coordinate_truth_used_before_seal": false,
+  "engine_operator_field": {
+    "active_operator_count": 1,
+    "coordinate_truth_used": false,
+    "kind": "PROTEIN_ESPERANTO_OPERATOR_FIELD_v0",
+    "mechanism_class": "globular_closure",
+    "operator_names": [
+      "closure_operator"
+    ],
+    "operators": [
+      {
+        "activated_by_evidence_ids": [
+          "V59_VILLIN_HP35_RAW_SEQUENCE",
+          "V59_VILLIN_HP35_NONCOORDINATE_METADATA"
+        ],
+        "activation_strength": 0.694444,
+        "acts_on": "13-24, 1-12, 25-36",
+        "falsified_by": "no compaction under independent SAXS/FRET/crosslink/structure holdout",
+        "operator": "closure_operator",
+        "perturbation_should": "core hydrophobic/aromatic substitutions weaken compaction",
+        "pushes_toward": "local compaction and contact probability increase",
+        "state_variable": "segment_compaction"
+      }
+    ]
+  },
+  "engine_packet_hash": "5f69743c9fdf2d69185d2de4744e1a49fe80b376b1948f8fa566b7f9e887afbe",
+  "engine_selected_mechanism_grammar": {
+    "available_mechanism_classes": [
+      "globular_closure",
+      "intrinsic_disorder_phase_separation",
+      "membrane_multidomain_folding_proteostasis",
+      "metamorphic_fold_switching",
+      "short_region_host_interface_hijacking",
+      "fold_upon_binding_disorder",
+      "cofactor_ligand_assisted_stabilization",
+      "oligomerization_controlled_folding",
+      "insufficient_evidence_clean_abstain"
+    ],
+    "folding_problem_solved": false,
+    "forced_grammar": null,
+    "forced_grammar_rejected": false,
+    "grammar_rule": {
+      "falsification_rule": "independent holdout shows no compaction or wrong operator regions",
+      "marks": [
+        "hydrophobic",
+        "aromatic",
+        "secondary_structure_tendency"
+      ],
+      "null_control": "generic hydrophobicity alone cannot validate target-specific closure",
+      "operators": [
+        "closure_operator",
+        "frustration_operator"
+      ],
+      "pressures": [
+        "solvent",
+        "folding_nucleus"
+      ],
+      "state_change": "expanded chain to compact nucleus/contact-enriched ensemble",
+      "testable_effect": "core-region perturbation weakens compaction and long-range topology"
+    },
+    "kind": "PROTEIN_ESPERANTO_MECHANISM_CLASSIFIER_v0",
+    "mechanism_class": "globular_closure",
+    "natural_mechanism_class": "globular_closure",
+    "selection_reason": "sequence_only_hydrophobic_closure_support"
+  },
+  "engine_trajectory_final_state": {
+    "contact_probability": 0.570555,
+    "disorder_order_balance": 0.282,
+    "frustration": 0.0,
+    "interface_readiness": 0.12,
+    "operator_activation": 0.694444,
+    "proteostasis_routing": 0.0,
+    "residue_exposure": 0.601453,
+    "segment_compaction": 0.568889,
+    "state_basin_occupancy": {
+      "compact_folded": 0.610555,
+      "expanded_unfolded": 0.432778
+    },
+    "timepoint": 1000
+  },
+  "folding_problem_solved": false,
+  "kind": "V59_SEALED_ENGINE_AND_PROCESS_PACKET_v0",
+  "prediction_hash": "c58dc603a2f5e51251ea795dadd029b79eeae11fd7f5ce23f351788d527f768b",
+  "process_prediction": {
+    "alphafold_used_before_seal": false,
+    "coordinate_truth_used_before_seal": false,
+    "falsification_criteria": [
+      "process class differs after process holdout opens",
+      "early/late ordering is reversed or localizes to an unrelated region family",
+      "mutation-sensitive regions do not overlap kinetic/phi-value-sensitive families",
+      "wrong process class explains the target equally well"
+    ],
+    "kind": "V59_SEALED_PROCESS_TRAJECTORY_PREDICTION_v0",
+    "predicted_early_forming_region": {
+      "family": "helix_bundle_core",
+      "label": "predicted early-forming route region",
+      "span": [
+        3,
+        25
+      ]
+    },
+    "predicted_folding_nucleus_decision": "nucleus_present",
+    "predicted_late_forming_region": {
+      "family": "terminal_consolidation",
+      "label": "predicted late-forming consolidation region",
+      "span": [
+        1,
+        12
+      ]
+    },
+    "predicted_mutation_sensitive_region_families": [
+      "helix_bundle_core",
+      "hydrophobic_core",
+      "aromatic_core"
+    ],
+    "predicted_process_class": "two_state",
+    "predicted_topology_observable_support": "globular_closure",
+    "process_decision": "accepted",
+    "sealed_before_process_holdout": true,
+    "target_id": "V59_VILLIN_HP35"
+  },
+  "sealed_before_process_holdout": true,
+  "target_id": "V59_VILLIN_HP35",
+  "target_name": "Villin headpiece HP35",
+  "universal_folding_solved": false
+}

@@ -1,0 +1,37 @@
+{
+  "alphafold_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "expected_process_class": "two_state",
+  "failures_repaired_after_holdout": false,
+  "holdout_opened_after_prediction_hash": "5150b517afd8f273fdb8e4ebb687bcf799907355d74bd6710c5f64e2d4f30fc8",
+  "kind": "V59_PROCESS_VALIDATION_RESULT_v0",
+  "p1_process_class": true,
+  "p2_early_late_ordering": true,
+  "p3_mutation_sensitivity": true,
+  "p4_calibrated_reliability": null,
+  "postseal_sources": [
+    {
+      "coordinate_derived": false,
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V59_UBIQUITIN_PROCESS_SOURCE_1",
+      "source_role": "holdout_validation",
+      "url": "https://doi.org/10.1073/pnas.97.12.6527",
+      "used_before_prediction": false
+    },
+    {
+      "coordinate_derived": false,
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V59_UBIQUITIN_PROCESS_SOURCE_2",
+      "source_role": "holdout_validation",
+      "url": "https://www.rcsb.org/structure/1UBQ",
+      "used_before_prediction": false
+    }
+  ],
+  "predicted_process_class": "two_state",
+  "process_decision": "accepted",
+  "score_label": "supported",
+  "sealed_prediction_hash": "5150b517afd8f273fdb8e4ebb687bcf799907355d74bd6710c5f64e2d4f30fc8",
+  "target_id": "V59_UBIQUITIN"
+}

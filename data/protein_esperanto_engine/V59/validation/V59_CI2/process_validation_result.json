@@ -1,0 +1,46 @@
+{
+  "alphafold_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "expected_process_class": "two_state",
+  "failures_repaired_after_holdout": false,
+  "holdout_opened_after_prediction_hash": "5863d5a7dcf54d0eff29b9ce4b53a4598e74f175b5b080f9ad7a99d16966052c",
+  "kind": "V59_PROCESS_VALIDATION_RESULT_v0",
+  "p1_process_class": true,
+  "p2_early_late_ordering": true,
+  "p3_mutation_sensitivity": true,
+  "p4_calibrated_reliability": null,
+  "postseal_sources": [
+    {
+      "coordinate_derived": false,
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V59_CI2_PROCESS_SOURCE_1",
+      "source_role": "holdout_validation",
+      "url": "https://doi.org/10.1038/340122a0",
+      "used_before_prediction": false
+    },
+    {
+      "coordinate_derived": false,
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V59_CI2_PROCESS_SOURCE_2",
+      "source_role": "holdout_validation",
+      "url": "https://arxiv.org/abs/q-bio/0605048",
+      "used_before_prediction": false
+    },
+    {
+      "coordinate_derived": false,
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V59_CI2_PROCESS_SOURCE_3",
+      "source_role": "holdout_validation",
+      "url": "https://kineticdb.ivankovlab.ru/",
+      "used_before_prediction": false
+    }
+  ],
+  "predicted_process_class": "two_state",
+  "process_decision": "accepted",
+  "score_label": "supported",
+  "sealed_prediction_hash": "5863d5a7dcf54d0eff29b9ce4b53a4598e74f175b5b080f9ad7a99d16966052c",
+  "target_id": "V59_CI2"
+}

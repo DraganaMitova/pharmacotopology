@@ -10764,7 +10764,7 @@
   "predicted_state_basin_occupancy": {
     "clean_abstain": 1.0
   },
-  "prediction_hash": "fa3404820914c42f388a8dfaf86f3462bdd0c92f9c705e424dd1a873e0ca5077",
+  "prediction_hash": "e574b0399885c0c24ddec5b8b1f1da4d84d9581ad982dca1f9d72baac90b77e5",
   "sealed_before_holdout": true,
   "selected_mechanism_grammar": {
     "available_mechanism_classes": [
@@ -10784,7 +10784,7 @@
     "grammar_rule": null,
     "kind": "PROTEIN_ESPERANTO_MECHANISM_CLASSIFIER_v0",
     "mechanism_class": "insufficient_evidence_clean_abstain",
-    "natural_mechanism_class": "metamorphic_fold_switching",
+    "natural_mechanism_class": "oligomerization_controlled_folding",
     "selection_reason": "forced_wrong_grammar_rejected"
   },
   "target_id": "V58_24SW_2_WRONG_GRAMMAR_CONTROL",

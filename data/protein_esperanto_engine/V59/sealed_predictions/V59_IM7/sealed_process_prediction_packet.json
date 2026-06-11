@@ -1,0 +1,129 @@
+{
+  "alphafold_used_before_seal": false,
+  "atomistic_md_executed": false,
+  "coordinate_truth_used_before_seal": false,
+  "engine_operator_field": {
+    "active_operator_count": 1,
+    "coordinate_truth_used": false,
+    "kind": "PROTEIN_ESPERANTO_OPERATOR_FIELD_v0",
+    "mechanism_class": "globular_closure",
+    "operator_names": [
+      "closure_operator"
+    ],
+    "operators": [
+      {
+        "activated_by_evidence_ids": [
+          "V59_IM7_RAW_SEQUENCE",
+          "V59_IM7_NONCOORDINATE_METADATA"
+        ],
+        "activation_strength": 0.617816,
+        "acts_on": "13-24, 25-36, 37-48",
+        "falsified_by": "no compaction under independent SAXS/FRET/crosslink/structure holdout",
+        "operator": "closure_operator",
+        "perturbation_should": "core hydrophobic/aromatic substitutions weaken compaction",
+        "pushes_toward": "local compaction and contact probability increase",
+        "state_variable": "segment_compaction"
+      }
+    ]
+  },
+  "engine_packet_hash": "af99f0d53f936bf4b99c14e4c1bc6a0d70ebd7453a41212b68ce4a2441aeabeb",
+  "engine_selected_mechanism_grammar": {
+    "available_mechanism_classes": [
+      "globular_closure",
+      "intrinsic_disorder_phase_separation",
+      "membrane_multidomain_folding_proteostasis",
+      "metamorphic_fold_switching",
+      "short_region_host_interface_hijacking",
+      "fold_upon_binding_disorder",
+      "cofactor_ligand_assisted_stabilization",
+      "oligomerization_controlled_folding",
+      "insufficient_evidence_clean_abstain"
+    ],
+    "folding_problem_solved": false,
+    "forced_grammar": null,
+    "forced_grammar_rejected": false,
+    "grammar_rule": {
+      "falsification_rule": "independent holdout shows no compaction or wrong operator regions",
+      "marks": [
+        "hydrophobic",
+        "aromatic",
+        "secondary_structure_tendency"
+      ],
+      "null_control": "generic hydrophobicity alone cannot validate target-specific closure",
+      "operators": [
+        "closure_operator",
+        "frustration_operator"
+      ],
+      "pressures": [
+        "solvent",
+        "folding_nucleus"
+      ],
+      "state_change": "expanded chain to compact nucleus/contact-enriched ensemble",
+      "testable_effect": "core-region perturbation weakens compaction and long-range topology"
+    },
+    "kind": "PROTEIN_ESPERANTO_MECHANISM_CLASSIFIER_v0",
+    "mechanism_class": "globular_closure",
+    "natural_mechanism_class": "globular_closure",
+    "selection_reason": "noncoordinate_process_metadata_and_sequence_support_globular_closure"
+  },
+  "engine_trajectory_final_state": {
+    "contact_probability": 0.523046,
+    "disorder_order_balance": 0.298552,
+    "frustration": 0.0,
+    "interface_readiness": 0.12,
+    "operator_activation": 0.617816,
+    "proteostasis_routing": 0.0,
+    "residue_exposure": 0.617332,
+    "segment_compaction": 0.525977,
+    "state_basin_occupancy": {
+      "compact_folded": 0.563046,
+      "expanded_unfolded": 0.471092
+    },
+    "timepoint": 1000
+  },
+  "folding_problem_solved": false,
+  "kind": "V59_SEALED_ENGINE_AND_PROCESS_PACKET_v0",
+  "prediction_hash": "f72a43b362271019e4621bf91c07e2cc9ee584693173410231b88883f26a3b0b",
+  "process_prediction": {
+    "alphafold_used_before_seal": false,
+    "coordinate_truth_used_before_seal": false,
+    "falsification_criteria": [
+      "process class differs after process holdout opens",
+      "early/late ordering is reversed or localizes to an unrelated region family",
+      "mutation-sensitive regions do not overlap kinetic/phi-value-sensitive families",
+      "wrong process class explains the target equally well"
+    ],
+    "kind": "V59_SEALED_PROCESS_TRAJECTORY_PREDICTION_v0",
+    "predicted_early_forming_region": {
+      "family": "subdomain_intermediate_core",
+      "label": "predicted early-forming route region",
+      "span": [
+        1,
+        78
+      ]
+    },
+    "predicted_folding_nucleus_decision": "intermediate_with_nucleus",
+    "predicted_late_forming_region": {
+      "family": "delayed_helix_or_terminal_docking",
+      "label": "predicted late-forming consolidation region",
+      "span": [
+        52,
+        87
+      ]
+    },
+    "predicted_mutation_sensitive_region_families": [
+      "intermediate_stabilizing_core",
+      "hydrophobic_core",
+      "helix_bundle_core"
+    ],
+    "predicted_process_class": "intermediate_bearing",
+    "predicted_topology_observable_support": "globular_closure",
+    "process_decision": "accepted_with_caution",
+    "sealed_before_process_holdout": true,
+    "target_id": "V59_IM7"
+  },
+  "sealed_before_process_holdout": true,
+  "target_id": "V59_IM7",
+  "target_name": "Colicin E7 immunity protein Im7",
+  "universal_folding_solved": false
+}

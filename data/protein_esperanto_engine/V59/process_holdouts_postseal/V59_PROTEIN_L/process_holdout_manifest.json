@@ -1,0 +1,50 @@
+{
+  "evidence_summary": "Protein L is represented in phi-value modeling and folding-kinetics work as a small two-state beta-domain with hairpin/sheet transition-state structure.",
+  "expected_early_forming_region": {
+    "family": "beta_hairpin_core",
+    "label": "holdout early-forming process region",
+    "span": [
+      18,
+      54
+    ]
+  },
+  "expected_folding_nucleus_decision": "nucleus_present",
+  "expected_late_forming_region": {
+    "family": "terminal_strand_lock",
+    "label": "holdout late-forming process region",
+    "span": [
+      1,
+      12
+    ]
+  },
+  "expected_mutation_sensitive_region_families": [
+    "beta_hairpin_core",
+    "turn_or_sheet_core"
+  ],
+  "expected_process_class": "two_state",
+  "holdout_opened_after_prediction_hash": "df364bc8176aa1ae5f7078f8f600dacd07875557af42aa5a7e643eedc231b4b5",
+  "kind": "V59_POSTSEAL_PROCESS_HOLDOUT_v0",
+  "pdb_id": "1HZ6",
+  "postseal_sources": [
+    {
+      "coordinate_derived": false,
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V59_PROTEIN_L_PROCESS_SOURCE_1",
+      "source_role": "holdout_validation",
+      "url": "https://arxiv.org/abs/q-bio/0605048",
+      "used_before_prediction": false
+    },
+    {
+      "coordinate_derived": false,
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V59_PROTEIN_L_PROCESS_SOURCE_2",
+      "source_role": "holdout_validation",
+      "url": "https://kineticdb.ivankovlab.ru/",
+      "used_before_prediction": false
+    }
+  ],
+  "target_id": "V59_PROTEIN_L",
+  "target_name": "Protein L B1 domain"
+}

@@ -6,23 +6,23 @@
   "level2_region_localization_proxy": true,
   "level3_topology_or_observable": false,
   "level4_process_replication": "not_claimed_v59_required",
-  "predicted_mechanism_class": "metamorphic_fold_switching",
+  "predicted_mechanism_class": "oligomerization_controlled_folding",
   "score_label": "contradicted",
-  "sealed_prediction_hash": "4670fe1d247fc435024b422248378450c0aebb09d9496470b88b008e48642d6c",
+  "sealed_prediction_hash": "3ca5e44f910b3b149c437ac81b8bde281ba317d4bf2933535675ac7c25eaf19c",
   "target_id": "V58_24SW_2",
   "validation_checks": [
     {
       "check_id": "mechanism_class_matches_holdout",
       "expected": "globular_closure",
-      "observed": "metamorphic_fold_switching",
+      "observed": "oligomerization_controlled_folding",
       "passed": false
     },
     {
       "check_id": "compact_or_contact_supported",
       "comparator": ">=",
       "metric": "contact_probability",
-      "observed": 0.3832,
-      "passed": true,
+      "observed": 0.0,
+      "passed": false,
       "threshold": 0.35
     }
   ]

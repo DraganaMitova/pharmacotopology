@@ -1,0 +1,59 @@
+{
+  "evidence_summary": "Barnase has extensive phi-value and intermediate work; process evidence includes transient/intermediate structure rather than only a two-state endpoint.",
+  "expected_early_forming_region": {
+    "family": "subdomain_intermediate_core",
+    "label": "holdout early-forming process region",
+    "span": [
+      10,
+      76
+    ]
+  },
+  "expected_folding_nucleus_decision": "intermediate_with_nucleus",
+  "expected_late_forming_region": {
+    "family": "delayed_helix_or_terminal_docking",
+    "label": "holdout late-forming process region",
+    "span": [
+      78,
+      110
+    ]
+  },
+  "expected_mutation_sensitive_region_families": [
+    "intermediate_stabilizing_core",
+    "hydrophobic_core"
+  ],
+  "expected_process_class": "intermediate_bearing",
+  "holdout_opened_after_prediction_hash": "b4614817a5b782a1930cd72dd7c5c8f67be9a87f83d33ad4c26bd04658a5cd9c",
+  "kind": "V59_POSTSEAL_PROCESS_HOLDOUT_v0",
+  "pdb_id": "1BNR",
+  "postseal_sources": [
+    {
+      "coordinate_derived": false,
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V59_BARNASE_PROCESS_SOURCE_1",
+      "source_role": "holdout_validation",
+      "url": "https://doi.org/10.1006/jmbi.1997.1547",
+      "used_before_prediction": false
+    },
+    {
+      "coordinate_derived": false,
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V59_BARNASE_PROCESS_SOURCE_2",
+      "source_role": "holdout_validation",
+      "url": "https://doi.org/10.1038/340122a0",
+      "used_before_prediction": false
+    },
+    {
+      "coordinate_derived": false,
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V59_BARNASE_PROCESS_SOURCE_3",
+      "source_role": "holdout_validation",
+      "url": "https://kineticdb.ivankovlab.ru/",
+      "used_before_prediction": false
+    }
+  ],
+  "target_id": "V59_BARNASE",
+  "target_name": "Barnase"
+}

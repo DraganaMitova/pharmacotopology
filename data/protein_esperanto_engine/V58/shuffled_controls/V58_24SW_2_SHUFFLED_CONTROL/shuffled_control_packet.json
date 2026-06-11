@@ -10724,14 +10724,12 @@
   },
   "kind": "V52_COARSE_OPERATOR_FOLDING_SIMULATOR_MVP_PACKET_v0",
   "operator_field": {
-    "active_operator_count": 3,
+    "active_operator_count": 1,
     "coordinate_truth_used": false,
     "kind": "PROTEIN_ESPERANTO_OPERATOR_FIELD_v0",
-    "mechanism_class": "metamorphic_fold_switching",
+    "mechanism_class": "oligomerization_controlled_folding",
     "operator_names": [
-      "dual_basin_switch_operator",
-      "interface_operator",
-      "frustration_operator"
+      "interface_operator"
     ],
     "operators": [
       {
@@ -10739,62 +10737,50 @@
           "V58_24SW_2_RAW_SEQUENCE_ONLY",
           "V58_24SW_2_PURE_METADATA_AND_SEQUENCE_MARKS"
         ],
-        "activation_strength": 0.86,
-        "acts_on": "state-separated CTD/core region",
-        "falsified_by": "only one stable state under all contexts",
-        "operator": "dual_basin_switch_operator",
-        "perturbation_should": "partner/release perturbations shift alpha/beta occupancy",
-        "pushes_toward": "two incompatible alpha/beta state basins",
-        "state_variable": "state_basin_occupancy"
-      },
-      {
-        "activated_by_evidence_ids": [
-          "V58_24SW_2_RAW_SEQUENCE_ONLY",
-          "V58_24SW_2_PURE_METADATA_AND_SEQUENCE_MARKS"
-        ],
-        "activation_strength": 0.72,
-        "acts_on": "partner-context interface",
-        "falsified_by": "partner context has no directional effect",
+        "activation_strength": 0.462734,
+        "acts_on": "301-312, 37-48, 217-228",
+        "falsified_by": "context has no directional effect",
         "operator": "interface_operator",
-        "perturbation_should": "partner removal or stabilization shifts state occupancy",
-        "pushes_toward": "context-conditioned state selection",
+        "perturbation_should": "context perturbation shifts mechanism",
+        "pushes_toward": "context-conditioned interaction readiness",
         "state_variable": "interface_readiness"
-      },
-      {
-        "activated_by_evidence_ids": [
-          "V58_24SW_2_RAW_SEQUENCE_ONLY",
-          "V58_24SW_2_PURE_METADATA_AND_SEQUENCE_MARKS"
-        ],
-        "activation_strength": 0.68,
-        "acts_on": "secondary-structure conflict region",
-        "falsified_by": "one averaged state explains all holdouts",
-        "operator": "frustration_operator",
-        "perturbation_should": "forcing one fold fails",
-        "pushes_toward": "state conflict rather than averaged consensus fold",
-        "state_variable": "frustration"
       }
     ]
   },
   "predicted_contact_interaction_probability_map": [
     {
-      "interaction_type": "state_basin_contact_rewrite",
-      "probability": 0.6392,
-      "segment_a": "S001",
-      "segment_b": "S037"
+      "interaction_type": "coarse_closure_contact",
+      "probability": 0.24,
+      "segment_a": "S037",
+      "segment_b": "S019"
+    },
+    {
+      "interaction_type": "coarse_closure_contact",
+      "probability": 0.24,
+      "segment_a": "S037",
+      "segment_b": "S001"
+    },
+    {
+      "interaction_type": "coarse_closure_contact",
+      "probability": 0.24,
+      "segment_a": "S004",
+      "segment_b": "S019"
+    },
+    {
+      "interaction_type": "coarse_closure_contact",
+      "probability": 0.24,
+      "segment_a": "S004",
+      "segment_b": "S001"
     }
   ],
   "predicted_falsifiers": [
-    "only one stable state under all contexts",
-    "partner context has no directional effect",
-    "one averaged state explains all holdouts"
+    "context has no directional effect"
   ],
   "predicted_perturbation_table": [],
   "predicted_state_basin_occupancy": {
-    "alpha_context_basin": 0.4336,
-    "averaged_single_fold": 0.0684,
-    "beta_released_basin": 0.4264
+    "clean_abstain": 1.0
   },
-  "prediction_hash": "19e88ac366e434af61fc5e7fd2318208edd18fc5b73dbc4a956d0f45de1ee443",
+  "prediction_hash": "ebedd94db8e398d23c47d64fbaba1c0526961c498e7c7644693318235d36735f",
   "sealed_before_holdout": true,
   "selected_mechanism_grammar": {
     "available_mechanism_classes": [
@@ -10812,29 +10798,28 @@
     "forced_grammar": null,
     "forced_grammar_rejected": false,
     "grammar_rule": {
-      "falsification_rule": "holdout supports only one state under all contexts",
+      "falsification_rule": "holdout shows no assembly dependence",
       "marks": [
-        "state_basin",
-        "partner_context",
-        "secondary_structure_conflict"
+        "repeat_interface",
+        "oligomer_motif",
+        "burial_surface"
       ],
-      "null_control": "single averaged consensus fold is rejected",
+      "null_control": "monomer-only grammar fails",
       "operators": [
-        "dual_basin_switch_operator",
         "interface_operator",
-        "frustration_operator"
+        "closure_operator"
       ],
       "pressures": [
-        "release_or_activation_context",
-        "binding_partner"
+        "concentration",
+        "partner_copy"
       ],
-      "state_change": "one context-favored basin to competing alpha/beta state distribution",
-      "testable_effect": "context or partner perturbations shift basin occupancy"
+      "state_change": "monomeric partial order to oligomer-stabilized interface basin",
+      "testable_effect": "interface or concentration perturbation shifts folding/assembly"
     },
     "kind": "PROTEIN_ESPERANTO_MECHANISM_CLASSIFIER_v0",
-    "mechanism_class": "metamorphic_fold_switching",
-    "natural_mechanism_class": "metamorphic_fold_switching",
-    "selection_reason": "state_separated_partner_context_evidence"
+    "mechanism_class": "oligomerization_controlled_folding",
+    "natural_mechanism_class": "oligomerization_controlled_folding",
+    "selection_reason": "oligomerization_context"
   },
   "target_id": "V58_24SW_2_SHUFFLED_CONTROL",
   "target_name": "24SW shuffled sequence control",
@@ -10842,99 +10827,105 @@
     "atomistic_md_executed": false,
     "coordinate_truth_used": false,
     "final_state_summary": {
-      "contact_probability": 0.3832,
-      "disorder_order_balance": 0.4054,
-      "frustration": 0.68,
-      "interface_readiness": 0.566,
-      "operator_activation": 0.753333,
+      "contact_probability": 0.0,
+      "disorder_order_balance": 0.45,
+      "frustration": 0.35,
+      "interface_readiness": 0.0,
+      "operator_activation": 0.462734,
       "proteostasis_routing": 0.0,
-      "residue_exposure": 0.633081,
-      "segment_compaction": 0.446,
+      "residue_exposure": 0.731201,
+      "segment_compaction": 0.0,
       "state_basin_occupancy": {
-        "alpha_context_basin": 0.4336,
-        "averaged_single_fold": 0.0684,
-        "beta_released_basin": 0.4264
+        "clean_abstain": 1.0
       },
       "timepoint": 1000
     },
     "kind": "PROTEIN_ESPERANTO_COARSE_OPERATOR_TRAJECTORY_v0",
-    "mechanism_class": "metamorphic_fold_switching",
+    "mechanism_class": "oligomerization_controlled_folding",
     "perturbation_id": "wild_type_or_reference",
     "predicted_contact_interaction_probability_map": [
       {
-        "interaction_type": "state_basin_contact_rewrite",
-        "probability": 0.6392,
-        "segment_a": "S001",
-        "segment_b": "S037"
+        "interaction_type": "coarse_closure_contact",
+        "probability": 0.24,
+        "segment_a": "S037",
+        "segment_b": "S019"
+      },
+      {
+        "interaction_type": "coarse_closure_contact",
+        "probability": 0.24,
+        "segment_a": "S037",
+        "segment_b": "S001"
+      },
+      {
+        "interaction_type": "coarse_closure_contact",
+        "probability": 0.24,
+        "segment_a": "S004",
+        "segment_b": "S019"
+      },
+      {
+        "interaction_type": "coarse_closure_contact",
+        "probability": 0.24,
+        "segment_a": "S004",
+        "segment_b": "S001"
       }
     ],
     "predicted_state_basin_occupancy": {
-      "alpha_context_basin": 0.4336,
-      "averaged_single_fold": 0.0684,
-      "beta_released_basin": 0.4264
+      "clean_abstain": 1.0
     },
     "timepoints": [
       {
-        "contact_probability": 0.3832,
-        "disorder_order_balance": 0.4054,
-        "frustration": 0.68,
-        "interface_readiness": 0.566,
-        "operator_activation": 0.753333,
+        "contact_probability": 0.0,
+        "disorder_order_balance": 0.45,
+        "frustration": 0.35,
+        "interface_readiness": 0.0,
+        "operator_activation": 0.462734,
         "proteostasis_routing": 0.0,
-        "residue_exposure": 0.633081,
-        "segment_compaction": 0.446,
+        "residue_exposure": 0.731201,
+        "segment_compaction": 0.0,
         "state_basin_occupancy": {
-          "alpha_context_basin": 0.64,
-          "averaged_single_fold": 0.0684,
-          "beta_released_basin": 0.22
+          "clean_abstain": 1.0
         },
         "timepoint": 0
       },
       {
-        "contact_probability": 0.3832,
-        "disorder_order_balance": 0.4054,
-        "frustration": 0.68,
-        "interface_readiness": 0.566,
-        "operator_activation": 0.753333,
+        "contact_probability": 0.0,
+        "disorder_order_balance": 0.45,
+        "frustration": 0.35,
+        "interface_readiness": 0.0,
+        "operator_activation": 0.462734,
         "proteostasis_routing": 0.0,
-        "residue_exposure": 0.633081,
-        "segment_compaction": 0.446,
+        "residue_exposure": 0.731201,
+        "segment_compaction": 0.0,
         "state_basin_occupancy": {
-          "alpha_context_basin": 0.61936,
-          "averaged_single_fold": 0.0684,
-          "beta_released_basin": 0.24064
+          "clean_abstain": 1.0
         },
         "timepoint": 100
       },
       {
-        "contact_probability": 0.3832,
-        "disorder_order_balance": 0.4054,
-        "frustration": 0.68,
-        "interface_readiness": 0.566,
-        "operator_activation": 0.753333,
+        "contact_probability": 0.0,
+        "disorder_order_balance": 0.45,
+        "frustration": 0.35,
+        "interface_readiness": 0.0,
+        "operator_activation": 0.462734,
         "proteostasis_routing": 0.0,
-        "residue_exposure": 0.633081,
-        "segment_compaction": 0.446,
+        "residue_exposure": 0.731201,
+        "segment_compaction": 0.0,
         "state_basin_occupancy": {
-          "alpha_context_basin": 0.5368,
-          "averaged_single_fold": 0.0684,
-          "beta_released_basin": 0.3232
+          "clean_abstain": 1.0
         },
         "timepoint": 500
       },
       {
-        "contact_probability": 0.3832,
-        "disorder_order_balance": 0.4054,
-        "frustration": 0.68,
-        "interface_readiness": 0.566,
-        "operator_activation": 0.753333,
+        "contact_probability": 0.0,
+        "disorder_order_balance": 0.45,
+        "frustration": 0.35,
+        "interface_readiness": 0.0,
+        "operator_activation": 0.462734,
         "proteostasis_routing": 0.0,
-        "residue_exposure": 0.633081,
-        "segment_compaction": 0.446,
+        "residue_exposure": 0.731201,
+        "segment_compaction": 0.0,
         "state_basin_occupancy": {
-          "alpha_context_basin": 0.4336,
-          "averaged_single_fold": 0.0684,
-          "beta_released_basin": 0.4264
+          "clean_abstain": 1.0
         },
         "timepoint": 1000
       }

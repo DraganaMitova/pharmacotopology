@@ -1,0 +1,393 @@
+{
+  "kind": "V59_PROCESS_SCORING_REPORT_v0",
+  "rows": [
+    {
+      "alphafold_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "expected_process_class": "two_state",
+      "failures_repaired_after_holdout": false,
+      "holdout_opened_after_prediction_hash": "5863d5a7dcf54d0eff29b9ce4b53a4598e74f175b5b080f9ad7a99d16966052c",
+      "kind": "V59_PROCESS_VALIDATION_RESULT_v0",
+      "p1_process_class": true,
+      "p2_early_late_ordering": true,
+      "p3_mutation_sensitivity": true,
+      "p4_calibrated_reliability": true,
+      "postseal_sources": [
+        {
+          "coordinate_derived": false,
+          "internal_runtime_source": false,
+          "source_class": "pure_non_coordinate",
+          "source_id": "V59_CI2_PROCESS_SOURCE_1",
+          "source_role": "holdout_validation",
+          "url": "https://doi.org/10.1038/340122a0",
+          "used_before_prediction": false
+        },
+        {
+          "coordinate_derived": false,
+          "internal_runtime_source": false,
+          "source_class": "pure_non_coordinate",
+          "source_id": "V59_CI2_PROCESS_SOURCE_2",
+          "source_role": "holdout_validation",
+          "url": "https://arxiv.org/abs/q-bio/0605048",
+          "used_before_prediction": false
+        },
+        {
+          "coordinate_derived": false,
+          "internal_runtime_source": false,
+          "source_class": "pure_non_coordinate",
+          "source_id": "V59_CI2_PROCESS_SOURCE_3",
+          "source_role": "holdout_validation",
+          "url": "https://kineticdb.ivankovlab.ru/",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_process_class": "two_state",
+      "process_decision": "accepted",
+      "score_label": "supported",
+      "sealed_prediction_hash": "5863d5a7dcf54d0eff29b9ce4b53a4598e74f175b5b080f9ad7a99d16966052c",
+      "target_id": "V59_CI2"
+    },
+    {
+      "alphafold_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "expected_process_class": "two_state",
+      "failures_repaired_after_holdout": false,
+      "holdout_opened_after_prediction_hash": "df364bc8176aa1ae5f7078f8f600dacd07875557af42aa5a7e643eedc231b4b5",
+      "kind": "V59_PROCESS_VALIDATION_RESULT_v0",
+      "p1_process_class": true,
+      "p2_early_late_ordering": true,
+      "p3_mutation_sensitivity": true,
+      "p4_calibrated_reliability": true,
+      "postseal_sources": [
+        {
+          "coordinate_derived": false,
+          "internal_runtime_source": false,
+          "source_class": "pure_non_coordinate",
+          "source_id": "V59_PROTEIN_L_PROCESS_SOURCE_1",
+          "source_role": "holdout_validation",
+          "url": "https://arxiv.org/abs/q-bio/0605048",
+          "used_before_prediction": false
+        },
+        {
+          "coordinate_derived": false,
+          "internal_runtime_source": false,
+          "source_class": "pure_non_coordinate",
+          "source_id": "V59_PROTEIN_L_PROCESS_SOURCE_2",
+          "source_role": "holdout_validation",
+          "url": "https://kineticdb.ivankovlab.ru/",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_process_class": "two_state",
+      "process_decision": "accepted",
+      "score_label": "supported",
+      "sealed_prediction_hash": "df364bc8176aa1ae5f7078f8f600dacd07875557af42aa5a7e643eedc231b4b5",
+      "target_id": "V59_PROTEIN_L"
+    },
+    {
+      "alphafold_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "expected_process_class": "two_state",
+      "failures_repaired_after_holdout": false,
+      "holdout_opened_after_prediction_hash": "3648f0ec03d24c6b6a156fbe7a9904ed82b65b06b23af46ef18ddbaa54df671c",
+      "kind": "V59_PROCESS_VALIDATION_RESULT_v0",
+      "p1_process_class": true,
+      "p2_early_late_ordering": true,
+      "p3_mutation_sensitivity": true,
+      "p4_calibrated_reliability": true,
+      "postseal_sources": [
+        {
+          "coordinate_derived": false,
+          "internal_runtime_source": false,
+          "source_class": "pure_non_coordinate",
+          "source_id": "V59_PROTEIN_A_B_PROCESS_SOURCE_1",
+          "source_role": "holdout_validation",
+          "url": "https://doi.org/10.1073/pnas.0306433101",
+          "used_before_prediction": false
+        },
+        {
+          "coordinate_derived": false,
+          "internal_runtime_source": false,
+          "source_class": "pure_non_coordinate",
+          "source_id": "V59_PROTEIN_A_B_PROCESS_SOURCE_2",
+          "source_role": "holdout_validation",
+          "url": "https://arxiv.org/abs/q-bio/0605048",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_process_class": "two_state",
+      "process_decision": "accepted",
+      "score_label": "supported",
+      "sealed_prediction_hash": "3648f0ec03d24c6b6a156fbe7a9904ed82b65b06b23af46ef18ddbaa54df671c",
+      "target_id": "V59_PROTEIN_A_B"
+    },
+    {
+      "alphafold_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "expected_process_class": "two_state",
+      "failures_repaired_after_holdout": false,
+      "holdout_opened_after_prediction_hash": "f6a10356d3c118e747b64290166ed9abebfbec4aa453ff8637457e8d3a1ad3ef",
+      "kind": "V59_PROCESS_VALIDATION_RESULT_v0",
+      "p1_process_class": true,
+      "p2_early_late_ordering": true,
+      "p3_mutation_sensitivity": true,
+      "p4_calibrated_reliability": true,
+      "postseal_sources": [
+        {
+          "coordinate_derived": false,
+          "internal_runtime_source": false,
+          "source_class": "pure_non_coordinate",
+          "source_id": "V59_SRC_SH3_PROCESS_SOURCE_1",
+          "source_role": "holdout_validation",
+          "url": "https://kineticdb.ivankovlab.ru/",
+          "used_before_prediction": false
+        },
+        {
+          "coordinate_derived": false,
+          "internal_runtime_source": false,
+          "source_class": "pure_non_coordinate",
+          "source_id": "V59_SRC_SH3_PROCESS_SOURCE_2",
+          "source_role": "holdout_validation",
+          "url": "https://arxiv.org/abs/q-bio/0311004",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_process_class": "two_state",
+      "process_decision": "accepted",
+      "score_label": "supported",
+      "sealed_prediction_hash": "f6a10356d3c118e747b64290166ed9abebfbec4aa453ff8637457e8d3a1ad3ef",
+      "target_id": "V59_SRC_SH3"
+    },
+    {
+      "alphafold_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "expected_process_class": "multi_basin",
+      "failures_repaired_after_holdout": false,
+      "holdout_opened_after_prediction_hash": "0184e10d883441c86412f8265d82de907757cf5d4718d9065a05be8bf08a5d6f",
+      "kind": "V59_PROCESS_VALIDATION_RESULT_v0",
+      "p1_process_class": true,
+      "p2_early_late_ordering": true,
+      "p3_mutation_sensitivity": true,
+      "p4_calibrated_reliability": true,
+      "postseal_sources": [
+        {
+          "coordinate_derived": false,
+          "internal_runtime_source": false,
+          "source_class": "pure_non_coordinate",
+          "source_id": "V59_FBP_WW_PROCESS_SOURCE_1",
+          "source_role": "holdout_validation",
+          "url": "https://arxiv.org/abs/0709.3359",
+          "used_before_prediction": false
+        },
+        {
+          "coordinate_derived": false,
+          "internal_runtime_source": false,
+          "source_class": "pure_non_coordinate",
+          "source_id": "V59_FBP_WW_PROCESS_SOURCE_2",
+          "source_role": "holdout_validation",
+          "url": "https://www.rcsb.org/structure/1E0L",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_process_class": "multi_basin",
+      "process_decision": "accepted_with_caution",
+      "score_label": "supported",
+      "sealed_prediction_hash": "0184e10d883441c86412f8265d82de907757cf5d4718d9065a05be8bf08a5d6f",
+      "target_id": "V59_FBP_WW"
+    },
+    {
+      "alphafold_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "expected_process_class": "intermediate_bearing",
+      "failures_repaired_after_holdout": false,
+      "holdout_opened_after_prediction_hash": "b4614817a5b782a1930cd72dd7c5c8f67be9a87f83d33ad4c26bd04658a5cd9c",
+      "kind": "V59_PROCESS_VALIDATION_RESULT_v0",
+      "p1_process_class": true,
+      "p2_early_late_ordering": true,
+      "p3_mutation_sensitivity": true,
+      "p4_calibrated_reliability": true,
+      "postseal_sources": [
+        {
+          "coordinate_derived": false,
+          "internal_runtime_source": false,
+          "source_class": "pure_non_coordinate",
+          "source_id": "V59_BARNASE_PROCESS_SOURCE_1",
+          "source_role": "holdout_validation",
+          "url": "https://doi.org/10.1006/jmbi.1997.1547",
+          "used_before_prediction": false
+        },
+        {
+          "coordinate_derived": false,
+          "internal_runtime_source": false,
+          "source_class": "pure_non_coordinate",
+          "source_id": "V59_BARNASE_PROCESS_SOURCE_2",
+          "source_role": "holdout_validation",
+          "url": "https://doi.org/10.1038/340122a0",
+          "used_before_prediction": false
+        },
+        {
+          "coordinate_derived": false,
+          "internal_runtime_source": false,
+          "source_class": "pure_non_coordinate",
+          "source_id": "V59_BARNASE_PROCESS_SOURCE_3",
+          "source_role": "holdout_validation",
+          "url": "https://kineticdb.ivankovlab.ru/",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_process_class": "intermediate_bearing",
+      "process_decision": "accepted_with_caution",
+      "score_label": "supported",
+      "sealed_prediction_hash": "b4614817a5b782a1930cd72dd7c5c8f67be9a87f83d33ad4c26bd04658a5cd9c",
+      "target_id": "V59_BARNASE"
+    },
+    {
+      "alphafold_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "expected_process_class": "two_state",
+      "failures_repaired_after_holdout": false,
+      "holdout_opened_after_prediction_hash": "5150b517afd8f273fdb8e4ebb687bcf799907355d74bd6710c5f64e2d4f30fc8",
+      "kind": "V59_PROCESS_VALIDATION_RESULT_v0",
+      "p1_process_class": true,
+      "p2_early_late_ordering": true,
+      "p3_mutation_sensitivity": true,
+      "p4_calibrated_reliability": true,
+      "postseal_sources": [
+        {
+          "coordinate_derived": false,
+          "internal_runtime_source": false,
+          "source_class": "pure_non_coordinate",
+          "source_id": "V59_UBIQUITIN_PROCESS_SOURCE_1",
+          "source_role": "holdout_validation",
+          "url": "https://doi.org/10.1073/pnas.97.12.6527",
+          "used_before_prediction": false
+        },
+        {
+          "coordinate_derived": false,
+          "internal_runtime_source": false,
+          "source_class": "pure_non_coordinate",
+          "source_id": "V59_UBIQUITIN_PROCESS_SOURCE_2",
+          "source_role": "holdout_validation",
+          "url": "https://www.rcsb.org/structure/1UBQ",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_process_class": "two_state",
+      "process_decision": "accepted",
+      "score_label": "supported",
+      "sealed_prediction_hash": "5150b517afd8f273fdb8e4ebb687bcf799907355d74bd6710c5f64e2d4f30fc8",
+      "target_id": "V59_UBIQUITIN"
+    },
+    {
+      "alphafold_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "expected_process_class": "two_state",
+      "failures_repaired_after_holdout": false,
+      "holdout_opened_after_prediction_hash": "c58dc603a2f5e51251ea795dadd029b79eeae11fd7f5ce23f351788d527f768b",
+      "kind": "V59_PROCESS_VALIDATION_RESULT_v0",
+      "p1_process_class": true,
+      "p2_early_late_ordering": true,
+      "p3_mutation_sensitivity": true,
+      "p4_calibrated_reliability": true,
+      "postseal_sources": [
+        {
+          "coordinate_derived": false,
+          "internal_runtime_source": false,
+          "source_class": "pure_non_coordinate",
+          "source_id": "V59_VILLIN_HP35_PROCESS_SOURCE_1",
+          "source_role": "holdout_validation",
+          "url": "https://www.rcsb.org/structure/1VII",
+          "used_before_prediction": false
+        },
+        {
+          "coordinate_derived": false,
+          "internal_runtime_source": false,
+          "source_class": "pure_non_coordinate",
+          "source_id": "V59_VILLIN_HP35_PROCESS_SOURCE_2",
+          "source_role": "holdout_validation",
+          "url": "https://kineticdb.ivankovlab.ru/",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_process_class": "two_state",
+      "process_decision": "accepted",
+      "score_label": "supported",
+      "sealed_prediction_hash": "c58dc603a2f5e51251ea795dadd029b79eeae11fd7f5ce23f351788d527f768b",
+      "target_id": "V59_VILLIN_HP35"
+    },
+    {
+      "alphafold_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "expected_process_class": "two_state",
+      "failures_repaired_after_holdout": false,
+      "holdout_opened_after_prediction_hash": "9e3fe37a9497b5e81057debc6714fe36798778d7f08685c830e73bd2eee074d7",
+      "kind": "V59_PROCESS_VALIDATION_RESULT_v0",
+      "p1_process_class": true,
+      "p2_early_late_ordering": true,
+      "p3_mutation_sensitivity": true,
+      "p4_calibrated_reliability": true,
+      "postseal_sources": [
+        {
+          "coordinate_derived": false,
+          "internal_runtime_source": false,
+          "source_class": "pure_non_coordinate",
+          "source_id": "V59_TRP_CAGE_PROCESS_SOURCE_1",
+          "source_role": "holdout_validation",
+          "url": "https://www.rcsb.org/structure/1L2Y",
+          "used_before_prediction": false
+        },
+        {
+          "coordinate_derived": false,
+          "internal_runtime_source": false,
+          "source_class": "pure_non_coordinate",
+          "source_id": "V59_TRP_CAGE_PROCESS_SOURCE_2",
+          "source_role": "holdout_validation",
+          "url": "https://kineticdb.ivankovlab.ru/",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_process_class": "two_state",
+      "process_decision": "accepted",
+      "score_label": "supported",
+      "sealed_prediction_hash": "9e3fe37a9497b5e81057debc6714fe36798778d7f08685c830e73bd2eee074d7",
+      "target_id": "V59_TRP_CAGE"
+    },
+    {
+      "alphafold_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "expected_process_class": "intermediate_bearing",
+      "failures_repaired_after_holdout": false,
+      "holdout_opened_after_prediction_hash": "f72a43b362271019e4621bf91c07e2cc9ee584693173410231b88883f26a3b0b",
+      "kind": "V59_PROCESS_VALIDATION_RESULT_v0",
+      "p1_process_class": true,
+      "p2_early_late_ordering": true,
+      "p3_mutation_sensitivity": true,
+      "p4_calibrated_reliability": true,
+      "postseal_sources": [
+        {
+          "coordinate_derived": false,
+          "internal_runtime_source": false,
+          "source_class": "pure_non_coordinate",
+          "source_id": "V59_IM7_PROCESS_SOURCE_1",
+          "source_role": "holdout_validation",
+          "url": "https://www.rcsb.org/structure/1AYI",
+          "used_before_prediction": false
+        },
+        {
+          "coordinate_derived": false,
+          "internal_runtime_source": false,
+          "source_class": "pure_non_coordinate",
+          "source_id": "V59_IM7_PROCESS_SOURCE_2",
+          "source_role": "holdout_validation",
+          "url": "https://kineticdb.ivankovlab.ru/",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_process_class": "intermediate_bearing",
+      "process_decision": "accepted_with_caution",
+      "score_label": "supported",
+      "sealed_prediction_hash": "f72a43b362271019e4621bf91c07e2cc9ee584693173410231b88883f26a3b0b",
+      "target_id": "V59_IM7"
+    }
+  ]
+}

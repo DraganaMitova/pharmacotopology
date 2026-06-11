@@ -1,0 +1,70 @@
+{
+  "all_sequence_prediction_solved": false,
+  "allowed_claim": "The protein folding problem is not universally solved here; however, after the V59-required bounded engine hardening, the current Protein Esperanto engine supports a bounded solution claim on accepted targets: it predicts folding regime, important regions, topology/observable behavior, and selected folding-process observables under source-separated validation.",
+  "alphafold_replaced": false,
+  "atomistic_folding_solved": false,
+  "atomistic_md_executed": false,
+  "bounded_accepted_target_process_replication_supported": true,
+  "bounded_real_sequence_behavior_supported": true,
+  "certificate_hash": "8d2985040be607dc6123c3f71ca79ee4d84edb423c230b72db04d8aa2556e0ac",
+  "engine_mechanism_class_set_modified_in_v59": false,
+  "engine_operator_set_modified_in_v59": false,
+  "engine_revision_after_v58_required": true,
+  "engine_revision_scope": [
+    "hardened mechanism grammar selection for generic alpha/beta versus explicit metamorphic switch evidence",
+    "added engine-level coarse process-route profile readout",
+    "added small fast-folder/process-metadata globular closure support"
+  ],
+  "folding_problem_solved": false,
+  "forbidden_claims": [
+    "Universal protein folding is solved.",
+    "All sequences are solved.",
+    "Atomistic folding is solved.",
+    "AlphaFold is replaced.",
+    "Every unsupported target can be answered instead of abstained.",
+    "A V59 engine revision can be hidden under a frozen-engine claim."
+  ],
+  "input_rows": [
+    {
+      "certificate_hash": "8c71682d003c5ccaa95dda843937ae8615a3c67657c1e341c626b0dde1305ca4",
+      "input": "V50-V56 engine suite",
+      "passed_for_v60": true,
+      "reason": "engine suite and controls",
+      "status": "V50_TO_V56_PROTEIN_ESPERANTO_ENGINE_PASSED_REVIEW_REQUIRED"
+    },
+    {
+      "certificate_hash": "ee3adc08d7c144c948c00c805fcdc8ad52b24b7de1700b8feb88ec8d9a080c43",
+      "input": "V57 blind generalization",
+      "passed_for_v60": true,
+      "reason": "blind generalization and controls",
+      "status": "V57_BLIND_GENERALIZATION_PASSED_REVIEW_REQUIRED"
+    },
+    {
+      "certificate_hash": "222aa422efaed25a093ec3aada45aeafddd93e3d51197530620e41cafd5077f8",
+      "input": "V58 real-sequence gate",
+      "passed_for_v60": true,
+      "reason": "real-sequence behavior and leakage controls",
+      "status": "V58_REAL_SEQUENCE_TIME_BLIND_FOLDING_REPLICATION_PASSED_REVIEW_REQUIRED"
+    },
+    {
+      "certificate_hash": "89e448fd9785ed942551cb9af48c79498e5438afcdd057fe2c62502cb99158fe",
+      "input": "V58 calibration audit",
+      "passed_for_v60": true,
+      "reason": "accepted subset calibration and preserved failures",
+      "status": "V58_ERROR_AUTOPSY_AND_CALIBRATION_AUDIT_COMPLETED_REVIEW_REQUIRED"
+    },
+    {
+      "certificate_hash": "89ec828b994095546591196110a6de2919b22cc9f7bbd257e5ceae65cd5d4567",
+      "input": "V59 process panel",
+      "passed_for_v60": true,
+      "reason": "real folding-process evidence and controls",
+      "status": "V59_REAL_FOLDING_PROCESS_REPLICATION_PASSED_REVIEW_REQUIRED"
+    }
+  ],
+  "kind": "V60_BOUNDED_PROTEIN_ESPERANTO_SOLVED_CLAIM_CERTIFICATE_v0",
+  "protein_esperanto_engine_claim_allowed": true,
+  "readme_touched": false,
+  "status": "V60_BOUNDED_PROCESS_REPLICATION_CLAIM_PASSED_REVIEW_REQUIRED",
+  "timestamp_utc": "2026-06-11T19:30:06.763586+00:00",
+  "universal_folding_problem_solved": false
+}

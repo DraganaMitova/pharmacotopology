@@ -1,0 +1,141 @@
+{
+  "kind": "V59_PROCESS_EVIDENCE_TARGET_SELECTION_v0",
+  "selected_targets": [
+    {
+      "architecture_hint": "small mixed alpha beta single-domain folding-kinetics target",
+      "pdb_id": "2CI2",
+      "process_evidence_channels": [
+        "phi_value_analysis",
+        "folding_kinetics"
+      ],
+      "sequence_length": 83,
+      "structural_class": "alpha_beta",
+      "target_id": "V59_CI2",
+      "target_name": "Chymotrypsin inhibitor 2",
+      "used_to_build_v50_v58_grammar": false
+    },
+    {
+      "architecture_hint": "small beta-sheet single-domain folding-kinetics target",
+      "pdb_id": "1HZ6",
+      "process_evidence_channels": [
+        "phi_value_analysis",
+        "folding_kinetics"
+      ],
+      "sequence_length": 72,
+      "structural_class": "beta",
+      "target_id": "V59_PROTEIN_L",
+      "target_name": "Protein L B1 domain",
+      "used_to_build_v50_v58_grammar": false
+    },
+    {
+      "architecture_hint": "small three-helix bundle folding-kinetics target",
+      "pdb_id": "1BDD",
+      "process_evidence_channels": [
+        "phi_value_analysis",
+        "temperature_jump_kinetics"
+      ],
+      "sequence_length": 60,
+      "structural_class": "alpha",
+      "target_id": "V59_PROTEIN_A_B",
+      "target_name": "Staphylococcal protein A B domain",
+      "used_to_build_v50_v58_grammar": false
+    },
+    {
+      "architecture_hint": "small beta-sheet SH3 folding-kinetics target",
+      "pdb_id": "1SHG",
+      "process_evidence_channels": [
+        "phi_value_analysis",
+        "folding_kinetics"
+      ],
+      "sequence_length": 62,
+      "structural_class": "beta",
+      "target_id": "V59_SRC_SH3",
+      "target_name": "Alpha-spectrin SH3 domain",
+      "used_to_build_v50_v58_grammar": false
+    },
+    {
+      "architecture_hint": "ultrashort WW beta-sheet domain folding-kinetics target",
+      "pdb_id": "1E0L",
+      "process_evidence_channels": [
+        "phi_value_analysis",
+        "folding_kinetics"
+      ],
+      "sequence_length": 37,
+      "structural_class": "beta",
+      "target_id": "V59_FBP_WW",
+      "target_name": "Formin-binding protein WW domain",
+      "used_to_build_v50_v58_grammar": false
+    },
+    {
+      "architecture_hint": "larger mixed alpha beta enzyme-like folding-kinetics target",
+      "pdb_id": "1BNR",
+      "process_evidence_channels": [
+        "phi_value_analysis",
+        "folding_intermediate",
+        "amide_exchange"
+      ],
+      "sequence_length": 110,
+      "structural_class": "alpha_beta",
+      "target_id": "V59_BARNASE",
+      "target_name": "Barnase",
+      "used_to_build_v50_v58_grammar": false
+    },
+    {
+      "architecture_hint": "small mixed alpha beta single-domain folding-kinetics target",
+      "pdb_id": "1UBQ",
+      "process_evidence_channels": [
+        "phi_value_analysis",
+        "psi_value_analysis",
+        "folding_kinetics"
+      ],
+      "sequence_length": 76,
+      "structural_class": "alpha_beta",
+      "target_id": "V59_UBIQUITIN",
+      "target_name": "Human ubiquitin",
+      "used_to_build_v50_v58_grammar": false
+    },
+    {
+      "architecture_hint": "small fast alpha-helical folder",
+      "pdb_id": "1VII",
+      "process_evidence_channels": [
+        "folding_kinetics",
+        "fast_folder_temperature_jump"
+      ],
+      "sequence_length": 36,
+      "structural_class": "alpha",
+      "target_id": "V59_VILLIN_HP35",
+      "target_name": "Villin headpiece HP35",
+      "used_to_build_v50_v58_grammar": false
+    },
+    {
+      "architecture_hint": "ultrashort fast mini-protein with caged aromatic core",
+      "pdb_id": "1L2Y",
+      "process_evidence_channels": [
+        "fast_folder_kinetics",
+        "ensemble_shift"
+      ],
+      "sequence_length": 20,
+      "structural_class": "alpha_mini",
+      "target_id": "V59_TRP_CAGE",
+      "target_name": "Trp-cage TC5b",
+      "used_to_build_v50_v58_grammar": false
+    },
+    {
+      "architecture_hint": "larger helical bundle folding-kinetics target",
+      "pdb_id": "1AYI",
+      "process_evidence_channels": [
+        "folding_intermediate",
+        "folding_kinetics",
+        "mutation_kinetics"
+      ],
+      "sequence_length": 87,
+      "structural_class": "alpha",
+      "target_id": "V59_IM7",
+      "target_name": "Colicin E7 immunity protein Im7",
+      "used_to_build_v50_v58_grammar": false
+    }
+  ],
+  "selection_rule": "Deterministic panel of 8-12 proteins with public sequence plus at least one process-level observable from folding kinetics, phi-value, mutation kinetics, HDX/NMR/intermediate, or ensemble-shift literature; targets used to build V50-V58 grammar are excluded.",
+  "target_count_selected": 10,
+  "target_selection_manual_easy_only": false
+}

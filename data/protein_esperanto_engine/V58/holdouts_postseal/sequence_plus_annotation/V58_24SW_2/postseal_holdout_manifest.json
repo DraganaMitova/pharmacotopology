@@ -11,7 +11,7 @@
     }
   ],
   "experimental_method": "ELECTRON MICROSCOPY",
-  "holdout_opened_after_prediction_hash": "4670fe1d247fc435024b422248378450c0aebb09d9496470b88b008e48642d6c",
+  "holdout_opened_after_prediction_hash": "3ca5e44f910b3b149c437ac81b8bde281ba317d4bf2933535675ac7c25eaf19c",
   "kind": "V58_POSTSEAL_REAL_SEQUENCE_HOLDOUT_v0",
   "postseal_sources": [
     {

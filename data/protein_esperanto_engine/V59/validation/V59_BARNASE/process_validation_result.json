@@ -1,0 +1,46 @@
+{
+  "alphafold_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "expected_process_class": "intermediate_bearing",
+  "failures_repaired_after_holdout": false,
+  "holdout_opened_after_prediction_hash": "b4614817a5b782a1930cd72dd7c5c8f67be9a87f83d33ad4c26bd04658a5cd9c",
+  "kind": "V59_PROCESS_VALIDATION_RESULT_v0",
+  "p1_process_class": true,
+  "p2_early_late_ordering": true,
+  "p3_mutation_sensitivity": true,
+  "p4_calibrated_reliability": null,
+  "postseal_sources": [
+    {
+      "coordinate_derived": false,
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V59_BARNASE_PROCESS_SOURCE_1",
+      "source_role": "holdout_validation",
+      "url": "https://doi.org/10.1006/jmbi.1997.1547",
+      "used_before_prediction": false
+    },
+    {
+      "coordinate_derived": false,
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V59_BARNASE_PROCESS_SOURCE_2",
+      "source_role": "holdout_validation",
+      "url": "https://doi.org/10.1038/340122a0",
+      "used_before_prediction": false
+    },
+    {
+      "coordinate_derived": false,
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V59_BARNASE_PROCESS_SOURCE_3",
+      "source_role": "holdout_validation",
+      "url": "https://kineticdb.ivankovlab.ru/",
+      "used_before_prediction": false
+    }
+  ],
+  "predicted_process_class": "intermediate_bearing",
+  "process_decision": "accepted_with_caution",
+  "score_label": "supported",
+  "sealed_prediction_hash": "b4614817a5b782a1930cd72dd7c5c8f67be9a87f83d33ad4c26bd04658a5cd9c",
+  "target_id": "V59_BARNASE"
+}

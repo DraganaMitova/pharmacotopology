@@ -1,0 +1,51 @@
+{
+  "evidence_summary": "Trp-cage is an ultrafast mini-protein where aromatic cage / helix formation precedes final proline-tail packing.",
+  "expected_early_forming_region": {
+    "family": "helix_bundle_core",
+    "label": "holdout early-forming process region",
+    "span": [
+      2,
+      14
+    ]
+  },
+  "expected_folding_nucleus_decision": "nucleus_present",
+  "expected_late_forming_region": {
+    "family": "terminal_consolidation",
+    "label": "holdout late-forming process region",
+    "span": [
+      15,
+      20
+    ]
+  },
+  "expected_mutation_sensitive_region_families": [
+    "helix_bundle_core",
+    "hydrophobic_core",
+    "aromatic_core"
+  ],
+  "expected_process_class": "two_state",
+  "holdout_opened_after_prediction_hash": "9e3fe37a9497b5e81057debc6714fe36798778d7f08685c830e73bd2eee074d7",
+  "kind": "V59_POSTSEAL_PROCESS_HOLDOUT_v0",
+  "pdb_id": "1L2Y",
+  "postseal_sources": [
+    {
+      "coordinate_derived": false,
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V59_TRP_CAGE_PROCESS_SOURCE_1",
+      "source_role": "holdout_validation",
+      "url": "https://www.rcsb.org/structure/1L2Y",
+      "used_before_prediction": false
+    },
+    {
+      "coordinate_derived": false,
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V59_TRP_CAGE_PROCESS_SOURCE_2",
+      "source_role": "holdout_validation",
+      "url": "https://kineticdb.ivankovlab.ru/",
+      "used_before_prediction": false
+    }
+  ],
+  "target_id": "V59_TRP_CAGE",
+  "target_name": "Trp-cage TC5b"
+}

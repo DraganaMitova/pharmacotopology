@@ -1,0 +1,7 @@
+{
+  "failure_cases": [],
+  "failure_cases_reported": true,
+  "failure_count": 0,
+  "kind": "V59_PROCESS_FAILURE_REPORT_v0",
+  "note": "Zero failures is allowed only when the sealed predictions support all accepted process holdouts; this report still exists to prevent silent repair."
+}

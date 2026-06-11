@@ -1,0 +1,50 @@
+{
+  "evidence_summary": "Villin HP35 is a small fast folder whose folding-process signal centers on the helical hydrophobic core before final terminal consolidation.",
+  "expected_early_forming_region": {
+    "family": "helix_bundle_core",
+    "label": "holdout early-forming process region",
+    "span": [
+      10,
+      34
+    ]
+  },
+  "expected_folding_nucleus_decision": "nucleus_present",
+  "expected_late_forming_region": {
+    "family": "terminal_consolidation",
+    "label": "holdout late-forming process region",
+    "span": [
+      1,
+      9
+    ]
+  },
+  "expected_mutation_sensitive_region_families": [
+    "helix_bundle_core",
+    "hydrophobic_core"
+  ],
+  "expected_process_class": "two_state",
+  "holdout_opened_after_prediction_hash": "c58dc603a2f5e51251ea795dadd029b79eeae11fd7f5ce23f351788d527f768b",
+  "kind": "V59_POSTSEAL_PROCESS_HOLDOUT_v0",
+  "pdb_id": "1VII",
+  "postseal_sources": [
+    {
+      "coordinate_derived": false,
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V59_VILLIN_HP35_PROCESS_SOURCE_1",
+      "source_role": "holdout_validation",
+      "url": "https://www.rcsb.org/structure/1VII",
+      "used_before_prediction": false
+    },
+    {
+      "coordinate_derived": false,
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V59_VILLIN_HP35_PROCESS_SOURCE_2",
+      "source_role": "holdout_validation",
+      "url": "https://kineticdb.ivankovlab.ru/",
+      "used_before_prediction": false
+    }
+  ],
+  "target_id": "V59_VILLIN_HP35",
+  "target_name": "Villin headpiece HP35"
+}

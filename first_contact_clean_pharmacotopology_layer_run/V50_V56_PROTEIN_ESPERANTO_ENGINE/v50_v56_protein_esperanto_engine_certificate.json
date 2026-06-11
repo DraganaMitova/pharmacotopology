@@ -1,7 +1,7 @@
 {
   "allowed_claim_text": "We extracted a reusable operator grammar from multiple hard protein regimes and built a leakage-controlled coarse simulation engine that predicts mechanism trajectories and perturbation directions before holdout validation.",
   "atomistic_md_executed": false,
-  "certificate_hash": "83f02a244078ff0c466739a2eee1adbfd66e5c4b1091d9252c9a5f36a6ef4cf2",
+  "certificate_hash": "8c71682d003c5ccaa95dda843937ae8615a3c67657c1e341c626b0dde1305ca4",
   "claim_allowed": true,
   "control_count": 14,
   "controls": [
@@ -422,7 +422,7 @@
   "status": "V50_TO_V56_PROTEIN_ESPERANTO_ENGINE_PASSED_REVIEW_REQUIRED",
   "supported_validation_count": 5,
   "target_count": 5,
-  "timestamp_utc": "2026-06-11T18:23:47.696086+00:00",
+  "timestamp_utc": "2026-06-11T19:29:45.600977+00:00",
   "v50_grammar_extraction_passed": true,
   "v51_engine_contract_frozen": true,
   "v52_coarse_simulator_mvp_passed": true,

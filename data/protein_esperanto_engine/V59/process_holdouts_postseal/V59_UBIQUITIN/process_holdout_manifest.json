@@ -1,0 +1,50 @@
+{
+  "evidence_summary": "Ubiquitin process studies use kinetic perturbation / phi-psi style evidence to localize a heterogeneous but bounded transition-state core.",
+  "expected_early_forming_region": {
+    "family": "mixed_alpha_beta_core",
+    "label": "holdout early-forming process region",
+    "span": [
+      1,
+      45
+    ]
+  },
+  "expected_folding_nucleus_decision": "nucleus_present",
+  "expected_late_forming_region": {
+    "family": "terminal_consolidation",
+    "label": "holdout late-forming process region",
+    "span": [
+      64,
+      76
+    ]
+  },
+  "expected_mutation_sensitive_region_families": [
+    "mixed_alpha_beta_core",
+    "hydrophobic_core"
+  ],
+  "expected_process_class": "two_state",
+  "holdout_opened_after_prediction_hash": "5150b517afd8f273fdb8e4ebb687bcf799907355d74bd6710c5f64e2d4f30fc8",
+  "kind": "V59_POSTSEAL_PROCESS_HOLDOUT_v0",
+  "pdb_id": "1UBQ",
+  "postseal_sources": [
+    {
+      "coordinate_derived": false,
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V59_UBIQUITIN_PROCESS_SOURCE_1",
+      "source_role": "holdout_validation",
+      "url": "https://doi.org/10.1073/pnas.97.12.6527",
+      "used_before_prediction": false
+    },
+    {
+      "coordinate_derived": false,
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V59_UBIQUITIN_PROCESS_SOURCE_2",
+      "source_role": "holdout_validation",
+      "url": "https://www.rcsb.org/structure/1UBQ",
+      "used_before_prediction": false
+    }
+  ],
+  "target_id": "V59_UBIQUITIN",
+  "target_name": "Human ubiquitin"
+}

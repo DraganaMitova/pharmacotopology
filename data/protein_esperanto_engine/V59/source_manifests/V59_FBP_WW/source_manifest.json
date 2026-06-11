@@ -1,0 +1,46 @@
+{
+  "alphafold_used_before_seal": false,
+  "architecture_hint": "ultrashort WW beta-sheet domain folding-kinetics target",
+  "blocked_prediction_inputs": [
+    "process class labels",
+    "phi-value / psi-value tables",
+    "folding-rate mutation effects",
+    "HDX protection maps",
+    "NMR intermediate assignments",
+    "FRET/SAXS ensemble shifts",
+    "PDB/mmCIF coordinates and coordinate-derived contacts",
+    "AlphaFold / ESMFold / RoseTTAFold models",
+    "previous internal runtime artifacts as biological evidence"
+  ],
+  "coordinate_truth_used_before_seal": false,
+  "folding_problem_solved": false,
+  "kind": "V59_PROCESS_TARGET_SOURCE_MANIFEST_v0",
+  "pdb_id": "1E0L",
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from public FASTA. Coordinates, native contacts, AlphaFold-style models, and process holdout facts are blocked before sealing.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V59_FBP_WW_RAW_SEQUENCE",
+      "source_role": "prediction_input",
+      "source_url": "https://www.rcsb.org/fasta/entry/1E0L/display",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Target name Formin-binding protein WW domain; structural class beta; architecture hint ultrashort WW beta-sheet domain folding-kinetics target; process evidence exists but process class, early/late route, phi-value, mutation-sensitive, HDX/NMR and ensemble-shift holdout details are unopened.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V59_FBP_WW_NONCOORDINATE_METADATA",
+      "source_role": "prediction_input",
+      "spatial_proxy": false
+    }
+  ],
+  "process_evidence_channel_count": 2,
+  "sequence": "GATAVSEWTEYKTADGKTYYYNNRTLESTWEKPQELK",
+  "sequence_length": 37,
+  "structural_class": "beta",
+  "target_id": "V59_FBP_WW",
+  "target_name": "Formin-binding protein WW domain"
+}

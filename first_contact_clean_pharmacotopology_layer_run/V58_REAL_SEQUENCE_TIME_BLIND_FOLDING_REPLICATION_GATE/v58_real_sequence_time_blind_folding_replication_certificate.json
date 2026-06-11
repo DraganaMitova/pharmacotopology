@@ -7,7 +7,7 @@
     "majority_class_accuracy": 0.55,
     "majority_class_baseline": "globular_closure"
   },
-  "certificate_hash": "4288d44548d539c7ddde8e822e3a63f5dd83708f1196d4883c51340b0b91049a",
+  "certificate_hash": "222aa422efaed25a093ec3aada45aeafddd93e3d51197530620e41cafd5077f8",
   "claim_allowed": true,
   "control_count": 16,
   "controls": [
@@ -29,7 +29,7 @@
         "engine_modified_after_target_selection": false,
         "engine_source_last_commit": "5e3890c56879ce65ed4cca41d540ae1bd6ab43fb",
         "engine_source_path": "src/pharmacotopology/protein_esperanto_engine.py",
-        "engine_source_sha256": "31c7234a6ac7f0f78fa67ff1040cd20a4c91768a7e6bf6e11c2deff18dcc27e5",
+        "engine_source_sha256": "a105a2fca530ed38acfb5dc5922b23ed9bed9a77904158a5779624dc88e4a006",
         "folding_problem_solved": false,
         "frozen_mechanism_classes": [
           "globular_closure",
@@ -198,7 +198,7 @@
   ],
   "coordinate_truth_used_before_seal": false,
   "engine_modified_after_target_selection": false,
-  "engine_source_sha256": "31c7234a6ac7f0f78fa67ff1040cd20a4c91768a7e6bf6e11c2deff18dcc27e5",
+  "engine_source_sha256": "a105a2fca530ed38acfb5dc5922b23ed9bed9a77904158a5779624dc88e4a006",
   "failed_checks": [],
   "failure_cases": [
     {
@@ -226,7 +226,7 @@
       "expected": "globular_closure",
       "level1": false,
       "level3": false,
-      "predicted": "metamorphic_fold_switching",
+      "predicted": "oligomerization_controlled_folding",
       "target_id": "V58_24SW_2"
     },
     {
@@ -269,5 +269,5 @@
   "target_count": 20,
   "target_selection_manual": false,
   "target_selection_rule": "RCSB recent-release entries since 2025-01-01; protein polymer entities; 40-700 aa; unique sequence; deterministic cyclic fill across sequence/metadata strata.",
-  "timestamp_utc": "2026-06-11T19:08:01.742040+00:00"
+  "timestamp_utc": "2026-06-11T19:30:06.599351+00:00"
 }
