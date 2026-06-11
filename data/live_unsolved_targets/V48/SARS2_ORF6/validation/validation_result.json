@@ -1,0 +1,138 @@
+{
+  "contradicted_prediction_count": 0,
+  "contradicted_predictions": [],
+  "falsifiable_prediction_count": 12,
+  "forbidden_generic_viral_annotation_rejection_passed": true,
+  "forbidden_globular_fold_rejection_passed": true,
+  "functional_consequence_support_rate": 1.0,
+  "holdout_source_classes": [
+    "RAE1_NUP98_binding_support",
+    "c_terminal_operator_support",
+    "forbidden_grammar_rejection_support",
+    "interferon_antagonism_support",
+    "localization_context_support",
+    "nuclear_transport_disruption_support"
+  ],
+  "holdout_source_count": 6,
+  "host_interaction_support_rate": 1.0,
+  "kind": "V48_SARS2_ORF6_POSTSEAL_VALIDATION_v0",
+  "operator_support_rate": 1.0,
+  "operator_validation": [
+    {
+      "bucket": "C_terminal_host_interaction_operator",
+      "region_name": "ORF6_C_terminal_host_hijacking_region",
+      "support_level": "supported"
+    },
+    {
+      "bucket": "RAE1_NUP98_binding_context_operator",
+      "region_name": "host_RAE1_NUP98_nuclear_pore_complex_context",
+      "support_level": "supported"
+    },
+    {
+      "bucket": "nuclear_transport_disruption_operator",
+      "region_name": "nucleocytoplasmic_transport_blockade_context",
+      "support_level": "supported"
+    },
+    {
+      "bucket": "interferon_antagonism_context_operator",
+      "region_name": "STAT_IRF_IFN_antagonism_context",
+      "support_level": "supported"
+    },
+    {
+      "bucket": "short_linear_motif_or_MoRF_operator",
+      "region_name": "short_C_terminal_motif_interface",
+      "support_level": "supported"
+    },
+    {
+      "bucket": "disorder_to_interface_operator",
+      "region_name": "weakly_structured_short_region_to_host_interface",
+      "support_level": "supported"
+    },
+    {
+      "bucket": "localization_context_operator",
+      "region_name": "ER_Golgi_membrane_localization_context",
+      "support_level": "supported"
+    },
+    {
+      "bucket": "no_globular_single_fold_operator",
+      "region_name": "ORF6_no_compact_single_fold_guard",
+      "support_level": "supported"
+    }
+  ],
+  "perturbation_support_rate": 1.0,
+  "perturbation_validation": [
+    {
+      "perturbation": "delete or disrupt ORF6 C-terminal residues 38-61",
+      "predicted_effect": "weakens ORF6 host-hijacking grammar and RAE1/NUP98 interaction",
+      "prediction_id": "V48_PERT_001",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "map RAE1/NUP98 interaction evidence",
+      "predicted_effect": "localizes the main operator to the C-terminal region",
+      "prediction_id": "V48_PERT_002",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "use generic viral accessory annotation only",
+      "predicted_effect": "must not produce a full ORF6 host-hijacking packet",
+      "prediction_id": "V48_PERT_003",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "measure nuclear import/export disruption after ORF6 expression",
+      "predicted_effect": "nuclear transport disruption appears downstream of host-interaction grammar",
+      "prediction_id": "V48_PERT_004",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "measure IFN/STAT/IRF antagonism",
+      "predicted_effect": "IFN antagonism is functional consequence/context, not atomic fold proof",
+      "prediction_id": "V48_PERT_005",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "add short-motif or MoRF-like evidence",
+      "predicted_effect": "supports disorder-to-interface grammar rather than stable globular fold",
+      "prediction_id": "V48_PERT_006",
+      "support_level": "partially_supported"
+    },
+    {
+      "perturbation": "force compact single-fold grammar",
+      "predicted_effect": "must be blocked for ORF6",
+      "prediction_id": "V48_PERT_007",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "swap ORF8, ORF3a, or NSP evidence into validation",
+      "predicted_effect": "must not validate ORF6-specific C-terminal predictions",
+      "prediction_id": "V48_PERT_008",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "remove RAE1/NUP98 evidence",
+      "predicted_effect": "weakens host-interaction support and makes the packet partial or invalid",
+      "prediction_id": "V48_PERT_009",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "remove C-terminal/motif evidence",
+      "predicted_effect": "weakens the C-terminal host-interface packet",
+      "prediction_id": "V48_PERT_010",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "mutate C-terminal M58 or nearby acidic motif residues",
+      "predicted_effect": "supports or falsifies the predicted RAE1/NUP98 and IFN-antagonism operator",
+      "prediction_id": "V48_PERT_011",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "alter ER/Golgi localization region 18-24",
+      "predicted_effect": "changes localization context while not replacing the C-terminal host-interaction operator",
+      "prediction_id": "V48_PERT_012",
+      "support_level": "partially_supported"
+    }
+  ],
+  "validated_prediction_count": 12
+}

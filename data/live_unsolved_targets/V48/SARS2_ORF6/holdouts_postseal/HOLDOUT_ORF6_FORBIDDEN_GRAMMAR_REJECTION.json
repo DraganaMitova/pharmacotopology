@@ -1,0 +1,24 @@
+{
+  "coordinate_derived": false,
+  "evidence_statement": "ORF6 requires short-region host-hijacking grammar and rejects generic viral or compact-fold explanations.",
+  "internal_runtime_source": false,
+  "opened_after_prediction_hash": "67450b8b2b6346bc7487d6db1d29c12ea73d6f40e702563c4b801da00a8484b2",
+  "opened_timestamp": "2026-06-11T17:45:41.442692+00:00",
+  "source_class": "forbidden_grammar_rejection_support",
+  "source_id": "HOLDOUT_ORF6_FORBIDDEN_GRAMMAR_REJECTION",
+  "source_url_or_citation": "Post-seal controls against generic viral, globular, membrane-channel, IDP-condensate, and metamorphic grammars",
+  "supports_functional_consequence_ids": [],
+  "supports_host_interaction_ids": [],
+  "supports_operator_buckets": [
+    "no_globular_single_fold_operator",
+    "short_linear_motif_or_MoRF_operator",
+    "disorder_to_interface_operator"
+  ],
+  "supports_perturbation_ids": [
+    "V48_PERT_003",
+    "V48_PERT_006",
+    "V48_PERT_007",
+    "V48_PERT_008"
+  ],
+  "used_before_prediction": false
+}

@@ -1,0 +1,7 @@
+{
+  "decision_status": "V48_SARS2_ORF6_VIRAL_ACCESSORY_HOST_HIJACKING_PASSED_REVIEW_REQUIRED",
+  "folding_problem_solved": false,
+  "kind": "V48_SARS2_ORF6_VIRAL_ACCESSORY_NEXT_DECISION_v0",
+  "live_viral_host_hijacking_solution_packet": true,
+  "next_action": "external review and direct ORF6 C-terminal host-interface perturbation tests before committing V48 or strengthening beyond live viral host-hijacking packet wording"
+}

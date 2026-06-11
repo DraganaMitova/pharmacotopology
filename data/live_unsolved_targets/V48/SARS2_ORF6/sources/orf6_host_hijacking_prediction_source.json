@@ -1,0 +1,23 @@
+{
+  "allowed_use": "prediction_input_before_sealing",
+  "answer_key_source": false,
+  "coordinate_derived": false,
+  "coordinate_material_blocked": [
+    "PDB IDs and peptide-complex coordinates are not opened before sealing",
+    "no contacts, distances, or structural templates are imported"
+  ],
+  "coordinate_truth_used_before_prediction": false,
+  "holdout_source": false,
+  "internal_runtime_source": false,
+  "labels_used": [
+    "C-terminal ORF6 host interaction",
+    "RAE1/NUP98 nuclear pore complex context",
+    "nuclear import/export disruption",
+    "STAT/IRF/interferon antagonism as functional consequence",
+    "short-region host-hijacking interface"
+  ],
+  "native_metrics_used_for_selection": false,
+  "source_id": "ORF6_RAE1_NUP98_HOST_HIJACKING_TEXT_NONCOORDINATE",
+  "source_type": "literature-derived host-interaction and nuclear-transport annotations without coordinates",
+  "source_url_or_citation": "Miorin et al. PNAS 2020 PMID 33097660; Addetia et al. mBio 2021 PMID 33849972; Kato et al. BBRC 2021 PMID 33360543"
+}

@@ -1,0 +1,17 @@
+{
+  "allowed_use": "prediction_input_before_sealing",
+  "answer_key_source": false,
+  "coordinate_derived": false,
+  "coordinate_truth_used_before_prediction": false,
+  "holdout_source": false,
+  "internal_runtime_source": false,
+  "labels_used": [
+    "host ER/Golgi membrane localization context",
+    "localization can be decoupled from IFN antagonism",
+    "localization is context, not membrane-channel grammar"
+  ],
+  "native_metrics_used_for_selection": false,
+  "source_id": "ORF6_LOCALIZATION_MEMBRANE_CONTEXT_TEXT_NONCOORDINATE",
+  "source_type": "literature-derived localization and membrane-context annotation without coordinate models",
+  "source_url_or_citation": "Wong et al. J Cell Sci 2022 PMID 35187564 plus UniProt P0DTC6 localization text"
+}

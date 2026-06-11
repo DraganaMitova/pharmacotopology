@@ -1,0 +1,64 @@
+{
+  "sources": [
+    {
+      "allowed_use": "postseal_holdout_validation_only",
+      "coordinate_derived": false,
+      "holdout_source": true,
+      "internal_runtime_source": false,
+      "notes": [
+        "Full UniProt C-terminal mutagenesis and interaction records are checked only after sealing."
+      ],
+      "source_id": "ORF6_UNIPROT_P0DTC6_HOLDOUT_INDEX",
+      "source_type": "post-seal UniProt feature/function/mutagenesis holdout index",
+      "source_url_or_citation": "https://www.uniprot.org/uniprotkb/P0DTC6/entry"
+    },
+    {
+      "allowed_use": "postseal_holdout_validation_only",
+      "coordinate_derived": false,
+      "holdout_source": true,
+      "internal_runtime_source": false,
+      "notes": [
+        "ORF6 hijacks Nup98 to block STAT nuclear import and antagonize interferon signaling."
+      ],
+      "source_id": "ORF6_MIORIN_NUP98_IFN_HOLDOUT",
+      "source_type": "post-seal NUP98/IFN antagonism holdout",
+      "source_url_or_citation": "https://europepmc.org/article/MED/33097660"
+    },
+    {
+      "allowed_use": "postseal_holdout_validation_only",
+      "coordinate_derived": false,
+      "holdout_source": true,
+      "internal_runtime_source": false,
+      "notes": [
+        "C-terminal ORF6 regions and M58 perturbation affect NUP98-RAE1 interaction and nuclear transport blockade."
+      ],
+      "source_id": "ORF6_ADDETIA_RAE1_NUP98_TRANSPORT_HOLDOUT",
+      "source_type": "post-seal RAE1/NUP98 transport and C-terminal perturbation holdout",
+      "source_url_or_citation": "https://europepmc.org/article/MED/33849972"
+    },
+    {
+      "allowed_use": "postseal_holdout_validation_only",
+      "coordinate_derived": false,
+      "holdout_source": true,
+      "internal_runtime_source": false,
+      "notes": [
+        "ORF6 overexpression dislocates RAE1 and NUP98 from the nuclear pore complex."
+      ],
+      "source_id": "ORF6_KATO_RAE1_NUP98_DISLOCATION_HOLDOUT",
+      "source_type": "post-seal nuclear pore dislocation holdout",
+      "source_url_or_citation": "https://europepmc.org/article/MED/33360543"
+    },
+    {
+      "allowed_use": "postseal_holdout_validation_only",
+      "coordinate_derived": false,
+      "holdout_source": true,
+      "internal_runtime_source": false,
+      "notes": [
+        "ORF6 localization and interferon antagonism can be separated experimentally."
+      ],
+      "source_id": "ORF6_WONG_LOCALIZATION_IFN_DECOUPLING_HOLDOUT",
+      "source_type": "post-seal localization/context holdout",
+      "source_url_or_citation": "https://europepmc.org/article/MED/35187564"
+    }
+  ]
+}

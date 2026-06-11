@@ -1,0 +1,49 @@
+{
+  "blocked_prediction_inputs": [
+    {
+      "blocked_input": "PDB coordinates or mmCIF coordinates before sealing",
+      "reason": "coordinates would leak ORF6-host interface truth"
+    },
+    {
+      "blocked_input": "PDB-derived contacts or native contact maps",
+      "reason": "V48 tests short-region mechanism grammar, not contact lookup"
+    },
+    {
+      "blocked_input": "AlphaFold/ESMFold/RoseTTAFold coordinates before sealing",
+      "reason": "predicted coordinate models are blocked as evidence"
+    },
+    {
+      "blocked_input": "ORF6 peptide-complex coordinate templates before sealing",
+      "reason": "host-interface coordinates are validation/structure truth"
+    },
+    {
+      "blocked_input": "internal runtime reports as biological evidence",
+      "reason": "runtime artifacts are audit outputs only"
+    },
+    {
+      "blocked_input": "validation holdouts before prediction sealing",
+      "reason": "holdouts open only after sealed prediction hash exists"
+    },
+    {
+      "blocked_input": "answer key or pass/fail status during prediction",
+      "reason": "classification must use source-separated allowed evidence"
+    },
+    {
+      "blocked_input": "target name only",
+      "reason": "ORF6 label alone cannot create a host-hijacking solution packet"
+    },
+    {
+      "blocked_input": "generic viral accessory annotation only",
+      "reason": "generic viral identity cannot explain C-terminal RAE1/NUP98 host hijacking"
+    },
+    {
+      "blocked_input": "compact stable globular fold forcing",
+      "reason": "V48 must not overpromote ORF6 into a normal single-fold target"
+    },
+    {
+      "blocked_input": "swapped ORF8/ORF3a/NSP evidence",
+      "reason": "other viral proteins cannot validate ORF6-specific C-terminal predictions"
+    }
+  ],
+  "kind": "V48_SARS2_ORF6_BLOCKED_INPUTS_MANIFEST_v0"
+}

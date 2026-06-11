@@ -1,0 +1,47 @@
+{
+  "coordinate_derived_source_count_before_prediction": 0,
+  "entries": [
+    {
+      "allowed_use": "prediction_input_before_sealing",
+      "source_id": "UNIPROT_P0DTC6_SEQUENCE_FUNCTION_NONCOORDINATE"
+    },
+    {
+      "allowed_use": "prediction_input_before_sealing",
+      "source_id": "ORF6_RAE1_NUP98_HOST_HIJACKING_TEXT_NONCOORDINATE"
+    },
+    {
+      "allowed_use": "prediction_input_before_sealing",
+      "source_id": "ORF6_LOCALIZATION_MEMBRANE_CONTEXT_TEXT_NONCOORDINATE"
+    },
+    {
+      "allowed_use": "prediction_input_before_sealing",
+      "source_id": "ORF6_SHORT_REGION_SEQUENCE_FEATURES_DERIVED_FROM_ALLOWED_INPUTS"
+    },
+    {
+      "allowed_use": "postseal_holdout_validation_only",
+      "source_id": "ORF6_UNIPROT_P0DTC6_HOLDOUT_INDEX"
+    },
+    {
+      "allowed_use": "postseal_holdout_validation_only",
+      "source_id": "ORF6_MIORIN_NUP98_IFN_HOLDOUT"
+    },
+    {
+      "allowed_use": "postseal_holdout_validation_only",
+      "source_id": "ORF6_ADDETIA_RAE1_NUP98_TRANSPORT_HOLDOUT"
+    },
+    {
+      "allowed_use": "postseal_holdout_validation_only",
+      "source_id": "ORF6_KATO_RAE1_NUP98_DISLOCATION_HOLDOUT"
+    },
+    {
+      "allowed_use": "postseal_holdout_validation_only",
+      "source_id": "ORF6_WONG_LOCALIZATION_IFN_DECOUPLING_HOLDOUT"
+    }
+  ],
+  "external_noncoordinate_source_count": 9,
+  "holdout_source_count_before_prediction": 0,
+  "internal_runtime_source_count_for_prediction": 0,
+  "kind": "V48_SARS2_ORF6_SOURCE_ACQUISITION_LOG_v0",
+  "prediction_input_source_count": 4,
+  "target_id": "V48_SARS2_ORF6"
+}

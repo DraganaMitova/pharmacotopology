@@ -1,0 +1,36 @@
+{
+  "accession": "P0DTC6",
+  "allowed_use": "prediction_input_before_sealing",
+  "answer_key_source": false,
+  "coordinate_derived": false,
+  "coordinate_truth_used_before_prediction": false,
+  "features_excluded_before_prediction": [
+    "UniProt PDB cross-references",
+    "PDB/mmCIF coordinate files",
+    "coordinate-derived contacts",
+    "native contact maps",
+    "AlphaFold/ESMFold/RoseTTAFold coordinates"
+  ],
+  "holdout_source": false,
+  "internal_runtime_source": false,
+  "native_metrics_used_for_selection": false,
+  "noncoordinate_annotations_used": [
+    "ORF6 disrupts bidirectional nucleocytoplasmic transport.",
+    "ORF6 interacts via its C-terminus with host RAE1 in the NUP98-RAE1 complex.",
+    "ORF6 prevents STAT1 nuclear translocation and antagonizes interferon signaling.",
+    "ORF6 localizes to host ER/Golgi membrane contexts and virus-induced vesicular structures.",
+    "C-terminal mutagenesis affects NUP98-RAE1 interaction, nuclear transport blockade, and IFN antagonistic function."
+  ],
+  "retrieved_or_checked": "2026-06-11",
+  "sequence_region_scope": {
+    "c_terminal_region": "38-61",
+    "c_terminal_sequence": "KNLSKSLTENKYSQLDEEQPMEID",
+    "full_length": 61,
+    "protein": "SARS-CoV-2 ORF6 / accessory protein 6 / ns6",
+    "sequence": "MFHLVDFQVTIAEILLIIMRTFKVSIWNLDYIINLIIKNLSKSLTENKYSQLDEEQPMEID"
+  },
+  "source_id": "UNIPROT_P0DTC6_SEQUENCE_FUNCTION_NONCOORDINATE",
+  "source_type": "UniProtKB reviewed sequence, function, interaction, localization, and mutagenesis text with coordinate records excluded",
+  "source_url_or_citation": "https://rest.uniprot.org/uniprotkb/P0DTC6.json",
+  "uniprot_id": "NS6_SARS2"
+}

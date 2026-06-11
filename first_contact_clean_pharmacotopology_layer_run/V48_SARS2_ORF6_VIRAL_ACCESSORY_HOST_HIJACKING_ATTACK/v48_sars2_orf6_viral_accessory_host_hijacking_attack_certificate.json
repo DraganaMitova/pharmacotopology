@@ -1,0 +1,632 @@
+{
+  "allowed_claim_text": "We have a sealed live solution packet for SARS-CoV-2 ORF6 as a short-region viral host-hijacking and disorder-interface mechanism. This is not a universal protein-folding solved claim, an atomic ORF6-host complex claim, or a stable globular-fold claim.",
+  "artifacts": {
+    "certificate": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V48_SARS2_ORF6_VIRAL_ACCESSORY_HOST_HIJACKING_ATTACK/v48_sars2_orf6_viral_accessory_host_hijacking_attack_certificate.json",
+    "decision": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V48_SARS2_ORF6_VIRAL_ACCESSORY_HOST_HIJACKING_ATTACK/v48_sars2_orf6_viral_accessory_host_hijacking_attack_next_decision.json",
+    "report": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V48_SARS2_ORF6_VIRAL_ACCESSORY_HOST_HIJACKING_ATTACK/V48_SARS2_ORF6_VIRAL_ACCESSORY_HOST_HIJACKING_ATTACK_REPORT.md"
+  },
+  "claim_allowed": true,
+  "contradicted_prediction_count": 0,
+  "contradicted_predictions": [],
+  "control_count": 18,
+  "control_status": "V48_SARS2_ORF6_VIRAL_ACCESSORY_HOST_HIJACKING_PASSED_REVIEW_REQUIRED",
+  "controls": [
+    {
+      "control_id": "prediction_sealed_before_holdout_validation",
+      "observed": null,
+      "passed": true,
+      "reason": "Prediction must be sealed before holdout validation."
+    },
+    {
+      "control_id": "holdout_files_unavailable_to_prediction_function",
+      "observed": null,
+      "passed": true,
+      "reason": "Holdout files must be unavailable to prediction function."
+    },
+    {
+      "control_id": "pdb_coordinates_before_sealing_blocked",
+      "observed": null,
+      "passed": true,
+      "reason": "PDB coordinates before sealing are blocked."
+    },
+    {
+      "control_id": "alphafold_esmfold_coordinates_before_sealing_blocked",
+      "observed": null,
+      "passed": true,
+      "reason": "AlphaFold/ESMFold coordinates before sealing are blocked."
+    },
+    {
+      "control_id": "internal_runtime_source_as_evidence_blocked",
+      "observed": null,
+      "passed": true,
+      "reason": "Internal runtime reports as biological evidence are blocked."
+    },
+    {
+      "control_id": "target_name_only_assignment_blocked",
+      "observed": null,
+      "passed": true,
+      "reason": "Target-name-only assignment is blocked."
+    },
+    {
+      "control_id": "generic_viral_protein_annotation_alone_cannot_make_full_packet",
+      "observed": null,
+      "passed": true,
+      "reason": "Generic viral protein annotation alone cannot create a full solution packet."
+    },
+    {
+      "control_id": "compact_single_fold_forcing_blocked",
+      "observed": null,
+      "passed": true,
+      "reason": "Compact single-fold forcing is blocked."
+    },
+    {
+      "control_id": "removing_c_terminal_evidence_weakens_support",
+      "observed": {
+        "with": 1.0,
+        "without": 0.8
+      },
+      "passed": true,
+      "reason": "Removing C-terminal evidence weakens support."
+    },
+    {
+      "control_id": "removing_rae1_nup98_evidence_weakens_support",
+      "observed": {
+        "with": 1.0,
+        "without": 0.8
+      },
+      "passed": true,
+      "reason": "Removing RAE1/NUP98 evidence weakens support."
+    },
+    {
+      "control_id": "removing_nuclear_transport_evidence_weakens_functional_grammar",
+      "observed": {
+        "with": 1.0,
+        "without": 0.75
+      },
+      "passed": true,
+      "reason": "Removing nuclear transport evidence weakens functional grammar."
+    },
+    {
+      "control_id": "swapped_orf8_orf3a_nsp_evidence_does_not_validate_orf6_specific_predictions",
+      "observed": null,
+      "passed": true,
+      "reason": "Swapped ORF8/ORF3a/NSP evidence cannot validate ORF6-specific predictions."
+    },
+    {
+      "control_id": "failed_predictions_remain_failed_not_repaired",
+      "observed": null,
+      "passed": true,
+      "reason": "Failed predictions remain failed and are not repaired after holdout."
+    },
+    {
+      "control_id": "fewer_than_four_holdout_classes_status_partial",
+      "observed": null,
+      "passed": true,
+      "reason": "If fewer than four independent holdout classes exist, status is partial."
+    },
+    {
+      "control_id": "all_generic_viral_host_claims_status_fails",
+      "observed": null,
+      "passed": true,
+      "reason": "If all predictions are generic viral-host claims, status fails."
+    },
+    {
+      "control_id": "ifn_antagonism_not_promoted_to_atomic_fold_proof",
+      "observed": null,
+      "passed": true,
+      "reason": "IFN antagonism is not promoted into atomic fold proof."
+    },
+    {
+      "control_id": "orf6_not_overpromoted_into_solved_globular_structure",
+      "observed": null,
+      "passed": true,
+      "reason": "ORF6 is not overpromoted into a solved globular structure."
+    },
+    {
+      "control_id": "claim_boundary_remains_honest",
+      "observed": null,
+      "passed": true,
+      "reason": "Claim boundary remains honest."
+    }
+  ],
+  "coordinate_derived_source_count_before_prediction": 0,
+  "coordinate_truth_used_before_prediction": false,
+  "failed_checks": [],
+  "falsification_criteria": [
+    "C-terminal disruption does not weaken RAE1/NUP98 binding or nuclear transport disruption",
+    "RAE1/NUP98 evidence does not localize to the ORF6 C-terminal region",
+    "generic viral accessory annotation alone predicts the full packet",
+    "ORF6 is best explained as a compact stable globular fold independent of host-interface context",
+    "IFN antagonism proves an atomic fold rather than a functional consequence",
+    "ORF8/ORF3a/NSP evidence validates ORF6-specific C-terminal predictions",
+    "coordinate evidence before sealing is required for the packet",
+    "independent holdouts contradict more than two explicit perturbation predictions"
+  ],
+  "folding_problem_solved": false,
+  "forbidden_claims": [
+    "we solved the universal protein-folding problem",
+    "ORF6 is a solved compact globular fold",
+    "ORF6-host atomic coordinates were predicted de novo",
+    "generic viral accessory annotation solves ORF6",
+    "IFN antagonism proves an atomic fold",
+    "external review is unnecessary"
+  ],
+  "forbidden_generic_viral_annotation_rejection_passed": true,
+  "forbidden_globular_fold_rejection_passed": true,
+  "functional_consequence_support_rate": 1.0,
+  "holdout_leakage_detected": false,
+  "holdout_source_classes": [
+    "RAE1_NUP98_binding_support",
+    "c_terminal_operator_support",
+    "forbidden_grammar_rejection_support",
+    "interferon_antagonism_support",
+    "localization_context_support",
+    "nuclear_transport_disruption_support"
+  ],
+  "holdout_source_count": 6,
+  "holdout_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "C-terminal ORF6 deletion and M58 perturbations disrupt NUP98-RAE1 interaction and transport effects.",
+      "internal_runtime_source": false,
+      "opened_after_prediction_hash": "67450b8b2b6346bc7487d6db1d29c12ea73d6f40e702563c4b801da00a8484b2",
+      "opened_timestamp": "2026-06-11T17:45:41.442692+00:00",
+      "source_class": "c_terminal_operator_support",
+      "source_id": "HOLDOUT_ORF6_C_TERMINAL_OPERATOR_MUTAGENESIS",
+      "source_url_or_citation": "UniProt P0DTC6 mutagenesis annotations and Addetia et al. PMID 33849972",
+      "supports_functional_consequence_ids": [
+        "V48_PERT_011"
+      ],
+      "supports_host_interaction_ids": [
+        "V48_PERT_001",
+        "V48_PERT_010",
+        "V48_PERT_011"
+      ],
+      "supports_operator_buckets": [
+        "C_terminal_host_interaction_operator",
+        "short_linear_motif_or_MoRF_operator",
+        "no_globular_single_fold_operator"
+      ],
+      "supports_perturbation_ids": [
+        "V48_PERT_001",
+        "V48_PERT_002",
+        "V48_PERT_010",
+        "V48_PERT_011"
+      ],
+      "used_before_prediction": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "ORF6 hijacks NUP98/RAE1 context to block STAT nuclear import and antagonize IFN signaling.",
+      "internal_runtime_source": false,
+      "opened_after_prediction_hash": "67450b8b2b6346bc7487d6db1d29c12ea73d6f40e702563c4b801da00a8484b2",
+      "opened_timestamp": "2026-06-11T17:45:41.442692+00:00",
+      "source_class": "RAE1_NUP98_binding_support",
+      "source_id": "HOLDOUT_ORF6_RAE1_NUP98_BINDING",
+      "source_url_or_citation": "https://europepmc.org/article/MED/33097660",
+      "supports_functional_consequence_ids": [
+        "V48_PERT_005",
+        "V48_PERT_011"
+      ],
+      "supports_host_interaction_ids": [
+        "V48_PERT_001",
+        "V48_PERT_002",
+        "V48_PERT_009",
+        "V48_PERT_011"
+      ],
+      "supports_operator_buckets": [
+        "RAE1_NUP98_binding_context_operator",
+        "C_terminal_host_interaction_operator",
+        "nuclear_transport_disruption_operator"
+      ],
+      "supports_perturbation_ids": [
+        "V48_PERT_001",
+        "V48_PERT_002",
+        "V48_PERT_004",
+        "V48_PERT_009",
+        "V48_PERT_011"
+      ],
+      "used_before_prediction": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "ORF6 disrupts bidirectional nucleocytoplasmic transport through Rae1/Nup98 interactions.",
+      "internal_runtime_source": false,
+      "opened_after_prediction_hash": "67450b8b2b6346bc7487d6db1d29c12ea73d6f40e702563c4b801da00a8484b2",
+      "opened_timestamp": "2026-06-11T17:45:41.442692+00:00",
+      "source_class": "nuclear_transport_disruption_support",
+      "source_id": "HOLDOUT_ORF6_NUCLEAR_TRANSPORT_DISRUPTION",
+      "source_url_or_citation": "https://europepmc.org/article/MED/33849972",
+      "supports_functional_consequence_ids": [
+        "V48_PERT_004",
+        "V48_PERT_011"
+      ],
+      "supports_host_interaction_ids": [
+        "V48_PERT_009",
+        "V48_PERT_011"
+      ],
+      "supports_operator_buckets": [
+        "nuclear_transport_disruption_operator",
+        "RAE1_NUP98_binding_context_operator"
+      ],
+      "supports_perturbation_ids": [
+        "V48_PERT_004",
+        "V48_PERT_009",
+        "V48_PERT_011"
+      ],
+      "used_before_prediction": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "ORF6 IFN antagonism maps to blocked IRF/STAT nuclear translocation and is not atomic-fold proof.",
+      "internal_runtime_source": false,
+      "opened_after_prediction_hash": "67450b8b2b6346bc7487d6db1d29c12ea73d6f40e702563c4b801da00a8484b2",
+      "opened_timestamp": "2026-06-11T17:45:41.442692+00:00",
+      "source_class": "interferon_antagonism_support",
+      "source_id": "HOLDOUT_ORF6_IFN_ANTAGONISM_FUNCTIONAL_CONTEXT",
+      "source_url_or_citation": "https://europepmc.org/article/MED/32979938 and https://europepmc.org/article/MED/33097660",
+      "supports_functional_consequence_ids": [
+        "V48_PERT_005",
+        "V48_PERT_011"
+      ],
+      "supports_host_interaction_ids": [
+        "V48_PERT_011"
+      ],
+      "supports_operator_buckets": [
+        "interferon_antagonism_context_operator",
+        "nuclear_transport_disruption_operator"
+      ],
+      "supports_perturbation_ids": [
+        "V48_PERT_005",
+        "V48_PERT_011"
+      ],
+      "used_before_prediction": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "ORF6 localization can be experimentally decoupled from IFN antagonism and should remain context, not channel grammar.",
+      "internal_runtime_source": false,
+      "opened_after_prediction_hash": "67450b8b2b6346bc7487d6db1d29c12ea73d6f40e702563c4b801da00a8484b2",
+      "opened_timestamp": "2026-06-11T17:45:41.442692+00:00",
+      "source_class": "localization_context_support",
+      "source_id": "HOLDOUT_ORF6_LOCALIZATION_CONTEXT",
+      "source_url_or_citation": "https://europepmc.org/article/MED/35187564",
+      "supports_functional_consequence_ids": [
+        "V48_PERT_005",
+        "V48_PERT_012"
+      ],
+      "supports_host_interaction_ids": [],
+      "supports_operator_buckets": [
+        "localization_context_operator"
+      ],
+      "supports_perturbation_ids": [
+        "V48_PERT_012"
+      ],
+      "used_before_prediction": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "ORF6 requires short-region host-hijacking grammar and rejects generic viral or compact-fold explanations.",
+      "internal_runtime_source": false,
+      "opened_after_prediction_hash": "67450b8b2b6346bc7487d6db1d29c12ea73d6f40e702563c4b801da00a8484b2",
+      "opened_timestamp": "2026-06-11T17:45:41.442692+00:00",
+      "source_class": "forbidden_grammar_rejection_support",
+      "source_id": "HOLDOUT_ORF6_FORBIDDEN_GRAMMAR_REJECTION",
+      "source_url_or_citation": "Post-seal controls against generic viral, globular, membrane-channel, IDP-condensate, and metamorphic grammars",
+      "supports_functional_consequence_ids": [],
+      "supports_host_interaction_ids": [],
+      "supports_operator_buckets": [
+        "no_globular_single_fold_operator",
+        "short_linear_motif_or_MoRF_operator",
+        "disorder_to_interface_operator"
+      ],
+      "supports_perturbation_ids": [
+        "V48_PERT_003",
+        "V48_PERT_006",
+        "V48_PERT_007",
+        "V48_PERT_008"
+      ],
+      "used_before_prediction": false
+    }
+  ],
+  "host_interaction_support_rate": 1.0,
+  "internal_runtime_source_count_for_prediction": 0,
+  "kind": "V48_SARS2_ORF6_VIRAL_ACCESSORY_HOST_HIJACKING_CERTIFICATE_v0",
+  "leakage_status": {
+    "coordinate_derived_source_count_before_prediction": 0,
+    "coordinate_truth_used_before_prediction": false,
+    "holdout_leakage_detected": false,
+    "internal_runtime_source_count_for_prediction": 0,
+    "native_metrics_used_before_prediction": false
+  },
+  "live_viral_host_hijacking_solution_packet": true,
+  "low_resolution_structure_or_ensemble_prediction": {
+    "architecture": "small viral accessory protein with short C-terminal host-interface operator",
+    "atomic_claim": "blocked; no coordinate or stable-globular solution is claimed",
+    "dominant_region": "C-terminal residues 38-61, with minimal motif focus around 50-61",
+    "functional_consequence": "nuclear transport disruption and IFN/STAT/IRF antagonism",
+    "host_interface": "RAE1/NUP98 nuclear pore complex context",
+    "membrane_context": "ER/Golgi localization context only; not a membrane channel claim",
+    "standalone_globular_fold_expected": false
+  },
+  "mechanism_class": "viral_accessory_short_region_host_hijacking_disorder_interface",
+  "native_metrics_used_before_prediction": false,
+  "next_action": "external review and direct ORF6 C-terminal host-interface perturbation tests before committing V48 or strengthening beyond live viral host-hijacking packet wording",
+  "next_decision": {
+    "decision_status": "V48_SARS2_ORF6_VIRAL_ACCESSORY_HOST_HIJACKING_PASSED_REVIEW_REQUIRED",
+    "folding_problem_solved": false,
+    "kind": "V48_SARS2_ORF6_VIRAL_ACCESSORY_NEXT_DECISION_v0",
+    "live_viral_host_hijacking_solution_packet": true,
+    "next_action": "external review and direct ORF6 C-terminal host-interface perturbation tests before committing V48 or strengthening beyond live viral host-hijacking packet wording"
+  },
+  "operator_bucket_count": 8,
+  "operator_buckets": [
+    "C_terminal_host_interaction_operator",
+    "RAE1_NUP98_binding_context_operator",
+    "nuclear_transport_disruption_operator",
+    "interferon_antagonism_context_operator",
+    "short_linear_motif_or_MoRF_operator",
+    "disorder_to_interface_operator",
+    "localization_context_operator",
+    "no_globular_single_fold_operator"
+  ],
+  "operator_support_rate": 1.0,
+  "operator_validation": [
+    {
+      "bucket": "C_terminal_host_interaction_operator",
+      "region_name": "ORF6_C_terminal_host_hijacking_region",
+      "support_level": "supported"
+    },
+    {
+      "bucket": "RAE1_NUP98_binding_context_operator",
+      "region_name": "host_RAE1_NUP98_nuclear_pore_complex_context",
+      "support_level": "supported"
+    },
+    {
+      "bucket": "nuclear_transport_disruption_operator",
+      "region_name": "nucleocytoplasmic_transport_blockade_context",
+      "support_level": "supported"
+    },
+    {
+      "bucket": "interferon_antagonism_context_operator",
+      "region_name": "STAT_IRF_IFN_antagonism_context",
+      "support_level": "supported"
+    },
+    {
+      "bucket": "short_linear_motif_or_MoRF_operator",
+      "region_name": "short_C_terminal_motif_interface",
+      "support_level": "supported"
+    },
+    {
+      "bucket": "disorder_to_interface_operator",
+      "region_name": "weakly_structured_short_region_to_host_interface",
+      "support_level": "supported"
+    },
+    {
+      "bucket": "localization_context_operator",
+      "region_name": "ER_Golgi_membrane_localization_context",
+      "support_level": "supported"
+    },
+    {
+      "bucket": "no_globular_single_fold_operator",
+      "region_name": "ORF6_no_compact_single_fold_guard",
+      "support_level": "supported"
+    }
+  ],
+  "passed_control_count": 18,
+  "perturbation_prediction_count": 12,
+  "perturbation_predictions": [
+    {
+      "operator_bucket": "C_terminal_host_interaction_operator",
+      "perturbation": "delete or disrupt ORF6 C-terminal residues 38-61",
+      "predicted_effect": "weakens ORF6 host-hijacking grammar and RAE1/NUP98 interaction",
+      "prediction_id": "V48_PERT_001"
+    },
+    {
+      "operator_bucket": "RAE1_NUP98_binding_context_operator",
+      "perturbation": "map RAE1/NUP98 interaction evidence",
+      "predicted_effect": "localizes the main operator to the C-terminal region",
+      "prediction_id": "V48_PERT_002"
+    },
+    {
+      "operator_bucket": "no_globular_single_fold_operator",
+      "perturbation": "use generic viral accessory annotation only",
+      "predicted_effect": "must not produce a full ORF6 host-hijacking packet",
+      "prediction_id": "V48_PERT_003"
+    },
+    {
+      "operator_bucket": "nuclear_transport_disruption_operator",
+      "perturbation": "measure nuclear import/export disruption after ORF6 expression",
+      "predicted_effect": "nuclear transport disruption appears downstream of host-interaction grammar",
+      "prediction_id": "V48_PERT_004"
+    },
+    {
+      "operator_bucket": "interferon_antagonism_context_operator",
+      "perturbation": "measure IFN/STAT/IRF antagonism",
+      "predicted_effect": "IFN antagonism is functional consequence/context, not atomic fold proof",
+      "prediction_id": "V48_PERT_005"
+    },
+    {
+      "operator_bucket": "short_linear_motif_or_MoRF_operator",
+      "perturbation": "add short-motif or MoRF-like evidence",
+      "predicted_effect": "supports disorder-to-interface grammar rather than stable globular fold",
+      "prediction_id": "V48_PERT_006"
+    },
+    {
+      "operator_bucket": "no_globular_single_fold_operator",
+      "perturbation": "force compact single-fold grammar",
+      "predicted_effect": "must be blocked for ORF6",
+      "prediction_id": "V48_PERT_007"
+    },
+    {
+      "operator_bucket": "no_globular_single_fold_operator",
+      "perturbation": "swap ORF8, ORF3a, or NSP evidence into validation",
+      "predicted_effect": "must not validate ORF6-specific C-terminal predictions",
+      "prediction_id": "V48_PERT_008"
+    },
+    {
+      "operator_bucket": "RAE1_NUP98_binding_context_operator",
+      "perturbation": "remove RAE1/NUP98 evidence",
+      "predicted_effect": "weakens host-interaction support and makes the packet partial or invalid",
+      "prediction_id": "V48_PERT_009"
+    },
+    {
+      "operator_bucket": "C_terminal_host_interaction_operator",
+      "perturbation": "remove C-terminal/motif evidence",
+      "predicted_effect": "weakens the C-terminal host-interface packet",
+      "prediction_id": "V48_PERT_010"
+    },
+    {
+      "operator_bucket": "short_linear_motif_or_MoRF_operator",
+      "perturbation": "mutate C-terminal M58 or nearby acidic motif residues",
+      "predicted_effect": "supports or falsifies the predicted RAE1/NUP98 and IFN-antagonism operator",
+      "prediction_id": "V48_PERT_011"
+    },
+    {
+      "operator_bucket": "localization_context_operator",
+      "perturbation": "alter ER/Golgi localization region 18-24",
+      "predicted_effect": "changes localization context while not replacing the C-terminal host-interaction operator",
+      "prediction_id": "V48_PERT_012"
+    }
+  ],
+  "perturbation_support_rate": 1.0,
+  "plain_english_interpretation": "V48 produced a sealed, source-separated SARS-CoV-2 ORF6 packet in a fourth hard mechanism class: viral short-region host hijacking. The packet localizes the mechanism to a C-terminal RAE1/NUP98 interface, treats nuclear transport disruption and interferon antagonism as functional consequences, keeps localization as context, and rejects stable globular-fold and generic viral-accessory shortcuts without using coordinates before sealing.",
+  "predicted_context_switches": [
+    {
+      "context": "C-terminal motif intact",
+      "predicted_shift": "RAE1/NUP98 binding and nuclear-transport disruption grammar is strong"
+    },
+    {
+      "context": "C-terminal motif disrupted or deleted",
+      "predicted_shift": "host-hijacking and IFN-antagonism grammar weakens"
+    },
+    {
+      "context": "host RAE1/NUP98 evidence removed",
+      "predicted_shift": "packet collapses toward partial or invalid viral-accessory annotation"
+    },
+    {
+      "context": "ER/Golgi localization altered",
+      "predicted_shift": "localization readout shifts without proving a membrane-channel mechanism"
+    },
+    {
+      "context": "compact globular fold forced",
+      "predicted_shift": "blocked as wrong target class"
+    }
+  ],
+  "predicted_host_hijacking_grammar": [
+    {
+      "axis": "short_region_host_interface",
+      "prediction": "The ORF6 C-terminus, especially residues 38-61 and 50-61, carries the main host-hijacking operator."
+    },
+    {
+      "axis": "RAE1_NUP98_binding",
+      "prediction": "RAE1/NUP98 engagement is the primary host-interface context, not a generic viral accessory label."
+    },
+    {
+      "axis": "transport_disruption",
+      "prediction": "Nuclear transport disruption is downstream of host-interface grammar."
+    },
+    {
+      "axis": "IFN_antagonism",
+      "prediction": "IFN antagonism follows nuclear transport/STAT/IRF context and cannot be used as atomic fold proof."
+    },
+    {
+      "axis": "localization_context",
+      "prediction": "ER/Golgi localization can modulate where ORF6 acts while remaining separable from the C-terminal host-interface operator."
+    }
+  ],
+  "prediction_input_source_count": 4,
+  "prediction_sealed_before_holdout": true,
+  "proposed_experimental_tests": [
+    "delete ORF6 residues 38-61 and test RAE1/NUP98 binding, nuclear transport, and IFN readouts",
+    "mutate M58 and nearby acidic C-terminal residues and quantify NUP98-RAE1 binding",
+    "compare N-terminal, central, and C-terminal deletions for host-transport blockade",
+    "separate ER/Golgi localization mutations from C-terminal RAE1/NUP98 binding mutations",
+    "measure STAT1/IRF3 nuclear translocation and ISG expression after C-terminal perturbation",
+    "run negative controls with generic viral accessory, ORF8, ORF3a, and membrane-channel grammars"
+  ],
+  "protein_folding_solved_candidate_strengthened": true,
+  "run_mode": "live_viral_host_hijacking_solution_packet_sealed_prediction_postseal_holdout_validation_no_MD",
+  "sealed_prediction_hash": "67450b8b2b6346bc7487d6db1d29c12ea73d6f40e702563c4b801da00a8484b2",
+  "sequence_region_scope": "ORF6 P0DTC6 full length 1-61 with C-terminal host-interface focus 38-61",
+  "target": "SARS-CoV-2 ORF6 / accessory protein 6 / ns6",
+  "v47_commit_hash": "9ab5d600cd7e5f5abeebeae6f74aed9623be2b5d",
+  "v47_commit_short_hash": "9ab5d60",
+  "v47_committed": true,
+  "v48_committed": false,
+  "validated_prediction_count": 12,
+  "validation_support_per_prediction": [
+    {
+      "perturbation": "delete or disrupt ORF6 C-terminal residues 38-61",
+      "predicted_effect": "weakens ORF6 host-hijacking grammar and RAE1/NUP98 interaction",
+      "prediction_id": "V48_PERT_001",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "map RAE1/NUP98 interaction evidence",
+      "predicted_effect": "localizes the main operator to the C-terminal region",
+      "prediction_id": "V48_PERT_002",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "use generic viral accessory annotation only",
+      "predicted_effect": "must not produce a full ORF6 host-hijacking packet",
+      "prediction_id": "V48_PERT_003",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "measure nuclear import/export disruption after ORF6 expression",
+      "predicted_effect": "nuclear transport disruption appears downstream of host-interaction grammar",
+      "prediction_id": "V48_PERT_004",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "measure IFN/STAT/IRF antagonism",
+      "predicted_effect": "IFN antagonism is functional consequence/context, not atomic fold proof",
+      "prediction_id": "V48_PERT_005",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "add short-motif or MoRF-like evidence",
+      "predicted_effect": "supports disorder-to-interface grammar rather than stable globular fold",
+      "prediction_id": "V48_PERT_006",
+      "support_level": "partially_supported"
+    },
+    {
+      "perturbation": "force compact single-fold grammar",
+      "predicted_effect": "must be blocked for ORF6",
+      "prediction_id": "V48_PERT_007",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "swap ORF8, ORF3a, or NSP evidence into validation",
+      "predicted_effect": "must not validate ORF6-specific C-terminal predictions",
+      "prediction_id": "V48_PERT_008",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "remove RAE1/NUP98 evidence",
+      "predicted_effect": "weakens host-interaction support and makes the packet partial or invalid",
+      "prediction_id": "V48_PERT_009",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "remove C-terminal/motif evidence",
+      "predicted_effect": "weakens the C-terminal host-interface packet",
+      "prediction_id": "V48_PERT_010",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "mutate C-terminal M58 or nearby acidic motif residues",
+      "predicted_effect": "supports or falsifies the predicted RAE1/NUP98 and IFN-antagonism operator",
+      "prediction_id": "V48_PERT_011",
+      "support_level": "supported"
+    },
+    {
+      "perturbation": "alter ER/Golgi localization region 18-24",
+      "predicted_effect": "changes localization context while not replacing the C-terminal host-interaction operator",
+      "prediction_id": "V48_PERT_012",
+      "support_level": "partially_supported"
+    }
+  ]
+}

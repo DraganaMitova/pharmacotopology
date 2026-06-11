@@ -1,0 +1,170 @@
+{
+  "holdout_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "C-terminal ORF6 deletion and M58 perturbations disrupt NUP98-RAE1 interaction and transport effects.",
+      "internal_runtime_source": false,
+      "opened_after_prediction_hash": "67450b8b2b6346bc7487d6db1d29c12ea73d6f40e702563c4b801da00a8484b2",
+      "opened_timestamp": "2026-06-11T17:45:41.442692+00:00",
+      "source_class": "c_terminal_operator_support",
+      "source_id": "HOLDOUT_ORF6_C_TERMINAL_OPERATOR_MUTAGENESIS",
+      "source_url_or_citation": "UniProt P0DTC6 mutagenesis annotations and Addetia et al. PMID 33849972",
+      "supports_functional_consequence_ids": [
+        "V48_PERT_011"
+      ],
+      "supports_host_interaction_ids": [
+        "V48_PERT_001",
+        "V48_PERT_010",
+        "V48_PERT_011"
+      ],
+      "supports_operator_buckets": [
+        "C_terminal_host_interaction_operator",
+        "short_linear_motif_or_MoRF_operator",
+        "no_globular_single_fold_operator"
+      ],
+      "supports_perturbation_ids": [
+        "V48_PERT_001",
+        "V48_PERT_002",
+        "V48_PERT_010",
+        "V48_PERT_011"
+      ],
+      "used_before_prediction": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "ORF6 hijacks NUP98/RAE1 context to block STAT nuclear import and antagonize IFN signaling.",
+      "internal_runtime_source": false,
+      "opened_after_prediction_hash": "67450b8b2b6346bc7487d6db1d29c12ea73d6f40e702563c4b801da00a8484b2",
+      "opened_timestamp": "2026-06-11T17:45:41.442692+00:00",
+      "source_class": "RAE1_NUP98_binding_support",
+      "source_id": "HOLDOUT_ORF6_RAE1_NUP98_BINDING",
+      "source_url_or_citation": "https://europepmc.org/article/MED/33097660",
+      "supports_functional_consequence_ids": [
+        "V48_PERT_005",
+        "V48_PERT_011"
+      ],
+      "supports_host_interaction_ids": [
+        "V48_PERT_001",
+        "V48_PERT_002",
+        "V48_PERT_009",
+        "V48_PERT_011"
+      ],
+      "supports_operator_buckets": [
+        "RAE1_NUP98_binding_context_operator",
+        "C_terminal_host_interaction_operator",
+        "nuclear_transport_disruption_operator"
+      ],
+      "supports_perturbation_ids": [
+        "V48_PERT_001",
+        "V48_PERT_002",
+        "V48_PERT_004",
+        "V48_PERT_009",
+        "V48_PERT_011"
+      ],
+      "used_before_prediction": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "ORF6 disrupts bidirectional nucleocytoplasmic transport through Rae1/Nup98 interactions.",
+      "internal_runtime_source": false,
+      "opened_after_prediction_hash": "67450b8b2b6346bc7487d6db1d29c12ea73d6f40e702563c4b801da00a8484b2",
+      "opened_timestamp": "2026-06-11T17:45:41.442692+00:00",
+      "source_class": "nuclear_transport_disruption_support",
+      "source_id": "HOLDOUT_ORF6_NUCLEAR_TRANSPORT_DISRUPTION",
+      "source_url_or_citation": "https://europepmc.org/article/MED/33849972",
+      "supports_functional_consequence_ids": [
+        "V48_PERT_004",
+        "V48_PERT_011"
+      ],
+      "supports_host_interaction_ids": [
+        "V48_PERT_009",
+        "V48_PERT_011"
+      ],
+      "supports_operator_buckets": [
+        "nuclear_transport_disruption_operator",
+        "RAE1_NUP98_binding_context_operator"
+      ],
+      "supports_perturbation_ids": [
+        "V48_PERT_004",
+        "V48_PERT_009",
+        "V48_PERT_011"
+      ],
+      "used_before_prediction": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "ORF6 IFN antagonism maps to blocked IRF/STAT nuclear translocation and is not atomic-fold proof.",
+      "internal_runtime_source": false,
+      "opened_after_prediction_hash": "67450b8b2b6346bc7487d6db1d29c12ea73d6f40e702563c4b801da00a8484b2",
+      "opened_timestamp": "2026-06-11T17:45:41.442692+00:00",
+      "source_class": "interferon_antagonism_support",
+      "source_id": "HOLDOUT_ORF6_IFN_ANTAGONISM_FUNCTIONAL_CONTEXT",
+      "source_url_or_citation": "https://europepmc.org/article/MED/32979938 and https://europepmc.org/article/MED/33097660",
+      "supports_functional_consequence_ids": [
+        "V48_PERT_005",
+        "V48_PERT_011"
+      ],
+      "supports_host_interaction_ids": [
+        "V48_PERT_011"
+      ],
+      "supports_operator_buckets": [
+        "interferon_antagonism_context_operator",
+        "nuclear_transport_disruption_operator"
+      ],
+      "supports_perturbation_ids": [
+        "V48_PERT_005",
+        "V48_PERT_011"
+      ],
+      "used_before_prediction": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "ORF6 localization can be experimentally decoupled from IFN antagonism and should remain context, not channel grammar.",
+      "internal_runtime_source": false,
+      "opened_after_prediction_hash": "67450b8b2b6346bc7487d6db1d29c12ea73d6f40e702563c4b801da00a8484b2",
+      "opened_timestamp": "2026-06-11T17:45:41.442692+00:00",
+      "source_class": "localization_context_support",
+      "source_id": "HOLDOUT_ORF6_LOCALIZATION_CONTEXT",
+      "source_url_or_citation": "https://europepmc.org/article/MED/35187564",
+      "supports_functional_consequence_ids": [
+        "V48_PERT_005",
+        "V48_PERT_012"
+      ],
+      "supports_host_interaction_ids": [],
+      "supports_operator_buckets": [
+        "localization_context_operator"
+      ],
+      "supports_perturbation_ids": [
+        "V48_PERT_012"
+      ],
+      "used_before_prediction": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "ORF6 requires short-region host-hijacking grammar and rejects generic viral or compact-fold explanations.",
+      "internal_runtime_source": false,
+      "opened_after_prediction_hash": "67450b8b2b6346bc7487d6db1d29c12ea73d6f40e702563c4b801da00a8484b2",
+      "opened_timestamp": "2026-06-11T17:45:41.442692+00:00",
+      "source_class": "forbidden_grammar_rejection_support",
+      "source_id": "HOLDOUT_ORF6_FORBIDDEN_GRAMMAR_REJECTION",
+      "source_url_or_citation": "Post-seal controls against generic viral, globular, membrane-channel, IDP-condensate, and metamorphic grammars",
+      "supports_functional_consequence_ids": [],
+      "supports_host_interaction_ids": [],
+      "supports_operator_buckets": [
+        "no_globular_single_fold_operator",
+        "short_linear_motif_or_MoRF_operator",
+        "disorder_to_interface_operator"
+      ],
+      "supports_perturbation_ids": [
+        "V48_PERT_003",
+        "V48_PERT_006",
+        "V48_PERT_007",
+        "V48_PERT_008"
+      ],
+      "used_before_prediction": false
+    }
+  ],
+  "kind": "V48_SARS2_ORF6_POSTSEAL_HOLDOUT_MANIFEST_v0",
+  "opened_after_prediction_hash": "67450b8b2b6346bc7487d6db1d29c12ea73d6f40e702563c4b801da00a8484b2",
+  "target_id": "V48_SARS2_ORF6"
+}

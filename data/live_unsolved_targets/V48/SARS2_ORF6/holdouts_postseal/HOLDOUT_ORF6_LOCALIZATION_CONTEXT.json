@@ -1,0 +1,22 @@
+{
+  "coordinate_derived": false,
+  "evidence_statement": "ORF6 localization can be experimentally decoupled from IFN antagonism and should remain context, not channel grammar.",
+  "internal_runtime_source": false,
+  "opened_after_prediction_hash": "67450b8b2b6346bc7487d6db1d29c12ea73d6f40e702563c4b801da00a8484b2",
+  "opened_timestamp": "2026-06-11T17:45:41.442692+00:00",
+  "source_class": "localization_context_support",
+  "source_id": "HOLDOUT_ORF6_LOCALIZATION_CONTEXT",
+  "source_url_or_citation": "https://europepmc.org/article/MED/35187564",
+  "supports_functional_consequence_ids": [
+    "V48_PERT_005",
+    "V48_PERT_012"
+  ],
+  "supports_host_interaction_ids": [],
+  "supports_operator_buckets": [
+    "localization_context_operator"
+  ],
+  "supports_perturbation_ids": [
+    "V48_PERT_012"
+  ],
+  "used_before_prediction": false
+}

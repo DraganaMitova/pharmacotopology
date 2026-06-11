@@ -1,0 +1,454 @@
+{
+  "answer_key_available": false,
+  "coordinates_available_before_sealing": false,
+  "holdout_sources_available": false,
+  "kind": "V48_SARS2_ORF6_PREDICTION_INPUTS_MANIFEST_v0",
+  "prediction_sources": [
+    {
+      "accession": "P0DTC6",
+      "allowed_use": "prediction_input_before_sealing",
+      "answer_key_source": false,
+      "coordinate_derived": false,
+      "coordinate_truth_used_before_prediction": false,
+      "features_excluded_before_prediction": [
+        "UniProt PDB cross-references",
+        "PDB/mmCIF coordinate files",
+        "coordinate-derived contacts",
+        "native contact maps",
+        "AlphaFold/ESMFold/RoseTTAFold coordinates"
+      ],
+      "holdout_source": false,
+      "internal_runtime_source": false,
+      "native_metrics_used_for_selection": false,
+      "noncoordinate_annotations_used": [
+        "ORF6 disrupts bidirectional nucleocytoplasmic transport.",
+        "ORF6 interacts via its C-terminus with host RAE1 in the NUP98-RAE1 complex.",
+        "ORF6 prevents STAT1 nuclear translocation and antagonizes interferon signaling.",
+        "ORF6 localizes to host ER/Golgi membrane contexts and virus-induced vesicular structures.",
+        "C-terminal mutagenesis affects NUP98-RAE1 interaction, nuclear transport blockade, and IFN antagonistic function."
+      ],
+      "retrieved_or_checked": "2026-06-11",
+      "sequence_region_scope": {
+        "c_terminal_region": "38-61",
+        "c_terminal_sequence": "KNLSKSLTENKYSQLDEEQPMEID",
+        "full_length": 61,
+        "protein": "SARS-CoV-2 ORF6 / accessory protein 6 / ns6",
+        "sequence": "MFHLVDFQVTIAEILLIIMRTFKVSIWNLDYIINLIIKNLSKSLTENKYSQLDEEQPMEID"
+      },
+      "source_id": "UNIPROT_P0DTC6_SEQUENCE_FUNCTION_NONCOORDINATE",
+      "source_type": "UniProtKB reviewed sequence, function, interaction, localization, and mutagenesis text with coordinate records excluded",
+      "source_url_or_citation": "https://rest.uniprot.org/uniprotkb/P0DTC6.json",
+      "uniprot_id": "NS6_SARS2"
+    },
+    {
+      "allowed_use": "prediction_input_before_sealing",
+      "answer_key_source": false,
+      "coordinate_derived": false,
+      "coordinate_material_blocked": [
+        "PDB IDs and peptide-complex coordinates are not opened before sealing",
+        "no contacts, distances, or structural templates are imported"
+      ],
+      "coordinate_truth_used_before_prediction": false,
+      "holdout_source": false,
+      "internal_runtime_source": false,
+      "labels_used": [
+        "C-terminal ORF6 host interaction",
+        "RAE1/NUP98 nuclear pore complex context",
+        "nuclear import/export disruption",
+        "STAT/IRF/interferon antagonism as functional consequence",
+        "short-region host-hijacking interface"
+      ],
+      "native_metrics_used_for_selection": false,
+      "source_id": "ORF6_RAE1_NUP98_HOST_HIJACKING_TEXT_NONCOORDINATE",
+      "source_type": "literature-derived host-interaction and nuclear-transport annotations without coordinates",
+      "source_url_or_citation": "Miorin et al. PNAS 2020 PMID 33097660; Addetia et al. mBio 2021 PMID 33849972; Kato et al. BBRC 2021 PMID 33360543"
+    },
+    {
+      "allowed_use": "prediction_input_before_sealing",
+      "answer_key_source": false,
+      "coordinate_derived": false,
+      "coordinate_truth_used_before_prediction": false,
+      "holdout_source": false,
+      "internal_runtime_source": false,
+      "labels_used": [
+        "host ER/Golgi membrane localization context",
+        "localization can be decoupled from IFN antagonism",
+        "localization is context, not membrane-channel grammar"
+      ],
+      "native_metrics_used_for_selection": false,
+      "source_id": "ORF6_LOCALIZATION_MEMBRANE_CONTEXT_TEXT_NONCOORDINATE",
+      "source_type": "literature-derived localization and membrane-context annotation without coordinate models",
+      "source_url_or_citation": "Wong et al. J Cell Sci 2022 PMID 35187564 plus UniProt P0DTC6 localization text"
+    },
+    {
+      "allowed_use": "prediction_input_before_sealing",
+      "answer_key_source": false,
+      "composition": {
+        "C_terminal_38_61": {
+          "acidic_fraction": 0.25,
+          "acidic_positions": [
+            {
+              "position": 46,
+              "residue": "E"
+            },
+            {
+              "position": 53,
+              "residue": "D"
+            },
+            {
+              "position": 54,
+              "residue": "E"
+            },
+            {
+              "position": 55,
+              "residue": "E"
+            },
+            {
+              "position": 59,
+              "residue": "E"
+            },
+            {
+              "position": 61,
+              "residue": "D"
+            }
+          ],
+          "aromatic_positions": [
+            {
+              "position": 49,
+              "residue": "Y"
+            }
+          ],
+          "charged_fraction": 0.375,
+          "counts": {
+            "D": 2,
+            "E": 4,
+            "I": 1,
+            "K": 3,
+            "L": 3,
+            "M": 1,
+            "N": 2,
+            "P": 1,
+            "Q": 2,
+            "S": 3,
+            "T": 1,
+            "Y": 1
+          },
+          "hydrophobic_fraction": 0.25,
+          "length": 24,
+          "methionine_positions": [
+            {
+              "position": 58,
+              "residue": "M"
+            }
+          ],
+          "polar_fraction": 0.3333333333333333
+        },
+        "full_length": {
+          "acidic_fraction": 0.14754098360655737,
+          "acidic_positions": [
+            {
+              "position": 6,
+              "residue": "D"
+            },
+            {
+              "position": 13,
+              "residue": "E"
+            },
+            {
+              "position": 30,
+              "residue": "D"
+            },
+            {
+              "position": 46,
+              "residue": "E"
+            },
+            {
+              "position": 53,
+              "residue": "D"
+            },
+            {
+              "position": 54,
+              "residue": "E"
+            },
+            {
+              "position": 55,
+              "residue": "E"
+            },
+            {
+              "position": 59,
+              "residue": "E"
+            },
+            {
+              "position": 61,
+              "residue": "D"
+            }
+          ],
+          "aromatic_positions": [
+            {
+              "position": 2,
+              "residue": "F"
+            },
+            {
+              "position": 7,
+              "residue": "F"
+            },
+            {
+              "position": 22,
+              "residue": "F"
+            },
+            {
+              "position": 27,
+              "residue": "W"
+            },
+            {
+              "position": 31,
+              "residue": "Y"
+            },
+            {
+              "position": 49,
+              "residue": "Y"
+            }
+          ],
+          "charged_fraction": 0.2459016393442623,
+          "counts": {
+            "A": 1,
+            "D": 4,
+            "E": 5,
+            "F": 3,
+            "H": 1,
+            "I": 10,
+            "K": 4,
+            "L": 8,
+            "M": 3,
+            "N": 4,
+            "P": 1,
+            "Q": 3,
+            "R": 1,
+            "S": 4,
+            "T": 3,
+            "V": 3,
+            "W": 1,
+            "Y": 2
+          },
+          "hydrophobic_fraction": 0.5081967213114754,
+          "length": 61,
+          "methionine_positions": [
+            {
+              "position": 1,
+              "residue": "M"
+            },
+            {
+              "position": 19,
+              "residue": "M"
+            },
+            {
+              "position": 58,
+              "residue": "M"
+            }
+          ],
+          "polar_fraction": 0.22950819672131148
+        },
+        "minimal_C_terminal_50_61": {
+          "acidic_fraction": 0.4166666666666667,
+          "acidic_positions": [
+            {
+              "position": 53,
+              "residue": "D"
+            },
+            {
+              "position": 54,
+              "residue": "E"
+            },
+            {
+              "position": 55,
+              "residue": "E"
+            },
+            {
+              "position": 59,
+              "residue": "E"
+            },
+            {
+              "position": 61,
+              "residue": "D"
+            }
+          ],
+          "aromatic_positions": [],
+          "charged_fraction": 0.4166666666666667,
+          "counts": {
+            "D": 2,
+            "E": 3,
+            "I": 1,
+            "L": 1,
+            "M": 1,
+            "P": 1,
+            "Q": 2,
+            "S": 1
+          },
+          "hydrophobic_fraction": 0.25,
+          "length": 12,
+          "methionine_positions": [
+            {
+              "position": 58,
+              "residue": "M"
+            }
+          ],
+          "polar_fraction": 0.25
+        }
+      },
+      "coordinate_derived": false,
+      "coordinate_truth_used_before_prediction": false,
+      "derived_from_source_ids": [
+        "UNIPROT_P0DTC6_SEQUENCE_FUNCTION_NONCOORDINATE"
+      ],
+      "holdout_source": false,
+      "internal_runtime_source": false,
+      "native_metrics_used_for_selection": false,
+      "region_windows": [
+        {
+          "acidic_fraction": 0.11764705882352941,
+          "acidic_positions": [
+            {
+              "position": 6,
+              "residue": "D"
+            },
+            {
+              "position": 13,
+              "residue": "E"
+            }
+          ],
+          "charged_fraction": 0.17647058823529413,
+          "hydrophobic_fraction": 0.7058823529411765,
+          "label": "N_terminal_hydrophobic_region",
+          "length": 17,
+          "methionine_positions": [
+            {
+              "position": 1,
+              "residue": "M"
+            }
+          ],
+          "sequence": "MFHLVDFQVTIAEILLI",
+          "sequence_pattern_note": "non-coordinate ORF6 short-region operator window",
+          "span": "1-17"
+        },
+        {
+          "acidic_fraction": 0.0,
+          "acidic_positions": [],
+          "charged_fraction": 0.2857142857142857,
+          "hydrophobic_fraction": 0.5714285714285714,
+          "label": "Golgi_localization_region",
+          "length": 7,
+          "methionine_positions": [
+            {
+              "position": 19,
+              "residue": "M"
+            }
+          ],
+          "sequence": "IMRTFKV",
+          "sequence_pattern_note": "non-coordinate ORF6 short-region operator window",
+          "span": "18-24"
+        },
+        {
+          "acidic_fraction": 0.07692307692307693,
+          "acidic_positions": [
+            {
+              "position": 30,
+              "residue": "D"
+            }
+          ],
+          "charged_fraction": 0.07692307692307693,
+          "hydrophobic_fraction": 0.6923076923076923,
+          "label": "central_linker_region",
+          "length": 13,
+          "methionine_positions": [],
+          "sequence": "SIWNLDYIINLII",
+          "sequence_pattern_note": "non-coordinate ORF6 short-region operator window",
+          "span": "25-37"
+        },
+        {
+          "acidic_fraction": 0.25,
+          "acidic_positions": [
+            {
+              "position": 46,
+              "residue": "E"
+            },
+            {
+              "position": 53,
+              "residue": "D"
+            },
+            {
+              "position": 54,
+              "residue": "E"
+            },
+            {
+              "position": 55,
+              "residue": "E"
+            },
+            {
+              "position": 59,
+              "residue": "E"
+            },
+            {
+              "position": 61,
+              "residue": "D"
+            }
+          ],
+          "charged_fraction": 0.375,
+          "hydrophobic_fraction": 0.25,
+          "label": "C_terminal_host_hijacking_region",
+          "length": 24,
+          "methionine_positions": [
+            {
+              "position": 58,
+              "residue": "M"
+            }
+          ],
+          "sequence": "KNLSKSLTENKYSQLDEEQPMEID",
+          "sequence_pattern_note": "non-coordinate ORF6 short-region operator window",
+          "span": "38-61"
+        },
+        {
+          "acidic_fraction": 0.4166666666666667,
+          "acidic_positions": [
+            {
+              "position": 53,
+              "residue": "D"
+            },
+            {
+              "position": 54,
+              "residue": "E"
+            },
+            {
+              "position": 55,
+              "residue": "E"
+            },
+            {
+              "position": 59,
+              "residue": "E"
+            },
+            {
+              "position": 61,
+              "residue": "D"
+            }
+          ],
+          "charged_fraction": 0.4166666666666667,
+          "hydrophobic_fraction": 0.25,
+          "label": "minimal_C_terminal_RAE1_NUP98_motif_region",
+          "length": 12,
+          "methionine_positions": [
+            {
+              "position": 58,
+              "residue": "M"
+            }
+          ],
+          "sequence": "SQLDEEQPMEID",
+          "sequence_pattern_note": "non-coordinate ORF6 short-region operator window",
+          "span": "50-61"
+        }
+      ],
+      "source_id": "ORF6_SHORT_REGION_SEQUENCE_FEATURES_DERIVED_FROM_ALLOWED_INPUTS",
+      "source_type": "derived non-coordinate sequence, C-terminal motif, and composition features",
+      "source_url_or_citation": "derived from UniProt P0DTC6 sequence and allowed text annotations"
+    }
+  ],
+  "target_id": "V48_SARS2_ORF6"
+}
