@@ -1,3 +1,11 @@
+# Current clean-start status — V32 to V33
+
+This clean package should be started from `START_HERE_V32_TO_V33.md`.
+
+Current honest state: V32 clean-abstains until real external KcsA/XCL1 constraints are imported. No V33, no MD, and no folding claim are allowed yet. Older sections below are historical project notes.
+
+---
+
 # Protein Folding External Coupling Trace Loop
 
 This orphan branch is a clean protein-folding workspace. It transfers only the
