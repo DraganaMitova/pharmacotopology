@@ -1,0 +1,63 @@
+{
+  "blocked_prediction_inputs": [
+    {
+      "blocked_input": "PDB coordinates or mmCIF coordinates before sealing",
+      "reason": "coordinates are post-hoc holdout only"
+    },
+    {
+      "blocked_input": "AlphaFold/ESMFold/RoseTTAFold coordinates before sealing",
+      "reason": "predicted coordinates cannot be prediction evidence"
+    },
+    {
+      "blocked_input": "native contact maps or coordinate-derived contacts",
+      "reason": "would leak structure truth"
+    },
+    {
+      "blocked_input": "first_contact_clean_pharmacotopology_layer_run files as biological evidence",
+      "reason": "runtime outputs are audit evidence only"
+    },
+    {
+      "blocked_input": "V33/V34 coordinate-derived KcsA CSVs",
+      "reason": "blocked coordinate-derived contacts"
+    },
+    {
+      "blocked_input": "V42 holdout files before prediction sealing",
+      "reason": "holdout must open only after sealed prediction hash"
+    },
+    {
+      "blocked_input": "answer key or expected class label",
+      "reason": "assignment must use prediction sources only"
+    }
+  ],
+  "panel_group": "weak_or_shallow_evolutionary_information",
+  "prediction_sources": [
+    {
+      "answer_key_source": false,
+      "coordinate_derived": false,
+      "coordinate_truth_used_before_prediction": false,
+      "evidence_statement": "Viral interferon inhibitory domain has limited family depth in this local panel.",
+      "feature_tags": [
+        "weak_evolutionary",
+        "low_confidence",
+        "contextual_binding"
+      ],
+      "holdout_source": false,
+      "internal_runtime_source": false,
+      "native_metrics_used_for_selection": false,
+      "region_hints": [
+        {
+          "evidence": "feature/function text",
+          "region_name": "interferon_inhibitory_domain",
+          "span": "annotated region"
+        }
+      ],
+      "source_date_or_version": "accessed_2026-06-11",
+      "source_id": "EBOLA_VP35_IID_ANNOTATION",
+      "source_type": "UniProt/literature-derived function annotations",
+      "source_url_or_citation": "Ebola_VP35_IID feature/function annotations"
+    }
+  ],
+  "sequence_status": "available",
+  "target_id": "TARGET_016",
+  "target_name": "Ebola_VP35_IID"
+}

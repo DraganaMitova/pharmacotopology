@@ -1,0 +1,29 @@
+{
+  "contradicts_prediction": false,
+  "expected_mechanism_class": "intrinsic_disorder_contextual_ensemble",
+  "holdout_opened_after_prediction_hash": "515dc2438443755b7ad00311aaa5d02d032d245144df81de7eae7ce9e8e17cac",
+  "holdout_opened_timestamp": "2026-06-11T16:22:31.480885+00:00",
+  "holdout_sources": [
+    {
+      "allowed_use": "post_hoc_scoring_only_after_prediction_hash",
+      "answer_key_source": false,
+      "coordinate_derived": false,
+      "internal_runtime_source": false,
+      "source_id": "TARGET_003_POST_SEAL_HOLDOUT",
+      "source_type": "post-seal independent annotation/literature/structure summary"
+    }
+  ],
+  "kind": "V42_POST_SEAL_HOLDOUT_VALIDATION_MANIFEST_v0",
+  "supported_low_resolution_structure_or_ensemble": "free disorder with context-bound ordering expected",
+  "supported_operator_regions": [
+    "acidic_C_terminal_tail",
+    "N_terminal_membrane_binding_region",
+    "membrane_induced_helix"
+  ],
+  "supported_perturbations": [
+    "remove_disorder_evidence",
+    "force_compact_single_fold"
+  ],
+  "target_id": "TARGET_003",
+  "target_name": "alpha_synuclein_SNCA"
+}

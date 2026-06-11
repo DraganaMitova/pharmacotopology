@@ -1,0 +1,48 @@
+{
+  "answer_key_source_count_for_prediction": 0,
+  "claim_allowed": false,
+  "coordinate_derived_source_count_for_prediction": 0,
+  "failed_checks": [],
+  "falsification_criteria": [
+    "independent holdout assigns a different mechanism class",
+    "operator regions lack independent support",
+    "predicted perturbations are unsupported or contradicted",
+    "low-resolution structural/ensemble consequence is contradicted"
+  ],
+  "folding_problem_solved": false,
+  "holdout_source_count_before_prediction": 0,
+  "internal_runtime_source_count_for_prediction": 0,
+  "kind": "V42_SEALED_DE_NOVO_MECHANISM_PREDICTION_v0",
+  "low_resolution_structure_or_ensemble_prediction": "clean abstain",
+  "mechanism_class": "weak_evolutionary_information_abstain_or_low_confidence",
+  "mechanism_confidence": "low",
+  "operator_constraints": [
+    {
+      "constraint_type": "clean_abstain_constraint",
+      "expected_effect": "insufficient or weak evidence should not become hard grammar"
+    }
+  ],
+  "operator_regions": [
+    {
+      "confidence": "low",
+      "evidence_source_id": "EBOLA_VP35_IID_ANNOTATION",
+      "region_name": "interferon_inhibitory_domain",
+      "span": "annotated region"
+    }
+  ],
+  "perturbation_predictions": [
+    {
+      "perturbation": "add_only_generic_annotation",
+      "predicted_effect": "remain_low_confidence"
+    }
+  ],
+  "prediction_hash": "91c3c5218bcdf154bae0323b4469fde699e94d4e8a6143160f295409c09eef6f",
+  "prediction_source_ids": [
+    "EBOLA_VP35_IID_ANNOTATION"
+  ],
+  "prediction_timestamp": "2026-06-11T16:22:31.477177+00:00",
+  "sealed_before_holdout": true,
+  "target_id": "TARGET_016",
+  "target_name": "Ebola_VP35_IID",
+  "target_name_only_assignment_blocked": false
+}

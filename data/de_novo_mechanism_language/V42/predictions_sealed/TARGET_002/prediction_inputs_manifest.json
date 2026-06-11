@@ -1,0 +1,65 @@
+{
+  "answer_key_available": false,
+  "holdout_sources_available": false,
+  "kind": "V42_PREDICTION_INPUTS_MANIFEST_v0",
+  "prediction_sources": [
+    {
+      "answer_key_source": false,
+      "coordinate_derived": false,
+      "coordinate_truth_used_before_prediction": false,
+      "evidence_statement": "XCL1 has separable Ltn10/Ltn40 state-function evidence.",
+      "feature_tags": [
+        "metamorphic",
+        "two_state",
+        "state_separated",
+        "function_switch"
+      ],
+      "holdout_source": false,
+      "internal_runtime_source": false,
+      "native_metrics_used_for_selection": false,
+      "region_hints": [
+        {
+          "evidence": "state-function text",
+          "region_name": "state_A_chemokine_like",
+          "span": "N-terminal chemokine fold context"
+        },
+        {
+          "evidence": "state-function text",
+          "region_name": "state_B_beta_sandwich_dimer",
+          "span": "alternate state context"
+        }
+      ],
+      "source_date_or_version": "accessed_2026-06-11",
+      "source_id": "T002_LITERATURE",
+      "source_type": "literature-derived state/function annotations",
+      "source_url_or_citation": "Tuinstra RL et al. PNAS 2008; Alderson TR et al. ACS Chem Biol 2015"
+    },
+    {
+      "answer_key_source": false,
+      "coordinate_derived": false,
+      "coordinate_truth_used_before_prediction": false,
+      "evidence_statement": "Review-level evidence supports metamorphic fold switching.",
+      "feature_tags": [
+        "metamorphic",
+        "two_state",
+        "state_separated"
+      ],
+      "holdout_source": false,
+      "internal_runtime_source": false,
+      "native_metrics_used_for_selection": false,
+      "region_hints": [
+        {
+          "evidence": "review text",
+          "region_name": "state_switch_operator",
+          "span": "global state separation"
+        }
+      ],
+      "source_date_or_version": "accessed_2026-06-11",
+      "source_id": "T002_REVIEW",
+      "source_type": "literature-derived state/function annotations",
+      "source_url_or_citation": "Dishman AF and Volkman BF. Curr Opin Struct Biol. 2018"
+    }
+  ],
+  "target_id": "TARGET_002",
+  "target_name": "XCL1_lymphotactin"
+}

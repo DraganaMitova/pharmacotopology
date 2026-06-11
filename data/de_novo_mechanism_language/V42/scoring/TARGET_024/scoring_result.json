@@ -1,0 +1,15 @@
+{
+  "expected_mechanism_class": "metamorphic_or_multistate_switch",
+  "failure_reason": null,
+  "low_resolution_supported": true,
+  "mechanism_class_correct": true,
+  "operator_region_count": 2,
+  "operator_region_supported_count": 2,
+  "perturbation_count": 3,
+  "perturbation_supported_count": 3,
+  "predicted_mechanism_class": "metamorphic_or_multistate_switch",
+  "sealed_prediction_hash": "003c8ff99cb9bf1ac4fc66036e51182316b0bdde156ccaabf01fe92c2cf14710",
+  "target_id": "TARGET_024",
+  "target_name": "calmodulin",
+  "validation_level": "supported"
+}

@@ -1,0 +1,15 @@
+{
+  "expected_mechanism_class": "membrane_pore_filter_or_transport",
+  "failure_reason": null,
+  "low_resolution_supported": true,
+  "mechanism_class_correct": true,
+  "operator_region_count": 2,
+  "operator_region_supported_count": 2,
+  "perturbation_count": 2,
+  "perturbation_supported_count": 2,
+  "predicted_mechanism_class": "membrane_pore_filter_or_transport",
+  "sealed_prediction_hash": "6352ee789085853438e2f52744b6250cbdbf6326be54c390d481187475614925",
+  "target_id": "TARGET_007",
+  "target_name": "LacY_lactose_permease",
+  "validation_level": "supported"
+}

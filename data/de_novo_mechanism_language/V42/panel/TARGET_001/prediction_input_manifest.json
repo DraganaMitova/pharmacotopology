@@ -1,0 +1,94 @@
+{
+  "blocked_prediction_inputs": [
+    {
+      "blocked_input": "PDB coordinates or mmCIF coordinates before sealing",
+      "reason": "coordinates are post-hoc holdout only"
+    },
+    {
+      "blocked_input": "AlphaFold/ESMFold/RoseTTAFold coordinates before sealing",
+      "reason": "predicted coordinates cannot be prediction evidence"
+    },
+    {
+      "blocked_input": "native contact maps or coordinate-derived contacts",
+      "reason": "would leak structure truth"
+    },
+    {
+      "blocked_input": "first_contact_clean_pharmacotopology_layer_run files as biological evidence",
+      "reason": "runtime outputs are audit evidence only"
+    },
+    {
+      "blocked_input": "V33/V34 coordinate-derived KcsA CSVs",
+      "reason": "blocked coordinate-derived contacts"
+    },
+    {
+      "blocked_input": "V42 holdout files before prediction sealing",
+      "reason": "holdout must open only after sealed prediction hash"
+    },
+    {
+      "blocked_input": "answer key or expected class label",
+      "reason": "assignment must use prediction sources only"
+    }
+  ],
+  "panel_group": "known_anchor",
+  "prediction_sources": [
+    {
+      "answer_key_source": false,
+      "coordinate_derived": false,
+      "coordinate_truth_used_before_prediction": false,
+      "evidence_statement": "Potassium channel with membrane topology and K+ selectivity annotations.",
+      "feature_tags": [
+        "membrane",
+        "filter_signature",
+        "ion_selectivity",
+        "oligomer"
+      ],
+      "holdout_source": false,
+      "internal_runtime_source": false,
+      "native_metrics_used_for_selection": false,
+      "region_hints": [
+        {
+          "evidence": "family/function text",
+          "region_name": "selectivity_filter_signature",
+          "span": "TVGYG motif"
+        },
+        {
+          "evidence": "topology text",
+          "region_name": "transmembrane_pore",
+          "span": "TM helices"
+        }
+      ],
+      "source_date_or_version": "accessed_2026-06-11",
+      "source_id": "T001_UNIPROT",
+      "source_type": "UniProt feature/function text",
+      "source_url_or_citation": "UniProtKB P0A334"
+    },
+    {
+      "answer_key_source": false,
+      "coordinate_derived": false,
+      "coordinate_truth_used_before_prediction": false,
+      "evidence_statement": "Potassium-channel family signature supports pore/filter grammar.",
+      "feature_tags": [
+        "membrane",
+        "filter_signature",
+        "ion_selectivity"
+      ],
+      "holdout_source": false,
+      "internal_runtime_source": false,
+      "native_metrics_used_for_selection": false,
+      "region_hints": [
+        {
+          "evidence": "InterPro/Pfam",
+          "region_name": "potassium_channel_signature",
+          "span": "family signature"
+        }
+      ],
+      "source_date_or_version": "accessed_2026-06-11",
+      "source_id": "T001_INTERPRO",
+      "source_type": "InterPro/Pfam family signatures",
+      "source_url_or_citation": "InterPro IPR013099 / Pfam PF07885"
+    }
+  ],
+  "sequence_status": "available",
+  "target_id": "TARGET_001",
+  "target_name": "KcsA"
+}

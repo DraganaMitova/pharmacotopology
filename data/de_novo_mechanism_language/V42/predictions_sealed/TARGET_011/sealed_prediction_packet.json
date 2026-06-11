@@ -1,0 +1,52 @@
+{
+  "answer_key_source_count_for_prediction": 0,
+  "claim_allowed": false,
+  "coordinate_derived_source_count_for_prediction": 0,
+  "failed_checks": [],
+  "falsification_criteria": [
+    "independent holdout assigns a different mechanism class",
+    "operator regions lack independent support",
+    "predicted perturbations are unsupported or contradicted",
+    "low-resolution structural/ensemble consequence is contradicted"
+  ],
+  "folding_problem_solved": false,
+  "holdout_source_count_before_prediction": 0,
+  "internal_runtime_source_count_for_prediction": 0,
+  "kind": "V42_SEALED_DE_NOVO_MECHANISM_PREDICTION_v0",
+  "low_resolution_structure_or_ensemble_prediction": "compact single folded domain expected",
+  "mechanism_class": "compact_single_fold_core_closure",
+  "mechanism_confidence": "high",
+  "operator_constraints": [
+    {
+      "constraint_type": "predicted_long_range_closure_region",
+      "expected_effect": "core/operator disruption should weaken compact closure"
+    }
+  ],
+  "operator_regions": [
+    {
+      "confidence": "high",
+      "evidence_source_id": "MYOGLOBIN_MB_UNIPROT",
+      "region_name": "heme_binding_globin_core",
+      "span": "domain core"
+    }
+  ],
+  "perturbation_predictions": [
+    {
+      "perturbation": "disrupt_core_closure_region",
+      "predicted_effect": "weaken"
+    },
+    {
+      "perturbation": "remove_functional_core_annotation",
+      "predicted_effect": "weaken"
+    }
+  ],
+  "prediction_hash": "f350f47be6599ff378b210c50d06f0e733cca8dd6af841ec9a3e294cc75640d1",
+  "prediction_source_ids": [
+    "MYOGLOBIN_MB_UNIPROT"
+  ],
+  "prediction_timestamp": "2026-06-11T16:22:31.475175+00:00",
+  "sealed_before_holdout": true,
+  "target_id": "TARGET_011",
+  "target_name": "myoglobin_Mb",
+  "target_name_only_assignment_blocked": false
+}

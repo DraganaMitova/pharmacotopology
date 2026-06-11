@@ -1,0 +1,73 @@
+{
+  "answer_key_source_count_for_prediction": 0,
+  "claim_allowed": false,
+  "coordinate_derived_source_count_for_prediction": 0,
+  "failed_checks": [],
+  "falsification_criteria": [
+    "independent holdout assigns a different mechanism class",
+    "operator regions lack independent support",
+    "predicted perturbations are unsupported or contradicted",
+    "low-resolution structural/ensemble consequence is contradicted"
+  ],
+  "folding_problem_solved": false,
+  "holdout_source_count_before_prediction": 0,
+  "internal_runtime_source_count_for_prediction": 0,
+  "kind": "V42_SEALED_DE_NOVO_MECHANISM_PREDICTION_v0",
+  "low_resolution_structure_or_ensemble_prediction": "two-state or multi-state ensemble expected",
+  "mechanism_class": "metamorphic_or_multistate_switch",
+  "mechanism_confidence": "high",
+  "operator_constraints": [
+    {
+      "constraint_type": "predicted_state_specific_region",
+      "expected_effect": "state deletion or pooling should fail"
+    },
+    {
+      "constraint_type": "predicted_allosteric_or_switch_region",
+      "expected_effect": "state balance perturbation should shift mechanism"
+    }
+  ],
+  "operator_regions": [
+    {
+      "confidence": "high",
+      "evidence_source_id": "T002_LITERATURE",
+      "region_name": "state_A_chemokine_like",
+      "span": "N-terminal chemokine fold context"
+    },
+    {
+      "confidence": "high",
+      "evidence_source_id": "T002_LITERATURE",
+      "region_name": "state_B_beta_sandwich_dimer",
+      "span": "alternate state context"
+    },
+    {
+      "confidence": "high",
+      "evidence_source_id": "T002_REVIEW",
+      "region_name": "state_switch_operator",
+      "span": "global state separation"
+    }
+  ],
+  "perturbation_predictions": [
+    {
+      "perturbation": "delete_one_state",
+      "predicted_effect": "break"
+    },
+    {
+      "perturbation": "force_mixed_state_pooling",
+      "predicted_effect": "block"
+    },
+    {
+      "perturbation": "shift_state_balance",
+      "predicted_effect": "shift"
+    }
+  ],
+  "prediction_hash": "32e432e295fb4d3ec72f90364befe664ef7211fae319cd0f15667542a988859f",
+  "prediction_source_ids": [
+    "T002_LITERATURE",
+    "T002_REVIEW"
+  ],
+  "prediction_timestamp": "2026-06-11T16:22:31.470087+00:00",
+  "sealed_before_holdout": true,
+  "target_id": "TARGET_002",
+  "target_name": "XCL1_lymphotactin",
+  "target_name_only_assignment_blocked": false
+}

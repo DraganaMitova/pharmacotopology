@@ -1,0 +1,27 @@
+{
+  "contradicts_prediction": false,
+  "expected_mechanism_class": "intrinsic_disorder_contextual_ensemble",
+  "holdout_opened_after_prediction_hash": "49b9757ae648839ee31337906cb11cc9820adc31a865a1b74174688d144571ad",
+  "holdout_opened_timestamp": "2026-06-11T16:22:31.484011+00:00",
+  "holdout_sources": [
+    {
+      "allowed_use": "post_hoc_scoring_only_after_prediction_hash",
+      "answer_key_source": false,
+      "coordinate_derived": false,
+      "internal_runtime_source": false,
+      "source_id": "TARGET_019_POST_SEAL_HOLDOUT",
+      "source_type": "post-seal independent annotation/literature/structure summary"
+    }
+  ],
+  "kind": "V42_POST_SEAL_HOLDOUT_VALIDATION_MANIFEST_v0",
+  "supported_low_resolution_structure_or_ensemble": "free disorder with context-bound ordering expected",
+  "supported_operator_regions": [
+    "C_terminal_low_complexity_region"
+  ],
+  "supported_perturbations": [
+    "remove_disorder_evidence",
+    "force_compact_single_fold"
+  ],
+  "target_id": "TARGET_019",
+  "target_name": "TDP43_C_terminal_LCD"
+}

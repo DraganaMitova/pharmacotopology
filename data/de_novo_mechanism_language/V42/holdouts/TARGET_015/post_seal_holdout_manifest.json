@@ -1,0 +1,26 @@
+{
+  "contradicts_prediction": false,
+  "expected_mechanism_class": "weak_evolutionary_information_abstain_or_low_confidence",
+  "holdout_opened_after_prediction_hash": "1f2996437d2eeb5f66f865608c7018ad961aa720e4faf5f8d72fe31331b53be8",
+  "holdout_opened_timestamp": "2026-06-11T16:22:31.483248+00:00",
+  "holdout_sources": [
+    {
+      "allowed_use": "post_hoc_scoring_only_after_prediction_hash",
+      "answer_key_source": false,
+      "coordinate_derived": false,
+      "internal_runtime_source": false,
+      "source_id": "TARGET_015_POST_SEAL_HOLDOUT",
+      "source_type": "post-seal independent annotation/literature/structure summary"
+    }
+  ],
+  "kind": "V42_POST_SEAL_HOLDOUT_VALIDATION_MANIFEST_v0",
+  "supported_low_resolution_structure_or_ensemble": "clean abstain",
+  "supported_operator_regions": [
+    "transactivation_domain"
+  ],
+  "supported_perturbations": [
+    "add_only_generic_annotation"
+  ],
+  "target_id": "TARGET_015",
+  "target_name": "p53_TAD"
+}

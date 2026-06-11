@@ -1,0 +1,15 @@
+{
+  "expected_mechanism_class": "membrane_pore_filter_or_transport",
+  "failure_reason": null,
+  "low_resolution_supported": true,
+  "mechanism_class_correct": true,
+  "operator_region_count": 3,
+  "operator_region_supported_count": 3,
+  "perturbation_count": 2,
+  "perturbation_supported_count": 2,
+  "predicted_mechanism_class": "membrane_pore_filter_or_transport",
+  "sealed_prediction_hash": "918280c8d6772fd5471e456abefe538e4b6e063cabe45b81c2f4133ed9e2e401",
+  "target_id": "TARGET_001",
+  "target_name": "KcsA",
+  "validation_level": "supported"
+}

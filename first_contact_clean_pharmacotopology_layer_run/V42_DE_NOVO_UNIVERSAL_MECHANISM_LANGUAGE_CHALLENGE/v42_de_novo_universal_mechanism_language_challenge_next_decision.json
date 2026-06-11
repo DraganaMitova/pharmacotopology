@@ -1,0 +1,7 @@
+{
+  "claim_allowed": false,
+  "decision_status": "V42_DE_NOVO_MECHANISM_LANGUAGE_CHALLENGE_PASSED_CLAIM_DISABLED",
+  "folding_problem_solved": false,
+  "kind": "V42_DE_NOVO_UNIVERSAL_MECHANISM_LANGUAGE_CHALLENGE_NEXT_DECISION_v0",
+  "next_action": "review_V42_then_attack_V43_de_novo_low_resolution_region_or_contact_predictions"
+}

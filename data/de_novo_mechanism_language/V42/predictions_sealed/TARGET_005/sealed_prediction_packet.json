@@ -1,0 +1,65 @@
+{
+  "answer_key_source_count_for_prediction": 0,
+  "claim_allowed": false,
+  "coordinate_derived_source_count_for_prediction": 0,
+  "failed_checks": [],
+  "falsification_criteria": [
+    "independent holdout assigns a different mechanism class",
+    "operator regions lack independent support",
+    "predicted perturbations are unsupported or contradicted",
+    "low-resolution structural/ensemble consequence is contradicted"
+  ],
+  "folding_problem_solved": false,
+  "holdout_source_count_before_prediction": 0,
+  "internal_runtime_source_count_for_prediction": 0,
+  "kind": "V42_SEALED_DE_NOVO_MECHANISM_PREDICTION_v0",
+  "low_resolution_structure_or_ensemble_prediction": "membrane-spanning operator expected",
+  "mechanism_class": "membrane_pore_filter_or_transport",
+  "mechanism_confidence": "high",
+  "operator_constraints": [
+    {
+      "constraint_type": "predicted_membrane_operator_region",
+      "expected_effect": "transport context should require membrane topology evidence"
+    }
+  ],
+  "operator_regions": [
+    {
+      "confidence": "high",
+      "evidence_source_id": "BR_UNIPROT",
+      "region_name": "retinal_binding_operator",
+      "span": "lysine retinal region"
+    },
+    {
+      "confidence": "high",
+      "evidence_source_id": "BR_UNIPROT",
+      "region_name": "seven_tm_bundle",
+      "span": "multi-pass membrane region"
+    },
+    {
+      "confidence": "high",
+      "evidence_source_id": "BR_INTERPRO",
+      "region_name": "proton_pump_signature",
+      "span": "family signature"
+    }
+  ],
+  "perturbation_predictions": [
+    {
+      "perturbation": "remove_signature_or_transport_motif",
+      "predicted_effect": "break"
+    },
+    {
+      "perturbation": "remove_membrane_topology_context",
+      "predicted_effect": "weaken"
+    }
+  ],
+  "prediction_hash": "edc7c4e7aa07455d9366e83f2935424c8a97d0564a9764e6d51dd9b8cbf7d0ad",
+  "prediction_source_ids": [
+    "BR_UNIPROT",
+    "BR_INTERPRO"
+  ],
+  "prediction_timestamp": "2026-06-11T16:22:31.471810+00:00",
+  "sealed_before_holdout": true,
+  "target_id": "TARGET_005",
+  "target_name": "bacteriorhodopsin_BR",
+  "target_name_only_assignment_blocked": false
+}

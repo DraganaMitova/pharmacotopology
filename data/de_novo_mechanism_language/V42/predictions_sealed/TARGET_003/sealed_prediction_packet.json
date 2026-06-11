@@ -1,0 +1,69 @@
+{
+  "answer_key_source_count_for_prediction": 0,
+  "claim_allowed": false,
+  "coordinate_derived_source_count_for_prediction": 0,
+  "failed_checks": [],
+  "falsification_criteria": [
+    "independent holdout assigns a different mechanism class",
+    "operator regions lack independent support",
+    "predicted perturbations are unsupported or contradicted",
+    "low-resolution structural/ensemble consequence is contradicted"
+  ],
+  "folding_problem_solved": false,
+  "holdout_source_count_before_prediction": 0,
+  "internal_runtime_source_count_for_prediction": 0,
+  "kind": "V42_SEALED_DE_NOVO_MECHANISM_PREDICTION_v0",
+  "low_resolution_structure_or_ensemble_prediction": "free disorder with context-bound ordering expected",
+  "mechanism_class": "intrinsic_disorder_contextual_ensemble",
+  "mechanism_confidence": "high",
+  "operator_constraints": [
+    {
+      "constraint_type": "predicted_disorder_ensemble_region",
+      "expected_effect": "compact single-fold forcing should fail"
+    },
+    {
+      "constraint_type": "predicted_contextual_ordering_region",
+      "expected_effect": "context-bound order must not become free-state solved fold"
+    }
+  ],
+  "operator_regions": [
+    {
+      "confidence": "high",
+      "evidence_source_id": "T003_DISPROT",
+      "region_name": "acidic_C_terminal_tail",
+      "span": "96-140"
+    },
+    {
+      "confidence": "high",
+      "evidence_source_id": "T003_DISPROT",
+      "region_name": "N_terminal_membrane_binding_region",
+      "span": "1-95"
+    },
+    {
+      "confidence": "high",
+      "evidence_source_id": "T003_LITERATURE",
+      "region_name": "membrane_induced_helix",
+      "span": "N-terminal amphipathic region"
+    }
+  ],
+  "perturbation_predictions": [
+    {
+      "perturbation": "remove_disorder_evidence",
+      "predicted_effect": "weaken"
+    },
+    {
+      "perturbation": "force_compact_single_fold",
+      "predicted_effect": "block"
+    }
+  ],
+  "prediction_hash": "515dc2438443755b7ad00311aaa5d02d032d245144df81de7eae7ce9e8e17cac",
+  "prediction_source_ids": [
+    "T003_DISPROT",
+    "T003_LITERATURE"
+  ],
+  "prediction_timestamp": "2026-06-11T16:22:31.470466+00:00",
+  "sealed_before_holdout": true,
+  "target_id": "TARGET_003",
+  "target_name": "alpha_synuclein_SNCA",
+  "target_name_only_assignment_blocked": false
+}

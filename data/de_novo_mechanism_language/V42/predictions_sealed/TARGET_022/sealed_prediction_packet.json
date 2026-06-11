@@ -1,0 +1,66 @@
+{
+  "answer_key_source_count_for_prediction": 0,
+  "claim_allowed": false,
+  "coordinate_derived_source_count_for_prediction": 0,
+  "failed_checks": [],
+  "falsification_criteria": [
+    "independent holdout assigns a different mechanism class",
+    "operator regions lack independent support",
+    "predicted perturbations are unsupported or contradicted",
+    "low-resolution structural/ensemble consequence is contradicted"
+  ],
+  "folding_problem_solved": false,
+  "holdout_source_count_before_prediction": 0,
+  "internal_runtime_source_count_for_prediction": 0,
+  "kind": "V42_SEALED_DE_NOVO_MECHANISM_PREDICTION_v0",
+  "low_resolution_structure_or_ensemble_prediction": "two-state or multi-state ensemble expected",
+  "mechanism_class": "metamorphic_or_multistate_switch",
+  "mechanism_confidence": "high",
+  "operator_constraints": [
+    {
+      "constraint_type": "predicted_state_specific_region",
+      "expected_effect": "state deletion or pooling should fail"
+    },
+    {
+      "constraint_type": "predicted_allosteric_or_switch_region",
+      "expected_effect": "state balance perturbation should shift mechanism"
+    }
+  ],
+  "operator_regions": [
+    {
+      "confidence": "high",
+      "evidence_source_id": "MAD2_STATE",
+      "region_name": "open_state_region",
+      "span": "state/operator region"
+    },
+    {
+      "confidence": "high",
+      "evidence_source_id": "MAD2_STATE",
+      "region_name": "closed_state_region",
+      "span": "state/operator region"
+    }
+  ],
+  "perturbation_predictions": [
+    {
+      "perturbation": "delete_one_state",
+      "predicted_effect": "break"
+    },
+    {
+      "perturbation": "force_mixed_state_pooling",
+      "predicted_effect": "block"
+    },
+    {
+      "perturbation": "shift_state_balance",
+      "predicted_effect": "shift"
+    }
+  ],
+  "prediction_hash": "47afd77484322fb27aaeacd453d1753ff9baf32232115f1d5e80dfbecfb68109",
+  "prediction_source_ids": [
+    "MAD2_STATE"
+  ],
+  "prediction_timestamp": "2026-06-11T16:22:31.479368+00:00",
+  "sealed_before_holdout": true,
+  "target_id": "TARGET_022",
+  "target_name": "Mad2",
+  "target_name_only_assignment_blocked": false
+}

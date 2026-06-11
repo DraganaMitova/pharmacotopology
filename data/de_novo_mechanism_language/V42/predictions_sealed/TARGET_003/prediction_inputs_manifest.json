@@ -1,0 +1,64 @@
+{
+  "answer_key_available": false,
+  "holdout_sources_available": false,
+  "kind": "V42_PREDICTION_INPUTS_MANIFEST_v0",
+  "prediction_sources": [
+    {
+      "answer_key_source": false,
+      "coordinate_derived": false,
+      "coordinate_truth_used_before_prediction": false,
+      "evidence_statement": "Alpha-synuclein is intrinsically disordered in free state.",
+      "feature_tags": [
+        "disorder",
+        "idp",
+        "ensemble"
+      ],
+      "holdout_source": false,
+      "internal_runtime_source": false,
+      "native_metrics_used_for_selection": false,
+      "region_hints": [
+        {
+          "evidence": "DisProt text",
+          "region_name": "acidic_C_terminal_tail",
+          "span": "96-140"
+        },
+        {
+          "evidence": "state text",
+          "region_name": "N_terminal_membrane_binding_region",
+          "span": "1-95"
+        }
+      ],
+      "source_date_or_version": "accessed_2026-06-11",
+      "source_id": "T003_DISPROT",
+      "source_type": "DisProt disorder annotations",
+      "source_url_or_citation": "DisProt DP00070"
+    },
+    {
+      "answer_key_source": false,
+      "coordinate_derived": false,
+      "coordinate_truth_used_before_prediction": false,
+      "evidence_statement": "Membrane context induces conditional helical ordering.",
+      "feature_tags": [
+        "disorder",
+        "context_bound_ordering",
+        "membrane_binding"
+      ],
+      "holdout_source": false,
+      "internal_runtime_source": false,
+      "native_metrics_used_for_selection": false,
+      "region_hints": [
+        {
+          "evidence": "literature text",
+          "region_name": "membrane_induced_helix",
+          "span": "N-terminal amphipathic region"
+        }
+      ],
+      "source_date_or_version": "accessed_2026-06-11",
+      "source_id": "T003_LITERATURE",
+      "source_type": "literature-derived state/function annotations",
+      "source_url_or_citation": "Eliezer D et al. J Mol Biol. 2001; Davidson WS et al. JBC 1998"
+    }
+  ],
+  "target_id": "TARGET_003",
+  "target_name": "alpha_synuclein_SNCA"
+}

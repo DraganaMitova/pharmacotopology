@@ -1,0 +1,15 @@
+{
+  "expected_mechanism_class": "compact_single_fold_core_closure",
+  "failure_reason": null,
+  "low_resolution_supported": true,
+  "mechanism_class_correct": true,
+  "operator_region_count": 1,
+  "operator_region_supported_count": 1,
+  "perturbation_count": 2,
+  "perturbation_supported_count": 2,
+  "predicted_mechanism_class": "compact_single_fold_core_closure",
+  "sealed_prediction_hash": "e32537953716ac4bdc2f5de72cdf2b8c8bdc08837c1bc14997d07755f170f2ee",
+  "target_id": "TARGET_009",
+  "target_name": "ubiquitin_1UBQ",
+  "validation_level": "supported"
+}

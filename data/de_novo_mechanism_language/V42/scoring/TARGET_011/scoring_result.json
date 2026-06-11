@@ -1,0 +1,15 @@
+{
+  "expected_mechanism_class": "compact_single_fold_core_closure",
+  "failure_reason": null,
+  "low_resolution_supported": true,
+  "mechanism_class_correct": true,
+  "operator_region_count": 1,
+  "operator_region_supported_count": 1,
+  "perturbation_count": 2,
+  "perturbation_supported_count": 2,
+  "predicted_mechanism_class": "compact_single_fold_core_closure",
+  "sealed_prediction_hash": "f350f47be6599ff378b210c50d06f0e733cca8dd6af841ec9a3e294cc75640d1",
+  "target_id": "TARGET_011",
+  "target_name": "myoglobin_Mb",
+  "validation_level": "supported"
+}

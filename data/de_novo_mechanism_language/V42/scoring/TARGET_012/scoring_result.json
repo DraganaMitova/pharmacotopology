@@ -1,0 +1,15 @@
+{
+  "expected_mechanism_class": "compact_single_fold_core_closure",
+  "failure_reason": null,
+  "low_resolution_supported": true,
+  "mechanism_class_correct": true,
+  "operator_region_count": 1,
+  "operator_region_supported_count": 1,
+  "perturbation_count": 2,
+  "perturbation_supported_count": 2,
+  "predicted_mechanism_class": "compact_single_fold_core_closure",
+  "sealed_prediction_hash": "42a41367de961e04fa90b76ecd7fee1927f95343b6cdebbbcb7fc99d05af6cbd",
+  "target_id": "TARGET_012",
+  "target_name": "barnase",
+  "validation_level": "supported"
+}

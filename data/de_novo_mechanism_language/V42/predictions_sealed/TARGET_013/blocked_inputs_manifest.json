@@ -1,0 +1,34 @@
+{
+  "blocked_prediction_inputs": [
+    {
+      "blocked_input": "PDB coordinates or mmCIF coordinates before sealing",
+      "reason": "coordinates are post-hoc holdout only"
+    },
+    {
+      "blocked_input": "AlphaFold/ESMFold/RoseTTAFold coordinates before sealing",
+      "reason": "predicted coordinates cannot be prediction evidence"
+    },
+    {
+      "blocked_input": "native contact maps or coordinate-derived contacts",
+      "reason": "would leak structure truth"
+    },
+    {
+      "blocked_input": "first_contact_clean_pharmacotopology_layer_run files as biological evidence",
+      "reason": "runtime outputs are audit evidence only"
+    },
+    {
+      "blocked_input": "V33/V34 coordinate-derived KcsA CSVs",
+      "reason": "blocked coordinate-derived contacts"
+    },
+    {
+      "blocked_input": "V42 holdout files before prediction sealing",
+      "reason": "holdout must open only after sealed prediction hash"
+    },
+    {
+      "blocked_input": "answer key or expected class label",
+      "reason": "assignment must use prediction sources only"
+    }
+  ],
+  "kind": "V42_BLOCKED_INPUTS_MANIFEST_v0",
+  "target_id": "TARGET_013"
+}

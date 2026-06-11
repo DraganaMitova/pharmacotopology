@@ -1,0 +1,63 @@
+{
+  "blocked_prediction_inputs": [
+    {
+      "blocked_input": "PDB coordinates or mmCIF coordinates before sealing",
+      "reason": "coordinates are post-hoc holdout only"
+    },
+    {
+      "blocked_input": "AlphaFold/ESMFold/RoseTTAFold coordinates before sealing",
+      "reason": "predicted coordinates cannot be prediction evidence"
+    },
+    {
+      "blocked_input": "native contact maps or coordinate-derived contacts",
+      "reason": "would leak structure truth"
+    },
+    {
+      "blocked_input": "first_contact_clean_pharmacotopology_layer_run files as biological evidence",
+      "reason": "runtime outputs are audit evidence only"
+    },
+    {
+      "blocked_input": "V33/V34 coordinate-derived KcsA CSVs",
+      "reason": "blocked coordinate-derived contacts"
+    },
+    {
+      "blocked_input": "V42 holdout files before prediction sealing",
+      "reason": "holdout must open only after sealed prediction hash"
+    },
+    {
+      "blocked_input": "answer key or expected class label",
+      "reason": "assignment must use prediction sources only"
+    }
+  ],
+  "panel_group": "soluble_compact_single_domain",
+  "prediction_sources": [
+    {
+      "answer_key_source": false,
+      "coordinate_derived": false,
+      "coordinate_truth_used_before_prediction": false,
+      "evidence_statement": "Soluble compact single-domain protein with stable function/family annotation.",
+      "feature_tags": [
+        "compact",
+        "soluble",
+        "single_domain"
+      ],
+      "holdout_source": false,
+      "internal_runtime_source": false,
+      "native_metrics_used_for_selection": false,
+      "region_hints": [
+        {
+          "evidence": "feature/function text",
+          "region_name": "catalytic_compact_core",
+          "span": "domain core"
+        }
+      ],
+      "source_date_or_version": "accessed_2026-06-11",
+      "source_id": "LYSOZYME_HEWL_UNIPROT",
+      "source_type": "UniProt feature/function text",
+      "source_url_or_citation": "UniProtKB hen egg-white lysozyme"
+    }
+  ],
+  "sequence_status": "available",
+  "target_id": "TARGET_010",
+  "target_name": "lysozyme_HEWL"
+}

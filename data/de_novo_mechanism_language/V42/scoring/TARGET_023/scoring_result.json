@@ -1,0 +1,15 @@
+{
+  "expected_mechanism_class": "metamorphic_or_multistate_switch",
+  "failure_reason": null,
+  "low_resolution_supported": true,
+  "mechanism_class_correct": true,
+  "operator_region_count": 2,
+  "operator_region_supported_count": 2,
+  "perturbation_count": 3,
+  "perturbation_supported_count": 3,
+  "predicted_mechanism_class": "metamorphic_or_multistate_switch",
+  "sealed_prediction_hash": "6543f963fec898573e02bd2f4b630d65d10fda80febcfc5966746474114a9c16",
+  "target_id": "TARGET_023",
+  "target_name": "KaiB",
+  "validation_level": "supported"
+}

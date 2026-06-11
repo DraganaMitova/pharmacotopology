@@ -1,0 +1,26 @@
+{
+  "contradicts_prediction": false,
+  "expected_mechanism_class": "weak_evolutionary_information_abstain_or_low_confidence",
+  "holdout_opened_after_prediction_hash": "77595f208ea54ae295e2abc8cab9aeabb84e3bf7086bce238e273d9a72420833",
+  "holdout_opened_timestamp": "2026-06-11T16:22:31.482864+00:00",
+  "holdout_sources": [
+    {
+      "allowed_use": "post_hoc_scoring_only_after_prediction_hash",
+      "answer_key_source": false,
+      "coordinate_derived": false,
+      "internal_runtime_source": false,
+      "source_id": "TARGET_013_POST_SEAL_HOLDOUT",
+      "source_type": "post-seal independent annotation/literature/structure summary"
+    }
+  ],
+  "kind": "V42_POST_SEAL_HOLDOUT_VALIDATION_MANIFEST_v0",
+  "supported_low_resolution_structure_or_ensemble": "clean abstain",
+  "supported_operator_regions": [
+    "accessory_region"
+  ],
+  "supported_perturbations": [
+    "add_only_generic_annotation"
+  ],
+  "target_id": "TARGET_013",
+  "target_name": "SARS_CoV_2_ORF6"
+}

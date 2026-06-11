@@ -1,0 +1,15 @@
+{
+  "expected_mechanism_class": "intrinsic_disorder_contextual_ensemble",
+  "failure_reason": null,
+  "low_resolution_supported": true,
+  "mechanism_class_correct": true,
+  "operator_region_count": 1,
+  "operator_region_supported_count": 1,
+  "perturbation_count": 2,
+  "perturbation_supported_count": 2,
+  "predicted_mechanism_class": "intrinsic_disorder_contextual_ensemble",
+  "sealed_prediction_hash": "3b2112f5efbd7178863dbb9316ff7b9ca4ef3fe107f4c7724299ff15b6a55577",
+  "target_id": "TARGET_018",
+  "target_name": "FUS_low_complexity_domain",
+  "validation_level": "supported"
+}

@@ -1,0 +1,40 @@
+{
+  "answer_key_available": false,
+  "holdout_sources_available": false,
+  "kind": "V42_PREDICTION_INPUTS_MANIFEST_v0",
+  "prediction_sources": [
+    {
+      "answer_key_source": false,
+      "coordinate_derived": false,
+      "coordinate_truth_used_before_prediction": false,
+      "evidence_statement": "Aquaporin water channel with membrane topology and NPA motif annotations.",
+      "feature_tags": [
+        "membrane",
+        "channel",
+        "signature_motif",
+        "oligomer"
+      ],
+      "holdout_source": false,
+      "internal_runtime_source": false,
+      "native_metrics_used_for_selection": false,
+      "region_hints": [
+        {
+          "evidence": "feature text",
+          "region_name": "NPA_motif_pair",
+          "span": "NPA motifs"
+        },
+        {
+          "evidence": "topology text",
+          "region_name": "membrane_channel_core",
+          "span": "six TM helices"
+        }
+      ],
+      "source_date_or_version": "accessed_2026-06-11",
+      "source_id": "AQP1_UNIPROT",
+      "source_type": "UniProt feature/function text",
+      "source_url_or_citation": "UniProtKB P29972"
+    }
+  ],
+  "target_id": "TARGET_006",
+  "target_name": "AQP1_aquaporin"
+}

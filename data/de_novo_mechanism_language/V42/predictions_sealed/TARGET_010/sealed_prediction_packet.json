@@ -1,0 +1,52 @@
+{
+  "answer_key_source_count_for_prediction": 0,
+  "claim_allowed": false,
+  "coordinate_derived_source_count_for_prediction": 0,
+  "failed_checks": [],
+  "falsification_criteria": [
+    "independent holdout assigns a different mechanism class",
+    "operator regions lack independent support",
+    "predicted perturbations are unsupported or contradicted",
+    "low-resolution structural/ensemble consequence is contradicted"
+  ],
+  "folding_problem_solved": false,
+  "holdout_source_count_before_prediction": 0,
+  "internal_runtime_source_count_for_prediction": 0,
+  "kind": "V42_SEALED_DE_NOVO_MECHANISM_PREDICTION_v0",
+  "low_resolution_structure_or_ensemble_prediction": "compact single folded domain expected",
+  "mechanism_class": "compact_single_fold_core_closure",
+  "mechanism_confidence": "high",
+  "operator_constraints": [
+    {
+      "constraint_type": "predicted_long_range_closure_region",
+      "expected_effect": "core/operator disruption should weaken compact closure"
+    }
+  ],
+  "operator_regions": [
+    {
+      "confidence": "high",
+      "evidence_source_id": "LYSOZYME_HEWL_UNIPROT",
+      "region_name": "catalytic_compact_core",
+      "span": "domain core"
+    }
+  ],
+  "perturbation_predictions": [
+    {
+      "perturbation": "disrupt_core_closure_region",
+      "predicted_effect": "weaken"
+    },
+    {
+      "perturbation": "remove_functional_core_annotation",
+      "predicted_effect": "weaken"
+    }
+  ],
+  "prediction_hash": "0ac3da4acbb671efd823bd6e95264fca2f8398c5fe5f8a6123c816e0d5e791d0",
+  "prediction_source_ids": [
+    "LYSOZYME_HEWL_UNIPROT"
+  ],
+  "prediction_timestamp": "2026-06-11T16:22:31.474301+00:00",
+  "sealed_before_holdout": true,
+  "target_id": "TARGET_010",
+  "target_name": "lysozyme_HEWL",
+  "target_name_only_assignment_blocked": false
+}

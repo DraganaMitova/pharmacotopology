@@ -1,0 +1,15 @@
+{
+  "expected_mechanism_class": "intrinsic_disorder_contextual_ensemble",
+  "failure_reason": null,
+  "low_resolution_supported": true,
+  "mechanism_class_correct": true,
+  "operator_region_count": 1,
+  "operator_region_supported_count": 1,
+  "perturbation_count": 2,
+  "perturbation_supported_count": 2,
+  "predicted_mechanism_class": "intrinsic_disorder_contextual_ensemble",
+  "sealed_prediction_hash": "82be9afefbe02369b20689c630affba8f4c9c35a2d10cb888f616c95286bf17a",
+  "target_id": "TARGET_020",
+  "target_name": "hnRNPA1_LCD",
+  "validation_level": "supported"
+}

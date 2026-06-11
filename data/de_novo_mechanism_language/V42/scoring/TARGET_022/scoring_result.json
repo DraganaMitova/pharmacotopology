@@ -1,0 +1,15 @@
+{
+  "expected_mechanism_class": "metamorphic_or_multistate_switch",
+  "failure_reason": null,
+  "low_resolution_supported": true,
+  "mechanism_class_correct": true,
+  "operator_region_count": 2,
+  "operator_region_supported_count": 2,
+  "perturbation_count": 3,
+  "perturbation_supported_count": 3,
+  "predicted_mechanism_class": "metamorphic_or_multistate_switch",
+  "sealed_prediction_hash": "47afd77484322fb27aaeacd453d1753ff9baf32232115f1d5e80dfbecfb68109",
+  "target_id": "TARGET_022",
+  "target_name": "Mad2",
+  "validation_level": "supported"
+}

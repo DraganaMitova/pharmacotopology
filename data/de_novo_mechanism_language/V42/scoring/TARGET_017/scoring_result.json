@@ -1,0 +1,15 @@
+{
+  "expected_mechanism_class": "intrinsic_disorder_contextual_ensemble",
+  "failure_reason": null,
+  "low_resolution_supported": true,
+  "mechanism_class_correct": true,
+  "operator_region_count": 1,
+  "operator_region_supported_count": 1,
+  "perturbation_count": 2,
+  "perturbation_supported_count": 2,
+  "predicted_mechanism_class": "intrinsic_disorder_contextual_ensemble",
+  "sealed_prediction_hash": "e01b7eed7d3e411ba1ec2eb64144b7b31ca9be1879a815c39bbe6557a19a32ff",
+  "target_id": "TARGET_017",
+  "target_name": "tau_K18",
+  "validation_level": "supported"
+}

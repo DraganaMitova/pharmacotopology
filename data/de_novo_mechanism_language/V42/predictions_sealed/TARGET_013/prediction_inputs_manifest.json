@@ -1,0 +1,34 @@
+{
+  "answer_key_available": false,
+  "holdout_sources_available": false,
+  "kind": "V42_PREDICTION_INPUTS_MANIFEST_v0",
+  "prediction_sources": [
+    {
+      "answer_key_source": false,
+      "coordinate_derived": false,
+      "coordinate_truth_used_before_prediction": false,
+      "evidence_statement": "Short viral accessory protein with sparse family depth and membrane-association annotations.",
+      "feature_tags": [
+        "weak_evolutionary",
+        "low_confidence",
+        "membrane_association"
+      ],
+      "holdout_source": false,
+      "internal_runtime_source": false,
+      "native_metrics_used_for_selection": false,
+      "region_hints": [
+        {
+          "evidence": "feature/function text",
+          "region_name": "accessory_region",
+          "span": "annotated region"
+        }
+      ],
+      "source_date_or_version": "accessed_2026-06-11",
+      "source_id": "SARS_COV_2_ORF6_ANNOTATION",
+      "source_type": "UniProt/literature-derived function annotations",
+      "source_url_or_citation": "SARS_CoV_2_ORF6 feature/function annotations"
+    }
+  ],
+  "target_id": "TARGET_013",
+  "target_name": "SARS_CoV_2_ORF6"
+}

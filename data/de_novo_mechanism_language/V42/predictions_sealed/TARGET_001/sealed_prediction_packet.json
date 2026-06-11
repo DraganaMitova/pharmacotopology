@@ -1,0 +1,69 @@
+{
+  "answer_key_source_count_for_prediction": 0,
+  "claim_allowed": false,
+  "coordinate_derived_source_count_for_prediction": 0,
+  "failed_checks": [],
+  "falsification_criteria": [
+    "independent holdout assigns a different mechanism class",
+    "operator regions lack independent support",
+    "predicted perturbations are unsupported or contradicted",
+    "low-resolution structural/ensemble consequence is contradicted"
+  ],
+  "folding_problem_solved": false,
+  "holdout_source_count_before_prediction": 0,
+  "internal_runtime_source_count_for_prediction": 0,
+  "kind": "V42_SEALED_DE_NOVO_MECHANISM_PREDICTION_v0",
+  "low_resolution_structure_or_ensemble_prediction": "membrane-spanning operator expected",
+  "mechanism_class": "membrane_pore_filter_or_transport",
+  "mechanism_confidence": "high",
+  "operator_constraints": [
+    {
+      "constraint_type": "predicted_filter_or_signature_region",
+      "expected_effect": "filter/signature perturbation should break hard membrane grammar"
+    },
+    {
+      "constraint_type": "predicted_membrane_operator_region",
+      "expected_effect": "topology/context perturbation should weaken transport grammar"
+    }
+  ],
+  "operator_regions": [
+    {
+      "confidence": "high",
+      "evidence_source_id": "T001_UNIPROT",
+      "region_name": "selectivity_filter_signature",
+      "span": "TVGYG motif"
+    },
+    {
+      "confidence": "high",
+      "evidence_source_id": "T001_UNIPROT",
+      "region_name": "transmembrane_pore",
+      "span": "TM helices"
+    },
+    {
+      "confidence": "high",
+      "evidence_source_id": "T001_INTERPRO",
+      "region_name": "potassium_channel_signature",
+      "span": "family signature"
+    }
+  ],
+  "perturbation_predictions": [
+    {
+      "perturbation": "remove_signature_or_transport_motif",
+      "predicted_effect": "break"
+    },
+    {
+      "perturbation": "remove_membrane_topology_context",
+      "predicted_effect": "weaken"
+    }
+  ],
+  "prediction_hash": "918280c8d6772fd5471e456abefe538e4b6e063cabe45b81c2f4133ed9e2e401",
+  "prediction_source_ids": [
+    "T001_UNIPROT",
+    "T001_INTERPRO"
+  ],
+  "prediction_timestamp": "2026-06-11T16:22:31.469637+00:00",
+  "sealed_before_holdout": true,
+  "target_id": "TARGET_001",
+  "target_name": "KcsA",
+  "target_name_only_assignment_blocked": false
+}

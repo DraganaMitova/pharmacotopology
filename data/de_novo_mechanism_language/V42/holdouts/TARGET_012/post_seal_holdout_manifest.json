@@ -1,0 +1,27 @@
+{
+  "contradicts_prediction": false,
+  "expected_mechanism_class": "compact_single_fold_core_closure",
+  "holdout_opened_after_prediction_hash": "42a41367de961e04fa90b76ecd7fee1927f95343b6cdebbbcb7fc99d05af6cbd",
+  "holdout_opened_timestamp": "2026-06-11T16:22:31.482624+00:00",
+  "holdout_sources": [
+    {
+      "allowed_use": "post_hoc_scoring_only_after_prediction_hash",
+      "answer_key_source": false,
+      "coordinate_derived": false,
+      "internal_runtime_source": false,
+      "source_id": "TARGET_012_POST_SEAL_HOLDOUT",
+      "source_type": "post-seal independent annotation/literature/structure summary"
+    }
+  ],
+  "kind": "V42_POST_SEAL_HOLDOUT_VALIDATION_MANIFEST_v0",
+  "supported_low_resolution_structure_or_ensemble": "compact single folded domain expected",
+  "supported_operator_regions": [
+    "ribonuclease_core"
+  ],
+  "supported_perturbations": [
+    "disrupt_core_closure_region",
+    "remove_functional_core_annotation"
+  ],
+  "target_id": "TARGET_012",
+  "target_name": "barnase"
+}

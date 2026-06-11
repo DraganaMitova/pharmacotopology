@@ -1,0 +1,58 @@
+{
+  "answer_key_source_count_for_prediction": 0,
+  "claim_allowed": false,
+  "coordinate_derived_source_count_for_prediction": 0,
+  "failed_checks": [],
+  "falsification_criteria": [
+    "independent holdout assigns a different mechanism class",
+    "operator regions lack independent support",
+    "predicted perturbations are unsupported or contradicted",
+    "low-resolution structural/ensemble consequence is contradicted"
+  ],
+  "folding_problem_solved": false,
+  "holdout_source_count_before_prediction": 0,
+  "internal_runtime_source_count_for_prediction": 0,
+  "kind": "V42_SEALED_DE_NOVO_MECHANISM_PREDICTION_v0",
+  "low_resolution_structure_or_ensemble_prediction": "membrane-spanning operator expected",
+  "mechanism_class": "membrane_pore_filter_or_transport",
+  "mechanism_confidence": "high",
+  "operator_constraints": [
+    {
+      "constraint_type": "predicted_membrane_operator_region",
+      "expected_effect": "transport context should require membrane topology evidence"
+    }
+  ],
+  "operator_regions": [
+    {
+      "confidence": "high",
+      "evidence_source_id": "LACY_UNIPROT",
+      "region_name": "sugar_transport_operator",
+      "span": "MFS core"
+    },
+    {
+      "confidence": "high",
+      "evidence_source_id": "LACY_UNIPROT",
+      "region_name": "transmembrane_bundle",
+      "span": "multi-pass region"
+    }
+  ],
+  "perturbation_predictions": [
+    {
+      "perturbation": "remove_signature_or_transport_motif",
+      "predicted_effect": "break"
+    },
+    {
+      "perturbation": "remove_membrane_topology_context",
+      "predicted_effect": "weaken"
+    }
+  ],
+  "prediction_hash": "6352ee789085853438e2f52744b6250cbdbf6326be54c390d481187475614925",
+  "prediction_source_ids": [
+    "LACY_UNIPROT"
+  ],
+  "prediction_timestamp": "2026-06-11T16:22:31.473015+00:00",
+  "sealed_before_holdout": true,
+  "target_id": "TARGET_007",
+  "target_name": "LacY_lactose_permease",
+  "target_name_only_assignment_blocked": false
+}

@@ -1,0 +1,15 @@
+{
+  "expected_mechanism_class": "intrinsic_disorder_contextual_ensemble",
+  "failure_reason": null,
+  "low_resolution_supported": true,
+  "mechanism_class_correct": true,
+  "operator_region_count": 1,
+  "operator_region_supported_count": 1,
+  "perturbation_count": 2,
+  "perturbation_supported_count": 2,
+  "predicted_mechanism_class": "intrinsic_disorder_contextual_ensemble",
+  "sealed_prediction_hash": "49b9757ae648839ee31337906cb11cc9820adc31a865a1b74174688d144571ad",
+  "target_id": "TARGET_019",
+  "target_name": "TDP43_C_terminal_LCD",
+  "validation_level": "supported"
+}

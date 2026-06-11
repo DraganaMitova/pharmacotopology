@@ -1,0 +1,15 @@
+{
+  "expected_mechanism_class": "metamorphic_or_multistate_switch",
+  "failure_reason": null,
+  "low_resolution_supported": true,
+  "mechanism_class_correct": true,
+  "operator_region_count": 3,
+  "operator_region_supported_count": 3,
+  "perturbation_count": 3,
+  "perturbation_supported_count": 3,
+  "predicted_mechanism_class": "metamorphic_or_multistate_switch",
+  "sealed_prediction_hash": "32e432e295fb4d3ec72f90364befe664ef7211fae319cd0f15667542a988859f",
+  "target_id": "TARGET_002",
+  "target_name": "XCL1_lymphotactin",
+  "validation_level": "supported"
+}

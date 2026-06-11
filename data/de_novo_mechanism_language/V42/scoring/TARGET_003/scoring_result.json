@@ -1,0 +1,15 @@
+{
+  "expected_mechanism_class": "intrinsic_disorder_contextual_ensemble",
+  "failure_reason": null,
+  "low_resolution_supported": true,
+  "mechanism_class_correct": true,
+  "operator_region_count": 3,
+  "operator_region_supported_count": 3,
+  "perturbation_count": 2,
+  "perturbation_supported_count": 2,
+  "predicted_mechanism_class": "intrinsic_disorder_contextual_ensemble",
+  "sealed_prediction_hash": "515dc2438443755b7ad00311aaa5d02d032d245144df81de7eae7ce9e8e17cac",
+  "target_id": "TARGET_003",
+  "target_name": "alpha_synuclein_SNCA",
+  "validation_level": "supported"
+}

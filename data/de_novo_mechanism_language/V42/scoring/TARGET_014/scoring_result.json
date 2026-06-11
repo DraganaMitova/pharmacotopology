@@ -1,0 +1,15 @@
+{
+  "expected_mechanism_class": "weak_evolutionary_information_abstain_or_low_confidence",
+  "failure_reason": null,
+  "low_resolution_supported": true,
+  "mechanism_class_correct": true,
+  "operator_region_count": 1,
+  "operator_region_supported_count": 1,
+  "perturbation_count": 1,
+  "perturbation_supported_count": 1,
+  "predicted_mechanism_class": "weak_evolutionary_information_abstain_or_low_confidence",
+  "sealed_prediction_hash": "941373afc494abd6ec1d5fbcaf7f6b0611d984461107e9ef9e739e4311d0f4fe",
+  "target_id": "TARGET_014",
+  "target_name": "SARS_CoV_2_ORF8",
+  "validation_level": "clean_abstain_supported"
+}

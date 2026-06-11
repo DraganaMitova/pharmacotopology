@@ -1,0 +1,28 @@
+{
+  "contradicts_prediction": false,
+  "expected_mechanism_class": "membrane_pore_filter_or_transport",
+  "holdout_opened_after_prediction_hash": "395e3166ad0ddd8b899147bcd8f90bf7c4f806c7f276747f374a9d8397977d0f",
+  "holdout_opened_timestamp": "2026-06-11T16:22:31.481468+00:00",
+  "holdout_sources": [
+    {
+      "allowed_use": "post_hoc_scoring_only_after_prediction_hash",
+      "answer_key_source": false,
+      "coordinate_derived": false,
+      "internal_runtime_source": false,
+      "source_id": "TARGET_006_POST_SEAL_HOLDOUT",
+      "source_type": "post-seal independent annotation/literature/structure summary"
+    }
+  ],
+  "kind": "V42_POST_SEAL_HOLDOUT_VALIDATION_MANIFEST_v0",
+  "supported_low_resolution_structure_or_ensemble": "membrane-spanning operator expected",
+  "supported_operator_regions": [
+    "NPA_motif_pair",
+    "membrane_channel_core"
+  ],
+  "supported_perturbations": [
+    "remove_signature_or_transport_motif",
+    "remove_membrane_topology_context"
+  ],
+  "target_id": "TARGET_006",
+  "target_name": "AQP1_aquaporin"
+}

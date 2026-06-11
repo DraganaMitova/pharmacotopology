@@ -1,0 +1,15 @@
+{
+  "expected_mechanism_class": "compact_single_fold_core_closure",
+  "failure_reason": null,
+  "low_resolution_supported": true,
+  "mechanism_class_correct": true,
+  "operator_region_count": 3,
+  "operator_region_supported_count": 3,
+  "perturbation_count": 2,
+  "perturbation_supported_count": 2,
+  "predicted_mechanism_class": "compact_single_fold_core_closure",
+  "sealed_prediction_hash": "569a122be5786c8420fbeaa2161197117ae613c0d87d11c332f22bb1e9627a81",
+  "target_id": "TARGET_004",
+  "target_name": "4AKE_adenylate_kinase",
+  "validation_level": "supported"
+}

@@ -1,0 +1,15 @@
+{
+  "expected_mechanism_class": "weak_evolutionary_information_abstain_or_low_confidence",
+  "failure_reason": null,
+  "low_resolution_supported": true,
+  "mechanism_class_correct": true,
+  "operator_region_count": 1,
+  "operator_region_supported_count": 1,
+  "perturbation_count": 1,
+  "perturbation_supported_count": 1,
+  "predicted_mechanism_class": "weak_evolutionary_information_abstain_or_low_confidence",
+  "sealed_prediction_hash": "91c3c5218bcdf154bae0323b4469fde699e94d4e8a6143160f295409c09eef6f",
+  "target_id": "TARGET_016",
+  "target_name": "Ebola_VP35_IID",
+  "validation_level": "clean_abstain_supported"
+}

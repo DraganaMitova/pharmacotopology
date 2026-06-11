@@ -1,0 +1,29 @@
+{
+  "contradicts_prediction": false,
+  "expected_mechanism_class": "membrane_pore_filter_or_transport",
+  "holdout_opened_after_prediction_hash": "edc7c4e7aa07455d9366e83f2935424c8a97d0564a9764e6d51dd9b8cbf7d0ad",
+  "holdout_opened_timestamp": "2026-06-11T16:22:31.481274+00:00",
+  "holdout_sources": [
+    {
+      "allowed_use": "post_hoc_scoring_only_after_prediction_hash",
+      "answer_key_source": false,
+      "coordinate_derived": false,
+      "internal_runtime_source": false,
+      "source_id": "TARGET_005_POST_SEAL_HOLDOUT",
+      "source_type": "post-seal independent annotation/literature/structure summary"
+    }
+  ],
+  "kind": "V42_POST_SEAL_HOLDOUT_VALIDATION_MANIFEST_v0",
+  "supported_low_resolution_structure_or_ensemble": "membrane-spanning operator expected",
+  "supported_operator_regions": [
+    "retinal_binding_operator",
+    "seven_tm_bundle",
+    "proton_pump_signature"
+  ],
+  "supported_perturbations": [
+    "remove_signature_or_transport_motif",
+    "remove_membrane_topology_context"
+  ],
+  "target_id": "TARGET_005",
+  "target_name": "bacteriorhodopsin_BR"
+}

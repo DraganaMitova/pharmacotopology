@@ -1,0 +1,15 @@
+{
+  "expected_mechanism_class": "compact_single_fold_core_closure",
+  "failure_reason": null,
+  "low_resolution_supported": true,
+  "mechanism_class_correct": true,
+  "operator_region_count": 1,
+  "operator_region_supported_count": 1,
+  "perturbation_count": 2,
+  "perturbation_supported_count": 2,
+  "predicted_mechanism_class": "compact_single_fold_core_closure",
+  "sealed_prediction_hash": "0ac3da4acbb671efd823bd6e95264fca2f8398c5fe5f8a6123c816e0d5e791d0",
+  "target_id": "TARGET_010",
+  "target_name": "lysozyme_HEWL",
+  "validation_level": "supported"
+}
