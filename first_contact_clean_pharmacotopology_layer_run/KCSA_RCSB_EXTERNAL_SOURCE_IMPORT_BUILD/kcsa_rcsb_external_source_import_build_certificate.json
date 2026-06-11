@@ -1,0 +1,148 @@
+{
+  "artifacts": {
+    "assembly_interface_csv": "data/external_constraints/KcsA/assembly_interface/kcsa_1bl8_assembly_interface_external_contacts.csv",
+    "manifest": "data/external_constraints/v32_external_constraint_source_import_manifest.json",
+    "pore_filter_csv": "data/external_constraints/KcsA/pore_filter/kcsa_1bl8_pore_filter_external_contacts.csv",
+    "raw_pdb": "data/external_constraints/KcsA/raw_sources/1BL8.pdb"
+  },
+  "claim_allowed": false,
+  "counts": {
+    "assembly_interface_contact_rows": 186,
+    "detected_filter_residue_count": 20,
+    "pore_filter_contact_rows": 20
+  },
+  "detected_filter_residues": [
+    {
+      "chain": "A",
+      "icode": "",
+      "residue_name": "THR",
+      "residue_number": 75
+    },
+    {
+      "chain": "A",
+      "icode": "",
+      "residue_name": "VAL",
+      "residue_number": 76
+    },
+    {
+      "chain": "A",
+      "icode": "",
+      "residue_name": "GLY",
+      "residue_number": 77
+    },
+    {
+      "chain": "A",
+      "icode": "",
+      "residue_name": "TYR",
+      "residue_number": 78
+    },
+    {
+      "chain": "A",
+      "icode": "",
+      "residue_name": "GLY",
+      "residue_number": 79
+    },
+    {
+      "chain": "B",
+      "icode": "",
+      "residue_name": "THR",
+      "residue_number": 75
+    },
+    {
+      "chain": "B",
+      "icode": "",
+      "residue_name": "VAL",
+      "residue_number": 76
+    },
+    {
+      "chain": "B",
+      "icode": "",
+      "residue_name": "GLY",
+      "residue_number": 77
+    },
+    {
+      "chain": "B",
+      "icode": "",
+      "residue_name": "TYR",
+      "residue_number": 78
+    },
+    {
+      "chain": "B",
+      "icode": "",
+      "residue_name": "GLY",
+      "residue_number": 79
+    },
+    {
+      "chain": "C",
+      "icode": "",
+      "residue_name": "THR",
+      "residue_number": 75
+    },
+    {
+      "chain": "C",
+      "icode": "",
+      "residue_name": "VAL",
+      "residue_number": 76
+    },
+    {
+      "chain": "C",
+      "icode": "",
+      "residue_name": "GLY",
+      "residue_number": 77
+    },
+    {
+      "chain": "C",
+      "icode": "",
+      "residue_name": "TYR",
+      "residue_number": 78
+    },
+    {
+      "chain": "C",
+      "icode": "",
+      "residue_name": "GLY",
+      "residue_number": 79
+    },
+    {
+      "chain": "D",
+      "icode": "",
+      "residue_name": "THR",
+      "residue_number": 75
+    },
+    {
+      "chain": "D",
+      "icode": "",
+      "residue_name": "VAL",
+      "residue_number": 76
+    },
+    {
+      "chain": "D",
+      "icode": "",
+      "residue_name": "GLY",
+      "residue_number": 77
+    },
+    {
+      "chain": "D",
+      "icode": "",
+      "residue_name": "TYR",
+      "residue_number": 78
+    },
+    {
+      "chain": "D",
+      "icode": "",
+      "residue_name": "GLY",
+      "residue_number": 79
+    }
+  ],
+  "kind": "KCSA_RCSB_EXTERNAL_SOURCE_IMPORT_BUILD_v0",
+  "new_MD_allowed": false,
+  "new_md_executed": false,
+  "next_commands": [
+    "python3 scripts/run_v32_external_constraint_source_import_preflight_v0.py",
+    "python3 scripts/print_v32_external_constraint_source_import_preflight.py"
+  ],
+  "source_boundary": "external_RCSB_coordinate_derived_constraints_for_source_import_only_not_de_novo_folding_claim",
+  "source_citation": "RCSB PDB 1BL8; Doyle DA et al. Science 280:69-77 (1998), DOI:10.1126/science.280.5360.69",
+  "source_date_or_version": "accessed_2026-06-11",
+  "source_name": "RCSB PDB 1BL8 / Doyle et al. Science 1998",
+  "source_url": "https://www.rcsb.org/structure/1BL8"
+}

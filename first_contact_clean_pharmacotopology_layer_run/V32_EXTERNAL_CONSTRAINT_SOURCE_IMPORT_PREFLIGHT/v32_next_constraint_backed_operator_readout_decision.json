@@ -1,11 +1,11 @@
 {
   "claim_allowed": false,
-  "decision_status": "V32_CLEAN_ABSTAIN_REAL_EXTERNAL_CONSTRAINT_IMPORT_REQUIRED",
+  "decision_status": "V32_EXTERNAL_CONSTRAINT_SOURCE_IMPORT_PREFLIGHT_READY_FOR_V33_CLAIM_DISABLED",
   "kind": "V32_NEXT_CONSTRAINT_BACKED_OPERATOR_READOUT_DECISION_v0",
   "new_MD_allowed": false,
   "new_MD_recommended": false,
-  "next_action": "place_real_external_constraint_files_under_data/external_constraints_and_fill_v32_import_manifest_then_rerun_V32",
+  "next_action": "run_V33_constraint_backed_operator_readout_for_auto_selected_target_no_MD",
   "reason": "V32 imports only user-provided or locally present real external constraint sources. It does not treat V30/V31 runtime reports as evidence and does not run MD.",
-  "selected_V33_panel": null,
-  "selected_V33_target": null
+  "selected_V33_panel": "V33_CONSTRAINT_BACKED_OPERATOR_READOUT",
+  "selected_V33_target": "KcsA"
 }

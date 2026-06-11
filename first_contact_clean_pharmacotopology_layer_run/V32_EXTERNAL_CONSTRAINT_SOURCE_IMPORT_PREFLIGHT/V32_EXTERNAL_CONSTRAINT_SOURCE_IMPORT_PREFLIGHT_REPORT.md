@@ -1,8 +1,8 @@
 # V32 External Constraint Source Import Preflight
 
-Status: `V32_CLEAN_ABSTAIN_REAL_EXTERNAL_CONSTRAINT_IMPORT_REQUIRED`
+Status: `V32_EXTERNAL_CONSTRAINT_SOURCE_IMPORT_PREFLIGHT_READY_FOR_V33_CLAIM_DISABLED`
 Selected V31 targets: `['XCL1_lymphotactin', 'KcsA']`
-Selected V33 target: `None`
+Selected V33 target: `KcsA`
 Claim allowed: `False`
 New MD allowed: `False`
 
@@ -11,28 +11,28 @@ V32 is an acquisition/import preflight, not a folding win. It requires real exte
 
 ## Target rows
 ### XCL1_lymphotactin
-Status: `partial_or_missing_state_specific_external_constraints`
+Status: `no_import_rows_for_target`
 Ready for V33: `False`
-Missing: `['state_A_real_external_constraint', 'state_B_real_external_constraint']`
+Missing: `['real_external_constraint_import_rows']`
 Valid real constraints: `0`
-Invalid/excluded rows: `2`
+Invalid/excluded rows: `0`
 
 ### KcsA
-Status: `partial_or_missing_kcsa_coupling_interface_constraints`
-Ready for V33: `False`
-Missing: `['pore_filter_or_external_coupling_constraint', 'assembly_or_chain_interface_constraint']`
-Valid real constraints: `0`
-Invalid/excluded rows: `2`
+Status: `target_ready_for_V33_constraint_backed_readout`
+Ready for V33: `True`
+Missing: `[]`
+Valid real constraints: `2`
+Invalid/excluded rows: `0`
 
 ## Next decision
 {
   "claim_allowed": false,
-  "decision_status": "V32_CLEAN_ABSTAIN_REAL_EXTERNAL_CONSTRAINT_IMPORT_REQUIRED",
+  "decision_status": "V32_EXTERNAL_CONSTRAINT_SOURCE_IMPORT_PREFLIGHT_READY_FOR_V33_CLAIM_DISABLED",
   "kind": "V32_NEXT_CONSTRAINT_BACKED_OPERATOR_READOUT_DECISION_v0",
   "new_MD_allowed": false,
   "new_MD_recommended": false,
-  "next_action": "place_real_external_constraint_files_under_data/external_constraints_and_fill_v32_import_manifest_then_rerun_V32",
+  "next_action": "run_V33_constraint_backed_operator_readout_for_auto_selected_target_no_MD",
   "reason": "V32 imports only user-provided or locally present real external constraint sources. It does not treat V30/V31 runtime reports as evidence and does not run MD.",
-  "selected_V33_panel": null,
-  "selected_V33_target": null
+  "selected_V33_panel": "V33_CONSTRAINT_BACKED_OPERATOR_READOUT",
+  "selected_V33_target": "KcsA"
 }

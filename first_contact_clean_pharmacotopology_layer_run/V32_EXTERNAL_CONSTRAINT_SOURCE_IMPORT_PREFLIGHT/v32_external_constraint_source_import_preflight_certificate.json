@@ -12,92 +12,40 @@
   "claim_allowed": false,
   "classified_import_rows": [
     {
-      "allowed_use": "excluded",
+      "allowed_use": "allowed_for_constraint_backed_operator_readout",
       "claim_allowed": false,
-      "counts_as_real_external_constraint": false,
-      "evidence_source_class": "invalid_or_unusable_import_row",
-      "evidence_type": "state_specific_constraint",
-      "file_exists": false,
-      "file_path": "data/external_constraints/XCL1_lymphotactin/state_A/<real_external_constraint_file>.csv",
-      "in_selected_V31_scope": true,
-      "provenance_notes": "Required: real external source, not first_contact runtime report.",
-      "source_date_or_version": "REPLACE_WITH_VERSION_OR_ACCESS_DATE",
-      "source_name": "REPLACE_WITH_DATABASE_OR_PAPER_OR_PIPELINE_NAME",
-      "source_url_or_citation": "REPLACE_WITH_STABLE_SOURCE_OR_CITATION",
-      "state_or_context": "state_A_chemokine_like",
-      "target": "XCL1_lymphotactin",
-      "valid_import_row": false,
-      "validation_errors": [
-        "file_path_does_not_exist",
-        "source_name_missing_or_template_placeholder",
-        "source_url_or_citation_missing_or_template_placeholder"
-      ]
-    },
-    {
-      "allowed_use": "excluded",
-      "claim_allowed": false,
-      "counts_as_real_external_constraint": false,
-      "evidence_source_class": "invalid_or_unusable_import_row",
-      "evidence_type": "state_specific_constraint",
-      "file_exists": false,
-      "file_path": "data/external_constraints/XCL1_lymphotactin/state_B/<real_external_constraint_file>.csv",
-      "in_selected_V31_scope": true,
-      "provenance_notes": "Both XCL1 states are required before state-switch constraint-backed readout.",
-      "source_date_or_version": "REPLACE_WITH_VERSION_OR_ACCESS_DATE",
-      "source_name": "REPLACE_WITH_DATABASE_OR_PAPER_OR_PIPELINE_NAME",
-      "source_url_or_citation": "REPLACE_WITH_STABLE_SOURCE_OR_CITATION",
-      "state_or_context": "state_B_dimer_beta_sandwich_like",
-      "target": "XCL1_lymphotactin",
-      "valid_import_row": false,
-      "validation_errors": [
-        "file_path_does_not_exist",
-        "source_name_missing_or_template_placeholder",
-        "source_url_or_citation_missing_or_template_placeholder"
-      ]
-    },
-    {
-      "allowed_use": "excluded",
-      "claim_allowed": false,
-      "counts_as_real_external_constraint": false,
-      "evidence_source_class": "invalid_or_unusable_import_row",
+      "counts_as_real_external_constraint": true,
+      "evidence_source_class": "real_external_constraint_or_coupling",
       "evidence_type": "pore_filter_coupling",
-      "file_exists": false,
-      "file_path": "data/external_constraints/KcsA/pore_filter/<real_external_coupling_file>.csv",
+      "file_exists": true,
+      "file_path": "data/external_constraints/KcsA/pore_filter/kcsa_1bl8_pore_filter_external_contacts.csv",
       "in_selected_V31_scope": true,
-      "provenance_notes": "Must support pore/filter/operator context, not only internal report text.",
-      "source_date_or_version": "REPLACE_WITH_VERSION_OR_ACCESS_DATE",
-      "source_name": "REPLACE_WITH_DATABASE_OR_PAPER_OR_PIPELINE_NAME",
-      "source_url_or_citation": "REPLACE_WITH_STABLE_SOURCE_OR_CITATION",
-      "state_or_context": "TVGYG_selectivity_filter_or_pore_filter",
+      "provenance_notes": "Real external RCSB PDB coordinate-derived pore/filter contact file. Claim-disabled source import only; not internal runtime report.",
+      "source_date_or_version": "accessed_2026-06-11",
+      "source_name": "RCSB PDB 1BL8 / Doyle et al. Science 1998",
+      "source_url_or_citation": "RCSB PDB 1BL8; Doyle DA et al. Science 280:69-77 (1998), DOI:10.1126/science.280.5360.69",
+      "state_or_context": "TVGYG_selectivity_filter_or_pore_filter_external_coordinate_contact",
       "target": "KcsA",
-      "valid_import_row": false,
-      "validation_errors": [
-        "file_path_does_not_exist",
-        "source_name_missing_or_template_placeholder",
-        "source_url_or_citation_missing_or_template_placeholder"
-      ]
+      "valid_import_row": true,
+      "validation_errors": []
     },
     {
-      "allowed_use": "excluded",
+      "allowed_use": "allowed_for_constraint_backed_operator_readout",
       "claim_allowed": false,
-      "counts_as_real_external_constraint": false,
-      "evidence_source_class": "invalid_or_unusable_import_row",
+      "counts_as_real_external_constraint": true,
+      "evidence_source_class": "real_external_constraint_or_coupling",
       "evidence_type": "assembly_interface_constraint",
-      "file_exists": false,
-      "file_path": "data/external_constraints/KcsA/assembly_interface/<real_external_constraint_file>.csv",
+      "file_exists": true,
+      "file_path": "data/external_constraints/KcsA/assembly_interface/kcsa_1bl8_assembly_interface_external_contacts.csv",
       "in_selected_V31_scope": true,
-      "provenance_notes": "Required before tetramer/assembly-backed claims. Still no whole-channel fold claim.",
-      "source_date_or_version": "REPLACE_WITH_VERSION_OR_ACCESS_DATE",
-      "source_name": "REPLACE_WITH_DATABASE_OR_PAPER_OR_PIPELINE_NAME",
-      "source_url_or_citation": "REPLACE_WITH_STABLE_SOURCE_OR_CITATION",
-      "state_or_context": "tetramer_or_chain_interface_context",
+      "provenance_notes": "Real external RCSB PDB coordinate-derived assembly/interface contact file. Claim-disabled source import only; not internal runtime report.",
+      "source_date_or_version": "accessed_2026-06-11",
+      "source_name": "RCSB PDB 1BL8 / Doyle et al. Science 1998",
+      "source_url_or_citation": "RCSB PDB 1BL8; Doyle DA et al. Science 280:69-77 (1998), DOI:10.1126/science.280.5360.69",
+      "state_or_context": "tetramer_chain_interface_context_external_coordinate_contact",
       "target": "KcsA",
-      "valid_import_row": false,
-      "validation_errors": [
-        "file_path_does_not_exist",
-        "source_name_missing_or_template_placeholder",
-        "source_url_or_citation_missing_or_template_placeholder"
-      ]
+      "valid_import_row": true,
+      "validation_errors": []
     }
   ],
   "evidence_claim_allowed": false,
@@ -117,96 +65,7 @@
       "no mixed-state pooling"
     ]
   },
-  "invalid_or_excluded_import_rows": [
-    {
-      "allowed_use": "excluded",
-      "claim_allowed": false,
-      "counts_as_real_external_constraint": false,
-      "evidence_source_class": "invalid_or_unusable_import_row",
-      "evidence_type": "state_specific_constraint",
-      "file_exists": false,
-      "file_path": "data/external_constraints/XCL1_lymphotactin/state_A/<real_external_constraint_file>.csv",
-      "in_selected_V31_scope": true,
-      "provenance_notes": "Required: real external source, not first_contact runtime report.",
-      "source_date_or_version": "REPLACE_WITH_VERSION_OR_ACCESS_DATE",
-      "source_name": "REPLACE_WITH_DATABASE_OR_PAPER_OR_PIPELINE_NAME",
-      "source_url_or_citation": "REPLACE_WITH_STABLE_SOURCE_OR_CITATION",
-      "state_or_context": "state_A_chemokine_like",
-      "target": "XCL1_lymphotactin",
-      "valid_import_row": false,
-      "validation_errors": [
-        "file_path_does_not_exist",
-        "source_name_missing_or_template_placeholder",
-        "source_url_or_citation_missing_or_template_placeholder"
-      ]
-    },
-    {
-      "allowed_use": "excluded",
-      "claim_allowed": false,
-      "counts_as_real_external_constraint": false,
-      "evidence_source_class": "invalid_or_unusable_import_row",
-      "evidence_type": "state_specific_constraint",
-      "file_exists": false,
-      "file_path": "data/external_constraints/XCL1_lymphotactin/state_B/<real_external_constraint_file>.csv",
-      "in_selected_V31_scope": true,
-      "provenance_notes": "Both XCL1 states are required before state-switch constraint-backed readout.",
-      "source_date_or_version": "REPLACE_WITH_VERSION_OR_ACCESS_DATE",
-      "source_name": "REPLACE_WITH_DATABASE_OR_PAPER_OR_PIPELINE_NAME",
-      "source_url_or_citation": "REPLACE_WITH_STABLE_SOURCE_OR_CITATION",
-      "state_or_context": "state_B_dimer_beta_sandwich_like",
-      "target": "XCL1_lymphotactin",
-      "valid_import_row": false,
-      "validation_errors": [
-        "file_path_does_not_exist",
-        "source_name_missing_or_template_placeholder",
-        "source_url_or_citation_missing_or_template_placeholder"
-      ]
-    },
-    {
-      "allowed_use": "excluded",
-      "claim_allowed": false,
-      "counts_as_real_external_constraint": false,
-      "evidence_source_class": "invalid_or_unusable_import_row",
-      "evidence_type": "pore_filter_coupling",
-      "file_exists": false,
-      "file_path": "data/external_constraints/KcsA/pore_filter/<real_external_coupling_file>.csv",
-      "in_selected_V31_scope": true,
-      "provenance_notes": "Must support pore/filter/operator context, not only internal report text.",
-      "source_date_or_version": "REPLACE_WITH_VERSION_OR_ACCESS_DATE",
-      "source_name": "REPLACE_WITH_DATABASE_OR_PAPER_OR_PIPELINE_NAME",
-      "source_url_or_citation": "REPLACE_WITH_STABLE_SOURCE_OR_CITATION",
-      "state_or_context": "TVGYG_selectivity_filter_or_pore_filter",
-      "target": "KcsA",
-      "valid_import_row": false,
-      "validation_errors": [
-        "file_path_does_not_exist",
-        "source_name_missing_or_template_placeholder",
-        "source_url_or_citation_missing_or_template_placeholder"
-      ]
-    },
-    {
-      "allowed_use": "excluded",
-      "claim_allowed": false,
-      "counts_as_real_external_constraint": false,
-      "evidence_source_class": "invalid_or_unusable_import_row",
-      "evidence_type": "assembly_interface_constraint",
-      "file_exists": false,
-      "file_path": "data/external_constraints/KcsA/assembly_interface/<real_external_constraint_file>.csv",
-      "in_selected_V31_scope": true,
-      "provenance_notes": "Required before tetramer/assembly-backed claims. Still no whole-channel fold claim.",
-      "source_date_or_version": "REPLACE_WITH_VERSION_OR_ACCESS_DATE",
-      "source_name": "REPLACE_WITH_DATABASE_OR_PAPER_OR_PIPELINE_NAME",
-      "source_url_or_citation": "REPLACE_WITH_STABLE_SOURCE_OR_CITATION",
-      "state_or_context": "tetramer_or_chain_interface_context",
-      "target": "KcsA",
-      "valid_import_row": false,
-      "validation_errors": [
-        "file_path_does_not_exist",
-        "source_name_missing_or_template_placeholder",
-        "source_url_or_citation_missing_or_template_placeholder"
-      ]
-    }
-  ],
+  "invalid_or_excluded_import_rows": [],
   "kind": "V32_EXTERNAL_CONSTRAINT_SOURCE_IMPORT_PREFLIGHT_v0",
   "locked_interpretation": "V32 is an acquisition/import preflight, not a folding win. It requires real external constraints for XCL1 or KcsA before any constraint-backed operator readout. Generated internal reports remain audit-only; annotations remain context-only; no MD and no claim are allowed.",
   "md_ready_targets": [],
@@ -217,87 +76,41 @@
   "new_md_executed": false,
   "next_constraint_backed_operator_readout_decision": {
     "claim_allowed": false,
-    "decision_status": "V32_CLEAN_ABSTAIN_REAL_EXTERNAL_CONSTRAINT_IMPORT_REQUIRED",
+    "decision_status": "V32_EXTERNAL_CONSTRAINT_SOURCE_IMPORT_PREFLIGHT_READY_FOR_V33_CLAIM_DISABLED",
     "kind": "V32_NEXT_CONSTRAINT_BACKED_OPERATOR_READOUT_DECISION_v0",
     "new_MD_allowed": false,
     "new_MD_recommended": false,
-    "next_action": "place_real_external_constraint_files_under_data/external_constraints_and_fill_v32_import_manifest_then_rerun_V32",
+    "next_action": "run_V33_constraint_backed_operator_readout_for_auto_selected_target_no_MD",
     "reason": "V32 imports only user-provided or locally present real external constraint sources. It does not treat V30/V31 runtime reports as evidence and does not run MD.",
-    "selected_V33_panel": null,
-    "selected_V33_target": null
+    "selected_V33_panel": "V33_CONSTRAINT_BACKED_OPERATOR_READOUT",
+    "selected_V33_target": "KcsA"
   },
   "preflight_failed_checks": [],
-  "preflight_status": "V32_CLEAN_ABSTAIN_REAL_EXTERNAL_CONSTRAINT_IMPORT_REQUIRED",
+  "preflight_status": "V32_EXTERNAL_CONSTRAINT_SOURCE_IMPORT_PREFLIGHT_READY_FOR_V33_CLAIM_DISABLED",
   "provenance_clean": true,
   "run_mode": "external_constraint_source_import_preflight_no_simulation_no_threshold_tuning",
   "selected_V31_targets": [
     "XCL1_lymphotactin",
     "KcsA"
   ],
-  "selected_V33_panel": null,
-  "selected_V33_target": null,
+  "selected_V33_panel": "V33_CONSTRAINT_BACKED_OPERATOR_READOUT",
+  "selected_V33_target": "KcsA",
   "source_v31_status": "V31_CLEAN_ABSTAIN_NO_REAL_EXTERNAL_CONSTRAINTS_FOR_SELECTED_TARGETS",
   "target_rows": [
     {
       "claim_allowed": false,
       "constraint_derivation_only_rows": [],
-      "import_row_count": 2,
-      "invalid_or_excluded_rows": [
-        {
-          "allowed_use": "excluded",
-          "claim_allowed": false,
-          "counts_as_real_external_constraint": false,
-          "evidence_source_class": "invalid_or_unusable_import_row",
-          "evidence_type": "state_specific_constraint",
-          "file_exists": false,
-          "file_path": "data/external_constraints/XCL1_lymphotactin/state_A/<real_external_constraint_file>.csv",
-          "in_selected_V31_scope": true,
-          "provenance_notes": "Required: real external source, not first_contact runtime report.",
-          "source_date_or_version": "REPLACE_WITH_VERSION_OR_ACCESS_DATE",
-          "source_name": "REPLACE_WITH_DATABASE_OR_PAPER_OR_PIPELINE_NAME",
-          "source_url_or_citation": "REPLACE_WITH_STABLE_SOURCE_OR_CITATION",
-          "state_or_context": "state_A_chemokine_like",
-          "target": "XCL1_lymphotactin",
-          "valid_import_row": false,
-          "validation_errors": [
-            "file_path_does_not_exist",
-            "source_name_missing_or_template_placeholder",
-            "source_url_or_citation_missing_or_template_placeholder"
-          ]
-        },
-        {
-          "allowed_use": "excluded",
-          "claim_allowed": false,
-          "counts_as_real_external_constraint": false,
-          "evidence_source_class": "invalid_or_unusable_import_row",
-          "evidence_type": "state_specific_constraint",
-          "file_exists": false,
-          "file_path": "data/external_constraints/XCL1_lymphotactin/state_B/<real_external_constraint_file>.csv",
-          "in_selected_V31_scope": true,
-          "provenance_notes": "Both XCL1 states are required before state-switch constraint-backed readout.",
-          "source_date_or_version": "REPLACE_WITH_VERSION_OR_ACCESS_DATE",
-          "source_name": "REPLACE_WITH_DATABASE_OR_PAPER_OR_PIPELINE_NAME",
-          "source_url_or_citation": "REPLACE_WITH_STABLE_SOURCE_OR_CITATION",
-          "state_or_context": "state_B_dimer_beta_sandwich_like",
-          "target": "XCL1_lymphotactin",
-          "valid_import_row": false,
-          "validation_errors": [
-            "file_path_does_not_exist",
-            "source_name_missing_or_template_placeholder",
-            "source_url_or_citation_missing_or_template_placeholder"
-          ]
-        }
-      ],
+      "import_row_count": 0,
+      "invalid_or_excluded_rows": [],
       "missing_for_V33": [
-        "state_A_real_external_constraint",
-        "state_B_real_external_constraint"
+        "real_external_constraint_import_rows"
       ],
       "new_MD_allowed": false,
       "new_MD_recommended": false,
       "ready_for_MD": false,
       "role_context_rows": [],
       "target": "XCL1_lymphotactin",
-      "target_import_status": "partial_or_missing_state_specific_external_constraints",
+      "target_import_status": "no_import_rows_for_target",
       "target_ready_for_V33": false,
       "valid_real_external_constraint_rows": []
     },
@@ -305,64 +118,53 @@
       "claim_allowed": false,
       "constraint_derivation_only_rows": [],
       "import_row_count": 2,
-      "invalid_or_excluded_rows": [
-        {
-          "allowed_use": "excluded",
-          "claim_allowed": false,
-          "counts_as_real_external_constraint": false,
-          "evidence_source_class": "invalid_or_unusable_import_row",
-          "evidence_type": "pore_filter_coupling",
-          "file_exists": false,
-          "file_path": "data/external_constraints/KcsA/pore_filter/<real_external_coupling_file>.csv",
-          "in_selected_V31_scope": true,
-          "provenance_notes": "Must support pore/filter/operator context, not only internal report text.",
-          "source_date_or_version": "REPLACE_WITH_VERSION_OR_ACCESS_DATE",
-          "source_name": "REPLACE_WITH_DATABASE_OR_PAPER_OR_PIPELINE_NAME",
-          "source_url_or_citation": "REPLACE_WITH_STABLE_SOURCE_OR_CITATION",
-          "state_or_context": "TVGYG_selectivity_filter_or_pore_filter",
-          "target": "KcsA",
-          "valid_import_row": false,
-          "validation_errors": [
-            "file_path_does_not_exist",
-            "source_name_missing_or_template_placeholder",
-            "source_url_or_citation_missing_or_template_placeholder"
-          ]
-        },
-        {
-          "allowed_use": "excluded",
-          "claim_allowed": false,
-          "counts_as_real_external_constraint": false,
-          "evidence_source_class": "invalid_or_unusable_import_row",
-          "evidence_type": "assembly_interface_constraint",
-          "file_exists": false,
-          "file_path": "data/external_constraints/KcsA/assembly_interface/<real_external_constraint_file>.csv",
-          "in_selected_V31_scope": true,
-          "provenance_notes": "Required before tetramer/assembly-backed claims. Still no whole-channel fold claim.",
-          "source_date_or_version": "REPLACE_WITH_VERSION_OR_ACCESS_DATE",
-          "source_name": "REPLACE_WITH_DATABASE_OR_PAPER_OR_PIPELINE_NAME",
-          "source_url_or_citation": "REPLACE_WITH_STABLE_SOURCE_OR_CITATION",
-          "state_or_context": "tetramer_or_chain_interface_context",
-          "target": "KcsA",
-          "valid_import_row": false,
-          "validation_errors": [
-            "file_path_does_not_exist",
-            "source_name_missing_or_template_placeholder",
-            "source_url_or_citation_missing_or_template_placeholder"
-          ]
-        }
-      ],
-      "missing_for_V33": [
-        "pore_filter_or_external_coupling_constraint",
-        "assembly_or_chain_interface_constraint"
-      ],
+      "invalid_or_excluded_rows": [],
+      "missing_for_V33": [],
       "new_MD_allowed": false,
       "new_MD_recommended": false,
       "ready_for_MD": false,
       "role_context_rows": [],
       "target": "KcsA",
-      "target_import_status": "partial_or_missing_kcsa_coupling_interface_constraints",
-      "target_ready_for_V33": false,
-      "valid_real_external_constraint_rows": []
+      "target_import_status": "target_ready_for_V33_constraint_backed_readout",
+      "target_ready_for_V33": true,
+      "valid_real_external_constraint_rows": [
+        {
+          "allowed_use": "allowed_for_constraint_backed_operator_readout",
+          "claim_allowed": false,
+          "counts_as_real_external_constraint": true,
+          "evidence_source_class": "real_external_constraint_or_coupling",
+          "evidence_type": "pore_filter_coupling",
+          "file_exists": true,
+          "file_path": "data/external_constraints/KcsA/pore_filter/kcsa_1bl8_pore_filter_external_contacts.csv",
+          "in_selected_V31_scope": true,
+          "provenance_notes": "Real external RCSB PDB coordinate-derived pore/filter contact file. Claim-disabled source import only; not internal runtime report.",
+          "source_date_or_version": "accessed_2026-06-11",
+          "source_name": "RCSB PDB 1BL8 / Doyle et al. Science 1998",
+          "source_url_or_citation": "RCSB PDB 1BL8; Doyle DA et al. Science 280:69-77 (1998), DOI:10.1126/science.280.5360.69",
+          "state_or_context": "TVGYG_selectivity_filter_or_pore_filter_external_coordinate_contact",
+          "target": "KcsA",
+          "valid_import_row": true,
+          "validation_errors": []
+        },
+        {
+          "allowed_use": "allowed_for_constraint_backed_operator_readout",
+          "claim_allowed": false,
+          "counts_as_real_external_constraint": true,
+          "evidence_source_class": "real_external_constraint_or_coupling",
+          "evidence_type": "assembly_interface_constraint",
+          "file_exists": true,
+          "file_path": "data/external_constraints/KcsA/assembly_interface/kcsa_1bl8_assembly_interface_external_contacts.csv",
+          "in_selected_V31_scope": true,
+          "provenance_notes": "Real external RCSB PDB coordinate-derived assembly/interface contact file. Claim-disabled source import only; not internal runtime report.",
+          "source_date_or_version": "accessed_2026-06-11",
+          "source_name": "RCSB PDB 1BL8 / Doyle et al. Science 1998",
+          "source_url_or_citation": "RCSB PDB 1BL8; Doyle DA et al. Science 280:69-77 (1998), DOI:10.1126/science.280.5360.69",
+          "state_or_context": "tetramer_chain_interface_context_external_coordinate_contact",
+          "target": "KcsA",
+          "valid_import_row": true,
+          "validation_errors": []
+        }
+      ]
     }
   ],
   "target_specific_threshold_tuning_allowed": false
