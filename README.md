@@ -15,7 +15,7 @@ Recent live-target packets now cover three different hard classes:
 | V44 | FUS-LC residues 1-214 | IDP / phase separation | sealed packet, review-required |
 | V45 | TDP-43 LCD residues 274-414 | IDP / phase separation replication | sealed packet, review-required |
 | V46 | CFTR F508del | membrane multidomain folding / proteostasis | committed and synced |
-| V47 | RfaH-CTD residues 101-162 | metamorphic alpha/beta fold switching | local review candidate |
+| V47 | RfaH-CTD residues 101-162 | metamorphic alpha/beta fold switching | committed and synced |
 
 Every packet keeps:
 
