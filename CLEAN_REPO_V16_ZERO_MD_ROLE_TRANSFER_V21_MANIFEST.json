@@ -1,0 +1,17 @@
+{
+  "adds": [
+    "KcsA 1K4C three-chain coordinate-context preflight repair",
+    "V16 zero-MD role-transfer readout",
+    "V16 zero-MD readout summary printer",
+    "V16 zero-MD readout tests and commands"
+  ],
+  "base": "V16_TARGET_MANIFEST_LOCK_v19",
+  "claim_allowed": false,
+  "clean_repo_version": "V16_ZERO_MD_ROLE_TRANSFER_READOUT_v21",
+  "fixed_residue_cutoff_used": false,
+  "grammar_tuning_allowed": false,
+  "kind": "CLEAN_REPO_V16_DATA_PREFLIGHT_V20_MANIFEST",
+  "new_md_executed": false,
+  "purpose": "Start testing V16 pressure targets with a clean data/material preflight before any role-readout or MD.",
+  "target_specific_threshold_tuning_allowed": false
+}

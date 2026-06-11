@@ -1,99 +1,101 @@
 {
-  "kind": "V16_TRANSFER_DATA_MATERIAL_MANIFEST_v0",
-  "panel_name": "V16_LOCKED_GRAMMAR_TRANSFER_PANEL",
-  "purpose": "Declare concrete data material expected for V16 pressure-class transfer preflight. This manifest does not tune grammar, does not set fixed thresholds, and does not permit claims.",
   "claim_allowed": false,
   "data_preflight_only": true,
-  "new_md_allowed": false,
-  "grammar_changes_allowed": false,
-  "target_specific_threshold_tuning_allowed": false,
-  "native_metrics_not_used_for_selection": true,
   "fixed_residue_cutoff_used": false,
   "fixed_threshold_policy": "forbidden",
+  "grammar_changes_allowed": false,
+  "kind": "V16_TRANSFER_DATA_MATERIAL_MANIFEST_v0",
   "material_root": "data/v16_pressure_targets",
+  "native_metrics_not_used_for_selection": true,
+  "new_md_allowed": false,
+  "panel_name": "V16_LOCKED_GRAMMAR_TRANSFER_PANEL",
+  "purpose": "Declare concrete data material expected for V16 pressure-class transfer preflight. This manifest does not tune grammar, does not set fixed thresholds, and does not permit claims.",
+  "target_specific_threshold_tuning_allowed": false,
   "targets": [
     {
-      "target_id": "p53_TAD_MDM2",
+      "claim_allowed": false,
+      "clean_abstain_allowed": true,
       "expected_role_class": "disorder_partner_induced_object",
-      "pressure_class": "disorder_partner_induced_binding",
-      "required_material": [
-        {
-          "material_id": "p53_TAD_MDM2_complex_structure",
-          "kind": "pdb_structure",
-          "pdb_id": "1YCR",
-          "path": "data/v16_pressure_targets/p53_TAD_MDM2/1YCR.pdb",
-          "provenance_path": "data/v16_pressure_targets/p53_TAD_MDM2/1YCR.provenance.json",
-          "role_use": "partner_induced_interface_or_helix_context",
-          "min_ca_atoms": 20,
-          "min_chains": 2
-        }
-      ],
       "optional_or_later_material": [
         "isolated_TAD_sequence_or_segment",
         "disorder_annotation_or_disorder_prior",
         "external_couplings_if_available"
       ],
-      "clean_abstain_allowed": true,
-      "claim_allowed": false
-    },
-    {
-      "target_id": "KcsA",
-      "expected_role_class": "membrane_pore_oligomer_object",
-      "pressure_class": "membrane_pore_oligomer_environment",
+      "pressure_class": "disorder_partner_induced_binding",
       "required_material": [
         {
-          "material_id": "KcsA_Fab_complex_structure",
           "kind": "pdb_structure",
-          "pdb_id": "1K4C",
-          "path": "data/v16_pressure_targets/KcsA/1K4C.pdb",
-          "provenance_path": "data/v16_pressure_targets/KcsA/1K4C.provenance.json",
-          "role_use": "membrane_pore_oligomer_context",
-          "min_ca_atoms": 100,
-          "min_chains": 4
+          "material_id": "p53_TAD_MDM2_complex_structure",
+          "min_ca_atoms": 20,
+          "min_chains": 2,
+          "path": "data/v16_pressure_targets/p53_TAD_MDM2/1YCR.pdb",
+          "pdb_id": "1YCR",
+          "provenance_path": "data/v16_pressure_targets/p53_TAD_MDM2/1YCR.provenance.json",
+          "role_use": "partner_induced_interface_or_helix_context"
         }
       ],
+      "target_id": "p53_TAD_MDM2"
+    },
+    {
+      "claim_allowed": false,
+      "clean_abstain_allowed": true,
+      "expected_role_class": "membrane_pore_oligomer_object",
       "optional_or_later_material": [
         "membrane_topology_annotation",
         "biological_assembly_or_oligomer_annotation",
         "pore_filter_residue_context",
         "external_couplings_if_available"
       ],
-      "clean_abstain_allowed": true,
-      "claim_allowed": false
-    },
-    {
-      "target_id": "XCL1_lymphotactin",
-      "expected_role_class": "metamorphic_switch_object",
-      "pressure_class": "metamorphic_fold_switching",
+      "pressure_class": "membrane_pore_oligomer_environment",
       "required_material": [
         {
-          "material_id": "XCL1_state_A_chemokine_like_structure",
           "kind": "pdb_structure",
-          "pdb_id": "2HDM",
-          "path": "data/v16_pressure_targets/XCL1_lymphotactin/2HDM.pdb",
-          "provenance_path": "data/v16_pressure_targets/XCL1_lymphotactin/2HDM.provenance.json",
-          "role_use": "state_A_chemokine_monomer_context",
-          "min_ca_atoms": 40,
-          "min_chains": 1
-        },
-        {
-          "material_id": "XCL1_state_B_alternative_conformation_structure",
-          "kind": "pdb_structure",
-          "pdb_id": "2JP1",
-          "path": "data/v16_pressure_targets/XCL1_lymphotactin/2JP1.pdb",
-          "provenance_path": "data/v16_pressure_targets/XCL1_lymphotactin/2JP1.provenance.json",
-          "role_use": "state_B_beta_sandwich_or_alternative_state_context",
-          "min_ca_atoms": 40,
-          "min_chains": 1
+          "material_id": "KcsA_Fab_complex_structure",
+          "material_sanity_note": "1K4C downloaded coordinate file may expose three CA-bearing chains in the asymmetric/context file; this is a material sanity floor only, not a tetramer proof or selection threshold. Biological assembly/membrane annotations remain optional/later and claim_allowed=false.",
+          "min_ca_atoms": 100,
+          "min_chains": 3,
+          "path": "data/v16_pressure_targets/KcsA/1K4C.pdb",
+          "pdb_id": "1K4C",
+          "provenance_path": "data/v16_pressure_targets/KcsA/1K4C.provenance.json",
+          "role_use": "membrane_pore_oligomer_context"
         }
       ],
+      "target_id": "KcsA",
+      "target_role_preflight_note": "3-chain coordinate context is sufficient for zero-MD role-context readout; tetramer/membrane roles remain context/diagnostic until biological assembly and membrane annotations are added."
+    },
+    {
+      "claim_allowed": false,
+      "clean_abstain_allowed": true,
+      "expected_role_class": "metamorphic_switch_object",
       "optional_or_later_material": [
         "condition_or_oligomerization_context",
         "state_specific_external_couplings_if_available",
         "state_specific_leakage_guard"
       ],
-      "clean_abstain_allowed": true,
-      "claim_allowed": false
+      "pressure_class": "metamorphic_fold_switching",
+      "required_material": [
+        {
+          "kind": "pdb_structure",
+          "material_id": "XCL1_state_A_chemokine_like_structure",
+          "min_ca_atoms": 40,
+          "min_chains": 1,
+          "path": "data/v16_pressure_targets/XCL1_lymphotactin/2HDM.pdb",
+          "pdb_id": "2HDM",
+          "provenance_path": "data/v16_pressure_targets/XCL1_lymphotactin/2HDM.provenance.json",
+          "role_use": "state_A_chemokine_monomer_context"
+        },
+        {
+          "kind": "pdb_structure",
+          "material_id": "XCL1_state_B_alternative_conformation_structure",
+          "min_ca_atoms": 40,
+          "min_chains": 1,
+          "path": "data/v16_pressure_targets/XCL1_lymphotactin/2JP1.pdb",
+          "pdb_id": "2JP1",
+          "provenance_path": "data/v16_pressure_targets/XCL1_lymphotactin/2JP1.provenance.json",
+          "role_use": "state_B_beta_sandwich_or_alternative_state_context"
+        }
+      ],
+      "target_id": "XCL1_lymphotactin"
     }
   ]
 }
