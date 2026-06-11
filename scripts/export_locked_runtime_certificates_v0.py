@@ -40,6 +40,7 @@ CERTS = [
     ("V28_XCL1_STATE_CONDITION_EVIDENCE_CONTRAST_TEST", "v28_xcl1_state_condition_evidence_contrast_certificate.json"),
     ("V29_MECHANISM_OPERATOR_PANEL_SUMMARY_AND_MD_READINESS_DECISION", "v29_mechanism_operator_panel_summary_and_md_readiness_certificate.json"),
     ("V30_EXTERNAL_CONSTRAINT_AND_COUPLING_ACQUISITION_SPRINT", "v30_external_constraint_and_coupling_acquisition_sprint_certificate.json"),
+    ("V31_CONSTRAINT_BACKED_OPERATOR_READOUT_PREFLIGHT", "v31_constraint_backed_operator_readout_preflight_certificate.json"),
 ]
 
 

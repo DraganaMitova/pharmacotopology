@@ -7,6 +7,7 @@
   "claim_allowed": false,
   "claim_allowed_default": false,
   "clean_repo_variant": "V13_runtime_repair_v5_strict_honest_targets",
+  "created_for": "V31 constraint-backed operator readout preflight",
   "default_1cll_independent_candidates": [
     "AF-P0DP23-F1-model_v4",
     "AF-P62158-F1-model_v4"
@@ -22,6 +23,14 @@
   ],
   "generated_run_artifacts_removed": true,
   "git_removed": true,
+  "new_md_executed": false,
+  "notes": [
+    "Adds provenance classification and allowed_use gating for V30 candidate files.",
+    "Generated internal reports are audit-only and cannot count as external evidence.",
+    "Annotation-only context is role-context-only, not constraint/coupling evidence.",
+    "V32 can be selected only when selected V31 target has real external constraint/coupling files."
+  ],
+  "package": "pharmacotopology_CLEAN_REPO_V31_CONSTRAINT_BACKED_PREFLIGHT_v41",
   "raw_md_trajectory_restored": false,
   "strict_target_policy": "real downloaded exact full-length target only",
   "venv_removed": true,
