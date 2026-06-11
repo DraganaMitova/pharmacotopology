@@ -1,0 +1,16 @@
+{
+  "claim_allowed": false,
+  "kind": "V32_EXTERNAL_CONSTRAINT_IMPORT_REQUIREMENTS_v0",
+  "requirements": {
+    "KcsA": [
+      "pore/filter/selectivity or external coupling/contact support",
+      "assembly/interface/tetramer/chain-interface context constraint",
+      "no whole-channel/tetramer fold claim from annotation alone"
+    ],
+    "XCL1_lymphotactin": [
+      "state_A real external constraint/coupling with state_or_context marking chemokine/monomer context",
+      "state_B real external constraint/coupling with state_or_context marking dimer/beta-sandwich context",
+      "no mixed-state pooling"
+    ]
+  }
+}

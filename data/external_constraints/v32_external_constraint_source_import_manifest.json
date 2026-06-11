@@ -1,0 +1,53 @@
+{
+  "claim_allowed": false,
+  "instructions": [
+    "Replace template rows with real external source rows.",
+    "Do not use files under first_contact_clean_pharmacotopology_layer_run as evidence.",
+    "Do not use data/locked_runtime_certificates as evidence.",
+    "Real external constraint files should live under data/external_constraints/<target>/...",
+    "Annotation-only files are allowed for role context only, not constraint-backed evidence claims."
+  ],
+  "kind": "V32_EXTERNAL_CONSTRAINT_SOURCE_IMPORT_MANIFEST_v0",
+  "rows": [
+    {
+      "evidence_type": "state_specific_constraint",
+      "file_path": "data/external_constraints/XCL1_lymphotactin/state_A/<real_external_constraint_file>.csv",
+      "provenance_notes": "Required: real external source, not first_contact runtime report.",
+      "source_date_or_version": "REPLACE_WITH_VERSION_OR_ACCESS_DATE",
+      "source_name": "REPLACE_WITH_DATABASE_OR_PAPER_OR_PIPELINE_NAME",
+      "source_url_or_citation": "REPLACE_WITH_STABLE_SOURCE_OR_CITATION",
+      "state_or_context": "state_A_chemokine_like",
+      "target": "XCL1_lymphotactin"
+    },
+    {
+      "evidence_type": "state_specific_constraint",
+      "file_path": "data/external_constraints/XCL1_lymphotactin/state_B/<real_external_constraint_file>.csv",
+      "provenance_notes": "Both XCL1 states are required before state-switch constraint-backed readout.",
+      "source_date_or_version": "REPLACE_WITH_VERSION_OR_ACCESS_DATE",
+      "source_name": "REPLACE_WITH_DATABASE_OR_PAPER_OR_PIPELINE_NAME",
+      "source_url_or_citation": "REPLACE_WITH_STABLE_SOURCE_OR_CITATION",
+      "state_or_context": "state_B_dimer_beta_sandwich_like",
+      "target": "XCL1_lymphotactin"
+    },
+    {
+      "evidence_type": "pore_filter_coupling",
+      "file_path": "data/external_constraints/KcsA/pore_filter/<real_external_coupling_file>.csv",
+      "provenance_notes": "Must support pore/filter/operator context, not only internal report text.",
+      "source_date_or_version": "REPLACE_WITH_VERSION_OR_ACCESS_DATE",
+      "source_name": "REPLACE_WITH_DATABASE_OR_PAPER_OR_PIPELINE_NAME",
+      "source_url_or_citation": "REPLACE_WITH_STABLE_SOURCE_OR_CITATION",
+      "state_or_context": "TVGYG_selectivity_filter_or_pore_filter",
+      "target": "KcsA"
+    },
+    {
+      "evidence_type": "assembly_interface_constraint",
+      "file_path": "data/external_constraints/KcsA/assembly_interface/<real_external_constraint_file>.csv",
+      "provenance_notes": "Required before tetramer/assembly-backed claims. Still no whole-channel fold claim.",
+      "source_date_or_version": "REPLACE_WITH_VERSION_OR_ACCESS_DATE",
+      "source_name": "REPLACE_WITH_DATABASE_OR_PAPER_OR_PIPELINE_NAME",
+      "source_url_or_citation": "REPLACE_WITH_STABLE_SOURCE_OR_CITATION",
+      "state_or_context": "tetramer_or_chain_interface_context",
+      "target": "KcsA"
+    }
+  ]
+}

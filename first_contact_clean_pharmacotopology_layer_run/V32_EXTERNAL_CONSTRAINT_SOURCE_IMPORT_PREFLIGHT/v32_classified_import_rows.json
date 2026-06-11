@@ -1,0 +1,94 @@
+{
+  "claim_allowed": false,
+  "kind": "V32_CLASSIFIED_IMPORT_ROWS_v0",
+  "rows": [
+    {
+      "allowed_use": "excluded",
+      "claim_allowed": false,
+      "counts_as_real_external_constraint": false,
+      "evidence_source_class": "invalid_or_unusable_import_row",
+      "evidence_type": "state_specific_constraint",
+      "file_exists": false,
+      "file_path": "data/external_constraints/XCL1_lymphotactin/state_A/<real_external_constraint_file>.csv",
+      "in_selected_V31_scope": true,
+      "provenance_notes": "Required: real external source, not first_contact runtime report.",
+      "source_date_or_version": "REPLACE_WITH_VERSION_OR_ACCESS_DATE",
+      "source_name": "REPLACE_WITH_DATABASE_OR_PAPER_OR_PIPELINE_NAME",
+      "source_url_or_citation": "REPLACE_WITH_STABLE_SOURCE_OR_CITATION",
+      "state_or_context": "state_A_chemokine_like",
+      "target": "XCL1_lymphotactin",
+      "valid_import_row": false,
+      "validation_errors": [
+        "file_path_does_not_exist",
+        "source_name_missing_or_template_placeholder",
+        "source_url_or_citation_missing_or_template_placeholder"
+      ]
+    },
+    {
+      "allowed_use": "excluded",
+      "claim_allowed": false,
+      "counts_as_real_external_constraint": false,
+      "evidence_source_class": "invalid_or_unusable_import_row",
+      "evidence_type": "state_specific_constraint",
+      "file_exists": false,
+      "file_path": "data/external_constraints/XCL1_lymphotactin/state_B/<real_external_constraint_file>.csv",
+      "in_selected_V31_scope": true,
+      "provenance_notes": "Both XCL1 states are required before state-switch constraint-backed readout.",
+      "source_date_or_version": "REPLACE_WITH_VERSION_OR_ACCESS_DATE",
+      "source_name": "REPLACE_WITH_DATABASE_OR_PAPER_OR_PIPELINE_NAME",
+      "source_url_or_citation": "REPLACE_WITH_STABLE_SOURCE_OR_CITATION",
+      "state_or_context": "state_B_dimer_beta_sandwich_like",
+      "target": "XCL1_lymphotactin",
+      "valid_import_row": false,
+      "validation_errors": [
+        "file_path_does_not_exist",
+        "source_name_missing_or_template_placeholder",
+        "source_url_or_citation_missing_or_template_placeholder"
+      ]
+    },
+    {
+      "allowed_use": "excluded",
+      "claim_allowed": false,
+      "counts_as_real_external_constraint": false,
+      "evidence_source_class": "invalid_or_unusable_import_row",
+      "evidence_type": "pore_filter_coupling",
+      "file_exists": false,
+      "file_path": "data/external_constraints/KcsA/pore_filter/<real_external_coupling_file>.csv",
+      "in_selected_V31_scope": true,
+      "provenance_notes": "Must support pore/filter/operator context, not only internal report text.",
+      "source_date_or_version": "REPLACE_WITH_VERSION_OR_ACCESS_DATE",
+      "source_name": "REPLACE_WITH_DATABASE_OR_PAPER_OR_PIPELINE_NAME",
+      "source_url_or_citation": "REPLACE_WITH_STABLE_SOURCE_OR_CITATION",
+      "state_or_context": "TVGYG_selectivity_filter_or_pore_filter",
+      "target": "KcsA",
+      "valid_import_row": false,
+      "validation_errors": [
+        "file_path_does_not_exist",
+        "source_name_missing_or_template_placeholder",
+        "source_url_or_citation_missing_or_template_placeholder"
+      ]
+    },
+    {
+      "allowed_use": "excluded",
+      "claim_allowed": false,
+      "counts_as_real_external_constraint": false,
+      "evidence_source_class": "invalid_or_unusable_import_row",
+      "evidence_type": "assembly_interface_constraint",
+      "file_exists": false,
+      "file_path": "data/external_constraints/KcsA/assembly_interface/<real_external_constraint_file>.csv",
+      "in_selected_V31_scope": true,
+      "provenance_notes": "Required before tetramer/assembly-backed claims. Still no whole-channel fold claim.",
+      "source_date_or_version": "REPLACE_WITH_VERSION_OR_ACCESS_DATE",
+      "source_name": "REPLACE_WITH_DATABASE_OR_PAPER_OR_PIPELINE_NAME",
+      "source_url_or_citation": "REPLACE_WITH_STABLE_SOURCE_OR_CITATION",
+      "state_or_context": "tetramer_or_chain_interface_context",
+      "target": "KcsA",
+      "valid_import_row": false,
+      "validation_errors": [
+        "file_path_does_not_exist",
+        "source_name_missing_or_template_placeholder",
+        "source_url_or_citation_missing_or_template_placeholder"
+      ]
+    }
+  ]
+}
