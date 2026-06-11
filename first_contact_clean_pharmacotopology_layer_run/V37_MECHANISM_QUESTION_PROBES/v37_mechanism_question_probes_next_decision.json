@@ -1,0 +1,8 @@
+{
+  "claim_allowed": false,
+  "decision_status": "V37_MECHANISM_QUESTION_PROBES_PASSED_CLAIM_DISABLED",
+  "folding_problem_solved": false,
+  "kind": "V37_MECHANISM_QUESTION_PROBES_NEXT_DECISION_v0",
+  "new_MD_allowed": false,
+  "next_action": "use_mechanism_question_maps_to_design_class_specific_readouts_no_claim_no_MD"
+}

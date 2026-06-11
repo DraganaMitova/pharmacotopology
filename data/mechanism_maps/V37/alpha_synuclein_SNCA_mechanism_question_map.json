@@ -1,0 +1,36 @@
+{
+  "claim_allowed": false,
+  "expected_mechanism_class": "intrinsic_disorder_contextual_ensemble",
+  "folding_problem_solved": false,
+  "forbidden_operator_buckets_triggered": [],
+  "kind": "V37_TARGET_MECHANISM_QUESTION_MAP_v0",
+  "mechanism_class": "intrinsic_disorder_contextual_ensemble",
+  "new_MD_allowed": false,
+  "required_operator_buckets_missing": [],
+  "required_operator_buckets_present": [
+    "context_bound_structure_operator",
+    "disorder_to_order_context_operator",
+    "ensemble_not_single_fold_operator",
+    "intrinsic_disorder_operator"
+  ],
+  "scientific_question_answers": [
+    {
+      "answer": true,
+      "question": "Does the dossier support free-state disorder?"
+    },
+    {
+      "answer": true,
+      "question": "Does it represent membrane-bound helix as context-dependent, not solved folding?"
+    },
+    {
+      "answer": true,
+      "question": "Does it block single-native-fold grammar?"
+    },
+    {
+      "answer": true,
+      "question": "Does it keep aggregation/amyloid context from becoming a native-fold claim?"
+    }
+  ],
+  "target": "alpha_synuclein_SNCA",
+  "target_status": "assigned"
+}

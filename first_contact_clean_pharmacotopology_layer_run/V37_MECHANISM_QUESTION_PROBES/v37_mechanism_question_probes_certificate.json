@@ -1,0 +1,358 @@
+{
+  "artifacts": {
+    "answer_table": "/Users/draganamitova/My Projects/pharmacotopology/data/mechanism_maps/V37/V37_MECHANISM_QUESTION_ANSWER_TABLE.md",
+    "certificate": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V37_MECHANISM_QUESTION_PROBES/v37_mechanism_question_probes_certificate.json",
+    "decision": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V37_MECHANISM_QUESTION_PROBES/v37_mechanism_question_probes_next_decision.json",
+    "report": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V37_MECHANISM_QUESTION_PROBES/V37_MECHANISM_QUESTION_PROBES_REPORT.md",
+    "target_maps": {
+      "KcsA": "/Users/draganamitova/My Projects/pharmacotopology/data/mechanism_maps/V37/KcsA_mechanism_question_map.json",
+      "XCL1_lymphotactin": "/Users/draganamitova/My Projects/pharmacotopology/data/mechanism_maps/V37/XCL1_lymphotactin_mechanism_question_map.json",
+      "alpha_synuclein_SNCA": "/Users/draganamitova/My Projects/pharmacotopology/data/mechanism_maps/V37/alpha_synuclein_SNCA_mechanism_question_map.json"
+    },
+    "target_results": "/Users/draganamitova/My Projects/pharmacotopology/first_contact_clean_pharmacotopology_layer_run/V37_MECHANISM_QUESTION_PROBES/v37_target_mechanism_probe_results.json"
+  },
+  "assigned_target_count": 3,
+  "blocked_target_count": 0,
+  "claim_allowed": false,
+  "control_count": 12,
+  "control_status": "V37_MECHANISM_QUESTION_PROBES_PASSED_CLAIM_DISABLED",
+  "controls": [
+    {
+      "control_id": "baseline_v36_dossiers_assign_all_three_mechanism_classes",
+      "expected_failure_contains": "",
+      "expected_status": "V37_MECHANISM_QUESTION_PROBES_PASSED_CLAIM_DISABLED",
+      "observed_failed_checks": [],
+      "observed_status": "V37_MECHANISM_QUESTION_PROBES_PASSED_CLAIM_DISABLED",
+      "passed": true,
+      "reason": "Baseline V36 dossiers must assign KcsA, XCL1, and SNCA mechanism classes."
+    },
+    {
+      "control_id": "target_name_masked_dossiers_still_assign_from_evidence_content",
+      "expected_failure_contains": "",
+      "expected_status": "V37_MECHANISM_QUESTION_PROBES_PASSED_CLAIM_DISABLED",
+      "observed_failed_checks": [],
+      "observed_status": "V37_MECHANISM_QUESTION_PROBES_PASSED_CLAIM_DISABLED",
+      "passed": true,
+      "reason": "Masking target names must not break evidence-content assignment."
+    },
+    {
+      "control_id": "swapped_dossiers_are_detected_not_renamed_into_target_grammar",
+      "expected_failure_contains": "mechanism_class_mismatch",
+      "expected_status": "V37_BLOCKED_FORCED_WRONG_GRAMMAR",
+      "observed_failed_checks": [
+        "KcsA:forbidden_operator_triggered:intrinsic_disorder_ensemble_operator",
+        "KcsA:mechanism_class_mismatch:intrinsic_disorder_contextual_ensemble",
+        "KcsA:missing_required_operator:filter_signature_operator",
+        "KcsA:missing_required_operator:ion_selectivity_operator",
+        "KcsA:missing_required_operator:membrane_topology_operator",
+        "KcsA:missing_required_operator:oligomer_or_interface_context_operator",
+        "alpha_synuclein_SNCA:forbidden_operator_triggered:membrane_channel_pore_operator",
+        "alpha_synuclein_SNCA:mechanism_class_mismatch:membrane_pore_filter_oligomeric_ion_selectivity",
+        "alpha_synuclein_SNCA:missing_required_operator:context_bound_structure_operator",
+        "alpha_synuclein_SNCA:missing_required_operator:disorder_to_order_context_operator",
+        "alpha_synuclein_SNCA:missing_required_operator:ensemble_not_single_fold_operator",
+        "alpha_synuclein_SNCA:missing_required_operator:intrinsic_disorder_operator"
+      ],
+      "observed_status": "V37_BLOCKED_FORCED_WRONG_GRAMMAR",
+      "passed": true,
+      "reason": "Swapped evidence must be detected even when target names are changed."
+    },
+    {
+      "control_id": "kcsa_without_ion_filter_evidence_is_partial",
+      "expected_failure_contains": "KcsA:missing_required_operator:ion_selectivity_operator",
+      "expected_status": "V37_PARTIAL_MECHANISM_ASSIGNMENT_CLEAN_ABSTAIN",
+      "observed_failed_checks": [
+        "KcsA:missing_required_operator:filter_signature_operator",
+        "KcsA:missing_required_operator:ion_selectivity_operator"
+      ],
+      "observed_status": "V37_PARTIAL_MECHANISM_ASSIGNMENT_CLEAN_ABSTAIN",
+      "passed": true,
+      "reason": "KcsA must not be ready without ion/filter operators."
+    },
+    {
+      "control_id": "xcl1_without_state_b_is_partial",
+      "expected_failure_contains": "XCL1_lymphotactin:missing_required_operator:state_B_beta_sandwich_dimer_operator",
+      "expected_status": "V37_PARTIAL_MECHANISM_ASSIGNMENT_CLEAN_ABSTAIN",
+      "observed_failed_checks": [
+        "XCL1_lymphotactin:missing_required_operator:state_B_beta_sandwich_dimer_operator",
+        "XCL1_lymphotactin:missing_required_operator:state_specific_function_operator"
+      ],
+      "observed_status": "V37_PARTIAL_MECHANISM_ASSIGNMENT_CLEAN_ABSTAIN",
+      "passed": true,
+      "reason": "XCL1 needs state B evidence."
+    },
+    {
+      "control_id": "xcl1_forced_mixed_state_pooling_is_blocked",
+      "expected_failure_contains": "forbidden_operator_triggered:single_consensus_fold_operator",
+      "expected_status": "V37_BLOCKED_FORCED_WRONG_GRAMMAR",
+      "observed_failed_checks": [
+        "XCL1_lymphotactin:forbidden_operator_triggered:single_consensus_fold_operator",
+        "XCL1_lymphotactin:missing_required_operator:no_mixed_state_pooling_operator"
+      ],
+      "observed_status": "V37_BLOCKED_FORCED_WRONG_GRAMMAR",
+      "passed": true,
+      "reason": "Forced mixed-state pooling must be blocked."
+    },
+    {
+      "control_id": "snca_without_disorder_evidence_is_partial",
+      "expected_failure_contains": "alpha_synuclein_SNCA:missing_required_operator:intrinsic_disorder_operator",
+      "expected_status": "V37_PARTIAL_MECHANISM_ASSIGNMENT_CLEAN_ABSTAIN",
+      "observed_failed_checks": [
+        "alpha_synuclein_SNCA:missing_required_operator:intrinsic_disorder_operator"
+      ],
+      "observed_status": "V37_PARTIAL_MECHANISM_ASSIGNMENT_CLEAN_ABSTAIN",
+      "passed": true,
+      "reason": "SNCA cannot be ready without disorder evidence."
+    },
+    {
+      "control_id": "snca_forced_compact_single_fold_is_blocked",
+      "expected_failure_contains": "forbidden_operator_triggered:compact_native_single_fold_operator",
+      "expected_status": "V37_BLOCKED_FORCED_WRONG_GRAMMAR",
+      "observed_failed_checks": [
+        "alpha_synuclein_SNCA:forbidden_operator_triggered:compact_native_single_fold_operator"
+      ],
+      "observed_status": "V37_BLOCKED_FORCED_WRONG_GRAMMAR",
+      "passed": true,
+      "reason": "SNCA compact single-fold grammar is forbidden."
+    },
+    {
+      "control_id": "generic_only_annotations_do_not_assign_high_confidence_grammar",
+      "expected_failure_contains": "KcsA:no_high_confidence_mechanism_assignment",
+      "expected_status": "V37_PARTIAL_MECHANISM_ASSIGNMENT_CLEAN_ABSTAIN",
+      "observed_failed_checks": [
+        "KcsA:missing_required_operator:filter_signature_operator",
+        "KcsA:missing_required_operator:ion_selectivity_operator",
+        "KcsA:missing_required_operator:membrane_topology_operator",
+        "KcsA:missing_required_operator:oligomer_or_interface_context_operator",
+        "KcsA:no_high_confidence_mechanism_assignment"
+      ],
+      "observed_status": "V37_PARTIAL_MECHANISM_ASSIGNMENT_CLEAN_ABSTAIN",
+      "passed": true,
+      "reason": "Generic annotations must not become high-confidence mechanism grammar."
+    },
+    {
+      "control_id": "coordinate_derived_source_supplied_to_v37_is_blocked",
+      "expected_failure_contains": "coordinate_or_prediction_leakage",
+      "expected_status": "V37_BLOCKED_COORDINATE_OR_INTERNAL_LEAKAGE",
+      "observed_failed_checks": [
+        "KcsA:source_row_0:coordinate_or_prediction_leakage"
+      ],
+      "observed_status": "V37_BLOCKED_COORDINATE_OR_INTERNAL_LEAKAGE",
+      "passed": true,
+      "reason": "Coordinate-derived V33/V34-style evidence must be blocked."
+    },
+    {
+      "control_id": "internal_runtime_source_supplied_to_v37_is_blocked",
+      "expected_failure_contains": "internal_runtime_source",
+      "expected_status": "V37_BLOCKED_COORDINATE_OR_INTERNAL_LEAKAGE",
+      "observed_failed_checks": [
+        "KcsA:source_row_0:internal_runtime_source"
+      ],
+      "observed_status": "V37_BLOCKED_COORDINATE_OR_INTERNAL_LEAKAGE",
+      "passed": true,
+      "reason": "Runtime reports must not become mechanism evidence."
+    },
+    {
+      "control_id": "placeholder_source_row_supplied_to_v37_is_blocked",
+      "expected_failure_contains": "placeholder_or_missing_source_name",
+      "expected_status": "V37_BLOCKED_FORCED_WRONG_GRAMMAR",
+      "observed_failed_checks": [
+        "KcsA:source_row_0:placeholder_or_missing_source_date_or_version",
+        "KcsA:source_row_0:placeholder_or_missing_source_name",
+        "KcsA:source_row_0:placeholder_or_missing_source_url_or_citation"
+      ],
+      "observed_status": "V37_BLOCKED_FORCED_WRONG_GRAMMAR",
+      "passed": true,
+      "reason": "Placeholder source rows must be blocked."
+    }
+  ],
+  "coordinate_derived_source_count": 0,
+  "coordinate_truth_used_before_selection": false,
+  "failed_checks": [],
+  "folding_problem_solved": false,
+  "forbidden_operator_buckets_triggered": {
+    "KcsA": [],
+    "XCL1_lymphotactin": [],
+    "alpha_synuclein_SNCA": []
+  },
+  "input_v36_status": "V36_REAL_EVIDENCE_DOSSIERS_READY_CLAIM_DISABLED",
+  "internal_runtime_source_count": 0,
+  "kind": "V37_MECHANISM_QUESTION_PROBES_v0",
+  "locked_interpretation": "V37 passing means the V36 non-coordinate dossiers can classify the folding-problem type: KcsA as membrane pore/filter ion-selectivity grammar, XCL1 as metamorphic state-switch grammar, and SNCA as intrinsic-disorder ensemble grammar. This is not structure prediction, not MD, and not a folding-solved claim.",
+  "mechanism_classes_assigned": {
+    "KcsA": "membrane_pore_filter_oligomeric_ion_selectivity",
+    "XCL1_lymphotactin": "metamorphic_two_state_fold_switch",
+    "alpha_synuclein_SNCA": "intrinsic_disorder_contextual_ensemble"
+  },
+  "native_metrics_used_for_selection": false,
+  "new_MD_allowed": false,
+  "new_md_executed": false,
+  "next_action": "use_mechanism_question_maps_to_design_class_specific_readouts_no_claim_no_MD",
+  "next_decision": {
+    "claim_allowed": false,
+    "decision_status": "V37_MECHANISM_QUESTION_PROBES_PASSED_CLAIM_DISABLED",
+    "folding_problem_solved": false,
+    "kind": "V37_MECHANISM_QUESTION_PROBES_NEXT_DECISION_v0",
+    "new_MD_allowed": false,
+    "next_action": "use_mechanism_question_maps_to_design_class_specific_readouts_no_claim_no_MD"
+  },
+  "partial_target_count": 0,
+  "passed_control_count": 12,
+  "placeholder_source_count": 0,
+  "positive_folding_evidence_found": false,
+  "required_operator_buckets_present": {
+    "KcsA": [
+      "filter_signature_operator",
+      "ion_selectivity_operator",
+      "membrane_topology_operator",
+      "oligomer_or_interface_context_operator"
+    ],
+    "XCL1_lymphotactin": [
+      "no_mixed_state_pooling_operator",
+      "state_A_chemokine_monomer_operator",
+      "state_B_beta_sandwich_dimer_operator",
+      "state_specific_function_operator"
+    ],
+    "alpha_synuclein_SNCA": [
+      "context_bound_structure_operator",
+      "disorder_to_order_context_operator",
+      "ensemble_not_single_fold_operator",
+      "intrinsic_disorder_operator"
+    ]
+  },
+  "run_mode": "mechanism_class_assignment_from_v36_noncoordinate_dossiers_no_coordinates_no_MD_claim_disabled",
+  "swapped_dossier_detection_passed": true,
+  "target_count": 3,
+  "target_name_masking_passed": true,
+  "target_results": [
+    {
+      "assigned_mechanism_class": "membrane_pore_filter_oligomeric_ion_selectivity",
+      "assignment_scores": {
+        "intrinsic_disorder_contextual_ensemble": 0,
+        "membrane_pore_filter_oligomeric_ion_selectivity": 5,
+        "metamorphic_two_state_fold_switch": 0
+      },
+      "coordinate_derived_source_count": 0,
+      "dossier_target_label": "KcsA",
+      "expected_mechanism_class": "membrane_pore_filter_oligomeric_ion_selectivity",
+      "failed_checks": [],
+      "forbidden_operator_buckets_triggered": [],
+      "internal_runtime_source_count": 0,
+      "native_metric_source_count": 0,
+      "placeholder_source_count": 0,
+      "required_operator_buckets_missing": [],
+      "required_operator_buckets_present": [
+        "filter_signature_operator",
+        "ion_selectivity_operator",
+        "membrane_topology_operator",
+        "oligomer_or_interface_context_operator"
+      ],
+      "scientific_question_answers": [
+        {
+          "answer": true,
+          "question": "Does the non-coordinate dossier support potassium-channel identity?"
+        },
+        {
+          "answer": true,
+          "question": "Does it support membrane/pore/filter context?"
+        },
+        {
+          "answer": true,
+          "question": "Does it separate filter/ion-selectivity grammar from whole-channel folding claims?"
+        },
+        {
+          "answer": true,
+          "question": "Does it avoid using coordinate contacts?"
+        }
+      ],
+      "target": "KcsA",
+      "target_status": "assigned"
+    },
+    {
+      "assigned_mechanism_class": "metamorphic_two_state_fold_switch",
+      "assignment_scores": {
+        "intrinsic_disorder_contextual_ensemble": 0,
+        "membrane_pore_filter_oligomeric_ion_selectivity": 0,
+        "metamorphic_two_state_fold_switch": 5
+      },
+      "coordinate_derived_source_count": 0,
+      "dossier_target_label": "XCL1_lymphotactin",
+      "expected_mechanism_class": "metamorphic_two_state_fold_switch",
+      "failed_checks": [],
+      "forbidden_operator_buckets_triggered": [],
+      "internal_runtime_source_count": 0,
+      "native_metric_source_count": 0,
+      "placeholder_source_count": 0,
+      "required_operator_buckets_missing": [],
+      "required_operator_buckets_present": [
+        "no_mixed_state_pooling_operator",
+        "state_A_chemokine_monomer_operator",
+        "state_B_beta_sandwich_dimer_operator",
+        "state_specific_function_operator"
+      ],
+      "scientific_question_answers": [
+        {
+          "answer": true,
+          "question": "Does the dossier support two biologically relevant states?"
+        },
+        {
+          "answer": true,
+          "question": "Does it prevent mixed-state pooling?"
+        },
+        {
+          "answer": true,
+          "question": "Does it keep state A and state B function evidence separate?"
+        },
+        {
+          "answer": true,
+          "question": "Does it refuse a single-fold claim?"
+        }
+      ],
+      "target": "XCL1_lymphotactin",
+      "target_status": "assigned"
+    },
+    {
+      "assigned_mechanism_class": "intrinsic_disorder_contextual_ensemble",
+      "assignment_scores": {
+        "intrinsic_disorder_contextual_ensemble": 5,
+        "membrane_pore_filter_oligomeric_ion_selectivity": 0,
+        "metamorphic_two_state_fold_switch": 0
+      },
+      "coordinate_derived_source_count": 0,
+      "dossier_target_label": "alpha_synuclein_SNCA",
+      "expected_mechanism_class": "intrinsic_disorder_contextual_ensemble",
+      "failed_checks": [],
+      "forbidden_operator_buckets_triggered": [],
+      "internal_runtime_source_count": 0,
+      "native_metric_source_count": 0,
+      "placeholder_source_count": 0,
+      "required_operator_buckets_missing": [],
+      "required_operator_buckets_present": [
+        "context_bound_structure_operator",
+        "disorder_to_order_context_operator",
+        "ensemble_not_single_fold_operator",
+        "intrinsic_disorder_operator"
+      ],
+      "scientific_question_answers": [
+        {
+          "answer": true,
+          "question": "Does the dossier support free-state disorder?"
+        },
+        {
+          "answer": true,
+          "question": "Does it represent membrane-bound helix as context-dependent, not solved folding?"
+        },
+        {
+          "answer": true,
+          "question": "Does it block single-native-fold grammar?"
+        },
+        {
+          "answer": true,
+          "question": "Does it keep aggregation/amyloid context from becoming a native-fold claim?"
+        }
+      ],
+      "target": "alpha_synuclein_SNCA",
+      "target_status": "assigned"
+    }
+  ]
+}

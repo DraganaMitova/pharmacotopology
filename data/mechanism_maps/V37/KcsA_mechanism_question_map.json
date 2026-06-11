@@ -1,0 +1,36 @@
+{
+  "claim_allowed": false,
+  "expected_mechanism_class": "membrane_pore_filter_oligomeric_ion_selectivity",
+  "folding_problem_solved": false,
+  "forbidden_operator_buckets_triggered": [],
+  "kind": "V37_TARGET_MECHANISM_QUESTION_MAP_v0",
+  "mechanism_class": "membrane_pore_filter_oligomeric_ion_selectivity",
+  "new_MD_allowed": false,
+  "required_operator_buckets_missing": [],
+  "required_operator_buckets_present": [
+    "filter_signature_operator",
+    "ion_selectivity_operator",
+    "membrane_topology_operator",
+    "oligomer_or_interface_context_operator"
+  ],
+  "scientific_question_answers": [
+    {
+      "answer": true,
+      "question": "Does the non-coordinate dossier support potassium-channel identity?"
+    },
+    {
+      "answer": true,
+      "question": "Does it support membrane/pore/filter context?"
+    },
+    {
+      "answer": true,
+      "question": "Does it separate filter/ion-selectivity grammar from whole-channel folding claims?"
+    },
+    {
+      "answer": true,
+      "question": "Does it avoid using coordinate contacts?"
+    }
+  ],
+  "target": "KcsA",
+  "target_status": "assigned"
+}

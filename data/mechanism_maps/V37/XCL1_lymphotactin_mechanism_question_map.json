@@ -1,0 +1,36 @@
+{
+  "claim_allowed": false,
+  "expected_mechanism_class": "metamorphic_two_state_fold_switch",
+  "folding_problem_solved": false,
+  "forbidden_operator_buckets_triggered": [],
+  "kind": "V37_TARGET_MECHANISM_QUESTION_MAP_v0",
+  "mechanism_class": "metamorphic_two_state_fold_switch",
+  "new_MD_allowed": false,
+  "required_operator_buckets_missing": [],
+  "required_operator_buckets_present": [
+    "no_mixed_state_pooling_operator",
+    "state_A_chemokine_monomer_operator",
+    "state_B_beta_sandwich_dimer_operator",
+    "state_specific_function_operator"
+  ],
+  "scientific_question_answers": [
+    {
+      "answer": true,
+      "question": "Does the dossier support two biologically relevant states?"
+    },
+    {
+      "answer": true,
+      "question": "Does it prevent mixed-state pooling?"
+    },
+    {
+      "answer": true,
+      "question": "Does it keep state A and state B function evidence separate?"
+    },
+    {
+      "answer": true,
+      "question": "Does it refuse a single-fold claim?"
+    }
+  ],
+  "target": "XCL1_lymphotactin",
+  "target_status": "assigned"
+}
