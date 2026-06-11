@@ -1,0 +1,11 @@
+{
+  "claim_allowed": false,
+  "downloaded_at_utc": "2026-06-11T07:31:33.839464+00:00",
+  "kind": "V16_PUBLIC_RCSB_STRUCTURE_PROVENANCE_v0",
+  "pdb_id": "2HDM",
+  "role_use": "state_A_chemokine_monomer_context",
+  "source": "RCSB PDB public download",
+  "source_url": "https://files.rcsb.org/download/2HDM.pdb",
+  "target_id": "XCL1_lymphotactin",
+  "usage_boundary": "target_context_only_not_native_selection_not_folding_solved_claim"
+}

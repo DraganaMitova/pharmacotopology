@@ -1,0 +1,11 @@
+{
+  "claim_allowed": false,
+  "downloaded_at_utc": "2026-06-11T07:31:31.652961+00:00",
+  "kind": "V16_PUBLIC_RCSB_STRUCTURE_PROVENANCE_v0",
+  "pdb_id": "1YCR",
+  "role_use": "partner_induced_interface_or_helix_context",
+  "source": "RCSB PDB public download",
+  "source_url": "https://files.rcsb.org/download/1YCR.pdb",
+  "target_id": "p53_TAD_MDM2",
+  "usage_boundary": "target_context_only_not_native_selection_not_folding_solved_claim"
+}
