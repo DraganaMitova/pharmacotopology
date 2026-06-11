@@ -240,7 +240,7 @@ def build_readout(role_manifest: dict[str, Any], preflight: dict[str, Any]) -> d
 
     target_ids = {str(r.get("target_id")) for r in rows}
     blocked = [str(r.get("target_id")) for r in rows if str(r.get("target_transfer_status", "")).startswith("blocked")]
-    positive = [str(r.get("target_id")) for r in rows if r.get("positive_role_context_found") is True]
+    role_passed = [str(r.get("target_id")) for r in rows if r.get("positive_role_context_found") is True]
     abstain = [str(r.get("target_id")) for r in rows if r.get("positive_role_context_found") is not True]
     violations = {
         str(r.get("target_id")): r.get("forbidden_misclassification_violations", [])
@@ -282,7 +282,10 @@ def build_readout(role_manifest: dict[str, Any], preflight: dict[str, Any]) -> d
         "native_metrics_used_for_selection": False,
         "native_metrics_not_used_for_selection": True,
         "selection_policy": "role_context_or_clean_abstain_only_no_native_metric_selection",
-        "positive_role_targets": positive,
+        # Naming is intentionally conservative: this zero-MD stage reports role classification / pressure-transfer only, not folding evidence.
+        "role_classification_passed_targets": role_passed,
+        "pressure_role_transfer_passed_targets": role_passed,
+        "positive_folding_evidence_targets": [],
         "clean_abstain_targets": abstain,
         "blocked_targets": blocked,
         "forbidden_misclassification_violations": violations,
@@ -303,7 +306,8 @@ def _write_report(path: Path, cert: dict[str, Any]) -> None:
         f"Status: `{cert.get('role_transfer_status')}`",
         f"Claim allowed: `{cert.get('claim_allowed')}`",
         f"New MD executed: `{cert.get('new_md_executed')}`",
-        f"Positive role targets: `{cert.get('positive_role_targets')}`",
+        f"Role-classification passed targets: `{cert.get('role_classification_passed_targets')}`",
+        f"Positive folding-evidence targets: `{cert.get('positive_folding_evidence_targets')}`",
         f"Clean abstain targets: `{cert.get('clean_abstain_targets')}`",
         "",
         "## Target rows",
@@ -346,7 +350,9 @@ def main() -> None:
         "certificate": str(cert_path),
         "report": str(report_path),
         "role_transfer_status": cert.get("role_transfer_status"),
-        "positive_role_targets": cert.get("positive_role_targets"),
+        "role_classification_passed_targets": cert.get("role_classification_passed_targets"),
+        "pressure_role_transfer_passed_targets": cert.get("pressure_role_transfer_passed_targets"),
+        "positive_folding_evidence_targets": cert.get("positive_folding_evidence_targets"),
         "clean_abstain_targets": cert.get("clean_abstain_targets"),
         "blocked_targets": cert.get("blocked_targets"),
         "claim_allowed": False,

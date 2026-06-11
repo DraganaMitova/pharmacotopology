@@ -7,7 +7,8 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 PREFLIGHT_SCRIPT = REPO_ROOT / "scripts" / "run_v16_transfer_data_preflight_v0.py"
-READOUT_SCRIPT = REPO_ROOT / "scripts" / "run_v16_zero_md_role_transfer_readout_v0.py"
+ZERO_MD_SCRIPT = REPO_ROOT / "scripts" / "run_v16_zero_md_role_transfer_readout_v0.py"
+GAP_LOCK_SCRIPT = REPO_ROOT / "scripts" / "run_v16_pressure_evidence_gap_lock_v0.py"
 ROLE_MANIFEST = REPO_ROOT / "data" / "v16_locked_grammar_transfer_target_manifest.json"
 MATERIAL_MANIFEST = REPO_ROOT / "data" / "v16_transfer_data_material_manifest.json"
 
@@ -52,7 +53,7 @@ def _write_prov(path: Path, target_id: str, pdb_id: str) -> None:
     )
 
 
-def _ready_preflight_cert(tmp_path: Path) -> Path:
+def _zero_md_cert(tmp_path: Path) -> Path:
     material = json.loads(MATERIAL_MANIFEST.read_text())
     for target in material["targets"]:
         for mat in target["required_material"]:
@@ -63,17 +64,15 @@ def _ready_preflight_cert(tmp_path: Path) -> Path:
             if target["target_id"] == "p53_TAD_MDM2":
                 _write_mock_pdb(mat_path, {"A": 85, "B": 13})
             elif target["target_id"] == "KcsA":
-                # V16b repair: 1K4C-style three-chain coordinate context is enough for
-                # zero-MD role context readout, but not enough for tetramer/folding claims.
                 _write_mock_pdb(mat_path, {"A": 219, "B": 212, "C": 103})
             else:
-                _write_mock_pdb(mat_path, {"A": 80})
+                _write_mock_pdb(mat_path, {"A": 120, "B": 120})
             _write_prov(prov_path, target["target_id"], mat["pdb_id"])
     material_path = tmp_path / "material.json"
     material_path.write_text(json.dumps(material), encoding="utf-8")
     lock_path = tmp_path / "v16_lock.json"
     lock_path.write_text(json.dumps(_v16_lock()), encoding="utf-8")
-    out_dir = tmp_path / "preflight"
+    preflight_dir = tmp_path / "preflight"
     subprocess.run(
         [
             sys.executable,
@@ -85,73 +84,89 @@ def _ready_preflight_cert(tmp_path: Path) -> Path:
             "--v16-lock-cert",
             str(lock_path),
             "--out-dir",
-            str(out_dir),
+            str(preflight_dir),
         ],
         check=True,
         capture_output=True,
         text=True,
     )
-    cert_path = out_dir / "v16_transfer_data_preflight_certificate.json"
-    cert = json.loads(cert_path.read_text())
-    assert cert["data_preflight_status"] == "V16_TRANSFER_DATA_PREFLIGHT_READY_FOR_ZERO_MD_ROLE_READOUT"
-    assert set(cert["ready_targets"]) == {"p53_TAD_MDM2", "KcsA", "XCL1_lymphotactin"}
-    return cert_path
-
-
-def test_v16_kcsa_material_manifest_uses_three_chain_context_floor() -> None:
-    manifest = json.loads(MATERIAL_MANIFEST.read_text())
-    kcsa = next(t for t in manifest["targets"] if t["target_id"] == "KcsA")
-    mat = kcsa["required_material"][0]
-    assert mat["min_chains"] == 3
-    assert "not a tetramer proof" in mat["material_sanity_note"]
-    assert manifest["claim_allowed"] is False
-    assert manifest["new_md_allowed"] is False
-    assert manifest["target_specific_threshold_tuning_allowed"] is False
-
-
-def test_v16_zero_md_role_transfer_readout_completed_with_ready_preflight(tmp_path: Path) -> None:
-    preflight_cert = _ready_preflight_cert(tmp_path)
-    out_dir = tmp_path / "readout"
+    zero_dir = tmp_path / "zero_md"
     subprocess.run(
         [
             sys.executable,
-            str(READOUT_SCRIPT),
+            str(ZERO_MD_SCRIPT),
             "--role-manifest",
             str(ROLE_MANIFEST),
             "--preflight-cert",
-            str(preflight_cert),
+            str(preflight_dir / "v16_transfer_data_preflight_certificate.json"),
             "--out-dir",
-            str(out_dir),
+            str(zero_dir),
         ],
         check=True,
         capture_output=True,
         text=True,
     )
-    cert = json.loads((out_dir / "v16_zero_md_role_transfer_readout_certificate.json").read_text())
-    assert cert["role_transfer_status"] == "V16_ZERO_MD_ROLE_TRANSFER_READOUT_COMPLETED_CLAIM_DISABLED"
+    return zero_dir / "v16_zero_md_role_transfer_readout_certificate.json"
+
+
+def _gap_lock(tmp_path: Path) -> dict:
+    zero_cert = _zero_md_cert(tmp_path)
+    out_dir = tmp_path / "gap"
+    subprocess.run(
+        [sys.executable, str(GAP_LOCK_SCRIPT), "--zero-md-cert", str(zero_cert), "--out-dir", str(out_dir)],
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    return json.loads((out_dir / "v16_pressure_evidence_gap_lock_certificate.json").read_text())
+
+
+def test_v16_pressure_evidence_gap_lock_is_not_folding_evidence(tmp_path: Path) -> None:
+    cert = _gap_lock(tmp_path)
+    assert cert["gap_lock_status"] == "V16_PRESSURE_EVIDENCE_GAP_LOCKED"
     assert set(cert["role_classification_passed_targets"]) == {"p53_TAD_MDM2", "KcsA", "XCL1_lymphotactin"}
-    assert set(cert["pressure_role_transfer_passed_targets"]) == {"p53_TAD_MDM2", "KcsA", "XCL1_lymphotactin"}
     assert cert["positive_folding_evidence_targets"] == []
-    assert "positive_role_targets" not in cert
+    assert cert["positive_contact_evidence_targets"] == []
+    assert cert["evidence_claim_allowed_targets"] == []
     assert cert["claim_allowed"] is False
     assert cert["new_md_executed"] is False
     assert cert["fixed_residue_cutoff_used"] is False
     assert cert["native_metrics_used_for_selection"] is False
-    assert cert["forbidden_misclassification_violations"] == {}
+    assert cert["global_missing_layer"] == "evidence_layer_not_grammar_or_role_classification_layer"
 
 
-def test_v16_zero_md_kcsa_does_not_claim_soluble_or_tetramer_fold(tmp_path: Path) -> None:
-    preflight_cert = _ready_preflight_cert(tmp_path)
-    out_dir = tmp_path / "readout"
+def test_v16_pressure_evidence_gap_lock_target_specific_missing_layers(tmp_path: Path) -> None:
+    cert = _gap_lock(tmp_path)
+    rows = {row["target_id"]: row for row in cert["target_gap_rows"]}
+    assert "isolated_TAD_disorder_or_clean_abstain_context" in rows["p53_TAD_MDM2"]["missing_for_evidence_test"]
+    assert rows["p53_TAD_MDM2"]["next_evidence_test"] == "partner_induced_interface_or_helix_readout"
+    assert "membrane_topology_annotation" in rows["KcsA"]["missing_for_evidence_test"]
+    assert rows["KcsA"]["next_evidence_test"] == "membrane_pore_role_evidence_readout"
+    assert "leakage_guard_preventing_mixed_state_fake_core" in rows["XCL1_lymphotactin"]["missing_for_evidence_test"]
+    assert rows["XCL1_lymphotactin"]["next_evidence_test"] == "state_specific_role_separation_readout"
+
+
+def test_v16_pressure_evidence_gap_lock_blocks_if_zero_md_claims_folding(tmp_path: Path) -> None:
+    zero_cert = json.loads(_zero_md_cert(tmp_path).read_text())
+    zero_cert["positive_folding_evidence_targets"] = ["KcsA"]
+    bad_path = tmp_path / "bad_zero_md.json"
+    bad_path.write_text(json.dumps(zero_cert), encoding="utf-8")
+    out_dir = tmp_path / "gap_bad"
     subprocess.run(
-        [sys.executable, str(READOUT_SCRIPT), "--preflight-cert", str(preflight_cert), "--out-dir", str(out_dir)],
+        [sys.executable, str(GAP_LOCK_SCRIPT), "--zero-md-cert", str(bad_path), "--out-dir", str(out_dir)],
         check=True,
         capture_output=True,
         text=True,
     )
-    cert = json.loads((out_dir / "v16_zero_md_role_transfer_readout_certificate.json").read_text())
-    kcsa = next(row for row in cert["target_rows"] if row["target_id"] == "KcsA")
-    assert kcsa["selected_core_or_clean_abstain"] == "membrane_pore_roles_detected_without_soluble_core_misclassification"
-    assert "tetramer_interface_support_later_biological_assembly_required" in kcsa["monitor_only_roles"]
-    assert "no_whole_fold_claim" in kcsa["limitations"]
-    assert kcsa["forbidden_misclassification_violations"] == []
+    cert = json.loads((out_dir / "v16_pressure_evidence_gap_lock_certificate.json").read_text())
+    assert cert["gap_lock_status"] == "V16_PRESSURE_EVIDENCE_GAP_LOCK_BLOCKED"
+    assert "positive_folding_evidence_targets_empty" in cert["gap_lock_failed_checks"]
+    assert cert["claim_allowed"] is False
+
+
+def test_v16_zero_md_certificate_uses_classification_naming(tmp_path: Path) -> None:
+    zero = json.loads(_zero_md_cert(tmp_path).read_text())
+    assert set(zero["role_classification_passed_targets"]) == {"p53_TAD_MDM2", "KcsA", "XCL1_lymphotactin"}
+    assert set(zero["pressure_role_transfer_passed_targets"]) == {"p53_TAD_MDM2", "KcsA", "XCL1_lymphotactin"}
+    assert zero["positive_folding_evidence_targets"] == []
+    assert "positive_role_targets" not in zero

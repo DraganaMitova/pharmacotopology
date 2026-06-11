@@ -38,7 +38,9 @@ def main() -> None:
         "selection_policy",
     ]:
         print(f"{key}: {o.get(key)}")
-    print("positive_role_targets:", o.get("positive_role_targets"))
+    print("role_classification_passed_targets:", o.get("role_classification_passed_targets"))
+    print("pressure_role_transfer_passed_targets:", o.get("pressure_role_transfer_passed_targets"))
+    print("positive_folding_evidence_targets:", o.get("positive_folding_evidence_targets"))
     print("clean_abstain_targets:", o.get("clean_abstain_targets"))
     print("blocked_targets:", o.get("blocked_targets"))
     print("forbidden_misclassification_violations:", o.get("forbidden_misclassification_violations"))
@@ -50,7 +52,7 @@ def main() -> None:
         print("  expected_role_class:", row.get("expected_role_class"))
         print("  target_transfer_status:", row.get("target_transfer_status"))
         print("  selected_core_or_clean_abstain:", row.get("selected_core_or_clean_abstain"))
-        print("  positive_role_context_found:", row.get("positive_role_context_found"))
+        print("  role_classification_passed:", row.get("positive_role_context_found"))
         print("  role_buckets_assigned:", row.get("role_buckets_assigned"))
         print("  monitor_only_roles:", row.get("monitor_only_roles"))
         print("  clean_abstain_roles:", row.get("clean_abstain_roles"))
