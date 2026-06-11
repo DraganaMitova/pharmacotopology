@@ -1,0 +1,37 @@
+{
+  "baseline_batch_id": "V61_RCSB_NONREDUNDANT_100_BATCH",
+  "batch_id": "V62_E61_REPAIR_AND_SATURATION_RERUN",
+  "entity_id": "1",
+  "entry_id": "10KT",
+  "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "expected_observables": [
+    {
+      "check_id": "proteostasis_routing_supported",
+      "comparator": ">=",
+      "metric": "proteostasis_routing",
+      "threshold": 0.5
+    }
+  ],
+  "experimental_method": "X-RAY DIFFRACTION",
+  "holdout_opened_after_prediction_hash": "4dc214b8c1f44018382993d7233a4237e8d9d3c1e89e5ff0ba03caa29e26aaf1",
+  "kind": "V62_RCSB_POSTSEAL_HOLDOUT_v0",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/10KT",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/10KT/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V62_10KT_1_RCSB_DATA_API_POSTSEAL",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "V62 uses V61 sealed holdout class for same-target repair comparison: membrane_multidomain_folding_proteostasis",
+    "{'check_id': 'mechanism_class_matches_holdout', 'expected': 'membrane_multidomain_folding_proteostasis', 'observed': 'membrane_multidomain_folding_proteostasis', 'passed': True}",
+    "{'check_id': 'proteostasis_routing_supported', 'comparator': '>=', 'metric': 'proteostasis_routing', 'observed': 0.690799, 'passed': True, 'threshold': 0.5}"
+  ],
+  "protein_id": "10KT_1",
+  "release_date": "2026-05-20T00:00:00.000+00:00",
+  "target_id": "V62_10KT_1"
+}

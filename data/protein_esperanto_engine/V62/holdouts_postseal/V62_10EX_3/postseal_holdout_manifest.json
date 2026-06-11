@@ -1,0 +1,29 @@
+{
+  "baseline_batch_id": "V61_RCSB_NONREDUNDANT_100_BATCH",
+  "batch_id": "V62_E61_REPAIR_AND_SATURATION_RERUN",
+  "entity_id": "3",
+  "entry_id": "10EX",
+  "expected_mechanism_class": "oligomerization_controlled_folding",
+  "expected_observables": [],
+  "experimental_method": "ELECTRON MICROSCOPY",
+  "holdout_opened_after_prediction_hash": "e6025fe19982fd908bdc77ce77ee877015581e7f642f1d20185dc3f323fedbcf",
+  "kind": "V62_RCSB_POSTSEAL_HOLDOUT_v0",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/10EX",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/10EX/3",
+      "source_class": "coordinate_derived",
+      "source_id": "V62_10EX_3_RCSB_DATA_API_POSTSEAL",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "V62 uses V61 sealed holdout class for same-target repair comparison: oligomerization_controlled_folding",
+    "{'check_id': 'mechanism_class_matches_holdout', 'expected': 'oligomerization_controlled_folding', 'observed': 'insufficient_evidence_clean_abstain', 'passed': False}"
+  ],
+  "protein_id": "10EX_3",
+  "release_date": "2026-03-25T00:00:00.000+00:00",
+  "target_id": "V62_10EX_3"
+}

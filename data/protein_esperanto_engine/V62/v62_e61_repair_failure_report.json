@@ -1,0 +1,677 @@
+{
+  "batch_id": "V62_E61_REPAIR_AND_SATURATION_RERUN",
+  "engine_version_used": "E61",
+  "failure_cases": [
+    {
+      "abstention_correctness": "not_applicable",
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_target_id": "V61_102L_1",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "e60_baseline_acceptance_decision": "accepted",
+      "e60_baseline_predicted_mechanism_class": "globular_closure",
+      "e60_baseline_score_label": "contradicted",
+      "entity_id": "1",
+      "entry_id": "102L",
+      "expected_mechanism_class": "short_region_host_interface_hijacking",
+      "failures_repaired_after_holdout": false,
+      "holdout_opened_after_prediction_hash": "f161a889ff9a1842b09bcb59f8555da22b58df37b58910efb5fa7d8dbe26fda1",
+      "kind": "V62_E61_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "entry_url": "https://data.rcsb.org/rest/v1/core/entry/102L",
+          "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/102L/1",
+          "source_class": "coordinate_derived",
+          "source_id": "V62_102L_1_RCSB_DATA_API_POSTSEAL",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "globular_closure",
+      "protein_id": "102L_1",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "f161a889ff9a1842b09bcb59f8555da22b58df37b58910efb5fa7d8dbe26fda1",
+      "target_id": "V62_102L_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "short_region_host_interface_hijacking",
+          "observed": "globular_closure",
+          "passed": false
+        },
+        {
+          "check_id": "host_interface_present",
+          "comparator": ">=",
+          "metric": "basin:host_interface_engaged",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.55
+        }
+      ]
+    },
+    {
+      "abstention_correctness": "abstain_too_conservative",
+      "acceptance_decision": "abstain_recommended",
+      "alphafold_used_before_seal": false,
+      "baseline_target_id": "V61_10OP_3",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "e60_baseline_acceptance_decision": "abstain_recommended",
+      "e60_baseline_predicted_mechanism_class": "insufficient_evidence_clean_abstain",
+      "e60_baseline_score_label": "abstained",
+      "entity_id": "3",
+      "entry_id": "10OP",
+      "expected_mechanism_class": "short_region_host_interface_hijacking",
+      "failures_repaired_after_holdout": false,
+      "holdout_opened_after_prediction_hash": "da0d442f57d71412b385241842a68224775e3e58af3e054374f3103ef7103f8e",
+      "kind": "V62_E61_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": false,
+      "level3_topology_or_contact_proxy": false,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "entry_url": "https://data.rcsb.org/rest/v1/core/entry/10OP",
+          "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/10OP/3",
+          "source_class": "coordinate_derived",
+          "source_id": "V62_10OP_3_RCSB_DATA_API_POSTSEAL",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "insufficient_evidence_clean_abstain",
+      "protein_id": "10OP_3",
+      "score_label": "abstained",
+      "sealed_prediction_hash": "da0d442f57d71412b385241842a68224775e3e58af3e054374f3103ef7103f8e",
+      "target_id": "V62_10OP_3",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "short_region_host_interface_hijacking",
+          "observed": "insufficient_evidence_clean_abstain",
+          "passed": false
+        },
+        {
+          "check_id": "host_interface_present",
+          "comparator": ">=",
+          "metric": "basin:host_interface_engaged",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.55
+        }
+      ]
+    },
+    {
+      "abstention_correctness": "abstain_too_conservative",
+      "acceptance_decision": "abstain_recommended",
+      "alphafold_used_before_seal": false,
+      "baseline_target_id": "V61_10OP_4",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "e60_baseline_acceptance_decision": "abstain_recommended",
+      "e60_baseline_predicted_mechanism_class": "insufficient_evidence_clean_abstain",
+      "e60_baseline_score_label": "abstained",
+      "entity_id": "4",
+      "entry_id": "10OP",
+      "expected_mechanism_class": "short_region_host_interface_hijacking",
+      "failures_repaired_after_holdout": false,
+      "holdout_opened_after_prediction_hash": "1645557cade14d0014d116b25adc1848670dd4f957710e7f81626b0ae776d1f4",
+      "kind": "V62_E61_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": false,
+      "level3_topology_or_contact_proxy": false,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "entry_url": "https://data.rcsb.org/rest/v1/core/entry/10OP",
+          "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/10OP/4",
+          "source_class": "coordinate_derived",
+          "source_id": "V62_10OP_4_RCSB_DATA_API_POSTSEAL",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "insufficient_evidence_clean_abstain",
+      "protein_id": "10OP_4",
+      "score_label": "abstained",
+      "sealed_prediction_hash": "1645557cade14d0014d116b25adc1848670dd4f957710e7f81626b0ae776d1f4",
+      "target_id": "V62_10OP_4",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "short_region_host_interface_hijacking",
+          "observed": "insufficient_evidence_clean_abstain",
+          "passed": false
+        },
+        {
+          "check_id": "host_interface_present",
+          "comparator": ">=",
+          "metric": "basin:host_interface_engaged",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.55
+        }
+      ]
+    },
+    {
+      "abstention_correctness": "abstain_too_conservative",
+      "acceptance_decision": "abstain_recommended",
+      "alphafold_used_before_seal": false,
+      "baseline_target_id": "V61_10PX_11",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "e60_baseline_acceptance_decision": "abstain_recommended",
+      "e60_baseline_predicted_mechanism_class": "insufficient_evidence_clean_abstain",
+      "e60_baseline_score_label": "abstained",
+      "entity_id": "11",
+      "entry_id": "10PX",
+      "expected_mechanism_class": "intrinsic_disorder_phase_separation",
+      "failures_repaired_after_holdout": false,
+      "holdout_opened_after_prediction_hash": "1ac8c8a418eead81dcb36589af3650b4fd753e172873f11afac18822f2349b3a",
+      "kind": "V62_E61_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": false,
+      "level3_topology_or_contact_proxy": false,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "entry_url": "https://data.rcsb.org/rest/v1/core/entry/10PX",
+          "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/10PX/11",
+          "source_class": "coordinate_derived",
+          "source_id": "V62_10PX_11_RCSB_DATA_API_POSTSEAL",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "insufficient_evidence_clean_abstain",
+      "protein_id": "10PX_11",
+      "score_label": "abstained",
+      "sealed_prediction_hash": "1ac8c8a418eead81dcb36589af3650b4fd753e172873f11afac18822f2349b3a",
+      "target_id": "V62_10PX_11",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "intrinsic_disorder_phase_separation",
+          "observed": "insufficient_evidence_clean_abstain",
+          "passed": false
+        },
+        {
+          "check_id": "compact_single_fold_rejected",
+          "comparator": "<=",
+          "metric": "basin:compact_single_fold",
+          "observed": 0.0,
+          "passed": true,
+          "threshold": 0.12
+        }
+      ]
+    },
+    {
+      "abstention_correctness": "not_applicable",
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_target_id": "V61_10QM_29",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "e60_baseline_acceptance_decision": "accepted",
+      "e60_baseline_predicted_mechanism_class": "globular_closure",
+      "e60_baseline_score_label": "contradicted",
+      "entity_id": "29",
+      "entry_id": "10QM",
+      "expected_mechanism_class": "intrinsic_disorder_phase_separation",
+      "failures_repaired_after_holdout": false,
+      "holdout_opened_after_prediction_hash": "9dfd352bb2cfee6732b441876dd3d19662eff268343a55b059d5826283ef0b82",
+      "kind": "V62_E61_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "entry_url": "https://data.rcsb.org/rest/v1/core/entry/10QM",
+          "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/10QM/29",
+          "source_class": "coordinate_derived",
+          "source_id": "V62_10QM_29_RCSB_DATA_API_POSTSEAL",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "globular_closure",
+      "protein_id": "10QM_29",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "9dfd352bb2cfee6732b441876dd3d19662eff268343a55b059d5826283ef0b82",
+      "target_id": "V62_10QM_29",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "intrinsic_disorder_phase_separation",
+          "observed": "globular_closure",
+          "passed": false
+        },
+        {
+          "check_id": "compact_single_fold_rejected",
+          "comparator": "<=",
+          "metric": "basin:compact_single_fold",
+          "observed": 0.0,
+          "passed": true,
+          "threshold": 0.12
+        }
+      ]
+    },
+    {
+      "abstention_correctness": "not_applicable",
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_target_id": "V61_10XZ_1",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "e60_baseline_acceptance_decision": "accepted",
+      "e60_baseline_predicted_mechanism_class": "globular_closure",
+      "e60_baseline_score_label": "contradicted",
+      "entity_id": "1",
+      "entry_id": "10XZ",
+      "expected_mechanism_class": "intrinsic_disorder_phase_separation",
+      "failures_repaired_after_holdout": false,
+      "holdout_opened_after_prediction_hash": "c693d967504321abdf9dc5016854a638fa83d3440387bac65bd387e50be8d193",
+      "kind": "V62_E61_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "entry_url": "https://data.rcsb.org/rest/v1/core/entry/10XZ",
+          "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/10XZ/1",
+          "source_class": "coordinate_derived",
+          "source_id": "V62_10XZ_1_RCSB_DATA_API_POSTSEAL",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "globular_closure",
+      "protein_id": "10XZ_1",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "c693d967504321abdf9dc5016854a638fa83d3440387bac65bd387e50be8d193",
+      "target_id": "V62_10XZ_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "intrinsic_disorder_phase_separation",
+          "observed": "globular_closure",
+          "passed": false
+        },
+        {
+          "check_id": "compact_single_fold_rejected",
+          "comparator": "<=",
+          "metric": "basin:compact_single_fold",
+          "observed": 0.0,
+          "passed": true,
+          "threshold": 0.12
+        }
+      ]
+    },
+    {
+      "abstention_correctness": "not_applicable",
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_target_id": "V61_10ZO_1",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "e60_baseline_acceptance_decision": "accepted",
+      "e60_baseline_predicted_mechanism_class": "globular_closure",
+      "e60_baseline_score_label": "contradicted",
+      "entity_id": "1",
+      "entry_id": "10ZO",
+      "expected_mechanism_class": "short_region_host_interface_hijacking",
+      "failures_repaired_after_holdout": false,
+      "holdout_opened_after_prediction_hash": "0c702aea4892414390bbaefed6e6b8ed2af9d4c41c34f79d1179c5d291191a52",
+      "kind": "V62_E61_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "entry_url": "https://data.rcsb.org/rest/v1/core/entry/10ZO",
+          "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/10ZO/1",
+          "source_class": "coordinate_derived",
+          "source_id": "V62_10ZO_1_RCSB_DATA_API_POSTSEAL",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "globular_closure",
+      "protein_id": "10ZO_1",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "0c702aea4892414390bbaefed6e6b8ed2af9d4c41c34f79d1179c5d291191a52",
+      "target_id": "V62_10ZO_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "short_region_host_interface_hijacking",
+          "observed": "globular_closure",
+          "passed": false
+        },
+        {
+          "check_id": "host_interface_present",
+          "comparator": ">=",
+          "metric": "basin:host_interface_engaged",
+          "observed": 0.0,
+          "passed": false,
+          "threshold": 0.55
+        }
+      ]
+    },
+    {
+      "abstention_correctness": "abstain_too_conservative",
+      "acceptance_decision": "abstain_recommended",
+      "alphafold_used_before_seal": false,
+      "baseline_target_id": "V61_11BE_1",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "e60_baseline_acceptance_decision": "abstain_recommended",
+      "e60_baseline_predicted_mechanism_class": "insufficient_evidence_clean_abstain",
+      "e60_baseline_score_label": "abstained",
+      "entity_id": "1",
+      "entry_id": "11BE",
+      "expected_mechanism_class": "intrinsic_disorder_phase_separation",
+      "failures_repaired_after_holdout": false,
+      "holdout_opened_after_prediction_hash": "3c89a5234c91a401f3e4f21bb2157efb8b0a6ccfe6bce90f7b3ed54b23ac25d6",
+      "kind": "V62_E61_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": false,
+      "level3_topology_or_contact_proxy": false,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "entry_url": "https://data.rcsb.org/rest/v1/core/entry/11BE",
+          "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/11BE/1",
+          "source_class": "coordinate_derived",
+          "source_id": "V62_11BE_1_RCSB_DATA_API_POSTSEAL",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "insufficient_evidence_clean_abstain",
+      "protein_id": "11BE_1",
+      "score_label": "abstained",
+      "sealed_prediction_hash": "3c89a5234c91a401f3e4f21bb2157efb8b0a6ccfe6bce90f7b3ed54b23ac25d6",
+      "target_id": "V62_11BE_1",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "intrinsic_disorder_phase_separation",
+          "observed": "insufficient_evidence_clean_abstain",
+          "passed": false
+        },
+        {
+          "check_id": "compact_single_fold_rejected",
+          "comparator": "<=",
+          "metric": "basin:compact_single_fold",
+          "observed": 0.0,
+          "passed": true,
+          "threshold": 0.12
+        }
+      ]
+    },
+    {
+      "abstention_correctness": "not_applicable",
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_target_id": "V61_11BQ_27",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "e60_baseline_acceptance_decision": "accepted",
+      "e60_baseline_predicted_mechanism_class": "globular_closure",
+      "e60_baseline_score_label": "contradicted",
+      "entity_id": "27",
+      "entry_id": "11BQ",
+      "expected_mechanism_class": "intrinsic_disorder_phase_separation",
+      "failures_repaired_after_holdout": false,
+      "holdout_opened_after_prediction_hash": "b0efa74e08f405f748bf206038cdd69409314867b7db98a6f0e79ad103735257",
+      "kind": "V62_E61_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "entry_url": "https://data.rcsb.org/rest/v1/core/entry/11BQ",
+          "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/11BQ/27",
+          "source_class": "coordinate_derived",
+          "source_id": "V62_11BQ_27_RCSB_DATA_API_POSTSEAL",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "globular_closure",
+      "protein_id": "11BQ_27",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "b0efa74e08f405f748bf206038cdd69409314867b7db98a6f0e79ad103735257",
+      "target_id": "V62_11BQ_27",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "intrinsic_disorder_phase_separation",
+          "observed": "globular_closure",
+          "passed": false
+        },
+        {
+          "check_id": "compact_single_fold_rejected",
+          "comparator": "<=",
+          "metric": "basin:compact_single_fold",
+          "observed": 0.0,
+          "passed": true,
+          "threshold": 0.12
+        }
+      ]
+    },
+    {
+      "abstention_correctness": "not_applicable",
+      "acceptance_decision": "accepted",
+      "alphafold_used_before_seal": false,
+      "baseline_target_id": "V61_11DG_26",
+      "contact_truth_used_before_seal": false,
+      "coordinate_truth_used_before_seal": false,
+      "e60_baseline_acceptance_decision": "accepted",
+      "e60_baseline_predicted_mechanism_class": "globular_closure",
+      "e60_baseline_score_label": "contradicted",
+      "entity_id": "26",
+      "entry_id": "11DG",
+      "expected_mechanism_class": "intrinsic_disorder_phase_separation",
+      "failures_repaired_after_holdout": false,
+      "holdout_opened_after_prediction_hash": "c0464e0e9209a1bcf7032365d46cfeb9989dcb432fa9abce21699dd5cc081f4a",
+      "kind": "V62_E61_REPAIR_VALIDATION_RESULT_v0",
+      "level1_regime_selection": false,
+      "level2_region_localization_proxy": true,
+      "level3_topology_or_contact_proxy": false,
+      "postseal_sources": [
+        {
+          "coordinate_contacts_used_before_prediction": false,
+          "entry_url": "https://data.rcsb.org/rest/v1/core/entry/11DG",
+          "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/11DG/26",
+          "source_class": "coordinate_derived",
+          "source_id": "V62_11DG_26_RCSB_DATA_API_POSTSEAL",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "predicted_mechanism_class": "globular_closure",
+      "protein_id": "11DG_26",
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "c0464e0e9209a1bcf7032365d46cfeb9989dcb432fa9abce21699dd5cc081f4a",
+      "target_id": "V62_11DG_26",
+      "validation_checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "intrinsic_disorder_phase_separation",
+          "observed": "globular_closure",
+          "passed": false
+        },
+        {
+          "check_id": "compact_single_fold_rejected",
+          "comparator": "<=",
+          "metric": "basin:compact_single_fold",
+          "observed": 0.0,
+          "passed": true,
+          "threshold": 0.12
+        }
+      ]
+    }
+  ],
+  "failure_cases_reported": true,
+  "failure_count": 10,
+  "failure_grammar_rows": [
+    {
+      "baseline_target_id": "V61_102L_1",
+      "control_that_prevents_overfitting": "repair result is same-target only; new grammar must be confirmed by V63/V64 or specialized panels",
+      "engine_thought": "globular_closure",
+      "failure_type": "wrong_regime",
+      "missing_esperanto_rule": "regime separation word",
+      "proposed_new_abstention_rule": "mine broader V63 failures before E62",
+      "proposed_new_operator": "frustration_operator",
+      "proposed_new_pressure": "context separation pressure",
+      "protein_id": "102L_1",
+      "reality_showed": "short_region_host_interface_hijacking",
+      "score_label": "contradicted",
+      "target_id": "V62_102L_1"
+    },
+    {
+      "baseline_target_id": "V61_10OP_3",
+      "control_that_prevents_overfitting": "repair result is same-target only; new grammar must be confirmed by V63/V64 or specialized panels",
+      "engine_thought": "insufficient_evidence_clean_abstain",
+      "failure_type": "weak_sequence_signal",
+      "missing_esperanto_rule": "confidence/self-evidence word",
+      "proposed_new_abstention_rule": "retain abstention until independent non-coordinate evidence sharpens mechanism",
+      "proposed_new_operator": "none",
+      "proposed_new_pressure": "none",
+      "protein_id": "10OP_3",
+      "reality_showed": "short_region_host_interface_hijacking",
+      "score_label": "abstained",
+      "target_id": "V62_10OP_3"
+    },
+    {
+      "baseline_target_id": "V61_10OP_4",
+      "control_that_prevents_overfitting": "repair result is same-target only; new grammar must be confirmed by V63/V64 or specialized panels",
+      "engine_thought": "insufficient_evidence_clean_abstain",
+      "failure_type": "weak_sequence_signal",
+      "missing_esperanto_rule": "confidence/self-evidence word",
+      "proposed_new_abstention_rule": "retain abstention until independent non-coordinate evidence sharpens mechanism",
+      "proposed_new_operator": "none",
+      "proposed_new_pressure": "none",
+      "protein_id": "10OP_4",
+      "reality_showed": "short_region_host_interface_hijacking",
+      "score_label": "abstained",
+      "target_id": "V62_10OP_4"
+    },
+    {
+      "baseline_target_id": "V61_10PX_11",
+      "control_that_prevents_overfitting": "repair result is same-target only; new grammar must be confirmed by V63/V64 or specialized panels",
+      "engine_thought": "insufficient_evidence_clean_abstain",
+      "failure_type": "weak_sequence_signal",
+      "missing_esperanto_rule": "confidence/self-evidence word",
+      "proposed_new_abstention_rule": "retain abstention until independent non-coordinate evidence sharpens mechanism",
+      "proposed_new_operator": "none",
+      "proposed_new_pressure": "none",
+      "protein_id": "10PX_11",
+      "reality_showed": "intrinsic_disorder_phase_separation",
+      "score_label": "abstained",
+      "target_id": "V62_10PX_11"
+    },
+    {
+      "baseline_target_id": "V61_10QM_29",
+      "control_that_prevents_overfitting": "repair result is same-target only; new grammar must be confirmed by V63/V64 or specialized panels",
+      "engine_thought": "globular_closure",
+      "failure_type": "disorder_misread",
+      "missing_esperanto_rule": "IDR persistence and fold-upon-binding separation word",
+      "proposed_new_abstention_rule": "defer to disorder panel or E62 if repeated",
+      "proposed_new_operator": "disorder_operator",
+      "proposed_new_pressure": "entropy/partner pressure",
+      "protein_id": "10QM_29",
+      "reality_showed": "intrinsic_disorder_phase_separation",
+      "score_label": "contradicted",
+      "target_id": "V62_10QM_29"
+    },
+    {
+      "baseline_target_id": "V61_10XZ_1",
+      "control_that_prevents_overfitting": "repair result is same-target only; new grammar must be confirmed by V63/V64 or specialized panels",
+      "engine_thought": "globular_closure",
+      "failure_type": "disorder_misread",
+      "missing_esperanto_rule": "IDR persistence and fold-upon-binding separation word",
+      "proposed_new_abstention_rule": "defer to disorder panel or E62 if repeated",
+      "proposed_new_operator": "disorder_operator",
+      "proposed_new_pressure": "entropy/partner pressure",
+      "protein_id": "10XZ_1",
+      "reality_showed": "intrinsic_disorder_phase_separation",
+      "score_label": "contradicted",
+      "target_id": "V62_10XZ_1"
+    },
+    {
+      "baseline_target_id": "V61_10ZO_1",
+      "control_that_prevents_overfitting": "repair result is same-target only; new grammar must be confirmed by V63/V64 or specialized panels",
+      "engine_thought": "globular_closure",
+      "failure_type": "wrong_regime",
+      "missing_esperanto_rule": "regime separation word",
+      "proposed_new_abstention_rule": "mine broader V63 failures before E62",
+      "proposed_new_operator": "frustration_operator",
+      "proposed_new_pressure": "context separation pressure",
+      "protein_id": "10ZO_1",
+      "reality_showed": "short_region_host_interface_hijacking",
+      "score_label": "contradicted",
+      "target_id": "V62_10ZO_1"
+    },
+    {
+      "baseline_target_id": "V61_11BE_1",
+      "control_that_prevents_overfitting": "repair result is same-target only; new grammar must be confirmed by V63/V64 or specialized panels",
+      "engine_thought": "insufficient_evidence_clean_abstain",
+      "failure_type": "weak_sequence_signal",
+      "missing_esperanto_rule": "confidence/self-evidence word",
+      "proposed_new_abstention_rule": "retain abstention until independent non-coordinate evidence sharpens mechanism",
+      "proposed_new_operator": "none",
+      "proposed_new_pressure": "none",
+      "protein_id": "11BE_1",
+      "reality_showed": "intrinsic_disorder_phase_separation",
+      "score_label": "abstained",
+      "target_id": "V62_11BE_1"
+    },
+    {
+      "baseline_target_id": "V61_11BQ_27",
+      "control_that_prevents_overfitting": "repair result is same-target only; new grammar must be confirmed by V63/V64 or specialized panels",
+      "engine_thought": "globular_closure",
+      "failure_type": "disorder_misread",
+      "missing_esperanto_rule": "IDR persistence and fold-upon-binding separation word",
+      "proposed_new_abstention_rule": "defer to disorder panel or E62 if repeated",
+      "proposed_new_operator": "disorder_operator",
+      "proposed_new_pressure": "entropy/partner pressure",
+      "protein_id": "11BQ_27",
+      "reality_showed": "intrinsic_disorder_phase_separation",
+      "score_label": "contradicted",
+      "target_id": "V62_11BQ_27"
+    },
+    {
+      "baseline_target_id": "V61_11DG_26",
+      "control_that_prevents_overfitting": "repair result is same-target only; new grammar must be confirmed by V63/V64 or specialized panels",
+      "engine_thought": "globular_closure",
+      "failure_type": "disorder_misread",
+      "missing_esperanto_rule": "IDR persistence and fold-upon-binding separation word",
+      "proposed_new_abstention_rule": "defer to disorder panel or E62 if repeated",
+      "proposed_new_operator": "disorder_operator",
+      "proposed_new_pressure": "entropy/partner pressure",
+      "protein_id": "11DG_26",
+      "reality_showed": "intrinsic_disorder_phase_separation",
+      "score_label": "contradicted",
+      "target_id": "V62_11DG_26"
+    }
+  ],
+  "kind": "V62_FAILURE_REPORT_v0",
+  "note": "Failures after E61 repair are preserved as missing Esperanto grammar candidates for V63/V64.",
+  "repair_categories": {
+    "repaired": 82,
+    "stable_supported": 8,
+    "unchanged_failure": 10
+  }
+}

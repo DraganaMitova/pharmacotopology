@@ -1,0 +1,29 @@
+{
+  "baseline_batch_id": "V61_RCSB_NONREDUNDANT_100_BATCH",
+  "batch_id": "V62_E61_REPAIR_AND_SATURATION_RERUN",
+  "entity_id": "22",
+  "entry_id": "10PX",
+  "expected_mechanism_class": "cofactor_ligand_assisted_stabilization",
+  "expected_observables": [],
+  "experimental_method": "X-RAY DIFFRACTION",
+  "holdout_opened_after_prediction_hash": "79c3031eef09e91f53a9bf78b3c28d6cfa80695e9a45ca567075236a228f7f8a",
+  "kind": "V62_RCSB_POSTSEAL_HOLDOUT_v0",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/10PX",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/10PX/22",
+      "source_class": "coordinate_derived",
+      "source_id": "V62_10PX_22_RCSB_DATA_API_POSTSEAL",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "V62 uses V61 sealed holdout class for same-target repair comparison: cofactor_ligand_assisted_stabilization",
+    "{'check_id': 'mechanism_class_matches_holdout', 'expected': 'cofactor_ligand_assisted_stabilization', 'observed': 'insufficient_evidence_clean_abstain', 'passed': False}"
+  ],
+  "protein_id": "10PX_22",
+  "release_date": "2026-03-11T00:00:00.000+00:00",
+  "target_id": "V62_10PX_22"
+}

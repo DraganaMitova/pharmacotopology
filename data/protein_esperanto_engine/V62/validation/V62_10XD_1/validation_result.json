@@ -1,0 +1,52 @@
+{
+  "abstention_correctness": "not_applicable",
+  "acceptance_decision": "accepted",
+  "alphafold_used_before_seal": false,
+  "baseline_target_id": "V61_10XD_1",
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "e60_baseline_acceptance_decision": "accepted",
+  "e60_baseline_predicted_mechanism_class": "globular_closure",
+  "e60_baseline_score_label": "contradicted",
+  "entity_id": "1",
+  "entry_id": "10XD",
+  "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "failures_repaired_after_holdout": false,
+  "holdout_opened_after_prediction_hash": "9e4939af792bff7148d98cdb692283cb7cc51400b41bc6439305baff186a5fea",
+  "kind": "V62_E61_REPAIR_VALIDATION_RESULT_v0",
+  "level1_regime_selection": true,
+  "level2_region_localization_proxy": true,
+  "level3_topology_or_contact_proxy": true,
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/10XD",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/10XD/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V62_10XD_1_RCSB_DATA_API_POSTSEAL",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "predicted_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "protein_id": "10XD_1",
+  "score_label": "supported",
+  "sealed_prediction_hash": "9e4939af792bff7148d98cdb692283cb7cc51400b41bc6439305baff186a5fea",
+  "target_id": "V62_10XD_1",
+  "validation_checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "membrane_multidomain_folding_proteostasis",
+      "observed": "membrane_multidomain_folding_proteostasis",
+      "passed": true
+    },
+    {
+      "check_id": "proteostasis_routing_supported",
+      "comparator": ">=",
+      "metric": "proteostasis_routing",
+      "observed": 0.669563,
+      "passed": true,
+      "threshold": 0.5
+    }
+  ]
+}

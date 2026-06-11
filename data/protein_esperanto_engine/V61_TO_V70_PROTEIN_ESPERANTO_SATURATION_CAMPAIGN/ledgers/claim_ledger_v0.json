@@ -21,6 +21,26 @@
         "wrong_regime": 2
       },
       "raw_accuracy": 0.08
+    },
+    {
+      "abstention_rate": 0.04,
+      "accepted_accuracy": 0.9375,
+      "baseline_engine_version": "E60",
+      "batch_id": "V62_E61_REPAIR_AND_SATURATION_RERUN",
+      "batch_mode": "repair",
+      "claim_allowed": false,
+      "claim_blocked_reason": "V62 is a same-target repair probe; broad claims require V63/V64 expansion/regression.",
+      "control_pass_rate": 1.0,
+      "coverage": 0.96,
+      "directional_repair": true,
+      "engine_version_used": "E61",
+      "failure_count": 10,
+      "failure_modes": {
+        "disorder_misread": 4,
+        "weak_sequence_signal": 4,
+        "wrong_regime": 2
+      },
+      "raw_accuracy": 0.9
     }
   ]
 }

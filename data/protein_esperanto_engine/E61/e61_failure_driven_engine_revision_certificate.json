@@ -1,16 +1,11 @@
 {
-  "kind": "E61_FAILURE_DRIVEN_ENGINE_REVISION_CERTIFICATE_v0",
-  "engine_version": "E61",
-  "commit": "this_commit",
-  "derived_from_batch": "V61_RCSB_NONREDUNDANT_100_BATCH",
-  "v61_engine_version_used": "E60",
-  "v61_status": "V61_RCSB_NONREDUNDANT_100_DISCOVERY_FAILURES_REVIEW_REQUIRED",
-  "engine_modified_after_v61": true,
-  "engine_modified_during_v61": false,
-  "fresh_frozen_replication_required": true,
-  "engine_source_sha256": "1eb6e19bfdda03be759484976540fa25ca9822871dec085d9a97d0ac989da85e",
-  "mechanism_classes_added": [],
-  "operators_added": [],
+  "claim_boundary": {
+    "next_required_batch": "fresh frozen replication using E61",
+    "protein_esperanto_saturation_claim_allowed": false,
+    "universal_folding_solved": false,
+    "v61_rewritten": false
+  },
+  "commit": "2ad3c4f733d35cde78e7f98531102a1e111fdec4",
   "context_marks_added": [
     "cofactor_context",
     "ligand_context",
@@ -28,19 +23,24 @@
     "transporter_context",
     "receptor_membrane_context"
   ],
-  "trajectory_support_added": [
-    "cofactor_ligand_assisted_stabilization",
-    "oligomerization_controlled_folding"
-  ],
+  "derived_from_batch": "V61_RCSB_NONREDUNDANT_100_BATCH",
+  "engine_modified_after_v61": true,
+  "engine_modified_during_v61": false,
+  "engine_source_sha256": "1eb6e19bfdda03be759484976540fa25ca9822871dec085d9a97d0ac989da85e",
+  "engine_version": "E61",
   "failure_modes_addressed": [
     "cofactor_ligand_missing",
     "oligomer_state_misread",
     "membrane_misread"
   ],
-  "claim_boundary": {
-    "v61_rewritten": false,
-    "universal_folding_solved": false,
-    "protein_esperanto_saturation_claim_allowed": false,
-    "next_required_batch": "fresh frozen replication using E61"
-  }
+  "fresh_frozen_replication_required": true,
+  "kind": "E61_FAILURE_DRIVEN_ENGINE_REVISION_CERTIFICATE_v0",
+  "mechanism_classes_added": [],
+  "operators_added": [],
+  "trajectory_support_added": [
+    "cofactor_ligand_assisted_stabilization",
+    "oligomerization_controlled_folding"
+  ],
+  "v61_engine_version_used": "E60",
+  "v61_status": "V61_RCSB_NONREDUNDANT_100_DISCOVERY_FAILURES_REVIEW_REQUIRED"
 }

@@ -1,0 +1,37 @@
+{
+  "baseline_batch_id": "V61_RCSB_NONREDUNDANT_100_BATCH",
+  "batch_id": "V62_E61_REPAIR_AND_SATURATION_RERUN",
+  "entity_id": "27",
+  "entry_id": "11BQ",
+  "expected_mechanism_class": "intrinsic_disorder_phase_separation",
+  "expected_observables": [
+    {
+      "check_id": "compact_single_fold_rejected",
+      "comparator": "<=",
+      "metric": "basin:compact_single_fold",
+      "threshold": 0.12
+    }
+  ],
+  "experimental_method": "ELECTRON MICROSCOPY",
+  "holdout_opened_after_prediction_hash": "b0efa74e08f405f748bf206038cdd69409314867b7db98a6f0e79ad103735257",
+  "kind": "V62_RCSB_POSTSEAL_HOLDOUT_v0",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/11BQ",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/11BQ/27",
+      "source_class": "coordinate_derived",
+      "source_id": "V62_11BQ_27_RCSB_DATA_API_POSTSEAL",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "V62 uses V61 sealed holdout class for same-target repair comparison: intrinsic_disorder_phase_separation",
+    "{'check_id': 'mechanism_class_matches_holdout', 'expected': 'intrinsic_disorder_phase_separation', 'observed': 'globular_closure', 'passed': False}",
+    "{'check_id': 'compact_single_fold_rejected', 'comparator': '<=', 'metric': 'basin:compact_single_fold', 'observed': 0.0, 'passed': True, 'threshold': 0.12}"
+  ],
+  "protein_id": "11BQ_27",
+  "release_date": "2026-04-08T00:00:00.000+00:00",
+  "target_id": "V62_11BQ_27"
+}

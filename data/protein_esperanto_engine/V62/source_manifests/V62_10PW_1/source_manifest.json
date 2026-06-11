@@ -1,0 +1,89 @@
+{
+  "alphafold_used_before_seal": false,
+  "baseline_batch_id": "V61_RCSB_NONREDUNDANT_100_BATCH",
+  "batch_id": "V62_E61_REPAIR_AND_SATURATION_RERUN",
+  "blocked_prediction_inputs": [
+    "PDB/mmCIF coordinates before sealing",
+    "native contacts, distance maps, residue-residue proximity, and coordinate-derived topology",
+    "ligand coordinates, metal coordination geometry, and bound-state contact geometry",
+    "AlphaFold, ESMFold, RoseTTAFold, or other structure models before sealing",
+    "post-seal validation annotations before prediction hash",
+    "internal runtime artifacts as biological evidence"
+  ],
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "1",
+  "entry_id": "10PW",
+  "folding_problem_solved": false,
+  "kind": "V62_E61_REPAIR_SOURCE_MANIFEST_v0",
+  "known_failure_repair_probe": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence for the RCSB polymer entity.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V62_10PW_1_RAW_SEQUENCE",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/10PW/1",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "RCSB title: Crystal structure of Glutathione Transferase from Shrimp Litopenaeus vannamei in complex with silver ions and a molecules of Glutathione binding in G-site and H-site. Entity description: Glutathione transferase. Organism: Penaeus vannamei. Polymer composition: homomeric protein. Sequence-derived marks: sequence-derived hydrophobic closure tendency; public metadata indicates multiple polymer instances or molecule copies. Coordinates, native contacts, residue-residue distances, and validation annotations are unopened before the prediction hash.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V62_10PW_1_PUBLIC_METADATA",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/10PW",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "V62 same-target repair probe. E61 explicit context marks: assembly_context homomeric_context oligomer_context partner_copy_context. Marks are derived from V61 failure grammar class and RCSB non-coordinate metadata only; no coordinates, contacts, distance maps, ligand geometry, or native topology are opened before sealing.",
+      "internal_runtime_source": false,
+      "repair_context_marks": [
+        "assembly_context",
+        "homomeric_context",
+        "oligomer_context",
+        "partner_copy_context"
+      ],
+      "repair_context_reasons": [
+        "V61 failure grammar exposed missing oligomer/assembly context",
+        "RCSB polymer composition indicates homomeric assembly pressure"
+      ],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V62_10PW_1_E61_REPAIR_CONTEXT",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/10PW",
+      "spatial_proxy": false
+    }
+  ],
+  "protein_id": "10PW_1",
+  "repair_context_policy": {
+    "baseline_failure_type": "oligomer_state_misread",
+    "biological_cofactor_components_seen": [],
+    "context_derivation": "same-target V62 repair probe: context family is derived from V61 failure grammar and allowed RCSB non-coordinate metadata; coordinates, contacts, distances, ligand geometry, and validation annotations remain blocked before sealing",
+    "context_marks": [
+      "assembly_context",
+      "homomeric_context",
+      "oligomer_context",
+      "partner_copy_context"
+    ],
+    "expected_mechanism_family": "oligomerization_controlled_folding",
+    "polymer_copy_counts": {
+      "entity_molecule_count": 8,
+      "polymer_composition": "homomeric protein",
+      "polymer_entity_instance_count": 8
+    },
+    "reasons": [
+      "V61 failure grammar exposed missing oligomer/assembly context",
+      "RCSB polymer composition indicates homomeric assembly pressure"
+    ],
+    "repair_context_applied": true
+  },
+  "same_target_as_v61": true,
+  "sequence": "MLPVLGYWKTRALCQPIRLMLGYTGTEFEEKNYPVGDAPDYDKSEWLAVKFKLGLAFPNLPYYIDGDVKITQSKAIMRYLARKHGLCGTTPEELVRTDMIECQLTDMHEAFFTVTYEHYEQKDAYTASLPAKLRQYSDFLGSRPWFAGDKLTYIDFLAYEIFDQHLSLDRTCLDGFKNLQAFQKRFEDLEAIKKYMASPKFLKKPICNKYAQFTIIEGK",
+  "sequence_length": 219,
+  "target_id": "V62_10PW_1"
+}

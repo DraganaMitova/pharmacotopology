@@ -16,7 +16,7 @@
     {
       "batch_id": "E61_FAILURE_DRIVEN_ENGINE_REVISION",
       "change_summary": "Post-V61 failure-driven engine revision: added explicit cofactor/ligand/metal, oligomer/assembly, and strong membrane context marks plus operator/trajectory support for cofactor_ligand_assisted_stabilization and oligomerization_controlled_folding.",
-      "commit": "this_commit",
+      "commit": "2ad3c4f733d35cde78e7f98531102a1e111fdec4",
       "engine_modified_during_batch": true,
       "engine_source_sha256": "1eb6e19bfdda03be759484976540fa25ca9822871dec085d9a97d0ac989da85e",
       "engine_version": "E61",

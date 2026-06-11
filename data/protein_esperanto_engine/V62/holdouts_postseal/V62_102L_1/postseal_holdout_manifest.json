@@ -1,0 +1,37 @@
+{
+  "baseline_batch_id": "V61_RCSB_NONREDUNDANT_100_BATCH",
+  "batch_id": "V62_E61_REPAIR_AND_SATURATION_RERUN",
+  "entity_id": "1",
+  "entry_id": "102L",
+  "expected_mechanism_class": "short_region_host_interface_hijacking",
+  "expected_observables": [
+    {
+      "check_id": "host_interface_present",
+      "comparator": ">=",
+      "metric": "basin:host_interface_engaged",
+      "threshold": 0.55
+    }
+  ],
+  "experimental_method": "X-RAY DIFFRACTION",
+  "holdout_opened_after_prediction_hash": "f161a889ff9a1842b09bcb59f8555da22b58df37b58910efb5fa7d8dbe26fda1",
+  "kind": "V62_RCSB_POSTSEAL_HOLDOUT_v0",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/102L",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/102L/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V62_102L_1_RCSB_DATA_API_POSTSEAL",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "V62 uses V61 sealed holdout class for same-target repair comparison: short_region_host_interface_hijacking",
+    "{'check_id': 'mechanism_class_matches_holdout', 'expected': 'short_region_host_interface_hijacking', 'observed': 'globular_closure', 'passed': False}",
+    "{'check_id': 'host_interface_present', 'comparator': '>=', 'metric': 'basin:host_interface_engaged', 'observed': 0.0, 'passed': False, 'threshold': 0.55}"
+  ],
+  "protein_id": "102L_1",
+  "release_date": "1993-10-31T00:00:00.000+00:00",
+  "target_id": "V62_102L_1"
+}
