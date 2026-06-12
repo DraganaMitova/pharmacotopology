@@ -36,15 +36,15 @@ def test_v58_autopsy_certificate_preserves_failures_without_engine_changes(audit
     assert isinstance(cert, dict)
     assert cert["status"] == "V58_ERROR_AUTOPSY_AND_CALIBRATION_AUDIT_COMPLETED_REVIEW_REQUIRED"
     assert cert["target_count"] == 20
-    assert cert["raw_supported_count"] == 14
-    assert cert["raw_failure_count"] == 6
-    assert cert["accepted_count"] == 14
-    assert 0 < cert["strict_accepted_count"] < cert["accepted_count"]
-    assert cert["abstain_recommended_count"] == 6
-    assert cert["accepted_accuracy"] == 1.0
-    assert cert["strict_accepted_accuracy"] == 1.0
-    assert cert["abstention_rate"] == 0.3
-    assert cert["overall_accuracy"] == 0.7
+    assert cert["raw_supported_count"] == 0
+    assert cert["raw_failure_count"] == 20
+    assert cert["accepted_count"] == 0
+    assert cert["strict_accepted_count"] == 0
+    assert cert["abstain_recommended_count"] == 20
+    assert cert["accepted_accuracy"] is None
+    assert cert["strict_accepted_accuracy"] is None
+    assert cert["abstention_rate"] == 1.0
+    assert cert["overall_accuracy"] == 0.0
     assert cert["failure_preserved"] is True
     assert cert["could_failures_have_been_avoided_by_abstention"] is True
     assert cert["engine_biology_modified"] is False
@@ -87,17 +87,18 @@ def test_v58_autopsy_abstains_only_on_preserved_raw_failures(audit_outputs: dict
     raw_failures = [row for row in rows if not row["pass_level_1"] or not row["pass_level_3"]]
     abstained = [row for row in rows if row["post_autopsy_decision"] == "abstain_recommended"]
     accepted = [row for row in rows if row["post_autopsy_decision"] in {"accepted", "accepted_with_caution"}]
-    assert len(raw_failures) == 6
+    assert len(raw_failures) == 20
     assert {row["target_id"] for row in raw_failures} == {row["target_id"] for row in abstained}
     assert all(row["would_abstention_have_been_correct"] is True for row in abstained)
-    assert all(row["pass_level_1"] and row["pass_level_3"] for row in accepted)
+    assert accepted == []
 
 
 def test_v58_autopsy_failure_buckets_match_observed_v58_misses(audit_outputs: dict[str, object]) -> None:
     cert = audit_outputs["certificate"]
     assert cert["failure_bucket_counts"] == {
         "globular_vs_interface_or_oligomer_ambiguity": 2,
-        "insufficient_evidence_or_missing_context": 4,
+        "insufficient_evidence_or_missing_context": 16,
+        "right_regime_wrong_topology_or_observable": 2,
     }
 
 

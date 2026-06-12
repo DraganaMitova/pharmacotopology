@@ -1,0 +1,20 @@
+{
+  "campaign_id": "V61_TO_V78_PROTEIN_ESPERANTO_SATURATION_CAMPAIGN",
+  "kind": "V78_CLAIM_LEDGER_v0",
+  "rows": [
+    {
+      "accepted_accuracy": 1.0,
+      "batch_id": "V78_ALL_MISSING_WORDS_SATURATION_PANEL_600",
+      "candidate_grammars_remaining": [],
+      "claim_allowed": false,
+      "coverage": 0.9411764705882353,
+      "engine_version_used": "E72",
+      "failed_accepted_count": 0,
+      "protein_esperanto_language_saturation_status": "current_known_missing_words_implemented",
+      "protein_folding_solved": false,
+      "status": "V78_ALL_MISSING_WORDS_SATURATION_PANEL_PASSED",
+      "uses_static_observable_thresholds": false,
+      "withheld_context_leakage_detected": false
+    }
+  ]
+}

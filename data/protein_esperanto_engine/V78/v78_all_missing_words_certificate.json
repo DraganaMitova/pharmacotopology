@@ -1,0 +1,245 @@
+{
+  "accepted_accuracy": 1.0,
+  "accepted_count": 640,
+  "accepted_supported": 640,
+  "actual_target_count_from_requested_composition": 680,
+  "all_accepted_rows_pass_matched_control_dominance": true,
+  "all_perturbations_paired_baseline_comparisons": true,
+  "all_wrong_grammar_challenges_fail": true,
+  "atomistic_md_executed": false,
+  "baseline_engine_version": "E71",
+  "batch_id": "V78_ALL_MISSING_WORDS_SATURATION_PANEL_600",
+  "campaign_id": "V61_TO_V78_PROTEIN_ESPERANTO_SATURATION_CAMPAIGN",
+  "candidate_grammars_remaining": [],
+  "certificate_hash": "79eb492d2d00d3c9d56f50a6b9a38267ca57e22cd40b4cb2684c5e2014cf0bf2",
+  "claim_allowed": false,
+  "clean_abstain": 40,
+  "clean_abstain_supported": 40,
+  "composition_rule": {
+    "COILED_COIL_NEAR_NEGATIVE_ASSEMBLY": 60,
+    "COILED_COIL_NEAR_NEGATIVE_GLOBULAR": 40,
+    "COILED_COIL_POSITIVE": 100,
+    "KNOTTED_OR_SLIPKNOT_POSITIVE": 50,
+    "KNOT_NEAR_NEGATIVE_BETA_OR_REPEAT": 30,
+    "KNOT_NEAR_NEGATIVE_GLOBULAR": 40,
+    "RANDOM_AND_METADATA_MASKED_HARD_ABSTAIN_CONTROLS": 40,
+    "REPEAT_NEAR_NEGATIVE_BETA": 60,
+    "REPEAT_NEAR_NEGATIVE_MULTIDOMAIN": 40,
+    "REPEAT_SOLENOID_POSITIVE": 100,
+    "V75_MULTIDOMAIN_ASSEMBLY_MEMBRANE_METAL_DISORDER_SENTINEL_REPLAY": 40,
+    "V76_SECRETORY_DISULFIDE_SENTINEL_REPLAY": 40,
+    "V77_SIGNAL_TM_SENTINEL_REPLAY": 40
+  },
+  "control_count": 16,
+  "controls": [
+    {
+      "control_id": "target_count_matches_requested_composition",
+      "observed": 680,
+      "passed": true,
+      "reason": "V78 must match the requested explicit group composition."
+    },
+    {
+      "control_id": "composition_rule",
+      "observed": {
+        "COILED_COIL_NEAR_NEGATIVE_ASSEMBLY": 60,
+        "COILED_COIL_NEAR_NEGATIVE_GLOBULAR": 40,
+        "COILED_COIL_POSITIVE": 100,
+        "KNOTTED_OR_SLIPKNOT_POSITIVE": 50,
+        "KNOT_NEAR_NEGATIVE_BETA_OR_REPEAT": 30,
+        "KNOT_NEAR_NEGATIVE_GLOBULAR": 40,
+        "RANDOM_AND_METADATA_MASKED_HARD_ABSTAIN_CONTROLS": 40,
+        "REPEAT_NEAR_NEGATIVE_BETA": 60,
+        "REPEAT_NEAR_NEGATIVE_MULTIDOMAIN": 40,
+        "REPEAT_SOLENOID_POSITIVE": 100,
+        "V75_MULTIDOMAIN_ASSEMBLY_MEMBRANE_METAL_DISORDER_SENTINEL_REPLAY": 40,
+        "V76_SECRETORY_DISULFIDE_SENTINEL_REPLAY": 40,
+        "V77_SIGNAL_TM_SENTINEL_REPLAY": 40
+      },
+      "passed": true,
+      "reason": "V78 composition must match the panel."
+    },
+    {
+      "control_id": "candidate_grammars_empty",
+      "observed": [],
+      "passed": true,
+      "reason": "All current known missing words must be promoted."
+    },
+    {
+      "control_id": "zero_failed_accepted",
+      "observed": null,
+      "passed": true,
+      "reason": "Every accepted target must be supported."
+    },
+    {
+      "control_id": "accepted_matched_control_dominance",
+      "observed": null,
+      "passed": true,
+      "reason": "Accepted targets must pass matched controls."
+    },
+    {
+      "control_id": "coiled_positives_supported",
+      "observed": null,
+      "passed": true,
+      "reason": "Coiled positives must accept E72 coiled word."
+    },
+    {
+      "control_id": "repeat_positives_supported",
+      "observed": null,
+      "passed": true,
+      "reason": "Repeat positives must accept E72 repeat word."
+    },
+    {
+      "control_id": "knot_positives_supported",
+      "observed": null,
+      "passed": true,
+      "reason": "Knot positives must accept E72 knot word."
+    },
+    {
+      "control_id": "hard_abstain_controls_clean",
+      "observed": null,
+      "passed": true,
+      "reason": "Random and metadata-masked controls must abstain."
+    },
+    {
+      "control_id": "sentinels_preserved",
+      "observed": null,
+      "passed": true,
+      "reason": "Sentinel rows must remain supported."
+    },
+    {
+      "control_id": "withheld_context_isolation",
+      "observed": {
+        "final_self_decision": "clean_abstain_low_internal_consensus",
+        "kind": "V78_WITHHELD_CONTEXT_LEAKAGE_PROBE_v0",
+        "observed_mechanism": "insufficient_evidence_clean_abstain",
+        "prediction_hash": "ab207452b7ee7dd40f33872c4c4823e15372e7b1a25574aca0bf5991fe79fbfa",
+        "withheld_context_leakage_detected": false
+      },
+      "passed": true,
+      "reason": "Withheld context marks must not initialize promoted words."
+    },
+    {
+      "control_id": "no_static_observable_thresholds",
+      "observed": null,
+      "passed": true,
+      "reason": "V78 scoring uses paired dominance, not static observable thresholds."
+    },
+    {
+      "control_id": "real_physical_calibration_inputs_present",
+      "observed": null,
+      "passed": true,
+      "reason": "Every row receives real calibration inputs."
+    },
+    {
+      "control_id": "physical_calibration_truth_boundary",
+      "observed": null,
+      "passed": true,
+      "reason": "Calibration truth boundary holds."
+    },
+    {
+      "control_id": "coordinate_leakage_control",
+      "observed": {
+        "allowed_initialization_source_ids": [],
+        "blocked_source_ids": [
+          "V78_BAD_COORD"
+        ],
+        "coordinate_derived_source_count_before_prediction": 1,
+        "coordinate_truth_used_before_prediction": true,
+        "holdout_opened_before_seal": false,
+        "internal_runtime_source_count_for_prediction": 0,
+        "internal_runtime_used_as_biological_evidence": false,
+        "kind": "PROTEIN_ESPERANTO_EVIDENCE_BOUNDARY_GATE_v0",
+        "rows": [
+          {
+            "allowed_for_claim": false,
+            "allowed_for_holdout_after_seal": false,
+            "allowed_to_initialize_language_field": false,
+            "blocked_reason": "coordinate_derived_blocked_before_seal",
+            "coordinate_derived": true,
+            "internal_runtime": false,
+            "source_class": "coordinate_derived",
+            "source_id": "V78_BAD_COORD",
+            "source_role": "prediction_input",
+            "spatial_proxy": false
+          }
+        ],
+        "spatial_proxy_untagged_or_misused_count": 0
+      },
+      "passed": true,
+      "reason": "Coordinate source blocks prediction."
+    },
+    {
+      "control_id": "internal_runtime_leakage_control",
+      "observed": {
+        "allowed_initialization_source_ids": [],
+        "blocked_source_ids": [
+          "V78_BAD_RUNTIME"
+        ],
+        "coordinate_derived_source_count_before_prediction": 0,
+        "coordinate_truth_used_before_prediction": false,
+        "holdout_opened_before_seal": false,
+        "internal_runtime_source_count_for_prediction": 1,
+        "internal_runtime_used_as_biological_evidence": true,
+        "kind": "PROTEIN_ESPERANTO_EVIDENCE_BOUNDARY_GATE_v0",
+        "rows": [
+          {
+            "allowed_for_claim": false,
+            "allowed_for_holdout_after_seal": false,
+            "allowed_to_initialize_language_field": false,
+            "blocked_reason": "internal_runtime_never_biological_evidence",
+            "coordinate_derived": false,
+            "internal_runtime": true,
+            "source_class": "internal_runtime",
+            "source_id": "V78_BAD_RUNTIME",
+            "source_role": "prediction_input",
+            "spatial_proxy": false
+          }
+        ],
+        "spatial_proxy_untagged_or_misused_count": 0
+      },
+      "passed": true,
+      "reason": "Internal runtime source blocks prediction."
+    }
+  ],
+  "controls_passed": true,
+  "coordinate_truth_used_before_seal": false,
+  "coverage": 0.9411764705882353,
+  "engine_source_sha256": "5f9c082945a4ff81d4d8c7900d175070fc193d580de886caad694c0f6eb5f8bd",
+  "engine_version_used": "E72",
+  "failed_accepted": 0,
+  "failed_accepted_by_failure_mode": {},
+  "failed_accepted_count": 0,
+  "failed_controls": [],
+  "fixed_accepted_support_thresholds_used": false,
+  "folding_problem_solved": false,
+  "kind": "V78_ALL_MISSING_WORDS_SATURATION_PANEL_CERTIFICATE_v0",
+  "matched_control_dominance_acceptance": true,
+  "next_mode": "blind_discovery_not_missing_word_repair",
+  "next_required_batch": "V79_BLIND_RCSB_DISCOVERY_500_NO_KNOWN_MISSING_WORD_QUEUE",
+  "passed_control_count": 16,
+  "physical_basis_claim_allowed": false,
+  "physical_basis_claim_blocked_reason": "E72 is language saturation for current known words; no independent physical holdout earns a fold-solution claim.",
+  "protein_esperanto_language_saturation_status": "current_known_missing_words_implemented",
+  "protein_folding_solved": false,
+  "real_physical_calibration_hash": "fce8f8b9ece98c6a9427ec01c22ea5af9daedae08a599cd0856dfe96a0f14512",
+  "real_physical_calibration_inputs_used": true,
+  "real_physical_calibration_row_count": 8,
+  "requested_nominal_target_count": 600,
+  "sentinel_regressions": 0,
+  "static_thresholds_removed_from_engine": true,
+  "status": "V78_ALL_MISSING_WORDS_SATURATION_PANEL_PASSED",
+  "supported_count": 680,
+  "targets_total": 680,
+  "timestamp_utc": "2026-06-12T11:24:49.341436+00:00",
+  "top_failure_mode": null,
+  "top_missing_esperanto_word": null,
+  "uses_static_observable_thresholds": false,
+  "withheld_context_leakage_detected": false,
+  "withheld_context_leakage_probe": {
+    "final_self_decision": "clean_abstain_low_internal_consensus",
+    "kind": "V78_WITHHELD_CONTEXT_LEAKAGE_PROBE_v0",
+    "observed_mechanism": "insufficient_evidence_clean_abstain",
+    "prediction_hash": "ab207452b7ee7dd40f33872c4c4823e15372e7b1a25574aca0bf5991fe79fbfa",
+    "withheld_context_leakage_detected": false
+  }
+}

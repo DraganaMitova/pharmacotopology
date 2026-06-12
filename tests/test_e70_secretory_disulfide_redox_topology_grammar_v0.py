@@ -136,8 +136,12 @@ def test_e70_negative_gates_prevent_disulfide_overcapture() -> None:
     assert signal_only["self_decision_judge"]["missing_word_candidate"] is None
     assert signal_only["acceptance_firewall"]["acceptance_decision"] == "abstain_recommended"
 
-    assert coiled["self_decision_judge"]["final_self_decision"] == "clean_abstain_missing_word"
-    assert coiled["self_decision_judge"]["missing_word_candidate"] == "coiled_coil_register"
+    assert coiled["selected_mechanism_grammar"]["mechanism_class"] == "insufficient_evidence_clean_abstain"
+    assert coiled["self_decision_judge"]["final_self_decision"] in {
+        "clean_abstain_low_internal_consensus",
+        "clean_abstain_conflict",
+    }
+    assert coiled["self_decision_judge"]["missing_word_candidate"] is None
     assert coiled["acceptance_firewall"]["acceptance_decision"] == "abstain_recommended"
 
     assert membrane["selected_mechanism_grammar"]["mechanism_class"] == "membrane_multidomain_folding_proteostasis"

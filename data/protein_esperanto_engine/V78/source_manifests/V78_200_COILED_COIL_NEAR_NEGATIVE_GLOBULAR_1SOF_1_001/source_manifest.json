@@ -1,0 +1,44 @@
+{
+  "batch_id": "V78_ALL_MISSING_WORDS_SATURATION_PANEL_600",
+  "blocked_prediction_inputs": [
+    "PDB/mmCIF coordinates before sealing",
+    "native contacts and distance maps before sealing",
+    "native knot, repeat, coiled-coil, membrane, or disulfide labels as holdout answers before sealing",
+    "internal runtime artifacts as biological evidence"
+  ],
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E72",
+  "folding_problem_solved": false,
+  "kind": "V78_ALL_MISSING_WORDS_SOURCE_MANIFEST_v0",
+  "panel_group": "COILED_COIL_NEAR_NEGATIVE_GLOBULAR",
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence for the RCSB polymer entity or deterministic hard-abstain control.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V78_RAW_SEQUENCE_a7cc4c34e6eb",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1SOF/1",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "V78 allowed non-coordinate context marks: soluble_monomeric_core_context complete soluble monomer standalone soluble fold protein folding target.",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [
+        "soluble_monomeric_core_context",
+        "complete soluble monomer",
+        "standalone soluble fold",
+        "protein folding target"
+      ],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V78_CONTEXT_a7cc4c34e6eb",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/1SOF",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V78_200_COILED_COIL_NEAR_NEGATIVE_GLOBULAR_1SOF_1_001"
+}

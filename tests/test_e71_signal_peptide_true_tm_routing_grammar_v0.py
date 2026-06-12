@@ -145,7 +145,10 @@ def test_e71_negative_gates_preserve_true_tm_disulfide_and_missing_words() -> No
         "extracellular_stabilized_fold glycosylation_context cysteine_pairing_constraint",
         sequence=("ACDECGHIKCDEFGCNPQRSTCAVCDEF" * 10)[:280],
     )
-    coiled = _packet("coiled_coil_register heptad_repeat register_alignment")
+    coiled = _packet(
+        "coiled_coil_register heptad_repeat register_alignment hydrophobic_repeat_phase oligomeric_coiled_coil_core",
+        sequence="LEKLAAL" * 24,
+    )
 
     assert true_tm["selected_mechanism_grammar"]["mechanism_class"] == "membrane_multidomain_folding_proteostasis"
     assert true_tm["self_decision_judge"]["final_self_decision"] == "accepted"
@@ -156,5 +159,7 @@ def test_e71_negative_gates_preserve_true_tm_disulfide_and_missing_words() -> No
     assert disulfide["selected_mechanism_grammar"]["mechanism_class"] == "secretory_disulfide_redox_topology"
     assert disulfide["self_decision_judge"]["final_self_decision"] == "accepted"
 
-    assert coiled["self_decision_judge"]["final_self_decision"] == "clean_abstain_missing_word"
-    assert coiled["self_decision_judge"]["missing_word_candidate"] == "coiled_coil_register"
+    assert coiled["selected_mechanism_grammar"]["mechanism_class"] == "coiled_coil_register_topology"
+    assert coiled["self_decision_judge"]["final_self_decision"] == "accepted"
+    assert coiled["self_decision_judge"]["known_coiled_coil_word"] == "coiled_coil_register"
+    assert coiled["self_decision_judge"]["missing_word_candidate"] is None

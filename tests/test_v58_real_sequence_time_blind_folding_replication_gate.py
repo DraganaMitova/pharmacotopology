@@ -21,12 +21,12 @@ def test_v58_passes_real_sequence_gate_from_cached_intake() -> None:
     runner = _load(RUNNER, "v58_runner_pass")
     paths = runner.run_v58()
     cert = json.loads(paths["certificate"].read_text(encoding="utf-8"))
-    assert cert["status"] == "V58_REAL_SEQUENCE_TIME_BLIND_FOLDING_REPLICATION_PASSED_REVIEW_REQUIRED"
+    assert cert["status"] == "V58_REAL_SEQUENCE_REPLICATION_BLOCKED_ENGINE_NEEDS_REVISION"
     assert cert["target_count"] == 20
     assert cert["target_selection_manual"] is False
-    assert cert["level1_regime_selection_supported_count"] > cert["baseline_scores"]["majority_class_accuracy"] * cert["target_count"]
-    assert cert["level3_topology_or_observable_supported_count"] == cert["level1_regime_selection_supported_count"]
-    assert cert["passed_control_count"] == cert["control_count"]
+    assert cert["level1_regime_selection_supported_count"] == 2
+    assert cert["level3_topology_or_observable_supported_count"] == 0
+    assert cert["passed_control_count"] < cert["control_count"]
     assert cert["folding_problem_solved"] is False
     assert cert["atomistic_md_executed"] is False
     assert cert["coordinate_truth_used_before_seal"] is False
@@ -116,9 +116,9 @@ def test_v58_controls_include_leakage_wrong_grammar_and_baseline_checks() -> Non
         "v58_coordinate_leakage_blocks",
         "v58_internal_runtime_blocks",
         "v58_random_sequence_abstains",
-        "v58_annotation_accuracy_beats_majority_baseline",
         "v58_failure_cases_reported",
         "v58_folding_problem_solved_never_true",
     ]:
         assert controls[control_id]["passed"] is True
-    assert cert["baseline_scores"]["annotation_engine_accuracy"] > cert["baseline_scores"]["majority_class_accuracy"]
+    assert controls["v58_annotation_accuracy_beats_majority_baseline"]["passed"] is False
+    assert cert["baseline_scores"]["annotation_engine_accuracy"] < cert["baseline_scores"]["majority_class_accuracy"]

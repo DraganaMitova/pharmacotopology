@@ -14,7 +14,6 @@ from hashlib import sha256
 import importlib.util
 from itertools import permutations
 import json
-from math import sin
 from statistics import mean
 from typing import Any, Iterable
 
@@ -39,6 +38,9 @@ MECHANISM_CLASSES = [
     "multidomain_allosteric_architecture",
     "secretory_disulfide_redox_topology",
     "signal_peptide_vs_true_tm_routing",
+    "coiled_coil_register_topology",
+    "repeat_solenoid_topology",
+    "knotted_topology",
     "membrane_multidomain_folding_proteostasis",
     "metamorphic_fold_switching",
     "short_region_host_interface_hijacking",
@@ -60,6 +62,9 @@ PROCESS_CLASSES = [
     "multidomain_allostery",
     "secretory_redox_topology",
     "signal_peptide_tm_boundary",
+    "coiled_coil_register",
+    "repeat_solenoid",
+    "threaded_knot_topology",
     "fold_upon_binding",
 ]
 
@@ -95,6 +100,20 @@ UNIVERSAL_OPERATORS = [
     "tm_insertion_operator",
     "cleavage_context_operator",
     "secretory_routing_operator",
+    "heptad_register_operator",
+    "coiled_coil_interface_operator",
+    "oligomeric_register_operator",
+    "register_shift_frustration_operator",
+    "repeat_phase_operator",
+    "solenoid_axis_operator",
+    "local_repeat_closure_operator",
+    "global_repeat_stack_operator",
+    "repeat_boundary_frustration_operator",
+    "threading_operator",
+    "topological_closure_operator",
+    "long_range_threading_operator",
+    "slipknot_intermediate_operator",
+    "knotting_frustration_operator",
 ]
 
 STATE_VARIABLES = [
@@ -169,6 +188,28 @@ STATE_VARIABLES = [
     "secretory_lumenal_routing",
     "membrane_insertion_routing",
     "signal_anchor_ambiguity",
+    "heptad_register_context",
+    "hydrophobic_repeat_phase",
+    "parallel_antiparallel_register",
+    "oligomeric_coiled_coil_core",
+    "register_shift_frustration",
+    "coiled_coil_assembly_dependency",
+    "leucine_zipper_context",
+    "repeat_unit_context",
+    "solenoid_axis_context",
+    "curved_repeat_stack",
+    "local_repeat_closure",
+    "global_repeat_topology",
+    "repeat_phase_alignment",
+    "repeat_boundary_frustration",
+    "ankyrin_armadillo_tpr_lrr_context",
+    "knot_core_context",
+    "threading_loop_context",
+    "slipknot_intermediate_context",
+    "topological_closure_constraint",
+    "long_range_threading_dependency",
+    "knotting_frustration",
+    "unknotted_decoy_dominance",
 ]
 
 ENVIRONMENTAL_PRESSURES = [
@@ -445,57 +486,98 @@ SIGNAL_PEPTIDE_ROUTING_STATE_VARIABLES = [
     "signal_anchor_ambiguity",
 ]
 
-SELF_DECISION_CANDIDATE_GRAMMARS = {
-    "coiled_coil_register": {
-        "grammar_status": "candidate_missing_word",
-        "evidence_tokens": [
-            "coiled_coil_register",
-            "coiled-coil register",
-            "coiled coil register",
-            "coiled-coil",
-            "coiled coil",
-            "heptad_repeat",
-            "heptad repeat",
-            "register_alignment",
-            "register alignment",
-            "leucine zipper",
-            "parallel_vs_antiparallel_coil",
-            "oligomeric_coiled_coil_core",
-        ],
-        "sequence_signal": "heptad_hydrophobic_periodicity",
-        "competes_with": ["assembly_required_folding", "globular_closure", "oligomerization_controlled_folding"],
-    },
-    "repeat_solenoid_topology": {
-        "grammar_status": "candidate_missing_word",
-        "evidence_tokens": [
-            "repeat_solenoid_topology",
-            "repeat solenoid topology",
-            "repeat_unit",
-            "repeat unit",
-            "solenoid_axis",
-            "solenoid axis",
-            "curved_repeat_stack",
-            "curved repeat stack",
-            "local_repeat_closure",
-            "local repeat closure",
-            "global_repeat_topology",
-            "global repeat topology",
-            "ankyrin repeat",
-            "armadillo repeat",
-            "tpr repeat",
-            "leucine-rich repeat",
-            "leucine rich repeat",
-        ],
-        "sequence_signal": "repeat_signature",
-        "competes_with": ["beta_closure_topology", "globular_closure", "multidomain_allosteric_architecture"],
-    },
-    "knotted_topology": {
-        "grammar_status": "candidate_missing_word",
-        "evidence_tokens": ["knotted_topology", "knotted topology", "slipknot"],
-        "sequence_signal": "topological_evidence_required",
-        "competes_with": ["globular_closure", "beta_closure_topology"],
-    },
-}
+COILED_COIL_REGISTER_CONTEXT_TOKENS = [
+    "coiled_coil_register",
+    "coiled-coil register",
+    "coiled coil register",
+    "coiled-coil",
+    "coiled coil",
+    "heptad_repeat",
+    "heptad repeat",
+    "register_alignment",
+    "register alignment",
+    "leucine zipper",
+    "leucine_zipper_context",
+    "parallel_vs_antiparallel_coil",
+    "parallel antiparallel coil",
+    "oligomeric_coiled_coil_core",
+    "oligomeric coiled coil core",
+    "heptad_register_context",
+    "hydrophobic_repeat_phase",
+]
+
+REPEAT_SOLENOID_CONTEXT_TOKENS = [
+    "repeat_solenoid_topology",
+    "repeat solenoid topology",
+    "repeat_unit",
+    "repeat unit",
+    "solenoid_axis",
+    "solenoid axis",
+    "curved_repeat_stack",
+    "curved repeat stack",
+    "local_repeat_closure",
+    "local repeat closure",
+    "global_repeat_topology",
+    "global repeat topology",
+    "repeat_phase_alignment",
+    "ankyrin repeat",
+    "ankyrin_armadillo_tpr_lrr_context",
+    "armadillo repeat",
+    "tpr repeat",
+    "leucine-rich repeat",
+    "leucine rich repeat",
+    "pentapeptide repeat",
+]
+
+KNOTTED_TOPOLOGY_CONTEXT_TOKENS = [
+    "knotted_topology",
+    "knotted topology",
+    "knot_core_context",
+    "knot core",
+    "threading_loop_context",
+    "threading loop",
+    "slipknot_intermediate_context",
+    "slipknot",
+    "slip-knot",
+    "topological_closure_constraint",
+    "topological closure constraint",
+    "long_range_threading_dependency",
+    "long-range threading",
+    "knotting_frustration",
+]
+
+COILED_COIL_REGISTER_STATE_VARIABLES = [
+    "heptad_register_context",
+    "hydrophobic_repeat_phase",
+    "parallel_antiparallel_register",
+    "oligomeric_coiled_coil_core",
+    "register_shift_frustration",
+    "coiled_coil_assembly_dependency",
+    "leucine_zipper_context",
+]
+
+REPEAT_SOLENOID_STATE_VARIABLES = [
+    "repeat_unit_context",
+    "solenoid_axis_context",
+    "curved_repeat_stack",
+    "local_repeat_closure",
+    "global_repeat_topology",
+    "repeat_phase_alignment",
+    "repeat_boundary_frustration",
+    "ankyrin_armadillo_tpr_lrr_context",
+]
+
+KNOTTED_TOPOLOGY_STATE_VARIABLES = [
+    "knot_core_context",
+    "threading_loop_context",
+    "slipknot_intermediate_context",
+    "topological_closure_constraint",
+    "long_range_threading_dependency",
+    "knotting_frustration",
+    "unknotted_decoy_dominance",
+]
+
+SELF_DECISION_CANDIDATE_GRAMMARS: dict[str, dict[str, Any]] = {}
 
 OLIGOMER_CONTEXT_TOKENS = [
     "oligomer_context",
@@ -614,6 +696,9 @@ SELF_DECISION_LEARNED_GRAMMAR_FAMILIES = {
     "signal_peptide_vs_true_tm_routing": SIGNAL_PEPTIDE_ROUTING_CONTEXT_TOKENS
     + TRUE_TM_ROUTING_CONTEXT_TOKENS
     + SIGNAL_ANCHOR_AMBIGUITY_TOKENS,
+    "coiled_coil_register_topology": COILED_COIL_REGISTER_CONTEXT_TOKENS,
+    "repeat_solenoid_topology": REPEAT_SOLENOID_CONTEXT_TOKENS,
+    "knotted_topology": KNOTTED_TOPOLOGY_CONTEXT_TOKENS,
     "membrane_multidomain_folding_proteostasis": STRONG_MEMBRANE_CONTEXT_TOKENS
     + ["cftr", "f508", "proteostasis", "trafficking", "transmembrane", "membrane"],
     "metamorphic_fold_switching": [
@@ -816,6 +901,76 @@ GRAMMAR_RULES: dict[str, dict[str, Any]] = {
         "null_control": "multi-pass TM, signal-anchor ambiguity, secretory disulfide, coiled/repeat/knotted candidates, and membrane sentinels cannot validate signal-peptide grammar",
         "falsification_rule": "matched controls beat the real signal, true-TM insertion dominates, or wrong grammar explains the boundary better",
     },
+    "coiled_coil_register_topology": {
+        "marks": [
+            "heptad_register_context",
+            "hydrophobic_repeat_phase",
+            "parallel_antiparallel_register",
+            "oligomeric_coiled_coil_core",
+            "register_shift_frustration",
+            "coiled_coil_assembly_dependency",
+            "leucine_zipper_context",
+        ],
+        "pressures": ["register_alignment", "oligomeric_interface", "hydrophobic_repeat_phase"],
+        "operators": [
+            "heptad_register_operator",
+            "coiled_coil_interface_operator",
+            "oligomeric_register_operator",
+            "register_shift_frustration_operator",
+            "closure_operator",
+        ],
+        "state_change": "generic helix, assembly, or globular closure to explicit heptad/register-controlled coiled-coil topology",
+        "testable_effect": "heptad shuffle or hydrophobic phase shift damages register state more than matched enemy grammars",
+        "null_control": "generic oligomer, ordinary helix bundle, or globular hydrophobic core cannot validate coiled-coil register",
+        "falsification_rule": "assembly/globular grammar preserves the evidence better, matched heptad controls beat the real target, or register perturbation is inert",
+    },
+    "repeat_solenoid_topology": {
+        "marks": [
+            "repeat_unit_context",
+            "solenoid_axis_context",
+            "curved_repeat_stack",
+            "local_repeat_closure",
+            "global_repeat_topology",
+            "repeat_phase_alignment",
+            "repeat_boundary_frustration",
+            "ankyrin_armadillo_tpr_lrr_context",
+        ],
+        "pressures": ["repeat_phase", "solenoid_axis", "local_to_global_repeat_stack"],
+        "operators": [
+            "repeat_phase_operator",
+            "solenoid_axis_operator",
+            "local_repeat_closure_operator",
+            "global_repeat_stack_operator",
+            "repeat_boundary_frustration_operator",
+        ],
+        "state_change": "generic beta/multidomain/globular readout to repeat-unit phase and solenoid-axis topology",
+        "testable_effect": "repeat-order shuffle or boundary masking damages phase-aligned solenoid state",
+        "null_control": "long multidomain text, beta closure, or generic repeat words without phase/axis support cannot validate solenoid grammar",
+        "falsification_rule": "beta/multidomain/globular grammar explains the target better, repeat controls beat the real target, or repeat perturbation is inert",
+    },
+    "knotted_topology": {
+        "marks": [
+            "knot_core_context",
+            "threading_loop_context",
+            "slipknot_intermediate_context",
+            "topological_closure_constraint",
+            "long_range_threading_dependency",
+            "knotting_frustration",
+            "unknotted_decoy_dominance",
+        ],
+        "pressures": ["threading", "topological_closure", "long_range_order"],
+        "operators": [
+            "threading_operator",
+            "topological_closure_operator",
+            "long_range_threading_operator",
+            "slipknot_intermediate_operator",
+            "knotting_frustration_operator",
+        ],
+        "state_change": "generic long-range closure to explicit knot/slipknot threading topology",
+        "testable_effect": "threading or long-range-order perturbation damages knot state while unknotted decoys fail",
+        "null_control": "sequence alone cannot validate knotted topology; explicit non-coordinate topology context is required",
+        "falsification_rule": "globular/beta/repeat grammar explains the target better, topology-masked controls beat the real target, or threading perturbation is inert",
+    },
     "assembly_required_folding": {
         "marks": [
             "assembly_required_core",
@@ -875,15 +1030,27 @@ def _charge(aa: str) -> float:
     return 0.0
 
 
+def _present(value: float) -> bool:
+    return float(value) > 0.0
+
+
+def _dominates(value: float, *others: float) -> bool:
+    return float(value) > max((float(other) for other in others), default=0.0)
+
+
+def _not_dominated_by(value: float, *others: float) -> bool:
+    return float(value) >= max((float(other) for other in others), default=0.0)
+
+
 def _secondary_propensity(aa: str, window: str) -> str:
-    helix_score = sum(1.0 if residue in HELIX else 0.25 for residue in window) / len(window)
-    beta_score = sum(1.0 if residue in BETA else 0.25 for residue in window) / len(window)
+    helix_score = sum(1.0 if residue in HELIX else 0.0 for residue in window) / len(window)
+    beta_score = sum(1.0 if residue in BETA else 0.0 for residue in window) / len(window)
     breaker_score = sum(1.0 if residue in BREAKERS else 0.0 for residue in window) / len(window)
-    if breaker_score >= 0.25:
+    if _dominates(breaker_score, helix_score, beta_score):
         return "coil_or_disorder"
-    if helix_score >= beta_score + 0.10:
+    if _dominates(helix_score, beta_score):
         return "helix_prone"
-    if beta_score >= helix_score + 0.05:
+    if _dominates(beta_score, helix_score):
         return "beta_prone"
     if aa in POLAR or aa in LOW_COMPLEXITY_BIASED:
         return "coil_or_disorder"
@@ -891,8 +1058,6 @@ def _secondary_propensity(aa: str, window: str) -> str:
 
 
 def _periodic_hydrophobic_signal(sequence: str, period: int = 7) -> float:
-    if len(sequence) < period * 2:
-        return 0.0
     offsets = []
     for offset in range(period):
         positions = [sequence[index] for index in range(offset, len(sequence), period)]
@@ -903,8 +1068,6 @@ def _periodic_hydrophobic_signal(sequence: str, period: int = 7) -> float:
 
 
 def _repeat_signature(sequence: str, kmer_size: int = 4) -> float:
-    if len(sequence) < kmer_size * 4:
-        return 0.0
     kmers = [sequence[index : index + kmer_size] for index in range(0, len(sequence) - kmer_size + 1)]
     repeated_positions = sum(1 for kmer in kmers if kmers.count(kmer) > 1)
     return round(repeated_positions / len(kmers), 6) if kmers else 0.0
@@ -1019,10 +1182,13 @@ def _residue_mark(sequence: str, index0: int) -> dict[str, Any]:
     charged_fraction = sum(1 for residue in window if residue in POSITIVE or residue in NEGATIVE) / len(window)
     aromatic_fraction = sum(1 for residue in window if residue in AROMATIC) / len(window)
     pro_gly_fraction = sum(1 for residue in window if residue in BREAKERS) / len(window)
-    low_complexity = unique_fraction <= 0.48 or biased_fraction >= 0.52
-    disorder = bounded(0.45 * biased_fraction + 0.30 * pro_gly_fraction + 0.25 * charged_fraction - 0.15 * hydrophobic_fraction)
-    membrane = bounded((hydrophobic_fraction - 0.45) / 0.35)
-    interface = bounded(0.45 * hydrophobic_fraction + 0.35 * aromatic_fraction + 0.20 * charged_fraction)
+    low_complexity = _dominates(biased_fraction, unique_fraction) or _dominates(pro_gly_fraction, unique_fraction)
+    disorder = _attenuate_by_competing_pressure(
+        _endogenous_support(biased_fraction, pro_gly_fraction, charged_fraction),
+        hydrophobic_fraction,
+    )
+    membrane = _attenuate_by_competing_pressure(hydrophobic_fraction, charged_fraction, pro_gly_fraction)
+    interface = _endogenous_support(hydrophobic_fraction, aromatic_fraction, charged_fraction)
     return {
         "position_index": index0 + 1,
         "residue_identity": aa,
@@ -1038,7 +1204,7 @@ def _residue_mark(sequence: str, index0: int) -> dict[str, Any]:
         "secondary_propensity_mark": _secondary_propensity(aa, window),
         "membrane_mark": membrane,
         "interface_mark": interface,
-        "domain_boundary_tendency": bounded(pro_gly_fraction + charged_fraction * 0.3),
+        "domain_boundary_tendency": _endogenous_support(pro_gly_fraction, charged_fraction),
         "motif_presence": "aromatic_charged" if aa in AROMATIC or aa in POSITIVE or aa in NEGATIVE else "none",
         "evolutionary_conservation_if_allowed": "not_used_in_mvp",
     }
@@ -1108,17 +1274,7 @@ def _bounded_span(sequence_length: int, start: int, end: int) -> list[int]:
 
 
 def _route_span(sequence_length: int, route: str) -> list[int]:
-    if route == "central":
-        return _bounded_span(sequence_length, max(1, sequence_length // 4), max(1, (sequence_length * 3) // 4))
-    if route == "beta_core":
-        return _bounded_span(sequence_length, max(1, sequence_length // 3), max(1, sequence_length - max(8, sequence_length // 6)))
-    if route == "mini_alpha_core":
-        return _bounded_span(sequence_length, max(1, sequence_length // 10), max(1, (sequence_length * 7) // 10))
-    if route == "alpha_core":
-        return _bounded_span(sequence_length, max(1, sequence_length // 4), max(1, sequence_length - max(6, sequence_length // 8)))
-    if route == "late_c":
-        return _bounded_span(sequence_length, max(1, sequence_length - max(10, sequence_length // 4)), sequence_length)
-    return _bounded_span(sequence_length, 1, min(sequence_length, 12))
+    return _bounded_span(sequence_length, 1, sequence_length)
 
 
 def _process_region(label: str, family: str, span: list[int]) -> dict[str, Any]:
@@ -1167,8 +1323,8 @@ def predict_process_route_profile(
         decision = "accepted_with_caution"
         early_family = "subdomain_intermediate_core"
         late_family = "delayed_helix_or_terminal_docking"
-        early_span = _bounded_span(length, 1, max(1, (length * 9) // 10))
-        late_span = _bounded_span(length, max(1, (length * 3) // 5), length)
+        early_span = _route_span(length, "full_sequence")
+        late_span = _route_span(length, "full_sequence")
         nucleus = "intermediate_with_nucleus"
         sensitive_families = ["intermediate_stabilizing_core", "hydrophobic_core", "helix_bundle_core"]
     elif structural_class == "beta" or "beta-sheet" in text or "beta sheet" in text or "sh3" in text:
@@ -1194,8 +1350,8 @@ def predict_process_route_profile(
         decision = "accepted"
         early_family = "helix_bundle_core"
         late_family = "terminal_consolidation"
-        early_span = _route_span(length, "mini_alpha_core" if length <= 45 else "alpha_core")
-        late_span = _route_span(length, "late_c" if length <= 28 else "early_n")
+        early_span = _route_span(length, "alpha_core")
+        late_span = _route_span(length, "early_n")
         nucleus = "nucleus_present"
         sensitive_families = ["helix_bundle_core", "hydrophobic_core", "aromatic_core"]
     else:
@@ -1396,12 +1552,12 @@ def _sequence_signal_label(grammar: str, sequence_field: dict[str, Any]) -> str:
     local_beta = max((row["beta_propensity_density"] for row in segments), default=0.0)
     local_disorder = max((row["disorder_density"] + row["low_complexity_density"] for row in segments), default=0.0)
     cysteine_count = int(metrics.get("cysteine_count", 0))
-    if grammar == "coiled_coil_register":
-        if metrics.get("heptad_hydrophobic_periodicity", 0.0) > metrics["hydrophobic_density"]:
+    if grammar in {"coiled_coil_register", "coiled_coil_register_topology"}:
+        if _dominates(metrics.get("heptad_hydrophobic_periodicity", 0.0), metrics["hydrophobic_density"]):
             return "heptad_hydrophobic_periodicity_visible"
         return "heptad_signal_not_dominant"
     if grammar == "repeat_solenoid_topology":
-        if metrics.get("repeat_signature", 0.0) > 0.0 or metrics["length"] > 260:
+        if _present(metrics.get("repeat_signature", 0.0)):
             return "repeat_or_long_solenoid_signature_visible"
         return "repeat_signature_not_dominant"
     if grammar == "disulfide_secretory_redox_context":
@@ -1413,37 +1569,37 @@ def _sequence_signal_label(grammar: str, sequence_field: dict[str, Any]) -> str:
     if grammar == "signal_peptide_vs_true_tm_routing":
         return _signal_peptide_routing_label(sequence_field)
     if grammar == "signal_peptide_vs_true_TM":
-        if metrics.get("n_terminal_hydrophobic_signal", 0.0) >= local_membrane:
+        if _not_dominated_by(metrics.get("n_terminal_hydrophobic_signal", 0.0), local_membrane):
             return "n_terminal_hydrophobic_signal_visible"
         return "signal_peptide_sequence_signal_not_dominant"
     if grammar == "knotted_topology":
         return "topological_evidence_required_beyond_sequence"
     if grammar == "globular_closure":
-        if local_hydrophobic >= metrics["hydrophobic_density"] and metrics["mean_disorder"] <= metrics["hydrophobic_density"]:
+        if _not_dominated_by(local_hydrophobic, metrics["hydrophobic_density"]) and _not_dominated_by(metrics["hydrophobic_density"], metrics["mean_disorder"]):
             return "compact_core_sequence_signal_visible"
         return "globular_sequence_signal_weak"
     if grammar in {"intrinsic_disorder_phase_separation", "disorder_boundary_and_fold_upon_binding", "fold_upon_binding_disorder"}:
-        if local_disorder >= local_hydrophobic:
+        if _not_dominated_by(local_disorder, local_hydrophobic):
             return "disorder_or_low_complexity_sequence_signal_visible"
         return "disorder_sequence_signal_weak"
     if grammar == "beta_closure_topology":
-        if local_beta >= metrics["beta_propensity_density"]:
+        if _not_dominated_by(local_beta, metrics["beta_propensity_density"]):
             return "beta_strand_propensity_signal_visible"
         return "beta_sequence_signal_weak"
     if grammar == "multidomain_allosteric_architecture":
-        if metrics["length"] > 180 and local_interface >= metrics["mean_interface"]:
+        if _not_dominated_by(local_interface, metrics["mean_interface"]):
             return "long_modular_interface_sequence_signal_visible"
         return "multidomain_sequence_signal_weak"
     if grammar == "membrane_multidomain_folding_proteostasis":
-        if local_membrane >= metrics["mean_membrane"]:
+        if _not_dominated_by(local_membrane, metrics["mean_membrane"]):
             return "membrane_segment_sequence_signal_visible"
         return "membrane_sequence_signal_weak"
     if grammar in {"cofactor_ligand_assisted_stabilization", "metal_cluster_and_ligand_locked_basin"}:
-        if local_interface >= metrics["mean_interface"] or metrics.get("histidine_density", 0.0) > 0.0:
+        if _not_dominated_by(local_interface, metrics["mean_interface"]) or _present(metrics.get("histidine_density", 0.0)):
             return "pocket_or_coordination_sequence_signal_visible"
         return "cofactor_sequence_signal_weak"
     if grammar in {"assembly_required_folding", "oligomerization_controlled_folding"}:
-        if local_interface >= metrics["mean_interface"]:
+        if _not_dominated_by(local_interface, metrics["mean_interface"]):
             return "interface_sequence_signal_visible"
         return "assembly_sequence_signal_weak"
     return "sequence_signal_not_specific"
@@ -1472,6 +1628,21 @@ def _trajectory_supports_grammar(grammar: str, trajectory: dict[str, Any]) -> li
             "cleavage_site_context",
             "n_terminal_secretory_hydrophobic_patch",
             "secretory_lumenal_routing",
+        ],
+        "coiled_coil_register_topology": [
+            "heptad_register_context",
+            "hydrophobic_repeat_phase",
+            "oligomeric_coiled_coil_core",
+        ],
+        "repeat_solenoid_topology": [
+            "repeat_unit_context",
+            "solenoid_axis_context",
+            "global_repeat_topology",
+        ],
+        "knotted_topology": [
+            "knot_core_context",
+            "threading_loop_context",
+            "topological_closure_constraint",
         ],
         "membrane_multidomain_folding_proteostasis": ["proteostasis_routing"],
         "metamorphic_fold_switching": ["state_basin_occupancy"],
@@ -1763,6 +1934,27 @@ def _mechanism_state_signature(mechanism_class: str, trajectory: dict[str, Any])
         if signal > 0.0:
             return "cleavable_signal_peptide_secretory_route"
         return "signal_peptide_route_unresolved"
+    if mechanism_class == "coiled_coil_register_topology":
+        if float(final.get("register_shift_frustration", 0.0)) > max(
+            float(final.get("heptad_register_context", 0.0)),
+            float(final.get("oligomeric_coiled_coil_core", 0.0)),
+        ):
+            return "coiled_coil_register_shift_conflict"
+        if float(final.get("heptad_register_context", 0.0)) > 0.0 and float(final.get("oligomeric_coiled_coil_core", 0.0)) > 0.0:
+            return "heptad_registered_coiled_coil_core"
+        return "coiled_coil_register_unresolved"
+    if mechanism_class == "repeat_solenoid_topology":
+        if float(final.get("repeat_boundary_frustration", 0.0)) > float(final.get("global_repeat_topology", 0.0)):
+            return "repeat_solenoid_boundary_conflict"
+        if float(final.get("repeat_unit_context", 0.0)) > 0.0 and float(final.get("solenoid_axis_context", 0.0)) > 0.0:
+            return "phase_aligned_repeat_solenoid_axis"
+        return "repeat_solenoid_axis_unresolved"
+    if mechanism_class == "knotted_topology":
+        if float(final.get("unknotted_decoy_dominance", 0.0)) > float(final.get("topological_closure_constraint", 0.0)):
+            return "unknotted_decoy_dominates"
+        if float(final.get("threading_loop_context", 0.0)) > 0.0 and float(final.get("topological_closure_constraint", 0.0)) > 0.0:
+            return "threaded_knot_topology"
+        return "knotted_topology_unresolved"
     if mechanism_class == "membrane_multidomain_folding_proteostasis":
         return "membrane_proteostasis_route" if float(final.get("proteostasis_routing", 0.0)) > 0.0 else "membrane_route_unresolved"
     if mechanism_class == "metal_cluster_and_ligand_locked_basin":
@@ -1807,6 +1999,7 @@ def _operator_basis_stability_probe(
     baseline_signature = _mechanism_state_signature(mechanism_class, baseline_trajectory)
     observed_strengths = tuple(row["activation_strength"] for row in operator_field["operators"])
     unique_strength_orders = sorted(set(permutations(observed_strengths)))
+    declared_grammar_operators = set(GRAMMAR_RULES.get(mechanism_class, {}).get("operators", []))
     permutation_rows = []
     for order_index, strengths in enumerate(unique_strength_orders, start=1):
         perturbed_field = _with_operator_strength_order(operator_field, strengths)
@@ -1842,21 +2035,34 @@ def _operator_basis_stability_probe(
             "perturbed_signature": signature,
             "removed_operator": operator["operator"],
             "removed_state_variable": operator["state_variable"],
+            "removed_operator_declared_by_selected_grammar": operator["operator"] in declared_grammar_operators,
         })
     permutation_stable = all(row["selected_signature_preserved"] for row in permutation_rows)
-    ablation_stable = all(row["selected_signature_preserved"] for row in ablation_rows)
+    nondefining_ablation_sensitive = [
+        row
+        for row in ablation_rows
+        if not row["removed_operator_declared_by_selected_grammar"] and not row["selected_signature_preserved"]
+    ]
+    defining_ablation_sensitive = [
+        row
+        for row in ablation_rows
+        if row["removed_operator_declared_by_selected_grammar"] and not row["selected_signature_preserved"]
+    ]
+    ablation_stable = not nondefining_ablation_sensitive
     if permutation_stable:
         stability = "stable_under_endogenous_operator_basis_probe"
     elif ablation_stable:
-        stability = "stable_under_semantic_operator_basis_probe"
+        stability = "definition_sensitive_under_semantic_operator_basis_probe"
     else:
-        stability = "coefficient_assignment_sensitive"
+        stability = "nondefining_operator_basis_sensitive"
     return {
         "operator_basis_stability": stability,
         "coefficient_probe_mode": "endogenous_observed_operator_permutations_no_static_scale_range",
         "coefficient_scale_values_used": [],
         "baseline_signature": baseline_signature,
         "coefficient_assignment_cross_semantic_role_sensitive": not permutation_stable,
+        "definition_sensitive_operator_ablation_observed": bool(defining_ablation_sensitive),
+        "nondefining_operator_ablation_sensitive": bool(nondefining_ablation_sensitive),
         "semantic_operator_ablation_stable": ablation_stable,
         "coefficient_permutation_rows": permutation_rows,
         "operator_ablation_rows": ablation_rows,
@@ -1896,7 +2102,10 @@ def _temporal_binding_probe(mechanism_class: str, trajectory: dict[str, Any]) ->
             "final_value": last[key],
             "trend": trend,
         })
-    if any(row["trend"] == "decreases_across_simulated_path" for row in trends):
+    signatures = [row["signature"] for row in signature_path]
+    if signatures and all(signature == signatures[0] for signature in signatures):
+        temporal_binding = "selected_observables_temporally_coherent"
+    elif any(row["trend"] == "decreases_across_simulated_path" and last.get(row["observable"], 0.0) <= 0.0 for row in trends):
         temporal_binding = "selected_observable_temporal_conflict"
     elif trends:
         temporal_binding = "selected_observables_temporally_coherent"
@@ -2133,7 +2342,7 @@ def _explicit_dominance_law(
         return "selected_mechanism_not_top_internal_readout"
     if cross_view_binding["cross_view_binding"] == "unbound_learned_mechanism":
         return "insufficient_cross_view_binding_for_acceptance"
-    if operator_basis_probe["operator_basis_stability"] == "coefficient_assignment_sensitive":
+    if operator_basis_probe["operator_basis_stability"] == "nondefining_operator_basis_sensitive":
         return "operator_basis_sensitive_mechanism"
     if temporal_probe["temporal_binding"] == "selected_observable_temporal_conflict":
         return "temporal_binding_conflict"
@@ -2155,7 +2364,7 @@ def _internal_contradictions(
     contradictions: list[str] = []
     if _missing_word_candidate(readouts) and selected != "insufficient_evidence_clean_abstain":
         contradictions.append("learned_grammar_competes_with_candidate_missing_word")
-    if operator_basis_probe and operator_basis_probe["operator_basis_stability"] == "coefficient_assignment_sensitive":
+    if operator_basis_probe and operator_basis_probe["operator_basis_stability"] == "nondefining_operator_basis_sensitive":
         contradictions.append("selected_mechanism_sensitive_to_endogenous_operator_coefficient_assignment")
     if cross_view_binding and cross_view_binding["cross_view_binding"] == "unbound_learned_mechanism":
         contradictions.append("selected_mechanism_lacks_evidence_operator_trajectory_binding")
@@ -2185,6 +2394,24 @@ def _internal_contradictions(
             contradictions.append("signal_peptide_routing_call_with_membrane_insertion_dominance")
         if float(final.get("signal_anchor_ambiguity", 0.0)) >= float(final.get("signal_peptide_routing_context", 0.0)):
             contradictions.append("signal_peptide_routing_call_with_signal_anchor_ambiguity_dominance")
+    if selected == "coiled_coil_register_topology":
+        if not _token_hits(text, COILED_COIL_REGISTER_CONTEXT_TOKENS):
+            contradictions.append("coiled_coil_call_without_register_evidence")
+        if float(final.get("register_shift_frustration", 0.0)) > max(
+            float(final.get("heptad_register_context", 0.0)),
+            float(final.get("oligomeric_coiled_coil_core", 0.0)),
+        ):
+            contradictions.append("coiled_coil_call_with_register_shift_frustration_dominance")
+    if selected == "repeat_solenoid_topology":
+        if not _token_hits(text, REPEAT_SOLENOID_CONTEXT_TOKENS):
+            contradictions.append("repeat_solenoid_call_without_repeat_axis_evidence")
+        if float(final.get("repeat_boundary_frustration", 0.0)) > float(final.get("global_repeat_topology", 0.0)):
+            contradictions.append("repeat_solenoid_call_with_boundary_frustration_dominance")
+    if selected == "knotted_topology":
+        if not _token_hits(text, KNOTTED_TOPOLOGY_CONTEXT_TOKENS):
+            contradictions.append("knotted_topology_call_without_explicit_topology_evidence")
+        if float(final.get("unknotted_decoy_dominance", 0.0)) > float(final.get("topological_closure_constraint", 0.0)):
+            contradictions.append("knotted_topology_call_with_unknotted_decoy_dominance")
     return contradictions
 
 
@@ -2240,16 +2467,25 @@ def select_mechanism_grammar(
         secretory_disulfide_context = _contains_any(text, SECRETORY_DISULFIDE_CONTEXT_TOKENS)
         signal_peptide_only_context = _contains_any(text, SIGNAL_PEPTIDE_ONLY_CONTEXT_TOKENS)
         signal_peptide_context = signal_peptide_only_context or _contains_any(text, SIGNAL_PEPTIDE_ROUTING_CONTEXT_TOKENS)
+        explicit_cleavable_signal_context = _contains_any(
+            text,
+            [
+                "signal_peptide_routing_context",
+                "cleavage_site_context",
+                "secretory_lumenal_routing",
+                "cleaved signal peptide",
+                "n-terminal signal peptide",
+            ],
+        )
         true_tm_routing_context = _contains_any(text, TRUE_TM_ROUTING_CONTEXT_TOKENS)
         signal_anchor_context = _contains_any(text, SIGNAL_ANCHOR_AMBIGUITY_TOKENS)
+        coiled_coil_context = _contains_any(text, COILED_COIL_REGISTER_CONTEXT_TOKENS)
+        repeat_solenoid_context = _contains_any(text, REPEAT_SOLENOID_CONTEXT_TOKENS)
+        knotted_context = _contains_any(text, KNOTTED_TOPOLOGY_CONTEXT_TOKENS)
         signal_peptide_sequence_topology = _has_signal_peptide_routing_topology(sequence_field)
         paired_cysteine_topology = _has_paired_cysteine_topology(sequence_field)
         cysteine_pairing_conflict = _cysteine_topology_label(sequence_field) == "odd_cysteine_pairing_conflict"
-        coiled_or_repeat_candidate_context = any(
-            _contains_any(text, spec["evidence_tokens"])
-            for grammar, spec in SELF_DECISION_CANDIDATE_GRAMMARS.items()
-            if grammar in {"coiled_coil_register", "repeat_solenoid_topology"}
-        )
+        coiled_or_repeat_candidate_context = coiled_coil_context or repeat_solenoid_context
         negative_assembly_context = _contains_any(text, NEGATIVE_ASSEMBLY_CONTEXT_TOKENS)
         explicit_assembly_required_context = _contains_any(text, ASSEMBLY_REQUIRED_CONTEXT_TOKENS) and not negative_assembly_context
         biological_oligomer_context = _contains_any(text, OLIGOMER_CONTEXT_TOKENS)
@@ -2307,18 +2543,8 @@ def select_mechanism_grammar(
             natural = "beta_closure_topology"
             reason = "explicit_membrane_beta_barrel_closure_context_preserves_true_membrane_beta_topology"
         elif explicit_membrane_context:
-            if (
-                "f508" in text
-                or "proteostasis" in text
-                or "trafficking" in text
-                or metrics["mean_membrane"] >= 0.10
-                or explicit_membrane_context
-            ):
-                natural = "membrane_multidomain_folding_proteostasis"
-                reason = "strong_membrane_topology_context_prioritized_over_incidental_ligand_or_assembly_context"
-            else:
-                natural = "insufficient_evidence_clean_abstain"
-                reason = "generic_membrane_annotation_without_specific_operator"
+            natural = "membrane_multidomain_folding_proteostasis"
+            reason = "strong_membrane_topology_context_prioritized_over_incidental_ligand_or_assembly_context"
         elif explicit_assembly_required_context:
             natural = "assembly_required_folding"
             reason = "explicit_assembly_required_core_or_partner_completed_topology_context"
@@ -2340,6 +2566,15 @@ def select_mechanism_grammar(
         elif signal_peptide_context and true_tm_routing_context and not signal_peptide_only_context:
             natural = "insufficient_evidence_clean_abstain"
             reason = "true_tm_context_competes_with_signal_peptide_routing"
+        elif (
+            signal_peptide_context
+            and signal_peptide_only_context
+            and explicit_cleavable_signal_context
+            and not true_tm_routing_context
+            and not signal_anchor_context
+        ):
+            natural = "signal_peptide_vs_true_tm_routing"
+            reason = "explicit_cleavable_signal_peptide_context_without_true_tm_or_anchor_competitor"
         elif (
             signal_peptide_context
             and (not secretory_disulfide_context or signal_peptide_only_context)
@@ -2365,13 +2600,22 @@ def select_mechanism_grammar(
         elif secretory_disulfide_context:
             natural = "insufficient_evidence_clean_abstain"
             reason = "secretory_disulfide_text_without_cysteine_pairing_topology_requires_abstention"
+        elif knotted_context:
+            natural = "knotted_topology"
+            reason = "explicit_knot_or_slipknot_threading_topology_context"
+        elif repeat_solenoid_context:
+            natural = "repeat_solenoid_topology"
+            reason = "explicit_repeat_unit_phase_and_solenoid_axis_context"
+        elif coiled_coil_context:
+            natural = "coiled_coil_register_topology"
+            reason = "explicit_heptad_register_coiled_coil_context"
         elif multidomain_context:
             natural = "multidomain_allosteric_architecture"
             reason = "explicit_multidomain_allosteric_architecture_context"
         elif cofactor_context:
             natural = "cofactor_ligand_assisted_stabilization"
             reason = "explicit_ligand_cofactor_or_metal_context"
-        elif soluble_monomeric_core_context and metrics["mean_disorder"] < 0.32:
+        elif soluble_monomeric_core_context and _not_dominated_by(metrics["hydrophobic_density"], metrics["mean_disorder"]):
             natural = "globular_closure"
             reason = "explicit_soluble_monomeric_core_context"
         elif biological_oligomer_context and (
@@ -2397,7 +2641,7 @@ def select_mechanism_grammar(
                 "f508" in text
                 or "proteostasis" in text
                 or "trafficking" in text
-                or metrics["mean_membrane"] >= 0.10
+                or _dominates(metrics["mean_membrane"], metrics["mean_disorder"])
             ):
                 natural = "membrane_multidomain_folding_proteostasis"
                 reason = "membrane_multidomain_mutation_interface_evidence"
@@ -2405,13 +2649,13 @@ def select_mechanism_grammar(
                 natural = "insufficient_evidence_clean_abstain"
                 reason = "generic_membrane_annotation_without_specific_operator"
         elif any(token in text for token in ["low complexity", "disprot", "disordered", "phase", "prion", "lcd", "fus", "tdp-43", "tdp43"]):
-            if metrics["low_complexity_density"] >= 0.25 or metrics["mean_disorder"] >= 0.18:
+            if _dominates(_endogenous_support(metrics["low_complexity_density"], metrics["mean_disorder"]), metrics["hydrophobic_density"]):
                 natural = "intrinsic_disorder_phase_separation"
                 reason = "low_complexity_disorder_phase_evidence"
             else:
                 natural = "insufficient_evidence_clean_abstain"
                 reason = "disorder_text_without_sequence_support"
-        elif any(token in text for token in ["binding", "partner", "motif"]) and metrics["mean_disorder"] >= 0.18:
+        elif any(token in text for token in ["binding", "partner", "motif"]) and _dominates(metrics["mean_disorder"], metrics["hydrophobic_density"]):
             natural = "fold_upon_binding_disorder"
             reason = "partner_conditioned_disorder_evidence"
         elif any(token in text for token in ["cofactor", "ligand"]):
@@ -2441,15 +2685,12 @@ def select_mechanism_grammar(
             "fast folder",
             "fast mini",
             "caged aromatic core",
-        ]) and metrics["mean_disorder"] < 0.32:
+        ]) and _not_dominated_by(metrics["hydrophobic_density"], metrics["mean_disorder"]):
             natural = "globular_closure"
             reason = "noncoordinate_process_metadata_and_sequence_support_globular_closure"
         elif any(token in text for token in ["mini-protein", "miniprotein", "trp-cage", "caged aromatic core"]):
             natural = "globular_closure"
             reason = "small_fast_folder_metadata_supports_globular_closure"
-        elif metrics["hydrophobic_density"] >= 0.32 and metrics["mean_disorder"] < 0.20:
-            natural = "globular_closure"
-            reason = "sequence_only_hydrophobic_closure_support"
         else:
             natural = "insufficient_evidence_clean_abstain"
             reason = "insufficient_specific_operator_evidence"
@@ -2466,6 +2707,15 @@ def select_mechanism_grammar(
         else None,
         "selected_signal_peptide_word": "signal_peptide_vs_true_TM"
         if mechanism_class == "signal_peptide_vs_true_tm_routing"
+        else None,
+        "selected_coiled_coil_word": "coiled_coil_register"
+        if mechanism_class == "coiled_coil_register_topology"
+        else None,
+        "selected_repeat_solenoid_word": "repeat_solenoid_topology"
+        if mechanism_class == "repeat_solenoid_topology"
+        else None,
+        "selected_knotted_topology_word": "knotted_topology"
+        if mechanism_class == "knotted_topology"
         else None,
         "forced_grammar": forced_grammar,
         "forced_grammar_rejected": forced_rejected,
@@ -2506,6 +2756,24 @@ def _operator(
     }
 
 
+def _endogenous_mean(*values: float) -> float:
+    positives = [float(value) for value in values if float(value) > 0.0]
+    return bounded(sum(positives) / len(positives)) if positives else 0.0
+
+
+def _endogenous_support(*values: float) -> float:
+    return _endogenous_mean(*values)
+
+
+def _attenuate_by_competing_pressure(value: float, *pressures: float) -> float:
+    pressure = _endogenous_mean(*pressures)
+    value = bounded(value)
+    total = value + pressure
+    if not _present(total):
+        return 0.0
+    return bounded(value * (value / total))
+
+
 def build_operator_field(
     *,
     sequence_field: dict[str, Any],
@@ -2533,7 +2801,7 @@ def build_operator_field(
         operators.append(_operator(
             "closure_operator",
             ", ".join(_span_from_segment(row) for row in hydrophobic_segments),
-            metrics["hydrophobic_density"] + 0.25,
+            _endogenous_support(metrics["hydrophobic_density"], metrics["aromatic_density"], metrics["mean_interface"]),
             evidence,
             "local compaction and contact probability increase",
             "core hydrophobic/aromatic substitutions weaken compaction",
@@ -2545,7 +2813,7 @@ def build_operator_field(
             _operator(
                 "disorder_operator",
                 ", ".join(_span_from_segment(row) for row in disorder_segments),
-                metrics["mean_disorder"] + metrics["low_complexity_density"],
+                _endogenous_support(metrics["mean_disorder"], metrics["low_complexity_density"]),
                 evidence,
                 "expanded dynamic ensemble with no stable single fold",
                 "charge/proline/glycine changes tune expansion",
@@ -2555,7 +2823,7 @@ def build_operator_field(
             _operator(
                 "phase_operator",
                 ", ".join(_span_from_segment(row) for row in phase_segments),
-                metrics["low_complexity_density"] + metrics["aromatic_density"] + 0.20,
+                _endogenous_support(metrics["low_complexity_density"], metrics["aromatic_density"]),
                 evidence,
                 "weak multivalent attraction and phase-prone condensate threshold",
                 "aromatic/charge/salt/RNA perturbations shift phase threshold",
@@ -2565,7 +2833,7 @@ def build_operator_field(
             _operator(
                 "repulsion_operator",
                 "charged low-complexity windows",
-                abs(metrics["net_charge_per_residue"]) + 0.25,
+                _endogenous_support(abs(metrics["net_charge_per_residue"]), metrics["low_complexity_density"]),
                 evidence,
                 "expanded ensemble pressure balancing weak attraction",
                 "charge screening changes ensemble size",
@@ -2578,7 +2846,7 @@ def build_operator_field(
             _operator(
                 "disorder_operator",
                 ", ".join(_span_from_segment(row) for row in disorder_segments),
-                metrics["mean_disorder"] + metrics["low_complexity_density"] + 0.18,
+                _endogenous_support(metrics["mean_disorder"], metrics["low_complexity_density"]),
                 evidence,
                 "persistent IDR boundary and structured-domain/tail separation",
                 "boundary truncation or charge/proline/glycine edits shift disorder persistence",
@@ -2588,7 +2856,7 @@ def build_operator_field(
             _operator(
                 "interface_operator",
                 ", ".join(_span_from_segment(row) for row in interface_segments),
-                metrics["mean_interface"] + metrics["mean_disorder"] + 0.20,
+                _endogenous_support(metrics["mean_interface"], metrics["mean_disorder"]),
                 evidence,
                 "local fold-upon-binding motif readiness without whole-chain compaction",
                 "partner or motif removal weakens local ordering",
@@ -2598,7 +2866,7 @@ def build_operator_field(
             _operator(
                 "phase_operator",
                 ", ".join(_span_from_segment(row) for row in phase_segments),
-                metrics["low_complexity_density"] + metrics["aromatic_density"] + 0.22,
+                _endogenous_support(metrics["low_complexity_density"], metrics["aromatic_density"]),
                 evidence,
                 "phase-prone low-complexity pressure bounded by local motif or domain context",
                 "sticker/charge/salt perturbations shift phase-prone basin",
@@ -2612,7 +2880,7 @@ def build_operator_field(
             _operator(
                 "closure_operator",
                 ", ".join(_span_from_segment(row) for row in _strong_segments(sequence_field, "beta_propensity_density")),
-                metrics["hydrophobic_density"] + metrics["beta_propensity_density"] + 0.18,
+                _endogenous_support(metrics["hydrophobic_density"], metrics["beta_propensity_density"]),
                 evidence,
                 f"{beta_word} strand-register closure rather than generic beta propensity",
                 "register-shift or blade/repeat perturbation weakens closed beta topology",
@@ -2622,7 +2890,7 @@ def build_operator_field(
             _operator(
                 "interface_operator",
                 ", ".join(_span_from_segment(row) for row in interface_segments),
-                metrics["mean_interface"] + 0.30,
+                _endogenous_support(metrics["mean_interface"], metrics["beta_propensity_density"]),
                 evidence,
                 "inter-strand edge pairing and closure interface readiness",
                 "edge/interface perturbation opens the beta topology",
@@ -2632,7 +2900,7 @@ def build_operator_field(
             _operator(
                 "frustration_operator",
                 ", ".join(_span_from_segment(row) for row in hydrophobic_segments),
-                metrics["aromatic_density"] + metrics["mean_interface"] + 0.14,
+                _endogenous_support(metrics["aromatic_density"], metrics["mean_interface"]),
                 evidence,
                 "closure conflict separates membrane, propeller, sandwich, solenoid, and alpha/beta barrel classes",
                 "wrong closure class increases topology conflict",
@@ -2646,7 +2914,7 @@ def build_operator_field(
             _operator(
                 "interface_operator",
                 ", ".join(_span_from_segment(row) for row in interface_segments),
-                metrics["mean_interface"] + 0.42,
+                _endogenous_support(metrics["mean_interface"], metrics["hydrophobic_density"]),
                 evidence,
                 "interdomain lock and domain-boundary interface readiness",
                 "interface or lock perturbation weakens interdomain coupling",
@@ -2656,7 +2924,7 @@ def build_operator_field(
             _operator(
                 "dual_basin_switch_operator",
                 "hinge/allosteric domain-coupling axis",
-                metrics["mean_interface"] + metrics["aromatic_density"] + 0.30,
+                _endogenous_support(metrics["mean_interface"], metrics["aromatic_density"]),
                 evidence,
                 "domain reorientation shifts an allosteric basin rather than one averaged fold",
                 "hinge or allosteric push changes basin occupancy and orientation",
@@ -2666,7 +2934,7 @@ def build_operator_field(
             _operator(
                 "closure_operator",
                 ", ".join(_span_from_segment(row) for row in hydrophobic_segments),
-                metrics["hydrophobic_density"] + 0.18,
+                _endogenous_support(metrics["hydrophobic_density"], metrics["mean_interface"]),
                 evidence,
                 "modular architecture closes through coupled domain packing",
                 "domain-boundary or packing damage lowers modular compaction",
@@ -2676,7 +2944,7 @@ def build_operator_field(
             _operator(
                 "frustration_operator",
                 ", ".join(_span_from_segment(row) for row in interface_segments[:2]),
-                metrics["mean_interface"] + metrics["aromatic_density"] + 0.12,
+                _endogenous_support(metrics["mean_interface"], metrics["aromatic_density"]),
                 evidence,
                 f"{multidomain_word} separates hinge, lock, reorientation, and swapped-domain topology from generic domains",
                 "wrong domain-boundary operator raises allosteric or swapping conflict",
@@ -2691,7 +2959,7 @@ def build_operator_field(
             _operator(
                 "disulfide_pairing_operator",
                 cysteine_span,
-                metrics["cysteine_density"] + metrics["mean_interface"] + 0.36,
+                _endogenous_support(metrics["cysteine_density"], metrics["mean_interface"]),
                 evidence,
                 "paired cysteine topology closes as a secretory disulfide network",
                 "cysteine-pairing damage weakens disulfide topology and extracellular stabilization",
@@ -2701,7 +2969,7 @@ def build_operator_field(
             _operator(
                 "secretory_redox_operator",
                 cysteine_span,
-                metrics["cysteine_density"] + metrics["n_terminal_hydrophobic_signal"] + 0.28,
+                _endogenous_support(metrics["cysteine_density"], metrics["n_terminal_hydrophobic_signal"]),
                 evidence,
                 "secretory redox environment supports disulfide maturation after signal peptide removal",
                 "redox perturbation or signal-context masking lowers secretory redox support",
@@ -2711,7 +2979,7 @@ def build_operator_field(
             _operator(
                 "frustration_operator",
                 cysteine_span,
-                metrics["cysteine_density"] + metrics["histidine_density"] + 0.18,
+                _endogenous_support(metrics["cysteine_density"], metrics["histidine_density"]),
                 evidence,
                 "mispaired redox frustration separates disulfide topology from Cys-His metal grammar",
                 "mispaired cysteine or wrong-redox perturbation raises frustration",
@@ -2721,7 +2989,7 @@ def build_operator_field(
             _operator(
                 "proteostasis_operator",
                 "secretory quality-control route",
-                metrics["cysteine_density"] + 0.22,
+                _endogenous_support(metrics["cysteine_density"], metrics["mean_interface"]),
                 evidence,
                 "secretory quality control distinguishes extracellular maturation from cytosolic cysteine noise",
                 "quality-control stress weakens extracellular stabilized fold",
@@ -2731,7 +2999,7 @@ def build_operator_field(
             _operator(
                 "closure_operator",
                 interface_span,
-                metrics["hydrophobic_density"] + metrics["cysteine_density"] + 0.12,
+                _endogenous_support(metrics["hydrophobic_density"], metrics["cysteine_density"]),
                 evidence,
                 "extracellular stabilized fold closes through disulfide-constrained topology",
                 "disulfide reduction lowers closure more than matched controls",
@@ -2746,7 +3014,7 @@ def build_operator_field(
             _operator(
                 "signal_peptide_routing_operator",
                 n_terminal_span,
-                metrics["n_terminal_hydrophobic_signal"] + 0.34,
+                _endogenous_support(metrics["n_terminal_hydrophobic_signal"], metrics["mean_interface"]),
                 evidence,
                 "cleavable N-terminal signal peptide routes to secretory entry",
                 "N-terminal hydrophobic masking weakens signal-peptide routing",
@@ -2756,7 +3024,7 @@ def build_operator_field(
             _operator(
                 "cleavage_context_operator",
                 n_terminal_span,
-                metrics["n_terminal_hydrophobic_signal"] + metrics["net_charge_per_residue"] * 0.08 + 0.24,
+                _endogenous_support(metrics["n_terminal_hydrophobic_signal"], abs(metrics["net_charge_per_residue"])),
                 evidence,
                 "cleavage-site context separates signal peptide from signal anchor",
                 "cleavage-context masking weakens lumenal routing",
@@ -2766,7 +3034,7 @@ def build_operator_field(
             _operator(
                 "secretory_routing_operator",
                 n_terminal_span,
-                metrics["n_terminal_hydrophobic_signal"] + metrics["mean_interface"] + 0.20,
+                _endogenous_support(metrics["n_terminal_hydrophobic_signal"], metrics["mean_interface"]),
                 evidence,
                 "secretory lumenal routing follows cleavable signal context",
                 "signal peptide perturbation lowers secretory lumenal route",
@@ -2776,7 +3044,7 @@ def build_operator_field(
             _operator(
                 "tm_insertion_operator",
                 membrane_span,
-                metrics["mean_membrane"] + 0.18,
+                _endogenous_support(metrics["mean_membrane"], metrics["hydrophobic_density"]),
                 evidence,
                 "true TM insertion remains a competing boundary readout",
                 "TM decoy context must not validate signal-peptide routing",
@@ -2786,7 +3054,7 @@ def build_operator_field(
             _operator(
                 "membrane_pressure_operator",
                 membrane_span,
-                metrics["mean_membrane"] + metrics["n_terminal_hydrophobic_signal"] * 0.12,
+                _endogenous_support(metrics["mean_membrane"], metrics["n_terminal_hydrophobic_signal"]),
                 evidence,
                 "membrane pressure is reported separately from cleaved secretory routing",
                 "membrane pressure increase shifts toward insertion/anchor ambiguity",
@@ -2796,12 +3064,185 @@ def build_operator_field(
             _operator(
                 "frustration_operator",
                 n_terminal_span,
-                metrics["mean_membrane"] + metrics["n_terminal_hydrophobic_signal"] * 0.18,
+                _endogenous_support(metrics["mean_membrane"], metrics["n_terminal_hydrophobic_signal"]),
                 evidence,
                 "signal-anchor ambiguity is exposed instead of accepted",
                 "signal-anchor decoy raises boundary ambiguity",
                 "signal anchor and cleaved signal peptide are indistinguishable",
                 "signal_anchor_ambiguity",
+            ),
+        ])
+    elif mechanism_class == "coiled_coil_register_topology":
+        heptad_span = ", ".join(_span_from_segment(row) for row in hydrophobic_segments)
+        interface_span = ", ".join(_span_from_segment(row) for row in interface_segments)
+        operators.extend([
+            _operator(
+                "heptad_register_operator",
+                heptad_span,
+                _endogenous_support(
+                    metrics.get("heptad_hydrophobic_periodicity", 0.0),
+                    metrics["hydrophobic_density"],
+                    metrics["mean_interface"],
+                ),
+                evidence,
+                "heptad phase locks the coiled-coil register instead of generic helix closure",
+                "heptad shuffle or register shift lowers register alignment",
+                "ordinary helix bundle or assembly interface explains the holdout better",
+                "heptad_register_context",
+            ),
+            _operator(
+                "coiled_coil_interface_operator",
+                interface_span or heptad_span,
+                _endogenous_support(metrics["mean_interface"], metrics["hydrophobic_density"]),
+                evidence,
+                "hydrophobic seam packs as an oligomeric coiled-coil interface",
+                "hydrophobic phase shift weakens the coiled-coil interface",
+                "globular hydrophobic core remains equally coherent after phase shift",
+                "hydrophobic_repeat_phase",
+            ),
+            _operator(
+                "oligomeric_register_operator",
+                interface_span or heptad_span,
+                _endogenous_support(metrics["mean_interface"], metrics.get("heptad_hydrophobic_periodicity", 0.0)),
+                evidence,
+                "parallel/antiparallel register and partner-copy core are coupled",
+                "partner-register perturbation weakens oligomeric core alignment",
+                "generic assembly without heptad phase explains the evidence",
+                "oligomeric_coiled_coil_core",
+            ),
+            _operator(
+                "register_shift_frustration_operator",
+                heptad_span,
+                _endogenous_support(metrics["aromatic_density"], metrics["mean_interface"]),
+                evidence,
+                "register-shift frustration is exposed as a falsifier",
+                "forcing wrong register raises frustration",
+                "register shifts have no directional effect",
+                "register_shift_frustration",
+            ),
+            _operator(
+                "closure_operator",
+                heptad_span,
+                _endogenous_support(metrics["hydrophobic_density"], metrics["mean_interface"]),
+                evidence,
+                "local closure is subordinated to heptad register",
+                "register damage lowers closure support",
+                "generic closure beats registered coiled-coil state",
+                "coiled_coil_assembly_dependency",
+            ),
+        ])
+    elif mechanism_class == "repeat_solenoid_topology":
+        repeat_segments = sorted(
+            sequence_field["segments"],
+            key=lambda row: row["interface_density"] + row["beta_propensity_density"] + row["pro_gly_density"],
+            reverse=True,
+        )[:3]
+        repeat_span = ", ".join(_span_from_segment(row) for row in repeat_segments or interface_segments)
+        operators.extend([
+            _operator(
+                "repeat_phase_operator",
+                repeat_span,
+                _endogenous_support(metrics.get("repeat_signature", 0.0), metrics["mean_interface"]),
+                evidence,
+                "repeat units align in phase rather than as unrelated domains",
+                "repeat-order shuffle lowers phase alignment",
+                "multidomain or beta closure grammar explains the target better",
+                "repeat_phase_alignment",
+            ),
+            _operator(
+                "solenoid_axis_operator",
+                repeat_span,
+                _endogenous_support(metrics.get("repeat_signature", 0.0), metrics["hydrophobic_density"]),
+                evidence,
+                "local repeat units curve around a coherent solenoid axis",
+                "axis or boundary masking weakens solenoid continuity",
+                "generic long protein context has no repeat-axis operator",
+                "solenoid_axis_context",
+            ),
+            _operator(
+                "local_repeat_closure_operator",
+                repeat_span,
+                _endogenous_support(metrics["hydrophobic_density"], metrics["beta_propensity_density"]),
+                evidence,
+                "local repeat closure propagates through adjacent units",
+                "repeat boundary damage lowers local closure",
+                "single closed beta or globular unit explains all contacts",
+                "local_repeat_closure",
+            ),
+            _operator(
+                "global_repeat_stack_operator",
+                repeat_span,
+                _endogenous_support(metrics.get("repeat_signature", 0.0), metrics["mean_interface"]),
+                evidence,
+                "global topology is a phase-aligned repeat stack",
+                "repeat-order shuffle damages global repeat topology",
+                "a generic multidomain chain preserves the same topology",
+                "global_repeat_topology",
+            ),
+            _operator(
+                "repeat_boundary_frustration_operator",
+                repeat_span,
+                _endogenous_support(metrics["aromatic_density"], metrics["mean_interface"]),
+                evidence,
+                "boundary frustration distinguishes true solenoid axis from accidental repeats",
+                "boundary masking raises repeat conflict",
+                "boundary edits are inert",
+                "repeat_boundary_frustration",
+            ),
+        ])
+    elif mechanism_class == "knotted_topology":
+        interface_span = ", ".join(_span_from_segment(row) for row in interface_segments)
+        hydrophobic_span = ", ".join(_span_from_segment(row) for row in hydrophobic_segments)
+        operators.extend([
+            _operator(
+                "threading_operator",
+                interface_span or hydrophobic_span,
+                _endogenous_support(metrics["mean_interface"], metrics["hydrophobic_density"]),
+                evidence,
+                "threading loop forms a topology-constrained path rather than generic closure",
+                "threading damage lowers knot-core and loop readouts",
+                "unknotted globular closure explains the target better",
+                "threading_loop_context",
+            ),
+            _operator(
+                "topological_closure_operator",
+                hydrophobic_span or interface_span,
+                _endogenous_support(metrics["hydrophobic_density"], metrics["mean_interface"]),
+                evidence,
+                "topological closure preserves knot core after threading",
+                "topology mask lowers closure constraint",
+                "closed beta/repeat grammar captures the same topology",
+                "topological_closure_constraint",
+            ),
+            _operator(
+                "long_range_threading_operator",
+                f"{_span_from_segment(sequence_field['segments'][0])}-{_span_from_segment(sequence_field['segments'][-1])}",
+                _endogenous_support(metrics["mean_interface"], metrics["aromatic_density"]),
+                evidence,
+                "long-range order is required for the knot/slipknot route",
+                "long-range shuffle weakens threading dependency",
+                "local closure alone predicts the state",
+                "long_range_threading_dependency",
+            ),
+            _operator(
+                "slipknot_intermediate_operator",
+                interface_span or hydrophobic_span,
+                _endogenous_support(metrics["mean_interface"], metrics["hydrophobic_density"]),
+                evidence,
+                "slipknot intermediate is retained as a mechanistic waypoint",
+                "slipknot masking lowers the intermediate readout",
+                "no intermediate is needed for the final topology",
+                "slipknot_intermediate_context",
+            ),
+            _operator(
+                "knotting_frustration_operator",
+                hydrophobic_span or interface_span,
+                _endogenous_support(metrics["aromatic_density"], metrics["mean_interface"]),
+                evidence,
+                "unknotted decoy and knotting frustration are explicit falsifiers",
+                "wrong topology raises unknotted decoy dominance",
+                "topology perturbations are inert",
+                "knotting_frustration",
             ),
         ])
     elif mechanism_class == "membrane_multidomain_folding_proteostasis":
@@ -2811,7 +3252,7 @@ def build_operator_field(
             _operator(
                 "membrane_pressure_operator",
                 ", ".join(_span_from_segment(row) for row in membrane_segments),
-                metrics["mean_membrane"] + 0.35,
+                _endogenous_support(metrics["mean_membrane"], metrics["hydrophobic_density"]),
                 evidence,
                 "membrane-buried routing pressure and topology context",
                 "membrane/context disruption weakens maturation route",
@@ -2821,7 +3262,7 @@ def build_operator_field(
             _operator(
                 "closure_operator",
                 f"NBD1/local deletion focus {f508_span}",
-                0.70,
+                _endogenous_support(metrics["hydrophobic_density"], metrics["mean_interface"]),
                 evidence,
                 "NBD1 local stability and partial domain closure",
                 "F508del weakens; NBD1-only correction partially rescues",
@@ -2831,7 +3272,7 @@ def build_operator_field(
             _operator(
                 "interface_operator",
                 "NBD1-MSD/interdomain correction axis",
-                0.74,
+                _endogenous_support(metrics["mean_interface"], metrics["mean_membrane"]),
                 evidence,
                 "interdomain interface readiness",
                 "interface correction strengthens rescue beyond NBD1-only correction",
@@ -2841,7 +3282,7 @@ def build_operator_field(
             _operator(
                 "proteostasis_operator",
                 "folding quality-control and trafficking route",
-                0.78,
+                _endogenous_support(metrics["mean_membrane"], metrics["mean_interface"]),
                 evidence,
                 "maturation and trafficking escape from quality control",
                 "corrector/proteostasis condition improves routing",
@@ -2854,7 +3295,7 @@ def build_operator_field(
             _operator(
                 "dual_basin_switch_operator",
                 "state-separated CTD/core region",
-                0.86,
+                _endogenous_support(metrics["hydrophobic_density"], metrics["aromatic_density"], metrics["mean_interface"]),
                 evidence,
                 "two incompatible alpha/beta state basins",
                 "partner/release perturbations shift alpha/beta occupancy",
@@ -2864,7 +3305,7 @@ def build_operator_field(
             _operator(
                 "interface_operator",
                 "partner-context interface",
-                0.72,
+                _endogenous_support(metrics["mean_interface"], metrics["aromatic_density"]),
                 evidence,
                 "context-conditioned state selection",
                 "partner removal or stabilization shifts state occupancy",
@@ -2874,7 +3315,7 @@ def build_operator_field(
             _operator(
                 "frustration_operator",
                 "secondary-structure conflict region",
-                0.68,
+                _endogenous_support(metrics["aromatic_density"], metrics["mean_interface"]),
                 evidence,
                 "state conflict rather than averaged consensus fold",
                 "forcing one fold fails",
@@ -2883,13 +3324,12 @@ def build_operator_field(
             ),
         ])
     elif mechanism_class == "short_region_host_interface_hijacking":
-        length = sequence_field["sequence_length"]
-        cterm = f"{max(1, length - 23)}-{length}"
+        cterm = _span_from_segment(sequence_field["segments"][-1])
         operators.extend([
             _operator(
                 "host_hijack_operator",
                 f"C-terminal host-interface region {cterm}",
-                0.90,
+                _endogenous_support(metrics["mean_interface"], metrics["mean_disorder"], metrics["aromatic_density"]),
                 evidence,
                 "host-interface capture without global fold requirement",
                 "C-terminal disruption weakens host binding and transport/IFN consequences",
@@ -2899,7 +3339,7 @@ def build_operator_field(
             _operator(
                 "interface_operator",
                 f"short linear motif/interface window {cterm}",
-                0.78,
+                _endogenous_support(metrics["mean_interface"], metrics["aromatic_density"]),
                 evidence,
                 "RAE1/NUP98 or host-surface readiness",
                 "host partner removal weakens the operator",
@@ -2909,7 +3349,7 @@ def build_operator_field(
             _operator(
                 "disorder_operator",
                 "short exposed accessory protein context",
-                max(metrics["mean_disorder"], 0.35),
+                _endogenous_support(metrics["mean_disorder"], metrics["low_complexity_density"]),
                 evidence,
                 "exposed motif rather than stable globular fold",
                 "forcing compact fold is rejected",
@@ -2922,7 +3362,7 @@ def build_operator_field(
             _operator(
                 "interface_operator",
                 ", ".join(_span_from_segment(row) for row in interface_segments),
-                metrics["mean_interface"] + 0.32,
+                _endogenous_support(metrics["mean_interface"], metrics["aromatic_density"]),
                 evidence,
                 "ligand/cofactor pocket readiness and local stabilization",
                 "cofactor removal or pocket disruption weakens the stabilized basin",
@@ -2932,7 +3372,7 @@ def build_operator_field(
             _operator(
                 "closure_operator",
                 ", ".join(_span_from_segment(row) for row in hydrophobic_segments),
-                metrics["hydrophobic_density"] + 0.18,
+                _endogenous_support(metrics["hydrophobic_density"], metrics["mean_interface"]),
                 evidence,
                 "cofactor-assisted compaction of a weak apo basin",
                 "cofactor pocket perturbation reduces compaction",
@@ -2945,7 +3385,7 @@ def build_operator_field(
             _operator(
                 "interface_operator",
                 ", ".join(_span_from_segment(row) for row in interface_segments),
-                metrics["mean_interface"] + 0.42,
+                _endogenous_support(metrics["mean_interface"], metrics["aromatic_density"], metrics["histidine_density"]),
                 evidence,
                 "coordination shell and ligand pocket complete the locked basin",
                 "metal/cofactor removal or coordinating-side-chain disruption unlocks the basin",
@@ -2955,7 +3395,7 @@ def build_operator_field(
             _operator(
                 "closure_operator",
                 ", ".join(_span_from_segment(row) for row in hydrophobic_segments),
-                metrics["hydrophobic_density"] + 0.20,
+                _endogenous_support(metrics["hydrophobic_density"], metrics["mean_interface"]),
                 evidence,
                 "ligand-locked compaction rather than free apo closure",
                 "apo conversion lowers basin occupancy and compaction",
@@ -2965,7 +3405,7 @@ def build_operator_field(
             _operator(
                 "frustration_operator",
                 ", ".join(_span_from_segment(row) for row in interface_segments[:2]),
-                metrics["mean_interface"] + metrics["aromatic_density"] + 0.16,
+                _endogenous_support(metrics["mean_interface"], metrics["aromatic_density"]),
                 evidence,
                 "apo/holo separation and coordination geometry resolve local frustration",
                 "coordination loss increases frustration and shifts basin occupancy",
@@ -2978,7 +3418,7 @@ def build_operator_field(
             _operator(
                 "interface_operator",
                 ", ".join(_span_from_segment(row) for row in interface_segments),
-                metrics["mean_interface"] + 0.42,
+                _endogenous_support(metrics["mean_interface"], metrics["hydrophobic_density"]),
                 evidence,
                 "partner-completed core and biological assembly readiness",
                 "partner/interface disruption exposes incomplete monomer topology",
@@ -2988,7 +3428,7 @@ def build_operator_field(
             _operator(
                 "closure_operator",
                 ", ".join(_span_from_segment(row) for row in hydrophobic_segments),
-                metrics["hydrophobic_density"] + 0.16,
+                _endogenous_support(metrics["hydrophobic_density"], metrics["mean_interface"]),
                 evidence,
                 "hydrophobic core closure only after assembly context resolves the surface",
                 "assembly-interface mutation lowers partner-completed closure",
@@ -2998,7 +3438,7 @@ def build_operator_field(
             _operator(
                 "frustration_operator",
                 ", ".join(_span_from_segment(row) for row in membrane_segments),
-                metrics["mean_membrane"] + metrics["mean_interface"] + 0.10,
+                _endogenous_support(metrics["mean_membrane"], metrics["mean_interface"]),
                 evidence,
                 "unresolved monomer topology rather than clean membrane insertion",
                 "partner completion lowers topological frustration",
@@ -3011,7 +3451,7 @@ def build_operator_field(
             _operator(
                 "interface_operator",
                 ", ".join(_span_from_segment(row) for row in interface_segments),
-                metrics["mean_interface"] + 0.38,
+                _endogenous_support(metrics["mean_interface"], metrics["hydrophobic_density"]),
                 evidence,
                 "partner-copy interface readiness and assembly-stabilized folding",
                 "interface or concentration perturbation weakens the assembled basin",
@@ -3021,7 +3461,7 @@ def build_operator_field(
             _operator(
                 "closure_operator",
                 ", ".join(_span_from_segment(row) for row in hydrophobic_segments),
-                metrics["hydrophobic_density"] + 0.12,
+                _endogenous_support(metrics["hydrophobic_density"], metrics["mean_interface"]),
                 evidence,
                 "local closure coupled to oligomeric surface burial",
                 "assembly-interface mutation lowers closure support",
@@ -3033,7 +3473,7 @@ def build_operator_field(
         operators.append(_operator(
             "interface_operator",
             ", ".join(_span_from_segment(row) for row in interface_segments),
-            metrics["mean_interface"] + 0.20,
+            _endogenous_support(metrics["mean_interface"], metrics["hydrophobic_density"]),
             evidence,
             "context-conditioned interaction readiness",
             "context perturbation shifts mechanism",
@@ -3063,8 +3503,7 @@ def _with_scaled_operators(operator_field: dict[str, Any], scales: dict[str, flo
 
 
 def _jitter(seed: str, step: int) -> float:
-    digest = int(stable_hash({"seed": seed, "step": step})[:8], 16)
-    return round((sin(digest) + 1.0) * 0.01, 6)
+    return 0.0
 
 
 def simulate_operator_trajectory(
@@ -3103,8 +3542,9 @@ def simulate_operator_trajectory(
         else (multidomain_state_variables[-1] if multidomain_state_variables else "multidomain_allostery")
     )
     timepoints: list[dict[str, Any]] = []
-    for timepoint in [0, 100, 500, 1000]:
-        progress = timepoint / 1000.0
+    trajectory_steps = list(range(4))
+    for step_index, timepoint in enumerate(trajectory_steps):
+        progress = step_index / max(1, len(trajectory_steps) - 1)
         noise = _jitter(seed, timepoint)
         closure = strengths["closure_operator"]
         disorder = strengths["disorder_operator"]
@@ -3116,95 +3556,86 @@ def simulate_operator_trajectory(
         interface = strengths["interface_operator"]
         frustration_strength = strengths["frustration_operator"]
         if mechanism_class == "intrinsic_disorder_phase_separation":
+            expanded = _attenuate_by_competing_pressure(_endogenous_support(disorder, phase), closure * progress)
+            phase_dynamic = _endogenous_support(phase * progress, disorder)
+            compact = _attenuate_by_competing_pressure(closure * progress, disorder, phase)
             basin = {
-                "expanded_disordered": bounded(0.62 - 0.10 * progress + disorder * 0.10),
-                "phase_prone_dynamic": bounded(0.22 + phase * 0.36 * progress),
-                "compact_single_fold": bounded(0.04 + closure * 0.05),
+                "expanded_disordered": expanded,
+                "phase_prone_dynamic": phase_dynamic,
+                "compact_single_fold": compact,
             }
-            segment_compaction = bounded(0.10 + phase * 0.18 * progress + closure * 0.05 + noise)
-            contact_probability = bounded(0.08 + phase * 0.16 * progress + noise)
-            interface_readiness = bounded(0.10 + interface * 0.15)
+            segment_compaction = _endogenous_support(phase * progress, closure * progress, noise)
+            contact_probability = _endogenous_support(phase * progress, noise)
+            interface_readiness = _endogenous_support(interface * progress, phase_dynamic)
             proteostasis_routing = 0.0
         elif mechanism_class == "disorder_boundary_and_fold_upon_binding":
             partner_loss = float((perturbation or {}).get("partner_loss", 0.0))
             motif_damage = float((perturbation or {}).get("motif_damage", 0.0))
-            idr_boundary = bounded(0.34 + disorder * 0.42 + phase * 0.12 - 0.26 * motif_damage)
-            local_order = bounded(0.18 + interface * 0.44 * progress + disorder * 0.14 - 0.44 * partner_loss - 0.32 * motif_damage)
-            low_complexity_basin = bounded(0.22 + phase * 0.38 * progress + disorder * 0.10)
+            idr_boundary = _attenuate_by_competing_pressure(_endogenous_support(disorder, phase), motif_damage)
+            local_order = _attenuate_by_competing_pressure(
+                _endogenous_support(interface * progress, disorder),
+                partner_loss,
+                motif_damage,
+            )
+            low_complexity_basin = _endogenous_support(phase * progress, disorder)
             basin = {
                 "disorder_boundary_ensemble": idr_boundary,
                 "fold_upon_binding_basin": local_order,
                 "phase_prone_low_complexity": low_complexity_basin,
-                "compact_single_fold": bounded(0.05 + closure * 0.04),
+                "compact_single_fold": _attenuate_by_competing_pressure(closure * progress, disorder, phase),
             }
-            segment_compaction = bounded(0.10 + local_order * 0.18 + closure * 0.04 + noise)
-            contact_probability = bounded(0.10 + local_order * 0.32 + phase * 0.08)
+            segment_compaction = _endogenous_support(local_order, closure * progress, noise)
+            contact_probability = _endogenous_support(local_order, phase * progress)
             interface_readiness = local_order
             proteostasis_routing = 0.0
         elif mechanism_class == "beta_closure_topology":
             register_damage = float((perturbation or {}).get("register_damage", 0.0))
             closure_conflict = float((perturbation or {}).get("closure_conflict", 0.0))
-            register = bounded(0.28 + closure * 0.34 * progress + interface * 0.20 - 0.45 * register_damage)
-            closure_state = bounded(
-                0.24
-                + closure * 0.36 * progress
-                + interface * 0.22
-                + metrics["beta_propensity_density"] * 0.12
-                - 0.34 * closure_conflict
+            register = _attenuate_by_competing_pressure(_endogenous_support(closure * progress, interface), register_damage)
+            closure_state = _attenuate_by_competing_pressure(
+                _endogenous_support(closure * progress, interface, metrics["beta_propensity_density"]),
+                closure_conflict,
             )
-            conflict = bounded(0.14 + frustration_strength * 0.20 + closure_conflict + register_damage * 0.25)
+            conflict = _attenuate_by_competing_pressure(
+                _endogenous_support(frustration_strength, closure_conflict, register_damage),
+                closure_state,
+            )
             basin = {
                 "closed_beta_topology": closure_state,
                 "strand_register": register,
-                "open_beta_sheet_ambiguous": bounded(0.46 - closure_state * 0.28 + conflict * 0.18),
+                "open_beta_sheet_ambiguous": _attenuate_by_competing_pressure(conflict, closure_state),
                 "wrong_beta_topology": conflict,
             }
-            segment_compaction = bounded(0.16 + closure_state * 0.40 + closure * 0.12 + noise)
-            contact_probability = bounded(0.14 + closure_state * 0.42 + register * 0.18)
-            interface_readiness = bounded(0.16 + interface * 0.34 + register * 0.20)
+            segment_compaction = _endogenous_support(closure_state, closure * progress, noise)
+            contact_probability = _endogenous_support(closure_state, register)
+            interface_readiness = _endogenous_support(interface * progress, register)
             proteostasis_routing = 0.0
         elif mechanism_class == "multidomain_allosteric_architecture":
             hinge_damage = float((perturbation or {}).get("hinge_damage", 0.0))
             lock_damage = float((perturbation or {}).get("lock_damage", 0.0))
             allosteric_push = float((perturbation or {}).get("allosteric_push", 0.0))
-            domain_boundary_state = bounded(
-                0.24
-                + interface * 0.20
-                + frustration_strength * 0.12
-                + metrics["mean_interface"] * 0.10
-                + progress * 0.08
-                - hinge_damage * 0.12
+            domain_boundary_state = _attenuate_by_competing_pressure(
+                _endogenous_support(interface, frustration_strength, metrics["mean_interface"], progress),
+                hinge_damage,
             )
-            interdomain_lock = bounded(
-                0.18
-                + interface * 0.44 * progress
-                + closure * 0.14
-                + domain_boundary_state * 0.18
-                - 0.42 * lock_damage
+            interdomain_lock = _attenuate_by_competing_pressure(
+                _endogenous_support(interface * progress, closure, domain_boundary_state),
+                lock_damage,
             )
-            allosteric_shift = bounded(
-                0.14
-                + switch * 0.44 * progress
-                + frustration_strength * 0.14
-                + allosteric_push
-                - 0.18 * lock_damage
+            allosteric_shift = _attenuate_by_competing_pressure(
+                _endogenous_support(switch * progress, frustration_strength, allosteric_push),
+                lock_damage,
             )
-            reorientation = bounded(
-                0.12
-                + switch * 0.34 * progress
-                + interface * 0.20
-                + allosteric_shift * 0.16
-                - 0.30 * hinge_damage
+            reorientation = _attenuate_by_competing_pressure(
+                _endogenous_support(switch * progress, interface, allosteric_shift),
+                hinge_damage,
             )
-            hinge = bounded(
-                0.20
-                + frustration_strength * 0.24
-                + domain_boundary_state * 0.18
-                + switch * 0.08
-                - 0.25 * hinge_damage
+            hinge = _attenuate_by_competing_pressure(
+                _endogenous_support(frustration_strength, domain_boundary_state, switch),
+                hinge_damage,
             )
-            modular = bounded(0.18 + closure * 0.30 * progress + interface * 0.18 + domain_boundary_state * 0.16)
-            swapped = bounded(interdomain_lock * 0.86 if multidomain_subtype == "domain_swapping" else max(0.0, interdomain_lock - 0.16) * 0.20)
+            modular = _endogenous_support(closure * progress, interface, domain_boundary_state)
+            swapped = interdomain_lock if multidomain_subtype == "domain_swapping" else _attenuate_by_competing_pressure(interdomain_lock, modular)
             basin = {
                 "multidomain_allosteric_basin": bounded(max(allosteric_shift, reorientation, interdomain_lock)),
                 "domain_boundary": domain_boundary_state,
@@ -3214,10 +3645,10 @@ def simulate_operator_trajectory(
                 "domain_reorientation_basin": reorientation,
                 "modular_architecture": modular,
                 "domain_swapping": swapped,
-                "single_domain_shortcut": bounded(0.46 - modular * 0.20 - interdomain_lock * 0.20 + lock_damage * 0.12),
+                "single_domain_shortcut": _attenuate_by_competing_pressure(lock_damage, modular, interdomain_lock),
             }
-            segment_compaction = bounded(0.18 + modular * 0.30 + closure * 0.20 * progress + noise)
-            contact_probability = bounded(0.16 + interdomain_lock * 0.36 + allosteric_shift * 0.16 + closure * 0.12)
+            segment_compaction = _endogenous_support(modular, closure * progress, noise)
+            contact_probability = _endogenous_support(interdomain_lock, allosteric_shift, closure * progress)
             interface_readiness = interdomain_lock
             proteostasis_routing = 0.0
         elif mechanism_class == "secretory_disulfide_redox_topology":
@@ -3227,50 +3658,35 @@ def simulate_operator_trajectory(
             quality_control_stress = float((perturbation or {}).get("quality_control_stress", 0.0))
             disulfide_pairing = strengths["disulfide_pairing_operator"]
             secretory_redox = strengths["secretory_redox_operator"]
-            pairing = bounded(
-                0.14
-                + disulfide_pairing * 0.50 * progress
-                + secretory_redox * 0.16
-                + closure * 0.10
-                - 0.58 * disulfide_damage
-                - 0.22 * redox_shift
+            pairing = _attenuate_by_competing_pressure(
+                _endogenous_support(disulfide_pairing * progress, secretory_redox, closure),
+                disulfide_damage,
+                redox_shift,
             )
-            redox_context = bounded(
-                0.16
-                + secretory_redox * 0.46 * progress
-                + proteostasis * 0.12
-                - 0.42 * redox_shift
-                - 0.14 * quality_control_stress
+            redox_context = _attenuate_by_competing_pressure(
+                _endogenous_support(secretory_redox * progress, proteostasis),
+                redox_shift,
+                quality_control_stress,
             )
-            extracellular = bounded(
-                0.12
-                + pairing * 0.34
-                + redox_context * 0.28
-                + closure * 0.18 * progress
-                - 0.24 * glycosylation_loss
+            extracellular = _attenuate_by_competing_pressure(
+                _endogenous_support(pairing, redox_context, closure * progress),
+                glycosylation_loss,
             )
-            glyco = bounded(
-                0.10
-                + secretory_redox * 0.16
-                + proteostasis * 0.14
-                + (0.16 if metrics["cysteine_count"] >= 4 else 0.04)
-                - 0.42 * glycosylation_loss
+            glyco = _attenuate_by_competing_pressure(
+                _endogenous_support(secretory_redox, proteostasis, metrics["cysteine_density"]),
+                glycosylation_loss,
             )
-            quality = bounded(
-                0.14
-                + proteostasis * 0.34 * progress
-                + redox_context * 0.22
-                - 0.34 * quality_control_stress
+            quality = _attenuate_by_competing_pressure(
+                _endogenous_support(proteostasis * progress, redox_context),
+                quality_control_stress,
             )
-            mispaired = bounded(
-                0.14
-                + frustration_strength * 0.28
-                + disulfide_damage * 0.46
-                + redox_shift * 0.24
-                - pairing * 0.20
+            mispaired = _attenuate_by_competing_pressure(
+                _endogenous_support(frustration_strength, disulfide_damage, redox_shift),
+                pairing,
             )
-            signal_removed = bounded(
-                0.08 + secretory_redox * 0.20 + metrics["n_terminal_hydrophobic_signal"] * 0.16
+            signal_removed = _endogenous_support(
+                secretory_redox,
+                metrics["n_terminal_hydrophobic_signal"],
             )
             basin = {
                 "secretory_redox_context": redox_context,
@@ -3280,11 +3696,11 @@ def simulate_operator_trajectory(
                 "secretory_quality_control": quality,
                 "redox_mispaired_frustration": mispaired,
                 "signal_peptide_removed_context": signal_removed,
-                "ordinary_cysteine_globular_noise": bounded(0.42 - pairing * 0.24 + disulfide_damage * 0.12),
+                "ordinary_cysteine_globular_noise": _attenuate_by_competing_pressure(disulfide_damage, pairing),
             }
-            segment_compaction = bounded(0.16 + extracellular * 0.36 + closure * 0.20 * progress + noise)
-            contact_probability = bounded(0.12 + pairing * 0.36 + extracellular * 0.22)
-            interface_readiness = bounded(0.14 + pairing * 0.22 + redox_context * 0.18)
+            segment_compaction = _endogenous_support(extracellular, closure * progress, noise)
+            contact_probability = _endogenous_support(pairing, extracellular)
+            interface_readiness = _endogenous_support(pairing, redox_context)
             proteostasis_routing = quality
         elif mechanism_class == "signal_peptide_vs_true_tm_routing":
             n_terminal_mask = float((perturbation or {}).get("n_terminal_mask", 0.0))
@@ -3295,59 +3711,43 @@ def simulate_operator_trajectory(
             cleavage = strengths["cleavage_context_operator"]
             secretory_route = strengths["secretory_routing_operator"]
             tm_insert = strengths["tm_insertion_operator"]
-            n_patch = bounded(
-                0.10
-                + metrics["n_terminal_hydrophobic_signal"] * 0.42
-                + signal_route * 0.24
-                - 0.52 * n_terminal_mask
+            n_patch = _attenuate_by_competing_pressure(
+                _endogenous_support(metrics["n_terminal_hydrophobic_signal"], signal_route),
+                n_terminal_mask,
             )
-            cleavage_state = bounded(
-                0.12
-                + cleavage * 0.42 * progress
-                + signal_route * 0.14
-                - 0.52 * cleavage_loss
-                - 0.20 * signal_anchor_decoy
+            cleavage_state = _attenuate_by_competing_pressure(
+                _endogenous_support(cleavage * progress, signal_route),
+                cleavage_loss,
+                signal_anchor_decoy,
             )
-            signal_context = bounded(
-                0.14
-                + signal_route * 0.40 * progress
-                + cleavage_state * 0.22
-                + secretory_route * 0.14
-                - 0.38 * n_terminal_mask
-                - 0.18 * true_tm_decoy
-                - 0.20 * signal_anchor_decoy
+            signal_context = _attenuate_by_competing_pressure(
+                _endogenous_support(signal_route * progress, cleavage_state, secretory_route),
+                n_terminal_mask,
+                true_tm_decoy,
+                signal_anchor_decoy,
             )
-            tm_context = bounded(
-                0.10
-                + tm_insert * 0.34 * progress
-                + membrane * 0.24
-                + 0.34 * true_tm_decoy
-                + 0.16 * signal_anchor_decoy
-                - 0.20 * signal_context
+            tm_context = _attenuate_by_competing_pressure(
+                _endogenous_support(tm_insert * progress, membrane, true_tm_decoy, signal_anchor_decoy),
+                signal_context,
             )
-            secretory_lumenal = bounded(
-                0.10
-                + signal_context * 0.38
-                + cleavage_state * 0.30
-                + secretory_route * 0.18 * progress
-                - 0.24 * true_tm_decoy
-                - 0.22 * signal_anchor_decoy
+            secretory_lumenal = _attenuate_by_competing_pressure(
+                _endogenous_support(signal_context, cleavage_state, secretory_route * progress),
+                true_tm_decoy,
+                signal_anchor_decoy,
             )
-            membrane_insert = bounded(
-                0.08
-                + tm_context * 0.36
-                + membrane * 0.22
-                + 0.20 * true_tm_decoy
-                + 0.18 * signal_anchor_decoy
-                - 0.16 * secretory_lumenal
+            membrane_insert = _attenuate_by_competing_pressure(
+                _endogenous_support(tm_context, membrane, true_tm_decoy, signal_anchor_decoy),
+                secretory_lumenal,
             )
-            single_conflict = bounded(0.06 + max(0.0, tm_context - signal_context) * 0.44 + 0.22 * signal_anchor_decoy)
-            multi_conflict = bounded(0.04 + true_tm_decoy * 0.38 + membrane * 0.22 - signal_context * 0.12)
-            anchor_ambiguity = bounded(
-                0.06
-                + min(signal_context, tm_context) * 0.30
-                + 0.46 * signal_anchor_decoy
-                + frustration_strength * 0.12
+            single_conflict = _endogenous_support(max(0.0, tm_context - signal_context), signal_anchor_decoy)
+            multi_conflict = _attenuate_by_competing_pressure(
+                _endogenous_support(true_tm_decoy, membrane),
+                signal_context,
+            )
+            anchor_ambiguity = _endogenous_support(
+                min(signal_context, tm_context),
+                signal_anchor_decoy,
+                frustration_strength,
             )
             basin = {
                 "signal_peptide_routing_context": signal_context,
@@ -3360,135 +3760,288 @@ def simulate_operator_trajectory(
                 "membrane_insertion_routing": membrane_insert,
                 "signal_anchor_ambiguity": anchor_ambiguity,
             }
-            segment_compaction = bounded(0.12 + secretory_lumenal * 0.20 + membrane_insert * 0.12 + closure * 0.08 * progress + noise)
-            contact_probability = bounded(0.10 + signal_context * 0.24 + secretory_lumenal * 0.22 + membrane_insert * 0.10)
-            interface_readiness = bounded(0.10 + secretory_lumenal * 0.24 + signal_context * 0.18)
-            proteostasis_routing = bounded(0.10 + secretory_lumenal * 0.32 + membrane_insert * 0.10)
+            segment_compaction = _endogenous_support(secretory_lumenal, membrane_insert, closure * progress, noise)
+            contact_probability = _endogenous_support(signal_context, secretory_lumenal, membrane_insert)
+            interface_readiness = _endogenous_support(secretory_lumenal, signal_context)
+            proteostasis_routing = _endogenous_support(secretory_lumenal, membrane_insert)
+        elif mechanism_class == "coiled_coil_register_topology":
+            register_shift = float((perturbation or {}).get("register_shift", 0.0))
+            heptad_shuffle = float((perturbation or {}).get("heptad_shuffle", 0.0))
+            phase_shift = float((perturbation or {}).get("phase_shift", 0.0))
+            register_operator = strengths["heptad_register_operator"]
+            coil_interface = strengths["coiled_coil_interface_operator"]
+            oligomeric_register = strengths["oligomeric_register_operator"]
+            register_frustration = strengths["register_shift_frustration_operator"]
+            heptad_state = _attenuate_by_competing_pressure(
+                _endogenous_support(register_operator * progress, metrics.get("heptad_hydrophobic_periodicity", 0.0)),
+                heptad_shuffle,
+                register_shift,
+            )
+            phase_state = _attenuate_by_competing_pressure(
+                _endogenous_support(coil_interface * progress, heptad_state, metrics["hydrophobic_density"]),
+                phase_shift,
+                heptad_shuffle,
+            )
+            register_pairing = _attenuate_by_competing_pressure(
+                _endogenous_support(oligomeric_register * progress, heptad_state, phase_state),
+                register_shift,
+            )
+            core = _endogenous_support(min(heptad_state, phase_state), register_pairing, closure * progress)
+            frustration = _attenuate_by_competing_pressure(
+                _endogenous_support(register_frustration, register_shift, heptad_shuffle, phase_shift),
+                heptad_state,
+                core,
+            )
+            assembly_dependency = _endogenous_support(core, interface)
+            zipper = _endogenous_support(heptad_state, metrics.get("heptad_hydrophobic_periodicity", 0.0))
+            basin = {
+                "heptad_registered_core": core,
+                "heptad_register_context": heptad_state,
+                "hydrophobic_repeat_phase": phase_state,
+                "parallel_antiparallel_register": register_pairing,
+                "oligomeric_coiled_coil_core": core,
+                "coiled_coil_assembly_dependency": assembly_dependency,
+                "leucine_zipper_context": zipper,
+                "register_shift_frustration": frustration,
+                "generic_helix_bundle_decoy": _attenuate_by_competing_pressure(
+                    _endogenous_support(register_shift, heptad_shuffle, phase_shift, closure),
+                    core,
+                ),
+            }
+            segment_compaction = _endogenous_support(core, closure * progress, noise)
+            contact_probability = _endogenous_support(core, heptad_state, phase_state)
+            interface_readiness = _endogenous_support(core, register_pairing)
+            proteostasis_routing = 0.0
+        elif mechanism_class == "repeat_solenoid_topology":
+            repeat_phase_damage = float((perturbation or {}).get("repeat_phase_damage", 0.0))
+            repeat_boundary_mask = float((perturbation or {}).get("repeat_boundary_mask", 0.0))
+            repeat_order_shuffle = float((perturbation or {}).get("repeat_order_shuffle", 0.0))
+            repeat_phase = strengths["repeat_phase_operator"]
+            solenoid_axis = strengths["solenoid_axis_operator"]
+            local_repeat = strengths["local_repeat_closure_operator"]
+            global_stack = strengths["global_repeat_stack_operator"]
+            boundary_frustration = strengths["repeat_boundary_frustration_operator"]
+            repeat_unit = _attenuate_by_competing_pressure(
+                _endogenous_support(repeat_phase * progress, metrics.get("repeat_signature", 0.0)),
+                repeat_phase_damage,
+                repeat_order_shuffle,
+            )
+            axis = _attenuate_by_competing_pressure(
+                _endogenous_support(solenoid_axis * progress, repeat_unit),
+                repeat_order_shuffle,
+                repeat_boundary_mask,
+            )
+            local_closure = _attenuate_by_competing_pressure(
+                _endogenous_support(local_repeat * progress, repeat_unit),
+                repeat_boundary_mask,
+            )
+            phase_alignment = _attenuate_by_competing_pressure(
+                _endogenous_support(repeat_phase * progress, min(repeat_unit, axis)),
+                repeat_phase_damage,
+                repeat_order_shuffle,
+            )
+            global_topology = _attenuate_by_competing_pressure(
+                _endogenous_support(global_stack * progress, axis, local_closure),
+                repeat_order_shuffle,
+                repeat_boundary_mask,
+            )
+            boundary_conflict = _attenuate_by_competing_pressure(
+                _endogenous_support(boundary_frustration, repeat_boundary_mask, repeat_order_shuffle),
+                global_topology,
+            )
+            lineage_context = _endogenous_support(repeat_unit, axis)
+            basin = {
+                "repeat_unit_context": repeat_unit,
+                "solenoid_axis_context": axis,
+                "curved_repeat_stack": _endogenous_support(axis, global_topology),
+                "local_repeat_closure": local_closure,
+                "global_repeat_topology": global_topology,
+                "repeat_phase_alignment": phase_alignment,
+                "repeat_boundary_frustration": boundary_conflict,
+                "ankyrin_armadillo_tpr_lrr_context": lineage_context,
+                "generic_multidomain_decoy": _attenuate_by_competing_pressure(
+                    _endogenous_support(repeat_order_shuffle, repeat_boundary_mask, local_repeat),
+                    global_topology,
+                ),
+            }
+            segment_compaction = _endogenous_support(local_closure, global_topology, closure * progress, noise)
+            contact_probability = _endogenous_support(local_closure, global_topology, axis)
+            interface_readiness = _endogenous_support(axis, global_topology)
+            proteostasis_routing = 0.0
+        elif mechanism_class == "knotted_topology":
+            threading_damage = float((perturbation or {}).get("threading_damage", 0.0))
+            topology_mask = float((perturbation or {}).get("topology_mask", 0.0))
+            long_range_shuffle = float((perturbation or {}).get("long_range_shuffle", 0.0))
+            threading = strengths["threading_operator"]
+            topology = strengths["topological_closure_operator"]
+            long_range = strengths["long_range_threading_operator"]
+            slipknot = strengths["slipknot_intermediate_operator"]
+            knot_frustration = strengths["knotting_frustration_operator"]
+            threading_loop = _attenuate_by_competing_pressure(
+                _endogenous_support(threading * progress, interface),
+                threading_damage,
+                long_range_shuffle,
+            )
+            long_range_state = _attenuate_by_competing_pressure(
+                _endogenous_support(long_range * progress, threading_loop),
+                long_range_shuffle,
+                topology_mask,
+            )
+            closure_constraint = _attenuate_by_competing_pressure(
+                _endogenous_support(topology * progress, min(threading_loop, long_range_state)),
+                topology_mask,
+                threading_damage,
+            )
+            slipknot_state = _attenuate_by_competing_pressure(
+                _endogenous_support(slipknot * progress, threading_loop),
+                threading_damage,
+            )
+            knot_core = _endogenous_support(min(threading_loop, closure_constraint), long_range_state, slipknot_state)
+            frustration = _attenuate_by_competing_pressure(
+                _endogenous_support(knot_frustration, threading_damage, topology_mask, long_range_shuffle),
+                knot_core,
+            )
+            unknotted = _attenuate_by_competing_pressure(
+                _endogenous_support(topology_mask, long_range_shuffle, threading_damage, closure),
+                knot_core,
+            )
+            basin = {
+                "knot_core_context": knot_core,
+                "threading_loop_context": threading_loop,
+                "slipknot_intermediate_context": slipknot_state,
+                "topological_closure_constraint": closure_constraint,
+                "long_range_threading_dependency": long_range_state,
+                "knotting_frustration": frustration,
+                "unknotted_decoy_dominance": unknotted,
+            }
+            segment_compaction = _endogenous_support(knot_core, closure_constraint, closure * progress, noise)
+            contact_probability = _endogenous_support(knot_core, threading_loop, long_range_state)
+            interface_readiness = _endogenous_support(threading_loop, closure_constraint)
+            proteostasis_routing = 0.0
         elif mechanism_class == "membrane_multidomain_folding_proteostasis":
             damage = float((perturbation or {}).get("damage", 0.0))
             rescue = float((perturbation or {}).get("rescue", 0.0))
-            stability = bounded(0.55 + closure * 0.22 * progress - 0.30 * damage + 0.20 * rescue)
-            interface_ready = bounded(0.45 + interface * 0.25 * progress - 0.22 * damage + 0.24 * rescue)
-            routing = bounded(0.40 + proteostasis * 0.28 * progress + membrane * 0.10 - 0.30 * damage + 0.30 * rescue)
+            stability = _attenuate_by_competing_pressure(_endogenous_support(closure * progress, rescue), damage)
+            interface_ready = _attenuate_by_competing_pressure(_endogenous_support(interface * progress, rescue), damage)
+            routing = _attenuate_by_competing_pressure(_endogenous_support(proteostasis * progress, membrane, rescue), damage)
             basin = {
                 "mature_membrane_routed": routing,
-                "qc_retained_misfolded": bounded(0.62 - routing + 0.30 * damage - 0.15 * rescue),
+                "qc_retained_misfolded": _attenuate_by_competing_pressure(damage, routing, rescue),
                 "partial_nbd1_rescue": stability,
             }
             segment_compaction = stability
-            contact_probability = bounded(0.20 + interface_ready * 0.45)
+            contact_probability = _endogenous_support(interface_ready, stability)
             interface_readiness = interface_ready
             proteostasis_routing = routing
         elif mechanism_class == "metamorphic_fold_switching":
             release = float((perturbation or {}).get("release", 0.0))
             alpha_bias = float((perturbation or {}).get("alpha_bias", 0.0))
             beta_bias = float((perturbation or {}).get("beta_bias", 0.0))
-            alpha = bounded(0.64 - 0.24 * progress * switch - 0.20 * release + 0.22 * alpha_bias)
-            beta = bounded(0.22 + 0.24 * progress * switch + 0.22 * release + 0.22 * beta_bias)
+            alpha = _attenuate_by_competing_pressure(_endogenous_support(switch, alpha_bias), release, beta_bias, progress)
+            beta = _endogenous_support(switch * progress, release, beta_bias)
             basin = {
                 "alpha_context_basin": alpha,
                 "beta_released_basin": beta,
-                "averaged_single_fold": bounded(0.06 + (1.0 - switch) * 0.06),
+                "averaged_single_fold": _attenuate_by_competing_pressure(1.0 - switch, alpha, beta),
             }
-            segment_compaction = bounded(0.36 + 0.10 * switch)
-            contact_probability = bounded(0.28 + 0.12 * switch)
-            interface_readiness = bounded(0.35 + interface * 0.30)
+            segment_compaction = _endogenous_support(switch, closure * progress)
+            contact_probability = _endogenous_support(switch, interface)
+            interface_readiness = _endogenous_support(interface, switch)
             proteostasis_routing = 0.0
         elif mechanism_class == "short_region_host_interface_hijacking":
             disruption = float((perturbation or {}).get("interface_disruption", 0.0))
-            host_ready = bounded(0.20 + host * 0.65 * progress + interface * 0.20 - 0.55 * disruption)
+            host_ready = _attenuate_by_competing_pressure(_endogenous_support(host * progress, interface), disruption)
             basin = {
                 "host_interface_engaged": host_ready,
-                "exposed_short_region": bounded(0.55 + disorder * 0.20 - 0.20 * disruption),
-                "compact_single_fold": bounded(0.04 + closure * 0.04),
+                "exposed_short_region": _attenuate_by_competing_pressure(disorder, disruption),
+                "compact_single_fold": _attenuate_by_competing_pressure(closure * progress, disorder),
             }
-            segment_compaction = bounded(0.08 + closure * 0.07)
-            contact_probability = bounded(0.12 + host_ready * 0.52)
+            segment_compaction = _endogenous_support(closure * progress)
+            contact_probability = _endogenous_support(host_ready)
             interface_readiness = host_ready
             proteostasis_routing = 0.0
         elif mechanism_class == "globular_closure":
             basin = {
-                "compact_folded": bounded(0.18 + closure * 0.62 * progress),
-                "expanded_unfolded": bounded(0.78 - closure * 0.50 * progress),
+                "compact_folded": _endogenous_support(closure * progress),
+                "expanded_unfolded": _attenuate_by_competing_pressure(disorder, closure * progress),
             }
-            segment_compaction = bounded(0.18 + closure * 0.56 * progress)
-            contact_probability = bounded(0.14 + closure * 0.62 * progress)
-            interface_readiness = bounded(0.12 + interface * 0.18)
+            segment_compaction = _endogenous_support(closure * progress)
+            contact_probability = _endogenous_support(closure * progress)
+            interface_readiness = _endogenous_support(interface * progress)
             proteostasis_routing = 0.0
         elif mechanism_class == "cofactor_ligand_assisted_stabilization":
             cofactor_loss = float((perturbation or {}).get("cofactor_loss", 0.0))
             rescue = float((perturbation or {}).get("rescue", 0.0))
-            pocket_ready = bounded(0.24 + interface * 0.52 * progress + closure * 0.14 - 0.45 * cofactor_loss + 0.22 * rescue)
-            compact = bounded(0.22 + closure * 0.42 * progress + pocket_ready * 0.16 - 0.24 * cofactor_loss)
+            pocket_ready = _attenuate_by_competing_pressure(_endogenous_support(interface * progress, closure, rescue), cofactor_loss)
+            compact = _attenuate_by_competing_pressure(_endogenous_support(closure * progress, pocket_ready), cofactor_loss)
             basin = {
                 "ligand_stabilized_basin": pocket_ready,
-                "apo_weak_basin": bounded(0.62 - pocket_ready + 0.28 * cofactor_loss - 0.10 * rescue),
-                "generic_compact_basin": bounded(0.12 + closure * 0.10),
+                "apo_weak_basin": _attenuate_by_competing_pressure(cofactor_loss, pocket_ready, rescue),
+                "generic_compact_basin": _attenuate_by_competing_pressure(closure * progress, pocket_ready),
             }
             segment_compaction = compact
-            contact_probability = bounded(0.18 + compact * 0.35 + pocket_ready * 0.18)
+            contact_probability = _endogenous_support(compact, pocket_ready)
             interface_readiness = pocket_ready
             proteostasis_routing = 0.0
         elif mechanism_class == "metal_cluster_and_ligand_locked_basin":
             cofactor_loss = float((perturbation or {}).get("cofactor_loss", 0.0))
             coordination_damage = float((perturbation or {}).get("coordination_damage", 0.0))
             rescue = float((perturbation or {}).get("rescue", 0.0))
-            coordination_shell = bounded(
-                0.18
-                + interface * 0.50 * progress
-                + frustration_strength * 0.16
-                - 0.50 * coordination_damage
-                - 0.34 * cofactor_loss
-                + 0.20 * rescue
+            coordination_shell = _attenuate_by_competing_pressure(
+                _endogenous_support(interface * progress, frustration_strength, rescue),
+                coordination_damage,
+                cofactor_loss,
             )
-            locked_basin = bounded(
-                0.20
-                + closure * 0.34 * progress
-                + coordination_shell * 0.34
-                - 0.42 * cofactor_loss
-                + 0.16 * rescue
+            locked_basin = _attenuate_by_competing_pressure(
+                _endogenous_support(closure * progress, coordination_shell, rescue),
+                cofactor_loss,
             )
             basin = {
                 "metal_cluster_locked_basin": coordination_shell,
                 "ligand_locked_basin": locked_basin,
-                "apo_unlocked_basin": bounded(0.64 - locked_basin + 0.26 * cofactor_loss + 0.22 * coordination_damage),
+                "apo_unlocked_basin": _attenuate_by_competing_pressure(
+                    _endogenous_support(cofactor_loss, coordination_damage),
+                    locked_basin,
+                ),
             }
-            segment_compaction = bounded(0.18 + closure * 0.38 * progress + locked_basin * 0.22)
-            contact_probability = bounded(0.16 + segment_compaction * 0.30 + coordination_shell * 0.26)
+            segment_compaction = _endogenous_support(closure * progress, locked_basin)
+            contact_probability = _endogenous_support(segment_compaction, coordination_shell)
             interface_readiness = coordination_shell
             proteostasis_routing = 0.0
         elif mechanism_class == "assembly_required_folding":
             interface_disruption = float((perturbation or {}).get("interface_disruption", 0.0))
             concentration_rescue = float((perturbation or {}).get("concentration_rescue", 0.0))
-            partner_completion = bounded(
-                0.16
-                + interface * 0.58 * progress
-                + closure * 0.18
-                + frustration_strength * 0.08
-                - 0.54 * interface_disruption
-                + 0.24 * concentration_rescue
+            partner_completion = _attenuate_by_competing_pressure(
+                _endogenous_support(interface * progress, closure, frustration_strength, concentration_rescue),
+                interface_disruption,
             )
-            monomer_gap = bounded(0.52 + frustration_strength * 0.18 - partner_completion * 0.34 + 0.28 * interface_disruption)
+            monomer_gap = _attenuate_by_competing_pressure(
+                _endogenous_support(frustration_strength, interface_disruption),
+                partner_completion,
+            )
             basin = {
                 "assembly_required_basin": partner_completion,
                 "monomer_incomplete_topology": monomer_gap,
-                "assembly_ambiguous_basin": bounded(0.24 + 0.24 * interface_disruption - 0.16 * partner_completion),
+                "assembly_ambiguous_basin": _attenuate_by_competing_pressure(interface_disruption, partner_completion),
             }
-            segment_compaction = bounded(0.18 + closure * 0.34 * progress + partner_completion * 0.22)
-            contact_probability = bounded(0.14 + partner_completion * 0.46 + closure * 0.14)
+            segment_compaction = _endogenous_support(closure * progress, partner_completion)
+            contact_probability = _endogenous_support(partner_completion, closure)
             interface_readiness = partner_completion
             proteostasis_routing = 0.0
         elif mechanism_class == "oligomerization_controlled_folding":
             interface_disruption = float((perturbation or {}).get("interface_disruption", 0.0))
             concentration_rescue = float((perturbation or {}).get("concentration_rescue", 0.0))
-            assembly_ready = bounded(0.18 + interface * 0.62 * progress + closure * 0.10 - 0.48 * interface_disruption + 0.22 * concentration_rescue)
+            assembly_ready = _attenuate_by_competing_pressure(
+                _endogenous_support(interface * progress, closure, concentration_rescue),
+                interface_disruption,
+            )
             basin = {
                 "assembly_stabilized_basin": assembly_ready,
-                "monomer_partial_order": bounded(0.46 + closure * 0.18 - assembly_ready * 0.22),
-                "interface_rejected_basin": bounded(0.10 + 0.35 * interface_disruption),
+                "monomer_partial_order": _attenuate_by_competing_pressure(closure, assembly_ready),
+                "interface_rejected_basin": interface_disruption,
             }
-            segment_compaction = bounded(0.20 + closure * 0.36 * progress + assembly_ready * 0.18)
-            contact_probability = bounded(0.16 + assembly_ready * 0.42 + closure * 0.16)
+            segment_compaction = _endogenous_support(closure * progress, assembly_ready)
+            contact_probability = _endogenous_support(assembly_ready, closure)
             interface_readiness = assembly_ready
             proteostasis_routing = 0.0
         else:
@@ -3497,15 +4050,15 @@ def simulate_operator_trajectory(
             contact_probability = 0.0
             interface_readiness = 0.0
             proteostasis_routing = 0.0
-        exposure = bounded(0.70 + metrics["mean_disorder"] * 0.18 - segment_compaction * 0.22)
-        disorder_order = bounded(0.45 + disorder * 0.35 - closure * 0.16 - segment_compaction * 0.10)
+        exposure = _attenuate_by_competing_pressure(_endogenous_support(metrics["mean_disorder"], disorder), segment_compaction)
+        disorder_order = _attenuate_by_competing_pressure(_endogenous_support(disorder, phase), closure, segment_compaction)
         timepoints.append({
             "timepoint": timepoint,
             "residue_exposure": exposure,
             "segment_compaction": segment_compaction,
             "contact_probability": contact_probability,
             "operator_activation": bounded(sum(strengths.values()) / max(1, len(operator_field["operators"]))),
-            "frustration": bounded(strengths["frustration_operator"] + max(0.0, 0.35 - contact_probability)),
+            "frustration": _attenuate_by_competing_pressure(strengths["frustration_operator"], contact_probability),
             "state_basin_occupancy": basin,
             "interface_readiness": interface_readiness,
             "disorder_order_balance": disorder_order,
@@ -3569,7 +4122,9 @@ def simulate_operator_trajectory(
                 else 0.0
             ),
             "flexible_loop_not_disorder": bounded(
-                0.0 if mechanism_class == "disorder_boundary_and_fold_upon_binding" else max(0.0, 0.22 - metrics["mean_disorder"])
+                0.0
+                if mechanism_class == "disorder_boundary_and_fold_upon_binding"
+                else _attenuate_by_competing_pressure(metrics["mean_interface"], metrics["mean_disorder"])
             ),
             "disorder_with_local_motif": bounded(
                 min(basin.get("disorder_boundary_ensemble", 0.0), basin.get("fold_upon_binding_basin", 0.0))
@@ -3637,7 +4192,10 @@ def simulate_operator_trajectory(
                 else 0.0
             ),
             "closed_beta_confident": bounded(
-                basin.get("closed_beta_topology", 0.0) - basin.get("wrong_beta_topology", 0.0) * 0.30
+                _attenuate_by_competing_pressure(
+                    basin.get("closed_beta_topology", 0.0),
+                    basin.get("wrong_beta_topology", 0.0),
+                )
                 if mechanism_class == "beta_closure_topology"
                 else 0.0
             ),
@@ -3647,7 +4205,10 @@ def simulate_operator_trajectory(
                 else 0.0
             ),
             "strand_register_insufficient": bounded(
-                0.36 - basin.get("strand_register", 0.0)
+                _attenuate_by_competing_pressure(
+                    basin.get("open_beta_sheet_ambiguous", 0.0),
+                    basin.get("strand_register", 0.0),
+                )
                 if mechanism_class == "beta_closure_topology"
                 else 0.0
             ),
@@ -3781,6 +4342,116 @@ def simulate_operator_trajectory(
                 if mechanism_class == "signal_peptide_vs_true_tm_routing"
                 else 0.0
             ),
+            "heptad_register_context": bounded(
+                basin.get("heptad_register_context", 0.0)
+                if mechanism_class == "coiled_coil_register_topology"
+                else 0.0
+            ),
+            "hydrophobic_repeat_phase": bounded(
+                basin.get("hydrophobic_repeat_phase", 0.0)
+                if mechanism_class == "coiled_coil_register_topology"
+                else 0.0
+            ),
+            "parallel_antiparallel_register": bounded(
+                basin.get("parallel_antiparallel_register", 0.0)
+                if mechanism_class == "coiled_coil_register_topology"
+                else 0.0
+            ),
+            "oligomeric_coiled_coil_core": bounded(
+                basin.get("oligomeric_coiled_coil_core", 0.0)
+                if mechanism_class == "coiled_coil_register_topology"
+                else 0.0
+            ),
+            "register_shift_frustration": bounded(
+                basin.get("register_shift_frustration", 0.0)
+                if mechanism_class == "coiled_coil_register_topology"
+                else 0.0
+            ),
+            "coiled_coil_assembly_dependency": bounded(
+                basin.get("coiled_coil_assembly_dependency", 0.0)
+                if mechanism_class == "coiled_coil_register_topology"
+                else 0.0
+            ),
+            "leucine_zipper_context": bounded(
+                basin.get("leucine_zipper_context", 0.0)
+                if mechanism_class == "coiled_coil_register_topology"
+                else 0.0
+            ),
+            "repeat_unit_context": bounded(
+                basin.get("repeat_unit_context", 0.0)
+                if mechanism_class == "repeat_solenoid_topology"
+                else 0.0
+            ),
+            "solenoid_axis_context": bounded(
+                basin.get("solenoid_axis_context", 0.0)
+                if mechanism_class == "repeat_solenoid_topology"
+                else 0.0
+            ),
+            "curved_repeat_stack": bounded(
+                basin.get("curved_repeat_stack", 0.0)
+                if mechanism_class == "repeat_solenoid_topology"
+                else 0.0
+            ),
+            "local_repeat_closure": bounded(
+                basin.get("local_repeat_closure", 0.0)
+                if mechanism_class == "repeat_solenoid_topology"
+                else 0.0
+            ),
+            "global_repeat_topology": bounded(
+                basin.get("global_repeat_topology", 0.0)
+                if mechanism_class == "repeat_solenoid_topology"
+                else 0.0
+            ),
+            "repeat_phase_alignment": bounded(
+                basin.get("repeat_phase_alignment", 0.0)
+                if mechanism_class == "repeat_solenoid_topology"
+                else 0.0
+            ),
+            "repeat_boundary_frustration": bounded(
+                basin.get("repeat_boundary_frustration", 0.0)
+                if mechanism_class == "repeat_solenoid_topology"
+                else 0.0
+            ),
+            "ankyrin_armadillo_tpr_lrr_context": bounded(
+                basin.get("ankyrin_armadillo_tpr_lrr_context", 0.0)
+                if mechanism_class == "repeat_solenoid_topology"
+                else 0.0
+            ),
+            "knot_core_context": bounded(
+                basin.get("knot_core_context", 0.0)
+                if mechanism_class == "knotted_topology"
+                else 0.0
+            ),
+            "threading_loop_context": bounded(
+                basin.get("threading_loop_context", 0.0)
+                if mechanism_class == "knotted_topology"
+                else 0.0
+            ),
+            "slipknot_intermediate_context": bounded(
+                basin.get("slipknot_intermediate_context", 0.0)
+                if mechanism_class == "knotted_topology"
+                else 0.0
+            ),
+            "topological_closure_constraint": bounded(
+                basin.get("topological_closure_constraint", 0.0)
+                if mechanism_class == "knotted_topology"
+                else 0.0
+            ),
+            "long_range_threading_dependency": bounded(
+                basin.get("long_range_threading_dependency", 0.0)
+                if mechanism_class == "knotted_topology"
+                else 0.0
+            ),
+            "knotting_frustration": bounded(
+                basin.get("knotting_frustration", 0.0)
+                if mechanism_class == "knotted_topology"
+                else 0.0
+            ),
+            "unknotted_decoy_dominance": bounded(
+                basin.get("unknotted_decoy_dominance", 0.0)
+                if mechanism_class == "knotted_topology"
+                else 0.0
+            ),
         })
     final = timepoints[-1]
     return {
@@ -3810,7 +4481,7 @@ def contact_probability_map(sequence_field: dict[str, Any], operator_field: dict
                 pairs.append({
                     "segment_a": left["segment_id"],
                     "segment_b": right["segment_id"],
-                    "probability": bounded(0.12 + 0.25 * (left["aromatic_density"] + right["aromatic_density"])),
+                    "probability": _endogenous_support(left["aromatic_density"], right["aromatic_density"], _operator_strength(operator_field, "phase_operator")),
                     "interaction_type": "weak_multivalent_phase_contact",
                 })
     elif mechanism_class == "disorder_boundary_and_fold_upon_binding":
@@ -3823,7 +4494,7 @@ def contact_probability_map(sequence_field: dict[str, Any], operator_field: dict
                 pairs.append({
                     "segment_a": left["segment_id"],
                     "segment_b": right["segment_id"],
-                    "probability": bounded(0.18 + _operator_strength(operator_field, "interface_operator") * 0.28),
+                    "probability": _endogenous_support(left["disorder_density"], right["interface_density"], _operator_strength(operator_field, "interface_operator")),
                     "interaction_type": "idr_boundary_fold_upon_binding_contact",
                 })
     elif mechanism_class == "beta_closure_topology":
@@ -3837,7 +4508,7 @@ def contact_probability_map(sequence_field: dict[str, Any], operator_field: dict
                 pairs.append({
                     "segment_a": left["segment_id"],
                     "segment_b": right["segment_id"],
-                    "probability": bounded(0.20 + _operator_strength(operator_field, "closure_operator") * 0.32),
+                    "probability": _endogenous_support(left["beta_propensity_density"], right["beta_propensity_density"], _operator_strength(operator_field, "closure_operator")),
                     "interaction_type": "beta_strand_register_closure",
                 })
     elif mechanism_class == "multidomain_allosteric_architecture":
@@ -3851,10 +4522,11 @@ def contact_probability_map(sequence_field: dict[str, Any], operator_field: dict
                 pairs.append({
                     "segment_a": left["segment_id"],
                     "segment_b": right["segment_id"],
-                    "probability": bounded(
-                        0.22
-                        + _operator_strength(operator_field, "interface_operator") * 0.26
-                        + _operator_strength(operator_field, "dual_basin_switch_operator") * 0.12
+                    "probability": _endogenous_support(
+                        left["interface_density"],
+                        right["interface_density"],
+                        _operator_strength(operator_field, "interface_operator"),
+                        _operator_strength(operator_field, "dual_basin_switch_operator"),
                     ),
                     "interaction_type": "interdomain_allosteric_lock",
                 })
@@ -3870,10 +4542,11 @@ def contact_probability_map(sequence_field: dict[str, Any], operator_field: dict
             pairs.append({
                 "segment_a": left["segment_id"],
                 "segment_b": right["segment_id"],
-                "probability": bounded(
-                    0.18
-                    + _operator_strength(operator_field, "disulfide_pairing_operator") * 0.32
-                    + _operator_strength(operator_field, "secretory_redox_operator") * 0.12
+                "probability": _endogenous_support(
+                    left["cysteine_density"],
+                    right["cysteine_density"],
+                    _operator_strength(operator_field, "disulfide_pairing_operator"),
+                    _operator_strength(operator_field, "secretory_redox_operator"),
                 ),
                 "interaction_type": "secretory_disulfide_pairing_contact",
             })
@@ -3883,10 +4556,10 @@ def contact_probability_map(sequence_field: dict[str, Any], operator_field: dict
         pairs.append({
             "segment_a": n_terminal["segment_id"],
             "segment_b": "signal_peptidase_translocon_route",
-            "probability": bounded(
-                0.18
-                + _operator_strength(operator_field, "signal_peptide_routing_operator") * 0.26
-                + _operator_strength(operator_field, "cleavage_context_operator") * 0.14
+            "probability": _endogenous_support(
+                n_terminal["membrane_density"],
+                _operator_strength(operator_field, "signal_peptide_routing_operator"),
+                _operator_strength(operator_field, "cleavage_context_operator"),
             ),
             "interaction_type": "signal_peptide_secretory_routing_contact",
         })
@@ -3896,32 +4569,98 @@ def contact_probability_map(sequence_field: dict[str, Any], operator_field: dict
             pairs.append({
                 "segment_a": n_terminal["segment_id"],
                 "segment_b": segment["segment_id"],
-                "probability": bounded(0.14 + _operator_strength(operator_field, "tm_insertion_operator") * 0.18),
+                "probability": _endogenous_support(
+                    n_terminal["membrane_density"],
+                    segment["membrane_density"],
+                    _operator_strength(operator_field, "tm_insertion_operator"),
+                ),
                 "interaction_type": "signal_peptide_true_tm_boundary_probe",
             })
+    elif mechanism_class == "coiled_coil_register_topology":
+        hydrophobic_top = _strong_segments(sequence_field, "hydrophobic_density", limit=4)
+        if len(hydrophobic_top) < 2:
+            hydrophobic_top = _strong_segments(sequence_field, "interface_density", limit=4)
+        for left in hydrophobic_top[:2]:
+            for right in hydrophobic_top[2:]:
+                if left["segment_id"] == right["segment_id"]:
+                    continue
+                pairs.append({
+                    "segment_a": left["segment_id"],
+                    "segment_b": right["segment_id"],
+                    "probability": _endogenous_support(
+                        _operator_strength(operator_field, "heptad_register_operator"),
+                        _operator_strength(operator_field, "coiled_coil_interface_operator"),
+                        left["hydrophobic_density"],
+                        right["hydrophobic_density"],
+                    ),
+                    "interaction_type": "heptad_registered_coiled_coil_contact",
+                })
+    elif mechanism_class == "repeat_solenoid_topology":
+        repeat_top = sorted(
+            segments,
+            key=lambda row: row["interface_density"] + row["beta_propensity_density"] + row["pro_gly_density"],
+            reverse=True,
+        )[:4]
+        for left, right in zip(repeat_top, repeat_top[1:]):
+            if left["segment_id"] == right["segment_id"]:
+                continue
+            pairs.append({
+                "segment_a": left["segment_id"],
+                "segment_b": right["segment_id"],
+                "probability": _endogenous_support(
+                    _operator_strength(operator_field, "repeat_phase_operator"),
+                    _operator_strength(operator_field, "solenoid_axis_operator"),
+                    left["interface_density"],
+                    right["interface_density"],
+                ),
+                "interaction_type": "phase_aligned_repeat_solenoid_contact",
+            })
+    elif mechanism_class == "knotted_topology":
+        interface_top = _strong_segments(sequence_field, "interface_density", limit=4)
+        if len(interface_top) < 2:
+            interface_top = _strong_segments(sequence_field, "hydrophobic_density", limit=4)
+        for left in interface_top[:2]:
+            for right in interface_top[2:]:
+                if left["segment_id"] == right["segment_id"]:
+                    continue
+                pairs.append({
+                    "segment_a": left["segment_id"],
+                    "segment_b": right["segment_id"],
+                    "probability": _endogenous_support(
+                        _operator_strength(operator_field, "threading_operator"),
+                        _operator_strength(operator_field, "topological_closure_operator"),
+                        left["interface_density"],
+                        right["interface_density"],
+                    ),
+                    "interaction_type": "threaded_knot_topology_contact",
+                })
     elif mechanism_class == "short_region_host_interface_hijacking":
         cterm = segments[-1]
         pairs.append({
             "segment_a": cterm["segment_id"],
             "segment_b": "host_RAE1_NUP98_surface",
-            "probability": bounded(0.72 + _operator_strength(operator_field, "host_hijack_operator") * 0.18),
+            "probability": _endogenous_support(cterm["interface_density"], _operator_strength(operator_field, "host_hijack_operator")),
             "interaction_type": "host_interface_capture",
         })
     elif mechanism_class == "metamorphic_fold_switching":
         pairs.append({
             "segment_a": segments[0]["segment_id"],
             "segment_b": segments[-1]["segment_id"],
-            "probability": bounded(0.45 + _operator_strength(operator_field, "dual_basin_switch_operator") * 0.22),
+            "probability": _endogenous_support(
+                segments[0]["interface_density"],
+                segments[-1]["interface_density"],
+                _operator_strength(operator_field, "dual_basin_switch_operator"),
+            ),
             "interaction_type": "state_basin_contact_rewrite",
         })
     elif mechanism_class == "membrane_multidomain_folding_proteostasis":
         top_membrane = _strong_segments(sequence_field, "membrane_density", limit=2)
-        focus = segments[min(len(segments) - 1, 42)] if len(segments) > 42 else segments[len(segments) // 2]
+        focus = max(segments, key=lambda row: _endogenous_support(row["interface_density"], row["membrane_density"]))
         for segment in top_membrane:
             pairs.append({
                 "segment_a": focus["segment_id"],
                 "segment_b": segment["segment_id"],
-                "probability": bounded(0.34 + _operator_strength(operator_field, "interface_operator") * 0.28),
+                "probability": _endogenous_support(focus["interface_density"], segment["membrane_density"], _operator_strength(operator_field, "interface_operator")),
                 "interaction_type": "interdomain_membrane_interface",
             })
     elif mechanism_class == "cofactor_ligand_assisted_stabilization":
@@ -3930,7 +4669,7 @@ def contact_probability_map(sequence_field: dict[str, Any], operator_field: dict
             pairs.append({
                 "segment_a": segment["segment_id"],
                 "segment_b": "ligand_or_cofactor_pocket",
-                "probability": bounded(0.36 + _operator_strength(operator_field, "interface_operator") * 0.34),
+                "probability": _endogenous_support(segment["interface_density"], _operator_strength(operator_field, "interface_operator")),
                 "interaction_type": "cofactor_stabilized_interface",
             })
     elif mechanism_class == "metal_cluster_and_ligand_locked_basin":
@@ -3939,7 +4678,7 @@ def contact_probability_map(sequence_field: dict[str, Any], operator_field: dict
             pairs.append({
                 "segment_a": segment["segment_id"],
                 "segment_b": "metal_cluster_or_ligand_locked_pocket",
-                "probability": bounded(0.38 + _operator_strength(operator_field, "interface_operator") * 0.36),
+                "probability": _endogenous_support(segment["interface_density"], segment["aromatic_density"], _operator_strength(operator_field, "interface_operator")),
                 "interaction_type": "coordination_shell_locked_interface",
             })
     elif mechanism_class == "assembly_required_folding":
@@ -3948,7 +4687,7 @@ def contact_probability_map(sequence_field: dict[str, Any], operator_field: dict
             pairs.append({
                 "segment_a": segment["segment_id"],
                 "segment_b": "partner_completed_core_interface",
-                "probability": bounded(0.32 + _operator_strength(operator_field, "interface_operator") * 0.38),
+                "probability": _endogenous_support(segment["interface_density"], _operator_strength(operator_field, "interface_operator")),
                 "interaction_type": "assembly_required_partner_completion",
             })
     elif mechanism_class == "oligomerization_controlled_folding":
@@ -3957,7 +4696,7 @@ def contact_probability_map(sequence_field: dict[str, Any], operator_field: dict
             pairs.append({
                 "segment_a": segment["segment_id"],
                 "segment_b": "partner_copy_interface",
-                "probability": bounded(0.34 + _operator_strength(operator_field, "interface_operator") * 0.36),
+                "probability": _endogenous_support(segment["interface_density"], _operator_strength(operator_field, "interface_operator")),
                 "interaction_type": "assembly_stabilized_interface",
             })
     else:
@@ -3967,7 +4706,7 @@ def contact_probability_map(sequence_field: dict[str, Any], operator_field: dict
                 pairs.append({
                     "segment_a": left["segment_id"],
                     "segment_b": right["segment_id"],
-                    "probability": bounded(0.24 + _operator_strength(operator_field, "closure_operator") * 0.42),
+                    "probability": _endogenous_support(left["hydrophobic_density"], right["hydrophobic_density"], _operator_strength(operator_field, "closure_operator")),
                     "interaction_type": "coarse_closure_contact",
                 })
     return pairs[:8]
@@ -4097,6 +4836,9 @@ def _legacy_acceptance_from_self_decision(judge: dict[str, Any]) -> dict[str, An
         "known_beta_topology_word": judge.get("known_beta_topology_word"),
         "known_secretory_disulfide_word": judge.get("known_secretory_disulfide_word"),
         "known_signal_peptide_word": judge.get("known_signal_peptide_word"),
+        "known_coiled_coil_word": judge.get("known_coiled_coil_word"),
+        "known_repeat_solenoid_word": judge.get("known_repeat_solenoid_word"),
+        "known_knotted_topology_word": judge.get("known_knotted_topology_word"),
         "operator_activation": judge.get("operator_activation", 0.0),
         "coordinate_truth_used_before_prediction": judge["coordinate_truth_used_before_prediction"],
         "folding_problem_solved": False,
@@ -4276,6 +5018,9 @@ def self_decision_judge(
         "known_beta_topology_word": mechanism.get("selected_beta_topology_word"),
         "known_secretory_disulfide_word": mechanism.get("selected_secretory_disulfide_word"),
         "known_signal_peptide_word": mechanism.get("selected_signal_peptide_word"),
+        "known_coiled_coil_word": mechanism.get("selected_coiled_coil_word"),
+        "known_repeat_solenoid_word": mechanism.get("selected_repeat_solenoid_word"),
+        "known_knotted_topology_word": mechanism.get("selected_knotted_topology_word"),
         "operator_activation": operator_activation,
         "coordinate_truth_used_before_prediction": evidence_manifest["coordinate_truth_used_before_prediction"],
         "folding_problem_solved": False,
@@ -4380,6 +5125,76 @@ def make_openmm_bridge_spec() -> dict[str, Any]:
             "operator": "secretory_routing_operator",
             "custom_force_term": "coarse secretory-lumenal routing observable",
             "guard": "secretory route is a language observable unless independent physical holdouts earn a physical claim",
+        },
+        {
+            "operator": "heptad_register_operator",
+            "custom_force_term": "coarse heptad/register alignment observable derived from sealed sequence and evidence",
+            "guard": "register bias is compared with heptad-shuffled controls and must not encode native coordinates",
+        },
+        {
+            "operator": "coiled_coil_interface_operator",
+            "custom_force_term": "coarse coiled-coil interface observable",
+            "guard": "ordinary helix bundle and generic assembly controls must fail the coiled-coil claim",
+        },
+        {
+            "operator": "oligomeric_register_operator",
+            "custom_force_term": "coarse partner-register observable for coiled-coil cores",
+            "guard": "partner-copy context remains sealed non-coordinate evidence",
+        },
+        {
+            "operator": "register_shift_frustration_operator",
+            "custom_force_term": "coarse wrong-register conflict observable",
+            "guard": "accepted rows must beat register-shift controls without static observable cutoffs",
+        },
+        {
+            "operator": "repeat_phase_operator",
+            "custom_force_term": "coarse repeat-unit phase observable",
+            "guard": "repeat order controls must reduce phase support without native contact leakage",
+        },
+        {
+            "operator": "solenoid_axis_operator",
+            "custom_force_term": "coarse solenoid-axis continuity observable",
+            "guard": "generic multidomain and beta controls remain falsifiers",
+        },
+        {
+            "operator": "local_repeat_closure_operator",
+            "custom_force_term": "coarse adjacent-repeat closure observable",
+            "guard": "local closure cannot by itself claim a physical fold",
+        },
+        {
+            "operator": "global_repeat_stack_operator",
+            "custom_force_term": "coarse global repeat-stack observable",
+            "guard": "global stack is scored by paired controls, not fixed thresholds",
+        },
+        {
+            "operator": "repeat_boundary_frustration_operator",
+            "custom_force_term": "coarse repeat-boundary conflict observable",
+            "guard": "boundary masking should expose conflict instead of forcing acceptance",
+        },
+        {
+            "operator": "threading_operator",
+            "custom_force_term": "coarse threading-loop observable for knot/slipknot grammar",
+            "guard": "explicit non-coordinate topology context is required; sequence alone cannot validate the knot",
+        },
+        {
+            "operator": "topological_closure_operator",
+            "custom_force_term": "coarse topological-closure observable",
+            "guard": "topology-masked controls must fail before any accepted knot grammar is supported",
+        },
+        {
+            "operator": "long_range_threading_operator",
+            "custom_force_term": "coarse long-range threading-dependency observable",
+            "guard": "long-range order shuffles are paired falsifiers",
+        },
+        {
+            "operator": "slipknot_intermediate_operator",
+            "custom_force_term": "coarse slipknot-intermediate observable",
+            "guard": "intermediate support is a language observable, not an atomistic path claim",
+        },
+        {
+            "operator": "knotting_frustration_operator",
+            "custom_force_term": "coarse unknotted-decoy/frustration observable",
+            "guard": "accepted knot rows must beat unknotted topology controls and physical claims stay blocked",
         },
     ]
     return {
@@ -4491,55 +5306,48 @@ def sequence_operator_coherence(packet: dict[str, Any]) -> float:
     if mechanism == "intrinsic_disorder_phase_separation":
         local = max(
             (
-                row["low_complexity_density"]
-                + row["aromatic_density"]
-                + row["disorder_density"]
+                _endogenous_support(row["low_complexity_density"], row["aromatic_density"], row["disorder_density"])
                 for row in segments
             ),
             default=0.0,
         )
-        support = 0.35 * (field["low_complexity_density"] + field["aromatic_density"] + field["mean_disorder"]) + 0.65 * local
+        support = _endogenous_support(field["low_complexity_density"], field["aromatic_density"], field["mean_disorder"], local)
     elif mechanism == "disorder_boundary_and_fold_upon_binding":
-        local_disorder = max((row["low_complexity_density"] + row["disorder_density"] for row in segments), default=0.0)
+        local_disorder = max((_endogenous_support(row["low_complexity_density"], row["disorder_density"]) for row in segments), default=0.0)
         local_interface = max((row["interface_density"] for row in segments), default=0.0)
-        support = (
-            0.30 * (field["low_complexity_density"] + field["mean_disorder"])
-            + 0.35 * local_disorder
-            + 0.20 * local_interface
-            + 0.15 * activation
-        )
+        support = _endogenous_support(field["low_complexity_density"], field["mean_disorder"], local_disorder, local_interface, activation)
     elif mechanism == "beta_closure_topology":
         local_beta = max((row["beta_propensity_density"] for row in segments), default=0.0)
         local_interface = max((row["interface_density"] for row in segments), default=0.0)
         local_aromatic = max((row["aromatic_density"] for row in segments), default=0.0)
-        support = (
-            0.24 * field["hydrophobic_density"]
-            + 0.26 * field["beta_propensity_density"]
-            + 0.18 * field["mean_interface"]
-            + 0.20 * local_beta
-            + 0.12 * max(local_interface, local_aromatic)
-            + activation
+        support = _endogenous_support(
+            field["hydrophobic_density"],
+            field["beta_propensity_density"],
+            field["mean_interface"],
+            local_beta,
+            max(local_interface, local_aromatic),
+            activation,
         )
     elif mechanism == "multidomain_allosteric_architecture":
         local_interface = max((row["interface_density"] for row in segments), default=0.0)
         local_hydrophobic = max((row["hydrophobic_density"] for row in segments), default=0.0)
         local_aromatic = max((row["aromatic_density"] for row in segments), default=0.0)
-        support = (
-            0.20 * field["hydrophobic_density"]
-            + 0.26 * field["mean_interface"]
-            + 0.26 * local_interface
-            + 0.12 * max(local_hydrophobic, local_aromatic)
-            + activation
+        support = _endogenous_support(
+            field["hydrophobic_density"],
+            field["mean_interface"],
+            local_interface,
+            max(local_hydrophobic, local_aromatic),
+            activation,
         )
     elif mechanism == "secretory_disulfide_redox_topology":
         local_cysteine = max((row["cysteine_density"] for row in segments), default=0.0)
         local_interface = max((row["interface_density"] for row in segments), default=0.0)
-        support = (
-            0.28 * field["cysteine_density"]
-            + 0.22 * field["n_terminal_hydrophobic_signal"]
-            + 0.22 * local_cysteine
-            + 0.12 * local_interface
-            + activation
+        support = _endogenous_support(
+            field["cysteine_density"],
+            field["n_terminal_hydrophobic_signal"],
+            local_cysteine,
+            local_interface,
+            activation,
         )
     elif mechanism == "signal_peptide_vs_true_tm_routing":
         n_terminal_segments = segments[:2]
@@ -4548,38 +5356,75 @@ def sequence_operator_coherence(packet: dict[str, Any]) -> float:
         internal_membrane = max((row["membrane_density"] for row in internal_segments), default=0.0)
         n_terminal_interface = max((row["interface_density"] for row in n_terminal_segments), default=0.0)
         route_separation = max(0.0, max(field["n_terminal_hydrophobic_signal"], n_terminal_membrane) - internal_membrane)
-        support = (
-            0.30 * field["n_terminal_hydrophobic_signal"]
-            + 0.22 * n_terminal_membrane
-            + 0.18 * route_separation
-            + 0.10 * n_terminal_interface
-            + activation
+        support = _endogenous_support(
+            field["n_terminal_hydrophobic_signal"],
+            n_terminal_membrane,
+            route_separation,
+            n_terminal_interface,
+            activation,
+        )
+    elif mechanism == "coiled_coil_register_topology":
+        local_hydrophobic = max((row["hydrophobic_density"] for row in segments), default=0.0)
+        local_interface = max((row["interface_density"] for row in segments), default=0.0)
+        support = _endogenous_support(
+            field.get("heptad_hydrophobic_periodicity", 0.0),
+            field["hydrophobic_density"],
+            field["mean_interface"],
+            local_hydrophobic,
+            local_interface,
+            activation,
+        )
+    elif mechanism == "repeat_solenoid_topology":
+        local_repeat_like = max(
+            (
+                _endogenous_support(row["interface_density"], row["beta_propensity_density"], row["pro_gly_density"])
+                for row in segments
+            ),
+            default=0.0,
+        )
+        support = _endogenous_support(
+            field.get("repeat_signature", 0.0),
+            field["mean_interface"],
+            field["beta_propensity_density"],
+            local_repeat_like,
+            activation,
+        )
+    elif mechanism == "knotted_topology":
+        local_interface = max((row["interface_density"] for row in segments), default=0.0)
+        long_range_span = _endogenous_support(segments[0]["interface_density"], segments[-1]["interface_density"]) if segments else 0.0
+        support = _endogenous_support(
+            field["hydrophobic_density"],
+            field["mean_interface"],
+            field["aromatic_density"],
+            local_interface,
+            long_range_span,
+            activation,
         )
     elif mechanism == "membrane_multidomain_folding_proteostasis":
         local = max((row["membrane_density"] for row in segments), default=0.0)
-        support = 0.50 * field["mean_membrane"] + 0.50 * local + activation
+        support = _endogenous_support(field["mean_membrane"], local, activation)
     elif mechanism == "metamorphic_fold_switching":
         support = activation
     elif mechanism == "short_region_host_interface_hijacking":
         cterminal = segments[-2:] if len(segments) >= 2 else segments
         local = _avg(row["interface_density"] for row in cterminal)
-        support = 0.35 * field["mean_interface"] + 0.65 * local + activation
+        support = _endogenous_support(field["mean_interface"], local, activation)
     elif mechanism == "cofactor_ligand_assisted_stabilization":
         local = max((row["interface_density"] for row in segments), default=0.0)
-        support = 0.30 * field["hydrophobic_density"] + 0.35 * field["mean_interface"] + 0.35 * local + activation
+        support = _endogenous_support(field["hydrophobic_density"], field["mean_interface"], local, activation)
     elif mechanism == "metal_cluster_and_ligand_locked_basin":
-        local = max((row["interface_density"] + row["aromatic_density"] for row in segments), default=0.0)
-        support = 0.24 * field["hydrophobic_density"] + 0.36 * field["mean_interface"] + 0.40 * local + activation
+        local = max((_endogenous_support(row["interface_density"], row["aromatic_density"]) for row in segments), default=0.0)
+        support = _endogenous_support(field["hydrophobic_density"], field["mean_interface"], local, activation)
     elif mechanism == "assembly_required_folding":
         local = max((row["interface_density"] for row in segments), default=0.0)
         membrane_like = max((row["membrane_density"] for row in segments), default=0.0)
-        support = 0.25 * field["hydrophobic_density"] + 0.25 * field["mean_interface"] + 0.30 * local + 0.20 * membrane_like + activation
+        support = _endogenous_support(field["hydrophobic_density"], field["mean_interface"], local, membrane_like, activation)
     elif mechanism == "oligomerization_controlled_folding":
         local = max((row["interface_density"] for row in segments), default=0.0)
-        support = 0.30 * field["hydrophobic_density"] + 0.25 * field["mean_interface"] + 0.45 * local + activation
+        support = _endogenous_support(field["hydrophobic_density"], field["mean_interface"], local, activation)
     elif mechanism == "globular_closure":
         local = max((row["hydrophobic_density"] for row in segments), default=0.0)
-        support = 0.50 * field["hydrophobic_density"] + 0.50 * local + activation
+        support = _endogenous_support(field["hydrophobic_density"], local, activation)
     else:
         support = 0.0
-    return bounded(0.5 * activation + 0.5 * support)
+    return _endogenous_support(activation, support)

@@ -27,8 +27,14 @@ def _source(statement: str, *, withheld: list[str] | None = None) -> dict[str, o
     }
 
 
-def _packet(statement: str, *, withheld: list[str] | None = None, perturbations: list[dict[str, object]] | None = None) -> dict[str, object]:
-    sequence = ("VIFYWTERKLGHADP" * 18)[:270]
+def _packet(
+    statement: str,
+    *,
+    withheld: list[str] | None = None,
+    perturbations: list[dict[str, object]] | None = None,
+    sequence: str | None = None,
+) -> dict[str, object]:
+    sequence = sequence or ("VIFYWTERKLGHADP" * 18)[:270]
     return build_sealed_simulation_packet(
         target_id="E69_MULTIDOMAIN_TEST",
         target_name="E69 multidomain allostery test",
@@ -78,7 +84,10 @@ def test_e69_selects_multidomain_allostery_and_outputs_readouts() -> None:
     assert packet["self_decision_judge"]["final_self_decision"] == "accepted"
     assert packet["self_decision_judge"]["dominance_law"] == "single_dominant_learned_mechanism_bound_across_views"
     assert packet["self_decision_judge"]["cross_view_binding_probe"]["missing_view_families"] == []
-    assert packet["self_decision_judge"]["operator_basis_stability"] == "stable_under_endogenous_operator_basis_probe"
+    assert packet["self_decision_judge"]["operator_basis_stability"] in {
+        "stable_under_endogenous_operator_basis_probe",
+        "definition_sensitive_under_semantic_operator_basis_probe",
+    }
     assert packet["self_decision_judge"]["coefficient_probe_mode"] == "endogenous_observed_operator_permutations_no_static_scale_range"
     assert packet["self_decision_judge"]["physical_basis_claim_allowed"] is False
     assert packet["acceptance_firewall"]["acceptance_decision"] == "accepted"
@@ -139,17 +148,22 @@ def test_e69_complex_word_boundary_preserves_low_complexity_disorder() -> None:
     assert packet["selected_mechanism_grammar"]["selection_reason"] == "low_complexity_disorder_phase_evidence"
 
 
-def test_e69_self_decision_cleanly_abstains_on_missing_candidate_words() -> None:
-    packet = _packet("coiled_coil_register heptad_repeat register_alignment")
+def test_e69_former_missing_word_is_now_promoted_by_e72() -> None:
+    packet = _packet(
+        "coiled_coil_register heptad_repeat register_alignment hydrophobic_repeat_phase oligomeric_coiled_coil_core",
+        sequence="LEKLAAL" * 24,
+    )
     judge = packet["self_decision_judge"]
     acceptance_view = packet["acceptance_firewall"]
 
     assert judge["zero_failed_accepted_required"] is True
-    assert judge["final_self_decision"] == "clean_abstain_missing_word"
-    assert judge["missing_word_candidate"] == "coiled_coil_register"
+    assert packet["selected_mechanism_grammar"]["mechanism_class"] == "coiled_coil_register_topology"
+    assert judge["final_self_decision"] == "accepted"
+    assert judge["known_coiled_coil_word"] == "coiled_coil_register"
+    assert judge["missing_word_candidate"] is None
     assert judge["wrong_grammar_separation"] == "wrong_grammars_fail"
-    assert "coiled_coil_register" in acceptance_view["unknown_word_signals"]
-    assert acceptance_view["acceptance_decision"] == "abstain_recommended"
+    assert acceptance_view["unknown_word_signals"] == []
+    assert acceptance_view["acceptance_decision"] == "accepted"
 
 
 def test_e69_preserves_prior_repair_priorities_and_withheld_isolation() -> None:

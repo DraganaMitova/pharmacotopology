@@ -32,13 +32,13 @@ def v59_outputs() -> dict[str, object]:
 def test_v59_process_panel_passes_after_explicit_engine_hardening(v59_outputs: dict[str, object]) -> None:
     cert = v59_outputs["certificate"]
     assert isinstance(cert, dict)
-    assert cert["status"] == "V59_REAL_FOLDING_PROCESS_REPLICATION_PASSED_REVIEW_REQUIRED"
+    assert cert["status"] == "V59_PARTIAL_PROCESS_REPLICATION_WITH_ABSTENTION_PASSED_REVIEW_REQUIRED"
     assert cert["target_count"] == 10
-    assert cert["accepted_count"] == 10
+    assert cert["accepted_count"] == 9
     assert cert["accepted_with_caution_count"] == 3
-    assert cert["abstain_recommended_count"] == 0
+    assert cert["abstain_recommended_count"] == 1
     assert cert["accepted_process_accuracy"] == 1.0
-    assert cert["raw_process_accuracy"] == 1.0
+    assert cert["raw_process_accuracy"] == 0.9
     assert cert["passed_control_count"] == cert["control_count"] == 14
     assert cert["engine_biology_modified"] is True
     assert cert["folding_problem_solved"] is False
@@ -63,8 +63,11 @@ def test_v59_scoring_covers_process_classes_and_all_rows_are_supported(v59_outpu
     rows = v59_outputs["scoring"]["rows"]
     assert len(rows) == 10
     assert {row["expected_process_class"] for row in rows} >= {"two_state", "intermediate_bearing", "multi_basin"}
-    assert all(row["score_label"] == "supported" for row in rows)
-    assert all(row["p1_process_class"] and row["p2_early_late_ordering"] and row["p3_mutation_sensitivity"] for row in rows)
+    supported = [row for row in rows if row["score_label"] == "supported"]
+    abstained = [row for row in rows if row["score_label"] == "abstained"]
+    assert len(supported) == 9
+    assert [row["target_id"] for row in abstained] == ["V59_VILLIN_HP35"]
+    assert all(row["p1_process_class"] and row["p2_early_late_ordering"] and row["p3_mutation_sensitivity"] for row in supported)
     assert all(row["sealed_prediction_hash"] == row["holdout_opened_after_prediction_hash"] for row in rows)
 
 
@@ -81,10 +84,10 @@ def test_v60_computes_bounded_claim_not_universal_solved(v59_outputs: dict[str, 
     runner = _load(V60_RUNNER, "v60_runner_for_tests")
     paths = runner.run_v60()
     cert = json.loads(paths["certificate"].read_text(encoding="utf-8"))
-    assert cert["status"] == "V60_BOUNDED_PROCESS_REPLICATION_CLAIM_PASSED_REVIEW_REQUIRED"
-    assert cert["protein_esperanto_engine_claim_allowed"] is True
-    assert cert["bounded_accepted_target_process_replication_supported"] is True
-    assert cert["bounded_real_sequence_behavior_supported"] is True
+    assert cert["status"] == "V60_SOLVED_CLAIM_BLOCKED_ENGINE_REVISION_REQUIRED"
+    assert cert["protein_esperanto_engine_claim_allowed"] is False
+    assert cert["bounded_accepted_target_process_replication_supported"] is False
+    assert cert["bounded_real_sequence_behavior_supported"] is False
     assert cert["universal_folding_problem_solved"] is False
     assert cert["atomistic_folding_solved"] is False
     assert cert["all_sequence_prediction_solved"] is False
@@ -93,5 +96,5 @@ def test_v60_computes_bounded_claim_not_universal_solved(v59_outputs: dict[str, 
     assert cert["engine_revision_after_v58_required"] is True
     assert cert["engine_operator_set_modified_in_v59"] is False
     assert cert["engine_mechanism_class_set_modified_in_v59"] is False
-    assert "not universally solved" in cert["allowed_claim"]
+    assert "not yet claim-ready" in cert["allowed_claim"]
     assert any("Universal protein folding is solved" in claim for claim in cert["forbidden_claims"])

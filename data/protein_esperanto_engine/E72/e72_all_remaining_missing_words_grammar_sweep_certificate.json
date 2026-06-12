@@ -1,0 +1,30 @@
+{
+  "baseline_engine_version": "E71",
+  "candidate_grammars_remaining": [],
+  "certificate_hash": "f66ce150e03b68bfb02fd68cbbd08460eebccfb4b2d0b66f1eec9703a02e70a7",
+  "claim_allowed": false,
+  "engine_revision": "E72",
+  "engine_source_sha256": "5f9c082945a4ff81d4d8c7900d175070fc193d580de886caad694c0f6eb5f8bd",
+  "folding_problem_solved": false,
+  "kind": "E72_ALL_REMAINING_MISSING_WORDS_GRAMMAR_SWEEP_CERTIFICATE_v0",
+  "new_mechanism_classes": [
+    "coiled_coil_register_topology",
+    "repeat_solenoid_topology",
+    "knotted_topology"
+  ],
+  "next_mode": "blind_discovery_not_missing_word_repair",
+  "next_required_batch": "V79_BLIND_RCSB_DISCOVERY_500_NO_KNOWN_MISSING_WORD_QUEUE",
+  "promoted_words": [
+    "coiled_coil_register",
+    "repeat_solenoid_topology",
+    "knotted_topology"
+  ],
+  "proof_batch": "V78_ALL_MISSING_WORDS_SATURATION_PANEL_600",
+  "proof_status": "V78_ALL_MISSING_WORDS_SATURATION_PANEL_PASSED",
+  "protein_esperanto_language_saturation_status": "current_known_missing_words_implemented",
+  "protein_folding_solved": false,
+  "status": "E72_ALL_REMAINING_MISSING_WORDS_GRAMMAR_SWEEP_ADDED",
+  "v78_accepted_accuracy": 1.0,
+  "v78_failed_accepted_count": 0,
+  "v78_uses_static_observable_thresholds": false
+}

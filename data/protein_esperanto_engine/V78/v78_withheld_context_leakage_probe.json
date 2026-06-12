@@ -1,0 +1,7 @@
+{
+  "final_self_decision": "clean_abstain_low_internal_consensus",
+  "kind": "V78_WITHHELD_CONTEXT_LEAKAGE_PROBE_v0",
+  "observed_mechanism": "insufficient_evidence_clean_abstain",
+  "prediction_hash": "ab207452b7ee7dd40f33872c4c4823e15372e7b1a25574aca0bf5991fe79fbfa",
+  "withheld_context_leakage_detected": false
+}

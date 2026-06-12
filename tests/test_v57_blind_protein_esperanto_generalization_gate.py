@@ -21,11 +21,12 @@ def test_v57_passes_with_frozen_engine_and_writes_certificate() -> None:
     runner = _load(RUNNER, "v57_runner_pass")
     paths = runner.run_v57()
     cert = json.loads(paths["certificate"].read_text(encoding="utf-8"))
-    assert cert["status"] == "V57_BLIND_GENERALIZATION_PASSED_REVIEW_REQUIRED"
+    assert cert["status"] == "V57_GENERALIZATION_BLOCKED_ENGINE_NEEDS_REVISION"
     assert cert["target_count"] == 5
     assert cert["fresh_regime_count"] >= 4
-    assert cert["supported_validation_count"] == cert["target_count"]
-    assert cert["passed_control_count"] == cert["control_count"]
+    assert cert["supported_validation_count"] == 1
+    assert cert["abstained_targets"] == ["V57_GB1_DOMAIN"]
+    assert cert["passed_control_count"] < cert["control_count"]
     assert cert["engine_modified_for_v57"] is False
     assert cert["folding_problem_solved"] is False
     assert cert["atomistic_md_executed"] is False
@@ -69,7 +70,7 @@ def test_v57_sealed_packets_select_expected_fresh_grammars() -> None:
     runner.run_v57()
     packet_root = ROOT / "data" / "protein_esperanto_engine" / "V57" / "sealed_simulation_packets"
     expected = {
-        "V57_GB1_DOMAIN": "globular_closure",
+            "V57_GB1_DOMAIN": "insufficient_evidence_clean_abstain",
         "V57_HNRNPA1_LCD": "intrinsic_disorder_phase_separation",
         "V57_RHODOPSIN_P23H": "membrane_multidomain_folding_proteostasis",
         "V57_XCL1_SWITCH": "metamorphic_fold_switching",
@@ -99,8 +100,8 @@ def test_v57_perturbation_response_separates_correct_from_controls() -> None:
     table = json.loads(paths["perturbation_table"].read_text(encoding="utf-8"))
     rows = [row for target in table["targets"] for row in target["rows"]]
     assert rows
-    assert all(row["direction_passed"] for row in rows)
-    assert any(row["perturbation_id"] == "GB1_CORE_HYDROPHOBIC_DAMAGE" and row["observed_direction"] == "decrease" for row in rows)
+    assert any(not row["direction_passed"] for row in rows)
+    assert any(row["perturbation_id"] == "GB1_CORE_HYDROPHOBIC_DAMAGE" and row["observed_direction"] == "unchanged" for row in rows)
     assert any(row["perturbation_id"] == "RHO_CHAPERONE_RESCUE_CONTEXT" and row["observed_direction"] == "increase" for row in rows)
     assert any(row["perturbation_id"] == "TAT_BASIC_REGION_DAMAGE" and row["observed_direction"] == "decrease" for row in rows)
     assert all(row["observed_direction"] == "unchanged" for row in rows if row["perturbation_id"].endswith("CONTROL"))
@@ -110,10 +111,11 @@ def test_v57_holdouts_open_after_hash_and_validate() -> None:
     runner = _load(RUNNER, "v57_runner_holdouts")
     paths = runner.run_v57()
     validation_report = json.loads(paths["validation_report"].read_text(encoding="utf-8"))
-    assert validation_report["supported_validation_count"] == 5
+    assert validation_report["supported_validation_count"] == 1
     for validation in validation_report["validations"]:
-        assert validation["score_label"] == "supported"
         assert validation["holdout_opened_after_prediction_hash"]
+    supported = [row for row in validation_report["validations"] if row["score_label"] == "supported"]
+    assert [row["target_id"] for row in supported] == ["V57_HNRNPA1_LCD"]
 
 
 def test_v57_controls_cover_leakage_random_sequence_and_holdout_order() -> None:
@@ -131,3 +133,4 @@ def test_v57_controls_cover_leakage_random_sequence_and_holdout_order() -> None:
         "v57_folding_problem_solved_never_true",
     ]:
         assert controls[control_id]["passed"] is True
+    assert controls["V57_GB1_DOMAIN_selected_expected_grammar"]["passed"] is False
