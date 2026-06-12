@@ -1,0 +1,46 @@
+{
+  "batch_id": "V77_SIGNAL_TM_BOUNDARY_PANEL_300",
+  "blocked_prediction_inputs": [
+    "PDB/mmCIF coordinates before sealing",
+    "native membrane topology before sealing",
+    "native signal peptide cleavage annotations as holdout labels before sealing",
+    "native contacts and distance maps before sealing",
+    "internal runtime artifacts as biological evidence"
+  ],
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E71",
+  "folding_problem_solved": false,
+  "kind": "V77_SIGNAL_TM_SOURCE_MANIFEST_v0",
+  "panel_group": "MEMBRANE_SENTINEL",
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence for the RCSB polymer entity.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V77_RAW_SEQUENCE_26cfa10b477c",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1SVX/2",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "V77 allowed non-coordinate context marks: membrane_context_strong transmembrane_context topology_evidence true_transmembrane_span_context true transmembrane span membrane_insertion_routing.",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [
+        "membrane_context_strong",
+        "transmembrane_context",
+        "topology_evidence",
+        "true_transmembrane_span_context",
+        "true transmembrane span",
+        "membrane_insertion_routing"
+      ],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V77_E71_CONTEXT_26cfa10b477c",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/1SVX",
+      "spatial_proxy": false
+    }
+  ],
+  "target_id": "V77_163_MEMBRANE_SENTINEL_1SVX_2"
+}

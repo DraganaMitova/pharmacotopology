@@ -38,6 +38,7 @@ MECHANISM_CLASSES = [
     "beta_closure_topology",
     "multidomain_allosteric_architecture",
     "secretory_disulfide_redox_topology",
+    "signal_peptide_vs_true_tm_routing",
     "membrane_multidomain_folding_proteostasis",
     "metamorphic_fold_switching",
     "short_region_host_interface_hijacking",
@@ -58,6 +59,7 @@ PROCESS_CLASSES = [
     "beta_closure",
     "multidomain_allostery",
     "secretory_redox_topology",
+    "signal_peptide_tm_boundary",
     "fold_upon_binding",
 ]
 
@@ -89,6 +91,10 @@ UNIVERSAL_OPERATORS = [
     "host_hijack_operator",
     "disulfide_pairing_operator",
     "secretory_redox_operator",
+    "signal_peptide_routing_operator",
+    "tm_insertion_operator",
+    "cleavage_context_operator",
+    "secretory_routing_operator",
 ]
 
 STATE_VARIABLES = [
@@ -154,6 +160,15 @@ STATE_VARIABLES = [
     "redox_mispaired_frustration",
     "signal_peptide_removed_context",
     "secretory_quality_control",
+    "signal_peptide_routing_context",
+    "cleavage_site_context",
+    "n_terminal_secretory_hydrophobic_patch",
+    "true_transmembrane_span_context",
+    "single_pass_tm_conflict",
+    "multi_pass_tm_conflict",
+    "secretory_lumenal_routing",
+    "membrane_insertion_routing",
+    "signal_anchor_ambiguity",
 ]
 
 ENVIRONMENTAL_PRESSURES = [
@@ -344,6 +359,56 @@ SIGNAL_PEPTIDE_ONLY_CONTEXT_TOKENS = [
     "signal sequence without cysteine pairing",
 ]
 
+SIGNAL_PEPTIDE_ROUTING_CONTEXT_TOKENS = [
+    "signal_peptide_vs_true_TM",
+    "signal_peptide_vs_true_tm",
+    "signal peptide vs true tm",
+    "signal peptide",
+    "signal-peptide",
+    "signal sequence",
+    "cleaved signal peptide",
+    "cleavable signal peptide",
+    "secretory signal peptide",
+    "n-terminal signal peptide",
+    "n terminal signal peptide",
+    "signal_peptide_routing_context",
+    "signal peptide routing context",
+    "cleavage_site_context",
+    "cleavage site",
+    "signal peptidase",
+    "secretory_lumenal_routing",
+    "secretory lumenal routing",
+    "lumenal routing",
+    "er lumen",
+    "export signal",
+    "sec signal",
+]
+
+TRUE_TM_ROUTING_CONTEXT_TOKENS = [
+    "true_transmembrane_span_context",
+    "true transmembrane span context",
+    "true transmembrane",
+    "transmembrane span",
+    "tm span",
+    "transmembrane helix",
+    "tm helix",
+    "multi-pass transmembrane",
+    "multipass transmembrane",
+    "multi pass transmembrane",
+    "integral membrane",
+    "membrane_insertion_routing",
+    "membrane insertion routing",
+]
+
+SIGNAL_ANCHOR_AMBIGUITY_TOKENS = [
+    "signal_anchor_ambiguity",
+    "signal anchor ambiguity",
+    "signal anchor",
+    "signal-anchor",
+    "uncleaved signal anchor",
+    "uncleaved signal-anchor",
+]
+
 CYS_HIS_METAL_COORDINATION_TOKENS = [
     "cys-his coordination",
     "cys his coordination",
@@ -366,6 +431,18 @@ SECRETORY_DISULFIDE_STATE_VARIABLES = [
     "redox_mispaired_frustration",
     "signal_peptide_removed_context",
     "secretory_quality_control",
+]
+
+SIGNAL_PEPTIDE_ROUTING_STATE_VARIABLES = [
+    "signal_peptide_routing_context",
+    "cleavage_site_context",
+    "n_terminal_secretory_hydrophobic_patch",
+    "true_transmembrane_span_context",
+    "single_pass_tm_conflict",
+    "multi_pass_tm_conflict",
+    "secretory_lumenal_routing",
+    "membrane_insertion_routing",
+    "signal_anchor_ambiguity",
 ]
 
 SELF_DECISION_CANDIDATE_GRAMMARS = {
@@ -411,17 +488,6 @@ SELF_DECISION_CANDIDATE_GRAMMARS = {
         ],
         "sequence_signal": "repeat_signature",
         "competes_with": ["beta_closure_topology", "globular_closure", "multidomain_allosteric_architecture"],
-    },
-    "signal_peptide_vs_true_TM": {
-        "grammar_status": "candidate_missing_word",
-        "evidence_tokens": [
-            "signal_peptide_vs_true_TM",
-            "signal peptide",
-            "signal-peptide",
-            "signal sequence",
-        ],
-        "sequence_signal": "n_terminal_hydrophobic_signal",
-        "competes_with": ["membrane_multidomain_folding_proteostasis", "globular_closure"],
     },
     "knotted_topology": {
         "grammar_status": "candidate_missing_word",
@@ -545,6 +611,9 @@ SELF_DECISION_LEARNED_GRAMMAR_FAMILIES = {
     "beta_closure_topology": BETA_CLOSURE_CONTEXT_TOKENS,
     "multidomain_allosteric_architecture": MULTIDOMAIN_ALLOSTERIC_CONTEXT_TOKENS,
     "secretory_disulfide_redox_topology": SECRETORY_DISULFIDE_CONTEXT_TOKENS,
+    "signal_peptide_vs_true_tm_routing": SIGNAL_PEPTIDE_ROUTING_CONTEXT_TOKENS
+    + TRUE_TM_ROUTING_CONTEXT_TOKENS
+    + SIGNAL_ANCHOR_AMBIGUITY_TOKENS,
     "membrane_multidomain_folding_proteostasis": STRONG_MEMBRANE_CONTEXT_TOKENS
     + ["cftr", "f508", "proteostasis", "trafficking", "transmembrane", "membrane"],
     "metamorphic_fold_switching": [
@@ -723,6 +792,30 @@ GRAMMAR_RULES: dict[str, dict[str, Any]] = {
         "null_control": "signal peptide text, odd cysteine noise, true TM topology, or Cys-His metal coordination cannot validate disulfide grammar",
         "falsification_rule": "matched controls beat the real target, or metal/TM/beta/repeat grammar explains the evidence better",
     },
+    "signal_peptide_vs_true_tm_routing": {
+        "marks": [
+            "signal_peptide_routing_context",
+            "cleavage_site_context",
+            "n_terminal_secretory_hydrophobic_patch",
+            "true_transmembrane_span_context",
+            "secretory_lumenal_routing",
+            "membrane_insertion_routing",
+            "signal_anchor_ambiguity",
+        ],
+        "pressures": ["secretory_translocon", "membrane_insertion", "cleavage_context"],
+        "operators": [
+            "signal_peptide_routing_operator",
+            "tm_insertion_operator",
+            "cleavage_context_operator",
+            "secretory_routing_operator",
+            "membrane_pressure_operator",
+            "frustration_operator",
+        ],
+        "state_change": "generic N-terminal hydrophobic signal to cleavable secretory route while separating true TM and signal-anchor ambiguity",
+        "testable_effect": "N-terminal masking or cleavage-context masking weakens secretory routing more than true-TM decoys",
+        "null_control": "multi-pass TM, signal-anchor ambiguity, secretory disulfide, coiled/repeat/knotted candidates, and membrane sentinels cannot validate signal-peptide grammar",
+        "falsification_rule": "matched controls beat the real signal, true-TM insertion dominates, or wrong grammar explains the boundary better",
+    },
     "assembly_required_folding": {
         "marks": [
             "assembly_required_core",
@@ -817,13 +910,65 @@ def _repeat_signature(sequence: str, kmer_size: int = 4) -> float:
     return round(repeated_positions / len(kmers), 6) if kmers else 0.0
 
 
+def _longest_run_fraction(sequence: str, alphabet: frozenset[str]) -> float:
+    longest = 0
+    current = 0
+    for residue in sequence:
+        if residue in alphabet:
+            current += 1
+            longest = max(longest, current)
+        else:
+            current = 0
+    return round(longest / max(1, len(sequence)), 6)
+
+
+def _spread_n_terminal_hydrophobes_for_control(sequence: str, window_size: int = 35) -> str:
+    window = sequence[:window_size]
+    rest = sequence[window_size:]
+    hydrophobic = [aa for aa in window if aa in HYDROPHOBIC]
+    other = [aa for aa in window if aa not in HYDROPHOBIC]
+    slots: list[str | None] = [None] * len(window)
+    positions = list(range(0, len(window), 2)) + list(range(1, len(window), 2))
+    for position, residue in zip(positions, hydrophobic):
+        slots[position] = residue
+    other_iter = iter(other)
+    for index, residue in enumerate(slots):
+        if residue is None:
+            slots[index] = next(other_iter)
+    return "".join(str(residue) for residue in slots) + rest
+
+
+def _mask_n_terminal_hydrophobes_for_control(sequence: str, window_size: int = 35) -> str:
+    window = sequence[:window_size]
+    rest = sequence[window_size:]
+    return "".join("S" if aa in HYDROPHOBIC else aa for aa in window) + rest
+
+
 def _n_terminal_hydrophobic_signal(sequence: str) -> float:
     window = sequence[: min(len(sequence), 35)]
     if not window:
         return 0.0
     hydrophobic = sum(1 for residue in window if residue in HYDROPHOBIC) / len(window)
     positive = sum(1 for residue in window[:8] if residue in POSITIVE) / max(1, len(window[:8]))
-    return bounded(_avg([hydrophobic, positive]))
+    hydrophobic_core_run = _longest_run_fraction(window, HYDROPHOBIC)
+    cleavage_tail = window[min(len(window), 18) :]
+    cleavage_tail_small_or_polar = (
+        sum(1 for residue in cleavage_tail if residue in POLAR or residue in {"A", "G", "S"}) / len(cleavage_tail)
+        if cleavage_tail
+        else 0.0
+    )
+    return bounded(_avg([hydrophobic, positive, hydrophobic_core_run, cleavage_tail_small_or_polar]))
+
+
+def _sequence_from_field(sequence_field: dict[str, Any]) -> str:
+    return "".join(row["residue_identity"] for row in sequence_field["residues"])
+
+
+def _n_terminal_signal_beats_counterfactuals(sequence: str) -> bool:
+    real = _n_terminal_hydrophobic_signal(sequence)
+    shuffled = _n_terminal_hydrophobic_signal(_spread_n_terminal_hydrophobes_for_control(sequence))
+    masked = _n_terminal_hydrophobic_signal(_mask_n_terminal_hydrophobes_for_control(sequence))
+    return real > shuffled and real > masked
 
 
 def _cysteine_topology_label(sequence_field: dict[str, Any]) -> str:
@@ -841,6 +986,28 @@ def _cysteine_topology_label(sequence_field: dict[str, Any]) -> str:
 
 def _has_paired_cysteine_topology(sequence_field: dict[str, Any]) -> bool:
     return "visible" in _cysteine_topology_label(sequence_field)
+
+
+def _signal_peptide_routing_label(sequence_field: dict[str, Any]) -> str:
+    metrics = sequence_field["global_metrics"]
+    segments = sequence_field["segments"]
+    sequence = _sequence_from_field(sequence_field)
+    n_terminal = float(metrics.get("n_terminal_hydrophobic_signal", 0.0))
+    internal_membrane = max((row["membrane_density"] for row in segments[2:]), default=0.0)
+    first_membrane = max((row["membrane_density"] for row in segments[:2]), default=0.0)
+    if n_terminal <= 0.0 and first_membrane <= 0.0:
+        return "n_terminal_signal_absent"
+    if internal_membrane > max(n_terminal, first_membrane):
+        return "internal_true_tm_signal_dominates"
+    if not _n_terminal_signal_beats_counterfactuals(sequence):
+        return "n_terminal_signal_counterfactual_not_dominant"
+    if n_terminal >= internal_membrane or first_membrane >= internal_membrane:
+        return "n_terminal_signal_over_internal_tm_visible"
+    return "signal_tm_boundary_unresolved"
+
+
+def _has_signal_peptide_routing_topology(sequence_field: dict[str, Any]) -> bool:
+    return "visible" in _signal_peptide_routing_label(sequence_field)
 
 
 def _residue_mark(sequence: str, index0: int) -> dict[str, Any]:
@@ -1243,6 +1410,8 @@ def _sequence_signal_label(grammar: str, sequence_field: dict[str, Any]) -> str:
         if cysteine_count >= 2:
             return _cysteine_topology_label(sequence_field)
         return "secretory_evidence_without_cysteine_pair_sequence_support"
+    if grammar == "signal_peptide_vs_true_tm_routing":
+        return _signal_peptide_routing_label(sequence_field)
     if grammar == "signal_peptide_vs_true_TM":
         if metrics.get("n_terminal_hydrophobic_signal", 0.0) >= local_membrane:
             return "n_terminal_hydrophobic_signal_visible"
@@ -1297,6 +1466,12 @@ def _trajectory_supports_grammar(grammar: str, trajectory: dict[str, Any]) -> li
             "disulfide_pairing_topology",
             "cysteine_pairing_constraint",
             "extracellular_stabilized_fold",
+        ],
+        "signal_peptide_vs_true_tm_routing": [
+            "signal_peptide_routing_context",
+            "cleavage_site_context",
+            "n_terminal_secretory_hydrophobic_patch",
+            "secretory_lumenal_routing",
         ],
         "membrane_multidomain_folding_proteostasis": ["proteostasis_routing"],
         "metamorphic_fold_switching": ["state_basin_occupancy"],
@@ -1573,6 +1748,21 @@ def _mechanism_state_signature(mechanism_class: str, trajectory: dict[str, Any])
         if float(final.get("disulfide_pairing_topology", 0.0)) >= float(final.get("redox_mispaired_frustration", 0.0)):
             return "secretory_disulfide_pairing_topology"
         return "redox_mispaired_frustration"
+    if mechanism_class == "signal_peptide_vs_true_tm_routing":
+        signal = max(
+            float(final.get("signal_peptide_routing_context", 0.0)),
+            float(final.get("secretory_lumenal_routing", 0.0)),
+            float(final.get("cleavage_site_context", 0.0)),
+        )
+        membrane = float(final.get("membrane_insertion_routing", 0.0))
+        anchor = float(final.get("signal_anchor_ambiguity", 0.0))
+        if anchor >= signal and anchor >= membrane:
+            return "signal_anchor_ambiguity"
+        if membrane >= signal:
+            return "true_tm_membrane_insertion_route"
+        if signal > 0.0:
+            return "cleavable_signal_peptide_secretory_route"
+        return "signal_peptide_route_unresolved"
     if mechanism_class == "membrane_multidomain_folding_proteostasis":
         return "membrane_proteostasis_route" if float(final.get("proteostasis_routing", 0.0)) > 0.0 else "membrane_route_unresolved"
     if mechanism_class == "metal_cluster_and_ligand_locked_basin":
@@ -1653,12 +1843,21 @@ def _operator_basis_stability_probe(
             "removed_operator": operator["operator"],
             "removed_state_variable": operator["state_variable"],
         })
-    stable = all(row["selected_signature_preserved"] for row in permutation_rows)
+    permutation_stable = all(row["selected_signature_preserved"] for row in permutation_rows)
+    ablation_stable = all(row["selected_signature_preserved"] for row in ablation_rows)
+    if permutation_stable:
+        stability = "stable_under_endogenous_operator_basis_probe"
+    elif ablation_stable:
+        stability = "stable_under_semantic_operator_basis_probe"
+    else:
+        stability = "coefficient_assignment_sensitive"
     return {
-        "operator_basis_stability": "stable_under_endogenous_operator_basis_probe" if stable else "coefficient_assignment_sensitive",
+        "operator_basis_stability": stability,
         "coefficient_probe_mode": "endogenous_observed_operator_permutations_no_static_scale_range",
         "coefficient_scale_values_used": [],
         "baseline_signature": baseline_signature,
+        "coefficient_assignment_cross_semantic_role_sensitive": not permutation_stable,
+        "semantic_operator_ablation_stable": ablation_stable,
         "coefficient_permutation_rows": permutation_rows,
         "operator_ablation_rows": ablation_rows,
     }
@@ -1979,6 +2178,13 @@ def _internal_contradictions(
             contradictions.append("secretory_disulfide_call_without_secretory_redox_evidence")
         if float(final.get("disulfide_pairing_topology", 0.0)) <= float(final.get("redox_mispaired_frustration", 0.0)):
             contradictions.append("secretory_disulfide_call_with_mispaired_redox_dominance")
+    if selected == "signal_peptide_vs_true_tm_routing":
+        if not _token_hits(text, SIGNAL_PEPTIDE_ROUTING_CONTEXT_TOKENS):
+            contradictions.append("signal_peptide_routing_call_without_signal_context")
+        if float(final.get("membrane_insertion_routing", 0.0)) >= float(final.get("secretory_lumenal_routing", 0.0)):
+            contradictions.append("signal_peptide_routing_call_with_membrane_insertion_dominance")
+        if float(final.get("signal_anchor_ambiguity", 0.0)) >= float(final.get("signal_peptide_routing_context", 0.0)):
+            contradictions.append("signal_peptide_routing_call_with_signal_anchor_ambiguity_dominance")
     return contradictions
 
 
@@ -2033,6 +2239,10 @@ def select_mechanism_grammar(
         multidomain_context = multidomain_word is not None or _contains_any(text, MULTIDOMAIN_ALLOSTERIC_CONTEXT_TOKENS)
         secretory_disulfide_context = _contains_any(text, SECRETORY_DISULFIDE_CONTEXT_TOKENS)
         signal_peptide_only_context = _contains_any(text, SIGNAL_PEPTIDE_ONLY_CONTEXT_TOKENS)
+        signal_peptide_context = signal_peptide_only_context or _contains_any(text, SIGNAL_PEPTIDE_ROUTING_CONTEXT_TOKENS)
+        true_tm_routing_context = _contains_any(text, TRUE_TM_ROUTING_CONTEXT_TOKENS)
+        signal_anchor_context = _contains_any(text, SIGNAL_ANCHOR_AMBIGUITY_TOKENS)
+        signal_peptide_sequence_topology = _has_signal_peptide_routing_topology(sequence_field)
         paired_cysteine_topology = _has_paired_cysteine_topology(sequence_field)
         cysteine_pairing_conflict = _cysteine_topology_label(sequence_field) == "odd_cysteine_pairing_conflict"
         coiled_or_repeat_candidate_context = any(
@@ -2124,6 +2334,22 @@ def select_mechanism_grammar(
         elif beta_closure_context:
             natural = "beta_closure_topology"
             reason = "explicit_beta_closure_topology_context"
+        elif signal_peptide_context and signal_anchor_context:
+            natural = "insufficient_evidence_clean_abstain"
+            reason = "signal_anchor_ambiguity_requires_boundary_abstention"
+        elif signal_peptide_context and true_tm_routing_context and not signal_peptide_only_context:
+            natural = "insufficient_evidence_clean_abstain"
+            reason = "true_tm_context_competes_with_signal_peptide_routing"
+        elif (
+            signal_peptide_context
+            and (not secretory_disulfide_context or signal_peptide_only_context)
+            and signal_peptide_sequence_topology
+        ):
+            natural = "signal_peptide_vs_true_tm_routing"
+            reason = "cleavable_signal_peptide_routing_context_separated_from_true_tm"
+        elif signal_peptide_context and not secretory_disulfide_context:
+            natural = "insufficient_evidence_clean_abstain"
+            reason = "signal_peptide_text_without_n_terminal_routing_topology_requires_abstention"
         elif secretory_disulfide_context and coiled_or_repeat_candidate_context:
             natural = "insufficient_evidence_clean_abstain"
             reason = "coiled_coil_or_repeat_candidate_competes_with_secretory_disulfide_text"
@@ -2238,6 +2464,9 @@ def select_mechanism_grammar(
         "selected_secretory_disulfide_word": "disulfide_secretory_redox_context"
         if mechanism_class == "secretory_disulfide_redox_topology"
         else None,
+        "selected_signal_peptide_word": "signal_peptide_vs_true_TM"
+        if mechanism_class == "signal_peptide_vs_true_tm_routing"
+        else None,
         "forced_grammar": forced_grammar,
         "forced_grammar_rejected": forced_rejected,
         "selection_reason": "forced_wrong_grammar_rejected" if forced_rejected else reason,
@@ -2299,6 +2528,7 @@ def build_operator_field(
     interface_segments = _strong_segments(sequence_field, "interface_density")
     membrane_segments = _strong_segments(sequence_field, "membrane_density")
     cysteine_segments = _strong_segments(sequence_field, "cysteine_density")
+    n_terminal_segments = sequence_field["segments"][:2]
     if mechanism_class == "globular_closure":
         operators.append(_operator(
             "closure_operator",
@@ -2507,6 +2737,71 @@ def build_operator_field(
                 "disulfide reduction lowers closure more than matched controls",
                 "ordinary globular closure explains the target without disulfide/redox state",
                 "extracellular_stabilized_fold",
+            ),
+        ])
+    elif mechanism_class == "signal_peptide_vs_true_tm_routing":
+        n_terminal_span = ", ".join(_span_from_segment(row) for row in n_terminal_segments)
+        membrane_span = ", ".join(_span_from_segment(row) for row in membrane_segments)
+        operators.extend([
+            _operator(
+                "signal_peptide_routing_operator",
+                n_terminal_span,
+                metrics["n_terminal_hydrophobic_signal"] + 0.34,
+                evidence,
+                "cleavable N-terminal signal peptide routes to secretory entry",
+                "N-terminal hydrophobic masking weakens signal-peptide routing",
+                "internal true TM span explains the hydrophobic signal better",
+                "signal_peptide_routing_context",
+            ),
+            _operator(
+                "cleavage_context_operator",
+                n_terminal_span,
+                metrics["n_terminal_hydrophobic_signal"] + metrics["net_charge_per_residue"] * 0.08 + 0.24,
+                evidence,
+                "cleavage-site context separates signal peptide from signal anchor",
+                "cleavage-context masking weakens lumenal routing",
+                "uncleaved signal-anchor decoy explains the route",
+                "cleavage_site_context",
+            ),
+            _operator(
+                "secretory_routing_operator",
+                n_terminal_span,
+                metrics["n_terminal_hydrophobic_signal"] + metrics["mean_interface"] + 0.20,
+                evidence,
+                "secretory lumenal routing follows cleavable signal context",
+                "signal peptide perturbation lowers secretory lumenal route",
+                "membrane insertion route dominates instead",
+                "secretory_lumenal_routing",
+            ),
+            _operator(
+                "tm_insertion_operator",
+                membrane_span,
+                metrics["mean_membrane"] + 0.18,
+                evidence,
+                "true TM insertion remains a competing boundary readout",
+                "TM decoy context must not validate signal-peptide routing",
+                "signal peptide grammar steals multi-pass membrane topology",
+                "true_transmembrane_span_context",
+            ),
+            _operator(
+                "membrane_pressure_operator",
+                membrane_span,
+                metrics["mean_membrane"] + metrics["n_terminal_hydrophobic_signal"] * 0.12,
+                evidence,
+                "membrane pressure is reported separately from cleaved secretory routing",
+                "membrane pressure increase shifts toward insertion/anchor ambiguity",
+                "membrane pressure has no boundary effect",
+                "membrane_insertion_routing",
+            ),
+            _operator(
+                "frustration_operator",
+                n_terminal_span,
+                metrics["mean_membrane"] + metrics["n_terminal_hydrophobic_signal"] * 0.18,
+                evidence,
+                "signal-anchor ambiguity is exposed instead of accepted",
+                "signal-anchor decoy raises boundary ambiguity",
+                "signal anchor and cleaved signal peptide are indistinguishable",
+                "signal_anchor_ambiguity",
             ),
         ])
     elif mechanism_class == "membrane_multidomain_folding_proteostasis":
@@ -2991,6 +3286,84 @@ def simulate_operator_trajectory(
             contact_probability = bounded(0.12 + pairing * 0.36 + extracellular * 0.22)
             interface_readiness = bounded(0.14 + pairing * 0.22 + redox_context * 0.18)
             proteostasis_routing = quality
+        elif mechanism_class == "signal_peptide_vs_true_tm_routing":
+            n_terminal_mask = float((perturbation or {}).get("n_terminal_mask", 0.0))
+            cleavage_loss = float((perturbation or {}).get("cleavage_loss", 0.0))
+            true_tm_decoy = float((perturbation or {}).get("true_tm_decoy", 0.0))
+            signal_anchor_decoy = float((perturbation or {}).get("signal_anchor_decoy", 0.0))
+            signal_route = strengths["signal_peptide_routing_operator"]
+            cleavage = strengths["cleavage_context_operator"]
+            secretory_route = strengths["secretory_routing_operator"]
+            tm_insert = strengths["tm_insertion_operator"]
+            n_patch = bounded(
+                0.10
+                + metrics["n_terminal_hydrophobic_signal"] * 0.42
+                + signal_route * 0.24
+                - 0.52 * n_terminal_mask
+            )
+            cleavage_state = bounded(
+                0.12
+                + cleavage * 0.42 * progress
+                + signal_route * 0.14
+                - 0.52 * cleavage_loss
+                - 0.20 * signal_anchor_decoy
+            )
+            signal_context = bounded(
+                0.14
+                + signal_route * 0.40 * progress
+                + cleavage_state * 0.22
+                + secretory_route * 0.14
+                - 0.38 * n_terminal_mask
+                - 0.18 * true_tm_decoy
+                - 0.20 * signal_anchor_decoy
+            )
+            tm_context = bounded(
+                0.10
+                + tm_insert * 0.34 * progress
+                + membrane * 0.24
+                + 0.34 * true_tm_decoy
+                + 0.16 * signal_anchor_decoy
+                - 0.20 * signal_context
+            )
+            secretory_lumenal = bounded(
+                0.10
+                + signal_context * 0.38
+                + cleavage_state * 0.30
+                + secretory_route * 0.18 * progress
+                - 0.24 * true_tm_decoy
+                - 0.22 * signal_anchor_decoy
+            )
+            membrane_insert = bounded(
+                0.08
+                + tm_context * 0.36
+                + membrane * 0.22
+                + 0.20 * true_tm_decoy
+                + 0.18 * signal_anchor_decoy
+                - 0.16 * secretory_lumenal
+            )
+            single_conflict = bounded(0.06 + max(0.0, tm_context - signal_context) * 0.44 + 0.22 * signal_anchor_decoy)
+            multi_conflict = bounded(0.04 + true_tm_decoy * 0.38 + membrane * 0.22 - signal_context * 0.12)
+            anchor_ambiguity = bounded(
+                0.06
+                + min(signal_context, tm_context) * 0.30
+                + 0.46 * signal_anchor_decoy
+                + frustration_strength * 0.12
+            )
+            basin = {
+                "signal_peptide_routing_context": signal_context,
+                "cleavage_site_context": cleavage_state,
+                "n_terminal_secretory_hydrophobic_patch": n_patch,
+                "true_transmembrane_span_context": tm_context,
+                "single_pass_tm_conflict": single_conflict,
+                "multi_pass_tm_conflict": multi_conflict,
+                "secretory_lumenal_routing": secretory_lumenal,
+                "membrane_insertion_routing": membrane_insert,
+                "signal_anchor_ambiguity": anchor_ambiguity,
+            }
+            segment_compaction = bounded(0.12 + secretory_lumenal * 0.20 + membrane_insert * 0.12 + closure * 0.08 * progress + noise)
+            contact_probability = bounded(0.10 + signal_context * 0.24 + secretory_lumenal * 0.22 + membrane_insert * 0.10)
+            interface_readiness = bounded(0.10 + secretory_lumenal * 0.24 + signal_context * 0.18)
+            proteostasis_routing = bounded(0.10 + secretory_lumenal * 0.32 + membrane_insert * 0.10)
         elif mechanism_class == "membrane_multidomain_folding_proteostasis":
             damage = float((perturbation or {}).get("damage", 0.0))
             rescue = float((perturbation or {}).get("rescue", 0.0))
@@ -3363,6 +3736,51 @@ def simulate_operator_trajectory(
                 if mechanism_class == "secretory_disulfide_redox_topology"
                 else 0.0
             ),
+            "signal_peptide_routing_context": bounded(
+                basin.get("signal_peptide_routing_context", 0.0)
+                if mechanism_class == "signal_peptide_vs_true_tm_routing"
+                else 0.0
+            ),
+            "cleavage_site_context": bounded(
+                basin.get("cleavage_site_context", 0.0)
+                if mechanism_class == "signal_peptide_vs_true_tm_routing"
+                else 0.0
+            ),
+            "n_terminal_secretory_hydrophobic_patch": bounded(
+                basin.get("n_terminal_secretory_hydrophobic_patch", 0.0)
+                if mechanism_class == "signal_peptide_vs_true_tm_routing"
+                else 0.0
+            ),
+            "true_transmembrane_span_context": bounded(
+                basin.get("true_transmembrane_span_context", 0.0)
+                if mechanism_class == "signal_peptide_vs_true_tm_routing"
+                else 0.0
+            ),
+            "single_pass_tm_conflict": bounded(
+                basin.get("single_pass_tm_conflict", 0.0)
+                if mechanism_class == "signal_peptide_vs_true_tm_routing"
+                else 0.0
+            ),
+            "multi_pass_tm_conflict": bounded(
+                basin.get("multi_pass_tm_conflict", 0.0)
+                if mechanism_class == "signal_peptide_vs_true_tm_routing"
+                else 0.0
+            ),
+            "secretory_lumenal_routing": bounded(
+                basin.get("secretory_lumenal_routing", 0.0)
+                if mechanism_class == "signal_peptide_vs_true_tm_routing"
+                else 0.0
+            ),
+            "membrane_insertion_routing": bounded(
+                basin.get("membrane_insertion_routing", 0.0)
+                if mechanism_class == "signal_peptide_vs_true_tm_routing"
+                else 0.0
+            ),
+            "signal_anchor_ambiguity": bounded(
+                basin.get("signal_anchor_ambiguity", 0.0)
+                if mechanism_class == "signal_peptide_vs_true_tm_routing"
+                else 0.0
+            ),
         })
     final = timepoints[-1]
     return {
@@ -3458,6 +3876,28 @@ def contact_probability_map(sequence_field: dict[str, Any], operator_field: dict
                     + _operator_strength(operator_field, "secretory_redox_operator") * 0.12
                 ),
                 "interaction_type": "secretory_disulfide_pairing_contact",
+            })
+    elif mechanism_class == "signal_peptide_vs_true_tm_routing":
+        n_terminal = segments[0]
+        membrane_top = _strong_segments(sequence_field, "membrane_density", limit=2)
+        pairs.append({
+            "segment_a": n_terminal["segment_id"],
+            "segment_b": "signal_peptidase_translocon_route",
+            "probability": bounded(
+                0.18
+                + _operator_strength(operator_field, "signal_peptide_routing_operator") * 0.26
+                + _operator_strength(operator_field, "cleavage_context_operator") * 0.14
+            ),
+            "interaction_type": "signal_peptide_secretory_routing_contact",
+        })
+        for segment in membrane_top:
+            if segment["segment_id"] == n_terminal["segment_id"]:
+                continue
+            pairs.append({
+                "segment_a": n_terminal["segment_id"],
+                "segment_b": segment["segment_id"],
+                "probability": bounded(0.14 + _operator_strength(operator_field, "tm_insertion_operator") * 0.18),
+                "interaction_type": "signal_peptide_true_tm_boundary_probe",
             })
     elif mechanism_class == "short_region_host_interface_hijacking":
         cterm = segments[-1]
@@ -3585,9 +4025,9 @@ def _extract_metric(final_state: dict[str, Any], metric: str) -> float:
 
 
 def _direction(delta: float) -> str:
-    if delta >= 0.04:
+    if delta > 0.0:
         return "increase"
-    if delta <= -0.04:
+    if delta < 0.0:
         return "decrease"
     return "unchanged"
 
@@ -3656,6 +4096,7 @@ def _legacy_acceptance_from_self_decision(judge: dict[str, Any]) -> dict[str, An
         "known_multidomain_word": judge.get("known_multidomain_word"),
         "known_beta_topology_word": judge.get("known_beta_topology_word"),
         "known_secretory_disulfide_word": judge.get("known_secretory_disulfide_word"),
+        "known_signal_peptide_word": judge.get("known_signal_peptide_word"),
         "operator_activation": judge.get("operator_activation", 0.0),
         "coordinate_truth_used_before_prediction": judge["coordinate_truth_used_before_prediction"],
         "folding_problem_solved": False,
@@ -3834,6 +4275,7 @@ def self_decision_judge(
         "known_multidomain_word": mechanism.get("selected_multidomain_word"),
         "known_beta_topology_word": mechanism.get("selected_beta_topology_word"),
         "known_secretory_disulfide_word": mechanism.get("selected_secretory_disulfide_word"),
+        "known_signal_peptide_word": mechanism.get("selected_signal_peptide_word"),
         "operator_activation": operator_activation,
         "coordinate_truth_used_before_prediction": evidence_manifest["coordinate_truth_used_before_prediction"],
         "folding_problem_solved": False,
@@ -3918,6 +4360,26 @@ def make_openmm_bridge_spec() -> dict[str, Any]:
             "operator": "secretory_redox_operator",
             "custom_force_term": "secretory redox-state observable bias outside atomistic chemistry",
             "guard": "redox state is reported as a coarse proxy, not a quantum or force-field disulfide formation claim",
+        },
+        {
+            "operator": "signal_peptide_routing_operator",
+            "custom_force_term": "coarse N-terminal secretory-routing bias for cleavable signal peptide grammar",
+            "guard": "does not encode a native membrane path; compares signal-routing observables against matched TM decoys",
+        },
+        {
+            "operator": "tm_insertion_operator",
+            "custom_force_term": "coarse competing membrane-insertion observable for signal/TM boundary checks",
+            "guard": "true TM insertion remains a falsifier for signal-peptide acceptance, not a hidden label",
+        },
+        {
+            "operator": "cleavage_context_operator",
+            "custom_force_term": "coarse cleavage-context observable for signal peptidase routing",
+            "guard": "cleavage context must come from sealed non-coordinate evidence and matched controls",
+        },
+        {
+            "operator": "secretory_routing_operator",
+            "custom_force_term": "coarse secretory-lumenal routing observable",
+            "guard": "secretory route is a language observable unless independent physical holdouts earn a physical claim",
         },
     ]
     return {
@@ -4067,6 +4529,30 @@ def sequence_operator_coherence(packet: dict[str, Any]) -> float:
             + 0.26 * field["mean_interface"]
             + 0.26 * local_interface
             + 0.12 * max(local_hydrophobic, local_aromatic)
+            + activation
+        )
+    elif mechanism == "secretory_disulfide_redox_topology":
+        local_cysteine = max((row["cysteine_density"] for row in segments), default=0.0)
+        local_interface = max((row["interface_density"] for row in segments), default=0.0)
+        support = (
+            0.28 * field["cysteine_density"]
+            + 0.22 * field["n_terminal_hydrophobic_signal"]
+            + 0.22 * local_cysteine
+            + 0.12 * local_interface
+            + activation
+        )
+    elif mechanism == "signal_peptide_vs_true_tm_routing":
+        n_terminal_segments = segments[:2]
+        internal_segments = segments[2:]
+        n_terminal_membrane = max((row["membrane_density"] for row in n_terminal_segments), default=0.0)
+        internal_membrane = max((row["membrane_density"] for row in internal_segments), default=0.0)
+        n_terminal_interface = max((row["interface_density"] for row in n_terminal_segments), default=0.0)
+        route_separation = max(0.0, max(field["n_terminal_hydrophobic_signal"], n_terminal_membrane) - internal_membrane)
+        support = (
+            0.30 * field["n_terminal_hydrophobic_signal"]
+            + 0.22 * n_terminal_membrane
+            + 0.18 * route_separation
+            + 0.10 * n_terminal_interface
             + activation
         )
     elif mechanism == "membrane_multidomain_folding_proteostasis":

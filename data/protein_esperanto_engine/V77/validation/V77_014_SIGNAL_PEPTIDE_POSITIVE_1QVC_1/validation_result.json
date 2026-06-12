@@ -1,0 +1,106 @@
+{
+  "acceptance_decision": "accepted",
+  "accepted_supported": true,
+  "clean_abstain_supported": false,
+  "coordinate_truth_used_before_seal": false,
+  "cross_view_binding": "evidence_family_sequence_signature_operator_readout_trajectory_readout_bound",
+  "dominance_law": "single_dominant_learned_mechanism_bound_across_views",
+  "expected_mechanism_class": "signal_peptide_vs_true_tm_routing",
+  "final_self_decision": "accepted",
+  "folding_problem_solved": false,
+  "kind": "V77_SIGNAL_TM_VALIDATION_RESULT_v0",
+  "known_signal_peptide_word": "signal_peptide_vs_true_TM",
+  "matched_control_dominance": {
+    "control_packet_hashes": {
+      "metadata_masked": "7e3216b606e4800e4fb4e0e19c148f64e6fbce2011367f8aeb3d1f1151e6cc42",
+      "n_terminal_hydrophobic_masked": "b7995c9fdfef493b81cbb1ce219255a7f1b0fcd49982db9ef4e729834a796192",
+      "n_terminal_shuffled": "e73a7a44c202c33d00bbeedf66f8722e35e88ba8ff6e33640e55948f69570382",
+      "signal_anchor_decoy": "8a2bc8302bd9cb64e613e494a3b9088facb31f565ec7c7c7c7649f3ac3af04a7",
+      "true_tm_decoy": "0a7e8e85d11e4c79963fdd23e116ab460683f06e3b923c5172dcae448674a45c"
+    },
+    "control_rows": [
+      {
+        "control": "real_sequence_beats_n_terminal_shuffled_control",
+        "control_value": 0.0,
+        "metric": "signal_peptide_routing_context",
+        "passed": true,
+        "real_value": 0.60646
+      },
+      {
+        "control": "real_sequence_beats_n_terminal_hydrophobic_masked_control",
+        "control_value": 0.0,
+        "metric": "signal_peptide_routing_context",
+        "passed": true,
+        "real_value": 0.60646
+      },
+      {
+        "control": "real_metadata_beats_metadata_masked_source",
+        "control_value": 0.0,
+        "metric": "signal_peptide_routing_context",
+        "passed": true,
+        "real_value": 0.60646
+      },
+      {
+        "control": "real_signal_beats_true_tm_decoy",
+        "control_value": 0.0,
+        "metric": "signal_peptide_routing_context",
+        "passed": true,
+        "real_value": 0.60646
+      },
+      {
+        "control": "real_signal_beats_signal_anchor_decoy",
+        "control_value": 0.0,
+        "metric": "signal_peptide_routing_context",
+        "passed": true,
+        "real_value": 0.60646
+      },
+      {
+        "control": "signal_peptide_perturbation_changes_route_more_than_true_tm_control",
+        "control_value": 0.18,
+        "metric": "signal_peptide_routing_context",
+        "passed": true,
+        "real_value": 0.478995
+      },
+      {
+        "control": "true_tm_control_does_not_collapse_into_signal_peptide",
+        "control_value": "signal_peptide_vs_true_tm_routing",
+        "metric": "mechanism_class",
+        "passed": true,
+        "real_value": "membrane_multidomain_folding_proteostasis"
+      },
+      {
+        "control": "signal_anchor_decoy_abstains",
+        "control_value": "accepted",
+        "metric": "acceptance_decision",
+        "passed": true,
+        "real_value": "abstain_recommended"
+      },
+      {
+        "control": "wrong_grammar_challenge_fails",
+        "control_value": "wrong_grammar_competes",
+        "metric": "wrong_grammar_separation",
+        "passed": true,
+        "real_value": "wrong_grammars_fail"
+      }
+    ],
+    "kind": "V77_MATCHED_CONTROL_DOMINANCE_v0",
+    "matched_control_dominance_acceptance": true,
+    "matched_control_dominance_passed": true,
+    "metric": "signal_peptide_routing_context",
+    "uses_static_observable_thresholds": false
+  },
+  "matched_control_dominance_passed": true,
+  "missing_word_candidate": null,
+  "operator_basis_stability": "stable_under_semantic_operator_basis_probe",
+  "panel_group": "SIGNAL_PEPTIDE_POSITIVE",
+  "physical_basis_claim_allowed": false,
+  "physical_grounding_status": "real_physical_calibration_inputs_loaded_openmm_available_but_target_physical_execution_not_run",
+  "predicted_mechanism_class": "signal_peptide_vs_true_tm_routing",
+  "real_physical_calibration_inputs_used": true,
+  "required_esperanto_word": "signal_peptide_vs_true_TM",
+  "score_label": "supported",
+  "sealed_prediction_hash": "d980b343352262e26a5c15f394fe5ce406ff35e1537dded68dd70b8cbaa0320e",
+  "self_decision_reason": "self_decision_internal_views_agree",
+  "target_id": "V77_014_SIGNAL_PEPTIDE_POSITIVE_1QVC_1",
+  "temporal_binding": "selected_observables_temporally_coherent"
+}

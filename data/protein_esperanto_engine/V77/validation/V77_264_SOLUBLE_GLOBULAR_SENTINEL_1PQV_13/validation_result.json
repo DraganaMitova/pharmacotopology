@@ -1,0 +1,51 @@
+{
+  "acceptance_decision": "accepted",
+  "accepted_supported": true,
+  "clean_abstain_supported": false,
+  "coordinate_truth_used_before_seal": false,
+  "cross_view_binding": "evidence_family_sequence_signature_operator_readout_trajectory_readout_bound",
+  "dominance_law": "single_dominant_learned_mechanism_bound_across_views",
+  "expected_mechanism_class": "globular_closure",
+  "final_self_decision": "accepted",
+  "folding_problem_solved": false,
+  "kind": "V77_SIGNAL_TM_VALIDATION_RESULT_v0",
+  "known_signal_peptide_word": null,
+  "matched_control_dominance": {
+    "control_packet_hashes": {},
+    "control_rows": [
+      {
+        "control": "sentinel_expected_mechanism_preserved",
+        "control_value": "globular_closure",
+        "metric": "mechanism_class",
+        "passed": true,
+        "real_value": "globular_closure"
+      },
+      {
+        "control": "wrong_grammar_challenge_fails",
+        "control_value": "wrong_grammar_competes",
+        "metric": "wrong_grammar_separation",
+        "passed": true,
+        "real_value": "wrong_grammars_fail"
+      }
+    ],
+    "kind": "V77_MATCHED_CONTROL_DOMINANCE_v0",
+    "matched_control_dominance_acceptance": true,
+    "matched_control_dominance_passed": true,
+    "metric": "contact_probability",
+    "uses_static_observable_thresholds": false
+  },
+  "matched_control_dominance_passed": true,
+  "missing_word_candidate": null,
+  "operator_basis_stability": "stable_under_endogenous_operator_basis_probe",
+  "panel_group": "SOLUBLE_GLOBULAR_SENTINEL",
+  "physical_basis_claim_allowed": false,
+  "physical_grounding_status": "real_physical_calibration_inputs_loaded_openmm_available_but_target_physical_execution_not_run",
+  "predicted_mechanism_class": "globular_closure",
+  "real_physical_calibration_inputs_used": true,
+  "required_esperanto_word": null,
+  "score_label": "supported",
+  "sealed_prediction_hash": "124e82bf2c6b4d8d6e265cf46ecb5924aa90e02922cc8c0068f55572a3a90325",
+  "self_decision_reason": "self_decision_internal_views_agree",
+  "target_id": "V77_264_SOLUBLE_GLOBULAR_SENTINEL_1PQV_13",
+  "temporal_binding": "selected_observables_temporally_coherent"
+}

@@ -1,0 +1,46 @@
+{
+  "batch_id": "V77_SIGNAL_TM_BOUNDARY_PANEL_300",
+  "blocked_prediction_inputs": [
+    "PDB/mmCIF coordinates before sealing",
+    "native membrane topology before sealing",
+    "native signal peptide cleavage annotations as holdout labels before sealing",
+    "native contacts and distance maps before sealing",
+    "internal runtime artifacts as biological evidence"
+  ],
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E71",
+  "folding_problem_solved": false,
+  "kind": "V77_SIGNAL_TM_SOURCE_MANIFEST_v0",
+  "panel_group": "SIGNAL_PEPTIDE_POSITIVE",
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence for the RCSB polymer entity.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V77_RAW_SEQUENCE_00d08be79b9e",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1R4G/1",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "V77 allowed non-coordinate context marks: signal_peptide_vs_true_TM signal_peptide_routing_context cleavage_site_context secretory_lumenal_routing cleaved signal peptide n-terminal signal peptide.",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [
+        "signal_peptide_vs_true_TM",
+        "signal_peptide_routing_context",
+        "cleavage_site_context",
+        "secretory_lumenal_routing",
+        "cleaved signal peptide",
+        "n-terminal signal peptide"
+      ],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V77_E71_CONTEXT_00d08be79b9e",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/1R4G",
+      "spatial_proxy": false
+    }
+  ],
+  "target_id": "V77_016_SIGNAL_PEPTIDE_POSITIVE_1R4G_1"
+}

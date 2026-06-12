@@ -1,0 +1,44 @@
+{
+  "acceptance_decision": "abstain_recommended",
+  "accepted_supported": false,
+  "clean_abstain_supported": true,
+  "coordinate_truth_used_before_seal": false,
+  "cross_view_binding": "sequence_signature_operator_readout_trajectory_readout_bound",
+  "dominance_law": "candidate_missing_word_competes_with_learned_grammar",
+  "expected_mechanism_class": "insufficient_evidence_clean_abstain",
+  "final_self_decision": "clean_abstain_missing_word",
+  "folding_problem_solved": false,
+  "kind": "V77_SIGNAL_TM_VALIDATION_RESULT_v0",
+  "known_signal_peptide_word": null,
+  "matched_control_dominance": {
+    "control_packet_hashes": {},
+    "control_rows": [
+      {
+        "control": "wrong_grammar_challenge_fails",
+        "control_value": "wrong_grammar_competes",
+        "metric": "wrong_grammar_separation",
+        "passed": true,
+        "real_value": "wrong_grammars_fail"
+      }
+    ],
+    "kind": "V77_MATCHED_CONTROL_DOMINANCE_v0",
+    "matched_control_dominance_acceptance": true,
+    "matched_control_dominance_passed": true,
+    "metric": "operator_activation",
+    "uses_static_observable_thresholds": false
+  },
+  "matched_control_dominance_passed": true,
+  "missing_word_candidate": "repeat_solenoid_topology",
+  "operator_basis_stability": "stable_under_endogenous_operator_basis_probe",
+  "panel_group": "COILED_REPEAT_KNOTTED_MISSING_WORD_ABSTAIN_CONTROL",
+  "physical_basis_claim_allowed": false,
+  "physical_grounding_status": "real_physical_calibration_inputs_loaded_openmm_available_but_target_physical_execution_not_run",
+  "predicted_mechanism_class": "globular_closure",
+  "real_physical_calibration_inputs_used": true,
+  "required_esperanto_word": "repeat_solenoid_topology",
+  "score_label": "supported",
+  "sealed_prediction_hash": "fde499e45f06e63b705f8c963f026c72fe7bd7d4ed63a3f578a32120a9669b4e",
+  "self_decision_reason": "self_decision_candidate_word_competes_without_learned_grammar",
+  "target_id": "V77_229_COILED_REPEAT_KNOTTED_MISSING_WORD_ABSTAIN_CONTROL_1TRJ_3",
+  "temporal_binding": "selected_observables_temporally_coherent"
+}

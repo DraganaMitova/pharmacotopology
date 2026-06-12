@@ -1,0 +1,1265 @@
+{
+  "folding_problem_solved": false,
+  "kind": "V77_COMPACT_SEALED_PACKET_SUMMARY_v0",
+  "natural_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "operator_names": [
+    "membrane_pressure_operator",
+    "closure_operator",
+    "interface_operator",
+    "proteostasis_operator"
+  ],
+  "predicted_contact_interaction_probability_map": [
+    {
+      "interaction_type": "interdomain_membrane_interface",
+      "probability": 0.5472,
+      "segment_a": "S007",
+      "segment_b": "S008"
+    },
+    {
+      "interaction_type": "interdomain_membrane_interface",
+      "probability": 0.5472,
+      "segment_a": "S007",
+      "segment_b": "S009"
+    }
+  ],
+  "prediction_hash": "047b9e13fa74f6186c6b19b93ad934c95e709cf04602d1e6b5c0c94ebcfa3c3d",
+  "selected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "self_decision_judge": {
+    "acceptance_decision": "accepted",
+    "blocked_reasons": [],
+    "candidate_grammar_scope": [
+      {
+        "acceptance_role": "clean_abstain_until_revision_implements_grammar",
+        "grammar": "coiled_coil_register",
+        "grammar_status": "candidate_missing_word",
+        "sequence_signal": "heptad_hydrophobic_periodicity"
+      },
+      {
+        "acceptance_role": "clean_abstain_until_revision_implements_grammar",
+        "grammar": "repeat_solenoid_topology",
+        "grammar_status": "candidate_missing_word",
+        "sequence_signal": "repeat_signature"
+      },
+      {
+        "acceptance_role": "clean_abstain_until_revision_implements_grammar",
+        "grammar": "knotted_topology",
+        "grammar_status": "candidate_missing_word",
+        "sequence_signal": "topological_evidence_required"
+      }
+    ],
+    "coefficient_perturbation_probe": {
+      "baseline_signature": "membrane_proteostasis_route",
+      "coefficient_assignment_cross_semantic_role_sensitive": false,
+      "coefficient_permutation_rows": [
+        {
+          "baseline_signature": "membrane_proteostasis_route",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.382166,
+            0.7,
+            0.74,
+            0.78
+          ],
+          "perturbed_signature": "membrane_proteostasis_route",
+          "probe_id": "observed_operator_strength_permutation_01",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "membrane_proteostasis_route",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.382166,
+            0.7,
+            0.78,
+            0.74
+          ],
+          "perturbed_signature": "membrane_proteostasis_route",
+          "probe_id": "observed_operator_strength_permutation_02",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "membrane_proteostasis_route",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.382166,
+            0.74,
+            0.7,
+            0.78
+          ],
+          "perturbed_signature": "membrane_proteostasis_route",
+          "probe_id": "observed_operator_strength_permutation_03",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "membrane_proteostasis_route",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.382166,
+            0.74,
+            0.78,
+            0.7
+          ],
+          "perturbed_signature": "membrane_proteostasis_route",
+          "probe_id": "observed_operator_strength_permutation_04",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "membrane_proteostasis_route",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.382166,
+            0.78,
+            0.7,
+            0.74
+          ],
+          "perturbed_signature": "membrane_proteostasis_route",
+          "probe_id": "observed_operator_strength_permutation_05",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "membrane_proteostasis_route",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.382166,
+            0.78,
+            0.74,
+            0.7
+          ],
+          "perturbed_signature": "membrane_proteostasis_route",
+          "probe_id": "observed_operator_strength_permutation_06",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "membrane_proteostasis_route",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.7,
+            0.382166,
+            0.74,
+            0.78
+          ],
+          "perturbed_signature": "membrane_proteostasis_route",
+          "probe_id": "observed_operator_strength_permutation_07",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "membrane_proteostasis_route",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.7,
+            0.382166,
+            0.78,
+            0.74
+          ],
+          "perturbed_signature": "membrane_proteostasis_route",
+          "probe_id": "observed_operator_strength_permutation_08",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "membrane_proteostasis_route",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.7,
+            0.74,
+            0.382166,
+            0.78
+          ],
+          "perturbed_signature": "membrane_proteostasis_route",
+          "probe_id": "observed_operator_strength_permutation_09",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "membrane_proteostasis_route",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.7,
+            0.74,
+            0.78,
+            0.382166
+          ],
+          "perturbed_signature": "membrane_proteostasis_route",
+          "probe_id": "observed_operator_strength_permutation_10",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "membrane_proteostasis_route",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.7,
+            0.78,
+            0.382166,
+            0.74
+          ],
+          "perturbed_signature": "membrane_proteostasis_route",
+          "probe_id": "observed_operator_strength_permutation_11",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "membrane_proteostasis_route",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.7,
+            0.78,
+            0.74,
+            0.382166
+          ],
+          "perturbed_signature": "membrane_proteostasis_route",
+          "probe_id": "observed_operator_strength_permutation_12",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "membrane_proteostasis_route",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.74,
+            0.382166,
+            0.7,
+            0.78
+          ],
+          "perturbed_signature": "membrane_proteostasis_route",
+          "probe_id": "observed_operator_strength_permutation_13",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "membrane_proteostasis_route",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.74,
+            0.382166,
+            0.78,
+            0.7
+          ],
+          "perturbed_signature": "membrane_proteostasis_route",
+          "probe_id": "observed_operator_strength_permutation_14",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "membrane_proteostasis_route",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.74,
+            0.7,
+            0.382166,
+            0.78
+          ],
+          "perturbed_signature": "membrane_proteostasis_route",
+          "probe_id": "observed_operator_strength_permutation_15",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "membrane_proteostasis_route",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.74,
+            0.7,
+            0.78,
+            0.382166
+          ],
+          "perturbed_signature": "membrane_proteostasis_route",
+          "probe_id": "observed_operator_strength_permutation_16",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "membrane_proteostasis_route",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.74,
+            0.78,
+            0.382166,
+            0.7
+          ],
+          "perturbed_signature": "membrane_proteostasis_route",
+          "probe_id": "observed_operator_strength_permutation_17",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "membrane_proteostasis_route",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.74,
+            0.78,
+            0.7,
+            0.382166
+          ],
+          "perturbed_signature": "membrane_proteostasis_route",
+          "probe_id": "observed_operator_strength_permutation_18",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "membrane_proteostasis_route",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.78,
+            0.382166,
+            0.7,
+            0.74
+          ],
+          "perturbed_signature": "membrane_proteostasis_route",
+          "probe_id": "observed_operator_strength_permutation_19",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "membrane_proteostasis_route",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.78,
+            0.382166,
+            0.74,
+            0.7
+          ],
+          "perturbed_signature": "membrane_proteostasis_route",
+          "probe_id": "observed_operator_strength_permutation_20",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "membrane_proteostasis_route",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.78,
+            0.7,
+            0.382166,
+            0.74
+          ],
+          "perturbed_signature": "membrane_proteostasis_route",
+          "probe_id": "observed_operator_strength_permutation_21",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "membrane_proteostasis_route",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.78,
+            0.7,
+            0.74,
+            0.382166
+          ],
+          "perturbed_signature": "membrane_proteostasis_route",
+          "probe_id": "observed_operator_strength_permutation_22",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "membrane_proteostasis_route",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.78,
+            0.74,
+            0.382166,
+            0.7
+          ],
+          "perturbed_signature": "membrane_proteostasis_route",
+          "probe_id": "observed_operator_strength_permutation_23",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "membrane_proteostasis_route",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.78,
+            0.74,
+            0.7,
+            0.382166
+          ],
+          "perturbed_signature": "membrane_proteostasis_route",
+          "probe_id": "observed_operator_strength_permutation_24",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        }
+      ],
+      "coefficient_probe_mode": "endogenous_observed_operator_permutations_no_static_scale_range",
+      "coefficient_scale_values_used": [],
+      "operator_ablation_rows": [
+        {
+          "baseline_signature": "membrane_proteostasis_route",
+          "perturbed_signature": "membrane_proteostasis_route",
+          "probe_id": "remove_operator_01_membrane_pressure_operator",
+          "probe_kind": "single_operator_ablation_map",
+          "removed_operator": "membrane_pressure_operator",
+          "removed_state_variable": "proteostasis_routing",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "membrane_proteostasis_route",
+          "perturbed_signature": "membrane_proteostasis_route",
+          "probe_id": "remove_operator_02_closure_operator",
+          "probe_kind": "single_operator_ablation_map",
+          "removed_operator": "closure_operator",
+          "removed_state_variable": "segment_compaction",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "membrane_proteostasis_route",
+          "perturbed_signature": "membrane_proteostasis_route",
+          "probe_id": "remove_operator_03_interface_operator",
+          "probe_kind": "single_operator_ablation_map",
+          "removed_operator": "interface_operator",
+          "removed_state_variable": "interface_readiness",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "membrane_proteostasis_route",
+          "perturbed_signature": "membrane_proteostasis_route",
+          "probe_id": "remove_operator_04_proteostasis_operator",
+          "probe_kind": "single_operator_ablation_map",
+          "removed_operator": "proteostasis_operator",
+          "removed_state_variable": "proteostasis_routing",
+          "selected_signature_preserved": true
+        }
+      ],
+      "operator_basis_stability": "stable_under_endogenous_operator_basis_probe",
+      "semantic_operator_ablation_stable": true
+    },
+    "coefficient_perturbation_stability": "stable_under_endogenous_operator_basis_probe",
+    "coefficient_probe_mode": "endogenous_observed_operator_permutations_no_static_scale_range",
+    "coefficient_source": "heuristic_internal_operator_weights_not_physical_force_constants",
+    "contradiction_count": 0,
+    "contradictions": [],
+    "coordinate_truth_used_before_prediction": false,
+    "counterfactual_separation": "counterfactuals_do_not_separate_sequence_signal",
+    "counterfactual_sequence_controls": {
+      "composition_preserved_shuffle_support": "membrane_segment_sequence_signal_visible",
+      "interpretation": "counterfactuals_do_not_separate_sequence_signal",
+      "real_sequence_support": "membrane_segment_sequence_signal_visible",
+      "region_masked_sequence_support": "membrane_segment_sequence_signal_visible"
+    },
+    "cross_view_binding": "evidence_family_sequence_signature_operator_readout_trajectory_readout_bound",
+    "cross_view_binding_probe": {
+      "bound_view_families": [
+        "evidence_family",
+        "sequence_signature",
+        "operator_readout",
+        "trajectory_readout"
+      ],
+      "cross_view_binding": "evidence_family_sequence_signature_operator_readout_trajectory_readout_bound",
+      "missing_view_families": [],
+      "operator_support": "selected_operator_field_agrees",
+      "self_required_view_families": [
+        "evidence_family",
+        "sequence_signature",
+        "operator_readout",
+        "trajectory_readout"
+      ],
+      "sequence_support": "membrane_segment_sequence_signal_visible",
+      "trajectory_support": [
+        "proteostasis_routing"
+      ]
+    },
+    "dominance_law": "single_dominant_learned_mechanism_bound_across_views",
+    "evidence_masking": [
+      {
+        "interpretation": "stable_under_nondefining_mask",
+        "masked_family": "signal_peptide_vs_true_tm_routing",
+        "mechanism_after_mask": "membrane_multidomain_folding_proteostasis",
+        "removed_signal_count": 4,
+        "selected_mechanism_preserved": true
+      },
+      {
+        "interpretation": "mechanism_defining_signal_removed",
+        "masked_family": "membrane_multidomain_folding_proteostasis",
+        "mechanism_after_mask": "insufficient_evidence_clean_abstain",
+        "removed_signal_count": 4,
+        "selected_mechanism_preserved": false
+      }
+    ],
+    "final_self_decision": "accepted",
+    "firewall_reason": "self_decision_internal_views_agree",
+    "folding_problem_solved": false,
+    "internal_consensus": "single_dominant_learned_mechanism_bound_across_views",
+    "kind": "PROTEIN_ESPERANTO_SELF_DECISION_JUDGE_v0",
+    "known_beta_topology_word": null,
+    "known_mechanism_class": "membrane_multidomain_folding_proteostasis",
+    "known_multidomain_word": null,
+    "known_secretory_disulfide_word": null,
+    "known_signal_peptide_word": null,
+    "legacy_acceptance_view": {
+      "acceptance_decision": "accepted",
+      "blocked_reasons": [],
+      "coordinate_truth_used_before_prediction": false,
+      "firewall_reason": "self_decision_internal_views_agree",
+      "folding_problem_solved": false,
+      "kind": "PROTEIN_ESPERANTO_SELF_DECISION_COMPAT_ACCEPTANCE_VIEW_v0",
+      "known_beta_topology_word": null,
+      "known_mechanism_class": "membrane_multidomain_folding_proteostasis",
+      "known_multidomain_word": null,
+      "known_secretory_disulfide_word": null,
+      "known_signal_peptide_word": null,
+      "missing_esperanto_word": null,
+      "operator_activation": 0.650541,
+      "unknown_word_signals": [],
+      "zero_failed_accepted_required": true
+    },
+    "masking_stability": "stable_or_definition_sensitive_under_masking",
+    "mechanism_competition": [
+      {
+        "evidence_hits": [
+          "membrane",
+          "membrane_context_strong",
+          "transmembrane",
+          "transmembrane_context"
+        ],
+        "grammar": "membrane_multidomain_folding_proteostasis",
+        "grammar_status": "learned",
+        "internal_view_count": 4,
+        "operator_support": "selected_operator_field_agrees",
+        "sequence_support": "membrane_segment_sequence_signal_visible",
+        "trajectory_support": [
+          "proteostasis_routing"
+        ],
+        "view_sources": [
+          "evidence_family",
+          "sequence_signature",
+          "operator_readout",
+          "trajectory_readout"
+        ]
+      },
+      {
+        "evidence_hits": [
+          "membrane_insertion_routing",
+          "transmembrane span",
+          "true transmembrane",
+          "true_transmembrane_span_context"
+        ],
+        "grammar": "signal_peptide_vs_true_tm_routing",
+        "grammar_status": "learned",
+        "internal_view_count": 1,
+        "operator_support": "not_selected_operator",
+        "sequence_support": "n_terminal_signal_counterfactual_not_dominant",
+        "trajectory_support": [],
+        "view_sources": [
+          "evidence_family"
+        ]
+      },
+      {
+        "evidence_hits": [],
+        "grammar": "oligomerization_controlled_folding",
+        "grammar_status": "learned",
+        "internal_view_count": 1,
+        "operator_support": "not_selected_operator",
+        "sequence_support": "interface_sequence_signal_visible",
+        "trajectory_support": [],
+        "view_sources": [
+          "sequence_signature"
+        ]
+      },
+      {
+        "evidence_hits": [],
+        "grammar": "metal_cluster_and_ligand_locked_basin",
+        "grammar_status": "learned",
+        "internal_view_count": 1,
+        "operator_support": "not_selected_operator",
+        "sequence_support": "pocket_or_coordination_sequence_signal_visible",
+        "trajectory_support": [],
+        "view_sources": [
+          "sequence_signature"
+        ]
+      },
+      {
+        "evidence_hits": [],
+        "grammar": "intrinsic_disorder_phase_separation",
+        "grammar_status": "learned",
+        "internal_view_count": 1,
+        "operator_support": "not_selected_operator",
+        "sequence_support": "disorder_or_low_complexity_sequence_signal_visible",
+        "trajectory_support": [],
+        "view_sources": [
+          "sequence_signature"
+        ]
+      },
+      {
+        "evidence_hits": [],
+        "grammar": "globular_closure",
+        "grammar_status": "learned",
+        "internal_view_count": 1,
+        "operator_support": "not_selected_operator",
+        "sequence_support": "compact_core_sequence_signal_visible",
+        "trajectory_support": [],
+        "view_sources": [
+          "sequence_signature"
+        ]
+      },
+      {
+        "evidence_hits": [],
+        "grammar": "fold_upon_binding_disorder",
+        "grammar_status": "learned",
+        "internal_view_count": 1,
+        "operator_support": "not_selected_operator",
+        "sequence_support": "disorder_or_low_complexity_sequence_signal_visible",
+        "trajectory_support": [],
+        "view_sources": [
+          "sequence_signature"
+        ]
+      },
+      {
+        "evidence_hits": [],
+        "grammar": "disorder_boundary_and_fold_upon_binding",
+        "grammar_status": "learned",
+        "internal_view_count": 1,
+        "operator_support": "not_selected_operator",
+        "sequence_support": "disorder_or_low_complexity_sequence_signal_visible",
+        "trajectory_support": [],
+        "view_sources": [
+          "sequence_signature"
+        ]
+      }
+    ],
+    "missing_esperanto_word": null,
+    "missing_word_candidate": null,
+    "natural_mechanism_class": "membrane_multidomain_folding_proteostasis",
+    "operator_activation": 0.650541,
+    "operator_basis_stability": "stable_under_endogenous_operator_basis_probe",
+    "operator_basis_stability_probe": {
+      "baseline_signature": "membrane_proteostasis_route",
+      "coefficient_assignment_cross_semantic_role_sensitive": false,
+      "coefficient_permutation_rows": [
+        {
+          "baseline_signature": "membrane_proteostasis_route",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.382166,
+            0.7,
+            0.74,
+            0.78
+          ],
+          "perturbed_signature": "membrane_proteostasis_route",
+          "probe_id": "observed_operator_strength_permutation_01",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "membrane_proteostasis_route",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.382166,
+            0.7,
+            0.78,
+            0.74
+          ],
+          "perturbed_signature": "membrane_proteostasis_route",
+          "probe_id": "observed_operator_strength_permutation_02",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "membrane_proteostasis_route",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.382166,
+            0.74,
+            0.7,
+            0.78
+          ],
+          "perturbed_signature": "membrane_proteostasis_route",
+          "probe_id": "observed_operator_strength_permutation_03",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "membrane_proteostasis_route",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.382166,
+            0.74,
+            0.78,
+            0.7
+          ],
+          "perturbed_signature": "membrane_proteostasis_route",
+          "probe_id": "observed_operator_strength_permutation_04",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "membrane_proteostasis_route",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.382166,
+            0.78,
+            0.7,
+            0.74
+          ],
+          "perturbed_signature": "membrane_proteostasis_route",
+          "probe_id": "observed_operator_strength_permutation_05",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "membrane_proteostasis_route",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.382166,
+            0.78,
+            0.74,
+            0.7
+          ],
+          "perturbed_signature": "membrane_proteostasis_route",
+          "probe_id": "observed_operator_strength_permutation_06",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "membrane_proteostasis_route",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.7,
+            0.382166,
+            0.74,
+            0.78
+          ],
+          "perturbed_signature": "membrane_proteostasis_route",
+          "probe_id": "observed_operator_strength_permutation_07",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "membrane_proteostasis_route",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.7,
+            0.382166,
+            0.78,
+            0.74
+          ],
+          "perturbed_signature": "membrane_proteostasis_route",
+          "probe_id": "observed_operator_strength_permutation_08",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "membrane_proteostasis_route",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.7,
+            0.74,
+            0.382166,
+            0.78
+          ],
+          "perturbed_signature": "membrane_proteostasis_route",
+          "probe_id": "observed_operator_strength_permutation_09",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "membrane_proteostasis_route",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.7,
+            0.74,
+            0.78,
+            0.382166
+          ],
+          "perturbed_signature": "membrane_proteostasis_route",
+          "probe_id": "observed_operator_strength_permutation_10",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "membrane_proteostasis_route",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.7,
+            0.78,
+            0.382166,
+            0.74
+          ],
+          "perturbed_signature": "membrane_proteostasis_route",
+          "probe_id": "observed_operator_strength_permutation_11",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "membrane_proteostasis_route",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.7,
+            0.78,
+            0.74,
+            0.382166
+          ],
+          "perturbed_signature": "membrane_proteostasis_route",
+          "probe_id": "observed_operator_strength_permutation_12",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "membrane_proteostasis_route",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.74,
+            0.382166,
+            0.7,
+            0.78
+          ],
+          "perturbed_signature": "membrane_proteostasis_route",
+          "probe_id": "observed_operator_strength_permutation_13",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "membrane_proteostasis_route",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.74,
+            0.382166,
+            0.78,
+            0.7
+          ],
+          "perturbed_signature": "membrane_proteostasis_route",
+          "probe_id": "observed_operator_strength_permutation_14",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "membrane_proteostasis_route",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.74,
+            0.7,
+            0.382166,
+            0.78
+          ],
+          "perturbed_signature": "membrane_proteostasis_route",
+          "probe_id": "observed_operator_strength_permutation_15",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "membrane_proteostasis_route",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.74,
+            0.7,
+            0.78,
+            0.382166
+          ],
+          "perturbed_signature": "membrane_proteostasis_route",
+          "probe_id": "observed_operator_strength_permutation_16",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "membrane_proteostasis_route",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.74,
+            0.78,
+            0.382166,
+            0.7
+          ],
+          "perturbed_signature": "membrane_proteostasis_route",
+          "probe_id": "observed_operator_strength_permutation_17",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "membrane_proteostasis_route",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.74,
+            0.78,
+            0.7,
+            0.382166
+          ],
+          "perturbed_signature": "membrane_proteostasis_route",
+          "probe_id": "observed_operator_strength_permutation_18",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "membrane_proteostasis_route",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.78,
+            0.382166,
+            0.7,
+            0.74
+          ],
+          "perturbed_signature": "membrane_proteostasis_route",
+          "probe_id": "observed_operator_strength_permutation_19",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "membrane_proteostasis_route",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.78,
+            0.382166,
+            0.74,
+            0.7
+          ],
+          "perturbed_signature": "membrane_proteostasis_route",
+          "probe_id": "observed_operator_strength_permutation_20",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "membrane_proteostasis_route",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.78,
+            0.7,
+            0.382166,
+            0.74
+          ],
+          "perturbed_signature": "membrane_proteostasis_route",
+          "probe_id": "observed_operator_strength_permutation_21",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "membrane_proteostasis_route",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.78,
+            0.7,
+            0.74,
+            0.382166
+          ],
+          "perturbed_signature": "membrane_proteostasis_route",
+          "probe_id": "observed_operator_strength_permutation_22",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "membrane_proteostasis_route",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.78,
+            0.74,
+            0.382166,
+            0.7
+          ],
+          "perturbed_signature": "membrane_proteostasis_route",
+          "probe_id": "observed_operator_strength_permutation_23",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "membrane_proteostasis_route",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.78,
+            0.74,
+            0.7,
+            0.382166
+          ],
+          "perturbed_signature": "membrane_proteostasis_route",
+          "probe_id": "observed_operator_strength_permutation_24",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        }
+      ],
+      "coefficient_probe_mode": "endogenous_observed_operator_permutations_no_static_scale_range",
+      "coefficient_scale_values_used": [],
+      "operator_ablation_rows": [
+        {
+          "baseline_signature": "membrane_proteostasis_route",
+          "perturbed_signature": "membrane_proteostasis_route",
+          "probe_id": "remove_operator_01_membrane_pressure_operator",
+          "probe_kind": "single_operator_ablation_map",
+          "removed_operator": "membrane_pressure_operator",
+          "removed_state_variable": "proteostasis_routing",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "membrane_proteostasis_route",
+          "perturbed_signature": "membrane_proteostasis_route",
+          "probe_id": "remove_operator_02_closure_operator",
+          "probe_kind": "single_operator_ablation_map",
+          "removed_operator": "closure_operator",
+          "removed_state_variable": "segment_compaction",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "membrane_proteostasis_route",
+          "perturbed_signature": "membrane_proteostasis_route",
+          "probe_id": "remove_operator_03_interface_operator",
+          "probe_kind": "single_operator_ablation_map",
+          "removed_operator": "interface_operator",
+          "removed_state_variable": "interface_readiness",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "membrane_proteostasis_route",
+          "perturbed_signature": "membrane_proteostasis_route",
+          "probe_id": "remove_operator_04_proteostasis_operator",
+          "probe_kind": "single_operator_ablation_map",
+          "removed_operator": "proteostasis_operator",
+          "removed_state_variable": "proteostasis_routing",
+          "selected_signature_preserved": true
+        }
+      ],
+      "operator_basis_stability": "stable_under_endogenous_operator_basis_probe",
+      "semantic_operator_ablation_stable": true
+    },
+    "physical_backend_available": true,
+    "physical_basis_claim_allowed": false,
+    "physical_grounding_gate": {
+      "backend_probe": {
+        "backend": "openmm",
+        "backend_available": true,
+        "backend_version": "8.1.1",
+        "forcefield_api_available": true,
+        "kind": "PROTEIN_ESPERANTO_PHYSICAL_BACKEND_PROBE_v0"
+      },
+      "coarse_operator_decision_scope": "mechanism_language_acceptance_not_physical_fold_solution",
+      "coarse_operator_layer": true,
+      "coefficient_source": "heuristic_internal_operator_weights_not_physical_force_constants",
+      "coordinate_truth_used_as_prediction_input": false,
+      "folding_problem_solved": false,
+      "grammar_declared_operator_coverage": [
+        "closure_operator",
+        "interface_operator",
+        "membrane_pressure_operator",
+        "proteostasis_operator"
+      ],
+      "grammar_missing_declared_operators": [],
+      "kind": "PROTEIN_ESPERANTO_PHYSICAL_GROUNDING_GATE_v0",
+      "leave_one_target_out_calibration": true,
+      "missing_physical_inputs": [
+        "target_specific_physical_topology_and_environment_for_execution",
+        "force_field_or_calibrated_coarse_potential_bound_to_target_execution",
+        "calibrated_energy_units_temperature_and_integrator_protocol",
+        "independent_dynamic_physical_observable_holdout"
+      ],
+      "operator_basis_stability": "stable_under_endogenous_operator_basis_probe",
+      "operator_to_physical_proxy_map": [
+        {
+          "declared_in_grammar": true,
+          "operator": "membrane_pressure_operator",
+          "physical_scope": "coarse_pressure_proxy_not_force_field_term",
+          "state_variable": "proteostasis_routing"
+        },
+        {
+          "declared_in_grammar": true,
+          "operator": "closure_operator",
+          "physical_scope": "coarse_pressure_proxy_not_force_field_term",
+          "state_variable": "segment_compaction"
+        },
+        {
+          "declared_in_grammar": true,
+          "operator": "interface_operator",
+          "physical_scope": "coarse_pressure_proxy_not_force_field_term",
+          "state_variable": "interface_readiness"
+        },
+        {
+          "declared_in_grammar": true,
+          "operator": "proteostasis_operator",
+          "physical_scope": "coarse_pressure_proxy_not_force_field_term",
+          "state_variable": "proteostasis_routing"
+        }
+      ],
+      "physical_basis_claim_allowed": false,
+      "physical_calibration_input_summary": {
+        "calibration_input_type": "coordinate_derived_native_contact_summary",
+        "coordinate_truth_used_as_prediction_input": false,
+        "fold_class_coverage": [
+          "alpha_beta_mixed",
+          "alpha_rich",
+          "beta_rich",
+          "multidomain_boundary"
+        ],
+        "leave_one_target_out_calibration": true,
+        "observable_families": [
+          "coordinate_coverage",
+          "native_contact_count",
+          "native_contact_order",
+          "native_contact_map_hash",
+          "coordinate_trace_hash"
+        ],
+        "physical_calibration_input_status": "real_coordinate_calibration_inputs_loaded_truth_boundary_preserved",
+        "real_physical_calibration_hash": "fce8f8b9ece98c6a9427ec01c22ea5af9daedae08a599cd0856dfe96a0f14512",
+        "real_physical_calibration_inputs_used": true,
+        "real_physical_calibration_kind": "PROTEIN_ESPERANTO_REAL_PHYSICAL_CALIBRATION_INPUTS_v0",
+        "real_physical_calibration_row_count": 8,
+        "source_coordinate_database": "RCSB_PDB",
+        "source_dataset": "/Users/draganamitova/My Projects/pharmacotopology/data/folding_real_coordinate_visual_8.locked.json",
+        "source_dataset_sha256": "b2927864fca6eb21e695d2262230a53bf79885f77006d722bafbe346e2b76efe",
+        "target_native_contacts_used_before_prediction": false,
+        "target_native_excluded_from_calibration": true
+      },
+      "physical_grounding_status": "real_physical_calibration_inputs_loaded_openmm_available_but_target_physical_execution_not_run",
+      "physical_limitation_known_by_engine": true,
+      "real_physical_calibration_hash": "fce8f8b9ece98c6a9427ec01c22ea5af9daedae08a599cd0856dfe96a0f14512",
+      "real_physical_calibration_inputs_used": true,
+      "real_physical_calibration_kind": "PROTEIN_ESPERANTO_REAL_PHYSICAL_CALIBRATION_INPUTS_v0",
+      "real_physical_calibration_row_count": 8,
+      "target_native_contacts_used_before_prediction": false,
+      "target_native_excluded_from_calibration": true,
+      "temporal_binding": "selected_observables_temporally_coherent"
+    },
+    "physical_grounding_status": "real_physical_calibration_inputs_loaded_openmm_available_but_target_physical_execution_not_run",
+    "physics_grounding_status": "coarse_operator_heuristic_not_atomistic_physics",
+    "real_physical_calibration_hash": "fce8f8b9ece98c6a9427ec01c22ea5af9daedae08a599cd0856dfe96a0f14512",
+    "real_physical_calibration_inputs_used": true,
+    "real_physical_calibration_kind": "PROTEIN_ESPERANTO_REAL_PHYSICAL_CALIBRATION_INPUTS_v0",
+    "real_physical_calibration_row_count": 8,
+    "runner_up_mechanisms": [
+      "signal_peptide_vs_true_tm_routing",
+      "oligomerization_controlled_folding",
+      "metal_cluster_and_ligand_locked_basin"
+    ],
+    "selected_mechanism_views": [
+      "evidence_family",
+      "sequence_signature",
+      "operator_readout",
+      "trajectory_readout"
+    ],
+    "self_decision_reason": "self_decision_internal_views_agree",
+    "temporal_binding": "selected_observables_temporally_coherent",
+    "temporal_binding_probe": {
+      "observable_trends": [
+        {
+          "final_value": 0.656617,
+          "first_value": 0.438217,
+          "observable": "proteostasis_routing",
+          "trend": "increases_across_simulated_path"
+        }
+      ],
+      "signature_path": [
+        {
+          "signature": "membrane_proteostasis_route",
+          "timepoint": 0
+        },
+        {
+          "signature": "membrane_proteostasis_route",
+          "timepoint": 100
+        },
+        {
+          "signature": "membrane_proteostasis_route",
+          "timepoint": 500
+        },
+        {
+          "signature": "membrane_proteostasis_route",
+          "timepoint": 1000
+        }
+      ],
+      "temporal_binding": "selected_observables_temporally_coherent"
+    },
+    "top_mechanism": "membrane_multidomain_folding_proteostasis",
+    "unknown_word_signals": [],
+    "wrong_grammar_challenge": [
+      {
+        "challenger_grammar": "signal_peptide_vs_true_tm_routing",
+        "challenger_operator_count": 0,
+        "challenger_trajectory_support": [],
+        "forced_grammar_rejected": true,
+        "forced_result_mechanism": "insufficient_evidence_clean_abstain",
+        "interpretation": "wrong_grammar_failed"
+      },
+      {
+        "challenger_grammar": "oligomerization_controlled_folding",
+        "challenger_operator_count": 0,
+        "challenger_trajectory_support": [],
+        "forced_grammar_rejected": true,
+        "forced_result_mechanism": "insufficient_evidence_clean_abstain",
+        "interpretation": "wrong_grammar_failed"
+      },
+      {
+        "challenger_grammar": "metal_cluster_and_ligand_locked_basin",
+        "challenger_operator_count": 0,
+        "challenger_trajectory_support": [],
+        "forced_grammar_rejected": true,
+        "forced_result_mechanism": "insufficient_evidence_clean_abstain",
+        "interpretation": "wrong_grammar_failed"
+      }
+    ],
+    "wrong_grammar_separation": "wrong_grammars_fail",
+    "zero_failed_accepted_required": true
+  },
+  "target_id": "V77_191_MEMBRANE_SENTINEL_1UFG_1",
+  "trajectory_final_state_summary": {
+    "IDR_boundary": 0.0,
+    "allosteric_basin_shift": 0.0,
+    "alpha_beta_barrel_distinction": 0.0,
+    "apo_holo_basin_shift": 0.0,
+    "assembly_ambiguous": 0.0,
+    "assembly_required_core": 0.0,
+    "beta_helix_solenoid_stack": 0.0,
+    "beta_propeller_repeat_closure": 0.0,
+    "beta_sandwich_core": 0.0,
+    "beta_sheet_closure": 0.0,
+    "beta_topology_conflict": 0.0,
+    "cleavage_site_context": 0.0,
+    "closed_beta_ambiguous": 0.0,
+    "closed_beta_confident": 0.0,
+    "closed_beta_topology": 0.0,
+    "contact_probability": 0.48575,
+    "coordination_shell_integrity": 0.0,
+    "cysteine_pairing_constraint": 0.0,
+    "disorder_order_balance": 0.2676,
+    "disorder_with_local_motif": 0.0,
+    "disulfide_pairing_topology": 0.0,
+    "domain_boundary": 0.0,
+    "domain_reorientation": 0.0,
+    "domain_swapping": 0.0,
+    "extracellular_stabilized_fold": 0.0,
+    "flexible_loop_not_disorder": 0.0,
+    "fold_upon_binding_region": 0.0,
+    "frustration": 0.0,
+    "glycosylation_context": 0.0,
+    "greek_key_beta_lock": 0.0,
+    "hinge_region": 0.0,
+    "interdomain_lock": 0.0,
+    "interface_buried_hydrophobicity": 0.0,
+    "interface_readiness": 0.635,
+    "jelly_roll_wrap": 0.0,
+    "ligand_locked_basin": 0.0,
+    "membrane_beta_barrel": 0.0,
+    "membrane_insertion_routing": 0.0,
+    "metal_cluster_geometry": 0.0,
+    "metal_ligand_ambiguous": 0.0,
+    "modular_architecture": 0.0,
+    "monomer_incomplete_topology": 0.0,
+    "multi_pass_tm_conflict": 0.0,
+    "multidomain_allostery": 0.0,
+    "n_terminal_secretory_hydrophobic_patch": 0.0,
+    "open_beta_sheet_ambiguous": 0.0,
+    "operator_activation": 0.650541,
+    "partner_completed_core": 0.0,
+    "phase_prone_low_complexity": 0.0,
+    "proteostasis_routing": 0.656617,
+    "redox_mispaired_frustration": 0.0,
+    "residue_exposure": 0.590237,
+    "secretory_lumenal_routing": 0.0,
+    "secretory_quality_control": 0.0,
+    "secretory_redox_context": 0.0,
+    "segment_compaction": 0.704,
+    "signal_anchor_ambiguity": 0.0,
+    "signal_peptide_removed_context": 0.0,
+    "signal_peptide_routing_context": 0.0,
+    "single_pass_tm_conflict": 0.0,
+    "soluble_beta_barrel": 0.0,
+    "state_basin_occupancy": {
+      "mature_membrane_routed": 0.656617,
+      "partial_nbd1_rescue": 0.704,
+      "qc_retained_misfolded": 0.0
+    },
+    "strand_register": 0.0,
+    "strand_register_insufficient": 0.0,
+    "structured_domain_plus_IDR_tail": 0.0,
+    "timepoint": 1000,
+    "true_transmembrane_span_context": 0.0
+  }
+}

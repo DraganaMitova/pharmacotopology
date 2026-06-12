@@ -1,0 +1,55 @@
+{
+  "baseline_engine_version": "E70",
+  "candidate_word_promoted_to_learned": "signal_peptide_vs_true_TM",
+  "certificate_hash": "024c6a99a1997a882c44ab5a0519162017efd55dfe1c80877500e67ae816a822",
+  "claim_allowed": false,
+  "engine_revision": "E71",
+  "folding_problem_solved": false,
+  "kind": "E71_SIGNAL_PEPTIDE_VS_TRUE_TM_ROUTING_GRAMMAR_CERTIFICATE_v0",
+  "negative_gates": [
+    "true_transmembrane_priority",
+    "multi_pass_tm_conflict",
+    "signal_anchor_ambiguity_abstain",
+    "secretory_disulfide_sentinel_preservation",
+    "coiled_repeat_knotted_candidates_abstain",
+    "withheld_context_isolation"
+  ],
+  "new_mechanism_class": "signal_peptide_vs_true_tm_routing",
+  "new_operators": [
+    "signal_peptide_routing_operator",
+    "tm_insertion_operator",
+    "cleavage_context_operator",
+    "secretory_routing_operator",
+    "membrane_pressure_operator",
+    "frustration_operator"
+  ],
+  "new_process_class": "signal_peptide_tm_boundary",
+  "new_state_variables": [
+    "signal_peptide_routing_context",
+    "cleavage_site_context",
+    "n_terminal_secretory_hydrophobic_patch",
+    "true_transmembrane_span_context",
+    "single_pass_tm_conflict",
+    "multi_pass_tm_conflict",
+    "secretory_lumenal_routing",
+    "membrane_insertion_routing",
+    "signal_anchor_ambiguity"
+  ],
+  "next_required_batch": "V78_RCSB_NONREDUNDANT_300_DISCOVERY_E71",
+  "proof_batch": "V77_SIGNAL_TM_BOUNDARY_PANEL_300",
+  "proof_status": "V77_E71_SIGNAL_TM_BOUNDARY_PANEL_PASSED",
+  "remaining_candidate_grammars": [
+    "coiled_coil_register",
+    "knotted_topology",
+    "repeat_solenoid_topology"
+  ],
+  "status": "E71_SIGNAL_PEPTIDE_VS_TRUE_TM_ROUTING_GRAMMAR_ADDED",
+  "trigger_batch": "V76/V77_SIGNAL_TM_BOUNDARY_REPAIR",
+  "trigger_missing_word": "signal_peptide_vs_true_TM",
+  "v77_accepted_accuracy": 1.0,
+  "v77_failed_accepted_count": 0,
+  "v77_fixed_accepted_support_thresholds_used": false,
+  "v77_matched_control_dominance_acceptance": true,
+  "v77_uses_static_observable_thresholds": false,
+  "v77_withheld_context_leakage_detected": false
+}

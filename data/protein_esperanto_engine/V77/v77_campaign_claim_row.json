@@ -1,0 +1,12 @@
+{
+  "accepted_accuracy": 1.0,
+  "batch_id": "V77_SIGNAL_TM_BOUNDARY_PANEL_300",
+  "claim_allowed": false,
+  "coverage": 0.8333333333333334,
+  "engine_version_used": "E71",
+  "failed_accepted_count": 0,
+  "matched_control_dominance_acceptance": true,
+  "status": "V77_E71_SIGNAL_TM_BOUNDARY_PANEL_PASSED",
+  "uses_static_observable_thresholds": false,
+  "withheld_context_leakage_detected": false
+}

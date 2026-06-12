@@ -1,0 +1,8 @@
+{
+  "batch_id": "V77_SIGNAL_TM_BOUNDARY_PANEL_300",
+  "engine_version_used": "E71",
+  "failed_accepted_by_failure_mode": {},
+  "failure_count": 0,
+  "failure_grammar_rows": [],
+  "kind": "V77_SIGNAL_TM_FAILURE_REPORT_v0"
+}

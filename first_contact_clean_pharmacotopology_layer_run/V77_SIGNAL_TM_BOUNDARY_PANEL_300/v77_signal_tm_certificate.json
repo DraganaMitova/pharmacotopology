@@ -1,0 +1,247 @@
+{
+  "accepted_accuracy": 1.0,
+  "accepted_count": 250,
+  "accepted_supported": 250,
+  "atomistic_md_executed": false,
+  "baseline_engine_version": "E70",
+  "batch_id": "V77_SIGNAL_TM_BOUNDARY_PANEL_300",
+  "campaign_id": "V61_TO_V77_PROTEIN_ESPERANTO_SATURATION_CAMPAIGN",
+  "candidate_grammars_remaining": [
+    "coiled_coil_register",
+    "knotted_topology",
+    "repeat_solenoid_topology"
+  ],
+  "certificate_hash": "e5a0a1f7021d6fd4922a943364aba66682e0f5e276895a9debc5967e78bb9593",
+  "claim_allowed": false,
+  "clean_abstain": 50,
+  "clean_abstain_supported": 50,
+  "composition_rule": {
+    "COILED_REPEAT_KNOTTED_MISSING_WORD_ABSTAIN_CONTROL": 40,
+    "MEMBRANE_SENTINEL": 40,
+    "SECRETORY_DISULFIDE_SENTINEL": 40,
+    "SIGNAL_ANCHOR_DECOY_ABSTAIN": 10,
+    "SIGNAL_PEPTIDE_POSITIVE": 50,
+    "SOLUBLE_GLOBULAR_SENTINEL": 60,
+    "TRUE_TM_NEGATIVE": 60
+  },
+  "control_count": 17,
+  "controls": [
+    {
+      "control_id": "target_count_300",
+      "observed": 300,
+      "passed": true,
+      "reason": "V77 must have 300 targets."
+    },
+    {
+      "control_id": "composition_rule",
+      "observed": {
+        "COILED_REPEAT_KNOTTED_MISSING_WORD_ABSTAIN_CONTROL": 40,
+        "MEMBRANE_SENTINEL": 40,
+        "SECRETORY_DISULFIDE_SENTINEL": 40,
+        "SIGNAL_ANCHOR_DECOY_ABSTAIN": 10,
+        "SIGNAL_PEPTIDE_POSITIVE": 50,
+        "SOLUBLE_GLOBULAR_SENTINEL": 60,
+        "TRUE_TM_NEGATIVE": 60
+      },
+      "passed": true,
+      "reason": "V77 composition must match the panel."
+    },
+    {
+      "control_id": "zero_failed_accepted",
+      "observed": null,
+      "passed": true,
+      "reason": "Every accepted target must be supported."
+    },
+    {
+      "control_id": "accepted_matched_control_dominance",
+      "observed": null,
+      "passed": true,
+      "reason": "Accepted targets must pass self-required matched controls."
+    },
+    {
+      "control_id": "signal_peptide_positive_supported",
+      "observed": null,
+      "passed": true,
+      "reason": "Signal positives must accept E71 with matched controls."
+    },
+    {
+      "control_id": "true_tm_not_stolen_by_signal_peptide",
+      "observed": null,
+      "passed": true,
+      "reason": "True-TM negatives remain membrane."
+    },
+    {
+      "control_id": "signal_anchor_decoys_cleanly_abstain",
+      "observed": null,
+      "passed": true,
+      "reason": "Signal-anchor ambiguity must abstain."
+    },
+    {
+      "control_id": "secretory_disulfide_sentinels_preserved",
+      "observed": null,
+      "passed": true,
+      "reason": "E70 secretory/disulfide sentinels remain stable."
+    },
+    {
+      "control_id": "membrane_sentinels_preserved",
+      "observed": null,
+      "passed": true,
+      "reason": "Membrane sentinels remain stable."
+    },
+    {
+      "control_id": "candidate_missing_words_cleanly_abstain",
+      "observed": {
+        "coiled_coil_register": 19,
+        "repeat_solenoid_topology": 21
+      },
+      "passed": true,
+      "reason": "Coiled/repeat/knotted candidates remain abstained."
+    },
+    {
+      "control_id": "withheld_context_isolation",
+      "observed": {
+        "final_self_decision": "clean_abstain_low_internal_consensus",
+        "kind": "V77_WITHHELD_CONTEXT_LEAKAGE_PROBE_v0",
+        "observed_mechanism": "insufficient_evidence_clean_abstain",
+        "prediction_hash": "018906dbf50fdda9d6f653519cbcf6bc173ab2047c98e370f56fb92226af3dd1",
+        "withheld_context_leakage_detected": false
+      },
+      "passed": true,
+      "reason": "Withheld context marks must not initialize signal grammar."
+    },
+    {
+      "control_id": "no_static_observable_thresholds",
+      "observed": null,
+      "passed": true,
+      "reason": "V77 scoring uses paired dominance, not fixed observable thresholds."
+    },
+    {
+      "control_id": "real_physical_calibration_inputs_present",
+      "observed": null,
+      "passed": true,
+      "reason": "Every row receives real calibration inputs."
+    },
+    {
+      "control_id": "physical_calibration_truth_boundary",
+      "observed": null,
+      "passed": true,
+      "reason": "Calibration inputs preserve truth boundary."
+    },
+    {
+      "control_id": "coordinate_leakage_control",
+      "observed": {
+        "allowed_initialization_source_ids": [],
+        "blocked_source_ids": [
+          "V77_BAD_COORD"
+        ],
+        "coordinate_derived_source_count_before_prediction": 1,
+        "coordinate_truth_used_before_prediction": true,
+        "holdout_opened_before_seal": false,
+        "internal_runtime_source_count_for_prediction": 0,
+        "internal_runtime_used_as_biological_evidence": false,
+        "kind": "PROTEIN_ESPERANTO_EVIDENCE_BOUNDARY_GATE_v0",
+        "rows": [
+          {
+            "allowed_for_claim": false,
+            "allowed_for_holdout_after_seal": false,
+            "allowed_to_initialize_language_field": false,
+            "blocked_reason": "coordinate_derived_blocked_before_seal",
+            "coordinate_derived": true,
+            "internal_runtime": false,
+            "source_class": "coordinate_derived",
+            "source_id": "V77_BAD_COORD",
+            "source_role": "prediction_input",
+            "spatial_proxy": false
+          }
+        ],
+        "spatial_proxy_untagged_or_misused_count": 0
+      },
+      "passed": true,
+      "reason": "Coordinate source blocks prediction."
+    },
+    {
+      "control_id": "internal_runtime_leakage_control",
+      "observed": {
+        "allowed_initialization_source_ids": [],
+        "blocked_source_ids": [
+          "V77_BAD_RUNTIME"
+        ],
+        "coordinate_derived_source_count_before_prediction": 0,
+        "coordinate_truth_used_before_prediction": false,
+        "holdout_opened_before_seal": false,
+        "internal_runtime_source_count_for_prediction": 1,
+        "internal_runtime_used_as_biological_evidence": true,
+        "kind": "PROTEIN_ESPERANTO_EVIDENCE_BOUNDARY_GATE_v0",
+        "rows": [
+          {
+            "allowed_for_claim": false,
+            "allowed_for_holdout_after_seal": false,
+            "allowed_to_initialize_language_field": false,
+            "blocked_reason": "internal_runtime_never_biological_evidence",
+            "coordinate_derived": false,
+            "internal_runtime": true,
+            "source_class": "internal_runtime",
+            "source_id": "V77_BAD_RUNTIME",
+            "source_role": "prediction_input",
+            "spatial_proxy": false
+          }
+        ],
+        "spatial_proxy_untagged_or_misused_count": 0
+      },
+      "passed": true,
+      "reason": "Internal runtime source blocks prediction."
+    },
+    {
+      "control_id": "random_sequence_control",
+      "observed": "clean_abstain_low_internal_consensus",
+      "passed": true,
+      "reason": "Random sequence without evidence abstains."
+    }
+  ],
+  "controls_passed": true,
+  "coordinate_truth_used_before_seal": false,
+  "coverage": 0.8333333333333334,
+  "engine_source_sha256": "0dba9c512c548e14e86ed31b4862e52104d555ede4adc5d65d06ab210ef5d3c0",
+  "engine_version_used": "E71",
+  "failed_accepted": 0,
+  "failed_accepted_by_failure_mode": {},
+  "failed_accepted_count": 0,
+  "failed_controls": [],
+  "fixed_accepted_support_thresholds_used": false,
+  "folding_problem_solved": false,
+  "kind": "V77_SIGNAL_TM_BOUNDARY_PANEL_CERTIFICATE_v0",
+  "matched_control_dominance_acceptance": true,
+  "membrane_sentinel_regressions": 0,
+  "next_required_batch": "V78_RCSB_NONREDUNDANT_300_DISCOVERY_E71",
+  "passed_control_count": 17,
+  "physical_basis_claim_allowed": false,
+  "physical_next_required_capability": "target-specific calibrated physical execution before physical fold claims",
+  "real_physical_calibration_coordinate_truth_used_as_prediction_input": false,
+  "real_physical_calibration_hash": "fce8f8b9ece98c6a9427ec01c22ea5af9daedae08a599cd0856dfe96a0f14512",
+  "real_physical_calibration_inputs_used": true,
+  "real_physical_calibration_row_count": 8,
+  "real_physical_calibration_source_coordinate_database": "RCSB_PDB",
+  "real_physical_calibration_target_native_contacts_used_before_prediction": false,
+  "real_physical_calibration_target_native_excluded": true,
+  "secretory_disulfide_sentinel_regressions": 0,
+  "sentinel_regressions": 0,
+  "signal_anchor_decoys_cleanly_abstained": 10,
+  "signal_peptide_positive_supported": 50,
+  "signal_peptide_positive_total": 50,
+  "status": "V77_E71_SIGNAL_TM_BOUNDARY_PANEL_PASSED",
+  "supported_count": 300,
+  "targets_total": 300,
+  "timestamp_utc": "2026-06-12T10:32:57.876810+00:00",
+  "top_failure_mode": null,
+  "top_missing_esperanto_word": "repeat_solenoid_topology",
+  "true_tm_negative_supported": 60,
+  "uses_static_observable_thresholds": false,
+  "withheld_context_leakage_detected": false,
+  "withheld_context_leakage_probe": {
+    "final_self_decision": "clean_abstain_low_internal_consensus",
+    "kind": "V77_WITHHELD_CONTEXT_LEAKAGE_PROBE_v0",
+    "observed_mechanism": "insufficient_evidence_clean_abstain",
+    "prediction_hash": "018906dbf50fdda9d6f653519cbcf6bc173ab2047c98e370f56fb92226af3dd1",
+    "withheld_context_leakage_detected": false
+  }
+}
