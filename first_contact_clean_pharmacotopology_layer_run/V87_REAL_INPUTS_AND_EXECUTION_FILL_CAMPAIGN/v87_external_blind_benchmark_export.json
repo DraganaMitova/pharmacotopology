@@ -1,0 +1,16 @@
+{
+  "batch_id": "V87_REAL_INPUTS_AND_EXECUTION_FILL_CAMPAIGN",
+  "empty_export_reason": null,
+  "engine_version_used": "E80",
+  "kind": "V87_EXTERNAL_BLIND_BENCHMARK_EXPORT_v0",
+  "rows": [
+    {
+      "coordinate_native_leakage": false,
+      "exported": true,
+      "postseal_holdout_hash": "b0c809f7936cc131247efdadda1236380a1cc434b9611a4b2b927bc82dcc64dc",
+      "sealed_prediction_hash": "b06fee82dcaff86e34253c1e3ba50785c180f3d360062d5df3663bf31bc88d7d",
+      "target_fold_claim_allowed": true,
+      "target_id": "V87_RCSB_10DC_1_A"
+    }
+  ]
+}
