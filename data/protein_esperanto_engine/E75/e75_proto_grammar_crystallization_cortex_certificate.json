@@ -1,0 +1,22 @@
+{
+  "baseline_engine_revision": "E74",
+  "classification_counts": {
+    "crystallized_grammar": 8,
+    "keep_as_proto_unknown": 21,
+    "merge_into_existing_word": 15,
+    "retire_as_context_artifact": 1
+  },
+  "crystallization_hash": "e2b5449823ab7f8f31ef45584138b6665498d38fd0034d649ce77ac4b84e79ae",
+  "engine_revision": "E75",
+  "input_merged_word_count": 32,
+  "input_proto_grammar_count": 45,
+  "kind": "E75_PROTO_GRAMMAR_CRYSTALLIZATION_CORTEX_CERTIFICATE_v0",
+  "next_required_batch": "V81_PROTO_GRAMMAR_GENERALIZATION_PANEL",
+  "no_forced_expected_labels_used": true,
+  "no_static_thresholds_used": true,
+  "physical_basis_claim_allowed": false,
+  "protein_folding_solved": false,
+  "proto_grammars_classified_reproducibly": true,
+  "sentinel_regressions": 0,
+  "v79_v80_context_used_as_seed_not_proof": true
+}

@@ -1597,6 +1597,211 @@ def candidate_word_compression_cortex(
     }
 
 
+E75_PROTO_GRAMMAR_CLASSIFICATIONS = [
+    "crystallized_grammar",
+    "merge_into_existing_word",
+    "keep_as_proto_unknown",
+    "retire_as_context_artifact",
+    "reject_due_to_sentinel_stealing",
+]
+
+
+def _e75_physical_index(v80p_holdout_rows: list[dict[str, Any]]) -> dict[str, list[dict[str, Any]]]:
+    index: dict[str, list[dict[str, Any]]] = {}
+    for row in v80p_holdout_rows:
+        candidate_word = str(row.get("source_v80_candidate_word", ""))
+        if not candidate_word:
+            continue
+        index.setdefault(candidate_word, []).append(row)
+    return index
+
+
+def _e75_execution_support(row: dict[str, Any], execution_name: str) -> int:
+    execution = row.get(execution_name, {})
+    return int(execution.get("postseal_independent_observable_support_count", 0))
+
+
+def _e75_definition_width(definition: dict[str, Any]) -> int:
+    return (
+        len(definition.get("enemy_grammars", {}))
+        + len(definition.get("existing_selected_grammars", {}))
+        + len(definition.get("negative_pressure_components", {}))
+        + len(definition.get("pressure_components", {}))
+    )
+
+
+def _e75_crystallization_row(
+    proto_row: dict[str, Any],
+    *,
+    physical_rows: list[dict[str, Any]],
+    sentinel_regression_count: int,
+) -> dict[str, Any]:
+    definition = dict(proto_row.get("definition_by_known_words", {}))
+    pressure_components = dict(definition.get("pressure_components", {}))
+    negative_components = dict(definition.get("negative_pressure_components", {}))
+    compression = dict(proto_row.get("compression_gain", {}))
+    recurrence_support = int(proto_row.get("support_pressure", 0))
+    definition_width = _e75_definition_width(definition)
+    enemy_grammar_pressure = int(proto_row.get("enemy_grammar_pressure", 0))
+    merge_explanation_pressure = int(compression.get("merged_word_explanation_pressure", 0))
+    old_grammar_pressure = int(compression.get("existing_grammar_explanation_pressure", 0))
+    abstain_explanation_pressure = int(compression.get("abstention_explanation_pressure", 0))
+    candidate_pressure = int(compression.get("candidate_pressure_explained", 0))
+    sentinel_stealing_pressure = int(proto_row.get("sentinel_cost", 0)) + int(sentinel_regression_count)
+    selected_physical = sum(_e75_execution_support(row, "selected_grammar_execution") for row in physical_rows)
+    wrong_physical = sum(_e75_execution_support(row, "wrong_grammar_execution") for row in physical_rows)
+    merge_physical = sum(_e75_execution_support(row, "merge_grammar_execution") for row in physical_rows)
+    masked_physical = sum(_e75_execution_support(row, "masked_grammar_execution") for row in physical_rows)
+    physical_dominates = (
+        selected_physical > wrong_physical
+        and selected_physical > merge_physical
+        and selected_physical > masked_physical
+    )
+    matched_controls_pass = bool(
+        proto_row.get("matched_control_dominance", {}).get("matched_control_dominance_passed", False)
+    )
+    recurrence_dominates_definition = recurrence_support > definition_width
+    candidate_dominates_merge = candidate_pressure > merge_explanation_pressure
+    candidate_dominates_old = candidate_pressure > old_grammar_pressure
+    candidate_dominates_abstain = candidate_pressure > abstain_explanation_pressure
+    boundary_pressure_is_specific = bool(negative_components) and not pressure_components
+    generic_compression_pressure = bool(pressure_components)
+    merge_candidate = proto_row.get("merge_candidate")
+    if sentinel_stealing_pressure:
+        classification = "reject_due_to_sentinel_stealing"
+        reason = "sentinel_stealing_pressure_blocks_crystallization"
+    elif (
+        boundary_pressure_is_specific
+        and recurrence_dominates_definition
+        and candidate_dominates_merge
+        and candidate_dominates_old
+        and candidate_dominates_abstain
+        and physical_dominates
+        and matched_controls_pass
+    ):
+        classification = "crystallized_grammar"
+        reason = "specific_boundary_pressure_generalizes_and_dominates_merge_old_abstain_controls"
+    elif not negative_components and generic_compression_pressure:
+        classification = "retire_as_context_artifact"
+        reason = "generic_metadata_or_compression_pressure_lacks_specific_boundary_definition"
+    elif merge_candidate and generic_compression_pressure:
+        classification = "merge_into_existing_word"
+        reason = "generic_compression_pressure_collapses_into_existing_merge_explanation"
+    else:
+        classification = "keep_as_proto_unknown"
+        reason = "pressure_is_real_but_recurrence_does_not_dominate_definition_width"
+    known_partners = sorted(
+        set(definition.get("enemy_grammars", {})).union(definition.get("existing_selected_grammars", {}))
+    )
+    row = {
+        "kind": "E75_PROTO_GRAMMAR_CRYSTALLIZATION_ROW_v0",
+        "candidate_word": proto_row["candidate_word"],
+        "classification": classification,
+        "classification_reason": reason,
+        "recurrence_support": recurrence_support,
+        "usage_context_stability": {
+            "historical_v79_v80_context_used_as_seed_only": True,
+            "fresh_generalization_required": True,
+            "pressure_fingerprint_count": len(proto_row.get("usage_by_context", {}).get("pressure_fingerprints", [])),
+            "recurrence_dominates_definition_width": recurrence_dominates_definition,
+        },
+        "definition_by_known_words_stability": {
+            "definition_width": definition_width,
+            "negative_pressure_component_count": len(negative_components),
+            "positive_pressure_component_count": len(pressure_components),
+            "boundary_pressure_is_specific": boundary_pressure_is_specific,
+            "generic_compression_pressure": generic_compression_pressure,
+        },
+        "enemy_grammar_pressure": enemy_grammar_pressure,
+        "merge_explanation_pressure": merge_explanation_pressure,
+        "old_grammar_explanation_pressure": old_grammar_pressure,
+        "abstain_explanation_pressure": abstain_explanation_pressure,
+        "sentinel_stealing_pressure": sentinel_stealing_pressure,
+        "physical_holdout_pressure": {
+            "selected_postseal_pressure": selected_physical,
+            "wrong_grammar_pressure": wrong_physical,
+            "merge_grammar_pressure": merge_physical,
+            "masked_grammar_pressure": masked_physical,
+            "selected_dominates_wrong_merge_masked": physical_dominates,
+            "postseal_observable_is_independent_gate_required": True,
+        },
+        "compression_gain": {
+            "candidate_pressure_explained": candidate_pressure,
+            "candidate_dominates_merge": candidate_dominates_merge,
+            "candidate_dominates_old_grammar": candidate_dominates_old,
+            "candidate_dominates_abstention": candidate_dominates_abstain,
+            "uses_static_threshold": False,
+        },
+        "composition_compatibility": {
+            "known_word_partners": known_partners,
+            "composition_partner_count": len(known_partners),
+            "candidate_can_compose_with_known_words": classification == "crystallized_grammar" and bool(known_partners),
+        },
+        "falsification_readiness": {
+            "matched_controls_pass": matched_controls_pass,
+            "wrong_grammar_challenge_fails": physical_dominates,
+            "anti_tautology_gate_required": "V81P_ANTI_TAUTOLOGY_PHYSICAL_HOLDOUT_GATE_512",
+            "physical_basis_claim_allowed": False,
+        },
+        "merge_candidate": merge_candidate,
+        "definition_by_known_words": definition,
+        "source_v80_classification": proto_row["classification"],
+        "physical_basis_claim_allowed": False,
+        "folding_problem_solved": False,
+    }
+    return row
+
+
+def proto_grammar_crystallization_cortex(
+    *,
+    v80_triage_report: dict[str, Any],
+    v80p_holdout_rows: list[dict[str, Any]] | None = None,
+    sentinel_regression_count: int = 0,
+) -> dict[str, Any]:
+    v80_rows = list(v80_triage_report.get("rows") or [])
+    proto_rows = [row for row in v80_rows if row.get("classification") == "proto_grammar"]
+    merged_rows = [row for row in v80_rows if row.get("classification") == "merge_into_existing_word"]
+    physical_index = _e75_physical_index(list(v80p_holdout_rows or []))
+    crystallization_rows = [
+        _e75_crystallization_row(
+            proto_row,
+            physical_rows=physical_index.get(proto_row["candidate_word"], []),
+            sentinel_regression_count=sentinel_regression_count,
+        )
+        for proto_row in proto_rows
+    ]
+    classification_counts = Counter(row["classification"] for row in crystallization_rows)
+    crystallization_hash = stable_hash([
+        {
+            "candidate_word": row["candidate_word"],
+            "classification": row["classification"],
+            "recurrence_support": row["recurrence_support"],
+            "definition_width": row["definition_by_known_words_stability"]["definition_width"],
+            "physical_holdout_pressure": row["physical_holdout_pressure"],
+        }
+        for row in crystallization_rows
+    ])
+    return {
+        "kind": "E75_PROTO_GRAMMAR_CRYSTALLIZATION_CORTEX_v0",
+        "engine_revision": "E75",
+        "baseline_engine_revision": "E74",
+        "input_proto_grammar_count": len(proto_rows),
+        "input_merged_word_count": len(merged_rows),
+        "crystallization_rows": crystallization_rows,
+        "classification_counts": dict(classification_counts),
+        "allowed_classifications": E75_PROTO_GRAMMAR_CLASSIFICATIONS,
+        "crystallization_hash": crystallization_hash,
+        "proto_grammars_classified_reproducibly": bool(crystallization_hash),
+        "sentinel_regressions": sentinel_regression_count,
+        "no_static_thresholds_used": True,
+        "no_forced_expected_labels_used": True,
+        "v79_v80_context_used_as_seed_not_proof": True,
+        "physical_basis_claim_allowed": False,
+        "folding_problem_solved": False,
+        "next_required_batch": "V81_PROTO_GRAMMAR_GENERALIZATION_PANEL",
+    }
+
+
 def bounded(value: float) -> float:
     return round(max(0.0, min(1.0, float(value))), 6)
 
