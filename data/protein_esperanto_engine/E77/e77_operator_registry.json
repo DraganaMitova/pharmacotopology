@@ -1,0 +1,157 @@
+{
+  "entries": [
+    {
+      "allowed_use": "operator_view_only_until_bound_by_evidence_and_controls",
+      "cannot_directly_accept": true,
+      "operator": "closure_operator"
+    },
+    {
+      "allowed_use": "operator_view_only_until_bound_by_evidence_and_controls",
+      "cannot_directly_accept": true,
+      "operator": "repulsion_operator"
+    },
+    {
+      "allowed_use": "operator_view_only_until_bound_by_evidence_and_controls",
+      "cannot_directly_accept": true,
+      "operator": "frustration_operator"
+    },
+    {
+      "allowed_use": "operator_view_only_until_bound_by_evidence_and_controls",
+      "cannot_directly_accept": true,
+      "operator": "disorder_operator"
+    },
+    {
+      "allowed_use": "operator_view_only_until_bound_by_evidence_and_controls",
+      "cannot_directly_accept": true,
+      "operator": "phase_operator"
+    },
+    {
+      "allowed_use": "operator_view_only_until_bound_by_evidence_and_controls",
+      "cannot_directly_accept": true,
+      "operator": "interface_operator"
+    },
+    {
+      "allowed_use": "operator_view_only_until_bound_by_evidence_and_controls",
+      "cannot_directly_accept": true,
+      "operator": "membrane_pressure_operator"
+    },
+    {
+      "allowed_use": "operator_view_only_until_bound_by_evidence_and_controls",
+      "cannot_directly_accept": true,
+      "operator": "dual_basin_switch_operator"
+    },
+    {
+      "allowed_use": "operator_view_only_until_bound_by_evidence_and_controls",
+      "cannot_directly_accept": true,
+      "operator": "proteostasis_operator"
+    },
+    {
+      "allowed_use": "operator_view_only_until_bound_by_evidence_and_controls",
+      "cannot_directly_accept": true,
+      "operator": "host_hijack_operator"
+    },
+    {
+      "allowed_use": "operator_view_only_until_bound_by_evidence_and_controls",
+      "cannot_directly_accept": true,
+      "operator": "disulfide_pairing_operator"
+    },
+    {
+      "allowed_use": "operator_view_only_until_bound_by_evidence_and_controls",
+      "cannot_directly_accept": true,
+      "operator": "secretory_redox_operator"
+    },
+    {
+      "allowed_use": "operator_view_only_until_bound_by_evidence_and_controls",
+      "cannot_directly_accept": true,
+      "operator": "signal_peptide_routing_operator"
+    },
+    {
+      "allowed_use": "operator_view_only_until_bound_by_evidence_and_controls",
+      "cannot_directly_accept": true,
+      "operator": "tm_insertion_operator"
+    },
+    {
+      "allowed_use": "operator_view_only_until_bound_by_evidence_and_controls",
+      "cannot_directly_accept": true,
+      "operator": "cleavage_context_operator"
+    },
+    {
+      "allowed_use": "operator_view_only_until_bound_by_evidence_and_controls",
+      "cannot_directly_accept": true,
+      "operator": "secretory_routing_operator"
+    },
+    {
+      "allowed_use": "operator_view_only_until_bound_by_evidence_and_controls",
+      "cannot_directly_accept": true,
+      "operator": "heptad_register_operator"
+    },
+    {
+      "allowed_use": "operator_view_only_until_bound_by_evidence_and_controls",
+      "cannot_directly_accept": true,
+      "operator": "coiled_coil_interface_operator"
+    },
+    {
+      "allowed_use": "operator_view_only_until_bound_by_evidence_and_controls",
+      "cannot_directly_accept": true,
+      "operator": "oligomeric_register_operator"
+    },
+    {
+      "allowed_use": "operator_view_only_until_bound_by_evidence_and_controls",
+      "cannot_directly_accept": true,
+      "operator": "register_shift_frustration_operator"
+    },
+    {
+      "allowed_use": "operator_view_only_until_bound_by_evidence_and_controls",
+      "cannot_directly_accept": true,
+      "operator": "repeat_phase_operator"
+    },
+    {
+      "allowed_use": "operator_view_only_until_bound_by_evidence_and_controls",
+      "cannot_directly_accept": true,
+      "operator": "solenoid_axis_operator"
+    },
+    {
+      "allowed_use": "operator_view_only_until_bound_by_evidence_and_controls",
+      "cannot_directly_accept": true,
+      "operator": "local_repeat_closure_operator"
+    },
+    {
+      "allowed_use": "operator_view_only_until_bound_by_evidence_and_controls",
+      "cannot_directly_accept": true,
+      "operator": "global_repeat_stack_operator"
+    },
+    {
+      "allowed_use": "operator_view_only_until_bound_by_evidence_and_controls",
+      "cannot_directly_accept": true,
+      "operator": "repeat_boundary_frustration_operator"
+    },
+    {
+      "allowed_use": "operator_view_only_until_bound_by_evidence_and_controls",
+      "cannot_directly_accept": true,
+      "operator": "threading_operator"
+    },
+    {
+      "allowed_use": "operator_view_only_until_bound_by_evidence_and_controls",
+      "cannot_directly_accept": true,
+      "operator": "topological_closure_operator"
+    },
+    {
+      "allowed_use": "operator_view_only_until_bound_by_evidence_and_controls",
+      "cannot_directly_accept": true,
+      "operator": "long_range_threading_operator"
+    },
+    {
+      "allowed_use": "operator_view_only_until_bound_by_evidence_and_controls",
+      "cannot_directly_accept": true,
+      "operator": "slipknot_intermediate_operator"
+    },
+    {
+      "allowed_use": "operator_view_only_until_bound_by_evidence_and_controls",
+      "cannot_directly_accept": true,
+      "operator": "knotting_frustration_operator"
+    }
+  ],
+  "kind": "E77_OPERATOR_REGISTRY_v0",
+  "operator_count": 30,
+  "registry_hash": "c6ccfc56ba35838ae003cf20cbf28c7cf043fe64152c54a670af35920e106507"
+}

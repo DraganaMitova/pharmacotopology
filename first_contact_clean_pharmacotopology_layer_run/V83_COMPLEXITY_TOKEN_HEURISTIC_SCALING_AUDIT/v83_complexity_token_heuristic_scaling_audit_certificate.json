@@ -1,0 +1,93 @@
+{
+  "abstention_taxonomy_control_count": 500,
+  "abstention_taxonomy_counts": {
+    "conflict_abstain": 600,
+    "insufficient_evidence_abstain": 2100,
+    "leakage_guard_abstain": 100,
+    "overconservative_abstain": 100,
+    "recoverable_candidate_word_abstain": 100
+  },
+  "baseline_engine_version": "E76",
+  "batch_id": "V83_COMPLEXITY_TOKEN_HEURISTIC_SCALING_AUDIT",
+  "blind_candidate_count": 2000,
+  "certificate_core_hash": "fe720b2ad5f8ec70e88063f5bb57de46dfba43a2920870e61346a3fc2c43ad57",
+  "certificate_hash": "a315fbd644559626ea9622a3900f84617fd94938e2439984f395cc2478efe95e",
+  "complexity_budget": {
+    "grammar_count": 19,
+    "max_condition_depth": 5,
+    "operator_count": 30,
+    "packet_size": 473,
+    "registry_size": 441,
+    "runtime_per_100_targets": 0.000745,
+    "sentence_clause_count": 7,
+    "state_variable_count": 93,
+    "token_count": 276
+  },
+  "coordinate_native_truth_stays_sealed": true,
+  "engine_version_used": "E77",
+  "failed_accepted_count": 0,
+  "failed_controls": [],
+  "heuristic_ablation_control_count": 500,
+  "heuristic_ablation_families": [
+    "remove_token_family",
+    "remove_operator_family",
+    "remove_sentence_clause_family",
+    "swap_support_function_dominance_law",
+    "shuffle_grammar_registry_order",
+    "shuffle_evidence_source_ordering"
+  ],
+  "heuristic_ablation_unsupported_flip_count": 0,
+  "kind": "V83_COMPLEXITY_TOKEN_HEURISTIC_SCALING_AUDIT_CERTIFICATE_v0",
+  "next_required_batch": "V83P_REAL_PHYSICAL_EXECUTION_SELECTION_GATE",
+  "no_static_thresholds_used": true,
+  "overconservative_abstains_reported": 100,
+  "physical_basis_claim_allowed": false,
+  "protein_folding_solved": false,
+  "registry_export_deterministic": true,
+  "registry_hashes": {
+    "grammar_registry": "c26c888622b289337c127f15feb7826a8bd755408d0571aa14a7f78b21d4f1b9",
+    "operator_registry": "c6ccfc56ba35838ae003cf20cbf28c7cf043fe64152c54a670af35920e106507",
+    "physical_observable_registry": "b88c163585a7a1be0f60af303fe886a394530cffc0f6995511ba6118318edc16",
+    "sentence_clause_registry": "a9057963c9e798dd064383c0566aa8bcc81765bc09c56416372ad68127e311cc",
+    "state_variable_registry": "6eb3c8ed476f93e208b486c23e1504190c79a49f5139b0c23ad7408277ab9d60",
+    "token_evidence_registry": "72c656b1f9ea3d65faa651bfbf0bf8666a43b38664ea10c27a80583d4216fea1",
+    "validation_control_registry": "f30fb76f4c15944ec11b662dbfe3aa1b1b6ee925e9d35ecec577d5c6c412a604"
+  },
+  "repeated_registry_hashes": {
+    "grammar_registry": "c26c888622b289337c127f15feb7826a8bd755408d0571aa14a7f78b21d4f1b9",
+    "operator_registry": "c6ccfc56ba35838ae003cf20cbf28c7cf043fe64152c54a670af35920e106507",
+    "physical_observable_registry": "b88c163585a7a1be0f60af303fe886a394530cffc0f6995511ba6118318edc16",
+    "sentence_clause_registry": "a9057963c9e798dd064383c0566aa8bcc81765bc09c56416372ad68127e311cc",
+    "state_variable_registry": "6eb3c8ed476f93e208b486c23e1504190c79a49f5139b0c23ad7408277ab9d60",
+    "token_evidence_registry": "72c656b1f9ea3d65faa651bfbf0bf8666a43b38664ea10c27a80583d4216fea1",
+    "validation_control_registry": "f30fb76f4c15944ec11b662dbfe3aa1b1b6ee925e9d35ecec577d5c6c412a604"
+  },
+  "repeated_run_certificate_core_hash_stable": true,
+  "row_family_counts": {
+    "abstention_taxonomy_control": 500,
+    "blind_candidate": 2000,
+    "heuristic_ablation_control": 500,
+    "sentence_composition_sentinel": 500,
+    "token_soup_adversarial_control": 500
+  },
+  "sentence_composition_sentinel_count": 500,
+  "sentinels_preserved": 500,
+  "source_batch_id": "V82_COMPOSITIONAL_SENTENCE_PANEL_1500",
+  "status": "V83_COMPLEXITY_TOKEN_HEURISTIC_SCALING_AUDIT_PASSED",
+  "targets_total": 4000,
+  "timestamp_utc": "2026-06-12T12:56:51.926255+00:00",
+  "token_only_acceptance_count": 0,
+  "token_soup_adversarial_control_count": 500,
+  "token_soup_firewall": {
+    "acceptance_requires": [
+      "cross_view_binding",
+      "matched_control_dominance",
+      "wrong_grammar_failure",
+      "perturbation_or_falsification_support",
+      "sentinel_preservation"
+    ],
+    "cannot_directly_accept": true,
+    "token_hit_role": "evidence_proposal_only",
+    "token_only_acceptance_count": 0
+  }
+}

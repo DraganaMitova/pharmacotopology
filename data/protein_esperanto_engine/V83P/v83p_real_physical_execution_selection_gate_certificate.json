@@ -1,0 +1,34 @@
+{
+  "batch_id": "V83P_REAL_PHYSICAL_EXECUTION_SELECTION_GATE",
+  "certificate_hash": "60a3abafcda5f9069f440fcea386af8841364a398ce573ccfae5820937038fa9",
+  "coordinate_or_native_leakage_blocked": true,
+  "engine_version_used": "E77",
+  "failed_controls": [],
+  "failed_target_ids": [],
+  "independent_experimental_or_coordinate_physical_proof_executed": false,
+  "kind": "V83P_REAL_PHYSICAL_EXECUTION_SELECTION_GATE_CERTIFICATE_v0",
+  "language_can_pass_without_physical_claim_count": 768,
+  "language_source_batch_id": "V82_COMPOSITIONAL_SENTENCE_PANEL_1500",
+  "native_contacts_used_before_seal": false,
+  "native_coordinates_used_before_seal": false,
+  "physical_basis_claim_allowed": false,
+  "physical_claim_blocked_until_independent_holdout": true,
+  "physical_proxy_can_support_language_count": 768,
+  "protein_folding_solved": false,
+  "proxy_source_batch_id": "V82P_COMPOSITIONAL_PHYSICAL_HOLDOUT_GATE_768",
+  "row_family_counts": {
+    "four": 168,
+    "three": 300,
+    "two": 300
+  },
+  "source_batch_id": "V83_COMPLEXITY_TOKEN_HEURISTIC_SCALING_AUDIT",
+  "status": "V83P_REAL_PHYSICAL_EXECUTION_SELECTION_GATE_PASSED",
+  "support_tier_counts": {
+    "coarse_physical_proxy_support": 768,
+    "independent_physical_holdout_support": 0,
+    "language_support": 768
+  },
+  "targets_total": 768,
+  "timestamp_utc": "2026-06-12T12:57:54.707253+00:00",
+  "uses_static_observable_thresholds": false
+}

@@ -1,0 +1,62 @@
+{
+  "entries": [
+    {
+      "cannot_directly_accept": true,
+      "control": "cross_view_binding",
+      "required_for_acceptance_or_audit": true
+    },
+    {
+      "cannot_directly_accept": true,
+      "control": "matched_control_dominance",
+      "required_for_acceptance_or_audit": true
+    },
+    {
+      "cannot_directly_accept": true,
+      "control": "wrong_grammar_challenge",
+      "required_for_acceptance_or_audit": true
+    },
+    {
+      "cannot_directly_accept": true,
+      "control": "perturbation_or_falsification_support",
+      "required_for_acceptance_or_audit": true
+    },
+    {
+      "cannot_directly_accept": true,
+      "control": "sentinel_preservation",
+      "required_for_acceptance_or_audit": true
+    },
+    {
+      "cannot_directly_accept": true,
+      "control": "coordinate_native_truth_seal",
+      "required_for_acceptance_or_audit": true
+    },
+    {
+      "cannot_directly_accept": true,
+      "control": "bag_of_words_control",
+      "required_for_acceptance_or_audit": true
+    },
+    {
+      "cannot_directly_accept": true,
+      "control": "wrong_order_control",
+      "required_for_acceptance_or_audit": true
+    },
+    {
+      "cannot_directly_accept": true,
+      "control": "wrong_head_control",
+      "required_for_acceptance_or_audit": true
+    },
+    {
+      "cannot_directly_accept": true,
+      "control": "token_soup_firewall",
+      "required_for_acceptance_or_audit": true
+    },
+    {
+      "cannot_directly_accept": true,
+      "control": "heuristic_ablation_replay",
+      "required_for_acceptance_or_audit": true
+    }
+  ],
+  "kind": "E77_VALIDATION_CONTROL_REGISTRY_v0",
+  "registry_hash": "f30fb76f4c15944ec11b662dbfe3aa1b1b6ee925e9d35ecec577d5c6c412a604",
+  "validation_control_count": 11
+}

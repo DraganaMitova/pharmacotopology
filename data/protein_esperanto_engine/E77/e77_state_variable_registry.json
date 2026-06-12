@@ -1,0 +1,472 @@
+{
+  "entries": [
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "residue_exposure"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "segment_compaction"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "contact_probability"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "operator_activation"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "frustration"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "state_basin_occupancy"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "interface_readiness"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "disorder_order_balance"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "proteostasis_routing"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "assembly_required_core"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "partner_completed_core"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "interface_buried_hydrophobicity"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "monomer_incomplete_topology"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "coiled_coil_register_dependency"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "domain_swap_candidate"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "biological_oligomer_context"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "generic_complex_only"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "assembly_ambiguous"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "metal_cluster_geometry"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "coordination_shell_integrity"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "ligand_locked_basin"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "apo_holo_basin_shift"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "generic_ligand_only"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "metal_ligand_ambiguous"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "IDR_boundary"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "structured_domain_plus_IDR_tail"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "fold_upon_binding_region"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "phase_prone_low_complexity"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "flexible_loop_not_disorder"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "disorder_with_local_motif"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "closed_beta_topology"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "strand_register"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "beta_sheet_closure"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "soluble_beta_barrel"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "membrane_beta_barrel"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "beta_propeller_repeat_closure"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "beta_sandwich_core"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "jelly_roll_wrap"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "greek_key_beta_lock"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "beta_helix_solenoid_stack"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "alpha_beta_barrel_distinction"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "open_beta_sheet_ambiguous"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "closed_beta_confident"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "closed_beta_ambiguous"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "strand_register_insufficient"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "beta_topology_conflict"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "multidomain_allostery"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "domain_boundary"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "hinge_region"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "interdomain_lock"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "allosteric_basin_shift"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "domain_reorientation"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "modular_architecture"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "domain_swapping"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "secretory_redox_context"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "disulfide_pairing_topology"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "cysteine_pairing_constraint"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "extracellular_stabilized_fold"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "glycosylation_context"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "redox_mispaired_frustration"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "signal_peptide_removed_context"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "secretory_quality_control"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "signal_peptide_routing_context"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "cleavage_site_context"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "n_terminal_secretory_hydrophobic_patch"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "true_transmembrane_span_context"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "single_pass_tm_conflict"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "multi_pass_tm_conflict"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "secretory_lumenal_routing"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "membrane_insertion_routing"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "signal_anchor_ambiguity"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "heptad_register_context"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "hydrophobic_repeat_phase"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "parallel_antiparallel_register"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "oligomeric_coiled_coil_core"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "register_shift_frustration"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "coiled_coil_assembly_dependency"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "leucine_zipper_context"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "repeat_unit_context"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "solenoid_axis_context"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "curved_repeat_stack"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "local_repeat_closure"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "global_repeat_topology"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "repeat_phase_alignment"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "repeat_boundary_frustration"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "ankyrin_armadillo_tpr_lrr_context"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "knot_core_context"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "threading_loop_context"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "slipknot_intermediate_context"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "topological_closure_constraint"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "long_range_threading_dependency"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "knotting_frustration"
+    },
+    {
+      "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+      "cannot_directly_accept": true,
+      "state_variable": "unknotted_decoy_dominance"
+    }
+  ],
+  "kind": "E77_STATE_VARIABLE_REGISTRY_v0",
+  "registry_hash": "6eb3c8ed476f93e208b486c23e1504190c79a49f5139b0c23ad7408277ab9d60",
+  "state_variable_count": 93
+}

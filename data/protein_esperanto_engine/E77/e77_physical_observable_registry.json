@@ -1,0 +1,37 @@
+{
+  "entries": [
+    {
+      "allowed_use": "postseal_support_or_falsification_only",
+      "cannot_directly_accept": true,
+      "observable": "operator_state_propagation_summary",
+      "physical_basis_claim_allowed": false
+    },
+    {
+      "allowed_use": "postseal_support_or_falsification_only",
+      "cannot_directly_accept": true,
+      "observable": "hypothesized_interaction_language_map",
+      "physical_basis_claim_allowed": false
+    },
+    {
+      "allowed_use": "postseal_support_or_falsification_only",
+      "cannot_directly_accept": true,
+      "observable": "candidate_word_pressure_graph_feature_overlap",
+      "physical_basis_claim_allowed": false
+    },
+    {
+      "allowed_use": "postseal_support_or_falsification_only",
+      "cannot_directly_accept": true,
+      "observable": "bound_sentence_clause_graph",
+      "physical_basis_claim_allowed": false
+    },
+    {
+      "allowed_use": "postseal_support_or_falsification_only",
+      "cannot_directly_accept": true,
+      "observable": "postseal_independent_observable",
+      "physical_basis_claim_allowed": false
+    }
+  ],
+  "kind": "E77_PHYSICAL_OBSERVABLE_REGISTRY_v0",
+  "physical_observable_count": 5,
+  "registry_hash": "b88c163585a7a1be0f60af303fe886a394530cffc0f6995511ba6118318edc16"
+}

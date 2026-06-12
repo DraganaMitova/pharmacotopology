@@ -2016,6 +2016,264 @@ def compositional_protein_sentence_grammar(
     }
 
 
+E77_REGISTRY_NAMES = [
+    "grammar_registry",
+    "token_evidence_registry",
+    "operator_registry",
+    "state_variable_registry",
+    "sentence_clause_registry",
+    "physical_observable_registry",
+    "validation_control_registry",
+]
+
+E77_ABSTENTION_TAXONOMY = [
+    "insufficient_evidence_abstain",
+    "recoverable_candidate_word_abstain",
+    "overconservative_abstain",
+    "conflict_abstain",
+    "leakage_guard_abstain",
+]
+
+E77_ACCEPTANCE_FIREWALL_REQUIREMENTS = [
+    "cross_view_binding",
+    "matched_control_dominance",
+    "wrong_grammar_failure",
+    "perturbation_or_falsification_support",
+    "sentinel_preservation",
+]
+
+E77_HEURISTIC_ABLATION_FAMILIES = [
+    "remove_token_family",
+    "remove_operator_family",
+    "remove_sentence_clause_family",
+    "swap_support_function_dominance_law",
+    "shuffle_grammar_registry_order",
+    "shuffle_evidence_source_ordering",
+]
+
+
+def _e77_enemy_grammars(grammar: str) -> list[str]:
+    return [candidate for candidate in MECHANISM_CLASSES if candidate not in {grammar, "insufficient_evidence_clean_abstain"}]
+
+
+def _e77_family_source(grammar: str, token: str) -> str:
+    if grammar in {
+        "coiled_coil_register_topology",
+        "repeat_solenoid_topology",
+        "knotted_topology",
+        "assembly_required_folding",
+        "metal_cluster_and_ligand_locked_basin",
+        "disorder_boundary_and_fold_upon_binding",
+        "beta_closure_topology",
+        "multidomain_allosteric_architecture",
+        "secretory_disulfide_redox_topology",
+        "signal_peptide_vs_true_tm_routing",
+    }:
+        return "definition_by_known_words"
+    if token.startswith("not_") or token.startswith("compression_"):
+        return "usage_by_context"
+    return "manually_seeded_bootstrap"
+
+
+def grammar_registry() -> dict[str, Any]:
+    entries = []
+    for grammar in MECHANISM_CLASSES:
+        entries.append({
+            "grammar": grammar,
+            "is_abstention_grammar": grammar == "insufficient_evidence_clean_abstain",
+            "token_family_count": len(SELF_DECISION_LEARNED_GRAMMAR_FAMILIES.get(grammar, [])),
+            "allowed_use": "mechanism_interpretation_after_firewall",
+            "cannot_directly_accept_from_token_hit": True,
+        })
+    return {
+        "kind": "E77_GRAMMAR_REGISTRY_v0",
+        "entries": entries,
+        "grammar_count": len(entries),
+        "registry_hash": stable_hash(entries),
+    }
+
+
+def token_evidence_registry() -> dict[str, Any]:
+    entries = []
+    seen: set[tuple[str, str]] = set()
+    for grammar, tokens in sorted(SELF_DECISION_LEARNED_GRAMMAR_FAMILIES.items()):
+        for token in sorted(set(tokens)):
+            key = (grammar, token)
+            if key in seen:
+                continue
+            seen.add(key)
+            entries.append({
+                "token": token,
+                "source": _e77_family_source(grammar, token),
+                "grammar_family": grammar,
+                "enemy_grammars": _e77_enemy_grammars(grammar),
+                "allowed_use": "evidence_proposal_only",
+                "cannot_directly_accept": True,
+            })
+    return {
+        "kind": "E77_TOKEN_EVIDENCE_REGISTRY_v0",
+        "entries": entries,
+        "token_count": len(entries),
+        "token_only_acceptance_forbidden": True,
+        "acceptance_firewall_requirements": E77_ACCEPTANCE_FIREWALL_REQUIREMENTS,
+        "registry_hash": stable_hash(entries),
+    }
+
+
+def operator_registry() -> dict[str, Any]:
+    entries = [
+        {
+            "operator": operator,
+            "allowed_use": "operator_view_only_until_bound_by_evidence_and_controls",
+            "cannot_directly_accept": True,
+        }
+        for operator in UNIVERSAL_OPERATORS
+    ]
+    return {
+        "kind": "E77_OPERATOR_REGISTRY_v0",
+        "entries": entries,
+        "operator_count": len(entries),
+        "registry_hash": stable_hash(entries),
+    }
+
+
+def state_variable_registry() -> dict[str, Any]:
+    entries = [
+        {
+            "state_variable": variable,
+            "allowed_use": "state_readout_only_until_bound_by_sentence_or_mechanism",
+            "cannot_directly_accept": True,
+        }
+        for variable in STATE_VARIABLES
+    ]
+    return {
+        "kind": "E77_STATE_VARIABLE_REGISTRY_v0",
+        "entries": entries,
+        "state_variable_count": len(entries),
+        "registry_hash": stable_hash(entries),
+    }
+
+
+def sentence_clause_registry() -> dict[str, Any]:
+    entries = [
+        {
+            "clause": clause,
+            "order_index": index,
+            "allowed_use": "sentence_dependency_binding",
+            "cannot_directly_accept": True,
+        }
+        for index, clause in enumerate(E76_CLAUSE_ORDER)
+    ]
+    return {
+        "kind": "E77_SENTENCE_CLAUSE_REGISTRY_v0",
+        "entries": entries,
+        "sentence_clause_count": len(entries),
+        "composition_laws": E76_COMPOSITION_LAWS,
+        "registry_hash": stable_hash(entries),
+    }
+
+
+def physical_observable_registry() -> dict[str, Any]:
+    observables = [
+        "operator_state_propagation_summary",
+        "hypothesized_interaction_language_map",
+        "candidate_word_pressure_graph_feature_overlap",
+        "bound_sentence_clause_graph",
+        "postseal_independent_observable",
+    ]
+    entries = [
+        {
+            "observable": observable,
+            "allowed_use": "postseal_support_or_falsification_only",
+            "physical_basis_claim_allowed": False,
+            "cannot_directly_accept": True,
+        }
+        for observable in observables
+    ]
+    return {
+        "kind": "E77_PHYSICAL_OBSERVABLE_REGISTRY_v0",
+        "entries": entries,
+        "physical_observable_count": len(entries),
+        "registry_hash": stable_hash(entries),
+    }
+
+
+def validation_control_registry() -> dict[str, Any]:
+    controls = [
+        "cross_view_binding",
+        "matched_control_dominance",
+        "wrong_grammar_challenge",
+        "perturbation_or_falsification_support",
+        "sentinel_preservation",
+        "coordinate_native_truth_seal",
+        "bag_of_words_control",
+        "wrong_order_control",
+        "wrong_head_control",
+        "token_soup_firewall",
+        "heuristic_ablation_replay",
+    ]
+    entries = [
+        {
+            "control": control,
+            "required_for_acceptance_or_audit": True,
+            "cannot_directly_accept": True,
+        }
+        for control in controls
+    ]
+    return {
+        "kind": "E77_VALIDATION_CONTROL_REGISTRY_v0",
+        "entries": entries,
+        "validation_control_count": len(entries),
+        "registry_hash": stable_hash(entries),
+    }
+
+
+def evidence_registry_bundle() -> dict[str, Any]:
+    registries = {
+        "grammar_registry": grammar_registry(),
+        "token_evidence_registry": token_evidence_registry(),
+        "operator_registry": operator_registry(),
+        "state_variable_registry": state_variable_registry(),
+        "sentence_clause_registry": sentence_clause_registry(),
+        "physical_observable_registry": physical_observable_registry(),
+        "validation_control_registry": validation_control_registry(),
+    }
+    complexity_budget = {
+        "grammar_count": registries["grammar_registry"]["grammar_count"],
+        "token_count": registries["token_evidence_registry"]["token_count"],
+        "operator_count": registries["operator_registry"]["operator_count"],
+        "state_variable_count": registries["state_variable_registry"]["state_variable_count"],
+        "sentence_clause_count": registries["sentence_clause_registry"]["sentence_clause_count"],
+        "max_condition_depth": len(E77_ACCEPTANCE_FIREWALL_REQUIREMENTS),
+        "registry_size": sum(len(registry["entries"]) for registry in registries.values()),
+    }
+    bundle_hash = stable_hash({
+        name: registries[name]["registry_hash"]
+        for name in E77_REGISTRY_NAMES
+    })
+    return {
+        "kind": "E77_ENGINE_DECOMPOSITION_AND_EVIDENCE_REGISTRY_v0",
+        "engine_revision": "E77",
+        "baseline_engine_revision": "E76",
+        "registries": registries,
+        "registry_names": E77_REGISTRY_NAMES,
+        "abstention_taxonomy": E77_ABSTENTION_TAXONOMY,
+        "acceptance_firewall_requirements": E77_ACCEPTANCE_FIREWALL_REQUIREMENTS,
+        "heuristic_ablation_families": E77_HEURISTIC_ABLATION_FAMILIES,
+        "complexity_budget": complexity_budget,
+        "token_soup_firewall": {
+            "token_hit_role": "evidence_proposal_only",
+            "token_only_acceptance_count": 0,
+            "cannot_directly_accept": True,
+            "acceptance_requires": E77_ACCEPTANCE_FIREWALL_REQUIREMENTS,
+        },
+        "deterministic_registry_export": True,
+        "registry_bundle_hash": bundle_hash,
+        "physical_basis_claim_allowed": False,
+        "protein_folding_solved": False,
+    }
+
+
 def bounded(value: float) -> float:
     return round(max(0.0, min(1.0, float(value))), 6)
 

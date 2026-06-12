@@ -1,0 +1,140 @@
+{
+  "entries": [
+    {
+      "allowed_use": "mechanism_interpretation_after_firewall",
+      "cannot_directly_accept_from_token_hit": true,
+      "grammar": "globular_closure",
+      "is_abstention_grammar": false,
+      "token_family_count": 7
+    },
+    {
+      "allowed_use": "mechanism_interpretation_after_firewall",
+      "cannot_directly_accept_from_token_hit": true,
+      "grammar": "intrinsic_disorder_phase_separation",
+      "is_abstention_grammar": false,
+      "token_family_count": 7
+    },
+    {
+      "allowed_use": "mechanism_interpretation_after_firewall",
+      "cannot_directly_accept_from_token_hit": true,
+      "grammar": "disorder_boundary_and_fold_upon_binding",
+      "is_abstention_grammar": false,
+      "token_family_count": 15
+    },
+    {
+      "allowed_use": "mechanism_interpretation_after_firewall",
+      "cannot_directly_accept_from_token_hit": true,
+      "grammar": "beta_closure_topology",
+      "is_abstention_grammar": false,
+      "token_family_count": 30
+    },
+    {
+      "allowed_use": "mechanism_interpretation_after_firewall",
+      "cannot_directly_accept_from_token_hit": true,
+      "grammar": "multidomain_allosteric_architecture",
+      "is_abstention_grammar": false,
+      "token_family_count": 20
+    },
+    {
+      "allowed_use": "mechanism_interpretation_after_firewall",
+      "cannot_directly_accept_from_token_hit": true,
+      "grammar": "secretory_disulfide_redox_topology",
+      "is_abstention_grammar": false,
+      "token_family_count": 24
+    },
+    {
+      "allowed_use": "mechanism_interpretation_after_firewall",
+      "cannot_directly_accept_from_token_hit": true,
+      "grammar": "signal_peptide_vs_true_tm_routing",
+      "is_abstention_grammar": false,
+      "token_family_count": 41
+    },
+    {
+      "allowed_use": "mechanism_interpretation_after_firewall",
+      "cannot_directly_accept_from_token_hit": true,
+      "grammar": "coiled_coil_register_topology",
+      "is_abstention_grammar": false,
+      "token_family_count": 17
+    },
+    {
+      "allowed_use": "mechanism_interpretation_after_firewall",
+      "cannot_directly_accept_from_token_hit": true,
+      "grammar": "repeat_solenoid_topology",
+      "is_abstention_grammar": false,
+      "token_family_count": 20
+    },
+    {
+      "allowed_use": "mechanism_interpretation_after_firewall",
+      "cannot_directly_accept_from_token_hit": true,
+      "grammar": "knotted_topology",
+      "is_abstention_grammar": false,
+      "token_family_count": 14
+    },
+    {
+      "allowed_use": "mechanism_interpretation_after_firewall",
+      "cannot_directly_accept_from_token_hit": true,
+      "grammar": "membrane_multidomain_folding_proteostasis",
+      "is_abstention_grammar": false,
+      "token_family_count": 11
+    },
+    {
+      "allowed_use": "mechanism_interpretation_after_firewall",
+      "cannot_directly_accept_from_token_hit": true,
+      "grammar": "metamorphic_fold_switching",
+      "is_abstention_grammar": false,
+      "token_family_count": 6
+    },
+    {
+      "allowed_use": "mechanism_interpretation_after_firewall",
+      "cannot_directly_accept_from_token_hit": true,
+      "grammar": "short_region_host_interface_hijacking",
+      "is_abstention_grammar": false,
+      "token_family_count": 5
+    },
+    {
+      "allowed_use": "mechanism_interpretation_after_firewall",
+      "cannot_directly_accept_from_token_hit": true,
+      "grammar": "fold_upon_binding_disorder",
+      "is_abstention_grammar": false,
+      "token_family_count": 4
+    },
+    {
+      "allowed_use": "mechanism_interpretation_after_firewall",
+      "cannot_directly_accept_from_token_hit": true,
+      "grammar": "cofactor_ligand_assisted_stabilization",
+      "is_abstention_grammar": false,
+      "token_family_count": 7
+    },
+    {
+      "allowed_use": "mechanism_interpretation_after_firewall",
+      "cannot_directly_accept_from_token_hit": true,
+      "grammar": "metal_cluster_and_ligand_locked_basin",
+      "is_abstention_grammar": false,
+      "token_family_count": 19
+    },
+    {
+      "allowed_use": "mechanism_interpretation_after_firewall",
+      "cannot_directly_accept_from_token_hit": true,
+      "grammar": "assembly_required_folding",
+      "is_abstention_grammar": false,
+      "token_family_count": 22
+    },
+    {
+      "allowed_use": "mechanism_interpretation_after_firewall",
+      "cannot_directly_accept_from_token_hit": true,
+      "grammar": "oligomerization_controlled_folding",
+      "is_abstention_grammar": false,
+      "token_family_count": 7
+    },
+    {
+      "allowed_use": "mechanism_interpretation_after_firewall",
+      "cannot_directly_accept_from_token_hit": true,
+      "grammar": "insufficient_evidence_clean_abstain",
+      "is_abstention_grammar": true,
+      "token_family_count": 0
+    }
+  ],
+  "grammar_count": 19,
+  "kind": "E77_GRAMMAR_REGISTRY_v0",
+  "registry_hash": "c26c888622b289337c127f15feb7826a8bd755408d0571aa14a7f78b21d4f1b9"
+}

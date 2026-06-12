@@ -1,0 +1,58 @@
+{
+  "composition_laws": [
+    "routing_before_folding",
+    "environment_before_stability",
+    "topology_before_contact",
+    "assembly_before_monomer_claim",
+    "disorder_before_single_fold_claim",
+    "modifier_cannot_steal_head",
+    "sentence_must_beat_bag_of_words"
+  ],
+  "entries": [
+    {
+      "allowed_use": "sentence_dependency_binding",
+      "cannot_directly_accept": true,
+      "clause": "routing_clause",
+      "order_index": 0
+    },
+    {
+      "allowed_use": "sentence_dependency_binding",
+      "cannot_directly_accept": true,
+      "clause": "environment_clause",
+      "order_index": 1
+    },
+    {
+      "allowed_use": "sentence_dependency_binding",
+      "cannot_directly_accept": true,
+      "clause": "topology_clause",
+      "order_index": 2
+    },
+    {
+      "allowed_use": "sentence_dependency_binding",
+      "cannot_directly_accept": true,
+      "clause": "stability_clause",
+      "order_index": 3
+    },
+    {
+      "allowed_use": "sentence_dependency_binding",
+      "cannot_directly_accept": true,
+      "clause": "assembly_clause",
+      "order_index": 4
+    },
+    {
+      "allowed_use": "sentence_dependency_binding",
+      "cannot_directly_accept": true,
+      "clause": "disorder_clause",
+      "order_index": 5
+    },
+    {
+      "allowed_use": "sentence_dependency_binding",
+      "cannot_directly_accept": true,
+      "clause": "failure_proteostasis_clause",
+      "order_index": 6
+    }
+  ],
+  "kind": "E77_SENTENCE_CLAUSE_REGISTRY_v0",
+  "registry_hash": "a9057963c9e798dd064383c0566aa8bcc81765bc09c56416372ad68127e311cc",
+  "sentence_clause_count": 7
+}
