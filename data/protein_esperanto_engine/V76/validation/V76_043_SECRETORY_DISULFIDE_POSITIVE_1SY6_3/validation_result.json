@@ -1,0 +1,77 @@
+{
+  "acceptance_decision": "accepted",
+  "accepted_supported": true,
+  "clean_abstain_supported": false,
+  "coordinate_truth_used_before_seal": false,
+  "dominance_law": "single_dominant_learned_mechanism_bound_across_views",
+  "expected_mechanism_class": "secretory_disulfide_redox_topology",
+  "final_self_decision": "accepted",
+  "folding_problem_solved": false,
+  "kind": "V76_SECRETORY_DISULFIDE_VALIDATION_RESULT_v0",
+  "lineage_source_target": null,
+  "matched_control_dominance": {
+    "control_packet_hashes": {
+      "cysteine_masked": "8686f24566d00cbd4e61673ef5f53606f9797280c340bcaf5624f1742856d8b6",
+      "metadata_masked": "cd75c265d66a4be883bbf95ac15f3b4ecc80fd0bdae416b0ee97b60fc001427a",
+      "shuffled": "25f7847ea705368225bc92b92e5a504edbe352e767286b1d2dc25cc6da18ed4c"
+    },
+    "control_rows": [
+      {
+        "control": "real_sequence_beats_shuffled_no_context_control",
+        "control_value": 0.0,
+        "metric": "disulfide_pairing_topology",
+        "passed": true,
+        "real_value": 0.607386
+      },
+      {
+        "control": "real_metadata_beats_metadata_masked_source",
+        "control_value": 0.0,
+        "metric": "disulfide_pairing_topology",
+        "passed": true,
+        "real_value": 0.607386
+      },
+      {
+        "control": "real_sequence_beats_cysteine_masked_control",
+        "control_value": 0.0,
+        "metric": "disulfide_pairing_topology",
+        "passed": true,
+        "real_value": 0.607386
+      },
+      {
+        "control": "disulfide_redox_perturbation_decreases_selected_state",
+        "control_value": [
+          {
+            "baseline_value": 0.607386,
+            "perturbed_value": 0.0
+          }
+        ],
+        "metric": "disulfide_pairing_topology",
+        "passed": true,
+        "real_value": 0.607386
+      },
+      {
+        "control": "wrong_grammar_challenge_fails",
+        "control_value": "wrong_grammar_competes",
+        "metric": "wrong_grammar_separation",
+        "passed": true,
+        "real_value": "wrong_grammars_fail"
+      }
+    ],
+    "kind": "V76_MATCHED_CONTROL_DOMINANCE_v0",
+    "matched_control_dominance_passed": true,
+    "metric": "disulfide_pairing_topology",
+    "uses_static_observable_thresholds": false
+  },
+  "matched_control_dominance_passed": true,
+  "missing_word_candidate": null,
+  "panel_group": "SECRETORY_DISULFIDE_POSITIVE",
+  "physical_basis_claim_allowed": false,
+  "physical_grounding_status": "real_physical_calibration_inputs_loaded_openmm_available_but_target_physical_execution_not_run",
+  "predicted_mechanism_class": "secretory_disulfide_redox_topology",
+  "real_physical_calibration_inputs_used": true,
+  "required_esperanto_word": "disulfide_secretory_redox_context",
+  "score_label": "supported",
+  "sealed_prediction_hash": "e04c223ea9a3b0bc4794a638ae19df0ea80df831c1a65c7752a5ed6e0b52887b",
+  "self_decision_reason": "self_decision_internal_views_agree",
+  "target_id": "V76_043_SECRETORY_DISULFIDE_POSITIVE_1SY6_3"
+}

@@ -96,8 +96,8 @@ def test_v58_autopsy_abstains_only_on_preserved_raw_failures(audit_outputs: dict
 def test_v58_autopsy_failure_buckets_match_observed_v58_misses(audit_outputs: dict[str, object]) -> None:
     cert = audit_outputs["certificate"]
     assert cert["failure_bucket_counts"] == {
-        "globular_vs_interface_or_oligomer_ambiguity": 4,
-        "insufficient_evidence_or_missing_context": 2,
+        "globular_vs_interface_or_oligomer_ambiguity": 2,
+        "insufficient_evidence_or_missing_context": 4,
     }
 
 

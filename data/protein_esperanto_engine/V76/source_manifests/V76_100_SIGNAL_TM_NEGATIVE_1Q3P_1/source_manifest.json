@@ -1,0 +1,45 @@
+{
+  "batch_id": "V76_SECRETORY_DISULFIDE_REPAIR_PANEL_200",
+  "blocked_prediction_inputs": [
+    "PDB/mmCIF coordinates before sealing",
+    "native disulfide bond geometry before sealing",
+    "native contacts and distance maps before sealing",
+    "post-seal validation annotations before prediction hash",
+    "internal runtime artifacts as biological evidence"
+  ],
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E70",
+  "folding_problem_solved": false,
+  "kind": "V76_SECRETORY_DISULFIDE_SOURCE_MANIFEST_v0",
+  "panel_group": "SIGNAL_TM_NEGATIVE",
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence for the RCSB polymer entity.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V76_RAW_SEQUENCE_e22223250513",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1Q3P/1",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "V76 allowed non-coordinate context marks: membrane_context_strong transmembrane_context topology_evidence signal peptide only disulfide_secretory_redox_context.",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [
+        "membrane_context_strong",
+        "transmembrane_context",
+        "topology_evidence",
+        "signal peptide only",
+        "disulfide_secretory_redox_context"
+      ],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V76_E70_CONTEXT_e22223250513",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/1Q3P",
+      "spatial_proxy": false
+    }
+  ],
+  "target_id": "V76_100_SIGNAL_TM_NEGATIVE_1Q3P_1"
+}

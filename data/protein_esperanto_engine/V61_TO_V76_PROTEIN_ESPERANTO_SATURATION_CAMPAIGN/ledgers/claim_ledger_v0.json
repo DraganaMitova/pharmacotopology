@@ -1,0 +1,16 @@
+{
+  "campaign_id": "V61_TO_V76_PROTEIN_ESPERANTO_SATURATION_CAMPAIGN",
+  "kind": "V76_CLAIM_LEDGER_v0",
+  "rows": [
+    {
+      "accepted_accuracy": 1.0,
+      "batch_id": "V76_SECRETORY_DISULFIDE_REPAIR_PANEL_200",
+      "claim_allowed": false,
+      "coverage": 0.8,
+      "engine_version_used": "E70",
+      "failed_accepted_count": 0,
+      "matched_control_dominance_acceptance": true,
+      "status": "V76_E70_SECRETORY_DISULFIDE_REPAIR_PANEL_PASSED"
+    }
+  ]
+}

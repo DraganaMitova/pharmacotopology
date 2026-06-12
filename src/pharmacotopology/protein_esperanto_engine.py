@@ -37,6 +37,7 @@ MECHANISM_CLASSES = [
     "disorder_boundary_and_fold_upon_binding",
     "beta_closure_topology",
     "multidomain_allosteric_architecture",
+    "secretory_disulfide_redox_topology",
     "membrane_multidomain_folding_proteostasis",
     "metamorphic_fold_switching",
     "short_region_host_interface_hijacking",
@@ -56,6 +57,7 @@ PROCESS_CLASSES = [
     "disorder_boundary",
     "beta_closure",
     "multidomain_allostery",
+    "secretory_redox_topology",
     "fold_upon_binding",
 ]
 
@@ -85,6 +87,8 @@ UNIVERSAL_OPERATORS = [
     "dual_basin_switch_operator",
     "proteostasis_operator",
     "host_hijack_operator",
+    "disulfide_pairing_operator",
+    "secretory_redox_operator",
 ]
 
 STATE_VARIABLES = [
@@ -142,6 +146,14 @@ STATE_VARIABLES = [
     "domain_reorientation",
     "modular_architecture",
     "domain_swapping",
+    "secretory_redox_context",
+    "disulfide_pairing_topology",
+    "cysteine_pairing_constraint",
+    "extracellular_stabilized_fold",
+    "glycosylation_context",
+    "redox_mispaired_frustration",
+    "signal_peptide_removed_context",
+    "secretory_quality_control",
 ]
 
 ENVIRONMENTAL_PRESSURES = [
@@ -296,6 +308,66 @@ MULTIDOMAIN_ALLOSTERIC_STATE_VARIABLES = [
     "domain_swapping",
 ]
 
+SECRETORY_DISULFIDE_CONTEXT_TOKENS = [
+    "disulfide_secretory_redox_context",
+    "disulfide secretory redox context",
+    "disulfide_bond_topology",
+    "disulfide bond topology",
+    "disulphide bond topology",
+    "secretory_redox_context",
+    "secretory redox context",
+    "cysteine_pairing_constraint",
+    "cysteine pairing constraint",
+    "extracellular_stabilized_fold",
+    "extracellular stabilized fold",
+    "glycosylation_context",
+    "glycosylation context",
+    "signal_peptide_removed_context",
+    "signal peptide removed context",
+    "secretory_quality_control",
+    "secretory quality control",
+    "disulfide",
+    "disulphide",
+    "secreted",
+    "secretory",
+    "extracellular",
+    "cysteine-rich",
+    "cysteine rich",
+]
+
+SIGNAL_PEPTIDE_ONLY_CONTEXT_TOKENS = [
+    "signal peptide only",
+    "signal-peptide only",
+    "cleaved signal peptide",
+    "signal sequence only",
+    "signal peptide without disulfide",
+    "signal sequence without cysteine pairing",
+]
+
+CYS_HIS_METAL_COORDINATION_TOKENS = [
+    "cys-his coordination",
+    "cys his coordination",
+    "cys2his2",
+    "c2h2",
+    "zinc finger",
+    "zinc-finger",
+    "zinc-binding",
+    "zinc binding",
+    "iron-sulfur cysteine",
+    "cysteine ligated metal",
+]
+
+SECRETORY_DISULFIDE_STATE_VARIABLES = [
+    "secretory_redox_context",
+    "disulfide_pairing_topology",
+    "cysteine_pairing_constraint",
+    "extracellular_stabilized_fold",
+    "glycosylation_context",
+    "redox_mispaired_frustration",
+    "signal_peptide_removed_context",
+    "secretory_quality_control",
+]
+
 SELF_DECISION_CANDIDATE_GRAMMARS = {
     "coiled_coil_register": {
         "grammar_status": "candidate_missing_word",
@@ -340,37 +412,10 @@ SELF_DECISION_CANDIDATE_GRAMMARS = {
         "sequence_signal": "repeat_signature",
         "competes_with": ["beta_closure_topology", "globular_closure", "multidomain_allosteric_architecture"],
     },
-    "disulfide_secretory_redox_context": {
-        "grammar_status": "candidate_missing_word",
-        "evidence_tokens": [
-            "disulfide_secretory_redox_context",
-            "disulfide bond topology",
-            "disulfide_bond_topology",
-            "secretory_redox_context",
-            "secretory redox context",
-            "cysteine_pairing_constraint",
-            "cysteine pairing constraint",
-            "extracellular_stabilized_fold",
-            "extracellular stabilized fold",
-            "glycosylation_context",
-            "glycosylation context",
-            "disulfide",
-            "disulphide",
-            "secreted",
-            "secretory",
-            "extracellular",
-            "cysteine-rich",
-            "cysteine rich",
-        ],
-        "sequence_signal": "paired_cysteine_context",
-        "competes_with": ["globular_closure", "metal_cluster_and_ligand_locked_basin", "beta_closure_topology"],
-    },
     "signal_peptide_vs_true_TM": {
         "grammar_status": "candidate_missing_word",
         "evidence_tokens": [
             "signal_peptide_vs_true_TM",
-            "signal peptide removed context",
-            "signal_peptide_removed_context",
             "signal peptide",
             "signal-peptide",
             "signal sequence",
@@ -499,6 +544,7 @@ SELF_DECISION_LEARNED_GRAMMAR_FAMILIES = {
     "disorder_boundary_and_fold_upon_binding": DISORDER_BOUNDARY_CONTEXT_TOKENS,
     "beta_closure_topology": BETA_CLOSURE_CONTEXT_TOKENS,
     "multidomain_allosteric_architecture": MULTIDOMAIN_ALLOSTERIC_CONTEXT_TOKENS,
+    "secretory_disulfide_redox_topology": SECRETORY_DISULFIDE_CONTEXT_TOKENS,
     "membrane_multidomain_folding_proteostasis": STRONG_MEMBRANE_CONTEXT_TOKENS
     + ["cftr", "f508", "proteostasis", "trafficking", "transmembrane", "membrane"],
     "metamorphic_fold_switching": [
@@ -655,6 +701,28 @@ GRAMMAR_RULES: dict[str, dict[str, Any]] = {
         "null_control": "generic cofactor annotation without metal, heme, nucleotide, or ligand-lock evidence remains generic cofactor",
         "falsification_rule": "holdout shows ligand-independent folding or no geometry-locked basin effect",
     },
+    "secretory_disulfide_redox_topology": {
+        "marks": [
+            "secretory_redox_context",
+            "disulfide_pairing_topology",
+            "cysteine_pairing_constraint",
+            "extracellular_stabilized_fold",
+            "glycosylation_context",
+            "signal_peptide_removed_context",
+        ],
+        "pressures": ["secretory_redox_environment", "extracellular_quality_control", "glycosylation_context"],
+        "operators": [
+            "disulfide_pairing_operator",
+            "secretory_redox_operator",
+            "frustration_operator",
+            "proteostasis_operator",
+            "closure_operator",
+        ],
+        "state_change": "generic cysteine-rich or secretory text to paired disulfide/redox topology with extracellular stabilization",
+        "testable_effect": "cysteine-pairing or redox perturbation weakens disulfide topology and raises mispaired frustration",
+        "null_control": "signal peptide text, odd cysteine noise, true TM topology, or Cys-His metal coordination cannot validate disulfide grammar",
+        "falsification_rule": "matched controls beat the real target, or metal/TM/beta/repeat grammar explains the evidence better",
+    },
     "assembly_required_folding": {
         "marks": [
             "assembly_required_core",
@@ -756,6 +824,23 @@ def _n_terminal_hydrophobic_signal(sequence: str) -> float:
     hydrophobic = sum(1 for residue in window if residue in HYDROPHOBIC) / len(window)
     positive = sum(1 for residue in window[:8] if residue in POSITIVE) / max(1, len(window[:8]))
     return bounded(_avg([hydrophobic, positive]))
+
+
+def _cysteine_topology_label(sequence_field: dict[str, Any]) -> str:
+    metrics = sequence_field["global_metrics"]
+    cysteine_count = int(metrics.get("cysteine_count", 0))
+    if cysteine_count < 2:
+        return "cysteine_pairing_signal_absent"
+    if cysteine_count % 2 != 0:
+        return "odd_cysteine_pairing_conflict"
+    cysteine_segments = [row for row in sequence_field["segments"] if row.get("cysteine_density", 0.0) > 0.0]
+    if len(cysteine_segments) >= 2:
+        return "paired_cysteine_topology_visible"
+    return "local_cysteine_pairing_signal_visible"
+
+
+def _has_paired_cysteine_topology(sequence_field: dict[str, Any]) -> bool:
+    return "visible" in _cysteine_topology_label(sequence_field)
 
 
 def _residue_mark(sequence: str, index0: int) -> dict[str, Any]:
@@ -1153,8 +1238,10 @@ def _sequence_signal_label(grammar: str, sequence_field: dict[str, Any]) -> str:
             return "repeat_or_long_solenoid_signature_visible"
         return "repeat_signature_not_dominant"
     if grammar == "disulfide_secretory_redox_context":
+        return _cysteine_topology_label(sequence_field)
+    if grammar == "secretory_disulfide_redox_topology":
         if cysteine_count >= 2:
-            return "paired_or_clustered_cysteine_signal_visible"
+            return _cysteine_topology_label(sequence_field)
         return "secretory_evidence_without_cysteine_pair_sequence_support"
     if grammar == "signal_peptide_vs_true_TM":
         if metrics.get("n_terminal_hydrophobic_signal", 0.0) >= local_membrane:
@@ -1205,6 +1292,12 @@ def _trajectory_supports_grammar(grammar: str, trajectory: dict[str, Any]) -> li
         "disorder_boundary_and_fold_upon_binding": ["IDR_boundary", "fold_upon_binding_region"],
         "beta_closure_topology": ["closed_beta_topology", "strand_register", "beta_sheet_closure"],
         "multidomain_allosteric_architecture": ["multidomain_allostery", "domain_boundary", "interdomain_lock"],
+        "secretory_disulfide_redox_topology": [
+            "secretory_redox_context",
+            "disulfide_pairing_topology",
+            "cysteine_pairing_constraint",
+            "extracellular_stabilized_fold",
+        ],
         "membrane_multidomain_folding_proteostasis": ["proteostasis_routing"],
         "metamorphic_fold_switching": ["state_basin_occupancy"],
         "short_region_host_interface_hijacking": ["interface_readiness"],
@@ -1476,6 +1569,10 @@ def _mechanism_state_signature(mechanism_class: str, trajectory: dict[str, Any])
             "domain_swapping": final.get("domain_swapping", 0.0),
         }
         return max(candidates, key=candidates.get)
+    if mechanism_class == "secretory_disulfide_redox_topology":
+        if float(final.get("disulfide_pairing_topology", 0.0)) >= float(final.get("redox_mispaired_frustration", 0.0)):
+            return "secretory_disulfide_pairing_topology"
+        return "redox_mispaired_frustration"
     if mechanism_class == "membrane_multidomain_folding_proteostasis":
         return "membrane_proteostasis_route" if float(final.get("proteostasis_routing", 0.0)) > 0.0 else "membrane_route_unresolved"
     if mechanism_class == "metal_cluster_and_ligand_locked_basin":
@@ -1877,6 +1974,11 @@ def _internal_contradictions(
         contradictions.append("beta_closure_call_without_register_or_closure_evidence")
     if selected == "multidomain_allosteric_architecture" and not _token_hits(text, MULTIDOMAIN_ALLOSTERIC_CONTEXT_TOKENS):
         contradictions.append("multidomain_call_without_boundary_hinge_or_modular_signal")
+    if selected == "secretory_disulfide_redox_topology":
+        if not _token_hits(text, SECRETORY_DISULFIDE_CONTEXT_TOKENS):
+            contradictions.append("secretory_disulfide_call_without_secretory_redox_evidence")
+        if float(final.get("disulfide_pairing_topology", 0.0)) <= float(final.get("redox_mispaired_frustration", 0.0)):
+            contradictions.append("secretory_disulfide_call_with_mispaired_redox_dominance")
     return contradictions
 
 
@@ -1920,7 +2022,8 @@ def select_mechanism_grammar(
         text = _allowed_source_text(sources, evidence_manifest)
         metrics = sequence_field["global_metrics"]
         cofactor_context = _contains_any(text, COFACTOR_CONTEXT_TOKENS)
-        metal_cluster_context = _contains_any(text, METAL_CLUSTER_CONTEXT_TOKENS)
+        cys_his_metal_context = _contains_any(text, CYS_HIS_METAL_COORDINATION_TOKENS)
+        metal_cluster_context = _contains_any(text, METAL_CLUSTER_CONTEXT_TOKENS) or cys_his_metal_context
         ligand_locked_context = _contains_any(text, LIGAND_LOCKED_CONTEXT_TOKENS)
         disorder_boundary_context = _contains_any(text, DISORDER_BOUNDARY_CONTEXT_TOKENS)
         beta_topology_word = _beta_topology_word_from_text(text)
@@ -1928,6 +2031,15 @@ def select_mechanism_grammar(
         beta_ambiguous_context = _contains_any(text, BETA_AMBIGUOUS_CONTEXT_TOKENS)
         multidomain_word = _multidomain_allosteric_word_from_text(text)
         multidomain_context = multidomain_word is not None or _contains_any(text, MULTIDOMAIN_ALLOSTERIC_CONTEXT_TOKENS)
+        secretory_disulfide_context = _contains_any(text, SECRETORY_DISULFIDE_CONTEXT_TOKENS)
+        signal_peptide_only_context = _contains_any(text, SIGNAL_PEPTIDE_ONLY_CONTEXT_TOKENS)
+        paired_cysteine_topology = _has_paired_cysteine_topology(sequence_field)
+        cysteine_pairing_conflict = _cysteine_topology_label(sequence_field) == "odd_cysteine_pairing_conflict"
+        coiled_or_repeat_candidate_context = any(
+            _contains_any(text, spec["evidence_tokens"])
+            for grammar, spec in SELF_DECISION_CANDIDATE_GRAMMARS.items()
+            if grammar in {"coiled_coil_register", "repeat_solenoid_topology"}
+        )
         negative_assembly_context = _contains_any(text, NEGATIVE_ASSEMBLY_CONTEXT_TOKENS)
         explicit_assembly_required_context = _contains_any(text, ASSEMBLY_REQUIRED_CONTEXT_TOKENS) and not negative_assembly_context
         biological_oligomer_context = _contains_any(text, OLIGOMER_CONTEXT_TOKENS)
@@ -2012,6 +2124,21 @@ def select_mechanism_grammar(
         elif beta_closure_context:
             natural = "beta_closure_topology"
             reason = "explicit_beta_closure_topology_context"
+        elif secretory_disulfide_context and coiled_or_repeat_candidate_context:
+            natural = "insufficient_evidence_clean_abstain"
+            reason = "coiled_coil_or_repeat_candidate_competes_with_secretory_disulfide_text"
+        elif secretory_disulfide_context and signal_peptide_only_context:
+            natural = "insufficient_evidence_clean_abstain"
+            reason = "signal_peptide_only_without_supported_disulfide_topology_requires_abstention"
+        elif secretory_disulfide_context and cysteine_pairing_conflict:
+            natural = "insufficient_evidence_clean_abstain"
+            reason = "odd_or_conflicting_cysteine_pairing_topology_requires_abstention"
+        elif secretory_disulfide_context and paired_cysteine_topology:
+            natural = "secretory_disulfide_redox_topology"
+            reason = "secretory_disulfide_redox_context_with_paired_cysteine_topology"
+        elif secretory_disulfide_context:
+            natural = "insufficient_evidence_clean_abstain"
+            reason = "secretory_disulfide_text_without_cysteine_pairing_topology_requires_abstention"
         elif multidomain_context:
             natural = "multidomain_allosteric_architecture"
             reason = "explicit_multidomain_allosteric_architecture_context"
@@ -2108,6 +2235,9 @@ def select_mechanism_grammar(
         "natural_mechanism_class": natural,
         "selected_beta_topology_word": beta_topology_word if mechanism_class == "beta_closure_topology" else None,
         "selected_multidomain_word": multidomain_word if mechanism_class == "multidomain_allosteric_architecture" else None,
+        "selected_secretory_disulfide_word": "disulfide_secretory_redox_context"
+        if mechanism_class == "secretory_disulfide_redox_topology"
+        else None,
         "forced_grammar": forced_grammar,
         "forced_grammar_rejected": forced_rejected,
         "selection_reason": "forced_wrong_grammar_rejected" if forced_rejected else reason,
@@ -2168,6 +2298,7 @@ def build_operator_field(
     )[:3]
     interface_segments = _strong_segments(sequence_field, "interface_density")
     membrane_segments = _strong_segments(sequence_field, "membrane_density")
+    cysteine_segments = _strong_segments(sequence_field, "cysteine_density")
     if mechanism_class == "globular_closure":
         operators.append(_operator(
             "closure_operator",
@@ -2321,6 +2452,61 @@ def build_operator_field(
                 "wrong domain-boundary operator raises allosteric or swapping conflict",
                 "generic domain text alone predicts all states equally",
                 multidomain_word,
+            ),
+        ])
+    elif mechanism_class == "secretory_disulfide_redox_topology":
+        cysteine_span = ", ".join(_span_from_segment(row) for row in cysteine_segments)
+        interface_span = ", ".join(_span_from_segment(row) for row in interface_segments)
+        operators.extend([
+            _operator(
+                "disulfide_pairing_operator",
+                cysteine_span,
+                metrics["cysteine_density"] + metrics["mean_interface"] + 0.36,
+                evidence,
+                "paired cysteine topology closes as a secretory disulfide network",
+                "cysteine-pairing damage weakens disulfide topology and extracellular stabilization",
+                "ordinary cysteine noise or metal coordination explains the evidence better",
+                "disulfide_pairing_topology",
+            ),
+            _operator(
+                "secretory_redox_operator",
+                cysteine_span,
+                metrics["cysteine_density"] + metrics["n_terminal_hydrophobic_signal"] + 0.28,
+                evidence,
+                "secretory redox environment supports disulfide maturation after signal peptide removal",
+                "redox perturbation or signal-context masking lowers secretory redox support",
+                "signal peptide text alone explains the evidence without redox topology",
+                "secretory_redox_context",
+            ),
+            _operator(
+                "frustration_operator",
+                cysteine_span,
+                metrics["cysteine_density"] + metrics["histidine_density"] + 0.18,
+                evidence,
+                "mispaired redox frustration separates disulfide topology from Cys-His metal grammar",
+                "mispaired cysteine or wrong-redox perturbation raises frustration",
+                "all cysteine-rich proteins behave as the same globular fold",
+                "redox_mispaired_frustration",
+            ),
+            _operator(
+                "proteostasis_operator",
+                "secretory quality-control route",
+                metrics["cysteine_density"] + 0.22,
+                evidence,
+                "secretory quality control distinguishes extracellular maturation from cytosolic cysteine noise",
+                "quality-control stress weakens extracellular stabilized fold",
+                "secretory route has no directional effect",
+                "secretory_quality_control",
+            ),
+            _operator(
+                "closure_operator",
+                interface_span,
+                metrics["hydrophobic_density"] + metrics["cysteine_density"] + 0.12,
+                evidence,
+                "extracellular stabilized fold closes through disulfide-constrained topology",
+                "disulfide reduction lowers closure more than matched controls",
+                "ordinary globular closure explains the target without disulfide/redox state",
+                "extracellular_stabilized_fold",
             ),
         ])
     elif mechanism_class == "membrane_multidomain_folding_proteostasis":
@@ -2739,6 +2925,72 @@ def simulate_operator_trajectory(
             contact_probability = bounded(0.16 + interdomain_lock * 0.36 + allosteric_shift * 0.16 + closure * 0.12)
             interface_readiness = interdomain_lock
             proteostasis_routing = 0.0
+        elif mechanism_class == "secretory_disulfide_redox_topology":
+            disulfide_damage = float((perturbation or {}).get("disulfide_damage", 0.0))
+            redox_shift = float((perturbation or {}).get("redox_shift", 0.0))
+            glycosylation_loss = float((perturbation or {}).get("glycosylation_loss", 0.0))
+            quality_control_stress = float((perturbation or {}).get("quality_control_stress", 0.0))
+            disulfide_pairing = strengths["disulfide_pairing_operator"]
+            secretory_redox = strengths["secretory_redox_operator"]
+            pairing = bounded(
+                0.14
+                + disulfide_pairing * 0.50 * progress
+                + secretory_redox * 0.16
+                + closure * 0.10
+                - 0.58 * disulfide_damage
+                - 0.22 * redox_shift
+            )
+            redox_context = bounded(
+                0.16
+                + secretory_redox * 0.46 * progress
+                + proteostasis * 0.12
+                - 0.42 * redox_shift
+                - 0.14 * quality_control_stress
+            )
+            extracellular = bounded(
+                0.12
+                + pairing * 0.34
+                + redox_context * 0.28
+                + closure * 0.18 * progress
+                - 0.24 * glycosylation_loss
+            )
+            glyco = bounded(
+                0.10
+                + secretory_redox * 0.16
+                + proteostasis * 0.14
+                + (0.16 if metrics["cysteine_count"] >= 4 else 0.04)
+                - 0.42 * glycosylation_loss
+            )
+            quality = bounded(
+                0.14
+                + proteostasis * 0.34 * progress
+                + redox_context * 0.22
+                - 0.34 * quality_control_stress
+            )
+            mispaired = bounded(
+                0.14
+                + frustration_strength * 0.28
+                + disulfide_damage * 0.46
+                + redox_shift * 0.24
+                - pairing * 0.20
+            )
+            signal_removed = bounded(
+                0.08 + secretory_redox * 0.20 + metrics["n_terminal_hydrophobic_signal"] * 0.16
+            )
+            basin = {
+                "secretory_redox_context": redox_context,
+                "disulfide_pairing_topology": pairing,
+                "extracellular_stabilized_fold": extracellular,
+                "glycosylation_context": glyco,
+                "secretory_quality_control": quality,
+                "redox_mispaired_frustration": mispaired,
+                "signal_peptide_removed_context": signal_removed,
+                "ordinary_cysteine_globular_noise": bounded(0.42 - pairing * 0.24 + disulfide_damage * 0.12),
+            }
+            segment_compaction = bounded(0.16 + extracellular * 0.36 + closure * 0.20 * progress + noise)
+            contact_probability = bounded(0.12 + pairing * 0.36 + extracellular * 0.22)
+            interface_readiness = bounded(0.14 + pairing * 0.22 + redox_context * 0.18)
+            proteostasis_routing = quality
         elif mechanism_class == "membrane_multidomain_folding_proteostasis":
             damage = float((perturbation or {}).get("damage", 0.0))
             rescue = float((perturbation or {}).get("rescue", 0.0))
@@ -3071,6 +3323,46 @@ def simulate_operator_trajectory(
                 if mechanism_class == "multidomain_allosteric_architecture" and multidomain_subtype == "domain_swapping"
                 else 0.0
             ),
+            "secretory_redox_context": bounded(
+                basin.get("secretory_redox_context", 0.0)
+                if mechanism_class == "secretory_disulfide_redox_topology"
+                else 0.0
+            ),
+            "disulfide_pairing_topology": bounded(
+                basin.get("disulfide_pairing_topology", 0.0)
+                if mechanism_class == "secretory_disulfide_redox_topology"
+                else 0.0
+            ),
+            "cysteine_pairing_constraint": bounded(
+                min(basin.get("secretory_redox_context", 0.0), basin.get("disulfide_pairing_topology", 0.0))
+                if mechanism_class == "secretory_disulfide_redox_topology"
+                else 0.0
+            ),
+            "extracellular_stabilized_fold": bounded(
+                basin.get("extracellular_stabilized_fold", 0.0)
+                if mechanism_class == "secretory_disulfide_redox_topology"
+                else 0.0
+            ),
+            "glycosylation_context": bounded(
+                basin.get("glycosylation_context", 0.0)
+                if mechanism_class == "secretory_disulfide_redox_topology"
+                else 0.0
+            ),
+            "redox_mispaired_frustration": bounded(
+                basin.get("redox_mispaired_frustration", 0.0)
+                if mechanism_class == "secretory_disulfide_redox_topology"
+                else 0.0
+            ),
+            "signal_peptide_removed_context": bounded(
+                basin.get("signal_peptide_removed_context", 0.0)
+                if mechanism_class == "secretory_disulfide_redox_topology"
+                else 0.0
+            ),
+            "secretory_quality_control": bounded(
+                basin.get("secretory_quality_control", 0.0)
+                if mechanism_class == "secretory_disulfide_redox_topology"
+                else 0.0
+            ),
         })
     final = timepoints[-1]
     return {
@@ -3148,6 +3440,25 @@ def contact_probability_map(sequence_field: dict[str, Any], operator_field: dict
                     ),
                     "interaction_type": "interdomain_allosteric_lock",
                 })
+    elif mechanism_class == "secretory_disulfide_redox_topology":
+        cysteine_top = _strong_segments(sequence_field, "cysteine_density", limit=6)
+        if len(cysteine_top) < 2:
+            cysteine_top = _strong_segments(sequence_field, "interface_density", limit=4)
+        for index in range(0, max(0, len(cysteine_top) - 1), 2):
+            left = cysteine_top[index]
+            right = cysteine_top[index + 1]
+            if left["segment_id"] == right["segment_id"]:
+                continue
+            pairs.append({
+                "segment_a": left["segment_id"],
+                "segment_b": right["segment_id"],
+                "probability": bounded(
+                    0.18
+                    + _operator_strength(operator_field, "disulfide_pairing_operator") * 0.32
+                    + _operator_strength(operator_field, "secretory_redox_operator") * 0.12
+                ),
+                "interaction_type": "secretory_disulfide_pairing_contact",
+            })
     elif mechanism_class == "short_region_host_interface_hijacking":
         cterm = segments[-1]
         pairs.append({
@@ -3344,6 +3655,7 @@ def _legacy_acceptance_from_self_decision(judge: dict[str, Any]) -> dict[str, An
         "known_mechanism_class": judge["top_mechanism"],
         "known_multidomain_word": judge.get("known_multidomain_word"),
         "known_beta_topology_word": judge.get("known_beta_topology_word"),
+        "known_secretory_disulfide_word": judge.get("known_secretory_disulfide_word"),
         "operator_activation": judge.get("operator_activation", 0.0),
         "coordinate_truth_used_before_prediction": judge["coordinate_truth_used_before_prediction"],
         "folding_problem_solved": False,
@@ -3521,6 +3833,7 @@ def self_decision_judge(
         "blocked_reasons": blocked_reasons,
         "known_multidomain_word": mechanism.get("selected_multidomain_word"),
         "known_beta_topology_word": mechanism.get("selected_beta_topology_word"),
+        "known_secretory_disulfide_word": mechanism.get("selected_secretory_disulfide_word"),
         "operator_activation": operator_activation,
         "coordinate_truth_used_before_prediction": evidence_manifest["coordinate_truth_used_before_prediction"],
         "folding_problem_solved": False,
@@ -3595,6 +3908,16 @@ def make_openmm_bridge_spec() -> dict[str, Any]:
             "operator": "host_hijack_operator",
             "custom_force_term": "short motif host-interface bias",
             "guard": "host-interface coordinates remain holdout-only before sealing",
+        },
+        {
+            "operator": "disulfide_pairing_operator",
+            "custom_force_term": "coarse cysteine-pair proximity bias for secretory disulfide grammar",
+            "guard": "does not encode native disulfide geometry; only compares biased versus unbiased sealed observables",
+        },
+        {
+            "operator": "secretory_redox_operator",
+            "custom_force_term": "secretory redox-state observable bias outside atomistic chemistry",
+            "guard": "redox state is reported as a coarse proxy, not a quantum or force-field disulfide formation claim",
         },
     ]
     return {

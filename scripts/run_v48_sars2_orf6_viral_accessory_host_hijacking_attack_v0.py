@@ -8,13 +8,18 @@ import hashlib
 import json
 import os
 import subprocess
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+REPO_ROOT = Path(os.environ.get("REPO_ROOT", Path(__file__).resolve().parents[1])).resolve()
+SCRIPTS_ROOT = REPO_ROOT / "scripts"
+if str(SCRIPTS_ROOT) not in sys.path:
+    sys.path.insert(0, str(SCRIPTS_ROOT))
+
 import build_v48_sars2_orf6_viral_accessory_sources_v0 as v48_sources
 
-REPO_ROOT = Path(os.environ.get("REPO_ROOT", Path(__file__).resolve().parents[1])).resolve()
 DATA_ROOT = REPO_ROOT / "data" / "live_unsolved_targets" / "V48" / "SARS2_ORF6"
 SOURCE_ROOT = DATA_ROOT / "sources"
 PREDICTION_ROOT = DATA_ROOT / "prediction_sealed"
@@ -79,8 +84,10 @@ def _git(args: list[str]) -> str:
 def _v47_commit_state() -> dict[str, Any]:
     short_hash = _git(["log", "-1", "--format=%h", "--", *V47_PATHS])
     full_hash = _git(["log", "-1", "--format=%H", "--", *V47_PATHS])
+    worktree_clean = _git(["status", "--short", "--", *V47_PATHS]) == ""
     return {
-        "v47_committed": _git(["status", "--short", "--", *V47_PATHS]) == "",
+        "v47_committed": bool(full_hash),
+        "v47_worktree_clean": worktree_clean,
         "v47_commit_hash": full_hash,
         "v47_commit_short_hash": short_hash,
     }

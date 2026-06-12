@@ -1,0 +1,44 @@
+{
+  "acceptance_decision": "abstain_recommended",
+  "accepted_supported": false,
+  "clean_abstain_supported": true,
+  "coordinate_truth_used_before_seal": false,
+  "dominance_law": "candidate_missing_word_competes_with_learned_grammar",
+  "expected_mechanism_class": "insufficient_evidence_clean_abstain",
+  "final_self_decision": "clean_abstain_missing_word",
+  "folding_problem_solved": false,
+  "kind": "V76_SECRETORY_DISULFIDE_VALIDATION_RESULT_v0",
+  "lineage_source_target": null,
+  "matched_control_dominance": {
+    "control_packet_hashes": {
+      "cysteine_masked": null,
+      "metadata_masked": null,
+      "shuffled": null
+    },
+    "control_rows": [
+      {
+        "control": "wrong_grammar_challenge_fails",
+        "control_value": "wrong_grammar_competes",
+        "metric": "wrong_grammar_separation",
+        "passed": true,
+        "real_value": "wrong_grammars_fail"
+      }
+    ],
+    "kind": "V76_MATCHED_CONTROL_DOMINANCE_v0",
+    "matched_control_dominance_passed": true,
+    "metric": "operator_activation",
+    "uses_static_observable_thresholds": false
+  },
+  "matched_control_dominance_passed": true,
+  "missing_word_candidate": "signal_peptide_vs_true_TM",
+  "panel_group": "SIGNAL_TM_NEGATIVE",
+  "physical_basis_claim_allowed": false,
+  "physical_grounding_status": "real_physical_calibration_inputs_loaded_openmm_available_but_target_physical_execution_not_run",
+  "predicted_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "real_physical_calibration_inputs_used": true,
+  "required_esperanto_word": "signal_peptide_vs_true_TM",
+  "score_label": "supported",
+  "sealed_prediction_hash": "decb10c7eb46d32991498ece3618f8112aba032f19255243e1991127857d71e5",
+  "self_decision_reason": "self_decision_candidate_word_competes_without_learned_grammar",
+  "target_id": "V76_091_SIGNAL_TM_NEGATIVE_1E7N_1"
+}

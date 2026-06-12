@@ -1,0 +1,245 @@
+{
+  "accepted_learned_grammar_targets": 4,
+  "accepted_target_improvements": 4,
+  "batch_id": "V76P_OPENMM_COARSE_TARGET_EXECUTION_PILOT",
+  "certificate_hash": "225b4d0040997a4e0d812eedc528da43ea172c396829d9529b8f7227fe9ec008",
+  "engine_version_used": "E70",
+  "folding_problem_solved": false,
+  "hard_abstain_controls": 4,
+  "hard_abstain_controls_executed": 4,
+  "kind": "V76P_OPENMM_COARSE_TARGET_EXECUTION_PILOT_CERTIFICATE_v0",
+  "native_contacts_used_before_seal": false,
+  "native_coordinates_used_before_seal": false,
+  "physical_basis_claim_allowed": false,
+  "physical_basis_claim_blocked_reason": "pilot compares target-specific coarse execution observables but has no independent physical holdout pass",
+  "rows": [
+    {
+      "acceptance_decision": "accepted",
+      "coarse_particles": 10,
+      "execution_backend": "openmm_reference",
+      "expected_mechanism_class": "secretory_disulfide_redox_topology",
+      "folding_problem_solved": false,
+      "grammar_biased_execution": {
+        "backend": "openmm_reference",
+        "contact_observable": 0.544231,
+        "radius_observable": 1.225337
+      },
+      "grammar_biased_improved_over_unbiased": true,
+      "kind": "V76P_TARGET_PHYSICAL_EXECUTION_ROW_v0",
+      "native_contacts_used_before_seal": false,
+      "native_coordinates_used_before_seal": false,
+      "panel_group": "SECRETORY_DISULFIDE_POSITIVE",
+      "physical_basis_claim_allowed": false,
+      "pilot_role": "accepted_learned_grammar",
+      "postseal_observable_improvement": 0.015673,
+      "sequence_length": 125,
+      "target_id": "V76_001_SECRETORY_DISULFIDE_POSITIVE_1EAZ_1",
+      "target_specific_physical_execution_run": true,
+      "unbiased_baseline": {
+        "backend": "openmm_reference",
+        "contact_observable": 0.528558,
+        "radius_observable": 1.265947
+      }
+    },
+    {
+      "acceptance_decision": "accepted",
+      "coarse_particles": 25,
+      "execution_backend": "openmm_reference",
+      "expected_mechanism_class": "secretory_disulfide_redox_topology",
+      "folding_problem_solved": false,
+      "grammar_biased_execution": {
+        "backend": "openmm_reference",
+        "contact_observable": 0.508221,
+        "radius_observable": 3.159861
+      },
+      "grammar_biased_improved_over_unbiased": true,
+      "kind": "V76P_TARGET_PHYSICAL_EXECUTION_ROW_v0",
+      "native_contacts_used_before_seal": false,
+      "native_coordinates_used_before_seal": false,
+      "panel_group": "SECRETORY_DISULFIDE_POSITIVE",
+      "physical_basis_claim_allowed": false,
+      "pilot_role": "accepted_learned_grammar",
+      "postseal_observable_improvement": 0.012882,
+      "sequence_length": 310,
+      "target_id": "V76_002_SECRETORY_DISULFIDE_POSITIVE_1PHM_1",
+      "target_specific_physical_execution_run": true,
+      "unbiased_baseline": {
+        "backend": "openmm_reference",
+        "contact_observable": 0.495339,
+        "radius_observable": 3.172453
+      }
+    },
+    {
+      "acceptance_decision": "accepted",
+      "coarse_particles": 25,
+      "execution_backend": "openmm_reference",
+      "expected_mechanism_class": "secretory_disulfide_redox_topology",
+      "folding_problem_solved": false,
+      "grammar_biased_execution": {
+        "backend": "openmm_reference",
+        "contact_observable": 0.520319,
+        "radius_observable": 1.651564
+      },
+      "grammar_biased_improved_over_unbiased": true,
+      "kind": "V76P_TARGET_PHYSICAL_EXECUTION_ROW_v0",
+      "native_contacts_used_before_seal": false,
+      "native_coordinates_used_before_seal": false,
+      "panel_group": "SECRETORY_DISULFIDE_POSITIVE",
+      "physical_basis_claim_allowed": false,
+      "pilot_role": "accepted_learned_grammar",
+      "postseal_observable_improvement": 0.297267,
+      "sequence_length": 302,
+      "target_id": "V76_003_SECRETORY_DISULFIDE_POSITIVE_1PJA_1",
+      "target_specific_physical_execution_run": true,
+      "unbiased_baseline": {
+        "backend": "openmm_reference",
+        "contact_observable": 0.223052,
+        "radius_observable": 3.17373
+      }
+    },
+    {
+      "acceptance_decision": "accepted",
+      "coarse_particles": 8,
+      "execution_backend": "openmm_reference",
+      "expected_mechanism_class": "secretory_disulfide_redox_topology",
+      "folding_problem_solved": false,
+      "grammar_biased_execution": {
+        "backend": "openmm_reference",
+        "contact_observable": 0.528206,
+        "radius_observable": 0.572538
+      },
+      "grammar_biased_improved_over_unbiased": true,
+      "kind": "V76P_TARGET_PHYSICAL_EXECUTION_ROW_v0",
+      "native_contacts_used_before_seal": false,
+      "native_coordinates_used_before_seal": false,
+      "panel_group": "SECRETORY_DISULFIDE_POSITIVE",
+      "physical_basis_claim_allowed": false,
+      "pilot_role": "accepted_learned_grammar",
+      "postseal_observable_improvement": 0.15032,
+      "sequence_length": 79,
+      "target_id": "V76_004_SECRETORY_DISULFIDE_POSITIVE_1PK4_1",
+      "target_specific_physical_execution_run": true,
+      "unbiased_baseline": {
+        "backend": "openmm_reference",
+        "contact_observable": 0.377886,
+        "radius_observable": 1.009772
+      }
+    },
+    {
+      "acceptance_decision": "abstain_recommended",
+      "coarse_particles": 8,
+      "execution_backend": "openmm_reference",
+      "expected_mechanism_class": "insufficient_evidence_clean_abstain",
+      "folding_problem_solved": false,
+      "grammar_biased_execution": {
+        "backend": "openmm_reference",
+        "contact_observable": 0.468266,
+        "radius_observable": 0.958854
+      },
+      "grammar_biased_improved_over_unbiased": true,
+      "kind": "V76P_TARGET_PHYSICAL_EXECUTION_ROW_v0",
+      "native_contacts_used_before_seal": false,
+      "native_coordinates_used_before_seal": false,
+      "panel_group": "SIGNAL_TM_NEGATIVE",
+      "physical_basis_claim_allowed": false,
+      "pilot_role": "hard_abstain_control",
+      "postseal_observable_improvement": 0.038803,
+      "sequence_length": 106,
+      "target_id": "V76_091_SIGNAL_TM_NEGATIVE_1E7N_1",
+      "target_specific_physical_execution_run": true,
+      "unbiased_baseline": {
+        "backend": "openmm_reference",
+        "contact_observable": 0.429463,
+        "radius_observable": 1.011669
+      }
+    },
+    {
+      "acceptance_decision": "abstain_recommended",
+      "coarse_particles": 8,
+      "execution_backend": "openmm_reference",
+      "expected_mechanism_class": "insufficient_evidence_clean_abstain",
+      "folding_problem_solved": false,
+      "grammar_biased_execution": {
+        "backend": "openmm_reference",
+        "contact_observable": 0.611076,
+        "radius_observable": 1.009185
+      },
+      "grammar_biased_improved_over_unbiased": false,
+      "kind": "V76P_TARGET_PHYSICAL_EXECUTION_ROW_v0",
+      "native_contacts_used_before_seal": false,
+      "native_coordinates_used_before_seal": false,
+      "panel_group": "SIGNAL_TM_NEGATIVE",
+      "physical_basis_claim_allowed": false,
+      "pilot_role": "hard_abstain_control",
+      "postseal_observable_improvement": -0.00092,
+      "sequence_length": 56,
+      "target_id": "V76_092_SIGNAL_TM_NEGATIVE_1EDI_1",
+      "target_specific_physical_execution_run": true,
+      "unbiased_baseline": {
+        "backend": "openmm_reference",
+        "contact_observable": 0.611996,
+        "radius_observable": 1.008278
+      }
+    },
+    {
+      "acceptance_decision": "abstain_recommended",
+      "coarse_particles": 8,
+      "execution_backend": "openmm_reference",
+      "expected_mechanism_class": "insufficient_evidence_clean_abstain",
+      "folding_problem_solved": false,
+      "grammar_biased_execution": {
+        "backend": "openmm_reference",
+        "contact_observable": 0.691597,
+        "radius_observable": 1.008146
+      },
+      "grammar_biased_improved_over_unbiased": false,
+      "kind": "V76P_TARGET_PHYSICAL_EXECUTION_ROW_v0",
+      "native_contacts_used_before_seal": false,
+      "native_coordinates_used_before_seal": false,
+      "panel_group": "SIGNAL_TM_NEGATIVE",
+      "physical_basis_claim_allowed": false,
+      "pilot_role": "hard_abstain_control",
+      "postseal_observable_improvement": -0.000937,
+      "sequence_length": 77,
+      "target_id": "V76_093_SIGNAL_TM_NEGATIVE_1PUF_3",
+      "target_specific_physical_execution_run": true,
+      "unbiased_baseline": {
+        "backend": "openmm_reference",
+        "contact_observable": 0.692534,
+        "radius_observable": 1.010171
+      }
+    },
+    {
+      "acceptance_decision": "abstain_recommended",
+      "coarse_particles": 37,
+      "execution_backend": "openmm_reference",
+      "expected_mechanism_class": "insufficient_evidence_clean_abstain",
+      "folding_problem_solved": false,
+      "grammar_biased_execution": {
+        "backend": "openmm_reference",
+        "contact_observable": 0.515125,
+        "radius_observable": 4.473309
+      },
+      "grammar_biased_improved_over_unbiased": true,
+      "kind": "V76P_TARGET_PHYSICAL_EXECUTION_ROW_v0",
+      "native_contacts_used_before_seal": false,
+      "native_coordinates_used_before_seal": false,
+      "panel_group": "SIGNAL_TM_NEGATIVE",
+      "physical_basis_claim_allowed": false,
+      "pilot_role": "hard_abstain_control",
+      "postseal_observable_improvement": 0.214223,
+      "sequence_length": 451,
+      "target_id": "V76_094_SIGNAL_TM_NEGATIVE_1PW4_1",
+      "target_specific_physical_execution_run": true,
+      "unbiased_baseline": {
+        "backend": "openmm_reference",
+        "contact_observable": 0.300902,
+        "radius_observable": 4.698065
+      }
+    }
+  ],
+  "status": "V76P_PHYSICAL_EXECUTION_PILOT_PASSED",
+  "target_specific_physical_execution_run": true,
+  "targets_total": 8,
+  "timestamp_utc": "2026-06-12T09:53:28.455991+00:00"
+}

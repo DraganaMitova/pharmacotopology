@@ -1,0 +1,51 @@
+{
+  "acceptance_decision": "accepted",
+  "accepted_supported": true,
+  "clean_abstain_supported": false,
+  "coordinate_truth_used_before_seal": false,
+  "dominance_law": "single_dominant_learned_mechanism_bound_across_views",
+  "expected_mechanism_class": "multidomain_allosteric_architecture",
+  "final_self_decision": "accepted",
+  "folding_problem_solved": false,
+  "kind": "V76_SECRETORY_DISULFIDE_VALIDATION_RESULT_v0",
+  "lineage_source_target": "V75_020_V74_MULTIDOMAIN_ALLOSTERY_FAILURE_REPLAY_1PKL_1",
+  "matched_control_dominance": {
+    "control_packet_hashes": {
+      "cysteine_masked": null,
+      "metadata_masked": null,
+      "shuffled": null
+    },
+    "control_rows": [
+      {
+        "control": "negative_or_sentinel_expected_mechanism_preserved",
+        "control_value": "secretory_disulfide_redox_topology",
+        "metric": "mechanism_class",
+        "passed": true,
+        "real_value": "multidomain_allosteric_architecture"
+      },
+      {
+        "control": "wrong_grammar_challenge_fails",
+        "control_value": "wrong_grammar_competes",
+        "metric": "wrong_grammar_separation",
+        "passed": true,
+        "real_value": "wrong_grammars_fail"
+      }
+    ],
+    "kind": "V76_MATCHED_CONTROL_DOMINANCE_v0",
+    "matched_control_dominance_passed": true,
+    "metric": "interdomain_lock",
+    "uses_static_observable_thresholds": false
+  },
+  "matched_control_dominance_passed": true,
+  "missing_word_candidate": null,
+  "panel_group": "V75_ACCEPTED_SENTINEL_REPLAY",
+  "physical_basis_claim_allowed": false,
+  "physical_grounding_status": "real_physical_calibration_inputs_loaded_openmm_available_but_target_physical_execution_not_run",
+  "predicted_mechanism_class": "multidomain_allosteric_architecture",
+  "real_physical_calibration_inputs_used": true,
+  "required_esperanto_word": "multidomain_allostery",
+  "score_label": "supported",
+  "sealed_prediction_hash": "8a13f352ab9e6298a150a1d1f8afb05e358f5b18e053f3c0f8110e1103e55d4e",
+  "self_decision_reason": "self_decision_internal_views_agree",
+  "target_id": "V76_190_V75_ACCEPTED_SENTINEL_REPLAY_1PKL_1"
+}

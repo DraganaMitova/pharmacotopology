@@ -1,0 +1,45 @@
+{
+  "batch_id": "V76_SECRETORY_DISULFIDE_REPAIR_PANEL_200",
+  "blocked_prediction_inputs": [
+    "PDB/mmCIF coordinates before sealing",
+    "native disulfide bond geometry before sealing",
+    "native contacts and distance maps before sealing",
+    "post-seal validation annotations before prediction hash",
+    "internal runtime artifacts as biological evidence"
+  ],
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E70",
+  "folding_problem_solved": false,
+  "kind": "V76_SECRETORY_DISULFIDE_SOURCE_MANIFEST_v0",
+  "panel_group": "METAL_CYS_HIS_NEGATIVE",
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence for the RCSB polymer entity.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V76_RAW_SEQUENCE_7a3d00ae2bcc",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1EDH/1",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "V76 allowed non-coordinate context marks: metal_cluster_geometry coordination_shell_integrity cys-his coordination zinc-binding disulfide_secretory_redox_context.",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [
+        "metal_cluster_geometry",
+        "coordination_shell_integrity",
+        "cys-his coordination",
+        "zinc-binding",
+        "disulfide_secretory_redox_context"
+      ],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V76_E70_CONTEXT_7a3d00ae2bcc",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/1EDH",
+      "spatial_proxy": false
+    }
+  ],
+  "target_id": "V76_069_METAL_CYS_HIS_NEGATIVE_1EDH_1"
+}

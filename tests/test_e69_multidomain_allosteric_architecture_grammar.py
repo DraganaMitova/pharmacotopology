@@ -140,15 +140,15 @@ def test_e69_complex_word_boundary_preserves_low_complexity_disorder() -> None:
 
 
 def test_e69_self_decision_cleanly_abstains_on_missing_candidate_words() -> None:
-    packet = _packet("disulfide_secretory_redox_context disulfide_bond_topology secretory_redox_context")
+    packet = _packet("coiled_coil_register heptad_repeat register_alignment")
     judge = packet["self_decision_judge"]
     acceptance_view = packet["acceptance_firewall"]
 
     assert judge["zero_failed_accepted_required"] is True
     assert judge["final_self_decision"] == "clean_abstain_missing_word"
-    assert judge["missing_word_candidate"] == "disulfide_secretory_redox_context"
+    assert judge["missing_word_candidate"] == "coiled_coil_register"
     assert judge["wrong_grammar_separation"] == "wrong_grammars_fail"
-    assert "disulfide_secretory_redox_context" in acceptance_view["unknown_word_signals"]
+    assert "coiled_coil_register" in acceptance_view["unknown_word_signals"]
     assert acceptance_view["acceptance_decision"] == "abstain_recommended"
 
 
