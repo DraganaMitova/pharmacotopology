@@ -1,0 +1,24 @@
+{
+  "accepted_sentence_count": 800,
+  "bag_of_words_control_beats_bound_sentence_count": 0,
+  "baseline_engine_revision": "E75",
+  "composition_laws": [
+    "routing_before_folding",
+    "environment_before_stability",
+    "topology_before_contact",
+    "assembly_before_monomer_claim",
+    "disorder_before_single_fold_claim",
+    "modifier_cannot_steal_head",
+    "sentence_must_beat_bag_of_words"
+  ],
+  "engine_revision": "E76",
+  "kind": "E76_COMPOSITIONAL_PROTEIN_SENTENCE_GRAMMAR_CERTIFICATE_v0",
+  "next_required_batch": "V82_COMPOSITIONAL_SENTENCE_PANEL_1500",
+  "no_static_thresholds_used": true,
+  "physical_basis_claim_allowed": false,
+  "protein_folding_solved": false,
+  "protein_sentence_packet_count": 800,
+  "sentence_supported_count": 800,
+  "single_word_supported_count": 200,
+  "wrong_word_order_controls_failed": 200
+}

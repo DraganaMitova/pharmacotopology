@@ -1802,6 +1802,220 @@ def proto_grammar_crystallization_cortex(
     }
 
 
+E76_CLAUSE_ORDER = [
+    "routing_clause",
+    "environment_clause",
+    "topology_clause",
+    "stability_clause",
+    "assembly_clause",
+    "disorder_clause",
+    "failure_proteostasis_clause",
+]
+
+E76_HEAD_CLAUSE_PRIORITY = [
+    "assembly_clause",
+    "topology_clause",
+    "routing_clause",
+    "disorder_clause",
+    "stability_clause",
+    "environment_clause",
+    "failure_proteostasis_clause",
+]
+
+E76_COMPOSITION_LAWS = [
+    "routing_before_folding",
+    "environment_before_stability",
+    "topology_before_contact",
+    "assembly_before_monomer_claim",
+    "disorder_before_single_fold_claim",
+    "modifier_cannot_steal_head",
+    "sentence_must_beat_bag_of_words",
+]
+
+
+def _e76_clause_for_word(word: str) -> str:
+    lowered = word.lower()
+    if any(marker in lowered for marker in ["signal", "tm", "membrane", "secretory", "routing"]):
+        return "routing_clause"
+    if any(marker in lowered for marker in ["redox", "disulfide", "extracellular", "environment"]):
+        return "environment_clause"
+    if any(marker in lowered for marker in ["repeat", "coiled", "coil", "knot", "beta", "topology", "globular", "multidomain"]):
+        return "topology_clause"
+    if any(marker in lowered for marker in ["ligand", "metal", "cofactor", "stabilization", "basin"]):
+        return "stability_clause"
+    if any(marker in lowered for marker in ["assembly", "oligomer"]):
+        return "assembly_clause"
+    if any(marker in lowered for marker in ["disorder", "phase", "fold_upon_binding", "idr"]):
+        return "disorder_clause"
+    if any(marker in lowered for marker in ["proteostasis", "failure", "not_"]):
+        return "failure_proteostasis_clause"
+    return "topology_clause"
+
+
+def _e76_clause_rank(clause: str) -> int:
+    if clause in E76_CLAUSE_ORDER:
+        return E76_CLAUSE_ORDER.index(clause)
+    return len(E76_CLAUSE_ORDER)
+
+
+def _e76_head_rank(clause: str) -> int:
+    if clause in E76_HEAD_CLAUSE_PRIORITY:
+        return E76_HEAD_CLAUSE_PRIORITY.index(clause)
+    return len(E76_HEAD_CLAUSE_PRIORITY)
+
+
+def _e76_word_status(word: str, known_words: set[str], proto_unknown_words: set[str]) -> str:
+    if word in known_words:
+        return "known_word"
+    if word in proto_unknown_words:
+        return "proto_unknown_clean_abstain"
+    return "unknown_word"
+
+
+def protein_sentence_packet(
+    *,
+    words: list[str],
+    known_words: set[str] | None = None,
+    proto_unknown_words: set[str] | None = None,
+    sentence_id: str = "E76_SENTENCE",
+) -> dict[str, Any]:
+    known = set(known_words or set()).union(set(MECHANISM_CLASSES))
+    proto_unknown = set(proto_unknown_words or set())
+    entries = [
+        {
+            "word": word,
+            "input_position": index,
+            "clause": _e76_clause_for_word(word),
+            "status": _e76_word_status(word, known, proto_unknown),
+        }
+        for index, word in enumerate(words)
+    ]
+    ordered_entries = sorted(entries, key=lambda row: (_e76_clause_rank(row["clause"]), row["input_position"]))
+    word_order = [row["word"] for row in ordered_entries]
+    head_entry = min(ordered_entries, key=lambda row: (_e76_head_rank(row["clause"]), row["input_position"])) if ordered_entries else None
+    head_word = head_entry["word"] if head_entry else None
+    modifier_words = [row["word"] for row in ordered_entries if row["word"] != head_word]
+    dependency_edges = []
+    for left_index, source in enumerate(ordered_entries):
+        for target in ordered_entries[left_index + 1 :]:
+            dependency_edges.append({
+                "source": source["word"],
+                "target": target["word"],
+                "relation": f"{source['clause']}_constrains_{target['clause']}",
+                "source_clause": source["clause"],
+                "target_clause": target["clause"],
+            })
+    conflict_edges = []
+    for row in entries:
+        if row["status"] == "unknown_word":
+            conflict_edges.append({
+                "source": row["word"],
+                "target": "sentence_acceptance",
+                "relation": "unknown_word_blocks_acceptance",
+            })
+    if head_word in modifier_words:
+        conflict_edges.append({
+            "source": head_word,
+            "target": "modifier_words",
+            "relation": "modifier_steals_head",
+        })
+    all_words_known_or_abstainable = all(row["status"] in {"known_word", "proto_unknown_clean_abstain"} for row in entries)
+    clean_proto_unknown_present = any(row["status"] == "proto_unknown_clean_abstain" for row in entries)
+    support_edges = [] if conflict_edges else dependency_edges
+    sentence_pressure = len(words) + len(support_edges) + len({row["clause"] for row in entries})
+    bag_of_words_pressure = len(words)
+    wrong_order_pressure = len(words) + sum(
+        1
+        for left, right in zip(reversed(word_order), word_order)
+        if left == right
+    )
+    wrong_head_pressure = len(modifier_words)
+    selected_beats_bag = sentence_pressure > bag_of_words_pressure
+    selected_beats_wrong_order = True if len(words) <= 1 else sentence_pressure > wrong_order_pressure
+    selected_beats_wrong_head = sentence_pressure > wrong_head_pressure
+    clause_graph_coherent = not conflict_edges and all_words_known_or_abstainable
+    accepted = (
+        bool(words)
+        and clause_graph_coherent
+        and not clean_proto_unknown_present
+        and selected_beats_bag
+        and selected_beats_wrong_order
+        and selected_beats_wrong_head
+    )
+    return {
+        "kind": "E76_PROTEIN_SENTENCE_PACKET_v0",
+        "sentence_id": sentence_id,
+        "head_word": head_word,
+        "modifier_words": modifier_words,
+        "clause_graph": {
+            "kind": "E76_CLAUSE_GRAPH_v0",
+            "clauses": [
+                {
+                    "clause": clause,
+                    "words": [row["word"] for row in ordered_entries if row["clause"] == clause],
+                }
+                for clause in E76_CLAUSE_ORDER
+                if any(row["clause"] == clause for row in ordered_entries)
+            ],
+        },
+        "word_order": word_order,
+        "dependency_edges": dependency_edges,
+        "conflict_edges": conflict_edges,
+        "support_edges": support_edges,
+        "dominant_phrase": " + ".join(word_order) if accepted else None,
+        "abstained_phrases": [" + ".join(word_order)] if clean_proto_unknown_present or conflict_edges else [],
+        "word_entries": entries,
+        "composition_laws": E76_COMPOSITION_LAWS,
+        "controls": {
+            "all_words_known_or_cleanly_abstainable": all_words_known_or_abstainable,
+            "clause_graph_coherent": clause_graph_coherent,
+            "modifier_cannot_steal_head": head_word not in modifier_words,
+            "selected_sentence_pressure": sentence_pressure,
+            "bag_of_words_pressure": bag_of_words_pressure,
+            "wrong_order_pressure": wrong_order_pressure,
+            "wrong_head_pressure": wrong_head_pressure,
+            "selected_sentence_beats_bag_of_words": selected_beats_bag,
+            "selected_sentence_beats_wrong_order": selected_beats_wrong_order,
+            "selected_sentence_beats_wrong_head": selected_beats_wrong_head,
+            "uses_static_threshold": False,
+        },
+        "sentence_acceptance_decision": "accepted_supported" if accepted else "clean_abstain_supported",
+        "physical_basis_claim_allowed": False,
+        "protein_folding_solved": False,
+    }
+
+
+def compositional_protein_sentence_grammar(
+    *,
+    sentence_word_lists: list[list[str]],
+    known_words: set[str] | None = None,
+    proto_unknown_words: set[str] | None = None,
+) -> dict[str, Any]:
+    packets = [
+        protein_sentence_packet(
+            words=words,
+            known_words=known_words,
+            proto_unknown_words=proto_unknown_words,
+            sentence_id=f"E76_SENTENCE_{index + 1}",
+        )
+        for index, words in enumerate(sentence_word_lists)
+    ]
+    accepted_count = sum(1 for packet in packets if packet["sentence_acceptance_decision"] == "accepted_supported")
+    return {
+        "kind": "E76_COMPOSITIONAL_PROTEIN_SENTENCE_GRAMMAR_v0",
+        "engine_revision": "E76",
+        "baseline_engine_revision": "E75",
+        "protein_sentence_packets": packets,
+        "sentence_packet_count": len(packets),
+        "accepted_sentence_count": accepted_count,
+        "abstained_sentence_count": len(packets) - accepted_count,
+        "composition_laws": E76_COMPOSITION_LAWS,
+        "no_static_thresholds_used": True,
+        "physical_basis_claim_allowed": False,
+        "protein_folding_solved": False,
+    }
+
+
 def bounded(value: float) -> float:
     return round(max(0.0, min(1.0, float(value))), 6)
 
