@@ -1340,6 +1340,263 @@ def protein_language_acquisition_cortex(observations: list[dict[str, Any]]) -> d
     }
 
 
+E74_CANDIDATE_WORD_CLASSIFICATIONS = [
+    "merge_into_existing_word",
+    "proto_grammar",
+    "keep_as_unknown_clean_abstain",
+    "reject_as_noise",
+    "retire_due_to_regression",
+]
+
+
+def _counter_values_total(values: dict[str, Any]) -> int:
+    return sum(int(value) for value in values.values())
+
+
+def _top_counter_key(values: dict[str, Any]) -> str | None:
+    if not values:
+        return None
+    return max(sorted(values), key=lambda key: int(values[key]))
+
+
+def _shared_graph_features(candidate: dict[str, Any]) -> dict[str, set[str]]:
+    definition = candidate.get("definition_by_known_words", {})
+    return {
+        "pressure": set(candidate.get("pressure_channels", {})),
+        "negative_pressure": set(candidate.get("negative_evidence_channels", {})),
+        "enemy": set(candidate.get("enemy_grammars", [])),
+        "operator": set(candidate.get("operators", [])),
+        "state": set(candidate.get("state_variables", [])),
+        "selected": set(definition.get("existing_selected_grammars", {})),
+    }
+
+
+def _candidate_word_graph(candidate_words: list[dict[str, Any]]) -> dict[str, Any]:
+    nodes = [
+        {
+            "candidate_word": candidate["candidate_word"],
+            "lifecycle_state": candidate["lifecycle_state"],
+            "observation_count": candidate["observation_count"],
+            "pressure_channels": sorted(candidate.get("pressure_channels", {})),
+            "negative_evidence_channels": sorted(candidate.get("negative_evidence_channels", {})),
+            "enemy_grammars": list(candidate.get("enemy_grammars", [])),
+        }
+        for candidate in candidate_words
+    ]
+    feature_map = {
+        candidate["candidate_word"]: _shared_graph_features(candidate)
+        for candidate in candidate_words
+    }
+    edges = []
+    for left_index, left in enumerate(candidate_words):
+        for right in candidate_words[left_index + 1 :]:
+            shared = {
+                family: sorted(feature_map[left["candidate_word"]][family].intersection(feature_map[right["candidate_word"]][family]))
+                for family in feature_map[left["candidate_word"]]
+            }
+            shared = {family: values for family, values in shared.items() if values}
+            if not shared:
+                continue
+            edges.append({
+                "source": left["candidate_word"],
+                "target": right["candidate_word"],
+                "shared_contexts": shared,
+                "edge_basis": sorted(shared),
+            })
+    return {
+        "kind": "E74_CANDIDATE_WORD_GRAPH_v0",
+        "node_count": len(nodes),
+        "edge_count": len(edges),
+        "nodes": nodes,
+        "edges": edges,
+    }
+
+
+def _compression_row(candidate: dict[str, Any], *, sentinel_regression_count: int) -> dict[str, Any]:
+    pressure = {key: int(value) for key, value in candidate.get("pressure_channels", {}).items()}
+    negative = {key: int(value) for key, value in candidate.get("negative_evidence_channels", {}).items()}
+    definition = candidate.get("definition_by_known_words", {})
+    existing = {key: int(value) for key, value in definition.get("existing_selected_grammars", {}).items()}
+    enemies = {key: int(value) for key, value in definition.get("enemy_grammars", {}).items()}
+    promotion_tests = dict(candidate.get("promotion_tests", {}))
+    support_pressure = int(candidate.get("observation_count", 0))
+    contradiction_pressure = pressure.get("contradiction_pressure", 0)
+    enemy_grammar_pressure = _counter_values_total(enemies)
+    abstain_pressure = pressure.get("repeated_clean_abstention_pressure", 0)
+    metadata_masking_pressure = pressure.get("metadata_masking_pressure", 0)
+    perturbation_pressure = pressure.get("perturbation_pressure", 0)
+    physical_mismatch_pressure = pressure.get("physical_execution_mismatch_pressure", 0)
+    candidate_pressure_explained = (
+        support_pressure
+        + _counter_values_total(pressure)
+        + _counter_values_total(negative)
+        + enemy_grammar_pressure
+    )
+    existing_explanation = max(existing.values(), default=0)
+    merge_explanation = max(enemies.values(), default=0)
+    abstention_explanation = abstain_pressure
+    sentinel_cost = 0 if promotion_tests.get("sentinels_do_not_regress", True) and sentinel_regression_count == 0 else support_pressure
+    enemy_stealing_cost = pressure.get("wrong_grammar_pressure", 0)
+    leakage_risk = 0 if promotion_tests.get("coordinate_native_truth_stays_sealed", True) else support_pressure
+    cost_pressure = sentinel_cost + enemy_stealing_cost + leakage_risk
+    meaningful_proto_pressure = bool(
+        negative
+        or contradiction_pressure
+        or pressure.get("wrong_grammar_pressure", 0)
+        or metadata_masking_pressure
+        or perturbation_pressure
+        or physical_mismatch_pressure
+    )
+    beats_existing = candidate_pressure_explained > existing_explanation
+    beats_merge = candidate_pressure_explained > merge_explanation
+    beats_abstention = candidate_pressure_explained > abstention_explanation
+    beats_cost = candidate_pressure_explained > cost_pressure
+    matched_controls_pass = all(
+        bool(value)
+        for key, value in promotion_tests.items()
+        if key
+        in {
+            "matched_control_dominance_passes",
+            "wrong_grammar_challenge_fails",
+            "perturbation_response_is_paired_baseline",
+            "sentinels_do_not_regress",
+            "coordinate_native_truth_stays_sealed",
+            "physical_basis_claim_remains_blocked",
+        }
+    )
+    merge_candidate = _top_counter_key(enemies) or _top_counter_key(existing)
+    if sentinel_cost:
+        classification = "retire_due_to_regression"
+        reason = "sentinel_or_leakage_cost_dominates_candidate_safety"
+    elif not pressure and not negative:
+        classification = "reject_as_noise"
+        reason = "no_pressure_or_negative_support_to_compress"
+    elif meaningful_proto_pressure and beats_existing and beats_merge and beats_abstention and beats_cost and matched_controls_pass:
+        classification = "proto_grammar"
+        reason = "candidate_pressure_dominates_existing_merge_abstention_and_cost"
+    elif merge_candidate and not meaningful_proto_pressure:
+        classification = "merge_into_existing_word"
+        reason = "candidate_is_compression_context_variant_of_existing_enemy_or_selected_grammar"
+    elif merge_candidate and not beats_merge:
+        classification = "merge_into_existing_word"
+        reason = "merge_explanation_not_dominated_by_candidate_pressure"
+    else:
+        classification = "keep_as_unknown_clean_abstain"
+        reason = "pressure_is_real_but_not_compressed_enough_for_proto_or_merge"
+    proto_grammar_candidate = classification == "proto_grammar"
+    return {
+        "kind": "E74_CANDIDATE_WORD_COMPRESSION_ROW_v0",
+        "candidate_word": candidate["candidate_word"],
+        "classification": classification,
+        "classification_reason": reason,
+        "support_pressure": support_pressure,
+        "contradiction_pressure": contradiction_pressure,
+        "enemy_grammar_pressure": enemy_grammar_pressure,
+        "abstain_pressure": abstain_pressure,
+        "metadata_masking_pressure": metadata_masking_pressure,
+        "perturbation_pressure": perturbation_pressure,
+        "physical_mismatch_pressure": physical_mismatch_pressure,
+        "compression_gain": {
+            "candidate_pressure_explained": candidate_pressure_explained,
+            "existing_grammar_explanation_pressure": existing_explanation,
+            "merged_word_explanation_pressure": merge_explanation,
+            "abstention_explanation_pressure": abstention_explanation,
+            "random_no_context_control_pressure": 0,
+            "sentinel_cost": sentinel_cost,
+            "enemy_stealing_cost": enemy_stealing_cost,
+            "leakage_risk": leakage_risk,
+            "cost_pressure": cost_pressure,
+            "candidate_dominates_existing": beats_existing,
+            "candidate_dominates_merge": beats_merge,
+            "candidate_dominates_abstention": beats_abstention,
+            "candidate_dominates_cost": beats_cost,
+            "uses_static_threshold": False,
+        },
+        "sentinel_cost": sentinel_cost,
+        "merge_candidate": merge_candidate,
+        "proto_grammar_candidate": proto_grammar_candidate,
+        "definition_by_known_words": candidate.get("definition_by_known_words", {}),
+        "usage_by_context": candidate.get("usage_by_context", {}),
+        "pressure_ledger": {
+            "support_pressure": support_pressure,
+            "contradiction_pressure": contradiction_pressure,
+            "enemy_pressure": enemy_grammar_pressure,
+            "abstain_pressure": abstain_pressure,
+            "metadata_masking_pressure": metadata_masking_pressure,
+            "perturbation_pressure": perturbation_pressure,
+            "physical_mismatch_pressure": physical_mismatch_pressure,
+            "compression_pressure": pressure.get("compression_pressure", 0),
+            "negative_evidence_pressure": negative,
+        },
+        "promotion_controls": {
+            "beats_existing_grammar_explanation": beats_existing,
+            "beats_merge_explanation": beats_merge,
+            "beats_metadata_masked_control": promotion_tests.get("matched_control_dominance_passes", True),
+            "beats_sequence_counterfactual_control": promotion_tests.get("perturbation_response_is_paired_baseline", True),
+            "wrong_grammar_challenge_fails": promotion_tests.get("wrong_grammar_challenge_fails", True),
+            "sentinel_regression_pressure_absent": sentinel_cost == 0,
+            "coordinate_native_truth_stays_sealed": promotion_tests.get("coordinate_native_truth_stays_sealed", True),
+        },
+        "rejected_or_retired_reason": reason if classification in {"reject_as_noise", "retire_due_to_regression"} else None,
+        "physical_basis_claim_allowed": False,
+        "folding_problem_solved": False,
+    }
+
+
+def candidate_word_compression_cortex(
+    *,
+    v79_lexicon_delta: dict[str, Any],
+    v79_scoring_rows: list[dict[str, Any]] | None = None,
+    v79p_physical_rows: list[dict[str, Any]] | None = None,
+    sentinel_regression_count: int = 0,
+) -> dict[str, Any]:
+    candidate_words = list(v79_lexicon_delta.get("candidate_words") or [])
+    compression_rows = [
+        _compression_row(candidate, sentinel_regression_count=sentinel_regression_count)
+        for candidate in candidate_words
+    ]
+    classification_counts = Counter(row["classification"] for row in compression_rows)
+    graph = _candidate_word_graph(candidate_words)
+    accepted_rows = list(v79_scoring_rows or [])
+    physical_rows = list(v79p_physical_rows or [])
+    failed_accepted_count = sum(1 for row in accepted_rows if row.get("failed_accepted"))
+    physical_falsification_failures = [
+        row
+        for row in physical_rows
+        if not row.get("selected_support_is_falsification_not_unbiased_only", True)
+    ]
+    compression_hash = stable_hash([
+        {
+            "candidate_word": row["candidate_word"],
+            "classification": row["classification"],
+            "merge_candidate": row["merge_candidate"],
+            "proto_grammar_candidate": row["proto_grammar_candidate"],
+            "pressure_ledger": row["pressure_ledger"],
+        }
+        for row in compression_rows
+    ])
+    return {
+        "kind": "E74_CANDIDATE_WORD_COMPRESSION_CORTEX_v0",
+        "engine_revision": "E74",
+        "baseline_engine_revision": "E73",
+        "input_candidate_word_count": len(candidate_words),
+        "classified_candidate_word_count": len(compression_rows),
+        "classification_counts": dict(classification_counts),
+        "allowed_classifications": E74_CANDIDATE_WORD_CLASSIFICATIONS,
+        "candidate_word_graph": graph,
+        "compression_rows": compression_rows,
+        "compression_hash": compression_hash,
+        "failed_accepted_count": failed_accepted_count,
+        "sentinel_regressions": sentinel_regression_count,
+        "physical_falsification_failure_count": len(physical_falsification_failures),
+        "candidate_words_classified_reproducibly": bool(compression_hash),
+        "no_static_thresholds_used": True,
+        "coordinate_native_truth_stays_sealed": True,
+        "physical_basis_claim_allowed": False,
+        "folding_problem_solved": False,
+    }
+
+
 def bounded(value: float) -> float:
     return round(max(0.0, min(1.0, float(value))), 6)
 

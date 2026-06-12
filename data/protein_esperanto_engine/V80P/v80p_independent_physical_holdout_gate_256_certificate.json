@@ -1,0 +1,37 @@
+{
+  "batch_id": "V80P_INDEPENDENT_PHYSICAL_HOLDOUT_GATE_256",
+  "certificate_hash": "a509142399e0f7bb3d0981bd7a20fd57096780d4ab1b5060da0eb24bc2df6f37",
+  "classification_counts": {
+    "merge_into_existing_word": 109,
+    "proto_grammar": 147
+  },
+  "coordinate_or_native_leakage_blocked": true,
+  "engine_version_used": "E74",
+  "execution_backend": "deterministic_postseal_candidate_word_holdout_execution",
+  "failed_controls": [],
+  "failed_target_ids": [],
+  "independent_postseal_observable_gate_passed": true,
+  "kind": "V80P_INDEPENDENT_PHYSICAL_HOLDOUT_GATE_256_CERTIFICATE_v0",
+  "native_contacts_used_before_seal": false,
+  "native_coordinates_used_before_seal": false,
+  "physical_basis_claim_allowed": false,
+  "physical_basis_claim_blocked_reason": "independent postseal observable gate is a falsification screen; it does not by itself authorize a physical folding claim",
+  "protein_folding_solved": false,
+  "runs_per_target": [
+    "unbiased_execution",
+    "selected_grammar_execution",
+    "wrong_grammar_execution",
+    "merge_grammar_execution",
+    "masked_grammar_execution"
+  ],
+  "selected_beats_masked_grammar": 256,
+  "selected_beats_merge_grammar": 256,
+  "selected_beats_unbiased": 256,
+  "selected_beats_wrong_grammar": 256,
+  "selected_predicts_independent_postseal_observable": 256,
+  "source_batch_id": "V80_CANDIDATE_WORD_LEXICON_DELTA_TRIAGE_77",
+  "status": "V80P_INDEPENDENT_PHYSICAL_HOLDOUT_GATE_PASSED",
+  "targets_total": 256,
+  "timestamp_utc": "2026-06-12T12:18:53.570019+00:00",
+  "uses_static_observable_thresholds": false
+}

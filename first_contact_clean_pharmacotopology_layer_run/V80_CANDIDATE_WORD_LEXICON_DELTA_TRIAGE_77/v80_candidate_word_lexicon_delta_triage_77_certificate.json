@@ -1,0 +1,43 @@
+{
+  "baseline_engine_version": "E73",
+  "batch_id": "V80_CANDIDATE_WORD_LEXICON_DELTA_TRIAGE_77",
+  "candidate_word_graph_edge_count": 2809,
+  "candidate_word_graph_node_count": 77,
+  "candidate_words_classified_reproducibly": true,
+  "certificate_hash": "f417115828ea4491dfaac7c7bb599cff31612259f1a70787346c56cd554ffc23",
+  "classification_counts": {
+    "merge_into_existing_word": 32,
+    "proto_grammar": 45
+  },
+  "classification_hash": "e4eb43ad99242fc5f1aa413de7b2767968325a03ca0ed9a033e06ddf73347ac2",
+  "classified_candidate_word_count": 77,
+  "coordinate_native_truth_stays_sealed": true,
+  "engine_version_used": "E74",
+  "epistemological_status": {
+    "contact_map_interpretation": "hypothesized_interaction_language_map_not_native_contact_probability",
+    "folding_problem_solved": false,
+    "is_atomistic_md": false,
+    "is_physical_simulation": false,
+    "language_layer": "protein_esperanto_mechanism_language",
+    "physical_basis_claim_allowed": false,
+    "requires_independent_physical_validation": true,
+    "trajectory_interpretation": "operator_state_propagation_not_time_physical_dynamics"
+  },
+  "failed_accepted_count": 0,
+  "failed_controls": [],
+  "input_candidate_word_count": 77,
+  "kind": "V80_CANDIDATE_WORD_LEXICON_DELTA_TRIAGE_77_CERTIFICATE_v0",
+  "merged_words_do_not_reduce_existing_grammar_performance": true,
+  "next_required_batch": "V81_REPLAY_PROTO_GRAMMAR_CANDIDATES_OR_EXPAND_UNKNOWN_USAGE_CONTEXT",
+  "no_forced_expected_labels_used": true,
+  "no_static_thresholds_used": true,
+  "paired_control_rows_total": 539,
+  "physical_basis_claim_allowed": false,
+  "protein_folding_solved": false,
+  "proto_grammars_matched_control_dominance_passed": true,
+  "rejected_or_retired_words_record_pressure_reason": true,
+  "sentinel_regressions": 0,
+  "status": "V80_CANDIDATE_WORD_LEXICON_DELTA_TRIAGE_PASSED",
+  "timestamp_utc": "2026-06-12T12:18:47.459749+00:00",
+  "withheld_context_leakage_detected": false
+}

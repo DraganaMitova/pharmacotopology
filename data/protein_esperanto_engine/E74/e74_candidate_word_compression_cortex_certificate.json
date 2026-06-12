@@ -1,0 +1,17 @@
+{
+  "baseline_engine_revision": "E73",
+  "candidate_word_graph_edge_count": 2809,
+  "candidate_word_graph_node_count": 77,
+  "classification_counts": {
+    "merge_into_existing_word": 32,
+    "proto_grammar": 45
+  },
+  "classification_hash": "e4eb43ad99242fc5f1aa413de7b2767968325a03ca0ed9a033e06ddf73347ac2",
+  "engine_revision": "E74",
+  "input_candidate_word_count": 77,
+  "kind": "E74_CANDIDATE_WORD_COMPRESSION_CORTEX_CERTIFICATE_v0",
+  "next_required_batch": "V80_CANDIDATE_WORD_LEXICON_DELTA_TRIAGE_77",
+  "no_static_thresholds_used": true,
+  "physical_basis_claim_allowed": false,
+  "protein_folding_solved": false
+}
