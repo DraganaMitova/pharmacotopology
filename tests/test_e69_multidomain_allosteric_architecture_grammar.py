@@ -74,6 +74,14 @@ def test_e69_selects_multidomain_allostery_and_outputs_readouts() -> None:
 
     assert mechanism["mechanism_class"] == "multidomain_allosteric_architecture"
     assert mechanism["selected_multidomain_word"] == "allosteric_basin_shift"
+    assert packet["self_decision_judge"]["zero_failed_accepted_required"] is True
+    assert packet["self_decision_judge"]["final_self_decision"] == "accepted"
+    assert packet["self_decision_judge"]["dominance_law"] == "single_dominant_learned_mechanism_bound_across_views"
+    assert packet["self_decision_judge"]["cross_view_binding_probe"]["missing_view_families"] == []
+    assert packet["self_decision_judge"]["operator_basis_stability"] == "stable_under_endogenous_operator_basis_probe"
+    assert packet["self_decision_judge"]["coefficient_probe_mode"] == "endogenous_observed_operator_permutations_no_static_scale_range"
+    assert packet["self_decision_judge"]["physical_basis_claim_allowed"] is False
+    assert packet["acceptance_firewall"]["acceptance_decision"] == "accepted"
     assert final["multidomain_allostery"] > 0.0
     assert final["domain_boundary"] > 0.0
     assert final["hinge_region"] > 0.0
@@ -129,6 +137,19 @@ def test_e69_complex_word_boundary_preserves_low_complexity_disorder() -> None:
 
     assert packet["selected_mechanism_grammar"]["mechanism_class"] == "intrinsic_disorder_phase_separation"
     assert packet["selected_mechanism_grammar"]["selection_reason"] == "low_complexity_disorder_phase_evidence"
+
+
+def test_e69_self_decision_cleanly_abstains_on_missing_candidate_words() -> None:
+    packet = _packet("disulfide_secretory_redox_context disulfide_bond_topology secretory_redox_context")
+    judge = packet["self_decision_judge"]
+    acceptance_view = packet["acceptance_firewall"]
+
+    assert judge["zero_failed_accepted_required"] is True
+    assert judge["final_self_decision"] == "clean_abstain_missing_word"
+    assert judge["missing_word_candidate"] == "disulfide_secretory_redox_context"
+    assert judge["wrong_grammar_separation"] == "wrong_grammars_fail"
+    assert "disulfide_secretory_redox_context" in acceptance_view["unknown_word_signals"]
+    assert acceptance_view["acceptance_decision"] == "abstain_recommended"
 
 
 def test_e69_preserves_prior_repair_priorities_and_withheld_isolation() -> None:

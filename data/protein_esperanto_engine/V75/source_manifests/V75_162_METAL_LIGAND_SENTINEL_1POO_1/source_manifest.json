@@ -1,0 +1,59 @@
+{
+  "batch_id": "V75_SELF_DECIDING_ACCEPTANCE_CORTEX",
+  "blocked_prediction_inputs": [
+    "PDB/mmCIF coordinates before sealing",
+    "native contacts, distance maps, residue-residue proximity, and coordinate-derived topology",
+    "native biological assembly contacts and ligand/metal coordination geometry before sealing",
+    "AlphaFold, ESMFold, RoseTTAFold, or other structure models before sealing",
+    "post-seal validation annotations before prediction hash",
+    "prior score outcomes as prediction evidence",
+    "internal runtime artifacts as biological evidence"
+  ],
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E69",
+  "folding_problem_solved": false,
+  "kind": "V75_SELF_DECIDING_ACCEPTANCE_CORTEX_SOURCE_MANIFEST_v0",
+  "panel_group": "METAL_LIGAND_SENTINEL",
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence for the RCSB polymer entity.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V75_RAW_SEQUENCE_c983de023b5a",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1POO/1",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Public non-coordinate RCSB metadata is available through the source URL. V75 uses the explicit self-decision cortex context source for allowed biological words. Coordinates, contacts, ligand geometry, native topology, and post-seal validation labels are unopened before prediction hash.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V75_PUBLIC_METADATA_c983de023b5a",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/1POO",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "V75 allowed non-coordinate Esperanto context marks: metal_cluster_geometry ligand_locked_basin coordination_shell_integrity apo_holo_basin_shift. Unknown self-decision words must cleanly abstain until their grammar exists.",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [
+        "metal_cluster_geometry",
+        "ligand_locked_basin",
+        "coordination_shell_integrity",
+        "apo_holo_basin_shift"
+      ],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V75_E69_CONTEXT_c983de023b5a",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/1POO",
+      "spatial_proxy": false
+    }
+  ],
+  "protein_id": "1POO_1",
+  "sequence": "KLSDPYHFTVNAAAETEPVDTAGDAADDPAIWLDPKNPQNSKLITTNKKSGLAVYSLEGKMLHSYHTGKLNNVDIRYDFPLNGKKVDIAAASNRSEGKNTIEIYAIDGKNGTLQSITDPNRPIASAIDEVYGFSLYHSQKTGKYYAMVTGKEGEFEQYELNADKNGYISGKKVRAFKMNSQTEGMAADDEYGSLYIAEEDEAIWKFSAEPDGGSNGTVIDRADGRHLTPDIEGLTIYYAADGKGYLLASSQGNSSYAIYERQGQNKYVADFQITDGPETDGTSDTDGIDVLGFGLGPEYPFGLFVAQDGENIDHGQKANQNFKMVPWERIADKIGFHPQVNKQVDPRKMTDRSGK",
+  "sequence_length": 355,
+  "target_id": "V75_162_METAL_LIGAND_SENTINEL_1POO_1"
+}

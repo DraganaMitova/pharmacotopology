@@ -1,0 +1,1113 @@
+{
+  "accepted_accuracy": 1.0,
+  "accepted_count": 187,
+  "accepted_cross_view_bound": 187,
+  "accepted_operator_basis_stable": 187,
+  "accepted_supported": 187,
+  "accepted_temporal_bound": 187,
+  "atomistic_md_executed": false,
+  "baseline_engine_version": "E68",
+  "batch_id": "V75_SELF_DECIDING_ACCEPTANCE_CORTEX",
+  "blocked_count": 0,
+  "blocked_supported": 0,
+  "campaign_id": "V61_TO_V75_PROTEIN_ESPERANTO_SATURATION_CAMPAIGN",
+  "candidate_grammar_acceptance_role": "clean_abstain_until_revision_implements_grammar",
+  "candidate_grammars_implemented": false,
+  "certificate_hash": "a0bd54f31ecbf5f9dd8d6a698413c07728170544cb6f0f46f3a9cbf8aa2740c0",
+  "claim_allowed": false,
+  "claim_blocked_reason": "V75 is a self-decision cortex batch; zero failed accepted is required but not a solved-folding claim.",
+  "clean_abstain": 13,
+  "clean_abstain_supported": 12,
+  "coefficient_probe_mode": "endogenous_observed_operator_permutations_no_static_scale_range",
+  "composition_rule": {
+    "ASSEMBLY_REQUIRED_SENTINEL": 20,
+    "DISORDER_BOUNDARY_SENTINEL": 15,
+    "MEMBRANE_TM_SENTINEL": 20,
+    "METAL_LIGAND_SENTINEL": 15,
+    "MISSING_WORD_CANDIDATE_CLEAN_ABSTAIN_CONTROL": 12,
+    "MODULAR_ARCHITECTURE_INTERDOMAIN_LOCK_POSITIVE": 25,
+    "MONOMERIC_GLOBULAR_SENTINEL": 20,
+    "MULTIDOMAIN_HINGE_DOMAIN_SWAP_ALLOSTERY_POSITIVE": 40,
+    "V74_MULTIDOMAIN_ALLOSTERY_FAILURE_REPLAY": 33
+  },
+  "control_count": 16,
+  "controls": [
+    {
+      "control_id": "target_count_200",
+      "observed": 200,
+      "passed": true,
+      "reason": "V75 must have exactly 200 targets."
+    },
+    {
+      "control_id": "composition_rule",
+      "observed": {
+        "ASSEMBLY_REQUIRED_SENTINEL": 20,
+        "DISORDER_BOUNDARY_SENTINEL": 15,
+        "MEMBRANE_TM_SENTINEL": 20,
+        "METAL_LIGAND_SENTINEL": 15,
+        "MISSING_WORD_CANDIDATE_CLEAN_ABSTAIN_CONTROL": 12,
+        "MODULAR_ARCHITECTURE_INTERDOMAIN_LOCK_POSITIVE": 25,
+        "MONOMERIC_GLOBULAR_SENTINEL": 20,
+        "MULTIDOMAIN_HINGE_DOMAIN_SWAP_ALLOSTERY_POSITIVE": 40,
+        "V74_MULTIDOMAIN_ALLOSTERY_FAILURE_REPLAY": 33
+      },
+      "passed": true,
+      "reason": "V75 must match requested self-decision cortex composition."
+    },
+    {
+      "control_id": "zero_failed_accepted_required",
+      "observed": null,
+      "passed": true,
+      "reason": "No accepted target may be unsupported."
+    },
+    {
+      "control_id": "accepted_cross_view_binding",
+      "observed": null,
+      "passed": true,
+      "reason": "Accepted targets must satisfy their self-required cross-view binding."
+    },
+    {
+      "control_id": "accepted_operator_basis_stability",
+      "observed": null,
+      "passed": true,
+      "reason": "Accepted targets must be stable under endogenous operator-basis probes."
+    },
+    {
+      "control_id": "accepted_temporal_binding",
+      "observed": null,
+      "passed": true,
+      "reason": "Accepted targets must avoid internal temporal trajectory conflicts."
+    },
+    {
+      "control_id": "physical_basis_claim_blocked",
+      "observed": null,
+      "passed": true,
+      "reason": "The coarse operator cortex must not claim physical coefficient grounding."
+    },
+    {
+      "control_id": "physical_grounding_status_reported",
+      "observed": null,
+      "passed": true,
+      "reason": "Every target reports physical grounding status."
+    },
+    {
+      "control_id": "real_physical_calibration_inputs_present",
+      "observed": {
+        "true": 200
+      },
+      "passed": true,
+      "reason": "Every target receives the real physical calibration manifest."
+    },
+    {
+      "control_id": "real_physical_calibration_rows_real_coordinate",
+      "observed": {
+        "row_count": 8,
+        "source_coordinate_database": "RCSB_PDB"
+      },
+      "passed": true,
+      "reason": "Calibration inputs are derived from locked real RCSB coordinate rows."
+    },
+    {
+      "control_id": "real_physical_calibration_truth_boundary",
+      "observed": {
+        "coordinate_truth_used_as_prediction_input": false,
+        "leave_one_target_out_calibration": true,
+        "target_native_contacts_used_before_prediction": false,
+        "target_native_excluded_from_calibration": true
+      },
+      "passed": true,
+      "reason": "Real calibration inputs preserve the prediction truth boundary."
+    },
+    {
+      "control_id": "self_decision_unknown_word_control",
+      "observed": {
+        "acceptance_decision": "abstain_recommended",
+        "blocked_reasons": [],
+        "candidate_grammar_scope": [
+          {
+            "acceptance_role": "clean_abstain_until_revision_implements_grammar",
+            "grammar": "coiled_coil_register",
+            "grammar_status": "candidate_missing_word",
+            "sequence_signal": "heptad_hydrophobic_periodicity"
+          },
+          {
+            "acceptance_role": "clean_abstain_until_revision_implements_grammar",
+            "grammar": "repeat_solenoid_topology",
+            "grammar_status": "candidate_missing_word",
+            "sequence_signal": "repeat_signature"
+          },
+          {
+            "acceptance_role": "clean_abstain_until_revision_implements_grammar",
+            "grammar": "disulfide_secretory_redox_context",
+            "grammar_status": "candidate_missing_word",
+            "sequence_signal": "paired_cysteine_context"
+          },
+          {
+            "acceptance_role": "clean_abstain_until_revision_implements_grammar",
+            "grammar": "signal_peptide_vs_true_TM",
+            "grammar_status": "candidate_missing_word",
+            "sequence_signal": "n_terminal_hydrophobic_signal"
+          },
+          {
+            "acceptance_role": "clean_abstain_until_revision_implements_grammar",
+            "grammar": "knotted_topology",
+            "grammar_status": "candidate_missing_word",
+            "sequence_signal": "topological_evidence_required"
+          }
+        ],
+        "coefficient_perturbation_probe": {
+          "baseline_signature": "insufficient_evidence_clean_abstain",
+          "coefficient_permutation_rows": [],
+          "coefficient_probe_mode": "no_static_scale_range",
+          "operator_ablation_rows": [],
+          "operator_basis_stability": "no_operator_basis_to_probe"
+        },
+        "coefficient_perturbation_stability": "no_operator_basis_to_probe",
+        "coefficient_probe_mode": "no_static_scale_range",
+        "coefficient_source": "heuristic_internal_operator_weights_not_physical_force_constants",
+        "contradiction_count": 0,
+        "contradictions": [],
+        "coordinate_truth_used_before_prediction": false,
+        "counterfactual_separation": "context_or_operator_driven_not_sequence_only",
+        "counterfactual_sequence_controls": {
+          "composition_preserved_shuffle_support": "sequence_signal_not_specific",
+          "interpretation": "context_or_operator_driven_not_sequence_only",
+          "real_sequence_support": "sequence_signal_not_specific",
+          "region_masked_sequence_support": "sequence_signal_not_specific"
+        },
+        "cross_view_binding": "no_learned_mechanism_to_bind",
+        "cross_view_binding_probe": {
+          "bound_view_families": [],
+          "cross_view_binding": "no_learned_mechanism_to_bind",
+          "missing_view_families": [],
+          "self_required_view_families": []
+        },
+        "dominance_law": "candidate_missing_word_competes_with_learned_grammar",
+        "evidence_masking": [
+          {
+            "interpretation": "stable_under_nondefining_mask",
+            "masked_family": "disulfide_secretory_redox_context",
+            "mechanism_after_mask": "insufficient_evidence_clean_abstain",
+            "removed_signal_count": 5,
+            "selected_mechanism_preserved": true
+          }
+        ],
+        "final_self_decision": "clean_abstain_missing_word",
+        "firewall_reason": "self_decision_candidate_word_competes_without_learned_grammar",
+        "folding_problem_solved": false,
+        "internal_consensus": "candidate_missing_word_competes_with_learned_grammar",
+        "kind": "PROTEIN_ESPERANTO_SELF_DECISION_JUDGE_v0",
+        "known_beta_topology_word": null,
+        "known_mechanism_class": "insufficient_evidence_clean_abstain",
+        "known_multidomain_word": null,
+        "legacy_acceptance_view": {
+          "acceptance_decision": "abstain_recommended",
+          "blocked_reasons": [],
+          "coordinate_truth_used_before_prediction": false,
+          "firewall_reason": "self_decision_candidate_word_competes_without_learned_grammar",
+          "folding_problem_solved": false,
+          "kind": "PROTEIN_ESPERANTO_SELF_DECISION_COMPAT_ACCEPTANCE_VIEW_v0",
+          "known_beta_topology_word": null,
+          "known_mechanism_class": "insufficient_evidence_clean_abstain",
+          "known_multidomain_word": null,
+          "missing_esperanto_word": "disulfide_secretory_redox_context",
+          "operator_activation": 0.0,
+          "unknown_word_signals": [
+            "disulfide_secretory_redox_context"
+          ],
+          "zero_failed_accepted_required": true
+        },
+        "masking_stability": "stable_or_definition_sensitive_under_masking",
+        "mechanism_competition": [
+          {
+            "evidence_hits": [
+              "disulfide",
+              "disulfide_bond_topology",
+              "disulfide_secretory_redox_context",
+              "secretory",
+              "secretory_redox_context"
+            ],
+            "grammar": "disulfide_secretory_redox_context",
+            "grammar_status": "candidate_missing_word",
+            "internal_view_count": 2,
+            "operator_support": "no_learned_operator_available",
+            "sequence_support": "paired_or_clustered_cysteine_signal_visible",
+            "trajectory_support": [],
+            "view_sources": [
+              "evidence_family",
+              "sequence_signature"
+            ]
+          },
+          {
+            "evidence_hits": [],
+            "grammar": "oligomerization_controlled_folding",
+            "grammar_status": "learned",
+            "internal_view_count": 1,
+            "operator_support": "not_selected_operator",
+            "sequence_support": "interface_sequence_signal_visible",
+            "trajectory_support": [],
+            "view_sources": [
+              "sequence_signature"
+            ]
+          },
+          {
+            "evidence_hits": [],
+            "grammar": "multidomain_allosteric_architecture",
+            "grammar_status": "learned",
+            "internal_view_count": 1,
+            "operator_support": "not_selected_operator",
+            "sequence_support": "long_modular_interface_sequence_signal_visible",
+            "trajectory_support": [],
+            "view_sources": [
+              "sequence_signature"
+            ]
+          },
+          {
+            "evidence_hits": [],
+            "grammar": "metal_cluster_and_ligand_locked_basin",
+            "grammar_status": "learned",
+            "internal_view_count": 1,
+            "operator_support": "not_selected_operator",
+            "sequence_support": "pocket_or_coordination_sequence_signal_visible",
+            "trajectory_support": [],
+            "view_sources": [
+              "sequence_signature"
+            ]
+          },
+          {
+            "evidence_hits": [],
+            "grammar": "membrane_multidomain_folding_proteostasis",
+            "grammar_status": "learned",
+            "internal_view_count": 1,
+            "operator_support": "not_selected_operator",
+            "sequence_support": "membrane_segment_sequence_signal_visible",
+            "trajectory_support": [],
+            "view_sources": [
+              "sequence_signature"
+            ]
+          },
+          {
+            "evidence_hits": [],
+            "grammar": "intrinsic_disorder_phase_separation",
+            "grammar_status": "learned",
+            "internal_view_count": 1,
+            "operator_support": "not_selected_operator",
+            "sequence_support": "disorder_or_low_complexity_sequence_signal_visible",
+            "trajectory_support": [],
+            "view_sources": [
+              "sequence_signature"
+            ]
+          },
+          {
+            "evidence_hits": [],
+            "grammar": "globular_closure",
+            "grammar_status": "learned",
+            "internal_view_count": 1,
+            "operator_support": "not_selected_operator",
+            "sequence_support": "compact_core_sequence_signal_visible",
+            "trajectory_support": [],
+            "view_sources": [
+              "sequence_signature"
+            ]
+          },
+          {
+            "evidence_hits": [],
+            "grammar": "fold_upon_binding_disorder",
+            "grammar_status": "learned",
+            "internal_view_count": 1,
+            "operator_support": "not_selected_operator",
+            "sequence_support": "disorder_or_low_complexity_sequence_signal_visible",
+            "trajectory_support": [],
+            "view_sources": [
+              "sequence_signature"
+            ]
+          }
+        ],
+        "missing_esperanto_word": "disulfide_secretory_redox_context",
+        "missing_word_candidate": "disulfide_secretory_redox_context",
+        "natural_mechanism_class": "insufficient_evidence_clean_abstain",
+        "operator_activation": 0.0,
+        "operator_basis_stability": "no_operator_basis_to_probe",
+        "operator_basis_stability_probe": {
+          "baseline_signature": "insufficient_evidence_clean_abstain",
+          "coefficient_permutation_rows": [],
+          "coefficient_probe_mode": "no_static_scale_range",
+          "operator_ablation_rows": [],
+          "operator_basis_stability": "no_operator_basis_to_probe"
+        },
+        "physical_backend_available": true,
+        "physical_basis_claim_allowed": false,
+        "physical_grounding_gate": {
+          "backend_probe": {
+            "backend": "openmm",
+            "backend_available": true,
+            "backend_version": "8.1.1",
+            "forcefield_api_available": true,
+            "kind": "PROTEIN_ESPERANTO_PHYSICAL_BACKEND_PROBE_v0"
+          },
+          "coarse_operator_decision_scope": "mechanism_language_acceptance_not_physical_fold_solution",
+          "coarse_operator_layer": true,
+          "coefficient_source": "heuristic_internal_operator_weights_not_physical_force_constants",
+          "coordinate_truth_used_as_prediction_input": false,
+          "folding_problem_solved": false,
+          "grammar_declared_operator_coverage": [],
+          "grammar_missing_declared_operators": [],
+          "kind": "PROTEIN_ESPERANTO_PHYSICAL_GROUNDING_GATE_v0",
+          "leave_one_target_out_calibration": true,
+          "missing_physical_inputs": [
+            "target_specific_physical_topology_and_environment_for_execution",
+            "force_field_or_calibrated_coarse_potential_bound_to_target_execution",
+            "calibrated_energy_units_temperature_and_integrator_protocol",
+            "independent_dynamic_physical_observable_holdout"
+          ],
+          "operator_basis_stability": "no_operator_basis_to_probe",
+          "operator_to_physical_proxy_map": [],
+          "physical_basis_claim_allowed": false,
+          "physical_calibration_input_summary": {
+            "calibration_input_type": "coordinate_derived_native_contact_summary",
+            "coordinate_truth_used_as_prediction_input": false,
+            "fold_class_coverage": [
+              "alpha_beta_mixed",
+              "alpha_rich",
+              "beta_rich",
+              "multidomain_boundary"
+            ],
+            "leave_one_target_out_calibration": true,
+            "observable_families": [
+              "coordinate_coverage",
+              "native_contact_count",
+              "native_contact_order",
+              "native_contact_map_hash",
+              "coordinate_trace_hash"
+            ],
+            "physical_calibration_input_status": "real_coordinate_calibration_inputs_loaded_truth_boundary_preserved",
+            "real_physical_calibration_hash": "fce8f8b9ece98c6a9427ec01c22ea5af9daedae08a599cd0856dfe96a0f14512",
+            "real_physical_calibration_inputs_used": true,
+            "real_physical_calibration_kind": "PROTEIN_ESPERANTO_REAL_PHYSICAL_CALIBRATION_INPUTS_v0",
+            "real_physical_calibration_row_count": 8,
+            "source_coordinate_database": "RCSB_PDB",
+            "source_dataset": "/Users/draganamitova/My Projects/pharmacotopology/data/folding_real_coordinate_visual_8.locked.json",
+            "source_dataset_sha256": "b2927864fca6eb21e695d2262230a53bf79885f77006d722bafbe346e2b76efe",
+            "target_native_contacts_used_before_prediction": false,
+            "target_native_excluded_from_calibration": true
+          },
+          "physical_grounding_status": "real_physical_calibration_inputs_loaded_openmm_available_but_target_physical_execution_not_run",
+          "physical_limitation_known_by_engine": true,
+          "real_physical_calibration_hash": "fce8f8b9ece98c6a9427ec01c22ea5af9daedae08a599cd0856dfe96a0f14512",
+          "real_physical_calibration_inputs_used": true,
+          "real_physical_calibration_kind": "PROTEIN_ESPERANTO_REAL_PHYSICAL_CALIBRATION_INPUTS_v0",
+          "real_physical_calibration_row_count": 8,
+          "target_native_contacts_used_before_prediction": false,
+          "target_native_excluded_from_calibration": true,
+          "temporal_binding": "no_mechanism_trajectory_to_bind"
+        },
+        "physical_grounding_status": "real_physical_calibration_inputs_loaded_openmm_available_but_target_physical_execution_not_run",
+        "physics_grounding_status": "coarse_operator_heuristic_not_atomistic_physics",
+        "real_physical_calibration_hash": "fce8f8b9ece98c6a9427ec01c22ea5af9daedae08a599cd0856dfe96a0f14512",
+        "real_physical_calibration_inputs_used": true,
+        "real_physical_calibration_kind": "PROTEIN_ESPERANTO_REAL_PHYSICAL_CALIBRATION_INPUTS_v0",
+        "real_physical_calibration_row_count": 8,
+        "runner_up_mechanisms": [
+          "disulfide_secretory_redox_context",
+          "oligomerization_controlled_folding",
+          "multidomain_allosteric_architecture"
+        ],
+        "selected_mechanism_views": [],
+        "self_decision_reason": "self_decision_candidate_word_competes_without_learned_grammar",
+        "temporal_binding": "no_mechanism_trajectory_to_bind",
+        "temporal_binding_probe": {
+          "observable_trends": [],
+          "signature_path": [],
+          "temporal_binding": "no_mechanism_trajectory_to_bind"
+        },
+        "top_mechanism": "insufficient_evidence_clean_abstain",
+        "unknown_word_signals": [
+          "disulfide_secretory_redox_context"
+        ],
+        "wrong_grammar_challenge": [
+          {
+            "challenger_grammar": "oligomerization_controlled_folding",
+            "challenger_operator_count": 0,
+            "challenger_trajectory_support": [],
+            "forced_grammar_rejected": true,
+            "forced_result_mechanism": "insufficient_evidence_clean_abstain",
+            "interpretation": "wrong_grammar_failed"
+          },
+          {
+            "challenger_grammar": "multidomain_allosteric_architecture",
+            "challenger_operator_count": 0,
+            "challenger_trajectory_support": [],
+            "forced_grammar_rejected": true,
+            "forced_result_mechanism": "insufficient_evidence_clean_abstain",
+            "interpretation": "wrong_grammar_failed"
+          },
+          {
+            "challenger_grammar": "metal_cluster_and_ligand_locked_basin",
+            "challenger_operator_count": 0,
+            "challenger_trajectory_support": [],
+            "forced_grammar_rejected": true,
+            "forced_result_mechanism": "insufficient_evidence_clean_abstain",
+            "interpretation": "wrong_grammar_failed"
+          }
+        ],
+        "wrong_grammar_separation": "wrong_grammars_fail",
+        "zero_failed_accepted_required": true
+      },
+      "passed": true,
+      "reason": "Unknown disulfide word must cleanly abstain."
+    },
+    {
+      "control_id": "random_sequence_control",
+      "observed": {
+        "acceptance_decision": "abstain_recommended",
+        "blocked_reasons": [],
+        "candidate_grammar_scope": [
+          {
+            "acceptance_role": "clean_abstain_until_revision_implements_grammar",
+            "grammar": "coiled_coil_register",
+            "grammar_status": "candidate_missing_word",
+            "sequence_signal": "heptad_hydrophobic_periodicity"
+          },
+          {
+            "acceptance_role": "clean_abstain_until_revision_implements_grammar",
+            "grammar": "repeat_solenoid_topology",
+            "grammar_status": "candidate_missing_word",
+            "sequence_signal": "repeat_signature"
+          },
+          {
+            "acceptance_role": "clean_abstain_until_revision_implements_grammar",
+            "grammar": "disulfide_secretory_redox_context",
+            "grammar_status": "candidate_missing_word",
+            "sequence_signal": "paired_cysteine_context"
+          },
+          {
+            "acceptance_role": "clean_abstain_until_revision_implements_grammar",
+            "grammar": "signal_peptide_vs_true_TM",
+            "grammar_status": "candidate_missing_word",
+            "sequence_signal": "n_terminal_hydrophobic_signal"
+          },
+          {
+            "acceptance_role": "clean_abstain_until_revision_implements_grammar",
+            "grammar": "knotted_topology",
+            "grammar_status": "candidate_missing_word",
+            "sequence_signal": "topological_evidence_required"
+          }
+        ],
+        "coefficient_perturbation_probe": {
+          "baseline_signature": "insufficient_evidence_clean_abstain",
+          "coefficient_permutation_rows": [],
+          "coefficient_probe_mode": "no_static_scale_range",
+          "operator_ablation_rows": [],
+          "operator_basis_stability": "no_operator_basis_to_probe"
+        },
+        "coefficient_perturbation_stability": "no_operator_basis_to_probe",
+        "coefficient_probe_mode": "no_static_scale_range",
+        "coefficient_source": "heuristic_internal_operator_weights_not_physical_force_constants",
+        "contradiction_count": 0,
+        "contradictions": [],
+        "coordinate_truth_used_before_prediction": false,
+        "counterfactual_separation": "context_or_operator_driven_not_sequence_only",
+        "counterfactual_sequence_controls": {
+          "composition_preserved_shuffle_support": "sequence_signal_not_specific",
+          "interpretation": "context_or_operator_driven_not_sequence_only",
+          "real_sequence_support": "sequence_signal_not_specific",
+          "region_masked_sequence_support": "sequence_signal_not_specific"
+        },
+        "cross_view_binding": "no_learned_mechanism_to_bind",
+        "cross_view_binding_probe": {
+          "bound_view_families": [],
+          "cross_view_binding": "no_learned_mechanism_to_bind",
+          "missing_view_families": [],
+          "self_required_view_families": []
+        },
+        "dominance_law": "no_dominant_learned_mechanism",
+        "evidence_masking": [],
+        "final_self_decision": "clean_abstain_low_internal_consensus",
+        "firewall_reason": "self_decision_no_dominant_learned_mechanism",
+        "folding_problem_solved": false,
+        "internal_consensus": "no_dominant_learned_mechanism",
+        "kind": "PROTEIN_ESPERANTO_SELF_DECISION_JUDGE_v0",
+        "known_beta_topology_word": null,
+        "known_mechanism_class": "insufficient_evidence_clean_abstain",
+        "known_multidomain_word": null,
+        "legacy_acceptance_view": {
+          "acceptance_decision": "abstain_recommended",
+          "blocked_reasons": [],
+          "coordinate_truth_used_before_prediction": false,
+          "firewall_reason": "self_decision_no_dominant_learned_mechanism",
+          "folding_problem_solved": false,
+          "kind": "PROTEIN_ESPERANTO_SELF_DECISION_COMPAT_ACCEPTANCE_VIEW_v0",
+          "known_beta_topology_word": null,
+          "known_mechanism_class": "insufficient_evidence_clean_abstain",
+          "known_multidomain_word": null,
+          "missing_esperanto_word": null,
+          "operator_activation": 0.0,
+          "unknown_word_signals": [],
+          "zero_failed_accepted_required": true
+        },
+        "masking_stability": "no_evidence_family_to_mask",
+        "mechanism_competition": [
+          {
+            "evidence_hits": [],
+            "grammar": "oligomerization_controlled_folding",
+            "grammar_status": "learned",
+            "internal_view_count": 1,
+            "operator_support": "not_selected_operator",
+            "sequence_support": "interface_sequence_signal_visible",
+            "trajectory_support": [],
+            "view_sources": [
+              "sequence_signature"
+            ]
+          },
+          {
+            "evidence_hits": [],
+            "grammar": "metal_cluster_and_ligand_locked_basin",
+            "grammar_status": "learned",
+            "internal_view_count": 1,
+            "operator_support": "not_selected_operator",
+            "sequence_support": "pocket_or_coordination_sequence_signal_visible",
+            "trajectory_support": [],
+            "view_sources": [
+              "sequence_signature"
+            ]
+          },
+          {
+            "evidence_hits": [],
+            "grammar": "membrane_multidomain_folding_proteostasis",
+            "grammar_status": "learned",
+            "internal_view_count": 1,
+            "operator_support": "not_selected_operator",
+            "sequence_support": "membrane_segment_sequence_signal_visible",
+            "trajectory_support": [],
+            "view_sources": [
+              "sequence_signature"
+            ]
+          },
+          {
+            "evidence_hits": [],
+            "grammar": "globular_closure",
+            "grammar_status": "learned",
+            "internal_view_count": 1,
+            "operator_support": "not_selected_operator",
+            "sequence_support": "compact_core_sequence_signal_visible",
+            "trajectory_support": [],
+            "view_sources": [
+              "sequence_signature"
+            ]
+          },
+          {
+            "evidence_hits": [],
+            "grammar": "cofactor_ligand_assisted_stabilization",
+            "grammar_status": "learned",
+            "internal_view_count": 1,
+            "operator_support": "not_selected_operator",
+            "sequence_support": "pocket_or_coordination_sequence_signal_visible",
+            "trajectory_support": [],
+            "view_sources": [
+              "sequence_signature"
+            ]
+          },
+          {
+            "evidence_hits": [],
+            "grammar": "beta_closure_topology",
+            "grammar_status": "learned",
+            "internal_view_count": 1,
+            "operator_support": "not_selected_operator",
+            "sequence_support": "beta_strand_propensity_signal_visible",
+            "trajectory_support": [],
+            "view_sources": [
+              "sequence_signature"
+            ]
+          },
+          {
+            "evidence_hits": [],
+            "grammar": "assembly_required_folding",
+            "grammar_status": "learned",
+            "internal_view_count": 1,
+            "operator_support": "not_selected_operator",
+            "sequence_support": "interface_sequence_signal_visible",
+            "trajectory_support": [],
+            "view_sources": [
+              "sequence_signature"
+            ]
+          },
+          {
+            "evidence_hits": [],
+            "grammar": "signal_peptide_vs_true_TM",
+            "grammar_status": "candidate_missing_word",
+            "internal_view_count": 1,
+            "operator_support": "no_learned_operator_available",
+            "sequence_support": "n_terminal_hydrophobic_signal_visible",
+            "trajectory_support": [],
+            "view_sources": [
+              "sequence_signature"
+            ]
+          }
+        ],
+        "missing_esperanto_word": null,
+        "missing_word_candidate": null,
+        "natural_mechanism_class": "insufficient_evidence_clean_abstain",
+        "operator_activation": 0.0,
+        "operator_basis_stability": "no_operator_basis_to_probe",
+        "operator_basis_stability_probe": {
+          "baseline_signature": "insufficient_evidence_clean_abstain",
+          "coefficient_permutation_rows": [],
+          "coefficient_probe_mode": "no_static_scale_range",
+          "operator_ablation_rows": [],
+          "operator_basis_stability": "no_operator_basis_to_probe"
+        },
+        "physical_backend_available": true,
+        "physical_basis_claim_allowed": false,
+        "physical_grounding_gate": {
+          "backend_probe": {
+            "backend": "openmm",
+            "backend_available": true,
+            "backend_version": "8.1.1",
+            "forcefield_api_available": true,
+            "kind": "PROTEIN_ESPERANTO_PHYSICAL_BACKEND_PROBE_v0"
+          },
+          "coarse_operator_decision_scope": "mechanism_language_acceptance_not_physical_fold_solution",
+          "coarse_operator_layer": true,
+          "coefficient_source": "heuristic_internal_operator_weights_not_physical_force_constants",
+          "coordinate_truth_used_as_prediction_input": false,
+          "folding_problem_solved": false,
+          "grammar_declared_operator_coverage": [],
+          "grammar_missing_declared_operators": [],
+          "kind": "PROTEIN_ESPERANTO_PHYSICAL_GROUNDING_GATE_v0",
+          "leave_one_target_out_calibration": true,
+          "missing_physical_inputs": [
+            "target_specific_physical_topology_and_environment_for_execution",
+            "force_field_or_calibrated_coarse_potential_bound_to_target_execution",
+            "calibrated_energy_units_temperature_and_integrator_protocol",
+            "independent_dynamic_physical_observable_holdout"
+          ],
+          "operator_basis_stability": "no_operator_basis_to_probe",
+          "operator_to_physical_proxy_map": [],
+          "physical_basis_claim_allowed": false,
+          "physical_calibration_input_summary": {
+            "calibration_input_type": "coordinate_derived_native_contact_summary",
+            "coordinate_truth_used_as_prediction_input": false,
+            "fold_class_coverage": [
+              "alpha_beta_mixed",
+              "alpha_rich",
+              "beta_rich",
+              "multidomain_boundary"
+            ],
+            "leave_one_target_out_calibration": true,
+            "observable_families": [
+              "coordinate_coverage",
+              "native_contact_count",
+              "native_contact_order",
+              "native_contact_map_hash",
+              "coordinate_trace_hash"
+            ],
+            "physical_calibration_input_status": "real_coordinate_calibration_inputs_loaded_truth_boundary_preserved",
+            "real_physical_calibration_hash": "fce8f8b9ece98c6a9427ec01c22ea5af9daedae08a599cd0856dfe96a0f14512",
+            "real_physical_calibration_inputs_used": true,
+            "real_physical_calibration_kind": "PROTEIN_ESPERANTO_REAL_PHYSICAL_CALIBRATION_INPUTS_v0",
+            "real_physical_calibration_row_count": 8,
+            "source_coordinate_database": "RCSB_PDB",
+            "source_dataset": "/Users/draganamitova/My Projects/pharmacotopology/data/folding_real_coordinate_visual_8.locked.json",
+            "source_dataset_sha256": "b2927864fca6eb21e695d2262230a53bf79885f77006d722bafbe346e2b76efe",
+            "target_native_contacts_used_before_prediction": false,
+            "target_native_excluded_from_calibration": true
+          },
+          "physical_grounding_status": "real_physical_calibration_inputs_loaded_openmm_available_but_target_physical_execution_not_run",
+          "physical_limitation_known_by_engine": true,
+          "real_physical_calibration_hash": "fce8f8b9ece98c6a9427ec01c22ea5af9daedae08a599cd0856dfe96a0f14512",
+          "real_physical_calibration_inputs_used": true,
+          "real_physical_calibration_kind": "PROTEIN_ESPERANTO_REAL_PHYSICAL_CALIBRATION_INPUTS_v0",
+          "real_physical_calibration_row_count": 8,
+          "target_native_contacts_used_before_prediction": false,
+          "target_native_excluded_from_calibration": true,
+          "temporal_binding": "no_mechanism_trajectory_to_bind"
+        },
+        "physical_grounding_status": "real_physical_calibration_inputs_loaded_openmm_available_but_target_physical_execution_not_run",
+        "physics_grounding_status": "coarse_operator_heuristic_not_atomistic_physics",
+        "real_physical_calibration_hash": "fce8f8b9ece98c6a9427ec01c22ea5af9daedae08a599cd0856dfe96a0f14512",
+        "real_physical_calibration_inputs_used": true,
+        "real_physical_calibration_kind": "PROTEIN_ESPERANTO_REAL_PHYSICAL_CALIBRATION_INPUTS_v0",
+        "real_physical_calibration_row_count": 8,
+        "runner_up_mechanisms": [
+          "oligomerization_controlled_folding",
+          "metal_cluster_and_ligand_locked_basin",
+          "membrane_multidomain_folding_proteostasis"
+        ],
+        "selected_mechanism_views": [],
+        "self_decision_reason": "self_decision_no_dominant_learned_mechanism",
+        "temporal_binding": "no_mechanism_trajectory_to_bind",
+        "temporal_binding_probe": {
+          "observable_trends": [],
+          "signature_path": [],
+          "temporal_binding": "no_mechanism_trajectory_to_bind"
+        },
+        "top_mechanism": "insufficient_evidence_clean_abstain",
+        "unknown_word_signals": [],
+        "wrong_grammar_challenge": [
+          {
+            "challenger_grammar": "oligomerization_controlled_folding",
+            "challenger_operator_count": 0,
+            "challenger_trajectory_support": [],
+            "forced_grammar_rejected": true,
+            "forced_result_mechanism": "insufficient_evidence_clean_abstain",
+            "interpretation": "wrong_grammar_failed"
+          },
+          {
+            "challenger_grammar": "metal_cluster_and_ligand_locked_basin",
+            "challenger_operator_count": 0,
+            "challenger_trajectory_support": [],
+            "forced_grammar_rejected": true,
+            "forced_result_mechanism": "insufficient_evidence_clean_abstain",
+            "interpretation": "wrong_grammar_failed"
+          },
+          {
+            "challenger_grammar": "membrane_multidomain_folding_proteostasis",
+            "challenger_operator_count": 0,
+            "challenger_trajectory_support": [],
+            "forced_grammar_rejected": true,
+            "forced_result_mechanism": "insufficient_evidence_clean_abstain",
+            "interpretation": "wrong_grammar_failed"
+          }
+        ],
+        "wrong_grammar_separation": "wrong_grammars_fail",
+        "zero_failed_accepted_required": true
+      },
+      "passed": true,
+      "reason": "Random sequence without evidence abstains."
+    },
+    {
+      "control_id": "shuffled_sequence_controls_reported",
+      "observed": 200,
+      "passed": true,
+      "reason": "Composition-preserving shuffled controls are generated."
+    },
+    {
+      "control_id": "coordinate_leakage_control",
+      "observed": {
+        "allowed_initialization_source_ids": [],
+        "blocked_source_ids": [
+          "V75_BAD_COORDINATES"
+        ],
+        "coordinate_derived_source_count_before_prediction": 1,
+        "coordinate_truth_used_before_prediction": true,
+        "holdout_opened_before_seal": false,
+        "internal_runtime_source_count_for_prediction": 0,
+        "internal_runtime_used_as_biological_evidence": false,
+        "kind": "PROTEIN_ESPERANTO_EVIDENCE_BOUNDARY_GATE_v0",
+        "rows": [
+          {
+            "allowed_for_claim": false,
+            "allowed_for_holdout_after_seal": false,
+            "allowed_to_initialize_language_field": false,
+            "blocked_reason": "coordinate_derived_blocked_before_seal",
+            "coordinate_derived": true,
+            "internal_runtime": false,
+            "source_class": "coordinate_derived",
+            "source_id": "V75_BAD_COORDINATES",
+            "source_role": "prediction_input",
+            "spatial_proxy": false
+          }
+        ],
+        "spatial_proxy_untagged_or_misused_count": 0
+      },
+      "passed": true,
+      "reason": "Coordinate-derived source blocks prediction."
+    },
+    {
+      "control_id": "internal_runtime_leakage_control",
+      "observed": {
+        "allowed_initialization_source_ids": [],
+        "blocked_source_ids": [
+          "V75_BAD_INTERNAL_RUNTIME"
+        ],
+        "coordinate_derived_source_count_before_prediction": 0,
+        "coordinate_truth_used_before_prediction": false,
+        "holdout_opened_before_seal": false,
+        "internal_runtime_source_count_for_prediction": 1,
+        "internal_runtime_used_as_biological_evidence": true,
+        "kind": "PROTEIN_ESPERANTO_EVIDENCE_BOUNDARY_GATE_v0",
+        "rows": [
+          {
+            "allowed_for_claim": false,
+            "allowed_for_holdout_after_seal": false,
+            "allowed_to_initialize_language_field": false,
+            "blocked_reason": "internal_runtime_never_biological_evidence",
+            "coordinate_derived": false,
+            "internal_runtime": true,
+            "source_class": "internal_runtime",
+            "source_id": "V75_BAD_INTERNAL_RUNTIME",
+            "source_role": "prediction_input",
+            "spatial_proxy": false
+          }
+        ],
+        "spatial_proxy_untagged_or_misused_count": 0
+      },
+      "passed": true,
+      "reason": "Internal runtime cannot become biological evidence."
+    }
+  ],
+  "controls_passed": true,
+  "coordinate_truth_used_before_seal": false,
+  "coverage": 0.935,
+  "dashboard": {
+    "ASSEMBLY_REQUIRED_SENTINEL": {
+      "accepted_accuracy": 1.0,
+      "accepted_count": 20,
+      "accepted_supported": 20,
+      "blocked_count": 0,
+      "blocked_supported": 0,
+      "clean_abstain": 0,
+      "clean_abstain_supported": 0,
+      "coverage": 1.0,
+      "failed_accepted": 0,
+      "failed_accepted_count": 0,
+      "missing_esperanto_word_counts": {},
+      "raw_accuracy": 1.0,
+      "supported_count": 20,
+      "targets_total": 20,
+      "top_missing_esperanto_word": null,
+      "unknown_word_abstentions": 0
+    },
+    "DISORDER_BOUNDARY_SENTINEL": {
+      "accepted_accuracy": 1.0,
+      "accepted_count": 15,
+      "accepted_supported": 15,
+      "blocked_count": 0,
+      "blocked_supported": 0,
+      "clean_abstain": 0,
+      "clean_abstain_supported": 0,
+      "coverage": 1.0,
+      "failed_accepted": 0,
+      "failed_accepted_count": 0,
+      "missing_esperanto_word_counts": {},
+      "raw_accuracy": 1.0,
+      "supported_count": 15,
+      "targets_total": 15,
+      "top_missing_esperanto_word": null,
+      "unknown_word_abstentions": 0
+    },
+    "MEMBRANE_TM_SENTINEL": {
+      "accepted_accuracy": 1.0,
+      "accepted_count": 20,
+      "accepted_supported": 20,
+      "blocked_count": 0,
+      "blocked_supported": 0,
+      "clean_abstain": 0,
+      "clean_abstain_supported": 0,
+      "coverage": 1.0,
+      "failed_accepted": 0,
+      "failed_accepted_count": 0,
+      "missing_esperanto_word_counts": {},
+      "raw_accuracy": 1.0,
+      "supported_count": 20,
+      "targets_total": 20,
+      "top_missing_esperanto_word": null,
+      "unknown_word_abstentions": 0
+    },
+    "METAL_LIGAND_SENTINEL": {
+      "accepted_accuracy": 1.0,
+      "accepted_count": 15,
+      "accepted_supported": 15,
+      "blocked_count": 0,
+      "blocked_supported": 0,
+      "clean_abstain": 0,
+      "clean_abstain_supported": 0,
+      "coverage": 1.0,
+      "failed_accepted": 0,
+      "failed_accepted_count": 0,
+      "missing_esperanto_word_counts": {},
+      "raw_accuracy": 1.0,
+      "supported_count": 15,
+      "targets_total": 15,
+      "top_missing_esperanto_word": null,
+      "unknown_word_abstentions": 0
+    },
+    "MISSING_WORD_CANDIDATE_CLEAN_ABSTAIN_CONTROL": {
+      "accepted_accuracy": 1.0,
+      "accepted_count": 0,
+      "accepted_supported": 0,
+      "blocked_count": 0,
+      "blocked_supported": 0,
+      "clean_abstain": 12,
+      "clean_abstain_supported": 12,
+      "coverage": 0.0,
+      "failed_accepted": 0,
+      "failed_accepted_count": 0,
+      "missing_esperanto_word_counts": {
+        "coiled_coil_register": 4,
+        "disulfide_secretory_redox_context": 5,
+        "repeat_solenoid_topology": 3
+      },
+      "raw_accuracy": 1.0,
+      "supported_count": 12,
+      "targets_total": 12,
+      "top_missing_esperanto_word": "disulfide_secretory_redox_context",
+      "unknown_word_abstentions": 12
+    },
+    "MODULAR_ARCHITECTURE_INTERDOMAIN_LOCK_POSITIVE": {
+      "accepted_accuracy": 1.0,
+      "accepted_count": 25,
+      "accepted_supported": 25,
+      "blocked_count": 0,
+      "blocked_supported": 0,
+      "clean_abstain": 0,
+      "clean_abstain_supported": 0,
+      "coverage": 1.0,
+      "failed_accepted": 0,
+      "failed_accepted_count": 0,
+      "missing_esperanto_word_counts": {},
+      "raw_accuracy": 1.0,
+      "supported_count": 25,
+      "targets_total": 25,
+      "top_missing_esperanto_word": null,
+      "unknown_word_abstentions": 0
+    },
+    "MONOMERIC_GLOBULAR_SENTINEL": {
+      "accepted_accuracy": 1.0,
+      "accepted_count": 20,
+      "accepted_supported": 20,
+      "blocked_count": 0,
+      "blocked_supported": 0,
+      "clean_abstain": 0,
+      "clean_abstain_supported": 0,
+      "coverage": 1.0,
+      "failed_accepted": 0,
+      "failed_accepted_count": 0,
+      "missing_esperanto_word_counts": {},
+      "raw_accuracy": 1.0,
+      "supported_count": 20,
+      "targets_total": 20,
+      "top_missing_esperanto_word": null,
+      "unknown_word_abstentions": 0
+    },
+    "MULTIDOMAIN_HINGE_DOMAIN_SWAP_ALLOSTERY_POSITIVE": {
+      "accepted_accuracy": 1.0,
+      "accepted_count": 39,
+      "accepted_supported": 39,
+      "blocked_count": 0,
+      "blocked_supported": 0,
+      "clean_abstain": 1,
+      "clean_abstain_supported": 0,
+      "coverage": 0.975,
+      "failed_accepted": 0,
+      "failed_accepted_count": 0,
+      "missing_esperanto_word_counts": {},
+      "raw_accuracy": 0.975,
+      "supported_count": 39,
+      "targets_total": 40,
+      "top_missing_esperanto_word": null,
+      "unknown_word_abstentions": 0
+    },
+    "TOTAL": {
+      "accepted_accuracy": 1.0,
+      "accepted_count": 187,
+      "accepted_supported": 187,
+      "blocked_count": 0,
+      "blocked_supported": 0,
+      "clean_abstain": 13,
+      "clean_abstain_supported": 12,
+      "coverage": 0.935,
+      "failed_accepted": 0,
+      "failed_accepted_count": 0,
+      "missing_esperanto_word_counts": {
+        "coiled_coil_register": 4,
+        "disulfide_secretory_redox_context": 5,
+        "repeat_solenoid_topology": 3
+      },
+      "raw_accuracy": 0.995,
+      "supported_count": 199,
+      "targets_total": 200,
+      "top_missing_esperanto_word": "disulfide_secretory_redox_context",
+      "unknown_word_abstentions": 12
+    },
+    "V74_MULTIDOMAIN_ALLOSTERY_FAILURE_REPLAY": {
+      "accepted_accuracy": 1.0,
+      "accepted_count": 33,
+      "accepted_supported": 33,
+      "blocked_count": 0,
+      "blocked_supported": 0,
+      "clean_abstain": 0,
+      "clean_abstain_supported": 0,
+      "coverage": 1.0,
+      "failed_accepted": 0,
+      "failed_accepted_count": 0,
+      "missing_esperanto_word_counts": {},
+      "raw_accuracy": 1.0,
+      "supported_count": 33,
+      "targets_total": 33,
+      "top_missing_esperanto_word": null,
+      "unknown_word_abstentions": 0
+    }
+  },
+  "dominance_law_for_acceptance": "single_dominant_learned_mechanism_bound_across_views",
+  "engine_source_last_commit": "0905b221cfedbe942b19f434b234b9949fb6866a",
+  "engine_source_sha256": "45068c40fabadad2e94bb0300feb096f9af01c2fe736b68d8b95ae646bfec290",
+  "engine_version_used": "E69",
+  "failed_accepted": 0,
+  "failed_accepted_by_failure_mode": {},
+  "failed_accepted_count": 0,
+  "failed_controls": [],
+  "folding_problem_solved": false,
+  "kind": "V75_SELF_DECIDING_ACCEPTANCE_CORTEX_CERTIFICATE_v0",
+  "missing_candidate_controls_cleanly_abstained": 12,
+  "missing_candidate_controls_total": 12,
+  "next_recommended_engine_revision": "E70_SECRETORY_DISULFIDE_REDOX_TOPOLOGY_GRAMMAR",
+  "next_required_batch": "V76_SECRETORY_DISULFIDE_REPAIR_PANEL_200",
+  "passed_control_count": 16,
+  "physical_backend_available": true,
+  "physical_basis_claim_allowed": false,
+  "physical_grounding_statuses": {
+    "real_physical_calibration_inputs_loaded_openmm_available_but_target_physical_execution_not_run": 200
+  },
+  "physical_next_required_capability": "calibrated OpenMM or equivalent force-field execution with topology/environment and independent physical observable holdouts",
+  "physics_grounding_status": "coarse_operator_heuristic_not_atomistic_physics",
+  "raw_accuracy": 0.995,
+  "real_physical_calibration_coordinate_truth_used_as_prediction_input": false,
+  "real_physical_calibration_fold_class_coverage": [
+    "alpha_beta_mixed",
+    "alpha_rich",
+    "beta_rich",
+    "multidomain_boundary"
+  ],
+  "real_physical_calibration_hash": "fce8f8b9ece98c6a9427ec01c22ea5af9daedae08a599cd0856dfe96a0f14512",
+  "real_physical_calibration_input_type": "coordinate_derived_native_contact_summary",
+  "real_physical_calibration_inputs_used": true,
+  "real_physical_calibration_kind": "PROTEIN_ESPERANTO_REAL_PHYSICAL_CALIBRATION_INPUTS_v0",
+  "real_physical_calibration_leave_one_target_out": true,
+  "real_physical_calibration_observable_families": [
+    "coordinate_coverage",
+    "native_contact_count",
+    "native_contact_order",
+    "native_contact_map_hash",
+    "coordinate_trace_hash"
+  ],
+  "real_physical_calibration_row_count": 8,
+  "real_physical_calibration_source_coordinate_database": "RCSB_PDB",
+  "real_physical_calibration_source_dataset": "/Users/draganamitova/My Projects/pharmacotopology/data/folding_real_coordinate_visual_8.locked.json",
+  "real_physical_calibration_source_dataset_sha256": "b2927864fca6eb21e695d2262230a53bf79885f77006d722bafbe346e2b76efe",
+  "real_physical_calibration_target_native_contacts_used_before_prediction": false,
+  "real_physical_calibration_target_native_excluded": true,
+  "self_decision_cortex_enabled": true,
+  "sentinel_regression_count": 0,
+  "sentinel_regressions": 0,
+  "status": "BATCH_PASSED_SELF_DECIDING_ZERO_FAILED_ACCEPTED",
+  "status_options": [
+    "BATCH_PASSED_SELF_DECIDING_ZERO_FAILED_ACCEPTED",
+    "BATCH_DISCOVERED_MISSING_WORD_WITH_CLEAN_SELF_ABSTENTION",
+    "BATCH_FAILED_SELF_DECISION_ZERO_FAILED_ACCEPTED",
+    "BATCH_REPAIR_REQUIRED"
+  ],
+  "supported_count": 199,
+  "targets_total": 200,
+  "timestamp_utc": "2026-06-12T09:13:28.549917+00:00",
+  "top_missing_esperanto_word": "disulfide_secretory_redox_context",
+  "unknown_word_abstentions": 12,
+  "unknown_word_abstentions_by_word": {
+    "coiled_coil_register": 4,
+    "disulfide_secretory_redox_context": 5,
+    "repeat_solenoid_topology": 3
+  },
+  "v74_multidomain_failures_repaired": 33,
+  "v74_multidomain_failures_total": 33,
+  "zero_failed_accepted_required": true
+}

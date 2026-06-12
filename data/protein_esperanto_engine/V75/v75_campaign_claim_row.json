@@ -1,0 +1,15 @@
+{
+  "accepted_accuracy": 1.0,
+  "batch_id": "V75_SELF_DECIDING_ACCEPTANCE_CORTEX",
+  "claim_allowed": false,
+  "claim_blocked_reason": "V75 is a self-decision cortex batch; zero failed accepted is required but not a solved-folding claim.",
+  "coverage": 0.935,
+  "engine_version_used": "E69",
+  "failed_accepted_count": 0,
+  "real_physical_calibration_hash": "fce8f8b9ece98c6a9427ec01c22ea5af9daedae08a599cd0856dfe96a0f14512",
+  "real_physical_calibration_inputs_used": true,
+  "status": "BATCH_PASSED_SELF_DECIDING_ZERO_FAILED_ACCEPTED",
+  "top_missing_esperanto_word": "disulfide_secretory_redox_context",
+  "unknown_word_abstentions": 12,
+  "zero_failed_accepted_required": true
+}

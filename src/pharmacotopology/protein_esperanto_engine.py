@@ -9,7 +9,10 @@ be sealed before holdout validation.
 """
 
 from copy import deepcopy
+from functools import lru_cache
 from hashlib import sha256
+import importlib.util
+from itertools import permutations
 import json
 from math import sin
 from statistics import mean
@@ -293,6 +296,96 @@ MULTIDOMAIN_ALLOSTERIC_STATE_VARIABLES = [
     "domain_swapping",
 ]
 
+SELF_DECISION_CANDIDATE_GRAMMARS = {
+    "coiled_coil_register": {
+        "grammar_status": "candidate_missing_word",
+        "evidence_tokens": [
+            "coiled_coil_register",
+            "coiled-coil register",
+            "coiled coil register",
+            "coiled-coil",
+            "coiled coil",
+            "heptad_repeat",
+            "heptad repeat",
+            "register_alignment",
+            "register alignment",
+            "leucine zipper",
+            "parallel_vs_antiparallel_coil",
+            "oligomeric_coiled_coil_core",
+        ],
+        "sequence_signal": "heptad_hydrophobic_periodicity",
+        "competes_with": ["assembly_required_folding", "globular_closure", "oligomerization_controlled_folding"],
+    },
+    "repeat_solenoid_topology": {
+        "grammar_status": "candidate_missing_word",
+        "evidence_tokens": [
+            "repeat_solenoid_topology",
+            "repeat solenoid topology",
+            "repeat_unit",
+            "repeat unit",
+            "solenoid_axis",
+            "solenoid axis",
+            "curved_repeat_stack",
+            "curved repeat stack",
+            "local_repeat_closure",
+            "local repeat closure",
+            "global_repeat_topology",
+            "global repeat topology",
+            "ankyrin repeat",
+            "armadillo repeat",
+            "tpr repeat",
+            "leucine-rich repeat",
+            "leucine rich repeat",
+        ],
+        "sequence_signal": "repeat_signature",
+        "competes_with": ["beta_closure_topology", "globular_closure", "multidomain_allosteric_architecture"],
+    },
+    "disulfide_secretory_redox_context": {
+        "grammar_status": "candidate_missing_word",
+        "evidence_tokens": [
+            "disulfide_secretory_redox_context",
+            "disulfide bond topology",
+            "disulfide_bond_topology",
+            "secretory_redox_context",
+            "secretory redox context",
+            "cysteine_pairing_constraint",
+            "cysteine pairing constraint",
+            "extracellular_stabilized_fold",
+            "extracellular stabilized fold",
+            "glycosylation_context",
+            "glycosylation context",
+            "disulfide",
+            "disulphide",
+            "secreted",
+            "secretory",
+            "extracellular",
+            "cysteine-rich",
+            "cysteine rich",
+        ],
+        "sequence_signal": "paired_cysteine_context",
+        "competes_with": ["globular_closure", "metal_cluster_and_ligand_locked_basin", "beta_closure_topology"],
+    },
+    "signal_peptide_vs_true_TM": {
+        "grammar_status": "candidate_missing_word",
+        "evidence_tokens": [
+            "signal_peptide_vs_true_TM",
+            "signal peptide removed context",
+            "signal_peptide_removed_context",
+            "signal peptide",
+            "signal-peptide",
+            "signal sequence",
+        ],
+        "sequence_signal": "n_terminal_hydrophobic_signal",
+        "competes_with": ["membrane_multidomain_folding_proteostasis", "globular_closure"],
+    },
+    "knotted_topology": {
+        "grammar_status": "candidate_missing_word",
+        "evidence_tokens": ["knotted_topology", "knotted topology", "slipknot"],
+        "sequence_signal": "topological_evidence_required",
+        "competes_with": ["globular_closure", "beta_closure_topology"],
+    },
+}
+
 OLIGOMER_CONTEXT_TOKENS = [
     "oligomer_context",
     "assembly_context",
@@ -383,6 +476,46 @@ PERIPHERAL_MEMBRANE_CONTEXT_TOKENS = [
     "lipid anchor",
     "lipid-facing surface",
 ]
+
+SELF_DECISION_LEARNED_GRAMMAR_FAMILIES = {
+    "globular_closure": [
+        "soluble_monomeric_core_context",
+        "complete soluble monomer",
+        "standalone soluble fold",
+        "single-domain",
+        "single domain",
+        "folding kinetics",
+        "protein folding target",
+    ],
+    "intrinsic_disorder_phase_separation": [
+        "low complexity",
+        "phase separation",
+        "prion",
+        "lcd",
+        "fus",
+        "tdp-43",
+        "tdp43",
+    ],
+    "disorder_boundary_and_fold_upon_binding": DISORDER_BOUNDARY_CONTEXT_TOKENS,
+    "beta_closure_topology": BETA_CLOSURE_CONTEXT_TOKENS,
+    "multidomain_allosteric_architecture": MULTIDOMAIN_ALLOSTERIC_CONTEXT_TOKENS,
+    "membrane_multidomain_folding_proteostasis": STRONG_MEMBRANE_CONTEXT_TOKENS
+    + ["cftr", "f508", "proteostasis", "trafficking", "transmembrane", "membrane"],
+    "metamorphic_fold_switching": [
+        "fold switch",
+        "fold-switch",
+        "metamorphic",
+        "dual basin",
+        "dual-basin",
+        "competing basin",
+    ],
+    "short_region_host_interface_hijacking": ["host hijack", "rae1", "nup98", "nucleocytoplasmic", "interferon"],
+    "fold_upon_binding_disorder": ["fold_upon_binding", "fold upon binding", "partner motif", "binding motif"],
+    "cofactor_ligand_assisted_stabilization": COFACTOR_CONTEXT_TOKENS + ["cofactor", "ligand"],
+    "metal_cluster_and_ligand_locked_basin": METAL_CLUSTER_CONTEXT_TOKENS + LIGAND_LOCKED_CONTEXT_TOKENS,
+    "assembly_required_folding": ASSEMBLY_REQUIRED_CONTEXT_TOKENS,
+    "oligomerization_controlled_folding": OLIGOMER_CONTEXT_TOKENS + ["oligomer", "multimer"],
+}
 
 HYDROPHOBIC = frozenset("AILMFWVYC")
 AROMATIC = frozenset("FWY")
@@ -596,6 +729,35 @@ def _secondary_propensity(aa: str, window: str) -> str:
     return "mixed"
 
 
+def _periodic_hydrophobic_signal(sequence: str, period: int = 7) -> float:
+    if len(sequence) < period * 2:
+        return 0.0
+    offsets = []
+    for offset in range(period):
+        positions = [sequence[index] for index in range(offset, len(sequence), period)]
+        if len(positions) < 2:
+            continue
+        offsets.append(sum(1 for residue in positions if residue in HYDROPHOBIC) / len(positions))
+    return round(max(offsets, default=0.0), 6)
+
+
+def _repeat_signature(sequence: str, kmer_size: int = 4) -> float:
+    if len(sequence) < kmer_size * 4:
+        return 0.0
+    kmers = [sequence[index : index + kmer_size] for index in range(0, len(sequence) - kmer_size + 1)]
+    repeated_positions = sum(1 for kmer in kmers if kmers.count(kmer) > 1)
+    return round(repeated_positions / len(kmers), 6) if kmers else 0.0
+
+
+def _n_terminal_hydrophobic_signal(sequence: str) -> float:
+    window = sequence[: min(len(sequence), 35)]
+    if not window:
+        return 0.0
+    hydrophobic = sum(1 for residue in window if residue in HYDROPHOBIC) / len(window)
+    positive = sum(1 for residue in window[:8] if residue in POSITIVE) / max(1, len(window[:8]))
+    return bounded(_avg([hydrophobic, positive]))
+
+
 def _residue_mark(sequence: str, index0: int) -> dict[str, Any]:
     aa = sequence[index0]
     window = _window(sequence, index0, radius=4)
@@ -652,6 +814,7 @@ def build_sequence_field(sequence: str, *, segment_size: int = 12) -> dict[str, 
             "membrane_density": _avg(row["membrane_mark"] for row in segment_residues),
             "interface_density": _avg(row["interface_mark"] for row in segment_residues),
             "pro_gly_density": _avg(1.0 if row["glycine_mark"] or row["proline_mark"] else 0.0 for row in segment_residues),
+            "cysteine_density": _avg(1.0 if row["cysteine_mark"] else 0.0 for row in segment_residues),
         })
     global_metrics = {
         "length": len(sequence),
@@ -663,6 +826,12 @@ def build_sequence_field(sequence: str, *, segment_size: int = 12) -> dict[str, 
         "mean_disorder": _avg(row["disorder_mark"] for row in residues),
         "mean_membrane": _avg(row["membrane_mark"] for row in residues),
         "mean_interface": _avg(row["interface_mark"] for row in residues),
+        "cysteine_count": sum(1 for row in residues if row["cysteine_mark"]),
+        "cysteine_density": _avg(1.0 if row["cysteine_mark"] else 0.0 for row in residues),
+        "histidine_density": _avg(1.0 if row["residue_identity"] == "H" else 0.0 for row in residues),
+        "heptad_hydrophobic_periodicity": _periodic_hydrophobic_signal(sequence),
+        "repeat_signature": _repeat_signature(sequence),
+        "n_terminal_hydrophobic_signal": _n_terminal_hydrophobic_signal(sequence),
         "coordinate_truth_used": False,
     }
     for residue in residues:
@@ -960,6 +1129,779 @@ def _multidomain_allosteric_word_from_text(text: str) -> str | None:
     if any(token in text for token in ["domain_boundary", "domain boundary"]):
         return "domain_boundary"
     return None
+
+
+def _token_hits(text: str, tokens: list[str]) -> list[str]:
+    return sorted({token for token in tokens if token.lower() in text})
+
+
+def _sequence_signal_label(grammar: str, sequence_field: dict[str, Any]) -> str:
+    metrics = sequence_field["global_metrics"]
+    segments = sequence_field["segments"]
+    local_hydrophobic = max((row["hydrophobic_density"] for row in segments), default=0.0)
+    local_interface = max((row["interface_density"] for row in segments), default=0.0)
+    local_membrane = max((row["membrane_density"] for row in segments), default=0.0)
+    local_beta = max((row["beta_propensity_density"] for row in segments), default=0.0)
+    local_disorder = max((row["disorder_density"] + row["low_complexity_density"] for row in segments), default=0.0)
+    cysteine_count = int(metrics.get("cysteine_count", 0))
+    if grammar == "coiled_coil_register":
+        if metrics.get("heptad_hydrophobic_periodicity", 0.0) > metrics["hydrophobic_density"]:
+            return "heptad_hydrophobic_periodicity_visible"
+        return "heptad_signal_not_dominant"
+    if grammar == "repeat_solenoid_topology":
+        if metrics.get("repeat_signature", 0.0) > 0.0 or metrics["length"] > 260:
+            return "repeat_or_long_solenoid_signature_visible"
+        return "repeat_signature_not_dominant"
+    if grammar == "disulfide_secretory_redox_context":
+        if cysteine_count >= 2:
+            return "paired_or_clustered_cysteine_signal_visible"
+        return "secretory_evidence_without_cysteine_pair_sequence_support"
+    if grammar == "signal_peptide_vs_true_TM":
+        if metrics.get("n_terminal_hydrophobic_signal", 0.0) >= local_membrane:
+            return "n_terminal_hydrophobic_signal_visible"
+        return "signal_peptide_sequence_signal_not_dominant"
+    if grammar == "knotted_topology":
+        return "topological_evidence_required_beyond_sequence"
+    if grammar == "globular_closure":
+        if local_hydrophobic >= metrics["hydrophobic_density"] and metrics["mean_disorder"] <= metrics["hydrophobic_density"]:
+            return "compact_core_sequence_signal_visible"
+        return "globular_sequence_signal_weak"
+    if grammar in {"intrinsic_disorder_phase_separation", "disorder_boundary_and_fold_upon_binding", "fold_upon_binding_disorder"}:
+        if local_disorder >= local_hydrophobic:
+            return "disorder_or_low_complexity_sequence_signal_visible"
+        return "disorder_sequence_signal_weak"
+    if grammar == "beta_closure_topology":
+        if local_beta >= metrics["beta_propensity_density"]:
+            return "beta_strand_propensity_signal_visible"
+        return "beta_sequence_signal_weak"
+    if grammar == "multidomain_allosteric_architecture":
+        if metrics["length"] > 180 and local_interface >= metrics["mean_interface"]:
+            return "long_modular_interface_sequence_signal_visible"
+        return "multidomain_sequence_signal_weak"
+    if grammar == "membrane_multidomain_folding_proteostasis":
+        if local_membrane >= metrics["mean_membrane"]:
+            return "membrane_segment_sequence_signal_visible"
+        return "membrane_sequence_signal_weak"
+    if grammar in {"cofactor_ligand_assisted_stabilization", "metal_cluster_and_ligand_locked_basin"}:
+        if local_interface >= metrics["mean_interface"] or metrics.get("histidine_density", 0.0) > 0.0:
+            return "pocket_or_coordination_sequence_signal_visible"
+        return "cofactor_sequence_signal_weak"
+    if grammar in {"assembly_required_folding", "oligomerization_controlled_folding"}:
+        if local_interface >= metrics["mean_interface"]:
+            return "interface_sequence_signal_visible"
+        return "assembly_sequence_signal_weak"
+    return "sequence_signal_not_specific"
+
+
+def _sequence_signal_is_supportive(label: str) -> bool:
+    return "visible" in label
+
+
+def _trajectory_supports_grammar(grammar: str, trajectory: dict[str, Any]) -> list[str]:
+    final = trajectory["final_state_summary"]
+    expected = {
+        "globular_closure": ["contact_probability", "segment_compaction"],
+        "intrinsic_disorder_phase_separation": ["phase_prone_low_complexity", "disorder_order_balance"],
+        "disorder_boundary_and_fold_upon_binding": ["IDR_boundary", "fold_upon_binding_region"],
+        "beta_closure_topology": ["closed_beta_topology", "strand_register", "beta_sheet_closure"],
+        "multidomain_allosteric_architecture": ["multidomain_allostery", "domain_boundary", "interdomain_lock"],
+        "membrane_multidomain_folding_proteostasis": ["proteostasis_routing"],
+        "metamorphic_fold_switching": ["state_basin_occupancy"],
+        "short_region_host_interface_hijacking": ["interface_readiness"],
+        "fold_upon_binding_disorder": ["interface_readiness", "disorder_order_balance"],
+        "cofactor_ligand_assisted_stabilization": ["interface_readiness", "contact_probability"],
+        "metal_cluster_and_ligand_locked_basin": ["metal_cluster_geometry", "ligand_locked_basin", "coordination_shell_integrity"],
+        "assembly_required_folding": ["partner_completed_core", "assembly_required_core"],
+        "oligomerization_controlled_folding": ["interface_readiness"],
+    }
+    supported = []
+    for key in expected.get(grammar, []):
+        value = final.get(key)
+        if isinstance(value, dict) and any(float(item) > 0.0 for item in value.values()):
+            supported.append(key)
+        elif isinstance(value, (int, float)) and float(value) > 0.0:
+            supported.append(key)
+    return supported
+
+
+def _rank_readout(readout: dict[str, Any]) -> tuple[int, int, int, str]:
+    return (
+        int(readout["internal_view_count"]),
+        len(readout["evidence_hits"]),
+        0 if readout["grammar_status"] == "candidate_missing_word" else 1,
+        readout["grammar"],
+    )
+
+
+def _learned_grammar_readout(
+    *,
+    grammar: str,
+    text: str,
+    sequence_field: dict[str, Any],
+    selected_mechanism: str,
+    operator_field: dict[str, Any],
+    trajectory: dict[str, Any],
+) -> dict[str, Any]:
+    evidence_hits = _token_hits(text, SELF_DECISION_LEARNED_GRAMMAR_FAMILIES.get(grammar, []))
+    sequence_label = _sequence_signal_label(grammar, sequence_field)
+    trajectory_hits = _trajectory_supports_grammar(grammar, trajectory) if grammar == selected_mechanism else []
+    view_sources = []
+    if evidence_hits:
+        view_sources.append("evidence_family")
+    if _sequence_signal_is_supportive(sequence_label):
+        view_sources.append("sequence_signature")
+    if grammar == selected_mechanism and operator_field["active_operator_count"] > 0:
+        view_sources.append("operator_readout")
+    if trajectory_hits:
+        view_sources.append("trajectory_readout")
+    return {
+        "grammar": grammar,
+        "grammar_status": "learned",
+        "evidence_hits": evidence_hits,
+        "sequence_support": sequence_label,
+        "operator_support": "selected_operator_field_agrees" if grammar == selected_mechanism and operator_field["active_operator_count"] > 0 else "not_selected_operator",
+        "trajectory_support": trajectory_hits,
+        "view_sources": view_sources,
+        "internal_view_count": len(view_sources),
+    }
+
+
+def _candidate_grammar_readout(
+    *,
+    grammar: str,
+    spec: dict[str, Any],
+    text: str,
+    sequence_field: dict[str, Any],
+    selected_mechanism: str,
+) -> dict[str, Any]:
+    evidence_hits = _token_hits(text, spec["evidence_tokens"])
+    sequence_label = _sequence_signal_label(grammar, sequence_field)
+    view_sources = []
+    if evidence_hits:
+        view_sources.append("evidence_family")
+    if _sequence_signal_is_supportive(sequence_label):
+        view_sources.append("sequence_signature")
+    if selected_mechanism in spec.get("competes_with", []):
+        view_sources.append("wrong_grammar_competition")
+    return {
+        "grammar": grammar,
+        "grammar_status": spec["grammar_status"],
+        "evidence_hits": evidence_hits,
+        "sequence_support": sequence_label,
+        "operator_support": "no_learned_operator_available",
+        "trajectory_support": [],
+        "view_sources": view_sources,
+        "internal_view_count": len(view_sources),
+    }
+
+
+def _mechanism_competition_readouts(
+    *,
+    text: str,
+    sequence_field: dict[str, Any],
+    mechanism: dict[str, Any],
+    operator_field: dict[str, Any],
+    trajectory: dict[str, Any],
+) -> list[dict[str, Any]]:
+    selected = mechanism["mechanism_class"]
+    readouts = [
+        _learned_grammar_readout(
+            grammar=grammar,
+            text=text,
+            sequence_field=sequence_field,
+            selected_mechanism=selected,
+            operator_field=operator_field,
+            trajectory=trajectory,
+        )
+        for grammar in MECHANISM_CLASSES
+        if grammar != "insufficient_evidence_clean_abstain"
+    ]
+    readouts.extend(
+        _candidate_grammar_readout(
+            grammar=grammar,
+            spec=spec,
+            text=text,
+            sequence_field=sequence_field,
+            selected_mechanism=selected,
+        )
+        for grammar, spec in SELF_DECISION_CANDIDATE_GRAMMARS.items()
+    )
+    return sorted(readouts, key=_rank_readout, reverse=True)
+
+
+def _remove_family_tokens(value: Any, tokens: list[str]) -> Any:
+    if isinstance(value, dict):
+        return {
+            key: _remove_family_tokens(item, tokens)
+            for key, item in value.items()
+            if not str(key).startswith("withheld")
+        }
+    if isinstance(value, list):
+        return [_remove_family_tokens(item, tokens) for item in value]
+    if isinstance(value, str):
+        masked = value
+        for token in sorted(tokens, key=len, reverse=True):
+            masked = masked.replace(token, " ").replace(token.lower(), " ").replace(token.upper(), " ")
+        return " ".join(masked.split())
+    return value
+
+
+def _masking_probe(
+    *,
+    sequence_field: dict[str, Any],
+    evidence_manifest: dict[str, Any],
+    sources: list[dict[str, Any]],
+    top_mechanism: str,
+) -> list[dict[str, Any]]:
+    rows = []
+    family_map = {
+        **SELF_DECISION_LEARNED_GRAMMAR_FAMILIES,
+        **{grammar: spec["evidence_tokens"] for grammar, spec in SELF_DECISION_CANDIDATE_GRAMMARS.items()},
+    }
+    text = _allowed_source_text(sources, evidence_manifest)
+    for family, tokens in family_map.items():
+        hits = _token_hits(text, tokens)
+        if not hits:
+            continue
+        masked_sources = [_remove_family_tokens(source, tokens) for source in sources]
+        masked_gate = evidence_boundary_gate(masked_sources)
+        masked_mechanism = select_mechanism_grammar(
+            sequence_field=sequence_field,
+            evidence_manifest=masked_gate,
+            sources=masked_sources,
+        )
+        rows.append({
+            "masked_family": family,
+            "removed_signal_count": len(hits),
+            "mechanism_after_mask": masked_mechanism["mechanism_class"],
+            "selected_mechanism_preserved": masked_mechanism["mechanism_class"] == top_mechanism,
+            "interpretation": (
+                "mechanism_defining_signal_removed"
+                if family == top_mechanism
+                else "stable_under_nondefining_mask"
+                if masked_mechanism["mechanism_class"] == top_mechanism
+                else "unstable_under_competing_mask"
+            ),
+        })
+    return rows
+
+
+def _wrong_grammar_challenge(
+    *,
+    sequence_field: dict[str, Any],
+    evidence_manifest: dict[str, Any],
+    sources: list[dict[str, Any]],
+    mechanism: dict[str, Any],
+    readouts: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    natural = mechanism["natural_mechanism_class"]
+    challengers = [
+        row["grammar"]
+        for row in readouts
+        if row["grammar_status"] == "learned" and row["grammar"] not in {natural, "insufficient_evidence_clean_abstain"}
+    ][:3]
+    rows = []
+    for challenger in challengers:
+        forced = select_mechanism_grammar(
+            sequence_field=sequence_field,
+            evidence_manifest=evidence_manifest,
+            sources=sources,
+            forced_grammar=challenger,
+        )
+        forced_operator = build_operator_field(
+            sequence_field=sequence_field,
+            mechanism=forced,
+            evidence_manifest=evidence_manifest,
+        )
+        forced_trajectory = simulate_operator_trajectory(
+            sequence_field=sequence_field,
+            operator_field=forced_operator,
+            mechanism_class=forced["mechanism_class"],
+        )
+        rows.append({
+            "challenger_grammar": challenger,
+            "forced_grammar_rejected": forced["forced_grammar_rejected"],
+            "forced_result_mechanism": forced["mechanism_class"],
+            "challenger_operator_count": forced_operator["active_operator_count"],
+            "challenger_trajectory_support": _trajectory_supports_grammar(challenger, forced_trajectory),
+            "interpretation": "wrong_grammar_failed" if forced["forced_grammar_rejected"] else "wrong_grammar_competes",
+        })
+    return rows
+
+
+def _counterfactual_sequence_controls(sequence_field: dict[str, Any], grammar: str) -> dict[str, Any]:
+    sequence = "".join(row["residue_identity"] for row in sequence_field["residues"])
+    shuffled = build_sequence_field(shuffled_sequence(sequence))
+    masked = build_sequence_field("A" * len(sequence))
+    real_label = _sequence_signal_label(grammar, sequence_field)
+    shuffled_label = _sequence_signal_label(grammar, shuffled)
+    masked_label = _sequence_signal_label(grammar, masked)
+    real_support = _sequence_signal_is_supportive(real_label)
+    shuffled_support = _sequence_signal_is_supportive(shuffled_label)
+    masked_support = _sequence_signal_is_supportive(masked_label)
+    if real_support and not (shuffled_support and masked_support):
+        interpretation = "counterfactuals_weaken_signal"
+    elif real_support:
+        interpretation = "counterfactuals_do_not_separate_sequence_signal"
+    else:
+        interpretation = "context_or_operator_driven_not_sequence_only"
+    return {
+        "real_sequence_support": real_label,
+        "composition_preserved_shuffle_support": shuffled_label,
+        "region_masked_sequence_support": masked_label,
+        "interpretation": interpretation,
+    }
+
+
+def _mechanism_state_signature(mechanism_class: str, trajectory: dict[str, Any]) -> str:
+    final = trajectory["final_state_summary"]
+    if mechanism_class == "globular_closure":
+        if float(final.get("contact_probability", 0.0)) > 0.0 or float(final.get("segment_compaction", 0.0)) > 0.0:
+            return "globular_contact_closure"
+        return "globular_uninitialized"
+    if mechanism_class == "intrinsic_disorder_phase_separation":
+        basin = final.get("state_basin_occupancy", {})
+        return max(basin, key=basin.get) if isinstance(basin, dict) and basin else "disorder_no_basin"
+    if mechanism_class == "disorder_boundary_and_fold_upon_binding":
+        if float(final.get("fold_upon_binding_region", 0.0)) >= float(final.get("IDR_boundary", 0.0)):
+            return "fold_upon_binding_boundary"
+        return "idr_boundary_ensemble"
+    if mechanism_class == "beta_closure_topology":
+        return "closed_beta_register" if float(final.get("strand_register", 0.0)) > 0.0 else "beta_unregistered"
+    if mechanism_class == "multidomain_allosteric_architecture":
+        candidates = {
+            "interdomain_lock": final.get("interdomain_lock", 0.0),
+            "allosteric_basin_shift": final.get("allosteric_basin_shift", 0.0),
+            "domain_reorientation": final.get("domain_reorientation", 0.0),
+            "domain_swapping": final.get("domain_swapping", 0.0),
+        }
+        return max(candidates, key=candidates.get)
+    if mechanism_class == "membrane_multidomain_folding_proteostasis":
+        return "membrane_proteostasis_route" if float(final.get("proteostasis_routing", 0.0)) > 0.0 else "membrane_route_unresolved"
+    if mechanism_class == "metal_cluster_and_ligand_locked_basin":
+        return "ligand_locked_basin" if float(final.get("ligand_locked_basin", 0.0)) > 0.0 else "metal_ligand_unlocked"
+    if mechanism_class == "assembly_required_folding":
+        return "partner_completed_core" if float(final.get("partner_completed_core", 0.0)) > 0.0 else "assembly_uncompleted"
+    if mechanism_class == "oligomerization_controlled_folding":
+        return "oligomer_interface_ready" if float(final.get("interface_readiness", 0.0)) > 0.0 else "oligomer_interface_unready"
+    return mechanism_class
+
+
+def _with_operator_strength_order(operator_field: dict[str, Any], strengths: tuple[float, ...]) -> dict[str, Any]:
+    field = deepcopy(operator_field)
+    for row, strength in zip(field["operators"], strengths):
+        row["activation_strength"] = bounded(strength)
+    return field
+
+
+def _without_operator_index(operator_field: dict[str, Any], index: int) -> dict[str, Any]:
+    field = deepcopy(operator_field)
+    field["operators"] = [row for row_index, row in enumerate(field["operators"]) if row_index != index]
+    field["operator_names"] = [row["operator"] for row in field["operators"]]
+    field["active_operator_count"] = len(field["operators"])
+    return field
+
+
+def _operator_basis_stability_probe(
+    *,
+    sequence_field: dict[str, Any],
+    operator_field: dict[str, Any],
+    mechanism_class: str,
+    baseline_trajectory: dict[str, Any],
+) -> dict[str, Any]:
+    if mechanism_class == "insufficient_evidence_clean_abstain" or not operator_field["operators"]:
+        return {
+            "operator_basis_stability": "no_operator_basis_to_probe",
+            "coefficient_probe_mode": "no_static_scale_range",
+            "baseline_signature": mechanism_class,
+            "coefficient_permutation_rows": [],
+            "operator_ablation_rows": [],
+        }
+    baseline_signature = _mechanism_state_signature(mechanism_class, baseline_trajectory)
+    observed_strengths = tuple(row["activation_strength"] for row in operator_field["operators"])
+    unique_strength_orders = sorted(set(permutations(observed_strengths)))
+    permutation_rows = []
+    for order_index, strengths in enumerate(unique_strength_orders, start=1):
+        perturbed_field = _with_operator_strength_order(operator_field, strengths)
+        perturbed_trajectory = simulate_operator_trajectory(
+            sequence_field=sequence_field,
+            operator_field=perturbed_field,
+            mechanism_class=mechanism_class,
+        )
+        signature = _mechanism_state_signature(mechanism_class, perturbed_trajectory)
+        permutation_rows.append({
+            "probe_id": f"observed_operator_strength_permutation_{order_index:02d}",
+            "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+            "external_scale_used": None,
+            "selected_signature_preserved": signature == baseline_signature,
+            "baseline_signature": baseline_signature,
+            "perturbed_signature": signature,
+            "operator_strength_order": strengths,
+        })
+    ablation_rows = []
+    for operator_index, operator in enumerate(operator_field["operators"]):
+        ablated_field = _without_operator_index(operator_field, operator_index)
+        perturbed_trajectory = simulate_operator_trajectory(
+            sequence_field=sequence_field,
+            operator_field=ablated_field,
+            mechanism_class=mechanism_class,
+        )
+        signature = _mechanism_state_signature(mechanism_class, perturbed_trajectory)
+        ablation_rows.append({
+            "probe_id": f"remove_operator_{operator_index + 1:02d}_{operator['operator']}",
+            "probe_kind": "single_operator_ablation_map",
+            "selected_signature_preserved": signature == baseline_signature,
+            "baseline_signature": baseline_signature,
+            "perturbed_signature": signature,
+            "removed_operator": operator["operator"],
+            "removed_state_variable": operator["state_variable"],
+        })
+    stable = all(row["selected_signature_preserved"] for row in permutation_rows)
+    return {
+        "operator_basis_stability": "stable_under_endogenous_operator_basis_probe" if stable else "coefficient_assignment_sensitive",
+        "coefficient_probe_mode": "endogenous_observed_operator_permutations_no_static_scale_range",
+        "coefficient_scale_values_used": [],
+        "baseline_signature": baseline_signature,
+        "coefficient_permutation_rows": permutation_rows,
+        "operator_ablation_rows": ablation_rows,
+    }
+
+
+def _temporal_binding_probe(mechanism_class: str, trajectory: dict[str, Any]) -> dict[str, Any]:
+    if mechanism_class == "insufficient_evidence_clean_abstain":
+        return {
+            "temporal_binding": "no_mechanism_trajectory_to_bind",
+            "signature_path": [],
+            "observable_trends": [],
+        }
+    signature_path = [
+        {
+            "timepoint": row["timepoint"],
+            "signature": _mechanism_state_signature(mechanism_class, {"final_state_summary": row}),
+        }
+        for row in trajectory["timepoints"]
+    ]
+    support_keys = _trajectory_supports_grammar(mechanism_class, trajectory)
+    trends = []
+    first = trajectory["timepoints"][0]
+    last = trajectory["timepoints"][-1]
+    for key in support_keys:
+        if not isinstance(first.get(key), (int, float)) or not isinstance(last.get(key), (int, float)):
+            continue
+        if last[key] > first[key]:
+            trend = "increases_across_simulated_path"
+        elif last[key] == first[key]:
+            trend = "unchanged_across_simulated_path"
+        else:
+            trend = "decreases_across_simulated_path"
+        trends.append({
+            "observable": key,
+            "first_value": first[key],
+            "final_value": last[key],
+            "trend": trend,
+        })
+    if any(row["trend"] == "decreases_across_simulated_path" for row in trends):
+        temporal_binding = "selected_observable_temporal_conflict"
+    elif trends:
+        temporal_binding = "selected_observables_temporally_coherent"
+    else:
+        temporal_binding = "no_selected_numeric_temporal_observable"
+    return {
+        "temporal_binding": temporal_binding,
+        "signature_path": signature_path,
+        "observable_trends": trends,
+    }
+
+
+@lru_cache(maxsize=1)
+def _physical_backend_probe() -> dict[str, Any]:
+    openmm_spec = importlib.util.find_spec("openmm")
+    if openmm_spec is None:
+        return {
+            "kind": "PROTEIN_ESPERANTO_PHYSICAL_BACKEND_PROBE_v0",
+            "backend": "openmm",
+            "backend_available": False,
+            "backend_version": None,
+            "forcefield_api_available": False,
+        }
+    try:
+        import openmm  # type: ignore
+        import openmm.app as openmm_app  # type: ignore
+
+        version = getattr(openmm, "__version__", "unknown")
+        forcefield_api_available = hasattr(openmm_app, "ForceField")
+    except Exception as exc:  # pragma: no cover - defensive environment probe.
+        return {
+            "kind": "PROTEIN_ESPERANTO_PHYSICAL_BACKEND_PROBE_v0",
+            "backend": "openmm",
+            "backend_available": False,
+            "backend_version": None,
+            "forcefield_api_available": False,
+            "backend_error": type(exc).__name__,
+        }
+    return {
+        "kind": "PROTEIN_ESPERANTO_PHYSICAL_BACKEND_PROBE_v0",
+        "backend": "openmm",
+        "backend_available": True,
+        "backend_version": version,
+        "forcefield_api_available": forcefield_api_available,
+    }
+
+
+def _physical_calibration_input_summary(physical_calibration_inputs: dict[str, Any] | None) -> dict[str, Any]:
+    if not isinstance(physical_calibration_inputs, dict):
+        return {
+            "real_physical_calibration_inputs_used": False,
+            "physical_calibration_input_status": "no_real_physical_calibration_inputs",
+            "real_physical_calibration_kind": None,
+            "real_physical_calibration_row_count": 0,
+            "real_physical_calibration_hash": None,
+            "source_coordinate_database": None,
+            "target_native_excluded_from_calibration": None,
+            "target_native_contacts_used_before_prediction": None,
+            "coordinate_truth_used_as_prediction_input": None,
+            "leave_one_target_out_calibration": None,
+            "calibration_input_type": None,
+            "fold_class_coverage": [],
+            "observable_families": [],
+        }
+    required_truth_boundaries = {
+        "target_native_excluded_from_calibration": True,
+        "target_native_contacts_used_before_prediction": False,
+        "coordinate_truth_used_as_prediction_input": False,
+        "leave_one_target_out_calibration": True,
+    }
+    boundary_ok = all(physical_calibration_inputs.get(key) == value for key, value in required_truth_boundaries.items())
+    row_count = int(physical_calibration_inputs.get("row_count") or 0)
+    is_real_coordinate = physical_calibration_inputs.get("source_coordinate_database") == "RCSB_PDB"
+    inputs_used = boundary_ok and row_count > 0 and is_real_coordinate
+    if inputs_used:
+        status = "real_coordinate_calibration_inputs_loaded_truth_boundary_preserved"
+    elif row_count > 0:
+        status = "physical_calibration_inputs_rejected_truth_boundary_or_source_mismatch"
+    else:
+        status = "physical_calibration_inputs_empty"
+    return {
+        "real_physical_calibration_inputs_used": inputs_used,
+        "physical_calibration_input_status": status,
+        "real_physical_calibration_kind": physical_calibration_inputs.get("kind"),
+        "real_physical_calibration_row_count": row_count,
+        "real_physical_calibration_hash": physical_calibration_inputs.get("calibration_hash"),
+        "source_dataset": physical_calibration_inputs.get("source_dataset"),
+        "source_dataset_sha256": physical_calibration_inputs.get("source_dataset_sha256"),
+        "source_coordinate_database": physical_calibration_inputs.get("source_coordinate_database"),
+        "target_native_excluded_from_calibration": physical_calibration_inputs.get("target_native_excluded_from_calibration"),
+        "target_native_contacts_used_before_prediction": physical_calibration_inputs.get("target_native_contacts_used_before_prediction"),
+        "coordinate_truth_used_as_prediction_input": physical_calibration_inputs.get("coordinate_truth_used_as_prediction_input"),
+        "leave_one_target_out_calibration": physical_calibration_inputs.get("leave_one_target_out_calibration"),
+        "calibration_input_type": physical_calibration_inputs.get("calibration_input_type"),
+        "fold_class_coverage": list(physical_calibration_inputs.get("fold_class_coverage") or []),
+        "observable_families": list(physical_calibration_inputs.get("observable_families") or []),
+    }
+
+
+def _physical_grounding_gate(
+    *,
+    sequence_field: dict[str, Any],
+    evidence_manifest: dict[str, Any],
+    mechanism: dict[str, Any],
+    operator_field: dict[str, Any],
+    trajectory: dict[str, Any],
+    temporal_probe: dict[str, Any],
+    operator_basis_probe: dict[str, Any],
+    physical_calibration_inputs: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    backend = _physical_backend_probe()
+    calibration_summary = _physical_calibration_input_summary(physical_calibration_inputs)
+    mechanism_class = mechanism["mechanism_class"]
+    grammar = GRAMMAR_RULES.get(mechanism_class, {})
+    operator_names = set(operator_field["operator_names"])
+    grammar_operators = set(grammar.get("operators", []))
+    operator_mapping = [
+        {
+            "operator": row["operator"],
+            "state_variable": row["state_variable"],
+            "declared_in_grammar": row["operator"] in grammar_operators,
+            "physical_scope": "coarse_pressure_proxy_not_force_field_term",
+        }
+        for row in operator_field["operators"]
+    ]
+    if calibration_summary["real_physical_calibration_inputs_used"]:
+        missing_physical_inputs = [
+            "target_specific_physical_topology_and_environment_for_execution",
+            "force_field_or_calibrated_coarse_potential_bound_to_target_execution",
+            "calibrated_energy_units_temperature_and_integrator_protocol",
+            "independent_dynamic_physical_observable_holdout",
+        ]
+    else:
+        missing_physical_inputs = [
+            "real_coordinate_calibration_inputs_with_truth_boundary",
+            "atomistic_or_validated_coarse_coordinates",
+            "force_field_or_calibrated_coarse_potential",
+            "solvent_membrane_ligand_environment_when_relevant",
+            "calibrated_energy_units_and_temperature_protocol",
+            "independent_physical_observable_holdout",
+        ]
+    if evidence_manifest["coordinate_derived_source_count_before_prediction"] > 0:
+        status = "blocked_coordinate_truth_before_seal"
+    elif calibration_summary["real_physical_calibration_inputs_used"] and backend["backend_available"]:
+        status = "real_physical_calibration_inputs_loaded_openmm_available_but_target_physical_execution_not_run"
+    elif calibration_summary["real_physical_calibration_inputs_used"]:
+        status = "real_physical_calibration_inputs_loaded_without_physical_backend"
+    elif backend["backend_available"]:
+        status = "openmm_available_but_physical_model_not_calibrated"
+    else:
+        status = "no_physical_backend_available"
+    return {
+        "kind": "PROTEIN_ESPERANTO_PHYSICAL_GROUNDING_GATE_v0",
+        "physical_grounding_status": status,
+        "physical_basis_claim_allowed": False,
+        "physical_limitation_known_by_engine": True,
+        "backend_probe": backend,
+        "coarse_operator_layer": True,
+        "coarse_operator_decision_scope": "mechanism_language_acceptance_not_physical_fold_solution",
+        "coefficient_source": "heuristic_internal_operator_weights_not_physical_force_constants",
+        "missing_physical_inputs": missing_physical_inputs,
+        "physical_calibration_input_summary": calibration_summary,
+        "real_physical_calibration_inputs_used": calibration_summary["real_physical_calibration_inputs_used"],
+        "real_physical_calibration_kind": calibration_summary["real_physical_calibration_kind"],
+        "real_physical_calibration_row_count": calibration_summary["real_physical_calibration_row_count"],
+        "real_physical_calibration_hash": calibration_summary["real_physical_calibration_hash"],
+        "target_native_excluded_from_calibration": calibration_summary["target_native_excluded_from_calibration"],
+        "target_native_contacts_used_before_prediction": calibration_summary["target_native_contacts_used_before_prediction"],
+        "coordinate_truth_used_as_prediction_input": calibration_summary["coordinate_truth_used_as_prediction_input"],
+        "leave_one_target_out_calibration": calibration_summary["leave_one_target_out_calibration"],
+        "operator_to_physical_proxy_map": operator_mapping,
+        "grammar_declared_operator_coverage": sorted(operator_names.intersection(grammar_operators)),
+        "grammar_missing_declared_operators": sorted(grammar_operators.difference(operator_names)),
+        "temporal_binding": temporal_probe["temporal_binding"],
+        "operator_basis_stability": operator_basis_probe["operator_basis_stability"],
+        "folding_problem_solved": False,
+    }
+
+
+def _cross_view_binding_probe(selected_readout: dict[str, Any] | None) -> dict[str, Any]:
+    if not selected_readout or selected_readout["grammar_status"] != "learned":
+        return {
+            "cross_view_binding": "no_learned_mechanism_to_bind",
+            "bound_view_families": [],
+            "self_required_view_families": [],
+            "missing_view_families": [],
+        }
+    bound = set(selected_readout["view_sources"])
+    rule = GRAMMAR_RULES.get(selected_readout["grammar"], {})
+    required = []
+    if selected_readout["evidence_hits"]:
+        required.append("evidence_family")
+    if _sequence_signal_is_supportive(selected_readout["sequence_support"]):
+        required.append("sequence_signature")
+    if rule.get("operators"):
+        required.append("operator_readout")
+    if selected_readout["trajectory_support"]:
+        required.append("trajectory_readout")
+    missing = [family for family in required if family not in bound]
+    if missing:
+        binding = "unbound_learned_mechanism"
+    elif required:
+        binding = "_".join(required) + "_bound"
+    else:
+        binding = "learned_mechanism_has_no_self_required_views"
+    return {
+        "cross_view_binding": binding,
+        "bound_view_families": selected_readout["view_sources"],
+        "self_required_view_families": required,
+        "missing_view_families": missing,
+        "sequence_support": selected_readout["sequence_support"],
+        "operator_support": selected_readout["operator_support"],
+        "trajectory_support": selected_readout["trajectory_support"],
+    }
+
+
+def _explicit_dominance_law(
+    *,
+    mechanism_class: str,
+    selected_readout: dict[str, Any] | None,
+    top_readout: dict[str, Any] | None,
+    missing_word: str | None,
+    cross_view_binding: dict[str, Any],
+    operator_basis_probe: dict[str, Any],
+    temporal_probe: dict[str, Any],
+) -> str:
+    if missing_word:
+        return "candidate_missing_word_competes_with_learned_grammar"
+    if mechanism_class == "insufficient_evidence_clean_abstain":
+        return "no_dominant_learned_mechanism"
+    if not selected_readout or selected_readout["grammar_status"] != "learned":
+        return "no_learned_mechanism_readout"
+    if not top_readout or selected_readout["grammar"] != top_readout["grammar"]:
+        return "selected_mechanism_not_top_internal_readout"
+    if cross_view_binding["cross_view_binding"] == "unbound_learned_mechanism":
+        return "insufficient_cross_view_binding_for_acceptance"
+    if operator_basis_probe["operator_basis_stability"] == "coefficient_assignment_sensitive":
+        return "operator_basis_sensitive_mechanism"
+    if temporal_probe["temporal_binding"] == "selected_observable_temporal_conflict":
+        return "temporal_binding_conflict"
+    return "single_dominant_learned_mechanism_bound_across_views"
+
+
+def _internal_contradictions(
+    *,
+    mechanism: dict[str, Any],
+    text: str,
+    trajectory: dict[str, Any],
+    readouts: list[dict[str, Any]],
+    operator_basis_probe: dict[str, Any] | None = None,
+    cross_view_binding: dict[str, Any] | None = None,
+    temporal_probe: dict[str, Any] | None = None,
+) -> list[str]:
+    selected = mechanism["mechanism_class"]
+    final = trajectory["final_state_summary"]
+    contradictions: list[str] = []
+    if _missing_word_candidate(readouts) and selected != "insufficient_evidence_clean_abstain":
+        contradictions.append("learned_grammar_competes_with_candidate_missing_word")
+    if operator_basis_probe and operator_basis_probe["operator_basis_stability"] == "coefficient_assignment_sensitive":
+        contradictions.append("selected_mechanism_sensitive_to_endogenous_operator_coefficient_assignment")
+    if cross_view_binding and cross_view_binding["cross_view_binding"] == "unbound_learned_mechanism":
+        contradictions.append("selected_mechanism_lacks_evidence_operator_trajectory_binding")
+    if temporal_probe and temporal_probe["temporal_binding"] == "selected_observable_temporal_conflict":
+        contradictions.append("selected_mechanism_observable_decreases_across_simulated_timepoints")
+    if selected == "globular_closure" and _contains_any(text, STRONG_MEMBRANE_CONTEXT_TOKENS):
+        contradictions.append("soluble_globular_plus_strong_membrane_topology")
+    if selected in {"intrinsic_disorder_phase_separation", "disorder_boundary_and_fold_upon_binding"} and float(final.get("contact_probability", 0.0)) > float(final.get("disorder_order_balance", 0.0)):
+        contradictions.append("disorder_call_with_compact_core_readout")
+    if selected == "assembly_required_folding" and _contains_any(text, ["complete soluble monomer", "standalone soluble fold", "soluble_monomeric_core_context"]):
+        contradictions.append("assembly_required_plus_complete_monomer_context")
+    if selected == "metal_cluster_and_ligand_locked_basin" and not _token_hits(text, METAL_CLUSTER_CONTEXT_TOKENS + LIGAND_LOCKED_CONTEXT_TOKENS):
+        contradictions.append("ligand_locked_call_without_ligand_or_metal_evidence")
+    if selected == "beta_closure_topology" and not _token_hits(text, BETA_CLOSURE_CONTEXT_TOKENS):
+        contradictions.append("beta_closure_call_without_register_or_closure_evidence")
+    if selected == "multidomain_allosteric_architecture" and not _token_hits(text, MULTIDOMAIN_ALLOSTERIC_CONTEXT_TOKENS):
+        contradictions.append("multidomain_call_without_boundary_hinge_or_modular_signal")
+    return contradictions
+
+
+def _missing_word_candidate(readouts: list[dict[str, Any]]) -> str | None:
+    learned_best = max(
+        (row["internal_view_count"] for row in readouts if row["grammar_status"] == "learned"),
+        default=0,
+    )
+    candidates = [
+        row
+        for row in readouts
+        if row["grammar_status"] == "candidate_missing_word"
+        and (
+            row["evidence_hits"]
+            or (
+                "sequence_signature" in row["view_sources"]
+                and "wrong_grammar_competition" in row["view_sources"]
+                and row["internal_view_count"] > learned_best
+            )
+        )
+    ]
+    if not candidates:
+        return None
+    candidates = sorted(candidates, key=_rank_readout, reverse=True)
+    return candidates[0]["grammar"]
 
 
 def select_mechanism_grammar(
@@ -2383,6 +3325,240 @@ def validate_against_holdout(
     }
 
 
+def _legacy_acceptance_from_self_decision(judge: dict[str, Any]) -> dict[str, Any]:
+    final = judge["final_self_decision"]
+    if final in {"accepted", "accepted_with_caution"}:
+        decision = "accepted"
+    elif final == "blocked_for_leakage":
+        decision = "blocked_for_leakage"
+    else:
+        decision = "abstain_recommended"
+    return {
+        "kind": "PROTEIN_ESPERANTO_SELF_DECISION_COMPAT_ACCEPTANCE_VIEW_v0",
+        "zero_failed_accepted_required": True,
+        "acceptance_decision": decision,
+        "firewall_reason": judge["self_decision_reason"],
+        "blocked_reasons": judge["blocked_reasons"],
+        "unknown_word_signals": [judge["missing_word_candidate"]] if judge.get("missing_word_candidate") else [],
+        "missing_esperanto_word": judge.get("missing_word_candidate"),
+        "known_mechanism_class": judge["top_mechanism"],
+        "known_multidomain_word": judge.get("known_multidomain_word"),
+        "known_beta_topology_word": judge.get("known_beta_topology_word"),
+        "operator_activation": judge.get("operator_activation", 0.0),
+        "coordinate_truth_used_before_prediction": judge["coordinate_truth_used_before_prediction"],
+        "folding_problem_solved": False,
+    }
+
+
+def self_decision_judge(
+    *,
+    sequence_field: dict[str, Any],
+    evidence_manifest: dict[str, Any],
+    sources: list[dict[str, Any]],
+    mechanism: dict[str, Any],
+    operator_field: dict[str, Any],
+    trajectory: dict[str, Any],
+    physical_calibration_inputs: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    text = _allowed_source_text(sources, evidence_manifest)
+    mechanism_class = mechanism["mechanism_class"]
+    blocked_reasons: list[str] = []
+    if evidence_manifest["coordinate_derived_source_count_before_prediction"] > 0:
+        blocked_reasons.append("coordinate_derived_source_before_prediction")
+    if evidence_manifest["internal_runtime_source_count_for_prediction"] > 0:
+        blocked_reasons.append("internal_runtime_source_before_prediction")
+    if evidence_manifest["holdout_opened_before_seal"]:
+        blocked_reasons.append("holdout_opened_before_seal")
+    readouts = _mechanism_competition_readouts(
+        text=text,
+        sequence_field=sequence_field,
+        mechanism=mechanism,
+        operator_field=operator_field,
+        trajectory=trajectory,
+    )
+    top_readout = readouts[0] if readouts else None
+    selected_readout = next((row for row in readouts if row["grammar"] == mechanism_class), None)
+    masking_rows = _masking_probe(
+        sequence_field=sequence_field,
+        evidence_manifest=evidence_manifest,
+        sources=sources,
+        top_mechanism=mechanism_class,
+    )
+    wrong_grammar_rows = _wrong_grammar_challenge(
+        sequence_field=sequence_field,
+        evidence_manifest=evidence_manifest,
+        sources=sources,
+        mechanism=mechanism,
+        readouts=readouts,
+    )
+    wrong_grammar_separation = (
+        "wrong_grammars_fail"
+        if wrong_grammar_rows and all(row["forced_grammar_rejected"] for row in wrong_grammar_rows)
+        else "no_wrong_grammar_needed"
+        if not wrong_grammar_rows
+        else "wrong_grammar_competes"
+    )
+    counterfactuals = _counterfactual_sequence_controls(sequence_field, mechanism_class)
+    operator_basis_probe = _operator_basis_stability_probe(
+        sequence_field=sequence_field,
+        operator_field=operator_field,
+        mechanism_class=mechanism_class,
+        baseline_trajectory=trajectory,
+    )
+    temporal_probe = _temporal_binding_probe(mechanism_class, trajectory)
+    physical_gate = _physical_grounding_gate(
+        sequence_field=sequence_field,
+        evidence_manifest=evidence_manifest,
+        mechanism=mechanism,
+        operator_field=operator_field,
+        trajectory=trajectory,
+        temporal_probe=temporal_probe,
+        operator_basis_probe=operator_basis_probe,
+        physical_calibration_inputs=physical_calibration_inputs,
+    )
+    cross_view_binding = _cross_view_binding_probe(selected_readout)
+    contradictions = _internal_contradictions(
+        mechanism=mechanism,
+        text=text,
+        trajectory=trajectory,
+        readouts=readouts,
+        operator_basis_probe=operator_basis_probe,
+        cross_view_binding=cross_view_binding,
+        temporal_probe=temporal_probe,
+    )
+    missing_word = _missing_word_candidate(readouts)
+    selected_views = selected_readout["view_sources"] if selected_readout else []
+    internal_consensus = _explicit_dominance_law(
+        mechanism_class=mechanism_class,
+        selected_readout=selected_readout,
+        top_readout=top_readout,
+        missing_word=missing_word,
+        cross_view_binding=cross_view_binding,
+        operator_basis_probe=operator_basis_probe,
+        temporal_probe=temporal_probe,
+    )
+    if masking_rows:
+        nondefining_flips = [
+            row
+            for row in masking_rows
+            if row["masked_family"] != mechanism_class and not row["selected_mechanism_preserved"]
+        ]
+        masking_stability = "unstable_under_nondefining_mask" if nondefining_flips else "stable_or_definition_sensitive_under_masking"
+    else:
+        masking_stability = "no_evidence_family_to_mask"
+    if blocked_reasons:
+        final_decision = "blocked_for_leakage"
+        reason = "blocked_prediction_boundary_violation"
+    elif missing_word:
+        final_decision = "clean_abstain_missing_word"
+        reason = "self_decision_candidate_word_competes_without_learned_grammar"
+    elif mechanism_class == "insufficient_evidence_clean_abstain":
+        final_decision = "clean_abstain_low_internal_consensus"
+        reason = "self_decision_no_dominant_learned_mechanism"
+    elif contradictions:
+        final_decision = "clean_abstain_conflict"
+        reason = "self_decision_unresolved_internal_contradiction"
+    elif wrong_grammar_separation == "wrong_grammar_competes":
+        final_decision = "clean_abstain_low_internal_consensus"
+        reason = "self_decision_wrong_grammar_competes"
+    elif internal_consensus == "single_dominant_learned_mechanism_bound_across_views":
+        final_decision = "accepted"
+        reason = "self_decision_internal_views_agree"
+    else:
+        final_decision = "clean_abstain_low_internal_consensus"
+        reason = "self_decision_internal_views_do_not_converge"
+    final_state = trajectory["final_state_summary"]
+    operator_activation = final_state.get("operator_activation", 0.0)
+    judge = {
+        "kind": "PROTEIN_ESPERANTO_SELF_DECISION_JUDGE_v0",
+        "zero_failed_accepted_required": True,
+        "top_mechanism": mechanism_class,
+        "natural_mechanism_class": mechanism["natural_mechanism_class"],
+        "runner_up_mechanisms": [row["grammar"] for row in readouts if row["grammar"] != mechanism_class][:3],
+        "mechanism_competition": readouts[:8],
+        "internal_consensus": internal_consensus,
+        "dominance_law": internal_consensus,
+        "selected_mechanism_views": selected_views,
+        "cross_view_binding": cross_view_binding["cross_view_binding"],
+        "cross_view_binding_probe": cross_view_binding,
+        "masking_stability": masking_stability,
+        "evidence_masking": masking_rows,
+        "wrong_grammar_separation": wrong_grammar_separation,
+        "wrong_grammar_challenge": wrong_grammar_rows,
+        "counterfactual_separation": counterfactuals["interpretation"],
+        "counterfactual_sequence_controls": counterfactuals,
+        "operator_basis_stability": operator_basis_probe["operator_basis_stability"],
+        "operator_basis_stability_probe": operator_basis_probe,
+        "coefficient_perturbation_stability": operator_basis_probe["operator_basis_stability"],
+        "coefficient_perturbation_probe": operator_basis_probe,
+        "coefficient_probe_mode": operator_basis_probe["coefficient_probe_mode"],
+        "temporal_binding": temporal_probe["temporal_binding"],
+        "temporal_binding_probe": temporal_probe,
+        "physics_grounding_status": "coarse_operator_heuristic_not_atomistic_physics",
+        "coefficient_source": "heuristic_internal_operator_weights_not_physical_force_constants",
+        "physical_basis_claim_allowed": False,
+        "physical_grounding_gate": physical_gate,
+        "physical_grounding_status": physical_gate["physical_grounding_status"],
+        "physical_backend_available": physical_gate["backend_probe"]["backend_available"],
+        "real_physical_calibration_inputs_used": physical_gate["real_physical_calibration_inputs_used"],
+        "real_physical_calibration_kind": physical_gate["real_physical_calibration_kind"],
+        "real_physical_calibration_row_count": physical_gate["real_physical_calibration_row_count"],
+        "real_physical_calibration_hash": physical_gate["real_physical_calibration_hash"],
+        "contradiction_count": len(contradictions),
+        "contradictions": contradictions,
+        "missing_word_candidate": missing_word,
+        "candidate_grammar_scope": [
+            {
+                "grammar": grammar,
+                "grammar_status": spec["grammar_status"],
+                "acceptance_role": "clean_abstain_until_revision_implements_grammar",
+                "sequence_signal": spec["sequence_signal"],
+            }
+            for grammar, spec in SELF_DECISION_CANDIDATE_GRAMMARS.items()
+        ],
+        "final_self_decision": final_decision,
+        "self_decision_reason": reason,
+        "blocked_reasons": blocked_reasons,
+        "known_multidomain_word": mechanism.get("selected_multidomain_word"),
+        "known_beta_topology_word": mechanism.get("selected_beta_topology_word"),
+        "operator_activation": operator_activation,
+        "coordinate_truth_used_before_prediction": evidence_manifest["coordinate_truth_used_before_prediction"],
+        "folding_problem_solved": False,
+    }
+    legacy = _legacy_acceptance_from_self_decision(judge)
+    judge["legacy_acceptance_view"] = legacy
+    for key, value in legacy.items():
+        if key != "kind":
+            judge[key] = value
+    return judge
+
+
+def acceptance_firewall(
+    *,
+    sequence_field: dict[str, Any],
+    evidence_manifest: dict[str, Any],
+    sources: list[dict[str, Any]],
+    mechanism: dict[str, Any],
+    trajectory: dict[str, Any],
+    physical_calibration_inputs: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    operator_field = build_operator_field(
+        sequence_field=sequence_field,
+        mechanism=mechanism,
+        evidence_manifest=evidence_manifest,
+    )
+    judge = self_decision_judge(
+        sequence_field=sequence_field,
+        evidence_manifest=evidence_manifest,
+        sources=sources,
+        mechanism=mechanism,
+        operator_field=operator_field,
+        trajectory=trajectory,
+        physical_calibration_inputs=physical_calibration_inputs,
+    )
+    return _legacy_acceptance_from_self_decision(judge)
+
+
 def make_openmm_bridge_spec() -> dict[str, Any]:
     mappings = [
         {
@@ -2441,6 +3617,7 @@ def build_sealed_simulation_packet(
     focus_regions: list[dict[str, Any]] | None = None,
     perturbations: list[dict[str, Any]] | None = None,
     forced_grammar: str | None = None,
+    physical_calibration_inputs: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     sequence_field = build_sequence_field(sequence)
     evidence_manifest = evidence_boundary_gate(sources)
@@ -2461,6 +3638,16 @@ def build_sealed_simulation_packet(
         operator_field=operator_field,
         mechanism_class=mechanism["mechanism_class"],
     )
+    judge = self_decision_judge(
+        sequence_field=sequence_field,
+        evidence_manifest=evidence_manifest,
+        sources=sources,
+        mechanism=mechanism,
+        operator_field=operator_field,
+        trajectory=trajectory,
+        physical_calibration_inputs=physical_calibration_inputs,
+    )
+    acceptance_view = judge["legacy_acceptance_view"]
     perturbation_rows = perturbation_table(
         sequence_field=sequence_field,
         operator_field=operator_field,
@@ -2477,6 +3664,10 @@ def build_sealed_simulation_packet(
         },
         "evidence_manifest": evidence_manifest,
         "selected_mechanism_grammar": mechanism,
+        "self_decision_judge": judge,
+        "acceptance_firewall": acceptance_view,
+        "physical_grounding_gate": judge["physical_grounding_gate"],
+        "physical_calibration_input_summary": judge["physical_grounding_gate"]["physical_calibration_input_summary"],
         "operator_field": operator_field,
         "initial_sequence_field_map": sequence_field,
         "trajectory_summary": trajectory,

@@ -1,0 +1,42 @@
+{
+  "batch_id": "V75_SELF_DECIDING_ACCEPTANCE_CORTEX",
+  "engine_version_used": "E69",
+  "expected_decision": "accepted",
+  "expected_mechanism_class": "disorder_boundary_and_fold_upon_binding",
+  "expected_observables": [
+    {
+      "check_id": "idr_boundary_supported",
+      "comparator": ">=",
+      "metric": "IDR_boundary",
+      "threshold": 0.3
+    },
+    {
+      "check_id": "compact_single_fold_rejected",
+      "comparator": "<=",
+      "metric": "basin:compact_single_fold",
+      "threshold": 0.12
+    }
+  ],
+  "holdout_opened_after_prediction_hash": "ead98b0555f8d6532c2ea2ca1d3982f0f2084fe73a4b2b756d1538fe0cee1f0d",
+  "kind": "V75_SELF_DECIDING_ACCEPTANCE_CORTEX_POSTSEAL_HOLDOUT_v0",
+  "panel_group": "DISORDER_BOUNDARY_SENTINEL",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1QNO",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1QNO/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V75_185_DISORDER_BOUNDARY_SENTINEL_1QNO_1_V75_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "V75 E69 zero-failed-accepted self-decision cortex group DISORDER_BOUNDARY_SENTINEL.",
+    "Required word: IDR_boundary.",
+    "Expected decision: accepted.",
+    "Coordinates, contacts, native topology, and post-seal validation labels are blocked before sealing."
+  ],
+  "required_esperanto_word": "IDR_boundary",
+  "target_id": "V75_185_DISORDER_BOUNDARY_SENTINEL_1QNO_1"
+}

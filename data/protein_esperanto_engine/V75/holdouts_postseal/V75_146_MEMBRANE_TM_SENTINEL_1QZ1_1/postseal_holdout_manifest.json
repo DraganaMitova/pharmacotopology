@@ -1,0 +1,36 @@
+{
+  "batch_id": "V75_SELF_DECIDING_ACCEPTANCE_CORTEX",
+  "engine_version_used": "E69",
+  "expected_decision": "accepted",
+  "expected_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "expected_observables": [
+    {
+      "check_id": "proteostasis_routing_supported",
+      "comparator": ">=",
+      "metric": "proteostasis_routing",
+      "threshold": 0.5
+    }
+  ],
+  "holdout_opened_after_prediction_hash": "5752217babd73a30ee944c87650ae274b576d683e6169869b39914b085835559",
+  "kind": "V75_SELF_DECIDING_ACCEPTANCE_CORTEX_POSTSEAL_HOLDOUT_v0",
+  "panel_group": "MEMBRANE_TM_SENTINEL",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1QZ1",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1QZ1/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V75_146_MEMBRANE_TM_SENTINEL_1QZ1_1_V75_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "V75 E69 zero-failed-accepted self-decision cortex group MEMBRANE_TM_SENTINEL.",
+    "Required word: none.",
+    "Expected decision: accepted.",
+    "Coordinates, contacts, native topology, and post-seal validation labels are blocked before sealing."
+  ],
+  "required_esperanto_word": null,
+  "target_id": "V75_146_MEMBRANE_TM_SENTINEL_1QZ1_1"
+}

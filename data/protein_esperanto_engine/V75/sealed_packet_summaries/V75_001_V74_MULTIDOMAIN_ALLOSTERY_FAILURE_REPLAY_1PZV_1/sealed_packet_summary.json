@@ -1,0 +1,1274 @@
+{
+  "acceptance_view": {
+    "acceptance_decision": "accepted",
+    "blocked_reasons": [],
+    "coordinate_truth_used_before_prediction": false,
+    "firewall_reason": "self_decision_internal_views_agree",
+    "folding_problem_solved": false,
+    "kind": "PROTEIN_ESPERANTO_SELF_DECISION_COMPAT_ACCEPTANCE_VIEW_v0",
+    "known_beta_topology_word": null,
+    "known_mechanism_class": "multidomain_allosteric_architecture",
+    "known_multidomain_word": "allosteric_basin_shift",
+    "missing_esperanto_word": null,
+    "operator_activation": 0.613085,
+    "unknown_word_signals": [],
+    "zero_failed_accepted_required": true
+  },
+  "active_operator_count": 4,
+  "folding_problem_solved": false,
+  "kind": "V75_COMPACT_SEALED_PACKET_SUMMARY_v0",
+  "natural_mechanism_class": "multidomain_allosteric_architecture",
+  "operator_names": [
+    "interface_operator",
+    "dual_basin_switch_operator",
+    "closure_operator",
+    "frustration_operator"
+  ],
+  "prediction_hash": "1f0b46f971c31d4fc15c837b3a7807554f3fae8537fc881c7f2b9806d756f921",
+  "selected_mechanism_class": "multidomain_allosteric_architecture",
+  "selected_multidomain_word": "allosteric_basin_shift",
+  "self_decision_judge": {
+    "acceptance_decision": "accepted",
+    "blocked_reasons": [],
+    "candidate_grammar_scope": [
+      {
+        "acceptance_role": "clean_abstain_until_revision_implements_grammar",
+        "grammar": "coiled_coil_register",
+        "grammar_status": "candidate_missing_word",
+        "sequence_signal": "heptad_hydrophobic_periodicity"
+      },
+      {
+        "acceptance_role": "clean_abstain_until_revision_implements_grammar",
+        "grammar": "repeat_solenoid_topology",
+        "grammar_status": "candidate_missing_word",
+        "sequence_signal": "repeat_signature"
+      },
+      {
+        "acceptance_role": "clean_abstain_until_revision_implements_grammar",
+        "grammar": "disulfide_secretory_redox_context",
+        "grammar_status": "candidate_missing_word",
+        "sequence_signal": "paired_cysteine_context"
+      },
+      {
+        "acceptance_role": "clean_abstain_until_revision_implements_grammar",
+        "grammar": "signal_peptide_vs_true_TM",
+        "grammar_status": "candidate_missing_word",
+        "sequence_signal": "n_terminal_hydrophobic_signal"
+      },
+      {
+        "acceptance_role": "clean_abstain_until_revision_implements_grammar",
+        "grammar": "knotted_topology",
+        "grammar_status": "candidate_missing_word",
+        "sequence_signal": "topological_evidence_required"
+      }
+    ],
+    "coefficient_perturbation_probe": {
+      "baseline_signature": "interdomain_lock",
+      "coefficient_permutation_rows": [
+        {
+          "baseline_signature": "interdomain_lock",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.495821,
+            0.582439,
+            0.675821,
+            0.69826
+          ],
+          "perturbed_signature": "interdomain_lock",
+          "probe_id": "observed_operator_strength_permutation_01",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "interdomain_lock",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.495821,
+            0.582439,
+            0.69826,
+            0.675821
+          ],
+          "perturbed_signature": "interdomain_lock",
+          "probe_id": "observed_operator_strength_permutation_02",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "interdomain_lock",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.495821,
+            0.675821,
+            0.582439,
+            0.69826
+          ],
+          "perturbed_signature": "interdomain_lock",
+          "probe_id": "observed_operator_strength_permutation_03",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "interdomain_lock",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.495821,
+            0.675821,
+            0.69826,
+            0.582439
+          ],
+          "perturbed_signature": "interdomain_lock",
+          "probe_id": "observed_operator_strength_permutation_04",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "interdomain_lock",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.495821,
+            0.69826,
+            0.582439,
+            0.675821
+          ],
+          "perturbed_signature": "interdomain_lock",
+          "probe_id": "observed_operator_strength_permutation_05",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "interdomain_lock",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.495821,
+            0.69826,
+            0.675821,
+            0.582439
+          ],
+          "perturbed_signature": "interdomain_lock",
+          "probe_id": "observed_operator_strength_permutation_06",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "interdomain_lock",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.582439,
+            0.495821,
+            0.675821,
+            0.69826
+          ],
+          "perturbed_signature": "interdomain_lock",
+          "probe_id": "observed_operator_strength_permutation_07",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "interdomain_lock",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.582439,
+            0.495821,
+            0.69826,
+            0.675821
+          ],
+          "perturbed_signature": "interdomain_lock",
+          "probe_id": "observed_operator_strength_permutation_08",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "interdomain_lock",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.582439,
+            0.675821,
+            0.495821,
+            0.69826
+          ],
+          "perturbed_signature": "interdomain_lock",
+          "probe_id": "observed_operator_strength_permutation_09",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "interdomain_lock",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.582439,
+            0.675821,
+            0.69826,
+            0.495821
+          ],
+          "perturbed_signature": "interdomain_lock",
+          "probe_id": "observed_operator_strength_permutation_10",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "interdomain_lock",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.582439,
+            0.69826,
+            0.495821,
+            0.675821
+          ],
+          "perturbed_signature": "interdomain_lock",
+          "probe_id": "observed_operator_strength_permutation_11",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "interdomain_lock",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.582439,
+            0.69826,
+            0.675821,
+            0.495821
+          ],
+          "perturbed_signature": "interdomain_lock",
+          "probe_id": "observed_operator_strength_permutation_12",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "interdomain_lock",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.675821,
+            0.495821,
+            0.582439,
+            0.69826
+          ],
+          "perturbed_signature": "interdomain_lock",
+          "probe_id": "observed_operator_strength_permutation_13",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "interdomain_lock",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.675821,
+            0.495821,
+            0.69826,
+            0.582439
+          ],
+          "perturbed_signature": "interdomain_lock",
+          "probe_id": "observed_operator_strength_permutation_14",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "interdomain_lock",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.675821,
+            0.582439,
+            0.495821,
+            0.69826
+          ],
+          "perturbed_signature": "interdomain_lock",
+          "probe_id": "observed_operator_strength_permutation_15",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "interdomain_lock",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.675821,
+            0.582439,
+            0.69826,
+            0.495821
+          ],
+          "perturbed_signature": "interdomain_lock",
+          "probe_id": "observed_operator_strength_permutation_16",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "interdomain_lock",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.675821,
+            0.69826,
+            0.495821,
+            0.582439
+          ],
+          "perturbed_signature": "interdomain_lock",
+          "probe_id": "observed_operator_strength_permutation_17",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "interdomain_lock",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.675821,
+            0.69826,
+            0.582439,
+            0.495821
+          ],
+          "perturbed_signature": "interdomain_lock",
+          "probe_id": "observed_operator_strength_permutation_18",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "interdomain_lock",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.69826,
+            0.495821,
+            0.582439,
+            0.675821
+          ],
+          "perturbed_signature": "interdomain_lock",
+          "probe_id": "observed_operator_strength_permutation_19",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "interdomain_lock",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.69826,
+            0.495821,
+            0.675821,
+            0.582439
+          ],
+          "perturbed_signature": "interdomain_lock",
+          "probe_id": "observed_operator_strength_permutation_20",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "interdomain_lock",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.69826,
+            0.582439,
+            0.495821,
+            0.675821
+          ],
+          "perturbed_signature": "interdomain_lock",
+          "probe_id": "observed_operator_strength_permutation_21",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "interdomain_lock",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.69826,
+            0.582439,
+            0.675821,
+            0.495821
+          ],
+          "perturbed_signature": "interdomain_lock",
+          "probe_id": "observed_operator_strength_permutation_22",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "interdomain_lock",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.69826,
+            0.675821,
+            0.495821,
+            0.582439
+          ],
+          "perturbed_signature": "interdomain_lock",
+          "probe_id": "observed_operator_strength_permutation_23",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "interdomain_lock",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.69826,
+            0.675821,
+            0.582439,
+            0.495821
+          ],
+          "perturbed_signature": "interdomain_lock",
+          "probe_id": "observed_operator_strength_permutation_24",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        }
+      ],
+      "coefficient_probe_mode": "endogenous_observed_operator_permutations_no_static_scale_range",
+      "coefficient_scale_values_used": [],
+      "operator_ablation_rows": [
+        {
+          "baseline_signature": "interdomain_lock",
+          "perturbed_signature": "allosteric_basin_shift",
+          "probe_id": "remove_operator_01_interface_operator",
+          "probe_kind": "single_operator_ablation_map",
+          "removed_operator": "interface_operator",
+          "removed_state_variable": "interdomain_lock",
+          "selected_signature_preserved": false
+        },
+        {
+          "baseline_signature": "interdomain_lock",
+          "perturbed_signature": "interdomain_lock",
+          "probe_id": "remove_operator_02_dual_basin_switch_operator",
+          "probe_kind": "single_operator_ablation_map",
+          "removed_operator": "dual_basin_switch_operator",
+          "removed_state_variable": "allosteric_basin_shift",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "interdomain_lock",
+          "perturbed_signature": "interdomain_lock",
+          "probe_id": "remove_operator_03_closure_operator",
+          "probe_kind": "single_operator_ablation_map",
+          "removed_operator": "closure_operator",
+          "removed_state_variable": "modular_architecture",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "interdomain_lock",
+          "perturbed_signature": "interdomain_lock",
+          "probe_id": "remove_operator_04_frustration_operator",
+          "probe_kind": "single_operator_ablation_map",
+          "removed_operator": "frustration_operator",
+          "removed_state_variable": "allosteric_basin_shift",
+          "selected_signature_preserved": true
+        }
+      ],
+      "operator_basis_stability": "stable_under_endogenous_operator_basis_probe"
+    },
+    "coefficient_perturbation_stability": "stable_under_endogenous_operator_basis_probe",
+    "coefficient_probe_mode": "endogenous_observed_operator_permutations_no_static_scale_range",
+    "coefficient_source": "heuristic_internal_operator_weights_not_physical_force_constants",
+    "contradiction_count": 0,
+    "contradictions": [],
+    "coordinate_truth_used_before_prediction": false,
+    "counterfactual_separation": "context_or_operator_driven_not_sequence_only",
+    "counterfactual_sequence_controls": {
+      "composition_preserved_shuffle_support": "multidomain_sequence_signal_weak",
+      "interpretation": "context_or_operator_driven_not_sequence_only",
+      "real_sequence_support": "multidomain_sequence_signal_weak",
+      "region_masked_sequence_support": "multidomain_sequence_signal_weak"
+    },
+    "cross_view_binding": "evidence_family_operator_readout_trajectory_readout_bound",
+    "cross_view_binding_probe": {
+      "bound_view_families": [
+        "evidence_family",
+        "operator_readout",
+        "trajectory_readout"
+      ],
+      "cross_view_binding": "evidence_family_operator_readout_trajectory_readout_bound",
+      "missing_view_families": [],
+      "operator_support": "selected_operator_field_agrees",
+      "self_required_view_families": [
+        "evidence_family",
+        "operator_readout",
+        "trajectory_readout"
+      ],
+      "sequence_support": "multidomain_sequence_signal_weak",
+      "trajectory_support": [
+        "multidomain_allostery",
+        "domain_boundary",
+        "interdomain_lock"
+      ]
+    },
+    "dominance_law": "single_dominant_learned_mechanism_bound_across_views",
+    "evidence_masking": [
+      {
+        "interpretation": "mechanism_defining_signal_removed",
+        "masked_family": "multidomain_allosteric_architecture",
+        "mechanism_after_mask": "cofactor_ligand_assisted_stabilization",
+        "removed_signal_count": 7,
+        "selected_mechanism_preserved": false
+      },
+      {
+        "interpretation": "stable_under_nondefining_mask",
+        "masked_family": "cofactor_ligand_assisted_stabilization",
+        "mechanism_after_mask": "multidomain_allosteric_architecture",
+        "removed_signal_count": 1,
+        "selected_mechanism_preserved": true
+      }
+    ],
+    "final_self_decision": "accepted",
+    "firewall_reason": "self_decision_internal_views_agree",
+    "folding_problem_solved": false,
+    "internal_consensus": "single_dominant_learned_mechanism_bound_across_views",
+    "kind": "PROTEIN_ESPERANTO_SELF_DECISION_JUDGE_v0",
+    "known_beta_topology_word": null,
+    "known_mechanism_class": "multidomain_allosteric_architecture",
+    "known_multidomain_word": "allosteric_basin_shift",
+    "legacy_acceptance_view": {
+      "acceptance_decision": "accepted",
+      "blocked_reasons": [],
+      "coordinate_truth_used_before_prediction": false,
+      "firewall_reason": "self_decision_internal_views_agree",
+      "folding_problem_solved": false,
+      "kind": "PROTEIN_ESPERANTO_SELF_DECISION_COMPAT_ACCEPTANCE_VIEW_v0",
+      "known_beta_topology_word": null,
+      "known_mechanism_class": "multidomain_allosteric_architecture",
+      "known_multidomain_word": "allosteric_basin_shift",
+      "missing_esperanto_word": null,
+      "operator_activation": 0.613085,
+      "unknown_word_signals": [],
+      "zero_failed_accepted_required": true
+    },
+    "masking_stability": "stable_or_definition_sensitive_under_masking",
+    "mechanism_competition": [
+      {
+        "evidence_hits": [
+          "allosteric_basin_shift",
+          "domain_boundary",
+          "domain_reorientation",
+          "hinge_region",
+          "interdomain_lock",
+          "modular_architecture",
+          "multidomain_allostery"
+        ],
+        "grammar": "multidomain_allosteric_architecture",
+        "grammar_status": "learned",
+        "internal_view_count": 3,
+        "operator_support": "selected_operator_field_agrees",
+        "sequence_support": "multidomain_sequence_signal_weak",
+        "trajectory_support": [
+          "multidomain_allostery",
+          "domain_boundary",
+          "interdomain_lock"
+        ],
+        "view_sources": [
+          "evidence_family",
+          "operator_readout",
+          "trajectory_readout"
+        ]
+      },
+      {
+        "evidence_hits": [
+          "ligand"
+        ],
+        "grammar": "cofactor_ligand_assisted_stabilization",
+        "grammar_status": "learned",
+        "internal_view_count": 2,
+        "operator_support": "not_selected_operator",
+        "sequence_support": "pocket_or_coordination_sequence_signal_visible",
+        "trajectory_support": [],
+        "view_sources": [
+          "evidence_family",
+          "sequence_signature"
+        ]
+      },
+      {
+        "evidence_hits": [],
+        "grammar": "oligomerization_controlled_folding",
+        "grammar_status": "learned",
+        "internal_view_count": 1,
+        "operator_support": "not_selected_operator",
+        "sequence_support": "interface_sequence_signal_visible",
+        "trajectory_support": [],
+        "view_sources": [
+          "sequence_signature"
+        ]
+      },
+      {
+        "evidence_hits": [],
+        "grammar": "metal_cluster_and_ligand_locked_basin",
+        "grammar_status": "learned",
+        "internal_view_count": 1,
+        "operator_support": "not_selected_operator",
+        "sequence_support": "pocket_or_coordination_sequence_signal_visible",
+        "trajectory_support": [],
+        "view_sources": [
+          "sequence_signature"
+        ]
+      },
+      {
+        "evidence_hits": [],
+        "grammar": "membrane_multidomain_folding_proteostasis",
+        "grammar_status": "learned",
+        "internal_view_count": 1,
+        "operator_support": "not_selected_operator",
+        "sequence_support": "membrane_segment_sequence_signal_visible",
+        "trajectory_support": [],
+        "view_sources": [
+          "sequence_signature"
+        ]
+      },
+      {
+        "evidence_hits": [],
+        "grammar": "intrinsic_disorder_phase_separation",
+        "grammar_status": "learned",
+        "internal_view_count": 1,
+        "operator_support": "not_selected_operator",
+        "sequence_support": "disorder_or_low_complexity_sequence_signal_visible",
+        "trajectory_support": [],
+        "view_sources": [
+          "sequence_signature"
+        ]
+      },
+      {
+        "evidence_hits": [],
+        "grammar": "globular_closure",
+        "grammar_status": "learned",
+        "internal_view_count": 1,
+        "operator_support": "not_selected_operator",
+        "sequence_support": "compact_core_sequence_signal_visible",
+        "trajectory_support": [],
+        "view_sources": [
+          "sequence_signature"
+        ]
+      },
+      {
+        "evidence_hits": [],
+        "grammar": "fold_upon_binding_disorder",
+        "grammar_status": "learned",
+        "internal_view_count": 1,
+        "operator_support": "not_selected_operator",
+        "sequence_support": "disorder_or_low_complexity_sequence_signal_visible",
+        "trajectory_support": [],
+        "view_sources": [
+          "sequence_signature"
+        ]
+      }
+    ],
+    "missing_esperanto_word": null,
+    "missing_word_candidate": null,
+    "natural_mechanism_class": "multidomain_allosteric_architecture",
+    "operator_activation": 0.613085,
+    "operator_basis_stability": "stable_under_endogenous_operator_basis_probe",
+    "operator_basis_stability_probe": {
+      "baseline_signature": "interdomain_lock",
+      "coefficient_permutation_rows": [
+        {
+          "baseline_signature": "interdomain_lock",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.495821,
+            0.582439,
+            0.675821,
+            0.69826
+          ],
+          "perturbed_signature": "interdomain_lock",
+          "probe_id": "observed_operator_strength_permutation_01",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "interdomain_lock",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.495821,
+            0.582439,
+            0.69826,
+            0.675821
+          ],
+          "perturbed_signature": "interdomain_lock",
+          "probe_id": "observed_operator_strength_permutation_02",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "interdomain_lock",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.495821,
+            0.675821,
+            0.582439,
+            0.69826
+          ],
+          "perturbed_signature": "interdomain_lock",
+          "probe_id": "observed_operator_strength_permutation_03",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "interdomain_lock",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.495821,
+            0.675821,
+            0.69826,
+            0.582439
+          ],
+          "perturbed_signature": "interdomain_lock",
+          "probe_id": "observed_operator_strength_permutation_04",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "interdomain_lock",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.495821,
+            0.69826,
+            0.582439,
+            0.675821
+          ],
+          "perturbed_signature": "interdomain_lock",
+          "probe_id": "observed_operator_strength_permutation_05",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "interdomain_lock",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.495821,
+            0.69826,
+            0.675821,
+            0.582439
+          ],
+          "perturbed_signature": "interdomain_lock",
+          "probe_id": "observed_operator_strength_permutation_06",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "interdomain_lock",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.582439,
+            0.495821,
+            0.675821,
+            0.69826
+          ],
+          "perturbed_signature": "interdomain_lock",
+          "probe_id": "observed_operator_strength_permutation_07",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "interdomain_lock",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.582439,
+            0.495821,
+            0.69826,
+            0.675821
+          ],
+          "perturbed_signature": "interdomain_lock",
+          "probe_id": "observed_operator_strength_permutation_08",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "interdomain_lock",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.582439,
+            0.675821,
+            0.495821,
+            0.69826
+          ],
+          "perturbed_signature": "interdomain_lock",
+          "probe_id": "observed_operator_strength_permutation_09",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "interdomain_lock",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.582439,
+            0.675821,
+            0.69826,
+            0.495821
+          ],
+          "perturbed_signature": "interdomain_lock",
+          "probe_id": "observed_operator_strength_permutation_10",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "interdomain_lock",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.582439,
+            0.69826,
+            0.495821,
+            0.675821
+          ],
+          "perturbed_signature": "interdomain_lock",
+          "probe_id": "observed_operator_strength_permutation_11",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "interdomain_lock",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.582439,
+            0.69826,
+            0.675821,
+            0.495821
+          ],
+          "perturbed_signature": "interdomain_lock",
+          "probe_id": "observed_operator_strength_permutation_12",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "interdomain_lock",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.675821,
+            0.495821,
+            0.582439,
+            0.69826
+          ],
+          "perturbed_signature": "interdomain_lock",
+          "probe_id": "observed_operator_strength_permutation_13",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "interdomain_lock",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.675821,
+            0.495821,
+            0.69826,
+            0.582439
+          ],
+          "perturbed_signature": "interdomain_lock",
+          "probe_id": "observed_operator_strength_permutation_14",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "interdomain_lock",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.675821,
+            0.582439,
+            0.495821,
+            0.69826
+          ],
+          "perturbed_signature": "interdomain_lock",
+          "probe_id": "observed_operator_strength_permutation_15",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "interdomain_lock",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.675821,
+            0.582439,
+            0.69826,
+            0.495821
+          ],
+          "perturbed_signature": "interdomain_lock",
+          "probe_id": "observed_operator_strength_permutation_16",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "interdomain_lock",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.675821,
+            0.69826,
+            0.495821,
+            0.582439
+          ],
+          "perturbed_signature": "interdomain_lock",
+          "probe_id": "observed_operator_strength_permutation_17",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "interdomain_lock",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.675821,
+            0.69826,
+            0.582439,
+            0.495821
+          ],
+          "perturbed_signature": "interdomain_lock",
+          "probe_id": "observed_operator_strength_permutation_18",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "interdomain_lock",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.69826,
+            0.495821,
+            0.582439,
+            0.675821
+          ],
+          "perturbed_signature": "interdomain_lock",
+          "probe_id": "observed_operator_strength_permutation_19",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "interdomain_lock",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.69826,
+            0.495821,
+            0.675821,
+            0.582439
+          ],
+          "perturbed_signature": "interdomain_lock",
+          "probe_id": "observed_operator_strength_permutation_20",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "interdomain_lock",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.69826,
+            0.582439,
+            0.495821,
+            0.675821
+          ],
+          "perturbed_signature": "interdomain_lock",
+          "probe_id": "observed_operator_strength_permutation_21",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "interdomain_lock",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.69826,
+            0.582439,
+            0.675821,
+            0.495821
+          ],
+          "perturbed_signature": "interdomain_lock",
+          "probe_id": "observed_operator_strength_permutation_22",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "interdomain_lock",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.69826,
+            0.675821,
+            0.495821,
+            0.582439
+          ],
+          "perturbed_signature": "interdomain_lock",
+          "probe_id": "observed_operator_strength_permutation_23",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "interdomain_lock",
+          "external_scale_used": null,
+          "operator_strength_order": [
+            0.69826,
+            0.675821,
+            0.582439,
+            0.495821
+          ],
+          "perturbed_signature": "interdomain_lock",
+          "probe_id": "observed_operator_strength_permutation_24",
+          "probe_kind": "endogenous_observed_operator_coefficient_permutation",
+          "selected_signature_preserved": true
+        }
+      ],
+      "coefficient_probe_mode": "endogenous_observed_operator_permutations_no_static_scale_range",
+      "coefficient_scale_values_used": [],
+      "operator_ablation_rows": [
+        {
+          "baseline_signature": "interdomain_lock",
+          "perturbed_signature": "allosteric_basin_shift",
+          "probe_id": "remove_operator_01_interface_operator",
+          "probe_kind": "single_operator_ablation_map",
+          "removed_operator": "interface_operator",
+          "removed_state_variable": "interdomain_lock",
+          "selected_signature_preserved": false
+        },
+        {
+          "baseline_signature": "interdomain_lock",
+          "perturbed_signature": "interdomain_lock",
+          "probe_id": "remove_operator_02_dual_basin_switch_operator",
+          "probe_kind": "single_operator_ablation_map",
+          "removed_operator": "dual_basin_switch_operator",
+          "removed_state_variable": "allosteric_basin_shift",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "interdomain_lock",
+          "perturbed_signature": "interdomain_lock",
+          "probe_id": "remove_operator_03_closure_operator",
+          "probe_kind": "single_operator_ablation_map",
+          "removed_operator": "closure_operator",
+          "removed_state_variable": "modular_architecture",
+          "selected_signature_preserved": true
+        },
+        {
+          "baseline_signature": "interdomain_lock",
+          "perturbed_signature": "interdomain_lock",
+          "probe_id": "remove_operator_04_frustration_operator",
+          "probe_kind": "single_operator_ablation_map",
+          "removed_operator": "frustration_operator",
+          "removed_state_variable": "allosteric_basin_shift",
+          "selected_signature_preserved": true
+        }
+      ],
+      "operator_basis_stability": "stable_under_endogenous_operator_basis_probe"
+    },
+    "physical_backend_available": true,
+    "physical_basis_claim_allowed": false,
+    "physical_grounding_gate": {
+      "backend_probe": {
+        "backend": "openmm",
+        "backend_available": true,
+        "backend_version": "8.1.1",
+        "forcefield_api_available": true,
+        "kind": "PROTEIN_ESPERANTO_PHYSICAL_BACKEND_PROBE_v0"
+      },
+      "coarse_operator_decision_scope": "mechanism_language_acceptance_not_physical_fold_solution",
+      "coarse_operator_layer": true,
+      "coefficient_source": "heuristic_internal_operator_weights_not_physical_force_constants",
+      "coordinate_truth_used_as_prediction_input": false,
+      "folding_problem_solved": false,
+      "grammar_declared_operator_coverage": [
+        "closure_operator",
+        "dual_basin_switch_operator",
+        "frustration_operator",
+        "interface_operator"
+      ],
+      "grammar_missing_declared_operators": [],
+      "kind": "PROTEIN_ESPERANTO_PHYSICAL_GROUNDING_GATE_v0",
+      "leave_one_target_out_calibration": true,
+      "missing_physical_inputs": [
+        "target_specific_physical_topology_and_environment_for_execution",
+        "force_field_or_calibrated_coarse_potential_bound_to_target_execution",
+        "calibrated_energy_units_temperature_and_integrator_protocol",
+        "independent_dynamic_physical_observable_holdout"
+      ],
+      "operator_basis_stability": "stable_under_endogenous_operator_basis_probe",
+      "operator_to_physical_proxy_map": [
+        {
+          "declared_in_grammar": true,
+          "operator": "interface_operator",
+          "physical_scope": "coarse_pressure_proxy_not_force_field_term",
+          "state_variable": "interdomain_lock"
+        },
+        {
+          "declared_in_grammar": true,
+          "operator": "dual_basin_switch_operator",
+          "physical_scope": "coarse_pressure_proxy_not_force_field_term",
+          "state_variable": "allosteric_basin_shift"
+        },
+        {
+          "declared_in_grammar": true,
+          "operator": "closure_operator",
+          "physical_scope": "coarse_pressure_proxy_not_force_field_term",
+          "state_variable": "modular_architecture"
+        },
+        {
+          "declared_in_grammar": true,
+          "operator": "frustration_operator",
+          "physical_scope": "coarse_pressure_proxy_not_force_field_term",
+          "state_variable": "allosteric_basin_shift"
+        }
+      ],
+      "physical_basis_claim_allowed": false,
+      "physical_calibration_input_summary": {
+        "calibration_input_type": "coordinate_derived_native_contact_summary",
+        "coordinate_truth_used_as_prediction_input": false,
+        "fold_class_coverage": [
+          "alpha_beta_mixed",
+          "alpha_rich",
+          "beta_rich",
+          "multidomain_boundary"
+        ],
+        "leave_one_target_out_calibration": true,
+        "observable_families": [
+          "coordinate_coverage",
+          "native_contact_count",
+          "native_contact_order",
+          "native_contact_map_hash",
+          "coordinate_trace_hash"
+        ],
+        "physical_calibration_input_status": "real_coordinate_calibration_inputs_loaded_truth_boundary_preserved",
+        "real_physical_calibration_hash": "fce8f8b9ece98c6a9427ec01c22ea5af9daedae08a599cd0856dfe96a0f14512",
+        "real_physical_calibration_inputs_used": true,
+        "real_physical_calibration_kind": "PROTEIN_ESPERANTO_REAL_PHYSICAL_CALIBRATION_INPUTS_v0",
+        "real_physical_calibration_row_count": 8,
+        "source_coordinate_database": "RCSB_PDB",
+        "source_dataset": "/Users/draganamitova/My Projects/pharmacotopology/data/folding_real_coordinate_visual_8.locked.json",
+        "source_dataset_sha256": "b2927864fca6eb21e695d2262230a53bf79885f77006d722bafbe346e2b76efe",
+        "target_native_contacts_used_before_prediction": false,
+        "target_native_excluded_from_calibration": true
+      },
+      "physical_grounding_status": "real_physical_calibration_inputs_loaded_openmm_available_but_target_physical_execution_not_run",
+      "physical_limitation_known_by_engine": true,
+      "real_physical_calibration_hash": "fce8f8b9ece98c6a9427ec01c22ea5af9daedae08a599cd0856dfe96a0f14512",
+      "real_physical_calibration_inputs_used": true,
+      "real_physical_calibration_kind": "PROTEIN_ESPERANTO_REAL_PHYSICAL_CALIBRATION_INPUTS_v0",
+      "real_physical_calibration_row_count": 8,
+      "target_native_contacts_used_before_prediction": false,
+      "target_native_excluded_from_calibration": true,
+      "temporal_binding": "selected_observables_temporally_coherent"
+    },
+    "physical_grounding_status": "real_physical_calibration_inputs_loaded_openmm_available_but_target_physical_execution_not_run",
+    "physics_grounding_status": "coarse_operator_heuristic_not_atomistic_physics",
+    "real_physical_calibration_hash": "fce8f8b9ece98c6a9427ec01c22ea5af9daedae08a599cd0856dfe96a0f14512",
+    "real_physical_calibration_inputs_used": true,
+    "real_physical_calibration_kind": "PROTEIN_ESPERANTO_REAL_PHYSICAL_CALIBRATION_INPUTS_v0",
+    "real_physical_calibration_row_count": 8,
+    "runner_up_mechanisms": [
+      "cofactor_ligand_assisted_stabilization",
+      "oligomerization_controlled_folding",
+      "metal_cluster_and_ligand_locked_basin"
+    ],
+    "selected_mechanism_views": [
+      "evidence_family",
+      "operator_readout",
+      "trajectory_readout"
+    ],
+    "self_decision_reason": "self_decision_internal_views_agree",
+    "temporal_binding": "selected_observables_temporally_coherent",
+    "temporal_binding_probe": {
+      "observable_trends": [
+        {
+          "final_value": 0.667232,
+          "first_value": 0.345597,
+          "observable": "multidomain_allostery",
+          "trend": "increases_across_simulated_path"
+        },
+        {
+          "final_value": 0.546977,
+          "first_value": 0.466977,
+          "observable": "domain_boundary",
+          "trend": "increases_across_simulated_path"
+        },
+        {
+          "final_value": 0.667232,
+          "first_value": 0.345597,
+          "observable": "interdomain_lock",
+          "trend": "increases_across_simulated_path"
+        }
+      ],
+      "signature_path": [
+        {
+          "signature": "interdomain_lock",
+          "timepoint": 0
+        },
+        {
+          "signature": "interdomain_lock",
+          "timepoint": 100
+        },
+        {
+          "signature": "interdomain_lock",
+          "timepoint": 500
+        },
+        {
+          "signature": "interdomain_lock",
+          "timepoint": 1000
+        }
+      ],
+      "temporal_binding": "selected_observables_temporally_coherent"
+    },
+    "top_mechanism": "multidomain_allosteric_architecture",
+    "unknown_word_signals": [],
+    "wrong_grammar_challenge": [
+      {
+        "challenger_grammar": "cofactor_ligand_assisted_stabilization",
+        "challenger_operator_count": 0,
+        "challenger_trajectory_support": [],
+        "forced_grammar_rejected": true,
+        "forced_result_mechanism": "insufficient_evidence_clean_abstain",
+        "interpretation": "wrong_grammar_failed"
+      },
+      {
+        "challenger_grammar": "oligomerization_controlled_folding",
+        "challenger_operator_count": 0,
+        "challenger_trajectory_support": [],
+        "forced_grammar_rejected": true,
+        "forced_result_mechanism": "insufficient_evidence_clean_abstain",
+        "interpretation": "wrong_grammar_failed"
+      },
+      {
+        "challenger_grammar": "metal_cluster_and_ligand_locked_basin",
+        "challenger_operator_count": 0,
+        "challenger_trajectory_support": [],
+        "forced_grammar_rejected": true,
+        "forced_result_mechanism": "insufficient_evidence_clean_abstain",
+        "interpretation": "wrong_grammar_failed"
+      }
+    ],
+    "wrong_grammar_separation": "wrong_grammars_fail",
+    "zero_failed_accepted_required": true
+  },
+  "target_id": "V75_001_V74_MULTIDOMAIN_ALLOSTERY_FAILURE_REPLAY_1PZV_1",
+  "trajectory_final_state_summary": {
+    "IDR_boundary": 0.0,
+    "allosteric_basin_shift": 0.506776,
+    "alpha_beta_barrel_distinction": 0.0,
+    "apo_holo_basin_shift": 0.0,
+    "assembly_ambiguous": 0.0,
+    "assembly_required_core": 0.0,
+    "beta_helix_solenoid_stack": 0.0,
+    "beta_propeller_repeat_closure": 0.0,
+    "beta_sandwich_core": 0.0,
+    "beta_sheet_closure": 0.0,
+    "beta_topology_conflict": 0.0,
+    "closed_beta_ambiguous": 0.0,
+    "closed_beta_confident": 0.0,
+    "closed_beta_topology": 0.0,
+    "contact_probability": 0.55118,
+    "coordination_shell_integrity": 0.0,
+    "disorder_order_balance": 0.309886,
+    "disorder_with_local_motif": 0.0,
+    "domain_boundary": 0.546977,
+    "domain_reorientation": 0.570515,
+    "domain_swapping": 0.0,
+    "flexible_loop_not_disorder": 0.032782,
+    "fold_upon_binding_region": 0.0,
+    "frustration": 0.495821,
+    "greek_key_beta_lock": 0.0,
+    "hinge_region": 0.471519,
+    "interdomain_lock": 0.667232,
+    "interface_buried_hydrophobicity": 0.0,
+    "interface_readiness": 0.667232,
+    "jelly_roll_wrap": 0.0,
+    "ligand_locked_basin": 0.0,
+    "membrane_beta_barrel": 0.0,
+    "metal_cluster_geometry": 0.0,
+    "metal_ligand_ambiguous": 0.0,
+    "modular_architecture": 0.567935,
+    "monomer_incomplete_topology": 0.0,
+    "multidomain_allostery": 0.667232,
+    "open_beta_sheet_ambiguous": 0.0,
+    "operator_activation": 0.613085,
+    "partner_completed_core": 0.0,
+    "phase_prone_low_complexity": 0.0,
+    "proteostasis_routing": 0.0,
+    "residue_exposure": 0.630467,
+    "segment_compaction": 0.469236,
+    "soluble_beta_barrel": 0.0,
+    "state_basin_occupancy": {
+      "allosteric_basin_shift": 0.506776,
+      "domain_boundary": 0.546977,
+      "domain_reorientation_basin": 0.570515,
+      "domain_swapping": 0.101446,
+      "hinge_region": 0.471519,
+      "interdomain_locked_basin": 0.667232,
+      "modular_architecture": 0.567935,
+      "multidomain_allosteric_basin": 0.667232,
+      "single_domain_shortcut": 0.212967
+    },
+    "strand_register": 0.0,
+    "strand_register_insufficient": 0.0,
+    "structured_domain_plus_IDR_tail": 0.0,
+    "timepoint": 1000
+  }
+}

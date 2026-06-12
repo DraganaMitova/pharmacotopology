@@ -3,7 +3,7 @@
   "boundary_repairs": [
     "generic_complex guard now matches standalone complex only so low-complexity disorder text cannot be flattened into generic-complex abstention"
   ],
-  "certificate_hash": "c1a2388451c3c79252c852fa864e1cc1f50fa3a5f26265947312e4eedbc0afef",
+  "certificate_hash": "53b62212dcc122a0204f2812ef78bcb2767f75955a63d0fcc75892a41c25b993",
   "claim_allowed": false,
   "engine_revision": "E69",
   "kind": "E69_MULTIDOMAIN_ALLOSTERIC_ARCHITECTURE_GRAMMAR_CERTIFICATE_v0",
@@ -19,7 +19,7 @@
     "modular_architecture",
     "domain_swapping"
   ],
-  "next_required_batch": "V75_MULTIDOMAIN_ALLOSTERY_REPAIR_PANEL_200",
+  "next_required_batch": "V76_SECRETORY_DISULFIDE_REPAIR_PANEL_200",
   "protected_priorities": [
     "membrane_multidomain_folding_proteostasis",
     "assembly_required_folding",
@@ -28,10 +28,33 @@
     "beta_closure_topology",
     "intrinsic_disorder_phase_separation"
   ],
+  "self_decision_candidate_grammar_acceptance_role": "clean_abstain_until_revision_implements_grammar",
+  "self_decision_cortex_added": true,
+  "self_decision_dominance_law_for_acceptance": "single_dominant_learned_mechanism_bound_across_views",
+  "self_decision_proof_batch": "V75_SELF_DECIDING_ACCEPTANCE_CORTEX",
+  "self_decision_proof_status": "BATCH_PASSED_SELF_DECIDING_ZERO_FAILED_ACCEPTED",
+  "self_decision_rule": "accept only when learned mechanisms dominate internal probes; candidate missing words, conflicts, low consensus, and leakage cleanly abstain or block",
   "status": "E69_MULTIDOMAIN_ALLOSTERIC_ARCHITECTURE_GRAMMAR_ADDED_REVIEW_REQUIRED",
   "trigger_batch": "V74_RCSB_NONREDUNDANT_200_DISCOVERY_E68",
   "trigger_failure_count": 33,
   "trigger_failure_mode": "multidomain_allostery",
   "trigger_missing_word": "multidomain_allostery",
-  "trigger_status": "V74_E68_RCSB_NONREDUNDANT_200_DISCOVERY_FAILURES_MINED_REVIEW_REQUIRED"
+  "trigger_status": "V74_E68_RCSB_NONREDUNDANT_200_DISCOVERY_FAILURES_MINED_REVIEW_REQUIRED",
+  "v75_accepted_accuracy": 1.0,
+  "v75_accepted_count": 187,
+  "v75_accepted_cross_view_bound": 187,
+  "v75_accepted_operator_basis_stable": 187,
+  "v75_accepted_supported": 187,
+  "v75_accepted_temporal_bound": 187,
+  "v75_failed_accepted_count": 0,
+  "v75_physical_basis_claim_allowed": false,
+  "v75_physical_grounding_statuses": {
+    "real_physical_calibration_inputs_loaded_openmm_available_but_target_physical_execution_not_run": 200
+  },
+  "v75_real_physical_calibration_hash": "fce8f8b9ece98c6a9427ec01c22ea5af9daedae08a599cd0856dfe96a0f14512",
+  "v75_real_physical_calibration_inputs_used": true,
+  "v75_real_physical_calibration_row_count": 8,
+  "v75_top_missing_esperanto_word": "disulfide_secretory_redox_context",
+  "v75_unknown_word_abstentions": 12,
+  "v75_v74_multidomain_failures_repaired": 33
 }

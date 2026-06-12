@@ -1,0 +1,36 @@
+{
+  "batch_id": "V75_SELF_DECIDING_ACCEPTANCE_CORTEX",
+  "engine_version_used": "E69",
+  "expected_decision": "accepted",
+  "expected_mechanism_class": "assembly_required_folding",
+  "expected_observables": [
+    {
+      "check_id": "partner_completed_core_supported",
+      "comparator": ">=",
+      "metric": "partner_completed_core",
+      "threshold": 0.48
+    }
+  ],
+  "holdout_opened_after_prediction_hash": "5546eb63bd787070c8ec2a7cb6e87827a3c819074f71e2c2aacb17eed7902ede",
+  "kind": "V75_SELF_DECIDING_ACCEPTANCE_CORTEX_POSTSEAL_HOLDOUT_v0",
+  "panel_group": "ASSEMBLY_REQUIRED_SENTINEL",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1SKN",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1SKN/3",
+      "source_class": "coordinate_derived",
+      "source_id": "V75_130_ASSEMBLY_REQUIRED_SENTINEL_1SKN_3_V75_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "V75 E69 zero-failed-accepted self-decision cortex group ASSEMBLY_REQUIRED_SENTINEL.",
+    "Required word: assembly_required_core.",
+    "Expected decision: accepted.",
+    "Coordinates, contacts, native topology, and post-seal validation labels are blocked before sealing."
+  ],
+  "required_esperanto_word": "assembly_required_core",
+  "target_id": "V75_130_ASSEMBLY_REQUIRED_SENTINEL_1SKN_3"
+}

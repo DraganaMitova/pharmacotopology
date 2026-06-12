@@ -1,0 +1,29 @@
+{
+  "batch_id": "V75_SELF_DECIDING_ACCEPTANCE_CORTEX",
+  "engine_version_used": "E69",
+  "expected_decision": "abstain_recommended",
+  "expected_mechanism_class": "insufficient_evidence_clean_abstain",
+  "expected_observables": [],
+  "holdout_opened_after_prediction_hash": "d0366817179f26c3b8942a6d657a678fcd13a68d04a14f2d5bd73f9c1e64976b",
+  "kind": "V75_SELF_DECIDING_ACCEPTANCE_CORTEX_POSTSEAL_HOLDOUT_v0",
+  "panel_group": "MISSING_WORD_CANDIDATE_CLEAN_ABSTAIN_CONTROL",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1S4U",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1S4U/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V75_200_MISSING_WORD_CANDIDATE_CLEAN_ABSTAIN_CONTROL_1S4U_1_V75_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "V75 E69 zero-failed-accepted self-decision cortex group MISSING_WORD_CANDIDATE_CLEAN_ABSTAIN_CONTROL.",
+    "Required word: repeat_solenoid_topology.",
+    "Expected decision: abstain_recommended.",
+    "Coordinates, contacts, native topology, and post-seal validation labels are blocked before sealing."
+  ],
+  "required_esperanto_word": "repeat_solenoid_topology",
+  "target_id": "V75_200_MISSING_WORD_CANDIDATE_CLEAN_ABSTAIN_CONTROL_1S4U_1"
+}

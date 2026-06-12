@@ -4,6 +4,21 @@ E69 adds the `multidomain_allosteric_architecture` mechanism after V74 exposed `
 
 E69 also repairs a token-boundary bug in the generic-complex guard: `complex` now has to appear as a standalone word, so explicit `low complexity` disorder/phase evidence is no longer flattened into a generic-complex abstention.
 
+V75 proved the E69 repair under the self-decision cortex:
+
+```text
+failed_accepted = 0
+accepted_accuracy = 1.0
+accepted_supported = 187 / 187
+V74 multidomain/allostery failures repaired = 33 / 33
+real physical calibration inputs loaded = 8 locked RCSB coordinate rows
+physical basis claim allowed = false
+```
+
+The same self-decision judge cleanly abstained on disulfide, coiled-coil, and repeat/solenoid candidate words instead of accepting wrong predictions.
+
+V75 also keeps one multidomain positive as a conservative abstain because the endogenous operator-basis probe marked it assignment-sensitive. That is treated as honest non-acceptance, not a failed accepted prediction.
+
 ## New Words
 
 | word | role |
@@ -32,4 +47,4 @@ E69 is below the already repaired priority classes:
 
 ## Next
 
-Run `V75_MULTIDOMAIN_ALLOSTERY_REPAIR_PANEL_200` to test whether E69 closes the V74 multidomain/allostery failures without absorbing the remaining coiled/repeat and disulfide/secretory signals.
+Run `V76_SECRETORY_DISULFIDE_REPAIR_PANEL_200` after adding `E70_SECRETORY_DISULFIDE_REDOX_TOPOLOGY_GRAMMAR`, because V75 mined `disulfide_secretory_redox_context` as the loudest remaining missing word.

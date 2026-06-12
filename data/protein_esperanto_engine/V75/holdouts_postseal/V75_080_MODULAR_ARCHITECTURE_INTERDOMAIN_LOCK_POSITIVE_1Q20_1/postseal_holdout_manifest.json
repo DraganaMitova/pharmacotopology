@@ -1,0 +1,48 @@
+{
+  "batch_id": "V75_SELF_DECIDING_ACCEPTANCE_CORTEX",
+  "engine_version_used": "E69",
+  "expected_decision": "accepted",
+  "expected_mechanism_class": "multidomain_allosteric_architecture",
+  "expected_observables": [
+    {
+      "check_id": "multidomain_allostery_supported",
+      "comparator": ">=",
+      "metric": "multidomain_allostery",
+      "threshold": 0.3
+    },
+    {
+      "check_id": "interdomain_lock_supported",
+      "comparator": ">=",
+      "metric": "interdomain_lock",
+      "threshold": 0.24
+    },
+    {
+      "check_id": "modular_architecture_supported",
+      "comparator": ">=",
+      "metric": "modular_architecture",
+      "threshold": 0.2
+    }
+  ],
+  "holdout_opened_after_prediction_hash": "8de641eaead89027e10716522a3d9a66cdd8303c9684c06d3b9111c0a932660d",
+  "kind": "V75_SELF_DECIDING_ACCEPTANCE_CORTEX_POSTSEAL_HOLDOUT_v0",
+  "panel_group": "MODULAR_ARCHITECTURE_INTERDOMAIN_LOCK_POSITIVE",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1Q20",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1Q20/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V75_080_MODULAR_ARCHITECTURE_INTERDOMAIN_LOCK_POSITIVE_1Q20_1_V75_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "V75 E69 zero-failed-accepted self-decision cortex group MODULAR_ARCHITECTURE_INTERDOMAIN_LOCK_POSITIVE.",
+    "Required word: modular_architecture.",
+    "Expected decision: accepted.",
+    "Coordinates, contacts, native topology, and post-seal validation labels are blocked before sealing."
+  ],
+  "required_esperanto_word": "modular_architecture",
+  "target_id": "V75_080_MODULAR_ARCHITECTURE_INTERDOMAIN_LOCK_POSITIVE_1Q20_1"
+}

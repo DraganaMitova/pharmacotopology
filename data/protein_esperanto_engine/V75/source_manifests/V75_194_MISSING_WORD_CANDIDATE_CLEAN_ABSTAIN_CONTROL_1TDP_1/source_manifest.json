@@ -1,0 +1,60 @@
+{
+  "batch_id": "V75_SELF_DECIDING_ACCEPTANCE_CORTEX",
+  "blocked_prediction_inputs": [
+    "PDB/mmCIF coordinates before sealing",
+    "native contacts, distance maps, residue-residue proximity, and coordinate-derived topology",
+    "native biological assembly contacts and ligand/metal coordination geometry before sealing",
+    "AlphaFold, ESMFold, RoseTTAFold, or other structure models before sealing",
+    "post-seal validation annotations before prediction hash",
+    "prior score outcomes as prediction evidence",
+    "internal runtime artifacts as biological evidence"
+  ],
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E69",
+  "folding_problem_solved": false,
+  "kind": "V75_SELF_DECIDING_ACCEPTANCE_CORTEX_SOURCE_MANIFEST_v0",
+  "panel_group": "MISSING_WORD_CANDIDATE_CLEAN_ABSTAIN_CONTROL",
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence for the RCSB polymer entity.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V75_RAW_SEQUENCE_0bb187add099",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1TDP/1",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Public non-coordinate RCSB metadata is available through the source URL. V75 uses the explicit self-decision cortex context source for allowed biological words. Coordinates, contacts, ligand geometry, native topology, and post-seal validation labels are unopened before prediction hash.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V75_PUBLIC_METADATA_0bb187add099",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/1TDP",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "V75 allowed non-coordinate Esperanto context marks: coiled_coil_register heptad_repeat register_alignment parallel_vs_antiparallel_coil oligomeric_coiled_coil_core. Unknown self-decision words must cleanly abstain until their grammar exists.",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [
+        "coiled_coil_register",
+        "heptad_repeat",
+        "register_alignment",
+        "parallel_vs_antiparallel_coil",
+        "oligomeric_coiled_coil_core"
+      ],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V75_E69_CONTEXT_0bb187add099",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/1TDP",
+      "spatial_proxy": false
+    }
+  ],
+  "protein_id": "1TDP_1",
+  "sequence": "MDIKSQTLYLNLSEAYKDPEVKANEFLSKLVVQCAGKLTASNSENSYIEVISLLSRGISSYYLSHKRIIPSSMLTIYTQIQKDIKNGNIDTEKLRKYEIAKGLMSVPYIYF",
+  "sequence_length": 111,
+  "target_id": "V75_194_MISSING_WORD_CANDIDATE_CLEAN_ABSTAIN_CONTROL_1TDP_1"
+}

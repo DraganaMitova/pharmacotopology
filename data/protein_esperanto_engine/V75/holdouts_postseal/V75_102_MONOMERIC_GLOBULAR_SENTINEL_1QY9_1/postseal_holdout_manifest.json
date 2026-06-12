@@ -1,0 +1,36 @@
+{
+  "batch_id": "V75_SELF_DECIDING_ACCEPTANCE_CORTEX",
+  "engine_version_used": "E69",
+  "expected_decision": "accepted",
+  "expected_mechanism_class": "globular_closure",
+  "expected_observables": [
+    {
+      "check_id": "globular_contact_supported",
+      "comparator": ">=",
+      "metric": "contact_probability",
+      "threshold": 0.35
+    }
+  ],
+  "holdout_opened_after_prediction_hash": "449d3eef6266904885bd57e1a19cd2a1eec0916b70a039bd772a461cf90b83df",
+  "kind": "V75_SELF_DECIDING_ACCEPTANCE_CORTEX_POSTSEAL_HOLDOUT_v0",
+  "panel_group": "MONOMERIC_GLOBULAR_SENTINEL",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1QY9",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1QY9/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V75_102_MONOMERIC_GLOBULAR_SENTINEL_1QY9_1_V75_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "V75 E69 zero-failed-accepted self-decision cortex group MONOMERIC_GLOBULAR_SENTINEL.",
+    "Required word: none.",
+    "Expected decision: accepted.",
+    "Coordinates, contacts, native topology, and post-seal validation labels are blocked before sealing."
+  ],
+  "required_esperanto_word": null,
+  "target_id": "V75_102_MONOMERIC_GLOBULAR_SENTINEL_1QY9_1"
+}

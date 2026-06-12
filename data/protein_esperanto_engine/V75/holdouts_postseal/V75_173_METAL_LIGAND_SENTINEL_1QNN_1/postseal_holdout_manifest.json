@@ -1,0 +1,36 @@
+{
+  "batch_id": "V75_SELF_DECIDING_ACCEPTANCE_CORTEX",
+  "engine_version_used": "E69",
+  "expected_decision": "accepted",
+  "expected_mechanism_class": "metal_cluster_and_ligand_locked_basin",
+  "expected_observables": [
+    {
+      "check_id": "ligand_locked_basin_supported",
+      "comparator": ">=",
+      "metric": "ligand_locked_basin",
+      "threshold": 0.42
+    }
+  ],
+  "holdout_opened_after_prediction_hash": "99a1f8dab42dd285e08903ce9f9be1d858a91e8bdcd1bfccf4c13a0676810c27",
+  "kind": "V75_SELF_DECIDING_ACCEPTANCE_CORTEX_POSTSEAL_HOLDOUT_v0",
+  "panel_group": "METAL_LIGAND_SENTINEL",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1QNN",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1QNN/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V75_173_METAL_LIGAND_SENTINEL_1QNN_1_V75_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "V75 E69 zero-failed-accepted self-decision cortex group METAL_LIGAND_SENTINEL.",
+    "Required word: ligand_locked_basin.",
+    "Expected decision: accepted.",
+    "Coordinates, contacts, native topology, and post-seal validation labels are blocked before sealing."
+  ],
+  "required_esperanto_word": "ligand_locked_basin",
+  "target_id": "V75_173_METAL_LIGAND_SENTINEL_1QNN_1"
+}

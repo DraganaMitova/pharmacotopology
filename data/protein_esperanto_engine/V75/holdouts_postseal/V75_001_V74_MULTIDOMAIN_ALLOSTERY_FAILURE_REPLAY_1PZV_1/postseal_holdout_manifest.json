@@ -1,0 +1,42 @@
+{
+  "batch_id": "V75_SELF_DECIDING_ACCEPTANCE_CORTEX",
+  "engine_version_used": "E69",
+  "expected_decision": "accepted",
+  "expected_mechanism_class": "multidomain_allosteric_architecture",
+  "expected_observables": [
+    {
+      "check_id": "multidomain_allostery_supported",
+      "comparator": ">=",
+      "metric": "multidomain_allostery",
+      "threshold": 0.3
+    },
+    {
+      "check_id": "interdomain_lock_supported",
+      "comparator": ">=",
+      "metric": "interdomain_lock",
+      "threshold": 0.24
+    }
+  ],
+  "holdout_opened_after_prediction_hash": "1f0b46f971c31d4fc15c837b3a7807554f3fae8537fc881c7f2b9806d756f921",
+  "kind": "V75_SELF_DECIDING_ACCEPTANCE_CORTEX_POSTSEAL_HOLDOUT_v0",
+  "panel_group": "V74_MULTIDOMAIN_ALLOSTERY_FAILURE_REPLAY",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1PZV",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1PZV/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V75_001_V74_MULTIDOMAIN_ALLOSTERY_FAILURE_REPLAY_1PZV_1_V75_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "V75 E69 zero-failed-accepted self-decision cortex group V74_MULTIDOMAIN_ALLOSTERY_FAILURE_REPLAY.",
+    "Required word: multidomain_allostery.",
+    "Expected decision: accepted.",
+    "Coordinates, contacts, native topology, and post-seal validation labels are blocked before sealing."
+  ],
+  "required_esperanto_word": "multidomain_allostery",
+  "target_id": "V75_001_V74_MULTIDOMAIN_ALLOSTERY_FAILURE_REPLAY_1PZV_1"
+}
