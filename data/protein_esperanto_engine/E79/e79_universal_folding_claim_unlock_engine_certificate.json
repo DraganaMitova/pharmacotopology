@@ -1,0 +1,88 @@
+{
+  "atomistic_or_validated_physical_executor_kind": "E79_ATOMISTIC_OR_VALIDATED_PHYSICAL_EXECUTOR_v0",
+  "baseline_engine_revision": "E78",
+  "components": [
+    "real_fold_holdout_loader",
+    "fresh_target_resolver",
+    "atomistic_or_validated_physical_executor",
+    "target_fold_evaluator",
+    "family_generalization_evaluator",
+    "universal_claim_firewall",
+    "external_blind_benchmark_export"
+  ],
+  "engine_revision": "E79",
+  "engine_revision_name": "E79_UNIVERSAL_FOLDING_CLAIM_UNLOCK_ENGINE",
+  "external_blind_benchmark_export_kind": "E79_EXTERNAL_BLIND_BENCHMARK_EXPORT_v0",
+  "family_generalization_evaluator_kind": "E79_FAMILY_GENERALIZATION_EVALUATOR_v0",
+  "fresh_target_resolver_kind": "E79_FRESH_TARGET_RESOLUTION_v0",
+  "kind": "E79_UNIVERSAL_FOLDING_CLAIM_UNLOCK_ENGINE_CERTIFICATE_v0",
+  "manifest": {
+    "components": [
+      "real_fold_holdout_loader",
+      "fresh_target_resolver",
+      "atomistic_or_validated_physical_executor",
+      "target_fold_evaluator",
+      "family_generalization_evaluator",
+      "universal_claim_firewall",
+      "external_blind_benchmark_export"
+    ],
+    "coordinate_native_truth_allowed_before_seal": false,
+    "deterministic_variants_for_universal_claim_allowed": false,
+    "engine_revision": "E79_UNIVERSAL_FOLDING_CLAIM_UNLOCK_ENGINE",
+    "fresh_targets_required_for_universal_claim": true,
+    "hard_regime_families": [
+      "membrane",
+      "disorder_ensemble",
+      "multidomain",
+      "metamorphic",
+      "assembly",
+      "cofactor_metal",
+      "repeat",
+      "coiled_coil",
+      "knot_slipknot"
+    ],
+    "hard_regime_family_aliases": {
+      "assembly_required_core": "assembly",
+      "assembly_required_folding": "assembly",
+      "beta_barrel_membrane": "membrane",
+      "closed_beta_topology": "repeat",
+      "coiled_coil_register": "coiled_coil",
+      "disorder_boundary": "disorder_ensemble",
+      "fold_upon_binding": "disorder_ensemble",
+      "knotted_topology": "knot_slipknot",
+      "knotted_topology_language_evidence_holdout": "knot_slipknot",
+      "ligand_locked_basin": "cofactor_metal",
+      "metal_ligand_basin": "cofactor_metal",
+      "multidomain_allostery": "multidomain",
+      "repeat_solenoid_topology": "repeat",
+      "secretory_disulfide_redox_context": "metamorphic",
+      "signal_peptide_vs_true_tm": "membrane",
+      "soluble_beta_barrel_vs_membrane_barrel": "membrane"
+    },
+    "kind": "E79_UNIVERSAL_FOLDING_CLAIM_UNLOCK_ENGINE_MANIFEST_v0",
+    "protein_folding_solved_by_field_setting": false,
+    "proxy_physical_execution_for_claim_allowed": false,
+    "required_sealed_outputs": [
+      "protein_sentence",
+      "topology_prediction",
+      "contact_order_prediction",
+      "fold_family_prediction",
+      "physical_execution_plan",
+      "prediction_hash"
+    ],
+    "universal_folding_solution_claim_allowed_by_field_setting": false
+  },
+  "next_required_evidence": [
+    "fresh_nonredundant_blind_targets_covering_all_hard_regime_families",
+    "postseal_coordinate_contact_topology_holdouts_for_selected_targets",
+    "real_or_validated_physical_execution_rows_that_support_selected_and_fail_controls",
+    "external_blind_benchmark_rows_exported_after_sealed_prediction_hashes"
+  ],
+  "protein_folding_solved": false,
+  "protein_folding_solved_by_field_setting": false,
+  "real_fold_holdout_loader_kind": "E79_REAL_FOLD_HOLDOUT_LOADER_v0",
+  "target_fold_evaluator_kind": "E79_TARGET_FOLD_EVALUATOR_v0",
+  "universal_claim_firewall_kind": "E79_UNIVERSAL_CLAIM_FIREWALL_v0",
+  "universal_folding_solution_claim_allowed": false,
+  "universal_folding_solution_claim_allowed_by_field_setting": false
+}

@@ -2515,6 +2515,382 @@ def final_closed_loop_packet(
     }
 
 
+E79_ENGINE_REVISION = "E79_UNIVERSAL_FOLDING_CLAIM_UNLOCK_ENGINE"
+
+E79_UNLOCK_COMPONENTS = [
+    "real_fold_holdout_loader",
+    "fresh_target_resolver",
+    "atomistic_or_validated_physical_executor",
+    "target_fold_evaluator",
+    "family_generalization_evaluator",
+    "universal_claim_firewall",
+    "external_blind_benchmark_export",
+]
+
+E79_HARD_REGIME_FAMILIES = [
+    "membrane",
+    "disorder_ensemble",
+    "multidomain",
+    "metamorphic",
+    "assembly",
+    "cofactor_metal",
+    "repeat",
+    "coiled_coil",
+    "knot_slipknot",
+]
+
+E79_HARD_REGIME_FAMILY_ALIASES = {
+    "assembly_required_core": "assembly",
+    "assembly_required_folding": "assembly",
+    "beta_barrel_membrane": "membrane",
+    "coiled_coil_register": "coiled_coil",
+    "closed_beta_topology": "repeat",
+    "disorder_boundary": "disorder_ensemble",
+    "fold_upon_binding": "disorder_ensemble",
+    "knotted_topology": "knot_slipknot",
+    "knotted_topology_language_evidence_holdout": "knot_slipknot",
+    "ligand_locked_basin": "cofactor_metal",
+    "metal_ligand_basin": "cofactor_metal",
+    "multidomain_allostery": "multidomain",
+    "repeat_solenoid_topology": "repeat",
+    "secretory_disulfide_redox_context": "metamorphic",
+    "signal_peptide_vs_true_tm": "membrane",
+    "soluble_beta_barrel_vs_membrane_barrel": "membrane",
+}
+
+E79_REQUIRED_SEALED_OUTPUTS = [
+    "protein_sentence",
+    "topology_prediction",
+    "contact_order_prediction",
+    "fold_family_prediction",
+    "physical_execution_plan",
+    "prediction_hash",
+]
+
+
+def e79_unlock_engine_manifest() -> dict[str, Any]:
+    return {
+        "kind": "E79_UNIVERSAL_FOLDING_CLAIM_UNLOCK_ENGINE_MANIFEST_v0",
+        "engine_revision": E79_ENGINE_REVISION,
+        "components": E79_UNLOCK_COMPONENTS,
+        "hard_regime_families": E79_HARD_REGIME_FAMILIES,
+        "hard_regime_family_aliases": E79_HARD_REGIME_FAMILY_ALIASES,
+        "required_sealed_outputs": E79_REQUIRED_SEALED_OUTPUTS,
+        "fresh_targets_required_for_universal_claim": True,
+        "deterministic_variants_for_universal_claim_allowed": False,
+        "proxy_physical_execution_for_claim_allowed": False,
+        "coordinate_native_truth_allowed_before_seal": False,
+        "universal_folding_solution_claim_allowed_by_field_setting": False,
+        "protein_folding_solved_by_field_setting": False,
+    }
+
+
+def e79_normalize_hard_regime_family(family: str) -> str:
+    family = str(family)
+    return E79_HARD_REGIME_FAMILY_ALIASES.get(family, family)
+
+
+def fresh_target_resolver(
+    *,
+    required_families: list[str],
+    candidate_targets: list[dict[str, Any]],
+    previously_used_target_ids: Iterable[str] = (),
+) -> dict[str, Any]:
+    previous = {str(target_id) for target_id in previously_used_target_ids}
+    selected: list[dict[str, Any]] = []
+    rejected: list[dict[str, Any]] = []
+    families_seen: set[str] = set()
+    for target in candidate_targets:
+        target_id = str(target.get("target_id", ""))
+        raw_family = str(target.get("family", target.get("hard_regime_family", "")))
+        family = e79_normalize_hard_regime_family(raw_family)
+        reasons = []
+        if not target_id:
+            reasons.append("missing_target_id")
+        if not family:
+            reasons.append("missing_family")
+        if target_id in previous:
+            reasons.append("target_used_before")
+        if not bool(target.get("fresh_blind_target", False)):
+            reasons.append("not_fresh_blind_target")
+        if bool(target.get("deterministic_variant", False)):
+            reasons.append("deterministic_variant_not_allowed")
+        if not bool(target.get("nonredundant", False)):
+            reasons.append("not_nonredundant")
+        if reasons:
+            rejected.append({"target_id": target_id, "family": family, "raw_family": raw_family, "blocked_reasons": reasons})
+            continue
+        selected.append(target)
+        families_seen.add(family)
+    required = set(required_families)
+    missing_families = sorted(required.difference(families_seen))
+    deterministic_variant_count = sum(1 for target in candidate_targets if bool(target.get("deterministic_variant", False)))
+    return {
+        "kind": "E79_FRESH_TARGET_RESOLUTION_v0",
+        "required_families": sorted(required),
+        "required_fresh_target_count": len(required),
+        "candidate_target_count": len(candidate_targets),
+        "fresh_target_count": len(selected),
+        "fresh_target_ids": [str(target.get("target_id")) for target in selected],
+        "fresh_families_represented": sorted(families_seen),
+        "missing_required_families": missing_families,
+        "fresh_target_shortage": bool(missing_families),
+        "deterministic_variant_count": deterministic_variant_count,
+        "deterministic_variants_for_universal_claim_allowed": False,
+        "rejected_targets": rejected,
+    }
+
+
+def real_fold_holdout_loader(*, holdout_rows: list[dict[str, Any]]) -> dict[str, Any]:
+    loaded: dict[str, dict[str, Any]] = {}
+    invalid: list[dict[str, Any]] = []
+    for row in holdout_rows:
+        target_id = str(row.get("target_id", ""))
+        checks = {
+            "target_id_present": bool(target_id),
+            "opened_after_prediction_hash": bool(row.get("opened_after_prediction_hash", False)),
+            "used_before_prediction": not bool(row.get("used_before_prediction", True)),
+            "coordinate_holdout_available": bool(row.get("coordinate_holdout_available", False)),
+            "native_contact_map_available": bool(row.get("native_contact_map_available", False)),
+            "topology_class_available": bool(row.get("topology_class_available", False)),
+            "assembly_state_available": bool(row.get("assembly_state_available", False)),
+            "observable_family_available": bool(row.get("observable_family")),
+            "source_hash_present": bool(row.get("source_hash")),
+        }
+        if all(checks.values()):
+            loaded[target_id] = {**row, "holdout_checks": checks}
+        else:
+            invalid.append({"target_id": target_id, "holdout_checks": checks})
+    return {
+        "kind": "E79_REAL_FOLD_HOLDOUT_LOADER_v0",
+        "holdout_count": len(holdout_rows),
+        "loaded_holdout_count": len(loaded),
+        "loaded_target_ids": sorted(loaded),
+        "holdouts_by_target": loaded,
+        "invalid_holdouts": invalid,
+        "coordinate_native_leakage": any(bool(row.get("used_before_prediction", True)) for row in holdout_rows),
+    }
+
+
+def atomistic_or_validated_physical_executor(*, execution_rows: list[dict[str, Any]]) -> dict[str, Any]:
+    accepted_backends = {
+        "openmm",
+        "gromacs",
+        "validated_coarse_protocol",
+        "equivalent_real_physical_execution",
+    }
+    supported: dict[str, dict[str, Any]] = {}
+    blocked: list[dict[str, Any]] = []
+    for row in execution_rows:
+        target_id = str(row.get("target_id", ""))
+        backend = str(row.get("execution_backend", ""))
+        selected = row.get("selected_sentence_execution", {})
+        wrong = row.get("wrong_sentence_execution", {})
+        bag = row.get("bag_of_words_execution", {})
+        masked = row.get("masked_sentence_execution", {})
+        wrong_target = row.get("wrong_target_observable_execution", {})
+        checks = {
+            "target_id_present": bool(target_id),
+            "backend_is_real_or_validated": backend in accepted_backends,
+            "real_execution_performed": bool(row.get("real_execution_performed", False)),
+            "validated_coarse_or_atomistic": bool(row.get("validated_coarse_or_atomistic", False)),
+            "proxy_physical_execution_not_used": not bool(row.get("proxy_physical_execution", True)),
+            "target_specific_topology_environment": bool(row.get("target_specific_topology_environment", False)),
+            "selected_sentence_supports": bool(selected.get("supports_selected", False)),
+            "wrong_sentence_fails": not bool(wrong.get("supports_selected", True)),
+            "bag_of_words_fails": not bool(bag.get("supports_selected", True)),
+            "masked_sentence_fails": not bool(masked.get("supports_selected", True)),
+            "wrong_target_fails": not bool(wrong_target.get("supports_selected", True)),
+            "native_truth_not_used_before_execution": not bool(row.get("native_truth_used_before_execution", True)),
+        }
+        if all(checks.values()):
+            supported[target_id] = {**row, "execution_checks": checks}
+        else:
+            blocked.append({"target_id": target_id, "execution_backend": backend, "execution_checks": checks})
+    proxy_used_for_claim = any(bool(row.get("proxy_physical_execution", False)) for row in execution_rows)
+    return {
+        "kind": "E79_ATOMISTIC_OR_VALIDATED_PHYSICAL_EXECUTOR_v0",
+        "execution_count": len(execution_rows),
+        "real_or_validated_execution_count": len(supported),
+        "supported_target_ids": sorted(supported),
+        "executions_by_target": supported,
+        "blocked_executions": blocked,
+        "proxy_physical_execution_used_for_claim": proxy_used_for_claim,
+        "unsupported_physical_claims": len(blocked) if execution_rows else 0,
+    }
+
+
+def target_fold_evaluator(
+    *,
+    fresh_resolution: dict[str, Any],
+    sealed_predictions: list[dict[str, Any]],
+    fold_holdouts: dict[str, Any],
+    physical_execution: dict[str, Any],
+) -> dict[str, Any]:
+    predictions = {str(row.get("target_id")): row for row in sealed_predictions}
+    holdouts = fold_holdouts.get("holdouts_by_target", {})
+    executions = physical_execution.get("executions_by_target", {})
+    rows: list[dict[str, Any]] = []
+    for target_id in fresh_resolution.get("fresh_target_ids", []):
+        prediction = predictions.get(target_id, {})
+        holdout = holdouts.get(target_id, {})
+        execution = executions.get(target_id, {})
+        preseal_sources = prediction.get("preseal_allowed_sources", {})
+        controls = {
+            "wrong_grammar_fails": not bool(holdout.get("wrong_grammar_supports", True)),
+            "bag_of_words_fails": not bool(holdout.get("bag_of_words_supports", True)),
+            "masked_sentence_fails": not bool(holdout.get("masked_sentence_supports", True)),
+            "wrong_target_fails": not bool(holdout.get("wrong_target_supports", True)),
+        }
+        checks = {
+            "sealed_prediction_present": bool(prediction),
+            "required_outputs_present": all(key in prediction for key in E79_REQUIRED_SEALED_OUTPUTS),
+            "coordinate_truth_not_used_before_prediction": not bool(preseal_sources.get("coordinate_truth_used_before_prediction", True)),
+            "native_contacts_not_used_before_prediction": not bool(preseal_sources.get("native_contacts_used_before_prediction", True)),
+            "structure_model_not_used_as_prediction_input": not bool(preseal_sources.get("structure_model_used_as_prediction_input", True)),
+            "postseal_fold_holdout_present": bool(holdout),
+            "holdout_supports_selected": bool(holdout.get("supports_selected_prediction", False)),
+            "real_physical_execution_supports_selected": bool(execution),
+            **controls,
+        }
+        allowed = all(checks.values())
+        rows.append({
+            "target_id": target_id,
+            "family": prediction.get("family", holdout.get("observable_family")),
+            "target_fold_claim_allowed": allowed,
+            "target_fold_checks": checks,
+            "claim_tier_unlocked": "CLAIM_5_TARGET_FOLD_SUPPORTED" if allowed else "CLAIM_0_LANGUAGE_ONLY",
+        })
+    unsupported_fold_claims = sum(1 for row in rows if row["claim_tier_unlocked"] == "CLAIM_5_TARGET_FOLD_SUPPORTED" and not row["target_fold_claim_allowed"])
+    return {
+        "kind": "E79_TARGET_FOLD_EVALUATOR_v0",
+        "target_count": len(rows),
+        "rows": rows,
+        "target_fold_claim_count": sum(1 for row in rows if row["target_fold_claim_allowed"]),
+        "unsupported_fold_claims": unsupported_fold_claims,
+        "coordinate_native_leakage": bool(fold_holdouts.get("coordinate_native_leakage", False)),
+    }
+
+
+def family_generalization_evaluator(
+    *,
+    required_families: list[str],
+    target_fold_evaluation: dict[str, Any],
+    sentinels_preserved: bool,
+    failed_accepted_count: int,
+    unsupported_claims: int,
+) -> dict[str, Any]:
+    supported_families = {
+        e79_normalize_hard_regime_family(str(row.get("family")))
+        for row in target_fold_evaluation.get("rows", [])
+        if row.get("target_fold_claim_allowed")
+    }
+    required = set(required_families)
+    missing = sorted(required.difference(supported_families))
+    allowed = (
+        bool(required)
+        and not missing
+        and target_fold_evaluation.get("target_fold_claim_count", 0) > 0
+        and sentinels_preserved
+        and failed_accepted_count == 0
+        and unsupported_claims == 0
+        and not bool(target_fold_evaluation.get("coordinate_native_leakage", True))
+    )
+    return {
+        "kind": "E79_FAMILY_GENERALIZATION_EVALUATOR_v0",
+        "required_families": sorted(required),
+        "supported_families": sorted(supported_families),
+        "missing_families": missing,
+        "all_major_grammar_families_represented": not missing,
+        "sentinels_preserved": sentinels_preserved,
+        "failed_accepted_count": failed_accepted_count,
+        "unsupported_claims": unsupported_claims,
+        "general_solution_candidate_claim_allowed": allowed,
+    }
+
+
+def external_blind_benchmark_export(*, benchmark_rows: list[dict[str, Any]], export_path: str | None) -> dict[str, Any]:
+    passed_rows = [
+        row
+        for row in benchmark_rows
+        if bool(row.get("exported", False))
+        and bool(row.get("sealed_prediction_hash"))
+        and bool(row.get("postseal_holdout_hash"))
+        and bool(row.get("target_fold_claim_allowed", False))
+        and not bool(row.get("coordinate_native_leakage", True))
+    ]
+    return {
+        "kind": "E79_EXTERNAL_BLIND_BENCHMARK_EXPORT_v0",
+        "external_blind_benchmark_exported": bool(export_path),
+        "external_blind_benchmark_export_path": export_path,
+        "benchmark_row_count": len(benchmark_rows),
+        "benchmark_passed_row_count": len(passed_rows),
+        "external_blind_benchmark_passed": bool(benchmark_rows) and len(passed_rows) == len(benchmark_rows),
+    }
+
+
+def e79_universal_claim_firewall(
+    *,
+    fresh_resolution: dict[str, Any],
+    physical_execution: dict[str, Any],
+    target_fold_evaluation: dict[str, Any],
+    family_generalization: dict[str, Any],
+    external_benchmark: dict[str, Any],
+    unresolved_classes: list[str],
+) -> dict[str, Any]:
+    unsupported_physical_claims = int(physical_execution.get("unsupported_physical_claims", 0))
+    unsupported_fold_claims = int(target_fold_evaluation.get("unsupported_fold_claims", 0))
+    target_fold_supported = (
+        target_fold_evaluation.get("target_fold_claim_count", 0) > 0
+        and unsupported_fold_claims == 0
+        and not bool(physical_execution.get("proxy_physical_execution_used_for_claim", True))
+        and physical_execution.get("real_or_validated_execution_count", 0) > 0
+    )
+    claim_6 = bool(family_generalization.get("general_solution_candidate_claim_allowed", False)) and target_fold_supported
+    claim_7 = (
+        claim_6
+        and bool(external_benchmark.get("external_blind_benchmark_passed", False))
+        and not unresolved_classes
+        and not bool(fresh_resolution.get("fresh_target_shortage", True))
+    )
+    blocked_reasons = []
+    if bool(fresh_resolution.get("fresh_target_shortage", True)):
+        blocked_reasons.append("fresh_target_shortage")
+    if bool(physical_execution.get("proxy_physical_execution_used_for_claim", True)):
+        blocked_reasons.append("proxy_physical_execution_used_for_claim")
+    if physical_execution.get("real_or_validated_execution_count", 0) == 0:
+        blocked_reasons.append("no_real_or_validated_physical_execution")
+    if target_fold_evaluation.get("target_fold_claim_count", 0) == 0:
+        blocked_reasons.append("target_fold_claim_count_zero")
+    if unsupported_physical_claims:
+        blocked_reasons.append("unsupported_physical_claims_present")
+    if unsupported_fold_claims:
+        blocked_reasons.append("unsupported_fold_claims_present")
+    if not bool(family_generalization.get("general_solution_candidate_claim_allowed", False)):
+        blocked_reasons.append("family_generalization_not_sufficient")
+    if not bool(external_benchmark.get("external_blind_benchmark_passed", False)):
+        blocked_reasons.append("external_blind_benchmark_not_passed")
+    if unresolved_classes:
+        blocked_reasons.append("unresolved_hard_classes_present")
+    return {
+        "kind": "E79_UNIVERSAL_CLAIM_FIREWALL_v0",
+        "claim_5_target_fold_supported": target_fold_supported,
+        "claim_6_general_solution_candidate": claim_6,
+        "claim_7_universal_protein_folding_solved": claim_7,
+        "general_solution_candidate_claim_allowed": claim_6,
+        "universal_folding_solution_claim_allowed": claim_7,
+        "protein_folding_solved": claim_7,
+        "blocked_reasons": blocked_reasons,
+        "fresh_target_shortage": bool(fresh_resolution.get("fresh_target_shortage", True)),
+        "proxy_physical_execution_used_for_claim": bool(physical_execution.get("proxy_physical_execution_used_for_claim", True)),
+        "target_fold_claim_count": int(target_fold_evaluation.get("target_fold_claim_count", 0)),
+        "unsupported_fold_claims": unsupported_fold_claims,
+        "unsupported_physical_claims": unsupported_physical_claims,
+        "coordinate_native_leakage": bool(target_fold_evaluation.get("coordinate_native_leakage", True)),
+        "external_blind_benchmark_exported": bool(external_benchmark.get("external_blind_benchmark_exported", False)),
+    }
+
+
 def bounded(value: float) -> float:
     return round(max(0.0, min(1.0, float(value))), 6)
 
