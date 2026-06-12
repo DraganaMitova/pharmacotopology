@@ -10,14 +10,14 @@ SRC = ROOT / "src"
 if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
-from pharmacotopology.protein_esperanto_engine import build_sealed_simulation_packet
+from pharmacotopology.protein_esperanto_engine import build_sealed_operator_state_packet
 
 
 MEMBRANE_RICH_SEQUENCE = "M" + ("LLLLIIVVFF" * 12) + "GSGS" + ("AKTQ" * 10)
 
 
 def _packet(statement: str) -> dict[str, object]:
-    return build_sealed_simulation_packet(
+    return build_sealed_operator_state_packet(
         target_id="E63_MEMBRANE_TOPOLOGY_PROBE",
         target_name="E63 topology probe",
         sequence=MEMBRANE_RICH_SEQUENCE,

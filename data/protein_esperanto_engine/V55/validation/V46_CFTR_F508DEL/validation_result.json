@@ -10,21 +10,21 @@
       "check_id": "proteostasis_route_supported",
       "comparator": ">=",
       "metric": "proteostasis_routing",
-      "observed": 0.674414,
-      "passed": true,
+      "observed": 0.363838,
+      "passed": false,
       "threshold": 0.55
     },
     {
       "check_id": "interface_route_supported",
       "comparator": ">=",
       "metric": "interface_readiness",
-      "observed": 0.635,
-      "passed": true,
+      "observed": 0.333909,
+      "passed": false,
       "threshold": 0.55
     }
   ],
   "coordinate_derived_sources_used_before_prediction": 0,
-  "holdout_opened_after_prediction_hash": "82a1fb25082e76d060760845076454bae4360abbe64a436db7602b5ef1ad46ff",
+  "holdout_opened_after_prediction_hash": "a0f90fc60702271c34fe413f93f5a5d68858dda48ec0de9e77f3196b8eff835c",
   "internal_runtime_sources_used_for_prediction": 0,
   "kind": "PROTEIN_ESPERANTO_POST_SEAL_VALIDATION_v0",
   "postseal_sources": [
@@ -36,7 +36,7 @@
       "used_before_prediction": false
     }
   ],
-  "score_label": "supported",
-  "sealed_prediction_hash": "82a1fb25082e76d060760845076454bae4360abbe64a436db7602b5ef1ad46ff",
+  "score_label": "contradicted",
+  "sealed_prediction_hash": "a0f90fc60702271c34fe413f93f5a5d68858dda48ec0de9e77f3196b8eff835c",
   "target_id": "V46_CFTR_F508DEL"
 }

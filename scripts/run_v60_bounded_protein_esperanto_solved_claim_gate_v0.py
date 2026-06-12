@@ -167,7 +167,7 @@ def compute_v60(inputs: dict[str, dict[str, Any]]) -> dict[str, Any]:
         "all_sequence_prediction_solved": False,
         "folding_problem_solved": False,
         "alphafold_replaced": False,
-        "atomistic_md_executed": False,
+        "atomistic_md_performed": False,
         "readme_touched": False,
         "engine_revision_after_v58_required": bool(v59.get("engine_biology_modified")),
         "engine_revision_scope": v59_engine_revision.get("engine_revision_scope", []),

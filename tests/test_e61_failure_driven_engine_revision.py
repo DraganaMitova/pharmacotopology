@@ -8,11 +8,11 @@ SRC = ROOT / "src"
 if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
-from pharmacotopology.protein_esperanto_engine import build_sealed_simulation_packet
+from pharmacotopology.protein_esperanto_engine import build_sealed_operator_state_packet
 
 
 def test_e61_cofactor_context_activates_ligand_stabilization_grammar() -> None:
-    packet = build_sealed_simulation_packet(
+    packet = build_sealed_operator_state_packet(
         target_id="E61_MYOGLOBIN_CONTEXT_PROBE",
         target_name="myoglobin heme context probe",
         sequence="VLSEGEWQLVLHVWAKVEADVAGHGQDILIRLFKSHPETLEKFDRFKHLKTEAEMKASEDLKKHGVTVLTALGAILKKKGHHEAELKPLAQSHATKHKIPIKYLEFISEAIIHVLHSRHPGDFGADAQGAMNKALELFRKDIAAKYKELGYQG",
@@ -37,14 +37,14 @@ def test_e61_cofactor_context_activates_ligand_stabilization_grammar() -> None:
         ],
     )
     assert packet["selected_mechanism_grammar"]["mechanism_class"] == "cofactor_ligand_assisted_stabilization"
-    final = packet["trajectory_summary"]["final_state_summary"]
+    final = packet["operator_state_propagation_summary"]["final_state_summary"]
     assert final["state_basin_occupancy"]["ligand_stabilized_basin"] > final["state_basin_occupancy"]["apo_weak_basin"]
     assert packet["predicted_perturbation_table"][0]["direction_passed"] is True
     assert packet["folding_problem_solved"] is False
 
 
 def test_e61_oligomer_context_activates_assembly_grammar() -> None:
-    packet = build_sealed_simulation_packet(
+    packet = build_sealed_operator_state_packet(
         target_id="E61_HOMOMERIC_CONTEXT_PROBE",
         target_name="homomeric assembly context probe",
         sequence="MKKVVVLGLGLVGLAAGAAADAFKKAGVNVDEVGGEALGRLLVVYPWTQRFFESFGDLSTPDAVMGNPKVKAHGKKVLGAFSDGLAHLDNLKGTFATLSELHCDKLHVDPENFRLLGNVLVCVLAHHFGKEFTPPVQAAYQKVVAGVANALAHKYH",
@@ -69,7 +69,7 @@ def test_e61_oligomer_context_activates_assembly_grammar() -> None:
         ],
     )
     assert packet["selected_mechanism_grammar"]["mechanism_class"] == "oligomerization_controlled_folding"
-    final = packet["trajectory_summary"]["final_state_summary"]
+    final = packet["operator_state_propagation_summary"]["final_state_summary"]
     assert final["state_basin_occupancy"]["assembly_stabilized_basin"] > final["state_basin_occupancy"]["interface_rejected_basin"]
     assert any(row["interaction_type"] == "assembly_stabilized_interface" for row in packet["predicted_contact_interaction_probability_map"])
     assert packet["predicted_perturbation_table"][0]["direction_passed"] is True

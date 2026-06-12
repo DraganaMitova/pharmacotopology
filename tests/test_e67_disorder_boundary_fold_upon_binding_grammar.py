@@ -10,7 +10,7 @@ SRC = ROOT / "src"
 if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
-from pharmacotopology.protein_esperanto_engine import MECHANISM_CLASSES, build_sealed_simulation_packet
+from pharmacotopology.protein_esperanto_engine import MECHANISM_CLASSES, build_sealed_operator_state_packet
 
 
 def _source(source_id: str, statement: str) -> dict[str, object]:
@@ -27,7 +27,7 @@ def _source(source_id: str, statement: str) -> dict[str, object]:
 
 def _packet(statement: str) -> dict[str, object]:
     sequence = "M" + "GSQNPY" * 35 + "KRDE" * 15
-    return build_sealed_simulation_packet(
+    return build_sealed_operator_state_packet(
         target_id="E67_DISORDER_BOUNDARY_TEST",
         target_name="E67 disorder boundary test",
         sequence=sequence,
@@ -58,7 +58,7 @@ def test_e67_disorder_boundary_outranks_generic_oligomer() -> None:
         "assembly_context partner_copy_context low complexity tendency"
     )
     assert packet["selected_mechanism_grammar"]["mechanism_class"] == "disorder_boundary_and_fold_upon_binding"
-    final = packet["trajectory_summary"]["final_state_summary"]
+    final = packet["operator_state_propagation_summary"]["final_state_summary"]
     assert final["IDR_boundary"] > 0
     assert final["phase_prone_low_complexity"] > 0
 

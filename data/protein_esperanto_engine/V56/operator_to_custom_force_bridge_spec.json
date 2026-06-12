@@ -1,5 +1,7 @@
 {
-  "custom_force_mapping_count": 7,
+  "claim_ceiling": "language_or_proxy_only_until_real_execution",
+  "custom_force_mapping_count": 27,
+  "execution_status": "specification_only_no_openmm_execution",
   "fail_condition": "custom forces force the holdout answer or use coordinate truth before sealing",
   "full_atom_md_first_proof": false,
   "kind": "V56_OPERATOR_TO_CUSTOM_FORCE_BRIDGE_SPEC_v0",
@@ -38,8 +40,111 @@
       "custom_force_term": "short motif host-interface bias",
       "guard": "host-interface coordinates remain holdout-only before sealing",
       "operator": "host_hijack_operator"
+    },
+    {
+      "custom_force_term": "coarse cysteine-pair proximity bias for secretory disulfide grammar",
+      "guard": "does not encode native disulfide geometry; only compares biased versus unbiased sealed observables",
+      "operator": "disulfide_pairing_operator"
+    },
+    {
+      "custom_force_term": "secretory redox-state observable bias outside atomistic chemistry",
+      "guard": "redox state is reported as a coarse proxy, not a quantum or force-field disulfide formation claim",
+      "operator": "secretory_redox_operator"
+    },
+    {
+      "custom_force_term": "coarse N-terminal secretory-routing bias for cleavable signal peptide grammar",
+      "guard": "does not encode a native membrane path; compares signal-routing observables against matched TM decoys",
+      "operator": "signal_peptide_routing_operator"
+    },
+    {
+      "custom_force_term": "coarse competing membrane-insertion observable for signal/TM boundary checks",
+      "guard": "true TM insertion remains a falsifier for signal-peptide acceptance, not a hidden label",
+      "operator": "tm_insertion_operator"
+    },
+    {
+      "custom_force_term": "coarse cleavage-context observable for signal peptidase routing",
+      "guard": "cleavage context must come from sealed non-coordinate evidence and matched controls",
+      "operator": "cleavage_context_operator"
+    },
+    {
+      "custom_force_term": "coarse secretory-lumenal routing observable",
+      "guard": "secretory route is a language observable unless independent physical holdouts earn a physical claim",
+      "operator": "secretory_routing_operator"
+    },
+    {
+      "custom_force_term": "coarse heptad/register alignment observable derived from sealed sequence and evidence",
+      "guard": "register bias is compared with heptad-shuffled controls and must not encode native coordinates",
+      "operator": "heptad_register_operator"
+    },
+    {
+      "custom_force_term": "coarse coiled-coil interface observable",
+      "guard": "ordinary helix bundle and generic assembly controls must fail the coiled-coil claim",
+      "operator": "coiled_coil_interface_operator"
+    },
+    {
+      "custom_force_term": "coarse partner-register observable for coiled-coil cores",
+      "guard": "partner-copy context remains sealed non-coordinate evidence",
+      "operator": "oligomeric_register_operator"
+    },
+    {
+      "custom_force_term": "coarse wrong-register conflict observable",
+      "guard": "accepted rows must beat register-shift controls without static observable cutoffs",
+      "operator": "register_shift_frustration_operator"
+    },
+    {
+      "custom_force_term": "coarse repeat-unit phase observable",
+      "guard": "repeat order controls must reduce phase support without native contact leakage",
+      "operator": "repeat_phase_operator"
+    },
+    {
+      "custom_force_term": "coarse solenoid-axis continuity observable",
+      "guard": "generic multidomain and beta controls remain falsifiers",
+      "operator": "solenoid_axis_operator"
+    },
+    {
+      "custom_force_term": "coarse adjacent-repeat closure observable",
+      "guard": "local closure cannot by itself claim a physical fold",
+      "operator": "local_repeat_closure_operator"
+    },
+    {
+      "custom_force_term": "coarse global repeat-stack observable",
+      "guard": "global stack is scored by paired controls, not fixed thresholds",
+      "operator": "global_repeat_stack_operator"
+    },
+    {
+      "custom_force_term": "coarse repeat-boundary conflict observable",
+      "guard": "boundary masking should expose conflict instead of forcing acceptance",
+      "operator": "repeat_boundary_frustration_operator"
+    },
+    {
+      "custom_force_term": "coarse threading-loop observable for knot/slipknot grammar",
+      "guard": "explicit non-coordinate topology context is required; sequence alone cannot validate the knot",
+      "operator": "threading_operator"
+    },
+    {
+      "custom_force_term": "coarse topological-closure observable",
+      "guard": "topology-masked controls must fail before any accepted knot grammar is supported",
+      "operator": "topological_closure_operator"
+    },
+    {
+      "custom_force_term": "coarse long-range threading-dependency observable",
+      "guard": "long-range order shuffles are paired falsifiers",
+      "operator": "long_range_threading_operator"
+    },
+    {
+      "custom_force_term": "coarse slipknot-intermediate observable",
+      "guard": "intermediate support is a language observable, not an atomistic path claim",
+      "operator": "slipknot_intermediate_operator"
+    },
+    {
+      "custom_force_term": "coarse unknotted-decoy/frustration observable",
+      "guard": "accepted knot rows must beat unknotted topology controls and physical claims stay blocked",
+      "operator": "knotting_frustration_operator"
     }
   ],
+  "openmm_executed": false,
   "openmm_execution_required_for_v56": false,
-  "pass_condition": "biased physical simulation improves sealed observables over unbiased baseline without encoding the answer"
+  "pass_condition": "future executed bridge must improve sealed observables over unbiased baseline without encoding the answer",
+  "physical_claim_allowed_from_spec": false,
+  "validated_coarse_execution_executed": false
 }

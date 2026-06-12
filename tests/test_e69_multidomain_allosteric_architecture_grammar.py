@@ -10,7 +10,7 @@ SRC = ROOT / "src"
 if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
-from pharmacotopology.protein_esperanto_engine import MECHANISM_CLASSES, STATE_VARIABLES, build_sealed_simulation_packet
+from pharmacotopology.protein_esperanto_engine import MECHANISM_CLASSES, STATE_VARIABLES, build_sealed_operator_state_packet
 
 
 def _source(statement: str, *, withheld: list[str] | None = None) -> dict[str, object]:
@@ -35,7 +35,7 @@ def _packet(
     sequence: str | None = None,
 ) -> dict[str, object]:
     sequence = sequence or ("VIFYWTERKLGHADP" * 18)[:270]
-    return build_sealed_simulation_packet(
+    return build_sealed_operator_state_packet(
         target_id="E69_MULTIDOMAIN_TEST",
         target_name="E69 multidomain allostery test",
         sequence=sequence,
@@ -76,7 +76,7 @@ def test_e69_adds_multidomain_mechanism_and_state_words() -> None:
 def test_e69_selects_multidomain_allostery_and_outputs_readouts() -> None:
     packet = _packet("multidomain_allostery domain_boundary hinge_region interdomain_lock allosteric_basin_shift domain_reorientation modular_architecture")
     mechanism = packet["selected_mechanism_grammar"]
-    final = packet["trajectory_summary"]["final_state_summary"]
+    final = packet["operator_state_propagation_summary"]["final_state_summary"]
 
     assert mechanism["mechanism_class"] == "multidomain_allosteric_architecture"
     assert mechanism["selected_multidomain_word"] == "allosteric_basin_shift"
@@ -104,7 +104,7 @@ def test_e69_selects_multidomain_allostery_and_outputs_readouts() -> None:
 def test_e69_selects_domain_swapping_subtype() -> None:
     packet = _packet("domain_swapping domain-swapped interdomain_lock modular_architecture")
     mechanism = packet["selected_mechanism_grammar"]
-    final = packet["trajectory_summary"]["final_state_summary"]
+    final = packet["operator_state_propagation_summary"]["final_state_summary"]
 
     assert mechanism["mechanism_class"] == "multidomain_allosteric_architecture"
     assert mechanism["selected_multidomain_word"] == "domain_swapping"
@@ -132,7 +132,7 @@ def test_e69_interdomain_lock_perturbation_decreases_lock() -> None:
 
 def test_e69_complex_word_boundary_preserves_low_complexity_disorder() -> None:
     sequence = "MASASSSQRGRSGSGNFGGGRGGGFGGNDNFGRGGNFSGRGGFGGSRGGGGYGGSGDGYNGFGNDGGYGGGGPGY"
-    packet = build_sealed_simulation_packet(
+    packet = build_sealed_operator_state_packet(
         target_id="E69_LOW_COMPLEXITY_BOUNDARY_TEST",
         target_name="E69 low complexity boundary test",
         sequence=sequence,

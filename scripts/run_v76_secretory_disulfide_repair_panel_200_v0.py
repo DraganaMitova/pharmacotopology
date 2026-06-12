@@ -27,7 +27,7 @@ from pharmacotopology.protein_esperanto_engine import (  # noqa: E402
     MECHANISM_CLASSES,
     STATE_VARIABLES,
     UNIVERSAL_OPERATORS,
-    build_sealed_simulation_packet,
+    build_sealed_operator_state_packet,
     deterministic_random_sequence,
     evidence_boundary_gate,
     shuffled_sequence,
@@ -443,7 +443,7 @@ def _metric_for_expected(expected: str, required_word: str | None) -> str:
 
 
 def _extract_metric(packet: dict[str, Any], metric: str) -> float:
-    return float(packet["trajectory_summary"]["final_state_summary"].get(metric, 0.0))
+    return float(packet["operator_state_propagation_summary"]["final_state_summary"].get(metric, 0.0))
 
 
 def _disulfide_perturbation(target: dict[str, Any]) -> dict[str, Any]:
@@ -490,7 +490,7 @@ def _packet(
     physical_calibration_inputs: dict[str, Any],
     suffix: str = "",
 ) -> dict[str, Any]:
-    return build_sealed_simulation_packet(
+    return build_sealed_operator_state_packet(
         target_id=f"{target['target_id']}{suffix}",
         target_name=target["target_name"],
         sequence=sequence,
@@ -745,7 +745,7 @@ def _packet_summary(packet: dict[str, Any]) -> dict[str, Any]:
         "natural_mechanism_class": mechanism["natural_mechanism_class"],
         "self_decision_judge": packet["self_decision_judge"],
         "operator_names": packet["operator_field"]["operator_names"],
-        "trajectory_final_state_summary": packet["trajectory_summary"]["final_state_summary"],
+        "operator_state_final_state_summary": packet["operator_state_propagation_summary"]["final_state_summary"],
         "predicted_contact_interaction_probability_map": packet["predicted_contact_interaction_probability_map"],
         "folding_problem_solved": False,
     }
@@ -803,7 +803,7 @@ def _control(control_id: str, passed: bool, reason: str, observed: Any = None) -
 def _controls(target_manifest: dict[str, Any], rows: list[dict[str, Any]], physical_calibration_inputs: dict[str, Any]) -> list[dict[str, Any]]:
     coord_gate = evidence_boundary_gate([{"source_id": "V76_BAD_COORD", "source_class": COORDINATE_DERIVED, "source_role": "prediction_input", "coordinate_derived": True}])
     runtime_gate = evidence_boundary_gate([{"source_id": "V76_BAD_RUNTIME", "source_class": INTERNAL_RUNTIME, "source_role": "prediction_input", "internal_runtime": True}])
-    random_packet = build_sealed_simulation_packet(
+    random_packet = build_sealed_operator_state_packet(
         target_id="V76_RANDOM_SEQUENCE_CONTROL",
         target_name="V76 random sequence control",
         sequence=deterministic_random_sequence(128),
@@ -927,7 +927,7 @@ def _certificate(
         "candidate_grammars_remaining": ["coiled_coil_register", "repeat_solenoid_topology", "signal_peptide_vs_true_TM", "knotted_topology"],
         "next_required_batch": "V76P_OPENMM_COARSE_TARGET_EXECUTION_PILOT",
         "coordinate_truth_used_before_seal": False,
-        "atomistic_md_executed": False,
+        "atomistic_md_performed": False,
         "folding_problem_solved": False,
         "claim_allowed": False,
     }

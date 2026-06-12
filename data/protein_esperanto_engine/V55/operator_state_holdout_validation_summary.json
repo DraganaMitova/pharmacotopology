@@ -1,0 +1,224 @@
+{
+  "kind": "V55_OPERATOR_STATE_HOLDOUT_VALIDATION_SUMMARY_v0",
+  "passed": true,
+  "validations": [
+    {
+      "checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "intrinsic_disorder_phase_separation",
+          "observed": "intrinsic_disorder_phase_separation",
+          "passed": true
+        },
+        {
+          "check_id": "phase_prone_dynamic_supported",
+          "comparator": ">=",
+          "metric": "basin:phase_prone_dynamic",
+          "observed": 0.582419,
+          "passed": true,
+          "threshold": 0.25
+        },
+        {
+          "check_id": "compact_single_fold_rejected",
+          "comparator": "<=",
+          "metric": "basin:compact_single_fold",
+          "observed": 0.0,
+          "passed": true,
+          "threshold": 0.12
+        }
+      ],
+      "coordinate_derived_sources_used_before_prediction": 0,
+      "holdout_opened_after_prediction_hash": "818994ad7a9e7c9b399b47e81be560a3743f00f7b35160d1cc5a0d8d3b16903b",
+      "internal_runtime_sources_used_for_prediction": 0,
+      "kind": "PROTEIN_ESPERANTO_POST_SEAL_VALIDATION_v0",
+      "postseal_sources": [
+        {
+          "rationale": "Post-seal operator/state validation summary for coarse trajectory direction.",
+          "source_class": "spatial_proxy_non_coordinate",
+          "source_id": "V44_FUS_LC_POSTSEAL_OPERATOR_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "score_label": "supported",
+      "sealed_prediction_hash": "818994ad7a9e7c9b399b47e81be560a3743f00f7b35160d1cc5a0d8d3b16903b",
+      "target_id": "V44_FUS_LC"
+    },
+    {
+      "checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "intrinsic_disorder_phase_separation",
+          "observed": "intrinsic_disorder_phase_separation",
+          "passed": true
+        },
+        {
+          "check_id": "prion_like_phase_ensemble_supported",
+          "comparator": ">=",
+          "metric": "basin:phase_prone_dynamic",
+          "observed": 0.371623,
+          "passed": true,
+          "threshold": 0.23
+        },
+        {
+          "check_id": "generic_compact_fold_rejected",
+          "comparator": "<=",
+          "metric": "basin:compact_single_fold",
+          "observed": 0.0,
+          "passed": true,
+          "threshold": 0.12
+        }
+      ],
+      "coordinate_derived_sources_used_before_prediction": 0,
+      "holdout_opened_after_prediction_hash": "f6f51254ba8d0c34efe92f58d97293df0327accd0d13180353efdb2a807c9509",
+      "internal_runtime_sources_used_for_prediction": 0,
+      "kind": "PROTEIN_ESPERANTO_POST_SEAL_VALIDATION_v0",
+      "postseal_sources": [
+        {
+          "rationale": "Post-seal operator/state validation summary for coarse trajectory direction.",
+          "source_class": "spatial_proxy_non_coordinate",
+          "source_id": "V45_TDP43_LCD_POSTSEAL_OPERATOR_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "score_label": "supported",
+      "sealed_prediction_hash": "f6f51254ba8d0c34efe92f58d97293df0327accd0d13180353efdb2a807c9509",
+      "target_id": "V45_TDP43_LCD"
+    },
+    {
+      "checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "membrane_multidomain_folding_proteostasis",
+          "observed": "membrane_multidomain_folding_proteostasis",
+          "passed": true
+        },
+        {
+          "check_id": "proteostasis_route_supported",
+          "comparator": ">=",
+          "metric": "proteostasis_routing",
+          "observed": 0.363838,
+          "passed": false,
+          "threshold": 0.55
+        },
+        {
+          "check_id": "interface_route_supported",
+          "comparator": ">=",
+          "metric": "interface_readiness",
+          "observed": 0.333909,
+          "passed": false,
+          "threshold": 0.55
+        }
+      ],
+      "coordinate_derived_sources_used_before_prediction": 0,
+      "holdout_opened_after_prediction_hash": "a0f90fc60702271c34fe413f93f5a5d68858dda48ec0de9e77f3196b8eff835c",
+      "internal_runtime_sources_used_for_prediction": 0,
+      "kind": "PROTEIN_ESPERANTO_POST_SEAL_VALIDATION_v0",
+      "postseal_sources": [
+        {
+          "rationale": "Post-seal operator/state validation summary for coarse trajectory direction.",
+          "source_class": "spatial_proxy_non_coordinate",
+          "source_id": "V46_CFTR_F508DEL_POSTSEAL_OPERATOR_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "a0f90fc60702271c34fe413f93f5a5d68858dda48ec0de9e77f3196b8eff835c",
+      "target_id": "V46_CFTR_F508DEL"
+    },
+    {
+      "checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "metamorphic_fold_switching",
+          "observed": "metamorphic_fold_switching",
+          "passed": true
+        },
+        {
+          "check_id": "alpha_basin_present",
+          "comparator": ">=",
+          "metric": "basin:alpha_context_basin",
+          "observed": 0.054797,
+          "passed": false,
+          "threshold": 0.3
+        },
+        {
+          "check_id": "beta_basin_present",
+          "comparator": ">=",
+          "metric": "basin:beta_released_basin",
+          "observed": 0.263084,
+          "passed": false,
+          "threshold": 0.3
+        },
+        {
+          "check_id": "averaged_fold_rejected",
+          "comparator": "<=",
+          "metric": "basin:averaged_single_fold",
+          "observed": 0.606175,
+          "passed": false,
+          "threshold": 0.15
+        }
+      ],
+      "coordinate_derived_sources_used_before_prediction": 0,
+      "holdout_opened_after_prediction_hash": "f8cabaa3a7c237b486129d7834f75ebad9a3f4689aa0784b18639ce22cec5137",
+      "internal_runtime_sources_used_for_prediction": 0,
+      "kind": "PROTEIN_ESPERANTO_POST_SEAL_VALIDATION_v0",
+      "postseal_sources": [
+        {
+          "rationale": "Post-seal operator/state validation summary for coarse trajectory direction.",
+          "source_class": "spatial_proxy_non_coordinate",
+          "source_id": "V47_RFAH_CTD_POSTSEAL_OPERATOR_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "f8cabaa3a7c237b486129d7834f75ebad9a3f4689aa0784b18639ce22cec5137",
+      "target_id": "V47_RFAH_CTD"
+    },
+    {
+      "checks": [
+        {
+          "check_id": "mechanism_class_matches_holdout",
+          "expected": "short_region_host_interface_hijacking",
+          "observed": "short_region_host_interface_hijacking",
+          "passed": true
+        },
+        {
+          "check_id": "host_interface_dominant",
+          "comparator": ">=",
+          "metric": "basin:host_interface_engaged",
+          "observed": 0.194225,
+          "passed": false,
+          "threshold": 0.6
+        },
+        {
+          "check_id": "compact_globular_shortcut_rejected",
+          "comparator": "<=",
+          "metric": "basin:compact_single_fold",
+          "observed": 0.0,
+          "passed": true,
+          "threshold": 0.1
+        }
+      ],
+      "coordinate_derived_sources_used_before_prediction": 0,
+      "holdout_opened_after_prediction_hash": "c0e6224623efb143c6493ed97a85ae5f6f6d95c0a5ea55d7d8eaab82e589adcc",
+      "internal_runtime_sources_used_for_prediction": 0,
+      "kind": "PROTEIN_ESPERANTO_POST_SEAL_VALIDATION_v0",
+      "postseal_sources": [
+        {
+          "rationale": "Post-seal operator/state validation summary for coarse trajectory direction.",
+          "source_class": "spatial_proxy_non_coordinate",
+          "source_id": "V48_SARS2_ORF6_POSTSEAL_OPERATOR_HOLDOUT",
+          "source_role": "holdout_validation",
+          "used_before_prediction": false
+        }
+      ],
+      "score_label": "contradicted",
+      "sealed_prediction_hash": "c0e6224623efb143c6493ed97a85ae5f6f6d95c0a5ea55d7d8eaab82e589adcc",
+      "target_id": "V48_SARS2_ORF6"
+    }
+  ]
+}

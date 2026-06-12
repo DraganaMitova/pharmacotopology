@@ -38,7 +38,7 @@ from pharmacotopology.protein_esperanto_engine import (  # noqa: E402
     INTERNAL_RUNTIME,
     MECHANISM_CLASSES,
     UNIVERSAL_OPERATORS,
-    build_sealed_simulation_packet,
+    build_sealed_operator_state_packet,
     deterministic_random_sequence,
     evidence_boundary_gate,
     stable_hash,
@@ -451,7 +451,7 @@ def _packet_summary(packet: dict[str, Any]) -> dict[str, Any]:
         "evidence_manifest": packet["evidence_manifest"],
         "operator_names": packet["operator_field"]["operator_names"],
         "active_operator_count": packet["operator_field"]["active_operator_count"],
-        "trajectory_final_state_summary": packet["trajectory_summary"]["final_state_summary"],
+        "operator_state_final_state_summary": packet["operator_state_propagation_summary"]["final_state_summary"],
         "folding_problem_solved": packet["folding_problem_solved"],
     }
 
@@ -859,7 +859,7 @@ def _controls(
         "source_role": "prediction_input",
         "internal_runtime": True,
     }])
-    random_packet = build_sealed_simulation_packet(
+    random_packet = build_sealed_operator_state_packet(
         target_id="V66_RANDOM_SEQUENCE_CONTROL",
         target_name="V66 random sequence control",
         sequence=deterministic_random_sequence(128),
@@ -934,7 +934,7 @@ def _aggregate_certificate(
         "coordinate_truth_used_before_seal": False,
         "contact_truth_used_before_seal": False,
         "alphafold_used_before_seal": False,
-        "atomistic_md_executed": False,
+        "atomistic_md_performed": False,
         "folding_problem_solved": False,
         "claim_allowed": False,
         "claim_blocked_reason": "V66 is an adaptive 200-target repair replay; broad claims require new 200-target discovery shards and specialist panels.",
@@ -1029,7 +1029,7 @@ def run_v66(out_dir: Path = DEFAULT_OUT_DIR) -> dict[str, Path]:
     for target in targets:
         source_manifest = _source_manifest_from_v65_target(target) if target["source_family"] == "V65" else _source_manifest_from_v64_target(target)
         expected = target["expected_mechanism_class"]
-        packet = build_sealed_simulation_packet(
+        packet = build_sealed_operator_state_packet(
             target_id=target["target_id"],
             target_name=f"{target['entry_id']} {target['protein_id']}",
             sequence=source_manifest["sequence"],

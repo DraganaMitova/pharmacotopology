@@ -38,7 +38,7 @@ from pharmacotopology.protein_esperanto_engine import (  # noqa: E402
     INTERNAL_RUNTIME,
     MECHANISM_CLASSES,
     UNIVERSAL_OPERATORS,
-    build_sealed_simulation_packet,
+    build_sealed_operator_state_packet,
     deterministic_random_sequence,
     evidence_boundary_gate,
     sequence_operator_coherence,
@@ -559,7 +559,7 @@ def _packet_summary(packet: dict[str, Any]) -> dict[str, Any]:
         "evidence_manifest": packet["evidence_manifest"],
         "operator_names": packet["operator_field"]["operator_names"],
         "active_operator_count": packet["operator_field"]["active_operator_count"],
-        "trajectory_final_state_summary": packet["trajectory_summary"]["final_state_summary"],
+        "operator_state_final_state_summary": packet["operator_state_propagation_summary"]["final_state_summary"],
         "folding_problem_solved": packet["folding_problem_solved"],
     }
 
@@ -1066,7 +1066,7 @@ def _controls(
         "source_role": "prediction_input",
         "internal_runtime": True,
     }])
-    random_packet = build_sealed_simulation_packet(
+    random_packet = build_sealed_operator_state_packet(
         target_id="V67_RANDOM_SEQUENCE_CONTROL",
         target_name="V67 random sequence control",
         sequence=deterministic_random_sequence(128),
@@ -1187,7 +1187,7 @@ def _aggregate_certificate(
         "coordinate_truth_used_before_seal": False,
         "contact_truth_used_before_seal": False,
         "alphafold_used_before_seal": False,
-        "atomistic_md_executed": False,
+        "atomistic_md_performed": False,
         "folding_problem_solved": False,
         "claim_allowed": False,
         "claim_blocked_reason": "V67 is a mixed fast discovery shard for E65 mining, not a solved-folding claim.",
@@ -1287,7 +1287,7 @@ def run_v67(out_dir: Path = DEFAULT_OUT_DIR) -> dict[str, Path]:
 
     for target in targets:
         source_manifest = _source_manifest(target)
-        packet = build_sealed_simulation_packet(
+        packet = build_sealed_operator_state_packet(
             target_id=target["target_id"],
             target_name=target["target_name"],
             sequence=target["sequence"],
@@ -1297,7 +1297,7 @@ def run_v67(out_dir: Path = DEFAULT_OUT_DIR) -> dict[str, Path]:
         )
         holdout = _holdout(target, packet)
         score = _score(packet, holdout, target)
-        shuffled_packet = build_sealed_simulation_packet(
+        shuffled_packet = build_sealed_operator_state_packet(
             target_id=f"{target['target_id']}_SHUFFLED_CONTROL",
             target_name=f"{target['entry_id']} shuffled sequence control",
             sequence=shuffled_sequence(target["sequence"]),

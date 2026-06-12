@@ -10,7 +10,7 @@ SRC = ROOT / "src"
 if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
-from pharmacotopology.protein_esperanto_engine import MECHANISM_CLASSES, build_sealed_simulation_packet
+from pharmacotopology.protein_esperanto_engine import MECHANISM_CLASSES, build_sealed_operator_state_packet
 
 
 SEQUENCE = "ACDEFGHIKLMNPQRSTVWY" * 8
@@ -18,7 +18,7 @@ MEMBRANE_SEQUENCE = "M" + ("LLLLIIVVFF" * 12) + "GSGS" + ("AKTQ" * 10)
 
 
 def _packet(statement: str, sequence: str = SEQUENCE) -> dict[str, object]:
-    return build_sealed_simulation_packet(
+    return build_sealed_operator_state_packet(
         target_id="E66_METAL_PROBE",
         target_name="E66 metal probe",
         sequence=sequence,
@@ -46,10 +46,10 @@ def test_e66_adds_metal_ligand_locked_basin_class() -> None:
 def test_e66_routes_metal_and_ligand_locked_evidence_to_new_class() -> None:
     metal = _packet("cofactor_context ligand_context metal_context heme_context metal_cluster_geometry")
     assert metal["selected_mechanism_grammar"]["mechanism_class"] == "metal_cluster_and_ligand_locked_basin"
-    assert metal["trajectory_summary"]["final_state_summary"]["metal_cluster_geometry"] > 0.0
+    assert metal["operator_state_propagation_summary"]["final_state_summary"]["metal_cluster_geometry"] > 0.0
     ligand = _packet("cofactor_context ligand_context ligand_locked_basin apo_holo_basin_shift")
     assert ligand["selected_mechanism_grammar"]["mechanism_class"] == "metal_cluster_and_ligand_locked_basin"
-    assert ligand["trajectory_summary"]["final_state_summary"]["ligand_locked_basin"] > 0.0
+    assert ligand["operator_state_propagation_summary"]["final_state_summary"]["ligand_locked_basin"] > 0.0
 
 
 def test_e66_keeps_generic_cofactor_generic() -> None:

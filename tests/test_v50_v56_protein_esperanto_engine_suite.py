@@ -24,14 +24,14 @@ def test_v50_v56_suite_passes_and_writes_certificate() -> None:
     assert cert["status"] == "V50_TO_V56_PROTEIN_ESPERANTO_ENGINE_FAILED"
     assert cert["v50_grammar_extraction_passed"] is True
     assert cert["v51_engine_contract_frozen"] is True
-    assert cert["v52_coarse_simulator_mvp_passed"] is True
+    assert cert["v52_operator_state_propagation_mvp_passed"] is True
     assert cert["v53_hard_class_battery_passed"] is False
     assert cert["v54_perturbation_engine_passed"] is True
     assert cert["v55_postseal_validation_passed"] is True
     assert cert["v56_openmm_bridge_spec_passed"] is True
     assert cert["passed_control_count"] < cert["control_count"]
     assert cert["folding_problem_solved"] is False
-    assert cert["atomistic_md_executed"] is False
+    assert cert["atomistic_md_performed"] is False
     assert paths["report"].exists()
 
 
@@ -109,7 +109,7 @@ def test_evidence_boundary_blocks_leakage_and_requires_spatial_proxy_tags() -> N
 def test_sequence_field_contract_contains_v51_state_vector_marks() -> None:
     runner = _load(RUNNER, "v50_v56_runner_sequence_field")
     profile = runner.load_target_profile("V48_SARS2_ORF6")
-    packet = runner.build_sealed_simulation_packet(
+    packet = runner.build_sealed_operator_state_packet(
         target_id=profile["target_id"],
         target_name=profile["target_name"],
         sequence=profile["sequence"],

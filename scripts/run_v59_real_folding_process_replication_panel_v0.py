@@ -28,7 +28,7 @@ from pharmacotopology.protein_esperanto_engine import (  # noqa: E402
     INTERNAL_RUNTIME,
     MECHANISM_CLASSES,
     UNIVERSAL_OPERATORS,
-    build_sealed_simulation_packet,
+    build_sealed_operator_state_packet,
     build_sequence_field,
     deterministic_random_sequence,
     evidence_boundary_gate,
@@ -555,12 +555,12 @@ def _process_prediction_packet(target: dict[str, Any], sealed_packet: dict[str, 
         "engine_packet_hash": sealed_packet["prediction_hash"],
         "engine_selected_mechanism_grammar": sealed_packet["selected_mechanism_grammar"],
         "engine_operator_field": sealed_packet["operator_field"],
-        "engine_trajectory_final_state": sealed_packet["trajectory_summary"]["final_state_summary"],
+        "engine_operator_state_final_state": sealed_packet["operator_state_propagation_summary"]["final_state_summary"],
         "process_prediction": process_prediction,
         "sealed_before_process_holdout": True,
         "folding_problem_solved": False,
         "universal_folding_solved": False,
-        "atomistic_md_executed": False,
+        "atomistic_md_performed": False,
         "coordinate_truth_used_before_seal": False,
         "alphafold_used_before_seal": False,
     }
@@ -698,7 +698,7 @@ def _controls(
         "source_role": "prediction_input",
         "internal_runtime": True,
     }])
-    random_packet = build_sealed_simulation_packet(
+    random_packet = build_sealed_operator_state_packet(
         target_id="V59_RANDOM_SEQUENCE_CONTROL",
         target_name="V59 random sequence control",
         sequence=deterministic_random_sequence(96),
@@ -794,7 +794,7 @@ def _aggregate_certificate(
         "engine_biology_modified": engine_declaration["engine_biology_modified"],
         "folding_problem_solved": False,
         "universal_folding_solved": False,
-        "atomistic_md_executed": False,
+        "atomistic_md_performed": False,
         "coordinate_truth_used_before_seal": False,
         "alphafold_used_before_seal": False,
         "readme_touched": False,
@@ -873,7 +873,7 @@ def run_v59(out_dir: Path = DEFAULT_OUT_DIR) -> dict[str, Path]:
     for target in PROCESS_PANEL_TARGETS:
         source_manifest = _source_manifest(target)
         sources = source_manifest["prediction_sources"]
-        engine_packet = build_sealed_simulation_packet(
+        engine_packet = build_sealed_operator_state_packet(
             target_id=target["target_id"],
             target_name=target["target_name"],
             sequence=target["sequence"],
@@ -889,7 +889,7 @@ def run_v59(out_dir: Path = DEFAULT_OUT_DIR) -> dict[str, Path]:
         scoring_rows.append(score)
 
         wrong_grammar = "intrinsic_disorder_phase_separation" if engine_packet["selected_mechanism_grammar"]["mechanism_class"] == "globular_closure" else "globular_closure"
-        wrong_packet = build_sealed_simulation_packet(
+        wrong_packet = build_sealed_operator_state_packet(
             target_id=f"{target['target_id']}_WRONG_GRAMMAR_CONTROL",
             target_name=f"{target['target_name']} wrong grammar control",
             sequence=target["sequence"],
@@ -897,7 +897,7 @@ def run_v59(out_dir: Path = DEFAULT_OUT_DIR) -> dict[str, Path]:
             perturbations=[],
             forced_grammar=wrong_grammar,
         )
-        shuffled_packet = build_sealed_simulation_packet(
+        shuffled_packet = build_sealed_operator_state_packet(
             target_id=f"{target['target_id']}_SHUFFLED_CONTROL",
             target_name=f"{target['target_name']} shuffled control",
             sequence=shuffled_sequence(target["sequence"]),

@@ -15,7 +15,7 @@ from pharmacotopology.protein_esperanto_engine import (  # noqa: E402
     SELF_DECISION_CANDIDATE_GRAMMARS,
     STATE_VARIABLES,
     UNIVERSAL_OPERATORS,
-    build_sealed_simulation_packet,
+    build_sealed_operator_state_packet,
 )
 
 
@@ -33,7 +33,7 @@ def _source(statement: str) -> dict[str, object]:
 
 
 def _packet(statement: str, sequence: str) -> dict[str, object]:
-    return build_sealed_simulation_packet(
+    return build_sealed_operator_state_packet(
         target_id="E72_ALL_WORDS_TEST",
         target_name="E72 all remaining words test",
         sequence=sequence,

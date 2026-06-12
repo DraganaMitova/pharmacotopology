@@ -10,7 +10,7 @@
       "check_id": "phase_prone_dynamic_supported",
       "comparator": ">=",
       "metric": "basin:phase_prone_dynamic",
-      "observed": 0.58,
+      "observed": 0.582419,
       "passed": true,
       "threshold": 0.25
     },
@@ -18,13 +18,13 @@
       "check_id": "compact_single_fold_rejected",
       "comparator": "<=",
       "metric": "basin:compact_single_fold",
-      "observed": 0.04,
+      "observed": 0.0,
       "passed": true,
       "threshold": 0.12
     }
   ],
   "coordinate_derived_sources_used_before_prediction": 0,
-  "holdout_opened_after_prediction_hash": "3e7f295b16a604f51fd11d05da6a9f70b5cea234863367a6e7d33870fda11a81",
+  "holdout_opened_after_prediction_hash": "818994ad7a9e7c9b399b47e81be560a3743f00f7b35160d1cc5a0d8d3b16903b",
   "internal_runtime_sources_used_for_prediction": 0,
   "kind": "PROTEIN_ESPERANTO_POST_SEAL_VALIDATION_v0",
   "postseal_sources": [
@@ -37,6 +37,6 @@
     }
   ],
   "score_label": "supported",
-  "sealed_prediction_hash": "3e7f295b16a604f51fd11d05da6a9f70b5cea234863367a6e7d33870fda11a81",
+  "sealed_prediction_hash": "818994ad7a9e7c9b399b47e81be560a3743f00f7b35160d1cc5a0d8d3b16903b",
   "target_id": "V44_FUS_LC"
 }

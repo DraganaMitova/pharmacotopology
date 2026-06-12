@@ -28,7 +28,7 @@ from pharmacotopology.protein_esperanto_engine import (  # noqa: E402
     INTERNAL_RUNTIME,
     MECHANISM_CLASSES,
     UNIVERSAL_OPERATORS,
-    build_sealed_simulation_packet,
+    build_sealed_operator_state_packet,
     build_sequence_field,
     deterministic_random_sequence,
     evidence_boundary_gate,
@@ -544,7 +544,7 @@ def _controls(
         "source_role": "prediction_input",
         "internal_runtime": True,
     }])
-    random_packet = build_sealed_simulation_packet(
+    random_packet = build_sealed_operator_state_packet(
         target_id="V58_RANDOM_SEQUENCE_CONTROL",
         target_name="V58 random sequence control",
         sequence=deterministic_random_sequence(128),
@@ -657,7 +657,7 @@ def _aggregate_certificate(
         "engine_modified_after_target_selection": False,
         "coordinate_truth_used_before_seal": False,
         "alphafold_used_before_seal": False,
-        "atomistic_md_executed": False,
+        "atomistic_md_performed": False,
         "folding_problem_solved": False,
         "readme_touched": False,
         "claim_allowed": status in {PASSED, PARTIAL},
@@ -734,7 +734,7 @@ def run_v58(out_dir: Path = DEFAULT_OUT_DIR, *, refresh_intake: bool = False) ->
         ]:
             source_manifest = _source_manifest(candidate, mode=mode)
             _write_json(DATA_ROOT / "source_manifests" / mode / source_manifest["target_id"] / "source_manifest.json", source_manifest)
-            packet = build_sealed_simulation_packet(
+            packet = build_sealed_operator_state_packet(
                 target_id=source_manifest["target_id"],
                 target_name=f"{candidate['entry_id']} {candidate['entity_description']}",
                 sequence=candidate["sequence"],
@@ -750,7 +750,7 @@ def run_v58(out_dir: Path = DEFAULT_OUT_DIR, *, refresh_intake: bool = False) ->
             scoring_out.append(scoring)
             _write_json(DATA_ROOT / "validation" / mode / packet["target_id"] / "validation_result.json", scoring)
         annotation_manifest = _source_manifest(candidate, mode="sequence_plus_annotation")
-        wrong_packet = build_sealed_simulation_packet(
+        wrong_packet = build_sealed_operator_state_packet(
             target_id=f"V58_{candidate['target_id']}_WRONG_GRAMMAR_CONTROL",
             target_name=f"{candidate['entry_id']} forced wrong grammar",
             sequence=candidate["sequence"],
@@ -761,7 +761,7 @@ def run_v58(out_dir: Path = DEFAULT_OUT_DIR, *, refresh_intake: bool = False) ->
         )
         wrong_packets.append(wrong_packet)
         _write_json(DATA_ROOT / "wrong_grammar_controls" / wrong_packet["target_id"] / "wrong_grammar_packet.json", wrong_packet)
-        shuffled_packet = build_sealed_simulation_packet(
+        shuffled_packet = build_sealed_operator_state_packet(
             target_id=f"V58_{candidate['target_id']}_SHUFFLED_CONTROL",
             target_name=f"{candidate['entry_id']} shuffled sequence control",
             sequence=shuffled_sequence(candidate["sequence"]),

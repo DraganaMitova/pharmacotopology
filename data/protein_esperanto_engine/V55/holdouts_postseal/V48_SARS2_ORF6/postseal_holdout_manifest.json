@@ -14,7 +14,7 @@
       "threshold": 0.1
     }
   ],
-  "holdout_opened_after_prediction_hash": "ebc9834a2ba6ffedcd911f2e9e68703ee8b37836b5cf06ef0c72efd3896c3cea",
+  "holdout_opened_after_prediction_hash": "c0e6224623efb143c6493ed97a85ae5f6f6d95c0a5ea55d7d8eaab82e589adcc",
   "kind": "V55_SIMULATION_HOLDOUT_VALIDATION_MANIFEST_v0",
   "postseal_sources": [
     {

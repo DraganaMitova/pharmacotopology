@@ -20,7 +20,7 @@ if str(SRC_ROOT) not in sys.path:
 from pharmacotopology.protein_esperanto_engine import (  # noqa: E402
     COORDINATE_DERIVED,
     INTERNAL_RUNTIME,
-    build_sealed_simulation_packet,
+    build_sealed_operator_state_packet,
     deterministic_random_sequence,
     evidence_boundary_gate,
     language_acquisition_observation_from_packet,
@@ -218,7 +218,7 @@ def _source_manifest(target: dict[str, Any], *, masked: bool = False) -> dict[st
 
 
 def _packet(target: dict[str, Any], sources: list[dict[str, Any]]) -> dict[str, Any]:
-    return build_sealed_simulation_packet(
+    return build_sealed_operator_state_packet(
         target_id=target["target_id"],
         target_name=target["target_name"],
         sequence=target["sequence"],
@@ -236,7 +236,7 @@ def _support_metric(packet: dict[str, Any]) -> str:
 
 
 def _metric(packet: dict[str, Any], metric: str) -> float:
-    return float(packet["trajectory_summary"]["final_state_summary"].get(metric, 0.0))
+    return float(packet["operator_state_propagation_summary"]["final_state_summary"].get(metric, 0.0))
 
 
 def _matched_control_dominance(target: dict[str, Any], packet: dict[str, Any]) -> dict[str, Any]:
@@ -319,7 +319,7 @@ def _packet_summary(packet: dict[str, Any]) -> dict[str, Any]:
         "selected_mechanism_class": packet["selected_mechanism_grammar"]["mechanism_class"],
         "acceptance_decision": packet["self_decision_judge"]["acceptance_decision"],
         "final_self_decision": packet["self_decision_judge"]["final_self_decision"],
-        "trajectory_final_state_summary": packet["trajectory_summary"]["final_state_summary"],
+        "operator_state_final_state_summary": packet["operator_state_propagation_summary"]["final_state_summary"],
         "predicted_contact_interaction_probability_map": packet["predicted_contact_interaction_probability_map"],
         "hypothesized_interaction_language_map": packet["hypothesized_interaction_language_map"],
         "coordinate_truth_used_before_prediction": packet["coordinate_truth_used_before_prediction"],
@@ -329,7 +329,7 @@ def _packet_summary(packet: dict[str, Any]) -> dict[str, Any]:
 
 
 def _withheld_context_leakage_probe() -> dict[str, Any]:
-    packet = build_sealed_simulation_packet(
+    packet = build_sealed_operator_state_packet(
         target_id="V79_WITHHELD_CONTEXT_LEAKAGE_PROBE",
         target_name="V79 withheld context leakage probe",
         sequence="LEKLAAL" * 20,
@@ -375,7 +375,7 @@ def _sentinel_specs() -> list[tuple[str, str, str]]:
 def _sentinel_replay() -> dict[str, Any]:
     rows = []
     for expected, statement, sequence in _sentinel_specs():
-        packet = build_sealed_simulation_packet(
+        packet = build_sealed_operator_state_packet(
             target_id=f"V79_SENTINEL_{expected}",
             target_name=f"V79 sentinel {expected}",
             sequence=sequence,

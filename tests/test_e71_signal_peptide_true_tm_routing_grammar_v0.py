@@ -16,7 +16,7 @@ from pharmacotopology.protein_esperanto_engine import (  # noqa: E402
     SELF_DECISION_CANDIDATE_GRAMMARS,
     STATE_VARIABLES,
     UNIVERSAL_OPERATORS,
-    build_sealed_simulation_packet,
+    build_sealed_operator_state_packet,
 )
 
 
@@ -37,7 +37,7 @@ def _source(statement: str) -> dict[str, object]:
 
 
 def _packet(statement: str, *, sequence: str = SIGNAL_SEQUENCE, perturbations: list[dict[str, object]] | None = None) -> dict[str, object]:
-    return build_sealed_simulation_packet(
+    return build_sealed_operator_state_packet(
         target_id="E71_SIGNAL_TM_TEST",
         target_name="E71 signal peptide / true TM test",
         sequence=sequence,
@@ -112,7 +112,7 @@ def test_e71_accepts_signal_peptide_only_when_views_and_controls_bind() -> None:
     )
     mechanism = packet["selected_mechanism_grammar"]
     judge = packet["self_decision_judge"]
-    final = packet["trajectory_summary"]["final_state_summary"]
+    final = packet["operator_state_propagation_summary"]["final_state_summary"]
 
     assert mechanism["mechanism_class"] == "signal_peptide_vs_true_tm_routing"
     assert mechanism["selected_signal_peptide_word"] == "signal_peptide_vs_true_TM"

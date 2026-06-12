@@ -26,7 +26,7 @@ from pharmacotopology.protein_esperanto_engine import (  # noqa: E402
     INTERNAL_RUNTIME,
     MECHANISM_CLASSES,
     UNIVERSAL_OPERATORS,
-    build_sealed_simulation_packet,
+    build_sealed_operator_state_packet,
     deterministic_random_sequence,
     evidence_boundary_gate,
     sequence_operator_coherence,
@@ -157,9 +157,9 @@ def _reset_generated_outputs(out_dir: Path) -> None:
             path.unlink()
     if out_dir.exists():
         shutil.rmtree(out_dir)
-    legacy_out_dir = RUN_ROOT / "V75_E69_MULTIDOMAIN_REPAIR_AND_ZERO_FAILED_ACCEPT_FIREWALL"
-    if legacy_out_dir.exists():
-        shutil.rmtree(legacy_out_dir)
+    previous_out_dir = RUN_ROOT / "V75_E69_MULTIDOMAIN_REPAIR_AND_ZERO_FAILED_ACCEPT_FIREWALL"
+    if previous_out_dir.exists():
+        shutil.rmtree(previous_out_dir)
 
 
 def _candidate_from_manifest_row(row: dict[str, Any]) -> dict[str, Any]:
@@ -583,7 +583,7 @@ def _perturbations_for_target(target: dict[str, Any]) -> list[dict[str, Any]]:
 def _required_word_supported(required_word: str | None, packet: dict[str, Any]) -> bool:
     if not required_word:
         return True
-    final = packet["trajectory_summary"]["final_state_summary"]
+    final = packet["operator_state_propagation_summary"]["final_state_summary"]
     mechanism = packet["selected_mechanism_grammar"]["mechanism_class"]
     if required_word in {"disulfide_secretory_redox_context", "coiled_coil_register", "repeat_solenoid_topology"}:
         return False
@@ -685,7 +685,7 @@ def _packet_summary(packet: dict[str, Any]) -> dict[str, Any]:
         "acceptance_view": packet["acceptance_firewall"],
         "operator_names": packet["operator_field"]["operator_names"],
         "active_operator_count": packet["operator_field"]["active_operator_count"],
-        "trajectory_final_state_summary": packet["trajectory_summary"]["final_state_summary"],
+        "operator_state_final_state_summary": packet["operator_state_propagation_summary"]["final_state_summary"],
         "folding_problem_solved": packet["folding_problem_solved"],
     }
 
@@ -841,7 +841,7 @@ def _controls(
 ) -> list[dict[str, Any]]:
     coord_gate = evidence_boundary_gate([{"source_id": "V75_BAD_COORDINATES", "source_class": COORDINATE_DERIVED, "source_role": "prediction_input", "coordinate_derived": True}])
     runtime_gate = evidence_boundary_gate([{"source_id": "V75_BAD_INTERNAL_RUNTIME", "source_class": INTERNAL_RUNTIME, "source_role": "prediction_input", "internal_runtime": True}])
-    random_packet = build_sealed_simulation_packet(
+    random_packet = build_sealed_operator_state_packet(
         target_id="V75_RANDOM_SEQUENCE_CONTROL",
         target_name="V75 random sequence control",
         sequence=deterministic_random_sequence(128),
@@ -849,7 +849,7 @@ def _controls(
         perturbations=[],
         physical_calibration_inputs=physical_calibration_inputs,
     )
-    unknown_packet = build_sealed_simulation_packet(
+    unknown_packet = build_sealed_operator_state_packet(
         target_id="V75_CORTEX_UNKNOWN_WORD_CONTROL",
         target_name="V75 self-decision unknown word control",
         sequence=("CGPC" * 50),
@@ -1005,7 +1005,7 @@ def _aggregate_certificate(
         "failed_accepted_by_failure_mode": failure_report["failed_accepted_by_failure_mode"],
         "dashboard": dashboard["shards"],
         "coordinate_truth_used_before_seal": False,
-        "atomistic_md_executed": False,
+        "atomistic_md_performed": False,
         "folding_problem_solved": False,
         "claim_allowed": False,
         "claim_blocked_reason": "V75 is a self-decision cortex batch; zero failed accepted is required but not a solved-folding claim.",
@@ -1102,7 +1102,7 @@ def run_v75(out_dir: Path = DEFAULT_OUT_DIR) -> dict[str, Path]:
     scoring_rows: list[dict[str, Any]] = []
     for target in targets:
         source_manifest = _source_manifest(target)
-        packet = build_sealed_simulation_packet(
+        packet = build_sealed_operator_state_packet(
             target_id=target["target_id"],
             target_name=target["target_name"],
             sequence=target["sequence"],
@@ -1113,7 +1113,7 @@ def run_v75(out_dir: Path = DEFAULT_OUT_DIR) -> dict[str, Path]:
         )
         holdout = _holdout(target, packet)
         score = _score(packet, holdout, target)
-        shuffled_packet = build_sealed_simulation_packet(
+        shuffled_packet = build_sealed_operator_state_packet(
             target_id=f"{target['target_id']}_SHUFFLED_CONTROL",
             target_name=f"{target['entry_id']} shuffled sequence control",
             sequence=shuffled_sequence(target["sequence"]),

@@ -49,7 +49,7 @@ def test_v58_autopsy_certificate_preserves_failures_without_engine_changes(audit
     assert cert["could_failures_have_been_avoided_by_abstention"] is True
     assert cert["engine_biology_modified"] is False
     assert cert["folding_problem_solved"] is False
-    assert cert["atomistic_md_executed"] is False
+    assert cert["atomistic_md_performed"] is False
     assert cert["readme_touched"] is False
 
 

@@ -31,7 +31,7 @@ from pharmacotopology.protein_esperanto_engine import (  # noqa: E402
     INTERNAL_RUNTIME,
     MECHANISM_CLASSES,
     UNIVERSAL_OPERATORS,
-    build_sealed_simulation_packet,
+    build_sealed_operator_state_packet,
     deterministic_random_sequence,
     evidence_boundary_gate,
     sequence_operator_coherence,
@@ -543,7 +543,7 @@ def _controls(
         "source_role": "prediction_input",
         "internal_runtime": True,
     }])
-    random_packet = build_sealed_simulation_packet(
+    random_packet = build_sealed_operator_state_packet(
         target_id="V62_RANDOM_SEQUENCE_CONTROL",
         target_name="V62 random sequence control",
         sequence=deterministic_random_sequence(128),
@@ -802,7 +802,7 @@ def _aggregate_certificate(
         "coordinate_truth_used_before_seal": False,
         "contact_truth_used_before_seal": False,
         "alphafold_used_before_seal": False,
-        "atomistic_md_executed": False,
+        "atomistic_md_performed": False,
         "folding_problem_solved": False,
         "claim_allowed": False,
         "claim_blocked_reason": "V62 is a same-target repair probe; broad claims require V63/V64 expansion/regression.",
@@ -965,7 +965,7 @@ def run_v62(out_dir: Path = DEFAULT_OUT_DIR) -> dict[str, Path]:
         reasons.extend(baseline_row.get("validation_checks", []))
         baseline_failure_type = baseline_failure_types.get(key, "")
         source_manifest = _source_manifest(candidate, expected, baseline_failure_type)
-        packet = build_sealed_simulation_packet(
+        packet = build_sealed_operator_state_packet(
             target_id=target_id,
             target_name=f"{candidate['entry_id']} {candidate['entity_description']}",
             sequence=candidate["sequence"],
@@ -975,7 +975,7 @@ def run_v62(out_dir: Path = DEFAULT_OUT_DIR) -> dict[str, Path]:
         )
         holdout = _holdout(candidate, packet, expected, [str(reason) for reason in reasons])
         score = _score(packet, holdout, baseline_row)
-        wrong_packet = build_sealed_simulation_packet(
+        wrong_packet = build_sealed_operator_state_packet(
             target_id=f"{target_id}_WRONG_GRAMMAR_CONTROL",
             target_name=f"{candidate['entry_id']} forced wrong grammar control",
             sequence=candidate["sequence"],
@@ -983,7 +983,7 @@ def run_v62(out_dir: Path = DEFAULT_OUT_DIR) -> dict[str, Path]:
             perturbations=[],
             forced_grammar=v61._wrong_grammar(packet["selected_mechanism_grammar"]["natural_mechanism_class"]),
         )
-        shuffled_packet = build_sealed_simulation_packet(
+        shuffled_packet = build_sealed_operator_state_packet(
             target_id=f"{target_id}_SHUFFLED_CONTROL",
             target_name=f"{candidate['entry_id']} shuffled sequence control",
             sequence=shuffled_sequence(candidate["sequence"]),

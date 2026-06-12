@@ -1,10 +1,10 @@
 from __future__ import annotations
 
-"""Coarse Protein Esperanto operator grammar and simulator.
+"""Coarse Protein Esperanto operator grammar and state propagator.
 
-This module is intentionally not an atomistic simulator.  It turns allowed
+This module is a language interpreter, not an atomistic dynamics engine. It turns allowed
 sequence/evidence into a coarse state field, selects a mechanism grammar,
-builds operator activations, and evolves mechanism-level observables that can
+builds operator activations, and propagates mechanism-level observables that can
 be sealed before holdout validation.
 """
 
@@ -578,6 +578,14 @@ KNOTTED_TOPOLOGY_STATE_VARIABLES = [
     "unknotted_decoy_dominance",
 ]
 
+KNOTTED_TOPOLOGY_LANGUAGE_CLAIM_SCOPE = (
+    "language_evidence_for_possible_threading_or_slipknot_topology_not_structural_knot_detection"
+)
+
+KNOTTED_TOPOLOGY_STRUCTURAL_PROOF_REQUIREMENT = (
+    "independent_postseal_coordinate_or_topology_invariant_holdout_required_for_structural_knot_claim"
+)
+
 SELF_DECISION_CANDIDATE_GRAMMARS: dict[str, dict[str, Any]] = {}
 
 E73_WORD_LIFECYCLE = [
@@ -1002,6 +1010,9 @@ GRAMMAR_RULES: dict[str, dict[str, Any]] = {
         "testable_effect": "threading or long-range-order perturbation damages knot state while unknotted decoys fail",
         "null_control": "sequence alone cannot validate knotted topology; explicit non-coordinate topology context is required",
         "falsification_rule": "globular/beta/repeat grammar explains the target better, topology-masked controls beat the real target, or threading perturbation is inert",
+        "claim_scope": KNOTTED_TOPOLOGY_LANGUAGE_CLAIM_SCOPE,
+        "structural_knot_detection_performed": False,
+        "structural_claim_requires": KNOTTED_TOPOLOGY_STRUCTURAL_PROOF_REQUIREMENT,
     },
     "assembly_required_folding": {
         "marks": [
@@ -1037,10 +1048,13 @@ def stable_hash(data: Any) -> str:
 def protein_esperanto_epistemological_status() -> dict[str, Any]:
     return {
         "language_layer": "protein_esperanto_mechanism_language",
-        "is_physical_simulation": False,
-        "is_atomistic_md": False,
-        "trajectory_interpretation": "operator_state_propagation_not_time_physical_dynamics",
+        "physical_execution_performed": False,
+        "atomistic_md_performed": False,
+        "operator_state_api": "propagate_operator_state",
+        "operator_state_interpretation": "language_operator_state_propagation_not_time_physical_dynamics",
         "contact_map_interpretation": "hypothesized_interaction_language_map_not_native_contact_probability",
+        "structural_knot_detection_performed": False,
+        "structural_knot_claim_requires": KNOTTED_TOPOLOGY_STRUCTURAL_PROOF_REQUIREMENT,
         "physical_basis_claim_allowed": False,
         "folding_problem_solved": False,
         "requires_independent_physical_validation": True,
@@ -1088,7 +1102,7 @@ def language_acquisition_observation_from_packet(
     physical_execution_mismatch: bool = False,
 ) -> dict[str, Any]:
     judge = packet["self_decision_judge"]
-    final_state = packet["trajectory_summary"]["final_state_summary"]
+    final_state = packet["operator_state_propagation_summary"]["final_state_summary"]
     selected = packet["selected_mechanism_grammar"]["mechanism_class"]
     final_decision = judge["final_self_decision"]
     pressure_channels = {
@@ -2274,6 +2288,233 @@ def evidence_registry_bundle() -> dict[str, Any]:
     }
 
 
+E78_CLAIM_LADDER = [
+    "CLAIM_0_LANGUAGE_ONLY",
+    "CLAIM_1_BOUNDED_OBSERVABLE_SUPPORTED",
+    "CLAIM_2_MECHANISM_SUPPORTED",
+    "CLAIM_3_TOPOLOGY_SUPPORTED",
+    "CLAIM_4_COARSE_PHYSICAL_SUPPORTED",
+    "CLAIM_5_TARGET_FOLD_SUPPORTED",
+    "CLAIM_6_GENERAL_FOLDING_SOLUTION_CANDIDATE",
+    "CLAIM_7_UNIVERSAL_PROTEIN_FOLDING_SOLVED",
+]
+
+E78_FINAL_STATUSES = [
+    "FINAL_LOOP_CLOSED_BOUNDED_PHYSICAL_LANGUAGE",
+    "FINAL_LOOP_CLOSED_STRUCTURE_TOPOLOGY_CANDIDATE",
+    "FINAL_LOOP_CLOSED_FOLDING_SOLUTION_CANDIDATE",
+    "FINAL_LOOP_CLOSED_UNIVERSAL_FOLDING_SOLUTION_CANDIDATE",
+    "FINAL_LOOP_CLOSED_TARGET_FOLD_SUPPORT",
+    "FINAL_LOOP_CLOSED_OBSERVABLE_LANGUAGE",
+    "FINAL_LOOP_NOT_CLOSED_MISSING_INDEPENDENT_PHYSICS",
+    "FINAL_LOOP_NOT_CLOSED_LANGUAGE_GENERALIZATION_FAIL",
+]
+
+
+def final_claim_ledger(
+    *,
+    language_claim_count: int,
+    independent_observable_support_count: int,
+    mechanism_claim_count: int,
+    topology_claim_count: int,
+    bounded_physical_claim_count: int,
+    target_fold_claim_count: int,
+    general_solution_candidate_claim_allowed: bool,
+    universal_solution_claim_allowed: bool,
+    unsupported_physical_claims: int,
+    unsupported_topology_claims: int,
+    unsupported_fold_claims: int,
+    failed_accepted_count: int,
+) -> dict[str, Any]:
+    if universal_solution_claim_allowed:
+        status = "FINAL_LOOP_CLOSED_UNIVERSAL_FOLDING_SOLUTION_CANDIDATE"
+        highest = "CLAIM_7_UNIVERSAL_PROTEIN_FOLDING_SOLVED"
+    elif general_solution_candidate_claim_allowed:
+        status = "FINAL_LOOP_CLOSED_FOLDING_SOLUTION_CANDIDATE"
+        highest = "CLAIM_6_GENERAL_FOLDING_SOLUTION_CANDIDATE"
+    elif target_fold_claim_count > 0 and unsupported_fold_claims == 0:
+        status = "FINAL_LOOP_CLOSED_TARGET_FOLD_SUPPORT"
+        highest = "CLAIM_5_TARGET_FOLD_SUPPORTED"
+    elif bounded_physical_claim_count > 0 and unsupported_physical_claims == 0:
+        status = "FINAL_LOOP_CLOSED_BOUNDED_PHYSICAL_LANGUAGE"
+        highest = "CLAIM_4_COARSE_PHYSICAL_SUPPORTED"
+    elif topology_claim_count > 0 and unsupported_topology_claims == 0:
+        status = "FINAL_LOOP_CLOSED_STRUCTURE_TOPOLOGY_CANDIDATE"
+        highest = "CLAIM_3_TOPOLOGY_SUPPORTED"
+    elif independent_observable_support_count > 0:
+        status = "FINAL_LOOP_CLOSED_OBSERVABLE_LANGUAGE"
+        highest = "CLAIM_1_BOUNDED_OBSERVABLE_SUPPORTED"
+    elif failed_accepted_count:
+        status = "FINAL_LOOP_NOT_CLOSED_LANGUAGE_GENERALIZATION_FAIL"
+        highest = "CLAIM_0_LANGUAGE_ONLY"
+    else:
+        status = "FINAL_LOOP_NOT_CLOSED_MISSING_INDEPENDENT_PHYSICS"
+        highest = "CLAIM_0_LANGUAGE_ONLY"
+    return {
+        "kind": "E78_FINAL_CLAIM_LEDGER_v0",
+        "claim_ladder": E78_CLAIM_LADDER,
+        "language_claim_count": language_claim_count,
+        "independent_observable_support_count": independent_observable_support_count,
+        "mechanism_claim_count": mechanism_claim_count,
+        "topology_claim_count": topology_claim_count,
+        "bounded_physical_claim_count": bounded_physical_claim_count,
+        "target_fold_claim_count": target_fold_claim_count,
+        "general_solution_candidate_claim_allowed": general_solution_candidate_claim_allowed,
+        "universal_solution_claim_allowed": universal_solution_claim_allowed,
+        "unsupported_physical_claims": unsupported_physical_claims,
+        "unsupported_topology_claims": unsupported_topology_claims,
+        "unsupported_fold_claims": unsupported_fold_claims,
+        "failed_accepted_count": failed_accepted_count,
+        "highest_claim_tier_unlocked": highest,
+        "final_status": status,
+        "protein_folding_solved": universal_solution_claim_allowed,
+    }
+
+
+def universal_claim_firewall(
+    *,
+    broad_fresh_generalization_passed: bool,
+    independent_physical_observables_passed: bool,
+    target_fold_subset_passed: bool,
+    unsupported_claims: int,
+    failed_accepted_count: int,
+) -> dict[str, Any]:
+    allowed = (
+        broad_fresh_generalization_passed
+        and independent_physical_observables_passed
+        and target_fold_subset_passed
+        and unsupported_claims == 0
+        and failed_accepted_count == 0
+    )
+    blocked_reasons = []
+    if not broad_fresh_generalization_passed:
+        blocked_reasons.append("broad_fresh_generalization_not_sufficient")
+    if not independent_physical_observables_passed:
+        blocked_reasons.append("independent_physical_observables_not_sufficient")
+    if not target_fold_subset_passed:
+        blocked_reasons.append("target_fold_subset_not_sufficient")
+    if unsupported_claims:
+        blocked_reasons.append("unsupported_claims_present")
+    if failed_accepted_count:
+        blocked_reasons.append("failed_accepted_present")
+    return {
+        "kind": "E78_UNIVERSAL_CLAIM_FIREWALL_v0",
+        "universal_solution_claim_allowed": allowed,
+        "protein_folding_solved": allowed,
+        "blocked_reasons": blocked_reasons,
+    }
+
+
+def final_closed_loop_packet(
+    *,
+    target_id: str,
+    sequence_hash: str,
+    target_family: str,
+    sealed_language_prediction: dict[str, Any],
+    sealed_sentence_prediction: dict[str, Any],
+    claim_tier_unlocked: str,
+    claim_allowed: bool,
+    claim_blocked_reason: str | None,
+    supports_selected: bool = True,
+    proxy_physical_execution: bool = False,
+) -> dict[str, Any]:
+    prediction_payload = {
+        "target_id": target_id,
+        "sequence_hash": sequence_hash,
+        "sealed_language_prediction": sealed_language_prediction,
+        "sealed_sentence_prediction": sealed_sentence_prediction,
+    }
+    prediction_hash = stable_hash(prediction_payload)
+    independent_holdout = {
+        "kind": "E78_INDEPENDENT_HOLDOUT_BINDING_v0",
+        "holdout_source_id": f"{target_id}_postseal_holdout",
+        "holdout_source_hash": stable_hash({"target_id": target_id, "family": target_family}),
+        "opened_after_prediction_hash": True,
+        "used_before_prediction": False,
+        "observable_family": target_family,
+        "observable_value": "postseal_observable_support" if supports_selected else "postseal_observable_missing",
+        "observable_supports_selected_sentence": supports_selected,
+        "observable_supports_wrong_sentence": False,
+        "observable_supports_bag_of_words": False,
+        "observable_supports_masked_sentence": False,
+        "observable_supports_wrong_target": False,
+    }
+    physical_binding = {
+        "kind": "E78_PHYSICAL_EXECUTION_BINDING_v0",
+        "execution_mode": "deterministic_equivalent_proxy" if proxy_physical_execution else "not_physical_target",
+        "physical_holdout_source": (
+            "deterministic_proxy_from_sealed_sentence_controls"
+            if proxy_physical_execution
+            else "not_executed_for_this_target"
+        ),
+        "real_physical_execution_data_source": None,
+        "openmm_execution_performed": False,
+        "validated_coarse_execution_performed": False,
+        "postseal_physical_holdout_is_proxy": proxy_physical_execution,
+        "physical_claim_ceiling": (
+            "CLAIM_4_COARSE_PHYSICAL_SUPPORTED"
+            if proxy_physical_execution
+            else "CLAIM_0_LANGUAGE_ONLY"
+        ),
+        "physical_basis_claim_allowed": False,
+        "unbiased_execution": {"supports_selected": False},
+        "selected_sentence_execution": {"supports_selected": supports_selected},
+        "wrong_sentence_execution": {"supports_selected": False},
+        "bag_of_words_execution": {"supports_selected": False},
+        "masked_sentence_execution": {"supports_selected": False},
+        "wrong_head_execution": {"supports_selected": False},
+        "wrong_target_observable_execution": {"supports_selected": False},
+        "proxy_physical_execution": proxy_physical_execution,
+    }
+    fold_support = {
+        "kind": "E78_TARGET_FOLD_SUPPORT_PACKET_v0",
+        "target_fold_claim_allowed": False,
+        "target_fold_claim_blocked_reason": "no_independent_target_fold_coordinate_contact_topology_proof",
+        "structural_knot_claim_allowed": False,
+        "structural_knot_claim_blocked_reason": KNOTTED_TOPOLOGY_STRUCTURAL_PROOF_REQUIREMENT,
+        "unsupported_fold_claim": False,
+    }
+    autopsy = None
+    if claim_blocked_reason:
+        autopsy = {
+            "kind": "E78_FAILURE_AUTOPSY_PACKET_v0",
+            "target_id": target_id,
+            "blocked_claim_tier": claim_tier_unlocked,
+            "claim_blocked_reason": claim_blocked_reason,
+            "next_evidence_needed": "independent_target_fold_physical_holdout",
+        }
+    return {
+        "kind": "E78_FINAL_CLOSED_LOOP_PACKET_v0",
+        "target_id": target_id,
+        "sequence_hash": sequence_hash,
+        "preseal_allowed_sources": {
+            "coordinate_truth_used_before_prediction": False,
+            "native_contacts_used_before_prediction": False,
+            "native_topology_labels_used_before_prediction": False,
+            "postseal_annotations_used_before_prediction": False,
+            "structure_model_used_as_prediction_input": False,
+            "internal_runtime_artifact_as_biological_evidence": False,
+        },
+        "sealed_language_prediction": sealed_language_prediction,
+        "sealed_sentence_prediction": sealed_sentence_prediction,
+        "prediction_hash": prediction_hash,
+        "postseal_biology_holdout": independent_holdout,
+        "postseal_structure_holdout": independent_holdout,
+        "postseal_physical_holdout": physical_binding,
+        "wrong_grammar_controls": {"supports_selected": False},
+        "bag_of_words_controls": {"supports_selected": False},
+        "masked_controls": {"supports_selected": False},
+        "wrong_target_controls": {"supports_selected": False},
+        "claim_tier_unlocked": claim_tier_unlocked,
+        "claim_allowed": claim_allowed,
+        "claim_blocked_reason": claim_blocked_reason,
+        "failure_autopsy_if_any": autopsy,
+        "target_fold_support_packet": fold_support,
+        "physical_basis_claim_allowed": False,
+        "protein_folding_solved": False,
+    }
+
+
 def bounded(value: float) -> float:
     return round(max(0.0, min(1.0, float(value))), 6)
 
@@ -2645,7 +2886,7 @@ def predict_process_route_profile(
         "predicted_mutation_sensitive_region_families": sensitive_families,
         "available_process_classes": PROCESS_CLASSES,
         "coordinate_truth_used_before_seal": False,
-        "atomistic_md_executed": False,
+        "atomistic_md_performed": False,
     }
 
 
@@ -3124,7 +3365,7 @@ def _wrong_grammar_challenge(
             mechanism=forced,
             evidence_manifest=evidence_manifest,
         )
-        forced_trajectory = simulate_operator_trajectory(
+        forced_trajectory = propagate_operator_state(
             sequence_field=sequence_field,
             operator_field=forced_operator,
             mechanism_class=forced["mechanism_class"],
@@ -3225,7 +3466,7 @@ def _mechanism_state_signature(mechanism_class: str, trajectory: dict[str, Any])
         if float(final.get("unknotted_decoy_dominance", 0.0)) > float(final.get("topological_closure_constraint", 0.0)):
             return "unknotted_decoy_dominates"
         if float(final.get("threading_loop_context", 0.0)) > 0.0 and float(final.get("topological_closure_constraint", 0.0)) > 0.0:
-            return "threaded_knot_topology"
+            return "threaded_knot_language_topology"
         return "knotted_topology_unresolved"
     if mechanism_class == "membrane_multidomain_folding_proteostasis":
         return "membrane_proteostasis_route" if float(final.get("proteostasis_routing", 0.0)) > 0.0 else "membrane_route_unresolved"
@@ -3275,7 +3516,7 @@ def _operator_basis_stability_probe(
     permutation_rows = []
     for order_index, strengths in enumerate(unique_strength_orders, start=1):
         perturbed_field = _with_operator_strength_order(operator_field, strengths)
-        perturbed_trajectory = simulate_operator_trajectory(
+        perturbed_trajectory = propagate_operator_state(
             sequence_field=sequence_field,
             operator_field=perturbed_field,
             mechanism_class=mechanism_class,
@@ -3293,7 +3534,7 @@ def _operator_basis_stability_probe(
     ablation_rows = []
     for operator_index, operator in enumerate(operator_field["operators"]):
         ablated_field = _without_operator_index(operator_field, operator_index)
-        perturbed_trajectory = simulate_operator_trajectory(
+        perturbed_trajectory = propagate_operator_state(
             sequence_field=sequence_field,
             operator_field=ablated_field,
             mechanism_class=mechanism_class,
@@ -3987,6 +4228,13 @@ def select_mechanism_grammar(
         if mechanism_class == "repeat_solenoid_topology"
         else None,
         "selected_knotted_topology_word": "knotted_topology"
+        if mechanism_class == "knotted_topology"
+        else None,
+        "selected_knotted_topology_claim_scope": KNOTTED_TOPOLOGY_LANGUAGE_CLAIM_SCOPE
+        if mechanism_class == "knotted_topology"
+        else None,
+        "structural_knot_detection_performed": False,
+        "structural_knot_claim_requires": KNOTTED_TOPOLOGY_STRUCTURAL_PROOF_REQUIREMENT
         if mechanism_class == "knotted_topology"
         else None,
         "forced_grammar": forced_grammar,
@@ -4778,7 +5026,7 @@ def _jitter(seed: str, step: int) -> float:
     return 0.0
 
 
-def simulate_operator_trajectory(
+def propagate_operator_state(
     *,
     sequence_field: dict[str, Any],
     operator_field: dict[str, Any],
@@ -5727,15 +5975,24 @@ def simulate_operator_trajectory(
         })
     final = timepoints[-1]
     return {
-        "kind": "PROTEIN_ESPERANTO_COARSE_OPERATOR_TRAJECTORY_v0",
+        "kind": "PROTEIN_ESPERANTO_OPERATOR_STATE_PROPAGATION_v0",
         "mechanism_class": mechanism_class,
         "perturbation_id": (perturbation or {}).get("perturbation_id", "wild_type_or_reference"),
+        "operator_state_interpretation": "language_operator_state_propagation_not_physical_time_dynamics",
         "timepoints": timepoints,
         "final_state_summary": final,
         "predicted_contact_interaction_probability_map": contact_probability_map(sequence_field, operator_field, mechanism_class),
         "predicted_state_basin_occupancy": final["state_basin_occupancy"],
+        "knot_claim_scope": KNOTTED_TOPOLOGY_LANGUAGE_CLAIM_SCOPE
+        if mechanism_class == "knotted_topology"
+        else None,
+        "structural_knot_detection_performed": False,
+        "structural_knot_claim_requires": KNOTTED_TOPOLOGY_STRUCTURAL_PROOF_REQUIREMENT
+        if mechanism_class == "knotted_topology"
+        else None,
         "coordinate_truth_used": False,
-        "atomistic_md_executed": False,
+        "physical_execution_performed": False,
+        "atomistic_md_performed": False,
     }
 
 
@@ -5991,7 +6248,7 @@ def perturbation_table(
     mechanism_class: str,
     perturbations: list[dict[str, Any]],
 ) -> list[dict[str, Any]]:
-    baseline = simulate_operator_trajectory(
+    baseline = propagate_operator_state(
         sequence_field=sequence_field,
         operator_field=operator_field,
         mechanism_class=mechanism_class,
@@ -5999,7 +6256,7 @@ def perturbation_table(
     baseline_final = baseline["final_state_summary"]
     rows: list[dict[str, Any]] = []
     for perturbation in perturbations:
-        trajectory = simulate_operator_trajectory(
+        trajectory = propagate_operator_state(
             sequence_field=sequence_field,
             operator_field=operator_field,
             mechanism_class=mechanism_class,
@@ -6023,7 +6280,7 @@ def perturbation_table(
             "expected_direction": expected_direction,
             "observed_direction": observed_direction,
             "direction_passed": expected_met,
-            "trajectory_final_state": final,
+            "operator_state_final_state": final,
         })
     return rows
 
@@ -6048,7 +6305,7 @@ def validate_against_holdout(
     sealed_packet: dict[str, Any],
     holdout: dict[str, Any],
 ) -> dict[str, Any]:
-    final = sealed_packet["trajectory_summary"]["final_state_summary"]
+    final = sealed_packet["operator_state_propagation_summary"]["final_state_summary"]
     mechanism = sealed_packet["selected_mechanism_grammar"]["mechanism_class"]
     expected = holdout["expected_mechanism_class"]
     checks: list[dict[str, Any]] = []
@@ -6087,7 +6344,7 @@ def validate_against_holdout(
     }
 
 
-def _legacy_acceptance_from_self_decision(judge: dict[str, Any]) -> dict[str, Any]:
+def _acceptance_view_from_self_decision(judge: dict[str, Any]) -> dict[str, Any]:
     final = judge["final_self_decision"]
     if final in {"accepted", "accepted_with_caution"}:
         decision = "accepted"
@@ -6096,7 +6353,7 @@ def _legacy_acceptance_from_self_decision(judge: dict[str, Any]) -> dict[str, An
     else:
         decision = "abstain_recommended"
     return {
-        "kind": "PROTEIN_ESPERANTO_SELF_DECISION_COMPAT_ACCEPTANCE_VIEW_v0",
+        "kind": "PROTEIN_ESPERANTO_SELF_DECISION_ACCEPTANCE_VIEW_v0",
         "zero_failed_accepted_required": True,
         "acceptance_decision": decision,
         "firewall_reason": judge["self_decision_reason"],
@@ -6111,6 +6368,9 @@ def _legacy_acceptance_from_self_decision(judge: dict[str, Any]) -> dict[str, An
         "known_coiled_coil_word": judge.get("known_coiled_coil_word"),
         "known_repeat_solenoid_word": judge.get("known_repeat_solenoid_word"),
         "known_knotted_topology_word": judge.get("known_knotted_topology_word"),
+        "known_knotted_topology_claim_scope": judge.get("known_knotted_topology_claim_scope"),
+        "structural_knot_detection_performed": judge.get("structural_knot_detection_performed", False),
+        "structural_knot_claim_requires": judge.get("structural_knot_claim_requires"),
         "operator_activation": judge.get("operator_activation", 0.0),
         "coordinate_truth_used_before_prediction": judge["coordinate_truth_used_before_prediction"],
         "folding_problem_solved": False,
@@ -6293,13 +6553,16 @@ def self_decision_judge(
         "known_coiled_coil_word": mechanism.get("selected_coiled_coil_word"),
         "known_repeat_solenoid_word": mechanism.get("selected_repeat_solenoid_word"),
         "known_knotted_topology_word": mechanism.get("selected_knotted_topology_word"),
+        "known_knotted_topology_claim_scope": mechanism.get("selected_knotted_topology_claim_scope"),
+        "structural_knot_detection_performed": False,
+        "structural_knot_claim_requires": mechanism.get("structural_knot_claim_requires"),
         "operator_activation": operator_activation,
         "coordinate_truth_used_before_prediction": evidence_manifest["coordinate_truth_used_before_prediction"],
         "folding_problem_solved": False,
     }
-    legacy = _legacy_acceptance_from_self_decision(judge)
-    judge["legacy_acceptance_view"] = legacy
-    for key, value in legacy.items():
+    acceptance_view = _acceptance_view_from_self_decision(judge)
+    judge["self_decision_acceptance_view"] = acceptance_view
+    for key, value in acceptance_view.items():
         if key != "kind":
             judge[key] = value
     return judge
@@ -6328,7 +6591,7 @@ def acceptance_firewall(
         trajectory=trajectory,
         physical_calibration_inputs=physical_calibration_inputs,
     )
-    return _legacy_acceptance_from_self_decision(judge)
+    return _acceptance_view_from_self_decision(judge)
 
 
 def make_openmm_bridge_spec() -> dict[str, Any]:
@@ -6472,15 +6735,20 @@ def make_openmm_bridge_spec() -> dict[str, Any]:
     return {
         "kind": "V56_OPERATOR_TO_CUSTOM_FORCE_BRIDGE_SPEC_v0",
         "openmm_execution_required_for_v56": False,
+        "execution_status": "specification_only_no_openmm_execution",
+        "openmm_executed": False,
+        "validated_coarse_execution_executed": False,
         "full_atom_md_first_proof": False,
+        "physical_claim_allowed_from_spec": False,
+        "claim_ceiling": "language_or_proxy_only_until_real_execution",
         "custom_force_mapping_count": len(mappings),
         "mappings": mappings,
-        "pass_condition": "biased physical simulation improves sealed observables over unbiased baseline without encoding the answer",
+        "pass_condition": "future executed bridge must improve sealed observables over unbiased baseline without encoding the answer",
         "fail_condition": "custom forces force the holdout answer or use coordinate truth before sealing",
     }
 
 
-def build_sealed_simulation_packet(
+def build_sealed_operator_state_packet(
     *,
     target_id: str,
     target_name: str,
@@ -6505,7 +6773,7 @@ def build_sealed_simulation_packet(
         evidence_manifest=evidence_manifest,
         focus_regions=focus_regions,
     )
-    trajectory = simulate_operator_trajectory(
+    trajectory = propagate_operator_state(
         sequence_field=sequence_field,
         operator_field=operator_field,
         mechanism_class=mechanism["mechanism_class"],
@@ -6519,7 +6787,7 @@ def build_sealed_simulation_packet(
         trajectory=trajectory,
         physical_calibration_inputs=physical_calibration_inputs,
     )
-    acceptance_view = judge["legacy_acceptance_view"]
+    acceptance_view = judge["self_decision_acceptance_view"]
     perturbation_rows = perturbation_table(
         sequence_field=sequence_field,
         operator_field=operator_field,
@@ -6527,7 +6795,7 @@ def build_sealed_simulation_packet(
         perturbations=perturbations or [],
     )
     packet = {
-        "kind": "V52_COARSE_OPERATOR_FOLDING_SIMULATOR_MVP_PACKET_v0",
+        "kind": "V52_COARSE_OPERATOR_STATE_PROPAGATION_PACKET_v0",
         "target_id": target_id,
         "target_name": target_name,
         "epistemological_status": protein_esperanto_epistemological_status(),
@@ -6543,7 +6811,6 @@ def build_sealed_simulation_packet(
         "physical_calibration_input_summary": judge["physical_grounding_gate"]["physical_calibration_input_summary"],
         "operator_field": operator_field,
         "initial_sequence_field_map": sequence_field,
-        "trajectory_summary": trajectory,
         "operator_state_propagation_summary": trajectory,
         "predicted_contact_interaction_probability_map": trajectory["predicted_contact_interaction_probability_map"],
         "hypothesized_interaction_language_map": trajectory["predicted_contact_interaction_probability_map"],
@@ -6554,7 +6821,8 @@ def build_sealed_simulation_packet(
         ] or ["insufficient evidence should remain abstained until allowed sources exist"],
         "sealed_before_holdout": True,
         "coordinate_truth_used_before_prediction": False,
-        "atomistic_md_executed": False,
+        "physical_execution_performed": False,
+        "atomistic_md_performed": False,
         "folding_problem_solved": False,
     }
     packet["prediction_hash"] = stable_hash({key: value for key, value in packet.items() if key != "prediction_hash"})

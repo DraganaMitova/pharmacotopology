@@ -32,7 +32,7 @@ from pharmacotopology.protein_esperanto_engine import (  # noqa: E402
     INTERNAL_RUNTIME,
     MECHANISM_CLASSES,
     UNIVERSAL_OPERATORS,
-    build_sealed_simulation_packet,
+    build_sealed_operator_state_packet,
     deterministic_random_sequence,
     evidence_boundary_gate,
     sequence_operator_coherence,
@@ -406,7 +406,7 @@ def _packet_summary(packet: dict[str, Any]) -> dict[str, Any]:
         "evidence_manifest": packet["evidence_manifest"],
         "operator_names": packet["operator_field"]["operator_names"],
         "active_operator_count": packet["operator_field"]["active_operator_count"],
-        "trajectory_final_state_summary": packet["trajectory_summary"]["final_state_summary"],
+        "operator_state_final_state_summary": packet["operator_state_propagation_summary"]["final_state_summary"],
         "folding_problem_solved": packet["folding_problem_solved"],
     }
 
@@ -544,7 +544,7 @@ def _controls(
         "source_role": "prediction_input",
         "internal_runtime": True,
     }])
-    random_packet = build_sealed_simulation_packet(
+    random_packet = build_sealed_operator_state_packet(
         target_id="V63_RANDOM_SEQUENCE_CONTROL",
         target_name="V63 random sequence control",
         sequence=deterministic_random_sequence(128),
@@ -656,7 +656,7 @@ def _aggregate_certificate(
         "coordinate_truth_used_before_seal": False,
         "contact_truth_used_before_seal": False,
         "alphafold_used_before_seal": False,
-        "atomistic_md_executed": False,
+        "atomistic_md_performed": False,
         "folding_problem_solved": False,
         "claim_allowed": False,
         "claim_blocked_reason": "V63 is a broad discovery batch for mining failure classes; claims require later grammar revision and regression.",
@@ -771,7 +771,7 @@ def run_v63(out_dir: Path = DEFAULT_OUT_DIR, *, refresh_intake: bool = False) ->
         target_id = f"V63_{candidate['target_id']}"
         expected, reasons = v61._expected_mechanism_postseal(candidate)
         source_manifest = _source_manifest(candidate)
-        packet = build_sealed_simulation_packet(
+        packet = build_sealed_operator_state_packet(
             target_id=target_id,
             target_name=f"{candidate['entry_id']} {candidate['entity_description']}",
             sequence=candidate["sequence"],
@@ -781,7 +781,7 @@ def run_v63(out_dir: Path = DEFAULT_OUT_DIR, *, refresh_intake: bool = False) ->
         )
         holdout = _holdout(candidate, packet, expected, reasons)
         score = _score(packet, holdout)
-        wrong_packet = build_sealed_simulation_packet(
+        wrong_packet = build_sealed_operator_state_packet(
             target_id=f"{target_id}_WRONG_GRAMMAR_CONTROL",
             target_name=f"{candidate['entry_id']} forced wrong grammar control",
             sequence=candidate["sequence"],
@@ -789,7 +789,7 @@ def run_v63(out_dir: Path = DEFAULT_OUT_DIR, *, refresh_intake: bool = False) ->
             perturbations=[],
             forced_grammar=v61._wrong_grammar(packet["selected_mechanism_grammar"]["natural_mechanism_class"]),
         )
-        shuffled_packet = build_sealed_simulation_packet(
+        shuffled_packet = build_sealed_operator_state_packet(
             target_id=f"{target_id}_SHUFFLED_CONTROL",
             target_name=f"{candidate['entry_id']} shuffled sequence control",
             sequence=shuffled_sequence(candidate["sequence"]),

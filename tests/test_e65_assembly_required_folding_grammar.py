@@ -10,7 +10,7 @@ SRC = ROOT / "src"
 if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
-from pharmacotopology.protein_esperanto_engine import MECHANISM_CLASSES, build_sealed_simulation_packet
+from pharmacotopology.protein_esperanto_engine import MECHANISM_CLASSES, build_sealed_operator_state_packet
 
 
 SEQUENCE = "LRVQPEAQAKVDVFREDLCTKTENLLGSYFPKKISELDAFLKEPALNEANLSNLKAPLDI"
@@ -18,7 +18,7 @@ MEMBRANE_SEQUENCE = "M" + ("LLLLIIVVFF" * 12) + "GSGS" + ("AKTQ" * 10)
 
 
 def _selected(statement: str, sequence: str = SEQUENCE) -> str:
-    packet = build_sealed_simulation_packet(
+    packet = build_sealed_operator_state_packet(
         target_id="E65_ASSEMBLY_PROBE",
         target_name="E65 assembly probe",
         sequence=sequence,

@@ -256,7 +256,7 @@ def _aggregate(table: list[dict[str, Any]], inputs: dict[str, Any]) -> dict[str,
         "engine_biology_modified": False,
         "engine_source_sha256": stable_hash({"engine_source_text": ENGINE_SOURCE.read_text(encoding="utf-8")}),
         "folding_problem_solved": False,
-        "atomistic_md_executed": False,
+        "atomistic_md_performed": False,
         "readme_touched": False,
         "calibration_logic": (
             "No biological operators, mechanism classes, scoring controls, or engine weights were changed. "

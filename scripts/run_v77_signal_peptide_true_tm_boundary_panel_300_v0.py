@@ -28,7 +28,7 @@ from pharmacotopology.protein_esperanto_engine import (  # noqa: E402
     SELF_DECISION_CANDIDATE_GRAMMARS,
     STATE_VARIABLES,
     UNIVERSAL_OPERATORS,
-    build_sealed_simulation_packet,
+    build_sealed_operator_state_packet,
     build_sequence_field,
     deterministic_random_sequence,
     evidence_boundary_gate,
@@ -445,7 +445,7 @@ def _metric_for_expected(expected: str) -> str:
 
 
 def _extract_metric(packet: dict[str, Any], metric: str) -> float:
-    return float(packet["trajectory_summary"]["final_state_summary"].get(metric, 0.0))
+    return float(packet["operator_state_propagation_summary"]["final_state_summary"].get(metric, 0.0))
 
 
 def _signal_perturbations(target: dict[str, Any]) -> list[dict[str, Any]]:
@@ -502,7 +502,7 @@ def _packet(
     physical_calibration_inputs: dict[str, Any],
     suffix: str = "",
 ) -> dict[str, Any]:
-    return build_sealed_simulation_packet(
+    return build_sealed_operator_state_packet(
         target_id=f"{target['target_id']}{suffix}",
         target_name=target["target_name"],
         sequence=sequence,
@@ -825,7 +825,7 @@ def _packet_summary(packet: dict[str, Any]) -> dict[str, Any]:
         "natural_mechanism_class": mechanism["natural_mechanism_class"],
         "self_decision_judge": packet["self_decision_judge"],
         "operator_names": packet["operator_field"]["operator_names"],
-        "trajectory_final_state_summary": packet["trajectory_summary"]["final_state_summary"],
+        "operator_state_final_state_summary": packet["operator_state_propagation_summary"]["final_state_summary"],
         "predicted_contact_interaction_probability_map": packet["predicted_contact_interaction_probability_map"],
         "folding_problem_solved": False,
     }
@@ -884,7 +884,7 @@ def _control(control_id: str, passed: bool, reason: str, observed: Any = None) -
 
 def _withheld_context_leakage_probe(physical_calibration_inputs: dict[str, Any]) -> dict[str, Any]:
     sequence = "MKKLLLLLLLLLLLLLLLLAAASA" + "STNQDEKRASTNQDEKR" * 8
-    packet = build_sealed_simulation_packet(
+    packet = build_sealed_operator_state_packet(
         target_id="V77_WITHHELD_CONTEXT_LEAKAGE_PROBE",
         target_name="V77 withheld context leakage probe",
         sequence=sequence,
@@ -922,7 +922,7 @@ def _controls(
 ) -> list[dict[str, Any]]:
     coord_gate = evidence_boundary_gate([{"source_id": "V77_BAD_COORD", "source_class": COORDINATE_DERIVED, "source_role": "prediction_input", "coordinate_derived": True}])
     runtime_gate = evidence_boundary_gate([{"source_id": "V77_BAD_RUNTIME", "source_class": INTERNAL_RUNTIME, "source_role": "prediction_input", "internal_runtime": True}])
-    random_packet = build_sealed_simulation_packet(
+    random_packet = build_sealed_operator_state_packet(
         target_id="V77_RANDOM_SEQUENCE_CONTROL",
         target_name="V77 random sequence control",
         sequence=deterministic_random_sequence(128),
@@ -1071,7 +1071,7 @@ def _certificate(
         "candidate_grammars_remaining": sorted(SELF_DECISION_CANDIDATE_GRAMMARS),
         "next_required_batch": "V78_RCSB_NONREDUNDANT_300_DISCOVERY_E71",
         "coordinate_truth_used_before_seal": False,
-        "atomistic_md_executed": False,
+        "atomistic_md_performed": False,
         "folding_problem_solved": False,
         "claim_allowed": False,
     }

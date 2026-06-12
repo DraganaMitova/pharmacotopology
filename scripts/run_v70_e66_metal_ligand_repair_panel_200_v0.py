@@ -32,7 +32,7 @@ from pharmacotopology.protein_esperanto_engine import (  # noqa: E402
     INTERNAL_RUNTIME,
     MECHANISM_CLASSES,
     UNIVERSAL_OPERATORS,
-    build_sealed_simulation_packet,
+    build_sealed_operator_state_packet,
     deterministic_random_sequence,
     evidence_boundary_gate,
     sequence_operator_coherence,
@@ -444,7 +444,7 @@ def _packet_summary(packet: dict[str, Any]) -> dict[str, Any]:
         "selection_reason": mechanism["selection_reason"],
         "operator_names": packet["operator_field"]["operator_names"],
         "active_operator_count": packet["operator_field"]["active_operator_count"],
-        "trajectory_final_state_summary": packet["trajectory_summary"]["final_state_summary"],
+        "operator_state_final_state_summary": packet["operator_state_propagation_summary"]["final_state_summary"],
         "folding_problem_solved": packet["folding_problem_solved"],
     }
 
@@ -688,7 +688,7 @@ def _controls(
     alphafold_gate = evidence_boundary_gate([{"source_id": "V70_BAD_ALPHAFOLD_MODEL", "source_class": COORDINATE_DERIVED, "source_role": "prediction_input", "coordinate_derived": True, "evidence_statement": "AlphaFold-style model offered before sealing."}])
     holdout_gate = evidence_boundary_gate([{"source_id": "V70_PRESEAL_HOLDOUT", "source_class": COORDINATE_DERIVED, "source_role": "holdout_validation", "coordinate_derived": True}])
     runtime_gate = evidence_boundary_gate([{"source_id": "V70_BAD_INTERNAL_RUNTIME", "source_class": INTERNAL_RUNTIME, "source_role": "prediction_input", "internal_runtime": True}])
-    random_packet = build_sealed_simulation_packet(target_id="V70_RANDOM_SEQUENCE_CONTROL", target_name="V70 random sequence control", sequence=deterministic_random_sequence(128), sources=[], perturbations=[])
+    random_packet = build_sealed_operator_state_packet(target_id="V70_RANDOM_SEQUENCE_CONTROL", target_name="V70 random sequence control", sequence=deterministic_random_sequence(128), sources=[], perturbations=[])
     composition = Counter(row["panel_group"] for row in target_manifest["selected_targets"])
     shuffled_rows = []
     for packet, shuffled in zip(packets, shuffled_packets):
@@ -771,7 +771,7 @@ def _aggregate_certificate(
         "coordinate_truth_used_before_seal": False,
         "contact_truth_used_before_seal": False,
         "alphafold_used_before_seal": False,
-        "atomistic_md_executed": False,
+        "atomistic_md_performed": False,
         "folding_problem_solved": False,
         "claim_allowed": False,
         "claim_blocked_reason": "V70 is an E66 repair panel, not a broad solved-folding claim.",
@@ -866,7 +866,7 @@ def run_v70(out_dir: Path = DEFAULT_OUT_DIR) -> dict[str, Path]:
     scoring_rows: list[dict[str, Any]] = []
     for target in targets:
         source_manifest = _source_manifest(target)
-        packet = build_sealed_simulation_packet(
+        packet = build_sealed_operator_state_packet(
             target_id=target["target_id"],
             target_name=target["target_name"],
             sequence=target["sequence"],
@@ -876,7 +876,7 @@ def run_v70(out_dir: Path = DEFAULT_OUT_DIR) -> dict[str, Path]:
         )
         holdout = _holdout(target, packet)
         score = _score(packet, holdout, target)
-        shuffled_packet = build_sealed_simulation_packet(
+        shuffled_packet = build_sealed_operator_state_packet(
             target_id=f"{target['target_id']}_SHUFFLED_CONTROL",
             target_name=f"{target['entry_id']} shuffled sequence control",
             sequence=shuffled_sequence(target["sequence"]),

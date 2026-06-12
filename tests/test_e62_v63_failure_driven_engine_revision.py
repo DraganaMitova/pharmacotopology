@@ -10,7 +10,7 @@ SRC = ROOT / "src"
 if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
-from pharmacotopology.protein_esperanto_engine import build_sealed_simulation_packet
+from pharmacotopology.protein_esperanto_engine import build_sealed_operator_state_packet
 
 
 MEMBRANE_RICH_SEQUENCE = "M" + ("LLLLIIVVFF" * 12) + "GSGS" + ("AKTQ" * 10)
@@ -21,7 +21,7 @@ SOLUBLE_SEQUENCE = (
 
 
 def test_e62_membrane_context_precedes_incidental_oligomer_context() -> None:
-    packet = build_sealed_simulation_packet(
+    packet = build_sealed_operator_state_packet(
         target_id="E62_MEMBRANE_OLIGOMER_PRIORITY_PROBE",
         target_name="membrane plus incidental assembly context",
         sequence=MEMBRANE_RICH_SEQUENCE,
@@ -42,7 +42,7 @@ def test_e62_membrane_context_precedes_incidental_oligomer_context() -> None:
 
 
 def test_e62_membrane_context_precedes_incidental_cofactor_context() -> None:
-    packet = build_sealed_simulation_packet(
+    packet = build_sealed_operator_state_packet(
         target_id="E62_MEMBRANE_COFATOR_PRIORITY_PROBE",
         target_name="membrane plus incidental metal context",
         sequence=MEMBRANE_RICH_SEQUENCE,
@@ -61,7 +61,7 @@ def test_e62_membrane_context_precedes_incidental_cofactor_context() -> None:
 
 
 def test_e62_preserves_pure_cofactor_and_oligomer_routing() -> None:
-    cofactor = build_sealed_simulation_packet(
+    cofactor = build_sealed_operator_state_packet(
         target_id="E62_PURE_COFATOR_CONTEXT_PROBE",
         target_name="pure cofactor context",
         sequence=SOLUBLE_SEQUENCE,
@@ -76,7 +76,7 @@ def test_e62_preserves_pure_cofactor_and_oligomer_routing() -> None:
             }
         ],
     )
-    oligomer = build_sealed_simulation_packet(
+    oligomer = build_sealed_operator_state_packet(
         target_id="E62_PURE_OLIGOMER_CONTEXT_PROBE",
         target_name="pure oligomer context",
         sequence=SOLUBLE_SEQUENCE,

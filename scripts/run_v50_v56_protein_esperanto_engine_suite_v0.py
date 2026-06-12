@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
-"""Run V50-V56 Protein Esperanto grammar and coarse simulator suite."""
+"""Run V50-V56 Protein Esperanto grammar and coarse operator-state propagator suite."""
 
 import argparse
 import json
@@ -25,7 +25,7 @@ from pharmacotopology.protein_esperanto_engine import (  # noqa: E402
     STATE_VARIABLES,
     UNIVERSAL_MARKS,
     UNIVERSAL_OPERATORS,
-    build_sealed_simulation_packet,
+    build_sealed_operator_state_packet,
     deterministic_random_sequence,
     evidence_boundary_gate,
     make_openmm_bridge_spec,
@@ -447,35 +447,35 @@ def _run_controls(profiles: list[dict[str, Any]], packets: list[dict[str, Any]],
     cftr_packet = next(packet for packet in packets if packet["target_id"] == "V46_CFTR_F508DEL")
     orf6_packet = next(packet for packet in packets if packet["target_id"] == "V48_SARS2_ORF6")
 
-    random_packet = build_sealed_simulation_packet(
+    random_packet = build_sealed_operator_state_packet(
         target_id="CONTROL_RANDOM_SEQUENCE",
         target_name="random sequence control",
         sequence=deterministic_random_sequence(len(fus["sequence"])),
         sources=fus["sources"],
         perturbations=[],
     )
-    shuffled_packet = build_sealed_simulation_packet(
+    shuffled_packet = build_sealed_operator_state_packet(
         target_id="CONTROL_SHUFFLED_CFTR",
         target_name="shuffled CFTR sequence control",
         sequence=shuffled_sequence(cftr["sequence"]),
         sources=cftr["sources"],
         perturbations=[],
     )
-    swapped_packet = build_sealed_simulation_packet(
+    swapped_packet = build_sealed_operator_state_packet(
         target_id="CONTROL_SWAPPED_EVIDENCE",
         target_name="ORF6 sequence with FUS evidence",
         sequence=orf6["sequence"],
         sources=fus["sources"],
         perturbations=[],
     )
-    name_only_packet = build_sealed_simulation_packet(
+    name_only_packet = build_sealed_operator_state_packet(
         target_id="CONTROL_NAME_ONLY",
         target_name="target name only control",
         sequence=fus["sequence"],
         sources=[],
         perturbations=[],
     )
-    generic_packet = build_sealed_simulation_packet(
+    generic_packet = build_sealed_operator_state_packet(
         target_id="CONTROL_GENERIC_ANNOTATION",
         target_name="generic annotation only control",
         sequence=orf6["sequence"],
@@ -489,7 +489,7 @@ def _run_controls(profiles: list[dict[str, Any]], packets: list[dict[str, Any]],
         }],
         perturbations=[],
     )
-    forced_wrong = build_sealed_simulation_packet(
+    forced_wrong = build_sealed_operator_state_packet(
         target_id="CONTROL_FORCED_WRONG_GRAMMAR",
         target_name="FUS forced to globular closure",
         sequence=fus["sequence"],
@@ -630,7 +630,7 @@ def _run_controls(profiles: list[dict[str, Any]], packets: list[dict[str, Any]],
         _control(
             "folding_problem_solved_never_true",
             all(packet["folding_problem_solved"] is False for packet in packets),
-            "The simulator must not set folding_problem_solved=true.",
+            "The operator-state propagator must not set folding_problem_solved=true.",
         ),
     ]
 
@@ -639,7 +639,7 @@ def _battery_rows(packets: list[dict[str, Any]], validations: list[dict[str, Any
     validation_by_target = {row["target_id"]: row for row in validations}
     rows = []
     for packet in packets:
-        final = packet["trajectory_summary"]["final_state_summary"]
+        final = packet["operator_state_propagation_summary"]["final_state_summary"]
         mechanism = packet["selected_mechanism_grammar"]["mechanism_class"]
         rows.append({
             "target_id": packet["target_id"],
@@ -674,7 +674,7 @@ def _aggregate_cert(
         "timestamp_utc": datetime.now(timezone.utc).isoformat(),
         "v50_grammar_extraction_passed": grammar["all_existing_hard_classes_rewritten"] is True,
         "v51_engine_contract_frozen": "state_vector_schema" in engine_spec and "operator_schema" in engine_spec,
-        "v52_coarse_simulator_mvp_passed": all(packet["sealed_before_holdout"] for packet in packets),
+        "v52_operator_state_propagation_mvp_passed": all(packet["sealed_before_holdout"] for packet in packets),
         "v53_hard_class_battery_passed": all(row["score_label"] == "supported" for row in validations),
         "v54_perturbation_engine_passed": all(
             row["direction_passed"]
@@ -696,7 +696,7 @@ def _aggregate_cert(
         "coordinate_derived_source_count_before_prediction": leakage,
         "internal_runtime_source_count_for_prediction": runtime,
         "folding_problem_solved": False,
-        "atomistic_md_executed": False,
+        "atomistic_md_performed": False,
         "openmm_bridge_execution_deferred": True,
         "claim_allowed": status == PASSED,
         "allowed_claim_text": (
@@ -705,7 +705,7 @@ def _aggregate_cert(
         ),
         "forbidden_claims": [
             "universal protein folding is solved",
-            "the simulator predicts atomistic coordinates",
+            "the operator-state propagator predicts atomistic coordinates",
             "AlphaFold or PDB coordinates were used before sealing",
             "OpenMM/GROMACS validation is complete",
             "wrong grammar can be forced into success",
@@ -719,7 +719,7 @@ def _write_report(path: Path, cert: dict[str, Any], battery: list[dict[str, Any]
         "",
         f"Status: `{cert['status']}`",
         f"folding_problem_solved: `{cert['folding_problem_solved']}`",
-        f"atomistic_md_executed: `{cert['atomistic_md_executed']}`",
+        f"atomistic_md_performed: `{cert['atomistic_md_performed']}`",
         f"Targets: `{cert['target_count']}`",
         f"Supported validations: `{cert['supported_validation_count']}` / `{cert['target_count']}`",
         f"Controls passed: `{cert['passed_control_count']}` / `{cert['control_count']}`",
@@ -727,7 +727,7 @@ def _write_report(path: Path, cert: dict[str, Any], battery: list[dict[str, Any]
         "## Version Gates",
         f"- V50 grammar extraction: `{cert['v50_grammar_extraction_passed']}`",
         f"- V51 engine contract: `{cert['v51_engine_contract_frozen']}`",
-        f"- V52 coarse simulator MVP: `{cert['v52_coarse_simulator_mvp_passed']}`",
+        f"- V52 coarse operator-state propagator MVP: `{cert['v52_operator_state_propagation_mvp_passed']}`",
         f"- V53 hard-class battery: `{cert['v53_hard_class_battery_passed']}`",
         f"- V54 perturbation engine: `{cert['v54_perturbation_engine_passed']}`",
         f"- V55 post-seal validation: `{cert['v55_postseal_validation_passed']}`",
@@ -760,11 +760,11 @@ def run_v50_v56(out_dir: Path = DEFAULT_OUT_DIR) -> dict[str, Path]:
     validations: list[dict[str, Any]] = []
 
     _write_json(DATA_ROOT / "V50" / "protein_esperanto_mechanism_grammar_extraction.json", grammar)
-    _write_json(DATA_ROOT / "V51" / "folding_simulation_engine_spec.json", engine_spec)
+    _write_json(DATA_ROOT / "V51" / "operator_state_engine_spec.json", engine_spec)
     _write_json(DATA_ROOT / "V56" / "operator_to_custom_force_bridge_spec.json", bridge)
 
     for profile in profiles:
-        packet = build_sealed_simulation_packet(
+        packet = build_sealed_operator_state_packet(
             target_id=profile["target_id"],
             target_name=profile["target_name"],
             sequence=profile["sequence"],
@@ -774,7 +774,7 @@ def run_v50_v56(out_dir: Path = DEFAULT_OUT_DIR) -> dict[str, Path]:
         )
         packets.append(packet)
         target_dir = DATA_ROOT / "V52" / "sealed_predictions" / profile["target_id"]
-        _write_json(target_dir / "sealed_simulation_packet.json", packet)
+        _write_json(target_dir / "sealed_operator_state_packet.json", packet)
         _write_json(target_dir / "prediction_inputs_manifest.json", {
             "kind": "V52_PREDICTION_INPUTS_MANIFEST_v0",
             "target_id": profile["target_id"],
@@ -800,13 +800,13 @@ def run_v50_v56(out_dir: Path = DEFAULT_OUT_DIR) -> dict[str, Path]:
     )
     cert_hash = stable_hash({key: value for key, value in cert.items() if key != "certificate_hash"})
     cert["certificate_hash"] = cert_hash
-    _write_json(DATA_ROOT / "V53" / "multiregime_simulation_battery.json", {
-        "kind": "V53_MULTIREGIME_SIMULATION_BATTERY_v0",
+    _write_json(DATA_ROOT / "V53" / "operator_state_multiregime_battery.json", {
+        "kind": "V53_OPERATOR_STATE_MULTIREGIME_BATTERY_v0",
         "rows": battery,
         "passed": cert["v53_hard_class_battery_passed"],
     })
-    _write_json(DATA_ROOT / "V54" / "simulated_mutation_and_condition_response.json", {
-        "kind": "V54_SIMULATED_MUTATION_AND_CONDITION_RESPONSE_v0",
+    _write_json(DATA_ROOT / "V54" / "operator_state_perturbation_and_condition_response.json", {
+        "kind": "V54_OPERATOR_STATE_PERTURBATION_AND_CONDITION_RESPONSE_v0",
         "targets": [
             {
                 "target_id": packet["target_id"],
@@ -816,8 +816,8 @@ def run_v50_v56(out_dir: Path = DEFAULT_OUT_DIR) -> dict[str, Path]:
         ],
         "passed": cert["v54_perturbation_engine_passed"],
     })
-    _write_json(DATA_ROOT / "V55" / "simulation_holdout_validation_summary.json", {
-        "kind": "V55_SIMULATION_HOLDOUT_VALIDATION_SUMMARY_v0",
+    _write_json(DATA_ROOT / "V55" / "operator_state_holdout_validation_summary.json", {
+        "kind": "V55_OPERATOR_STATE_HOLDOUT_VALIDATION_SUMMARY_v0",
         "validations": validations,
         "passed": cert["v55_postseal_validation_passed"],
     })
@@ -831,10 +831,10 @@ def run_v50_v56(out_dir: Path = DEFAULT_OUT_DIR) -> dict[str, Path]:
         "certificate": cert_path,
         "report": report_path,
         "grammar": DATA_ROOT / "V50" / "protein_esperanto_mechanism_grammar_extraction.json",
-        "engine_spec": DATA_ROOT / "V51" / "folding_simulation_engine_spec.json",
-        "battery": DATA_ROOT / "V53" / "multiregime_simulation_battery.json",
-        "perturbations": DATA_ROOT / "V54" / "simulated_mutation_and_condition_response.json",
-        "validation_summary": DATA_ROOT / "V55" / "simulation_holdout_validation_summary.json",
+        "engine_spec": DATA_ROOT / "V51" / "operator_state_engine_spec.json",
+        "battery": DATA_ROOT / "V53" / "operator_state_multiregime_battery.json",
+        "perturbations": DATA_ROOT / "V54" / "operator_state_perturbation_and_condition_response.json",
+        "validation_summary": DATA_ROOT / "V55" / "operator_state_holdout_validation_summary.json",
         "bridge": DATA_ROOT / "V56" / "operator_to_custom_force_bridge_spec.json",
     }
 
@@ -853,7 +853,7 @@ def main() -> int:
         "control_count": cert["control_count"],
         "passed_control_count": cert["passed_control_count"],
         "folding_problem_solved": cert["folding_problem_solved"],
-        "atomistic_md_executed": cert["atomistic_md_executed"],
+        "atomistic_md_performed": cert["atomistic_md_performed"],
         "certificate": str(paths["certificate"]),
         "report": str(paths["report"]),
     }, indent=2, sort_keys=True))

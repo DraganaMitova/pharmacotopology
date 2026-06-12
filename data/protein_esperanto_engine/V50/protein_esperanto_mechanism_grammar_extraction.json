@@ -7,11 +7,21 @@
   "falsification_rules": [
     "independent holdout shows no compaction or wrong operator regions",
     "holdout shows condition-independent stable globular dominance",
+    "holdout shows a complete stable globular or assembly-required fold without persistent disorder boundary",
+    "holdout shows open beta sheet, wrong beta subtype, or protected membrane/assembly/metal/disorder context",
+    "holdout shows independent single-domain closure, solved prior membrane/assembly/metal/disorder/beta context, or no interdomain operator dependence",
     "holdout shows purely local defect with no interface/proteostasis dependence",
     "holdout supports only one state under all contexts",
     "wrong-region perturbations dominate while predicted interface is inert",
     "free-state holdout shows stable standalone fold",
     "ligand-independent stability dominates all conditions",
+    "holdout shows ligand-independent folding or no geometry-locked basin effect",
+    "matched controls beat the real target, or metal/TM/beta/repeat grammar explains the evidence better",
+    "matched controls beat the real signal, true-TM insertion dominates, or wrong grammar explains the boundary better",
+    "assembly/globular grammar preserves the evidence better, matched heptad controls beat the real target, or register perturbation is inert",
+    "beta/multidomain/globular grammar explains the target better, repeat controls beat the real target, or repeat perturbation is inert",
+    "globular/beta/repeat grammar explains the target better, topology-masked controls beat the real target, or threading perturbation is inert",
+    "holdout shows a complete monomeric fold, true membrane topology, or ligand-stabilized core without assembly dependence",
     "holdout shows no assembly dependence"
   ],
   "folding_problem_solved": false,
@@ -24,22 +34,42 @@
   "mechanism_classes": [
     "globular_closure",
     "intrinsic_disorder_phase_separation",
+    "disorder_boundary_and_fold_upon_binding",
+    "beta_closure_topology",
+    "multidomain_allosteric_architecture",
+    "secretory_disulfide_redox_topology",
+    "signal_peptide_vs_true_tm_routing",
+    "coiled_coil_register_topology",
+    "repeat_solenoid_topology",
+    "knotted_topology",
     "membrane_multidomain_folding_proteostasis",
     "metamorphic_fold_switching",
     "short_region_host_interface_hijacking",
     "fold_upon_binding_disorder",
     "cofactor_ligand_assisted_stabilization",
+    "metal_cluster_and_ligand_locked_basin",
+    "assembly_required_folding",
     "oligomerization_controlled_folding",
     "insufficient_evidence_clean_abstain"
   ],
   "null_controls": [
     "generic hydrophobicity alone cannot validate target-specific closure",
     "forcing compact single-fold grammar fails",
+    "generic oligomer copy metadata cannot override explicit IDR/low-complexity boundary evidence",
+    "beta-rich sequence alone is not topology and must abstain when closure evidence is weak",
+    "generic domain text or copy-count metadata cannot validate an allosteric architecture without explicit domain-boundary/hinge/swap context",
     "single local mutation-only shortcut fails",
     "single averaged consensus fold is rejected",
     "generic viral accessory annotation cannot validate the packet",
     "bound-state order cannot be promoted to free-state solved fold",
     "generic ligand annotation alone cannot define full grammar",
+    "generic cofactor annotation without metal, heme, nucleotide, or ligand-lock evidence remains generic cofactor",
+    "signal peptide text, odd cysteine noise, true TM topology, or Cys-His metal coordination cannot validate disulfide grammar",
+    "multi-pass TM, signal-anchor ambiguity, secretory disulfide, coiled/repeat/knotted candidates, and membrane sentinels cannot validate signal-peptide grammar",
+    "generic oligomer, ordinary helix bundle, or globular hydrophobic core cannot validate coiled-coil register",
+    "long multidomain text, beta closure, or generic repeat words without phase/axis support cannot validate solenoid grammar",
+    "sequence alone cannot validate knotted topology; explicit non-coordinate topology context is required",
+    "generic complex annotation alone cannot validate assembly-required folding",
     "monomer-only grammar fails"
   ],
   "perturbation_prediction_rules": [
@@ -71,7 +101,91 @@
     "state_basin_occupancy",
     "interface_readiness",
     "disorder_order_balance",
-    "proteostasis_routing"
+    "proteostasis_routing",
+    "assembly_required_core",
+    "partner_completed_core",
+    "interface_buried_hydrophobicity",
+    "monomer_incomplete_topology",
+    "coiled_coil_register_dependency",
+    "domain_swap_candidate",
+    "biological_oligomer_context",
+    "generic_complex_only",
+    "assembly_ambiguous",
+    "metal_cluster_geometry",
+    "coordination_shell_integrity",
+    "ligand_locked_basin",
+    "apo_holo_basin_shift",
+    "generic_ligand_only",
+    "metal_ligand_ambiguous",
+    "IDR_boundary",
+    "structured_domain_plus_IDR_tail",
+    "fold_upon_binding_region",
+    "phase_prone_low_complexity",
+    "flexible_loop_not_disorder",
+    "disorder_with_local_motif",
+    "closed_beta_topology",
+    "strand_register",
+    "beta_sheet_closure",
+    "soluble_beta_barrel",
+    "membrane_beta_barrel",
+    "beta_propeller_repeat_closure",
+    "beta_sandwich_core",
+    "jelly_roll_wrap",
+    "greek_key_beta_lock",
+    "beta_helix_solenoid_stack",
+    "alpha_beta_barrel_distinction",
+    "open_beta_sheet_ambiguous",
+    "closed_beta_confident",
+    "closed_beta_ambiguous",
+    "strand_register_insufficient",
+    "beta_topology_conflict",
+    "multidomain_allostery",
+    "domain_boundary",
+    "hinge_region",
+    "interdomain_lock",
+    "allosteric_basin_shift",
+    "domain_reorientation",
+    "modular_architecture",
+    "domain_swapping",
+    "secretory_redox_context",
+    "disulfide_pairing_topology",
+    "cysteine_pairing_constraint",
+    "extracellular_stabilized_fold",
+    "glycosylation_context",
+    "redox_mispaired_frustration",
+    "signal_peptide_removed_context",
+    "secretory_quality_control",
+    "signal_peptide_routing_context",
+    "cleavage_site_context",
+    "n_terminal_secretory_hydrophobic_patch",
+    "true_transmembrane_span_context",
+    "single_pass_tm_conflict",
+    "multi_pass_tm_conflict",
+    "secretory_lumenal_routing",
+    "membrane_insertion_routing",
+    "signal_anchor_ambiguity",
+    "heptad_register_context",
+    "hydrophobic_repeat_phase",
+    "parallel_antiparallel_register",
+    "oligomeric_coiled_coil_core",
+    "register_shift_frustration",
+    "coiled_coil_assembly_dependency",
+    "leucine_zipper_context",
+    "repeat_unit_context",
+    "solenoid_axis_context",
+    "curved_repeat_stack",
+    "local_repeat_closure",
+    "global_repeat_topology",
+    "repeat_phase_alignment",
+    "repeat_boundary_frustration",
+    "ankyrin_armadillo_tpr_lrr_context",
+    "knot_core_context",
+    "threading_loop_context",
+    "slipknot_intermediate_context",
+    "topological_closure_constraint",
+    "long_range_threading_dependency",
+    "knotting_frustration",
+    "unknotted_decoy_dominance"
   ],
   "transition_rules": [
     {
@@ -118,6 +232,92 @@
       ],
       "state_change": "expanded disorder to dynamic phase-prone ensemble without single stable fold",
       "testable_effect": "aromatic/charge or condition perturbations shift condensation tendency"
+    },
+    {
+      "falsification_rule": "holdout shows a complete stable globular or assembly-required fold without persistent disorder boundary",
+      "grammar_sentence": "IDR_boundary + structured_domain_plus_IDR_tail + fold_upon_binding_region + phase_prone_low_complexity + disorder_with_local_motif + binding_partner + concentration + salt + disorder_operator + interface_operator + phase_operator -> generic oligomer or compact-fold readout to explicit disorder-boundary ensemble with partner-conditioned local order -> boundary, local motif, or partner perturbation changes ordering without promoting a whole-chain solved fold",
+      "marks": [
+        "IDR_boundary",
+        "structured_domain_plus_IDR_tail",
+        "fold_upon_binding_region",
+        "phase_prone_low_complexity",
+        "disorder_with_local_motif"
+      ],
+      "mechanism_class": "disorder_boundary_and_fold_upon_binding",
+      "null_control": "generic oligomer copy metadata cannot override explicit IDR/low-complexity boundary evidence",
+      "operators": [
+        "disorder_operator",
+        "interface_operator",
+        "phase_operator"
+      ],
+      "pressures": [
+        "binding_partner",
+        "concentration",
+        "salt"
+      ],
+      "state_change": "generic oligomer or compact-fold readout to explicit disorder-boundary ensemble with partner-conditioned local order",
+      "testable_effect": "boundary, local motif, or partner perturbation changes ordering without promoting a whole-chain solved fold"
+    },
+    {
+      "falsification_rule": "holdout shows open beta sheet, wrong beta subtype, or protected membrane/assembly/metal/disorder context",
+      "grammar_sentence": "closed_beta_topology + strand_register + beta_sheet_closure + soluble_beta_barrel + membrane_beta_barrel + beta_propeller_repeat_closure + beta_sandwich_core + jelly_roll_wrap + greek_key_beta_lock + beta_helix_solenoid_stack + alpha_beta_barrel_distinction + solvent + membrane + strand_register + repeat_closure + closure_operator + interface_operator + frustration_operator -> beta propensity to subtype-specific strand-register closure without confusing membrane, propeller, sandwich, solenoid, or alpha/beta barrels -> strand-register or blade/repeat perturbations weaken the selected beta closure while preserving non-beta priority classes",
+      "marks": [
+        "closed_beta_topology",
+        "strand_register",
+        "beta_sheet_closure",
+        "soluble_beta_barrel",
+        "membrane_beta_barrel",
+        "beta_propeller_repeat_closure",
+        "beta_sandwich_core",
+        "jelly_roll_wrap",
+        "greek_key_beta_lock",
+        "beta_helix_solenoid_stack",
+        "alpha_beta_barrel_distinction"
+      ],
+      "mechanism_class": "beta_closure_topology",
+      "null_control": "beta-rich sequence alone is not topology and must abstain when closure evidence is weak",
+      "operators": [
+        "closure_operator",
+        "interface_operator",
+        "frustration_operator"
+      ],
+      "pressures": [
+        "solvent",
+        "membrane",
+        "strand_register",
+        "repeat_closure"
+      ],
+      "state_change": "beta propensity to subtype-specific strand-register closure without confusing membrane, propeller, sandwich, solenoid, or alpha/beta barrels",
+      "testable_effect": "strand-register or blade/repeat perturbations weaken the selected beta closure while preserving non-beta priority classes"
+    },
+    {
+      "falsification_rule": "holdout shows independent single-domain closure, solved prior membrane/assembly/metal/disorder/beta context, or no interdomain operator dependence",
+      "grammar_sentence": "multidomain_allostery + domain_boundary + hinge_region + interdomain_lock + allosteric_basin_shift + domain_reorientation + modular_architecture + domain_swapping + binding_partner + interdomain_coupling + release_or_activation_context + interface_operator + dual_basin_switch_operator + closure_operator + frustration_operator -> single-domain closure shortcut to domain-boundary, hinge, lock, and allosteric-basin architecture -> hinge, interface, or interdomain-lock perturbation shifts domain orientation and allosteric basin occupancy",
+      "marks": [
+        "multidomain_allostery",
+        "domain_boundary",
+        "hinge_region",
+        "interdomain_lock",
+        "allosteric_basin_shift",
+        "domain_reorientation",
+        "modular_architecture",
+        "domain_swapping"
+      ],
+      "mechanism_class": "multidomain_allosteric_architecture",
+      "null_control": "generic domain text or copy-count metadata cannot validate an allosteric architecture without explicit domain-boundary/hinge/swap context",
+      "operators": [
+        "interface_operator",
+        "dual_basin_switch_operator",
+        "closure_operator",
+        "frustration_operator"
+      ],
+      "pressures": [
+        "binding_partner",
+        "interdomain_coupling",
+        "release_or_activation_context"
+      ],
+      "state_change": "single-domain closure shortcut to domain-boundary, hinge, lock, and allosteric-basin architecture",
+      "testable_effect": "hinge, interface, or interdomain-lock perturbation shifts domain orientation and allosteric basin occupancy"
     },
     {
       "falsification_rule": "holdout shows purely local defect with no interface/proteostasis dependence",
@@ -230,6 +430,198 @@
       "testable_effect": "cofactor removal destabilizes the predicted basin"
     },
     {
+      "falsification_rule": "holdout shows ligand-independent folding or no geometry-locked basin effect",
+      "grammar_sentence": "metal_cluster_geometry + coordination_shell_integrity + ligand_locked_basin + ligand_or_cofactor + redox_or_coordination_context + interface_operator + closure_operator + frustration_operator -> generic cofactor basin to metal/ligand-locked basin with apo-holo separation -> metal/cofactor removal or coordination-shell disruption unlocks the basin and increases frustration",
+      "marks": [
+        "metal_cluster_geometry",
+        "coordination_shell_integrity",
+        "ligand_locked_basin"
+      ],
+      "mechanism_class": "metal_cluster_and_ligand_locked_basin",
+      "null_control": "generic cofactor annotation without metal, heme, nucleotide, or ligand-lock evidence remains generic cofactor",
+      "operators": [
+        "interface_operator",
+        "closure_operator",
+        "frustration_operator"
+      ],
+      "pressures": [
+        "ligand_or_cofactor",
+        "redox_or_coordination_context"
+      ],
+      "state_change": "generic cofactor basin to metal/ligand-locked basin with apo-holo separation",
+      "testable_effect": "metal/cofactor removal or coordination-shell disruption unlocks the basin and increases frustration"
+    },
+    {
+      "falsification_rule": "matched controls beat the real target, or metal/TM/beta/repeat grammar explains the evidence better",
+      "grammar_sentence": "secretory_redox_context + disulfide_pairing_topology + cysteine_pairing_constraint + extracellular_stabilized_fold + glycosylation_context + signal_peptide_removed_context + secretory_redox_environment + extracellular_quality_control + glycosylation_context + disulfide_pairing_operator + secretory_redox_operator + frustration_operator + proteostasis_operator + closure_operator -> generic cysteine-rich or secretory text to paired disulfide/redox topology with extracellular stabilization -> cysteine-pairing or redox perturbation weakens disulfide topology and raises mispaired frustration",
+      "marks": [
+        "secretory_redox_context",
+        "disulfide_pairing_topology",
+        "cysteine_pairing_constraint",
+        "extracellular_stabilized_fold",
+        "glycosylation_context",
+        "signal_peptide_removed_context"
+      ],
+      "mechanism_class": "secretory_disulfide_redox_topology",
+      "null_control": "signal peptide text, odd cysteine noise, true TM topology, or Cys-His metal coordination cannot validate disulfide grammar",
+      "operators": [
+        "disulfide_pairing_operator",
+        "secretory_redox_operator",
+        "frustration_operator",
+        "proteostasis_operator",
+        "closure_operator"
+      ],
+      "pressures": [
+        "secretory_redox_environment",
+        "extracellular_quality_control",
+        "glycosylation_context"
+      ],
+      "state_change": "generic cysteine-rich or secretory text to paired disulfide/redox topology with extracellular stabilization",
+      "testable_effect": "cysteine-pairing or redox perturbation weakens disulfide topology and raises mispaired frustration"
+    },
+    {
+      "falsification_rule": "matched controls beat the real signal, true-TM insertion dominates, or wrong grammar explains the boundary better",
+      "grammar_sentence": "signal_peptide_routing_context + cleavage_site_context + n_terminal_secretory_hydrophobic_patch + true_transmembrane_span_context + secretory_lumenal_routing + membrane_insertion_routing + signal_anchor_ambiguity + secretory_translocon + membrane_insertion + cleavage_context + signal_peptide_routing_operator + tm_insertion_operator + cleavage_context_operator + secretory_routing_operator + membrane_pressure_operator + frustration_operator -> generic N-terminal hydrophobic signal to cleavable secretory route while separating true TM and signal-anchor ambiguity -> N-terminal masking or cleavage-context masking weakens secretory routing more than true-TM decoys",
+      "marks": [
+        "signal_peptide_routing_context",
+        "cleavage_site_context",
+        "n_terminal_secretory_hydrophobic_patch",
+        "true_transmembrane_span_context",
+        "secretory_lumenal_routing",
+        "membrane_insertion_routing",
+        "signal_anchor_ambiguity"
+      ],
+      "mechanism_class": "signal_peptide_vs_true_tm_routing",
+      "null_control": "multi-pass TM, signal-anchor ambiguity, secretory disulfide, coiled/repeat/knotted candidates, and membrane sentinels cannot validate signal-peptide grammar",
+      "operators": [
+        "signal_peptide_routing_operator",
+        "tm_insertion_operator",
+        "cleavage_context_operator",
+        "secretory_routing_operator",
+        "membrane_pressure_operator",
+        "frustration_operator"
+      ],
+      "pressures": [
+        "secretory_translocon",
+        "membrane_insertion",
+        "cleavage_context"
+      ],
+      "state_change": "generic N-terminal hydrophobic signal to cleavable secretory route while separating true TM and signal-anchor ambiguity",
+      "testable_effect": "N-terminal masking or cleavage-context masking weakens secretory routing more than true-TM decoys"
+    },
+    {
+      "falsification_rule": "assembly/globular grammar preserves the evidence better, matched heptad controls beat the real target, or register perturbation is inert",
+      "grammar_sentence": "heptad_register_context + hydrophobic_repeat_phase + parallel_antiparallel_register + oligomeric_coiled_coil_core + register_shift_frustration + coiled_coil_assembly_dependency + leucine_zipper_context + register_alignment + oligomeric_interface + hydrophobic_repeat_phase + heptad_register_operator + coiled_coil_interface_operator + oligomeric_register_operator + register_shift_frustration_operator + closure_operator -> generic helix, assembly, or globular closure to explicit heptad/register-controlled coiled-coil topology -> heptad shuffle or hydrophobic phase shift damages register state more than matched enemy grammars",
+      "marks": [
+        "heptad_register_context",
+        "hydrophobic_repeat_phase",
+        "parallel_antiparallel_register",
+        "oligomeric_coiled_coil_core",
+        "register_shift_frustration",
+        "coiled_coil_assembly_dependency",
+        "leucine_zipper_context"
+      ],
+      "mechanism_class": "coiled_coil_register_topology",
+      "null_control": "generic oligomer, ordinary helix bundle, or globular hydrophobic core cannot validate coiled-coil register",
+      "operators": [
+        "heptad_register_operator",
+        "coiled_coil_interface_operator",
+        "oligomeric_register_operator",
+        "register_shift_frustration_operator",
+        "closure_operator"
+      ],
+      "pressures": [
+        "register_alignment",
+        "oligomeric_interface",
+        "hydrophobic_repeat_phase"
+      ],
+      "state_change": "generic helix, assembly, or globular closure to explicit heptad/register-controlled coiled-coil topology",
+      "testable_effect": "heptad shuffle or hydrophobic phase shift damages register state more than matched enemy grammars"
+    },
+    {
+      "falsification_rule": "beta/multidomain/globular grammar explains the target better, repeat controls beat the real target, or repeat perturbation is inert",
+      "grammar_sentence": "repeat_unit_context + solenoid_axis_context + curved_repeat_stack + local_repeat_closure + global_repeat_topology + repeat_phase_alignment + repeat_boundary_frustration + ankyrin_armadillo_tpr_lrr_context + repeat_phase + solenoid_axis + local_to_global_repeat_stack + repeat_phase_operator + solenoid_axis_operator + local_repeat_closure_operator + global_repeat_stack_operator + repeat_boundary_frustration_operator -> generic beta/multidomain/globular readout to repeat-unit phase and solenoid-axis topology -> repeat-order shuffle or boundary masking damages phase-aligned solenoid state",
+      "marks": [
+        "repeat_unit_context",
+        "solenoid_axis_context",
+        "curved_repeat_stack",
+        "local_repeat_closure",
+        "global_repeat_topology",
+        "repeat_phase_alignment",
+        "repeat_boundary_frustration",
+        "ankyrin_armadillo_tpr_lrr_context"
+      ],
+      "mechanism_class": "repeat_solenoid_topology",
+      "null_control": "long multidomain text, beta closure, or generic repeat words without phase/axis support cannot validate solenoid grammar",
+      "operators": [
+        "repeat_phase_operator",
+        "solenoid_axis_operator",
+        "local_repeat_closure_operator",
+        "global_repeat_stack_operator",
+        "repeat_boundary_frustration_operator"
+      ],
+      "pressures": [
+        "repeat_phase",
+        "solenoid_axis",
+        "local_to_global_repeat_stack"
+      ],
+      "state_change": "generic beta/multidomain/globular readout to repeat-unit phase and solenoid-axis topology",
+      "testable_effect": "repeat-order shuffle or boundary masking damages phase-aligned solenoid state"
+    },
+    {
+      "falsification_rule": "globular/beta/repeat grammar explains the target better, topology-masked controls beat the real target, or threading perturbation is inert",
+      "grammar_sentence": "knot_core_context + threading_loop_context + slipknot_intermediate_context + topological_closure_constraint + long_range_threading_dependency + knotting_frustration + unknotted_decoy_dominance + threading + topological_closure + long_range_order + threading_operator + topological_closure_operator + long_range_threading_operator + slipknot_intermediate_operator + knotting_frustration_operator -> generic long-range closure to explicit knot/slipknot threading topology -> threading or long-range-order perturbation damages knot state while unknotted decoys fail",
+      "marks": [
+        "knot_core_context",
+        "threading_loop_context",
+        "slipknot_intermediate_context",
+        "topological_closure_constraint",
+        "long_range_threading_dependency",
+        "knotting_frustration",
+        "unknotted_decoy_dominance"
+      ],
+      "mechanism_class": "knotted_topology",
+      "null_control": "sequence alone cannot validate knotted topology; explicit non-coordinate topology context is required",
+      "operators": [
+        "threading_operator",
+        "topological_closure_operator",
+        "long_range_threading_operator",
+        "slipknot_intermediate_operator",
+        "knotting_frustration_operator"
+      ],
+      "pressures": [
+        "threading",
+        "topological_closure",
+        "long_range_order"
+      ],
+      "state_change": "generic long-range closure to explicit knot/slipknot threading topology",
+      "testable_effect": "threading or long-range-order perturbation damages knot state while unknotted decoys fail"
+    },
+    {
+      "falsification_rule": "holdout shows a complete monomeric fold, true membrane topology, or ligand-stabilized core without assembly dependence",
+      "grammar_sentence": "assembly_required_core + partner_completed_core + interface_buried_hydrophobicity + monomer_incomplete_topology + binding_partner + partner_copy + concentration + interface_operator + closure_operator + frustration_operator -> monomer-incomplete topology to partner-completed assembly basin -> partner/interface disruption exposes incomplete monomer topology and weakens the assembled basin",
+      "marks": [
+        "assembly_required_core",
+        "partner_completed_core",
+        "interface_buried_hydrophobicity",
+        "monomer_incomplete_topology"
+      ],
+      "mechanism_class": "assembly_required_folding",
+      "null_control": "generic complex annotation alone cannot validate assembly-required folding",
+      "operators": [
+        "interface_operator",
+        "closure_operator",
+        "frustration_operator"
+      ],
+      "pressures": [
+        "binding_partner",
+        "partner_copy",
+        "concentration"
+      ],
+      "state_change": "monomer-incomplete topology to partner-completed assembly basin",
+      "testable_effect": "partner/interface disruption exposes incomplete monomer topology and weakens the assembled basin"
+    },
+    {
       "falsification_rule": "holdout shows no assembly dependence",
       "grammar_sentence": "repeat_interface + oligomer_motif + burial_surface + concentration + partner_copy + interface_operator + closure_operator -> monomeric partial order to oligomer-stabilized interface basin -> interface or concentration perturbation shifts folding/assembly",
       "marks": [
@@ -275,6 +667,26 @@
     "membrane_pressure_operator",
     "dual_basin_switch_operator",
     "proteostasis_operator",
-    "host_hijack_operator"
+    "host_hijack_operator",
+    "disulfide_pairing_operator",
+    "secretory_redox_operator",
+    "signal_peptide_routing_operator",
+    "tm_insertion_operator",
+    "cleavage_context_operator",
+    "secretory_routing_operator",
+    "heptad_register_operator",
+    "coiled_coil_interface_operator",
+    "oligomeric_register_operator",
+    "register_shift_frustration_operator",
+    "repeat_phase_operator",
+    "solenoid_axis_operator",
+    "local_repeat_closure_operator",
+    "global_repeat_stack_operator",
+    "repeat_boundary_frustration_operator",
+    "threading_operator",
+    "topological_closure_operator",
+    "long_range_threading_operator",
+    "slipknot_intermediate_operator",
+    "knotting_frustration_operator"
   ]
 }

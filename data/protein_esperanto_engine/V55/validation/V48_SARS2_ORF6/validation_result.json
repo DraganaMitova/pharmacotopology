@@ -10,21 +10,21 @@
       "check_id": "host_interface_dominant",
       "comparator": ">=",
       "metric": "basin:host_interface_engaged",
-      "observed": 0.941,
-      "passed": true,
+      "observed": 0.194225,
+      "passed": false,
       "threshold": 0.6
     },
     {
       "check_id": "compact_globular_shortcut_rejected",
       "comparator": "<=",
       "metric": "basin:compact_single_fold",
-      "observed": 0.04,
+      "observed": 0.0,
       "passed": true,
       "threshold": 0.1
     }
   ],
   "coordinate_derived_sources_used_before_prediction": 0,
-  "holdout_opened_after_prediction_hash": "ebc9834a2ba6ffedcd911f2e9e68703ee8b37836b5cf06ef0c72efd3896c3cea",
+  "holdout_opened_after_prediction_hash": "c0e6224623efb143c6493ed97a85ae5f6f6d95c0a5ea55d7d8eaab82e589adcc",
   "internal_runtime_sources_used_for_prediction": 0,
   "kind": "PROTEIN_ESPERANTO_POST_SEAL_VALIDATION_v0",
   "postseal_sources": [
@@ -36,7 +36,7 @@
       "used_before_prediction": false
     }
   ],
-  "score_label": "supported",
-  "sealed_prediction_hash": "ebc9834a2ba6ffedcd911f2e9e68703ee8b37836b5cf06ef0c72efd3896c3cea",
+  "score_label": "contradicted",
+  "sealed_prediction_hash": "c0e6224623efb143c6493ed97a85ae5f6f6d95c0a5ea55d7d8eaab82e589adcc",
   "target_id": "V48_SARS2_ORF6"
 }

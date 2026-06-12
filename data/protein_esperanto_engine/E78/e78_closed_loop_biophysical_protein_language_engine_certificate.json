@@ -1,0 +1,26 @@
+{
+  "baseline_engine_revision": "E77",
+  "claim_ladder": [
+    "CLAIM_0_LANGUAGE_ONLY",
+    "CLAIM_1_BOUNDED_OBSERVABLE_SUPPORTED",
+    "CLAIM_2_MECHANISM_SUPPORTED",
+    "CLAIM_3_TOPOLOGY_SUPPORTED",
+    "CLAIM_4_COARSE_PHYSICAL_SUPPORTED",
+    "CLAIM_5_TARGET_FOLD_SUPPORTED",
+    "CLAIM_6_GENERAL_FOLDING_SOLUTION_CANDIDATE",
+    "CLAIM_7_UNIVERSAL_PROTEIN_FOLDING_SOLVED"
+  ],
+  "engine_revision": "E78",
+  "failure_autopsy_packet_kind": "E78_FAILURE_AUTOPSY_PACKET_v0",
+  "final_closed_loop_packet_kind": "E78_FINAL_CLOSED_LOOP_PACKET_v0",
+  "final_status": "FINAL_LOOP_CLOSED_BOUNDED_PHYSICAL_LANGUAGE",
+  "highest_claim_tier_unlocked": "CLAIM_4_COARSE_PHYSICAL_SUPPORTED",
+  "independent_holdout_binding_kind": "E78_INDEPENDENT_HOLDOUT_BINDING_v0",
+  "kind": "E78_CLOSED_LOOP_BIOPHYSICAL_PROTEIN_LANGUAGE_ENGINE_CERTIFICATE_v0",
+  "next_required_batch": null,
+  "physical_basis_claim_allowed": false,
+  "physical_execution_binding_kind": "E78_PHYSICAL_EXECUTION_BINDING_v0",
+  "protein_folding_solved": false,
+  "target_fold_support_packet_kind": "E78_TARGET_FOLD_SUPPORT_PACKET_v0",
+  "universal_claim_firewall_kind": "E78_UNIVERSAL_CLAIM_FIREWALL_v0"
+}

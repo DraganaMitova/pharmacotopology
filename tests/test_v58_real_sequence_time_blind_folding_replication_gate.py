@@ -28,7 +28,7 @@ def test_v58_passes_real_sequence_gate_from_cached_intake() -> None:
     assert cert["level3_topology_or_observable_supported_count"] == 0
     assert cert["passed_control_count"] < cert["control_count"]
     assert cert["folding_problem_solved"] is False
-    assert cert["atomistic_md_executed"] is False
+    assert cert["atomistic_md_performed"] is False
     assert cert["coordinate_truth_used_before_seal"] is False
     assert cert["alphafold_used_before_seal"] is False
     assert cert["failure_cases_reported"] is True

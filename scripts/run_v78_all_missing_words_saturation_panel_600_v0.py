@@ -28,7 +28,7 @@ from pharmacotopology.protein_esperanto_engine import (  # noqa: E402
     SELF_DECISION_CANDIDATE_GRAMMARS,
     STATE_VARIABLES,
     UNIVERSAL_OPERATORS,
-    build_sealed_simulation_packet,
+    build_sealed_operator_state_packet,
     deterministic_random_sequence,
     evidence_boundary_gate,
     sequence_operator_coherence,
@@ -470,7 +470,7 @@ def _perturbations_for_target(target: dict[str, Any]) -> list[dict[str, Any]]:
 
 
 def _packet(target: dict[str, Any], sources: list[dict[str, Any]], physical_calibration_inputs: dict[str, Any], *, suffix: str = "") -> dict[str, Any]:
-    return build_sealed_simulation_packet(
+    return build_sealed_operator_state_packet(
         target_id=f"{target['target_id']}{suffix}",
         target_name=target["target_name"],
         sequence=target["sequence"],
@@ -482,7 +482,7 @@ def _packet(target: dict[str, Any], sources: list[dict[str, Any]], physical_cali
 
 
 def _extract_metric(packet: dict[str, Any], metric: str) -> float:
-    return float(packet["trajectory_summary"]["final_state_summary"].get(metric, 0.0))
+    return float(packet["operator_state_propagation_summary"]["final_state_summary"].get(metric, 0.0))
 
 
 def _matched_control_report(target: dict[str, Any], packet: dict[str, Any], source_manifest: dict[str, Any], physical_calibration_inputs: dict[str, Any]) -> dict[str, Any]:
@@ -703,7 +703,7 @@ def _control(control_id: str, passed: bool, reason: str, observed: Any = None) -
 
 
 def _withheld_context_leakage_probe(physical_calibration_inputs: dict[str, Any]) -> dict[str, Any]:
-    packet = build_sealed_simulation_packet(
+    packet = build_sealed_operator_state_packet(
         target_id="V78_WITHHELD_CONTEXT_LEAKAGE_PROBE",
         target_name="V78 withheld context leakage probe",
         sequence="LEKLAAL" * 20,
@@ -815,7 +815,7 @@ def _certificate(
         "physical_basis_claim_allowed": False,
         "physical_basis_claim_blocked_reason": "E72 is language saturation for current known words; no independent physical holdout earns a fold-solution claim.",
         "coordinate_truth_used_before_seal": False,
-        "atomistic_md_executed": False,
+        "atomistic_md_performed": False,
         "folding_problem_solved": False,
     }
     cert["certificate_hash"] = stable_hash({key: value for key, value in cert.items() if key != "certificate_hash"})
@@ -897,7 +897,7 @@ def _packet_summary(packet: dict[str, Any]) -> dict[str, Any]:
         "natural_mechanism_class": mechanism["natural_mechanism_class"],
         "self_decision_judge": packet["self_decision_judge"],
         "operator_names": packet["operator_field"]["operator_names"],
-        "trajectory_final_state_summary": packet["trajectory_summary"]["final_state_summary"],
+        "operator_state_final_state_summary": packet["operator_state_propagation_summary"]["final_state_summary"],
         "predicted_contact_interaction_probability_map": packet["predicted_contact_interaction_probability_map"],
         "folding_problem_solved": False,
     }

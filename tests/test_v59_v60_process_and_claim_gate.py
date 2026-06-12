@@ -43,7 +43,7 @@ def test_v59_process_panel_passes_after_explicit_engine_hardening(v59_outputs: d
     assert cert["engine_biology_modified"] is True
     assert cert["folding_problem_solved"] is False
     assert cert["universal_folding_solved"] is False
-    assert cert["atomistic_md_executed"] is False
+    assert cert["atomistic_md_performed"] is False
     assert cert["coordinate_truth_used_before_seal"] is False
     assert cert["alphafold_used_before_seal"] is False
 

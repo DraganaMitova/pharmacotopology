@@ -13,7 +13,7 @@ if str(SRC) not in sys.path:
 from pharmacotopology.protein_esperanto_engine import (  # noqa: E402
     E73_WORD_LIFECYCLE,
     NEGATIVE_EVIDENCE_PRESSURE_CHANNELS,
-    build_sealed_simulation_packet,
+    build_sealed_operator_state_packet,
     language_acquisition_observation_from_packet,
     protein_language_acquisition_cortex,
 )
@@ -32,8 +32,8 @@ def _source(statement: str) -> dict[str, object]:
     }
 
 
-def test_e73_packet_exposes_epistemological_status_and_aliases() -> None:
-    packet = build_sealed_simulation_packet(
+def test_e73_packet_exposes_epistemological_status_and_operator_state_packet() -> None:
+    packet = build_sealed_operator_state_packet(
         target_id="E73_EPISTEMOLOGY_TEST",
         target_name="E73 epistemology test",
         sequence="ACDEFGHIKLMNPQRSTVWY" * 6,
@@ -43,17 +43,19 @@ def test_e73_packet_exposes_epistemological_status_and_aliases() -> None:
 
     status = packet["epistemological_status"]
     assert status["language_layer"] == "protein_esperanto_mechanism_language"
-    assert status["is_physical_simulation"] is False
-    assert status["is_atomistic_md"] is False
+    assert status["physical_execution_performed"] is False
+    assert status["atomistic_md_performed"] is False
+    assert status["operator_state_api"] == "propagate_operator_state"
     assert status["physical_basis_claim_allowed"] is False
     assert status["folding_problem_solved"] is False
-    assert packet["operator_state_propagation_summary"] == packet["trajectory_summary"]
+    assert packet["kind"] == "V52_COARSE_OPERATOR_STATE_PROPAGATION_PACKET_v0"
+    assert packet["operator_state_propagation_summary"]["kind"] == "PROTEIN_ESPERANTO_OPERATOR_STATE_PROPAGATION_v0"
     assert packet["hypothesized_interaction_language_map"] == packet["predicted_contact_interaction_probability_map"]
 
 
 def test_e73_language_acquisition_cortex_builds_proto_words_from_pressure() -> None:
     packets = [
-        build_sealed_simulation_packet(
+        build_sealed_operator_state_packet(
             target_id=f"E73_PRESSURE_TEST_{index}",
             target_name="E73 pressure test",
             sequence="GGGSSSQPNY" * 12,

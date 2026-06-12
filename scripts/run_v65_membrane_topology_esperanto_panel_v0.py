@@ -33,7 +33,7 @@ from pharmacotopology.protein_esperanto_engine import (  # noqa: E402
     INTERNAL_RUNTIME,
     MECHANISM_CLASSES,
     UNIVERSAL_OPERATORS,
-    build_sealed_simulation_packet,
+    build_sealed_operator_state_packet,
     deterministic_random_sequence,
     evidence_boundary_gate,
     stable_hash,
@@ -477,7 +477,7 @@ def _packet_summary(packet: dict[str, Any]) -> dict[str, Any]:
         "evidence_manifest": packet["evidence_manifest"],
         "operator_names": packet["operator_field"]["operator_names"],
         "active_operator_count": packet["operator_field"]["active_operator_count"],
-        "trajectory_final_state_summary": packet["trajectory_summary"]["final_state_summary"],
+        "operator_state_final_state_summary": packet["operator_state_propagation_summary"]["final_state_summary"],
         "folding_problem_solved": packet["folding_problem_solved"],
     }
 
@@ -584,7 +584,7 @@ def _controls(
         "source_role": "holdout_validation",
         "coordinate_derived": True,
     }])
-    random_packet = build_sealed_simulation_packet(
+    random_packet = build_sealed_operator_state_packet(
         target_id="V65_RANDOM_SEQUENCE_CONTROL",
         target_name="V65 random sequence control",
         sequence=deterministic_random_sequence(128),
@@ -677,7 +677,7 @@ def _aggregate_certificate(
         "coordinate_truth_used_before_seal": False,
         "contact_truth_used_before_seal": False,
         "alphafold_used_before_seal": False,
-        "atomistic_md_executed": False,
+        "atomistic_md_performed": False,
         "folding_problem_solved": False,
         "claim_allowed": False,
         "claim_blocked_reason": "V65 is a membrane topology panel and grammar-mining gate; broad claims require a repaired engine and later expansion.",
@@ -763,7 +763,7 @@ def run_v65(out_dir: Path = DEFAULT_OUT_DIR) -> dict[str, Path]:
     scoring_rows: list[dict[str, Any]] = []
     for target in runtime_targets:
         source_manifest = _source_manifest(target)
-        packet = build_sealed_simulation_packet(
+        packet = build_sealed_operator_state_packet(
             target_id=target["target_id"],
             target_name=target["target_name"],
             sequence=target["candidate"]["sequence"],

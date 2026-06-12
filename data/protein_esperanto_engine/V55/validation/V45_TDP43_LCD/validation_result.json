@@ -10,7 +10,7 @@
       "check_id": "prion_like_phase_ensemble_supported",
       "comparator": ">=",
       "metric": "basin:phase_prone_dynamic",
-      "observed": 0.58,
+      "observed": 0.371623,
       "passed": true,
       "threshold": 0.23
     },
@@ -18,13 +18,13 @@
       "check_id": "generic_compact_fold_rejected",
       "comparator": "<=",
       "metric": "basin:compact_single_fold",
-      "observed": 0.04,
+      "observed": 0.0,
       "passed": true,
       "threshold": 0.12
     }
   ],
   "coordinate_derived_sources_used_before_prediction": 0,
-  "holdout_opened_after_prediction_hash": "15c8d81524eadd94616be8764d17ec27dcbf139e77f92ad7d87c89b8f640c766",
+  "holdout_opened_after_prediction_hash": "f6f51254ba8d0c34efe92f58d97293df0327accd0d13180353efdb2a807c9509",
   "internal_runtime_sources_used_for_prediction": 0,
   "kind": "PROTEIN_ESPERANTO_POST_SEAL_VALIDATION_v0",
   "postseal_sources": [
@@ -37,6 +37,6 @@
     }
   ],
   "score_label": "supported",
-  "sealed_prediction_hash": "15c8d81524eadd94616be8764d17ec27dcbf139e77f92ad7d87c89b8f640c766",
+  "sealed_prediction_hash": "f6f51254ba8d0c34efe92f58d97293df0327accd0d13180353efdb2a807c9509",
   "target_id": "V45_TDP43_LCD"
 }

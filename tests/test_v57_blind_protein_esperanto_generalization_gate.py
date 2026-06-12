@@ -29,7 +29,7 @@ def test_v57_passes_with_frozen_engine_and_writes_certificate() -> None:
     assert cert["passed_control_count"] < cert["control_count"]
     assert cert["engine_modified_for_v57"] is False
     assert cert["folding_problem_solved"] is False
-    assert cert["atomistic_md_executed"] is False
+    assert cert["atomistic_md_performed"] is False
     assert cert["readme_touched"] is False
     assert paths["report"].exists()
 

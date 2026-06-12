@@ -20,7 +20,7 @@ if str(SRC_ROOT) not in sys.path:
 from pharmacotopology.protein_esperanto_engine import (  # noqa: E402
     MECHANISM_CLASSES,
     UNIVERSAL_OPERATORS,
-    build_sealed_simulation_packet,
+    build_sealed_operator_state_packet,
     deterministic_random_sequence,
     evidence_boundary_gate,
     sequence_operator_coherence,
@@ -479,7 +479,7 @@ def _postseal_holdout(target_id: str, spec: dict[str, Any], packet: dict[str, An
 
 
 def _wrong_grammar_packet(target_id: str, spec: dict[str, Any], source_manifest: dict[str, Any]) -> dict[str, Any]:
-    return build_sealed_simulation_packet(
+    return build_sealed_operator_state_packet(
         target_id=f"{target_id}_WRONG_GRAMMAR_CONTROL",
         target_name=f"{spec['target_name']} forced wrong grammar",
         sequence=spec["sequence"],
@@ -491,7 +491,7 @@ def _wrong_grammar_packet(target_id: str, spec: dict[str, Any], source_manifest:
 
 
 def _shuffled_control_packet(target_id: str, spec: dict[str, Any], source_manifest: dict[str, Any]) -> dict[str, Any]:
-    return build_sealed_simulation_packet(
+    return build_sealed_operator_state_packet(
         target_id=f"{target_id}_SHUFFLED_CONTROL",
         target_name=f"{spec['target_name']} shuffled control",
         sequence=shuffled_sequence(spec["sequence"]),
@@ -589,7 +589,7 @@ def _global_controls(
     wrong_packets: list[dict[str, Any]],
     validations: list[dict[str, Any]],
 ) -> list[dict[str, Any]]:
-    random_packet = build_sealed_simulation_packet(
+    random_packet = build_sealed_operator_state_packet(
         target_id="V57_RANDOM_SEQUENCE_CONTROL",
         target_name="V57 random sequence control",
         sequence=deterministic_random_sequence(96),
@@ -712,7 +712,7 @@ def _aggregate_certificate(
         "coordinate_derived_source_count_before_prediction": leakage,
         "internal_runtime_source_count_for_prediction": runtime,
         "folding_problem_solved": False,
-        "atomistic_md_executed": False,
+        "atomistic_md_performed": False,
         "readme_touched": False,
         "claim_allowed": status == PASSED,
         "allowed_claim_text": (
@@ -777,7 +777,7 @@ def run_v57(out_dir: Path = DEFAULT_OUT_DIR) -> dict[str, Path]:
     for target_id, spec in FRESH_TARGETS.items():
         source_manifest = _source_manifest(target_id, spec)
         _write_json(DATA_ROOT / "source_manifests" / target_id / "source_manifest.json", source_manifest)
-        packet = build_sealed_simulation_packet(
+        packet = build_sealed_operator_state_packet(
             target_id=target_id,
             target_name=spec["target_name"],
             sequence=spec["sequence"],
