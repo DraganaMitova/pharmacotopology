@@ -1,0 +1,10 @@
+{
+  "batch_id": "V73_BETA_CLOSURE_TOPOLOGY_REPAIR_PANEL_200",
+  "dominant_failure_count": 0,
+  "dominant_failure_mode": null,
+  "engine_version_used": "E68",
+  "failed_accepted_by_failure_mode": {},
+  "failure_count": 0,
+  "failure_grammar_rows": [],
+  "kind": "V73_E68_BETA_CLOSURE_REPAIR_FAILURE_REPORT_v0"
+}

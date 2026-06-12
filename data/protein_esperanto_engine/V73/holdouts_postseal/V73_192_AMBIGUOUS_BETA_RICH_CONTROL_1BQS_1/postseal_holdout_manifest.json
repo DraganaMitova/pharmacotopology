@@ -1,0 +1,33 @@
+{
+  "batch_id": "V73_BETA_CLOSURE_TOPOLOGY_REPAIR_PANEL_200",
+  "engine_version_used": "E68",
+  "entity_id": "1",
+  "entry_id": "1BQS",
+  "expected_decision": "abstain_recommended",
+  "expected_mechanism_class": "insufficient_evidence_clean_abstain",
+  "expected_observables": [],
+  "holdout_opened_after_prediction_hash": "13ac0925c1de288f01b07fbc0f1e06edb45012b6035228039a2a5d3918670f28",
+  "kind": "V73_E68_BETA_CLOSURE_REPAIR_POSTSEAL_HOLDOUT_v0",
+  "panel_group": "AMBIGUOUS_BETA_RICH_CONTROL",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1BQS",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1BQS/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V73_192_AMBIGUOUS_BETA_RICH_CONTROL_1BQS_1_V73_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "V73 E68 beta-closure repair panel group AMBIGUOUS_BETA_RICH_CONTROL.",
+    "Expected decision: abstain_recommended.",
+    "Required E68 word: open_beta_sheet_ambiguous.",
+    "Coordinates, contacts, native topology, and post-seal validation labels are blocked before sealing."
+  ],
+  "protein_id": "1BQS_1",
+  "required_esperanto_word": "open_beta_sheet_ambiguous",
+  "sentinel_family": null,
+  "target_id": "V73_192_AMBIGUOUS_BETA_RICH_CONTROL_1BQS_1"
+}

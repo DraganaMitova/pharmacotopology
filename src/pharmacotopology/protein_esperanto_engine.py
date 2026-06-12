@@ -32,6 +32,7 @@ MECHANISM_CLASSES = [
     "globular_closure",
     "intrinsic_disorder_phase_separation",
     "disorder_boundary_and_fold_upon_binding",
+    "beta_closure_topology",
     "membrane_multidomain_folding_proteostasis",
     "metamorphic_fold_switching",
     "short_region_host_interface_hijacking",
@@ -49,6 +50,7 @@ PROCESS_CLASSES = [
     "multi_basin",
     "disorder_biased",
     "disorder_boundary",
+    "beta_closure",
     "fold_upon_binding",
 ]
 
@@ -111,6 +113,22 @@ STATE_VARIABLES = [
     "phase_prone_low_complexity",
     "flexible_loop_not_disorder",
     "disorder_with_local_motif",
+    "closed_beta_topology",
+    "strand_register",
+    "beta_sheet_closure",
+    "soluble_beta_barrel",
+    "membrane_beta_barrel",
+    "beta_propeller_repeat_closure",
+    "beta_sandwich_core",
+    "jelly_roll_wrap",
+    "greek_key_beta_lock",
+    "beta_helix_solenoid_stack",
+    "alpha_beta_barrel_distinction",
+    "open_beta_sheet_ambiguous",
+    "closed_beta_confident",
+    "closed_beta_ambiguous",
+    "strand_register_insufficient",
+    "beta_topology_conflict",
 ]
 
 ENVIRONMENTAL_PRESSURES = [
@@ -173,6 +191,62 @@ DISORDER_BOUNDARY_CONTEXT_TOKENS = [
     "disorder with local motif",
     "disordered region tendency",
     "low complexity tendency",
+]
+
+BETA_CLOSURE_CONTEXT_TOKENS = [
+    "closed_beta_topology",
+    "closed beta topology",
+    "strand_register",
+    "strand register",
+    "beta_sheet_closure",
+    "beta sheet closure",
+    "soluble_beta_barrel",
+    "soluble beta barrel",
+    "membrane_beta_barrel",
+    "membrane beta barrel",
+    "outer membrane beta barrel",
+    "beta_propeller_repeat_closure",
+    "beta propeller",
+    "beta-propeller",
+    "beta_sandwich_core",
+    "beta sandwich",
+    "jelly_roll_wrap",
+    "jelly roll",
+    "jelly-roll",
+    "greek_key_beta_lock",
+    "greek key",
+    "greek-key",
+    "beta_helix_solenoid_stack",
+    "beta helix",
+    "beta-helix",
+    "beta solenoid",
+    "beta-solenoid",
+    "alpha_beta_barrel_distinction",
+    "alpha beta barrel",
+    "alpha-beta barrel",
+]
+
+BETA_AMBIGUOUS_CONTEXT_TOKENS = [
+    "open_beta_sheet_ambiguous",
+    "open beta sheet ambiguous",
+    "strand_register_insufficient",
+    "strand register insufficient",
+    "beta_topology_conflict",
+    "beta topology conflict",
+    "beta propensity only",
+    "weak beta closure evidence",
+]
+
+BETA_TOPOLOGY_STATE_VARIABLES = [
+    "closed_beta_topology",
+    "soluble_beta_barrel",
+    "membrane_beta_barrel",
+    "beta_propeller_repeat_closure",
+    "beta_sandwich_core",
+    "jelly_roll_wrap",
+    "greek_key_beta_lock",
+    "beta_helix_solenoid_stack",
+    "alpha_beta_barrel_distinction",
 ]
 
 OLIGOMER_CONTEXT_TOKENS = [
@@ -310,6 +384,27 @@ GRAMMAR_RULES: dict[str, dict[str, Any]] = {
         "testable_effect": "boundary, local motif, or partner perturbation changes ordering without promoting a whole-chain solved fold",
         "null_control": "generic oligomer copy metadata cannot override explicit IDR/low-complexity boundary evidence",
         "falsification_rule": "holdout shows a complete stable globular or assembly-required fold without persistent disorder boundary",
+    },
+    "beta_closure_topology": {
+        "marks": [
+            "closed_beta_topology",
+            "strand_register",
+            "beta_sheet_closure",
+            "soluble_beta_barrel",
+            "membrane_beta_barrel",
+            "beta_propeller_repeat_closure",
+            "beta_sandwich_core",
+            "jelly_roll_wrap",
+            "greek_key_beta_lock",
+            "beta_helix_solenoid_stack",
+            "alpha_beta_barrel_distinction",
+        ],
+        "pressures": ["solvent", "membrane", "strand_register", "repeat_closure"],
+        "operators": ["closure_operator", "interface_operator", "frustration_operator"],
+        "state_change": "beta propensity to subtype-specific strand-register closure without confusing membrane, propeller, sandwich, solenoid, or alpha/beta barrels",
+        "testable_effect": "strand-register or blade/repeat perturbations weaken the selected beta closure while preserving non-beta priority classes",
+        "null_control": "beta-rich sequence alone is not topology and must abstain when closure evidence is weak",
+        "falsification_rule": "holdout shows open beta sheet, wrong beta subtype, or protected membrane/assembly/metal/disorder context",
     },
     "membrane_multidomain_folding_proteostasis": {
         "marks": ["membrane_segment", "domain_boundary", "mutation_site", "interface"],
@@ -489,6 +584,7 @@ def build_sequence_field(sequence: str, *, segment_size: int = 12) -> dict[str, 
             "charge_density": round(sum(row["charge_mark"] for row in segment_residues) / len(segment_residues), 6),
             "hydrophobic_density": _avg(1.0 if row["hydrophobic_mark"] else 0.0 for row in segment_residues),
             "aromatic_density": _avg(1.0 if row["aromatic_mark"] else 0.0 for row in segment_residues),
+            "beta_propensity_density": _avg(1.0 if row["secondary_propensity_mark"] == "beta_prone" else 0.0 for row in segment_residues),
             "low_complexity_density": _avg(1.0 if row["low_complexity_mark"] else 0.0 for row in segment_residues),
             "disorder_density": _avg(row["disorder_mark"] for row in segment_residues),
             "membrane_density": _avg(row["membrane_mark"] for row in segment_residues),
@@ -500,6 +596,7 @@ def build_sequence_field(sequence: str, *, segment_size: int = 12) -> dict[str, 
         "net_charge_per_residue": round(sum(row["charge_mark"] for row in residues) / len(sequence), 6),
         "hydrophobic_density": _avg(1.0 if row["hydrophobic_mark"] else 0.0 for row in residues),
         "aromatic_density": _avg(1.0 if row["aromatic_mark"] else 0.0 for row in residues),
+        "beta_propensity_density": _avg(1.0 if row["secondary_propensity_mark"] == "beta_prone" else 0.0 for row in residues),
         "low_complexity_density": _avg(1.0 if row["low_complexity_mark"] else 0.0 for row in residues),
         "mean_disorder": _avg(row["disorder_mark"] for row in residues),
         "mean_membrane": _avg(row["membrane_mark"] for row in residues),
@@ -743,12 +840,39 @@ def _allowed_source_text(sources: list[dict[str, Any]], gate: dict[str, Any]) ->
     for source in sources:
         source_id = str(source.get("source_id", source.get("accession", "unknown_source")))
         if source_id in allowed:
-            selected.append(_flatten_text(source))
+            visible_source = {
+                key: value
+                for key, value in source.items()
+                if not str(key).startswith("withheld") and str(key) not in {"blocked_prediction_inputs"}
+            }
+            selected.append(_flatten_text(visible_source))
     return " ".join(selected).lower()
 
 
 def _contains_any(text: str, tokens: list[str]) -> bool:
     return any(token in text for token in tokens)
+
+
+def _beta_topology_word_from_text(text: str) -> str | None:
+    if any(token in text for token in ["membrane_beta_barrel", "membrane beta barrel", "outer membrane beta barrel"]):
+        return "membrane_beta_barrel"
+    if any(token in text for token in ["beta_propeller_repeat_closure", "beta propeller", "beta-propeller", "blade repeat", "repeat blade"]):
+        return "beta_propeller_repeat_closure"
+    if any(token in text for token in ["soluble_beta_barrel", "soluble beta barrel"]):
+        return "soluble_beta_barrel"
+    if any(token in text for token in ["beta_sandwich_core", "beta sandwich", "immunoglobulin sandwich", "ig-like sandwich"]):
+        return "beta_sandwich_core"
+    if any(token in text for token in ["jelly_roll_wrap", "jelly roll", "jelly-roll"]):
+        return "jelly_roll_wrap"
+    if any(token in text for token in ["greek_key_beta_lock", "greek key", "greek-key"]):
+        return "greek_key_beta_lock"
+    if any(token in text for token in ["beta_helix_solenoid_stack", "beta helix", "beta-helix", "beta solenoid", "beta-solenoid"]):
+        return "beta_helix_solenoid_stack"
+    if any(token in text for token in ["alpha_beta_barrel_distinction", "alpha beta barrel", "alpha-beta barrel", "tim barrel"]):
+        return "alpha_beta_barrel_distinction"
+    if any(token in text for token in ["closed_beta_topology", "closed beta topology", "strand_register", "strand register", "beta_sheet_closure", "beta sheet closure"]):
+        return "closed_beta_topology"
+    return None
 
 
 def select_mechanism_grammar(
@@ -761,6 +885,7 @@ def select_mechanism_grammar(
     if not evidence_manifest["allowed_initialization_source_ids"]:
         natural = "insufficient_evidence_clean_abstain"
         reason = "no_allowed_prediction_evidence"
+        beta_topology_word = None
     else:
         text = _allowed_source_text(sources, evidence_manifest)
         metrics = sequence_field["global_metrics"]
@@ -768,6 +893,9 @@ def select_mechanism_grammar(
         metal_cluster_context = _contains_any(text, METAL_CLUSTER_CONTEXT_TOKENS)
         ligand_locked_context = _contains_any(text, LIGAND_LOCKED_CONTEXT_TOKENS)
         disorder_boundary_context = _contains_any(text, DISORDER_BOUNDARY_CONTEXT_TOKENS)
+        beta_topology_word = _beta_topology_word_from_text(text)
+        beta_closure_context = beta_topology_word is not None or _contains_any(text, BETA_CLOSURE_CONTEXT_TOKENS)
+        beta_ambiguous_context = _contains_any(text, BETA_AMBIGUOUS_CONTEXT_TOKENS)
         negative_assembly_context = _contains_any(text, NEGATIVE_ASSEMBLY_CONTEXT_TOKENS)
         explicit_assembly_required_context = _contains_any(text, ASSEMBLY_REQUIRED_CONTEXT_TOKENS) and not negative_assembly_context
         biological_oligomer_context = _contains_any(text, OLIGOMER_CONTEXT_TOKENS)
@@ -821,6 +949,9 @@ def select_mechanism_grammar(
         ]):
             natural = "metamorphic_fold_switching"
             reason = "state_separated_partner_context_evidence"
+        elif beta_topology_word == "membrane_beta_barrel":
+            natural = "beta_closure_topology"
+            reason = "explicit_membrane_beta_barrel_closure_context_preserves_true_membrane_beta_topology"
         elif explicit_membrane_context:
             if (
                 "f508" in text
@@ -843,6 +974,12 @@ def select_mechanism_grammar(
         elif disorder_boundary_context:
             natural = "disorder_boundary_and_fold_upon_binding"
             reason = "explicit_disorder_boundary_or_fold_upon_binding_context_prioritized_over_generic_oligomer"
+        elif beta_ambiguous_context:
+            natural = "insufficient_evidence_clean_abstain"
+            reason = "beta_propensity_or_open_sheet_without_closure_logic_requires_abstention"
+        elif beta_closure_context:
+            natural = "beta_closure_topology"
+            reason = "explicit_beta_closure_topology_context"
         elif cofactor_context:
             natural = "cofactor_ligand_assisted_stabilization"
             reason = "explicit_ligand_cofactor_or_metal_context"
@@ -934,6 +1071,7 @@ def select_mechanism_grammar(
         "kind": "PROTEIN_ESPERANTO_MECHANISM_CLASSIFIER_v0",
         "mechanism_class": mechanism_class,
         "natural_mechanism_class": natural,
+        "selected_beta_topology_word": beta_topology_word if mechanism_class == "beta_closure_topology" else None,
         "forced_grammar": forced_grammar,
         "forced_grammar_rejected": forced_rejected,
         "selection_reason": "forced_wrong_grammar_rejected" if forced_rejected else reason,
@@ -1069,6 +1207,40 @@ def build_operator_field(
                 "sticker/charge/salt perturbations shift phase-prone basin",
                 "low-complexity context behaves as an ordinary compact loop",
                 "phase_prone_low_complexity",
+            ),
+        ])
+    elif mechanism_class == "beta_closure_topology":
+        beta_word = mechanism.get("selected_beta_topology_word") or "closed_beta_topology"
+        operators.extend([
+            _operator(
+                "closure_operator",
+                ", ".join(_span_from_segment(row) for row in _strong_segments(sequence_field, "beta_propensity_density")),
+                metrics["hydrophobic_density"] + metrics["beta_propensity_density"] + 0.18,
+                evidence,
+                f"{beta_word} strand-register closure rather than generic beta propensity",
+                "register-shift or blade/repeat perturbation weakens closed beta topology",
+                "open beta sheet or wrong beta subtype explains the holdout better",
+                beta_word,
+            ),
+            _operator(
+                "interface_operator",
+                ", ".join(_span_from_segment(row) for row in interface_segments),
+                metrics["mean_interface"] + 0.30,
+                evidence,
+                "inter-strand edge pairing and closure interface readiness",
+                "edge/interface perturbation opens the beta topology",
+                "beta-rich region stays open without closure contacts",
+                "beta_sheet_closure",
+            ),
+            _operator(
+                "frustration_operator",
+                ", ".join(_span_from_segment(row) for row in hydrophobic_segments),
+                metrics["aromatic_density"] + metrics["mean_interface"] + 0.14,
+                evidence,
+                "closure conflict separates membrane, propeller, sandwich, solenoid, and alpha/beta barrel classes",
+                "wrong closure class increases topology conflict",
+                "all beta-rich classes collapse to the same topology",
+                "beta_topology_conflict",
             ),
         ])
     elif mechanism_class == "membrane_multidomain_folding_proteostasis":
@@ -1351,6 +1523,14 @@ def simulate_operator_trajectory(
     })
     strengths = {name: _operator_strength(operator_field, name) for name in UNIVERSAL_OPERATORS}
     metrics = sequence_field["global_metrics"]
+    beta_subtype = next(
+        (
+            row["state_variable"]
+            for row in operator_field["operators"]
+            if row["state_variable"] in BETA_TOPOLOGY_STATE_VARIABLES
+        ),
+        "closed_beta_topology",
+    )
     timepoints: list[dict[str, Any]] = []
     for timepoint in [0, 100, 500, 1000]:
         progress = timepoint / 1000.0
@@ -1389,6 +1569,28 @@ def simulate_operator_trajectory(
             segment_compaction = bounded(0.10 + local_order * 0.18 + closure * 0.04 + noise)
             contact_probability = bounded(0.10 + local_order * 0.32 + phase * 0.08)
             interface_readiness = local_order
+            proteostasis_routing = 0.0
+        elif mechanism_class == "beta_closure_topology":
+            register_damage = float((perturbation or {}).get("register_damage", 0.0))
+            closure_conflict = float((perturbation or {}).get("closure_conflict", 0.0))
+            register = bounded(0.28 + closure * 0.34 * progress + interface * 0.20 - 0.45 * register_damage)
+            closure_state = bounded(
+                0.24
+                + closure * 0.36 * progress
+                + interface * 0.22
+                + metrics["beta_propensity_density"] * 0.12
+                - 0.34 * closure_conflict
+            )
+            conflict = bounded(0.14 + frustration_strength * 0.20 + closure_conflict + register_damage * 0.25)
+            basin = {
+                "closed_beta_topology": closure_state,
+                "strand_register": register,
+                "open_beta_sheet_ambiguous": bounded(0.46 - closure_state * 0.28 + conflict * 0.18),
+                "wrong_beta_topology": conflict,
+            }
+            segment_compaction = bounded(0.16 + closure_state * 0.40 + closure * 0.12 + noise)
+            contact_probability = bounded(0.14 + closure_state * 0.42 + register * 0.18)
+            interface_readiness = bounded(0.16 + interface * 0.34 + register * 0.20)
             proteostasis_routing = 0.0
         elif mechanism_class == "membrane_multidomain_folding_proteostasis":
             damage = float((perturbation or {}).get("damage", 0.0))
@@ -1602,6 +1804,86 @@ def simulate_operator_trajectory(
                 if mechanism_class == "disorder_boundary_and_fold_upon_binding"
                 else 0.0
             ),
+            "closed_beta_topology": bounded(
+                basin.get("closed_beta_topology", 0.0)
+                if mechanism_class == "beta_closure_topology"
+                else 0.0
+            ),
+            "strand_register": bounded(
+                basin.get("strand_register", 0.0)
+                if mechanism_class == "beta_closure_topology"
+                else 0.0
+            ),
+            "beta_sheet_closure": bounded(
+                basin.get("closed_beta_topology", 0.0)
+                if mechanism_class == "beta_closure_topology"
+                else 0.0
+            ),
+            "soluble_beta_barrel": bounded(
+                basin.get("closed_beta_topology", 0.0)
+                if mechanism_class == "beta_closure_topology" and beta_subtype == "soluble_beta_barrel"
+                else 0.0
+            ),
+            "membrane_beta_barrel": bounded(
+                basin.get("closed_beta_topology", 0.0)
+                if mechanism_class == "beta_closure_topology" and beta_subtype == "membrane_beta_barrel"
+                else 0.0
+            ),
+            "beta_propeller_repeat_closure": bounded(
+                basin.get("closed_beta_topology", 0.0)
+                if mechanism_class == "beta_closure_topology" and beta_subtype == "beta_propeller_repeat_closure"
+                else 0.0
+            ),
+            "beta_sandwich_core": bounded(
+                basin.get("closed_beta_topology", 0.0)
+                if mechanism_class == "beta_closure_topology" and beta_subtype == "beta_sandwich_core"
+                else 0.0
+            ),
+            "jelly_roll_wrap": bounded(
+                basin.get("closed_beta_topology", 0.0)
+                if mechanism_class == "beta_closure_topology" and beta_subtype == "jelly_roll_wrap"
+                else 0.0
+            ),
+            "greek_key_beta_lock": bounded(
+                basin.get("closed_beta_topology", 0.0)
+                if mechanism_class == "beta_closure_topology" and beta_subtype == "greek_key_beta_lock"
+                else 0.0
+            ),
+            "beta_helix_solenoid_stack": bounded(
+                basin.get("closed_beta_topology", 0.0)
+                if mechanism_class == "beta_closure_topology" and beta_subtype == "beta_helix_solenoid_stack"
+                else 0.0
+            ),
+            "alpha_beta_barrel_distinction": bounded(
+                basin.get("closed_beta_topology", 0.0)
+                if mechanism_class == "beta_closure_topology" and beta_subtype == "alpha_beta_barrel_distinction"
+                else 0.0
+            ),
+            "open_beta_sheet_ambiguous": bounded(
+                basin.get("open_beta_sheet_ambiguous", 0.0)
+                if mechanism_class == "beta_closure_topology"
+                else 0.0
+            ),
+            "closed_beta_confident": bounded(
+                basin.get("closed_beta_topology", 0.0) - basin.get("wrong_beta_topology", 0.0) * 0.30
+                if mechanism_class == "beta_closure_topology"
+                else 0.0
+            ),
+            "closed_beta_ambiguous": bounded(
+                max(basin.get("open_beta_sheet_ambiguous", 0.0), basin.get("wrong_beta_topology", 0.0))
+                if mechanism_class == "beta_closure_topology"
+                else 0.0
+            ),
+            "strand_register_insufficient": bounded(
+                0.36 - basin.get("strand_register", 0.0)
+                if mechanism_class == "beta_closure_topology"
+                else 0.0
+            ),
+            "beta_topology_conflict": bounded(
+                basin.get("wrong_beta_topology", 0.0)
+                if mechanism_class == "beta_closure_topology"
+                else 0.0
+            ),
         })
     final = timepoints[-1]
     return {
@@ -1646,6 +1928,20 @@ def contact_probability_map(sequence_field: dict[str, Any], operator_field: dict
                     "segment_b": right["segment_id"],
                     "probability": bounded(0.18 + _operator_strength(operator_field, "interface_operator") * 0.28),
                     "interaction_type": "idr_boundary_fold_upon_binding_contact",
+                })
+    elif mechanism_class == "beta_closure_topology":
+        beta_top = _strong_segments(sequence_field, "beta_propensity_density", limit=4)
+        if len(beta_top) < 2:
+            beta_top = _strong_segments(sequence_field, "hydrophobic_density", limit=4)
+        for left in beta_top[:2]:
+            for right in beta_top[2:]:
+                if left["segment_id"] == right["segment_id"]:
+                    continue
+                pairs.append({
+                    "segment_a": left["segment_id"],
+                    "segment_b": right["segment_id"],
+                    "probability": bounded(0.20 + _operator_strength(operator_field, "closure_operator") * 0.32),
+                    "interaction_type": "beta_strand_register_closure",
                 })
     elif mechanism_class == "short_region_host_interface_hijacking":
         cterm = segments[-1]
@@ -1972,6 +2268,18 @@ def sequence_operator_coherence(packet: dict[str, Any]) -> float:
             + 0.35 * local_disorder
             + 0.20 * local_interface
             + 0.15 * activation
+        )
+    elif mechanism == "beta_closure_topology":
+        local_beta = max((row["beta_propensity_density"] for row in segments), default=0.0)
+        local_interface = max((row["interface_density"] for row in segments), default=0.0)
+        local_aromatic = max((row["aromatic_density"] for row in segments), default=0.0)
+        support = (
+            0.24 * field["hydrophobic_density"]
+            + 0.26 * field["beta_propensity_density"]
+            + 0.18 * field["mean_interface"]
+            + 0.20 * local_beta
+            + 0.12 * max(local_interface, local_aromatic)
+            + activation
         )
     elif mechanism == "membrane_multidomain_folding_proteostasis":
         local = max((row["membrane_density"] for row in segments), default=0.0)

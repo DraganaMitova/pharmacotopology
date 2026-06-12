@@ -1,0 +1,59 @@
+{
+  "acceptance_decision": "abstain_recommended",
+  "alphafold_used_before_seal": false,
+  "beta_specific_scores": {
+    "alpha_beta_barrel_distinction": 0.0,
+    "beta_helix_solenoid_stack": 0.0,
+    "beta_propeller_repeat_closure": 0.0,
+    "beta_sandwich_core": 0.0,
+    "beta_sheet_closure": 0.0,
+    "beta_topology_conflict": 0.0,
+    "closed_beta_ambiguous": 0.0,
+    "closed_beta_confident": 0.0,
+    "closed_beta_topology": 0.0,
+    "greek_key_beta_lock": 0.0,
+    "membrane_beta_barrel": 0.0,
+    "open_beta_sheet_ambiguous": 0.0,
+    "soluble_beta_barrel": 0.0,
+    "strand_register": 0.0
+  },
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "1",
+  "entry_id": "1BQS",
+  "expected_mechanism_class": "insufficient_evidence_clean_abstain",
+  "holdout_opened_after_prediction_hash": "13ac0925c1de288f01b07fbc0f1e06edb45012b6035228039a2a5d3918670f28",
+  "kind": "V73_E68_BETA_CLOSURE_REPAIR_VALIDATION_RESULT_v0",
+  "level1_regime_selection": true,
+  "level2_region_localization_proxy": false,
+  "level3_topology_or_contact_proxy": true,
+  "panel_group": "AMBIGUOUS_BETA_RICH_CONTROL",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1BQS",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1BQS/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V73_192_AMBIGUOUS_BETA_RICH_CONTROL_1BQS_1_V73_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "predicted_mechanism_class": "insufficient_evidence_clean_abstain",
+  "protein_id": "1BQS_1",
+  "required_esperanto_word": "open_beta_sheet_ambiguous",
+  "required_esperanto_word_supported": true,
+  "score_label": "supported",
+  "sealed_prediction_hash": "13ac0925c1de288f01b07fbc0f1e06edb45012b6035228039a2a5d3918670f28",
+  "selected_beta_topology_word": null,
+  "sentinel_family": null,
+  "target_id": "V73_192_AMBIGUOUS_BETA_RICH_CONTROL_1BQS_1",
+  "validation_checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "insufficient_evidence_clean_abstain",
+      "observed": "insufficient_evidence_clean_abstain",
+      "passed": true
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "batch_id": "V73_BETA_CLOSURE_TOPOLOGY_REPAIR_PANEL_200",
+  "engine_version_used": "E68",
+  "entity_id": "1",
+  "entry_id": "1BMB",
+  "expected_decision": "accepted",
+  "expected_mechanism_class": "beta_closure_topology",
+  "expected_observables": [
+    {
+      "check_id": "closed_beta_topology_supported",
+      "comparator": ">=",
+      "metric": "closed_beta_topology",
+      "threshold": 0.3
+    },
+    {
+      "check_id": "strand_register_supported",
+      "comparator": ">=",
+      "metric": "strand_register",
+      "threshold": 0.25
+    },
+    {
+      "check_id": "beta_sheet_closure_supported",
+      "comparator": ">=",
+      "metric": "beta_sheet_closure",
+      "threshold": 0.3
+    },
+    {
+      "check_id": "closed_beta_confident_supported",
+      "comparator": ">=",
+      "metric": "closed_beta_confident",
+      "threshold": 0.25
+    },
+    {
+      "check_id": "membrane_beta_barrel_supported",
+      "comparator": ">=",
+      "metric": "membrane_beta_barrel",
+      "threshold": 0.2
+    }
+  ],
+  "holdout_opened_after_prediction_hash": "164f42d9d0aa46481a49bef8cd34aca26c514ec4c4621aeed5422e08f4a9c2e8",
+  "kind": "V73_E68_BETA_CLOSURE_REPAIR_POSTSEAL_HOLDOUT_v0",
+  "panel_group": "MEMBRANE_BETA_BARREL_POSITIVE",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1BMB",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1BMB/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V73_091_MEMBRANE_BETA_BARREL_POSITIVE_1BMB_1_V73_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "V73 E68 beta-closure repair panel group MEMBRANE_BETA_BARREL_POSITIVE.",
+    "Expected decision: accepted.",
+    "Required E68 word: membrane_beta_barrel.",
+    "Coordinates, contacts, native topology, and post-seal validation labels are blocked before sealing."
+  ],
+  "protein_id": "1BMB_1",
+  "required_esperanto_word": "membrane_beta_barrel",
+  "sentinel_family": null,
+  "target_id": "V73_091_MEMBRANE_BETA_BARREL_POSITIVE_1BMB_1"
+}

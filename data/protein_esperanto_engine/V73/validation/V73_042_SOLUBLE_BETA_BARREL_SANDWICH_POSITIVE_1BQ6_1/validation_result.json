@@ -1,0 +1,99 @@
+{
+  "acceptance_decision": "accepted",
+  "alphafold_used_before_seal": false,
+  "beta_specific_scores": {
+    "alpha_beta_barrel_distinction": 0.0,
+    "beta_helix_solenoid_stack": 0.0,
+    "beta_propeller_repeat_closure": 0.0,
+    "beta_sandwich_core": 0.0,
+    "beta_sheet_closure": 0.684727,
+    "beta_topology_conflict": 0.236986,
+    "closed_beta_ambiguous": 0.310934,
+    "closed_beta_confident": 0.613631,
+    "closed_beta_topology": 0.684727,
+    "greek_key_beta_lock": 0.0,
+    "membrane_beta_barrel": 0.0,
+    "open_beta_sheet_ambiguous": 0.310934,
+    "soluble_beta_barrel": 0.684727,
+    "strand_register": 0.673073
+  },
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "1",
+  "entry_id": "1BQ6",
+  "expected_mechanism_class": "beta_closure_topology",
+  "holdout_opened_after_prediction_hash": "90d6f17a9acd916df8f17b8f22d99ee931db1045483337728dc15ad740186c3f",
+  "kind": "V73_E68_BETA_CLOSURE_REPAIR_VALIDATION_RESULT_v0",
+  "level1_regime_selection": true,
+  "level2_region_localization_proxy": true,
+  "level3_topology_or_contact_proxy": true,
+  "panel_group": "SOLUBLE_BETA_BARREL_SANDWICH_POSITIVE",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1BQ6",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1BQ6/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V73_042_SOLUBLE_BETA_BARREL_SANDWICH_POSITIVE_1BQ6_1_V73_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "predicted_mechanism_class": "beta_closure_topology",
+  "protein_id": "1BQ6_1",
+  "required_esperanto_word": "soluble_beta_barrel",
+  "required_esperanto_word_supported": true,
+  "score_label": "supported",
+  "sealed_prediction_hash": "90d6f17a9acd916df8f17b8f22d99ee931db1045483337728dc15ad740186c3f",
+  "selected_beta_topology_word": "soluble_beta_barrel",
+  "sentinel_family": null,
+  "target_id": "V73_042_SOLUBLE_BETA_BARREL_SANDWICH_POSITIVE_1BQ6_1",
+  "validation_checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "beta_closure_topology",
+      "observed": "beta_closure_topology",
+      "passed": true
+    },
+    {
+      "check_id": "closed_beta_topology_supported",
+      "comparator": ">=",
+      "metric": "closed_beta_topology",
+      "observed": 0.684727,
+      "passed": true,
+      "threshold": 0.3
+    },
+    {
+      "check_id": "strand_register_supported",
+      "comparator": ">=",
+      "metric": "strand_register",
+      "observed": 0.673073,
+      "passed": true,
+      "threshold": 0.25
+    },
+    {
+      "check_id": "beta_sheet_closure_supported",
+      "comparator": ">=",
+      "metric": "beta_sheet_closure",
+      "observed": 0.684727,
+      "passed": true,
+      "threshold": 0.3
+    },
+    {
+      "check_id": "closed_beta_confident_supported",
+      "comparator": ">=",
+      "metric": "closed_beta_confident",
+      "observed": 0.613631,
+      "passed": true,
+      "threshold": 0.25
+    },
+    {
+      "check_id": "soluble_beta_barrel_supported",
+      "comparator": ">=",
+      "metric": "soluble_beta_barrel",
+      "observed": 0.684727,
+      "passed": true,
+      "threshold": 0.2
+    }
+  ]
+}

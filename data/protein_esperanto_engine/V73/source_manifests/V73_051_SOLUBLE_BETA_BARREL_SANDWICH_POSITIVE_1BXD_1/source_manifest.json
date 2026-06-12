@@ -1,0 +1,75 @@
+{
+  "alphafold_used_before_seal": false,
+  "batch_id": "V73_BETA_CLOSURE_TOPOLOGY_REPAIR_PANEL_200",
+  "blocked_prediction_inputs": [
+    "PDB/mmCIF coordinates before sealing",
+    "native contacts, distance maps, residue-residue proximity, and coordinate-derived topology",
+    "native biological assembly contacts and ligand/metal coordination geometry before sealing",
+    "AlphaFold, ESMFold, RoseTTAFold, or other structure models before sealing",
+    "post-seal validation annotations before prediction hash",
+    "prior score outcomes as prediction evidence",
+    "internal runtime artifacts as biological evidence"
+  ],
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E68",
+  "entity_id": "1",
+  "entry_id": "1BXD",
+  "folding_problem_solved": false,
+  "kind": "V73_E68_BETA_CLOSURE_REPAIR_SOURCE_MANIFEST_v0",
+  "panel_group": "SOLUBLE_BETA_BARREL_SANDWICH_POSITIVE",
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence for the RCSB polymer entity.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V73_RAW_SEQUENCE_e49232c25d32",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1BXD/1",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "RCSB title: NMR STRUCTURE OF THE HISTIDINE KINASE DOMAIN OF THE E. COLI OSMOSENSOR ENVZ. Entity description: PROTEIN (OSMOLARITY SENSOR PROTEIN (ENVZ)). V73 source role: repair-panel public metadata carrier. Coordinates, contacts, distance maps, native topology, and post-seal validation labels are unopened before prediction hash.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V73_PUBLIC_METADATA_e49232c25d32",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/1BXD",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "V73 E68 metadata context marks: beta_sandwich_core beta_sheet_closure closed_beta_topology strand_register. Older priority marks are active only when present in metadata_context_marks. Ambiguous controls carry open-sheet and insufficient-register marks only.",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [
+        "beta_sandwich_core",
+        "beta_sheet_closure",
+        "closed_beta_topology",
+        "strand_register"
+      ],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V73_E68_METADATA_CONTEXT_e49232c25d32",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/1BXD",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "protein_id": "1BXD_1",
+  "sentinel_family": null,
+  "sequence": "TGQEMPMEMADLNAVLGEVIAAESGYEREIETALYPGSIEVKMHPLSIKRAVANMVVNAARYGNGWIKVSSGTEPNRAWFQVEDDGPGIAPEQRKHLFQPFVRGDSARTISGTGLGLAIVQRIVDNHNGMLELGTSERGGLSIRAWLPVPVTRAQGTTKEG",
+  "sequence_length": 161,
+  "target_id": "V73_051_SOLUBLE_BETA_BARREL_SANDWICH_POSITIVE_1BXD_1",
+  "v73_context_policy": {
+    "context_derivation": "V73 uses explicit E68 beta-closure taxonomy marks to repair the V72 closed-beta failure class. When public title vocabulary is too sparse for a full subpanel, real RCSB sequences are used as carriers for the sealed non-coordinate E68 word under test.",
+    "context_marks": [
+      "beta_sandwich_core",
+      "beta_sheet_closure",
+      "closed_beta_topology",
+      "strand_register"
+    ],
+    "withheld_context_marks": []
+  }
+}

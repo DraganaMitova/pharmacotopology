@@ -1,0 +1,40 @@
+{
+  "batch_id": "V73_BETA_CLOSURE_TOPOLOGY_REPAIR_PANEL_200",
+  "engine_version_used": "E68",
+  "entity_id": "3",
+  "entry_id": "1D66",
+  "expected_decision": "accepted",
+  "expected_mechanism_class": "assembly_required_folding",
+  "expected_observables": [
+    {
+      "check_id": "partner_completed_core_supported",
+      "comparator": ">=",
+      "metric": "partner_completed_core",
+      "threshold": 0.48
+    }
+  ],
+  "holdout_opened_after_prediction_hash": "41d4347d073639d249ab60a9bacac7c71a8c0644878b8c6ad0d7a58b17ae79fa",
+  "kind": "V73_E68_BETA_CLOSURE_REPAIR_POSTSEAL_HOLDOUT_v0",
+  "panel_group": "PRIORITY_CONTEXT_SENTINEL",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1D66",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1D66/3",
+      "source_class": "coordinate_derived",
+      "source_id": "V73_177_PRIORITY_CONTEXT_SENTINEL_1D66_3_V73_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "V73 E68 beta-closure repair panel group PRIORITY_CONTEXT_SENTINEL.",
+    "Expected decision: accepted.",
+    "Required E68 word: assembly_required_core.",
+    "Coordinates, contacts, native topology, and post-seal validation labels are blocked before sealing."
+  ],
+  "protein_id": "1D66_3",
+  "required_esperanto_word": "assembly_required_core",
+  "sentinel_family": "ASSEMBLY_PRIORITY",
+  "target_id": "V73_177_PRIORITY_CONTEXT_SENTINEL_1D66_3"
+}

@@ -1,0 +1,99 @@
+{
+  "acceptance_decision": "accepted",
+  "alphafold_used_before_seal": false,
+  "beta_specific_scores": {
+    "alpha_beta_barrel_distinction": 0.0,
+    "beta_helix_solenoid_stack": 0.637495,
+    "beta_propeller_repeat_closure": 0.0,
+    "beta_sandwich_core": 0.0,
+    "beta_sheet_closure": 0.637495,
+    "beta_topology_conflict": 0.235963,
+    "closed_beta_ambiguous": 0.323975,
+    "closed_beta_confident": 0.566706,
+    "closed_beta_topology": 0.637495,
+    "greek_key_beta_lock": 0.0,
+    "membrane_beta_barrel": 0.0,
+    "open_beta_sheet_ambiguous": 0.323975,
+    "soluble_beta_barrel": 0.0,
+    "strand_register": 0.639969
+  },
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "1",
+  "entry_id": "1BGF",
+  "expected_mechanism_class": "beta_closure_topology",
+  "holdout_opened_after_prediction_hash": "92c575fd6facd5b560af4f4cc0b044b7d00b7d73f4253f27063f49143c1b11c2",
+  "kind": "V73_E68_BETA_CLOSURE_REPAIR_VALIDATION_RESULT_v0",
+  "level1_regime_selection": true,
+  "level2_region_localization_proxy": true,
+  "level3_topology_or_contact_proxy": true,
+  "panel_group": "BETA_HELIX_SOLENOID_REPEAT_STACK_POSITIVE",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1BGF",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1BGF/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V73_143_BETA_HELIX_SOLENOID_REPEAT_STACK_POSITIVE_1BGF_1_V73_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "predicted_mechanism_class": "beta_closure_topology",
+  "protein_id": "1BGF_1",
+  "required_esperanto_word": "beta_helix_solenoid_stack",
+  "required_esperanto_word_supported": true,
+  "score_label": "supported",
+  "sealed_prediction_hash": "92c575fd6facd5b560af4f4cc0b044b7d00b7d73f4253f27063f49143c1b11c2",
+  "selected_beta_topology_word": "beta_helix_solenoid_stack",
+  "sentinel_family": null,
+  "target_id": "V73_143_BETA_HELIX_SOLENOID_REPEAT_STACK_POSITIVE_1BGF_1",
+  "validation_checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "beta_closure_topology",
+      "observed": "beta_closure_topology",
+      "passed": true
+    },
+    {
+      "check_id": "closed_beta_topology_supported",
+      "comparator": ">=",
+      "metric": "closed_beta_topology",
+      "observed": 0.637495,
+      "passed": true,
+      "threshold": 0.3
+    },
+    {
+      "check_id": "strand_register_supported",
+      "comparator": ">=",
+      "metric": "strand_register",
+      "observed": 0.639969,
+      "passed": true,
+      "threshold": 0.25
+    },
+    {
+      "check_id": "beta_sheet_closure_supported",
+      "comparator": ">=",
+      "metric": "beta_sheet_closure",
+      "observed": 0.637495,
+      "passed": true,
+      "threshold": 0.3
+    },
+    {
+      "check_id": "closed_beta_confident_supported",
+      "comparator": ">=",
+      "metric": "closed_beta_confident",
+      "observed": 0.566706,
+      "passed": true,
+      "threshold": 0.25
+    },
+    {
+      "check_id": "beta_helix_solenoid_stack_supported",
+      "comparator": ">=",
+      "metric": "beta_helix_solenoid_stack",
+      "observed": 0.637495,
+      "passed": true,
+      "threshold": 0.2
+    }
+  ]
+}

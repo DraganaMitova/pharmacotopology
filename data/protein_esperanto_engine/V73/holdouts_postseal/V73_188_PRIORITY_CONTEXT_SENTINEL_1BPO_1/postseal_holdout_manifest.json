@@ -1,0 +1,46 @@
+{
+  "batch_id": "V73_BETA_CLOSURE_TOPOLOGY_REPAIR_PANEL_200",
+  "engine_version_used": "E68",
+  "entity_id": "1",
+  "entry_id": "1BPO",
+  "expected_decision": "accepted",
+  "expected_mechanism_class": "disorder_boundary_and_fold_upon_binding",
+  "expected_observables": [
+    {
+      "check_id": "idr_boundary_supported",
+      "comparator": ">=",
+      "metric": "IDR_boundary",
+      "threshold": 0.3
+    },
+    {
+      "check_id": "compact_single_fold_rejected",
+      "comparator": "<=",
+      "metric": "basin:compact_single_fold",
+      "threshold": 0.12
+    }
+  ],
+  "holdout_opened_after_prediction_hash": "9c47d1e523abf81d5bbc8100fbad7d376529a0e1e1d661debb38ac913816edf8",
+  "kind": "V73_E68_BETA_CLOSURE_REPAIR_POSTSEAL_HOLDOUT_v0",
+  "panel_group": "PRIORITY_CONTEXT_SENTINEL",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1BPO",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1BPO/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V73_188_PRIORITY_CONTEXT_SENTINEL_1BPO_1_V73_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "V73 E68 beta-closure repair panel group PRIORITY_CONTEXT_SENTINEL.",
+    "Expected decision: accepted.",
+    "Required E68 word: IDR_boundary.",
+    "Coordinates, contacts, native topology, and post-seal validation labels are blocked before sealing."
+  ],
+  "protein_id": "1BPO_1",
+  "required_esperanto_word": "IDR_boundary",
+  "sentinel_family": "DISORDER_BOUNDARY_PRIORITY",
+  "target_id": "V73_188_PRIORITY_CONTEXT_SENTINEL_1BPO_1"
+}

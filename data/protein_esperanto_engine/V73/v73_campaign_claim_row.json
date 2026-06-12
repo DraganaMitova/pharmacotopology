@@ -1,0 +1,12 @@
+{
+  "accepted_accuracy": 1.0,
+  "batch_id": "V73_BETA_CLOSURE_TOPOLOGY_REPAIR_PANEL_200",
+  "batch_mode": "beta_closure_topology_repair_panel_200",
+  "claim_allowed": false,
+  "claim_blocked_reason": "V73 is an E68 repair panel, not a broad solved-folding claim.",
+  "coverage": 0.95,
+  "engine_version_used": "E68",
+  "failure_count": 0,
+  "sentinel_regression_count": 0,
+  "targeted_failed_accepted_count": 0
+}

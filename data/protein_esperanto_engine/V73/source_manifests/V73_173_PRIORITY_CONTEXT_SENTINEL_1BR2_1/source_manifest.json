@@ -1,0 +1,83 @@
+{
+  "alphafold_used_before_seal": false,
+  "batch_id": "V73_BETA_CLOSURE_TOPOLOGY_REPAIR_PANEL_200",
+  "blocked_prediction_inputs": [
+    "PDB/mmCIF coordinates before sealing",
+    "native contacts, distance maps, residue-residue proximity, and coordinate-derived topology",
+    "native biological assembly contacts and ligand/metal coordination geometry before sealing",
+    "AlphaFold, ESMFold, RoseTTAFold, or other structure models before sealing",
+    "post-seal validation annotations before prediction hash",
+    "prior score outcomes as prediction evidence",
+    "internal runtime artifacts as biological evidence"
+  ],
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E68",
+  "entity_id": "1",
+  "entry_id": "1BR2",
+  "folding_problem_solved": false,
+  "kind": "V73_E68_BETA_CLOSURE_REPAIR_SOURCE_MANIFEST_v0",
+  "panel_group": "PRIORITY_CONTEXT_SENTINEL",
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence for the RCSB polymer entity.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V73_RAW_SEQUENCE_ae20b33df62d",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1BR2/1",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "RCSB title: SMOOTH MUSCLE MYOSIN MOTOR DOMAIN COMPLEXED WITH MGADP.ALF4. Entity description: MYOSIN. V73 source role: repair-panel public metadata carrier. Coordinates, contacts, distance maps, native topology, and post-seal validation labels are unopened before prediction hash.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V73_PUBLIC_METADATA_ae20b33df62d",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/1BR2",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "V73 E68 metadata context marks: beta_sheet_closure closed_beta_topology membrane_context_strong strand_register topology_evidence transmembrane_context. Older priority marks are active only when present in metadata_context_marks. Ambiguous controls carry open-sheet and insufficient-register marks only.",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [
+        "beta_sheet_closure",
+        "closed_beta_topology",
+        "membrane_context_strong",
+        "strand_register",
+        "topology_evidence",
+        "transmembrane_context"
+      ],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V73_E68_METADATA_CONTEXT_ae20b33df62d",
+      "source_role": "prediction_input",
+      "source_url": "https://data.rcsb.org/rest/v1/core/entry/1BR2",
+      "spatial_proxy": false,
+      "withheld_context_marks": [
+        "membrane_beta_barrel"
+      ]
+    }
+  ],
+  "protein_id": "1BR2_1",
+  "sentinel_family": "TRUE_TM_PRIORITY",
+  "sequence": "AQKPLSDDEKFLFVDKNFVNNPLAQADWSAKKLVWVPSEKHGFEAASIKEEKGDEVTVELQENGKKVTLSKDDIQKMNPPKFSKVEDMAELTCLNEASVLHNLRERYFSGLIYTYSGLFCVVINPYKQLPIYSEKIIDMYKGKKRHEMPPHIYAIADTAYRSMLQDREDQSILCTGESGAGKTENTKKVIQYLAVVASSHKGKKDTSITQGPSFSYGELEKQLLQANPILEAFGNAKTVKNDNSSRFGKFIRINFDVTGYIVGANIETYLLEKSRAIRQAKDERTFHIFYYLIAGASEQMRNDLLLEGFNNYTFLSNGHVPIPAQQDDEMFQETLEAMTIMGFTEEEQTSILRVVSSVLQLGNIVFKKERNTDQASMPDNTAAQKVCHLMGINVTDFTRSILTPRIKVGRDVVQKAQTKEQADFAIEALAKAKFERLFRWILTRVNKALDKTKRQGASFLGILDIAGFEIFEINSFEQLCINYTNEKLQQLFNHTMFILEQEEYQREGIEWNFIDFGLDLQPCIELIERPTNPPGVLALLDEECWFPKATDTSFVEKLIQEQGNHAKFQKSKQLKDKTEFCILHYAGKVTYNASAWLTKNMDPLNDNVTSLLNQSSDKFVADLWKDVDRIVGLDQMAKMTESSLPSASKTKKGMFRTVGQLYKEQLTKLMTTLRNTNPNFVRCIIPNHEKRAGKLDAHLVLEQLRCNGVLEGIRICRQGFPNRIVFQEFRQRYEILAANAIPKGFMDGKQACILMIKALELDPNLYRIGQSKIFFRTGVLAHLEEERDLKI",
+  "sequence_length": 791,
+  "target_id": "V73_173_PRIORITY_CONTEXT_SENTINEL_1BR2_1",
+  "v73_context_policy": {
+    "context_derivation": "V73 uses explicit E68 beta-closure taxonomy marks to repair the V72 closed-beta failure class. When public title vocabulary is too sparse for a full subpanel, real RCSB sequences are used as carriers for the sealed non-coordinate E68 word under test.",
+    "context_marks": [
+      "beta_sheet_closure",
+      "closed_beta_topology",
+      "membrane_context_strong",
+      "strand_register",
+      "topology_evidence",
+      "transmembrane_context"
+    ],
+    "withheld_context_marks": [
+      "membrane_beta_barrel"
+    ]
+  }
+}

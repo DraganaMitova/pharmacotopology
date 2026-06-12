@@ -1,0 +1,64 @@
+{
+  "batch_id": "V73_BETA_CLOSURE_TOPOLOGY_REPAIR_PANEL_200",
+  "engine_version_used": "E68",
+  "entity_id": "1",
+  "entry_id": "1BK1",
+  "expected_decision": "accepted",
+  "expected_mechanism_class": "beta_closure_topology",
+  "expected_observables": [
+    {
+      "check_id": "closed_beta_topology_supported",
+      "comparator": ">=",
+      "metric": "closed_beta_topology",
+      "threshold": 0.3
+    },
+    {
+      "check_id": "strand_register_supported",
+      "comparator": ">=",
+      "metric": "strand_register",
+      "threshold": 0.25
+    },
+    {
+      "check_id": "beta_sheet_closure_supported",
+      "comparator": ">=",
+      "metric": "beta_sheet_closure",
+      "threshold": 0.3
+    },
+    {
+      "check_id": "closed_beta_confident_supported",
+      "comparator": ">=",
+      "metric": "closed_beta_confident",
+      "threshold": 0.25
+    },
+    {
+      "check_id": "alpha_beta_barrel_distinction_supported",
+      "comparator": ">=",
+      "metric": "alpha_beta_barrel_distinction",
+      "threshold": 0.2
+    }
+  ],
+  "holdout_opened_after_prediction_hash": "0383e5cc6b6c8975fe606606aa0d6dad39cf461fbf6fa963bf6beb54723ee02e",
+  "kind": "V73_E68_BETA_CLOSURE_REPAIR_POSTSEAL_HOLDOUT_v0",
+  "panel_group": "ALPHA_BETA_BARREL_SENTINEL",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1BK1",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1BK1/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V73_158_ALPHA_BETA_BARREL_SENTINEL_1BK1_1_V73_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "V73 E68 beta-closure repair panel group ALPHA_BETA_BARREL_SENTINEL.",
+    "Expected decision: accepted.",
+    "Required E68 word: alpha_beta_barrel_distinction.",
+    "Coordinates, contacts, native topology, and post-seal validation labels are blocked before sealing."
+  ],
+  "protein_id": "1BK1_1",
+  "required_esperanto_word": "alpha_beta_barrel_distinction",
+  "sentinel_family": null,
+  "target_id": "V73_158_ALPHA_BETA_BARREL_SENTINEL_1BK1_1"
+}
