@@ -33,6 +33,7 @@ MECHANISM_CLASSES = [
     "intrinsic_disorder_phase_separation",
     "disorder_boundary_and_fold_upon_binding",
     "beta_closure_topology",
+    "multidomain_allosteric_architecture",
     "membrane_multidomain_folding_proteostasis",
     "metamorphic_fold_switching",
     "short_region_host_interface_hijacking",
@@ -51,6 +52,7 @@ PROCESS_CLASSES = [
     "disorder_biased",
     "disorder_boundary",
     "beta_closure",
+    "multidomain_allostery",
     "fold_upon_binding",
 ]
 
@@ -129,6 +131,14 @@ STATE_VARIABLES = [
     "closed_beta_ambiguous",
     "strand_register_insufficient",
     "beta_topology_conflict",
+    "multidomain_allostery",
+    "domain_boundary",
+    "hinge_region",
+    "interdomain_lock",
+    "allosteric_basin_shift",
+    "domain_reorientation",
+    "modular_architecture",
+    "domain_swapping",
 ]
 
 ENVIRONMENTAL_PRESSURES = [
@@ -247,6 +257,40 @@ BETA_TOPOLOGY_STATE_VARIABLES = [
     "greek_key_beta_lock",
     "beta_helix_solenoid_stack",
     "alpha_beta_barrel_distinction",
+]
+
+MULTIDOMAIN_ALLOSTERIC_CONTEXT_TOKENS = [
+    "multidomain_allostery",
+    "multidomain allostery",
+    "multidomain architecture",
+    "multi-domain architecture",
+    "domain_boundary",
+    "domain boundary",
+    "hinge_region",
+    "hinge region",
+    "interdomain_lock",
+    "interdomain lock",
+    "allosteric_basin_shift",
+    "allosteric basin shift",
+    "domain_reorientation",
+    "domain reorientation",
+    "modular_architecture",
+    "modular architecture",
+    "domain_swapping",
+    "domain swapping",
+    "domain-swapped",
+    "domain swapped",
+]
+
+MULTIDOMAIN_ALLOSTERIC_STATE_VARIABLES = [
+    "multidomain_allostery",
+    "domain_boundary",
+    "hinge_region",
+    "interdomain_lock",
+    "allosteric_basin_shift",
+    "domain_reorientation",
+    "modular_architecture",
+    "domain_swapping",
 ]
 
 OLIGOMER_CONTEXT_TOKENS = [
@@ -405,6 +449,24 @@ GRAMMAR_RULES: dict[str, dict[str, Any]] = {
         "testable_effect": "strand-register or blade/repeat perturbations weaken the selected beta closure while preserving non-beta priority classes",
         "null_control": "beta-rich sequence alone is not topology and must abstain when closure evidence is weak",
         "falsification_rule": "holdout shows open beta sheet, wrong beta subtype, or protected membrane/assembly/metal/disorder context",
+    },
+    "multidomain_allosteric_architecture": {
+        "marks": [
+            "multidomain_allostery",
+            "domain_boundary",
+            "hinge_region",
+            "interdomain_lock",
+            "allosteric_basin_shift",
+            "domain_reorientation",
+            "modular_architecture",
+            "domain_swapping",
+        ],
+        "pressures": ["binding_partner", "interdomain_coupling", "release_or_activation_context"],
+        "operators": ["interface_operator", "dual_basin_switch_operator", "closure_operator", "frustration_operator"],
+        "state_change": "single-domain closure shortcut to domain-boundary, hinge, lock, and allosteric-basin architecture",
+        "testable_effect": "hinge, interface, or interdomain-lock perturbation shifts domain orientation and allosteric basin occupancy",
+        "null_control": "generic domain text or copy-count metadata cannot validate an allosteric architecture without explicit domain-boundary/hinge/swap context",
+        "falsification_rule": "holdout shows independent single-domain closure, solved prior membrane/assembly/metal/disorder/beta context, or no interdomain operator dependence",
     },
     "membrane_multidomain_folding_proteostasis": {
         "marks": ["membrane_segment", "domain_boundary", "mutation_site", "interface"],
@@ -853,6 +915,11 @@ def _contains_any(text: str, tokens: list[str]) -> bool:
     return any(token in text for token in tokens)
 
 
+def _contains_standalone_word(text: str, word: str) -> bool:
+    normalized = "".join(ch if ch.isalnum() else " " for ch in text)
+    return word in normalized.split()
+
+
 def _beta_topology_word_from_text(text: str) -> str | None:
     if any(token in text for token in ["membrane_beta_barrel", "membrane beta barrel", "outer membrane beta barrel"]):
         return "membrane_beta_barrel"
@@ -875,6 +942,26 @@ def _beta_topology_word_from_text(text: str) -> str | None:
     return None
 
 
+def _multidomain_allosteric_word_from_text(text: str) -> str | None:
+    if any(token in text for token in ["domain_swapping", "domain swapping", "domain-swapped", "domain swapped", "swapped dimer"]):
+        return "domain_swapping"
+    if any(token in text for token in ["allosteric_basin_shift", "allosteric basin shift", "allosteric", "allostery"]):
+        return "allosteric_basin_shift"
+    if any(token in text for token in ["hinge_region", "hinge region", "hinge"]):
+        return "hinge_region"
+    if any(token in text for token in ["interdomain_lock", "interdomain lock", "inter-domain lock"]):
+        return "interdomain_lock"
+    if any(token in text for token in ["domain_reorientation", "domain reorientation", "domain movement"]):
+        return "domain_reorientation"
+    if any(token in text for token in ["modular_architecture", "modular architecture"]):
+        return "modular_architecture"
+    if any(token in text for token in ["multidomain_allostery", "multidomain allostery", "multidomain", "multi-domain"]):
+        return "multidomain_allostery"
+    if any(token in text for token in ["domain_boundary", "domain boundary"]):
+        return "domain_boundary"
+    return None
+
+
 def select_mechanism_grammar(
     *,
     sequence_field: dict[str, Any],
@@ -886,6 +973,7 @@ def select_mechanism_grammar(
         natural = "insufficient_evidence_clean_abstain"
         reason = "no_allowed_prediction_evidence"
         beta_topology_word = None
+        multidomain_word = None
     else:
         text = _allowed_source_text(sources, evidence_manifest)
         metrics = sequence_field["global_metrics"]
@@ -896,11 +984,13 @@ def select_mechanism_grammar(
         beta_topology_word = _beta_topology_word_from_text(text)
         beta_closure_context = beta_topology_word is not None or _contains_any(text, BETA_CLOSURE_CONTEXT_TOKENS)
         beta_ambiguous_context = _contains_any(text, BETA_AMBIGUOUS_CONTEXT_TOKENS)
+        multidomain_word = _multidomain_allosteric_word_from_text(text)
+        multidomain_context = multidomain_word is not None or _contains_any(text, MULTIDOMAIN_ALLOSTERIC_CONTEXT_TOKENS)
         negative_assembly_context = _contains_any(text, NEGATIVE_ASSEMBLY_CONTEXT_TOKENS)
         explicit_assembly_required_context = _contains_any(text, ASSEMBLY_REQUIRED_CONTEXT_TOKENS) and not negative_assembly_context
         biological_oligomer_context = _contains_any(text, OLIGOMER_CONTEXT_TOKENS)
         generic_complex_only_context = _contains_any(text, GENERIC_COMPLEX_ONLY_TOKENS) or (
-            "complex" in text
+            _contains_standalone_word(text, "complex")
             and not explicit_assembly_required_context
             and not biological_oligomer_context
             and not cofactor_context
@@ -980,6 +1070,9 @@ def select_mechanism_grammar(
         elif beta_closure_context:
             natural = "beta_closure_topology"
             reason = "explicit_beta_closure_topology_context"
+        elif multidomain_context:
+            natural = "multidomain_allosteric_architecture"
+            reason = "explicit_multidomain_allosteric_architecture_context"
         elif cofactor_context:
             natural = "cofactor_ligand_assisted_stabilization"
             reason = "explicit_ligand_cofactor_or_metal_context"
@@ -1030,7 +1123,7 @@ def select_mechanism_grammar(
             natural = "cofactor_ligand_assisted_stabilization"
             reason = "ligand_or_cofactor_context"
         elif any(token in text for token in ["oligomer", "assembly", "multimer"]):
-            if "complex" in text or membrane_text_context:
+            if _contains_standalone_word(text, "complex") or membrane_text_context:
                 natural = "insufficient_evidence_clean_abstain"
                 reason = "assembly_ambiguous_generic_text_requires_abstention"
             else:
@@ -1072,6 +1165,7 @@ def select_mechanism_grammar(
         "mechanism_class": mechanism_class,
         "natural_mechanism_class": natural,
         "selected_beta_topology_word": beta_topology_word if mechanism_class == "beta_closure_topology" else None,
+        "selected_multidomain_word": multidomain_word if mechanism_class == "multidomain_allosteric_architecture" else None,
         "forced_grammar": forced_grammar,
         "forced_grammar_rejected": forced_rejected,
         "selection_reason": "forced_wrong_grammar_rejected" if forced_rejected else reason,
@@ -1241,6 +1335,50 @@ def build_operator_field(
                 "wrong closure class increases topology conflict",
                 "all beta-rich classes collapse to the same topology",
                 "beta_topology_conflict",
+            ),
+        ])
+    elif mechanism_class == "multidomain_allosteric_architecture":
+        multidomain_word = mechanism.get("selected_multidomain_word") or "multidomain_allostery"
+        operators.extend([
+            _operator(
+                "interface_operator",
+                ", ".join(_span_from_segment(row) for row in interface_segments),
+                metrics["mean_interface"] + 0.42,
+                evidence,
+                "interdomain lock and domain-boundary interface readiness",
+                "interface or lock perturbation weakens interdomain coupling",
+                "single-domain closure explains the holdout without interdomain dependence",
+                "interdomain_lock",
+            ),
+            _operator(
+                "dual_basin_switch_operator",
+                "hinge/allosteric domain-coupling axis",
+                metrics["mean_interface"] + metrics["aromatic_density"] + 0.30,
+                evidence,
+                "domain reorientation shifts an allosteric basin rather than one averaged fold",
+                "hinge or allosteric push changes basin occupancy and orientation",
+                "domain orientation is condition-independent",
+                "allosteric_basin_shift",
+            ),
+            _operator(
+                "closure_operator",
+                ", ".join(_span_from_segment(row) for row in hydrophobic_segments),
+                metrics["hydrophobic_density"] + 0.18,
+                evidence,
+                "modular architecture closes through coupled domain packing",
+                "domain-boundary or packing damage lowers modular compaction",
+                "a standalone compact domain explains the full architecture",
+                "modular_architecture",
+            ),
+            _operator(
+                "frustration_operator",
+                ", ".join(_span_from_segment(row) for row in interface_segments[:2]),
+                metrics["mean_interface"] + metrics["aromatic_density"] + 0.12,
+                evidence,
+                f"{multidomain_word} separates hinge, lock, reorientation, and swapped-domain topology from generic domains",
+                "wrong domain-boundary operator raises allosteric or swapping conflict",
+                "generic domain text alone predicts all states equally",
+                multidomain_word,
             ),
         ])
     elif mechanism_class == "membrane_multidomain_folding_proteostasis":
@@ -1531,6 +1669,16 @@ def simulate_operator_trajectory(
         ),
         "closed_beta_topology",
     )
+    multidomain_state_variables = [
+        row["state_variable"]
+        for row in operator_field["operators"]
+        if row["state_variable"] in MULTIDOMAIN_ALLOSTERIC_STATE_VARIABLES
+    ]
+    multidomain_subtype = (
+        "domain_swapping"
+        if "domain_swapping" in multidomain_state_variables
+        else (multidomain_state_variables[-1] if multidomain_state_variables else "multidomain_allostery")
+    )
     timepoints: list[dict[str, Any]] = []
     for timepoint in [0, 100, 500, 1000]:
         progress = timepoint / 1000.0
@@ -1591,6 +1739,63 @@ def simulate_operator_trajectory(
             segment_compaction = bounded(0.16 + closure_state * 0.40 + closure * 0.12 + noise)
             contact_probability = bounded(0.14 + closure_state * 0.42 + register * 0.18)
             interface_readiness = bounded(0.16 + interface * 0.34 + register * 0.20)
+            proteostasis_routing = 0.0
+        elif mechanism_class == "multidomain_allosteric_architecture":
+            hinge_damage = float((perturbation or {}).get("hinge_damage", 0.0))
+            lock_damage = float((perturbation or {}).get("lock_damage", 0.0))
+            allosteric_push = float((perturbation or {}).get("allosteric_push", 0.0))
+            domain_boundary_state = bounded(
+                0.24
+                + interface * 0.20
+                + frustration_strength * 0.12
+                + metrics["mean_interface"] * 0.10
+                + progress * 0.08
+                - hinge_damage * 0.12
+            )
+            interdomain_lock = bounded(
+                0.18
+                + interface * 0.44 * progress
+                + closure * 0.14
+                + domain_boundary_state * 0.18
+                - 0.42 * lock_damage
+            )
+            allosteric_shift = bounded(
+                0.14
+                + switch * 0.44 * progress
+                + frustration_strength * 0.14
+                + allosteric_push
+                - 0.18 * lock_damage
+            )
+            reorientation = bounded(
+                0.12
+                + switch * 0.34 * progress
+                + interface * 0.20
+                + allosteric_shift * 0.16
+                - 0.30 * hinge_damage
+            )
+            hinge = bounded(
+                0.20
+                + frustration_strength * 0.24
+                + domain_boundary_state * 0.18
+                + switch * 0.08
+                - 0.25 * hinge_damage
+            )
+            modular = bounded(0.18 + closure * 0.30 * progress + interface * 0.18 + domain_boundary_state * 0.16)
+            swapped = bounded(interdomain_lock * 0.86 if multidomain_subtype == "domain_swapping" else max(0.0, interdomain_lock - 0.16) * 0.20)
+            basin = {
+                "multidomain_allosteric_basin": bounded(max(allosteric_shift, reorientation, interdomain_lock)),
+                "domain_boundary": domain_boundary_state,
+                "hinge_region": hinge,
+                "interdomain_locked_basin": interdomain_lock,
+                "allosteric_basin_shift": allosteric_shift,
+                "domain_reorientation_basin": reorientation,
+                "modular_architecture": modular,
+                "domain_swapping": swapped,
+                "single_domain_shortcut": bounded(0.46 - modular * 0.20 - interdomain_lock * 0.20 + lock_damage * 0.12),
+            }
+            segment_compaction = bounded(0.18 + modular * 0.30 + closure * 0.20 * progress + noise)
+            contact_probability = bounded(0.16 + interdomain_lock * 0.36 + allosteric_shift * 0.16 + closure * 0.12)
+            interface_readiness = interdomain_lock
             proteostasis_routing = 0.0
         elif mechanism_class == "membrane_multidomain_folding_proteostasis":
             damage = float((perturbation or {}).get("damage", 0.0))
@@ -1884,6 +2089,46 @@ def simulate_operator_trajectory(
                 if mechanism_class == "beta_closure_topology"
                 else 0.0
             ),
+            "multidomain_allostery": bounded(
+                basin.get("multidomain_allosteric_basin", 0.0)
+                if mechanism_class == "multidomain_allosteric_architecture"
+                else 0.0
+            ),
+            "domain_boundary": bounded(
+                basin.get("domain_boundary", 0.0)
+                if mechanism_class == "multidomain_allosteric_architecture"
+                else 0.0
+            ),
+            "hinge_region": bounded(
+                basin.get("hinge_region", 0.0)
+                if mechanism_class == "multidomain_allosteric_architecture"
+                else 0.0
+            ),
+            "interdomain_lock": bounded(
+                basin.get("interdomain_locked_basin", 0.0)
+                if mechanism_class == "multidomain_allosteric_architecture"
+                else 0.0
+            ),
+            "allosteric_basin_shift": bounded(
+                basin.get("allosteric_basin_shift", 0.0)
+                if mechanism_class == "multidomain_allosteric_architecture"
+                else 0.0
+            ),
+            "domain_reorientation": bounded(
+                basin.get("domain_reorientation_basin", 0.0)
+                if mechanism_class == "multidomain_allosteric_architecture"
+                else 0.0
+            ),
+            "modular_architecture": bounded(
+                basin.get("modular_architecture", 0.0)
+                if mechanism_class == "multidomain_allosteric_architecture"
+                else 0.0
+            ),
+            "domain_swapping": bounded(
+                basin.get("domain_swapping", 0.0)
+                if mechanism_class == "multidomain_allosteric_architecture" and multidomain_subtype == "domain_swapping"
+                else 0.0
+            ),
         })
     final = timepoints[-1]
     return {
@@ -1942,6 +2187,24 @@ def contact_probability_map(sequence_field: dict[str, Any], operator_field: dict
                     "segment_b": right["segment_id"],
                     "probability": bounded(0.20 + _operator_strength(operator_field, "closure_operator") * 0.32),
                     "interaction_type": "beta_strand_register_closure",
+                })
+    elif mechanism_class == "multidomain_allosteric_architecture":
+        interface_top = _strong_segments(sequence_field, "interface_density", limit=4)
+        if len(interface_top) < 2:
+            interface_top = _strong_segments(sequence_field, "hydrophobic_density", limit=4)
+        for left in interface_top[:2]:
+            for right in interface_top[2:]:
+                if left["segment_id"] == right["segment_id"]:
+                    continue
+                pairs.append({
+                    "segment_a": left["segment_id"],
+                    "segment_b": right["segment_id"],
+                    "probability": bounded(
+                        0.22
+                        + _operator_strength(operator_field, "interface_operator") * 0.26
+                        + _operator_strength(operator_field, "dual_basin_switch_operator") * 0.12
+                    ),
+                    "interaction_type": "interdomain_allosteric_lock",
                 })
     elif mechanism_class == "short_region_host_interface_hijacking":
         cterm = segments[-1]
@@ -2279,6 +2542,17 @@ def sequence_operator_coherence(packet: dict[str, Any]) -> float:
             + 0.18 * field["mean_interface"]
             + 0.20 * local_beta
             + 0.12 * max(local_interface, local_aromatic)
+            + activation
+        )
+    elif mechanism == "multidomain_allosteric_architecture":
+        local_interface = max((row["interface_density"] for row in segments), default=0.0)
+        local_hydrophobic = max((row["hydrophobic_density"] for row in segments), default=0.0)
+        local_aromatic = max((row["aromatic_density"] for row in segments), default=0.0)
+        support = (
+            0.20 * field["hydrophobic_density"]
+            + 0.26 * field["mean_interface"]
+            + 0.26 * local_interface
+            + 0.12 * max(local_hydrophobic, local_aromatic)
             + activation
         )
     elif mechanism == "membrane_multidomain_folding_proteostasis":

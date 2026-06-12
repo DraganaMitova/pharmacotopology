@@ -1,0 +1,37 @@
+{
+  "batch_id": "V74_RCSB_NONREDUNDANT_200_DISCOVERY_E68",
+  "engine_version_used": "E68",
+  "entity_id": "1",
+  "entry_id": "1RQM",
+  "expected_mechanism_class": "globular_closure",
+  "expected_observables": [
+    {
+      "check_id": "compact_or_contact_supported",
+      "comparator": ">=",
+      "metric": "contact_probability",
+      "threshold": 0.35
+    }
+  ],
+  "experimental_method": "SOLUTION NMR",
+  "holdout_opened_after_prediction_hash": "1cfb6e1c47e339bac61cc984e0f5faf0b58bdbc8ebc64ccd55720e4f885bb47f",
+  "kind": "V74_E68_RCSB_NONREDUNDANT_DISCOVERY_POSTSEAL_HOLDOUT_v0",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1RQM",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1RQM/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V74_118_V74C_DISULFIDE_SECRETORY_EXTRACELLULAR_ENRICHED_1RQM_1_V74_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "postseal public non-coordinate text/sequence indicates candidate V74 word disulfide_secretory_redox_context"
+  ],
+  "protein_id": "1RQM_1",
+  "release_date": "2004-06-22T00:00:00.000+00:00",
+  "required_esperanto_word": "disulfide_secretory_redox_context",
+  "shard": "V74C_DISULFIDE_SECRETORY_EXTRACELLULAR_ENRICHED",
+  "target_id": "V74_118_V74C_DISULFIDE_SECRETORY_EXTRACELLULAR_ENRICHED_1RQM_1"
+}

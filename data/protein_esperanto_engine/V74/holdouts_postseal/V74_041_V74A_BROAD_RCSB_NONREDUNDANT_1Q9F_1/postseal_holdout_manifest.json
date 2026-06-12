@@ -1,0 +1,37 @@
+{
+  "batch_id": "V74_RCSB_NONREDUNDANT_200_DISCOVERY_E68",
+  "engine_version_used": "E68",
+  "entity_id": "1",
+  "entry_id": "1Q9F",
+  "expected_mechanism_class": "globular_closure",
+  "expected_observables": [
+    {
+      "check_id": "compact_or_contact_supported",
+      "comparator": ">=",
+      "metric": "contact_probability",
+      "threshold": 0.35
+    }
+  ],
+  "experimental_method": "SOLUTION NMR",
+  "holdout_opened_after_prediction_hash": "41df825fbc5ba22d55b32e0f6814f6bad3d807f0600b041557de0adc9dcc8c9c",
+  "kind": "V74_E68_RCSB_NONREDUNDANT_DISCOVERY_POSTSEAL_HOLDOUT_v0",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1Q9F",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1Q9F/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V74_041_V74A_BROAD_RCSB_NONREDUNDANT_1Q9F_1_V74_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "postseal public non-coordinate text/sequence indicates candidate V74 word multidomain_allostery"
+  ],
+  "protein_id": "1Q9F_1",
+  "release_date": "2004-03-23T00:00:00.000+00:00",
+  "required_esperanto_word": "multidomain_allostery",
+  "shard": "V74A_BROAD_RCSB_NONREDUNDANT",
+  "target_id": "V74_041_V74A_BROAD_RCSB_NONREDUNDANT_1Q9F_1"
+}

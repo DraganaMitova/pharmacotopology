@@ -1,0 +1,66 @@
+{
+  "acceptance_decision": "accepted",
+  "alphafold_used_before_seal": false,
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "1",
+  "entry_id": "1Q5N",
+  "expected_mechanism_class": "beta_closure_topology",
+  "holdout_opened_after_prediction_hash": "698ad52dfd3532e753e02fea0d737b9e18dae2903000dd6c3f58c4ef5d54ca69",
+  "kind": "V74_E68_RCSB_NONREDUNDANT_DISCOVERY_VALIDATION_RESULT_v0",
+  "level1_regime_selection": false,
+  "level2_region_localization_proxy": true,
+  "level3_topology_or_contact_proxy": false,
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1Q5N",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1Q5N/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V74_029_V74A_BROAD_RCSB_NONREDUNDANT_1Q5N_1_V74_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "predicted_mechanism_class": "disorder_boundary_and_fold_upon_binding",
+  "protein_id": "1Q5N_1",
+  "required_esperanto_word": "closed_beta_topology",
+  "required_esperanto_word_supported": false,
+  "score_label": "contradicted",
+  "sealed_prediction_hash": "698ad52dfd3532e753e02fea0d737b9e18dae2903000dd6c3f58c4ef5d54ca69",
+  "selected_beta_topology_word": null,
+  "shard": "V74A_BROAD_RCSB_NONREDUNDANT",
+  "target_id": "V74_029_V74A_BROAD_RCSB_NONREDUNDANT_1Q5N_1",
+  "validation_checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "beta_closure_topology",
+      "observed": "disorder_boundary_and_fold_upon_binding",
+      "passed": false
+    },
+    {
+      "check_id": "closed_beta_topology_supported",
+      "comparator": ">=",
+      "metric": "closed_beta_topology",
+      "observed": 0.0,
+      "passed": false,
+      "threshold": 0.3
+    },
+    {
+      "check_id": "strand_register_supported",
+      "comparator": ">=",
+      "metric": "strand_register",
+      "observed": 0.0,
+      "passed": false,
+      "threshold": 0.25
+    },
+    {
+      "check_id": "closed_beta_topology_supported",
+      "comparator": ">=",
+      "metric": "closed_beta_topology",
+      "observed": 0.0,
+      "passed": false,
+      "threshold": 0.2
+    }
+  ]
+}

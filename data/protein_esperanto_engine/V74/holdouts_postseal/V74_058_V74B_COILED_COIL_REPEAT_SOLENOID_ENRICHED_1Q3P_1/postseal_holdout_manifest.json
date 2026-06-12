@@ -1,0 +1,37 @@
+{
+  "batch_id": "V74_RCSB_NONREDUNDANT_200_DISCOVERY_E68",
+  "engine_version_used": "E68",
+  "entity_id": "1",
+  "entry_id": "1Q3P",
+  "expected_mechanism_class": "globular_closure",
+  "expected_observables": [
+    {
+      "check_id": "compact_or_contact_supported",
+      "comparator": ">=",
+      "metric": "contact_probability",
+      "threshold": 0.35
+    }
+  ],
+  "experimental_method": "X-RAY DIFFRACTION",
+  "holdout_opened_after_prediction_hash": "54b9c0588c043658dde35a6bf445e26df9a215aa773bec5d4aba1ed30410d632",
+  "kind": "V74_E68_RCSB_NONREDUNDANT_DISCOVERY_POSTSEAL_HOLDOUT_v0",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1Q3P",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1Q3P/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V74_058_V74B_COILED_COIL_REPEAT_SOLENOID_ENRICHED_1Q3P_1_V74_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "postseal public non-coordinate text/sequence indicates candidate V74 word repeat_solenoid_topology"
+  ],
+  "protein_id": "1Q3P_1",
+  "release_date": "2004-01-27T00:00:00.000+00:00",
+  "required_esperanto_word": "repeat_solenoid_topology",
+  "shard": "V74B_COILED_COIL_REPEAT_SOLENOID_ENRICHED",
+  "target_id": "V74_058_V74B_COILED_COIL_REPEAT_SOLENOID_ENRICHED_1Q3P_1"
+}

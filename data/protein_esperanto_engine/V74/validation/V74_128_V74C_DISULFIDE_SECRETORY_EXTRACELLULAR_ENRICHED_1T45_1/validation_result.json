@@ -1,0 +1,50 @@
+{
+  "acceptance_decision": "accepted",
+  "alphafold_used_before_seal": false,
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "1",
+  "entry_id": "1T45",
+  "expected_mechanism_class": "globular_closure",
+  "holdout_opened_after_prediction_hash": "7093b8a5ad5fb6d21790ec741cab3255a5ce421db3a6b04a928ae6a1c889a389",
+  "kind": "V74_E68_RCSB_NONREDUNDANT_DISCOVERY_VALIDATION_RESULT_v0",
+  "level1_regime_selection": false,
+  "level2_region_localization_proxy": true,
+  "level3_topology_or_contact_proxy": false,
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1T45",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1T45/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V74_128_V74C_DISULFIDE_SECRETORY_EXTRACELLULAR_ENRICHED_1T45_1_V74_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "predicted_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "protein_id": "1T45_1",
+  "required_esperanto_word": "disulfide_secretory_redox_context",
+  "required_esperanto_word_supported": false,
+  "score_label": "contradicted",
+  "sealed_prediction_hash": "7093b8a5ad5fb6d21790ec741cab3255a5ce421db3a6b04a928ae6a1c889a389",
+  "selected_beta_topology_word": null,
+  "shard": "V74C_DISULFIDE_SECRETORY_EXTRACELLULAR_ENRICHED",
+  "target_id": "V74_128_V74C_DISULFIDE_SECRETORY_EXTRACELLULAR_ENRICHED_1T45_1",
+  "validation_checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "globular_closure",
+      "observed": "membrane_multidomain_folding_proteostasis",
+      "passed": false
+    },
+    {
+      "check_id": "compact_or_contact_supported",
+      "comparator": ">=",
+      "metric": "contact_probability",
+      "observed": 0.48575,
+      "passed": true,
+      "threshold": 0.35
+    }
+  ]
+}

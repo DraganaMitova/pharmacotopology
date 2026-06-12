@@ -1,0 +1,50 @@
+{
+  "acceptance_decision": "accepted",
+  "alphafold_used_before_seal": false,
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "1",
+  "entry_id": "1PN9",
+  "expected_mechanism_class": "globular_closure",
+  "holdout_opened_after_prediction_hash": "aefec96a6c1ebe3ad6df5a4b60bb925d109cfc6f758e01080ccdf7633a5afa1b",
+  "kind": "V74_E68_RCSB_NONREDUNDANT_DISCOVERY_VALIDATION_RESULT_v0",
+  "level1_regime_selection": false,
+  "level2_region_localization_proxy": true,
+  "level3_topology_or_contact_proxy": false,
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1PN9",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1PN9/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V74_171_V74D_MULTIDOMAIN_DOMAIN_SWAP_ALLOSTERY_UNUSUAL_ENRICHED_1PN9_1_V74_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+  "protein_id": "1PN9_1",
+  "required_esperanto_word": "multidomain_allostery",
+  "required_esperanto_word_supported": false,
+  "score_label": "contradicted",
+  "sealed_prediction_hash": "aefec96a6c1ebe3ad6df5a4b60bb925d109cfc6f758e01080ccdf7633a5afa1b",
+  "selected_beta_topology_word": null,
+  "shard": "V74D_MULTIDOMAIN_DOMAIN_SWAP_ALLOSTERY_UNUSUAL_ENRICHED",
+  "target_id": "V74_171_V74D_MULTIDOMAIN_DOMAIN_SWAP_ALLOSTERY_UNUSUAL_ENRICHED_1PN9_1",
+  "validation_checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "globular_closure",
+      "observed": "cofactor_ligand_assisted_stabilization",
+      "passed": false
+    },
+    {
+      "check_id": "compact_or_contact_supported",
+      "comparator": ">=",
+      "metric": "contact_probability",
+      "observed": 0.511739,
+      "passed": true,
+      "threshold": 0.35
+    }
+  ]
+}

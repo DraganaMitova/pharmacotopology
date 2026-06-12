@@ -1,0 +1,50 @@
+{
+  "acceptance_decision": "accepted",
+  "alphafold_used_before_seal": false,
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "1",
+  "entry_id": "1SQ3",
+  "expected_mechanism_class": "assembly_required_folding",
+  "holdout_opened_after_prediction_hash": "0b39d80d3cbcee2dece518b216e6989a4cdb6d1e6689ff1fbac3ca11b7b00c6f",
+  "kind": "V74_E68_RCSB_NONREDUNDANT_DISCOVERY_VALIDATION_RESULT_v0",
+  "level1_regime_selection": false,
+  "level2_region_localization_proxy": true,
+  "level3_topology_or_contact_proxy": false,
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1SQ3",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1SQ3/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V74_082_V74B_COILED_COIL_REPEAT_SOLENOID_ENRICHED_1SQ3_1_V74_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "predicted_mechanism_class": "cofactor_ligand_assisted_stabilization",
+  "protein_id": "1SQ3_1",
+  "required_esperanto_word": "coiled_coil_register",
+  "required_esperanto_word_supported": false,
+  "score_label": "contradicted",
+  "sealed_prediction_hash": "0b39d80d3cbcee2dece518b216e6989a4cdb6d1e6689ff1fbac3ca11b7b00c6f",
+  "selected_beta_topology_word": null,
+  "shard": "V74B_COILED_COIL_REPEAT_SOLENOID_ENRICHED",
+  "target_id": "V74_082_V74B_COILED_COIL_REPEAT_SOLENOID_ENRICHED_1SQ3_1",
+  "validation_checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "assembly_required_folding",
+      "observed": "cofactor_ligand_assisted_stabilization",
+      "passed": false
+    },
+    {
+      "check_id": "partner_completed_core_supported",
+      "comparator": ">=",
+      "metric": "partner_completed_core",
+      "observed": 0.0,
+      "passed": false,
+      "threshold": 0.48
+    }
+  ]
+}

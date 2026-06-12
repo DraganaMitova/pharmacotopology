@@ -1,0 +1,49 @@
+{
+  "batch_id": "V74_RCSB_NONREDUNDANT_200_DISCOVERY_E68",
+  "engine_version_used": "E68",
+  "entity_id": "1",
+  "entry_id": "1Q5N",
+  "expected_mechanism_class": "beta_closure_topology",
+  "expected_observables": [
+    {
+      "check_id": "closed_beta_topology_supported",
+      "comparator": ">=",
+      "metric": "closed_beta_topology",
+      "threshold": 0.3
+    },
+    {
+      "check_id": "strand_register_supported",
+      "comparator": ">=",
+      "metric": "strand_register",
+      "threshold": 0.25
+    },
+    {
+      "check_id": "closed_beta_topology_supported",
+      "comparator": ">=",
+      "metric": "closed_beta_topology",
+      "threshold": 0.2
+    }
+  ],
+  "experimental_method": "X-RAY DIFFRACTION",
+  "holdout_opened_after_prediction_hash": "698ad52dfd3532e753e02fea0d737b9e18dae2903000dd6c3f58c4ef5d54ca69",
+  "kind": "V74_E68_RCSB_NONREDUNDANT_DISCOVERY_POSTSEAL_HOLDOUT_v0",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1Q5N",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1Q5N/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V74_029_V74A_BROAD_RCSB_NONREDUNDANT_1Q5N_1_V74_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "postseal public annotation/text indicates E68 beta-closure word closed_beta_topology"
+  ],
+  "protein_id": "1Q5N_1",
+  "release_date": "2003-08-19T00:00:00.000+00:00",
+  "required_esperanto_word": "closed_beta_topology",
+  "shard": "V74A_BROAD_RCSB_NONREDUNDANT",
+  "target_id": "V74_029_V74A_BROAD_RCSB_NONREDUNDANT_1Q5N_1"
+}

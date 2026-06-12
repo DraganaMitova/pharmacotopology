@@ -1,0 +1,50 @@
+{
+  "acceptance_decision": "accepted",
+  "alphafold_used_before_seal": false,
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "1",
+  "entry_id": "1PUZ",
+  "expected_mechanism_class": "metal_cluster_and_ligand_locked_basin",
+  "holdout_opened_after_prediction_hash": "06b988059f0b6b6529a5196befb86da9f06b6a38a0fbf2880b4764aa2f23d774",
+  "kind": "V74_E68_RCSB_NONREDUNDANT_DISCOVERY_VALIDATION_RESULT_v0",
+  "level1_regime_selection": true,
+  "level2_region_localization_proxy": true,
+  "level3_topology_or_contact_proxy": true,
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1PUZ",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1PUZ/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V74_008_V74A_BROAD_RCSB_NONREDUNDANT_1PUZ_1_V74_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "predicted_mechanism_class": "metal_cluster_and_ligand_locked_basin",
+  "protein_id": "1PUZ_1",
+  "required_esperanto_word": "ligand_locked_basin",
+  "required_esperanto_word_supported": true,
+  "score_label": "supported",
+  "sealed_prediction_hash": "06b988059f0b6b6529a5196befb86da9f06b6a38a0fbf2880b4764aa2f23d774",
+  "selected_beta_topology_word": null,
+  "shard": "V74A_BROAD_RCSB_NONREDUNDANT",
+  "target_id": "V74_008_V74A_BROAD_RCSB_NONREDUNDANT_1PUZ_1",
+  "validation_checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "metal_cluster_and_ligand_locked_basin",
+      "observed": "metal_cluster_and_ligand_locked_basin",
+      "passed": true
+    },
+    {
+      "check_id": "metal_or_ligand_basin_supported",
+      "comparator": ">=",
+      "metric": "ligand_locked_basin",
+      "observed": 0.621357,
+      "passed": true,
+      "threshold": 0.42
+    }
+  ]
+}

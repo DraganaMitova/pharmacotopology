@@ -13,6 +13,46 @@
       "failure_count": 0,
       "sentinel_regression_count": 0,
       "targeted_failed_accepted_count": 0
+    },
+    {
+      "abstention_rate": 0.465,
+      "accepted_accuracy": 0.102803738317757,
+      "batch_id": "V74_RCSB_NONREDUNDANT_200_DISCOVERY_E68",
+      "batch_mode": "fresh_four_shard_discovery_200",
+      "claim_allowed": false,
+      "claim_blocked_reason": "V74 is a fresh discovery batch for mining the next missing Esperanto word; it is not a solved-folding claim.",
+      "clean_abstain_count": 93,
+      "control_pass_rate": 1.0,
+      "coverage": 0.535,
+      "dominant_failure_mode": "multidomain_allostery",
+      "engine_version_used": "E68",
+      "failure_count": 96,
+      "failure_modes": {
+        "assembly_required_missed": 0,
+        "closed_beta_topology": 2,
+        "coiled_coil_register": 17,
+        "disorder_misread": 0,
+        "disulfide_secretory_redox_context": 28,
+        "domain_swapping": 1,
+        "knotted_topology": 0,
+        "membrane_topology_missed_or_misread": 0,
+        "metal_ligand_basin": 0,
+        "multidomain_allostery": 33,
+        "other": 0,
+        "repeat_solenoid_topology": 15,
+        "signal_peptide_vs_true_TM": 0
+      },
+      "missing_words": {
+        "closed_beta_topology": 2,
+        "coiled_coil_register": 17,
+        "disulfide_secretory_redox_context": 28,
+        "domain_swapping": 1,
+        "multidomain_allostery": 33,
+        "repeat_solenoid_topology": 15
+      },
+      "raw_accuracy": 0.52,
+      "top_missing_esperanto_word": "multidomain_allostery",
+      "withheld_context_leakage_detected": false
     }
   ]
 }

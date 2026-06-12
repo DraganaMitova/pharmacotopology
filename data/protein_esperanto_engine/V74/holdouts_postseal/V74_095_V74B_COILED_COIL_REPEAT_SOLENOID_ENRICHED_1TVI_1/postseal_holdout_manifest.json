@@ -1,0 +1,37 @@
+{
+  "batch_id": "V74_RCSB_NONREDUNDANT_200_DISCOVERY_E68",
+  "engine_version_used": "E68",
+  "entity_id": "1",
+  "entry_id": "1TVI",
+  "expected_mechanism_class": "assembly_required_folding",
+  "expected_observables": [
+    {
+      "check_id": "partner_completed_core_supported",
+      "comparator": ">=",
+      "metric": "partner_completed_core",
+      "threshold": 0.48
+    }
+  ],
+  "experimental_method": "SOLUTION NMR",
+  "holdout_opened_after_prediction_hash": "71efe2e82bc1ef88db427f08198deee0b1796865b79a2e37df16fd1d98ebd015",
+  "kind": "V74_E68_RCSB_NONREDUNDANT_DISCOVERY_POSTSEAL_HOLDOUT_v0",
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1TVI",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1TVI/1",
+      "source_class": "coordinate_derived",
+      "source_id": "V74_095_V74B_COILED_COIL_REPEAT_SOLENOID_ENRICHED_1TVI_1_V74_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "postseal_truth_basis": [
+    "postseal public non-coordinate text/sequence indicates candidate V74 word coiled_coil_register"
+  ],
+  "protein_id": "1TVI_1",
+  "release_date": "2005-01-04T00:00:00.000+00:00",
+  "required_esperanto_word": "coiled_coil_register",
+  "shard": "V74B_COILED_COIL_REPEAT_SOLENOID_ENRICHED",
+  "target_id": "V74_095_V74B_COILED_COIL_REPEAT_SOLENOID_ENRICHED_1TVI_1"
+}

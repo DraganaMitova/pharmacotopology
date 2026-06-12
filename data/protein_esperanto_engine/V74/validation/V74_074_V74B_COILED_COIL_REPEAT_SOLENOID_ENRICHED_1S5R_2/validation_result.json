@@ -1,0 +1,50 @@
+{
+  "acceptance_decision": "accepted",
+  "alphafold_used_before_seal": false,
+  "contact_truth_used_before_seal": false,
+  "coordinate_truth_used_before_seal": false,
+  "entity_id": "2",
+  "entry_id": "1S5R",
+  "expected_mechanism_class": "globular_closure",
+  "holdout_opened_after_prediction_hash": "ff5fbeee4bd1418e8e30e4f4f7433e3647aec7ca0824fb5c0c1acf6a4a889bdf",
+  "kind": "V74_E68_RCSB_NONREDUNDANT_DISCOVERY_VALIDATION_RESULT_v0",
+  "level1_regime_selection": false,
+  "level2_region_localization_proxy": true,
+  "level3_topology_or_contact_proxy": false,
+  "postseal_sources": [
+    {
+      "coordinate_contacts_used_before_prediction": false,
+      "entry_url": "https://data.rcsb.org/rest/v1/core/entry/1S5R",
+      "polymer_entity_url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1S5R/2",
+      "source_class": "coordinate_derived",
+      "source_id": "V74_074_V74B_COILED_COIL_REPEAT_SOLENOID_ENRICHED_1S5R_2_V74_POSTSEAL_HOLDOUT",
+      "source_role": "holdout_validation",
+      "used_before_prediction": false
+    }
+  ],
+  "predicted_mechanism_class": "membrane_multidomain_folding_proteostasis",
+  "protein_id": "1S5R_2",
+  "required_esperanto_word": "repeat_solenoid_topology",
+  "required_esperanto_word_supported": false,
+  "score_label": "contradicted",
+  "sealed_prediction_hash": "ff5fbeee4bd1418e8e30e4f4f7433e3647aec7ca0824fb5c0c1acf6a4a889bdf",
+  "selected_beta_topology_word": null,
+  "shard": "V74B_COILED_COIL_REPEAT_SOLENOID_ENRICHED",
+  "target_id": "V74_074_V74B_COILED_COIL_REPEAT_SOLENOID_ENRICHED_1S5R_2",
+  "validation_checks": [
+    {
+      "check_id": "mechanism_class_matches_holdout",
+      "expected": "globular_closure",
+      "observed": "membrane_multidomain_folding_proteostasis",
+      "passed": false
+    },
+    {
+      "check_id": "compact_or_contact_supported",
+      "comparator": ">=",
+      "metric": "contact_probability",
+      "observed": 0.48575,
+      "passed": true,
+      "threshold": 0.35
+    }
+  ]
+}

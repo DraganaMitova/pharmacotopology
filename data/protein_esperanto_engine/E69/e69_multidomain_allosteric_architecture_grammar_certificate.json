@@ -1,0 +1,37 @@
+{
+  "baseline_engine_version": "E68",
+  "boundary_repairs": [
+    "generic_complex guard now matches standalone complex only so low-complexity disorder text cannot be flattened into generic-complex abstention"
+  ],
+  "certificate_hash": "c1a2388451c3c79252c852fa864e1cc1f50fa3a5f26265947312e4eedbc0afef",
+  "claim_allowed": false,
+  "engine_revision": "E69",
+  "kind": "E69_MULTIDOMAIN_ALLOSTERIC_ARCHITECTURE_GRAMMAR_CERTIFICATE_v0",
+  "lineage_note": "E69 repairs the dominant V74 missing word and a generic-complex token boundary bug without absorbing coiled-coil/repeat or disulfide/secretory signals into the same revision.",
+  "new_mechanism_class": "multidomain_allosteric_architecture",
+  "new_words": [
+    "multidomain_allostery",
+    "domain_boundary",
+    "hinge_region",
+    "interdomain_lock",
+    "allosteric_basin_shift",
+    "domain_reorientation",
+    "modular_architecture",
+    "domain_swapping"
+  ],
+  "next_required_batch": "V75_MULTIDOMAIN_ALLOSTERY_REPAIR_PANEL_200",
+  "protected_priorities": [
+    "membrane_multidomain_folding_proteostasis",
+    "assembly_required_folding",
+    "metal_cluster_and_ligand_locked_basin",
+    "disorder_boundary_and_fold_upon_binding",
+    "beta_closure_topology",
+    "intrinsic_disorder_phase_separation"
+  ],
+  "status": "E69_MULTIDOMAIN_ALLOSTERIC_ARCHITECTURE_GRAMMAR_ADDED_REVIEW_REQUIRED",
+  "trigger_batch": "V74_RCSB_NONREDUNDANT_200_DISCOVERY_E68",
+  "trigger_failure_count": 33,
+  "trigger_failure_mode": "multidomain_allostery",
+  "trigger_missing_word": "multidomain_allostery",
+  "trigger_status": "V74_E68_RCSB_NONREDUNDANT_200_DISCOVERY_FAILURES_MINED_REVIEW_REQUIRED"
+}
