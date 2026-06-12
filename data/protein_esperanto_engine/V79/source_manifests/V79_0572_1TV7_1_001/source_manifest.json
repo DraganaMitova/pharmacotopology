@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_be817400c44d",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Molybdenum cofactor biosynthesis protein A 1TV7 1 4 iron, 4 sulfur cluster binding Aldolase-type TIM barrel Anchor2 Disordered binding sites Disordered regions Elp3/MiaA/NifB-like, radical SAM core domain GO GO:0005525 GO:0006777 GO:0046872 GO:0051539 GO:0061798 GO:0061799 GO:1904047 GTP 3',8'-cyclase activity GTP binding Hydropathy values IPR000385 IPR006638 IPR007197 IPR010505 IPR013483 IPR013785 IPR040064 IPR050105 IPR058240 IUPred2(short) InterPro Mo-molybdopterin cofactor biosynthetic process MoaA/NifB/PqqE, iron-sulphur binding, conserved site Molybdenum Cofactor Synthesis C (Mob_synth_C) Molybdenum cofactor biosynthesis MoaA/MoaC Molybdenum cofactor biosynthesis protein A Molybdenum cofactor biosynthesis protein A-like Molybdenum cofactor biosynthesis protein A-like, twitch domain PF04055 PF06463 Pfam Radical SAM Radical SAM superfamily Radical SAM superfamily (Radical_SAM) S-adenosyl-L-methionine binding UNIPROT biojava-7.2.4 cyclic pyranopterin monophosphate synthase activity disorder disorder_binding hydropathy metal ion binding LIGAND BINDING PROTEIN TIM barrel, LIGAND BINDING PROTEIN Molybdenum cofactor biosynthesis protein A Pfam disorder disorder_binding hydropathy Protein Staphylococcus aureus X-RAY DIFFRACTION SF4 0.052941",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_be817400c44d",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0572_1TV7_1_001"
+}

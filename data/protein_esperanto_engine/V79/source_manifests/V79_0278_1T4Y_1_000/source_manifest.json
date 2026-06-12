@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_bb3d04f41921",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Adaptive-response sensory-kinase sasA 1T4Y 1 ATP binding Adaptive-response sensory-kinase SasA Anchor2 Disordered binding sites Disordered regions GO GO:0000155 GO:0005524 GO:0007623 GO:0097167 Histidine kinase domain Histidine kinase/HSP90-like ATPase domain Histidine kinase/HSP90-like ATPase superfamily Hydropathy values IPR003594 IPR003661 IPR004358 IPR005467 IPR011649 IPR023527 IPR036097 IPR036249 IPR036890 IUPred2(short) InterPro KaiB domain KaiB domain (KaiB) PDB PF07689 Pfam Signal transduction histidine kinase, dimerisation/phosphoacceptor domain Signal transduction histidine kinase, dimerisation/phosphoacceptor domain superfamily Signal transduction histidine kinase-related protein, C-terminal Thioredoxin-like superfamily UNIPROT artifact biojava-7.2.4 circadian regulation of translation circadian rhythm cloning artifact disorder disorder_binding hydropathy phosphorelay sensor kinase activity range_feature_1 range_feature_2 TRANSFERASE Alpha/Beta protein, Thioredoxin fold, TRANSFERASE Adaptive-response sensory-kinase sasA Pfam artifact disorder disorder_binding hydropathy Protein Synechococcus elongatus PCC 7942 = FACHB-805 SOLUTION NMR 0.104762",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_bb3d04f41921",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0278_1T4Y_1_000"
+}

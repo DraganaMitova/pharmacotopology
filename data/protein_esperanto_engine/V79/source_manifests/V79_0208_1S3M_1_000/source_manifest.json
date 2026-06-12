@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_776a18035425",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Hypothetical protein MJ0936 1S3M 1 Anchor2 Calcineurin-like phosphoesterase (Metallophos) Calcineurin-like phosphoesterase domain, lpxH-type Disordered binding sites Disordered regions GO GO:0016787 GO:0046872 Hydropathy values IPR000979 IPR020935 IPR024654 IPR029052 IPR041802 IPR053193 IUPred2(short) InterPro Metallo-dependent phosphatase-like Metallophosphoesterase YfcE-like PDB PF00149 Pfam Phosphodiesterase MJ0936/Vps29 Phosphodiesterase YfcE, conserved site UNIPROT YfcE-like, metallophosphatase domain artifact biojava-7.2.4 disorder disorder_binding expression tag hydrolase activity hydropathy metal ion binding range_feature_1 PHOSPHODIESTERASE PHOSPHODIESTERASE/NUCLEASE, DI-METAL-BINDING, Structural Genomics, BSGC structure funded by NIH, Protein Structure Initiative, PSI, Berkeley Structural Genomics Center, PHOSPHODIESTERASE Hypothetical protein MJ0936 Pfam artifact disorder disorder_binding hydropathy Protein Methanocaldococcus jannaschii X-RAY DIFFRACTION NI NI 0.078947",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_776a18035425",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0208_1S3M_1_000"
+}

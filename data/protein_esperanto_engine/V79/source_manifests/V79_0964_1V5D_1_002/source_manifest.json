@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_903fb36654e3",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "chitosanase 1V5D 1 Anchor2 Disordered binding sites Disordered regions GO GO:0000272 GO:0004553 Glycoside hydrolase, family 8 Glycoside hydrolase, family 8, conserved site Hydropathy values IPR002037 IPR008928 IPR012341 IPR019834 IUPred2(short) InterPro Six-hairpin glycosidase superfamily Six-hairpin glycosidase-like superfamily UNIPROT biojava-7.2.4 disorder disorder_binding hydrolase activity, hydrolyzing O-glycosyl compounds hydropathy polysaccharide catabolic process HYDROLASE chitosan degradation, hydrolase, glycosil hydrolase, family 8 chitosanase disorder disorder_binding hydropathy Protein Bacillus sp. Bacillus sp. (in: firmicutes) X-RAY DIFFRACTION 0.041451",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_903fb36654e3",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0964_1V5D_1_002"
+}

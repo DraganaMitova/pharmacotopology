@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_37b3761d4134",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Actin-related protein 3 1TYQ 1 ATP binding ATPase, nucleotide binding domain Actin (Actin) Actin family Actin/actin-like conserved site Anchor2 Arp2/3 complex-mediated actin nucleation Arp2/3 protein complex Disordered binding sites Disordered regions GO GO:0003779 GO:0005524 GO:0005634 GO:0005737 GO:0005829 GO:0005885 GO:0010592 GO:0034314 GO:0035861 GO:0042995 GO:0045944 GO:0060271 Hydropathy values IPR004000 IPR020902 IPR043129 IUPred2(short) InterPro PF00022 Pfam UNIPROT actin binding biojava-7.2.4 cell projection cilium assembly cytoplasm cytosol disorder disorder_binding hydropathy nucleus positive regulation of lamellipodium assembly positive regulation of transcription by RNA polymerase II site of double-strand break STRUCTURAL PROTEIN STRUCTURAL PROTEIN Actin-related protein 3 Pfam disorder disorder_binding hydropathy Protein Bos taurus X-RAY DIFFRACTION ATP CA ATP CA 0.021531",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_37b3761d4134",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0613_1TYQ_1_001"
+}

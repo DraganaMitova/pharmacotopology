@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_dffcc26415b8",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Putative ATP-dependent RNA helicase DHH1 1S2M 1 ATP binding ATP hydrolysis activity ATP-dependent RNA helicase DEAD-box, conserved site Anchor2 DEAD/DEAH box helicase (DEAD) DEAD/DEAH-box helicase domain Disordered binding sites Disordered regions GO GO:0000290 GO:0000749 GO:0000932 GO:0003682 GO:0003724 GO:0003729 GO:0005524 GO:0005737 GO:0006397 GO:0006995 GO:0007124 GO:0010494 GO:0010603 GO:0016887 GO:0017148 GO:0030447 GO:0033962 GO:0034063 GO:0036267 GO:0042149 GO:0045727 GO:0045900 GO:0051028 GO:0098562 Helicase conserved C-terminal domain (Helicase_C) Helicase superfamily 1/2, ATP-binding domain Helicase, C-terminal domain-like Hydropathy values IPR000629 IPR001650 IPR011545 IPR014001 IPR014014 IPR027417 IUPred2(short) InterPro P-body P-body assembly P-loop containing nucleoside triphosphate hydrolase PDB PF00270 PF00271 Pfam RNA helicase activity RNA helicase, DEAD-box type, Q motif UNIPROT artifact biojava-7.2.4 cellular response to glucose starvation cellular response to nitrogen starvation chromatin binding cloning artifact cytoplasm cytoplasmic side of membrane cytoplasmic stress granule deadenylation-dependent decapping of nuclear-transcribed mRNA disorder disorder_binding filamentous growth hydropathy invasive filamentous growth mRNA binding mRNA processing mRNA transport negative regulation of translation negative regulation of translational elongation positive regulation of translation pseudohyphal growth range_feature_1 regulation of cytoplasmic mRNA processing body assembly response to pheromone triggering conjugation with cellular fusion stress granule assembly RNA BINDING PROTEIN ATP-binding, RNA-binding, Helicase, RNA BINDING PROTEIN Putative ATP-dependent RNA helicase DHH1 Pfam artifact disorder disorder_binding hydropathy Protein Saccharomyces cerevisiae X-RAY DIFFRACTION 0.0575",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_dffcc26415b8",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0991_1S2M_1_002"
+}

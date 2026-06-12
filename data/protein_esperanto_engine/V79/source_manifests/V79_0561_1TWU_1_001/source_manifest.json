@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_4cd297137b4b",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Hypothetical protein yycE 1TWU 1 Anchor2 Disordered binding sites Disordered regions Glyoxalase/Bleomycin resistance protein/Dihydroxybiphenyl dioxygenase Glyoxalase/Bleomycin resistance protein/Dioxygenase superfamily (Glyoxalase) Hydropathy values IPR029068 IPR037523 IPR058997 IPR058998 IUPred2(short) InterPro PF00903 Pfam UNIPROT Vicinal oxygen chelate (VOC), core domain YycE-like, C-terminal domain YycE-like, N-terminal domain biojava-7.2.4 disorder disorder_binding hydropathy STRUCTURAL GENOMICS, UNKNOWN FUNCTION Structural genomics, Protein structure initiative, MCSG, duplication of the alpha-beta sandwichs. Bacillus subtilis, PSI, Midwest Center for Structural Genomics, UNKNOWN FUNCTION Hypothetical protein yycE Pfam disorder disorder_binding hydropathy Protein Bacillus subtilis X-RAY DIFFRACTION 0.100719",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_4cd297137b4b",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0561_1TWU_1_001"
+}

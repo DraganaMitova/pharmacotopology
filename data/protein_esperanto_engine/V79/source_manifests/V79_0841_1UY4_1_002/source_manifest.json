@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_9cedfd2a9255",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "ENDO-1,4-BETA-XYLANASE A 1UY4 1 Anchor2 Carbohydrate binding module family 6 Cellulose binding, type IV Concanavalin A-like lectin/glucanase domain superfamily Disordered binding sites Disordered regions GO GO:0005576 GO:0030245 GO:0030246 GO:0031176 GO:0045493 GO:0046872 Galactose-binding-like domain superfamily Glycoside hydrolase family 11 Glycoside hydrolase family 11, active site 1 Glycoside hydrolase family 11, active site 2 Glycoside hydrolase family 11/12 Glycosyl hydrolase 11 domain Hydropathy values IPR001137 IPR005084 IPR006584 IPR008979 IPR013319 IPR013320 IPR018208 IPR033119 IPR033123 IUPred2(short) InterPro UNIPROT biojava-7.2.4 carbohydrate binding cellulose catabolic process disorder disorder_binding endo-1,4-beta-xylanase activity extracellular region hydropathy metal ion binding xylan catabolic process CARBOHYDRATE-BINDING MODULE CARBOHYDRATE-BINDING MODULE, THERMODYNAMICS, PROTEIN STRUCTURE, XYLAN, PROTEIN-CARBOHYDRATE INTERACTIONS ENDO-1,4-BETA-XYLANASE A disorder disorder_binding hydropathy Protein Thermoclostridium stercorarium X-RAY DIFFRACTION CA CA NA 0.227586",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_9cedfd2a9255",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0841_1UY4_1_002"
+}

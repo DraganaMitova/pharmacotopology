@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_87f98804209c",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "BIOSYNTHETIC THREONINE DEAMINASE 1TDJ 1 ACT-like domain Anchor2 C-terminal regulatory domain of Threonine dehydratase (Thr_dehydrat_C) Disordered binding sites Disordered regions GO GO:0004794 GO:0006566 GO:0009082 GO:0009097 GO:0016597 GO:0030170 Hydropathy values IPR000634 IPR001721 IPR001926 IPR005787 IPR036052 IPR038110 IPR045865 IPR050147 IUPred2(short) InterPro PF00291 PF00585 Pfam Pyridoxal-phosphate dependent enzyme (PALP) Serine/Threonine Dehydratase Serine/threonine dehydratase, pyridoxal-phosphate-binding site Threonine dehydratase, ACT-like domain Threonine dehydratase, ACT-like domain superfamily Threonine dehydratase, biosynthetic Tryptophan synthase beta chain-like, PALP domain Tryptophan synthase beta chain-like, PALP domain superfamily UNIPROT amino acid binding biojava-7.2.4 branched-chain amino acid biosynthetic process disorder disorder_binding hydropathy isoleucine biosynthetic process pyridoxal phosphate binding threonine deaminase activity threonine metabolic process ALLOSTERY ALLOSTERY, COOPERATIVE, TETRAMER, REGULATION, PYRIDOXAL PHOSPHATE, ISOLEUCINE BIOSYNTHESIS BIOSYNTHETIC THREONINE DEAMINASE Pfam disorder disorder_binding hydropathy Protein Escherichia coli X-RAY DIFFRACTION PLP PLP 0.031128",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_87f98804209c",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0693_1TDJ_1_002"
+}

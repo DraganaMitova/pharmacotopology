@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_98e141562517",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "MANNOSYL-OLIGOSACCHARIDE GLUCOSIDASE 1UUQ 1 Anchor2 Disordered binding sites Disordered regions GO GO:0016985 Glycoside hydrolase superfamily Glycoside hydrolase, family 5 Hydropathy values IPR001547 IPR017853 IPR045053 IUPred2(short) InterPro Mannan endo-1,4-beta-mannosidase-like UNIPROT biojava-7.2.4 disorder disorder_binding hydropathy mannan endo-1,4-beta-mannosidase activity HYDROLASE HYDROLASE, MANNOSIDASE, MANNAN, GLYCOSIDE HYDROLASE, FAMILY 5 MANNOSYL-OLIGOSACCHARIDE GLUCOSIDASE disorder disorder_binding hydropathy Protein Cellvibrio mixtus X-RAY DIFFRACTION 0.102273",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_98e141562517",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0110_1UUQ_1_000"
+}

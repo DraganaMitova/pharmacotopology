@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_94c5ac155bed",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "SERUM PARAOXONASE/ARYLESTERASE 1 1V04 1 Anchor2 Arylesterase Arylesterase (Arylesterase) Disordered binding sites Disordered regions GO GO:0004063 GO:0004064 GO:0005509 GO:0016209 GO:0034364 GO:0046683 GO:0102007 Hydropathy values IPR002640 IPR008363 IPR011042 IPR051288 IUPred2(short) InterPro OPM PDB PF01731 Paraoxonase1 Pfam Serum paraoxonase/arylesterase Six-bladed beta-propeller, TolB-like Transmembrane.Bitopic proteins.Calcium-dependent phosphotriesterase.Arylesterase UNIPROT acyl-L-homoserine-lactone lactonohydrolase activity antioxidant activity aryldialkylphosphatase activity arylesterase activity biojava-7.2.4 calcium ion binding disorder disorder_binding high-density lipoprotein particle hydropathy response to organophosphorus HYDROLASE PARAOXONASE, HYDROLASE, DIRECTED EVOLUTION, ANTIOXIDANT, ISRAEL STRUCTURAL PROTEOMICS CENTER, ISPC, STRUCTURAL GENOMICS SERUM PARAOXONASE/ARYLESTERASE 1 Pfam disorder disorder_binding hydropathy Protein Homo sapiens Mus musculus Oryctolagus cuniculus Rattus rattus X-RAY DIFFRACTION CA CA PO4 0.008451",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_94c5ac155bed",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0116_1V04_1_000"
+}

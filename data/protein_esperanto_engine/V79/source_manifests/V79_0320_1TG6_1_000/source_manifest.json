@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_f30ee7859c92",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Putative ATP-dependent Clp protease proteolytic subunit 1TG6 1 ATP-dependent Clp protease proteolytic subunit ATP-dependent peptidase activity ATPase binding Anchor2 Clp protease proteolytic subunit /Translocation-enhancing protein TepA ClpP, Ser active site ClpP, histidine active site ClpP/crotonase-like domain superfamily Disordered binding sites Disordered regions GO GO:0004175 GO:0004176 GO:0004252 GO:0005739 GO:0005759 GO:0006508 GO:0006515 GO:0008233 GO:0009368 GO:0033619 GO:0035694 GO:0042802 GO:0051117 GO:0051603 Hydropathy values IPR001907 IPR018215 IPR023562 IPR029045 IPR033135 IUPred2(short) InterPro UNIPROT biojava-7.2.4 disorder disorder_binding endopeptidase Clp complex endopeptidase activity hydropathy identical protein binding membrane protein proteolysis mitochondrial matrix mitochondrial protein catabolic process mitochondrion peptidase activity protein quality control for misfolded or incompletely synthesized proteins proteolysis proteolysis involved in protein catabolic process serine-type endopeptidase activity HYDROLASE mitochondrial ClpP, Clp/Hsp 100, ATP-dependent protease, HYDROLASE Putative ATP-dependent Clp protease proteolytic subunit disorder disorder_binding hydropathy Protein Homo sapiens X-RAY DIFFRACTION 0.198556",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_f30ee7859c92",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0320_1TG6_1_000"
+}

@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_3a8130644011",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Hypothetical superoxide dismutase-like protein yojM 1U3N 1 Anchor2 Copper/zinc superoxide dismutase (SODC) (Sod_Cu) Disordered binding sites Disordered regions GO GO:0004784 GO:0005507 GO:0005886 GO:0008270 GO:0019430 GO:0042802 Hydropathy values IPR001424 IPR024134 IPR036423 IUPred2(short) InterPro PF00080 Pfam Superoxide dismutase (Cu/Zn) / superoxide dismutase copper chaperone Superoxide dismutase, copper/zinc binding domain Superoxide dismutase-like, copper/zinc binding domain superfamily UNIPROT biojava-7.2.4 copper ion binding disorder disorder_binding hydropathy identical protein binding plasma membrane removal of superoxide radicals superoxide dismutase activity zinc ion binding UNKNOWN FUNCTION SOD-like; Bacillus subtilis; BsSOD; solution structure; NMR; Metalloprotein, UNKNOWN FUNCTION Hypothetical superoxide dismutase-like protein yojM Pfam disorder disorder_binding hydropathy Protein Bacillus subtilis SOLUTION NMR 0.179012",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_3a8130644011",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0325_1U3N_1_000"
+}

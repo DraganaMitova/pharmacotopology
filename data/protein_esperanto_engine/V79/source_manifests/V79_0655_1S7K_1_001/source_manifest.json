@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_95b477bb7cf3",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "acetyl transferase 1S7K 1 Acetyltransferase (GNAT) domain (Acetyltransf_3) Acyl-CoA N-acyltransferase Anchor2 Disordered binding sites Disordered regions GNAT domain GO GO:0005737 GO:0008999 GO:1990189 Hydropathy values IPR000182 IPR016181 IPR051908 IUPred2(short) InterPro PDB PF13302 Pfam Ribosomal-protein N-acetyltransferase UNIPROT artifact biojava-7.2.4 cytoplasm disorder disorder_binding expression tag hydropathy protein N-terminal-serine acetyltransferase activity protein-N-terminal-alanine acetyltransferase activity range_feature_1 TRANSFERASE acetyltransferase, GNAT, alpha-N-protein acetyltransferase, Coenzyme A, L7/L12, transferase acetyl transferase Pfam artifact disorder disorder_binding hydropathy Protein Salmonella enterica subsp. enterica serovar Typhimurium str. LT2 X-RAY DIFFRACTION 0.054945",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_95b477bb7cf3",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0655_1S7K_1_001"
+}

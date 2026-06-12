@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_c4c448c1513e",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "EstA 1UKC 1 Acetylcholinesterase-related enzymes Alpha/Beta hydrolase fold Anchor2 Carboxylesterase type B, active site Carboxylesterase type B, conserved site Carboxylesterase, type B Disordered binding sites Disordered regions GO GO:0052689 Hydropathy values IPR002018 IPR019819 IPR019826 IPR029058 IPR050654 IUPred2(short) InterPro UNIPROT biojava-7.2.4 carboxylic ester hydrolase activity disorder disorder_binding hydropathy HYDROLASE esterase, fungi, a/b hydrolase fold, acetylcholinesterase, hydrolase EstA disorder disorder_binding hydropathy Protein Aspergillus niger X-RAY DIFFRACTION NAG 0.097701",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_c4c448c1513e",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0537_1UKC_1_001"
+}

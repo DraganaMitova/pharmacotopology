@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_d50d7e48fdb7",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "ELONGATION FACTOR TS 1TFE 1 Anchor2 Disordered binding sites Disordered regions Elongation factor TS (EF_TS) Elongation factor Ts, dimerisation domain superfamily GO GO:0003746 GO:0005737 Hydropathy values IPR001816 IPR009060 IPR014039 IPR018101 IPR036402 IUPred2(short) InterPro PF00889 Pfam Translation elongation factor EFTs/EF1B Translation elongation factor EFTs/EF1B, dimerisation Translation elongation factor Ts, conserved site UBA-like superfamily UNIPROT biojava-7.2.4 cytoplasm disorder disorder_binding hydropathy translation elongation factor activity ELONGATION FACTOR ELONGATION FACTOR ELONGATION FACTOR TS Pfam disorder disorder_binding hydropathy Protein Thermus thermophilus X-RAY DIFFRACTION 0.034483",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_d50d7e48fdb7",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0349_1TFE_1_001"
+}

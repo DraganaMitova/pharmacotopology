@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_a4e4fea4dcc9",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "hypothetical protein PH1932 1ULY 1 Anchor2 ArsR-like helix-turn-helix domain DNA binding DNA-binding transcription factor activity Disordered binding sites Disordered regions GO GO:0003677 GO:0003700 GO:0046982 HTH ArsR-type DNA-binding domain HTH-type Metal-responsive Transcriptional Regulators Histone-fold Hydropathy values IPR001845 IPR009072 IPR011991 IPR036388 IPR036390 IPR051081 IUPred2(short) InterPro PDB Parent monomer MET UNIPROT Winged helix DNA-binding domain superfamily Winged helix-like DNA-binding domain superfamily biojava-7.2.4 disorder disorder_binding hydropathy modified_monomer monomer_feature_1 monomer_feature_2 monomer_feature_3 monomer_feature_4 monomer_feature_5 monomer_feature_6 protein heterodimerization activity DNA BINDING PROTEIN helix-turn-helix, structural genomics, DNA BINDING PROTEIN hypothetical protein PH1932 disorder disorder_binding hydropathy modified_monomer Protein Pyrococcus horikoshii OT3 X-RAY DIFFRACTION 0.036458",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_a4e4fea4dcc9",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0264_1ULY_1_000"
+}

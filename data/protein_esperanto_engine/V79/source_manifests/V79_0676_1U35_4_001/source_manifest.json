@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_26bc68be5376",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "H2A histone family 1U35 4 ADP-D-ribose binding ADP-D-ribose modification-dependent protein binding Anchor2 Barr body C-terminus of histone H2A (Histone_H2A_C) Core Histone H2A/H2B/H3 domain Core histone macro-H2A Core histone macro-H2A, macro domain DNA binding DNA repair Disordered binding sites Disordered regions GO GO:0000122 GO:0000182 GO:0000228 GO:0000781 GO:0000785 GO:0000786 GO:0000793 GO:0000976 GO:0000977 GO:0001739 GO:0001740 GO:0002082 GO:0003677 GO:0005634 GO:0005654 GO:0005721 GO:0005730 GO:0006281 GO:0006334 GO:0009048 GO:0010385 GO:0019216 GO:0019899 GO:0019901 GO:0030291 GO:0030527 GO:0031490 GO:0031492 GO:0031507 GO:0034184 GO:0040029 GO:0045618 GO:0045814 GO:0045815 GO:0046982 GO:0070062 GO:0070212 GO:0071169 GO:0072570 GO:0090734 GO:0160002 GO:0160004 GO:1901837 GO:1902688 GO:1902750 GO:1902882 GO:1902883 GO:1902884 GO:1903226 GO:1904815 GO:1990841 Histone H2A Histone H2A, C-terminal domain Histone-fold Hydropathy values IPR002119 IPR002589 IPR007125 IPR009072 IPR021171 IPR032454 IPR035796 IPR043472 IUPred2(short) InterPro Macro domain Macro domain-like PDB PF16211 Pfam RNA polymerase II transcription regulatory region sequence-specific DNA binding UNIPROT biojava-7.2.4 chromatin chromatin DNA binding chromosome, telomeric region condensed chromosome disorder disorder_binding dosage compensation by inactivation of X chromosome double-stranded methylated DNA binding engineered mutation enzyme binding epigenetic regulation of gene expression establishment of protein localization to chromatin extracellular exosome heterochromatin formation hydropathy monomer_feature_1 mutation negative regulation of cell cycle G2/M phase transition negative regulation of gene expression, epigenetic negative regulation of protein localization to chromosome, telomeric region negative regulation of response to oxidative stress negative regulation of transcription by RNA polymerase II negative regulation of transcription of nucleolar large rRNA by RNA polymerase I nuclear chromosome nucleolus nucleoplasm nucleosomal DNA binding nucleosome nucleosome assembly nucleus pericentric heterochromatin poly-ADP-D-ribose modification-dependent protein binding positive regulation of endodermal cell differentiation positive regulation of keratinocyte differentiation positive regulation of maintenance of mitotic sister chromatid cohesion positive regulation of response to oxidative stress promoter-specific chromatin binding protein heterodimerization activity protein kinase binding protein poly-ADP-ribosylation protein serine/threonine kinase inhibitor activity rDNA binding regulation of NAD metabolic process regulation of lipid metabolic process regulation of oxidative phosphorylation regulation of response to oxidative stress sex chromatin site of DNA damage structural constituent of chromatin transcription cis-regulatory region binding transcription initiation-coupled chromatin remodeling structural protein/DNA Nucleosome, NCP, Histone fold, Histone variant, macroH2A, structural protein-DNA COMPLEX H2A histone family disorder disorder_binding hydropathy mutation Protein Homo sapiens X-RAY DIFFRACTION 0.216667",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_26bc68be5376",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0676_1U35_4_001"
+}

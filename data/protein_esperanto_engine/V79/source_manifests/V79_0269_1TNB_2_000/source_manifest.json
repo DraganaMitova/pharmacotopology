@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_bf4c79e90d64",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Geranylgeranyl transferase type I beta subunit 1TNB 2 Anchor2 CAAX-protein geranylgeranyltransferase activity CAAX-protein geranylgeranyltransferase complex Disordered binding sites Disordered regions GO GO:0004661 GO:0004662 GO:0005953 GO:0008270 GO:0008284 GO:0018344 GO:0045787 GO:1901363 Geranylgeranyl transferase type-1 subunit beta Hydropathy values IPR001330 IPR008930 IPR041960 IPR045089 IUPred2(short) InterPro PF00432 Pfam Prenyltransferase alpha-alpha toroid domain Prenyltransferase alpha-alpha toroid domain (Prenyltrans) Prenyltransferase subunit beta Terpenoid cyclases/protein prenyltransferase alpha-alpha toroid UNIPROT biojava-7.2.4 disorder disorder_binding heterocyclic compound binding hydropathy positive regulation of cell cycle positive regulation of cell population proliferation protein geranylgeranylation protein geranylgeranyltransferase activity zinc ion binding TRANSFERASE GGTase-I, geranylgeranyltransferase type-I, geranylgeranyl transferase, prenyltransferase, CaaX, TC21, Lipid modification, prenylation, substrate selectivity, Transferase Geranylgeranyl transferase type I beta subunit Pfam disorder disorder_binding hydropathy Protein Rattus norvegicus X-RAY DIFFRACTION ZN ZN 0.055703",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_bf4c79e90d64",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0269_1TNB_2_000"
+}

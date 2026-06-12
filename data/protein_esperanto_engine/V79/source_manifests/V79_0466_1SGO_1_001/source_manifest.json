@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_42e29dc38e0a",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Protein C14orf129 1SGO 1 Anchor2 Disordered binding sites Disordered regions GO GO:0004860 GO:0005634 GO:0005737 GO:0006469 GO:0008631 GO:0019207 GO:0019901 GO:0030111 GO:0034237 GO:0051018 GO:0090263 GSK3B-interacting protein GSKIP domain GSKIP domain (GSKIP_dom) GSKIP domain superfamily Hydropathy values IPR007967 IPR023231 IPR037395 IUPred2(short) InterPro PF05303 Pfam UNIPROT biojava-7.2.4 cytoplasm disorder disorder_binding hydropathy intrinsic apoptotic signaling pathway in response to oxidative stress kinase regulator activity negative regulation of protein kinase activity nucleus positive regulation of canonical Wnt signaling pathway protein kinase A binding protein kinase A regulatory subunit binding protein kinase binding protein kinase inhibitor activity regulation of Wnt signaling pathway STRUCTURAL GENOMICS, UNKNOWN FUNCTION HR969, HUMAN PROTEIN, NESG, STRUCTURAL GENOMICS, Hs.4104 homo sapiens, NESG cluster ID 18152., PSI, Protein Structure Initiative, Northeast Structural Genomics Consortium, UNKNOWN FUNCTION Protein C14orf129 Pfam disorder disorder_binding hydropathy Protein Homo sapiens SOLUTION NMR 0.23741",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_42e29dc38e0a",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0466_1SGO_1_001"
+}

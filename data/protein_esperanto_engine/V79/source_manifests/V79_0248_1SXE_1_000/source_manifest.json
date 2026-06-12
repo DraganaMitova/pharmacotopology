@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_9544492135b7",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Transcriptional regulator ERG 1SXE 1 Anchor2 DNA binding DNA-binding transcription activator activity, RNA polymerase II-specific DNA-binding transcription factor activity, RNA polymerase II-specific Disordered binding sites Disordered regions ETS family Ets domain GO GO:0000785 GO:0000978 GO:0000981 GO:0001228 GO:0003677 GO:0003682 GO:0005634 GO:0005654 GO:0005829 GO:0006357 GO:0006468 GO:0007165 GO:0030154 GO:0045944 GO:1990837 GO:1990904 Hydropathy values IPR000418 IPR003118 IPR013761 IPR036388 IPR036390 IPR046328 IUPred2(short) InterPro PDB PF02198 Pfam Pointed domain RNA polymerase II cis-regulatory region sequence-specific DNA binding Sterile alpha motif (SAM)/Pointed domain (SAM_PNT) Sterile alpha motif/pointed domain superfamily UNIPROT Winged helix DNA-binding domain superfamily Winged helix-like DNA-binding domain superfamily artifact biojava-7.2.4 cell differentiation chromatin chromatin binding cloning artifact cytosol disorder disorder_binding hydropathy nucleoplasm nucleus positive regulation of transcription by RNA polymerase II protein phosphorylation range_feature_1 regulation of transcription by RNA polymerase II ribonucleoprotein complex sequence-specific double-stranded DNA binding signal transduction TRANSCRIPTION, SIGNALING PROTEIN alpha helical, TRANSCRIPTION, SIGNALING PROTEIN Transcriptional regulator ERG Pfam artifact disorder disorder_binding hydropathy Protein Homo sapiens SOLUTION NMR 0.257732",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_9544492135b7",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0248_1SXE_1_000"
+}

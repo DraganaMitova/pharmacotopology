@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_d90c4c440a6d",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Nitrogen regulatory protein P-II 1V3R 1 ATP binding Anchor2 Disordered binding sites Disordered regions GO GO:0005524 GO:0005829 GO:0006808 GO:0030234 Hydropathy values IPR002187 IPR011322 IPR015867 IPR017918 IUPred2(short) InterPro Nitrogen regulatory PII-like, alpha/beta Nitrogen regulatory protein PII Nitrogen regulatory protein PII, conserved site Nitrogen regulatory protein PII/ATP phosphoribosyltransferase, C-terminal PDB UNIPROT biojava-7.2.4 cytosol disorder disorder_binding engineered mutation enzyme regulator activity hydropathy monomer_feature_1 mutation regulation of nitrogen utilization SIGNALING PROTEIN structural genomics, signal transducing protein, RIKEN Structural Genomics/Proteomics Initiative, RSGI, NPPSFA, National Project on Protein Structural and Functional Analyses, SIGNALING PROTEIN Nitrogen regulatory protein P-II disorder disorder_binding hydropathy mutation Protein Thermus thermophilus HB8 X-RAY DIFFRACTION 0.137931",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_d90c4c440a6d",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0281_1V3R_1_000"
+}

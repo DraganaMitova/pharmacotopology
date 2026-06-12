@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_530ff2dcde9d",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "exopolyphosphatase 1T6D 1 ATPase, nucleotide binding domain Anchor2 Disordered binding sites Disordered regions GO GO:0016462 GO:0046872 GppA/Ppx guanosine pentaphosphate hydrolase Hydropathy values IPR003695 IPR043129 IPR050273 IUPred2(short) InterPro PDB PF02541 Parent monomer CYS Parent monomer MET Pfam Ppx/GppA phosphatase family (Ppx-GppA) Ppx/GppA phosphatase, N-terminal UNIPROT artifact biojava-7.2.4 cloning artifact disorder disorder_binding engineered mutation hydropathy metal ion binding modified residue modified_monomer monomer_feature_1 monomer_feature_10 monomer_feature_2 monomer_feature_3 monomer_feature_4 monomer_feature_5 monomer_feature_6 monomer_feature_7 monomer_feature_8 monomer_feature_9 mutation pyrophosphatase activity range_feature_1 HYDROLASE alpha/beta protein, Actin-like fold, HYDROLASE exopolyphosphatase Pfam artifact disorder disorder_binding hydropathy modified_monomer mutation Protein Aquifex aeolicus VF5 X-RAY DIFFRACTION 0.034921",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_530ff2dcde9d",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0878_1T6D_1_002"
+}

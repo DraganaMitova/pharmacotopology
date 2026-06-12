@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_fc370eabb1f5",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Cytochrome b5 1SH4 1 Anchor2 Cytochrome b5 Cytochrome b5, heme-binding site Cytochrome b5-like Heme/Steroid binding domain (Cyt-b5) Cytochrome b5-like heme/steroid binding domain Cytochrome b5-like heme/steroid binding domain superfamily Disordered binding sites Disordered regions GO GO:0005789 GO:0020037 GO:0046872 Hydropathy values IPR001199 IPR018506 IPR036400 IPR050668 IUPred2(short) InterPro PDB PF00173 Pfam UNIPROT biojava-7.2.4 disorder disorder_binding endoplasmic reticulum membrane engineered mutation heme binding hydropathy metal ion binding monomer_feature_1 mutation ELECTRON TRANSPORT FIVE HELIX, FIVE SHEET, HEME RING, ELECTRON TRANSPORT Cytochrome b5 Pfam disorder disorder_binding hydropathy mutation Protein Bos taurus SOLUTION NMR HEM HEM 0.54878",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_fc370eabb1f5",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0211_1SH4_1_000"
+}

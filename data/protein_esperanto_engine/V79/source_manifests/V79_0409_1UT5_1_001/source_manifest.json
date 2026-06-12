@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_0a05d1be8399",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "EXODEOXYRIBONUCLEASE 1UT5 1 5'-3' DNA exonuclease activity 5'-3' exonuclease 5'-3' exonuclease activity 5'-3' exonuclease, C-terminal SAM fold (5_3_exonuc) 5'-3' exonuclease, C-terminal domain superfamily 5'-3' exonuclease, N-terminal resolvase-like domain (5_3_exonuc_N) 5'-3' exonuclease, alpha-helical arch, N-terminal 5'-flap endonuclease activity Anchor2 DNA binding DNA exonuclease activity DNA polymerase I-like, H3TH domain DNA replication, Okazaki fragment processing Disordered binding sites Disordered regions Flap endonuclease Flap endonuclease D15-like GO GO:0003677 GO:0004529 GO:0008409 GO:0017108 GO:0019034 GO:0019086 GO:0033567 GO:0035312 GO:0039693 GO:0046872 GO:0051908 GO:1990238 Helix-hairpin-helix motif, class 2 Hydropathy values IPR002421 IPR008918 IPR020045 IPR020046 IPR029060 IPR036279 IPR038969 IPR043666 IUPred2(short) InterPro PF01367 PF02739 PIN-like domain superfamily Pfam UNIPROT biojava-7.2.4 disorder disorder_binding double-stranded DNA 5'-3' DNA exonuclease activity double-stranded DNA endonuclease activity hydropathy late viral transcription metal ion binding viral DNA genome replication viral replication complex HYDROLASE HYDROLASE, EXONUCLEASE, NUCLEASE EXODEOXYRIBONUCLEASE Pfam disorder disorder_binding hydropathy Protein Tequintavirus T5 X-RAY DIFFRACTION MN MN 0.058419",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_0a05d1be8399",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0409_1UT5_1_001"
+}

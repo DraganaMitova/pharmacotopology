@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_f510c0709030",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "tRNA nucleotidyltransferase 1R8B 1 2-5OAS/ClassI-CCAase, nucleotidyltransferase domain ATP binding Anchor2 CCA tRNA nucleotidyltransferase activity CCA-adding enzyme, C-terminal domain CCA-adding enzyme, C-terminal domain (CAA_C) CCACCA tRNA nucleotidyltransferase activity Disordered binding sites Disordered regions GO GO:0000049 GO:0000287 GO:0001680 GO:0004810 GO:0005524 GO:0042245 GO:0106354 GO:0160016 Hydropathy values IPR002934 IPR006116 IPR008229 IPR011068 IPR015329 IPR042090 IPR043519 IPR048833 IUPred2(short) InterPro Nucleotidyltransferase domain (NTP_transf_2) Nucleotidyltransferase superfamily Nucleotidyltransferase, class I-like, C-terminal PF01909 PF09249 PF21133 Pfam Polymerase, nucleotidyl transferase domain RNA repair UNIPROT biojava-7.2.4 disorder disorder_binding hydropathy magnesium ion binding tRNA 3'-terminal CCA addition tRNA binding tRNA nucleotidyltransferase, archaea tRNA nucleotidyltransferase, domain 2 tRNA nucleotidyltransferase, second domain (tRNA_NucTransf2) tRNA nucleotidyltransferase, substrate binding tRNA surveillance TRANSFERASE CCA Adding Enzyme, Incoming nucleotide, nucleotidyltransferase, TRANSFERASE tRNA nucleotidyltransferase Pfam disorder disorder_binding hydropathy Protein Archaeoglobus fulgidus X-RAY DIFFRACTION ATP MG MN ATP MG MN NA 0.022883",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_f510c0709030",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0391_1R8B_1_001"
+}

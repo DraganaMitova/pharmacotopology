@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_ce60a908153b",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "intermedilysin 1S3R 1 Anchor2 Disordered binding sites Disordered regions GO GO:0005576 GO:0015485 GO:0020002 GO:0031640 GO:0046872 GO:0090729 Hydropathy values IPR001869 IPR035390 IPR036359 IPR036363 IPR038700 IUPred2(short) InterPro Monotopic/peripheral.All beta monotopic/peripheral.Cholesterol-dependent cytolysin.Thiol-activated cytolysin OPM PDB Thiol-activated cytolysin Thiol-activated cytolysin C-terminal Thiol-activated cytolysin superfamily Thiol-activated cytolysin, C-terminal domain superfamily Thiol-activated cytolysin, alpha-beta domain superfamily UNIPROT artifact biojava-7.2.4 cholesterol binding disorder disorder_binding expression tag extracellular region host cell plasma membrane hydropathy killing of cells of another organism metal ion binding range_feature_1 toxin activity TOXIN toxin intermedilysin artifact disorder disorder_binding hydropathy Protein Streptococcus intermedius X-RAY DIFFRACTION 0.151402",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_ce60a908153b",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0305_1S3R_1_000"
+}

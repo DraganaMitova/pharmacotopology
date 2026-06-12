@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_54001fccf3bd",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "hypothetical protein PA3967 1TU9 1 Anchor2 Disordered binding sites Disordered regions GO GO:0005344 GO:0019825 GO:0020037 GO:0046872 Globin Globin (Globin) Globin-like superfamily Globin/Protoglobin Hydropathy values IPR000971 IPR009050 IPR012292 IPR044399 IUPred2(short) InterPro Myoglobin-like, M family globin domain PDB PF00042 Pfam UNIPROT artifact biojava-7.2.4 cloning artifact disorder disorder_binding heme binding hydropathy metal ion binding oxygen binding oxygen carrier activity range_feature_1 range_feature_2 STRUCTURAL GENOMICS, UNKNOWN FUNCTION Structural genomics, Heme, hemoglobin, Pseudomonas aeruginosa PAO1, PSI, Protein Structure Initiative, Midwest Center for Structural Genomics, MCSG, UNKNOWN FUNCTION hypothetical protein PA3967 Pfam artifact disorder disorder_binding hydropathy Protein Pseudomonas aeruginosa PAO1 X-RAY DIFFRACTION HEM HEM PPI 0.074627",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_54001fccf3bd",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0215_1TU9_1_000"
+}

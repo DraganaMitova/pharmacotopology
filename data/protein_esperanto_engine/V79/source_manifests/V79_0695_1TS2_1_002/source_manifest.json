@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_15f747afb419",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "TOXIC SHOCK SYNDROME TOXIN-1 1TS2 1 Anchor2 Disordered binding sites Disordered regions Enterotoxin GO GO:0005576 GO:0090729 Hydropathy values IPR006123 IPR006126 IPR008992 IPR013307 IPR016091 IUPred2(short) InterPro PDB Staphylococcal enterotoxin/Streptococcal pyrogenic exotoxin, conserved site Staphylococcal/Streptococcal toxin, beta-grasp domain Superantigen toxin, C-terminal Superantigen, staphylococcal/streptococcal toxin, bacterial UNIPROT biojava-7.2.4 disorder disorder_binding engineered mutation extracellular region hydropathy monomer_feature_1 mutation toxin activity TOXIN TOXIN, SUPERANTIGEN TOXIC SHOCK SYNDROME TOXIN-1 disorder disorder_binding hydropathy mutation Protein Staphylococcus aureus X-RAY DIFFRACTION 0.123711",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_15f747afb419",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0695_1TS2_1_002"
+}

@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_b6bbd6e1d78a",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Beta-hexosaminidase 1TR9 1 Anchor2 Beta-hexosaminidase, bacterial Disordered binding sites Disordered regions GO GO:0005829 GO:0005975 GO:0008360 GO:0009252 GO:0009254 GO:0016231 GO:0046677 GO:0051301 GO:0071555 Glycoside hydrolase superfamily Glycoside hydrolase, family 3, N-terminal Glycoside hydrolase, family 3, N-terminal domain superfamily Glycoside hydrolase, family 3, active site Glycosyl hydrolase family 3 N terminal domain (Glyco_hydro_3) Hydropathy values IPR001764 IPR017853 IPR019800 IPR022956 IPR036962 IPR050226 IUPred2(short) InterPro NagZ Beta-hexosaminidase PDB PF00933 Parent monomer MET Pfam UNIPROT artifact beta-N-acetylglucosaminidase activity biojava-7.2.4 carbohydrate metabolic process cell division cell wall organization cloning artifact cytosol disorder disorder_binding expression tag,cloning artifact hydropathy modified residue modified_monomer monomer_feature_1 monomer_feature_10 monomer_feature_11 monomer_feature_12 monomer_feature_13 monomer_feature_14 monomer_feature_15 monomer_feature_16 monomer_feature_17 monomer_feature_18 monomer_feature_19 monomer_feature_2 monomer_feature_20 monomer_feature_21 monomer_feature_22 monomer_feature_23 monomer_feature_24 monomer_feature_3 monomer_feature_4 monomer_feature_5 monomer_feature_6 monomer_feature_7 monomer_feature_8 monomer_feature_9 mutation peptidoglycan biosynthetic process peptidoglycan turnover range_feature_1 range_feature_2 regulation of cell shape response to antibiotic HYDROLASE beta-alpha barrel, Beta-hexosaminidase, Structural Genomics, PSI, Protein Structure Initiative, New York SGX Research Center for Structural Genomics, NYSGXRC, HYDROLASE Beta-hexosaminidase Pfam artifact disorder disorder_binding hydropathy modified_monomer mutation Protein Vibrio cholerae X-RAY DIFFRACTION 0.070381",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_b6bbd6e1d78a",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0291_1TR9_1_000"
+}

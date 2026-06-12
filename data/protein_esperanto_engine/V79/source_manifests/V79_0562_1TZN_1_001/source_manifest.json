@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_8faa33ef4cce",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Protective antigen 1TZN 1 Anchor2 Anthrax protective antigen, immunoglobulin-like domain Anthrax protective antigen, immunoglobulin-like domain (PA_Ig-like) Bacterial exotoxin B Clostridial binary toxin B/anthrax toxin PA Ca-binding domain (Binary_toxB) Clostridial binary toxin B/anthrax toxin PA domain 2 (Binary_toxB_2) Clostridial binary toxin B/anthrax toxin PA domain 3 (Binary_toxB_3) Clostridial binary toxin B/anthrax toxin PA, domain 3 Disordered binding sites Disordered regions GO GO:0005576 GO:0020002 GO:0042802 GO:0044164 GO:0044175 GO:0046872 GO:0051260 GO:0090729 GO:0141070 Hydropathy values IPR003896 IPR011658 IPR027439 IPR027441 IPR035088 IPR035331 IPR037149 IPR037524 IPR048853 IUPred2(short) InterPro PA14 domain PA14/GLEYA domain PF03495 PF17475 PF17476 PF20835 Pfam Protective antigen, Ca-binding domain Protective antigen, domain 4 Protective antigen, heptamerisation domain Protective antigen, heptamerisation domain superfamily UNIPROT biojava-7.2.4 disorder disorder_binding extracellular region host cell cytosol host cell endosome membrane host cell plasma membrane hydropathy identical protein binding metal ion binding protein homooligomerization symbiont-mediated suppression of host MAPK cascade toxin activity TOXIN RECEPTOR/TOXIN heptamer, TOXIN RECEPTOR-TOXIN COMPLEX Protective antigen Pfam disorder disorder_binding hydropathy Protein Bacillus anthracis str. A2012 X-RAY DIFFRACTION CA MG CA MG 0.087189",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_8faa33ef4cce",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0562_1TZN_1_001"
+}

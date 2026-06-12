@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_fbe3ce9aeb5c",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "BETA-FRUCTOSIDASE 1UYP 1 Anchor2 Concanavalin A-like lectin/glucanase domain superfamily Disordered binding sites Disordered regions GO GO:0004575 GO:0005975 Glycoside hydrolase, family 32 Glycoside hydrolase, family 32, active site Glycosyl Hydrolase 32 Enzymes Glycosyl hydrolase family 32, C-terminal Glycosyl hydrolase family 32, N-terminal Glycosyl hydrolase, five-bladed beta-propeller domain superfamily Glycosyl hydrolases family 32 C terminal (Glyco_hydro_32C) Glycosyl hydrolases family 32 N-terminal domain (Glyco_hydro_32N) Hydropathy values IPR001362 IPR013148 IPR013189 IPR013320 IPR018053 IPR023296 IPR051214 IUPred2(short) InterPro PF00251 PF08244 Pfam UNIPROT biojava-7.2.4 carbohydrate metabolic process disorder disorder_binding hydropathy sucrose alpha-glucosidase activity HYDROLASE INVERTASE, GLYCOSYL HYDROLASE FAMILY 32, SUCROSE DEGRADATION, BETA-PROPELLER, HYDROLASE BETA-FRUCTOSIDASE Pfam disorder disorder_binding hydropathy Protein Thermotoga maritima MSB8 X-RAY DIFFRACTION CIT NA 0.06713",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_fbe3ce9aeb5c",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0427_1UYP_1_001"
+}

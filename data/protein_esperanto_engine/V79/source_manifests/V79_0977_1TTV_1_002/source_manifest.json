@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_8979b4d0c93f",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Ubiquitin-protein ligase E3 Mdm2 1TTV 1 Anchor2 Disordered binding sites Disordered regions E3 ubiquitin-protein ligase Mdm2 GO GO:0002039 GO:0005634 GO:0005654 GO:0005730 GO:0005737 GO:0006511 GO:0006915 GO:0008270 GO:0010468 GO:0016567 GO:0042802 GO:0043066 GO:0045931 GO:0061630 Hydropathy values IPR001841 IPR001876 IPR003121 IPR013083 IPR016495 IPR028340 IPR036443 IPR036885 IPR044080 IUPred2(short) InterPro MDM2, modified RING finger, HC subclass PDB PF02201 Pfam SWIB/MDM2 domain SWIB/MDM2 domain (SWIB) SWIB/MDM2 domain superfamily UNIPROT Zinc finger, RING-type Zinc finger, RING/FYVE/PHD-type Zinc finger, RanBP2-type Zinc finger, RanBP2-type superfamily apoptotic process biojava-7.2.4 cytoplasm disorder disorder_binding engineered mutation hydropathy identical protein binding monomer_feature_1 monomer_feature_2 monomer_feature_3 mutation negative regulation of apoptotic process nucleolus nucleoplasm nucleus p53 binding p53 negative regulator Mdm2/Mdm4 positive regulation of mitotic cell cycle protein ubiquitination regulation of gene expression ubiquitin protein ligase activity ubiquitin-dependent protein catabolic process zinc ion binding LIGASE MDM2, protein-protein interaction, LIGASE Ubiquitin-protein ligase E3 Mdm2 Pfam disorder disorder_binding hydropathy mutation Protein Xenopus laevis SOLUTION NMR 0.140187",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_8979b4d0c93f",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0977_1TTV_1_002"
+}

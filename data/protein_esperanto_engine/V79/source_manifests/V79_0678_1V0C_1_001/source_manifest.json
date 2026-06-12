@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_561889bda3c1",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "AAC(6')-IB 1V0C 1 AAC(6') ARO:3000345 Acyl-CoA N-acyltransferase Aminoglycoside N(6')-acetyltransferase, AacA4 type Anchor2 CARD Disordered binding sites Disordered regions GNAT domain GO GO:0016779 GO:0046677 GO:0046872 GO:0047663 Hydropathy values IPR000182 IPR016181 IPR030971 IUPred2(short) InterPro PDB UNIPROT aminoglycoside 6'-N-acetyltransferase activity biojava-7.2.4 disorder disorder_binding engineered mutation hydropathy matching CARD Protein Homolog Models (PHM) metal ion binding monomer_feature_1 monomer_feature_2 mutation nucleotidyltransferase activity response to antibiotic TRANSFERASE GNAT, TRANSFERASE, AMINOGLYCOSIDE, FLUOROQUINOLONE, ACETYLTRANSFERASE, ANTIBIOTIC RESISTANCE AAC(6')-IB disorder disorder_binding hydropathy mutation Protein Escherichia coli X-RAY DIFFRACTION CA CA 0.123762",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_561889bda3c1",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0678_1V0C_1_001"
+}

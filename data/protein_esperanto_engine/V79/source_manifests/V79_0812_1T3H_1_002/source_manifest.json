@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_ba70ab8c5c86",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Dephospho-CoA kinase 1T3H 1 ATP binding Anchor2 Dephospho-CoA kinase Dephospho-CoA kinase (CoaE) Disordered binding sites Disordered regions GO GO:0004140 GO:0005524 GO:0005737 GO:0015937 Hydropathy values IPR001977 IPR027417 IUPred2(short) InterPro P-loop containing nucleoside triphosphate hydrolase PDB PF01121 Parent monomer MET Pfam UNIPROT artifact biojava-7.2.4 coenzyme A biosynthetic process cytoplasm dephospho-CoA kinase activity disorder disorder_binding expression tag hydropathy modified residue modified_monomer monomer_feature_1 monomer_feature_2 monomer_feature_3 monomer_feature_4 monomer_feature_5 monomer_feature_6 mutation range_feature_1 TRANSFERASE structural genomics, PSI, Protein Structure Initiative, Northeast Structural Genomics Consortium, NESG, TRANSFERASE Dephospho-CoA kinase Pfam artifact disorder disorder_binding hydropathy modified_monomer mutation Protein Escherichia coli X-RAY DIFFRACTION 0.084112",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_ba70ab8c5c86",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0812_1T3H_1_002"
+}

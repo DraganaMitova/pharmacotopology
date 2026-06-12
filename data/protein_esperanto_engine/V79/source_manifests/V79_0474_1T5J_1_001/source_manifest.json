@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_5025889dd1dc",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Hypothetical protein MJ1187 1T5J 1 ADP-ribosylation/Crystallin J1 ADP-ribosylation/Crystallin J1 superfamily ADP-ribosylglycohydrolase (ADP_ribosyl_GH) ADP-ribosylglycohydrolase-like Anchor2 Disordered binding sites Disordered regions GO GO:0016787 Hydropathy values IPR005502 IPR036705 IPR050792 IUPred2(short) InterPro PDB PF03747 Pfam UNIPROT artifact biojava-7.2.4 cloning artifact disorder disorder_binding hydrolase activity hydropathy range_feature_1 range_feature_2 STRUCTURAL GENOMICS, UNKNOWN FUNCTION putative hydrolase, structural genomics, PSI, Protein Structure Initiative, New York SGX Research Center for Structural Genomics, NYSGXRC, UNKNOWN FUNCTION Hypothetical protein MJ1187 Pfam artifact disorder disorder_binding hydropathy Protein Methanocaldococcus jannaschii X-RAY DIFFRACTION MG MG 0.044728",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_5025889dd1dc",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0474_1T5J_1_001"
+}

@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_41fb812adc52",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Class B acid phosphatase 1RMQ 1 Acid phosphatase, class B-like Anchor2 Disordered binding sites Disordered regions GO GO:0000287 GO:0003993 GO:0030288 GO:0036424 GO:0042802 HAD superfamily HAD-like superfamily HAD-superfamily phosphatase, subfamily IIIB, AphA Hydropathy values IPR005519 IPR010025 IPR023214 IPR036412 IUPred2(short) InterPro L-phosphoserine phosphatase activity UNIPROT acid phosphatase activity biojava-7.2.4 disorder disorder_binding hydropathy identical protein binding magnesium ion binding outer membrane-bounded periplasmic space HYDROLASE Class B acid phosphatase, DDDD acid phosphatase, metallo-enzyme, osmiate, HYDROLASE Class B acid phosphatase disorder disorder_binding hydropathy Protein Escherichia coli X-RAY DIFFRACTION CO CO OS 0.132075",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_41fb812adc52",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0626_1RMQ_1_001"
+}

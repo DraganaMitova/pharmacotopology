@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_25afaca6a847",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Deoxyhypusine synthase 1RLZ 1 Anchor2 DHS-like NAD/FAD-binding domain superfamily Deoxyhypusine synthase Deoxyhypusine synthase (DS) Deoxyhypusine synthase superfamily Disordered binding sites Disordered regions GO GO:0005737 GO:0005829 GO:0006412 GO:0008216 GO:0008284 GO:0034038 GO:0042102 GO:0042593 GO:0042802 GO:0046203 GO:0051604 Hydropathy values IPR002773 IPR029035 IPR036982 IUPred2(short) InterPro PF01916 Pfam UNIPROT biojava-7.2.4 cytoplasm cytosol deoxyhypusine synthase activity disorder disorder_binding glucose homeostasis hydropathy identical protein binding positive regulation of T cell proliferation positive regulation of cell population proliferation protein maturation spermidine catabolic process spermidine metabolic process translation TRANSFERASE Rossmann Fold, NAD cofactor, deoxyhypusine, hypusine, spermidine, TRANSFERASE Deoxyhypusine synthase Pfam disorder disorder_binding hydropathy Protein Homo sapiens X-RAY DIFFRACTION 0.089431",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_25afaca6a847",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0185_1RLZ_1_000"
+}

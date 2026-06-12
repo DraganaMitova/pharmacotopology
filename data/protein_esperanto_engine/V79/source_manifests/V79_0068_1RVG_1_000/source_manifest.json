@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_9e2b09ba6411",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "fructose-1,6-bisphosphate aldolase 1RVG 1 Aldolase-type TIM barrel Anchor2 Class_II_FBP_aldolase Disordered binding sites Disordered regions Fructose-1,6-bisphosphate aldolase, class 2 Fructose-bisphosphate aldolase, class-II GO GO:0004332 GO:0006096 GO:0008270 GO:0030388 Hydropathy values IPR000771 IPR011289 IPR013785 IPR050246 IUPred2(short) InterPro UNIPROT biojava-7.2.4 disorder disorder_binding fructose 1,6-bisphosphate metabolic process fructose-bisphosphate aldolase activity glycolytic process hydropathy zinc ion binding LYASE CLASS II ALDOLASE, METAL-DEPDENDENT ALDOLASE, LYASE fructose-1,6-bisphosphate aldolase disorder disorder_binding hydropathy Protein Thermus aquaticus X-RAY DIFFRACTION CO CO NA 0.036066",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_9e2b09ba6411",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0068_1RVG_1_000"
+}

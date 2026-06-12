@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_c43faf291ed1",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Putative L-asparaginase 1T3M 1 Anchor2 Asparaginase (Asparaginase_2) Disordered binding sites Disordered regions GO GO:0004067 GO:0008798 GO:0016540 GO:0016787 Hydropathy values IPR000246 IPR029055 IUPred2(short) InterPro Nucleophile aminohydrolases, N-terminal PF01112 Peptidase T2, asparaginase 2 Pfam UNIPROT asparaginase activity beta-aspartyl-peptidase activity biojava-7.2.4 disorder disorder_binding hydrolase activity hydropathy protein autoprocessing HYDROLASE TYPE III L-ASPARAGINASE, PLANT-TYPE ASPARAGINASE, ISOASPARTYL PEPTIDASE, HYDROLASE Putative L-asparaginase disorder disorder_binding hydropathy Protein Escherichia coli X-RAY DIFFRACTION NA 0.101695",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_c43faf291ed1",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0186_1T3M_1_000"
+}

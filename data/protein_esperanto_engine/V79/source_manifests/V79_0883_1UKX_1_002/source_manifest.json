@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_e531872e29d6",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "GCN2 eIF2alpha kinase 1UKX 1 ATP binding Anchor2 Anticodon-binding domain superfamily Cell Cycle and Stress Response Kinase Class II Aminoacyl-tRNA synthetase/Biotinyl protein ligase (BPL) and lipoyl protein ligase (LPL) Class II Histidinyl-tRNA synthetase (HisRS)-like catalytic core domain DNA damage checkpoint signaling Disordered binding sites Disordered regions GCN2-mediated signaling GO GO:0000049 GO:0000077 GO:0002230 GO:0002250 GO:0002286 GO:0002821 GO:0004674 GO:0004694 GO:0005524 GO:0005634 GO:0005737 GO:0005829 GO:0006413 GO:0006446 GO:0006468 GO:0007612 GO:0007616 GO:0009267 GO:0010628 GO:0010998 GO:0017148 GO:0019081 GO:0022626 GO:0030968 GO:0032057 GO:0032792 GO:0034198 GO:0034644 GO:0034976 GO:0043558 GO:0044828 GO:0045665 GO:0045947 GO:0046777 GO:0051607 GO:0060259 GO:0070417 GO:0071074 GO:0071264 GO:0106310 GO:0140469 GO:1900273 GO:1990138 GO:1990611 Histidyl tRNA synthetase-related domain Hydropathy values IPR000719 IPR006575 IPR008271 IPR011009 IPR016135 IPR016255 IPR017441 IPR024435 IPR036621 IPR041715 IPR045864 IPR050339 IUPred2(short) InterPro PDB PF05773 Pfam Protein kinase domain Protein kinase, ATP binding site Protein kinase-like domain superfamily RWD domain RWD domain (RWD) Serine/threonine-protein kinase, active site T cell activation involved in immune response UNIPROT Ubiquitin-conjugating enzyme/RWD-like adaptive immune response artifact biojava-7.2.4 cellular response to UV cellular response to amino acid starvation cellular response to cold cellular response to starvation cloning artifact cytoplasm cytosol cytosolic ribosome defense response to virus disorder disorder_binding eIF-2-alpha kinase Gcn2 endoplasmic reticulum unfolded protein response eukaryotic initiation factor eIF2 binding eukaryotic translation initiation factor 2alpha kinase activity host-mediated suppression of viral genome replication hydropathy learning long-term memory negative regulation of CREB transcription factor activity negative regulation of neuron differentiation negative regulation of translation negative regulation of translational initiation negative regulation of translational initiation in response to stress neuron projection extension nucleus positive regulation of adaptive immune response positive regulation of defense response to virus by host positive regulation of gene expression positive regulation of long-term synaptic potentiation positive regulation of translational initiation in response to starvation protein autophosphorylation protein phosphorylation protein serine kinase activity protein serine/threonine kinase activity range_feature_1 range_feature_2 regulation of cytoplasmic translational initiation in response to stress regulation of feeding behavior regulation of translational initiation regulation of translational initiation by eIF2 alpha phosphorylation regulation of translational initiation in response to stress response to endoplasmic reticulum stress tRNA binding translational initiation viral translation TRANSFERASE eIF2alpha kinase, UBC-like fold, triple beta-turns, structural genomics, RIKEN Structural Genomics/Proteomics Initiative, RSGI, TRANSFERASE GCN2 eIF2alpha kinase Pfam artifact disorder disorder_binding hydropathy Protein Mus musculus SOLUTION NMR 0.284672",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_e531872e29d6",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0883_1UKX_1_002"
+}

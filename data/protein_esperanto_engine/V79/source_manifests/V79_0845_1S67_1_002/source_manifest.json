@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_6fca4253dcf1",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Hypothetical protein yddU 1S67 1 Anchor2 Bacterial biofilm regulation/maintenance Diguanylate cyclase/phosphodiesterase Disordered binding sites Disordered regions EAL domain EAL domain superfamily GGDEF domain GO GO:0000287 GO:0005886 GO:0019826 GO:0020037 GO:0042803 GO:0070482 GO:0071111 GO:1900190 Hydropathy values IPR000014 IPR000160 IPR000700 IPR001610 IPR001633 IPR012226 IPR029787 IPR035919 IPR035965 IPR043128 IPR052155 IUPred2(short) InterPro Nucleotide cyclase PAC motif PAS domain PAS domain (PAS_9) PAS domain superfamily PAS-associated, C-terminal PF13426 Pfam Reverse transcriptase/Diguanylate cyclase domain UNIPROT biojava-7.2.4 cyclic-guanylate-specific phosphodiesterase activity disorder disorder_binding heme binding hydropathy magnesium ion binding oxygen sensor activity plasma membrane protein homodimerization activity regulation of single-species biofilm formation response to oxygen levels OXYGEN STORAGE/TRANSPORT OXYGEN STORAGE/TRANSPORT, HEME, E.COLI, OXYGEN STORAGE-TRANSPORT complex Hypothetical protein yddU Pfam disorder disorder_binding hydropathy Protein Escherichia coli X-RAY DIFFRACTION HEM HEM OXY 0.193277",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_6fca4253dcf1",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0845_1S67_1_002"
+}

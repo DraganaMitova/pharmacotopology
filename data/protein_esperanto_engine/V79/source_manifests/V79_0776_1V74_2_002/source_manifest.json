@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_97161e6d93ba",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Colicin D immunity protein 1V74 2 Anchor2 Colicin D immunity protein domain Colicin D superfamily Disordered binding sites Disordered regions GO GO:0015643 GO:0030153 Hydropathy values IPR015287 IPR036471 IUPred2(short) InterPro UNIPROT bacteriocin immunity biojava-7.2.4 disorder disorder_binding hydropathy toxic substance binding ANTIBIOTIC/IMMUNE SYSTEM colicin D - ImmD complex, cytotoxicity, transfer RNase, protein-protein inhibition, ANTIBIOTIC-IMMUNE SYSTEM COMPLEX Colicin D immunity protein disorder disorder_binding hydropathy Protein Escherichia coli X-RAY DIFFRACTION 0.057471",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_97161e6d93ba",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0776_1V74_2_002"
+}

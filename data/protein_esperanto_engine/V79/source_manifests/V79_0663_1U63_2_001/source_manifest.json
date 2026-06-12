@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_02a809ca2a1e",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "50S ribosomal protein L1P 1U63 2 Anchor2 Disordered binding sites Disordered regions GO GO:0000049 GO:0003735 GO:0006412 GO:0006417 GO:0015934 GO:0019843 Hydropathy values IPR002143 IPR016095 IPR023669 IPR023673 IPR023674 IPR028364 IUPred2(short) InterPro Large ribosomal subunit protein uL1 Large ribosomal subunit protein uL1, 3-layer alpha/beta-sandwich domain Large ribosomal subunit protein uL1, archaea Large ribosomal subunit protein uL1, conserved site PDB PF00687 Parent monomer MET Pfam Ribosomal protein L1p/L10e family (Ribosomal_L1) Ribosomal protein uL1-like Ribosomal protein uL1/ribosomal biogenesis protein UNIPROT biojava-7.2.4 disorder disorder_binding hydropathy large ribosomal subunit modified residue modified_monomer monomer_feature_1 monomer_feature_10 monomer_feature_11 monomer_feature_12 monomer_feature_2 monomer_feature_3 monomer_feature_4 monomer_feature_5 monomer_feature_6 monomer_feature_7 monomer_feature_8 monomer_feature_9 mutation rRNA binding regulation of translation structural constituent of ribosome tRNA binding translation TRANSCRIPTION/RNA RIBOSOME, RIBOSOMAL PROTEIN, MRNA-PROTEIN COMPLEX, TRANSCRIPTION-RNA COMPLEX 50S ribosomal protein L1P Pfam disorder disorder_binding hydropathy modified_monomer mutation Protein Methanocaldococcus jannaschii X-RAY DIFFRACTION 0.082192",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_02a809ca2a1e",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0663_1U63_2_001"
+}

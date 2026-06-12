@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_4beea7fe3f3a",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "4-chlorobenzoyl CoA ligase 1T5D 1 AMP-binding enzyme domain superfamily AMP-binding enzyme, C-terminal domain AMP-binding, conserved site AMP-dependent synthetase/ligase domain Anchor2 Disordered binding sites Disordered regions GO GO:0000166 GO:0006631 GO:0031956 GO:0046872 Hydropathy values IPR000873 IPR020845 IPR025110 IPR045851 IUPred2(short) InterPro UNIPROT biojava-7.2.4 disorder disorder_binding fatty acid metabolic process hydropathy medium-chain fatty acid-CoA ligase activity metal ion binding nucleotide binding LIGASE Adenylate-forming; coenzyme A; Ligase; domain alternation; conformational change, LIGASE 4-chlorobenzoyl CoA ligase disorder disorder_binding hydropathy Protein Alcaligenes sp. AL3007 X-RAY DIFFRACTION CA CA 0.073413",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_4beea7fe3f3a",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0199_1T5D_1_000"
+}

@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_cb866152393f",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Hypothetical 40.4 kDa protein in PES4-HIS2 intergenic region 1SSH 1 Anchor2 Disordered binding sites Disordered regions GO GO:0005737 GO:0005739 GO:0005935 GO:0030479 GO:0035091 GO:0042802 GO:0051015 GO:0051017 GO:0051666 Hydropathy values IPR001452 IPR007461 IPR033643 IPR036028 IPR051702 IUPred2(short) InterPro PDB PF00018 Pfam SH3 domain SH3 domain (SH3_1) SH3 domain-containing protein YSC84-like SH3-like domain superfamily SH3YL1-like, SYLF domain UNIPROT Ysc84 actin-binding domain actin cortical patch actin cortical patch localization actin filament binding actin filament bundle assembly artifact biojava-7.2.4 cellular bud neck cloning artifact cytoplasm disorder disorder_binding hydropathy identical protein binding mitochondrion phosphatidylinositol binding range_feature_1 CONTRACTILE PROTEIN SH3 domain, yeast, structural genomics, protein-peptide complex, CONTRACTILE PROTEIN Hypothetical 40.4 kDa protein in PES4-HIS2 intergenic region Pfam artifact disorder disorder_binding hydropathy Protein Saccharomyces cerevisiae X-RAY DIFFRACTION 0.2",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_cb866152393f",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0323_1SSH_1_000"
+}

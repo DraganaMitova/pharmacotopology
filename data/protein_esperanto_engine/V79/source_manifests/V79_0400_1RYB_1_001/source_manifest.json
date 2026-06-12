@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_3d5c93f6b01f",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "CRS2 1RYB 1 Anchor2 Chloroplastic group IIB intron splicing facilitator CRS2-like Disordered binding sites Disordered regions GO GO:0000049 GO:0004045 GO:0006397 GO:0008380 GO:0009570 GO:1990904 Hydropathy values IPR001328 IPR018171 IPR036416 IPR048076 IUPred2(short) InterPro PDB PF01195 Peptidyl-tRNA hydrolase Peptidyl-tRNA hydrolase (Pept_tRNA_hydro) Peptidyl-tRNA hydrolase superfamily Peptidyl-tRNA hydrolase, conserved site Pfam RNA splicing UNIPROT artifact biojava-7.2.4 chloroplast stroma disorder disorder_binding expression tag hydropathy mRNA processing peptidyl-tRNA hydrolase activity range_feature_1 ribonucleoprotein complex tRNA binding HYDROLASE ALPHA-BETA, HYDROLASE CRS2 Pfam artifact disorder disorder_binding hydropathy Protein Zea mays X-RAY DIFFRACTION 0.165854",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_3d5c93f6b01f",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0400_1RYB_1_001"
+}

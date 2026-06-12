@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_42e5b4630d79",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Hypothetical UPF0250 protein ybeD 1RWU 1 Anchor2 Disordered binding sites Disordered regions GO GO:0005829 GO:0034605 Hydropathy values IPR007454 IPR027471 IUPred2(short) InterPro PDB PF04359 Pfam Protein of unknown function (DUF493) (DUF493) UNIPROT Uncharacterised protein family UPF0250, YbeD-like YbeD-like domain superfamily artifact biojava-7.2.4 cellular response to heat cloning artifact cytosol disorder disorder_binding hydropathy range_feature_1 STRUCTURAL GENOMICS, UNKNOWN FUNCTION mixed alpha-beta fold, Structural Genomics, Protein Structure Initiative, PSI, Northeast Structural Genomics Consortium, NESG, UNKNOWN FUNCTION Hypothetical UPF0250 protein ybeD Pfam artifact disorder disorder_binding hydropathy Protein Escherichia coli SOLUTION NMR 0.229358",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_42e5b4630d79",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0296_1RWU_1_000"
+}

@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_a95d451b9658",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Ferredoxin 1RFK 1 2 iron, 2 sulfur cluster binding 2Fe-2S ferredoxin, iron-sulphur binding site 2Fe-2S ferredoxin-like superfamily 2Fe-2S ferredoxin-type iron-sulfur binding domain Anchor2 Beta-grasp domain superfamily Disordered binding sites Disordered regions Ferredoxin [2Fe-2S], plant and bacteria GO GO:0009055 GO:0022900 GO:0046872 GO:0051537 Hydropathy values IPR001041 IPR006058 IPR010241 IPR012675 IPR036010 IUPred2(short) InterPro UNIPROT biojava-7.2.4 disorder disorder_binding electron transfer activity electron transport chain hydropathy metal ion binding ELECTRON TRANSPORT FERREDOXIN, THERMOSTABILITY, ELECTRON TRANSPORT Ferredoxin disorder disorder_binding hydropathy Protein Mastigocladus laminosus X-RAY DIFFRACTION FES 0.122449",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_a95d451b9658",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0322_1RFK_1_000"
+}

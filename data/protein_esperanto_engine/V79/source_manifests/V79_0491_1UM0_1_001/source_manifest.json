@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_0592ccdecb94",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Chorismate synthase 1UM0 1 Anchor2 Chorismate synthase Chorismate synthase (Chorismate_synt) Chorismate synthase AroC superfamily Chorismate synthase, conserved site Disordered binding sites Disordered regions FMN binding GO GO:0004107 GO:0005829 GO:0008652 GO:0009073 GO:0009423 GO:0010181 Hydropathy values IPR000453 IPR020541 IPR035904 IUPred2(short) InterPro PF01264 Pfam UNIPROT amino acid biosynthetic process aromatic amino acid family biosynthetic process biojava-7.2.4 chorismate biosynthetic process chorismate synthase activity cytosol disorder disorder_binding hydropathy LYASE beta-alpha-beta sandwich fold, LYASE Chorismate synthase Pfam disorder disorder_binding hydropathy Protein Helicobacter pylori X-RAY DIFFRACTION 0.035616",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_0592ccdecb94",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0491_1UM0_1_001"
+}

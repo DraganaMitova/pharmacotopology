@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_6775edfa6f92",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Alanyl-tRNA synthetase 1RIQ 1 ATP binding Alanine--tRNA ligase Alanine-tRNA ligase, class IIc Alanine-tRNA ligase, class IIc, anti-codon-binding domain superfamily Alanine-tRNA ligase, eukaryota/bacteria Alanyl-tRNA synthetase, class IIc, N-terminal Alanyl-tRNA synthetase, class IIc, core domain Anchor2 Class II Aminoacyl-tRNA synthetase/Biotinyl protein ligase (BPL) and lipoyl protein ligase (LPL) DHHA1 domain Disordered binding sites Disordered regions GO GO:0000049 GO:0002161 GO:0004813 GO:0005524 GO:0005829 GO:0006419 GO:0008270 Hydropathy values IPR002318 IPR003156 IPR009000 IPR012947 IPR018162 IPR018163 IPR018164 IPR018165 IPR023033 IPR045864 IPR050058 IUPred2(short) InterPro PDB PF01411 Parent monomer MET Pfam Threonyl/alanyl tRNA synthetase, SAD Threonyl/alanyl tRNA synthetase, class II-like, putative editing domain superfamily Translation protein, beta-barrel domain superfamily UNIPROT alanine-tRNA ligase activity alanyl-tRNA aminoacylation aminoacyl-tRNA deacylase activity artifact biojava-7.2.4 cloning artifact,expression tag cytosol disorder disorder_binding hydropathy modified residue modified_monomer monomer_feature_1 monomer_feature_10 monomer_feature_11 monomer_feature_12 monomer_feature_13 monomer_feature_14 monomer_feature_15 monomer_feature_16 monomer_feature_2 monomer_feature_3 monomer_feature_4 monomer_feature_5 monomer_feature_6 monomer_feature_7 monomer_feature_8 monomer_feature_9 mutation range_feature_1 tRNA binding tRNA synthetases class II (A) (tRNA-synt_2c) zinc ion binding LIGASE beta sheet and flanking helices, class II aminoacyl-tRNA synthetase, helix-loop-helix motif, LIGASE Alanyl-tRNA synthetase Pfam artifact disorder disorder_binding hydropathy modified_monomer mutation Protein Aquifex aeolicus X-RAY DIFFRACTION 0.04086",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_6775edfa6f92",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0438_1RIQ_1_001"
+}

@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_5fa821615c5c",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Hypothetical protein KIAA0053 1V89 1 Anchor2 Disordered binding sites Disordered regions GO GO:0001891 GO:0005096 GO:0006911 GO:0007015 GO:0007165 GO:0051058 GTPase activator activity Hydropathy values IPR000198 IPR001849 IPR008936 IPR011993 IPR051025 IUPred2(short) InterPro PDB PF00169 PH domain (PH) PH-like domain superfamily Pfam Pleckstrin homology domain Rho GTPase activation protein Rho GTPase-activating Rho GTPase-activating protein domain UNIPROT actin filament organization artifact biojava-7.2.4 cloning artifact disorder disorder_binding hydropathy negative regulation of small GTPase mediated signal transduction phagocytic cup phagocytosis, engulfment range_feature_1 range_feature_2 signal transduction SIGNALING PROTEIN pleckstrin homology domain, phosphatidylinositol binding, structural genomics, RIKEN Structural Genomics/Proteomics Initiative, RSGI, SIGNALING PROTEIN Hypothetical protein KIAA0053 Pfam artifact disorder disorder_binding hydropathy Protein Homo sapiens SOLUTION NMR 0.144068",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_5fa821615c5c",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0181_1V89_1_000"
+}

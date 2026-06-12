@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_650190e8436b",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Histone deacetylase 8 1T67 1 Anchor2 Class I/II Histone deacetylase HDAC DNA-binding transcription factor binding Disordered binding sites Disordered regions GO GO:0000118 GO:0000122 GO:0000228 GO:0004407 GO:0005634 GO:0005654 GO:0005737 GO:0006325 GO:0007064 GO:0030544 GO:0031397 GO:0031507 GO:0031647 GO:0032204 GO:0033558 GO:0046872 GO:0051879 GO:0140297 GO:0141221 GO:0160009 Histone deacetylase HDAC Histone deacetylase domain Histone deacetylase domain (Hist_deacetyl) Histone deacetylase domain superfamily Hsp70 protein binding Hsp90 protein binding Hydropathy values IPR000286 IPR003084 IPR023696 IPR023801 IPR037138 IUPred2(short) InterPro PF00850 Pfam UNIPROT Ureohydrolase domain superfamily biojava-7.2.4 chromatin organization cytoplasm disorder disorder_binding heterochromatin formation histone deacetylase activity histone deacetylase activity, hydrolytic mechanism histone deacetylase complex histone decrotonylase activity hydropathy metal ion binding mitotic sister chromatid cohesion negative regulation of protein ubiquitination negative regulation of transcription by RNA polymerase II nuclear chromosome nucleoplasm nucleus protein lysine deacetylase activity regulation of protein stability regulation of telomere maintenance HYDROLASE histone deacetylase, zinc hydrolase, hydrolase Histone deacetylase 8 Pfam disorder disorder_binding hydropathy Protein Homo sapiens X-RAY DIFFRACTION ZN B3N NA ZN 0.082228",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_650190e8436b",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0195_1T67_1_000"
+}

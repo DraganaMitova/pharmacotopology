@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_171e4c6fd4ce",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "T CELL RECEPTOR 1TVD 1 (V-DELTA) Anchor2 Disordered binding sites Disordered regions ES204 GO GO:0002250 GO:0006955 GO:0019814 GO:0042101 GO:0045087 Homo sapiens (human) Hydropathy values IMGT IMGT_107664 IMGT_107665 IMGT_107666 IMGT_107667 IMGT_107668 IMGT_107669 IMGT_107670 IMGT_107671 IMGT_ANTIBODY_DESCRIPTION IMGT_ANTIBODY_DOMAIN_NAME IMGT_ANTIBODY_GENE_ALLELE_NAME IMGT_ANTIBODY_ORGANISM_NAME IMGT_ANTIBODY_PROTEIN_NAME IMGT_ANTIBODY_RECEPTOR_DESCRIPTION IMGT_ANTIBODY_RECEPTOR_TYPE IPR007110 IPR013106 IPR013783 IPR036179 IPR051287 IUPred2(short) Immunoglobulin V-set domain Immunoglobulin V-set domain (V-set) Immunoglobulin-like domain Immunoglobulin-like domain superfamily Immunoglobulin-like fold InterPro PF07686 Pfam T cell receptor complex T cell receptor variable region TR TRDJ1*01 TRDV3*01 UNIPROT V-DELTA V-DOMAIN V-DELTA adaptive immune response biojava-7.2.4 disorder disorder_binding hydropathy immune response immunoglobulin complex innate immune response IMMUNORECEPTOR IMMUNORECEPTOR, TCR, DELTA CHAIN, VARIABLE DOMAIN T CELL RECEPTOR IMGT_ANTIBODY_DESCRIPTION IMGT_ANTIBODY_DOMAIN_NAME IMGT_ANTIBODY_GENE_ALLELE_NAME IMGT_ANTIBODY_ORGANISM_NAME IMGT_ANTIBODY_PROTEIN_NAME IMGT_ANTIBODY_RECEPTOR_DESCRIPTION IMGT_ANTIBODY_RECEPTOR_TYPE Pfam disorder disorder_binding hydropathy Protein Homo sapiens X-RAY DIFFRACTION 0.155172",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_171e4c6fd4ce",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0014_1TVD_1_000"
+}

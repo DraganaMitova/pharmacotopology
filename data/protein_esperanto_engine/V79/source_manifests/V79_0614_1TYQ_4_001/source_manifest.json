@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_8d0ac97c9f71",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Arp2/3 complex 34kDa subunit 1TYQ 4 Actin-related protein 2/3 complex subunit 2 Anchor2 Arp2/3 complex subunit 2/4 Arp2/3 complex, 34 kD subunit p34-Arc (P34-Arc) Arp2/3 complex-mediated actin nucleation Arp2/3 protein complex Disordered binding sites Disordered regions GO GO:0005200 GO:0005634 GO:0005654 GO:0005768 GO:0005829 GO:0005885 GO:0005925 GO:0010592 GO:0030027 GO:0030041 GO:0030672 GO:0030838 GO:0034314 GO:0035861 GO:0036195 GO:0043005 GO:0051015 GO:0098794 GO:0098978 GO:1900026 Hydropathy values IPR007188 IPR034666 IUPred2(short) InterPro PF04045 Pfam UNIPROT actin filament binding actin filament polymerization biojava-7.2.4 cytosol disorder disorder_binding endosome focal adhesion glutamatergic synapse hydropathy lamellipodium muscle cell projection membrane neuron projection nucleoplasm nucleus positive regulation of actin filament polymerization positive regulation of lamellipodium assembly positive regulation of substrate adhesion-dependent cell spreading postsynapse site of double-strand break structural constituent of cytoskeleton synaptic vesicle membrane STRUCTURAL PROTEIN STRUCTURAL PROTEIN Arp2/3 complex 34kDa subunit disorder disorder_binding hydropathy Protein Bos taurus X-RAY DIFFRACTION ATP CA ATP CA 0.08",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_8d0ac97c9f71",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0614_1TYQ_4_001"
+}

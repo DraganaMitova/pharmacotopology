@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_e6813372c6b9",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Allene oxide synthase-lipoxygenase protein 1U5U 1 Anchor2 Catalase superfamily Disordered binding sites Disordered regions GO GO:0005506 GO:0005737 GO:0006633 GO:0016020 GO:0016829 GO:0019369 GO:0020037 GO:0031408 GO:0034440 GO:0047677 Hydropathy values IPR000907 IPR001024 IPR001885 IPR013819 IPR020833 IPR020834 IPR020835 IPR036226 IPR036392 IUPred2(short) InterPro Lipoxigenase, C-terminal domain superfamily Lipoxygenase Lipoxygenase, C-terminal Lipoxygenase, conserved site Lipoxygenase, iron binding site Lipoxygenase, mammalian Lipoxygenases Monotopic/peripheral.All alpha monotopic/peripheral.Lipoxygenase.Lipoxygenases OPM PDB PLAT/LH2 domain PLAT/LH2 domain superfamily UNIPROT arachidonate 8(R)-lipoxygenase activity arachidonate metabolic process biojava-7.2.4 cytoplasm disorder disorder_binding fatty acid biosynthetic process heme binding hydropathy iron ion binding lipid oxidation lyase activity membrane oxylipin biosynthetic process LYASE ALLENE OXIDE SYNTHASE, CATALASE, HEME, EICOSANOID, FUSION PROTEIN, LYASE Allene oxide synthase-lipoxygenase protein disorder disorder_binding hydropathy Protein Plexaura homomalla X-RAY DIFFRACTION HEM HEM 0.082888",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_e6813372c6b9",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0980_1U5U_1_002"
+}

@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_4c0f205cbca3",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Exocyst complex component Sec5 1UAD 2 Anchor2 Disordered binding sites Disordered regions Exocyst complex component EXOC2/Sec5 Exocyst complex component EXOC2/Sec5, N-terminal domain Flemming body GO GO:0000145 GO:0006887 GO:0006893 GO:0006904 GO:0015031 GO:0019901 GO:0031267 GO:0090543 GO:2000535 Golgi to plasma membrane transport Hydropathy values IPR002909 IPR013783 IPR014756 IPR029175 IPR039481 IPT domain IPT/TIG domain (TIG) IUPred2(short) Immunoglobulin E-set Immunoglobulin-like fold InterPro PF01833 Pfam UNIPROT biojava-7.2.4 disorder disorder_binding exocyst exocytosis hydropathy protein kinase binding protein transport regulation of entry of bacterium into host cell small GTPase binding vesicle docking involved in exocytosis ENDOCYTOSIS/EXOCYTOSIS small GTP-binding protein, immunogloblin-like fold, beta-sandwich, ENDOCYTOSIS-EXOCYTOSIS COMPLEX Exocyst complex component Sec5 Pfam disorder disorder_binding hydropathy Protein Rattus norvegicus X-RAY DIFFRACTION MG GNP MG 0.252525",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_4c0f205cbca3",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0710_1UAD_2_002"
+}

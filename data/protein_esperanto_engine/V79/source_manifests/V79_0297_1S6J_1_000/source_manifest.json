@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_731cefd8fab2",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Calcium-dependent protein kinase SK5 1S6J 1 ATP binding Anchor2 Calcium-dependent Serine/Threonine Protein Kinases Disordered binding sites Disordered regions EF hand domain (EF-hand_1) EF-Hand 1, calcium-binding site EF-hand domain EF-hand domain pair GO GO:0004683 GO:0005509 GO:0005516 GO:0005524 GO:0005634 GO:0005737 GO:0009931 GO:0035556 GO:0106310 Hydropathy values IPR000719 IPR002048 IPR008271 IPR011009 IPR011992 IPR017441 IPR018247 IPR050205 IUPred2(short) InterPro PDB PF00036 Pfam Protein kinase domain Protein kinase, ATP binding site Protein kinase-like domain superfamily Serine/threonine-protein kinase, active site UNIPROT artifact biojava-7.2.4 calcium ion binding calcium-dependent protein serine/threonine kinase activity calcium/calmodulin-dependent protein kinase activity calmodulin binding cytoplasm disorder disorder_binding expression tag hydropathy intracellular signal transduction nucleus protein serine kinase activity range_feature_1 TRANSFERASE, PLANT PROTEIN EF-hand; helix-loop-helix; calcium-binding; calmodulin superfamily, TRANSFERASE, PLANT PROTEIN Calcium-dependent protein kinase SK5 Pfam artifact disorder disorder_binding hydropathy Protein Glycine max SOLUTION NMR CA CA 0.264368",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_731cefd8fab2",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0297_1S6J_1_000"
+}

@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_4b09c2b917f9",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Major NAD(P)H-flavin oxidoreductase 1V5Y 1 Anchor2 Disordered binding sites Disordered regions GO GO:0008218 GO:0016491 Hydropathy values IPR000415 IPR029479 IPR033878 IUPred2(short) InterPro Nitroreductase Nitroreductase-like Oxygen-insensitive NAD(P)H nitroreductase NfsB-like UNIPROT biojava-7.2.4 bioluminescence disorder disorder_binding hydropathy oxidoreductase activity OXIDOREDUCTASE coumarin, FMN oxidoreductase, inhibitor, OXIDOREDUCTASE Major NAD(P)H-flavin oxidoreductase disorder disorder_binding hydropathy Protein Aliivibrio fischeri X-RAY DIFFRACTION 0.078341",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_4b09c2b917f9",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0654_1V5Y_1_001"
+}

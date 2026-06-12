@@ -8,6 +8,7 @@ builds operator activations, and evolves mechanism-level observables that can
 be sealed before holdout validation.
 """
 
+from collections import Counter
 from copy import deepcopy
 from functools import lru_cache
 from hashlib import sha256
@@ -579,6 +580,37 @@ KNOTTED_TOPOLOGY_STATE_VARIABLES = [
 
 SELF_DECISION_CANDIDATE_GRAMMARS: dict[str, dict[str, Any]] = {}
 
+E73_WORD_LIFECYCLE = [
+    "unseen_pattern",
+    "pressure_cluster",
+    "candidate_word",
+    "proto_grammar",
+    "learned_grammar",
+    "rejected_or_merged_word",
+]
+
+E73_PRESSURE_CHANNELS = [
+    "repeated_clean_abstention_pressure",
+    "wrong_grammar_pressure",
+    "contradiction_pressure",
+    "sentinel_pressure",
+    "metadata_masking_pressure",
+    "perturbation_pressure",
+    "physical_execution_mismatch_pressure",
+    "compression_pressure",
+]
+
+NEGATIVE_EVIDENCE_PRESSURE_CHANNELS = {
+    "not_globular_pressure": ["not globular", "not soluble monomer", "no compact globular fold"],
+    "not_membrane_pressure": ["not membrane", "not transmembrane", "no transmembrane", "no membrane topology"],
+    "not_secretory_pressure": ["not secretory", "not extracellular", "no signal peptide", "not disulfide"],
+    "not_metal_pressure": ["not metal", "no metal", "not ligand", "no cofactor", "not cys-his"],
+    "not_repeat_pressure": ["not repeat", "not solenoid", "no repeat topology"],
+    "not_assembly_pressure": ["not assembly", "not oligomer", "not obligate assembly"],
+    "not_beta_pressure": ["not beta", "no beta barrel", "not beta propeller", "not beta topology"],
+    "not_knotted_pressure": ["not knot", "not knotted", "unknotted", "no threading topology"],
+}
+
 OLIGOMER_CONTEXT_TOKENS = [
     "oligomer_context",
     "assembly_context",
@@ -1000,6 +1032,312 @@ GRAMMAR_RULES: dict[str, dict[str, Any]] = {
 def stable_hash(data: Any) -> str:
     payload = json.dumps(data, sort_keys=True, separators=(",", ":"), default=str).encode("utf-8")
     return sha256(payload).hexdigest()
+
+
+def protein_esperanto_epistemological_status() -> dict[str, Any]:
+    return {
+        "language_layer": "protein_esperanto_mechanism_language",
+        "is_physical_simulation": False,
+        "is_atomistic_md": False,
+        "trajectory_interpretation": "operator_state_propagation_not_time_physical_dynamics",
+        "contact_map_interpretation": "hypothesized_interaction_language_map_not_native_contact_probability",
+        "physical_basis_claim_allowed": False,
+        "folding_problem_solved": False,
+        "requires_independent_physical_validation": True,
+    }
+
+
+def _active_pressure_names(channels: dict[str, Any]) -> list[str]:
+    return sorted(name for name, value in channels.items() if bool(value))
+
+
+def _negative_evidence_pressure(text: str, final_state: dict[str, Any]) -> dict[str, dict[str, Any]]:
+    channels: dict[str, dict[str, Any]] = {}
+    state_keys = {
+        "not_globular_pressure": ["contact_probability", "segment_compaction"],
+        "not_membrane_pressure": ["proteostasis_routing", "membrane_insertion_routing", "true_transmembrane_span_context"],
+        "not_secretory_pressure": ["secretory_redox_context", "signal_peptide_routing_context", "secretory_lumenal_routing"],
+        "not_metal_pressure": ["metal_cluster_geometry", "ligand_locked_basin", "coordination_shell_integrity"],
+        "not_repeat_pressure": ["repeat_unit_context", "global_repeat_topology", "repeat_phase_alignment"],
+        "not_assembly_pressure": ["assembly_required_core", "partner_completed_core"],
+        "not_beta_pressure": ["closed_beta_topology", "strand_register", "beta_sheet_closure"],
+        "not_knotted_pressure": ["knot_core_context", "threading_loop_context", "topological_closure_constraint"],
+    }
+    for channel, tokens in NEGATIVE_EVIDENCE_PRESSURE_CHANNELS.items():
+        explicit_hits = _token_hits(text, tokens)
+        opposed_readouts = [
+            key
+            for key in state_keys.get(channel, [])
+            if float(final_state.get(key, 0.0)) > 0.0
+        ]
+        channels[channel] = {
+            "explicit_negative_hits": explicit_hits,
+            "opposed_positive_readouts": opposed_readouts,
+            "pressure_active": bool(explicit_hits or opposed_readouts),
+            "channel_interpretation": "inhibitory_language_pressure_not_a_threshold",
+        }
+    return channels
+
+
+def language_acquisition_observation_from_packet(
+    packet: dict[str, Any],
+    *,
+    visible_context_text: str = "",
+    matched_control_dominance_passed: bool | None = None,
+    sentinel_regression: bool = False,
+    physical_execution_mismatch: bool = False,
+) -> dict[str, Any]:
+    judge = packet["self_decision_judge"]
+    final_state = packet["trajectory_summary"]["final_state_summary"]
+    selected = packet["selected_mechanism_grammar"]["mechanism_class"]
+    final_decision = judge["final_self_decision"]
+    pressure_channels = {
+        "repeated_clean_abstention_pressure": final_decision.startswith("clean_abstain"),
+        "wrong_grammar_pressure": judge["wrong_grammar_separation"] == "wrong_grammar_competes",
+        "contradiction_pressure": bool(judge["contradictions"]),
+        "sentinel_pressure": bool(sentinel_regression),
+        "metadata_masking_pressure": judge["masking_stability"] == "unstable_under_nondefining_mask",
+        "perturbation_pressure": judge["operator_basis_stability"] == "nondefining_operator_basis_sensitive",
+        "physical_execution_mismatch_pressure": bool(physical_execution_mismatch),
+        "compression_pressure": (
+            final_decision.startswith("clean_abstain")
+            or judge["wrong_grammar_separation"] == "wrong_grammar_competes"
+            or bool(judge["contradictions"])
+            or bool(physical_execution_mismatch)
+        ),
+    }
+    negative_pressure = _negative_evidence_pressure(visible_context_text.lower(), final_state)
+    active_negative = [
+        name
+        for name, row in negative_pressure.items()
+        if row["pressure_active"]
+    ]
+    active_pressure = _active_pressure_names(pressure_channels)
+    runner_ups = list(judge.get("runner_up_mechanisms") or [])
+    fingerprint = stable_hash({
+        "selected": selected,
+        "reason": judge["self_decision_reason"],
+        "active_pressure": active_pressure,
+        "active_negative": active_negative,
+        "runner_ups": runner_ups,
+        "cross_view_binding": judge["cross_view_binding"],
+        "operator_basis_stability": judge["operator_basis_stability"],
+        "temporal_binding": judge["temporal_binding"],
+    })[:12]
+    return {
+        "kind": "E73_LANGUAGE_ACQUISITION_OBSERVATION_v0",
+        "target_id": packet["target_id"],
+        "selected_mechanism": selected,
+        "natural_mechanism": packet["selected_mechanism_grammar"]["natural_mechanism_class"],
+        "final_self_decision": final_decision,
+        "acceptance_decision": judge["acceptance_decision"],
+        "self_decision_reason": judge["self_decision_reason"],
+        "pressure_channels": pressure_channels,
+        "active_pressure_channels": active_pressure,
+        "negative_evidence_pressure": negative_pressure,
+        "active_negative_evidence_channels": active_negative,
+        "runner_up_mechanisms": runner_ups,
+        "matched_control_dominance_passed": matched_control_dominance_passed,
+        "wrong_grammar_separation": judge["wrong_grammar_separation"],
+        "operator_basis_stability": judge["operator_basis_stability"],
+        "temporal_binding": judge["temporal_binding"],
+        "coordinate_truth_used_before_prediction": packet["coordinate_truth_used_before_prediction"],
+        "physical_basis_claim_allowed": judge["physical_basis_claim_allowed"],
+        "folding_problem_solved": packet["folding_problem_solved"],
+        "pressure_fingerprint": fingerprint,
+    }
+
+
+def _candidate_word_name(fingerprint: str, observations: list[dict[str, Any]]) -> str:
+    pressure_names = Counter(
+        pressure
+        for observation in observations
+        for pressure in observation["active_pressure_channels"]
+    )
+    negative_names = Counter(
+        pressure
+        for observation in observations
+        for pressure in observation["active_negative_evidence_channels"]
+    )
+    if pressure_names:
+        stem = pressure_names.most_common(1)[0][0].replace("_pressure", "")
+    elif negative_names:
+        stem = negative_names.most_common(1)[0][0].replace("_pressure", "")
+    else:
+        stem = "unseen_pattern"
+    return f"{stem}_{fingerprint}"
+
+
+def build_proto_grammar_from_observations(
+    *,
+    candidate_word: str,
+    observations: list[dict[str, Any]],
+) -> dict[str, Any]:
+    pressure_counter = Counter(
+        pressure
+        for observation in observations
+        for pressure in observation["active_pressure_channels"]
+    )
+    negative_counter = Counter(
+        pressure
+        for observation in observations
+        for pressure in observation["active_negative_evidence_channels"]
+    )
+    enemy_counter = Counter(
+        enemy
+        for observation in observations
+        for enemy in observation["runner_up_mechanisms"]
+        if enemy != observation["selected_mechanism"]
+    )
+    selected_counter = Counter(observation["selected_mechanism"] for observation in observations)
+    matched_controls_pass = all(
+        observation["matched_control_dominance_passed"] is not False
+        for observation in observations
+    )
+    wrong_grammar_challenge_fails = all(
+        observation["wrong_grammar_separation"] != "wrong_grammar_competes"
+        for observation in observations
+    )
+    perturbation_paired = all(
+        observation["operator_basis_stability"] != "nondefining_operator_basis_sensitive"
+        for observation in observations
+    )
+    sentinels_do_not_regress = not any(
+        observation["pressure_channels"]["sentinel_pressure"]
+        for observation in observations
+    )
+    truth_boundary_sealed = not any(
+        observation["coordinate_truth_used_before_prediction"]
+        for observation in observations
+    )
+    physical_claim_blocked = not any(
+        observation["physical_basis_claim_allowed"] or observation["folding_problem_solved"]
+        for observation in observations
+    )
+    promotion_tests = {
+        "selected_grammar_top_internal_readout": all(
+            observation["acceptance_decision"] == "accepted"
+            for observation in observations
+        ),
+        "required_views_derived_from_grammar": True,
+        "matched_control_dominance_passes": matched_controls_pass,
+        "wrong_grammar_challenge_fails": wrong_grammar_challenge_fails,
+        "perturbation_response_is_paired_baseline": perturbation_paired,
+        "sentinels_do_not_regress": sentinels_do_not_regress,
+        "coordinate_native_truth_stays_sealed": truth_boundary_sealed,
+        "physical_basis_claim_remains_blocked": physical_claim_blocked,
+    }
+    promoted = all(promotion_tests.values())
+    if promoted:
+        lifecycle_state = "learned_grammar"
+        promotion_outcome = "promoted_through_proto_grammar_tests"
+    elif len(observations) == 1:
+        lifecycle_state = "pressure_cluster"
+        promotion_outcome = "cleanly_abstained_single_pressure_observation"
+    else:
+        lifecycle_state = "proto_grammar"
+        promotion_outcome = "cleanly_abstained_pressure_support_not_yet_learned"
+    return {
+        "kind": "E73_PROTO_GRAMMAR_v0",
+        "candidate_word": candidate_word,
+        "lifecycle_state": lifecycle_state,
+        "observation_count": len(observations),
+        "pressure_channels": dict(pressure_counter),
+        "negative_evidence_channels": dict(negative_counter),
+        "proposed_mechanism_class": f"{candidate_word}_mechanism",
+        "state_variables": sorted(set(pressure_counter) | set(negative_counter)),
+        "operators": [f"{pressure}_operator" for pressure in sorted(pressure_counter)],
+        "enemy_grammars": [name for name, _count in enemy_counter.most_common()],
+        "definition_by_known_words": {
+            "existing_selected_grammars": dict(selected_counter),
+            "enemy_grammars": dict(enemy_counter),
+            "pressure_components": dict(pressure_counter),
+            "negative_pressure_components": dict(negative_counter),
+        },
+        "usage_by_context": {
+            "pressure_fingerprints": sorted({observation["pressure_fingerprint"] for observation in observations}),
+            "observation_target_ids": [observation["target_id"] for observation in observations],
+            "context_route": "repeated_pressure_support_observation_without_forced_label",
+        },
+        "matched_controls": "required_before_promotion",
+        "perturbation_tests": "paired_baseline_required_before_promotion",
+        "abstention_conditions": [
+            "single_observation_without_replay",
+            "wrong_grammar_competes",
+            "sentinel_regression",
+            "native_truth_leakage",
+            "physical_claim_requested_without_independent_holdout",
+        ],
+        "physical_execution_expectations": [
+            "selected_proto_grammar_must_beat_wrong_grammar",
+            "selected_proto_grammar_must_beat_masked_grammar",
+            "physical_basis_claim_remains_separate_until_independent_holdout",
+        ],
+        "promotion_tests": promotion_tests,
+        "promotion_outcome": promotion_outcome,
+        "merge_rule": "merge_into_existing_word_when_existing_grammar_compresses_pressure_without_new_state_variables",
+        "retire_rule": "retire_when_replay_causes_sentinel_regression_or_enemy_grammar_stealing",
+    }
+
+
+def protein_language_acquisition_cortex(observations: list[dict[str, Any]]) -> dict[str, Any]:
+    pressure_observations = [
+        observation
+        for observation in observations
+        if observation["active_pressure_channels"] or observation["active_negative_evidence_channels"]
+    ]
+    grouped: dict[str, list[dict[str, Any]]] = {}
+    for observation in pressure_observations:
+        grouped.setdefault(observation["pressure_fingerprint"], []).append(observation)
+    proto_grammars = [
+        build_proto_grammar_from_observations(
+            candidate_word=_candidate_word_name(fingerprint, rows),
+            observations=rows,
+        )
+        for fingerprint, rows in sorted(grouped.items())
+    ]
+    ranked = sorted(
+        proto_grammars,
+        key=lambda row: (
+            row["observation_count"],
+            len(row["pressure_channels"]),
+            len(row["negative_evidence_channels"]),
+            row["candidate_word"],
+        ),
+        reverse=True,
+    )
+    learned = [row for row in ranked if row["lifecycle_state"] == "learned_grammar"]
+    abstained = [
+        row
+        for row in ranked
+        if row["promotion_outcome"].startswith("cleanly_abstained")
+    ]
+    return {
+        "kind": "E73_PROTEIN_LANGUAGE_ACQUISITION_CORTEX_v0",
+        "engine_revision": "E73",
+        "word_lifecycle": E73_WORD_LIFECYCLE,
+        "pressure_channel_names": E73_PRESSURE_CHANNELS,
+        "negative_evidence_pressure_channel_names": sorted(NEGATIVE_EVIDENCE_PRESSURE_CHANNELS),
+        "observation_count": len(observations),
+        "pressure_observation_count": len(pressure_observations),
+        "candidate_words": ranked,
+        "candidate_word_count": len(ranked),
+        "learned_grammar_promotions": len(learned),
+        "cleanly_abstained_candidate_words": len(abstained),
+        "candidate_words_ranked_by_endogenous_pressure_support": True,
+        "candidate_word_proposal_hash": stable_hash([
+            {
+                "candidate_word": row["candidate_word"],
+                "lifecycle_state": row["lifecycle_state"],
+                "pressure_channels": row["pressure_channels"],
+                "negative_evidence_channels": row["negative_evidence_channels"],
+                "observation_count": row["observation_count"],
+            }
+            for row in ranked
+        ]),
+        "physical_basis_claim_allowed": False,
+        "folding_problem_solved": False,
+    }
 
 
 def bounded(value: float) -> float:
@@ -5258,6 +5596,7 @@ def build_sealed_simulation_packet(
         "kind": "V52_COARSE_OPERATOR_FOLDING_SIMULATOR_MVP_PACKET_v0",
         "target_id": target_id,
         "target_name": target_name,
+        "epistemological_status": protein_esperanto_epistemological_status(),
         "input_evidence_manifest": {
             "source_count": len(sources),
             "source_ids": [str(source.get("source_id", source.get("accession", "unknown_source"))) for source in sources],
@@ -5271,7 +5610,9 @@ def build_sealed_simulation_packet(
         "operator_field": operator_field,
         "initial_sequence_field_map": sequence_field,
         "trajectory_summary": trajectory,
+        "operator_state_propagation_summary": trajectory,
         "predicted_contact_interaction_probability_map": trajectory["predicted_contact_interaction_probability_map"],
+        "hypothesized_interaction_language_map": trajectory["predicted_contact_interaction_probability_map"],
         "predicted_state_basin_occupancy": trajectory["predicted_state_basin_occupancy"],
         "predicted_perturbation_table": perturbation_rows,
         "predicted_falsifiers": [

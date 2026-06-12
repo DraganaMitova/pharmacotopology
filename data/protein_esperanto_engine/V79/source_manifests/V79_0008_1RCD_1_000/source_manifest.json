@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_2c9cb48e3762",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "L FERRITIN 1RCD 1 Anchor2 Disordered binding sites Disordered regions Ferritin Ferritin, conserved site Ferritin-like Ferritin-like diiron domain Ferritin-like superfamily Ferritin/DPS domain GO GO:0005737 GO:0006826 GO:0006879 GO:0008198 GO:0008199 Hydropathy values IPR001519 IPR008331 IPR009040 IPR009078 IPR012347 IPR014034 IUPred2(short) InterPro UNIPROT biojava-7.2.4 cytoplasm disorder disorder_binding ferric iron binding ferrous iron binding hydropathy intracellular iron ion homeostasis iron ion transport IRON STORAGE IRON STORAGE L FERRITIN disorder disorder_binding hydropathy Protein Aquarana catesbeiana X-RAY DIFFRACTION 0.127168",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_2c9cb48e3762",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0008_1RCD_1_000"
+}

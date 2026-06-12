@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_57bd5f1c35ce",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Phosphomethylpyrimidine Kinase 1UB0 1 ATP binding Anchor2 Disordered binding sites Disordered regions GO GO:0005524 GO:0005829 GO:0008902 GO:0008972 GO:0009228 Hydropathy values Hydroxymethylpyrimidine kinase/phosphomethylpyrimidine kinase domain IPR001763 IPR004399 IPR013749 IPR029056 IUPred2(short) InterPro Pyridoxamine kinase/Phosphomethylpyrimidine kinase Rhodanese-like domain Ribokinase-like UNIPROT biojava-7.2.4 cytosol disorder disorder_binding hydropathy hydroxymethylpyrimidine kinase activity phosphomethylpyrimidine kinase activity thiamine biosynthetic process TRANSFERASE Thiamin biosynthesis, ThiD, Ribokinase family, Phosphorylation, structural genomics, RIKEN Structural Genomics/Proteomics Initiative, RSGI, TRANSFERASE Phosphomethylpyrimidine Kinase disorder disorder_binding hydropathy Protein Thermus thermophilus X-RAY DIFFRACTION 0.050388",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_57bd5f1c35ce",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0367_1UB0_1_001"
+}

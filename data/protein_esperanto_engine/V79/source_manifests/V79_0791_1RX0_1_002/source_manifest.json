@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_05c6d96a353b",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Acyl-CoA dehydrogenase family member 8, mitochondrial 1RX0 1 Acyl-CoA dehydrogenase, C-terminal domain (Acyl-CoA_dh_1) Acyl-CoA dehydrogenase, N-terminal domain (Acyl-CoA_dh_N) Acyl-CoA dehydrogenase, conserved site Acyl-CoA dehydrogenase, middle domain (Acyl-CoA_dh_M) Acyl-CoA dehydrogenase-like, C-terminal Acyl-CoA dehydrogenase/oxidase, C-terminal Acyl-CoA dehydrogenase/oxidase, N-terminal Acyl-CoA dehydrogenase/oxidase, N-terminal and middle domain superfamily Acyl-CoA dehydrogenase/oxidase, N-terminal domain superfamily Acyl-CoA dehydrogenase/oxidase, middle domain Acyl-CoA oxidase/dehydrogenase, middle domain superfamily Anchor2 Disordered binding sites Disordered regions GO GO:0003853 GO:0003995 GO:0005739 GO:0005759 GO:0006574 GO:0006629 GO:0050660 Hydropathy values IPR006089 IPR006091 IPR009075 IPR009100 IPR013786 IPR034178 IPR036250 IPR037069 IPR046373 IPR052547 IUPred2(short) InterPro Isobutyryl-CoA dehydrogenase L-valine catabolic process Mitochondrial Isobutyryl-CoA Dehydrogenase PDB PF00441 PF02770 PF02771 Pfam UNIPROT acyl-CoA dehydrogenase activity artifact biojava-7.2.4 cloning artifact disorder disorder_binding flavin adenine dinucleotide binding hydropathy lipid metabolic process mitochondrial matrix mitochondrion range_feature_1 short-chain 2-methyl fatty acyl-CoA dehydrogenase activity OXIDOREDUCTASE flavoprotein, dehydrogenase, coenzyme A, OXIDOREDUCTASE Acyl-CoA dehydrogenase family member 8, mitochondrial Pfam artifact disorder disorder_binding hydropathy Protein Homo sapiens X-RAY DIFFRACTION 0.033079",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_05c6d96a353b",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0791_1RX0_1_002"
+}

@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_ceee905104e8",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "mRNA decapping enzyme 1ST0 1 5'-(N(7)-methyl 5'-triphosphoguanosine)-[mRNA] diphosphatase activity Anchor2 Disordered binding sites Disordered regions GO GO:0000288 GO:0000290 GO:0000340 GO:0000932 GO:0004532 GO:0005634 GO:0005654 GO:0005737 GO:0005739 GO:0005829 GO:0042802 GO:0045292 GO:0110156 GO:0140932 HIT-like superfamily Histidine triad, conserved site Hydropathy values IPR008594 IPR011145 IPR019808 IPR036265 IUPred2(short) InterPro P-body PDB PF05652 PF11969 Pfam RNA 7-methylguanosine cap binding RNA exonuclease activity Scavenger mRNA decapping enzyme (DcpS) N-terminal (DcpS) Scavenger mRNA decapping enzyme C-term binding (DcpS_C) Scavenger mRNA decapping enzyme DcpS/DCS2 Scavenger mRNA decapping enzyme, N-terminal UNIPROT biojava-7.2.4 cytoplasm cytosol deadenylation-dependent decapping of nuclear-transcribed mRNA disorder disorder_binding engineered mutation hydropathy identical protein binding mRNA cis splicing, via spliceosome mRNA methylguanosine-cap decapping mitochondrion monomer_feature_1 mutation nuclear-transcribed mRNA catabolic process, deadenylation-dependent decay nucleoplasm nucleus RNA BINDING PROTEIN RNA DECAY, EXOSOME, DECAPPING, HIT PROTEIN, MESSENGER RNA, MRNA, CAP, RNA BINDING PROTEIN mRNA decapping enzyme Pfam disorder disorder_binding hydropathy mutation Protein Homo sapiens X-RAY DIFFRACTION 0.115727",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_ceee905104e8",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0447_1ST0_1_001"
+}

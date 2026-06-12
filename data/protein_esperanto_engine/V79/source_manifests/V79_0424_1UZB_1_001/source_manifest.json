@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_952e304b9fe6",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "1-PYRROLINE-5-CARBOXYLATE DEHYDROGENASE 1UZB 1 1-pyrroline-5-carboxylate dehydrogenase Aldehyde dehydrogenase domain Aldehyde dehydrogenase, C-terminal Aldehyde dehydrogenase, N-terminal Aldehyde dehydrogenase, cysteine active site Aldehyde dehydrogenase, glutamic acid active site Aldehyde/histidinol dehydrogenase Anchor2 Disordered binding sites Disordered regions GO GO:0003842 GO:0004657 GO:0009898 GO:0010133 Hydropathy values IPR005932 IPR015590 IPR016160 IPR016161 IPR016162 IPR016163 IPR029510 IPR050485 IUPred2(short) InterPro L-glutamate gamma-semialdehyde dehydrogenase activity L-proline catabolic process to L-glutamate Proline metabolism enzyme UNIPROT biojava-7.2.4 cytoplasmic side of plasma membrane disorder disorder_binding hydropathy proline dehydrogenase activity OXIDOREDUCTASE DEHYDROGENASE, 1-PYRROLINE-5-CARBOXYLATE, OXIDOREDUCTASE, RIKEN STRUCTURAL GENOMICS/PROTEOMICS INITIATIVE, RSGI, STRUCTURAL GENOMICS 1-PYRROLINE-5-CARBOXYLATE DEHYDROGENASE disorder disorder_binding hydropathy Protein Thermus thermophilus HB8 X-RAY DIFFRACTION 0.034884",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_952e304b9fe6",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0424_1UZB_1_001"
+}

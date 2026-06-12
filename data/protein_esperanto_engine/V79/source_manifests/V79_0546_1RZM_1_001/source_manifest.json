@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_b871d5d38d20",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Phospho-2-dehydro-3-deoxyheptonate aldolase 1RZM 1 3-deoxy-7-phosphoheptulonate synthase activity Aldolase-type TIM barrel Anchor2 Class-I DAHP synthase DAHP synthase ferredoxin-like domain DAHP synthase ferredoxin-like domain (DAHP_snth_FXD) DAHP synthetase I family (DAHP_synth_1) DAHP synthetase I/KDSA Disordered binding sites Disordered regions GO GO:0003849 GO:0008652 GO:0009073 GO:0009423 GO:0016832 Hydropathy values IPR006218 IPR006268 IPR013785 IPR041071 IPR052899 IUPred2(short) InterPro PF00793 PF18152 Pfam Phospho-2-dehydro-3-deoxyheptonate aldolase, subtype 2 UNIPROT aldehyde-lyase activity amino acid biosynthetic process aromatic amino acid family biosynthetic process biojava-7.2.4 chorismate biosynthetic process disorder disorder_binding hydropathy TRANSFERASE (BETA/ALPHA) BARREL, TIM BARREL, TRANSFERASE Phospho-2-dehydro-3-deoxyheptonate aldolase Pfam disorder disorder_binding hydropathy Protein Thermotoga maritima X-RAY DIFFRACTION CD E4P 0.032544",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_b871d5d38d20",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0546_1RZM_1_001"
+}

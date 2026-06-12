@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_fff26abbf403",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "DNA polymerase 1SKW 3 3'-5' exonuclease activity Anchor2 DNA binding DNA exonuclease activity DNA polymerase A DNA polymerase family A (DNA_pol_A) DNA synthesis involved in DNA replication DNA-directed DNA polymerase T7 DNA-directed DNA polymerase activity DNA-directed DNA polymerase, family A, conserved site DNA-directed DNA polymerase, family A, palm domain DNA-templated DNA replication DNA/RNA polymerase superfamily Disordered binding sites Disordered regions GO GO:0000166 GO:0003677 GO:0003887 GO:0004529 GO:0006261 GO:0006302 GO:0008408 GO:0039693 GO:0046872 GO:0090592 Hydropathy values IPR001098 IPR002298 IPR012337 IPR019760 IPR034699 IPR036397 IPR043502 IUPred2(short) InterPro PF00476 Pfam Ribonuclease H superfamily Ribonuclease H-like superfamily UNIPROT biojava-7.2.4 disorder disorder_binding double-strand break repair hydropathy metal ion binding nucleotide binding viral DNA genome replication TRANSFERASE/ELECTRON TRANSPORT/DNA DNA polymerase, fidelity, lesion bypass, thymine dimer, open, close, TRANSFERASE-ELECTRON TRANSPORT-DNA COMPLEX DNA polymerase Pfam disorder disorder_binding hydropathy Protein Escherichia phage T7 X-RAY DIFFRACTION MG MG 0.081662",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_fff26abbf403",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0183_1SKW_3_000"
+}

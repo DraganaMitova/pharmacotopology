@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_09731eb208e1",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "C.Elegans p53 tumor suppressor-like transcription factor 1T4W 1 Anchor2 CEP-1, C-terminal SAM domain CEP-1, DNA binding (CEP1-DNA_bind) DNA binding DNA-binding transcription factor activity Disordered binding sites Disordered regions GO GO:0001666 GO:0003677 GO:0003700 GO:0005634 GO:0005654 GO:0005730 GO:0006355 GO:0006979 GO:0008270 GO:0008340 GO:0008630 GO:0017053 GO:0042594 GO:0042770 GO:0042771 GO:0042803 GO:0043565 GO:0045132 GO:0045944 GO:0072332 Hydropathy values IPR008967 IPR012346 IPR015367 IPR054106 IUPred2(short) InterPro PF09287 Pfam Transcription factor CEP-1, DNA-binding domain UNIPROT biojava-7.2.4 determination of adult lifespan disorder disorder_binding hydropathy intrinsic apoptotic signaling pathway by p53 class mediator intrinsic apoptotic signaling pathway in response to DNA damage intrinsic apoptotic signaling pathway in response to DNA damage by p53 class mediator meiotic chromosome segregation nucleolus nucleoplasm nucleus p53-like transcription factor, DNA-binding domain superfamily p53/RUNT-type transcription factor, DNA-binding domain superfamily positive regulation of transcription by RNA polymerase II protein homodimerization activity regulation of DNA-templated transcription response to hypoxia response to oxidative stress response to starvation sequence-specific DNA binding signal transduction in response to DNA damage transcription repressor complex zinc ion binding TRANSCRIPTION DNA-Binding Domain, TRANSCRIPTION C.Elegans p53 tumor suppressor-like transcription factor Pfam disorder disorder_binding hydropathy Protein Caenorhabditis elegans X-RAY DIFFRACTION ZN ZN 0.071429",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_09731eb208e1",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0869_1T4W_1_002"
+}

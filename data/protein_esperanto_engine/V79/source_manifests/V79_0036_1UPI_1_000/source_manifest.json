@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_a2aa5a3ddb6e",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "DTDP-4-DEHYDRORHAMNOSE 3,5-EPIMERASE 1UPI 1 Anchor2 Disordered binding sites Disordered regions GO GO:0000271 GO:0005829 GO:0008830 GO:0019305 Hydropathy values IPR000888 IPR011051 IPR014710 IUPred2(short) InterPro PDB PF00908 Parent monomer CYS Pfam RmlC-like cupin domain superfamily RmlC-like jelly roll fold UNIPROT biojava-7.2.4 cytosol dTDP-4-dehydrorhamnose 3,5-epimerase (dTDP_sugar_isom) dTDP-4-dehydrorhamnose 3,5-epimerase activity dTDP-4-dehydrorhamnose 3,5-epimerase-like dTDP-rhamnose biosynthetic process disorder disorder_binding hydropathy modified_monomer monomer_feature_1 monomer_feature_2 polysaccharide biosynthetic process EPIMERASE EPIMERASE, RHAMNOSE PATHWAY, PSI, PROTEIN STRUCTURE INITIATIVE, TB STRUCTURAL GENOMICS CONSORTIUM, TB, TBSGC DTDP-4-DEHYDRORHAMNOSE 3,5-EPIMERASE Pfam disorder disorder_binding hydropathy modified_monomer Protein Mycobacterium tuberculosis X-RAY DIFFRACTION 0.151111",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_a2aa5a3ddb6e",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0036_1UPI_1_000"
+}

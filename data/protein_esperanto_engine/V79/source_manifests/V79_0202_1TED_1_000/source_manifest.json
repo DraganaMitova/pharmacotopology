@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_389e498244b4",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "pks18 1TED 1 Anchor2 Chalcone and stilbene synthases, C-terminal domain (Chal_sti_synt_C) Chalcone and stilbene synthases, N-terminal domain (Chal_sti_synt_N) Chalcone/stilbene synthase, C-terminal Chalcone/stilbene synthase, N-terminal Disordered binding sites Disordered regions GO GO:0006633 GO:0009715 GO:0016747 Hydropathy values IPR001099 IPR011141 IPR012328 IPR016039 IUPred2(short) InterPro PF00195 PF02797 Pfam Polyketide synthase, type III Thiolase-like UNIPROT acyltransferase activity, transferring groups other than amino-acyl groups biojava-7.2.4 chalcone biosynthetic process disorder disorder_binding fatty acid biosynthetic process hydropathy TRANSFERASE thiolase fold, substrate binding tunnel, TRANSFERASE pks18 Pfam disorder disorder_binding hydropathy Protein Mycobacterium tuberculosis H37Rv X-RAY DIFFRACTION 0.101781",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_389e498244b4",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0202_1TED_1_000"
+}

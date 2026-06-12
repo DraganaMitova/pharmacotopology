@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_1a30f2f188cd",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "BX1 1TJR 1 Aldolase-type TIM barrel Anchor2 Disordered binding sites Disordered regions GO GO:0000162 GO:0004834 GO:0005829 GO:0009507 GO:0033984 Hydropathy values IPR002028 IPR011060 IPR013785 IPR018204 IUPred2(short) InterPro L-tryptophan biosynthetic process PDB PF00290 Parent monomer MET Pfam Ribulose-phosphate binding barrel Tryptophan synthase alpha chain (Trp_syntA) Tryptophan synthase, alpha chain Tryptophan synthase, alpha chain, active site UNIPROT biojava-7.2.4 chloroplast cytosol disorder disorder_binding hydropathy indole-3-glycerol-phosphate lyase activity modified residue modified_monomer monomer_feature_1 monomer_feature_10 monomer_feature_11 monomer_feature_12 monomer_feature_13 monomer_feature_14 monomer_feature_15 monomer_feature_16 monomer_feature_17 monomer_feature_18 monomer_feature_2 monomer_feature_3 monomer_feature_4 monomer_feature_5 monomer_feature_6 monomer_feature_7 monomer_feature_8 monomer_feature_9 mutation tryptophan synthase activity LYASE Indole Glycerol phosphate, tryptophan synthase, lyase BX1 Pfam disorder disorder_binding hydropathy modified_monomer mutation Protein Zea mays X-RAY DIFFRACTION 0.068966",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_1a30f2f188cd",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0335_1TJR_1_000"
+}

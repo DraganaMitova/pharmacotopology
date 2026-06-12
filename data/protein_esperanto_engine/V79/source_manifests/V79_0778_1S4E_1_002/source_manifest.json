@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_67be9772f8c7",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Galactokinase 1S4E 1 ATP binding Anchor2 Disordered binding sites Disordered regions GHMP kinase N-terminal domain GHMP kinase, ATP-binding, conserved site GHMP kinase, C-terminal domain GHMP kinase, C-terminal domain superfamily GHMP kinases C terminal (GHMP_kinases_C) GHMP kinases N terminal domain (GHMP_kinases_N) GO GO:0000287 GO:0004335 GO:0005524 GO:0005534 GO:0005829 GO:0006012 Galactokinase Galactokinase galactose-binding signature (GalKase_gal_bdg) Galactokinase, N-terminal domain Galactokinase, bacterial Galactokinase, conserved site Hydropathy values IPR000705 IPR006203 IPR006204 IPR006206 IPR013750 IPR014721 IPR019539 IPR019741 IPR020568 IPR022963 IPR036554 IUPred2(short) InterPro Mevalonate/galactokinase PDB PF00288 PF08544 PF10509 Parent monomer MET Pfam Ribosomal protein uS5 domain 2-type superfamily Small ribosomal subunit protein uS5 domain 2-type fold, subgroup UNIPROT biojava-7.2.4 cytosol disorder disorder_binding galactokinase activity galactose binding galactose metabolic process hydropathy magnesium ion binding modified residue modified_monomer monomer_feature_1 monomer_feature_2 monomer_feature_3 monomer_feature_4 monomer_feature_5 monomer_feature_6 monomer_feature_7 monomer_feature_8 mutation TRANSFERASE GHMP kinase superfamily, P-loop, transferase Galactokinase Pfam disorder disorder_binding hydropathy modified_monomer mutation Protein Pyrococcus furiosus X-RAY DIFFRACTION ADP MG ADP MG 0.025568",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_67be9772f8c7",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0778_1S4E_1_002"
+}

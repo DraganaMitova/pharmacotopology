@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_a8299dc8733c",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "YDR533c protein 1QVW 1 Anchor2 Class I glutamine amidotransferase-like DJ-1/PfpI DJ-1/PfpI family (DJ-1_PfpI) Disordered binding sites Disordered regions GO GO:0000932 GO:0005737 GO:0006457 GO:0010494 GO:0019172 GO:0019243 GO:0031669 GO:0034599 GO:0044183 Hydropathy values IPR002818 IPR029062 IPR050325 IUPred2(short) InterPro P-body PDB PF01965 Parent monomer CYS Pfam Protein/nucleic acid deglycase UNIPROT biojava-7.2.4 cellular response to nutrient levels cellular response to oxidative stress cytoplasm cytoplasmic stress granule disorder disorder_binding engineered mutation glyoxalase III activity hydropathy methylglyoxal catabolic process to D-lactate via S-lactoyl-glutathione modified residue modified_monomer monomer_feature_1 monomer_feature_2 monomer_feature_3 monomer_feature_4 monomer_feature_5 monomer_feature_6 mutation protein folding protein folding chaperone structural genomics, unknown function alpha/beta hydrolase fold, catalytic triad, heat shock protein, structural genomics, unknown function YDR533c protein Pfam disorder disorder_binding hydropathy modified_monomer mutation Protein Saccharomyces cerevisiae X-RAY DIFFRACTION 0.042194",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_a8299dc8733c",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0092_1QVW_1_000"
+}

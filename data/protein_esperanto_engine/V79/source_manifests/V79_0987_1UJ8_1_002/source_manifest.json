@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_8820ddced5cc",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Hypothetical protein yfhJ 1UJ8 1 Anchor2 Disordered binding sites Disordered regions GO GO:0004857 GO:0005506 GO:0005829 GO:0008198 GO:0016226 Hydropathy values IPR007479 IPR036762 ISC system FeS cluster assembly, IscX IUPred2(short) InterPro Iron-sulphur cluster assembly (Fe-S_assembly) IscX-like superfamily PDB PF04384 Pfam UNIPROT artifact biojava-7.2.4 cytosol disorder disorder_binding enzyme inhibitor activity expression tag ferrous iron binding hydropathy iron ion binding iron-sulfur cluster assembly range_feature_1 STRUCTURAL GENOMICS, UNKNOWN FUNCTION IRON-SULFUR CLUSTER, ISC, STRUCTURAL GENOMICS, UNKNOWN FUNCTION Hypothetical protein yfhJ artifact disorder disorder_binding hydropathy Protein Escherichia coli X-RAY DIFFRACTION 0.181818",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_8820ddced5cc",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0987_1UJ8_1_002"
+}

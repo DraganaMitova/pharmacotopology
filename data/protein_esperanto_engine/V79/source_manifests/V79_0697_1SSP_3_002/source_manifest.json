@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_18131f5c9d5f",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "URACIL-DNA GLYCOSYLASE 1SSP 3 Anchor2 Disordered binding sites Disordered regions GO GO:0000012 GO:0003684 GO:0004844 GO:0005634 GO:0005654 GO:0005739 GO:0006284 GO:0016446 GO:0043024 GO:0043066 GO:0045008 GO:0045190 GO:0097510 Hydropathy values IPR002043 IPR005122 IPR018085 IPR036895 IUPred2(short) InterPro PF03167 Pfam UNIPROT Uracil DNA glycosylase superfamily (UDG) Uracil-DNA glycosylase family 1 Uracil-DNA glycosylase, active site Uracil-DNA glycosylase-like Uracil-DNA glycosylase-like domain superfamily base-excision repair base-excision repair, AP site formation via deaminated base removal biojava-7.2.4 damaged DNA binding depyrimidination disorder disorder_binding hydropathy isotype switching mitochondrion negative regulation of apoptotic process nucleoplasm nucleus ribosomal small subunit binding single strand break repair somatic hypermutation of immunoglobulin genes uracil DNA N-glycosylase activity HYDROLASE/DNA DNA GLYCOSYLASE, DNA BASE EXCISION REPAIR, URACIL, DNA, PROTEIN/DNA, HYDROLASE-DNA COMPLEX URACIL-DNA GLYCOSYLASE Pfam disorder disorder_binding hydropathy Protein Homo sapiens X-RAY DIFFRACTION 0.098655",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_18131f5c9d5f",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0697_1SSP_3_002"
+}

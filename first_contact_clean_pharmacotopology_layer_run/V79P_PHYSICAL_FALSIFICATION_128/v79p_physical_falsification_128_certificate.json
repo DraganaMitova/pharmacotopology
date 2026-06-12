@@ -1,0 +1,37 @@
+{
+  "batch_id": "V79P_PHYSICAL_FALSIFICATION_128",
+  "certificate_hash": "f19fc542bd6a1b4b021b0dd2a5d1da540e636a7e76f5a3d05cb1deb71ab5ab04",
+  "coordinate_or_native_leakage_blocked": true,
+  "engine_version_used": "E73",
+  "execution_backend": "deterministic_equivalent_grammar_falsification_execution",
+  "failed_controls": [],
+  "failed_target_ids": [],
+  "kind": "V79P_PHYSICAL_FALSIFICATION_128_CERTIFICATE_v0",
+  "mechanism_counts": {
+    "beta_closure_topology": 27,
+    "membrane_multidomain_folding_proteostasis": 52,
+    "metal_cluster_and_ligand_locked_basin": 39,
+    "secretory_disulfide_redox_topology": 7,
+    "short_region_host_interface_hijacking": 2,
+    "signal_peptide_vs_true_tm_routing": 1
+  },
+  "native_contacts_used_before_seal": false,
+  "native_coordinates_used_before_seal": false,
+  "physical_basis_claim_allowed": false,
+  "physical_falsification_execution_run": true,
+  "protein_folding_solved": false,
+  "runs_per_target": [
+    "unbiased_execution",
+    "selected_grammar_biased_execution",
+    "wrong_grammar_biased_execution",
+    "masked_grammar_biased_execution"
+  ],
+  "selected_grammar_beats_masked_grammar": 128,
+  "selected_grammar_beats_unbiased": 128,
+  "selected_grammar_beats_wrong_grammar": 128,
+  "selected_support_is_falsification_not_unbiased_only": true,
+  "source_batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "status": "V79P_PHYSICAL_FALSIFICATION_PASSED",
+  "targets_total": 128,
+  "timestamp_utc": "2026-06-12T11:57:14.414597+00:00"
+}

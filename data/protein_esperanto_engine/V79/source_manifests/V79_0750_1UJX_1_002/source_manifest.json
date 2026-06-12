@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_eb120fe13910",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "polynucleotide kinase 3'-phosphatase 1UJX 1 ATP binding ATP-dependent polydeoxyribonucleotide 5'-hydroxyl-kinase activity Anchor2 Bifunctional polynucleotide phosphatase/kinase PNKP DNA damage response DNA repair Disordered binding sites Disordered regions FHA domain (FHA_2) GO GO:0005524 GO:0005634 GO:0005654 GO:0005730 GO:0006281 GO:0006303 GO:0006974 GO:0006979 GO:0019005 GO:0032206 GO:0035861 GO:0046403 GO:0046404 GO:0070534 GO:1990756 GO:2001034 HAD superfamily HAD-like superfamily HAD-superfamily hydrolase,subfamily IIIA Hydropathy values IPR006549 IPR006550 IPR006551 IPR008984 IPR013954 IPR023214 IPR027417 IPR036412 IPR041388 IUPred2(short) InterPro P-loop containing nucleoside triphosphate hydrolase PDB PF17913 PNK, FHA domain Pfam Polynucleotide 3'-phosphatase Polynucleotide kinase 3 phosphatase SCF ubiquitin ligase complex SMAD/FHA domain superfamily UNIPROT artifact biojava-7.2.4 cloning artifact disorder disorder_binding double-strand break repair via nonhomologous end joining hydropathy nucleolus nucleoplasm nucleus polynucleotide 3'-phosphatase activity positive regulation of double-strand break repair via nonhomologous end joining positive regulation of telomere maintenance protein K63-linked ubiquitination range_feature_1 range_feature_2 response to oxidative stress site of double-strand break ubiquitin-like ligase-substrate adaptor activity HYDROLASE,TRANSFERASE DNA REPAIR, FHA domain, polynucleotide kinase 3'-phosphatase, beta-sandwich, antiparallel beta-sheets, phosphopeptide binding motif, structural genomics, RIKEN Structural Genomics/Proteomics Initiative, RSGI, HYDROLASE, TRANSFERASE polynucleotide kinase 3'-phosphatase Pfam artifact disorder disorder_binding hydropathy Protein Mus musculus SOLUTION NMR 0.361345",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_eb120fe13910",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0750_1UJX_1_002"
+}

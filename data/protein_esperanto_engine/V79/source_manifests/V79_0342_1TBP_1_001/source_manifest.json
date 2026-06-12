@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_e2023decdb2f",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "TATA-BINDING PROTEIN 1TBP 1 Anchor2 DNA binding, bending DNA-binding transcription factor binding DNA-templated transcription initiation Disordered binding sites Disordered regions GO GO:0000126 GO:0000979 GO:0001016 GO:0001092 GO:0001179 GO:0001188 GO:0003682 GO:0005634 GO:0005654 GO:0005667 GO:0005669 GO:0005672 GO:0006352 GO:0006359 GO:0008301 GO:0016251 GO:0032991 GO:0042790 GO:0045892 GO:0045944 GO:0051123 GO:0061629 GO:0070898 GO:0097718 GO:0140297 Hydropathy values IPR000814 IPR012295 IPR030491 IPR033710 IUPred2(short) InterPro PF00352 Pfam RNA polymerase I general transcription initiation factor binding RNA polymerase I preinitiation complex assembly RNA polymerase II core promoter sequence-specific DNA binding RNA polymerase II general transcription initiation factor activity RNA polymerase II preinitiation complex assembly RNA polymerase II-specific DNA-binding transcription factor binding RNA polymerase III preinitiation complex assembly RNA polymerase III transcription regulatory region sequence-specific DNA binding TATA-box binding protein TATA-box binding protein, conserved site TATA-box binding protein, eukaryotic TBP domain superfamily TFIIA-class transcription factor complex binding Transcription factor TFIID (or TATA-binding protein, TBP) (TBP) UNIPROT biojava-7.2.4 chromatin binding disorder disorder_binding disordered domain specific binding hydropathy negative regulation of DNA-templated transcription nucleolar large rRNA transcription by RNA polymerase I nucleoplasm nucleus positive regulation of transcription by RNA polymerase II protein-containing complex regulation of transcription by RNA polymerase III transcription factor TFIIA complex transcription factor TFIID complex transcription factor TFIIIB complex transcription regulator complex BINDING PROTEIN BINDING PROTEIN TATA-BINDING PROTEIN Pfam disorder disorder_binding hydropathy Protein Saccharomyces cerevisiae X-RAY DIFFRACTION 0.033333",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_e2023decdb2f",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0342_1TBP_1_001"
+}

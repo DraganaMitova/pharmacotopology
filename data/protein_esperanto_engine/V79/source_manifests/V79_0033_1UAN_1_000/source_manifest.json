@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_0122acc9d28c",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "hypothetical protein TT1542 1UAN 1 Anchor2 Bacillithiol biosynthesis deacetylase, BshB1 Disordered binding sites Disordered regions GO GO:0016811 GO:0019213 GO:0071793 Hydropathy values IPR003737 IPR023842 IPR024078 IUPred2(short) InterPro N-acetylglucosaminyl phosphatidylinositol deacetylase-related Putative deacetylase LmbE-like domain superfamily UNIPROT bacillithiol biosynthetic process biojava-7.2.4 deacetylase activity disorder disorder_binding hydrolase activity, acting on carbon-nitrogen (but not peptide) bonds, in linear amides hydropathy structural genomics, unknown function Rossmann-like, structural genomics, RIKEN Structural Genomics/Proteomics Initiative, RSGI, unknown function hypothetical protein TT1542 disorder disorder_binding hydropathy Protein Thermus thermophilus X-RAY DIFFRACTION 0.154185",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_0122acc9d28c",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0033_1UAN_1_000"
+}

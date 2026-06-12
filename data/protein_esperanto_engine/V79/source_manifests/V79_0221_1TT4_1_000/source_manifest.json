@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_abe310148140",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "putative cytoplasmic protein 1TT4 1 ATP binding Anchor2 Disordered binding sites Disordered regions GO GO:0004357 GO:0005524 GO:0016879 GO:0042398 Glutamate--cysteine ligase type 2, YbdK subfamily Glutamate--cysteine ligase, GCS2 Glutamate-cysteine ligase family 2(GCS2) (GCS2) Glutamine synthetase/guanido kinase, catalytic domain Hydropathy values IPR006336 IPR011793 IPR014746 IPR050141 IUPred2(short) InterPro PDB PF04107 Pfam Putative glutamate--cysteine ligase YbdK UNIPROT artifact biojava-7.2.4 cloning artifact,initiating methionine disorder disorder_binding glutamate-cysteine ligase activity hydropathy ligase activity, forming carbon-nitrogen bonds modified amino acid biosynthetic process range_feature_1 STRUCTURAL GENOMICS, UNKNOWN FUNCTION NP459575, glutathione synthase, structural genomics, protein structure initiative, MCSG, PSI, Midwest Center for Structural Genomics, UNKNOWN FUNCTION putative cytoplasmic protein Pfam artifact disorder disorder_binding hydropathy Protein Salmonella enterica subsp. enterica serovar Typhimurium str. LT2 X-RAY DIFFRACTION MG MG SO4 0.035354",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_abe310148140",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0221_1TT4_1_000"
+}

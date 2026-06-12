@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_e52ce64d0e75",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "ubiquitin-like 5 1UH6 1 Anchor2 Disordered binding sites Disordered regions GO GO:0000398 GO:0005634 GO:0005737 GO:0031386 Hydropathy values IPR000626 IPR029071 IPR039732 IUPred2(short) InterPro PDB PF00240 Pfam UNIPROT Ubiquitin family (ubiquitin) Ubiquitin-like domain Ubiquitin-like domain superfamily Ubiquitin-like modifier Hub1/Ubl5 artifact biojava-7.2.4 cloning artifact cytoplasm disorder disorder_binding hydropathy mRNA splicing, via spliceosome nucleus protein tag activity range_feature_1 Structural genomics, unknown function beta-grasp fold, structural genomics, RIKEN Structural Genomics/Proteomics Initiative, RSGI, unknown function ubiquitin-like 5 Pfam artifact disorder disorder_binding hydropathy Protein Mus musculus SOLUTION NMR 0.24",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_e52ce64d0e75",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0737_1UH6_1_002"
+}

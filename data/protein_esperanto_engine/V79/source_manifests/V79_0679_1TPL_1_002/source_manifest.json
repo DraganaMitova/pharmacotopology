@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_60a9f2c0dbae",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "TYROSINE PHENOL-LYASE 1TPL 1 Anchor2 Aromatic amino acid beta-eliminating lyase/threonine aldolase Beta-eliminating lyase family Disordered binding sites Disordered regions GO GO:0006570 GO:0050371 Hydropathy values IPR001597 IPR011166 IPR013441 IPR015421 IPR015422 IPR015424 IPR018176 IUPred2(short) InterPro Pyridoxal phosphate-dependent transferase Pyridoxal phosphate-dependent transferase, major domain Pyridoxal phosphate-dependent transferase, small domain Tryptophanase, conserved site Tyrosine phenol-lyase UNIPROT biojava-7.2.4 disorder disorder_binding hydropathy tyrosine metabolic process tyrosine phenol-lyase activity LYASE(CARBON-CARBON) LYASE(CARBON-CARBON) TYROSINE PHENOL-LYASE disorder disorder_binding hydropathy Protein Citrobacter intermedius X-RAY DIFFRACTION 0.02193",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_60a9f2c0dbae",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0679_1TPL_1_002"
+}

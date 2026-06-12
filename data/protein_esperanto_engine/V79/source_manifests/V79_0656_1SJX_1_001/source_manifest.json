@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_712c56c48272",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "immunoglobulin VH domain 1SJX 1 (VH) Anchor2 Disordered binding sites Disordered regions Hydropathy values IG IGHJ4*01 IGHV3S3*01 IMGT IMGT_194042 IMGT_194043 IMGT_194044 IMGT_194045 IMGT_194046 IMGT_194047 IMGT_194048 IMGT_194049 IMGT_ANTIBODY_DESCRIPTION IMGT_ANTIBODY_DOMAIN_NAME IMGT_ANTIBODY_GENE_ALLELE_NAME IMGT_ANTIBODY_ORGANISM_NAME IMGT_ANTIBODY_PROTEIN_NAME IMGT_ANTIBODY_RECEPTOR_DESCRIPTION IMGT_ANTIBODY_RECEPTOR_TYPE IUPred2(short) Lama glama (llama) V-DOMAIN VH VH biojava-7.2.4 disorder disorder_binding hydropathy immunoglobulin VH domain IMMUNE SYSTEM Camelids antibody, heavy chain, dandruff, phage display, IMMUNE SYSTEM immunoglobulin VH domain IMGT_ANTIBODY_DESCRIPTION IMGT_ANTIBODY_DOMAIN_NAME IMGT_ANTIBODY_GENE_ALLELE_NAME IMGT_ANTIBODY_ORGANISM_NAME IMGT_ANTIBODY_PROTEIN_NAME IMGT_ANTIBODY_RECEPTOR_DESCRIPTION IMGT_ANTIBODY_RECEPTOR_TYPE disorder disorder_binding hydropathy Protein Lama glama X-RAY DIFFRACTION 0.114754",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_712c56c48272",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0656_1SJX_1_001"
+}

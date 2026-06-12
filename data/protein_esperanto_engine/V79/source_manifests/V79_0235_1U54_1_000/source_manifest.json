@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_922236e09dad",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Activated CDC42 kinase 1 1U54 1 ACK/TNK-like, SAM domain ATP binding Activated CDC42 kinase 1, UBA domain Anchor2 Cdc42 binding domain-like Cdc42 binding domain-like superfamily Disordered binding sites Disordered regions EGFR Signaling Regulator Kinase GO GO:0004674 GO:0004712 GO:0004713 GO:0004715 GO:0005095 GO:0005154 GO:0005524 GO:0005634 GO:0005737 GO:0005768 GO:0005829 GO:0005886 GO:0005905 GO:0005912 GO:0006897 GO:0007166 GO:0007264 GO:0016020 GO:0016310 GO:0030136 GO:0030659 GO:0031625 GO:0042802 GO:0046872 GO:0048471 GO:0050699 GO:0050731 GO:0070436 GO:0097268 GO:0106310 GO:2000369 GTPase inhibitor activity Grb2-EGFR complex Hydropathy values IPR000719 IPR001245 IPR001452 IPR008266 IPR011009 IPR015116 IPR017441 IPR020635 IPR021619 IPR030220 IPR036028 IPR037085 IPR049587 IPR052112 IPR055175 IUPred2(short) InterPro Mig-6 domain PDB PF07714 Parent monomer TYR Pfam Protein kinase domain Protein kinase, ATP binding site Protein kinase-like domain superfamily Protein tyrosine and serine/threonine kinase (PK_Tyr_Ser-Thr) SH3 domain SH3-like domain superfamily Serine-threonine/tyrosine-protein kinase, catalytic domain TNK(ACK)-like non-receptor tyrosine-protein kinases, SAM domain Tyrosine-protein kinase, active site Tyrosine-protein kinase, catalytic domain UNIPROT WW domain binding adherens junction artifact biojava-7.2.4 cell surface receptor signaling pathway clathrin-coated pit clathrin-coated vesicle cloning artifact cytoophidium cytoplasm cytoplasmic vesicle membrane cytosol disorder disorder_binding endocytosis endosome epidermal growth factor receptor binding hydropathy identical protein binding membrane metal ion binding modified residue modified_monomer monomer_feature_1 monomer_feature_2 mutation non-membrane spanning protein tyrosine kinase activity nucleus perinuclear region of cytoplasm phosphorylation plasma membrane positive regulation of peptidyl-tyrosine phosphorylation protein serine kinase activity protein serine/threonine kinase activity protein serine/threonine/tyrosine kinase activity protein tyrosine kinase activity range_feature_1 range_feature_2 regulation of clathrin-dependent endocytosis small GTPase-mediated signal transduction ubiquitin protein ligase binding TRANSFERASE Tyrosine Kinase, TRANSFERASE Activated CDC42 kinase 1 Pfam artifact disorder disorder_binding hydropathy modified_monomer mutation Protein Homo sapiens X-RAY DIFFRACTION MG ACP MG 0.054983",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_922236e09dad",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0235_1U54_1_000"
+}

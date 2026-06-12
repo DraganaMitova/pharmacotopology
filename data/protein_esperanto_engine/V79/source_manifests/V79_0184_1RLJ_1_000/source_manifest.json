@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_b709cd0fb10e",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "NrdI protein 1RLJ 1 Anchor2 Disordered binding sites Disordered regions FMN binding Flavoprotein-like superfamily GO GO:0010181 Hydropathy values IPR004465 IPR020852 IPR029039 IUPred2(short) InterPro NrdI Flavodoxin like (Flavodoxin_NdrI) PDB PF07972 Pfam Ribonucleotide reductase Class Ib, NrdI Ribonucleotide reductase, class Ib, NrdI, bacterial UNIPROT artifact biojava-7.2.4 disorder disorder_binding expression tag hydropathy range_feature_1 Structural Genomics, unknown function Flavoprotein, FMN, Thioredoxin, Alpha/beta/alpha sandwich, Structural Genomics, PSI, Protein Structure Initiative, Midwest Center for Structural Genomics, MCSG, unknown function NrdI protein Pfam artifact disorder disorder_binding hydropathy Protein Bacillus subtilis X-RAY DIFFRACTION 0.086331",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_b709cd0fb10e",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0184_1RLJ_1_000"
+}

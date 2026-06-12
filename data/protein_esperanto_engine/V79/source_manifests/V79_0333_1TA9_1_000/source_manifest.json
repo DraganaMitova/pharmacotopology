@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_8c68a88f3569",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "glycerol dehydrogenase 1TA9 1 Alcohol dehydrogenase, iron-type, conserved site Alcohol dehydrogenase, iron-type/glycerol dehydrogenase GldA Anchor2 Disordered binding sites Disordered regions GO GO:0005739 GO:0008270 GO:0008888 GO:0019564 GO:0061613 Glycerol dehydrogenase Hydropathy values IPR001670 IPR016205 IPR018211 IUPred2(short) InterPro Iron-containing alcohol dehydrogenase (Fe-ADH) PF00465 Pfam UNIPROT aerobic glycerol catabolic process biojava-7.2.4 disorder disorder_binding glycerol dehydrogenase (NAD+) activity glycolytic process from glycerol hydropathy mitochondrion zinc ion binding OXIDOREDUCTASE Glycerol dehydrogenase, Schizosaccharomyces pombe, OXIDOREDUCTASE glycerol dehydrogenase Pfam disorder disorder_binding hydropathy Protein Schizosaccharomyces pombe X-RAY DIFFRACTION ZN ALA GOL K ZN 0.062222",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_8c68a88f3569",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0333_1TA9_1_000"
+}

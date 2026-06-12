@@ -1,0 +1,50 @@
+{
+  "accepted_accuracy": 1.0,
+  "accepted_count": 172,
+  "accepted_supported": 172,
+  "baseline_engine_version": "E72",
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "candidate_word_count": 77,
+  "candidate_word_proposal_hash": "cb6579ff68f8217c0079b66bbc2b2cc15e3553d42b15091b1ae5b135b9abe21a",
+  "candidate_words_ranked_by_endogenous_pressure_support": true,
+  "certificate_hash": "bf98f4aea23dc300564b1375d3cedb0e8a3ab47eb50b64b58a6a83040de67dc1",
+  "clean_abstain": 828,
+  "clean_abstain_supported": 828,
+  "cleanly_abstained_candidate_words": 48,
+  "controls_passed": true,
+  "coverage": 0.172,
+  "engine_version_used": "E73",
+  "epistemological_status": {
+    "contact_map_interpretation": "hypothesized_interaction_language_map_not_native_contact_probability",
+    "folding_problem_solved": false,
+    "is_atomistic_md": false,
+    "is_physical_simulation": false,
+    "language_layer": "protein_esperanto_mechanism_language",
+    "physical_basis_claim_allowed": false,
+    "requires_independent_physical_validation": true,
+    "trajectory_interpretation": "operator_state_propagation_not_time_physical_dynamics"
+  },
+  "failed_accepted": 0,
+  "failed_accepted_count": 0,
+  "failed_controls": [],
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_1000_CERTIFICATE_v0",
+  "learned_grammar_promotions": 29,
+  "next_required_batch": "V80_REPLAY_TOP_LANGUAGE_CANDIDATES_OR_EXPAND_BLIND_DISCOVERY",
+  "no_known_missing_word_queue_used": true,
+  "no_target_specific_expected_mechanism_labels_used_for_prediction": true,
+  "physical_basis_claim_allowed": false,
+  "protein_folding_solved": false,
+  "sentinel_regressions": 0,
+  "source_summary": {
+    "raw_cache_candidate_count": 708,
+    "target_source_counts": {
+      "blind_deterministic_variant_from_unused_rcsb_seed": 661,
+      "unused_rcsb_cache_candidate": 339
+    },
+    "unused_prior_candidate_seed_count": 339
+  },
+  "status": "V79_BLIND_LANGUAGE_DISCOVERY_PASSED",
+  "targets_total": 1000,
+  "timestamp_utc": "2026-06-12T11:57:09.305084+00:00",
+  "withheld_context_leakage_detected": false
+}

@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_e386d7d650e9",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Inositol-trisphosphate 3-kinase A 1TZD 1 ATP binding Anchor2 Disordered binding sites Disordered regions GO GO:0000828 GO:0004683 GO:0005516 GO:0005524 GO:0005634 GO:0005737 GO:0005856 GO:0006020 GO:0008440 GO:0030036 GO:0031267 GO:0032958 GO:0043197 GO:0046854 GO:0048167 GO:0051592 GO:0061003 GO:0071277 GO:0097062 GO:0098871 GO:0098885 GO:0098978 Hydropathy values IPR005522 IPR038286 IUPred2(short) Inositol polyphosphate kinase Inositol polyphosphate kinase superfamily InterPro PDB Parent monomer MET UNIPROT actin cytoskeleton organization biojava-7.2.4 calcium/calmodulin-dependent protein kinase activity calmodulin binding cellular response to calcium ion cytoplasm cytoskeleton dendritic spine dendritic spine maintenance disorder disorder_binding engineered mutation glutamatergic synapse hydropathy inositol hexakisphosphate kinase activity inositol metabolic process inositol phosphate biosynthetic process inositol-1,4,5-trisphosphate 3-kinase activity modification of postsynaptic actin cytoskeleton modified_monomer monomer_feature_1 monomer_feature_2 monomer_feature_3 monomer_feature_4 monomer_feature_5 monomer_feature_6 monomer_feature_7 monomer_feature_8 monomer_feature_9 mutation nucleus phosphatidylinositol phosphate biosynthetic process positive regulation of dendritic spine morphogenesis postsynaptic actin cytoskeleton regulation of synaptic plasticity response to calcium ion small GTPase binding TRANSFERASE INOSITOL KINASE, transferase Inositol-trisphosphate 3-kinase A disorder disorder_binding hydropathy modified_monomer mutation Protein Rattus norvegicus X-RAY DIFFRACTION ADP MG ADP MG 0.112727",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_e386d7d650e9",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0928_1TZD_1_002"
+}

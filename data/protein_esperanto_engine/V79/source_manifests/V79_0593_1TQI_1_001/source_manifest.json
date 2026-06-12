@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_460dabf7b065",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "conserved hypothetical protein 1TQI 1 ATP binding Anchor2 Disordered binding sites Disordered regions GO GO:0004674 GO:0005524 GO:0005829 GO:0030490 GO:0030688 GO:0046872 GO:0106310 Hydropathy values IPR000687 IPR008266 IPR011009 IPR015285 IPR018934 IPR036388 IPR036390 IUPred2(short) InterPro PF01163 PF09202 Pfam Protein kinase-like domain superfamily RIO domain (RIO1) RIO kinase RIO-type domain RIO2 kinase winged helix domain, N-terminal Rio2, N-terminal (Rio2_N) Tyrosine-protein kinase, active site UNIPROT Winged helix DNA-binding domain superfamily Winged helix-like DNA-binding domain superfamily biojava-7.2.4 cytosol disorder disorder_binding hydropathy maturation of SSU-rRNA metal ion binding preribosome, small subunit precursor protein serine kinase activity protein serine/threonine kinase activity RIBOSOME SERINE KINASE, ribosome conserved hypothetical protein Pfam disorder disorder_binding hydropathy Protein Archaeoglobus fulgidus DSM 4304 X-RAY DIFFRACTION 0.035461",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_460dabf7b065",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0593_1TQI_1_001"
+}

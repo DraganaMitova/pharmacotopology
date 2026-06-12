@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_1ea9df2d4159",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "hypothetical protein PA5026 1SH8 1 Anchor2 Disordered binding sites Disordered regions Domain of unknown function (DUF4442) (DUF4442) HotDog domain superfamily Hydropathy values IPR027961 IPR029069 IUPred2(short) InterPro PDB PF14539 Pfam Protein of unknown function DUF4442 UNIPROT artifact biojava-7.2.4 cloning artifact disorder disorder_binding hydropathy range_feature_1 range_feature_2 STRUCTURAL GENOMICS, UNKNOWN FUNCTION Structural Genomics, Pseudomonas aeruginosa, PSI, Protein Structure Initiative, Midwest Center for Structural Genomics, MCSG, UNKNOWN FUNCTION hypothetical protein PA5026 Pfam artifact disorder disorder_binding hydropathy Protein Pseudomonas aeruginosa X-RAY DIFFRACTION 0.116883",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_1ea9df2d4159",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0860_1SH8_1_002"
+}

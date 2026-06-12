@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_8131cba06a7d",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "NifU1 1TH5 1 4 iron, 4 sulfur cluster binding Anchor2 Disordered binding sites Disordered regions Fe-S cluster assembly domain superfamily GO GO:0005198 GO:0005506 GO:0005739 GO:0009570 GO:0016226 GO:0051539 GO:0051604 Hydropathy values IPR001075 IPR034904 IUPred2(short) InterPro NIF system FeS cluster assembly, NifU, C-terminal NifU-like domain (NifU) PDB PF01106 Pfam UNIPROT artifact biojava-7.2.4 chloroplast stroma cloning artifact disorder disorder_binding hydropathy iron ion binding iron-sulfur cluster assembly mitochondrion protein maturation range_feature_1 structural molecule activity Structural genomics, unknown function IRON-SULFUR CLUSTER BINDING, STRUCTURAL GENOMICS, PROGRAM FOR RICE GENOME RESEARCH, unknown function NifU1 Pfam artifact disorder disorder_binding hydropathy Protein Oryza sativa SOLUTION NMR 0.121622",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_8131cba06a7d",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0336_1TH5_1_000"
+}

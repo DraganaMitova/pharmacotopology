@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_c0c426fdb933",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "COP9 complex subunit 4 1UFM 1 26S Proteasome non-ATPase regulatory subunit 12/COP9 signalosome complex subunit 4 Anchor2 COP9 signalosome COP9 signalosome complex subunit 4, helix turn helix domain Disordered binding sites Disordered regions GO GO:0000338 GO:0005634 GO:0005737 GO:0008021 GO:0008180 GO:0016607 GO:0030054 Hydropathy values IPR000717 IPR036388 IPR036390 IPR040134 IPR041406 IPR054559 IUPred2(short) InterPro PCI domain (PCI) PDB PF01399 PSMD12/CSN4-like, N-terminal Pfam Proteasome component (PCI) domain UNIPROT Winged helix DNA-binding domain superfamily Winged helix-like DNA-binding domain superfamily artifact biojava-7.2.4 cell junction cloning artifact cytoplasm disorder disorder_binding hydropathy nuclear speck nucleus protein deneddylation range_feature_1 range_feature_2 synaptic vesicle SIGNALING PROTEIN helix-turn-helix, structural genomics, RIKEN Structural Genomics/Proteomics Initiative, RSGI, SIGNALING PROTEIN COP9 complex subunit 4 Pfam artifact disorder disorder_binding hydropathy Protein Mus musculus SOLUTION NMR 0.22619",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_c0c426fdb933",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0857_1UFM_1_002"
+}

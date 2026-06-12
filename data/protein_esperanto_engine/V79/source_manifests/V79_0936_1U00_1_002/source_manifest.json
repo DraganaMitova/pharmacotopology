@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_13ebbd5bcbd5",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Chaperone protein hscA 1U00 1 ADP binding ATP binding ATP hydrolysis activity ATP-dependent protein folding chaperone ATPase, nucleotide binding domain Anchor2 Disordered binding sites Disordered regions GO GO:0005524 GO:0005829 GO:0016226 GO:0016887 GO:0031072 GO:0042026 GO:0043531 GO:0044183 GO:0051082 GO:0070417 GO:0140662 GO:1990230 Heat shock protein 70 family Heat shock protein 70, conserved site Heat shock protein 70kD, C-terminal domain superfamily Heat shock protein 70kD, peptide-binding domain superfamily HscA chaperone, nucleotide-binding domain Hsp70 protein (HSP70) Hydropathy values IPR010236 IPR013126 IPR018181 IPR029047 IPR029048 IPR042039 IPR043129 ISC system FeS cluster assembly, HscA chaperone IUPred2(short) InterPro PDB PF00012 Pfam UNIPROT artifact biojava-7.2.4 cellular response to cold cytosol disorder disorder_binding heat shock protein binding hydropathy initiating methionine iron-sulfur cluster assembly iron-sulfur cluster transfer complex protein folding chaperone protein refolding range_feature_1 unfolded protein binding CHAPERONE HscA, Hsc66, DnaK, Hsp70, IscU, CHAPERONE Chaperone protein hscA Pfam artifact disorder disorder_binding hydropathy Protein Escherichia coli X-RAY DIFFRACTION 0.096916",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_13ebbd5bcbd5",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0936_1U00_1_002"
+}

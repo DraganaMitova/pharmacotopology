@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_1d9b79314eb9",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Electron transfer flavoprotein alpha-subunit, mitochondrial 1T9G 2 Anchor2 DHS-like NAD/FAD-binding domain superfamily Disordered binding sites Disordered regions Electron transfer flavoprotein alpha subunit/FixB Electron transfer flavoprotein domain (ETF) Electron transfer flavoprotein subunit alpha, conserved site Electron transfer flavoprotein, alpha subunit, C-terminal Electron transfer flavoprotein, alpha subunit, N-terminal Electron transfer flavoprotein, alpha/beta-subunit, N-terminal GO GO:0005739 GO:0005759 GO:0009055 GO:0009063 GO:0016491 GO:0022904 GO:0033539 GO:0045251 GO:0050660 Hydropathy values IPR001308 IPR014729 IPR014730 IPR014731 IPR018206 IPR029035 IPR033947 IUPred2(short) InterPro PF01012 Pfam Rossmann-like alpha/beta/alpha sandwich fold UNIPROT amino acid catabolic process biojava-7.2.4 disorder disorder_binding electron transfer activity electron transfer flavoprotein complex fatty acid beta-oxidation using acyl-CoA dehydrogenase flavin adenine dinucleotide binding hydropathy mitochondrial matrix mitochondrion oxidoreductase activity respiratory electron transport chain oxidoreductase, electron transport electron transfer, protein:protein complex, fatty acid oxidation, human electron transferring flavoprotein, human medium chain acyl coa dehydrogenase, oxidoreductase, electron transport Electron transfer flavoprotein alpha-subunit, mitochondrial Pfam disorder disorder_binding hydropathy Protein Homo sapiens X-RAY DIFFRACTION 0.063063",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_1d9b79314eb9",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0155_1T9G_2_000"
+}

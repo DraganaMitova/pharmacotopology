@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_84a06e0813dc",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "carboxy methyl transferase for protein phosphatase 2A catalytic subunit 1RJE 1 Anchor2 Disordered binding sites Disordered regions GO GO:0010506 GO:0018423 GO:0032259 GO:0065003 Hydropathy values IPR007213 IPR016651 IPR029063 IUPred2(short) InterPro Leucine carboxyl methyltransferase (LCM) Leucine carboxyl methyltransferase 1 Methyltransferase Ppm1/Ppm2/Tcmp PDB PF04072 Pfam S-adenosyl-L-methionine-dependent methyltransferase superfamily UNIPROT artifact biojava-7.2.4 disorder disorder_binding expression tag hydropathy methylation protein C-terminal leucine carboxyl O-methyltransferase activity protein-containing complex assembly range_feature_1 regulation of autophagy TRANSFERASE SAM dependent methyltransferase, TRANSFERASE carboxy methyl transferase for protein phosphatase 2A catalytic subunit Pfam artifact disorder disorder_binding hydropathy Protein Saccharomyces cerevisiae X-RAY DIFFRACTION 0.04491",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_84a06e0813dc",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0048_1RJE_1_000"
+}

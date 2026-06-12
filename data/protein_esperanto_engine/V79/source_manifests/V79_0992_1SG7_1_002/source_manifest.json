@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_38bcc801e416",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Putative Cation transport regulator chaB 1SG7 1 Anchor2 ChaB ChaB (ChaB) ChaB superfamily Disordered binding sites Disordered regions Hydropathy values IPR009317 IPR037205 IUPred2(short) InterPro PDB PF06150 Pfam UNIPROT artifact biojava-7.2.4 cloning artifact,initiating methionine disorder disorder_binding hydropathy range_feature_1 STRUCTURAL GENOMICS, UNKNOWN FUNCTION STRUCTURAL GENOMICS, Montreal-Kingston Bacterial Structural Genomics Initiative, BSGI, UNKNOWN FUNCTION Putative Cation transport regulator chaB Pfam artifact disorder disorder_binding hydropathy Protein Escherichia coli SOLUTION NMR 0.614583",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_38bcc801e416",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0992_1SG7_1_002"
+}

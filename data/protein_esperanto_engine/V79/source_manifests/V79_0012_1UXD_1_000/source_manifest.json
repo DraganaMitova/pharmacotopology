@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_16e9c81c0668",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "FRUCTOSE REPRESSOR 1UXD 1 Anchor2 Bacterial regulatory proteins, lacI family (LacI) D-fructose-responsive transcription factor DNA-binding transcription factor activity Disordered binding sites Disordered regions GO GO:0000976 GO:0000987 GO:0003700 GO:0006355 GO:0009750 GO:0042802 GO:2000142 Hydropathy values IPR000843 IPR001761 IPR010982 IPR012781 IPR028082 IUPred2(short) InterPro LacI-type HTH domain Lambda repressor-like, DNA-binding domain superfamily PF00356 Periplasmic binding protein-like I Periplasmic binding protein/LacI sugar binding domain Pfam UNIPROT biojava-7.2.4 cis-regulatory region sequence-specific DNA binding disorder disorder_binding hydropathy identical protein binding regulation of DNA-templated transcription regulation of DNA-templated transcription initiation response to fructose transcription cis-regulatory region binding TRANSCRIPTION REGULATION DNA-BINDING PROTEIN, FRUCTOSE REPRESSOR, LACI FAMILY, TRANSCRIPTION REGULATION FRUCTOSE REPRESSOR Pfam disorder disorder_binding hydropathy Protein Escherichia coli K-12 SOLUTION NMR 0.338462",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_16e9c81c0668",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0012_1UXD_1_000"
+}

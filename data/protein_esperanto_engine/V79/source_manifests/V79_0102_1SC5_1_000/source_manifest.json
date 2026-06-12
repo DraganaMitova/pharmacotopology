@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_64cd5c861e8a",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "RNA polymerase sigma factor FliA 1SC5 1 Anchor2 DNA binding DNA-directed RNA polymerase activity DNA-templated transcription initiation Disordered binding sites Disordered regions GO GO:0003677 GO:0003899 GO:0006352 GO:0006355 GO:0016987 GO:0045152 GO:0097718 GO:1903865 Hydropathy values IPR000943 IPR007624 IPR007627 IPR007630 IPR012845 IPR013324 IPR013325 IPR014284 IUPred2(short) InterPro PDB PF04539 PF04542 PF04545 Pfam RNA polymerase sigma factor, FliA/WhiG RNA polymerase sigma factor, region 2 RNA polymerase sigma factor, region 3/4-like RNA polymerase sigma-70 RNA polymerase sigma-70 region 2 RNA polymerase sigma-70 region 3 RNA polymerase sigma-70 region 4 RNA polymerase sigma-70-like domain Sigma-70 region 2 (Sigma70_r2) Sigma-70 region 3 (Sigma70_r3) Sigma-70, region 4 (Sigma70_r4) UNIPROT antisigma factor binding artifact biojava-7.2.4 cloning artifact disorder disorder_binding disordered domain specific binding hydropathy range_feature_1 regulation of DNA-templated transcription sigma factor activity sigma factor antagonist complex TRANSCRIPTION RNA POLYMERASE SIGMA FACTOR, ANTI-SIGMA FACTOR, TRANSCRIPTION, FLAGELLAR GENE REGULATION RNA polymerase sigma factor FliA Pfam artifact disorder disorder_binding hydropathy Protein Aquifex aeolicus X-RAY DIFFRACTION 0.058577",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_64cd5c861e8a",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0102_1SC5_1_000"
+}

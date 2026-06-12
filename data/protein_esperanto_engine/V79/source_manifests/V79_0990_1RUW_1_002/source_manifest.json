@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_6586679632a8",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Myosin-3 isoform 1RUW 1 ATP binding Anchor2 Class I myosin tail homology domain Class I myosin, motor domain Disordered binding sites Disordered regions Fungal myosin-I, SH3 domain GO GO:0000146 GO:0005524 GO:0005737 GO:0005886 GO:0005902 GO:0006887 GO:0006897 GO:0006970 GO:0007015 GO:0007121 GO:0015629 GO:0016787 GO:0017022 GO:0030479 GO:0031505 GO:0045160 GO:0051015 GO:0051286 GO:0051666 GO:0061709 GO:0071944 GO:2000601 Hydropathy values IPR001452 IPR001609 IPR010926 IPR027417 IPR035535 IPR036028 IPR036072 IPR036961 IUPred2(short) InterPro Kinesin motor domain superfamily Myosin head, motor domain-like P-loop containing nucleoside triphosphate hydrolase PF00018 Pfam SH3 domain SH3 domain (SH3_1) SH3-like domain superfamily UNIPROT actin cortical patch actin cortical patch localization actin cytoskeleton actin filament binding actin filament organization biojava-7.2.4 bipolar cellular bud site selection cell periphery cell tip cytoplasm disorder disorder_binding endocytosis exocytosis fungal-type cell wall organization hydrolase activity hydropathy microfilament motor activity microvillus myosin I complex myosin binding plasma membrane positive regulation of Arp2/3 complex-mediated actin nucleation response to osmotic stress reticulophagy CONTRACTILE PROTEIN SH3 domain, Myo3, yeast, high-throughput, structural genomics, CONTRACTILE PROTEIN Myosin-3 isoform Pfam disorder disorder_binding hydropathy Protein Saccharomyces cerevisiae X-RAY DIFFRACTION 0.246377",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_6586679632a8",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0990_1RUW_1_002"
+}

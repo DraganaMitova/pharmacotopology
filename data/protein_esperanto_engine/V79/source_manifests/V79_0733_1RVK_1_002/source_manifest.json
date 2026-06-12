@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_e1a730515714",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "isomerase/lactonizing enzyme 1RVK 1 Anchor2 Disordered binding sites Disordered regions Enolase C-terminal domain-like (MR_MLE_C) Enolase-like, C-terminal domain superfamily Enolase-like, N-terminal Enolase_C-like GO GO:0000287 GO:0016052 GO:0016836 GO:0016853 Hydropathy values IPR013341 IPR013342 IPR029017 IPR029065 IPR036849 IPR046945 IUPred2(short) InterPro L-rhamnonate dehydratase-like Mandelate racemase / muconate lactonizing enzyme, N-terminal domain (MR_MLE_N) Mandelate racemase, C-terminal domain Mandelate racemase, N-terminal domain PDB PF02746 PF13378 Parent monomer MET Pfam UNIPROT biojava-7.2.4 carbohydrate catabolic process disorder disorder_binding hydro-lyase activity hydropathy isomerase activity magnesium ion binding modified residue modified_monomer monomer_feature_1 monomer_feature_10 monomer_feature_11 monomer_feature_12 monomer_feature_13 monomer_feature_14 monomer_feature_15 monomer_feature_16 monomer_feature_17 monomer_feature_18 monomer_feature_19 monomer_feature_2 monomer_feature_20 monomer_feature_21 monomer_feature_22 monomer_feature_3 monomer_feature_4 monomer_feature_5 monomer_feature_6 monomer_feature_7 monomer_feature_8 monomer_feature_9 mutation structural genomics, unknown function Enolase superfamily, MR.GI-17937161, NYSGXRC, target T1522, Structural Genomics, PSI, Protein Structure Initiative, New York SGX Research Center for Structural Genomics, unknown function isomerase/lactonizing enzyme Pfam disorder disorder_binding hydropathy modified_monomer mutation Protein Agrobacterium fabrum str. C58 X-RAY DIFFRACTION MG MG 0.151832",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_e1a730515714",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0733_1RVK_1_002"
+}

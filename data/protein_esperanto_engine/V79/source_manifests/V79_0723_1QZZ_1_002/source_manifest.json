@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_3d4e3f8f2c6b",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "aclacinomycin-10-hydroxylase 1QZZ 1 Anchor2 Caffeic acid 3-O-methyltransferase-like, dimerisation domain Disordered binding sites Disordered regions GO GO:0008171 GO:0016831 GO:0017000 GO:0032259 GO:0046983 Hydropathy values IPR001077 IPR012967 IPR016461 IPR029063 IPR036388 IPR036390 IUPred2(short) InterPro O-methyltransferase activity O-methyltransferase, C-terminal domain O-methyltransferase-like S-adenosyl-L-methionine-dependent methyltransferase superfamily UNIPROT Winged helix DNA-binding domain superfamily Winged helix-like DNA-binding domain superfamily antibiotic biosynthetic process biojava-7.2.4 carboxy-lyase activity disorder disorder_binding hydropathy methylation protein dimerization activity OXIDOREDUCTASE, TRANSFERASE Anthracycline, hydroxylase, methyltransferase, polyketide, Streptomyces, tailoring enzymes, Structural Proteomics in Europe, SPINE, Structural Genomics, OXIDOREDUCTASE, TRANSFERASE aclacinomycin-10-hydroxylase disorder disorder_binding hydropathy Protein Streptomyces purpurascens X-RAY DIFFRACTION 0.066845",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_3d4e3f8f2c6b",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0723_1QZZ_1_002"
+}

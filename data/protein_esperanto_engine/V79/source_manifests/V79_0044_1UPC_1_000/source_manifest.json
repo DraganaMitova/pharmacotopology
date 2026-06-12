@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_e5964c737c4e",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "CARBOXYETHYLARGININE SYNTHASE 1UPC 1 Anchor2 DHS-like NAD/FAD-binding domain superfamily Disordered binding sites Disordered regions GO GO:0000287 GO:0003984 GO:0005948 GO:0009097 GO:0009099 GO:0030976 GO:0033848 GO:0050660 Hydropathy values IPR000399 IPR011766 IPR012000 IPR012001 IPR029035 IPR029061 IPR045229 IUPred2(short) InterPro L-valine biosynthetic process N2-(2-carboxyethyl)arginine synthase activity TPP-binding enzyme, conserved site Thiamin diphosphate-binding fold Thiamine pyrophosphate enzyme Thiamine pyrophosphate enzyme, N-terminal TPP-binding domain Thiamine pyrophosphate enzyme, TPP-binding Thiamine pyrophosphate enzyme, central domain UNIPROT acetolactate synthase activity acetolactate synthase complex biojava-7.2.4 disorder disorder_binding flavin adenine dinucleotide binding hydropathy isoleucine biosynthetic process magnesium ion binding thiamine pyrophosphate binding SYNTHASE SYNTHASE, CLAVULANIC ACID, ANTIBIOTIC, LACTAMASE, FLAVOPROTEIN, THIAMINE PYROPHOSPHATE CARBOXYETHYLARGININE SYNTHASE disorder disorder_binding hydropathy Protein Streptomyces clavuligerus X-RAY DIFFRACTION MG TPP MG TPP 0.062827",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_e5964c737c4e",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0044_1UPC_1_000"
+}

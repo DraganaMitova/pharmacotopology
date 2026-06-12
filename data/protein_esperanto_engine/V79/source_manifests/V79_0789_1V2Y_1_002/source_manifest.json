@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_8fa47dad1d58",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "3300001G02Rik protein 1V2Y 1 Anchor2 Disordered binding sites Disordered regions GO GO:0000398 GO:0005634 GO:0005654 GO:0005689 GO:0005829 GO:0045171 Hydropathy values IPR029071 IPR039690 IPR040610 IUPred2(short) InterPro PDB PF18036 Pfam SNRNP25, ubiquitin-like domain U11/U12 small nuclear ribonucleoprotein 25kDa protein U12-type spliceosomal complex UNIPROT Ubiquitin-like domain (Ubiquitin_4) Ubiquitin-like domain superfamily artifact biojava-7.2.4 cloning artifact cytosol disorder disorder_binding hydropathy intercellular bridge mRNA splicing, via spliceosome nucleoplasm nucleus range_feature_1 range_feature_2 STRUCTURAL GENOMICS, UNKNOWN FUNCTION Hypothetical protein, Ubiquitin-like fold, Structural genomics, RIKEN Structural Genomics/Proteomics Initiative, RSGI, UNKNOWN FUNCTION 3300001G02Rik protein Pfam artifact disorder disorder_binding hydropathy Protein Mus musculus SOLUTION NMR 0.209524",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_8fa47dad1d58",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0789_1V2Y_1_002"
+}

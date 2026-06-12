@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_5958e570a6a7",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "chondroitin AC lyase 1RWF 1 Anchor2 Chondroitin AC/alginate lyase Disordered binding sites Disordered regions GO GO:0005576 GO:0005975 GO:0016837 GO:0030246 Galactose mutarotase-like domain superfamily Glycoside hydrolase-type carbohydrate-binding Hydropathy values IPR003159 IPR004103 IPR008929 IPR011013 IPR011071 IPR012970 IPR014718 IPR038970 IUPred2(short) InterPro Polysaccharide lyase 8 Polysaccharide lyase 8, N-terminal alpha-helical Polysaccharide lyase family 8, C-terminal Polysaccharide lyase family 8, central domain Polysaccharide lyase family 8-like, C-terminal UNIPROT biojava-7.2.4 carbohydrate binding carbohydrate metabolic process carbon-oxygen lyase activity, acting on polysaccharides disorder disorder_binding extracellular region hydropathy LYASE chondroitinase, chondroitin, chondroitin lyase, lyase chondroitin AC lyase disorder disorder_binding hydropathy Protein Arthrobacter aurescens Paenarthrobacter aurescens X-RAY DIFFRACTION NA 0.029062",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_5958e570a6a7",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0785_1RWF_1_002"
+}

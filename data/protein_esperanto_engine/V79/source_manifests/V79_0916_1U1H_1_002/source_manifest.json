@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_f21bd9875dc0",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "5-methyltetrahydropteroyltriglutamate--homocysteine methyltransferase 1U1H 1 'de novo' L-methionine biosynthetic process 5-methyltetrahydropteroyltriglutamate-homocysteine S-methyltransferase activity Anchor2 Cobalamin-independent methionine synthase Cobalamin-independent methionine synthase MetE, C-terminal/archaeal Cobalamin-independent methionine synthase MetE, N-terminal Cobalamin-independent synthase, Catalytic domain (Meth_synt_2) Cobalamin-independent synthase, N-terminal domain (Meth_synt_1) DNA methylation-dependent constitutive heterochromatin formation Disordered binding sites Disordered regions GO GO:0000325 GO:0003729 GO:0003871 GO:0005507 GO:0005777 GO:0005829 GO:0005886 GO:0006346 GO:0008270 GO:0008705 GO:0009086 GO:0009506 GO:0009507 GO:0009570 GO:0010043 GO:0032259 GO:0048046 GO:0071266 Hydropathy values IPR002629 IPR006276 IPR013215 IPR038071 IUPred2(short) InterPro PDB PF01717 PF08267 Parent monomer MET Pfam UNIPROT UROD/MetE-like superfamily apoplast biojava-7.2.4 chloroplast chloroplast stroma copper ion binding cytosol disorder disorder_binding hydropathy mRNA binding methionine biosynthetic process methionine synthase activity methylation modified residue modified_monomer monomer_feature_1 monomer_feature_10 monomer_feature_11 monomer_feature_12 monomer_feature_13 monomer_feature_14 monomer_feature_15 monomer_feature_16 monomer_feature_17 monomer_feature_18 monomer_feature_19 monomer_feature_2 monomer_feature_20 monomer_feature_21 monomer_feature_22 monomer_feature_23 monomer_feature_24 monomer_feature_25 monomer_feature_26 monomer_feature_27 monomer_feature_28 monomer_feature_29 monomer_feature_3 monomer_feature_30 monomer_feature_31 monomer_feature_32 monomer_feature_33 monomer_feature_34 monomer_feature_35 monomer_feature_36 monomer_feature_37 monomer_feature_38 monomer_feature_4 monomer_feature_5 monomer_feature_6 monomer_feature_7 monomer_feature_8 monomer_feature_9 mutation peroxisome plant-type vacuole plasma membrane plasmodesma response to zinc ion zinc ion binding TRANSFERASE METHIONINE, SYNTHASE, HOMOCYSTEINE, METHYLTETRAHYDROFOLATE, TRANSFERASE 5-methyltetrahydropteroyltriglutamate--homocysteine methyltransferase Pfam disorder disorder_binding hydropathy modified_monomer mutation Protein Arabidopsis thaliana X-RAY DIFFRACTION ZN ZN 0.056209",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_f21bd9875dc0",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0916_1U1H_1_002"
+}

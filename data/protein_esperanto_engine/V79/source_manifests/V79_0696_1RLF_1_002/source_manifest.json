@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_3b8356d00fae",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "RLF 1RLF 1 Anchor2 Disordered binding sites Disordered regions GO GO:0005085 GO:0007264 GO:0010667 GO:0032485 GO:0051897 Hydropathy values IPR000159 IPR000651 IPR001895 IPR008937 IPR019804 IPR023578 IPR029071 IPR036964 IUPred2(short) InterPro PF00788 Pfam Ras association (RalGDS/AF-6) domain (RA) Ras guanine nucleotide exchange factor domain superfamily Ras guanine-nucleotide exchange factor, catalytic domain superfamily Ras guanine-nucleotide exchange factor, conserved site Ras guanine-nucleotide exchange factors catalytic domain Ras-associating domain Ras-like guanine nucleotide exchange factor Ras-like guanine nucleotide exchange factor, N-terminal UNIPROT Ubiquitin-like domain superfamily biojava-7.2.4 disorder disorder_binding guanyl-nucleotide exchange factor activity hydropathy negative regulation of cardiac muscle cell apoptotic process positive regulation of phosphatidylinositol 3-kinase/protein kinase B signal transduction regulation of Ral protein signal transduction small GTPase-mediated signal transduction SIGNAL TRANSDUCTION PROTEIN SIGNAL TRANSDUCTION PROTEIN RLF Pfam disorder disorder_binding hydropathy Protein Mus musculus SOLUTION NMR 0.166667",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_3b8356d00fae",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0696_1RLF_1_002"
+}

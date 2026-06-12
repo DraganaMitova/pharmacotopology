@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_0b0eb419fa29",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Hypothetical protein C320.14 in chromosome III 1V71 1 ATP binding Anchor2 D-serine ammonia-lyase activity D-serine metabolic process Disordered binding sites Disordered regions GO GO:0000287 GO:0003941 GO:0005524 GO:0006563 GO:0008721 GO:0030170 GO:0030378 GO:0042803 GO:0070178 Hydropathy values IPR001926 IPR036052 IUPred2(short) InterPro L-serine ammonia-lyase activity L-serine metabolic process PF00291 Pfam Pyridoxal-phosphate dependent enzyme (PALP) Tryptophan synthase beta chain-like, PALP domain Tryptophan synthase beta chain-like, PALP domain superfamily UNIPROT biojava-7.2.4 disorder disorder_binding hydropathy magnesium ion binding protein homodimerization activity pyridoxal phosphate binding serine racemase activity ISOMERASE Dimer, PLP, ISOMERASE Hypothetical protein C320.14 in chromosome III Pfam disorder disorder_binding hydropathy Protein Schizosaccharomyces pombe X-RAY DIFFRACTION MG PLP MG PLP 0.068111",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_0b0eb419fa29",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0667_1V71_1_001"
+}

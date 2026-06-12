@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_6fc4d214f527",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Malate dehydrogenase, glyoxysomal precursor 1SEV 1 Anchor2 Disordered binding sites Disordered regions GO GO:0006097 GO:0006099 GO:0006108 GO:0009507 GO:0009514 GO:0030060 Hydropathy values IPR001236 IPR001252 IPR001557 IPR010097 IPR015955 IPR022383 IPR036291 IUPred2(short) InterPro L-lactate/malate dehydrogenase L-malate dehydrogenase (NAD+) activity Lactate dehydrogenase/glycoside hydrolase, family 4, C-terminal Lactate/malate dehydrogenase, C-terminal Lactate/malate dehydrogenase, N-terminal Malate dehydrogenase, active site Malate dehydrogenase, type 1 NAD(P)-binding domain superfamily PDB UNIPROT artifact biojava-7.2.4 chloroplast disorder disorder_binding expression tag glyoxylate cycle glyoxysome hydropathy malate metabolic process range_feature_1 tricarboxylic acid cycle OXIDOREDUCTASE OXIDOREDUCTASE Malate dehydrogenase, glyoxysomal precursor artifact disorder disorder_binding hydropathy Protein Citrullus lanatus X-RAY DIFFRACTION 0.127072",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_6fc4d214f527",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0984_1SEV_1_002"
+}

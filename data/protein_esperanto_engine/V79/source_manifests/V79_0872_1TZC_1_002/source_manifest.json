@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_fcad09d41816",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "glucose-6-phosphate isomerase, conjectural 1TZC 1 Anchor2 Bacterial phospho-glucose isomerase C-terminal SIS domain (bact-PGI_C) Bifunctional glucose-6-phosphate/mannose-6-phosphate isomerase, C-terminal Bifunctional phosphoglucose/phosphomannose isomerase, SIS domain 1 Disordered binding sites Disordered regions GO GO:0004347 GO:0004476 GO:0005737 GO:0005975 GO:0097367 GO:1901135 Hydropathy values IPR001347 IPR019490 IPR035484 IPR046348 IUPred2(short) InterPro PF10432 Pfam SIS domain SIS domain superfamily UNIPROT biojava-7.2.4 carbohydrate derivative binding carbohydrate derivative metabolic process carbohydrate metabolic process cytoplasm disorder disorder_binding glucose-6-phosphate isomerase activity hydropathy mannose-6-phosphate isomerase activity ISOMERASE enzyme, crenarchaeon, hyperthermophile, PGI family, Isomerase glucose-6-phosphate isomerase, conjectural Pfam disorder disorder_binding hydropathy Protein Pyrobaculum aerophilum str. IM2 X-RAY DIFFRACTION 0.036424",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_fcad09d41816",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0872_1TZC_1_002"
+}

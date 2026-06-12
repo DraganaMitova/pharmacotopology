@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_efd4f5838f73",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Probable GTPase engC 1T9H 1 Anchor2 Circularly permuted (CP)-type guanine nucleotide-binding (G) domain Disordered binding sites Disordered regions GO GO:0000028 GO:0003924 GO:0005525 GO:0005737 GO:0019843 GO:0046872 GTP binding GTPase activity Hydropathy values IPR004881 IPR010914 IPR012340 IPR027417 IPR030378 IPR031944 IUPred2(short) InterPro Nucleic acid-binding, OB-fold P-loop containing nucleoside triphosphate hydrolase PDB PF03193 PF16745 Pfam Ribosome biogenesis GTPase RsgA Ribosome biogenesis GTPase RsgA, N-terminal RsgA GTPase (RsgA_GTPase) RsgA GTPase domain RsgA N-terminal domain (RsgA_N) UNIPROT artifact biojava-7.2.4 cytoplasm disorder disorder_binding hydropathy initiating methionine,expression tag metal ion binding rRNA binding range_feature_1 ribosomal small subunit assembly HYDROLASE N-terminal beta-barrel domain with Oligonucleotide Binding fold, central GTP binding domain, C-terminal zinc-binding domain, HYDROLASE Probable GTPase engC Pfam artifact disorder disorder_binding hydropathy Protein Bacillus subtilis X-RAY DIFFRACTION CA ZN CA ZN 0.084691",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_efd4f5838f73",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0946_1T9H_1_002"
+}

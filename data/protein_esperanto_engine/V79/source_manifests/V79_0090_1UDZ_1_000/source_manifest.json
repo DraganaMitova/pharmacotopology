@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_7958abcf6299",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Isoleucyl-tRNA synthetase 1UDZ 1 ATP binding Aminoacyl-tRNA synthetase, class I, conserved site Aminoacyl-tRNA synthetase, class Ia Aminoacyl-tRNA synthetase, class Ia, anticodon-binding Anchor2 Disordered binding sites Disordered regions GO GO:0000049 GO:0002161 GO:0004822 GO:0005524 GO:0005737 GO:0006428 GO:0008270 Hydropathy values IPR001412 IPR002300 IPR002301 IPR009008 IPR009080 IPR013155 IPR014729 IPR023586 IPR033709 IUPred2(short) InterPro Isoleucine-tRNA ligase Isoleucine-tRNA ligase, type 2 Isoleucyl tRNA synthetase type 2, anticodon-binding domain Methionyl/Valyl/Leucyl/Isoleucyl-tRNA synthetase, anticodon-binding PDB Rossmann-like alpha/beta/alpha sandwich fold UNIPROT Valyl/Leucyl/Isoleucyl-tRNA synthetase, editing domain aminoacyl-tRNA deacylase activity artifact biojava-7.2.4 cytoplasm disorder disorder_binding hydropathy initiating methionine isoleucine-tRNA ligase activity isoleucyl-tRNA aminoacylation range_feature_1 tRNA binding zinc ion binding LIGASE aminoacyl-trna synthetase, CP1, editing, Structural Genomics, NPPSFA, National Project on Protein Structural and Functional Analyses, RIKEN Structural Genomics/Proteomics Initiative, RSGI, LIGASE Isoleucyl-tRNA synthetase artifact disorder disorder_binding hydropathy Protein Thermus thermophilus X-RAY DIFFRACTION 0.065934",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_7958abcf6299",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0090_1UDZ_1_000"
+}

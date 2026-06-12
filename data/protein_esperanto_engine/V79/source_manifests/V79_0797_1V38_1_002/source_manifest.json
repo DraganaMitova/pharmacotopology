@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_c614d48ae6d7",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "SAM-domain protein SAMSN-1 1V38 1 Anchor2 Disordered binding sites Disordered regions GO GO:0001726 GO:0001784 GO:0002820 GO:0005634 GO:0005737 GO:0005829 GO:0050732 GO:0050869 GO:1902531 Hydropathy values IPR001452 IPR001660 IPR013761 IPR021090 IPR036028 IPR037623 IPR051725 IUPred2(short) InterPro PDB PF07647 Pfam SAM and SH3 domain-containing protein SAM domain (Sterile alpha motif) (SAM_2) SAMSN1, SAM domain SH3 domain SH3-like domain superfamily SLy proteins associated disordered region Sterile alpha motif domain Sterile alpha motif/pointed domain superfamily UNIPROT artifact biojava-7.2.4 cloning artifact cytoplasm cytosol disorder disorder_binding hydropathy negative regulation of B cell activation negative regulation of adaptive immune response negative regulation of peptidyl-tyrosine phosphorylation nucleus phosphotyrosine residue binding range_feature_1 range_feature_2 regulation of intracellular signal transduction ruffle SIGNALING PROTEIN Structural genomics, Hypothetical protein, RIKEN Structural Genomics/Proteomics Initiative, RSGI, SIGNALING PROTEIN SAM-domain protein SAMSN-1 Pfam artifact disorder disorder_binding hydropathy Protein Mus musculus SOLUTION NMR 0.307692",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_c614d48ae6d7",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0797_1V38_1_002"
+}

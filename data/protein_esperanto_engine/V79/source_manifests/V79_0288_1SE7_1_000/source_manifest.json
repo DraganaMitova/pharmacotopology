@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_c0810f4a2277",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "HOMOLOGUE OF THE THETA SUBUNIT OF DNA POLYMERASE III 1SE7 1 Anchor2 DNA binding DNA polymerase III, theta subunit (DNA_pol3_theta) DNA polymerase III-theta superfamily DNA polymerase III-theta, bacterial DNA replication DNA-directed DNA polymerase activity Disordered binding sites Disordered regions GO GO:0003677 GO:0003887 GO:0006260 Hydropathy values IPR009052 IPR036745 IUPred2(short) InterPro PF06440 Pfam UNIPROT biojava-7.2.4 disorder disorder_binding hydropathy TRANSFERASE E. COLI BACTERIOPHAGE P1, HOMOLOGUE OF THETA, HOT, E. COLI DNA POLYMERASE III, Transferase HOMOLOGUE OF THE THETA SUBUNIT OF DNA POLYMERASE III Pfam disorder disorder_binding hydropathy Protein Punavirus P1 SOLUTION NMR 0.289157",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_c0810f4a2277",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0288_1SE7_1_000"
+}

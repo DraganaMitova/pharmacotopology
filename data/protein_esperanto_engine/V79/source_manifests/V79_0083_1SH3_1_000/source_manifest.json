@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_46cda0e24036",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "RNA Polymerase 1SH3 1 ATP binding Anchor2 DNA-templated transcription DNA/RNA polymerase superfamily Disordered binding sites Disordered regions GO GO:0003723 GO:0003968 GO:0004197 GO:0005524 GO:0006351 GO:0006508 GO:0017111 GO:0039694 GO:0043657 GO:0046872 Hydropathy values IPR001205 IPR001665 IPR007094 IPR009003 IPR043128 IPR043502 IPR043504 IUPred2(short) InterPro Norovirus peptidase C37 Peptidase S1, PA clan Peptidase_S1_PA_chymotrypsin RNA binding RNA-directed RNA polymerase activity RNA-directed RNA polymerase, C-terminal domain RNA-directed RNA polymerase, catalytic domain Reverse transcriptase/Diguanylate cyclase domain UNIPROT biojava-7.2.4 cysteine-type endopeptidase activity disorder disorder_binding host cell hydropathy metal ion binding proteolysis ribonucleoside triphosphate phosphatase activity viral RNA genome replication TRANSFERASE RNA POLYMERASE, VIRAL REPLICATION ENZYME, TRANSFERASE RNA Polymerase disorder disorder_binding hydropathy Protein Norwalk virus X-RAY DIFFRACTION MG MG 0.196078",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_46cda0e24036",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0083_1SH3_1_000"
+}

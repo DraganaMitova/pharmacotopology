@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_16dcc0d2993c",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "MAP/microtubule affinity-regulating kinase 3 1V5S 1 ATP binding Anchor2 Disordered binding sites Disordered regions GO GO:0000226 GO:0004674 GO:0005524 GO:0005737 GO:0005886 GO:0006468 GO:0010389 GO:0019903 GO:0030425 GO:0035331 GO:0035556 GO:0050321 GO:0106310 GO:1900181 Hydropathy values IPR000719 IPR001772 IPR008271 IPR011009 IPR015940 IPR017441 IPR028375 IPR049508 IUPred2(short) InterPro KA1 domain/Ssp2, C-terminal Kinase associated domain 1 (KA1) PDB PF02149 Pfam Protein kinase domain Protein kinase, ATP binding site Protein kinase-like domain superfamily Serine/threonine-protein kinase MARK 1-4, catalytic domain Serine/threonine-protein kinase, active site UNIPROT Ubiquitin-associated domain artifact biojava-7.2.4 cloning artifact cytoplasm dendrite disorder disorder_binding hydropathy intracellular signal transduction microtubule cytoskeleton organization negative regulation of hippo signaling negative regulation of protein localization to nucleus plasma membrane protein phosphatase binding protein phosphorylation protein serine kinase activity protein serine/threonine kinase activity range_feature_1 regulation of G2/M transition of mitotic cell cycle tau-protein kinase activity TRANSFERASE KA1 domain, ELKL motif, MARK3, phosphorylation, STRUCTURAL GENOMICS, NPPSFA, National Project on Protein Structural and Functional Analyses, RIKEN Structural Genomics/Proteomics Initiative, RSGI, TRANSFERASE MAP/microtubule affinity-regulating kinase 3 Pfam artifact disorder disorder_binding hydropathy Protein Mus musculus SOLUTION NMR 0.214286",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_16dcc0d2993c",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0144_1V5S_1_000"
+}

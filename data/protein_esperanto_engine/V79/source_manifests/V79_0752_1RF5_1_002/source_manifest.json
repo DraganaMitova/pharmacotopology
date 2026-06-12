@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_686e025fc9d7",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "5-enolpyruvylshikimate-3-phosphate synthase 1RF5 1 3-phosphoshikimate 1-carboxyvinyltransferase 3-phosphoshikimate 1-carboxyvinyltransferase activity 3-phosphoshikimate 1-carboxyvinyltransferase, conserved site Anchor2 Disordered binding sites Disordered regions EPSP synthase (3-phosphoshikimate 1-carboxyvinyltransferase) (EPSP_synthase) Enolpyruvate transferase domain Enolpyruvate transferase domain superfamily GO GO:0003866 GO:0005737 GO:0008652 GO:0009073 GO:0009423 Hydropathy values IPR001986 IPR006264 IPR013792 IPR023193 IPR036968 IUPred2(short) InterPro PF00275 Pfam RNA 3'-terminal phosphate cyclase/enolpyruvate transferase, alpha/beta UNIPROT amino acid biosynthetic process aromatic amino acid family biosynthetic process biojava-7.2.4 chorismate biosynthetic process cytoplasm disorder disorder_binding hydropathy TRANSFERASE shikimate pathway, EPSP synthase, S3P, Glyphosate, PEP, S. pneumoniae, TRANSFERASE 5-enolpyruvylshikimate-3-phosphate synthase Pfam disorder disorder_binding hydropathy Protein Streptococcus pneumoniae X-RAY DIFFRACTION 0.065574",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_686e025fc9d7",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0752_1RF5_1_002"
+}

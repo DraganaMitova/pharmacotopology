@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_87960181705f",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "4-aminobutyrate aminotransferase 1SF2 1 4-aminobutyrate aminotransferase, bacterial 4-aminobutyrate:2-oxoglutarate transaminase activity 5-aminovalerate transaminase activity Aminotransferase class-III Aminotransferase class-III (Aminotran_3) Aminotransferases class-III pyridoxal-phosphate attachment site Anchor2 Class-III Pyridoxal-phosphate-dependent Aminotransferase Disordered binding sites Disordered regions GO GO:0003992 GO:0005829 GO:0009450 GO:0030170 GO:0034386 GO:0042450 GO:0042803 GO:0047589 Hydropathy values IPR004632 IPR005814 IPR015421 IPR015422 IPR015424 IPR049704 IPR050103 IUPred2(short) InterPro L-arginine biosynthetic process via ornithine N2-acetyl-L-ornithine:2-oxoglutarate 5-aminotransferase activity PF00202 Pfam Pyridoxal phosphate-dependent transferase Pyridoxal phosphate-dependent transferase, major domain Pyridoxal phosphate-dependent transferase, small domain UNIPROT biojava-7.2.4 cytosol disorder disorder_binding gamma-aminobutyric acid catabolic process hydropathy protein homodimerization activity pyridoxal phosphate binding TRANSFERASE AMINOTRANSFERASE, TRANSFERASE 4-aminobutyrate aminotransferase Pfam disorder disorder_binding hydropathy Protein Escherichia coli X-RAY DIFFRACTION PLP PLP 0.042254",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_87960181705f",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0919_1SF2_1_002"
+}

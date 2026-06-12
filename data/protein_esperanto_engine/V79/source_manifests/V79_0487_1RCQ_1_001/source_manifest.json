@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_151ddca3641d",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "catabolic alanine racemase DadX 1RCQ 1 Alanine racemase Alanine racemase, C-terminal Alanine racemase, C-terminal domain (Ala_racemase_C) Alanine racemase, N-terminal Alanine racemase, N-terminal domain (Ala_racemase_N) Alanine racemase, pyridoxal-phosphate attachment site Alanine racemase/group IV decarboxylase, C-terminal Anchor2 D-alanine biosynthetic process Disordered binding sites Disordered regions GO GO:0005829 GO:0008784 GO:0030170 GO:0030632 Hydropathy values IPR000821 IPR001608 IPR009006 IPR011079 IPR020622 IPR029066 IUPred2(short) InterPro PDB PF00842 PF01168 PLP-binding barrel Parent monomer LYS Pfam UNIPROT alanine racemase activity biojava-7.2.4 cytosol disorder disorder_binding hydropathy modified residue modified_monomer monomer_feature_1 monomer_feature_2 mutation pyridoxal phosphate binding ISOMERASE alpha-beta barrel, beta-structure for c-terminal domain, internal/external aldimine forms, ISOMERASE catabolic alanine racemase DadX Pfam disorder disorder_binding hydropathy modified_monomer mutation Protein Pseudomonas aeruginosa X-RAY DIFFRACTION PLP DLY PLP 0.022409",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_151ddca3641d",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0487_1RCQ_1_001"
+}

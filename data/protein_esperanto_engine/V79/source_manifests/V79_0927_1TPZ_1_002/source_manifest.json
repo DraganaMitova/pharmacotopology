@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_e4eb3cdfae32",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "interferon-inducible GTPase 1TPZ 1 Anchor2 Disordered binding sites Disordered regions GDP binding GO GO:0000045 GO:0003924 GO:0005525 GO:0005737 GO:0005789 GO:0009617 GO:0010506 GO:0019003 GO:0019221 GO:0020005 GO:0031965 GO:0032580 GO:0035458 GO:0042802 GO:0042832 GO:0045087 GO:0050829 GTP binding GTPase activity Golgi cisterna membrane Hydropathy values IPR007743 IPR027417 IPR030385 IPR051515 IRG-type guanine nucleotide-binding (G) domain IUPred2(short) Immunity-related GTPase Immunity-related GTPases-like InterPro Interferon-inducible GTPase Interferon-inducible GTPase (IIGP) (IIGP) Monotopic/peripheral.Alpha/Beta monotopic/peripheral.P-loop containing nucleoside triphosphate hydrolases.Interferon-inducible GTPase OPM P-loop containing nucleoside triphosphate hydrolase PDB PF05049 Pfam UNIPROT artifact autophagosome assembly biojava-7.2.4 cellular response to interferon-beta cloning artifact cytokine-mediated signaling pathway cytoplasm defense response to Gram-negative bacterium defense response to protozoan disorder disorder_binding endoplasmic reticulum membrane hydropathy identical protein binding innate immune response nuclear membrane range_feature_1 regulation of autophagy response to bacterium symbiont-containing vacuole membrane SIGNALING PROTEIN GTPase, Interferon gamma, dimer, immunology, SIGNALING PROTEIN interferon-inducible GTPase Pfam artifact disorder disorder_binding hydropathy Protein Mus musculus X-RAY DIFFRACTION GDP MG GDP MG 0.042654",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_e4eb3cdfae32",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0927_1TPZ_1_002"
+}

@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_f8a190ac2642",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "acetyl-coenzyme A synthetase 1 1RY2 1 AMP binding AMP-binding enzyme (AMP-binding) AMP-binding enzyme C-terminal domain (AMP-binding_C) AMP-binding enzyme domain superfamily AMP-binding enzyme, C-terminal domain AMP-binding, conserved site AMP-dependent synthetase/ligase domain ANL, N-terminal domain ATP binding Acetate-CoA ligase Acetyl-coenzyme A synthetase N-terminus (ACAS_N) Acetyl-coenzyme A synthetase, N-terminal domain Anchor2 Disordered binding sites Disordered regions GO GO:0003987 GO:0005524 GO:0005634 GO:0005739 GO:0005829 GO:0006085 GO:0016208 GO:0016880 GO:0019427 GO:0019654 Hydropathy values IPR000873 IPR011904 IPR020845 IPR025110 IPR032387 IPR042099 IPR045851 IUPred2(short) InterPro PDB PF00501 PF13193 PF16177 Pfam UNIPROT acetate fermentation acetate-CoA ligase activity acetyl-CoA biosynthetic process acetyl-CoA biosynthetic process from acetate acid-ammonia (or amide) ligase activity artifact biojava-7.2.4 cytosol disorder disorder_binding expression tag hydropathy mitochondrion nucleus range_feature_1 LIGASE amp forming; related to firefly luciferase, LIGASE acetyl-coenzyme A synthetase 1 Pfam artifact disorder disorder_binding hydropathy Protein Saccharomyces cerevisiae X-RAY DIFFRACTION 0.051282",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_f8a190ac2642",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0421_1RY2_1_001"
+}

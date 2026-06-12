@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_b9ad3d9b36a5",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Putative phosphomannomutase 1TUO 1 Alpha-D-phosphohexomutase superfamily Alpha-D-phosphohexomutase, C-terminal Alpha-D-phosphohexomutase, C-terminal domain superfamily Alpha-D-phosphohexomutase, alpha/beta/alpha I/II/III Alpha-D-phosphohexomutase, alpha/beta/alpha domain I Alpha-D-phosphohexomutase, alpha/beta/alpha domain II Alpha-D-phosphohexomutase, alpha/beta/alpha domain III Anchor2 Disordered binding sites Disordered regions GO GO:0005975 GO:0006166 GO:0008973 GO:0046872 Hydropathy values IPR005841 IPR005843 IPR005844 IPR005845 IPR005846 IPR016055 IPR036900 IUPred2(short) InterPro PDB PF00408 PF02878 PF02879 PF02880 Pfam Phosphoglucomutase/phosphomannomutase, C-terminal domain (PGM_PMM_IV) Phosphoglucomutase/phosphomannomutase, alpha/beta/alpha domain I (PGM_PMM_I) Phosphoglucomutase/phosphomannomutase, alpha/beta/alpha domain II (PGM_PMM_II) Phosphoglucomutase/phosphomannomutase, alpha/beta/alpha domain III (PGM_PMM_III) UNIPROT artifact biojava-7.2.4 carbohydrate metabolic process cloning artifact disorder disorder_binding hydropathy metal ion binding phosphopentomutase activity purine ribonucleoside salvage range_feature_1 BIOSYNTHETIC PROTEIN phosphomannomutase, Thermus thermophilus HB8, Biosynthesis of alginate, Structural Genomics, RIKEN Structural Genomics/Proteomics Initiative, RSGI, BIOSYNTHETIC PROTEIN Putative phosphomannomutase Pfam artifact disorder disorder_binding hydropathy Protein Thermus thermophilus X-RAY DIFFRACTION 0.023707",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_b9ad3d9b36a5",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0671_1TUO_1_001"
+}

@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_17a9c9db7e0a",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Regulating synaptic membrane exocytosis protein 2 1V27 1 Anchor2 C2 domain C2 domain (C2) C2 domain superfamily Disordered binding sites Disordered regions GO GO:0006886 GO:0007188 GO:0008270 GO:0016081 GO:0016082 GO:0017156 GO:0017157 GO:0030073 GO:0030154 GO:0031267 GO:0042391 GO:0042734 GO:0044325 GO:0048786 GO:0048791 GO:0061669 GO:0070062 GO:0097151 GO:0098831 GO:0098882 GO:1903861 GO:2000300 GO:2000463 Hydropathy values IPR000008 IPR001478 IPR010911 IPR011011 IPR013083 IPR017455 IPR035892 IPR036034 IPR039032 IPR054386 IUPred2(short) InterPro PDB PDZ domain PDZ superfamily PF00168 Pfam RIM, zinc finger Rab-binding domain Rim-like UNIPROT Zinc finger, FYVE-related Zinc finger, FYVE/PHD-type Zinc finger, RING/FYVE/PHD-type adenylate cyclase-modulating G protein-coupled receptor signaling pathway artifact biojava-7.2.4 calcium ion-regulated exocytosis of neurotransmitter calcium-ion regulated exocytosis cell differentiation cloning artifact disorder disorder_binding extracellular exosome hydropathy insulin secretion intracellular protein transport positive regulation of dendrite extension positive regulation of excitatory postsynaptic potential positive regulation of inhibitory postsynaptic potential presynaptic active zone presynaptic active zone cytoplasmic component presynaptic membrane range_feature_1 range_feature_2 regulation of exocytosis regulation of membrane potential regulation of synaptic vesicle exocytosis small GTPase binding spontaneous neurotransmitter secretion structural constituent of presynaptic active zone synaptic vesicle docking synaptic vesicle priming transmembrane transporter binding zinc ion binding ENDOCYTOSIS/EXOCYTOSIS C2, exocytosis, Rab3-interacting molecule, RIKEN Structural Genomics/Proteomics Initiative, RSGI, Structural Genomics, ENDOCYTOSIS-EXOCYTOSIS COMPLEX Regulating synaptic membrane exocytosis protein 2 Pfam artifact disorder disorder_binding hydropathy Protein Homo sapiens SOLUTION NMR 0.241135",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_17a9c9db7e0a",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0782_1V27_1_002"
+}

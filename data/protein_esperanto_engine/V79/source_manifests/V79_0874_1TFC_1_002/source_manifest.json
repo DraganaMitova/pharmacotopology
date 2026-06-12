@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_1bbc83d258f4",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Estrogen-related receptor gamma 1TFC 1 AF-2 domain binding Anchor2 DNA-binding transcription activator activity, RNA polymerase II-specific DNA-binding transcription factor activity, RNA polymerase II-specific Disordered binding sites Disordered regions Estrogen receptor/oestrogen-related receptor GO GO:0000785 GO:0000981 GO:0001228 GO:0003707 GO:0004879 GO:0005496 GO:0005634 GO:0005654 GO:0006355 GO:0006357 GO:0008270 GO:0034056 GO:0042802 GO:0045944 GO:0048384 GO:0050682 GO:0120162 GO:1990837 Hydropathy values IPR000536 IPR001628 IPR001723 IPR003078 IPR013088 IPR024178 IPR027289 IPR035500 IPR050200 IUPred2(short) InterPro Ligand-binding domain of nuclear hormone receptor (Hormone_recep) Nuclear hormone receptor Nuclear hormone receptor family NR3 subfamily Nuclear hormone receptor, ligand-binding domain Nuclear hormone receptor-like domain superfamily Oestrogen-related receptor PDB PF00104 Pfam Retinoic acid receptor UNIPROT Zinc finger, NHR/GATA-type Zinc finger, nuclear hormone receptor-type artifact biojava-7.2.4 chromatin disorder disorder_binding estrogen response element binding expression tag hydropathy identical protein binding nuclear receptor activity nuclear steroid receptor activity nucleoplasm nucleus positive regulation of cold-induced thermogenesis positive regulation of transcription by RNA polymerase II range_feature_1 regulation of DNA-templated transcription regulation of transcription by RNA polymerase II retinoic acid receptor signaling pathway sequence-specific double-stranded DNA binding steroid binding zinc ion binding TRANSCRIPTION TRANSCRIPTIONALLY ACTIVE CONFORMATION IN ABSENCE OF LIGAND, TRANSCRIPTION Estrogen-related receptor gamma Pfam artifact disorder disorder_binding hydropathy Protein Homo sapiens X-RAY DIFFRACTION 0.143426",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_1bbc83d258f4",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0874_1TFC_1_002"
+}

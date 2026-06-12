@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_d1894fc787d4",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Rho guanine nucleotide exchange factor 1 1SHZ 2 ARHGEF1-like, PH domain Anchor2 Dbl homology (DH) domain superfamily Dbl homology domain Disordered binding sites Disordered regions G protein-coupled receptor binding G protein-coupled receptor signaling pathway GO GO:0001664 GO:0003723 GO:0005085 GO:0005096 GO:0005737 GO:0005829 GO:0005886 GO:0007186 GO:0007266 GO:0051056 GO:0160221 GTPase activator activity Hydropathy values IPR000219 IPR001849 IPR011993 IPR015212 IPR035899 IPR036305 IPR037887 IPR041020 IPR044926 IUPred2(short) InterPro PH-like domain superfamily Pleckstrin homology domain RGS domain superfamily RGS, subdomain 2 RNA binding Regulator of G protein signalling-like domain Rho protein signal transduction Rho-activating G protein-coupled receptor signaling pathway UNIPROT biojava-7.2.4 cytoplasm cytosol disorder disorder_binding guanyl-nucleotide exchange factor activity hydropathy p115RhoGEF, RGS domain plasma membrane regulation of small GTPase mediated signal transduction SIGNALING PROTEIN SIGNAL TRANSDUCTION, PROTEIN COMPLEX, SIGNALING PROTEIN Rho guanine nucleotide exchange factor 1 disorder disorder_binding hydropathy Protein Homo sapiens X-RAY DIFFRACTION GDP MG ALF GDP MG 0.218884",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_d1894fc787d4",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0304_1SHZ_2_000"
+}

@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_6d97cf9a5716",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "SUN protein 1SQF 1 16S rRNA methyltransferase RsmB/F (Methyltr_RsmB-F) Anchor2 Disordered binding sites Disordered regions GO GO:0003723 GO:0005829 GO:0006355 GO:0009383 GO:0070475 Hydropathy values IPR001678 IPR004573 IPR006027 IPR018314 IPR023267 IPR023541 IPR029063 IPR035926 IPR048019 IPR049560 IPR054728 IUPred2(short) InterPro Methyltr_RsmF/B-like, ferredoxin-like domain (RsmF-B_ferredox) NusB family (NusB) NusB-like superfamily NusB/RsmB/TIM44 PF01029 PF01189 PF22458 Pfam RNA (C5-cytosine) methyltransferase RNA binding Ribosomal RNA small subunit methyltransferase B-like, N-terminal domain Ribosomal RNA small subunit methyltransferase B-like, ferredoxin-like domain RsmB/NOL1/NOP2-like, conserved site S-adenosyl-L-methionine-dependent methyltransferase superfamily SAM-dependent methyltransferase RsmB-F/NOP2-type domain SAM-dependent methyltransferase RsmB-F/NOP2-type, catalytic core UNIPROT biojava-7.2.4 cytosol disorder disorder_binding hydropathy rRNA (cytosine-C5-)-methyltransferase activity rRNA base methylation rRNA small subunit methyltransferase B rRNA small subunit methyltransferase B, enterobacteriaceae regulation of DNA-templated transcription TRANSFERASE Rossmann-fold, mixed beta sheet, methyltransferase-fold, RNA-binding domain, TRANSFERASE SUN protein Pfam disorder disorder_binding hydropathy Protein Escherichia coli X-RAY DIFFRACTION 0.086247",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_6d97cf9a5716",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0477_1SQF_1_001"
+}

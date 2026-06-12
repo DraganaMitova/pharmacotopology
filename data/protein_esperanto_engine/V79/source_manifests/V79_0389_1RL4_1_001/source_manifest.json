@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_589682d8e72a",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "formylmethionine deformylase 1RL4 1 Anchor2 Disordered binding sites Disordered regions GO GO:0006412 GO:0008198 GO:0020011 GO:0031365 GO:0042586 Hydropathy values IPR023635 IPR036821 IUPred2(short) InterPro N-terminal protein amino acid modification PDB Peptide deformylase Peptide deformylase superfamily UNIPROT apicoplast artifact biojava-7.2.4 cloning artifact disorder disorder_binding ferrous iron binding hydropathy peptide deformylase activity range_feature_1 range_feature_2 translation HYDROLASE crystal engineering, drug design, malaria, PDF, peptide deformylase, Plasmodium, HYDROLASE formylmethionine deformylase artifact disorder disorder_binding hydropathy Protein Plasmodium falciparum 3D7 X-RAY DIFFRACTION CO BRR CO 0.117021",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_589682d8e72a",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0389_1RL4_1_001"
+}

@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_58edb9d00492",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "KYNURENINASE 1QZ9 1 Anchor2 DegT/DnrJ/EryC1/StrS aminotransferase Disordered binding sites Disordered regions GO GO:0005737 GO:0009435 GO:0019441 GO:0019805 GO:0030170 GO:0030429 GO:0043420 GO:0097053 Hydropathy values IPR000653 IPR010111 IPR015421 IPR015422 IPR015424 IUPred2(short) InterPro Kynureninase L-kynurenine catabolic process L-tryptophan catabolic process to kynurenine NAD+ biosynthetic process Pyridoxal phosphate-dependent transferase Pyridoxal phosphate-dependent transferase, major domain Pyridoxal phosphate-dependent transferase, small domain UNIPROT anthranilate metabolic process biojava-7.2.4 cytoplasm disorder disorder_binding hydropathy kynureninase activity pyridoxal phosphate binding quinolinate biosynthetic process HYDROLASE kynurenine, tryptophan, PLP, vitamin B6, pyridoxal-5'-phosphate, HYDROLASE KYNURENINASE disorder disorder_binding hydropathy Protein Pseudomonas fluorescens X-RAY DIFFRACTION PLP PLP 0.028846",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_58edb9d00492",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0066_1QZ9_1_000"
+}

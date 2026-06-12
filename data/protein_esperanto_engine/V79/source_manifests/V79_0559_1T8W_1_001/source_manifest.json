@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_f7a3a99493b5",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "AMP nucleosidase 1T8W 1 AMP nucleosidase AMP nucleosidase activity AMP nucleosidase, phosphorylase domain AMP nucleoside phosphorylase, N-terminal AMP nucleoside phosphorylase, N-terminal domain superfamily AMP salvage Anchor2 Bacterial AMP nucleoside phosphorylase N-terminus (AMNp_N) Disordered binding sites Disordered regions GO GO:0005829 GO:0008714 GO:0009116 GO:0044209 Hydropathy values IPR000845 IPR011271 IPR018953 IPR035994 IPR037109 IPR047039 IUPred2(short) InterPro Nucleoside phosphorylase domain Nucleoside phosphorylase superfamily PDB PF01048 PF10423 Parent monomer MET Pfam Phosphorylase superfamily (PNP_UDP_1) UNIPROT biojava-7.2.4 cytosol disorder disorder_binding hydropathy modified residue modified_monomer monomer_feature_1 monomer_feature_2 monomer_feature_3 monomer_feature_4 monomer_feature_5 monomer_feature_6 monomer_feature_7 monomer_feature_8 mutation nucleoside metabolic process HYDROLASE ALPHA-BETA-ALPHA SANDWICH, ALPHA-BETA FOLD, HYDROLASE AMP nucleosidase Pfam disorder disorder_binding hydropathy modified_monomer mutation Protein Escherichia coli X-RAY DIFFRACTION 0.047521",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_f7a3a99493b5",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0559_1T8W_1_001"
+}

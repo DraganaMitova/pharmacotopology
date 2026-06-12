@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_e150fb8840bc",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "ENDO-BETA-1,4-XYLANASE 1US2 1 Anchor2 Carbohydrate binding module family 15 Disordered binding sites Disordered regions GO GO:0009279 GO:0031176 GO:0045493 Galactose-binding-like domain superfamily Glycoside hydrolase family 10 Glycoside hydrolase family 10 domain Glycoside hydrolase superfamily Glycosyl hydrolases family 10, active site Hydropathy values IPR001000 IPR005088 IPR008979 IPR017853 IPR031158 IPR044846 IUPred2(short) InterPro PDB UNIPROT artifact biojava-7.2.4 cell outer membrane disorder disorder_binding endo-1,4-beta-xylanase activity engineered mutation expression tag hydropathy monomer_feature_1 mutation range_feature_1 range_feature_2 xylan catabolic process HYDROLASE HYDROLASE, CARBOHYDRATE BINDING MODULE, XYLAN DEGRADATION ENDO-BETA-1,4-XYLANASE artifact disorder disorder_binding hydropathy mutation Protein Cellvibrio japonicus X-RAY DIFFRACTION 0.030189",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_e150fb8840bc",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0393_1US2_1_001"
+}

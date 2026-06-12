@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_6da1583b76f3",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "D-aminoacylase 1RJQ 1 Amidohydrolase 3 Anchor2 D-aminoacylase, insert domain superfamily Disordered binding sites Disordered regions GO GO:0005829 GO:0016812 GO:0046872 GO:0047420 Hydropathy values IPR011059 IPR013108 IPR023100 IPR032466 IPR050378 IUPred2(short) InterPro Metal-dependent hydrolase Metal-dependent hydrolase, composite domain superfamily Metallo-dependent Hydrolases Superfamily N-acyl-D-amino-acid deacylase activity PDB UNIPROT artifact biojava-7.2.4 cytosol disorder disorder_binding engineered mutation expression tag hydrolase activity, acting on carbon-nitrogen (but not peptide) bonds, in cyclic amides hydropathy metal ion binding monomer_feature_1 mutation range_feature_1 HYDROLASE TIM barrel, beta barrel, insertion, Hydrolase D-aminoacylase artifact disorder disorder_binding hydropathy mutation Protein Alcaligenes faecalis X-RAY DIFFRACTION ZN ACT ZN 0.058468",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_6da1583b76f3",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0451_1RJQ_1_001"
+}

@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_d417ecb22342",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "4-hydroxyphenylpyruvic acid dioxygenase 1SQI 1 4-hydroxyphenylpyruvate dioxygenase 4-hydroxyphenylpyruvate dioxygenase activity 4-hydroxyphenylpyruvate dioxygenase, C-terminal 4-hydroxyphenylpyruvate dioxygenase, N-terminal Anchor2 Disordered binding sites Disordered regions GO GO:0000139 GO:0003868 GO:0005506 GO:0005783 GO:0005789 GO:0005794 GO:0006559 GO:0006572 GO:0042803 Glyoxalase/Bleomycin resistance protein/Dihydroxybiphenyl dioxygenase Glyoxalase/Bleomycin resistance protein/Dioxygenase superfamily (Glyoxalase) Glyoxalase/fosfomycin resistance/dioxygenase domain Golgi apparatus Golgi membrane Hydropathy values IPR004360 IPR005956 IPR029068 IPR037523 IPR041735 IPR041736 IUPred2(short) InterPro L-phenylalanine catabolic process L-tyrosine catabolic process PF00903 Pfam UNIPROT Vicinal oxygen chelate (VOC), core domain biojava-7.2.4 disorder disorder_binding endoplasmic reticulum endoplasmic reticulum membrane hydropathy iron ion binding protein homodimerization activity BIOSYNTHETIC PROTEIN rat 4-hydroxyphenylpyruvate dioxygenase, BIOSYNTHETIC PROTEIN 4-hydroxyphenylpyruvic acid dioxygenase Pfam disorder disorder_binding hydropathy Protein Rattus norvegicus X-RAY DIFFRACTION FE 869 FE 0.063613",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_d417ecb22342",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0558_1SQI_1_001"
+}

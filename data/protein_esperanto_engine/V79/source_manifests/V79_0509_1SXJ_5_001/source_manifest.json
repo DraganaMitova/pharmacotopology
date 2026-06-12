@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_dcd6d7c4184a",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Activator 1 40 kDa subunit 1SXJ 5 AAA+ ATPase domain ATP binding Anchor2 Ctf18 RFC-like complex DNA Replication and Repair Clamp Loader Complex DNA binding DNA damage checkpoint signaling DNA polymerase III, clamp loader complex, gamma/delta/delta subunit, C-terminal DNA polymerase III, delta subunit (DNA_pol3_delta2) DNA repair DNA replication factor C complex DNA-templated DNA replication Disordered binding sites Disordered regions Elg1 RFC-like complex GO GO:0000077 GO:0003677 GO:0005524 GO:0005634 GO:0005663 GO:0006261 GO:0006272 GO:0006281 GO:0007062 GO:0007064 GO:0031389 GO:0031390 GO:0031391 Hydropathy values IPR003593 IPR008921 IPR027417 IPR050238 IUPred2(short) InterPro P-loop containing nucleoside triphosphate hydrolase PDB PF13177 PF21960 PF22534 Pfam RCF1/5-like, AAA+ ATPase lid domain (RCF1-5-like_lid) Rad17 RFC-like complex Replication factor C subunit 3, C-terminal domain (RFC_C) UNIPROT biojava-7.2.4 disorder disorder_binding engineered mutation hydropathy leading strand elongation mitotic sister chromatid cohesion monomer_feature_63 mutation nucleus sister chromatid cohesion REPLICATION CLAMP LOADER, PROCESSIVITY CLAMP, DNA SLIDING CLAMP, AAA+ ATPASE, DNA POLYMERASE, DNA-BINDING PROTEIN, REPLICATION Activator 1 40 kDa subunit Pfam disorder disorder_binding hydropathy mutation Protein Saccharomyces cerevisiae X-RAY DIFFRACTION MG AGS MG 0.014124",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_dcd6d7c4184a",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0509_1SXJ_5_001"
+}

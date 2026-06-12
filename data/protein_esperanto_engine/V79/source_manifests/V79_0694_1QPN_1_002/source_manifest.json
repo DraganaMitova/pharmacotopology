@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_308c0255f6a5",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "PROTEIN (QUINOLINATE PHOSPHORIBOSYL TRANSFERASE) 1QPN 1 Aldolase-type TIM barrel Anchor2 Disordered binding sites Disordered regions GO GO:0004514 GO:0005737 GO:0005886 GO:0009274 GO:0009435 GO:0034213 Hydropathy values IPR002638 IPR004393 IPR013785 IPR022412 IPR027277 IPR036068 IPR037128 IUPred2(short) InterPro NAD+ biosynthetic process Nicotinate phosphoribosyltransferase-like, C-terminal Nicotinate-nucleotide pyrophosphorylase Nicotinate-nucleotide pyrophosphorylase/Putative pyrophosphorylase ModD PF01729 PF02749 Pfam Quinolinate phosphoribosyl transferase, C-terminal Quinolinate phosphoribosyl transferase, C-terminal domain (QRPTase_C) Quinolinate phosphoribosyl transferase, N-terminal Quinolinate phosphoribosyl transferase, N-terminal domain (QRPTase_N) Quinolinate phosphoribosyl transferase, N-terminal domain superfamily UNIPROT biojava-7.2.4 cytoplasm disorder disorder_binding hydropathy nicotinate-nucleotide diphosphorylase (carboxylating) activity peptidoglycan-based cell wall plasma membrane quinolinate catabolic process TRANSFERASE TYPE II PRTASE, DE NOVO NAD BIOSYNTHESIS, PRPP, PHOSPHORIBOSYL TRANSFERASE, QUINOLINIC ACID, NAMN, Structural Genomics, PSI, Protein Structure Initiative, TB Structural Genomics Consortium, TBSGC, TRANSFERASE PROTEIN (QUINOLINATE PHOSPHORIBOSYL TRANSFERASE) Pfam disorder disorder_binding hydropathy Protein Mycobacterium tuberculosis H37Rv X-RAY DIFFRACTION 0.028169",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_308c0255f6a5",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0694_1QPN_1_002"
+}

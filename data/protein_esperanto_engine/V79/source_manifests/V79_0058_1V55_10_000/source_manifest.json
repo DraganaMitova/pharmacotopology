@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_08ace6ccd853",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Cytochrome c oxidase polypeptide VIIa-heart 1V55 10 Anchor2 Cytochrome c oxidase subunit VII Cytochrome c oxidase subunit VII (COX7a) Cytochrome c oxidase subunit VIIa, metazoa Cytochrome c oxidase, subunit VIIa superfamily Disordered binding sites Disordered regions Fully Oxidized Cytochrome C Oxidase, aa<sub>3</sub> GO GO:0005739 GO:0005743 GO:0006119 GO:0006123 GO:0016491 GO:0031966 GO:0045277 GO:0097250 GO:0098803 GO:1902600 Generic MemProtMD Generic PDBTM Hydropathy values IPR003177 IPR036539 IPR039297 IUPred2(short) InterPro MemProtMD PDB PDBTM PF02238 Pfam TRANSMEMBRANE PROTEINS: ALPHA-HELICAL.Electron Transport Chain Complexes: Complex IV (Cytochrome C Oxidase).Fully Oxidized Cytochrome C Oxidase, aa<sub>3</sub> UNIPROT biojava-7.2.4 disorder disorder_binding hydropathy mitochondrial electron transport, cytochrome c to oxygen mitochondrial inner membrane mitochondrial membrane mitochondrial respirasome assembly mitochondrion mpstruc oxidative phosphorylation oxidoreductase activity proton transmembrane transport respiratory chain complex respiratory chain complex IV OXIDOREDUCTASE OXIDOREDUCTASE Cytochrome c oxidase polypeptide VIIa-heart Pfam disorder disorder_binding hydropathy Protein Bos taurus X-RAY DIFFRACTION CU HEA MG ZN CU CUA HEA MG NA ZN 0.152542",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_08ace6ccd853",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0058_1V55_10_000"
+}

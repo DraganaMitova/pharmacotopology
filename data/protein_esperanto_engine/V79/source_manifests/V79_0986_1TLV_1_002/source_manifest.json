@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_daf7133051e4",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Transcription antiterminator licT 1TLV 1 Anchor2 BglG family transcriptional antiterminators CAT RNA-binding domain CAT RNA-binding domain superfamily Disordered binding sites Disordered regions GO GO:0003723 GO:0045893 Hydropathy values IPR001550 IPR004341 IPR011608 IPR036634 IPR036650 IPR050661 IUPred2(short) InterPro PDB PF00874 PRD domain PRD domain (PRD) PRD domain superfamily Parent monomer CYS Pfam RNA binding Transcription antiterminator, conserved site UNIPROT artifact biojava-7.2.4 cloning artifact disorder disorder_binding hydropathy modified residue modified_monomer monomer_feature_1 monomer_feature_2 mutation positive regulation of DNA-templated transcription range_feature_1 TRANSCRIPTION transcriptional antitermination, conformational change, LicT, histidine phosphorylation, activation mechanism, HPr, dimer structure, phosphoenolpyruvate (PEP): sugar phosphotransferase system (PTS), PTS regulation domains (PRD), TRANSCRIPTION Transcription antiterminator licT Pfam artifact disorder disorder_binding hydropathy modified_monomer mutation Protein Bacillus subtilis X-RAY DIFFRACTION 0.0181",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_daf7133051e4",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0986_1TLV_1_002"
+}

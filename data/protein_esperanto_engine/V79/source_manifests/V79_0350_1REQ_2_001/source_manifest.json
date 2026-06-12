@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_39eee532a3ec",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "METHYLMALONYL-COA MUTASE 1REQ 2 Anchor2 Cobalamin (vitamin B12)-dependent enzyme, catalytic Cobalamin-binding domain superfamily Disordered binding sites Disordered regions GO GO:0004494 GO:0005737 GO:0019652 GO:0019678 GO:0031419 GO:0046872 Hydropathy values IPR004608 IPR006099 IPR016176 IPR024067 IPR036724 IPR058549 IUPred2(short) InterPro Methylmalonyl-CoA mutase small subunit, N-terminal Methylmalonyl-CoA mutase, alpha/beta chain, catalytic Methylmalonyl-CoA mutase, alpha/beta chain, conserved site Methylmalonyl-CoA mutase, small subunit UNIPROT biojava-7.2.4 cobalamin binding cytoplasm disorder disorder_binding hydropathy lactate fermentation to propionate and acetate metal ion binding methylmalonyl-CoA mutase activity propionate metabolic process, methylmalonyl pathway ISOMERASE ISOMERASE, MUTASE, INTRAMOLECULAR TRANSFERASE METHYLMALONYL-COA MUTASE disorder disorder_binding hydropathy Protein Propionibacterium freudenreichii subsp. shermanii X-RAY DIFFRACTION B12 B12 0.078493",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_39eee532a3ec",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0350_1REQ_2_001"
+}

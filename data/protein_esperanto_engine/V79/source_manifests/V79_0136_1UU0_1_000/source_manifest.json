@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_b2176f803762",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "HISTIDINOL-PHOSPHATE AMINOTRANSFERASE 1UU0 1 Aminotransferase class I and II (Aminotran_1_2) Aminotransferase, class I/classII, large domain Aminotransferase, class-II, pyridoxal-phosphate binding site Anchor2 Disordered binding sites Disordered regions GO GO:0000105 GO:0004400 GO:0030170 GO:0042803 Histidinol-phosphate aminotransferase Histidinol-phosphate aminotransferase family Hydropathy values IPR001917 IPR004839 IPR005861 IPR015421 IPR015422 IPR015424 IPR050106 IUPred2(short) InterPro L-histidine biosynthetic process PF00155 Pfam Pyridoxal phosphate-dependent transferase Pyridoxal phosphate-dependent transferase, major domain Pyridoxal phosphate-dependent transferase, small domain UNIPROT biojava-7.2.4 disorder disorder_binding histidinol-phosphate transaminase activity hydropathy protein homodimerization activity pyridoxal phosphate binding TRANSFERASE HISTIDINE BIOSYNTHESIS, TRANSFERASE, AMINOTRANSFERASE, PYRIDOXAL PHOSPHATE HISTIDINOL-PHOSPHATE AMINOTRANSFERASE Pfam disorder disorder_binding hydropathy Protein Thermotoga maritima X-RAY DIFFRACTION 0.035821",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_b2176f803762",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0136_1UU0_1_000"
+}

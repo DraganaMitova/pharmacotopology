@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_00e585b1c5c0",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "cytolethal distending toxin protein B 1SR4 2 Anchor2 Cytolethal distending toxin A/C family Cytolethal distending toxin B Disordered binding sites Disordered regions Endonuclease/exonuclease/phosphatase Endonuclease/exonuclease/phosphatase superfamily GO GO:0003824 Hydropathy values IPR003539 IPR005135 IPR036691 IUPred2(short) InterPro Monotopic/peripheral.All beta monotopic/peripheral.Beta-trefoil superfamily.Cytolethal distending toxin A/C family OPM PDB UNIPROT biojava-7.2.4 catalytic activity disorder disorder_binding hydropathy TOXIN toxin, bacterial, Haemophilus ducreyi, virulence, DNA Damage, genotoxin, cytotoxins, Cell Cycle, Apoptosis, lectin, Deoxyribonuclease I cytolethal distending toxin protein B disorder disorder_binding hydropathy Protein [Haemophilus] ducreyi X-RAY DIFFRACTION 0.068966",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_00e585b1c5c0",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0160_1SR4_2_000"
+}

@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_19f4a5427cea",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "CYTOGLOBIN 1UT0 1 Anchor2 Disordered binding sites Disordered regions GO GO:0001666 GO:0004096 GO:0004601 GO:0004784 GO:0005344 GO:0005506 GO:0005634 GO:0005737 GO:0005829 GO:0006979 GO:0010764 GO:0015671 GO:0016491 GO:0016607 GO:0019395 GO:0019430 GO:0019825 GO:0020037 GO:0032966 GO:0043005 GO:0043025 GO:0046209 GO:0046210 GO:0047888 GO:0070025 GO:0098809 GO:0141118 GO:2000490 Globin Globin (Globin) Globin, lamprey/hagfish type Globin-like superfamily Globin/Protoglobin Hydropathy values IPR000971 IPR009050 IPR012292 IPR013314 IUPred2(short) InterPro PDB PF00042 Pfam UNIPROT biojava-7.2.4 carbon monoxide binding catalase activity cytoplasm cytosol disorder disorder_binding engineered mutation fatty acid oxidation fatty acid peroxidase activity heme binding hydropathy iron ion binding monomer_feature_1 monomer_feature_2 mutation negative regulation of collagen biosynthetic process negative regulation of fibroblast migration negative regulation of hepatic stellate cell activation neuron projection neuronal cell body nitric oxide catabolic process nitric oxide dioxygenase activity, heme protein as donor nitric oxide metabolic process nitrite reductase activity nuclear speck nucleus oxidoreductase activity oxygen binding oxygen carrier activity oxygen transport peroxidase activity removal of superoxide radicals response to hypoxia response to oxidative stress superoxide dismutase activity OXYGEN TRANSPORT OXYGEN TRANSPORT, HEMOGLOBIN CYTOGLOBIN Pfam disorder disorder_binding hydropathy mutation Protein Homo sapiens X-RAY DIFFRACTION HEM HEM 0.168421",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_19f4a5427cea",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0153_1UT0_1_000"
+}

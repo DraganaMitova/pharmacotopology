@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_d70bb9a8057e",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Geranyltranstransferase 1RQI 1 (2E,6E)-farnesyl diphosphate synthase activity Anchor2 Disordered binding sites Disordered regions GO GO:0004161 GO:0004337 GO:0004659 GO:0005829 GO:0033384 GO:0045337 GO:0046872 Hydropathy values IPR000092 IPR008949 IPR033749 IPR053378 IUPred2(short) InterPro Isoprenoid synthase domain superfamily PDB PF00348 Pfam Polyprenyl synthetase (polyprenyl_synt) Polyprenyl synthetase, conserved site Polyprenyl synthetase-like Prenyl diphosphate synthase UNIPROT artifact biojava-7.2.4 cloning artifact cytosol dimethylallyltranstransferase activity disorder disorder_binding farnesyl diphosphate biosynthetic process geranyl diphosphate biosynthetic process hydropathy metal ion binding prenyltransferase activity range_feature_1 TRANSFERASE isoprenyl synthase, TRANSFERASE Geranyltranstransferase Pfam artifact disorder disorder_binding hydropathy Protein Escherichia coli X-RAY DIFFRACTION MG DST MG 0.04",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_d70bb9a8057e",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0416_1RQI_1_001"
+}

@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_ac9a3615b3b3",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "pleckstrin homology domain-containing, family A 1V5P 1 Anchor2 Disordered binding sites Disordered regions GO GO:0001954 GO:0001968 GO:0005543 GO:0005634 GO:0005737 GO:0005886 GO:0016020 GO:0030165 GO:0032991 GO:0043236 GO:0043325 Hydropathy values IPR001849 IPR011993 IPR051707 IUPred2(short) InterPro Monotopic/peripheral.All beta monotopic/peripheral.PH domain-like.Pleckstrin-homology domain OPM PDB PDZ domain binding PF00169 PH domain (PH) PH-like domain superfamily Pfam Phosphoinositide-Interacting Signal Transduction Regulators Pleckstrin homology domain Pleckstrin-homology domain UNIPROT artifact biojava-7.2.4 cloning artifact cytoplasm disorder disorder_binding fibronectin binding hydropathy laminin binding membrane nucleus phosphatidylinositol-3,4-bisphosphate binding phospholipid binding plasma membrane positive regulation of cell-matrix adhesion protein-containing complex range_feature_1 range_feature_2 SIGNALING PROTEIN TAPP2, the Pleckstrin Homology domain, structural genomics, RIKEN Structural Genomics/Proteomics Initiative, RSGI, signaling protein pleckstrin homology domain-containing, family A Pfam artifact disorder disorder_binding hydropathy Protein Mus musculus SOLUTION NMR 0.150794",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_ac9a3615b3b3",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0143_1V5P_1_000"
+}

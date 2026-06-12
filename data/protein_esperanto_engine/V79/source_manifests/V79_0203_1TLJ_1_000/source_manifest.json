@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_b3fb5a2fbe97",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Hypothetical UPF0130 protein SSO0622 1TLJ 1 Anchor2 Disordered binding sites Disordered regions GO GO:0008175 GO:0030488 GO:0031591 Hydropathy values IPR003827 IPR022908 IPR036602 IUPred2(short) InterPro Methyltransferase TYW3 (TYW3) PDB PF02676 Pfam UNIPROT artifact biojava-7.2.4 cloning artifact disorder disorder_binding hydropathy range_feature_1 range_feature_2 tRNA methylation tRNA methyltransferase activity tRNA wybutosine-synthesizing protein tRNA wybutosine-synthesizing-like superfamily tRNA(Phe) 7-((3-amino-3-carboxypropyl)-4-demethylwyosine(37)-N(4))-methyltransferase wybutosine biosynthetic process STRUCTURAL GENOMICS, UNKNOWN FUNCTION Midwest Center for Structural Genomics, SSO0622, PSI, Protein Structure Initiative, MCSG, STRUCTURAL GENOMICS, UNKNOWN FUNCTION Hypothetical UPF0130 protein SSO0622 artifact disorder disorder_binding hydropathy Protein Saccharolobus solfataricus X-RAY DIFFRACTION 0.089202",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_b3fb5a2fbe97",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0203_1TLJ_1_000"
+}

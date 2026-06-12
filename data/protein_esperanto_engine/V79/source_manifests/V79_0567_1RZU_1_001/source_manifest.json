@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_6d386bd35f14",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Glycogen synthase 1 1RZU 1 Anchor2 Bacterial/plant glycogen synthase Disordered binding sites Disordered regions GO GO:0004373 GO:0005829 GO:0005978 GO:0009011 Glycosyl transferase, family 1 Hydropathy values IPR001296 IPR011835 IPR013534 IUPred2(short) InterPro PDB Starch synthase, catalytic domain UNIPROT alpha-1,4-glucan glucosyltransferase (ADP-glucose donor) activity alpha-1,4-glucan glucosyltransferase (UDP-glucose donor) activity artifact biojava-7.2.4 cytosol disorder disorder_binding expression tag glycogen biosynthetic process hydropathy range_feature_1 TRANSFERASE glycosyl-transferase, GT-B fold, Rossmann fold, ADP-binding, transferase Glycogen synthase 1 artifact disorder disorder_binding hydropathy Protein Agrobacterium tumefaciens X-RAY DIFFRACTION 0.020619",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_6d386bd35f14",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0567_1RZU_1_001"
+}

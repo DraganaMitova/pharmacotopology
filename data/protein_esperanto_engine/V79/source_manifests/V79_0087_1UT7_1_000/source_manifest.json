@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_37bc431e7f53",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "NO APICAL MERISTEM PROTEIN 1UT7 1 Anchor2 DNA binding DNA-binding transcription factor activity Disordered binding sites Disordered regions GO GO:0003677 GO:0003700 GO:0005634 GO:0009414 Hydropathy values IPR003441 IPR036093 IUPred2(short) InterPro NAC domain NAC domain superfamily No apical meristem (NAM) protein (NAM) PF02365 Pfam UNIPROT biojava-7.2.4 disorder disorder_binding hydropathy nucleus response to water deprivation TRANSCRIPTION REGULATION TRANSCRIPTION REGULATION, TRANSCRIPTION, TRANSCRIPTION FACTOR, DNA BINDING, ABSCISIC ACID RESPONSE, ARABIDOPSIS THALIANA, NAC DOMAIN NO APICAL MERISTEM PROTEIN Pfam disorder disorder_binding hydropathy Protein Arabidopsis thaliana X-RAY DIFFRACTION 0.116959",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_37bc431e7f53",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0087_1UT7_1_000"
+}

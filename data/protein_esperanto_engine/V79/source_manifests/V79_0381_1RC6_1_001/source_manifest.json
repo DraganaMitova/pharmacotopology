@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_82575921951c",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Hypothetical protein ylbA 1RC6 1 (S)-ureidoglycine aminohydrolase (S)-ureidoglycine aminohydrolase, C-terminal cupin domain (S)-ureidoglycine aminohydrolase, N-terminal cupin domain (S)-ureidoglycine aminohydrolase, cupin domain Anchor2 Cupin 2, conserved barrel Cupin domain (Cupin_2) Disordered binding sites Disordered regions EutQ-like cupin domain (Cupin_3) GO GO:0005737 GO:0006145 GO:0010136 GO:0030145 GO:0071522 Hydropathy values IPR008579 IPR011051 IPR013096 IPR014710 IPR017627 IPR044697 IPR044704 IUPred2(short) InterPro PF05899 PF07883 Pfam RmlC-like cupin domain superfamily RmlC-like jelly roll fold UNIPROT biojava-7.2.4 cytoplasm disorder disorder_binding hydropathy manganese ion binding purine nucleobase catabolic process ureide catabolic process ureidoglycine aminohydrolase activity structural genomics, unknown function Structural genomics, NYSGXRC, SGX clone name 3174c1TCt3b1, target T1521, Hypothetical protein Ylba from E.Coli, PSI, Protein Structure Initiative, New York SGX Research Center for Structural Genomics, unknown function Hypothetical protein ylbA Pfam disorder disorder_binding hydropathy Protein Escherichia coli X-RAY DIFFRACTION 0.030651",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_82575921951c",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0381_1RC6_1_001"
+}

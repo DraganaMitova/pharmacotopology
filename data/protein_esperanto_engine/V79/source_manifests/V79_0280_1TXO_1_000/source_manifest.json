@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_a2e578923d0a",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Putative Bacterial Enzyme 1TXO 1 Anchor2 Disordered binding sites Disordered regions GO GO:0000287 GO:0004721 GO:0004722 GO:0005886 GO:0006355 GO:0007165 GO:0009274 GO:0016020 GO:0030145 Hydropathy values IPR001932 IPR036457 IUPred2(short) InterPro PDB PF13672 PPM-type phosphatase-like domain PPM-type phosphatase-like domain superfamily Parent monomer MET Pfam Protein phosphatase 2C (PP2C_2) UNIPROT biojava-7.2.4 disorder disorder_binding hydropathy magnesium ion binding manganese ion binding membrane modified residue modified_monomer monomer_feature_1 monomer_feature_10 monomer_feature_11 monomer_feature_12 monomer_feature_2 monomer_feature_3 monomer_feature_4 monomer_feature_5 monomer_feature_6 monomer_feature_7 monomer_feature_8 monomer_feature_9 mutation peptidoglycan-based cell wall phosphoprotein phosphatase activity plasma membrane protein serine/threonine phosphatase activity regulation of DNA-templated transcription signal transduction HYDROLASE Putative Bacterial Enzyme, Serine/threonine protein phosphatases, PstP/Ppp, Structural Genomics, PSI, Protein Structure Initiative, TB Structural Genomics Consortium, TBSGC, HYDROLASE Putative Bacterial Enzyme Pfam disorder disorder_binding hydropathy modified_monomer mutation Protein Mycobacterium tuberculosis X-RAY DIFFRACTION MN MN 0.160338",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_a2e578923d0a",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0280_1TXO_1_000"
+}

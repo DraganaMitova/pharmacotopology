@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_9acba9995456",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Late endosomal/lysosomal Mp1 interacting protein 1SKO 2 Anchor2 Disordered binding sites Disordered regions FNIP-folliculin RagC/D GAP GO GO:0001558 GO:0005085 GO:0005765 GO:0005770 GO:0008104 GO:0010761 GO:0031902 GO:0032008 GO:0038202 GO:0043410 GO:0060090 GO:0071230 GO:0071986 GO:0150116 GO:1902414 GO:1904263 GO:1990877 Hydropathy values IPR004942 IPR037587 IUPred2(short) InterPro PDB PF03259 Pfam Ragulator complex Ragulator complex protein LAMTOR2-like Roadblock/LAMTOR2 domain Roadblock/LC7 domain (Robl_LC7) TORC1 signaling UNIPROT artifact biojava-7.2.4 cellular response to amino acid stimulus disorder disorder_binding expression tag,initiating methionine fibroblast migration guanyl-nucleotide exchange factor activity hydropathy intracellular protein localization late endosome late endosome membrane lysosomal membrane molecular adaptor activity positive regulation of MAPK cascade positive regulation of TOR signaling positive regulation of TORC1 signaling protein localization to cell junction range_feature_2 regulation of cell growth regulation of cell-substrate junction organization SIGNALING PROTEIN MAP kinase pathway, MP1-p14 complex, scaffold proteins, SIGNALING PROTEIN Late endosomal/lysosomal Mp1 interacting protein Pfam artifact disorder disorder_binding hydropathy Protein Mus musculus X-RAY DIFFRACTION 0.146154",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_9acba9995456",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0151_1SKO_2_000"
+}

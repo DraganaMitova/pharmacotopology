@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_24a24fc7d7b0",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Protein methyltransferase hemK 1T43 1 Anchor2 DNA methylase, N-6 adenine-specific, conserved site Disordered binding sites Disordered regions GO GO:0003676 GO:0006415 GO:0006479 GO:0008276 GO:0008757 GO:0010468 GO:0018364 GO:0036009 GO:0102559 Hydropathy values IPR002052 IPR004556 IPR007848 IPR019874 IPR029063 IPR040758 IPR050320 IUPred2(short) InterPro Methyltransferase HemK-like Methyltransferase small domain Methyltransferase small domain (MTS) PF05175 PF17827 Pfam PrmC N-terminal domain (PrmC_N) Protein N5-glutamine methyltransferase Release factor glutamine methyltransferase Release factor glutamine methyltransferase, N-terminal domain S-adenosyl-L-methionine-dependent methyltransferase superfamily S-adenosylmethionine-dependent methyltransferase activity UNIPROT biojava-7.2.4 disorder disorder_binding hydropathy nucleic acid binding peptide chain release factor N(5)-glutamine methyltransferase activity peptidyl-glutamine methylation protein methylation protein methyltransferase activity protein-glutamine N-methyltransferase activity regulation of gene expression translational termination TRANSFERASE Methyltransferase, TRANSFERASE Protein methyltransferase hemK Pfam disorder disorder_binding hydropathy Protein Escherichia coli X-RAY DIFFRACTION 0.050542",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_24a24fc7d7b0",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0515_1T43_1_001"
+}

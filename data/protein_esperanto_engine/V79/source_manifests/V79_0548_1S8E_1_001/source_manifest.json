@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_73f52aefa7d3",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "exonuclease putative 1S8E 1 3'-5' exonuclease activity Anchor2 Calcineurin-like phosphoesterase (Metallophos) Calcineurin-like, phosphoesterase domain DNA Repair and Maintenance Complex Component DNA double-strand break processing DNA double-strand break repair protein Mre11, N-terminal metallophosphatase domain DNA double-strand break repair protein Mre11, archaea-type DNA double-strand break repair protein Mre11, second domain DNA double-strand break repair protein Mre11, thermococcales DNA end binding DNA endonuclease activity Disordered binding sites Disordered regions GO GO:0000403 GO:0000729 GO:0004519 GO:0004520 GO:0006302 GO:0008408 GO:0030145 GO:0042802 GO:0045027 Hydropathy values IPR004843 IPR029052 IPR032885 IPR041796 IPR050535 IPR054741 IPR054745 IUPred2(short) InterPro Metallo-dependent phosphatase-like Mre11 nuclease, second domain (Mre11_2nd) PDB PF00149 PF22411 Pfam UNIPROT Y-form DNA binding artifact biojava-7.2.4 disorder disorder_binding double-strand break repair endonuclease activity engineered mutation hydropathy identical protein binding initiating methionine manganese ion binding monomer_feature_1 monomer_feature_2 mutation range_feature_1 REPLICATION DNA double-strand break, Mre11, Rad50, REPLICATION exonuclease putative Pfam artifact disorder disorder_binding hydropathy mutation Protein Pyrococcus furiosus DSM 3638 X-RAY DIFFRACTION MN MN 0.018018",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_73f52aefa7d3",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0548_1S8E_1_001"
+}

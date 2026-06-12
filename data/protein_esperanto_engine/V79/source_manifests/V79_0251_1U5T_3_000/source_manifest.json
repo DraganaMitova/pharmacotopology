@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_77d0fe101629",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Hypothetical 23.6 kDa protein in YUH1-URA8 intergenic region 1U5T 3 ATP export Anchor2 Disordered binding sites Disordered regions ESCRT II complex ESCRT-II complex subunit (ESCRT-II) ESCRT-II complex, Vps25 subunit ESCRT-II complex, Vps25 subunit, N-terminal winged helix GO GO:0000122 GO:0000814 GO:0005198 GO:0005829 GO:0006623 GO:0042803 GO:0043162 GO:0043328 GO:1904669 Hydropathy values IPR008570 IPR014041 IPR036388 IPR036390 IUPred2(short) InterPro PF05871 Pfam UNIPROT Winged helix DNA-binding domain superfamily Winged helix-like DNA-binding domain superfamily biojava-7.2.4 cytosol disorder disorder_binding hydropathy negative regulation of transcription by RNA polymerase II protein homodimerization activity protein targeting to vacuole protein transport to vacuole involved in ubiquitin-dependent protein catabolic process via the multivesicular body sorting pathway structural molecule activity ubiquitin-dependent protein catabolic process via the multivesicular body sorting pathway TRANSPORT PROTEIN escrt, endosomal, trafficking, protein complex, TRANSPORT PROTEIN Hypothetical 23.6 kDa protein in YUH1-URA8 intergenic region Pfam disorder disorder_binding hydropathy Protein Saccharomyces cerevisiae X-RAY DIFFRACTION 0.069307",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_77d0fe101629",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0251_1U5T_3_000"
+}

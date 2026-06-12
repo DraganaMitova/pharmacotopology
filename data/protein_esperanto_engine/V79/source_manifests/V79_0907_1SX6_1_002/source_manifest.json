@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_8b6e6647ed26",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Glycolipid transfer protein 1SX6 1 Anchor2 Disordered binding sites Disordered regions GO GO:0005829 GO:0008289 GO:0017089 GO:0035627 GO:0035902 GO:0042802 GO:0051861 GO:0120009 GO:0120013 GO:1902387 GO:1902388 Glycolipid transfer protein (GLTP) (GLTP) Glycolipid transfer protein domain Glycolipid transfer protein superfamily Hydropathy values IPR014830 IPR036497 IUPred2(short) InterPro PF08718 Pfam UNIPROT biojava-7.2.4 ceramide 1-phosphate binding ceramide 1-phosphate transfer activity ceramide transport cytosol disorder disorder_binding glycolipid binding glycolipid transfer activity hydropathy identical protein binding intermembrane lipid transfer lipid binding lipid transfer activity response to immobilization stress LIPID TRANSPORT glycosphingolipid transfer protein-lactosylceramide complex, LIPID TRANSPORT Glycolipid transfer protein Pfam disorder disorder_binding hydropathy Protein Homo sapiens X-RAY DIFFRACTION OLA SPH 0.033493",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_8b6e6647ed26",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0907_1SX6_1_002"
+}

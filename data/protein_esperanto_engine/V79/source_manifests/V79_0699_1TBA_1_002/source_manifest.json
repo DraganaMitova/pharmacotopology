@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_5104e69480cb",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "TRANSCRIPTION INITIATION FACTOR IID 230K CHAIN 1TBA 1 AT hook, DNA-binding motif ATP binding Anchor2 Bromodomain Bromodomain, conserved site Bromodomain-like superfamily Disordered binding sites Disordered regions GO GO:0004674 GO:0004839 GO:0005524 GO:0005634 GO:0005654 GO:0005669 GO:0005730 GO:0006367 GO:0010485 GO:0016251 GO:0017025 GO:0035102 GO:0036408 GO:0043565 GO:0051123 GO:0061631 GO:0106310 Hydropathy values IPR001487 IPR009067 IPR011177 IPR017956 IPR018359 IPR022591 IPR036427 IPR036741 IPR040240 IPR041670 IUPred2(short) InterPro PF09247 PRC1 complex Pfam RNA polymerase II general transcription initiation factor activity RNA polymerase II preinitiation complex assembly TAFII-230 TBP-binding TAFII-230 TBP-binding domain superfamily TATA box-binding protein binding (TBP-binding) TBP-class protein binding Transcription initiation factor TFIID subunit 1 Transcription initiation factor TFIID subunit 1, animal Transcription initiation factor TFIID subunit 1, histone acetyltransferase domain UNIPROT Zinc knuckle biojava-7.2.4 disorder disorder_binding histone H3K14 acetyltransferase activity histone H4 acetyltransferase activity hydropathy nucleolus nucleoplasm nucleus protein serine kinase activity protein serine/threonine kinase activity sequence-specific DNA binding transcription factor TFIID complex transcription initiation at RNA polymerase II promoter ubiquitin activating enzyme activity ubiquitin conjugating enzyme activity COMPLEX (TRANSCRIPTION FACTORS) COMPLEX (TRANSCRIPTION FACTORS), TBP, TAF, TAFII230, TFIID, SOLUTION STRUCTURE TRANSCRIPTION INITIATION FACTOR IID 230K CHAIN Pfam disorder disorder_binding hydropathy Protein Drosophila melanogaster SOLUTION NMR 0.343284",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_5104e69480cb",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0699_1TBA_1_002"
+}

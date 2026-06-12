@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_d744e766a405",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "3-DEHYDROQUINATE DEHYDRATASE 1UQR 1 3-dehydroquinate dehydratase activity Anchor2 Dehydroquinase, class II Dehydroquinase, class II superfamily Dehydroquinase, class II, conserved site Disordered binding sites Disordered regions GO GO:0003855 GO:0008652 GO:0009073 GO:0009423 GO:0019631 Hydropathy values IPR001874 IPR018509 IPR036441 IUPred2(short) InterPro UNIPROT amino acid biosynthetic process aromatic amino acid family biosynthetic process biojava-7.2.4 chorismate biosynthetic process disorder disorder_binding hydropathy quinate catabolic process LYASE SHIKIMATE PATHWAY, AROMATIC AMINO ACID BIOSYNTHESIS, LYASE 3-DEHYDROQUINATE DEHYDRATASE disorder disorder_binding hydropathy Protein Actinobacillus pleuropneumoniae X-RAY DIFFRACTION 0.090909",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_d744e766a405",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0039_1UQR_1_000"
+}

@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_785d347d7b3a",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "heparan sulfate D-glucosaminyl 3-O-sulfotransferase 3A1 1T8T 1 Anchor2 Disordered binding sites Disordered regions GO GO:0000139 GO:0001658 GO:0006024 GO:0008146 GO:0008467 GO:0015012 GO:0016020 Golgi membrane Heparan sulfate sulfotransferase Hydropathy values IPR000863 IPR027417 IPR037359 IUPred2(short) InterPro P-loop containing nucleoside triphosphate hydrolase PDB PF00685 Pfam Sulfotransferase domain Sulfotransferase domain (Sulfotransfer_1) UNIPROT [heparan sulfate]-glucosamine 3-sulfotransferase activity artifact biojava-7.2.4 branching involved in ureteric bud morphogenesis cloning artifact disorder disorder_binding glycosaminoglycan biosynthetic process heparan sulfate proteoglycan biosynthetic process hydropathy membrane range_feature_1 sulfotransferase activity TRANSFERASE alpha-beta motif, substrate-binding cleft, transferase heparan sulfate D-glucosaminyl 3-O-sulfotransferase 3A1 Pfam artifact disorder disorder_binding hydropathy Protein Homo sapiens X-RAY DIFFRACTION 0.081181",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_785d347d7b3a",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0909_1T8T_1_002"
+}

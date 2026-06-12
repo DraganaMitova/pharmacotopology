@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_ca23cbc5cde3",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Pantothenate kinase 1SQ5 1 ATP binding Anchor2 Disordered binding sites Disordered regions GO GO:0004594 GO:0005524 GO:0005737 GO:0015937 GO:0042803 GO:0050165 Hydropathy values IPR004566 IPR006083 IPR027417 IUPred2(short) InterPro P-loop containing nucleoside triphosphate hydrolase PF00485 Pantothenate kinase Pfam Phosphoribulokinase / Uridine kinase family (PRK) Phosphoribulokinase/uridine kinase UNIPROT biojava-7.2.4 coenzyme A biosynthetic process cytoplasm disorder disorder_binding hydropathy pantetheine kinase activity pantothenate kinase activity protein homodimerization activity TRANSFERASE P-loop, TRANSFERASE Pantothenate kinase Pfam disorder disorder_binding hydropathy Protein Escherichia coli X-RAY DIFFRACTION 0.035714",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_ca23cbc5cde3",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0253_1SQ5_1_000"
+}

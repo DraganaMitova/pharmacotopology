@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_0c4db75bcb29",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "diacylglycerol kinase alpha 1TUZ 1 ATP binding ATP-dependent diacylglycerol kinase activity Anchor2 C1-like domain superfamily DGK type I, N-terminal domain superfamily Diacylglycerol kinase Diacylglycerol kinase N-terminus (DAG_kinase_N) Diacylglycerol kinase alpha, second protein kinase C conserved region 1 Diacylglycerol kinase type I, N-terminal Diacylglycerol kinase, accessory domain Diacylglycerol kinase, catalytic domain Disordered binding sites Disordered regions EF-Hand 1, calcium-binding site EF-hand domain EF-hand domain pair GO GO:0004143 GO:0005509 GO:0005524 GO:0005543 GO:0005829 GO:0005886 GO:0006654 GO:0007200 GO:0008270 GO:0008289 GO:0016020 GO:0016301 GO:0030168 GO:0035556 GO:0046339 GO:0046486 GO:0046834 GO:0047649 Hydropathy values IPR000756 IPR001206 IPR002048 IPR002219 IPR011992 IPR016064 IPR017438 IPR018247 IPR029477 IPR037607 IPR038199 IPR046349 IPR047469 IUPred2(short) Inorganic polyphosphate/ATP-NAD kinase, N-terminal InterPro NAD kinase/diacylglycerol kinase-like domain superfamily PF14513 Pfam Protein kinase C-like, phorbol ester/diacylglycerol-binding domain UNIPROT alkylglycerol kinase activity biojava-7.2.4 calcium ion binding cytosol diacylglycerol metabolic process disorder disorder_binding glycerolipid metabolic process hydropathy intracellular signal transduction kinase activity lipid binding lipid phosphorylation membrane phosphatidic acid biosynthetic process phospholipase C-activating G protein-coupled receptor signaling pathway phospholipid binding plasma membrane platelet activation zinc ion binding TRANSFERASE Kinase, Transferase, HR532, NESGC, Structural Genomics, PSI, Protein Structure Initiative, Northeast Structural Genomics Consortium diacylglycerol kinase alpha Pfam disorder disorder_binding hydropathy Protein Homo sapiens SOLUTION NMR 0.118644",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_0c4db75bcb29",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0300_1TUZ_1_000"
+}

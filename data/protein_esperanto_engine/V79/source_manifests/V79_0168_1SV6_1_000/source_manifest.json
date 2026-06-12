@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_cf3a9930d533",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "2-keto-4-pentenoate hydratase 1SV6 1 2-keto-4-pentenoate hydratase 2-oxopent-4-enoate hydratase activity 3-phenylpropionate catabolic process Anchor2 Disordered binding sites Disordered regions Fumarylacetoacetase-like, C-terminal Fumarylacetoacetase-like, C-terminal domain superfamily Fumarylacetoacetate (FAA) hydrolase C-terminal (FAA_hydrolase) GO GO:0005737 GO:0008684 GO:0019380 GO:0030145 GO:0042802 Hydratase/Decarboxylase Family, MhpD Subfamily Hydropathy values IPR011234 IPR023793 IPR036663 IPR050772 IUPred2(short) InterPro PF01557 Pfam UNIPROT biojava-7.2.4 cytoplasm disorder disorder_binding hydropathy identical protein binding manganese ion binding LYASE Hydratase, Structural genomics, NYSGXRC target T795, PSI, Protein Structure Initiative, New York SGX Research Center for Structural Genomics, NYSGXRC, lyase 2-keto-4-pentenoate hydratase Pfam disorder disorder_binding hydropathy Protein Escherichia coli X-RAY DIFFRACTION 0.05948",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_cf3a9930d533",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0168_1SV6_1_000"
+}

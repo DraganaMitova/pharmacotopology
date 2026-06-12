@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_60649d503ba0",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "4-hydroxythreonine-4-phosphate dehydrogenase 1 1R8K 1 4-hydroxythreonine-4-phosphate dehydrogenase 4-hydroxythreonine-4-phosphate dehydrogenase activity Anchor2 Disordered binding sites Disordered regions GO GO:0000287 GO:0005737 GO:0008270 GO:0008615 GO:0042823 GO:0050570 GO:0050897 GO:0051287 Hydropathy values IPR005255 IPR037510 IUPred2(short) InterPro NAD binding PDB PF04166 Parent monomer MET PdxA family Pfam Pyridoxal phosphate biosynthetic protein PdxA (PdxA) UNIPROT biojava-7.2.4 cobalt ion binding cytoplasm disorder disorder_binding hydropathy magnesium ion binding modified residue modified_monomer monomer_feature_1 monomer_feature_10 monomer_feature_11 monomer_feature_12 monomer_feature_13 monomer_feature_14 monomer_feature_2 monomer_feature_3 monomer_feature_4 monomer_feature_5 monomer_feature_6 monomer_feature_7 monomer_feature_8 monomer_feature_9 mutation pyridoxal phosphate biosynthetic process pyridoxine biosynthetic process zinc ion binding OXIDOREDUCTASE structural genomics, NAD-dependent dehydrogenase/carboxylase, PSI, Protein Structure Initiative, Midwest Center for Structural Genomics, MCSG, OXIDOREDUCTASE 4-hydroxythreonine-4-phosphate dehydrogenase 1 Pfam disorder disorder_binding hydropathy modified_monomer mutation Protein Salmonella enterica subsp. enterica serovar Typhimurium X-RAY DIFFRACTION CO CO 0.039514",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_60649d503ba0",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0719_1R8K_1_002"
+}

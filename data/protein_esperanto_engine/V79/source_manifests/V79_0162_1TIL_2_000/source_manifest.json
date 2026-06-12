@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_629397ebf58e",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Anti-sigma F factor antagonist 1TIL 2 Anchor2 Anti-sigma F factor antagonist Anti-sigma factor antagonist Disordered binding sites Disordered regions GO GO:0030435 GO:0043856 GO:0045152 Hydropathy values IPR002645 IPR003658 IPR014237 IPR036513 IUPred2(short) InterPro PDB STAS domain STAS domain superfamily UNIPROT anti-sigma factor antagonist activity antisigma factor binding artifact biojava-7.2.4 cloning artifact disorder disorder_binding engineered mutation hydropathy monomer_feature_2 mutation range_feature_1 sporulation resulting in formation of a cellular spore TRANSCRIPTION SpoIIAB, SpoIIA, anti-sigma, anti-anti-sigma, sporulation, serine kinaseA, TRANSCRIPTION Anti-sigma F factor antagonist artifact disorder disorder_binding hydropathy mutation Protein Geobacillus stearothermophilus X-RAY DIFFRACTION ATP MG ATP MG 0.067227",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_629397ebf58e",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0162_1TIL_2_000"
+}

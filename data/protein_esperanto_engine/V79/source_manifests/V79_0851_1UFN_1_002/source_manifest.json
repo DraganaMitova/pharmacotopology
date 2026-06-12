@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_0058cb601752",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "putative nuclear protein homolog 5830484A20Rik 1UFN 1 Anchor2 DNA binding DNA-binding transcription factor activity, RNA polymerase II-specific Disordered binding sites Disordered regions GO GO:0000981 GO:0003677 GO:0005634 GO:0005654 GO:0006357 GO:0006915 GO:0009617 GO:0043065 GO:0045087 HSR domain Hydropathy values IPR000770 IPR004865 IPR010919 IPR043563 IUPred2(short) InterPro Nuclear body protein Sp110/Sp140/Sp140L-like PDB PF01342 Pfam SAND domain SAND domain (SAND) SAND-like domain superfamily UNIPROT apoptotic process artifact biojava-7.2.4 cloning artifact disorder disorder_binding hydropathy innate immune response nucleoplasm nucleus positive regulation of apoptotic process range_feature_1 range_feature_2 regulation of transcription by RNA polymerase II response to bacterium Structural genomics, unknown function SAND DOMAIN, KDWK motif, nuclear protein, STRUCTURAL GENOMICS, RIKEN Structural Genomics/Proteomics Initiative, RSGI, unknown function putative nuclear protein homolog 5830484A20Rik Pfam artifact disorder disorder_binding hydropathy Protein Mus musculus SOLUTION NMR 0.212766",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_0058cb601752",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0851_1UFN_1_002"
+}

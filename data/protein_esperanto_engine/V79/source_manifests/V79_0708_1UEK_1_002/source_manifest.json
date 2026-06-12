@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_f9c85e36c544",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "4-(cytidine 5'-diphospho)-2C-methyl-D-erythritol kinase 1UEK 1 4-(cytidine 5'-diphospho)-2-C-methyl-D-erythritol kinase activity 4-diphosphocytidyl-2C-methyl-D-erythritol kinase ATP binding Anchor2 Disordered binding sites Disordered regions GHMP kinase N-terminal domain GHMP kinase, C-terminal domain GHMP kinase, C-terminal domain superfamily GHMP kinases C terminal (GHMP_kinases_C) GHMP kinases N terminal domain (GHMP_kinases_N) GO GO:0005524 GO:0016114 GO:0019288 GO:0050515 Hydropathy values IPR004424 IPR006204 IPR013750 IPR014721 IPR020568 IPR036554 IUPred2(short) InterPro PF00288 PF08544 Pfam Ribosomal protein uS5 domain 2-type superfamily Small ribosomal subunit protein uS5 domain 2-type fold, subgroup UNIPROT biojava-7.2.4 disorder disorder_binding hydropathy isopentenyl diphosphate biosynthetic process, methylerythritol 4-phosphate pathway terpenoid biosynthetic process TRANSFERASE non-mevalonate pathway, GHMP superfamily, RIKEN Structural Genomics/Proteomics Initiative, RSGI, Structural Genomics, TRANSFERASE 4-(cytidine 5'-diphospho)-2C-methyl-D-erythritol kinase Pfam disorder disorder_binding hydropathy Protein Thermus thermophilus X-RAY DIFFRACTION 0.050909",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_f9c85e36c544",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0708_1UEK_1_002"
+}

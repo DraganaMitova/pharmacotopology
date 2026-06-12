@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_42a7d7855b0c",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Bifunctional putA protein 1TJ0 1 Aldehyde dehydrogenase domain Aldehyde dehydrogenase, C-terminal Aldehyde dehydrogenase, N-terminal Aldehyde dehydrogenase, cysteine active site Aldehyde dehydrogenase, glutamic acid active site Aldehyde/histidinol dehydrogenase Anchor2 Arc-type ribbon-helix-helix Bifunctional protein PutA Bifunctional protein PutA, C-terminal domain DNA binding DNA-binding domain of Proline dehydrogenase (Pro_dh-DNA_bdg) DNA-binding transcription repressor activity Disordered binding sites Disordered regions FAD-linked oxidoreductase-like GO GO:0000987 GO:0001217 GO:0003677 GO:0003842 GO:0004657 GO:0005829 GO:0005886 GO:0006979 GO:0009898 GO:0010133 GO:0042802 GO:0042803 GO:0043565 GO:0045892 GO:0050660 Hydropathy values IPR002872 IPR005933 IPR010985 IPR013321 IPR015590 IPR016160 IPR016161 IPR016162 IPR016163 IPR024082 IPR024089 IPR024090 IPR025703 IPR029041 IPR029510 IPR041349 IPR048798 IPR050485 IUPred2(short) InterPro L-glutamate gamma-semialdehyde dehydrogenase activity L-proline catabolic process to L-glutamate PDB PF01619 PF14850 PF18327 Pfam Proline dehydrogenase (Pro_dh) Proline dehydrogenase PutA, domain I Proline dehydrogenase PutA, domain I/II Proline dehydrogenase PutA, domain II Proline dehydrogenase domain Proline metabolism enzyme Proline utilization A proline dehydrogenase N-terminal domain Proline utilization A proline dehydrogenase N-terminal domain (PRODH) PutA, RHH domain Ribbon-helix-helix UNIPROT artifact biojava-7.2.4 cis-regulatory region sequence-specific DNA binding cytoplasmic side of plasma membrane cytosol disorder disorder_binding expression tag flavin adenine dinucleotide binding hydropathy identical protein binding negative regulation of DNA-templated transcription plasma membrane proline dehydrogenase activity protein homodimerization activity range_feature_1 response to oxidative stress sequence-specific DNA binding OXIDOREDUCTASE beta/alpha barrel, flavoenzyme, FAD, proline catabolism, L-lactate, OXIDOREDUCTASE Bifunctional putA protein Pfam artifact disorder disorder_binding hydropathy Protein Escherichia coli X-RAY DIFFRACTION 0.101329",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_42a7d7855b0c",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0944_1TJ0_1_002"
+}

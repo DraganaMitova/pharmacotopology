@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_42efa0dedb1f",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Transcriptional repressor smtB 1R1T 1 Anchor2 ArsR-like helix-turn-helix domain ArsR-type transcription regulator, HTH motif Bacterial regulatory protein, arsR family (HTH_5) DNA binding DNA-binding transcription factor activity Disordered binding sites Disordered regions GO GO:0003677 GO:0003700 GO:0046872 HTH ArsR-type DNA-binding domain Hydropathy values IPR001845 IPR011991 IPR018334 IPR036388 IPR036390 IPR051011 IUPred2(short) InterPro Metal-responsive transcriptional regulator PF01022 Pfam UNIPROT Winged helix DNA-binding domain superfamily Winged helix-like DNA-binding domain superfamily biojava-7.2.4 disorder disorder_binding hydropathy metal ion binding TRANSCRIPTION REPRESSOR Zinc, transcriptional regulation, winged HTH protein, DNA binding, TRANSCRIPTION REPRESSOR Transcriptional repressor smtB Pfam disorder disorder_binding hydropathy Protein Synechococcus elongatus PCC 7942 = FACHB-805 X-RAY DIFFRACTION 0.098361",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_42efa0dedb1f",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0815_1R1T_1_002"
+}

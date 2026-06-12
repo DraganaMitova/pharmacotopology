@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_95a77be1596e",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "2-oxo acid dehydrogenase alpha subunit 1UM9 1 Alpha-ketoacid dehydrogenase complex E1 component Anchor2 Dehydrogenase E1 component (E1_dh) Dehydrogenase, E1 component Disordered binding sites Disordered regions GO GO:0003863 GO:0009083 GO:0046872 Hydropathy values IPR001017 IPR029061 IPR050771 IUPred2(short) InterPro PF00676 Pfam Thiamin diphosphate-binding fold UNIPROT biojava-7.2.4 branched-chain 2-oxo acid dehydrogenase activity branched-chain amino acid catabolic process disorder disorder_binding hydropathy metal ion binding OXIDOREDUCTASE alpha(2)beta(2) tetramer, structural genomics, RIKEN Structural Genomics/Proteomics Initiative, RSGI, Oxidoreductase 2-oxo acid dehydrogenase alpha subunit Pfam disorder disorder_binding hydropathy Protein Thermus thermophilus X-RAY DIFFRACTION 0.092643",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_95a77be1596e",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0775_1UM9_1_002"
+}

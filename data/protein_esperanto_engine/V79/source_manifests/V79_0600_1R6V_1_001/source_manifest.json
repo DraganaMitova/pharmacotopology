@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_480dd874e487",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "subtilisin-like serine protease 1R6V 1 Anchor2 Disordered binding sites Disordered regions Fervidolysin domain Fervidolysin, second beta-sandwich domain Fervidolysin-like, N-terminal prodomain Fervidolysin/DR_A0283-like, Ig-like domain GO GO:0004252 GO:0005509 GO:0006508 GO:0008233 GO:0009986 GO:0016540 Hydropathy values IPR000209 IPR013783 IPR015500 IPR022398 IPR023827 IPR023828 IPR034063 IPR036852 IPR037045 IPR050131 IPR054399 IPR054400 IPR056489 IUPred2(short) Immunoglobulin-like fold InterPro PDB Peptidase S8 propeptide/proteinase inhibitor I9 superfamily Peptidase S8, subtilisin, Asp-active site Peptidase S8, subtilisin, His-active site Peptidase S8, subtilisin, Ser-active site Peptidase S8, subtilisin-related Peptidase S8/S53 domain Peptidase S8/S53 domain superfamily Subtilisin-like serine protease UNIPROT biojava-7.2.4 calcium ion binding cell surface disorder disorder_binding engineered mutation hydropathy monomer_feature_1 mutation peptidase activity protein autoprocessing proteolysis serine-type endopeptidase activity HYDROLASE subtilisin, sandwich domain, propeptide, HYDROLASE subtilisin-like serine protease disorder disorder_binding hydropathy mutation Protein Fervidobacterium pennivorans X-RAY DIFFRACTION CA CA 0.04769",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_480dd874e487",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0600_1R6V_1_001"
+}

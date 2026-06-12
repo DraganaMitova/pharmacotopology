@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_f91d213c89ef",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "cGMP-specific 3',5'-cyclic phosphodiesterase 1RKP 1 3',5'-cyclic-AMP phosphodiesterase activity 3',5'-cyclic-GMP phosphodiesterase activity 3',5'-cyclic-nucleotide phosphodiesterase activity 3'5'-cyclic nucleotide phosphodiesterase 3'5'-cyclic nucleotide phosphodiesterase (PDEase_I) 3'5'-cyclic nucleotide phosphodiesterase, catalytic domain 3'5'-cyclic nucleotide phosphodiesterase, catalytic domain superfamily 3'5'-cyclic nucleotide phosphodiesterase, conserved site Anchor2 Disordered binding sites Disordered regions GAF domain GAF-like domain superfamily GO GO:0004114 GO:0004115 GO:0005829 GO:0007165 GO:0030553 GO:0046069 GO:0046872 GO:0047555 GO:0141162 HD/PDEase domain Hydropathy values IPR002073 IPR003018 IPR003607 IPR023088 IPR023174 IPR029016 IPR036971 IUPred2(short) InterPro PDB PF00233 Pfam UNIPROT biojava-7.2.4 cGMP binding cGMP catabolic process cytosol disorder disorder_binding engineered mutation hydropathy metal ion binding monomer_feature_1 mutation negative regulation of cAMP/PKA signal transduction signal transduction HYDROLASE pde5A, viagra, IBMX, HYDROLASE cGMP-specific 3',5'-cyclic phosphodiesterase Pfam disorder disorder_binding hydropathy mutation Protein Homo sapiens X-RAY DIFFRACTION MG ZN MG ZN 0.064417",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_f91d213c89ef",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0433_1RKP_1_001"
+}

@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_83d82d230cad",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "COG4826: Serine protease inhibitor 1SNG 1 Anchor2 Disordered binding sites Disordered regions GO GO:0004867 GO:0005615 Hydropathy values IPR000215 IPR023796 IPR036186 IPR042178 IPR042185 IUPred2(short) InterPro PDB Parent monomer CYS Serpin domain Serpin family Serpin superfamily Serpin superfamily, domain 1 Serpin superfamily, domain 2 UNIPROT artifact biojava-7.2.4 cloning artifact disorder disorder_binding extracellular space hydropathy modified residue modified_monomer monomer_feature_1 monomer_feature_2 mutation range_feature_1 serine-type endopeptidase inhibitor activity HYDROLASE INHIBITOR Serine Protease Inhibitor (Serpin), Native State., HYDROLASE INHIBITOR COG4826: Serine protease inhibitor artifact disorder disorder_binding hydropathy modified_monomer mutation Protein Thermobifida fusca X-RAY DIFFRACTION 0.116216",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_83d82d230cad",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0967_1SNG_1_002"
+}

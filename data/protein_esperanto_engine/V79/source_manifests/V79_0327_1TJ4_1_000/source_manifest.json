@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_11032cec5855",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Sucrose-Phosphatase 1TJ4 1 Anchor2 Disordered binding sites Disordered regions GO GO:0000287 GO:0005986 GO:0050307 HAD superfamily HAD-like superfamily HAD-superfamily hydrolase, subfamily IIB Hydropathy values IPR006379 IPR006380 IPR012847 IPR023214 IPR036412 IPR051518 IUPred2(short) InterPro PF05116 Pfam Plant Sucrose Phosphatase Sucrose phosphatase, plant/cyanobacteria Sucrose phosphatase-like domain Sucrose-6F-phosphate phosphohydrolase (S6PP) UNIPROT biojava-7.2.4 disorder disorder_binding hydropathy magnesium ion binding sucrose biosynthetic process sucrose-phosphate phosphatase activity HYDROLASE phosphohydrolase, HAD superfamily, sucrose, cyanobacteria, hydrolase Sucrose-Phosphatase Pfam disorder disorder_binding hydropathy Protein Synechocystis sp. PCC 6803 X-RAY DIFFRACTION MG MG 0.045082",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_11032cec5855",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0327_1TJ4_1_000"
+}

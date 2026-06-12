@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_09d782f0908f",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "GALACTANASE 1UR0 1 Anchor2 Disordered binding sites Disordered regions GO GO:0015926 GO:0031218 GO:0045490 GO:0046872 Glycoside hydrolase superfamily Glycosyl hydrolase family 53 Glycosyl hydrolase family 53 (Glyco_hydro_53) Hydropathy values IPR011683 IPR017853 IUPred2(short) InterPro PF07745 Pfam UNIPROT arabinogalactan endo-1,4-beta-galactosidase activity biojava-7.2.4 disorder disorder_binding glucosidase activity hydropathy metal ion binding pectin catabolic process HYDROLASE HYDROLASE, BETA-1, 4-GALACTANASE, GLYCOSIDE HYDROLASE, SUBSTRATE SPECIFICITY, PECTIN, GH-A, FAMILY 53, PLANT CELL WALL DEGRADATION GALACTANASE Pfam disorder disorder_binding hydropathy Protein Bacillus licheniformis X-RAY DIFFRACTION CA CA 0.085213",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_09d782f0908f",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0265_1UR0_1_000"
+}

@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_9bae7a20ed3d",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "biphenyl dioxygenase small subunit 1ULJ 2 3-phenylpropionate catabolic process Anchor2 Disordered binding sites Disordered regions GO GO:0018687 GO:0019380 Hydropathy values IPR000391 IPR032710 IUPred2(short) InterPro NTF2-like domain superfamily Ring-hydroxylating dioxygenase beta subunit UNIPROT biojava-7.2.4 biphenyl 2,3-dioxygenase activity disorder disorder_binding hydropathy OXIDOREDUCTASE alpha3 beta3 hetero hexamer, OXIDOREDUCTASE biphenyl dioxygenase small subunit disorder disorder_binding hydropathy Protein Rhodococcus jostii RHA1 X-RAY DIFFRACTION FE2 FES 0.090909",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_9bae7a20ed3d",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0933_1ULJ_2_002"
+}

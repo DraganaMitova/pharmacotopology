@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_0bf32ba1d69a",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "ARF guanine-nucleotide exchange factor 1 1RE0 2 Anchor2 Disordered binding sites Disordered regions GO GO:0000137 GO:0005085 GO:0005739 GO:0005783 GO:0005829 GO:0005933 GO:0006888 GO:0006890 GO:0006891 GO:0016020 GO:0016236 GO:0030036 GO:0032012 Golgi cis cisterna Hydropathy values IPR000904 IPR023394 IPR032691 IPR035999 IUPred2(short) InterPro Mon2/Sec7/BIG1-like, HUS domain PDB PF01369 Pfam Sec7 domain Sec7 domain (Sec7) Sec7 domain superfamily Sec7, C-terminal domain superfamily UNIPROT actin cytoskeleton organization artifact biojava-7.2.4 cellular bud cloning artifact cytosol disorder disorder_binding endoplasmic reticulum endoplasmic reticulum to Golgi vesicle-mediated transport guanyl-nucleotide exchange factor activity hydropathy intra-Golgi vesicle-mediated transport macroautophagy membrane mitochondrion range_feature_1 regulation of ARF protein signal transduction retrograde vesicle-mediated transport, Golgi to endoplasmic reticulum PROTEIN TRANSPORT all-helical, alph-beta, PROTEIN TRANSPORT ARF guanine-nucleotide exchange factor 1 Pfam artifact disorder disorder_binding hydropathy Protein Saccharomyces cerevisiae X-RAY DIFFRACTION GDP MG GDP MG 0.158371",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_0bf32ba1d69a",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0053_1RE0_2_000"
+}

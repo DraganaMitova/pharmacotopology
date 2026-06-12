@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_c1a2902bf38e",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Saccharomyces cerevisiae Nip7p homolog 1SQW 1 60S ribosome subunit biogenesis protein NIP7, pre-PUA domain 60S ribosome subunit biogenesis protein Nip7, pre-PUA domain, eukaryotes Anchor2 Disordered binding sites Disordered regions GO GO:0003723 GO:0005654 GO:0005730 GO:0005829 GO:0030687 GO:0042255 GO:0042273 Hydropathy values IPR002478 IPR005155 IPR015947 IPR016686 IPR036974 IPR040598 IPR055359 IUPred2(short) InterPro NIP7/UPF0113, pre-PUA domain (pre-PUA_NIP7) PDB PF03657 PF17833 PUA domain PUA domain superfamily PUA-like superfamily Pfam RNA binding Ribosome biogenesis factor, NIP7 UNIPROT UPF0113 PUA domain (UPF0113) UPF0113, PUA domain artifact biojava-7.2.4 cloning artifact cytosol disorder disorder_binding hydropathy nucleolus nucleoplasm preribosome, large subunit precursor range_feature_1 ribosomal large subunit biogenesis ribosome assembly UNKNOWN FUNCTION PUA, UNKNOWN FUNCTION Saccharomyces cerevisiae Nip7p homolog Pfam artifact disorder disorder_binding hydropathy Protein Homo sapiens X-RAY DIFFRACTION 0.085106",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_c1a2902bf38e",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0658_1SQW_1_001"
+}

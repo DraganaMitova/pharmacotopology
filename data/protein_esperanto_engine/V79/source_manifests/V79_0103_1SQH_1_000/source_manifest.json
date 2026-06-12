@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_55d4ccadfde4",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "hypothetical protein CG14615-PA 1SQH 1 Acyl-CoA N-acyltransferase Acyl-CoA N-acyltransferase VerG-like Anchor2 Disordered binding sites Disordered regions Domain of unknown function (DUF5645) (DUF5645) Domain of unknown function DUF5645 FR47-like protein (FR47) GCN5-related N-acetyltransferase Rv2170-like domain GO GO:0047961 Hydropathy values IPR013653 IPR016181 IPR041506 IPR053225 IUPred2(short) InterPro PDB PF08445 PF18713 Parent monomer MET Pfam UNIPROT artifact biojava-7.2.4 disorder disorder_binding expression tag glycine N-acyltransferase activity hydropathy modified residue modified_monomer monomer_feature_1 monomer_feature_2 monomer_feature_3 monomer_feature_4 monomer_feature_5 monomer_feature_6 monomer_feature_7 monomer_feature_8 mutation range_feature_1 STRUCTURAL GENOMICS, UNKNOWN FUNCTION structural genomics, PSI, Protein Structure Initiative, Northeast Structural Genomics Consortium, NESG, UNKNOWN FUNCTION hypothetical protein CG14615-PA Pfam artifact disorder disorder_binding hydropathy modified_monomer mutation Protein Drosophila melanogaster X-RAY DIFFRACTION 0.048077",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_55d4ccadfde4",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0103_1SQH_1_000"
+}

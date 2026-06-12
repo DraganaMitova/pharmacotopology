@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_7d27ba0d7a21",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Hinc II endonuclease 1TW8 2 Anchor2 DNA binding DNA mismatch repair MutH/Type II restriction endonuclease superfamily DNA restriction-modification system Disordered binding sites Disordered regions GO GO:0003677 GO:0009036 GO:0009307 Hydropathy values IPR011335 IPR015307 IPR037057 IUPred2(short) InterPro Restriction endonuclease type II-like Restriction endonuclease, type II, HincII UNIPROT biojava-7.2.4 disorder disorder_binding hydropathy type II site-specific deoxyribonuclease activity hydrolase/DNA restriction endonuclease, hydrolase-DNA COMPLEX Hinc II endonuclease disorder disorder_binding hydropathy Protein Haemophilus influenzae X-RAY DIFFRACTION CA CA NA 0.023346",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_7d27ba0d7a21",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0216_1TW8_2_000"
+}

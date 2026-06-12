@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_707c15f916ba",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Phosphohistidine phosphatase sixA 1UJB 1 Anchor2 Disordered binding sites Disordered regions GO GO:0005737 GO:0070297 GO:0101006 Histidine phosphatase superfamily Histidine phosphatase superfamily (branch 1) (His_Phos_1) Histidine phosphatase superfamily, clade-1 Hydropathy values IPR004449 IPR013078 IPR029033 IUPred2(short) InterPro PF00300 Pfam Phosphohistidine phosphatase SixA UNIPROT biojava-7.2.4 cytoplasm disorder disorder_binding hydropathy protein histidine phosphatase activity regulation of phosphorelay signal transduction system HYDROLASE alpha-beta fold, HYDROLASE Phosphohistidine phosphatase sixA Pfam disorder disorder_binding hydropathy Protein Escherichia coli X-RAY DIFFRACTION CA CA 0.068323",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_707c15f916ba",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0646_1UJB_1_001"
+}

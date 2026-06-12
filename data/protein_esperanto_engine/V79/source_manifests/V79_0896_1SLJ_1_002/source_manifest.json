@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_6017dd9c424f",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Ribonuclease E 1SLJ 1 7S RNA binding Anchor2 DEAD/H-box RNA helicase binding Disordered binding sites Disordered regions GO GO:0000049 GO:0000287 GO:0000967 GO:0003723 GO:0004521 GO:0004540 GO:0005737 GO:0006364 GO:0006396 GO:0006401 GO:0006402 GO:0008033 GO:0008270 GO:0008312 GO:0008995 GO:0009898 GO:0016020 GO:0017151 GO:0019843 GO:0042802 GO:0051259 GO:0051289 GO:0060090 GO:1902555 GO:1990061 Hydropathy values IPR003029 IPR004659 IPR012340 IPR019307 IPR021968 IPR028878 IPR048583 IUPred2(short) InterPro Nucleic acid-binding, OB-fold PDB PF00575 Pfam Polyribonucleotide phosphorylase C-terminal RNA binding RNA catabolic process RNA endonuclease activity RNA nuclease activity RNA processing RNA-binding protein AU-1/Ribonuclease E/G RNase E/G, thioredoxin-like domain Ribonuclease E Ribonuclease E/G S1 RNA binding domain (S1) S1 domain UNIPROT artifact bacterial degradosome biojava-7.2.4 cloning artifact cytoplasm cytoplasmic side of plasma membrane disorder disorder_binding endoribonuclease complex hydropathy identical protein binding mRNA catabolic process magnesium ion binding membrane molecular adaptor activity protein complex oligomerization protein homotetramerization rRNA 5'-end processing rRNA binding rRNA processing range_feature_1 ribonuclease E activity tRNA binding tRNA processing zinc ion binding HYDROLASE OB-fold, RNA-binding, HYDROLASE Ribonuclease E Pfam artifact disorder disorder_binding hydropathy Protein Escherichia coli SOLUTION NMR 0.15625",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_6017dd9c424f",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0896_1SLJ_1_002"
+}

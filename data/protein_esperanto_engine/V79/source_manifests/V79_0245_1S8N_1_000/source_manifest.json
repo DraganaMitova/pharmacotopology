@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_f8cdd5085227",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "putative antiterminator 1S8N 1 ANTAR domain ANTAR domain (ANTAR) Anchor2 CheY-like superfamily Disordered binding sites Disordered regions GO GO:0000160 GO:0003723 GO:0005737 GO:0005886 GO:0009274 GO:0031564 GO:0043168 Hydropathy values IPR001789 IPR005561 IPR008327 IPR011006 IPR036388 IPR048029 IUPred2(short) InterPro PF00072 PF03861 PdtaR, receiver domain Pfam RNA binding Response regulator receiver domain (Response_reg) Signal transduction response regulator, antiterminator Signal transduction response regulator, receiver domain UNIPROT Winged helix-like DNA-binding domain superfamily anion binding biojava-7.2.4 cytoplasm disorder disorder_binding hydropathy peptidoglycan-based cell wall phosphorelay signal transduction system plasma membrane transcription antitermination STRUCTURAL GENOMICS, UNKNOWN FUNCTION Rv1626, STRUCTURAL GENOMICS, TRANSCRIPTIONAL ANTITERMINATOR, TWO COMPONENT SYSTEM, PSI, Protein Structure Initiative, TB Structural Genomics Consortium, TBSGC, UNKNOWN FUNCTION putative antiterminator Pfam disorder disorder_binding hydropathy Protein Mycobacterium tuberculosis H37Rv X-RAY DIFFRACTION 0.082927",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_f8cdd5085227",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0245_1S8N_1_000"
+}

@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_dad6c3b742f1",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Heme-based Methyl-accepting Chemotaxis Protein 1U4H 1 Anchor2 Disordered binding sites Disordered regions GO GO:0007165 GO:0016020 GO:0020037 GO:0046872 H-NOX domain superfamily Haem-NO-binding (HNOB) Heme NO-binding Hydropathy values IPR004089 IPR011644 IPR024096 IPR038158 IUPred2(short) InterPro Methyl-accepting chemotaxis protein (MCP) signalling domain NO signalling/Golgi transport ligand-binding domain superfamily PDB PF07700 Parent monomer MET Pfam UNIPROT biojava-7.2.4 disorder disorder_binding heme binding hydropathy membrane metal ion binding modified residue modified_monomer monomer_feature_1 monomer_feature_10 monomer_feature_11 monomer_feature_12 monomer_feature_13 monomer_feature_14 monomer_feature_2 monomer_feature_3 monomer_feature_4 monomer_feature_5 monomer_feature_6 monomer_feature_7 monomer_feature_8 monomer_feature_9 mutation signal transduction SIGNALING PROTEIN H-NOX DOMAIN, HEME, OXYGEN SENSOR, SIGNAL TRANSDUCTION, CHEMOTAXIS, SIGNALING PROTEIN Heme-based Methyl-accepting Chemotaxis Protein Pfam disorder disorder_binding hydropathy modified_monomer mutation Protein Caldanaerobacter subterraneus subsp. tengcongensis X-RAY DIFFRACTION HEM HEM OXY 0.058511",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_dad6c3b742f1",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0234_1U4H_1_000"
+}

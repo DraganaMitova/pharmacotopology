@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_ab007be2cadc",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Glycogen synthesis protein glgS 1RRZ 1 Anchor2 Disordered binding sites Disordered regions GO GO:1900232 GO:1902201 GlgS superfamily Glycogen synthesis protein (GlgS) Hydropathy values IPR015065 IPR036295 IUPred2(short) InterPro PDB PF08971 Pfam Surface composition regulator UNIPROT artifact biojava-7.2.4 disorder disorder_binding expression tag hydropathy negative regulation of bacterial-type flagellum-dependent cell motility negative regulation of single-species biofilm formation on inanimate substrate range_feature_1 STRUCTURAL GENOMICS,BIOSYNTHETIC PROTEIN all-helical domain, Structural Genomics, Montreal-Kingston Bacterial Structural Genomics Initiative, BSGI, BIOSYNTHETIC PROTEIN Glycogen synthesis protein glgS Pfam artifact disorder disorder_binding hydropathy Protein Escherichia coli SOLUTION NMR 0.27907",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_ab007be2cadc",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0488_1RRZ_1_001"
+}

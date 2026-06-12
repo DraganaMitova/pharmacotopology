@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_aab519382636",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Topoisomerase IV subunit B 1S14 1 ATP binding Anchor2 DNA binding DNA gyrase B subunit, C-terminal DNA topoisomerase IV, subunit B, Gram-negative DNA topoisomerase type II (double strand cut, ATP-hydrolyzing) activity DNA topoisomerase type II (double strand cut, ATP-hydrolyzing) complex DNA topoisomerase, type IIA DNA topoisomerase, type IIA, conserved site DNA topoisomerase, type IIA, subunit B, C-terminal DNA topoisomerase, type IIA, subunit B, domain 2 DNA topoisomerase, type IIA-like domain superfamily DNA topological change Disordered binding sites Disordered regions GO GO:0003677 GO:0003918 GO:0005524 GO:0005694 GO:0005829 GO:0006265 GO:0007059 GO:0007062 GO:0009330 GO:0030541 GO:0046677 GO:0046872 GO:0051276 Histidine kinase-, DNA gyrase B-, and HSP90-like ATPase (HATPase_c) Histidine kinase/HSP90-like ATPase domain Histidine kinase/HSP90-like ATPase superfamily Hydropathy values IPR001241 IPR002288 IPR003594 IPR005737 IPR006171 IPR013506 IPR013759 IPR013760 IPR014721 IPR018522 IPR020568 IPR036890 IUPred2(short) InterPro PF02518 Pfam Ribosomal protein uS5 domain 2-type superfamily Small ribosomal subunit protein uS5 domain 2-type fold, subgroup TOPRIM domain UNIPROT biojava-7.2.4 chromosome chromosome organization chromosome segregation cytosol disorder disorder_binding hydropathy metal ion binding plasmid partitioning response to antibiotic sister chromatid cohesion ISOMERASE alpha/beta globular protein, Isomerase Topoisomerase IV subunit B Pfam disorder disorder_binding hydropathy Protein Escherichia coli X-RAY DIFFRACTION 0.149485",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_aab519382636",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0802_1S14_1_002"
+}

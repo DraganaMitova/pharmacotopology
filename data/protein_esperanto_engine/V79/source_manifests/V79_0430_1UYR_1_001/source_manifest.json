@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_2767498d7b9f",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "ACETYL-COA CARBOXYLASE 1UYR 1 ATP binding ATP-grasp fold ATP-grasp fold, subdomain 1 Acetyl-CoA carboxylase Acetyl-CoA carboxylase, BT domain Acetyl-CoA carboxylase, central domain Acetyl-coenzyme A carboxylase carboxyl transferase subunit beta Acetyl-coenzyme A carboxyltransferase, C-terminal Acetyl-coenzyme A carboxyltransferase, N-terminal Anchor2 Biotin carboxylase, C-terminal Biotin carboxylase-like, N-terminal domain Biotin carboxylation domain Biotin-binding site Biotin/lipoyl attachment Carbamoyl phosphate synthase, ATP-binding domain Carboxyl transferase domain (Carboxyl_trans) ClpP/crotonase-like domain superfamily Disordered binding sites Disordered regions GO GO:0003989 GO:0004075 GO:0005524 GO:0005739 GO:0005789 GO:0005829 GO:0006085 GO:0006606 GO:0006633 GO:0009317 GO:0016743 GO:0042759 GO:0042802 GO:0042803 GO:0046872 GO:1905502 GO:2001295 Hydropathy values IPR000089 IPR001882 IPR005479 IPR005481 IPR005482 IPR011053 IPR011054 IPR011761 IPR011762 IPR011763 IPR011764 IPR013537 IPR013815 IPR016185 IPR029045 IPR034733 IPR049074 IPR049076 IUPred2(short) InterPro PF01039 Pfam Pre-ATP-grasp domain superfamily Rudiment single hybrid motif Single hybrid motif UNIPROT acetyl-CoA binding acetyl-CoA biosynthetic process acetyl-CoA carboxylase activity acetyl-CoA carboxylase complex biojava-7.2.4 biotin carboxylase activity carboxyl- or carbamoyltransferase activity cytosol disorder disorder_binding endoplasmic reticulum membrane fatty acid biosynthetic process hydropathy identical protein binding long-chain fatty acid biosynthetic process malonyl-CoA biosynthetic process metal ion binding mitochondrion protein homodimerization activity protein import into nucleus TRANSFERASE CARBOXYLASE, CARBOXYLTRANSFERASE, HERBICIDE, TRANSFERASE ACETYL-COA CARBOXYLASE Pfam disorder disorder_binding hydropathy Protein Saccharomyces cerevisiae X-RAY DIFFRACTION 0.059701",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_2767498d7b9f",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0430_1UYR_1_001"
+}

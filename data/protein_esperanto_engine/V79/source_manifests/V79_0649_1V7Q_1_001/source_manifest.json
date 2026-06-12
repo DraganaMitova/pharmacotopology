@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_6091523bb0a2",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "phosphoglycerate mutase 1V7Q 1 Anchor2 Disordered binding sites Disordered regions GO GO:0005737 GO:0016791 Histidine phosphatase superfamily Histidine phosphatase superfamily (branch 1) (His_Phos_1) Histidine phosphatase superfamily, clade-1 Hydropathy values IPR001345 IPR013078 IPR029033 IPR050275 IUPred2(short) InterPro PF00300 Pfam Phosphoglycerate Mutase/Phosphatase Phosphoglycerate/bisphosphoglycerate mutase, active site UNIPROT biojava-7.2.4 cytoplasm disorder disorder_binding hydropathy phosphatase activity ISOMERASE phosphoglycerate mutase, Thermus thermophilus, RIKEN Structural Genomics/Proteomics Initiative, RSGI, Structural Genomics, ISOMERASE phosphoglycerate mutase Pfam disorder disorder_binding hydropathy Protein Thermus thermophilus X-RAY DIFFRACTION 0.056497",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_6091523bb0a2",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0649_1V7Q_1_001"
+}

@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_a6caf9ffcb8b",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Arp2/3 Complex 16kDa Subunit 1TYQ 7 Actin-related protein 2/3 complex subunit 5 Actin-related protein 2/3 complex subunit 5 superfamily Anchor2 Arp2/3 complex-mediated actin nucleation Arp2/3 protein complex Disordered binding sites Disordered regions GO GO:0003779 GO:0005634 GO:0005829 GO:0005885 GO:0016477 GO:0030674 GO:0030833 GO:0030863 GO:0034314 GO:0035861 GO:0042995 Hydropathy values IPR006789 IPR036743 IUPred2(short) InterPro UNIPROT actin binding biojava-7.2.4 cell migration cell projection cortical cytoskeleton cytosol disorder disorder_binding hydropathy nucleus protein-macromolecule adaptor activity regulation of actin filament polymerization site of double-strand break STRUCTURAL PROTEIN STRUCTURAL PROTEIN Arp2/3 Complex 16kDa Subunit disorder disorder_binding hydropathy Protein Bos taurus X-RAY DIFFRACTION ATP CA ATP CA 0.278146",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_a6caf9ffcb8b",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0615_1TYQ_7_001"
+}

@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_159f86b7ffdb",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Cell division control protein 13 1S40 2 Anchor2 CST complex Cdc13, OB4 dimerization domain Cell division control protein 13, N-terminal Cell division control protein 13, OB2 domain Disordered binding sites Disordered regions G-rich strand telomeric DNA binding GO GO:0000723 GO:0000781 GO:0000783 GO:0007004 GO:0010521 GO:0016233 GO:0032210 GO:0042802 GO:0043047 GO:0051301 GO:0061770 GO:0071166 GO:0098505 GO:1990879 Hydropathy values IPR011564 IPR012340 IPR028389 IPR031749 IPR040650 IPR041028 IUPred2(short) InterPro Nucleic acid-binding, OB-fold PDB PF02765 Pfam Protection of telomeres protein 1 Telomeric single stranded DNA binding POT1/CDC13 (POT1) Telomeric single stranded DNA binding POT1/Cdc13 UNIPROT artifact biojava-7.2.4 cell division chromosome, telomeric region cloning artifact disorder disorder_binding hydropathy identical protein binding nuclear telomere cap complex range_feature_1 regulation of telomere maintenance via telomerase ribonucleoprotein complex localization single-stranded telomeric DNA binding telomerase inhibitor activity telomere capping telomere maintenance telomere maintenance via telomerase translation elongation factor binding CELL CYCLE/DNA ssDNA, single-stranded nucleic acid, recognition, specificity, cdc13, OB-fold, telomere, CELL CYCLE-DNA COMPLEX Cell division control protein 13 Pfam artifact disorder disorder_binding hydropathy Protein Saccharomyces cerevisiae SOLUTION NMR 0.055276",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_159f86b7ffdb",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0464_1S40_2_001"
+}

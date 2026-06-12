@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_9a33d4047c74",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "MutT/nudix family protein 1SOI 1 8-oxo-7,8-dihydroguanosine triphosphate pyrophosphatase activity ATP binding Anchor2 Disordered binding sites Disordered regions GO GO:0005524 GO:0008413 GO:0008828 GO:0019177 GO:0046654 GO:0046656 GO:0046872 Hydropathy values IPR000086 IPR015797 IPR020084 IPR020476 IPR048157 IUPred2(short) InterPro NUDIX domain (NUDIX) NUDIX hydrolase NUDIX hydrolase domain NUDIX hydrolase, conserved site NUDIX hydrolase-like domain superfamily Nudix hydrolase DR_1025-like PF00293 Pfam UNIPROT biojava-7.2.4 dATP diphosphatase activity dihydroneopterin triphosphate pyrophosphohydrolase activity disorder disorder_binding folic acid biosynthetic process hydropathy metal ion binding tetrahydrofolate biosynthetic process HYDROLASE NUDIX FOLD, alpha-beta-alpha sandwich, Structural Genomics, BSGC structure funded by NIH, Protein Structure Initiative, PSI, Berkeley Structural Genomics Center, HYDROLASE MutT/nudix family protein Pfam disorder disorder_binding hydropathy Protein Deinococcus radiodurans X-RAY DIFFRACTION SM 0.232704",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_9a33d4047c74",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0810_1SOI_1_002"
+}

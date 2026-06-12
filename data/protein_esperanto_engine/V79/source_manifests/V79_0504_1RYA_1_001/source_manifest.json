@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_7a8db445a399",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "GDP-mannose mannosyl hydrolase 1RYA 1 Anchor2 Disordered binding sites Disordered regions GDP-glucosidase activity GDP-mannose mannosyl hydrolase GDP-mannose mannosyl hydrolase activity GDP-mannose mannosyl hydrolase, Enterobacteria GO GO:0000287 GO:0008727 GO:0009103 GO:0030145 GO:0042802 GO:0042803 GO:0047917 Hydropathy values IPR000086 IPR015797 IPR020084 IPR028613 IPR033715 IUPred2(short) InterPro NUDIX domain (NUDIX) NUDIX hydrolase domain NUDIX hydrolase, conserved site NUDIX hydrolase-like domain superfamily PF00293 Pfam UNIPROT biojava-7.2.4 disorder disorder_binding hydropathy identical protein binding lipopolysaccharide biosynthetic process magnesium ion binding manganese ion binding protein homodimerization activity HYDROLASE GDP-mannose, mannose, GDP-glucose, NUDIX, Nudix Mg-complex, HYDROLASE GDP-mannose mannosyl hydrolase Pfam disorder disorder_binding hydropathy Protein Escherichia coli X-RAY DIFFRACTION GDP MG GDP MG 0.05",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_7a8db445a399",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0504_1RYA_1_001"
+}

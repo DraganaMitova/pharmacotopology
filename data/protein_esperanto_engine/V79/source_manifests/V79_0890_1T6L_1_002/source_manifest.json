@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_5a9d111c61ad",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "DNA polymerase processivity factor 1T6L 1 Anchor2 DNA binding DNA clamp superfamily DNA polymerase processivity factor activity DNA replication Disordered binding sites Disordered regions GO GO:0003677 GO:0006260 GO:0030337 GO:0039548 GO:0039686 GO:0042025 GO:0044423 GO:0085034 Herpesvirus polymerase accessory protein Herpesvirus polymerase accessory protein (Herpes_PAP) Hydropathy values IPR004997 IPR046938 IUPred2(short) InterPro PF03325 Pfam UNIPROT bidirectional double-stranded viral DNA replication biojava-7.2.4 disorder disorder_binding host cell nucleus hydropathy symbiont-mediated suppression of host NF-kappaB cascade symbiont-mediated suppression of host cytoplasmic pattern recognition receptor signaling pathway via inhibition of IRF3 activity virion component REPLICATION Processivity Fold, REPLICATION DNA polymerase processivity factor disorder disorder_binding hydropathy Protein Human betaherpesvirus 5 X-RAY DIFFRACTION 0.082759",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_5a9d111c61ad",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0890_1T6L_1_002"
+}

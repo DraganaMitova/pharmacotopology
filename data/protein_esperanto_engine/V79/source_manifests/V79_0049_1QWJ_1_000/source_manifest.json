@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_80df024a7ccf",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "cytidine monophospho-N-acetylneuraminic acid synthetase 1QWJ 1 Acylneuraminate cytidylyltransferase Anchor2 CMP-N-acetylneuraminate biosynthetic process CMP-NeuNAc synthase Cytidylyltransferase (CTP_transf_3) Disordered binding sites Disordered regions GO GO:0005634 GO:0005654 GO:0006054 GO:0006055 GO:0008781 HAD superfamily HAD-like superfamily Hydropathy values IPR003329 IPR023214 IPR029044 IPR036412 IPR050793 IUPred2(short) InterPro N-acetylneuraminate metabolic process N-acylneuraminate cytidylyltransferase activity Nucleotide-diphospho-sugar transferases PF02348 Pfam UNIPROT biojava-7.2.4 disorder disorder_binding hydropathy nucleoplasm nucleus TRANSFERASE CMP-5-N-acetylneuraminic acid synthetase, CMP-Neu5Ac, sialic acid, glycosylation, lipopolysaccharide biosynthesis, sugar-activating enzyme, TRANSFERASE cytidine monophospho-N-acetylneuraminic acid synthetase Pfam disorder disorder_binding hydropathy Protein Mus musculus X-RAY DIFFRACTION 0.069869",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_80df024a7ccf",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0049_1QWJ_1_000"
+}

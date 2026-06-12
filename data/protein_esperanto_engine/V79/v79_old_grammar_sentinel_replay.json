@@ -1,0 +1,77 @@
+{
+  "kind": "V79_OLD_GRAMMAR_SENTINEL_REPLAY_v0",
+  "rows": [
+    {
+      "acceptance_decision": "accepted",
+      "expected_mechanism_class": "globular_closure",
+      "observed_mechanism_class": "globular_closure",
+      "passed": true,
+      "prediction_hash": "f03c5ab35ff1f4e1c71435d74818c7a0208c62de0599c3dd6b4728851b4d621d"
+    },
+    {
+      "acceptance_decision": "accepted",
+      "expected_mechanism_class": "beta_closure_topology",
+      "observed_mechanism_class": "beta_closure_topology",
+      "passed": true,
+      "prediction_hash": "16ba0feb211f3f56a71c8ad18bc0c446b27089f1567817380f47c011b322a3f4"
+    },
+    {
+      "acceptance_decision": "accepted",
+      "expected_mechanism_class": "multidomain_allosteric_architecture",
+      "observed_mechanism_class": "multidomain_allosteric_architecture",
+      "passed": true,
+      "prediction_hash": "bac257f87f45d99f48adf5596bbe0a8493d8d48d9f23a7f6f3306e6e882bf198"
+    },
+    {
+      "acceptance_decision": "accepted",
+      "expected_mechanism_class": "secretory_disulfide_redox_topology",
+      "observed_mechanism_class": "secretory_disulfide_redox_topology",
+      "passed": true,
+      "prediction_hash": "2e39c45fb3b4cd8fdf80436e0d6d99ad5487744844371a228c820821d9deb48a"
+    },
+    {
+      "acceptance_decision": "accepted",
+      "expected_mechanism_class": "signal_peptide_vs_true_tm_routing",
+      "observed_mechanism_class": "signal_peptide_vs_true_tm_routing",
+      "passed": true,
+      "prediction_hash": "b6240710d55116c1cdc740c6c60b2e43b3029d5876063466296fc67b6537c396"
+    },
+    {
+      "acceptance_decision": "accepted",
+      "expected_mechanism_class": "coiled_coil_register_topology",
+      "observed_mechanism_class": "coiled_coil_register_topology",
+      "passed": true,
+      "prediction_hash": "46ecf986aaa5b59c4c4bd99b5c18ac74d4912c2d2b32c5c5989cc4f20daae43d"
+    },
+    {
+      "acceptance_decision": "accepted",
+      "expected_mechanism_class": "repeat_solenoid_topology",
+      "observed_mechanism_class": "repeat_solenoid_topology",
+      "passed": true,
+      "prediction_hash": "6aa1c4e09dfebaad521aa550ee4e29c3988eed64d9420686972a2f198dc125b4"
+    },
+    {
+      "acceptance_decision": "accepted",
+      "expected_mechanism_class": "knotted_topology",
+      "observed_mechanism_class": "knotted_topology",
+      "passed": true,
+      "prediction_hash": "c20e80bf598a147567bd70b9747e4699c0cc46a51c52f672d5ccd2063f1a15e0"
+    },
+    {
+      "acceptance_decision": "accepted",
+      "expected_mechanism_class": "metal_cluster_and_ligand_locked_basin",
+      "observed_mechanism_class": "metal_cluster_and_ligand_locked_basin",
+      "passed": true,
+      "prediction_hash": "f187b9be573809deaf61c73b9f781fc71a9a42d9c9fb63a1e91ed82724730fb5"
+    },
+    {
+      "acceptance_decision": "accepted",
+      "expected_mechanism_class": "assembly_required_folding",
+      "observed_mechanism_class": "assembly_required_folding",
+      "passed": true,
+      "prediction_hash": "3ecf730f835022023afac8f15db1c39bc84918107e3f5830ff7c5e6ef8d64d7d"
+    }
+  ],
+  "sentinel_count": 10,
+  "sentinel_regressions": 0
+}

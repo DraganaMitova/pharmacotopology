@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_8fce272defa1",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Polynucleotide kinase 1RC8 2 AAA domain (AAA_33) ATP binding ATP-dependent polydeoxyribonucleotide 5'-hydroxyl-kinase activity Anchor2 DNA repair Disordered binding sites Disordered regions GO GO:0005524 GO:0006281 GO:0046404 GO:0047846 HAD superfamily HAD-like superfamily Hydropathy values IPR023214 IPR027417 IPR036412 IPR044493 IPR056782 IUPred2(short) InterPro P-loop containing nucleoside triphosphate hydrolase PDB PF13671 PF25109 Parent monomer MET Pfam Polynucleotide kinase PNKP phosphatase domain (HAD_PNKP) Polynucleotide kinase PNKP, C-terminal phosphatase domain Polynucleotide kinase, PNKP phosphatase domain UNIPROT biojava-7.2.4 deoxynucleotide 3'-phosphatase activity disorder disorder_binding hydropathy modified residue modified_monomer monomer_feature_1 monomer_feature_10 monomer_feature_11 monomer_feature_12 monomer_feature_13 monomer_feature_14 monomer_feature_15 monomer_feature_16 monomer_feature_17 monomer_feature_18 monomer_feature_19 monomer_feature_2 monomer_feature_20 monomer_feature_21 monomer_feature_22 monomer_feature_23 monomer_feature_24 monomer_feature_3 monomer_feature_4 monomer_feature_5 monomer_feature_6 monomer_feature_7 monomer_feature_8 monomer_feature_9 mutation TRANSFERASE/DNA KINASE, PHOSPHATASE, ALPHA/BETA, P-LOOP, ssDNA, TRANSFERASE-DNA COMPLEX Polynucleotide kinase Pfam disorder disorder_binding hydropathy modified_monomer mutation Protein Tequatrovirus T4 X-RAY DIFFRACTION CA CA 0.036545",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_8fce272defa1",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0073_1RC8_2_000"
+}

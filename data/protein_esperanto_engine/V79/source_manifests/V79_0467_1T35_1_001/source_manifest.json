@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_b1ba6a48479a",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "HYPOTHETICAL PROTEIN YVDD, Putative Lysine Decarboxylase 1T35 1 Anchor2 Cytokinin riboside 5'-monophosphate phosphoribohydrolase LOG Disordered binding sites Disordered regions GO GO:0005829 GO:0009691 GO:0102682 Hydropathy values IPR005269 IPR031100 IUPred2(short) InterPro LOG family PDB PF03641 Parent monomer MET Pfam Possible lysine decarboxylase (Lysine_decarbox) UNIPROT biojava-7.2.4 cytokinin biosynthetic process cytokinin riboside 5'-monophosphate phosphoribohydrolase activity cytosol disorder disorder_binding hydropathy modified residue modified_monomer monomer_feature_1 monomer_feature_10 monomer_feature_11 monomer_feature_12 monomer_feature_13 monomer_feature_14 monomer_feature_15 monomer_feature_16 monomer_feature_17 monomer_feature_18 monomer_feature_19 monomer_feature_2 monomer_feature_20 monomer_feature_21 monomer_feature_22 monomer_feature_23 monomer_feature_24 monomer_feature_3 monomer_feature_4 monomer_feature_5 monomer_feature_6 monomer_feature_7 monomer_feature_8 monomer_feature_9 mutation LYASE HYPOTHETICAL PROTEIN YVDD, PUTATIVE LYSINE DECARBOXYLASE, STRUCTURAL GENOMICS TARGET, T833, NYSGXRC, PSI, Protein Structure Initiative, New York SGX Research Center for Structural Genomics, LYASE HYPOTHETICAL PROTEIN YVDD, Putative Lysine Decarboxylase Pfam disorder disorder_binding hydropathy modified_monomer mutation Protein Bacillus subtilis X-RAY DIFFRACTION 0.057592",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_b1ba6a48479a",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0467_1T35_1_001"
+}

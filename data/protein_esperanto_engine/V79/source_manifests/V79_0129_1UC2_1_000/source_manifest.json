@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_8f99821058d6",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "hypothetical protein PH1602 1UC2 1 Anchor2 DNA binding Disordered binding sites Disordered regions GMP binding GO GO:0000394 GO:0003677 GO:0003972 GO:0004519 GO:0005525 GO:0006314 GO:0008033 GO:0016539 GO:0016787 GO:0019002 GO:0030145 GO:0170057 GTP binding Hint domain C-terminal Hint domain N-terminal Hint domain superfamily Homing endonuclease Homing endonuclease, LAGLIDADG domain Hydropathy values IPR001233 IPR003586 IPR003587 IPR004042 IPR004860 IPR006141 IPR006142 IPR027434 IPR030934 IPR036025 IPR036844 IUPred2(short) Intein Intein C-terminal splicing region Intein DOD homing endonuclease, central region Intein N-terminal splicing region InterPro RNA ligase (ATP) activity RNA ligase (GTP) activity RNA splicing, via endonucleolytic cleavage and ligation RNA-splicing ligase, RtcB UNIPROT biojava-7.2.4 disorder disorder_binding endonuclease activity hydrolase activity hydropathy intein-mediated protein splicing intron homing manganese ion binding tRNA processing tRNA-splicing ligase RtcB-like superfamily LIGASE Structural genomics, LIGASE hypothetical protein PH1602 disorder disorder_binding hydropathy Protein Pyrococcus horikoshii X-RAY DIFFRACTION 0.070686",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_8f99821058d6",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0129_1UC2_1_000"
+}

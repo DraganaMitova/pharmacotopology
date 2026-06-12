@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_0256cb3fe73e",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "CELLULASE B 1UZ0 1 Anchor2 Carbohydrate binding module family 6 Cellulose binding, type IV Disordered binding sites Disordered regions GO GO:0000272 GO:0004553 GO:0030246 GO:0046872 Galactose-binding-like domain superfamily Glycoside hydrolase superfamily Glycoside hydrolase, family 5 Glycoside hydrolase, family 5, conserved site Hydropathy values IPR001547 IPR005084 IPR006584 IPR008979 IPR017853 IPR018087 IUPred2(short) InterPro UNIPROT biojava-7.2.4 carbohydrate binding disorder disorder_binding hydrolase activity, hydrolyzing O-glycosyl compounds hydropathy metal ion binding polysaccharide catabolic process CARBOHYDRATE BINDING MODULE CARBOHYDRATE BINDING MODULE, CBM6, MIXED BETA1, 3-1, 4 LINKED GLUCAN CELLULASE B disorder disorder_binding hydropathy Protein Cellvibrio mixtus X-RAY DIFFRACTION CA CA 0.274809",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_0256cb3fe73e",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0084_1UZ0_1_000"
+}

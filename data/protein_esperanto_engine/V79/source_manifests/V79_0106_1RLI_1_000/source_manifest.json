@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_ec0a74607c1d",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Trp Repressor Binding Protein 1RLI 1 Anchor2 Disordered binding sites Disordered regions Flavoprotein-like superfamily GO GO:0016491 Hydropathy values IPR005025 IPR029039 IPR051796 IUPred2(short) InterPro Iron-sulfur flavoprotein SsuE-like NADPH-dependent FMN reductase-like domain PDB UNIPROT artifact biojava-7.2.4 cloning artifact disorder disorder_binding hydropathy oxidoreductase activity range_feature_1 Structural Genomics, protein binding Structural Genomics, Trp Repressor, PSI, Protein Structure Initiative, Midwest Center for Structural Genomics, MCSG, protein binding Trp Repressor Binding Protein artifact disorder disorder_binding hydropathy Protein Bacillus subtilis X-RAY DIFFRACTION PO4 PT 0.086957",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_ec0a74607c1d",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0106_1RLI_1_000"
+}

@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_bac6f960e192",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Cytochrome c oxidase subunit IV isoform 1 1V54 4 Anchor2 Cytochrome c oxidase subunit IV Cytochrome c oxidase subunit IV (COX4) Cytochrome c oxidase subunit IV family Cytochrome c oxidase subunit IV superfamily Disordered binding sites Disordered regions Fully Oxidized Cytochrome C Oxidase, aa<sub>3</sub> GO GO:0005743 GO:0006123 GO:0045277 Generic MemProtMD Generic PDBTM Hydropathy values IPR004203 IPR013288 IPR036639 IUPred2(short) InterPro MemProtMD PDB PDBTM PF02936 Pfam TRANSMEMBRANE PROTEINS: ALPHA-HELICAL.Electron Transport Chain Complexes: Complex IV (Cytochrome C Oxidase).Fully Oxidized Cytochrome C Oxidase, aa<sub>3</sub> UNIPROT biojava-7.2.4 disorder disorder_binding hydropathy mitochondrial electron transport, cytochrome c to oxygen mitochondrial inner membrane mpstruc respiratory chain complex IV OXIDOREDUCTASE OXIDOREDUCTASE Cytochrome c oxidase subunit IV isoform 1 Pfam disorder disorder_binding hydropathy Protein Bos taurus X-RAY DIFFRACTION CU HEA MG ZN CU CUA HEA MG NA ZN 0.088435",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_bac6f960e192",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0735_1V54_4_002"
+}

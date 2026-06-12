@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_4966f5826036",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "cytochrome c, putative 1SP3 1 Anchor2 Cytochrome c bacterial (Cytochrome_cB) Cytochrome c-552/4 Cytochrome c554 and c-prime (Cytochrome_C554) Disordered binding sites Disordered regions GO GO:0016491 GO:0046872 Hydropathy values IPR023155 IPR024673 IPR036280 IPR051829 IUPred2(short) InterPro Multiheme cytochrome superfamily Multiheme_Cytochr_ET Octaheme c-type cytochrome PF11783 PF13435 Pfam UNIPROT biojava-7.2.4 disorder disorder_binding hydropathy metal ion binding oxidoreductase activity OXIDOREDUCTASE octaheme, cytochrome c, oxidoreductase cytochrome c, putative Pfam disorder disorder_binding hydropathy Protein Shewanella oneidensis MR-1 X-RAY DIFFRACTION HEC HEC SCN 0.108352",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_4966f5826036",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0247_1SP3_1_000"
+}

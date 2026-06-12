@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_6069a440fd04",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "PHOSPHATIDYLINOSITOL TRANSFER PROTEIN ALPHA ISOFORM 1UW5 1 Anchor2 Disordered binding sites Disordered regions GO GO:0005634 GO:0005737 GO:0005829 GO:0006629 GO:0007409 GO:0007601 GO:0008289 GO:0008525 GO:0008526 GO:0015914 GO:0031210 GO:0035091 GO:0070062 GO:0120019 GO:1901611 Hydropathy values IPR001666 IPR023393 IPR055261 IUPred2(short) InterPro PDB PF02121 Parent monomer MET Pfam Phosphatidylinositol transfer protein Phosphatidylinositol transfer protein (IP_trans) Phosphatidylinositol transfer protein, N-terminal START-like domain superfamily UNIPROT axonogenesis biojava-7.2.4 cytoplasm cytosol disorder disorder_binding extracellular exosome hydropathy lipid binding lipid metabolic process modified_monomer monomer_feature_1 monomer_feature_2 monomer_feature_3 monomer_feature_4 monomer_feature_5 monomer_feature_6 monomer_feature_7 monomer_feature_8 nucleus phosphatidylcholine binding phosphatidylcholine transfer activity phosphatidylcholine transporter activity phosphatidylglycerol binding phosphatidylinositol binding phosphatidylinositol transfer activity phospholipid transport visual perception TRANSPORT TRANSFER PROTEIN, LIPID-BINDING, TRANSPORT PHOSPHATIDYLINOSITOL TRANSFER PROTEIN ALPHA ISOFORM Pfam disorder disorder_binding hydropathy modified_monomer Protein Homo sapiens X-RAY DIFFRACTION 0.111111",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_6069a440fd04",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0418_1UW5_1_001"
+}

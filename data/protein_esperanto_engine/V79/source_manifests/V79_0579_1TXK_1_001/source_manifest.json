@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_11558a02cc88",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Glucans biosynthesis protein G 1TXK 1 Anchor2 Disordered binding sites Disordered regions GO GO:0003824 GO:0030246 GO:0030288 GO:0051274 Galactose mutarotase-like domain superfamily Glucan biosynthesis protein G Glucan biosynthesis protein MdoG/MdoD Glucan biosynthesis, periplasmic, MdoG C-terminal Glycoside hydrolase-type carbohydrate-binding Hydropathy values IPR007444 IPR011013 IPR013783 IPR014438 IPR014718 IPR014756 IPR023704 IUPred2(short) Immunoglobulin E-set Immunoglobulin-like fold InterPro Monotopic/peripheral.All beta monotopic/peripheral.Immunoglobulin-like superfamily (E set).Periplasmic glucan biosynthesis protein, MdoG OPM PDB PF04349 Parent monomer MET Periplasmic glucan biosynthesis protein, MdoG Periplasmic glucan biosynthesis protein, MdoG (MdoG) Pfam UNIPROT artifact beta-glucan biosynthetic process biojava-7.2.4 carbohydrate binding catalytic activity disorder disorder_binding expression tag hydropathy initiating methionine modified residue modified_monomer monomer_feature_1 monomer_feature_10 monomer_feature_11 monomer_feature_12 monomer_feature_13 monomer_feature_14 monomer_feature_15 monomer_feature_16 monomer_feature_17 monomer_feature_18 monomer_feature_19 monomer_feature_2 monomer_feature_20 monomer_feature_3 monomer_feature_4 monomer_feature_5 monomer_feature_6 monomer_feature_7 monomer_feature_8 monomer_feature_9 mutation outer membrane-bounded periplasmic space range_feature_1 range_feature_2 BIOSYNTHETIC PROTEIN beta-sandwich, BIOSYNTHETIC PROTEIN Glucans biosynthesis protein G Pfam artifact disorder disorder_binding hydropathy modified_monomer mutation Protein Escherichia coli X-RAY DIFFRACTION NA 0.134538",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_11558a02cc88",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0579_1TXK_1_001"
+}

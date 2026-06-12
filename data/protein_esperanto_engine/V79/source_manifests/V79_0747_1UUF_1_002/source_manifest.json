@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_56153fbdbb97",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "ZINC-TYPE ALCOHOL DEHYDROGENASE-LIKE PROTEIN YAHK 1UUF 1 Alcohol dehydrogenase GroES-like domain (ADH_N) Alcohol dehydrogenase, zinc-type, conserved site Alcohol dehydrogenase-like, C-terminal Alcohol dehydrogenase-like, N-terminal Anchor2 Cinnamyl alcohol dehydrogenase-like D-isomer specific 2-hydroxyacid dehydrogenase, NAD-binding domain conserved site 1 Disordered binding sites Disordered regions Enoylreductase domain GO GO:0008106 GO:0008270 GO:0016616 GroES-like superfamily Hydropathy values IPR002328 IPR011032 IPR013149 IPR013154 IPR020843 IPR029752 IPR036291 IPR047109 IUPred2(short) InterPro NAD(P)-binding domain superfamily PF00107 PF08240 Pfam UNIPROT Zinc-binding dehydrogenase (ADH_zinc_N) alcohol dehydrogenase (NADP+) activity biojava-7.2.4 disorder disorder_binding hydropathy oxidoreductase activity, acting on the CH-OH group of donors, NAD or NADP as acceptor zinc ion binding OXIDOREDUCTASE OXIDOREDUCTASE, ZINC BINDING, OXYDOREDUCTASE, METAL-BINDING, BACTERIAL TARGETS AT IGS-CNRS, FRANCE, BIGS, STRUCTURAL GENOMICS ZINC-TYPE ALCOHOL DEHYDROGENASE-LIKE PROTEIN YAHK Pfam disorder disorder_binding hydropathy Protein Escherichia coli K-12 X-RAY DIFFRACTION ZN ZN 0.086721",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_56153fbdbb97",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0747_1UUF_1_002"
+}

@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_c6cbc22ce85b",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "protein tyrosine phosphatase type IVA, member 3 isoform 1 1R6H 1 Anchor2 Disordered binding sites Disordered regions Dual specificity protein phosphatase domain GO GO:0004725 GO:0005634 GO:0005737 GO:0005769 GO:0005886 GO:0007219 GO:0043117 GO:0043542 GO:1900746 GO:1990830 Hydropathy values IPR000387 IPR003595 IPR020422 IPR029021 IPR050561 IUPred2(short) InterPro Notch signaling pathway PDB PF22785 Pfam Polymorphic toxin system, DSP-PTPase phosphatase (Tc-R-P) Protein Tyrosine Phosphatase Protein-tyrosine phosphatase, catalytic Protein-tyrosine phosphatase-like Tyrosine-specific protein phosphatases domain UNIPROT artifact biojava-7.2.4 cellular response to leukemia inhibitory factor cloning artifact cytoplasm disorder disorder_binding early endosome endothelial cell migration hydropathy nucleus plasma membrane positive regulation of vascular permeability protein tyrosine phosphatase activity range_feature_1 regulation of vascular endothelial growth factor signaling pathway HYDROLASE dual specificity phosphatase fold, HYDROLASE protein tyrosine phosphatase type IVA, member 3 isoform 1 Pfam artifact disorder disorder_binding hydropathy Protein Homo sapiens SOLUTION NMR 0.168605",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_c6cbc22ce85b",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0401_1R6H_1_001"
+}

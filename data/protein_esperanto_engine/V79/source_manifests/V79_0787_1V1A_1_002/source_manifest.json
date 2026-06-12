@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_92c24f9e1beb",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "2-KETO-3-DEOXYGLUCONATE KINASE 1V1A 1 2-dehydro-3-deoxygluconokinase activity ATP binding Anchor2 Carbohydrate kinase PfkB Carbohydrate kinase PfkB-like Carbohydrate/purine kinase, PfkB, conserved site Disordered binding sites Disordered regions GO GO:0000166 GO:0005524 GO:0008673 GO:0016310 Hydropathy values IPR002139 IPR002173 IPR011611 IPR029056 IPR052700 IUPred2(short) InterPro PF00294 Pfam Ribokinase-like Ribokinase/fructokinase UNIPROT biojava-7.2.4 disorder disorder_binding hydropathy nucleotide binding pfkB family carbohydrate kinase (PfkB) phosphorylation TRANSFERASE 2-KETO-3-DEOXYGLUCONATE KINASE, ATP, THERMUS THERMOPHILUS, STRUCTURAL GENOMICS, TRANSFERASE, RIKEN STRUCTURAL GENOMICS/PROTEOMICS INITIATIVE, RSGI 2-KETO-3-DEOXYGLUCONATE KINASE Pfam disorder disorder_binding hydropathy Protein Thermus thermophilus HB8 X-RAY DIFFRACTION 0.032362",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_92c24f9e1beb",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0787_1V1A_1_002"
+}

@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_c1d4e6be5aef",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "ADP-RIBOSYLATION FACTOR-LIKE PROTEIN 1 1UPT 1 ADP-ribosylation factor family (Arf) Anchor2 Disordered binding sites Disordered regions GO GO:0000139 GO:0003924 GO:0005525 GO:0005737 GO:0005794 GO:0005802 GO:0005829 GO:0006886 GO:0007030 GO:0008047 GO:0009404 GO:0016192 GO:0019904 GO:0032588 GO:0034067 GO:0042147 GO:0046872 GO:1990583 GTP binding GTPase activity Golgi apparatus Golgi membrane Golgi organization Hydropathy values IPR005225 IPR006689 IPR024156 IPR027417 IUPred2(short) InterPro P-loop containing nucleoside triphosphate hydrolase PDB PF00025 Parent monomer MET Pfam Small GTP-binding domain Small GTPase superfamily, ARF type Small GTPase superfamily, ARF/SAR type UNIPROT biojava-7.2.4 cytoplasm cytosol disorder disorder_binding enzyme activator activity hydropathy intracellular protein transport metal ion binding modified_monomer monomer_feature_1 monomer_feature_2 monomer_feature_3 monomer_feature_4 monomer_feature_5 monomer_feature_6 monomer_feature_7 phospholipase D activator activity protein domain specific binding protein localization to Golgi apparatus retrograde transport, endosome to Golgi toxin metabolic process trans-Golgi network trans-Golgi network membrane vesicle-mediated transport HYDROLASE/PROTEIN-BINDING HYDROLASE/PROTEIN-BINDING, COMPLEX (GTPASE-GOLGIN), GOLGIN-245, GRIP, ARL1, GOLGIN, GTPASE, G-PROTEIN, GOLGI, GRIP DIMER, PROTEIN SORTING, VESICLE TRAFFICKING, HYDROLASE-PROTEIN-BINDING complex ADP-RIBOSYLATION FACTOR-LIKE PROTEIN 1 Pfam disorder disorder_binding hydropathy modified_monomer Protein Homo sapiens X-RAY DIFFRACTION GTP MG GTP MG 0.070175",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_c1d4e6be5aef",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0038_1UPT_1_000"
+}

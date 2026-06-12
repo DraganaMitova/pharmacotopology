@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_fcd319ca5699",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "PROTEIN (HBV CAPSID PROTEIN) 1QGT 1 Anchor2 DNA binding Disordered binding sites Disordered regions GO GO:0003677 GO:0003723 GO:0005198 GO:0019031 GO:0030430 GO:0039619 GO:0043657 GO:0046718 GO:0075521 GO:0075732 Hepatitis core antigen Hydropathy values IPR002006 IPR036459 IUPred2(short) InterPro RNA binding T=4 icosahedral viral capsid UNIPROT Viral capsid core domain supefamily, Hepatitis B virus biojava-7.2.4 disorder disorder_binding host cell host cell cytoplasm hydropathy microtubule-dependent intracellular transport of viral material towards nucleus structural molecule activity symbiont entry into host cell viral envelope viral penetration into host nucleus VIRUS VIRAL CAPSID PROTEIN, Icosahedral virus, Virus PROTEIN (HBV CAPSID PROTEIN) disorder disorder_binding hydropathy Protein Hepatitis B virus X-RAY DIFFRACTION 0.080537",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_fcd319ca5699",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0698_1QGT_1_002"
+}

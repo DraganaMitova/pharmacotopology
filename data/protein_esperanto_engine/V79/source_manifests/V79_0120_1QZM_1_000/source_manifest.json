@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_2b881c493a73",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "ATP-dependent protease La 1QZM 1 AAA+ ATPase domain ATP binding ATP hydrolysis activity ATP-dependent peptidase activity ATPase, AAA-type, core Anchor2 DNA binding Disordered binding sites Disordered regions GO GO:0003677 GO:0004176 GO:0004252 GO:0005524 GO:0005737 GO:0005829 GO:0006508 GO:0006515 GO:0008233 GO:0009408 GO:0010165 GO:0016887 GO:0034605 GO:0043565 Hydropathy values IPR003111 IPR003593 IPR003959 IPR004815 IPR008268 IPR008269 IPR014721 IPR015947 IPR020568 IPR027065 IPR027417 IPR027543 IPR046336 IPR054594 IUPred2(short) InterPro Lon protease Lon protease AAA+ ATPase lid domain (Lon_lid) Lon protease, AAA+ ATPase lid domain Lon protease, N-terminal domain Lon protease, N-terminal domain superfamily Lon protease, bacterial Lon protease, bacterial/eukaryotic-type P-loop containing nucleoside triphosphate hydrolase PF22667 PUA-like superfamily Peptidase S16, Lon proteolytic domain Peptidase S16, active site Pfam Ribosomal protein uS5 domain 2-type superfamily Small ribosomal subunit protein uS5 domain 2-type fold, subgroup UNIPROT biojava-7.2.4 cellular response to heat cytoplasm cytosol disorder disorder_binding hydropathy peptidase activity protein quality control for misfolded or incompletely synthesized proteins proteolysis response to X-ray response to heat sequence-specific DNA binding serine-type endopeptidase activity HYDROLASE oligomerization domain, AAA+ protein, ATP-dependent protease, HYDROLASE ATP-dependent protease La Pfam disorder disorder_binding hydropathy Protein Escherichia coli X-RAY DIFFRACTION 0.12766",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_2b881c493a73",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0120_1QZM_1_000"
+}

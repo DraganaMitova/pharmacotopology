@@ -1,0 +1,40 @@
+{
+  "baseline_engine_revision": "E72",
+  "candidate_grammars_remaining": [],
+  "candidate_word_count": 77,
+  "candidate_word_proposal_hash": "cb6579ff68f8217c0079b66bbc2b2cc15e3553d42b15091b1ae5b135b9abe21a",
+  "engine_revision": "E73",
+  "kind": "E73_PROTEIN_LANGUAGE_ACQUISITION_CORTEX_CERTIFICATE_v0",
+  "known_missing_word_queue_status": "closed_before_v79",
+  "negative_evidence_pressure_channel_names": [
+    "not_assembly_pressure",
+    "not_beta_pressure",
+    "not_globular_pressure",
+    "not_knotted_pressure",
+    "not_membrane_pressure",
+    "not_metal_pressure",
+    "not_repeat_pressure",
+    "not_secretory_pressure"
+  ],
+  "next_required_batch": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "physical_basis_claim_allowed": false,
+  "pressure_channel_names": [
+    "repeated_clean_abstention_pressure",
+    "wrong_grammar_pressure",
+    "contradiction_pressure",
+    "sentinel_pressure",
+    "metadata_masking_pressure",
+    "perturbation_pressure",
+    "physical_execution_mismatch_pressure",
+    "compression_pressure"
+  ],
+  "protein_folding_solved": false,
+  "word_lifecycle": [
+    "unseen_pattern",
+    "pressure_cluster",
+    "candidate_word",
+    "proto_grammar",
+    "learned_grammar",
+    "rejected_or_merged_word"
+  ]
+}

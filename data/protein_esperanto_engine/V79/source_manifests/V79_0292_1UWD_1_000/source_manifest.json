@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_0213c0f0bcdd",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "HYPOTHETICAL PROTEIN TM0487 1UWD 1 Anchor2 Disordered binding sites Disordered regions Fe-S cluster assembly domain superfamily Hydropathy values IPR002744 IPR034904 IPR052339 IUPred2(short) InterPro Iron-Sulfur Protein Maturation MIP18 Iron-sulfur cluster assembly protein (FeS_assembly_P) MIP18 family-like PF01883 Pfam UNIPROT biojava-7.2.4 disorder disorder_binding hydropathy BIOSYNTHETIC PROTEIN SIMILAR TO PAAD PROTEIN, ALPHA/BETA FOLD, STRUCTURAL GENOMICS, JOINT CENTER FOR STRUCTURAL GENOMICS, JCSG, PROTEIN STRUCTURE INITIATIVE, PSI, BIOSYNTHETIC PROTEIN HYPOTHETICAL PROTEIN TM0487 Pfam disorder disorder_binding hydropathy Protein Thermotoga maritima SOLUTION NMR 0.15534",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_0213c0f0bcdd",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0292_1UWD_1_000"
+}

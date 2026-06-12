@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_fd229408683a",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Single-stranded DNA-binding protein, mitochondrial 1S3O 1 Anchor2 DNA replication Disordered binding sites Disordered regions GO GO:0003682 GO:0003697 GO:0003723 GO:0005634 GO:0005739 GO:0005759 GO:0006260 GO:0006264 GO:0008047 GO:0042645 GO:0042802 GO:0042803 GO:0051096 GO:0051289 GO:0070062 GO:0090297 GO:0097228 GO:0120238 Hydropathy values IPR000424 IPR011344 IPR012340 IUPred2(short) InterPro Nucleic acid-binding, OB-fold PF00436 Pfam Primosome PriB/single-strand DNA-binding RNA binding Single-strand binding protein family (SSB) Single-stranded DNA-binding protein UNIPROT biojava-7.2.4 chromatin binding disorder disorder_binding enzyme activator activity extracellular exosome hydropathy identical protein binding mitochondrial DNA replication mitochondrial matrix mitochondrial nucleoid mitochondrion nucleus positive regulation of helicase activity positive regulation of mitochondrial DNA replication protein homodimerization activity protein homotetramerization single-stranded DNA binding sperm glycocalyx sperm principal piece DNA BINDING PROTEIN OB fold, DNA BINDING PROTEIN Single-stranded DNA-binding protein, mitochondrial Pfam disorder disorder_binding hydropathy Protein Homo sapiens X-RAY DIFFRACTION 0.106061",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_fd229408683a",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0505_1S3O_1_001"
+}

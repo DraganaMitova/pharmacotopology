@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_cd8490b77cb7",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Translation initiation factor eIF2B, subunit delta 1T5O 1 Anchor2 Disordered binding sites Disordered regions GO GO:0019509 GO:0046523 Hydropathy values IPR000649 IPR005251 IPR011559 IPR027363 IPR037171 IPR042529 IUPred2(short) Initiation factor 2 subunit family (IF-2B) Initiation factor 2B alpha/beta/delta Initiation factor 2B-like, C-terminal Initiation factor 2B-related InterPro L-methionine salvage from methylthioadenosine Methylthioribose-1-phosphate isomerase Methylthioribose-1-phosphate isomerase, N-terminal NagB/RpiA transferase-like PDB PF01008 Pfam S-methyl-5-thioribose-1-phosphate isomerase activity UNIPROT artifact biojava-7.2.4 cloning artifact cloning artifact,expression tag disorder disorder_binding hydropathy range_feature_1 range_feature_2 TRANSLATION translation initiation factor, subunit delta, Structural Genomics, PSI, Protein Structure Initiative, New York SGX Research Center for Structural Genomics, NYSGXRC, translation Translation initiation factor eIF2B, subunit delta Pfam artifact disorder disorder_binding hydropathy Protein Archaeoglobus fulgidus Archaeoglobus fulgidus DSM 4304 X-RAY DIFFRACTION 0.034188",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_cd8490b77cb7",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0908_1T5O_1_002"
+}

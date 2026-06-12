@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_1cc5bc97701a",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Coenzyme A biosynthesis bifunctional protein coaBC 1U7Z 1 Anchor2 CoaB-like superfamily Coenzyme A biosynthesis bifunctional protein CoaBC DNA/pantothenate metabolism flavoprotein C-terminal domain (DFP) DNA/pantothenate metabolism flavoprotein, C-terminal Disordered binding sites Disordered regions FMN binding Flavin prenyltransferase-like Flavoprotein GO GO:0004632 GO:0004633 GO:0005829 GO:0010181 GO:0015937 GO:0015941 GO:0042802 GO:0046872 GO:0071513 Hydropathy values IPR003382 IPR005252 IPR007085 IPR035929 IPR036551 IUPred2(short) InterPro PDB PF04127 Pfam UNIPROT biojava-7.2.4 coenzyme A biosynthetic process cytosol disorder disorder_binding engineered mutation hydropathy identical protein binding metal ion binding monomer_feature_1 mutation pantothenate catabolic process phosphopantothenate--cysteine ligase activity phosphopantothenoylcysteine decarboxylase activity phosphopantothenoylcysteine decarboxylase complex LIGASE Coenzyme A biosynthesis, LIGASE Coenzyme A biosynthesis bifunctional protein coaBC Pfam disorder disorder_binding hydropathy mutation Protein Escherichia coli X-RAY DIFFRACTION 0.079646",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_1cc5bc97701a",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0622_1U7Z_1_001"
+}

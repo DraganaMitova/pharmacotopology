@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_0e76c244c3fb",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "ENDO-1,4-BETA-D-GLUCANASE 1TML 1 1, 4-beta cellobiohydrolase 1, 4-beta cellobiohydrolase superfamily Anchor2 CBM2, carbohydrate-binding domain superfamily CBM2/CBM3, carbohydrate-binding domain superfamily Carbohydrate-binding type-2 domain Carbohydrate-binding type-2, conserved site Disordered binding sites Disordered regions GO GO:0008810 GO:0030245 GO:0030247 Glycoside hydrolase, family 6, conserved site Hydropathy values IPR001524 IPR001919 IPR006311 IPR008965 IPR012291 IPR016288 IPR018366 IPR036434 IUPred2(short) InterPro Twin-arginine translocation pathway, signal sequence UNIPROT biojava-7.2.4 cellulase activity cellulose catabolic process disorder disorder_binding hydropathy polysaccharide binding BETA-AMYLASE BETA-AMYLASE, ENDOCELLULASE, CATALYTIC DOMAIN ENDO-1,4-BETA-D-GLUCANASE disorder disorder_binding hydropathy Protein Thermobifida fusca X-RAY DIFFRACTION 0.181818",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_0e76c244c3fb",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0343_1TML_1_001"
+}

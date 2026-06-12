@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_6fda1bd79fee",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Transposon Tn7 transposition protein tnsC 1T0F 2 AAA+ ATPase domain ATP binding ATP hydrolysis activity Anchor2 DNA binding DNA recombination Disordered binding sites Disordered regions GO GO:0003677 GO:0005524 GO:0006310 GO:0016887 GO:0032196 Hydropathy values IPR003593 IPR021542 IPR027417 IPR049945 IUPred2(short) InterPro ORC1/DEAH AAA+ ATPase domain P-loop containing nucleoside triphosphate hydrolase PDB Tn7 transposition regulator TnsC UNIPROT artifact biojava-7.2.4 cloning artifact disorder disorder_binding hydropathy range_feature_2 transposition DNA BINDING PROTEIN protein-protein complex, mixed alpha-beta, DNA BINDING PROTEIN Transposon Tn7 transposition protein tnsC artifact disorder disorder_binding hydropathy Protein Escherichia coli X-RAY DIFFRACTION MG MG 0.333333",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_6fda1bd79fee",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0273_1T0F_2_000"
+}

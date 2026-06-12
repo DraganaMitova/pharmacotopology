@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_1da5413d0ae1",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Nitrogen regulation protein NR(II) 1R62 1 ATP binding Anchor2 Disordered binding sites Disordered regions GO GO:0000155 GO:0004673 GO:0004721 GO:0005524 GO:0005737 GO:0006355 GO:0007165 GO:0016774 GO:0023019 GO:0042802 GO:0042803 Histidine kinase domain Histidine kinase-, DNA gyrase B-, and HSP90-like ATPase (HATPase_c) Histidine kinase/HSP90-like ATPase domain Histidine kinase/HSP90-like ATPase superfamily Hydropathy values IPR000014 IPR003594 IPR003661 IPR004358 IPR005467 IPR013767 IPR035965 IPR036097 IPR036890 IUPred2(short) InterPro PAS domain PAS domain superfamily PAS fold PF02518 Pfam Signal transduction histidine kinase, dimerisation/phosphoacceptor domain Signal transduction histidine kinase, dimerisation/phosphoacceptor domain superfamily Signal transduction histidine kinase-related protein, C-terminal UNIPROT biojava-7.2.4 cytoplasm disorder disorder_binding hydropathy identical protein binding phosphoprotein phosphatase activity phosphorelay sensor kinase activity phosphotransferase activity, carboxyl group as acceptor protein histidine kinase activity protein homodimerization activity regulation of DNA-templated transcription signal transduction signal transduction involved in regulation of gene expression TRANSFERASE NRII, PII, HISTIDINE KINASE, TWO COMPONENT SYSTEM, TRANSFERASE Nitrogen regulation protein NR(II) Pfam disorder disorder_binding hydropathy Protein Escherichia coli K-12 X-RAY DIFFRACTION 0.08125",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_1da5413d0ae1",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0158_1R62_1_000"
+}

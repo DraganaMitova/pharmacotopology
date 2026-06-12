@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_562e8461e9ed",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Transcription initiation factor IIA large chain 1RM1 5 Anchor2 Disordered binding sites Disordered regions GO GO:0000979 GO:0003712 GO:0005634 GO:0005672 GO:0005737 GO:0006366 GO:0006367 GO:0017025 GO:0045944 GO:0051123 GO:0060261 Hydropathy values IPR004855 IPR009088 IUPred2(short) InterPro PF03153 Pfam RNA polymerase II core promoter sequence-specific DNA binding RNA polymerase II preinitiation complex assembly TBP-class protein binding Transcription factor IIA, alpha/beta subunit Transcription factor IIA, alpha/beta subunit (TFIIA) Transcription factor IIA, beta-barrel UNIPROT biojava-7.2.4 cytoplasm disorder disorder_binding hydropathy nucleus positive regulation of transcription by RNA polymerase II positive regulation of transcription initiation by RNA polymerase II transcription by RNA polymerase II transcription coregulator activity transcription factor TFIIA complex transcription initiation at RNA polymerase II promoter TRANSCRIPTION/DNA Yeast TFIIA, TBP protein, ATA-box DNA, TRANSCRIPTION-DNA COMPLEX Transcription initiation factor IIA large chain disorder disorder_binding hydropathy Protein Saccharomyces cerevisiae X-RAY DIFFRACTION 0.458042",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_562e8461e9ed",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0670_1RM1_5_001"
+}

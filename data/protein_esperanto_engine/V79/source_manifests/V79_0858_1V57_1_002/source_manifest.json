@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_ae2e15eff3b0",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Thiol:disulfide interchange protein dsbG 1V57 1 Anchor2 Disordered binding sites Disordered regions Disulphide bond isomerase DsbC/G, N-terminal domain superfamily Disulphide bond isomerase, DsbC/G Disulphide bond isomerase, DsbC/G, N-terminal GO GO:0003756 GO:0006457 GO:0030288 GO:0042803 Hydropathy values IPR009094 IPR012336 IPR018950 IPR033954 IPR036249 IPR051470 IUPred2(short) InterPro PDB PF13098 Pfam Thiol:disulfide interchange protein Thioredoxin-like domain (Thioredoxin_2) Thioredoxin-like fold Thioredoxin-like superfamily UNIPROT artifact biojava-7.2.4 disorder disorder_binding expression tag hydropathy outer membrane-bounded periplasmic space protein disulfide isomerase activity protein folding protein homodimerization activity range_feature_1 ISOMERASE oxidized dsbg, redox protein, protein disulfide isomerase, thioredoxin fold, strained redox-active center, ISOMERASE Thiol:disulfide interchange protein dsbG Pfam artifact disorder disorder_binding hydropathy Protein Escherichia coli X-RAY DIFFRACTION 0.091286",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_ae2e15eff3b0",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0858_1V57_1_002"
+}

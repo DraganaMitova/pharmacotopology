@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_733815e5694d",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "putative acylphosphatase 1ULR 1 Acylphosphatase Acylphosphatase (Acylphosphatase) Acylphosphatase-like domain Acylphosphatase-like domain superfamily Anchor2 Disordered binding sites Disordered regions GO GO:0003998 Hydropathy values IPR001792 IPR020456 IPR036046 IUPred2(short) InterPro PF00708 Pfam UNIPROT acylphosphatase activity biojava-7.2.4 disorder disorder_binding hydropathy HYDROLASE HYDROLASE, STRUCTURAL GENOMICS, RIKEN Structural Genomics/Proteomics Initiative, RSGI putative acylphosphatase Pfam disorder disorder_binding hydropathy Protein Thermus thermophilus X-RAY DIFFRACTION 0.090909",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_733815e5694d",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0949_1ULR_1_002"
+}

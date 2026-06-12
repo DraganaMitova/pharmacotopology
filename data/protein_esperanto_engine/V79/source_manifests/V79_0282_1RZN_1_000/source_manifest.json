@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_1ef6d3b265a7",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Recombination protein U 1RZN 1 Anchor2 DNA binding DNA recombination DNA repair Disordered binding sites Disordered regions GO GO:0000287 GO:0003677 GO:0005737 GO:0006281 GO:0006310 GO:0007059 GO:0008821 Holliday junction resolvase RecU Hydropathy values IPR004612 IPR011335 IPR011856 IUPred2(short) InterPro Restriction endonuclease type II-like UNIPROT biojava-7.2.4 chromosome segregation crossover junction DNA endonuclease activity cytoplasm disorder disorder_binding hydropathy magnesium ion binding tRNA endonuclease-like domain superfamily DNA BINDING PROTEIN DNA repair, DNA recombination, Structural Genomics, PSI, Protein Structure Initiative, New York SGX Research Center for Structural Genomics, NYSGXRC, DNA BINDING PROTEIN Recombination protein U disorder disorder_binding hydropathy Protein Bacillus subtilis X-RAY DIFFRACTION 0.195122",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_1ef6d3b265a7",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0282_1RZN_1_000"
+}

@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_bce93fd6a8f6",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Glycolipid 2-alpha-mannosyltransferase 1S4O 1 Anchor2 Disordered binding sites Disordered regions GO GO:0000026 GO:0000032 GO:0000139 GO:0000329 GO:0005794 GO:0005797 GO:0006487 GO:0006491 GO:0006493 Glycosyl transferase, family 15 Golgi apparatus Golgi medial cisterna Golgi membrane Hydropathy values IPR002685 IPR029044 IUPred2(short) InterPro N-glycan processing Nucleotide-diphospho-sugar transferases PDB UNIPROT alpha-1,2-mannosyltransferase activity artifact biojava-7.2.4 cell wall mannoprotein biosynthetic process cloning artifact disorder disorder_binding fungal-type vacuole membrane hydropathy protein N-linked glycosylation protein O-linked glycosylation range_feature_1 TRANSFERASE ALPHA/BETA FOLD, NUCLEOTIDE-BINDING DOMAIN, ROSSMANN FOLD, BINARY COMPLEX WITH GDP-MN2+, TRANSFERASE Glycolipid 2-alpha-mannosyltransferase artifact disorder disorder_binding hydropathy Protein Saccharomyces cerevisiae X-RAY DIFFRACTION GDP MN GDP MN 0.043103",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_bce93fd6a8f6",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0465_1S4O_1_001"
+}

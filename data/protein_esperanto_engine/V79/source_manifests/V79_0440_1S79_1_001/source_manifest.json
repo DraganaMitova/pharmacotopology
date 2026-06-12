@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_b1be3fa115c1",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Lupus La protein 1S79 1 Anchor2 Disordered binding sites Disordered regions GO GO:0000049 GO:0000781 GO:0001682 GO:0003723 GO:0003729 GO:0005634 GO:0005737 GO:0005829 GO:0006400 GO:0006409 GO:0008033 GO:0008266 GO:0008334 GO:0010494 GO:0042780 GO:0045727 GO:0071045 GO:0075522 GO:1903608 GO:1990825 GO:1990904 Hydropathy values IPR000504 IPR002344 IPR006630 IPR012677 IPR014886 IPR035979 IPR036388 IPR036390 IPR045180 IRES-dependent viral translational initiation IUPred2(short) InterPro La domain containing protein La protein, xRRM domain La-type HTH domain Lupus La protein Nucleotide-binding alpha-beta plait domain superfamily PDB PF00076 Pfam RNA binding RNA recognition motif (RRM_1) RNA recognition motif domain RNA-binding domain superfamily UNIPROT Winged helix DNA-binding domain superfamily Winged helix-like DNA-binding domain superfamily artifact biojava-7.2.4 chromosome, telomeric region cloning artifact cytoplasm cytoplasmic stress granule cytosol disorder disorder_binding histone mRNA metabolic process hydropathy mRNA binding nuclear histone mRNA catabolic process nucleus poly(U) RNA binding positive regulation of translation protein localization to cytoplasmic stress granule range_feature_1 ribonucleoprotein complex sequence-specific mRNA binding tRNA 3'-end processing tRNA 5'-leader removal tRNA binding tRNA export from nucleus tRNA modification tRNA processing RNA BINDING PROTEIN, TRANSLATION RRM, alpha/beta, RNA BINDING PROTEIN, TRANSLATION Lupus La protein Pfam artifact disorder disorder_binding hydropathy Protein Homo sapiens SOLUTION NMR 0.126214",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_b1be3fa115c1",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0440_1S79_1_001"
+}

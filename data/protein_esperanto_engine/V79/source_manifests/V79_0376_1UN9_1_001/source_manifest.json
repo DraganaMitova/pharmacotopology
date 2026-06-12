@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_da1f83e94814",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "DIHYDROXYACETONE KINASE 1UN9 1 ATP binding Anchor2 DhaK domain DhaL domain DhaL domain superfamily Dihydroxyacetone Kinase (DAK) Dihydroxyacetone kinase Disordered binding sites Disordered regions GO GO:0004371 GO:0005524 GO:0005829 GO:0008289 GO:0019588 GO:0046872 Hydropathy values IPR004006 IPR004007 IPR012734 IPR036117 IPR050861 IUPred2(short) InterPro UNIPROT anaerobic glycerol catabolic process biojava-7.2.4 cytosol disorder disorder_binding glycerone kinase activity hydropathy lipid binding metal ion binding KINASE KINASE, GLYCERONE KINASE, DHA KINASE, DIHYDROXYACETONE KINASE DIHYDROXYACETONE KINASE disorder disorder_binding hydropathy Protein Citrobacter freundii X-RAY DIFFRACTION MG ANP MG 0.063406",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_da1f83e94814",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0376_1UN9_1_001"
+}

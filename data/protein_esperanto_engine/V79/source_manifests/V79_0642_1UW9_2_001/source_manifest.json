@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_c2a1d4a60e7f",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "RIBULOSE BISPHOSPHATE CARBOXYLASE SMALL CHAIN 1 1UW9 2 Anchor2 Disordered binding sites Disordered regions GO GO:0009507 GO:0009853 GO:0016984 GO:0019253 Hydropathy values IPR000894 IPR024681 IPR036385 IUPred2(short) InterPro PF00101 Pfam Ribulose bisphosphate carboxylase small subunit, domain Ribulose bisphosphate carboxylase, small chain (RuBisCO_small) Ribulose bisphosphate carboxylase, small subunit Ribulose bisphosphate carboxylase, small subunit superfamily UNIPROT biojava-7.2.4 chloroplast disorder disorder_binding hydropathy photorespiration reductive pentose-phosphate cycle ribulose-bisphosphate carboxylase activity LYASE LYASE, RUBISCO, PHOTOSYNTHESIS, PHOTORESPIRATION, OXIDOREDUCTASE, MONOOXYGENASE, CARBON DIOXIDE FIXATION RIBULOSE BISPHOSPHATE CARBOXYLASE SMALL CHAIN 1 Pfam disorder disorder_binding hydropathy Protein CHLAMYDOMONAS REINHARDTII Chlamydomonas reinhardtii X-RAY DIFFRACTION MG CAP MG 0.092857",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_c2a1d4a60e7f",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0642_1UW9_2_001"
+}

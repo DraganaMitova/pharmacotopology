@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_e54c28bb7073",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "AfJAMM 1R5X 1 Anchor2 Disordered binding sites Disordered regions GO GO:0006508 GO:0008237 GO:0046872 Hydropathy values IPR028090 IPR037518 IUPred2(short) InterPro JAB domain, prokaryotic MPN domain PDB PF14464 Pfam Prokaryotic homologs of the JAB domain (Prok-JAB) UNIPROT artifact biojava-7.2.4 cloning artifact disorder disorder_binding hydropathy metal ion binding metallopeptidase activity proteolysis range_feature_1 STRUCTURAL GENOMICS, UNKNOWN FUNCTION JAMM, STRUCTURAL GENOMICS, proteasome, signalosome, Jab1, Mpn, mov34, csn5, rpn11, UNKNOWN FUNCTION AfJAMM Pfam artifact disorder disorder_binding hydropathy Protein Archaeoglobus fulgidus DSM 4304 X-RAY DIFFRACTION ZN ZN 0.105263",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_e54c28bb7073",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0724_1R5X_1_002"
+}

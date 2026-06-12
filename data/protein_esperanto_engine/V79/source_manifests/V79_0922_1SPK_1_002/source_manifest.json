@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_1bd6966bd9ad",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "RIKEN cDNA 1300006M19 1SPK 1 AH/BAR domain superfamily Anchor2 Brain-specific angiogenesis inhibitor 1-associated protein 2-like protein 1, I-BAR domain Disordered binding sites Disordered regions GO GO:0003779 GO:0005654 GO:0005829 GO:0005886 GO:0007009 GO:0015629 GO:0030838 GO:0032956 GO:0051017 GO:0051764 GO:0070064 Hydropathy values I-BAR domain containing protein IRSp53/IRTKS/Pinkbar IMD/I-BAR domain IPR001452 IPR013606 IPR027267 IPR027681 IPR030060 IPR035592 IPR036028 IRTKS, SH3 domain IUPred2(short) InterPro PDB PF14604 Pfam SH3 domain SH3-like domain superfamily UNIPROT Variant SH3 domain (SH3_9) actin binding actin crosslink formation actin cytoskeleton actin filament bundle assembly artifact biojava-7.2.4 cloning artifact cytosol disorder disorder_binding hydropathy nucleoplasm plasma membrane plasma membrane organization positive regulation of actin filament polymerization proline-rich region binding range_feature_1 range_feature_2 regulation of actin cytoskeleton organization STRUCTURAL GENOMICS, UNKNOWN FUNCTION structural genomics, SH3 domain, five-stranded barrel, mouse cDNA, RIKEN Structural Genomics/Proteomics Initiative, RSGI, UNKNOWN FUNCTION RIKEN cDNA 1300006M19 Pfam artifact disorder disorder_binding hydropathy Protein Mus musculus SOLUTION NMR 0.291667",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_1bd6966bd9ad",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0922_1SPK_1_002"
+}

@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_7db118e82383",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "ATP PHOSPHORIBOSYLTRANSFERASE REGULATORY SUBUNIT 1USY 1 ATP phosphoribosyltransferase regulatory subunit Anchor2 Class II Aminoacyl-tRNA synthetase/Biotinyl protein ligase (BPL) and lipoyl protein ligase (LPL) Class II Histidinyl-tRNA synthetase (HisRS)-like catalytic core domain Disordered binding sites Disordered regions GO GO:0000105 GO:0004821 GO:0005829 GO:0006427 Histidine-tRNA ligase/ATP phosphoribosyltransferase regulatory subunit Histidyl-tRNA synthetase (tRNA-synt_His) Hydropathy values IPR004516 IPR004517 IPR041715 IPR045864 IUPred2(short) InterPro L-histidine biosynthetic process PF13393 Pfam UNIPROT biojava-7.2.4 cytosol disorder disorder_binding histidine-tRNA ligase activity histidyl-tRNA aminoacylation hydropathy TRANSFERASE TRANSFERASE, ATP PHOSPHORIBOSYL TRANSFERASE, AMINOACYL-TRNA SYNTHETASE ATP PHOSPHORIBOSYLTRANSFERASE REGULATORY SUBUNIT Pfam disorder disorder_binding hydropathy Protein Thermotoga maritima MSB8 X-RAY DIFFRACTION 0.029091",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_7db118e82383",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0972_1USY_1_002"
+}

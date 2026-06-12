@@ -1,0 +1,7 @@
+{
+  "acceptance_decision": "abstain_recommended",
+  "kind": "V79_WITHHELD_CONTEXT_LEAKAGE_PROBE_v0",
+  "observed_mechanism": "insufficient_evidence_clean_abstain",
+  "prediction_hash": "0c8202f3f63c03e5549b254d45d2ad05f7a2c243d226b10c239f39b463261dc1",
+  "withheld_context_leakage_detected": false
+}

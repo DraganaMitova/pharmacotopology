@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_29d4e26ca873",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "2-deoxyglucose-6-P phosphatase 1TE2 1 2-deoxyglucose-6-phosphatase activity Anchor2 Beta-phosphoglucomutase-like Disordered binding sites Disordered regions GO GO:0000287 GO:0003850 GO:0004346 GO:0005829 GO:0016791 GO:0046872 GO:0050084 GO:0050286 GO:0050308 HAD hydrolase, subfamily IA HAD superfamily HAD-like superfamily Hydropathy values IPR006439 IPR023198 IPR023214 IPR036412 IPR051600 IUPred2(short) InterPro PDB PF00702 Parent monomer MET Pfam Phosphoglycolate phosphatase-like, domain 2 UNIPROT artifact biojava-7.2.4 cytosol disorder disorder_binding expression tag glucose-6-phosphatase activity haloacid dehalogenase-like hydrolase (Hydrolase) hydropathy magnesium ion binding mannitol-1-phosphatase activity metal ion binding modified_monomer monomer_feature_1 monomer_feature_2 monomer_feature_3 monomer_feature_4 monomer_feature_5 monomer_feature_6 monomer_feature_7 monomer_feature_8 phosphatase activity range_feature_1 range_feature_2 sorbitol-6-phosphatase activity sugar-phosphatase activity HYDROLASE Structural Genomics, Phosphatase, Phosphates, PSI, Protein Structure Initiative, Midwest Center for Structural Genomics, MCSG, HYDROLASE 2-deoxyglucose-6-P phosphatase Pfam artifact disorder disorder_binding hydropathy modified_monomer Protein Escherichia coli K-12 X-RAY DIFFRACTION CA CA PGA 0.053097",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_29d4e26ca873",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0879_1TE2_1_002"
+}

@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_12342902a1cb",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "alpha-amylase I 1UH2 1 Anchor2 Disordered binding sites Disordered regions GO GO:0005576 GO:0005975 GO:0031216 GO:0046872 Glycoside hydrolase superfamily Glycoside hydrolase, family 13, N-terminal Ig-like domain Glycosyl hydrolase family 13, catalytic domain Glycosyl hydrolase, all-beta Hydropathy values IPR004185 IPR006047 IPR013780 IPR013783 IPR014756 IPR017853 IUPred2(short) Immunoglobulin E-set Immunoglobulin-like fold InterPro PDB UNIPROT biojava-7.2.4 carbohydrate metabolic process disorder disorder_binding engineered mutation extracellular region hydropathy metal ion binding monomer_feature_1 monomer_feature_2 mutation neopullulanase activity HYDROLASE starch binding domain, hydrolase alpha-amylase I disorder disorder_binding hydropathy mutation Protein Thermoactinomyces vulgaris X-RAY DIFFRACTION CA CA 0.072214",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_12342902a1cb",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0404_1UH2_1_001"
+}

@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_d7f2cb08d566",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Acetate kinase 1TUY 1 ATP binding ATPase, nucleotide binding domain Acetate/propionate kinase Aliphatic acid kinase, short-chain Aliphatic acid kinase, short-chain, conserved site Anchor2 Disordered binding sites Disordered regions GO GO:0000287 GO:0005524 GO:0005737 GO:0006083 GO:0006085 GO:0008776 Hydropathy values IPR000890 IPR004372 IPR023865 IPR043129 IUPred2(short) InterPro UNIPROT acetate kinase activity acetate metabolic process acetyl-CoA biosynthetic process biojava-7.2.4 cytoplasm disorder disorder_binding hydropathy magnesium ion binding TRANSFERASE alpha/beta, ASKHA (acetate and sugar kinases, hsc70, actin) superfamily, AlF3 and acetate, TRANSFERASE Acetate kinase disorder disorder_binding hydropathy Protein Methanosarcina thermophila X-RAY DIFFRACTION 0.030075",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_d7f2cb08d566",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0301_1TUY_1_000"
+}

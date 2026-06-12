@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_4c626e44d895",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Single-strand binding protein 1UE1 1 Anchor2 DNA damage response DNA replication Disordered binding sites Disordered regions GO GO:0003697 GO:0005576 GO:0005886 GO:0006260 GO:0006974 GO:0008047 GO:0009295 GO:0046677 Hydropathy values IPR000424 IPR011344 IPR012340 IUPred2(short) InterPro Nucleic acid-binding, OB-fold PF00436 Pfam Primosome PriB/single-strand DNA-binding Single-strand binding protein family (SSB) Single-stranded DNA-binding protein UNIPROT biojava-7.2.4 disorder disorder_binding enzyme activator activity extracellular region hydropathy nucleoid plasma membrane response to antibiotic single-stranded DNA binding DNA BINDING PROTEIN OLIGONUCLEOTIDE BINDING FOLD, DNA-BINDING PROTEIN, Structural Genomics, PSI, Protein Structure Initiative, TB Structural Genomics Consortium, TBSGC, DNA BINDING PROTEIN Single-strand binding protein Pfam disorder disorder_binding hydropathy Protein Mycobacterium tuberculosis X-RAY DIFFRACTION ZN ZN 0.310976",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_4c626e44d895",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0071_1UE1_1_000"
+}

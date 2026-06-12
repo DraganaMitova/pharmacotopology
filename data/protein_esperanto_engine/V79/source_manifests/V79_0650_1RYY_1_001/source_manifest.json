@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_9f4c6f411c86",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "alpha-amino acid ester hydrolase 1RYY 1 Alpha/Beta hydrolase fold Anchor2 CocE/Serine esterase Disordered binding sites Disordered regions GO GO:0008239 GO:0047658 Galactose-binding-like domain superfamily Hydropathy values IPR000383 IPR005674 IPR008979 IPR013736 IPR029058 IPR050585 IUPred2(short) InterPro PDB UNIPROT Xaa-Pro dipeptidyl-peptidase, C-terminal Xaa-Pro dipeptidyl-peptidase-like domain Xaa-Pro_dipeptidyl-ppase/CocE alpha-amino-acid esterase activity artifact biojava-7.2.4 dipeptidyl-peptidase activity disorder disorder_binding engineered mutation expression tag hydropathy monomer_feature_1 mutation range_feature_1 HYDROLASE alpha/beta hydrolase fold, jellyroll fold, HYDROLASE alpha-amino acid ester hydrolase artifact disorder disorder_binding hydropathy mutation Protein Acetobacter pasteurianus X-RAY DIFFRACTION 0.116564",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_9f4c6f411c86",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0650_1RYY_1_001"
+}

@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_bea4d18b0a68",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "putative polyketide synthase 1U0M 1 Anchor2 Chalcone and stilbene synthases, C-terminal domain (Chal_sti_synt_C) Chalcone/stilbene synthase, C-terminal Chalcone/stilbene synthase, N-terminal Disordered binding sites Disordered regions GO GO:0016747 GO:0042438 Hydropathy values IPR001099 IPR011141 IPR012328 IPR016039 IUPred2(short) InterPro PDB PF02797 Pfam Polyketide synthase, type III Thiolase-like UNIPROT acyltransferase activity, transferring groups other than amino-acyl groups artifact biojava-7.2.4 cloning artifact disorder disorder_binding hydropathy melanin biosynthetic process range_feature_1 BIOSYNTHETIC PROTEIN type III polyketide synthase, PKS, bacterial, thiolase fold, alpha-beta-alpha-beta-alpha fold, catalytic triad, CHS-like, THNS, tetrahydroxynaphthalene synthase, chalcone/stilbene synthase superfamily, malonyl-CoA, BIOSYNTHETIC PROTEIN putative polyketide synthase Pfam artifact disorder disorder_binding hydropathy Protein Streptomyces coelicolor A3(2) X-RAY DIFFRACTION 0.075916",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_bea4d18b0a68",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0242_1U0M_1_000"
+}

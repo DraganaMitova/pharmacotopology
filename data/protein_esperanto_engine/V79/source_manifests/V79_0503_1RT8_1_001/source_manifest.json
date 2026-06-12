@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_888f2bddc563",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "fimbrin 1RT8 1 Actinin-type actin-binding domain, conserved site Anchor2 CH domain superfamily Calponin homology (CH) domain (CH) Calponin homology domain Disordered binding sites Disordered regions EF-hand domain EF-hand domain pair Fimbrin/Plastin GO GO:0005509 GO:0005737 GO:0005884 GO:0006897 GO:0030479 GO:0031097 GO:0032153 GO:0032432 GO:0044396 GO:0044837 GO:0051015 GO:0051017 GO:0051639 GO:0051666 GO:0099079 GO:0110009 GO:0120106 Hydropathy values IPR001589 IPR001715 IPR002048 IPR011992 IPR036872 IPR039959 IUPred2(short) InterPro PDB PF00307 Pfam UNIPROT actin body actin cortical patch actin cortical patch localization actin cortical patch organization actin filament actin filament binding actin filament bundle actin filament bundle assembly actin filament network formation actomyosin contractile ring organization artifact biojava-7.2.4 calcium ion binding cell division site cloning artifact cytoplasm disorder disorder_binding endocytosis formin-nucleated actin cable organization hydropathy medial cortex mitotic actomyosin contractile ring, distal actin filament layer range_feature_1 STRUCTURAL PROTEIN Filamentous Actin Binding Domain (ABD), Calponin Homology, Actin-Crosslinking, STRUCTURAL PROTEIN fimbrin Pfam artifact disorder disorder_binding hydropathy Protein Schizosaccharomyces pombe X-RAY DIFFRACTION 0.054581",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_888f2bddc563",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0503_1RT8_1_001"
+}

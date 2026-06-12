@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_f19bb0fbff97",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Probable inorganic polyphosphate/ATP-NAD kinase 1SUW 1 ATP binding ATP-NAD kinase C-terminal domain (NAD_kinase_C) ATP-NAD kinase N-terminal domain (NAD_kinase) ATP-NAD kinase, PpnK-type, C-terminal Anchor2 Disordered binding sites Disordered regions GO GO:0003951 GO:0005524 GO:0005737 GO:0006741 GO:0019674 GO:0046872 GO:0051287 Hydropathy values IPR002504 IPR016064 IPR017437 IPR017438 IUPred2(short) Inorganic polyphosphate/ATP-NAD kinase, N-terminal InterPro NAD binding NAD kinase NAD kinase/diacylglycerol kinase-like domain superfamily NAD+ kinase activity NAD+ metabolic process NADP+ biosynthetic process PF01513 PF20143 Pfam UNIPROT biojava-7.2.4 cytoplasm disorder disorder_binding hydropathy metal ion binding TRANSFERASE ATP-NAD kinase, NADK, NAD, NADP, Structural Genomics, BSGC structure funded by NIH, Protein Structure Initiative, PSI, Berkeley Structural Genomics Center, TRANSFERASE Probable inorganic polyphosphate/ATP-NAD kinase Pfam disorder disorder_binding hydropathy Protein Archaeoglobus fulgidus X-RAY DIFFRACTION 0.040161",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_f19bb0fbff97",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0225_1SUW_1_000"
+}

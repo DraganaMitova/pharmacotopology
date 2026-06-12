@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_0c6cc46a89de",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "NifU-like protein 1R9P 1 2 iron, 2 sulfur cluster binding Anchor2 Disordered binding sites Disordered regions GO GO:0005737 GO:0006879 GO:0008198 GO:0016226 GO:0051537 Hydropathy values IPR002871 IPR011339 IUPred2(short) InterPro Iron-sulfur cluster assembly scaffold protein IscU NIF system FeS cluster assembly, NifU, N-terminal NifU-like N terminal domain (NifU_N) PDB PF01592 Pfam UNIPROT artifact biojava-7.2.4 cloning artifact,expression tag cytoplasm disorder disorder_binding ferrous iron binding hydropathy intracellular iron ion homeostasis iron-sulfur cluster assembly range_feature_1 STRUCTURAL GENOMICS, UNKNOWN FUNCTION iron-sulfur cluster binding, zinc binding, three conserved Cys, 3beta strands, 4 alpha helixes, NESG, STRUCTURAL GENOMICS, PSI-2, Protein Structure Initiative, Northeast Structural Genomics Consortium, UNKNOWN FUNCTION NifU-like protein Pfam artifact disorder disorder_binding hydropathy Protein Haemophilus influenzae SOLUTION NMR ZN ZN 0.208955",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_0c6cc46a89de",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0611_1R9P_1_001"
+}

@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_b3a79e1a212a",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "SERYL-tRNA SYNTHETASE 1SET 1 ATP binding Aminoacyl-tRNA synthetase, class II Aminoacyl-tRNA synthetase, class II (G/ P/ S/T) Anchor2 Class I and II aminoacyl-tRNA synthetase, tRNA-binding arm Class II Aminoacyl-tRNA synthetase/Biotinyl protein ligase (BPL) and lipoyl protein ligase (LPL) Disordered binding sites Disordered regions GO GO:0000049 GO:0004828 GO:0005524 GO:0005737 GO:0006434 GO:0016260 GO:0042802 GO:0042803 GO:0070905 Hydropathy values IPR002314 IPR002317 IPR006195 IPR010978 IPR015866 IPR033729 IPR042103 IPR045864 IUPred2(short) InterPro Serine-tRNA ligase catalytic core domain Serine-tRNA ligase, type1 Serine-tRNA synthetase, type1, N-terminal Serine-tRNA synthetase, type1, N-terminal domain superfamily UNIPROT biojava-7.2.4 cytoplasm disorder disorder_binding hydropathy identical protein binding protein homodimerization activity selenocysteine biosynthetic process serine binding serine-tRNA ligase activity seryl-tRNA aminoacylation tRNA binding LIGASE LIGASE, SYNTHETASE SERYL-tRNA SYNTHETASE disorder disorder_binding hydropathy Protein Thermus thermophilus X-RAY DIFFRACTION 0.123515",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_b3a79e1a212a",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0345_1SET_1_001"
+}

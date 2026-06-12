@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_90cc565dd665",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "polymerase (DNA directed) kappa 1T94 1 Anchor2 DNA biosynthetic process DNA damage response DNA polymerase IV DNA polymerase type-Y DNA polymerase type-Y, HhH motif DNA polymerase, Y-family, little finger domain DNA polymerase, Y-family, little finger domain superfamily DNA repair DNA replication DNA-directed DNA polymerase activity DNA/RNA polymerase superfamily Disordered binding sites Disordered regions GO GO:0003684 GO:0003887 GO:0005634 GO:0005654 GO:0006260 GO:0006281 GO:0006297 GO:0006974 GO:0008270 GO:0016604 GO:0019985 GO:0034644 GO:0042276 GO:0071897 GO:0090734 Hydropathy values IMS family HHH motif (IMS_HHH) IPR001126 IPR006642 IPR017961 IPR022880 IPR024728 IPR036775 IPR043128 IPR043502 IPR050116 IUPred2(short) InterPro PF00817 PF11798 PF11799 Pfam Rad18, zinc finger UBZ4-type Reverse transcriptase/Diguanylate cyclase domain UNIPROT UmuC domain biojava-7.2.4 cellular response to UV damaged DNA binding disorder disorder_binding error-prone translesion synthesis hydropathy impB/mucB/samB family (IMS) impB/mucB/samB family C-terminal domain (IMS_C) nuclear body nucleoplasm nucleotide-excision repair, DNA gap filling nucleus site of DNA damage translesion synthesis zinc ion binding REPLICATION Replication; DNA repair; Y-family DNA polymerase; Translesion DNA synthesis; Lesion bypass, REPLICATION polymerase (DNA directed) kappa Pfam disorder disorder_binding hydropathy Protein Homo sapiens X-RAY DIFFRACTION 0.143791",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_90cc565dd665",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0232_1T94_1_000"
+}

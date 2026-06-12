@@ -1,0 +1,33 @@
+{
+  "batch_id": "V79_BLIND_LANGUAGE_DISCOVERY_1000",
+  "coordinate_truth_used_before_seal": false,
+  "engine_version_used": "E73",
+  "folding_problem_solved": false,
+  "kind": "V79_BLIND_LANGUAGE_DISCOVERY_SOURCE_MANIFEST_v0",
+  "no_target_specific_expected_mechanism_label_used": true,
+  "prediction_sources": [
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "Raw amino-acid sequence from the blind RCSB candidate row.",
+      "internal_runtime_source": false,
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_RAW_SEQUENCE_18dc9a12ada5",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false
+    },
+    {
+      "coordinate_derived": false,
+      "evidence_statement": "UBIQUITIN C-TERMINAL HYDROLASE UCH-L3 1UCH 1 Anchor2 Disordered binding sites Disordered regions GO GO:0004843 GO:0005654 GO:0005737 GO:0005794 GO:0005829 GO:0006511 GO:0008233 GO:0016567 GO:0016579 GO:0019784 GO:0030163 GO:0043130 GO:0043687 Golgi apparatus Hydropathy values IPR001578 IPR036959 IPR038765 IPR057254 IUPred2(short) InterPro PF01088 Papain-like cysteine peptidase superfamily Peptidase C12, ubiquitin carboxyl-terminal hydrolase Peptidase C12, ubiquitin carboxyl-terminal hydrolase superfamily Pfam UNIPROT Ubiquitin carboxyl-terminal hydrolase family 1, cysteine active-site Ubiquitin carboxyl-terminal hydrolase, family 1 (Peptidase_C12) biojava-7.2.4 cysteine-type deubiquitinase activity cytoplasm cytosol deNEDDylase activity disorder disorder_binding hydropathy nucleoplasm peptidase activity post-translational protein modification protein catabolic process protein deubiquitination protein ubiquitination ubiquitin binding ubiquitin-dependent protein catabolic process CYSTEINE PROTEASE CYSTEINE PROTEASE, DEUBIQUITINATING ENZYME, UBIQUITIN, C-TERMINAL HYDROLASE, UBIQUITIN CONJUGATION UBIQUITIN C-TERMINAL HYDROLASE UCH-L3 Pfam disorder disorder_binding hydropathy Protein Homo sapiens X-RAY DIFFRACTION 0.117391",
+      "internal_runtime_source": false,
+      "metadata_context_marks": [],
+      "source_class": "pure_non_coordinate",
+      "source_id": "V79_VISIBLE_CONTEXT_18dc9a12ada5",
+      "source_role": "prediction_input",
+      "source_url": "",
+      "spatial_proxy": false,
+      "withheld_context_marks": []
+    }
+  ],
+  "target_id": "V79_0352_1UCH_1_001"
+}
