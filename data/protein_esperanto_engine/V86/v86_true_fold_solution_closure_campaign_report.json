@@ -1,0 +1,277 @@
+{
+  "batch_id": "V86_TRUE_FOLD_SOLUTION_CLOSURE_CAMPAIGN",
+  "components": {
+    "backbone_coordinate_emitter": [],
+    "constraint_to_distance_map_compiler": [],
+    "external_blind_benchmark_export": {
+      "benchmark_passed_row_count": 0,
+      "benchmark_row_count": 0,
+      "external_blind_benchmark_export_path": "data/protein_esperanto_engine/V86/v86_external_blind_benchmark_export.json",
+      "external_blind_benchmark_exported": true,
+      "external_blind_benchmark_passed": false,
+      "kind": "E79_EXTERNAL_BLIND_BENCHMARK_EXPORT_v0"
+    },
+    "fold_geometry_compiler": [],
+    "fold_quality_evaluator": {
+      "coordinate_native_leakage": false,
+      "kind": "E80_FOLD_QUALITY_EVALUATOR_PACKET_v0",
+      "rows": [],
+      "supported_hard_families": [],
+      "target_count": 0,
+      "target_fold_claim_count": 0,
+      "unsupported_fold_claims": 0
+    },
+    "fresh_target_resolver": {
+      "candidate_target_count": 0,
+      "deterministic_variant_count": 0,
+      "deterministic_variants_for_universal_claim_allowed": false,
+      "fresh_families_represented": [],
+      "fresh_target_count": 0,
+      "fresh_target_ids": [],
+      "fresh_target_shortage": true,
+      "fresh_targets": [],
+      "kind": "E80_FRESH_TARGET_RESOLUTION_v0",
+      "missing_required_families": [
+        "assembly_required",
+        "beta_closure",
+        "coiled_coil",
+        "fold_upon_binding",
+        "globular_soluble",
+        "intrinsic_disorder_no_single_fold",
+        "knot_slipknot",
+        "membrane_tm",
+        "metal_ligand_cofactor",
+        "metamorphic_fold_switching",
+        "multidomain_allosteric",
+        "repeat_solenoid",
+        "secretory_disulfide"
+      ],
+      "rejected_targets": [],
+      "required_families": [
+        "assembly_required",
+        "beta_closure",
+        "coiled_coil",
+        "fold_upon_binding",
+        "globular_soluble",
+        "intrinsic_disorder_no_single_fold",
+        "knot_slipknot",
+        "membrane_tm",
+        "metal_ligand_cofactor",
+        "metamorphic_fold_switching",
+        "multidomain_allosteric",
+        "repeat_solenoid",
+        "secretory_disulfide"
+      ]
+    },
+    "manifest": {
+      "components": [
+        "FoldGeometryCompiler",
+        "ConstraintToDistanceMapCompiler",
+        "BackboneCoordinateEmitter",
+        "TopologyConstraintCompiler",
+        "PhysicalRelaxationExecutor",
+        "RealHoldoutCoordinateLoader",
+        "FoldQualityEvaluator",
+        "UniversalSolutionUnlockFirewall"
+      ],
+      "deterministic_variants_for_universal_claim_allowed": false,
+      "engine_revision": "E80_REAL_FOLD_GEOMETRY_AND_PHYSICAL_CALIBRATION_ENGINE",
+      "external_fold_model_prediction_input_allowed": false,
+      "geometry_constraint_types": [
+        "local_backbone_continuity",
+        "long_range_contact",
+        "disulfide_pairing",
+        "tm_span",
+        "repeat_solenoid_axis",
+        "coiled_coil_register",
+        "knot_slipknot_threading",
+        "assembly_interface",
+        "metal_ligand_coordination",
+        "disorder_no_single_fold",
+        "metamorphic_basin_switch",
+        "beta_closure"
+      ],
+      "hard_family_aliases": {
+        "alpha_beta_mixed": "globular_soluble",
+        "alpha_rich": "globular_soluble",
+        "assembly": "assembly_required",
+        "assembly_required_core": "assembly_required",
+        "assembly_required_folding": "assembly_required",
+        "beta_closure_topology": "beta_closure",
+        "beta_rich": "beta_closure",
+        "closed_beta_topology": "beta_closure",
+        "cofactor_ligand_assisted_stabilization": "metal_ligand_cofactor",
+        "cofactor_metal": "metal_ligand_cofactor",
+        "coiled_coil_register": "coiled_coil",
+        "coiled_coil_register_topology": "coiled_coil",
+        "disorder_boundary": "fold_upon_binding",
+        "disorder_boundary_and_fold_upon_binding": "fold_upon_binding",
+        "disorder_ensemble": "intrinsic_disorder_no_single_fold",
+        "fold_upon_binding_disorder": "fold_upon_binding",
+        "globular_closure": "globular_soluble",
+        "intrinsic_disorder_phase_separation": "intrinsic_disorder_no_single_fold",
+        "knot_slipknot": "knot_slipknot",
+        "knotted_topology": "knot_slipknot",
+        "knotted_topology_language_evidence_holdout": "knot_slipknot",
+        "ligand_locked_basin": "metal_ligand_cofactor",
+        "membrane": "membrane_tm",
+        "membrane_multidomain_folding_proteostasis": "membrane_tm",
+        "metal_cluster_and_ligand_locked_basin": "metal_ligand_cofactor",
+        "metal_ligand_basin": "metal_ligand_cofactor",
+        "metamorphic": "metamorphic_fold_switching",
+        "multidomain": "multidomain_allosteric",
+        "multidomain_allosteric_architecture": "multidomain_allosteric",
+        "multidomain_allostery": "multidomain_allosteric",
+        "oligomerization_controlled_folding": "assembly_required",
+        "repeat": "repeat_solenoid",
+        "repeat_solenoid_topology": "repeat_solenoid",
+        "secretory_disulfide_redox_context": "secretory_disulfide",
+        "secretory_disulfide_redox_topology": "secretory_disulfide",
+        "signal_peptide_true_tm_boundary": "membrane_tm",
+        "signal_peptide_vs_true_tm": "membrane_tm",
+        "signal_peptide_vs_true_tm_routing": "membrane_tm",
+        "soluble_beta_barrel_vs_membrane_barrel": "beta_closure"
+      },
+      "kind": "E80_REAL_FOLD_GEOMETRY_AND_PHYSICAL_CALIBRATION_ENGINE_MANIFEST_v0",
+      "native_contacts_allowed_before_prediction": false,
+      "native_coordinate_truth_allowed_before_prediction": false,
+      "protein_folding_solved_by_field_setting": false,
+      "proxy_physical_execution_for_target_fold_claim_allowed": false,
+      "required_hard_families": [
+        "globular_soluble",
+        "membrane_tm",
+        "secretory_disulfide",
+        "coiled_coil",
+        "repeat_solenoid",
+        "knot_slipknot",
+        "beta_closure",
+        "multidomain_allosteric",
+        "assembly_required",
+        "metal_ligand_cofactor",
+        "intrinsic_disorder_no_single_fold",
+        "fold_upon_binding",
+        "metamorphic_fold_switching"
+      ]
+    },
+    "physical_relaxation_executor": {
+      "blocked_executions": [],
+      "execution_count": 0,
+      "executions_by_target": {},
+      "kind": "E80_PHYSICAL_RELAXATION_EXECUTOR_PACKET_v0",
+      "prediction_count": 0,
+      "proxy_physical_execution_used_for_claim": false,
+      "real_or_validated_physical_execution_count": 0,
+      "supported_target_ids": [],
+      "unsupported_physical_claims": 0
+    },
+    "real_holdout_coordinate_loader": {
+      "coordinate_native_leakage": false,
+      "holdout_count": 0,
+      "holdouts_by_target": {},
+      "invalid_holdouts": [],
+      "kind": "E80_REAL_HOLDOUT_COORDINATE_LOADER_PACKET_v0",
+      "loaded_target_ids": [],
+      "real_fold_holdout_count": 0
+    },
+    "topology_constraint_compiler": [],
+    "universal_solution_unlock_firewall": {
+      "blocked_reasons": [
+        "fresh_target_shortage",
+        "real_fold_holdout_count_zero",
+        "real_or_validated_physical_execution_count_zero",
+        "target_fold_claim_count_zero",
+        "hard_family_support_incomplete",
+        "external_blind_benchmark_not_passed"
+      ],
+      "claim_5_target_fold_supported": false,
+      "claim_6_general_folding_solution_candidate": false,
+      "claim_7_universal_protein_folding_solved": false,
+      "coordinate_native_leakage": false,
+      "every_required_hard_family_has_supported_target_fold_claim": false,
+      "external_blind_benchmark_exported": true,
+      "external_blind_benchmark_passed": false,
+      "fresh_target_shortage": true,
+      "kind": "E80_UNIVERSAL_SOLUTION_UNLOCK_FIREWALL_PACKET_v0",
+      "missing_hard_families": [
+        "assembly_required",
+        "beta_closure",
+        "coiled_coil",
+        "fold_upon_binding",
+        "globular_soluble",
+        "intrinsic_disorder_no_single_fold",
+        "knot_slipknot",
+        "membrane_tm",
+        "metal_ligand_cofactor",
+        "metamorphic_fold_switching",
+        "multidomain_allosteric",
+        "repeat_solenoid",
+        "secretory_disulfide"
+      ],
+      "protein_folding_solved": false,
+      "proxy_physical_execution_used_for_claim": false,
+      "real_fold_holdout_count": 0,
+      "real_or_validated_physical_execution_count": 0,
+      "required_hard_families": [
+        "assembly_required",
+        "beta_closure",
+        "coiled_coil",
+        "fold_upon_binding",
+        "globular_soluble",
+        "intrinsic_disorder_no_single_fold",
+        "knot_slipknot",
+        "membrane_tm",
+        "metal_ligand_cofactor",
+        "metamorphic_fold_switching",
+        "multidomain_allosteric",
+        "repeat_solenoid",
+        "secretory_disulfide"
+      ],
+      "supported_hard_families": [],
+      "target_fold_claim_count": 0,
+      "token_only_acceptance_count": 0,
+      "universal_folding_solution_claim_allowed": false,
+      "unsupported_fold_claims": 0,
+      "unsupported_physical_claims": 0
+    }
+  },
+  "engine_version_used": "E80",
+  "kind": "V86_TRUE_FOLD_SOLUTION_CLOSURE_CAMPAIGN_REPORT_v0",
+  "real_closure_input_files": {
+    "allowed_preseal_evidence": {
+      "exists": false,
+      "path": "data/protein_esperanto_engine/V86/real_closure_inputs/allowed_preseal_evidence.json"
+    },
+    "external_blind_benchmark_rows": {
+      "exists": false,
+      "path": "data/protein_esperanto_engine/V86/real_closure_inputs/external_blind_benchmark_rows.json"
+    },
+    "fresh_targets_manifest": {
+      "exists": false,
+      "path": "data/protein_esperanto_engine/V86/real_closure_inputs/fresh_targets_manifest.json"
+    },
+    "interaction_language_maps": {
+      "exists": false,
+      "path": "data/protein_esperanto_engine/V86/real_closure_inputs/interaction_language_maps.json"
+    },
+    "operator_state_summaries": {
+      "exists": false,
+      "path": "data/protein_esperanto_engine/V86/real_closure_inputs/operator_state_summaries.json"
+    },
+    "physical_execution_rows": {
+      "exists": false,
+      "path": "data/protein_esperanto_engine/V86/real_closure_inputs/physical_execution_rows.json"
+    },
+    "previously_used_target_ids": {
+      "exists": false,
+      "path": "data/protein_esperanto_engine/V86/real_closure_inputs/previously_used_target_ids.json"
+    },
+    "protein_sentence_packets": {
+      "exists": false,
+      "path": "data/protein_esperanto_engine/V86/real_closure_inputs/protein_sentence_packets.json"
+    },
+    "real_holdout_coordinates": {
+      "exists": false,
+      "path": "data/protein_esperanto_engine/V86/real_closure_inputs/real_holdout_coordinates.json"
+    }
+  }
+}

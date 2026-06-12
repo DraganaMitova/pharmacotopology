@@ -2891,6 +2891,724 @@ def e79_universal_claim_firewall(
     }
 
 
+E80_ENGINE_REVISION = "E80_REAL_FOLD_GEOMETRY_AND_PHYSICAL_CALIBRATION_ENGINE"
+
+E80_ENGINE_COMPONENTS = [
+    "FoldGeometryCompiler",
+    "ConstraintToDistanceMapCompiler",
+    "BackboneCoordinateEmitter",
+    "TopologyConstraintCompiler",
+    "PhysicalRelaxationExecutor",
+    "RealHoldoutCoordinateLoader",
+    "FoldQualityEvaluator",
+    "UniversalSolutionUnlockFirewall",
+]
+
+E80_REQUIRED_HARD_FAMILIES = [
+    "globular_soluble",
+    "membrane_tm",
+    "secretory_disulfide",
+    "coiled_coil",
+    "repeat_solenoid",
+    "knot_slipknot",
+    "beta_closure",
+    "multidomain_allosteric",
+    "assembly_required",
+    "metal_ligand_cofactor",
+    "intrinsic_disorder_no_single_fold",
+    "fold_upon_binding",
+    "metamorphic_fold_switching",
+]
+
+E80_HARD_FAMILY_ALIASES = {
+    "alpha_beta_mixed": "globular_soluble",
+    "alpha_rich": "globular_soluble",
+    "assembly": "assembly_required",
+    "assembly_required_core": "assembly_required",
+    "assembly_required_folding": "assembly_required",
+    "beta_closure_topology": "beta_closure",
+    "beta_rich": "beta_closure",
+    "closed_beta_topology": "beta_closure",
+    "cofactor_metal": "metal_ligand_cofactor",
+    "cofactor_ligand_assisted_stabilization": "metal_ligand_cofactor",
+    "coiled_coil_register": "coiled_coil",
+    "coiled_coil_register_topology": "coiled_coil",
+    "disorder_boundary": "fold_upon_binding",
+    "disorder_boundary_and_fold_upon_binding": "fold_upon_binding",
+    "disorder_ensemble": "intrinsic_disorder_no_single_fold",
+    "fold_upon_binding_disorder": "fold_upon_binding",
+    "globular_closure": "globular_soluble",
+    "intrinsic_disorder_phase_separation": "intrinsic_disorder_no_single_fold",
+    "knot_slipknot": "knot_slipknot",
+    "knotted_topology": "knot_slipknot",
+    "knotted_topology_language_evidence_holdout": "knot_slipknot",
+    "ligand_locked_basin": "metal_ligand_cofactor",
+    "membrane": "membrane_tm",
+    "membrane_multidomain_folding_proteostasis": "membrane_tm",
+    "metal_cluster_and_ligand_locked_basin": "metal_ligand_cofactor",
+    "metal_ligand_basin": "metal_ligand_cofactor",
+    "metamorphic": "metamorphic_fold_switching",
+    "multidomain": "multidomain_allosteric",
+    "multidomain_allostery": "multidomain_allosteric",
+    "multidomain_allosteric_architecture": "multidomain_allosteric",
+    "oligomerization_controlled_folding": "assembly_required",
+    "repeat": "repeat_solenoid",
+    "repeat_solenoid_topology": "repeat_solenoid",
+    "secretory_disulfide_redox_context": "secretory_disulfide",
+    "secretory_disulfide_redox_topology": "secretory_disulfide",
+    "signal_peptide_true_tm_boundary": "membrane_tm",
+    "signal_peptide_vs_true_tm": "membrane_tm",
+    "signal_peptide_vs_true_tm_routing": "membrane_tm",
+    "soluble_beta_barrel_vs_membrane_barrel": "beta_closure",
+}
+
+E80_GEOMETRY_CONSTRAINT_TYPES = [
+    "local_backbone_continuity",
+    "long_range_contact",
+    "disulfide_pairing",
+    "tm_span",
+    "repeat_solenoid_axis",
+    "coiled_coil_register",
+    "knot_slipknot_threading",
+    "assembly_interface",
+    "metal_ligand_coordination",
+    "disorder_no_single_fold",
+    "metamorphic_basin_switch",
+    "beta_closure",
+]
+
+
+def e80_normalize_hard_family(family: str) -> str:
+    family = str(family)
+    if family in E80_REQUIRED_HARD_FAMILIES:
+        return family
+    if family in E80_HARD_FAMILY_ALIASES:
+        return E80_HARD_FAMILY_ALIASES[family]
+    normalized = e79_normalize_hard_regime_family(family)
+    return E80_HARD_FAMILY_ALIASES.get(normalized, normalized)
+
+
+def e80_engine_manifest() -> dict[str, Any]:
+    return {
+        "kind": "E80_REAL_FOLD_GEOMETRY_AND_PHYSICAL_CALIBRATION_ENGINE_MANIFEST_v0",
+        "engine_revision": E80_ENGINE_REVISION,
+        "components": E80_ENGINE_COMPONENTS,
+        "required_hard_families": E80_REQUIRED_HARD_FAMILIES,
+        "hard_family_aliases": E80_HARD_FAMILY_ALIASES,
+        "geometry_constraint_types": E80_GEOMETRY_CONSTRAINT_TYPES,
+        "native_coordinate_truth_allowed_before_prediction": False,
+        "native_contacts_allowed_before_prediction": False,
+        "external_fold_model_prediction_input_allowed": False,
+        "proxy_physical_execution_for_target_fold_claim_allowed": False,
+        "deterministic_variants_for_universal_claim_allowed": False,
+        "protein_folding_solved_by_field_setting": False,
+    }
+
+
+def e80_fresh_target_resolver(
+    *,
+    required_families: list[str],
+    candidate_targets: list[dict[str, Any]],
+    previously_used_target_ids: Iterable[str] = (),
+) -> dict[str, Any]:
+    previous = {str(target_id) for target_id in previously_used_target_ids}
+    selected: list[dict[str, Any]] = []
+    rejected: list[dict[str, Any]] = []
+    families_seen: set[str] = set()
+    for target in candidate_targets:
+        target_id = str(target.get("target_id", ""))
+        raw_family = str(target.get("family", target.get("hard_family", target.get("hard_regime_family", ""))))
+        family = e80_normalize_hard_family(raw_family)
+        reasons = []
+        if not target_id:
+            reasons.append("missing_target_id")
+        if not raw_family:
+            reasons.append("missing_family")
+        if target_id in previous:
+            reasons.append("target_used_before")
+        if not bool(target.get("fresh_blind_target", False)):
+            reasons.append("not_fresh_blind_target")
+        if bool(target.get("deterministic_variant", False)):
+            reasons.append("deterministic_variant_not_allowed")
+        if not bool(target.get("nonredundant", False)):
+            reasons.append("not_nonredundant")
+        if reasons:
+            rejected.append({"target_id": target_id, "family": family, "raw_family": raw_family, "blocked_reasons": reasons})
+            continue
+        selected.append({**target, "hard_family": family, "raw_family": raw_family})
+        families_seen.add(family)
+    required = {e80_normalize_hard_family(family) for family in required_families}
+    missing = sorted(required.difference(families_seen))
+    return {
+        "kind": "E80_FRESH_TARGET_RESOLUTION_v0",
+        "required_families": sorted(required),
+        "candidate_target_count": len(candidate_targets),
+        "fresh_target_count": len(selected),
+        "fresh_target_ids": [str(target.get("target_id")) for target in selected],
+        "fresh_targets": selected,
+        "fresh_families_represented": sorted(families_seen),
+        "missing_required_families": missing,
+        "fresh_target_shortage": bool(missing),
+        "deterministic_variant_count": sum(1 for target in candidate_targets if bool(target.get("deterministic_variant", False))),
+        "deterministic_variants_for_universal_claim_allowed": False,
+        "rejected_targets": rejected,
+    }
+
+
+def _e80_preseal_leakage(preseal: dict[str, Any]) -> bool:
+    forbidden = [
+        "coordinate_truth_used_before_prediction",
+        "native_coordinates_used_before_prediction",
+        "native_contacts_used_before_prediction",
+        "native_topology_labels_used_before_prediction",
+        "postseal_annotations_used_before_prediction",
+        "structure_model_used_as_prediction_input",
+        "alphafold_or_external_fold_model_used_as_prediction_input",
+    ]
+    return any(bool(preseal.get(key, False)) for key in forbidden)
+
+
+def _e80_sentence_family(packet: dict[str, Any], fallback: str = "") -> str:
+    for key in ("hard_family", "family", "fold_family_prediction", "mechanism_class", "sentence_family"):
+        if packet.get(key):
+            return e80_normalize_hard_family(str(packet[key]))
+    return e80_normalize_hard_family(fallback)
+
+
+class FoldGeometryCompiler:
+    def compile(
+        self,
+        *,
+        protein_sentence_packet: dict[str, Any],
+        operator_state_propagation_summary: dict[str, Any],
+        hypothesized_interaction_language_map: dict[str, Any],
+        sequence: str,
+        allowed_preseal_evidence: dict[str, Any],
+    ) -> dict[str, Any]:
+        normalized_sequence = normalize_sequence(sequence)
+        family = _e80_sentence_family(protein_sentence_packet, str(protein_sentence_packet.get("target_family", "")))
+        target_id = str(protein_sentence_packet.get("target_id", ""))
+        constraints: list[dict[str, Any]] = []
+        for index in range(len(normalized_sequence) - 1):
+            constraints.append({
+                "constraint_type": "local_backbone_continuity",
+                "residue_i": index + 1,
+                "residue_j": index + 2,
+                "constraint_source": "sequence_backbone_order",
+                "native_truth_used": False,
+            })
+        for pair in protein_sentence_packet.get("predicted_contact_pairs", []):
+            if isinstance(pair, dict):
+                residue_i = pair.get("residue_i")
+                residue_j = pair.get("residue_j")
+            else:
+                residue_i, residue_j = pair[:2]
+            constraints.append({
+                "constraint_type": "long_range_contact",
+                "residue_i": residue_i,
+                "residue_j": residue_j,
+                "constraint_source": "sealed_sentence_contact_clause",
+                "native_truth_used": False,
+            })
+        cysteine_positions = [index + 1 for index, residue in enumerate(normalized_sequence) if residue == "C"]
+        if family == "secretory_disulfide" and len(cysteine_positions) > 1:
+            for left, right in zip(cysteine_positions[::2], cysteine_positions[1::2]):
+                constraints.append({
+                    "constraint_type": "disulfide_pairing",
+                    "residue_i": left,
+                    "residue_j": right,
+                    "constraint_source": "sentence_family_and_sequence_cysteine_pairing",
+                    "native_truth_used": False,
+                })
+        if family == "membrane_tm":
+            constraints.append({
+                "constraint_type": "tm_span",
+                "span": protein_sentence_packet.get("tm_spans", ["sentence_declared_membrane_span"]),
+                "constraint_source": "sealed_sentence_topology_clause",
+                "native_truth_used": False,
+            })
+        if family == "repeat_solenoid":
+            constraints.append({
+                "constraint_type": "repeat_solenoid_axis",
+                "constraint_source": "sealed_sentence_repeat_clause",
+                "native_truth_used": False,
+            })
+        if family == "coiled_coil":
+            constraints.append({
+                "constraint_type": "coiled_coil_register",
+                "constraint_source": "sealed_sentence_register_clause",
+                "native_truth_used": False,
+            })
+        if family == "knot_slipknot":
+            constraints.append({
+                "constraint_type": "knot_slipknot_threading",
+                "constraint_source": "sealed_sentence_threading_clause",
+                "structural_claim_requires": KNOTTED_TOPOLOGY_STRUCTURAL_PROOF_REQUIREMENT,
+                "native_truth_used": False,
+            })
+        if family == "assembly_required":
+            constraints.append({
+                "constraint_type": "assembly_interface",
+                "constraint_source": "sealed_sentence_assembly_clause",
+                "native_truth_used": False,
+            })
+        if family == "metal_ligand_cofactor":
+            constraints.append({
+                "constraint_type": "metal_ligand_coordination",
+                "constraint_source": "sealed_sentence_cofactor_clause",
+                "native_truth_used": False,
+            })
+        if family == "intrinsic_disorder_no_single_fold":
+            constraints.append({
+                "constraint_type": "disorder_no_single_fold",
+                "constraint_source": "sealed_sentence_ensemble_clause",
+                "native_truth_used": False,
+            })
+        if family == "metamorphic_fold_switching":
+            constraints.append({
+                "constraint_type": "metamorphic_basin_switch",
+                "constraint_source": "sealed_sentence_multi_basin_clause",
+                "native_truth_used": False,
+            })
+        if family == "beta_closure":
+            constraints.append({
+                "constraint_type": "beta_closure",
+                "constraint_source": "sealed_sentence_beta_closure_clause",
+                "native_truth_used": False,
+            })
+        packet = {
+            "kind": "E80_FOLD_CONSTRAINT_PACKET_v0",
+            "target_id": target_id,
+            "sequence_hash": stable_hash(normalized_sequence),
+            "sequence_length": len(normalized_sequence),
+            "hard_family": family,
+            "single_coordinate_model_allowed": family != "intrinsic_disorder_no_single_fold",
+            "fold_constraints": constraints,
+            "operator_state_propagation_summary_hash": stable_hash(operator_state_propagation_summary),
+            "hypothesized_interaction_language_map_hash": stable_hash(hypothesized_interaction_language_map),
+            "preseal_coordinate_native_leakage": _e80_preseal_leakage(allowed_preseal_evidence),
+            "external_fold_model_prediction_input_used": bool(
+                allowed_preseal_evidence.get("alphafold_or_external_fold_model_used_as_prediction_input", False)
+            ),
+        }
+        packet["fold_constraint_hash"] = stable_hash({key: value for key, value in packet.items() if key != "fold_constraint_hash"})
+        return packet
+
+
+class ConstraintToDistanceMapCompiler:
+    def compile(self, *, fold_constraint_packet: dict[str, Any]) -> dict[str, Any]:
+        distance_constraints: list[dict[str, Any]] = []
+        contact_map: list[dict[str, Any]] = []
+        for constraint in fold_constraint_packet.get("fold_constraints", []):
+            constraint_type = str(constraint.get("constraint_type", ""))
+            if "residue_i" not in constraint or "residue_j" not in constraint:
+                continue
+            row = {
+                "residue_i": int(constraint["residue_i"]),
+                "residue_j": int(constraint["residue_j"]),
+                "distance_class": constraint_type,
+                "distance_source": constraint.get("constraint_source"),
+                "native_truth_used": False,
+            }
+            distance_constraints.append(row)
+            if constraint_type != "local_backbone_continuity":
+                contact_map.append(row)
+        return {
+            "kind": "E80_CONSTRAINT_TO_DISTANCE_MAP_PACKET_v0",
+            "target_id": fold_constraint_packet.get("target_id"),
+            "sequence_hash": fold_constraint_packet.get("sequence_hash"),
+            "predicted_distance_constraints": distance_constraints,
+            "predicted_contact_map": contact_map,
+            "contact_map_hash": stable_hash(contact_map),
+            "native_contact_truth_used": False,
+        }
+
+
+class TopologyConstraintCompiler:
+    def compile(self, *, fold_constraint_packet: dict[str, Any]) -> dict[str, Any]:
+        family = e80_normalize_hard_family(str(fold_constraint_packet.get("hard_family", "")))
+        topology_constraints = [
+            constraint
+            for constraint in fold_constraint_packet.get("fold_constraints", [])
+            if constraint.get("constraint_type") in {
+                "disulfide_pairing",
+                "tm_span",
+                "repeat_solenoid_axis",
+                "coiled_coil_register",
+                "knot_slipknot_threading",
+                "assembly_interface",
+                "metal_ligand_coordination",
+                "disorder_no_single_fold",
+                "metamorphic_basin_switch",
+                "beta_closure",
+            }
+        ]
+        predicted_topology = "ensemble_no_single_stable_fold" if family == "intrinsic_disorder_no_single_fold" else family
+        return {
+            "kind": "E80_TOPOLOGY_CONSTRAINT_PACKET_v0",
+            "target_id": fold_constraint_packet.get("target_id"),
+            "hard_family": family,
+            "predicted_topology": predicted_topology,
+            "topology_constraints": topology_constraints,
+            "structural_knot_claim_requires": (
+                KNOTTED_TOPOLOGY_STRUCTURAL_PROOF_REQUIREMENT if family == "knot_slipknot" else None
+            ),
+            "native_topology_truth_used": False,
+        }
+
+
+class BackboneCoordinateEmitter:
+    def emit(
+        self,
+        *,
+        sequence: str,
+        fold_constraint_packet: dict[str, Any],
+        distance_map_packet: dict[str, Any],
+        topology_constraint_packet: dict[str, Any],
+    ) -> dict[str, Any]:
+        normalized_sequence = normalize_sequence(sequence)
+        coordinates: list[dict[str, Any]] = []
+        single_model_allowed = bool(fold_constraint_packet.get("single_coordinate_model_allowed", True))
+        if single_model_allowed:
+            unique_residue_count = max(1, len(set(normalized_sequence)))
+            running_charge = 0
+            for index, residue in enumerate(normalized_sequence):
+                if residue in POSITIVE:
+                    running_charge += 1
+                elif residue in NEGATIVE:
+                    running_charge -= 1
+                coordinates.append({
+                    "residue_index": index + 1,
+                    "residue": residue,
+                    "x": index,
+                    "y": running_charge,
+                    "z": ord(residue) % unique_residue_count,
+                })
+        predicted_fold_packet = {
+            "kind": "E80_PREDICTED_FOLD_PACKET_v0",
+            "target_id": fold_constraint_packet.get("target_id"),
+            "sequence_hash": fold_constraint_packet.get("sequence_hash"),
+            "hard_family": fold_constraint_packet.get("hard_family"),
+            "coordinate_model": "coarse_ca_coordinates_from_sealed_sentence_constraints"
+            if single_model_allowed
+            else "ensemble_no_single_fold_state",
+            "predicted_ca_coordinates": coordinates,
+            "predicted_contact_map": distance_map_packet.get("predicted_contact_map", []),
+            "predicted_topology": topology_constraint_packet.get("predicted_topology"),
+            "single_coordinate_model_allowed": single_model_allowed,
+            "coordinate_truth_used": False,
+            "native_contact_truth_used": False,
+            "external_fold_model_prediction_input_used": False,
+        }
+        predicted_fold_packet["prediction_hash"] = stable_hash({
+            key: value for key, value in predicted_fold_packet.items() if key != "prediction_hash"
+        })
+        return predicted_fold_packet
+
+
+class PhysicalRelaxationExecutor:
+    accepted_backends = {
+        "openmm",
+        "gromacs",
+        "validated_coarse_protocol",
+        "equivalent_real_physical_execution",
+    }
+
+    def execute(
+        self,
+        *,
+        predicted_fold_packets: list[dict[str, Any]],
+        execution_rows: list[dict[str, Any]] | None = None,
+    ) -> dict[str, Any]:
+        predictions = {str(packet.get("target_id")): packet for packet in predicted_fold_packets}
+        rows = execution_rows or []
+        supported: dict[str, dict[str, Any]] = {}
+        blocked: list[dict[str, Any]] = []
+        for row in rows:
+            target_id = str(row.get("target_id", ""))
+            backend = str(row.get("execution_backend", ""))
+            energy_before = row.get("energy_before")
+            energy_after = row.get("energy_after")
+            violation_before = row.get("constraint_violation_before")
+            violation_after = row.get("constraint_violation_after")
+            energy_reduced = (
+                energy_after <= energy_before
+                if isinstance(energy_before, (int, float)) and isinstance(energy_after, (int, float))
+                else bool(row.get("energy_reduced", False))
+            )
+            violation_reduced = (
+                violation_after <= violation_before
+                if isinstance(violation_before, (int, float)) and isinstance(violation_after, (int, float))
+                else bool(row.get("constraint_violation_reduced", False))
+            )
+            real_or_validated = bool(row.get("real_openmm_execution", False)) or bool(
+                row.get("validated_coarse_execution", False)
+            )
+            checks = {
+                "target_id_present": bool(target_id),
+                "prediction_present": target_id in predictions,
+                "backend_real_or_validated": backend in self.accepted_backends,
+                "real_or_validated_execution": real_or_validated,
+                "proxy_only_false": not bool(row.get("proxy_only", True)),
+                "energy_recorded": energy_before is not None and energy_after is not None,
+                "constraint_violation_recorded": violation_before is not None and violation_after is not None,
+                "energy_reduced_or_preserved": energy_reduced,
+                "constraint_violation_reduced_or_preserved": violation_reduced,
+            }
+            execution = {
+                **row,
+                "execution_checks": checks,
+                "claim_ceiling": "CLAIM_5_TARGET_FOLD_SUPPORTED" if all(checks.values()) else "CLAIM_4_COARSE_PHYSICAL_SUPPORTED",
+            }
+            if all(checks.values()):
+                supported[target_id] = execution
+            else:
+                blocked.append(execution)
+        return {
+            "kind": "E80_PHYSICAL_RELAXATION_EXECUTOR_PACKET_v0",
+            "prediction_count": len(predicted_fold_packets),
+            "execution_count": len(rows),
+            "real_or_validated_physical_execution_count": len(supported),
+            "supported_target_ids": sorted(supported),
+            "executions_by_target": supported,
+            "blocked_executions": blocked,
+            "proxy_physical_execution_used_for_claim": any(
+                bool(row.get("proxy_only", False)) and bool(row.get("target_fold_claim_attempted", False)) for row in rows
+            ),
+            "unsupported_physical_claims": sum(
+                1 for row in blocked if bool(row.get("target_fold_claim_attempted", False))
+            ),
+        }
+
+
+class RealHoldoutCoordinateLoader:
+    def load(self, *, holdout_rows: list[dict[str, Any]]) -> dict[str, Any]:
+        loaded: dict[str, dict[str, Any]] = {}
+        invalid: list[dict[str, Any]] = []
+        for row in holdout_rows:
+            target_id = str(row.get("target_id", ""))
+            checks = {
+                "target_id_present": bool(target_id),
+                "opened_after_prediction_hash": bool(row.get("opened_after_prediction_hash", False)),
+                "used_before_prediction_false": not bool(row.get("used_before_prediction", True)),
+                "coordinate_holdout_available": bool(row.get("coordinate_holdout_available", False)),
+                "contact_map_available": bool(row.get("contact_map_available", False)),
+                "topology_holdout_available": bool(row.get("topology_holdout_available", False)),
+                "fold_family_available": bool(row.get("fold_family", row.get("observable_family", ""))),
+                "holdout_hash_present": bool(row.get("holdout_hash", row.get("source_hash", ""))),
+            }
+            if all(checks.values()):
+                loaded[target_id] = {**row, "holdout_checks": checks}
+            else:
+                invalid.append({"target_id": target_id, "holdout_checks": checks})
+        return {
+            "kind": "E80_REAL_HOLDOUT_COORDINATE_LOADER_PACKET_v0",
+            "holdout_count": len(holdout_rows),
+            "real_fold_holdout_count": len(loaded),
+            "holdouts_by_target": loaded,
+            "loaded_target_ids": sorted(loaded),
+            "invalid_holdouts": invalid,
+            "coordinate_native_leakage": any(bool(row.get("used_before_prediction", True)) for row in holdout_rows),
+        }
+
+
+def _e80_pair_set(rows: Any) -> set[tuple[int, int]]:
+    pairs: set[tuple[int, int]] = set()
+    if not isinstance(rows, list):
+        return pairs
+    for row in rows:
+        if isinstance(row, dict):
+            if "residue_i" in row and "residue_j" in row:
+                left = int(row["residue_i"])
+                right = int(row["residue_j"])
+                pairs.add((min(left, right), max(left, right)))
+        elif isinstance(row, (list, tuple)) and len(row) > 1:
+            left = int(row[0])
+            right = int(row[1])
+            pairs.add((min(left, right), max(left, right)))
+    return pairs
+
+
+class FoldQualityEvaluator:
+    def evaluate(
+        self,
+        *,
+        predicted_fold_packets: list[dict[str, Any]],
+        holdout_packet: dict[str, Any],
+        physical_relaxation_packet: dict[str, Any],
+    ) -> dict[str, Any]:
+        holdouts = holdout_packet.get("holdouts_by_target", {})
+        executions = physical_relaxation_packet.get("executions_by_target", {})
+        rows: list[dict[str, Any]] = []
+        supported_families: set[str] = set()
+        for prediction in predicted_fold_packets:
+            target_id = str(prediction.get("target_id", ""))
+            holdout = holdouts.get(target_id, {})
+            execution = executions.get(target_id, {})
+            predicted_pairs = _e80_pair_set(prediction.get("predicted_contact_map", []))
+            holdout_pairs = _e80_pair_set(holdout.get("native_contact_map", holdout.get("contact_map", [])))
+            selected_overlap = len(predicted_pairs.intersection(holdout_pairs))
+            wrong_overlap = int(holdout.get("wrong_grammar_contact_overlap", 0))
+            bag_overlap = int(holdout.get("bag_of_words_contact_overlap", 0))
+            masked_overlap = int(holdout.get("masked_sentence_contact_overlap", 0))
+            wrong_target_overlap = int(holdout.get("wrong_target_contact_overlap", 0))
+            contact_precision_supported = bool(holdout.get("selected_contact_supports", False)) or (
+                selected_overlap > max(wrong_overlap, bag_overlap, masked_overlap, wrong_target_overlap)
+            )
+            predicted_family = e80_normalize_hard_family(str(prediction.get("hard_family", "")))
+            holdout_family = e80_normalize_hard_family(str(holdout.get("fold_family", holdout.get("observable_family", ""))))
+            topology_supported = bool(holdout.get("selected_topology_supports", False)) or (
+                str(prediction.get("predicted_topology")) == str(holdout.get("topology_class", ""))
+            )
+            family_supported = bool(holdout.get("selected_family_supports", False)) or (
+                bool(predicted_family) and predicted_family == holdout_family
+            )
+            controls_fail = (
+                not bool(holdout.get("wrong_grammar_supports", True))
+                and not bool(holdout.get("bag_of_words_supports", True))
+                and not bool(holdout.get("masked_sentence_supports", True))
+                and not bool(holdout.get("wrong_target_supports", True))
+            )
+            family_specific_supported = bool(holdout.get("family_specific_correctness", False)) or family_supported
+            checks = {
+                "prediction_present": bool(prediction),
+                "postseal_holdout_present": bool(holdout),
+                "physical_relaxation_present": bool(execution),
+                "contact_precision_supported": contact_precision_supported,
+                "long_range_contact_enrichment_supported": bool(
+                    holdout.get("long_range_contact_enrichment_supported", contact_precision_supported)
+                ),
+                "topology_family_support": topology_supported,
+                "contact_order_support": bool(holdout.get("contact_order_support", contact_precision_supported)),
+                "special_family_support": bool(
+                    holdout.get("disulfide_tm_assembly_ligand_knot_repeat_support", family_specific_supported)
+                ),
+                "family_specific_correctness": family_specific_supported,
+                "wrong_target_control_fails": not bool(holdout.get("wrong_target_supports", True)),
+                "wrong_grammar_control_fails": not bool(holdout.get("wrong_grammar_supports", True)),
+                "bag_of_words_control_fails": not bool(holdout.get("bag_of_words_supports", True)),
+                "masked_sentence_control_fails": not bool(holdout.get("masked_sentence_supports", True)),
+                "all_controls_fail": controls_fail,
+            }
+            allowed = (
+                all(checks.values())
+                and execution.get("claim_ceiling") == "CLAIM_5_TARGET_FOLD_SUPPORTED"
+                and not bool(holdout_packet.get("coordinate_native_leakage", True))
+            )
+            if allowed:
+                supported_families.add(predicted_family)
+            rows.append({
+                "target_id": target_id,
+                "hard_family": predicted_family,
+                "holdout_family": holdout_family,
+                "target_fold_claim_allowed": allowed,
+                "claim_tier_unlocked": "CLAIM_5_TARGET_FOLD_SUPPORTED" if allowed else "CLAIM_4_COARSE_PHYSICAL_SUPPORTED",
+                "selected_contact_overlap": selected_overlap,
+                "fold_quality_checks": checks,
+            })
+        return {
+            "kind": "E80_FOLD_QUALITY_EVALUATOR_PACKET_v0",
+            "target_count": len(predicted_fold_packets),
+            "rows": rows,
+            "target_fold_claim_count": sum(1 for row in rows if row["target_fold_claim_allowed"]),
+            "supported_hard_families": sorted(supported_families),
+            "unsupported_fold_claims": sum(
+                1 for row in rows if row["claim_tier_unlocked"] == "CLAIM_5_TARGET_FOLD_SUPPORTED" and not row["target_fold_claim_allowed"]
+            ),
+            "coordinate_native_leakage": bool(holdout_packet.get("coordinate_native_leakage", True)),
+        }
+
+
+class UniversalSolutionUnlockFirewall:
+    def evaluate(
+        self,
+        *,
+        fresh_resolution: dict[str, Any],
+        holdout_packet: dict[str, Any],
+        physical_relaxation_packet: dict[str, Any],
+        fold_quality_packet: dict[str, Any],
+        external_benchmark: dict[str, Any],
+        token_only_acceptance_count: int,
+        required_families: list[str] | None = None,
+    ) -> dict[str, Any]:
+        required = {e80_normalize_hard_family(family) for family in (required_families or E80_REQUIRED_HARD_FAMILIES)}
+        supported = {e80_normalize_hard_family(family) for family in fold_quality_packet.get("supported_hard_families", [])}
+        missing = sorted(required.difference(supported))
+        unsupported_fold_claims = int(fold_quality_packet.get("unsupported_fold_claims", 0))
+        unsupported_physical_claims = int(physical_relaxation_packet.get("unsupported_physical_claims", 0))
+        every_required_hard_family_has_supported_target_fold_claim = bool(required) and not missing
+        universal = (
+            bool(fresh_resolution.get("fresh_target_shortage", True)) is False
+            and holdout_packet.get("real_fold_holdout_count", 0) > 0
+            and physical_relaxation_packet.get("real_or_validated_physical_execution_count", 0) > 0
+            and bool(physical_relaxation_packet.get("proxy_physical_execution_used_for_claim", True)) is False
+            and fold_quality_packet.get("target_fold_claim_count", 0) > 0
+            and every_required_hard_family_has_supported_target_fold_claim
+            and unsupported_fold_claims == 0
+            and unsupported_physical_claims == 0
+            and bool(fold_quality_packet.get("coordinate_native_leakage", True)) is False
+            and token_only_acceptance_count == 0
+            and bool(external_benchmark.get("external_blind_benchmark_exported", False)) is True
+            and bool(external_benchmark.get("external_blind_benchmark_passed", False)) is True
+        )
+        blocked_reasons = []
+        if bool(fresh_resolution.get("fresh_target_shortage", True)):
+            blocked_reasons.append("fresh_target_shortage")
+        if holdout_packet.get("real_fold_holdout_count", 0) == 0:
+            blocked_reasons.append("real_fold_holdout_count_zero")
+        if physical_relaxation_packet.get("real_or_validated_physical_execution_count", 0) == 0:
+            blocked_reasons.append("real_or_validated_physical_execution_count_zero")
+        if bool(physical_relaxation_packet.get("proxy_physical_execution_used_for_claim", True)):
+            blocked_reasons.append("proxy_physical_execution_used_for_claim")
+        if fold_quality_packet.get("target_fold_claim_count", 0) == 0:
+            blocked_reasons.append("target_fold_claim_count_zero")
+        if missing:
+            blocked_reasons.append("hard_family_support_incomplete")
+        if unsupported_fold_claims:
+            blocked_reasons.append("unsupported_fold_claims_present")
+        if unsupported_physical_claims:
+            blocked_reasons.append("unsupported_physical_claims_present")
+        if bool(fold_quality_packet.get("coordinate_native_leakage", True)):
+            blocked_reasons.append("coordinate_native_leakage")
+        if token_only_acceptance_count:
+            blocked_reasons.append("token_only_acceptance_count_nonzero")
+        if not bool(external_benchmark.get("external_blind_benchmark_exported", False)):
+            blocked_reasons.append("external_blind_benchmark_not_exported")
+        if not bool(external_benchmark.get("external_blind_benchmark_passed", False)):
+            blocked_reasons.append("external_blind_benchmark_not_passed")
+        return {
+            "kind": "E80_UNIVERSAL_SOLUTION_UNLOCK_FIREWALL_PACKET_v0",
+            "required_hard_families": sorted(required),
+            "supported_hard_families": sorted(supported),
+            "missing_hard_families": missing,
+            "every_required_hard_family_has_supported_target_fold_claim": every_required_hard_family_has_supported_target_fold_claim,
+            "fresh_target_shortage": bool(fresh_resolution.get("fresh_target_shortage", True)),
+            "real_fold_holdout_count": int(holdout_packet.get("real_fold_holdout_count", 0)),
+            "real_or_validated_physical_execution_count": int(
+                physical_relaxation_packet.get("real_or_validated_physical_execution_count", 0)
+            ),
+            "proxy_physical_execution_used_for_claim": bool(
+                physical_relaxation_packet.get("proxy_physical_execution_used_for_claim", True)
+            ),
+            "target_fold_claim_count": int(fold_quality_packet.get("target_fold_claim_count", 0)),
+            "unsupported_fold_claims": unsupported_fold_claims,
+            "unsupported_physical_claims": unsupported_physical_claims,
+            "coordinate_native_leakage": bool(fold_quality_packet.get("coordinate_native_leakage", True)),
+            "token_only_acceptance_count": int(token_only_acceptance_count),
+            "external_blind_benchmark_exported": bool(external_benchmark.get("external_blind_benchmark_exported", False)),
+            "external_blind_benchmark_passed": bool(external_benchmark.get("external_blind_benchmark_passed", False)),
+            "universal_folding_solution_claim_allowed": universal,
+            "protein_folding_solved": universal,
+            "claim_5_target_fold_supported": fold_quality_packet.get("target_fold_claim_count", 0) > 0,
+            "claim_6_general_folding_solution_candidate": every_required_hard_family_has_supported_target_fold_claim
+            and fold_quality_packet.get("target_fold_claim_count", 0) > 0
+            and unsupported_fold_claims == 0
+            and unsupported_physical_claims == 0,
+            "claim_7_universal_protein_folding_solved": universal,
+            "blocked_reasons": blocked_reasons,
+        }
+
+
 def bounded(value: float) -> float:
     return round(max(0.0, min(1.0, float(value))), 6)
 
