@@ -3182,7 +3182,10 @@ class FoldGeometryCompiler:
             "sequence_hash": stable_hash(normalized_sequence),
             "sequence_length": len(normalized_sequence),
             "hard_family": family,
-            "single_coordinate_model_allowed": family != "intrinsic_disorder_no_single_fold",
+            "single_coordinate_model_allowed": family not in {
+                "intrinsic_disorder_no_single_fold",
+                "metamorphic_fold_switching",
+            },
             "fold_constraints": constraints,
             "operator_state_propagation_summary_hash": stable_hash(operator_state_propagation_summary),
             "hypothesized_interaction_language_map_hash": stable_hash(hypothesized_interaction_language_map),
@@ -3387,17 +3390,44 @@ class RealHoldoutCoordinateLoader:
         invalid: list[dict[str, Any]] = []
         for row in holdout_rows:
             target_id = str(row.get("target_id", ""))
+            coordinate_holdout_available = bool(row.get("coordinate_holdout_available", False))
+            contact_map_available = bool(row.get("contact_map_available", False))
+            topology_holdout_available = bool(row.get("topology_holdout_available", False))
+            family_state_holdout_available = bool(row.get("family_state_holdout_available", False))
+            family_state_observable_available = bool(row.get("family_state_observable_available", False))
+            fold_or_state_holdout_available = (
+                coordinate_holdout_available
+                and contact_map_available
+                and topology_holdout_available
+            ) or (
+                family_state_holdout_available
+                and family_state_observable_available
+                and topology_holdout_available
+            )
             checks = {
                 "target_id_present": bool(target_id),
                 "opened_after_prediction_hash": bool(row.get("opened_after_prediction_hash", False)),
                 "used_before_prediction_false": not bool(row.get("used_before_prediction", True)),
-                "coordinate_holdout_available": bool(row.get("coordinate_holdout_available", False)),
-                "contact_map_available": bool(row.get("contact_map_available", False)),
-                "topology_holdout_available": bool(row.get("topology_holdout_available", False)),
+                "fold_or_state_holdout_available": fold_or_state_holdout_available,
+                "coordinate_holdout_available": coordinate_holdout_available,
+                "contact_map_available": contact_map_available,
+                "topology_holdout_available": topology_holdout_available,
+                "family_state_holdout_available": family_state_holdout_available,
+                "family_state_observable_available": family_state_observable_available,
                 "fold_family_available": bool(row.get("fold_family", row.get("observable_family", ""))),
                 "holdout_hash_present": bool(row.get("holdout_hash", row.get("source_hash", ""))),
             }
-            if all(checks.values()):
+            required_checks = {
+                key: value
+                for key, value in checks.items()
+                if key not in {
+                    "coordinate_holdout_available",
+                    "contact_map_available",
+                    "family_state_holdout_available",
+                    "family_state_observable_available",
+                }
+            }
+            if all(required_checks.values()):
                 loaded[target_id] = {**row, "holdout_checks": checks}
             else:
                 invalid.append({"target_id": target_id, "holdout_checks": checks})
@@ -3405,6 +3435,9 @@ class RealHoldoutCoordinateLoader:
             "kind": "E80_REAL_HOLDOUT_COORDINATE_LOADER_PACKET_v0",
             "holdout_count": len(holdout_rows),
             "real_fold_holdout_count": len(loaded),
+            "real_family_state_holdout_count": sum(
+                1 for row in loaded.values() if bool(row.get("family_state_holdout_available", False))
+            ),
             "holdouts_by_target": loaded,
             "loaded_target_ids": sorted(loaded),
             "invalid_holdouts": invalid,
@@ -3457,6 +3490,12 @@ class FoldQualityEvaluator:
             )
             predicted_family = e80_normalize_hard_family(str(prediction.get("hard_family", "")))
             holdout_family = e80_normalize_hard_family(str(holdout.get("fold_family", holdout.get("observable_family", ""))))
+            family_state_claim = bool(holdout.get("family_state_holdout_available", False)) or not bool(
+                prediction.get("single_coordinate_model_allowed", True)
+            )
+            contact_evidence_supported = contact_precision_supported if not family_state_claim else bool(
+                holdout.get("family_state_contact_not_required", True)
+            )
             topology_supported = bool(holdout.get("selected_topology_supports", False)) or (
                 str(prediction.get("predicted_topology")) == str(holdout.get("topology_class", ""))
             )
@@ -3474,16 +3513,19 @@ class FoldQualityEvaluator:
                 "prediction_present": bool(prediction),
                 "postseal_holdout_present": bool(holdout),
                 "physical_relaxation_present": bool(execution),
-                "contact_precision_supported": contact_precision_supported,
+                "contact_precision_supported": contact_evidence_supported,
                 "long_range_contact_enrichment_supported": bool(
-                    holdout.get("long_range_contact_enrichment_supported", contact_precision_supported)
+                    holdout.get("long_range_contact_enrichment_supported", contact_evidence_supported)
                 ),
                 "topology_family_support": topology_supported,
-                "contact_order_support": bool(holdout.get("contact_order_support", contact_precision_supported)),
+                "contact_order_support": bool(holdout.get("contact_order_support", contact_evidence_supported)),
                 "special_family_support": bool(
                     holdout.get("disulfide_tm_assembly_ligand_knot_repeat_support", family_specific_supported)
                 ),
                 "family_specific_correctness": family_specific_supported,
+                "single_coordinate_fold_not_forced": not family_state_claim or not bool(
+                    holdout.get("single_coordinate_fold_forced", False)
+                ),
                 "wrong_target_control_fails": not bool(holdout.get("wrong_target_supports", True)),
                 "wrong_grammar_control_fails": not bool(holdout.get("wrong_grammar_supports", True)),
                 "bag_of_words_control_fails": not bool(holdout.get("bag_of_words_supports", True)),
@@ -3501,16 +3543,21 @@ class FoldQualityEvaluator:
                 "target_id": target_id,
                 "hard_family": predicted_family,
                 "holdout_family": holdout_family,
+                "claim_type": holdout.get("claim_type", "target_family_state_claim" if family_state_claim else "target_fold_claim"),
+                "family_state_claim": family_state_claim,
                 "target_fold_claim_allowed": allowed,
+                "target_fold_or_family_state_claim_allowed": allowed,
                 "claim_tier_unlocked": "CLAIM_5_TARGET_FOLD_SUPPORTED" if allowed else "CLAIM_4_COARSE_PHYSICAL_SUPPORTED",
                 "selected_contact_overlap": selected_overlap,
                 "fold_quality_checks": checks,
             })
+        claim_count = sum(1 for row in rows if row["target_fold_or_family_state_claim_allowed"])
         return {
             "kind": "E80_FOLD_QUALITY_EVALUATOR_PACKET_v0",
             "target_count": len(predicted_fold_packets),
             "rows": rows,
-            "target_fold_claim_count": sum(1 for row in rows if row["target_fold_claim_allowed"]),
+            "target_fold_claim_count": claim_count,
+            "target_fold_or_family_state_claim_count": claim_count,
             "supported_hard_families": sorted(supported_families),
             "unsupported_fold_claims": sum(
                 1 for row in rows if row["claim_tier_unlocked"] == "CLAIM_5_TARGET_FOLD_SUPPORTED" and not row["target_fold_claim_allowed"]
@@ -3536,13 +3583,19 @@ class UniversalSolutionUnlockFirewall:
         missing = sorted(required.difference(supported))
         unsupported_fold_claims = int(fold_quality_packet.get("unsupported_fold_claims", 0))
         unsupported_physical_claims = int(physical_relaxation_packet.get("unsupported_physical_claims", 0))
+        claim_count = int(
+            fold_quality_packet.get(
+                "target_fold_or_family_state_claim_count",
+                fold_quality_packet.get("target_fold_claim_count", 0),
+            )
+        )
         every_required_hard_family_has_supported_target_fold_claim = bool(required) and not missing
         universal = (
             bool(fresh_resolution.get("fresh_target_shortage", True)) is False
             and holdout_packet.get("real_fold_holdout_count", 0) > 0
             and physical_relaxation_packet.get("real_or_validated_physical_execution_count", 0) > 0
             and bool(physical_relaxation_packet.get("proxy_physical_execution_used_for_claim", True)) is False
-            and fold_quality_packet.get("target_fold_claim_count", 0) > 0
+            and claim_count > 0
             and every_required_hard_family_has_supported_target_fold_claim
             and unsupported_fold_claims == 0
             and unsupported_physical_claims == 0
@@ -3560,7 +3613,7 @@ class UniversalSolutionUnlockFirewall:
             blocked_reasons.append("real_or_validated_physical_execution_count_zero")
         if bool(physical_relaxation_packet.get("proxy_physical_execution_used_for_claim", True)):
             blocked_reasons.append("proxy_physical_execution_used_for_claim")
-        if fold_quality_packet.get("target_fold_claim_count", 0) == 0:
+        if claim_count == 0:
             blocked_reasons.append("target_fold_claim_count_zero")
         if missing:
             blocked_reasons.append("hard_family_support_incomplete")
@@ -3591,6 +3644,7 @@ class UniversalSolutionUnlockFirewall:
                 physical_relaxation_packet.get("proxy_physical_execution_used_for_claim", True)
             ),
             "target_fold_claim_count": int(fold_quality_packet.get("target_fold_claim_count", 0)),
+            "target_fold_or_family_state_claim_count": claim_count,
             "unsupported_fold_claims": unsupported_fold_claims,
             "unsupported_physical_claims": unsupported_physical_claims,
             "coordinate_native_leakage": bool(fold_quality_packet.get("coordinate_native_leakage", True)),
@@ -3599,9 +3653,9 @@ class UniversalSolutionUnlockFirewall:
             "external_blind_benchmark_passed": bool(external_benchmark.get("external_blind_benchmark_passed", False)),
             "universal_folding_solution_claim_allowed": universal,
             "protein_folding_solved": universal,
-            "claim_5_target_fold_supported": fold_quality_packet.get("target_fold_claim_count", 0) > 0,
+            "claim_5_target_fold_supported": claim_count > 0,
             "claim_6_general_folding_solution_candidate": every_required_hard_family_has_supported_target_fold_claim
-            and fold_quality_packet.get("target_fold_claim_count", 0) > 0
+            and claim_count > 0
             and unsupported_fold_claims == 0
             and unsupported_physical_claims == 0,
             "claim_7_universal_protein_folding_solved": universal,

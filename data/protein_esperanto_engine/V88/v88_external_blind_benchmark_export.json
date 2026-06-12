@@ -1,0 +1,151 @@
+{
+  "batch_id": "V88_HARD_FAMILY_REAL_FOLD_HYDRATION_UNLOCK",
+  "empty_export_reason": null,
+  "engine_version_used": "E80",
+  "kind": "V88_EXTERNAL_BLIND_BENCHMARK_EXPORT_v0",
+  "rows": [
+    {
+      "claim_type": "target_fold_claim",
+      "coordinate_native_leakage": false,
+      "display_family": "globular_soluble",
+      "exported": true,
+      "postseal_holdout_hash": "a071528002ce621e7c8efaa8d31fa0afb17b9586e665cc038d4783eef6094995",
+      "sealed_prediction_hash": "3bb49cbc8912dfddf54152dab0dbfd78818a9c60d93fe456bb180307e6a601c6",
+      "target_fold_claim_allowed": true,
+      "target_fold_or_family_state_claim_allowed": true,
+      "target_id": "V88_RCSB_10DC_KRAS"
+    },
+    {
+      "claim_type": "target_topology_claim",
+      "coordinate_native_leakage": false,
+      "display_family": "membrane",
+      "exported": true,
+      "postseal_holdout_hash": "b0417f13626696df7418aca84cdbb537acf4ba0d384ca762e9d86243ca43deab",
+      "sealed_prediction_hash": "a73f19984fee8c6cbd884b0ca594da2e06bb48a48e7c5d56f5cc6a4c20c95bda",
+      "target_fold_claim_allowed": true,
+      "target_fold_or_family_state_claim_allowed": true,
+      "target_id": "V88_RCSB_1K4C_KCSA_CHAIN_C"
+    },
+    {
+      "claim_type": "target_topology_claim",
+      "coordinate_native_leakage": false,
+      "display_family": "secretory_disulfide",
+      "exported": true,
+      "postseal_holdout_hash": "5191d7fdbdda2ba0b710904454f4237e9934afeb96348618f75fd51b0f914481",
+      "sealed_prediction_hash": "740fed58accbbeb5f4049c4bf2b0697cbfab7d6bd75bf75d91d8d554d3cd619d",
+      "target_fold_claim_allowed": true,
+      "target_fold_or_family_state_claim_allowed": true,
+      "target_id": "V88_RCSB_2LZM_LYSOZYME"
+    },
+    {
+      "claim_type": "target_topology_claim",
+      "coordinate_native_leakage": false,
+      "display_family": "coiled_coil",
+      "exported": true,
+      "postseal_holdout_hash": "b20073970acc6b42996efe8fa6900dd844eb6e71baab4813ad21af67fc0e579c",
+      "sealed_prediction_hash": "339785518c7c40f5e0721a2cf3f0212a2f9f76e305ff8ec7d7af0d4253c8a19e",
+      "target_fold_claim_allowed": true,
+      "target_fold_or_family_state_claim_allowed": true,
+      "target_id": "V88_RCSB_2ZTA_GCN4_ZIPPER"
+    },
+    {
+      "claim_type": "target_topology_claim",
+      "coordinate_native_leakage": false,
+      "display_family": "repeat_solenoid",
+      "exported": true,
+      "postseal_holdout_hash": "89e2521ccf727acb16f3778f639849f26dc0c700cbb818dd4360a774468442fe",
+      "sealed_prediction_hash": "ebbbd9562640b18901762129ceceee83b48def9d4338aea7914080f9ce7381f2",
+      "target_fold_claim_allowed": true,
+      "target_fold_or_family_state_claim_allowed": true,
+      "target_id": "V88_RCSB_1N0R_TPR_REPEAT"
+    },
+    {
+      "claim_type": "target_topology_claim",
+      "coordinate_native_leakage": false,
+      "display_family": "knot_slipknot",
+      "exported": true,
+      "postseal_holdout_hash": "b92079a76459bcd0ecddaebfd1a7bf62af08b99a31c8bd364c6adb3c0968290c",
+      "sealed_prediction_hash": "ed8bea1a9903c8378fc6c5034f055098b7fccf553b8071a35441203cf12e9c77",
+      "target_fold_claim_allowed": true,
+      "target_fold_or_family_state_claim_allowed": true,
+      "target_id": "V88_RCSB_1J85_KNOTTED_TOPOLOGY"
+    },
+    {
+      "claim_type": "target_topology_claim",
+      "coordinate_native_leakage": false,
+      "display_family": "beta_closure",
+      "exported": true,
+      "postseal_holdout_hash": "97c82963fff3d744ddb96299dcde4da37d8c5b40234afc1699401c0a962f289d",
+      "sealed_prediction_hash": "6548b22a0fdac5630a14c8d1ab8e654702bced23078fe366743c3dd32b16edf2",
+      "target_fold_claim_allowed": true,
+      "target_fold_or_family_state_claim_allowed": true,
+      "target_id": "V88_RCSB_1CSP_COLD_SHOCK"
+    },
+    {
+      "claim_type": "target_family_state_claim",
+      "coordinate_native_leakage": false,
+      "display_family": "multidomain",
+      "exported": true,
+      "postseal_holdout_hash": "20d7b7ed5765457539413feecd4afdd72c82278de5090ae88c4a7560a9a9d624",
+      "sealed_prediction_hash": "4bc45be2c31218a7dc3d2797fcfced134b7844bc971338ed8e097ac806d6eda4",
+      "target_fold_claim_allowed": true,
+      "target_fold_or_family_state_claim_allowed": true,
+      "target_id": "V88_RCSB_4AKE_ADENYLATE_KINASE"
+    },
+    {
+      "claim_type": "target_assembly_claim",
+      "coordinate_native_leakage": false,
+      "display_family": "assembly",
+      "exported": true,
+      "postseal_holdout_hash": "91e7080f0399376ca65c6d70190697235759db3daaa29984523529e6133be6f8",
+      "sealed_prediction_hash": "88d69c8fd0e3b4fc298ae5f2fe64c703b41f44334c10bda264af503f6af7a6de",
+      "target_fold_claim_allowed": true,
+      "target_fold_or_family_state_claim_allowed": true,
+      "target_id": "V88_RCSB_1A3N_HEMOGLOBIN_ALPHA"
+    },
+    {
+      "claim_type": "target_family_state_claim",
+      "coordinate_native_leakage": false,
+      "display_family": "metal_ligand",
+      "exported": true,
+      "postseal_holdout_hash": "70140ffab7f257dc4d26485f9371e67529a905fd85809b87962abcd68e859e49",
+      "sealed_prediction_hash": "39ae5d791627b815e6e38a5c92e9333922b468e0aa529d5ae62a2792e3a40234",
+      "target_fold_claim_allowed": true,
+      "target_fold_or_family_state_claim_allowed": true,
+      "target_id": "V88_RCSB_1EA1_METALLOENZYME"
+    },
+    {
+      "claim_type": "target_disorder_ensemble_claim",
+      "coordinate_native_leakage": false,
+      "display_family": "intrinsic_disorder_or_no_single_fold",
+      "exported": true,
+      "postseal_holdout_hash": "9bd6dd41999ef5c745a07e2c76959434a30c5b1d959e21bfcfc8edb34ebb58d9",
+      "sealed_prediction_hash": "511c96b384a6a93bba72efe0c1997ba3f94d869395f0661c179f56c71b481769",
+      "target_fold_claim_allowed": true,
+      "target_fold_or_family_state_claim_allowed": true,
+      "target_id": "V88_DISPROT_DP01102_FUS_LC"
+    },
+    {
+      "claim_type": "target_family_state_claim",
+      "coordinate_native_leakage": false,
+      "display_family": "fold_upon_binding",
+      "exported": true,
+      "postseal_holdout_hash": "f1eb15824e305b4bab6da9b8d59426a5935f72b528c83b096378199182df12a5",
+      "sealed_prediction_hash": "fc9ea70179c3c26d39a814cda3c335298db5ee0c3ed954b48f77c0a00b0280e5",
+      "target_fold_claim_allowed": true,
+      "target_fold_or_family_state_claim_allowed": true,
+      "target_id": "V88_RCSB_1YCR_P53_TAD_CHAIN_B"
+    },
+    {
+      "claim_type": "target_metamorphic_state_claim",
+      "coordinate_native_leakage": false,
+      "display_family": "metamorphic",
+      "exported": true,
+      "postseal_holdout_hash": "9cdc6bb2e5974a5d9ddd38140b283a1170c64c66c4afa51c2cc2120c0e89aa1f",
+      "sealed_prediction_hash": "3389104172862fdd35de8d1f4a68453b4b4c1bd2572c79355ae79c118bd0704d",
+      "target_fold_claim_allowed": true,
+      "target_fold_or_family_state_claim_allowed": true,
+      "target_id": "V88_UNIPROT_P0AFW0_RFAH_CTD"
+    }
+  ]
+}
